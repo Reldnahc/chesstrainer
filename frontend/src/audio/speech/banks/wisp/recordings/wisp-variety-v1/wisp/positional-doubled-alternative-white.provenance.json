@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "In the position left unplayed, White would have pawns together on one file. Doubled pawns."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a0a9811352ae802c22f04681c2d4d054ff3dd17c3b93da2587af81618c66064",
+  "recordedAt": "2026-10-05T20:21:17.926Z",
+  "sha256": "7bcdcadb3051c523cc5b8c52efc058962bfee441035a6d7b4fc0b2303ac8b84b",
+  "bytes": 19851,
+  "requestId": "UuretXZivlTIWoKGxKK2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b109e9468855fafef0e2c1c168e36c44a6068ab4fc091d26f212bbb9265965d7",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

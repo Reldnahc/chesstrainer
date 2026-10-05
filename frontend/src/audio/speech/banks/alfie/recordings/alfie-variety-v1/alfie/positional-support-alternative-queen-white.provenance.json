@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-white",
+      "label": "Positional support alternative queen white",
+      "text": "Another move would give White's queen a defender. It lacked that support before the move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6e7a8041488085c56dc0188f28b1146f295270fd3bc673c4e6a2c4e379948b26",
+  "recordedAt": "2026-10-05T20:07:49.826Z",
+  "sha256": "737b0b515c5b53575842ecf38e0dcb03b365962de55c48e8b9d256f6f447e02b",
+  "bytes": 17674,
+  "requestId": "K3GunRKLLmyqTTTKbHpg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f0ce57b3cfc354ee13deb060ec54cfc211a128927c5b369a3face9b96b8c5f4",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

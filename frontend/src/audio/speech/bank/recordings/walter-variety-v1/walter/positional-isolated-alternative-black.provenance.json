@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "With the better move, Black would have had an isolated pawn. There would be no black pawn on either neighboring file."
+    },
+    "takeId": null
+  },
+  "requestHash": "887318b79438196fc373102ffb66fccb7d047861e1f3c09c7c6ccb7f56ecbf37",
+  "recordedAt": "2026-10-05T20:04:36.625Z",
+  "sha256": "55ce8f22b75230041de997f358005a463f56deb992727d3b1b7b89f6c3101cef",
+  "bytes": 22398,
+  "requestId": "s0mddatjCjVFrduNb2iS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1eee31c854ee09a48cb023d71ae2a7cb66537157de4d6a4c89995160a79c53a6",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

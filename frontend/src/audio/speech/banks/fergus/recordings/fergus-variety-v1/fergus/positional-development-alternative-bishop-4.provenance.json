@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "With the better move, a bishop leaves home."
+    },
+    "takeId": null
+  },
+  "requestHash": "548ef4a83c3d0c57e2af28095d47d3816c67c2a6a440a009cff6eff416a75874",
+  "recordedAt": "2026-10-05T20:11:50.199Z",
+  "sha256": "7bc28fe22ce190a5f8806621d504d7ed69e64339a7f733ce0fcd7644e0a46b8c",
+  "bytes": 10195,
+  "requestId": "AmBlgkTWUzcHS65siz95",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc4d96dfe1a57cd58c9adb8dd2e934f25cd2d0340d27d317eebf800e17a65aa2",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

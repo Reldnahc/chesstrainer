@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "puzzle-next-move-4",
+      "label": "Puzzle next move 4",
+      "text": "That part is solved. Stay with it; the puzzle continues."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab277f254709f1d8d9edda8ca0dbebe3d322deaf88e05adb4e59a02ad9e56f15",
+  "recordedAt": "2026-10-05T20:15:18.229Z",
+  "sha256": "43ef40478f8c123d5c40a35e067cce6475d6fe2f03875432851434497f5e0f45",
+  "bytes": 13761,
+  "requestId": "s8FZlsrbAMEKoKOf9xi9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19ced0e8f8a7411e5431d5b6ce19cadce2831fbceae894d02d14aea121928387",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

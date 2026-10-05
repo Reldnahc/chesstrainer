@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "You used the opponent's last mistake. That is the standard: recognize the chance and act on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf085c141f9007c1864c89d8c92cdbff660855c4f9db068b26fffcdd080a31fb",
+  "recordedAt": "2026-10-05T20:20:22.807Z",
+  "sha256": "2472eb609c9204f08e63e0aac08aa3a5518efb3a1c28432249a27f460da2a61d",
+  "bytes": 21350,
+  "requestId": "Xg4Edtu2nVhG7vA80dme",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03a9afa4fa33b252a3ba8757cc8333d6f1317540756b3441bac9df9e01cb8907",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black's pawn is now isolated. No friendly pawn occupies an adjacent file."
+    },
+    "takeId": null
+  },
+  "requestHash": "74ab5eb68df276670d25ff05f473201092baa1b6f1ba814f6a47ca05b005fd83",
+  "recordedAt": "2026-10-05T20:12:53.274Z",
+  "sha256": "014ac25da0b40339c7272637f3ad83591815578d05323e7724855b1910e68f3a",
+  "bytes": 18563,
+  "requestId": "z6K6KKvRPjNQTkeURrS8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59baf4aaf20eccc9ec5c1f05adb8724d7effd960b5ff5d26be97e7be88bf37d5",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

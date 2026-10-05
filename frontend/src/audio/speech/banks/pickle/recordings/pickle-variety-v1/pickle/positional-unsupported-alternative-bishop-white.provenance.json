@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "Check that other move closely. White's bishop would lose its last defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4b0d4a91e52b53fe8eea02e18f041be01ac332c60ef06f8aae49c20a32d2d60",
+  "recordedAt": "2026-10-05T20:17:04.851Z",
+  "sha256": "ffcb379e89bbc56c847f9f82e376afae98950c3773ae7237f4d68079b6987ff8",
+  "bytes": 16409,
+  "requestId": "W9b6HXi3gAdrndP7hT5o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0bf9d0461ca63602f2e0d37fd7f6f78856ef051fe1bcc4ba36c47653b1e68c20",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

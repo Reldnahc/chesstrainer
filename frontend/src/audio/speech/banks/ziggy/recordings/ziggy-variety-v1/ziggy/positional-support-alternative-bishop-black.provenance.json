@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "Black's bishop would have gained its missing defense with the better move. Compare the support, not just the piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "863078e68810bc44f8d327cf9c2bf015b202a140bcb099a37b274001f31b2b18",
+  "recordedAt": "2026-10-05T20:21:53.742Z",
+  "sha256": "77854493bb30b7e9f880ad12e8d2b5b5535e25b03ed653f10baf32be949c4e26",
+  "bytes": 21167,
+  "requestId": "M1eMMWzStVZLPIHN6emr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78ffe24a3267da7cb5c2da08c95fd085d9d11d80a847a35b7278c1f9805fd22c",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "That's how to collect on an error. The opponent slipped, and you took the chance."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5e1b61d182ba4029c6de8d421aca4ce929425400456db294394716e454c150b",
+  "recordedAt": "2026-10-05T20:08:36.435Z",
+  "sha256": "d3bd7667f064927076ca52124985c3852e5e34c9a30cf847e81754cff72d79d3",
+  "bytes": 15893,
+  "requestId": "5tRFz6TrgubW0KI1AcVh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c012d8e336a2c4560da54f583b9fbef0c99cf41d26bae9dfe6a9d466e3c0d986",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

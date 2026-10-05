@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen no longer has a defender. A powerful piece can still have no support; those are different properties."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2c115dfe1ea36f8582298ded73e3d745aa358fb5824929c3247da9e2c2256c0",
+  "recordedAt": "2026-10-05T20:21:42.941Z",
+  "sha256": "b76aa821995550e082fe4a1bb6d9eb362ba96415b319e0fa9a41afed5076e035",
+  "bytes": 24610,
+  "requestId": "v1woF27PObHES3ZBTbik",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "153b679b3db3cefa5e227a92f104b5bd9b3fc987b17e25462cb275df2bd88992",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

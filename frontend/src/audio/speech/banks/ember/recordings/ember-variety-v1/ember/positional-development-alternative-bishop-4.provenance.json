@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "The better choice would have brought a bishop out for the first time. Examine that placement closely."
+    },
+    "takeId": null
+  },
+  "requestHash": "271337b29e87daab98bd4d54a7763ba1a2f6d230b7789e2f8bbda1f43363dea0",
+  "recordedAt": "2026-10-05T20:10:07.355Z",
+  "sha256": "55d1d71a42f1607f9d26b17b3849fb526215e886903c15aa5f1e9efc42097a74",
+  "bytes": 18559,
+  "requestId": "tbH0nDXvLFrsDNsAoJCk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57384c03c580a88f2e0edbe6206a79523eee0b9be439da367ebdf554ef9b4679",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-white",
+      "label": "Positional unsupported actual bishop white",
+      "text": "Hmm, nothing is guarding White's bishop anymore! That's worth a careful look, but it isn't lost just from that."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd4a8544bb5ccd3d71f57d5f97ec9d2bfd36a3dfda0c8e99072a61ec06010d9c",
+  "recordedAt": "2026-10-05T20:09:13.356Z",
+  "sha256": "88ca5fe4586d8bbeec565ded22af7bd46e55bc9b53e7b6bb67e0b9cdcb53242b",
+  "bytes": 24807,
+  "requestId": "X2fxl1Dq0bRIN6pcDBQs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd5f90876c9f675f811743c10d32f2b98ef595604fe02a88ceb7bf56645ac41a",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

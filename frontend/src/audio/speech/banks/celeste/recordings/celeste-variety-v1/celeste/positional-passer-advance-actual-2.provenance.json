@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The passed pawn continues toward promotion. Pause with its new position and consider what may meet it there."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb85918494a8ff59e5a2b8e43bb9318cda8fa95d611df4cf04e8ccb6d23fade3",
+  "recordedAt": "2026-10-05T20:09:23.812Z",
+  "sha256": "0e53adc6ee4c974641055979f1246099d9ee60b40ec52f81b6e400dedeb5f945",
+  "bytes": 21935,
+  "requestId": "CyCLqy7wDmb658xcRFwX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2c46b7522cd7b5eec866133bb34d2ad079a2f74cfa17f16a75d51e313274819",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

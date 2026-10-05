@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "Who would lose all their backup with the other move? White's queen would."
+    },
+    "takeId": null
+  },
+  "requestHash": "692db217c21cc259f193d73cb4e61754d60b91bfc40f9fb99df36afe410bbef6",
+  "recordedAt": "2026-10-05T20:17:11.886Z",
+  "sha256": "62dbec14e30fefdd929109ae218bbb9a0df99f663473d252364053a2247a8d10",
+  "bytes": 14192,
+  "requestId": "uSKpnaCqUuZBmk7ppnxb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "100ca44cb51c69243eb0c9a5b0babb7e4876c7f8df528232ac3a608817d91e9c",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

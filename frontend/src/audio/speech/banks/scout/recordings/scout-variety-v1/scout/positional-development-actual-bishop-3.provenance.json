@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "The bishop makes its first move from home. Check where it fits into the position."
+    },
+    "takeId": null
+  },
+  "requestHash": "983c7a26720c15293397a3ed5dd48565e036ec0a5871cdc57b86072b15f22790",
+  "recordedAt": "2026-10-05T20:19:05.223Z",
+  "sha256": "549d1919eb4be8547d8ce78c56f3d47520bfc6dc533abfb662324e19ab01b8c7",
+  "bytes": 15002,
+  "requestId": "MyIVcrr1fLKdccyA8G3l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42940398766fa440474c2709f6a76f6d4d334fe6b35e10288ae85344a299b31f",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

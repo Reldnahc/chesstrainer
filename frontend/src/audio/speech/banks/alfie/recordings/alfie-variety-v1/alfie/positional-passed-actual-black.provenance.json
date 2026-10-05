@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black has a new passed pawn. That means no enemy pawn stands ahead on its file or the neighboring files; pieces may still stop it."
+    },
+    "takeId": null
+  },
+  "requestHash": "83c5d62135604592605b073aa3ad53da40182b9694a6fc9d46afaa2989f540a6",
+  "recordedAt": "2026-10-05T20:07:19.652Z",
+  "sha256": "0b0d842c868b14afebdf5dc46c6540dd77595921ac7accf8ec0134eb216eb33b",
+  "bytes": 27915,
+  "requestId": "WVOIpJGXIGvU5bWuonqo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f18b9f28804a9da6d22c24d8350ae77abcd1a01e0214e98e78f9ea7bb3b7a47b",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

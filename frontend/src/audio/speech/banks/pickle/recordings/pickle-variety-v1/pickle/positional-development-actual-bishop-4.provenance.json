@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-4",
+      "label": "Positional development actual bishop 4",
+      "text": "A little change to investigate: the bishop has moved from home for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "a07355c44a52982284442d8fa9c97cf0382b946512d15b8f172e920c5c7695a8",
+  "recordedAt": "2026-10-05T20:17:24.669Z",
+  "sha256": "de50aa5bd294ec4dfe5a4b5793a0c91f72cbd13c775b2458cdf26d15860cf22a",
+  "bytes": 17967,
+  "requestId": "AWxoq52Tggcr6KAzQpH4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "377347ec30ac5f4162b7b4e24f9fdf3fd302310337d394fce20374b897d5e176",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

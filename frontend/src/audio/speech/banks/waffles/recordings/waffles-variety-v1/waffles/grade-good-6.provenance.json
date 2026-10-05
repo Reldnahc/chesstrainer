@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-good-6",
+      "label": "Grade good 6",
+      "text": "Good move confirmed! Not the best, but a sound selection."
+    },
+    "takeId": null
+  },
+  "requestHash": "f950ee7ca3d8fb7f45b0c907d2931e52dfa0d1259c6bf44787fdf8351235d67d",
+  "recordedAt": "2026-10-05T20:20:54.005Z",
+  "sha256": "7a7efecb2aa9a8b30c4c77571b735b9f064bb4cb9ee558092f460f165b74a445",
+  "bytes": 14508,
+  "requestId": "0kn3MNtLbEF2F8HVK4Kv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "baca3a3b4284b81e11b6a5e20e4d63d0dd27593ffd5c99269f51cb263288e398",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

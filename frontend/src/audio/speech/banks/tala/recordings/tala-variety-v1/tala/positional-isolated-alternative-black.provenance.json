@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "The clue after the better move would be beside Black's pawn: no friendly pawns on the neighboring files. It would be isolated, whatever the pieces could defend."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab3be829ebcb3514d9632102938b28eb715014c2a700ba3fb06a650fbe30f5fb",
+  "recordedAt": "2026-10-05T20:19:21.754Z",
+  "sha256": "b7de2ee1b6fea09ab76c960eaf89b6330951acd4bd600dadd9bb88c5aa15a11e",
+  "bytes": 31415,
+  "requestId": "3rSr2JSTYtJwyswOCXtY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cfc355289f78e455584aa00968e9684b1d49b04fa1df1d5e845d1b843247b1e7",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

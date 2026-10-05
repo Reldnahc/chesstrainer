@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen has gained a defender. Even the queen can use someone covering that job!"
+    },
+    "takeId": null
+  },
+  "requestHash": "c345d560ca4fea66ace74c0082d787c000fb60e72c64ffe9a2c494684d5e04ed",
+  "recordedAt": "2026-10-05T20:16:22.696Z",
+  "sha256": "3114beb42eeac9fc84fe7974a6b13a5d833d1365eeb396b4596a5061b2176ddd",
+  "bytes": 16731,
+  "requestId": "BjywaJbuMhz8wZCDCba0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06b3ac7a6406026ee351eaa430694167172d26b018d9276512f6c7ef860774fe",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

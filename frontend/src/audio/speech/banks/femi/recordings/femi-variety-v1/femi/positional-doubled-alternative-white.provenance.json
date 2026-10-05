@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "The stronger choice would have doubled White's pawns. Sometimes the better move comes with a structure that looks less tidy."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ddbf44f04b261e44509225a73b8021f22be0fc5ec3ed0770c5e7eef6dee4838",
+  "recordedAt": "2026-10-05T20:11:21.533Z",
+  "sha256": "992ef8e0972505c7f07fab75b774e301c57fbc9795118eb2b69b527520d642f2",
+  "bytes": 24620,
+  "requestId": "TYtfWnFLstmpEStvAj2z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbd6a42f217e740d363a8baed87bf492517aeabbd214bb16fb146058622f71b5",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

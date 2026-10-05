@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "White's bishop has gained protection it lacked. Identify the defender and keep track of that connection."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a1344f40ae6b41f483302b6930aa0359b4d6236c8daaca7d16ba5f22ae09dca",
+  "recordedAt": "2026-10-05T20:19:52.344Z",
+  "sha256": "977c7129a7303e63b5ae9b11ef3176e9ddc7f6b881308e6f309dea96f2d7a743",
+  "bytes": 20945,
+  "requestId": "omaa33K0lMrrEtEwcMZL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0ff8ddf464f6f90f07d31c590a5cdd041c11b5232285a25df3c301ef75b5d6b",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The better move would have removed the last defender of Black's knight. Evaluate whether that would be exploitable."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ccb3ff7c506faa70e68c42fcfba226dfd1a50fc3ce08c8deefce2dd00a69ab8",
+  "recordedAt": "2026-10-05T20:20:00.048Z",
+  "sha256": "653bfa97924a71093d234c61b74141678f087b7d75f585c04ff30e0134d3c3f9",
+  "bytes": 21548,
+  "requestId": "rsaMmEs7pxqSrJkxTqbJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e6cfcf65a5e21a8470e4849b9d13604e90456a63421a2351f0ad6e11ade1249",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

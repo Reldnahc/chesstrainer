@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-2",
+      "label": "Positional development alternative knight 2",
+      "text": "The better move would've started the knight's development. It would've come off its home square."
+    },
+    "takeId": null
+  },
+  "requestHash": "db73f3812272b68d00de5f5ee3f190a899076337ee461139e8987f462615f418",
+  "recordedAt": "2026-10-05T20:05:34.364Z",
+  "sha256": "a7d71d74f8918f6cf9782a46a39d9298e96451c77275a366ddcf257d31b639d8",
+  "bytes": 15842,
+  "requestId": "tn1d2o2bwtcbaTMa61lW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89527f231f96c20318f54fb9b168064e1883d675815c505e4b0f2798af316c9a",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

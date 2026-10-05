@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen no longer has a defender. Losing that support is not the same as losing the queen."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ab86daa62f57e1dc9045b92d653e7f158909308827ffa6649064a7bcf254109",
+  "recordedAt": "2026-10-05T20:04:24.886Z",
+  "sha256": "2d5613a6d44e9cf1a714eed3cc3f08f862c0413d22667576b3ad301de98afb5a",
+  "bytes": 20357,
+  "requestId": "FhkAEduy5vfrR6SaZO3r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22fee669d7306fdd6a4cdf2450e458c0ef9b609ed558ab626f35626abb04766a",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

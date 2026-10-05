@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "This move leaves a capture available to the other side immediately. Follow that reply before looking further ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "761f6d5aff500ed6864bd99bbe122aa42b52002675719863614d0a7311f5620d",
+  "recordedAt": "2026-10-05T20:04:43.018Z",
+  "sha256": "7348febe507dccb069ccfa491fbeef8e76f0daf02b37d77a29eacb764025998e",
+  "bytes": 22014,
+  "requestId": "kxhSQMaeEue9aY98tX2h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f78ef9a23efb4215285fe4c642ff793b3674584403935dcff6358139d460616",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

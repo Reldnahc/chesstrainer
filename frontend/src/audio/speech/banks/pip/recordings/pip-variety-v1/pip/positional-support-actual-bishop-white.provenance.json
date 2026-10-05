@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "White's bishop was unguarded. Now it has a defender helping out."
+    },
+    "takeId": null
+  },
+  "requestHash": "6319d168235f1b70e5c0d90b5fe4371b531ab1100d42f5146b278b99bf47c24d",
+  "recordedAt": "2026-10-05T20:17:28.451Z",
+  "sha256": "22d977efb2822edc42ca8815d6607448cc83f9a2f6346f1acefeb5a48674b750",
+  "bytes": 15982,
+  "requestId": "m54H5PmLckWzBZAsM6nX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78ae32cbe37b5923b104a7d83a01284e2a270294e936ff8a8c4685c62abf00f5",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

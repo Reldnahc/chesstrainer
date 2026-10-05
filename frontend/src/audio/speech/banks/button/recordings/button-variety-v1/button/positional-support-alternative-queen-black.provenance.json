@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "With another move, Black's queen would have gained a defender. A connection missing before the move."
+    },
+    "takeId": null
+  },
+  "requestHash": "af4d41b9f9ee9cff5e8accc33d199213bcf1c161b9c54373d0d08bf9b2eab735",
+  "recordedAt": "2026-10-05T20:06:30.655Z",
+  "sha256": "82be5ee354940e17402ef3c7f4b72b06854e3a23508ea70bef2fea00cb10d47e",
+  "bytes": 19700,
+  "requestId": "m6YNMCW6e9V3GhDJMNWr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e4c98701e69aee1f9832425c018439b633da213fff5b75f97cae8be9bc1b394c",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

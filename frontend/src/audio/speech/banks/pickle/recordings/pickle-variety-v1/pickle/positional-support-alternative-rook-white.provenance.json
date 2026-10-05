@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-white",
+      "label": "Positional support alternative rook white",
+      "text": "White's rook would have picked up a defender with the other move. It had been unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbc852dd80419e94d274b493a401eb75ba2a5d77d0cdcd9bca7981c7d9f9d327",
+  "recordedAt": "2026-10-05T20:17:10.618Z",
+  "sha256": "586ce64daf36973ec1a7a4993e0555e71bc055b374ad0f70eabc6c4297a70a3e",
+  "bytes": 15796,
+  "requestId": "elkKBIbRxDBdutYfS9dl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a18200b640b5469573e8a04aa0e095ecc28b6890b9a8809ebe47763ec8cc9449",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "No defender left for White's queen. That doesn't by itself mean it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "97a632616b93696925a66786ce275eb01c200bcbf0293aa9478ed8af64f908fc",
+  "recordedAt": "2026-10-05T20:17:31.329Z",
+  "sha256": "6c9f157654439d5fd62bd262d8f8d357a3255cc335ec80b8e4a33c9528a226d2",
+  "bytes": 17510,
+  "requestId": "LneCEAJAymCUvrQmN1dg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "687e397e97505e35ec33df44b053886da6b13f96133474bba0f3de7d3468f37a",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

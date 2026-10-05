@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black is left with an isolated pawn. Its neighboring files hold no friendly pawns, so any support must come from elsewhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "39382424e359c66d198db1598a9e731e702583fb5b3abd1f45c3bbfa4100259d",
+  "recordedAt": "2026-10-05T20:09:25.185Z",
+  "sha256": "d3c8607e68cf916ed35393f63f6c1d46a0491fa8de483422bbb74b477eea2e46",
+  "bytes": 27603,
+  "requestId": "tRJiPf3OPjBUmIKSHTTZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "565c70007f94c890755ed5a7308a1b02ef8df2778e5856841935288838e163bd",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

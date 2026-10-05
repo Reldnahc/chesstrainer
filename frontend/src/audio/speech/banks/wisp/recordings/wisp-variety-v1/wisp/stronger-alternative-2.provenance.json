@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "stronger-alternative-2",
+      "label": "Stronger alternative 2",
+      "text": "A stronger possibility was left unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c6561342d162df8269ed1adf4fcb8e06692f675d7ed992a254d1fbfe9d068f9",
+  "recordedAt": "2026-10-05T20:21:36.499Z",
+  "sha256": "3855f35c1690943d74f73b65cce199f1f34787be6f71c6028c98d39eb4976956",
+  "bytes": 10454,
+  "requestId": "MK4e7tIEPyZDG2HMvjkY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f1621de9dc7ef0ff1ef823b4c17d0446ba05b75826ce22b9e51a95a039f21bc",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

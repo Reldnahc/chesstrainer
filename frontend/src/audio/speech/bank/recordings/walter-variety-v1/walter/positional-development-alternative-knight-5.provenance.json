@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "The knight's development could have started with the better move. It would have left the square it began on."
+    },
+    "takeId": null
+  },
+  "requestHash": "cbd72ae652a689a714ffde5cc0f4cf4d8af1f58a82806f8f09d2e518e74430b3",
+  "recordedAt": "2026-10-05T20:04:26.293Z",
+  "sha256": "e60b2f406798a3a7371d14e80c86afb2fe519692d373cf0af60cdecd3a7f2d8d",
+  "bytes": 18246,
+  "requestId": "NmWxfcXpcw1dpvXIst7J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4abcb37be4e6008ca83897741e0685a574557de1476a7e316fa9601daeb5591f",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

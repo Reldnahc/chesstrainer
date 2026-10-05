@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "evaluation-loss-2",
+      "label": "Evaluation loss 2",
+      "text": "A move's cost is measured against the available choice. This leaves less than the stronger move would have."
+    },
+    "takeId": null
+  },
+  "requestHash": "17ade156afa3376a7bd1afc393641dceb4873dc0ed1a72942550bd00e8de7552",
+  "recordedAt": "2026-10-05T20:15:53.992Z",
+  "sha256": "f33d96be88495ed9f64d92fcdeeebe786d02cc88fc2fc41fe958299ce4dac2bc",
+  "bytes": 22522,
+  "requestId": "ubk6foatpvzcyMozxAvy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ac8a0dd972f395a4306c798d1c25065376dc6c149547ccbd99269b596c2e880",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

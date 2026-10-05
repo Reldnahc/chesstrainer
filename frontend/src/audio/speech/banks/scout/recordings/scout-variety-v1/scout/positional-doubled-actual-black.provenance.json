@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black's pawns now share a file. Doubled structure. Check what changed around them."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b1ba75a15a998083da3891d0c6fa0b0797fbf8497a6660e22c5b5791591767b",
+  "recordedAt": "2026-10-05T20:18:46.665Z",
+  "sha256": "e3021325bf7c5e620b138050a8067b453316c9f1d3406753f26ce7b0a85c0970",
+  "bytes": 17518,
+  "requestId": "gTuZLWQ7Bg9iZpmt5B5d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e877cfd36497e6d5bc2b21072147afc61a8961124065f275e67260147b7d225c",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

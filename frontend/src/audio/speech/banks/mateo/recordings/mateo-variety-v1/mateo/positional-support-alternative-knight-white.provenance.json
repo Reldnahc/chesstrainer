@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-white",
+      "label": "Positional support alternative knight white",
+      "text": "What would the better move change for White's knight? It would get a defender! It had none before."
+    },
+    "takeId": null
+  },
+  "requestHash": "214a1097c59f9c3159d171ab0db1ee68fff0321de4aae720c6aa2f5f525826f1",
+  "recordedAt": "2026-10-05T20:14:37.645Z",
+  "sha256": "926bd87d4c728f2bf556a28e39b4e09e7fc2ed77d5d107cf4edd7b60693d5b75",
+  "bytes": 19242,
+  "requestId": "er2IGYsYTzykVPjkfO0g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20a9d5ef0c2eb9b26bfa0c80cad034d3d2bad4b08460b3c97430116a605c2973",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

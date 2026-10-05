@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight has lost all its defenders. Undefended does not automatically mean lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "0392f9faadee83cb963735ee2a2458eb53e02d615d9a6ad0bfca482bb3a65618",
+  "recordedAt": "2026-10-05T20:05:27.190Z",
+  "sha256": "9b85a1bf6a6a9465a1a15e88c335df86b63fa12f09d013ef21d501031b59eee8",
+  "bytes": 19674,
+  "requestId": "hU7mLA5s5e2QGxG07vtX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3ae71d66c9ae753156a8481a6393d3efdc28700d3adf33d2e751e483da0a9c7",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

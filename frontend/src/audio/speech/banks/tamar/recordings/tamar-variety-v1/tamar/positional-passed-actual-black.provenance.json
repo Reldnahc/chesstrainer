@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black now has a new passed pawn. That matters, but promotion is not promised. Check what could block or capture it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a318005741ef250b6f96a2812b89134841a59d1b4aa5df771b441150a060106c",
+  "recordedAt": "2026-10-05T20:19:44.903Z",
+  "sha256": "15cfdc42336107569d979ed6e27d6d6479a2b5ab39c0385688ff2100a5074261",
+  "bytes": 24906,
+  "requestId": "SeVLlQjEnFzMyKvTXY8y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b6eeaa2b61ec16c7cbc806f1f10cf56bca37d315a732673ff7f628970cb3a44",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

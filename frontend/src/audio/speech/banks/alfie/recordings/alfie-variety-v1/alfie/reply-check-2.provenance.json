@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The strongest reply puts the king in check. Any response has to deal with that check."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2c19cb8734bdebf9a382643de6c4091f1dd374247dad1a86e5ab15f00a2a040",
+  "recordedAt": "2026-10-05T20:07:30.025Z",
+  "sha256": "f03d7e47140c7af585614e9f520c03b0071367807573b5da180478c2d3cac50c",
+  "bytes": 17492,
+  "requestId": "P7AwY4qJkAwkKbXGWPp8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57d12c9403114e756ef80f73bb0ea7f2945a2d768864e8b0dc69db35e788f8a5",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

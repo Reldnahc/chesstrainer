@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "What's different about that knight? It's made its first move from home."
+    },
+    "takeId": null
+  },
+  "requestHash": "936c36898af3d53e753e5a368ca307a660cdbef5972519667a9ad65d4920ada4",
+  "recordedAt": "2026-10-05T20:17:16.275Z",
+  "sha256": "bd08e64ae56ed380c64961d2673af01f88c2dedd056260913bef1465ce2047bf",
+  "bytes": 14330,
+  "requestId": "nIJ0Wy6jAzpsBZisa0td",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8300df26c6ef220224bdeebc905a539c08074e6c9f7ef9c7f8e301cdb304d386",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

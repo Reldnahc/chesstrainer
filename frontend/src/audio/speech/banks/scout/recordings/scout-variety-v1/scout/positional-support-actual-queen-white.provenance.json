@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen has picked up protection. Track that connection when considering the next move."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ec5ebe3970a05e6c36894b3141a02ddfe2c3527c4fbe065095ee148db168bd7",
+  "recordedAt": "2026-10-05T20:18:43.198Z",
+  "sha256": "df0a740fb4c42f853f6cf9a0d800a1b43d82ef5ba0c562e8157fd433d22391b3",
+  "bytes": 16724,
+  "requestId": "V0eX4vaUyyOnnUR9ZVC6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e04c68cb7c97bf5d902a0fb614b0b0756c51fcc022c497a04096684c24427c9",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Black's rook is posted on an open file. No pawns of either color there. Mark the post!"
+    },
+    "takeId": null
+  },
+  "requestHash": "4fc137f3f66d8f37dd76aff82aa87227373d8760e0eba2ca460f7caa627c2dba",
+  "recordedAt": "2026-10-05T20:20:51.627Z",
+  "sha256": "19604322fa711175ef5889ae4bb0812145d865b406bf73f42cb4c8a63d2a4cfa",
+  "bytes": 20925,
+  "requestId": "Cz7y64uPVgllc0QS0s11",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fbaa02009afa969c1d8dd6a37b2a17921978544679cfd22a6c5cf0a9e641e1c",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

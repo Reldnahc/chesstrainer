@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black's pawn is isolated now: no friendly pawns occupy the adjacent files. Any support it has must come from pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "67b267e954260b78a85223811b37ba4be735a98b7a313fbb7681463168abd0ee",
+  "recordedAt": "2026-10-05T20:07:28.978Z",
+  "sha256": "a7ae6208732453fa3257c3179e7ed1029df61479695f146be9753321f5cba90c",
+  "bytes": 26295,
+  "requestId": "8b1jek8QYxgtCUaoE9wl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf5d1d20e5c128c66de76fa21033eb1cb1103db783681ca275693a0ff2df471f",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

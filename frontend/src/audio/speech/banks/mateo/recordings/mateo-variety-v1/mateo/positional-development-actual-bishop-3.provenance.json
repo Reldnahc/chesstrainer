@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "The bishop comes out! Until now, it hadn't moved from its starting square."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbb61f1c065412ad69d8ee53efa421e05f24914ac916ea2f157b60f8e9737f83",
+  "recordedAt": "2026-10-05T20:14:55.384Z",
+  "sha256": "1fe9322f242d4ca8bbe2bc04f76bc997fd1cefd4672211abe3459657c74431bf",
+  "bytes": 16947,
+  "requestId": "fVv0peqsDQVaOnMn0FI3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "130f2893d217e9852c9f2252445e33adb3adae72b218e25a825b2cd441fd109c",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

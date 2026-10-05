@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-passed-alternative-black",
+      "label": "Positional passed alternative black",
+      "text": "Another move would have made a passed pawn for Black! I notice these things. Promotion would still need work."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d5aad833dffacf123d328d749ee154b66759a7912a18c70c60dbb9f4e40ac3d",
+  "recordedAt": "2026-10-05T20:16:15.668Z",
+  "sha256": "357cc7f4d3487071020dea421ac8a421ff87ac8c958afe738baa29b32b1ead48",
+  "bytes": 21589,
+  "requestId": "hU3625UIl6iuLfvB8p5P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca057ddafb0428a2c731ec30b257448ba753a7f83599207a0b8ca529274ddfe4",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

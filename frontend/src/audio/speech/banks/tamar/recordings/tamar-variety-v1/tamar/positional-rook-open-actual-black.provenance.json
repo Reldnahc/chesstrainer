@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Black's rook has an open file now. There are no pawns on it. Check what the pieces permit before planning an invasion."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0291d7b6e37f3e1074bf9a7202c4a987c7e00fc6b19b361739310c50a4e089b",
+  "recordedAt": "2026-10-05T20:20:10.111Z",
+  "sha256": "406125baab2c85b8ff43b1f9f95256aac87ca450d97161d7cdabc5171112d09d",
+  "bytes": 23649,
+  "requestId": "YX6pxM5PHVkhUG3zkj62",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa3b33db1738f4a89751e9d7f149cbb2f86033cd6828955763439f64b4b8c830",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

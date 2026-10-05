@@ -1,0 +1,454 @@
+{
+  "schemaVersion": 1,
+  "scriptId": "positional-unsupported-actual-knight-white",
+  "voiceId": "fergus",
+  "metadata": {
+    "duration": 2.96
+  },
+  "mouthCues": [
+    {"start":0.0,"end":0.2,"value":"F"},
+    {"start":0.2,"end":0.24,"value":"D"},
+    {"start":0.24,"end":0.59,"value":"B"},
+    {"start":0.59,"end":0.69,"value":"D"},
+    {"start":0.69,"end":1.0,"value":"B"},
+    {"start":1.0,"end":1.04,"value":"C"},
+    {"start":1.04,"end":1.16,"value":"B"},
+    {"start":1.16,"end":1.28,"value":"H"},
+    {"start":1.28,"end":1.37,"value":"E"},
+    {"start":1.37,"end":1.75,"value":"B"},
+    {"start":1.75,"end":1.9,"value":"H"},
+    {"start":1.9,"end":2.03,"value":"C"},
+    {"start":2.03,"end":2.24,"value":"B"},
+    {"start":2.24,"end":2.38,"value":"G"},
+    {"start":2.38,"end":2.46,"value":"C"},
+    {"start":2.46,"end":2.61,"value":"B"},
+    {"start":2.61,"end":2.73,"value":"E"},
+    {"start":2.73,"end":2.96,"value":"X"}
+  ],
+  "provenance": {
+    "sourceScriptId": "positional-unsupported-actual-knight-white",
+    "manualTimingEdits": false,
+    "recording": {
+      "path": "frontend/src/audio/speech/banks/fergus/recordings/fergus-variety-v1/fergus/positional-unsupported-actual-knight-white.opus",
+      "sha256": "0c6dcc3c8af49cf841fe42266cafeefc81c3fb2ce3e02eea030b325b805a2c7d",
+      "bytes": 9963
+    },
+    "script": {
+      "planPath": "frontend/src/audio/speech/banks/fergus/manifest.json",
+      "text": "White's knight has lost its last defender.",
+      "sha256": "bd3bdca58acc60ed8f15ff4aa02536a91dcd5f068500dd1e31ddb41748ad6ee2"
+    },
+    "tool": {
+      "name": "PocketSphinx",
+      "version": "5.1.1",
+      "api": [
+        "Decoder.set_align_text",
+        "Decoder.set_alignment",
+        "Decoder.get_alignment"
+      ],
+      "documentation": "https://pocketsphinx.readthedocs.io/en/latest/pocketsphinx.html#pocketsphinx.Decoder.set_alignment",
+      "modelFilesSha256": {
+        "en-us/cmudict-en-us.dict": "20b5c293e1f311fb375fe067e500ec5636f4fc7af5594967263696def9b23bfe",
+        "en-us/en-us/feat.params": "c982c5f75e2a30c34d2c9ef1f6b129a5a00e67e3e927565076b58664cc2404c9",
+        "en-us/en-us/mdef": "2360f9a86889c1cfee8bd618a0269387911e5fb2920a594f506b18b8c79683b0",
+        "en-us/en-us/means": "832019e32cac12eb318964f96f469034acb12d0348eeddc3831831a100cb4dd4",
+        "en-us/en-us/noisedict": "7295b07df2c204c4f87c6782b6be1a3859d7006d4e3864181c955d6dab105a33",
+        "en-us/en-us/sendump": "8c9564c0d5bef69ca9d9bf1014abe162f071644cf02cf1fa8a483c3dc165a7a8",
+        "en-us/en-us/transition_matrices": "c1f7f28ea43177be734be1f88bd7f1b9a853d0e660f8599c67c6eaeca8bb539a",
+        "en-us/en-us/variances": "b00d696f85e96834fc10f8e5f06428d8c4db6bffdbe5845b6f69bf6efbc48fa5"
+      },
+      "configuration": {
+        "pip": 1,
+        "hmm": "$MODEL/en-us/en-us",
+        "wip": 0.65,
+        "silprob": 0.005,
+        "remove_noise": true,
+        "mixwfloor": 1e-07,
+        "varnorm": false,
+        "beam": 1e-48,
+        "lpbeam": 1e-40,
+        "varfloor": 0.0001,
+        "pl_pbeam": 1e-10,
+        "round_filters": true,
+        "fwdflatsfwin": 25,
+        "kws_threshold": 1e-30,
+        "fdict": "$MODEL/en-us/en-us/noisedict",
+        "maxhmmpf": 30000,
+        "kws_plp": 0.1,
+        "min_endfr": 0,
+        "nfilt": 25,
+        "ncep": 13,
+        "fwdflatefwid": 4,
+        "frate": 100,
+        "ascale": 20,
+        "lifter": 22,
+        "bestpath": false,
+        "tmatfloor": 0.0001,
+        "feat": "1s_c_d_dd",
+        "lowerf": 130,
+        "maxwpf": -1,
+        "pl_beam": 1e-10,
+        "alpha": 0.97,
+        "mmap": true,
+        "nwpen": 1,
+        "fwdtree": true,
+        "fwdflat": true,
+        "smoothspec": false,
+        "mdef": "$MODEL/en-us/en-us/mdef",
+        "samprate": 16000,
+        "allphone_ci": true,
+        "cmninit": "40,3,-1",
+        "upperf": 6800,
+        "transform": "dct",
+        "mean": "$MODEL/en-us/en-us/means",
+        "pl_weight": 3,
+        "sendump": "$MODEL/en-us/en-us/sendump",
+        "fwdflatbeam": 1e-64,
+        "tmat": "$MODEL/en-us/en-us/transition_matrices",
+        "fsgusealtpron": true,
+        "loglevel": "ERROR",
+        "dict": "$MODEL/en-us/cmudict-en-us.dict",
+        "dither": false,
+        "aw": 1,
+        "dictcase": false,
+        "var": "$MODEL/en-us/en-us/variances",
+        "pl_window": 5,
+        "latsize": 5000,
+        "agc": "none",
+        "ldadim": 0,
+        "lw": 6.5,
+        "topn_beam": "0",
+        "uw": 1,
+        "fwdflatlw": 8.5,
+        "ceplen": 13,
+        "backtrace": false,
+        "bestpathlw": 9.5,
+        "logspec": false,
+        "nfft": 0,
+        "verbose": false,
+        "pl_pip": 1,
+        "topn": 4,
+        "fwdflatwbeam": 7e-29,
+        "compallsen": false,
+        "cmn": "batch",
+        "fillprob": 1e-08,
+        "warp_type": "inverse_linear",
+        "unit_area": true,
+        "agcthresh": 2,
+        "fsgusefiller": true,
+        "seed": 0,
+        "featparams": "$MODEL/en-us/en-us/feat.params",
+        "ds": 1,
+        "lponlybeam": 7e-29,
+        "input_endian": "little",
+        "remove_dc": false,
+        "svspec": "0-12/13-25/26-38",
+        "kws_delay": 10,
+        "wlen": 0.025625,
+        "pbeam": 1e-48,
+        "doublebw": false,
+        "logbase": 1.0001,
+        "wbeam": 7e-29
+      },
+      "configurationSha256": "4cc690802d0d8774029df0c0d0e0a370dab93bb8a4bbe9f7a711e8a9c2d027c5"
+    },
+    "conversion": {
+      "decoder": "SoundFile",
+      "decoderVersion": "0.13.1",
+      "libsndfileVersion": "1.2.2",
+      "numpyVersion": "2.2.6",
+      "inputChannels": 1,
+      "channels": 1,
+      "sampleRate": 48000,
+      "sampleWidthBytes": 2,
+      "frames": 142080,
+      "durationSeconds": 2.96,
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "trimmed": false,
+      "resampled": false,
+      "wavSha256": "2610758e4eaae1cbfc41fdeb633eee5f6c209e8df8c15aa0625eb84fc51bd610"
+    },
+    "resampling": {
+      "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
+      "sourceSampleRate": 48000,
+      "sampleRate": 16000,
+      "sampleWidthBytes": 2,
+      "channels": 1,
+      "frames": 47360,
+      "durationSeconds": 2.96,
+      "trimmed": false,
+      "pcmSha256": "a879730ecc606c1b6aa734a4d08ea0d0dfbe92e9e5b37d3c4fe6029ddaaecada"
+    },
+    "alignment": {
+      "frameRate": 100,
+      "normalizedTranscript": "white's knight has lost its last defender",
+      "words": [
+        {
+          "word": "white's",
+          "startFrame": 0,
+          "durationFrames": 45,
+          "phones": [
+            {
+              "phone": "W",
+              "startFrame": 0,
+              "durationFrames": 20
+            },
+            {
+              "phone": "AY",
+              "startFrame": 20,
+              "durationFrames": 9
+            },
+            {
+              "phone": "T",
+              "startFrame": 29,
+              "durationFrames": 7
+            },
+            {
+              "phone": "S",
+              "startFrame": 36,
+              "durationFrames": 9
+            }
+          ]
+        },
+        {
+          "word": "knight",
+          "startFrame": 45,
+          "durationFrames": 48,
+          "phones": [
+            {
+              "phone": "N",
+              "startFrame": 45,
+              "durationFrames": 14
+            },
+            {
+              "phone": "AY",
+              "startFrame": 59,
+              "durationFrames": 20
+            },
+            {
+              "phone": "T",
+              "startFrame": 79,
+              "durationFrames": 14
+            }
+          ]
+        },
+        {
+          "word": "has(2)",
+          "startFrame": 93,
+          "durationFrames": 23,
+          "phones": [
+            {
+              "phone": "HH",
+              "startFrame": 93,
+              "durationFrames": 7
+            },
+            {
+              "phone": "AH",
+              "startFrame": 100,
+              "durationFrames": 4
+            },
+            {
+              "phone": "Z",
+              "startFrame": 104,
+              "durationFrames": 12
+            }
+          ]
+        },
+        {
+          "word": "lost",
+          "startFrame": 116,
+          "durationFrames": 40,
+          "phones": [
+            {
+              "phone": "L",
+              "startFrame": 116,
+              "durationFrames": 12
+            },
+            {
+              "phone": "AO",
+              "startFrame": 128,
+              "durationFrames": 9
+            },
+            {
+              "phone": "S",
+              "startFrame": 137,
+              "durationFrames": 15
+            },
+            {
+              "phone": "T",
+              "startFrame": 152,
+              "durationFrames": 4
+            }
+          ]
+        },
+        {
+          "word": "its",
+          "startFrame": 156,
+          "durationFrames": 19,
+          "phones": [
+            {
+              "phone": "IH",
+              "startFrame": 156,
+              "durationFrames": 8
+            },
+            {
+              "phone": "T",
+              "startFrame": 164,
+              "durationFrames": 5
+            },
+            {
+              "phone": "S",
+              "startFrame": 169,
+              "durationFrames": 6
+            }
+          ]
+        },
+        {
+          "word": "last(2)",
+          "startFrame": 175,
+          "durationFrames": 38,
+          "phones": [
+            {
+              "phone": "L",
+              "startFrame": 175,
+              "durationFrames": 15
+            },
+            {
+              "phone": "AE",
+              "startFrame": 190,
+              "durationFrames": 13
+            },
+            {
+              "phone": "S",
+              "startFrame": 203,
+              "durationFrames": 10
+            }
+          ]
+        },
+        {
+          "word": "defender",
+          "startFrame": 213,
+          "durationFrames": 60,
+          "phones": [
+            {
+              "phone": "D",
+              "startFrame": 213,
+              "durationFrames": 6
+            },
+            {
+              "phone": "IH",
+              "startFrame": 219,
+              "durationFrames": 5
+            },
+            {
+              "phone": "F",
+              "startFrame": 224,
+              "durationFrames": 14
+            },
+            {
+              "phone": "EH",
+              "startFrame": 238,
+              "durationFrames": 8
+            },
+            {
+              "phone": "N",
+              "startFrame": 246,
+              "durationFrames": 11
+            },
+            {
+              "phone": "D",
+              "startFrame": 257,
+              "durationFrames": 4
+            },
+            {
+              "phone": "ER",
+              "startFrame": 261,
+              "durationFrames": 12
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 273,
+          "durationFrames": 22,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 273,
+              "durationFrames": 22
+            }
+          ]
+        }
+      ]
+    },
+    "alignmentSha256": "acd343369fd8ad26abbd2be9816ade1766a3e0ab812a59ee9648851f18d6c0e5",
+    "mapping": {
+      "revision": "arpabet-mouth-v1",
+      "phoneShapes": {
+        "B": "A",
+        "P": "A",
+        "M": "A",
+        "CH": "B",
+        "D": "B",
+        "DH": "B",
+        "G": "B",
+        "HH": "B",
+        "IH": "B",
+        "IY": "B",
+        "JH": "B",
+        "K": "B",
+        "N": "B",
+        "NG": "B",
+        "S": "B",
+        "SH": "B",
+        "T": "B",
+        "TH": "B",
+        "Y": "B",
+        "Z": "B",
+        "ZH": "B",
+        "AE": "C",
+        "AH": "C",
+        "EH": "C",
+        "AA": "D",
+        "AO": "E",
+        "ER": "E",
+        "R": "E",
+        "UH": "E",
+        "W": "F",
+        "UW": "F",
+        "F": "G",
+        "V": "G",
+        "L": "H",
+        "SIL": "X"
+      },
+      "diphthongs": {
+        "AY": [
+          "D",
+          "B"
+        ],
+        "AW": [
+          "D",
+          "F"
+        ],
+        "EY": [
+          "C",
+          "B"
+        ],
+        "OW": [
+          "E",
+          "F"
+        ],
+        "OY": [
+          "E",
+          "B"
+        ]
+      },
+      "minimumDiphthongPartFrames": 4,
+      "diphthongSplit": "midpoint in integer frames; short phones keep the first shape",
+      "adjacentEqualShapes": "coalesce",
+      "uncoveredFinalFrames": "rest; at most two analysis frames",
+      "perClipOverrides": false
+    },
+    "cueSha256": "e9546c2d5678f0a2edf0c1817dcf8eecfd1531de9379bda255c4fede4c56b6a4"
+  }
+}

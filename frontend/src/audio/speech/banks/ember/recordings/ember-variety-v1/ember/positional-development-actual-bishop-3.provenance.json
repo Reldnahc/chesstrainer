@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "A bishop begins its deployment. The original square is behind it now."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ef55fd815194a54b7ab000a7a8a75d5e1e916ec5e409b002f8e1b8901da572b",
+  "recordedAt": "2026-10-05T20:10:27.819Z",
+  "sha256": "cab8ee4f922258147ad8aaf6d83a31fb75d5396c0bb6f6061552eaa96efab0cb",
+  "bytes": 15093,
+  "requestId": "8x5ZjgYoyKOzhXVyfngi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a27c7ee2cbd5c7eeb63d3dc3aa84a6a50a4d218baf1174abaf839c84afce3684",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-black",
+      "label": "Positional rook semi open actual black",
+      "text": "Black's rook has a half-open file: no friendly pawns, enemy pawns present. Check the lines between the rook and those pawns."
+    },
+    "takeId": null
+  },
+  "requestHash": "61b098e9fe7587de58c7f66c5b34d17b5c110a19cfd527b0b9832929aacb1cdf",
+  "recordedAt": "2026-10-05T20:19:03.149Z",
+  "sha256": "02279dad0e78a79a9bf3d4e224bf7702c830be1f9e1ca9085996e3fe98410fb4",
+  "bytes": 26177,
+  "requestId": "as43qX3Gy52GNMUBdkpY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d8c8e17d19e08aae5d6a515baf1cc03d0ec9541fc2159b262358573510fd50d",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

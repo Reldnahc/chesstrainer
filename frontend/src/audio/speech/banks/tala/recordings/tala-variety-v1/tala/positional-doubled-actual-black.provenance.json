@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Same file, same side: Black now has doubled pawns. What else changed with that arrangement?"
+    },
+    "takeId": null
+  },
+  "requestHash": "575d3f8c70ccaf4aac4c82bc92445e6fe05b3dc44b24e69aa674d796dbbe7e16",
+  "recordedAt": "2026-10-05T20:19:26.102Z",
+  "sha256": "604c0b0e69b6280421f73cf70c646b2b9b71c8a3f02c4ae14096fbbb3db61bae",
+  "bytes": 22195,
+  "requestId": "UtYaI73QKkAovlXR8FLa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91e168a92bec0e4ce6554bb983e253805c8a47b53626d26a0c6e8d51a199aaf2",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-white",
+      "label": "Positional support alternative knight white",
+      "text": "The better move would give White's knight a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "45884de2892cc6180d6739f2af22356c63f506be3a32269939cd7484a8c86a98",
+  "recordedAt": "2026-10-05T20:11:50.515Z",
+  "sha256": "1b96928e250da74c8621ae2ca45e91f55a8de87d7e7d5d4cf09bebbb6df2fd30",
+  "bytes": 11049,
+  "requestId": "wN8K1JKT74mQUBFyhXfE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1f3648cb46f1c68881d471ff56b2982153b649dfbdb0fdfc7f7128902e93425",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

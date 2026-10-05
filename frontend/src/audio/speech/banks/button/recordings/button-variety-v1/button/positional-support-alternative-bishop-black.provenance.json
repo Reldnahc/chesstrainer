@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "Another move would have connected Black's bishop to a defender. It had none before."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a0b73f71a3fd77b58eee1c967f3d4bb33b1b22ca2d4a75af3351357021114d0",
+  "recordedAt": "2026-10-05T20:06:24.372Z",
+  "sha256": "83ad8727a3a6e0aec425c174a6cb56257efa1e17d92bbf7e00089e7bc5d6835c",
+  "bytes": 16894,
+  "requestId": "xJ8NqOZkV2mw5CZ5G6gm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea98c1eb93f4fede579f7b669d278252ecd8f1a2b452fac2e4001ada46560b6e",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

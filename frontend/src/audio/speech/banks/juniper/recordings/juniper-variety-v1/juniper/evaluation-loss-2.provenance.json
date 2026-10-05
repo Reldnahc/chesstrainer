@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "evaluation-loss-2",
+      "label": "Evaluation loss 2",
+      "text": "Something is given up here, compared with the better choice. The position could have been stronger."
+    },
+    "takeId": null
+  },
+  "requestHash": "54fe239e4841d78b8821e08345129ab45a7323d89c6072ad3c1b1b270d225a84",
+  "recordedAt": "2026-10-05T20:13:34.105Z",
+  "sha256": "2558c153027a8602e127e433d5ae3ead7aceb3d0757c4851bb699935ce797be0",
+  "bytes": 19392,
+  "requestId": "m55m4omA5jHbjfZVjQLI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8b05955f947fff12b70deddd6d62f2087973d4d2e8fcd0a3a03c52d5db58db09",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

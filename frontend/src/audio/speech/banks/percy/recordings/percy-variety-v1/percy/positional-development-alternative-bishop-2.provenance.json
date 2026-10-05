@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-2",
+      "label": "Positional development alternative bishop 2",
+      "text": "The better move would have sent a bishop out for its first job. Worth noting!"
+    },
+    "takeId": null
+  },
+  "requestHash": "b8649c63e90fe703a88c2d4ef8e6b48aea019225e0e9bbafd064e87fe0658055",
+  "recordedAt": "2026-10-05T20:16:25.039Z",
+  "sha256": "d591e7b8312a4f9000f7f1f00f5d92a6a0db872182015ff4f6bf4afbc4da002f",
+  "bytes": 14600,
+  "requestId": "VWeY4018yuVaWzSeTtP5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d75f747737fa845f3c90774b6c7d6abb77da0aa2a777acf09bfd56e48ee3fc12",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

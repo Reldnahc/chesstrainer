@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "White's bishop would have lost its last guard after a different move. That needs noticing."
+    },
+    "takeId": null
+  },
+  "requestHash": "2745b3dd4aaaf83e70344f39e3e9ac5ba9ccdba1da66bf4ecf0a230729e30762",
+  "recordedAt": "2026-10-05T20:15:11.422Z",
+  "sha256": "9f0aa29b602661bfa9fde99533eb79cd73c2da594c1e3f2c5531db927d749b05",
+  "bytes": 18079,
+  "requestId": "iFzKpa33NrTWT2t6Wxgd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3b82f9aa6ba0ecd80f52e96574566849e73f777b2cc4427251e8f5f32241065",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

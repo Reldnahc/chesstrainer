@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "Check the cost in support: the better move would have left White's bishop with no defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "938da3f15b2b9b15c70bebdca0979a81d00f8260c11b39249e4d4f1f45e25309",
+  "recordedAt": "2026-10-05T20:20:38.030Z",
+  "sha256": "626314f7733cb023c1e69b6a1f72a537e89786f504bb51847bd2dd6669fb4165",
+  "bytes": 18917,
+  "requestId": "0WM0OaD9XnqEtImJ0Ia9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "056bd9a328f72cbc7a29562ad37b9c385aab58ac16bc924a1e64d0b154b5fcc6",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

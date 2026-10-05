@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "This is the knight's debut away from its starting square. That is the development this move brings."
+    },
+    "takeId": null
+  },
+  "requestHash": "e324e02e9cc1d1e7f080c6fa73b9e8d9f3f9445b1138f26f0f2445e629a3c711",
+  "recordedAt": "2026-10-05T20:04:46.152Z",
+  "sha256": "812b5b8801d4f52fd9775f5f19af39db70f187adec7760fcdcf2460a42c00c43",
+  "bytes": 20039,
+  "requestId": "SnqbX0o8JwjvoGsQW4IJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "080dd60c9742fce0fd6286ebc2d5085079cb3402bf038c52fec024b9313d0ab5",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

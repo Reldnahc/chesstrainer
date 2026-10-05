@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "The opponent has a capture available immediately. A legal capture and a profitable capture are different things, so examine the result."
+    },
+    "takeId": null
+  },
+  "requestHash": "aaebf404cd81ab7f9f80e7bc6a6b81b9c1d4c004e929a97d928db9f764852c4c",
+  "recordedAt": "2026-10-05T20:07:48.728Z",
+  "sha256": "5b1de1ef11b8e8b676935cbe3b8e6d2c89befdb5e2bf923364cfdf2e40a98d69",
+  "bytes": 27998,
+  "requestId": "BcozERlgJaxGuoc2MueH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0fc94dc5f50eccc0357fbcb95f231ec60e6f4c99beb596161df6aa094e8ef1a",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

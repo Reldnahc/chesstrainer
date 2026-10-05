@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "White's rook is now undefended after losing its protection. A serious detail to examine, not proof of a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "04f496d93a86478b61ec9f1c806f7e2068f8df0c7c89e5027a0e7898065dbda5",
+  "recordedAt": "2026-10-05T20:09:57.378Z",
+  "sha256": "b8ca7d1edc2b84f5c0e7c9482b6c42ed16ea4ae5fc5b6f328001274671c30e41",
+  "bytes": 23972,
+  "requestId": "c1lzwXURIf2OzjAUi5n9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5bca26fe56838a971bb1a3a245a829ddc90b8d20627c96e32023f512637dac4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

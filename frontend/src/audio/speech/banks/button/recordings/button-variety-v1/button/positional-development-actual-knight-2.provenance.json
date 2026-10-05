@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-2",
+      "label": "Positional development actual knight 2",
+      "text": "The knight has left its starting perch for the first time. A little change called development."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4be9a0387ffa64db5b4e752294d9e75180951c60a6e730275753116a53cc641",
+  "recordedAt": "2026-10-05T20:06:29.909Z",
+  "sha256": "98614b625570e5185494b8c7e16ddb13379861460761d80b9f381ff16b1b7e43",
+  "bytes": 19958,
+  "requestId": "dd37xJ9qolnwYnwXPzDa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ab293a42c47a025cee1b9d91f51d999ad119f076c6696151d6f4d11a3a7fd55",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

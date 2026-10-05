@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "White's bishop has gained the guard it lacked. A defender is a connection worth tracing on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4e65ffeac1ed85eebb380b1b74f8af68710ed8db350453e67c0265c71f5b1f0",
+  "recordedAt": "2026-10-05T20:15:34.233Z",
+  "sha256": "80808dc87205124238486c3da49677b4efedab4c5bccdf9cefcc37f4fbba9bbf",
+  "bytes": 21463,
+  "requestId": "8KHJscQF9hMAQN6fZcwj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "deaaf6436361f638e5b92b81f9a11138cc0067dd9798abe081aa7dc019a5296d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

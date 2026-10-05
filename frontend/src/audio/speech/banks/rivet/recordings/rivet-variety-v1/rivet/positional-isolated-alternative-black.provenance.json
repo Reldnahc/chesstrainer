@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "The better move would leave Black with an isolated pawn. Adjacent files would contain no black pawns."
+    },
+    "takeId": null
+  },
+  "requestHash": "c8469bcc02981f7c9393645ba452a4f44e28ea82a59f9a540c375d834975cd72",
+  "recordedAt": "2026-10-05T20:05:04.085Z",
+  "sha256": "6885037652d19edf0510b6664fc31769405c227f48d1f033e3827288fab389be",
+  "bytes": 21541,
+  "requestId": "0oPqGQuVC8f6RsBOG9nS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a40692ef28931b95eaecbc36330ac3def5a5617b7ae3598e849f76c4d210774b",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

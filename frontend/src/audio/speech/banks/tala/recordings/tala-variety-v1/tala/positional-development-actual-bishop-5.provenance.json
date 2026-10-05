@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "Which piece just began moving? The bishop has left its original square for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "add00768ef17ee0d0cd70865d42375e094e692fd5689b2375cb3c241b774506f",
+  "recordedAt": "2026-10-05T20:19:49.914Z",
+  "sha256": "b5184fd0b2bfa9cede7903b6478b443f3001f5dcab1269d001b9d03bed4ed4ea",
+  "bytes": 19127,
+  "requestId": "TIb1XgcVUD0EZahLa9h4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0976f6fc47f40cb217cf377a10b2253540d17cf86ba63018ca9f8daa52cfd0f1",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The stronger alternative would remove the last defender of Black's knight. A loss is not established by that fact."
+    },
+    "takeId": null
+  },
+  "requestHash": "04e0069d7934f40d9e134df5508b51b6f7b455da430ceb44fb0b58fb03906f2b",
+  "recordedAt": "2026-10-05T20:12:58.273Z",
+  "sha256": "7448245342e9ad411bfcacdd0506ca0cc0a011db956052751e4bff94140a6d2d",
+  "bytes": 23459,
+  "requestId": "Mxx3Z2E1w8UbUsGIMFYd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f2fdf570110bb5dc4aaadfda0bb6040907e0e4d22b905eeb56a1b63336360af",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

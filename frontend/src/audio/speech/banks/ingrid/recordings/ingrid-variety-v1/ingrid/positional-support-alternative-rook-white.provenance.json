@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-white",
+      "label": "Positional support alternative rook white",
+      "text": "With the better move, White's rook would gain the defender it was missing."
+    },
+    "takeId": null
+  },
+  "requestHash": "349bc90adbf156308678b205a5f8d8b46a6de94652dcfc7738c86b5bb2e6e769",
+  "recordedAt": "2026-10-05T20:12:26.072Z",
+  "sha256": "8a57b59674976a812afd3197d46521d8a87730560e2ba2f50dee5f4f4ddf2d0e",
+  "bytes": 14516,
+  "requestId": "nqv3LuRpMKxyBg80G7WZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee9ff16bcb743d9376aed921b655bde264b7e2c12cfa24bf700781dffc829221",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

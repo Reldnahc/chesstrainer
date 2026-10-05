@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight has lost its last defender. Undefended does not mean lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9167b29fc26fae0d1d035b7b271bcebbd21f035def4d9ffe519e3c518be81f9",
+  "recordedAt": "2026-10-05T20:15:23.299Z",
+  "sha256": "ddc3cd43c8e7e0f6324b1a19c6bfbc917b3553c4fa0ea60413394f88ed7ef10e",
+  "bytes": 18004,
+  "requestId": "tYzPzRkHZ4DhbxjycrIO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fd6d900dd7cdd3428d604d262199094f44fd87959e3a6f4022ae1399ee2f4689",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

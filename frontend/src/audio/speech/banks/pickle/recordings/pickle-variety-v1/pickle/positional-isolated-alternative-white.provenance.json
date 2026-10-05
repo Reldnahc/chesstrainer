@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "Try that other move and inspect White's pawn: any friendly pawns on the neighboring files? None, so the pawn would be isolated."
+    },
+    "takeId": null
+  },
+  "requestHash": "1badba0c098bd0fb82eb8677db949d3fa43feeaecbdede77b337a5fd090bcfb2",
+  "recordedAt": "2026-10-05T20:17:02.881Z",
+  "sha256": "b71c4695b2b278a5f96d46baab4b826db5f4868c20d8cc87628183afea3a5772",
+  "bytes": 27369,
+  "requestId": "zs23BsAAnRTD2Cl9EuTa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed5b18fd3963263113ce4d327b5720023e0f32153bc50bc6683bb23938acfff6",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

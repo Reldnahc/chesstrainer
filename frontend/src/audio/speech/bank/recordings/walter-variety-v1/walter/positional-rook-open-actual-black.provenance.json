@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Black's rook now stands on an open file. The pawn structure has left that file free of pawns from either side."
+    },
+    "takeId": null
+  },
+  "requestHash": "16fb01cf5011948d0d69710abd6f8f806c91cffc7e882e936939178dba747935",
+  "recordedAt": "2026-10-05T20:04:48.407Z",
+  "sha256": "1abfd888718efe5ad0024eada59545880b3364c3c4608df81a64b540276f0b3a",
+  "bytes": 23486,
+  "requestId": "y3We3zxPEaGLnoLOU83v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57f08987024a7b82b8d04820686cb6a59c5104b18509c7d507e9ae8183f6afcd",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

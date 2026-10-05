@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "The better move would have left White with an isolated pawn. Account for that structure without dismissing the whole move."
+    },
+    "takeId": null
+  },
+  "requestHash": "dddbe697433072f6a3f6a2877bfa60df8e90159e166acf6ba9cc0dd879c19205",
+  "recordedAt": "2026-10-05T20:19:55.677Z",
+  "sha256": "34ca436cdc89a37bb4a5e24fefdcec85cb08a58f87ddcf5e506a93e0cd376c2c",
+  "bytes": 23317,
+  "requestId": "MjkTldRIOFUBXTDSHQLd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7fe3ce96dd038c997c46e196415b0a3cdf59afe9f9305b0071438e7b6624b1a",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

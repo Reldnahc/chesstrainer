@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook has some cover now. That's a change from having nobody guarding it."
+    },
+    "takeId": null
+  },
+  "requestHash": "26ab05797f727f587c86efb55608de01cfa3254904406481cb6b0c99d3934655",
+  "recordedAt": "2026-10-05T20:11:13.344Z",
+  "sha256": "960b63d49e83f344411cca3df9c0d05c3bead66069aea93cd160dbe5d214d81d",
+  "bytes": 16395,
+  "requestId": "LBcTChJ6T3yNYwaXNAM9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98ddb1d88c79bbed5d2804bc0f33adde9d31215bf7538d3d8be1f721aa2c54ff",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

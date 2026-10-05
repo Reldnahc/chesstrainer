@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "This is the bishop's debut away from home. Take a moment with its new position."
+    },
+    "takeId": null
+  },
+  "requestHash": "09ef7d4269771df694f9af087152031d1eca0af39af75a1e51604b11206b66e5",
+  "recordedAt": "2026-10-05T20:06:06.613Z",
+  "sha256": "1b9aff445ef35ddbd9cee8c6c0db5630df06d4e36b7373eea53eb8d4cef72d79",
+  "bytes": 15518,
+  "requestId": "kd4ndFqHL2nTDfhsZEV2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65c581ba6581ea0239176cf0e438eac2620de702e11ea31faf1c0fafc09e8c16",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

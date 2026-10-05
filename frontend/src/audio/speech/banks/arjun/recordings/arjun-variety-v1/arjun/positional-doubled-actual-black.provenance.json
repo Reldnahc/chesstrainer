@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black has doubled pawns after this move. Same file, but that alone doesn't settle whether the move is good."
+    },
+    "takeId": null
+  },
+  "requestHash": "ada90a6d4f0393019affb57371250c7ac48552bf5e33cafbbc9624d318d1a47e",
+  "recordedAt": "2026-10-05T20:06:57.118Z",
+  "sha256": "ad98ecbfbfc235991d9e40a06bb56bb6d4a887562353ca42e84da12d95a65469",
+  "bytes": 22283,
+  "requestId": "yHTmahdCssRT8QWHV6HB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a87873db1afef372da59dc99f6172d7f496ac10b25b65ec3a1261309d8d2d66",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

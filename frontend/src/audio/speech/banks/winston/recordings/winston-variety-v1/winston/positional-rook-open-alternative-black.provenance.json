@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-black",
+      "label": "Positional rook open alternative black",
+      "text": "The better move would've left Black's rook on an open file. There wouldn't be any pawns along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b196f6cc717ab515217a08411d4b57b51e011bee17e84b0a01f20e183e95c917",
+  "recordedAt": "2026-10-05T20:05:56.204Z",
+  "sha256": "7442d3f8a56b492446a214dc9ed4f742610942da34aa3248b243e4eba8f3a0ee",
+  "bytes": 18501,
+  "requestId": "JvQEK8xGbwS1KwFhVdVz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9db97705369b556df380e04c4644ffce6700c7d638995e7f4285973249c14a12",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

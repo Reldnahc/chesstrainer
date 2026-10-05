@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Black's queen has lost its remaining cover. Undefended isn't the same as lost, of course."
+    },
+    "takeId": null
+  },
+  "requestHash": "146cce2cea3dbca08e0128725d62e42e12dc642a972bd610a4bb97c1cb3f84ab",
+  "recordedAt": "2026-10-05T20:11:13.121Z",
+  "sha256": "b30ce30689ee76608b3d67c66801a3c57a1423fc24064827943dc7d4ef3ec194",
+  "bytes": 20730,
+  "requestId": "A6U58PTfQoo62RoPbNwr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1988665aea6fe37e08b70d3974e281395fd9614eb6dd813dd4ce8bd42ac8ec6d",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

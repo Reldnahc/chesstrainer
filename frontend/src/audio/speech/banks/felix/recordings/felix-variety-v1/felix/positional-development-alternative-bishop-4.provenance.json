@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "The stronger move would have begun a bishop's development. It would have left the starting square behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "c895457eff67270b6d43c4f7409aa087b496378a6bc5c4f25a2d32c8eddc2c2c",
+  "recordedAt": "2026-10-05T20:10:43.120Z",
+  "sha256": "678257a45f1d591943218f0a813dd71fe436358ed10943e20b8076fd4e6dbb65",
+  "bytes": 19741,
+  "requestId": "mG9g6dYEhzEWay5l4rfI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7065f9c18454559dec4b005cc4d0c2318994f00dc03203c36305e7817fbb0b1",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

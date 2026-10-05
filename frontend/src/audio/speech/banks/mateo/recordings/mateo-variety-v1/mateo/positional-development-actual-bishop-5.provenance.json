@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "First departure for the bishop. Its original square is behind it now!"
+    },
+    "takeId": null
+  },
+  "requestHash": "cbafb3a773d4f8beb9882ac8bde1772b580fb0d2e7a7bb7788838f5a0cf556eb",
+  "recordedAt": "2026-10-05T20:14:58.513Z",
+  "sha256": "8f43ad96dd4bdad5d47f4f5945866b9ba30065f4578592abf81ced617e52210d",
+  "bytes": 14830,
+  "requestId": "mPTJ7zWG4V5XYsl1qEp4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfcba16b059a33b1915f95f92dc7ba1565aed621368791c83bf1ff2081dba515",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

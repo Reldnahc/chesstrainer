@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "Backup arrives! White's knight has a defender now, where it had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "06e795765896698c9fe7dc1beb9338850d3daa0334998f36a362571cb359db4a",
+  "recordedAt": "2026-10-05T20:17:58.847Z",
+  "sha256": "49485df586efefc4e93b0ea0c377b345596775ab7d9cb2459893140a821fabab",
+  "bytes": 15475,
+  "requestId": "Oth6PDNgg1hrEIoS3a3Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8fc1efa8cb6cedb18c2d66fd9daa30a8c777377e73fd15c4197b5d6c6a6c1bb",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

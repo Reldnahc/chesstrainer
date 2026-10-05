@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "White's bishop was unguarded and now has support. Trace the new defensive connection."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc17af5d200d08b0e0d949fa9a69b1e94a9cb07871ec927d5f69b4354bc98164",
+  "recordedAt": "2026-10-05T20:18:36.100Z",
+  "sha256": "eb5e768099c5b074cec7c15eb29a508263fdc3f6d91e6925c3595b06025e84bb",
+  "bytes": 17624,
+  "requestId": "aIqSF1GbhN5cZirKUCcV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c11342edc8aa34e50d03ac2a2ac382c4b1bdbaa7f62f949f5913b7e75ca13ef",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

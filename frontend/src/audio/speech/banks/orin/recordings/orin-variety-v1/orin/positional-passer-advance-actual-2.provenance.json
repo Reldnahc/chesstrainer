@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The passed pawn advances. Its distance to promotion shrinks, though the remaining obstacles still matter."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4baabe9e9ab5418d34bc84d3067dc9d9243eb79f8ef64ef892fa7549eb70c23",
+  "recordedAt": "2026-10-05T20:15:40.507Z",
+  "sha256": "708e431ba85ea9b812d88c0c03bb4cd99cae055f5a6b13b882c0e62cdc467018",
+  "bytes": 23240,
+  "requestId": "x5XcwVkm0PASNsoFg9QS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f461e45ac8bd1eca64642d7683ceb5c2a33755bb39a6c8b27243e780172ee149",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

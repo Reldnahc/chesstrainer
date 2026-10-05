@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-2",
+      "label": "Positional development alternative bishop 2",
+      "text": "The better move would begin development of a bishop still on its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "a28fb7daf78a5dc59e80ee5ff4eaa5d362baa5b4592f10589890baa788e1e6b8",
+  "recordedAt": "2026-10-05T20:05:06.299Z",
+  "sha256": "5576296cc94e47766127ebc03c365b561849cbdbe31d5e18d294573b319baf56",
+  "bytes": 15394,
+  "requestId": "soJiulVx3wmncmtZfPZf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20580594651f9972322f3cfd1d6ea8abb883509f2ce248aa652a89cc09cea3b4",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

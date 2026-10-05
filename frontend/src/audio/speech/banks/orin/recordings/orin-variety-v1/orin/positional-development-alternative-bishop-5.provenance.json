@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "A bishop's first journey lay in the better choice. The opening has long turned on such journeys."
+    },
+    "takeId": null
+  },
+  "requestHash": "db6227cac7a0c80b295fe7c2ac3a3b69c9e840697492488cb07868798e27725d",
+  "recordedAt": "2026-10-05T20:15:51.883Z",
+  "sha256": "620824533697ebb1862486c78a55b4ff84c6eb78ba77dd569363adfde81882da",
+  "bytes": 21743,
+  "requestId": "UJqfvs0boBP9bIju2kDY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2469357f44013ac2eb0a7deacf77231f693e20f8b7ac0c53eae080e3289491c8",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

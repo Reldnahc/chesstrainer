@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "White's knight picks up a defender after having none. That's the change to notice."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f468fc5523c10168dcd7430636a03cab9cf634a1e6159008bb9a1930c5fd049",
+  "recordedAt": "2026-10-05T20:12:04.969Z",
+  "sha256": "563d2f05594e38d077cf8904bda18c6179c8ec94042c1867427cdc8cc5055453",
+  "bytes": 17830,
+  "requestId": "Ft3wVMRgBAL3QQxO8PPO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ab995fcdd524b5482a4956b709d2b08434b0a7791d344349411a47a4a353a43",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-doubled-actual-white",
+      "label": "Positional doubled actual white",
+      "text": "White's pawns are sharing a file now. Doubled pawns: company, though they cannot defend each other from there."
+    },
+    "takeId": null
+  },
+  "requestHash": "55849dd4bb0b7a76288f015c547c6b6172d6ca27d37d68cffc2babed88740dbe",
+  "recordedAt": "2026-10-05T20:06:22.728Z",
+  "sha256": "a91a5e48739c88c4d657c80d4cfcec9b5e6e3e1dce68d83b153a59f6c45b46d5",
+  "bytes": 22762,
+  "requestId": "qFkzL6cbgXBRFkyqVfsN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af50e2d6ebab7fdd175d6df14ae71bb483cddfb3ceaea0fec313a850de6e2d72",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

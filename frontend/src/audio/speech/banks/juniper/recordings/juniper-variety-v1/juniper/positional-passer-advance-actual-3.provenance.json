@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "A little further along now, that passed pawn. Watch what can still stop it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3409f57e80aeaee307b9fd9988aeac1a7c04939c9419917be8576d610aa3f99c",
+  "recordedAt": "2026-10-05T20:13:26.783Z",
+  "sha256": "88874efc86c668a586073f7f1c58a98c165dab32116d101c31d05ca68ef2f3a1",
+  "bytes": 17125,
+  "requestId": "JfkIMJ0qMISnbM683weg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9fb134542db666150d33801016e313ce5359f04f551b18cae58cafef9ace693f",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

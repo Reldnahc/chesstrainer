@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "An immediate capture is available to the other side. Profit still requires calculation."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cf50f7d60f1eb7bd566c2833f4bac6f7e09b5e87ad77fc860a38e9662efa543",
+  "recordedAt": "2026-10-05T20:10:54.085Z",
+  "sha256": "b7a9b08a73d6be76829b91c19b5c6b29c240cc1b20a4dc4879aa672895712e29",
+  "bytes": 19755,
+  "requestId": "nQkI5PF4O1qSWxz1A2Mh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48fc3d86b2774d3515ffceafd588bcede708368df48fc0a590b53353ae1e585c",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

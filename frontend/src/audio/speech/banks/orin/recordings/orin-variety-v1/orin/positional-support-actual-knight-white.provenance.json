@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "A piece's strength and its support are different things. This move gives White's knight the defender it lacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "857914d7db1db6bd92a591639ca252ccf185d6d93c030c280cc3ce64d10c1491",
+  "recordedAt": "2026-10-05T20:15:29.805Z",
+  "sha256": "3ad6ccf47d98e6597f29c3c858b9895ee3937641f8275c57dbb49a7e492bb391",
+  "bytes": 24522,
+  "requestId": "hyDyb8INqpnlDXrqcKWg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "445d0fd6ae71b3702b21c85ef62fc00e6c254612220a1c451fec9bbb721fbf5d",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "The knight could have made its first departure from home with the better move. That little beginning was available."
+    },
+    "takeId": null
+  },
+  "requestHash": "9db1e505f11029a824ed1f3ffc8dd6819406e0dffd7cdc231329e37cfa492dab",
+  "recordedAt": "2026-10-05T20:06:14.455Z",
+  "sha256": "b1ef6febbe8d7a5da4af82f99cf07d99be919b7959be7b38ba8da60610f104df",
+  "bytes": 19867,
+  "requestId": "s9Ma87C5EgSHPoS8SGog",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d71373cad2f268114bebf5704c76ca76f89bca6fb7d78afca57374e3fddc6df",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

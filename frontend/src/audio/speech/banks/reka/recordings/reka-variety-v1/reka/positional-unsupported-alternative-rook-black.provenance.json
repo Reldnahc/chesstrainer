@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "The better move has a detail worth catching: Black's rook would have no defender left!"
+    },
+    "takeId": null
+  },
+  "requestHash": "96099c0b8ef2342d0230961cdd3237a89a62d397e9579747db6c8d5fd9b503c9",
+  "recordedAt": "2026-10-05T20:18:14.780Z",
+  "sha256": "17222af50e26dcf868d5ee1ffa5629503cf9704013442b02d6a3de002f5256ec",
+  "bytes": 18125,
+  "requestId": "D5SuVFbIH84Ho9Yjg7ih",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f923456eb374354f746a42642914072ac92a6dc4428960a8ecc0eac359dcf5d2",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

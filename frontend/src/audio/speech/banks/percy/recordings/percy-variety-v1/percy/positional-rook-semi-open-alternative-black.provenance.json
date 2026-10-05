@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-black",
+      "label": "Positional rook semi open alternative black",
+      "text": "Another move would have given Black's rook a half-open file: no Black pawns there, with White pawns still present. A different working arrangement."
+    },
+    "takeId": null
+  },
+  "requestHash": "8fba2f527c013a84a7f811724448e5d938a8c14e9019df817ce0092186846c20",
+  "recordedAt": "2026-10-05T20:16:52.693Z",
+  "sha256": "a8b738eda0e57bb24601914122b758fbd4562f1776a77ef39b386acb2dd61443",
+  "bytes": 27811,
+  "requestId": "Bhk1xiJ3MH3jzN4nQyqf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4afeb82254b7e8bbc7c2bcbe22486c8783260e85ae41adda44c101fbe60062b",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "Wait, the better move would take away the last defender of White's queen! Undefended isn't the same as lost, though."
+    },
+    "takeId": null
+  },
+  "requestHash": "261341c680fde94e09e1be98ef7d01512f49bbf1a20da9b1167926102d241395",
+  "recordedAt": "2026-10-05T20:14:44.454Z",
+  "sha256": "971ea3f3281dfeb5f7ca4c1b77ef13b0f26fdd9ab4e38652bb015305e71f4ca8",
+  "bytes": 22725,
+  "requestId": "fudgfLK2Fl8pI8LvqEOz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5329b20c9f3839b25c11da184dd126b509233ebb29261efbef1a3924bdc7e05b",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

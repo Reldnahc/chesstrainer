@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-white",
+      "label": "Positional rook semi open actual white",
+      "text": "White's rook is on a half-open file. There are enemy pawns on it, but no friendly ones. That's the distinction."
+    },
+    "takeId": null
+  },
+  "requestHash": "f09587adb3ed5b5f093b6e3c704ad15b4724b3d297e26b57796d6d6fc4c6c1c2",
+  "recordedAt": "2026-10-05T20:11:35.270Z",
+  "sha256": "075e421eb70cbca5d97c6be5c9e6086fd4a717048eabafd9b72648659956f7d3",
+  "bytes": 24341,
+  "requestId": "RPgKy2dCCSfi95616VMJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8636f5d95e8f0aad9dab0cc759c17fb15779639621399dac26f566f24a8a1389",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

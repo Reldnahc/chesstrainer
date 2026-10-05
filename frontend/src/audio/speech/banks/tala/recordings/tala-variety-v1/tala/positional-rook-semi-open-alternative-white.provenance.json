@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "After the better move, which pawns would remain on White's rook file? Enemy pawns only. That's the clue: the file would be half-open."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d1dff5aa8322efa874abd4a00257373b5b2a2809cd3fb64dc47dd7699842479",
+  "recordedAt": "2026-10-05T20:19:46.906Z",
+  "sha256": "a90b83b39a41ee5b1d367edbb8e5de36f1e847b0ed6e11a6382467016063ad02",
+  "bytes": 31078,
+  "requestId": "l8pICs4ctSErwqso53ml",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "51d04e747f22fc04ded0a0716e07008ae388ecdc62b312cac2316af673073e0d",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

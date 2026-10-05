@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-black",
+      "label": "Positional support actual knight black",
+      "text": "Black's knight is defended now. It had no cover before this move. Learn to notice that change in support."
+    },
+    "takeId": null
+  },
+  "requestHash": "832e3bb23ce90ae92be114a0dad443bead09d113899895939bbd611492638e30",
+  "recordedAt": "2026-10-05T20:19:50.629Z",
+  "sha256": "c4b75421dc8ee60f6715a6446ba3a6919aa5b3c5af39032803db41ebb7c820a5",
+  "bytes": 22463,
+  "requestId": "6iNGIlS6dG7PyFQlkh8e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "927606eea861a7c351fe1d22962072ebca14b78d43c6a89c7bfad1bef8b00485",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

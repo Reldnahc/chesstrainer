@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "A guard for Black's rook! It had no defender before this move. Support counts, even for the big pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "44e5d8726ec0a506af3efc0999b00540edd7f761cee369d417e46917862162eb",
+  "recordedAt": "2026-10-05T20:16:21.033Z",
+  "sha256": "4a872b4c1dabdb93b7ac822e5c509fba3c789f2a2bc72700a850d80dcb6ecdf0",
+  "bytes": 23813,
+  "requestId": "qD4QXwvEZ2lx28WomXcF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "567805c4c4c90b93df275c0e68ffe7c5fc85878e1c2db1f618dc1669d5484111",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

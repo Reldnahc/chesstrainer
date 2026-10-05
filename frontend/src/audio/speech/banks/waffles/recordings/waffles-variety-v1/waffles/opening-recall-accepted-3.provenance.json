@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "opening-recall-accepted-3",
+      "label": "Opening recall accepted 3",
+      "text": "Opening orders followed! That's the move in your study."
+    },
+    "takeId": null
+  },
+  "requestHash": "156da445b2aac0ff82c0c0c638e13a4f32e03e5e80751c7dd018cbdf1eaed64a",
+  "recordedAt": "2026-10-05T20:20:47.750Z",
+  "sha256": "af8e3a049349da7af9cb384e94a8b6e1a3279f6360694f03fcc00705f7dedc53",
+  "bytes": 12832,
+  "requestId": "Sb4JCISsRSrS1OgAcrYS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38903d6825f64cf46a14d0c9924e3f84c201052a4ad8d1875e4c19a7d6cd1523",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

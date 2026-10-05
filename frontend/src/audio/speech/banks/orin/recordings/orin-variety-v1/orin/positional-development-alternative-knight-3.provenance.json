@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-3",
+      "label": "Positional development alternative knight 3",
+      "text": "The alternative would have started a knight's development. It had not yet left its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "1011686bce256affda42ba583b1868f195beb2065d4b4eb84ce0a515a7d51b79",
+  "recordedAt": "2026-10-05T20:15:38.535Z",
+  "sha256": "adc27b1db43f42ae216f6c1723dd3eb00a23272c76bd0b6317ccaba1dc7f10d7",
+  "bytes": 19498,
+  "requestId": "AOV4PjXe5MVGqt6IuaY8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ceb3bceee2cb26c01a5d7e30b76cf1cfae82cd6c30aa4f65133d953d0993f5fb",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-3",
+      "label": "Positional development alternative bishop 3",
+      "text": "A bishop could have made its first entrance with the better choice. Picture where it would have stood."
+    },
+    "takeId": null
+  },
+  "requestHash": "8677f403b9f14f30aa93de08017dcc4f6e99c431491c0470fa05395f65e59653",
+  "recordedAt": "2026-10-05T20:09:29.404Z",
+  "sha256": "327562995285c9ccaacfae07a82618688f4d75e5364a7a407aebe3e88d606257",
+  "bytes": 17910,
+  "requestId": "nmbHnaQUF9Q3f7gKgLFR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e34e276832c867303612ddffa8fb43373fc0d0b83e02ccc8c450676ea65b27b1",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

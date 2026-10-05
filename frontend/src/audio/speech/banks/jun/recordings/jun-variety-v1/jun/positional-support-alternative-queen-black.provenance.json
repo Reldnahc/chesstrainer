@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "Choosing the stronger move would give Black's unprotected queen a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf64f9b66a2d0ed47e2df2012fbb99a2f4f97d47c060d4fc27cb6c1247c9caff",
+  "recordedAt": "2026-10-05T20:13:07.426Z",
+  "sha256": "a194ab7caef5ceff721e547e0f3a82b245242b33a46e451c8907536762db8a22",
+  "bytes": 15312,
+  "requestId": "9ydgX4Wldgyd8dS17AHU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7a73a20ecb4c6e16990b2b4da0e6dec25956d717983a8b32133a1a242c153e4",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

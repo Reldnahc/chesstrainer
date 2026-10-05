@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "stronger-alternative-2",
+      "label": "Stronger alternative 2",
+      "text": "A stronger move was there. Worth looking at slowly."
+    },
+    "takeId": null
+  },
+  "requestHash": "eea3d47833ccb58f7d628461aa7f5ac4a7de1d8d6bd66614c14158e46183ee05",
+  "recordedAt": "2026-10-05T20:13:50.612Z",
+  "sha256": "cf5968b4aa10fca9316424c3fb11f5e55e6290e98e5b859e594359856b366f08",
+  "bytes": 12008,
+  "requestId": "YdZQJkfUsDiIx1k8a5ZR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88cb3a13c989e2beac281b6477db64b9200784e47747cf99d680e68bb29ce0c8",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

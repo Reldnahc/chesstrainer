@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-black",
+      "label": "Positional unsupported actual bishop black",
+      "text": "Black's bishop has lost its remaining protection. Make a threat check before drawing a conclusion about material."
+    },
+    "takeId": null
+  },
+  "requestHash": "a705049567b850170c8a8318c4d24add5503ef2fed96546b63e2f89be168a37e",
+  "recordedAt": "2026-10-05T20:20:25.984Z",
+  "sha256": "f99e205731c558556dc436941f27422a951c2cb1b37957bcc9ba52041190cfb4",
+  "bytes": 21683,
+  "requestId": "iff21FK4PVzbDU1f7HET",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a9f4fe10d81a5d9b0767ca66a4d534dd766bc49c7b662c5b37fb3321353f457",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

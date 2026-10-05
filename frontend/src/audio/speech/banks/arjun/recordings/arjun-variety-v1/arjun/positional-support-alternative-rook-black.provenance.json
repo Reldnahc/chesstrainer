@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-black",
+      "label": "Positional support alternative rook black",
+      "text": "Try the better candidate and compare Black's rook before and after: no defender before, a defender afterward."
+    },
+    "takeId": null
+  },
+  "requestHash": "499b93673c15654bee8b9886932f8df638fbf147661ab02fca6e55b0e5759cfd",
+  "recordedAt": "2026-10-05T20:07:04.343Z",
+  "sha256": "a0cfc1eecbe20ca424a160bc208ce3c0ac40532a22d518121fc3b174be234a25",
+  "bytes": 25017,
+  "requestId": "58Pw15denkhgJzmhalLI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b0d5f3a29d052a4774589e00ec294d83673a99bd104185c8ad52e5d2c791ba7",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

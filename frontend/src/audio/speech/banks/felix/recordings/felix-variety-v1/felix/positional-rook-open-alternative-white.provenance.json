@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-white",
+      "label": "Positional rook open alternative white",
+      "text": "The better move would have put White's rook on a file without pawns. Open, not necessarily vacant."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb7e16af8307d9c3b1160cba16b55c519c8389f1dd723cfbd9c884b9125aaf2c",
+  "recordedAt": "2026-10-05T20:10:52.819Z",
+  "sha256": "e2ddcbe88bbc9945622f78914e92de64a2aec2cf3ddc15717fee5a17d02e0e65",
+  "bytes": 22355,
+  "requestId": "ABJelQ50yNeaAaq6hFSE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94093fc57f4de7e8d41555ac925186e38669e7d42683e23b12807fd92b2656e9",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

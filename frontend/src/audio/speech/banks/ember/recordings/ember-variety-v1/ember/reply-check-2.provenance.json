@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The strongest response is a check. Begin the reply calculation with the king's obligation."
+    },
+    "takeId": null
+  },
+  "requestHash": "83f4b4808f01ea7983bfdac3415602db108ed732fb21c3483a752deba9f1009c",
+  "recordedAt": "2026-10-05T20:10:05.985Z",
+  "sha256": "056b7bbcb92a389cdae5cc979e3565e00ca016cc0a84a0f69bcd88bed418c819",
+  "bytes": 18844,
+  "requestId": "zKuVlne1NAbuEafIlrMa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c2f9ad728cefef001f120bbd130e242e8053424d691de205a621f2a801273ae",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "The better move would have left White's knight without its earlier protection. No defender would remain."
+    },
+    "takeId": null
+  },
+  "requestHash": "d699dea3a6761b9054e58648ac5fc8eb9f3e23d4eb3403da80972c8ec72da9c1",
+  "recordedAt": "2026-10-05T20:04:28.257Z",
+  "sha256": "785c60c7ec710fa44bfbbca6eef6e4f8aeab60f07cb18787b155f7793cd3b833",
+  "bytes": 19509,
+  "requestId": "GPcUhbLGmHCRJviQemGd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95f4e635293d47aaaac133bff46e17ead7d6aab7dac23185d55ae7bf216df959",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

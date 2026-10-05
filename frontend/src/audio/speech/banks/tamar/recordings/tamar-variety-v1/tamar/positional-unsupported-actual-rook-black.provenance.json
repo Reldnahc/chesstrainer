@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-black",
+      "label": "Positional unsupported actual rook black",
+      "text": "Black's rook is undefended after this move. Identify what stopped guarding it, then assess the possible attacks."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ac111a1300dfd7d857124fe5814f0db6e891fa5229d1131106ee38b77542679",
+  "recordedAt": "2026-10-05T20:19:52.082Z",
+  "sha256": "8af335818676078beaf0a2d28dd93f05e93515743d7e0f83697a23c130627e43",
+  "bytes": 24500,
+  "requestId": "cHb5agxDk9kwycIayby9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67c4088fd9b75251c5df335cb7a7b6dfc6b6c7a8e5c7a48a8ce216b93fd63edf",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

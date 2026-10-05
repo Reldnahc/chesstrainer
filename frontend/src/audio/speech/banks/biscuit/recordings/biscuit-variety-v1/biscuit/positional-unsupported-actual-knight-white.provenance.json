@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "Ah, White's knight has lost its last defender. Unguarded doesn't automatically mean lost; check what can actually happen."
+    },
+    "takeId": null
+  },
+  "requestHash": "68701c4c5753e632a7b1f776d0e1b1fead4f0cd8d1ac2aeb25f94aece47f91de",
+  "recordedAt": "2026-10-05T20:09:08.874Z",
+  "sha256": "881705b8f7bd1d53126e01364267eac1f657b80442108b605b21e7f7e5c2dc1f",
+  "bytes": 27056,
+  "requestId": "iU84oV4erMSf3JYxV4wa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8f93fe8e4d05238e2d2be09225bde26718d16cf5b35e1edb1c8af74f7c34c32",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

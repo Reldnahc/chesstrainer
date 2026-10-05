@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-black",
+      "label": "Positional support alternative rook black",
+      "text": "The stronger alternative would have defended Black's previously unguarded rook. Support must not be overlooked."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4a4708166335617d6747f07da95c4f7f1277b50414de4a3addcfb4f125032ac",
+  "recordedAt": "2026-10-05T20:10:20.097Z",
+  "sha256": "b0ee23139b8b0ddddef38ffd9486c10a936cda80f82e5c879fbdc2becb857ebb",
+  "bytes": 22264,
+  "requestId": "6GJXuYXSBCfHQd6ljfXc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae92d5d0918154b192b0708c6f443ceef7fadfaa2b6ebdee13f1fa3353969216",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

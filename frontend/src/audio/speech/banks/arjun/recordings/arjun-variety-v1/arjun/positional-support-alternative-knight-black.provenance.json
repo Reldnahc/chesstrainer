@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "Try the better candidate: Black's knight would gain a defender, instead of having none."
+    },
+    "takeId": null
+  },
+  "requestHash": "79e762ddf6e5f16eabe6aeb66dd27c99df0695258897cf72adf8951801ccf8cf",
+  "recordedAt": "2026-10-05T20:06:56.552Z",
+  "sha256": "dbd0a6d098214bed737c6dd9b35f3d7d49566babf8cc0940fc49b0b3db9ce60a",
+  "bytes": 17423,
+  "requestId": "bnz6TvWqQxCatZt3rFja",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0846b439de55b8631d85b23a8495a257e63808c4e0a4a1734dec0e412ba4c1d8",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

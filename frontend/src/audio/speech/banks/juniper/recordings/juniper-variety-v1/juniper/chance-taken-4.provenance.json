@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "chance-taken-4",
+      "label": "Chance taken 4",
+      "text": "An opportunity in their last move, neatly used. You found the moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1249c1142619da2ae17ad27a96359f06b1d82a7ff4a75622bc69b4b698a8718",
+  "recordedAt": "2026-10-05T20:13:49.414Z",
+  "sha256": "0bb1718c64aaa1bcd0bceb319df55f9f1e920001b2300a042e2bdef52d281f76",
+  "bytes": 17272,
+  "requestId": "X5eoVvdLAaq87Ic8iNmt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c8dc89cfc644b71fac337faf968b70caf61e1dbc4d831f54fb47b8e3c5030a9",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

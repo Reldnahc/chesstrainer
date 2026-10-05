@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "White's knight has lost its last guard. Loose now. Not necessarily lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "01fc6ff8651ca9e5ef21c26ed27f72a14d49ba733e0f62fa17440b02e5090bd9",
+  "recordedAt": "2026-10-05T20:10:59.351Z",
+  "sha256": "362e04a00adde2a67fabddc67bb522425616a3189b39ab8b16669837adeb714b",
+  "bytes": 18786,
+  "requestId": "thc5MiYlNi6AbQmy3VpR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9a4f3c46eb9e67ab27253791933f3892eeb6b696fc7f79f8360d6634dd18928",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

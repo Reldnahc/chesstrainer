@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-black",
+      "label": "Positional rook semi open alternative black",
+      "text": "The better move would give Black's rook a half-open file. Enemy pawns would remain."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b989564198ccbf44c2e767c7c2b307ff10021f810472f42d627b2d160c3aabd",
+  "recordedAt": "2026-10-05T20:12:01.866Z",
+  "sha256": "94389dd9686ddf46992a766ee260ab2cf6b509f71a5c465473a924cd64dafa3f",
+  "bytes": 18438,
+  "requestId": "enFmLzV0aDSI7RRgtn2F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a5df02dc1d7c3d5a76f404d50a57d196a8e91aa4eefae85ce4dce78c049df0a",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

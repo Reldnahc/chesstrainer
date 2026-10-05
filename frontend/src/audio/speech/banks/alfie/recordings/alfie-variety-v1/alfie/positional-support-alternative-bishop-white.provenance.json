@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "White's bishop would gain a defender with the alternative move. It was undefended before that proposed move."
+    },
+    "takeId": null
+  },
+  "requestHash": "597962ff0d3a90e8d299b8a29aa3f74c621fd6804625176c3747096e405b1120",
+  "recordedAt": "2026-10-05T20:07:41.938Z",
+  "sha256": "d131658dc53455efc79d4f36cea05f1f5f1257ec5a8f3a6ca22b93ba5a0d8bab",
+  "bytes": 21091,
+  "requestId": "uwiTCmqSpQRsJxuQvptN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffa22214a23de77fabc5f6ba9a26beb78419180114505afde42bd1fb0ec1d973",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

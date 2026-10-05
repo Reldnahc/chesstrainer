@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "What would the better move change? Black's unguarded queen would get a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab9847ca769cf4568dffb27d0171da2a1ab59afb3a1f7e7c88fd69f60ec25fa7",
+  "recordedAt": "2026-10-05T20:17:16.174Z",
+  "sha256": "a0319a6b4769a1cfa6cf554a5d82ed24bb74566af8cba5d45f05002c76595209",
+  "bytes": 16914,
+  "requestId": "sjmn3HZuWBLoFLbChNjy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdc04631a2d6c6f573e36683cf90a38317b4746322314db624de4a36040f50ee",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

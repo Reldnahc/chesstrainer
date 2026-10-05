@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "The better move would have given Black's knight the defender it lacked. Follow where that support would come from."
+    },
+    "takeId": null
+  },
+  "requestHash": "3705c8ae11e0b905e98ce593e2a30363a35a989cbb5441d2f2dae57ff683b07a",
+  "recordedAt": "2026-10-05T20:04:37.639Z",
+  "sha256": "61413bc5b572cc82d100b6eb9f2e393e7188f45c617e54c1ca683c17df0dba77",
+  "bytes": 19622,
+  "requestId": "6orfNvctpTTbgRW2GzlH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c2a746ff73d8ee2924c172eaf723f0c6be6d2dab938e6fb696bed965aa44cd1",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

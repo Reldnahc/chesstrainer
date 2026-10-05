@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The better move would leave Black's knight undefended."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f2bac9bc98d86c63af8ace8e46999d248305aa84f4d7da94fb50394ab9ad996",
+  "recordedAt": "2026-10-05T20:11:48.802Z",
+  "sha256": "0ec575321ee3e38ae3255f1540d9147e03f049ebb53b479748552ef5be77caad",
+  "bytes": 11648,
+  "requestId": "s5JV2Fhsljq2RcgQEkPb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9119fe82a5285fd8b3d7cdf536d3eba5da3750f6da9df7b5cc330cb6733031c7",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

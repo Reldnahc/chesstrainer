@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "opening-recall-accepted-4",
+      "label": "Opening recall accepted 4",
+      "text": "That is the stored opening move. Keep the sequence in focus."
+    },
+    "takeId": null
+  },
+  "requestHash": "1651e4a1a9a7cff54de0cb21caebbb75b2c0f0b971cdd1fa80d0aeeabf8f6f34",
+  "recordedAt": "2026-10-05T20:18:54.845Z",
+  "sha256": "bf5f76647a8c333bd45eeac6d7ffa869ee75cdcc705db039a9cb85b196c0e4d3",
+  "bytes": 13077,
+  "requestId": "sGGMJDLnq5Omd8jo4kEb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f4f194d9c4ebe41a0003f42643f696d5733be7112d331a14f284b2353b74be2",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

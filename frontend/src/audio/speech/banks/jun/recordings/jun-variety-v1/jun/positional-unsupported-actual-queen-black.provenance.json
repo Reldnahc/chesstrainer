@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Black's queen loses its last defender. Assess that apart from any capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c847929f1cc70dba3f88ce1b6ac1a58a21c24f05cfe4b626ecbfe0fc6eeeba5",
+  "recordedAt": "2026-10-05T20:12:54.369Z",
+  "sha256": "469ab2d3994d23901e3ec3610088cda2d9aa8f4614624d05e6064d4680acf005",
+  "bytes": 17908,
+  "requestId": "buFKT7trOxHjWE1Ui33i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86f4da2f8ed5559ac587243ff5b35b9625fca1e5e31716a34a028bff052970b7",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

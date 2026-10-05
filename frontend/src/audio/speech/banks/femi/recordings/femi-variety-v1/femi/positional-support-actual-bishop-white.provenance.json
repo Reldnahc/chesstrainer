@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "Ah, White's bishop is guarded now. It was sitting without a defender before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "a535ad9355c1d4c24673c3ecb4dea76e46dabf01679a5b7a4f217eed04ef7c49",
+  "recordedAt": "2026-10-05T20:11:08.454Z",
+  "sha256": "8b4084d4dd8c06cd8369f0dd40edfccbd31972f3dd22610dea34aaea7fecde23",
+  "bytes": 20017,
+  "requestId": "5u7YLMvwMkdfSgdVvkZT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8cb8c5292a1cb7698869009811e808c8745e2f8d3774924ea1bef6d037e4c27e",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

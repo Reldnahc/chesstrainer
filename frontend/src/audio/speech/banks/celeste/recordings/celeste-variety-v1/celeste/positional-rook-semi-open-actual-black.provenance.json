@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-black",
+      "label": "Positional rook semi open actual black",
+      "text": "With its own pawns absent and enemy pawns still along the file, Black's rook now has a half-open file."
+    },
+    "takeId": null
+  },
+  "requestHash": "4762466509858bf23ab4a0abe695a9a47ef911a89d54b16ba26d2bd7c595d689",
+  "recordedAt": "2026-10-05T20:09:53.103Z",
+  "sha256": "7ecc5f715f6b32104e9f3f560e676ea620bf7521835c7549f3d44935f3acc945",
+  "bytes": 23423,
+  "requestId": "4WgpYIcIGViK0vtQrGEs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ecbb3bb8c0e4de5209f443c66e2655def51b4a4ba7a566e16bcb280ad265854",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "The stronger alternative would have isolated a pawn for White. Better moves can have untidy details."
+    },
+    "takeId": null
+  },
+  "requestHash": "b13c224b6339486952b93c019cfc195dce33f28383b047a338db40ec2e4e7b9f",
+  "recordedAt": "2026-10-05T20:10:38.000Z",
+  "sha256": "bdc0483461f589cca05a4f7ef91e8160f4cc7714726a28d2691b3e7761f59677",
+  "bytes": 23089,
+  "requestId": "v17eRRbHZWsYUr6UfvBG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3c5d4e61227aacfa1d7fbcdbc9d2b9703f5d0401517da1afbcb3c96c87463bb",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

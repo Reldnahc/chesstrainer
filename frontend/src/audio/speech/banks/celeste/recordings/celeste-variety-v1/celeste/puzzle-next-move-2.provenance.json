@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "puzzle-next-move-2",
+      "label": "Puzzle next move 2",
+      "text": "That move is correct. Follow the puzzle onward; it has more to ask."
+    },
+    "takeId": null
+  },
+  "requestHash": "738c1a269b5b4b3104701fbf78d4a61fffbe5f6150e205dc8d0dea30ab65f5f3",
+  "recordedAt": "2026-10-05T20:09:35.715Z",
+  "sha256": "110ff514681fc82990011ccb3a405095b0dd1f02cbdbfa711b2076061e155581",
+  "bytes": 16734,
+  "requestId": "vCzN7hzDVHou8YEPCg31",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30e8c462ca35824396b572aafb16d0a49be292b20bc2ff6b2473454c088a8222",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

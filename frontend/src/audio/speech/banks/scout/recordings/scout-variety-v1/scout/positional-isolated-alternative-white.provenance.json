@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "The better move would have left White with an isolated pawn. Include the missing neighboring pawns in the comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab2df11c5ce8b2e5acae4dc206b70f2535c04b397e6f1dffba941c5eb07ea999",
+  "recordedAt": "2026-10-05T20:18:41.364Z",
+  "sha256": "b45b3a3dda48229f3936f97be7caefe88736f8451b9b24975c2aea9140b98176",
+  "bytes": 20473,
+  "requestId": "211SqkF5Se7JNdgelxhE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eec97795c958eab70d71fe4730503ef71e13db0f7afca046736d42ca64578732",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

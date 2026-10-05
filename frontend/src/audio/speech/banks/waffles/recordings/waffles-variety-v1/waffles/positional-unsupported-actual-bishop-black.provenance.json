@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-black",
+      "label": "Positional unsupported actual bishop black",
+      "text": "Black's bishop has lost its defense. No guard remains; check the post!"
+    },
+    "takeId": null
+  },
+  "requestHash": "959b3dfd08c73a735ed6ed53dbca0a4e1a2dd8e48c5a58cf01790b4b709d9b9b",
+  "recordedAt": "2026-10-05T20:20:57.509Z",
+  "sha256": "687a870f3488f999fe60cf13036868bfe93df805db8d49f68e5292be9b59b9fa",
+  "bytes": 16908,
+  "requestId": "G8QBmEgW2MJIAVD31sPE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e8d37e04da9c7e899b3d3058067b222f3542c21535006afaf8d0bd03085a40f",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

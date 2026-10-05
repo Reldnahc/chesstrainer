@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "A different move would have put White's rook on a half-open file. No White pawns, but Black pawns remain."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5c804c65632f7aa70090618661cba2f6f65bef238d4a697180017e6f5e29672",
+  "recordedAt": "2026-10-05T20:15:32.915Z",
+  "sha256": "37bb1bdcb9218bfb772ffa395ca6f42b57fac902edd1a034bd9be7197613e3e4",
+  "bytes": 22432,
+  "requestId": "Cn1ytXuOmIoA9jFaPxce",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe29cd642bae80240ebc6430f9bdc4aee49e564623681fec146783a772603d52",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

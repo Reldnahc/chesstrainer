@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "White's knight has lost its last defender. The change to notice is the support that was there before."
+    },
+    "takeId": null
+  },
+  "requestHash": "6279f1280a8a874d077e7de9d8f03b30fa33a6cf2bd7eeb791a5e2969e1ddf8c",
+  "recordedAt": "2026-10-05T20:04:50.477Z",
+  "sha256": "aa488e06505573d76bb593ef1f917e7293cc1f05decbe9160d7ca316a8cb6539",
+  "bytes": 20959,
+  "requestId": "DSqbQY304oNNqcNb9D3S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3218c484b22d349c5fe5d8f0b1d9044a83439bede20af36b9a1fdfb23110f38e",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

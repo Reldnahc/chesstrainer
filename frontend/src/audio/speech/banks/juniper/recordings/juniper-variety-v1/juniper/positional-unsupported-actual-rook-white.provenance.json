@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "Nothing guards White's rook anymore. That changed with this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "135876c4bfb7e832ac7cddd7de95d6cbf0a29f927626ca5ad6dbe0e4def59588",
+  "recordedAt": "2026-10-05T20:13:18.071Z",
+  "sha256": "1e6cf6ff0ea2094844d5bae61e4e6bf02f0339145f5617c660795aa8fcc13022",
+  "bytes": 14435,
+  "requestId": "QmGxtL4kfZs0dZhveqxA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80d20b66077b8ab71d45e4bdd8f7c660f0afed98c99e732d3193156a7727c0e8",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

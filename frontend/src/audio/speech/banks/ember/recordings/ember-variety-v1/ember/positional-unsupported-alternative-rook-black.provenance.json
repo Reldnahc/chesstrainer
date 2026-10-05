@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "Black's rook would have lost all its protection under the stronger alternative. The whole position decides the consequence."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb988b2b873153ff7ec22c2bf685da0698f75873fdef78ec31bdd05e3cb56528",
+  "recordedAt": "2026-10-05T20:10:14.025Z",
+  "sha256": "021899480802efd26d4c57534ed7da2058e6e6344d39a204577733bc585d6b60",
+  "bytes": 22940,
+  "requestId": "b98kKP1q40jZY2j5SPlw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a561a94d2a08aea3f7148c80b9655be984e567efed0cea8abfdd60b7fcd5e06",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

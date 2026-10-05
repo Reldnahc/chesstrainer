@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Black's rook has an open file. No pawns along it now. Other pieces still deserve a look."
+    },
+    "takeId": null
+  },
+  "requestHash": "41c0b8cecc49730a6a89302503dcf021f1836212c6bbf336f88496dffb91e6d4",
+  "recordedAt": "2026-10-05T20:13:39.746Z",
+  "sha256": "42a9e65eb97d4d315cb49501bda1f6029614907648de2accc88f1c249fe787dd",
+  "bytes": 20758,
+  "requestId": "NTXEUlDeoaZOpDSDQwMt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f519d4168bf002a62e17f7f21b99825cd8cf9870b3a5e7918e2f495b2452f14",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "The other move would add a defender to Black's unguarded knight. That's the connection to check!"
+    },
+    "takeId": null
+  },
+  "requestHash": "692b384ec4dedf1b4bcd199ad7499f050cdf5fe277b6665a18e449deeec610ff",
+  "recordedAt": "2026-10-05T20:18:14.529Z",
+  "sha256": "ba50f197ca01ceeb3f5149d34b0cf137df9f9cf5ee8a0bd960bbbd7d289198ca",
+  "bytes": 18405,
+  "requestId": "j1kdGpJe5PM83iSO6oSO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2624a74ed7ae8f49c15ac36cf4d1b4167a2a310203151fa1ec67dd1073129216",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

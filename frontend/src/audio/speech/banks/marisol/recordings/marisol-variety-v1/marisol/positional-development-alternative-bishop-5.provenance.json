@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "With the better move, a bishop would develop for the first time. It would leave its initial square."
+    },
+    "takeId": null
+  },
+  "requestHash": "a478e05a6b9b5667663324ef69761a00c47629416959999a813969d4d606da45",
+  "recordedAt": "2026-10-05T20:14:03.960Z",
+  "sha256": "58fe7f9eb0b6905fc7c935f6938c8fd0335b676a4435ab3cf75d9cbddcea81a5",
+  "bytes": 18614,
+  "requestId": "oXQB9PxzmBHW0UQ4THiZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8002846bcf125f7bf59a06ca49bd02e30920dc1fd1d29682ab45fd307a42408",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

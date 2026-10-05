@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-4",
+      "label": "Positional development actual bishop 4",
+      "text": "A bishop develops here, leaving the square where it started the game. Its next role is worth exploring."
+    },
+    "takeId": null
+  },
+  "requestHash": "36a8d46c3b9dcabe1c11ac8acf626746551c86fab2c7cb73daad4b69d3eb1645",
+  "recordedAt": "2026-10-05T20:07:18.342Z",
+  "sha256": "b5084ba7bc7cf3f030c63c4e9ce81f6f034556631332640e770ef61a36070627",
+  "bytes": 21033,
+  "requestId": "UxbcLTYCkzY8AdMyyvX7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c129547a5ae05d12d8d6339e60df840ffe30ba64cf1bc3f5942f9f0604b5c8fa",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

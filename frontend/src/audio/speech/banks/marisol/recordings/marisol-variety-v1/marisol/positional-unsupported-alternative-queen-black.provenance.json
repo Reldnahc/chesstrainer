@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "Under the better alternative, Black's queen would have no defender. A loss would need its own proof."
+    },
+    "takeId": null
+  },
+  "requestHash": "904d45b1d040ae3b8989f7f992f4dd0b33e9474021f2ad86b37067002260bde9",
+  "recordedAt": "2026-10-05T20:14:14.220Z",
+  "sha256": "312dfc087fcd4a14c4dc0d49180f83911818f8ac7c191d65deb8d0adcbc592e6",
+  "bytes": 20641,
+  "requestId": "Qo5Z8Y1A8p1ZNJaAkJZZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "506d2f8ebda27f4dc25e156d7f71735f029304fd512abe0283a80ff39fd4a371",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

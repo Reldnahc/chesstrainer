@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "A different move would have given White a passed pawn. No enemy pawn would stand ahead on its file or the neighboring files."
+    },
+    "takeId": null
+  },
+  "requestHash": "d584b4a264f6e87e1c65a5788190ffdf0fc47d2d8a4d6f0c9fef953450c68edd",
+  "recordedAt": "2026-10-05T20:13:20.489Z",
+  "sha256": "bd19273bf6d5d36dadd89565a60954e8a6c20bf286f0e7775d0e45e69507e05b",
+  "bytes": 25909,
+  "requestId": "xsjCWIrO4gSt3FIQy6tN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "126516e21fe97986cc029f398da41e116f4556c71aa08187ff729632bcdef50f",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "White's bishop is defended now, having stood unguarded. Count that change precisely."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e7f38226434b182c27dae1869b9d000b619ae80a463d28752e681f005e5a33b",
+  "recordedAt": "2026-10-05T20:09:59.433Z",
+  "sha256": "b5670a0c80fa058e034e3753241a8e4a97dc96f14c85520cd8fb36766775d997",
+  "bytes": 19117,
+  "requestId": "AdDAUyU2jyf28XLkJIrn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56ab3eeb979df7e93f22de2912c478ab2e0dea91bf8976e02c03d35857a5930a",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

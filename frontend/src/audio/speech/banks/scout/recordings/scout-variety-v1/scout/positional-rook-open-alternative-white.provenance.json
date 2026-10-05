@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-white",
+      "label": "Positional rook open alternative white",
+      "text": "The better move would have placed White's rook on an open file. No pawns there; check the pieces next."
+    },
+    "takeId": null
+  },
+  "requestHash": "64f1280aa3dba7d0bbccce22ff82925e819f23fb8a887a595472a53b2a31c24a",
+  "recordedAt": "2026-10-05T20:18:56.308Z",
+  "sha256": "cc92fd0420099065c9f96b9b865ba0aa0b2e84c870569ac556b4e670dd8416e6",
+  "bytes": 19377,
+  "requestId": "MPR5azh4lOU4pMQcNK4x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84119ff1026502fd7afefe43030de33795f4fc003f172278ec08e9e51f47d802",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black has gained a passed pawn. Do not confuse freedom from enemy pawns ahead with freedom from all resistance."
+    },
+    "takeId": null
+  },
+  "requestHash": "e35915c3a407341a64dcea55f740d07ae5a37e089f08d2481030208fd6372e4c",
+  "recordedAt": "2026-10-05T20:09:53.097Z",
+  "sha256": "54b692dbf5b9684e7950959d6622c042a82b8d7b91a5b68214eaa5bfe8a8c5a4",
+  "bytes": 24547,
+  "requestId": "VvduZLkosXxfKqle0U7j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c7dbc1a5f2cdb69b1e1af4d417324fd2044d4d86df133767142d93f6cf7b542",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

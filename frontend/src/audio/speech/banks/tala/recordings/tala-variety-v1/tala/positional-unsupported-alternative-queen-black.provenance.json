@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "With the better move, Black's queen would have no defender left. Notice that change without assuming the queen would be lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ee50d0dcb233e7a35a014aec554ae8af0582e214a10697c05585d78a8e46301",
+  "recordedAt": "2026-10-05T20:19:34.101Z",
+  "sha256": "ec01993788285f73509e53550aeb65ad26eb65548d3088226fdfd93398b84081",
+  "bytes": 25045,
+  "requestId": "Q7ouB3o6fBgA5RuQPw6c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2d76cc9b82be32ea4b912225dfffd7ff3777f7aebaa2d953f52ecf2d681021b",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

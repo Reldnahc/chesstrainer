@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "Another step toward the last rank for this passed pawn. Its new position is where to pick up the story."
+    },
+    "takeId": null
+  },
+  "requestHash": "8ac723daebb1099dcd3cd5a663e2899b33d77f40b6e9fc833358bdce2ee4e5d3",
+  "recordedAt": "2026-10-05T20:04:26.481Z",
+  "sha256": "9b137b5d5a92189eebf6cb2d18602f455532ac84b70dbec47427cb68e7477af2",
+  "bytes": 20635,
+  "requestId": "QoLJL5yBqk3hDUf5GoRV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6690f4d2ba83e98425d3ba0a283cd51d098cd8b39a1660923a5f5c2cce96e753",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

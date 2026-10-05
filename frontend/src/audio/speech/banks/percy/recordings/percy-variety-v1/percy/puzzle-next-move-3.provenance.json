@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "puzzle-next-move-3",
+      "label": "Puzzle next move 3",
+      "text": "That part is right! The puzzle isn't finished, so stay on the job."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc6afb96cda4cf578252fe0b575f24d850c50f74e4581c8b56f99d57f954cc36",
+  "recordedAt": "2026-10-05T20:16:34.544Z",
+  "sha256": "03b7e3b5359f1be1802abddce52ad903ead5d50e336a9534965a525927dbcee0",
+  "bytes": 15063,
+  "requestId": "ziorWlBpvvHtsYZTiimR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0c3551607169d95b07b9dc1254c4284e667c86cf2edc47ee282e46e03343953",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

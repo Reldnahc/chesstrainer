@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-white",
+      "label": "Positional unsupported alternative rook white",
+      "text": "The stronger alternative would have left White's rook undefended. Count the missing guard, not imaginary winnings."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ff384af8ed1b67b7aa28a83b719602d8feb973323b711234cd1cec089248d9e",
+  "recordedAt": "2026-10-05T20:10:47.955Z",
+  "sha256": "d182d849289ff166aa8ae2a43847e4e87ab4f48281805737b670480dc42421e2",
+  "bytes": 25481,
+  "requestId": "QMnLl2oIQJBNummEVQ84",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e4ea3707722b4a04174c9df8647316e8dd251ff7d068fb411b77a2ce4c2f640",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

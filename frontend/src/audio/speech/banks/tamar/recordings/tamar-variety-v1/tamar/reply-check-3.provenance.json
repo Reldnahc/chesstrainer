@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "reply-check-3",
+      "label": "Reply check 3",
+      "text": "The best reply puts the king in check. Dealing with that check comes before any other plan."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a1664068db5abdce4f48da401dfdf427f607c0e7ece912492f4a52da21f2388",
+  "recordedAt": "2026-10-05T20:20:01.091Z",
+  "sha256": "03befa692215a5856b5bcb59ebbd98332328ad4a3984b511b81142148ffcac41",
+  "bytes": 19277,
+  "requestId": "TjoyW8UXu5KvBsnE3Pf7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9231497170aef6aa4f474e1573ff1d2ff6e4da1c18c0ad150a840b2b269693f",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

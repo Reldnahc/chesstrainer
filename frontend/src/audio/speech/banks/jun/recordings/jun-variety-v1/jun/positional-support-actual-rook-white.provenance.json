@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "White's rook changes from undefended to defended."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d0e227d61714c699f4a7f87b6439fa24643e768caabc28886b9de1e735d1d5f",
+  "recordedAt": "2026-10-05T20:12:50.367Z",
+  "sha256": "894f55a227ff3d1df4db400e76de35876a4415ea3ed3fb371315ffc4b68bfee2",
+  "bytes": 12280,
+  "requestId": "y5saav02jXcXMD3D3hPy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2b5f84daa81cfd617ff72f1e525b2f95baefc6752b9d95586398f4e69190663",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

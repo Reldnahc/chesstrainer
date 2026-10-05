@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "With the better move, White would have doubled pawns. The pawns would share a file; the better choice can still have that shape."
+    },
+    "takeId": null
+  },
+  "requestHash": "511dee86c13d56e5a8bd352e1502ae35c41c6c2ac0749ece616d685be6df8dc7",
+  "recordedAt": "2026-10-05T20:21:55.560Z",
+  "sha256": "9d135351ebf151130f1c8700d87cd39fc4d2892ba20f4fb43d95f2e9429ce16d",
+  "bytes": 23730,
+  "requestId": "joaFEj0U9Wkz34CzZTIb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c18e2ac9f64ab1d7df68e63aded77aaefdf66f10c929d874458785366b70e1f7",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "label": "Positional unsupported alternative bishop black",
+      "text": "Hmm, the better move would leave Black's bishop with no defender. That can still be fine, but it's worth checking!"
+    },
+    "takeId": null
+  },
+  "requestHash": "7235ed6d756a94d2a873732fc4949868886e81f89794e73fc448b95ad514c0ce",
+  "recordedAt": "2026-10-05T20:08:57.143Z",
+  "sha256": "5d803681145f7e9d66914bc25bb05940d306f87f9c44515743f5ab8f4693c1d3",
+  "bytes": 24123,
+  "requestId": "AGSlSDVzQHLfLJI96kEe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c07637a478a12619600e03c179cd58b8cc4d43ef5404a5dad11ad41a0d82f3af",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

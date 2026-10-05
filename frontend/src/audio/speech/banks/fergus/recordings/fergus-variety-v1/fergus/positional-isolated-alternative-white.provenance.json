@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "With the better move, White would have an isolated pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "1831e35636e8609470f7264a318dd98d73dfc6baf6ca6f4c6031af781e7353ad",
+  "recordedAt": "2026-10-05T20:11:44.696Z",
+  "sha256": "b9beadd81af1d6bb0092822fead708eff553b80c61c2446aad20d04cce7cb393",
+  "bytes": 12824,
+  "requestId": "214zIvJ53q0lZyTG0xfs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d015b98469f0d15b17ab5e5be1264015a2c948923888b684e1377ee35c7d82ed",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

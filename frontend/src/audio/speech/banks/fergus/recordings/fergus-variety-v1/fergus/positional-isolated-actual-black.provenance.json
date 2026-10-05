@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black now has an isolated pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "06c305e31a5d8f07356df292df2dfab7a6e10fde080f2dc3c439aba4090905ef",
+  "recordedAt": "2026-10-05T20:11:43.358Z",
+  "sha256": "79acbc45b6e720cac6f360f63502af264c61aa10b64cec89bf4eaa93e9ca4048",
+  "bytes": 9258,
+  "requestId": "d46DWsOuYSEs4V3FxNUG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2041796bfe2d40b9d0fad4fc96103000b748367724e4301ef432cfadda441342",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

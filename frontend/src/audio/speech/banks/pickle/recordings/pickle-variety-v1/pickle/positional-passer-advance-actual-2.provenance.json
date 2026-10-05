@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "Watch that little traveler: the passed pawn has moved closer to promotion."
+    },
+    "takeId": null
+  },
+  "requestHash": "267f7df0a11f011ef15c05ff6931b2535b6c57008fe6a27bc09146dcffe3d4d3",
+  "recordedAt": "2026-10-05T20:16:58.802Z",
+  "sha256": "cea5f632e77f388ef8a12c87a0e1a3cb90e6802d1fed542eee54dbf5f4d7f7ac",
+  "bytes": 15315,
+  "requestId": "ucL97x9ik1LzrChX4VQq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae71abf7842339c741b892ff0d481faa51eefc3a842ab5d42c8bf1575787a16d",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

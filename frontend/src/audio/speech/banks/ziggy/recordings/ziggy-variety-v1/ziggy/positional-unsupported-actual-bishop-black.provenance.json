@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-black",
+      "label": "Positional unsupported actual bishop black",
+      "text": "Black's bishop was defended before this move; now it is not. The missing connection is the relevant observation."
+    },
+    "takeId": null
+  },
+  "requestHash": "58066833823dc8ba6d4f1c654e1424876069a1d4f27b2be74cc1f197b1bf2486",
+  "recordedAt": "2026-10-05T20:22:09.418Z",
+  "sha256": "e7f4c08659b8061c6885916e95446b714f5d399f33abe041ae93d871f62cbe78",
+  "bytes": 23981,
+  "requestId": "xT2iDHZXybI35gyRfMF7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6608b134cf53e2dbf88a9d9b48855797a17421928bba2f545dee7e6b15d51193",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

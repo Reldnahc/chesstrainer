@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "stronger-alternative-4",
+      "label": "Stronger alternative 4",
+      "text": "Another move would have preserved more of the position's value for the side playing it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a32abd27f215b07e2ba842c552b7947d3855a5cbd9a2517cc01c4ab9ebb979d5",
+  "recordedAt": "2026-10-05T20:09:21.753Z",
+  "sha256": "ee46d2e41941961f69a6040735a4f40775cc6d0e8da5e767e310b2ef06dcfbcc",
+  "bytes": 16233,
+  "requestId": "BbSOOgKl8EEedhwh0k2A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0cdfcb3831c3d8a3bd6a191e738f1c1b71777d511a7add4576c707efd03af00",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

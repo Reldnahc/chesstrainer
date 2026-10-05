@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "Even a queen can use company. White's queen, previously undefended, now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "ceb7f8b01ba11727c3d2e99fd0973fae5051a148a7022f0919604bfdbbf61816",
+  "recordedAt": "2026-10-05T20:06:15.161Z",
+  "sha256": "6336709ccd5c11b01f8881bd76b0275e179574e9d64ac522d7244432e145e023",
+  "bytes": 21413,
+  "requestId": "QTSolZHZq6b8YI2zDkYy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b29f3d0d6814d26fe149bf08f2ebf53f4770cf608b60a13972929ed968580bd4",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

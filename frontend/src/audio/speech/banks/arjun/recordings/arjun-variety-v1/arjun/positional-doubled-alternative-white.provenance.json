@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "Try the better candidate: White's pawns would share a file. Compare the whole resulting position, not just those doubled pawns."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ff2ed0be59bddefaabf035b23e7d7ac8bd17bc95d67fca3fd6a6c9e0982f733",
+  "recordedAt": "2026-10-05T20:06:59.521Z",
+  "sha256": "d68193701382eafa8280f7431bfa8bb2de3ac50661869ae5666bb5dec473accb",
+  "bytes": 25077,
+  "requestId": "eKhcQW2sAYQprMVCP4FE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d12315f3fcc6eaf92d173825b8d7856e4de9b471ce63987bbaa3d490c835a84d",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

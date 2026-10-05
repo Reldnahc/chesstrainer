@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "The better move would leave Black's rook without any defender. Its prior support would be removed."
+    },
+    "takeId": null
+  },
+  "requestHash": "76e5dbae8b4712428d054446498ed0f7ec3cc99ae8b051309d54d8103799643f",
+  "recordedAt": "2026-10-05T20:05:15.603Z",
+  "sha256": "cb66495297b688b1a86d2a24d4f4e84107d6ec67795b0d50b2ef8c21685d2492",
+  "bytes": 19359,
+  "requestId": "CQqp087QsixpjEALGtOq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9376193aab278cc9f838287bea2122c48973b1d2ca36a67d53dce696c1880ed7",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "White's knight has lost its last defender. Can the other side use that, or is it simply a detail to track?"
+    },
+    "takeId": null
+  },
+  "requestHash": "c4c041e225c106fa1695762397d403dd241c8a87e48b1203d9f29e7df27c17db",
+  "recordedAt": "2026-10-05T20:07:10.047Z",
+  "sha256": "1bcd3f734210dc82b4a91bda675db94dca3d5be5be73edd418cf8e7286f7f321",
+  "bytes": 22110,
+  "requestId": "8jUcw6IjrifEjFxCVn2g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b37e0c05cca4716a1f302c4f6919865d86db20074b7253595df627332940dfe8",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

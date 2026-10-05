@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "A capture is ready right away for the other side. Is it worth taking? That's worth checking."
+    },
+    "takeId": null
+  },
+  "requestHash": "05224dc110435e7992896ce523bef8b6c6f744a9078c6a80205c6fc595c55d8d",
+  "recordedAt": "2026-10-05T20:14:49.289Z",
+  "sha256": "2f6011098fe4940ec800de9e16c56cce11d22d4f50e6b9e9ee61770afd195a10",
+  "bytes": 18351,
+  "requestId": "e9NiL9xgpObObXNLBF84",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "08714a042933de6b1aefcb1f37d0f6e7d8aa81aed76cab91363e96cbfa40bc2d",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight has lost its last defender. Can the other side use that, or is it simply a detail to track?"
+    },
+    "takeId": null
+  },
+  "requestHash": "39f6c3414ab98da492bc0db4040839d3d35d754c0df0254955cd131bcbbd329b",
+  "recordedAt": "2026-10-05T20:07:12.274Z",
+  "sha256": "032ab02957edda4bc9e28624fe505f198202f1691ca4e6b8ea6f1dd216eabf21",
+  "bytes": 22646,
+  "requestId": "x4DKXP5l9ZQz9JVlN28I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8d931a312ff0c4c5832ef36d412a6d62099a2738665c1bf7e388d7aaa79bc0a",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

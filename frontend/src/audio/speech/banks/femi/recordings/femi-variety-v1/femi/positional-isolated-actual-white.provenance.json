@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-isolated-actual-white",
+      "label": "Positional isolated actual white",
+      "text": "White has an isolated pawn after that. No friendly pawns on the neighboring files, so check what the pieces can do for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a36023bdec504dce7958700173a1e4c9f8f628727af3cfdaa068f36f962cd79e",
+  "recordedAt": "2026-10-05T20:11:07.388Z",
+  "sha256": "fa78ccc18f025a9383d9cf0a129f3675134d7f6a5f0f2e2e405b805174ff9792",
+  "bytes": 26080,
+  "requestId": "qBpqEgEOOlr4wTNdyt3k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10de8a592d2a5ba7945299753e03752b7c433139e3f695cfc8cb52cfabaea79e",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

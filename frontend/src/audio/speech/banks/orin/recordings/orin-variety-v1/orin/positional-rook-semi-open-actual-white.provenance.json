@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-white",
+      "label": "Positional rook semi open actual white",
+      "text": "White's rook now has a half-open file. White has no pawns there, while Black still does; that is the distinction from an open file."
+    },
+    "takeId": null
+  },
+  "requestHash": "b626952fb160131d5fa8cf26eb5fe430d23dee1404975c5abb67a87b9c560edd",
+  "recordedAt": "2026-10-05T20:16:08.742Z",
+  "sha256": "b7fb54e334ac692ae6fe62346e4d0a606022d1ee2bc7b62dc8e9a29ad54827f2",
+  "bytes": 31215,
+  "requestId": "ssTO276m2iMkLp3scJr3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8a8daa135d0afb3160a012e28e58c69912a113b0ed444d14b36746140d1d4fe",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

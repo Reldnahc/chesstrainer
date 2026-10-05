@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "The better move would have given Black's bishop a guard. It had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "e49ff3ba80465e21645a86fefd58298eaedb846b7bbc4b6f216ca18b0051606c",
+  "recordedAt": "2026-10-05T20:13:37.222Z",
+  "sha256": "382d0c59847e865a67177d457a052e27e7ebdddf7125a5446eb94789c33e7473",
+  "bytes": 14496,
+  "requestId": "tOmIrG066a5lx5ChIyqp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3708c159bf134b0433b86e2de6ce01ce8901bfaa2d0516b774e8a45fb060c347",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

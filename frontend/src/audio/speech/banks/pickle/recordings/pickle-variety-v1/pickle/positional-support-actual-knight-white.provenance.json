@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "Who just got backup? White's knight, previously unguarded, now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "06816ec480f466d031980359e6dcba9f408bced1c63ff31de8227f37d8e5ebe5",
+  "recordedAt": "2026-10-05T20:16:49.913Z",
+  "sha256": "962550dafaac882f1874b7a3f8bbc3328b9345057c361e600190678a7b2a9847",
+  "bytes": 18500,
+  "requestId": "Oc6AVrar6JuWEHeWYw7Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2512abd389a5f0638b27eab82afc452300861c01a01d0b03aea1916c892e83ce",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

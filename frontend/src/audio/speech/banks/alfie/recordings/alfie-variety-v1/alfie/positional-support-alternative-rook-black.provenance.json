@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-black",
+      "label": "Positional support alternative rook black",
+      "text": "The stronger alternative would add support to Black's undefended rook. The resulting position would include a defender for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b611e8579ca587ed3ba88af27d1437e3e1bae43158387f66d6f8b90017bf9ed",
+  "recordedAt": "2026-10-05T20:07:48.121Z",
+  "sha256": "16b8fcb84de24ac547433f511e223d41682b05b635d8bf0965340767d17e3497",
+  "bytes": 23509,
+  "requestId": "gNCWzXRfew35Gz15tW3v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3cfee62aefdb236a191dd7a97e180e6b1acd30dfbe16b4c47dc826fe45e9e7e8",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-white",
+      "label": "Positional support alternative rook white",
+      "text": "White's rook had no defender. With the better move, another piece would take on that relationship and defend it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dad29d6a220930235970ac691197a24d3dc413d712f10b26009c7ab1a0a2f4f",
+  "recordedAt": "2026-10-05T20:21:55.663Z",
+  "sha256": "7addd90bd08a42f15a5e2138784c17ddbbbec5dcec24407a044988a8af6a8988",
+  "bytes": 21557,
+  "requestId": "N7q3538wdGxZ2nwgVfB6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5f2db5859b0f3b779177c9fabc06e706b97e839a2558b4da3fce4a2f29cde24",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

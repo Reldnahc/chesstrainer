@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "evaluation-loss-3",
+      "label": "Evaluation loss 3",
+      "text": "There was more to be kept in this position. The engine finds a better move than the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c1ddf4689f8d0443f36ffdd38f0412db45e8465f6ac110f7bf4ee1d9ef0f41f",
+  "recordedAt": "2026-10-05T20:04:36.847Z",
+  "sha256": "157180128b38c1f55ff56a625f5c4823adf215fa26dd75be48570bb121c7c011",
+  "bytes": 17845,
+  "requestId": "j7l9JqNFFI3jlGstYcuf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "70bf7f7ee6f6094eb9b04f040500a3ae954af0b50b3fe5902229d9eb2e7d8624",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

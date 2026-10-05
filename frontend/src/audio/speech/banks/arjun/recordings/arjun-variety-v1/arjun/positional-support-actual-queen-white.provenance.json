@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen now has a defender it lacked before. How does that connection fit the rest of the position?"
+    },
+    "takeId": null
+  },
+  "requestHash": "3fef37b547d4ebc4953dc86c6cce47eb49962fa3828099c978588d1efc03af46",
+  "recordedAt": "2026-10-05T20:06:50.568Z",
+  "sha256": "ce2716950c15e6462945a3a761845b2f89b5bcec491cd32a72a78f33e2ea5514",
+  "bytes": 20317,
+  "requestId": "JD0Rt9FqET6UEJ7Z1V4x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "162ff8e7d3c2e9e2306cc1efbd54c4ac43a3e5a812f2f58a79578318cabe496b",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "The better move would leave White's knight undefended, removing its last defender. That would not by itself prove a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "327ab86c2aa7841fff3cbe9593e9c16564659da34ea8b5ffc2333365205f3af0",
+  "recordedAt": "2026-10-05T20:13:59.953Z",
+  "sha256": "02e14e056e0d0f7c1d5fdbeced5f410efc0b73f8fc191d4e2f5b64b0dfaa2132",
+  "bytes": 25293,
+  "requestId": "K9B3Pa5eAZm74KuRFgjh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "627422444909f852288812bd4361aff01808af4591e6ec15a30b58dbf9111b19",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

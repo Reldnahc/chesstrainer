@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "White's rook changes from defended to undefended. A winning capture is not established by that fact alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "51bbfcb9d1a0c31472e4f346211b21e4a450a18a45da3905764050267bf3502b",
+  "recordedAt": "2026-10-05T20:04:59.090Z",
+  "sha256": "e24351a9d594559d1e06147b283d2bd38cdc16b5505e688be20218db6af77bbc",
+  "bytes": 22799,
+  "requestId": "o7mFShNJExc6ZPrz90R8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fe5b6ea98aff258c7be9e8186c8ef52c1ec09b940b115a3aa460a52e45f9d5e",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

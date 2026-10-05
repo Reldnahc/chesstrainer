@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-doubled-actual-white",
+      "label": "Positional doubled actual white",
+      "text": "White has doubled pawns now, sharing a file. The rest of the position still matters."
+    },
+    "takeId": null
+  },
+  "requestHash": "12e696001a22284281ba0edf896ec7b371ec977d5fd0adb5ae6bfd7c8e661f3a",
+  "recordedAt": "2026-10-05T20:12:21.883Z",
+  "sha256": "88355ccccc53115cfa90b2eacacc1d8cf1666ab73b0e2ff601a4287ef6f7c691",
+  "bytes": 19265,
+  "requestId": "aRQb1nChF7UnViLa4Oxj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a40a480a037942e80e2ea3f62d9267fc09836ece1289de09cce7eb45cc7d739e",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

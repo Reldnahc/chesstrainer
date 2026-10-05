@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-black",
+      "label": "Positional support actual bishop black",
+      "text": "The little web has changed: Black's bishop now has a defender where it had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "03976cfdabbbc6a183d806b2dc4c069b387c8b2bb4801dba1ee0c68dd975dd81",
+  "recordedAt": "2026-10-05T20:06:10.194Z",
+  "sha256": "c89f7e721d82573596a830392ade9e9887bb1dbd43ed92d64f6f925ff1b3dbbb",
+  "bytes": 17382,
+  "requestId": "QusxhAZRf3VMm7cnKtcA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbc718324e9790ff16996af2f9b17c0f1f513ebdf9304971bc2d96ba7c3cbc44",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

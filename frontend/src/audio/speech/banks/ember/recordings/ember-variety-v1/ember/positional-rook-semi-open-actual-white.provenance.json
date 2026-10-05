@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-white",
+      "label": "Positional rook semi open actual white",
+      "text": "White's rook has a half-open file: enemy pawns remain, friendly pawns do not. Assess the resistance before assuming entry."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0dd11cabb283d6b13d65dd217250d1df26c3726e9392d0adf46e0defc5131e3",
+  "recordedAt": "2026-10-05T20:10:24.442Z",
+  "sha256": "437929bd2e9f1ca190958a03a6b9bd83a9f5930d1822c6fd7ba33d2b9e364632",
+  "bytes": 26681,
+  "requestId": "O4I9N6HITdu8bsViPFFP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e6832dbcc88afe2896a2c26c680e87a047f65a4489483af8a60756480f42096",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

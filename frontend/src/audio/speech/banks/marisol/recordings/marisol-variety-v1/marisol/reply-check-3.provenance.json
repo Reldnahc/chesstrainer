@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "reply-check-3",
+      "label": "Reply check 3",
+      "text": "Of the replies, the strongest is a check against the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5900d0303f40984c5ea1a41da1a9917196ca15cb61f82f30746e650e30162eb",
+  "recordedAt": "2026-10-05T20:14:02.114Z",
+  "sha256": "69165641c613cd3b477d13279b050ec35d76b052313488b2737aa8537df3cbf5",
+  "bytes": 13077,
+  "requestId": "sAgMjQug520IsmCSafMb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a51cd7a29e95755952af85001c615d3c80fb3e8f98a91e007873e3e51fc4b536",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

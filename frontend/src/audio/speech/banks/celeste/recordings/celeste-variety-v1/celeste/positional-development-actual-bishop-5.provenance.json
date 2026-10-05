@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "Here the bishop takes its first step from home. Notice which diagonal it has chosen."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cfa164b825cbbcd80fd47ec5ecf2b218e1d28fb51b5bb1806a8f5265ba73c48",
+  "recordedAt": "2026-10-05T20:09:54.856Z",
+  "sha256": "2cf173136c5b48331cc42c50795d50b9a206d900fb9ad8c802c135d41327bbbe",
+  "bytes": 18571,
+  "requestId": "BDHH4BA9FdQaO2rTRzzA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1dc90a32dd3eaa14f7a4e30de5d735c4088128b0ed85fd47420595734ee71aac",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

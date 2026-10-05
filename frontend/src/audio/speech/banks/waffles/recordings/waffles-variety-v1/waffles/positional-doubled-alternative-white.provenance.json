@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "Formation check on the better move: White would have doubled pawns, sharing a file. Inspect that arrangement!"
+    },
+    "takeId": null
+  },
+  "requestHash": "aa0e4c945afdf7988cc7b8cec34321b958be19e624961f2fb3ce5210e36ac1bf",
+  "recordedAt": "2026-10-05T20:20:45.498Z",
+  "sha256": "b5cb059b31296f167bf61ea0bb00b541191fed9a36bf9bfd8b35f41477540862",
+  "bytes": 24503,
+  "requestId": "S3IoJstuJLo0IQFwk1UY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5f49543cc84a8ac91bfbae32587054d989c2caa043778ea9072705a6254e460",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The passed pawn gains ground toward promotion. Track the blockers before the next push."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ef10f025eafd0e1be35f0c1364c6d7c542e0076594c6171e2881f5aceb513f6",
+  "recordedAt": "2026-10-05T20:18:38.351Z",
+  "sha256": "f48ceed27ef72ab6372b6644388e0cc4d677fa01ae0b6035de170d7cfea13a49",
+  "bytes": 17511,
+  "requestId": "xVKH44BVbm02rlHfeXw0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49d1fb15e943cca73663c13e035e0c5196c80fc37d6d11cd0ecd005aed3ffa17",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

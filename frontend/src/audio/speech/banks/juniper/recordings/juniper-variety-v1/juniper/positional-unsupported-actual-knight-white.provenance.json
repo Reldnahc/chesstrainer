@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "The guard is gone from White's knight. Nothing defends it now."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e7f06ba30696229e36765f33315cef63c28e9658a7422b4f36e473ca777fb21",
+  "recordedAt": "2026-10-05T20:13:45.116Z",
+  "sha256": "a99f0c9f1a9aad12d774061b05c1187a729ebeea047139161f70059cd9a9fde5",
+  "bytes": 13782,
+  "requestId": "WzAxhEZ7bzFvL6gzXcnc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d9f63dcda887e6686ea3134a70a8383d4f34f6af9e8bcf1aa67eda37eef6fcd",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "The opponent slipped, and you made it count. That opportunity hasn't gone to waste."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9e9486b0654bb7d9696a5434be34a0aceb23d4c8cbc2323cc200fc383df8ba0",
+  "recordedAt": "2026-10-05T20:06:04.192Z",
+  "sha256": "ff6678424330df48ecaefb53e4908e10b5421337f24dc37c6b9b0fc8f9ed6b47",
+  "bytes": 17302,
+  "requestId": "lWtw4vQuWoz8rInA19lu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5097ed67860a255f94fc5dfb29625884e84b192e2d266dbc1f7f469fb97d7edb",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "Ooh, a change around White's queen. It was unguarded; now it has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "950b5029e5c5b07895a8e7313ab2550f1b39353f3b08a3e3a1ff02e545c75ecf",
+  "recordedAt": "2026-10-05T20:17:00.238Z",
+  "sha256": "43cc5ff901fd0a9d817951e599299808aa509b01b536f63382788731df683052",
+  "bytes": 18692,
+  "requestId": "LBvUi7cqdQP2atwZynGO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a314c15f4312e4a2baf3bf4d88943be842e61e4fc0f37a2023802dc136d583e",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

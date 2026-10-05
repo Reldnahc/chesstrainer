@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "Black's rook would have ended up without a defender after the better move. I'd check the consequences before judging that detail."
+    },
+    "takeId": null
+  },
+  "requestHash": "7fecf3eaaca6afd3663ab83a37c5a7bebd8f63404613ac8936764233f8c4c496",
+  "recordedAt": "2026-10-05T20:11:26.111Z",
+  "sha256": "b9eb814093cac269f20113ebd2f0ae3187a543501017625dd7b8c4041ceb86cf",
+  "bytes": 25831,
+  "requestId": "XUuL1fKQoY1A5tRkGHyR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "736869441625df6d49c4fff3e0f2f47fb36f014b81994bcea541900d8098818e",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

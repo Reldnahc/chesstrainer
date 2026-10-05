@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "With the better move, Black's queen would no longer be undefended. It would gain support."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4e8f34fc76d92ba4cf00081a9c2c68592ac2c42f6eddc2b30ce207d590d0b5b",
+  "recordedAt": "2026-10-05T20:07:07.707Z",
+  "sha256": "cb159643cc279e2ebf2a68bc4e5f812662d1a12f8a929372263c73e1e5331533",
+  "bytes": 17825,
+  "requestId": "HbEUlnlC4kc2ay0K2Tm3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b693e36d4d8fc72b96c6ed03f64abc5fec8aea40c8dac409ba8bcce83884a50",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

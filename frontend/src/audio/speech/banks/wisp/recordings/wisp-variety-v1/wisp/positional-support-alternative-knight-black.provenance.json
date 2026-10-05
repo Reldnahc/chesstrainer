@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "With the better move, Black's knight would no longer have stood undefended. A defender would have covered it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d5e53ede76825107b3881a972ff0b9cfe782a5529e6ea50257f555ac9a443c0",
+  "recordedAt": "2026-10-05T20:21:13.911Z",
+  "sha256": "f092909340d050dd8db53349cac4e89034616540fef0aec209ae39344c096201",
+  "bytes": 20448,
+  "requestId": "JPmJM1RzX1KDoU6n1Bx5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e4dca7b34171764a16af9524c371ce26709ec3e8dd0ab24e9e416b5bff91066b",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

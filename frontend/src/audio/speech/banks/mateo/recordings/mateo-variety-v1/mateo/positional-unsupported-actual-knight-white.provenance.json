@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "White's knight just lost its last defender. Does that mean it's lost? No, but it's unguarded now."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b79bd630fc385d069c108228e4d3f60ecc03f2519e2edaaef8915f75ba671ab",
+  "recordedAt": "2026-10-05T20:14:50.557Z",
+  "sha256": "b009680dac3362e4e260ac54624738b6eefd95bf7365352c4d613312921a21d4",
+  "bytes": 22510,
+  "requestId": "fj0JfihR3vQNHXXOFF8G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df4ed7f47d5acaeef5ec10a215565c7b9cd85aec1e005393e84d4d0912c0d44c",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

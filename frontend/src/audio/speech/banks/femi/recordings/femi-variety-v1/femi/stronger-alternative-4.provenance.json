@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "stronger-alternative-4",
+      "label": "Stronger alternative 4",
+      "text": "A different choice would have done more for the position here."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2142799159785c99c344b7f8a0a1ff680516fd0c4ad637ba6d9d9a51f265bcf",
+  "recordedAt": "2026-10-05T20:11:10.882Z",
+  "sha256": "870ecac854e9d826a06ec1fa54cda4d87b3ce71d0ddfafe598d3ab073976af19",
+  "bytes": 11669,
+  "requestId": "fLsp1p4aTHtQECHLhRGV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26a4e8408ee85f9780dee2227bb9620095336ce7651c444803e4c5bbe9a30689",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

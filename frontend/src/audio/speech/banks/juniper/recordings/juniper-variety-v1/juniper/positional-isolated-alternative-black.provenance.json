@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "With the better move, Black would have an isolated pawn, without a friendly pawn on either neighboring file."
+    },
+    "takeId": null
+  },
+  "requestHash": "d19e13f50866e6fc57b0579c70e7bf128ffb5bafcb946da97afa160db641d378",
+  "recordedAt": "2026-10-05T20:13:30.243Z",
+  "sha256": "68a5986aa45ecf7b78767c48a756bc940b0aa7c0138be8a5dcda8200602897dd",
+  "bytes": 21486,
+  "requestId": "EcNEAioGZEDCl1V8egaR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1afaa8584c8514d75565c17cd241b8f0bb1c759009c707eabc5de5b980b409c1",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

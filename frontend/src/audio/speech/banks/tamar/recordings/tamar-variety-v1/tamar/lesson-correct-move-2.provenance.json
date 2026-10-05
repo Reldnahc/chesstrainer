@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "lesson-correct-move-2",
+      "label": "Lesson correct move 2",
+      "text": "Correct lesson move. Keep the reason for it in focus."
+    },
+    "takeId": null
+  },
+  "requestHash": "2079d511b8f492d3bf46fb0f07e003573c2fed898a2ddc6d2e7317dcd1f261e9",
+  "recordedAt": "2026-10-05T20:20:02.342Z",
+  "sha256": "efd9e2ca952793dc9e2216460e00eebd7fb40cf4fa9f581fa8e7601877e06da3",
+  "bytes": 12976,
+  "requestId": "xO6sMqbGd21SgHQ9UbvT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f23cc7ade98e47ee92a32f43913ecb18c24796638e2e8959b2c1a3c6870c7b07",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

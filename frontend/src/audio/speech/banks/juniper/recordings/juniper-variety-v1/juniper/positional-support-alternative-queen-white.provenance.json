@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-white",
+      "label": "Positional support alternative queen white",
+      "text": "A defender for White's queen, in the better line. Quietly worth noticing."
+    },
+    "takeId": null
+  },
+  "requestHash": "058e0b6e222b5eca7291da562f6eededbaa6bcfc119828a1ee5142bedf8ef131",
+  "recordedAt": "2026-10-05T20:13:42.174Z",
+  "sha256": "08697b2bc7905f68a4c51982c6c85812074d3c6fcb5b7e7d671e3b9fb2dc981f",
+  "bytes": 16980,
+  "requestId": "ZYNngoa3OE8Il3GlAyex",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2ba7b15b561830bbb99def6e24aafa4c52e16f739af9f7a229e9d5623753e22",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

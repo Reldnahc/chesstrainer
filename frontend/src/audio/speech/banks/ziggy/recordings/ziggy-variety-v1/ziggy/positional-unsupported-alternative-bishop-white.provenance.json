@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "White's bishop would have lost its remaining defense with the better move. Undefended would describe it; lost would require more evidence."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a2f7191b94a64f8b2ab1c4c716058520946f6934465afc48a7191a1a0f7b41f",
+  "recordedAt": "2026-10-05T20:21:51.041Z",
+  "sha256": "51d90aa56ded0635b316e518f9cde6f2bda52ea566284d644b7f0e9f50b7255c",
+  "bytes": 27196,
+  "requestId": "kvUtB7RhszZha2qhFy1L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf44cf60efe42a744e24d580b9ff44cf9c2c0658123fa9a63402810d5a275bf8",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

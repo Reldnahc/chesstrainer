@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "White's bishop has someone guarding it now. It was undefended before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "73c26dc8b924acf526c3f5eaabc467cb1a288c2767d866f3b1ad5178790545fd",
+  "recordedAt": "2026-10-05T20:12:08.556Z",
+  "sha256": "4328e690322e923cdb32f5eeacebe7c6fdaa8e51ec555d88134aca941fe051da",
+  "bytes": 17385,
+  "requestId": "gNRcB8j0qZFckHIDmJKs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b286bb042fb64dc84e398fe17875d1e1ed469789d489168c88d221b5a0bd0c5",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

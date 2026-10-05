@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook has acquired a defender. That is a concrete change; verify how the new protection works."
+    },
+    "takeId": null
+  },
+  "requestHash": "27865784d797e68582ae23bed2419a76a97e5b13bb003085cf3ac15c42227e9d",
+  "recordedAt": "2026-10-05T20:19:57.834Z",
+  "sha256": "00c71fb0998576f3bc4bf491698173d18fecac6303327b023e989bfbee21909e",
+  "bytes": 22376,
+  "requestId": "Wzevhr0HtyTrttReo1KS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d12591f5831d64c3767a212e0e47a20533e2940ccb7904261fd57adfbcad058",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

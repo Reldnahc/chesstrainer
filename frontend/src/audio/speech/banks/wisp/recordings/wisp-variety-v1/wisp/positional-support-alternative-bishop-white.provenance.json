@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "The better move would have brought a defender to White's bishop. Support where none had been."
+    },
+    "takeId": null
+  },
+  "requestHash": "596613fc0d945119ebfbc6cc5e10838993d657d714f72a4c09dafc066cb54c0c",
+  "recordedAt": "2026-10-05T20:21:15.546Z",
+  "sha256": "99deab76641e633346edacd539782637205a6e3680c1f6e226f70672f64574bd",
+  "bytes": 18108,
+  "requestId": "Fhi10h3d19XvQxYgJcXp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b632d03b0ddd54fad6fd32e5a39822293c4dfa9e01f844ab082e07503905ddd8",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

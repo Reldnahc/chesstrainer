@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "With the stronger move, White's bishop would acquire its missing defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "695f84f1fb643e704e23a9ed4b7f08c69a0ac22cfa9e4676a8523c164d9ff9d4",
+  "recordedAt": "2026-10-05T20:12:59.679Z",
+  "sha256": "f06736d66b9f617a67ed22f1074d42425dca1ca2c3b6fef53909fdd2e5420cba",
+  "bytes": 14499,
+  "requestId": "wKT2X0FBp5ZzUbbE1NQQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab010b42c27fc81b39fca5d5ebdc6e711246713893ac80b78b5efc62d61cd4ec",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

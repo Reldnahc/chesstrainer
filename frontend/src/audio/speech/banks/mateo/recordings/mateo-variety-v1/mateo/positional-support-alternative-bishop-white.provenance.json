@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "Oh, the better move would protect White's bishop! It had no defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "fafe86e1f83fc82145ebeeffbba38f43d2d0b52359e17a801e602b4ba7b1a92b",
+  "recordedAt": "2026-10-05T20:14:40.858Z",
+  "sha256": "c95691281b8b14305642eebd2c97d7309fce1caff9f1f372241d74a4b173d333",
+  "bytes": 14919,
+  "requestId": "69ViRXplSa11sRnGuuJ3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "861f829d0d36f7b8a2ac031fd01ca5651a5d440e0be3c86629c4a2fe32866ee3",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

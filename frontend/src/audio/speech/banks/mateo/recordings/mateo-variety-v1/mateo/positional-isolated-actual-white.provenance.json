@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-isolated-actual-white",
+      "label": "Positional isolated actual white",
+      "text": "White has an isolated pawn now. Where are its friendly pawns? None on the files next door."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2ebdfc4c5aa67d0e9769faba70c61156fc788b8d2f69f7a5c365411ed525bc1",
+  "recordedAt": "2026-10-05T20:14:30.891Z",
+  "sha256": "7a3e6130a8479b3f0833f73c165eef1b6c79c30f48cff98a33d785027a91c1f0",
+  "bytes": 20144,
+  "requestId": "jOqD1jtAQXQiYGFNpwg2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3893143bd17618ad9380ab8a896e856142c7dffad4c4910079cac9713f8bcf9",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

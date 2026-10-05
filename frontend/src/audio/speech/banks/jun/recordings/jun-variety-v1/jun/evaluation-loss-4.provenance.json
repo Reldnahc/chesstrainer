@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "evaluation-loss-4",
+      "label": "Evaluation loss 4",
+      "text": "The position's evaluation suffers compared with the better move."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec13793d613b9d697f6f14baa38e4a28c49c90fd2a3d0aac064bce7110866bad",
+  "recordedAt": "2026-10-05T20:13:04.079Z",
+  "sha256": "590d061acca736b072e3ba0fd1101fc39f8e9bf79a682fe24fe08907bfd90b7c",
+  "bytes": 12883,
+  "requestId": "nU0pCud7fjsPOuKjB1Sy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81c0fb2dfc0be680c7ef79db0ff1cac10c7cd736fbf39068193983b3b693ac76",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

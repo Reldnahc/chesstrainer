@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-passed-alternative-black",
+      "label": "Positional passed alternative black",
+      "text": "The better move would have given Black a passer. That's worth comparing, even though passed doesn't mean unstoppable."
+    },
+    "takeId": null
+  },
+  "requestHash": "a26003fbad887f69a645acd6cc08a73ab7ed06f88ab8aa1458de6824a8bcf4d6",
+  "recordedAt": "2026-10-05T20:11:05.106Z",
+  "sha256": "18b8eec2daf3bebca82fa37fdeb262f16b851b35570db8fa373b70d8d52c2f85",
+  "bytes": 24047,
+  "requestId": "WOGAMTCjxBMzVnVF2sWp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d97d288d57376eded909c4f3751936908ed2680f58711caed36b00c77809368",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

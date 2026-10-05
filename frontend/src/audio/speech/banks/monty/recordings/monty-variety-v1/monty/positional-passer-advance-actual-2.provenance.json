@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The passed pawn moves forward. Less ground left to cover, but promotion is not settled."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbc33412c00beb585b5e941e01d5bbc4f44456bb7772fabb208f5430398026d6",
+  "recordedAt": "2026-10-05T20:15:05.770Z",
+  "sha256": "f402a8e16c36b4031bd386dd49c7b5293dfc4fd429f67b1a1317aef822e9e7ba",
+  "bytes": 19761,
+  "requestId": "5fvche8ztPowSK12CSBP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7344a39cd7426ce1f749053dadff89867ad10a7d0f9aa5bbdccb63e5e4e4f46",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "The better move would have left a White pawn with no enemy pawns ahead on its file or the neighboring files. A passed pawn, defined by the missing neighbors ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "90cfbb082093283cd4e837a224f9697e952fbd82d70694d1087066f2dfbcf344",
+  "recordedAt": "2026-10-05T20:06:08.541Z",
+  "sha256": "390b79a61d98888dc32afd71a3604b908056878ef218b4acdba637ad97b9e1d9",
+  "bytes": 31957,
+  "requestId": "fapXwM4Yp319TEsQzh1P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a863cb49471eaacd7de23e37ad6d6614f8625a2841899dda7cf3e5138667481",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

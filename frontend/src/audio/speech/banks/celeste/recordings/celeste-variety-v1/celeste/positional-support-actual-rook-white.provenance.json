@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "Support has arrived for White's rook. Undefended a moment ago, it now has a guardian."
+    },
+    "takeId": null
+  },
+  "requestHash": "5841c1cf4e9f9d1ac8b92ec743f565db9054c9139a994e35758db8a11e286c79",
+  "recordedAt": "2026-10-05T20:09:25.571Z",
+  "sha256": "8141403ca75b0e5524d82f20ebdb3e6216fb7270ea39edf46e6e174aaf1495f2",
+  "bytes": 19056,
+  "requestId": "x0Ew4JLVEg9DEAtknPHh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c6a30790ce00ce545d01a151b7fb648b4357c6bc042535aeb82f534aab50bbb",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

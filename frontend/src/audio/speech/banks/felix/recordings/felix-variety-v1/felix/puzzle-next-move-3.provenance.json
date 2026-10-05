@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "puzzle-next-move-3",
+      "label": "Puzzle next move 3",
+      "text": "That answer stands. Find the next part."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e46faec438ee541c5361d76f2c93a51b34b86dd27cabb6cb76c545b8b8564f9",
+  "recordedAt": "2026-10-05T20:10:45.721Z",
+  "sha256": "bc2ddb6a77b7441bd1b4f924120ad418d2c005baf455e23e6fab6898f6918127",
+  "bytes": 10639,
+  "requestId": "8FZtwi7s8Oc1kgD8R42n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c95163212434ae7853a4f72a2dcbb56d018ff7b880a7627588dcc407721a4582",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

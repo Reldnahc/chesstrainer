@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-white",
+      "label": "Positional support alternative queen white",
+      "text": "The better move would have guarded White's undefended queen. That change deserves attention in the comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "e5643f0853d5a3d2aa4829abfc7753f61938e9c39d02c504d1141d65209608de",
+  "recordedAt": "2026-10-05T20:20:15.145Z",
+  "sha256": "e913b61e533f5eabfe2fb1594d0d4aeedf661a4070cbf7f6a6017d6ca2297285",
+  "bytes": 20991,
+  "requestId": "YoYTbF3pTASyE5YraaEY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30d532c0f50fd17553b9b9b5e40f705a96cedad933386d4702979566896c89e6",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

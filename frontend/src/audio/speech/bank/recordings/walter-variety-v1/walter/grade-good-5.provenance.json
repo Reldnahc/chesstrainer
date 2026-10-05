@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-good-5",
+      "label": "Grade good 5",
+      "text": "A sound choice, though there was something better available. Good rather than best."
+    },
+    "takeId": null
+  },
+  "requestHash": "2461cd6ee36ed0c88cd48e4c85586ef06f34bbfb803fe9b2e469d65ed8c4b431",
+  "recordedAt": "2026-10-05T20:04:46.093Z",
+  "sha256": "aa1d2943c4d5f9eff1ac0c521517638a1834594efe641a8bd82a904003c3c497",
+  "bytes": 19246,
+  "requestId": "4l61UZ9f2tKbxGVOK2PD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a86f2906b158e4738d6ae253d2f3102017413c72456a91f478efc1550abec502",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "No longer on its starting square, this knight. Its development has begun."
+    },
+    "takeId": null
+  },
+  "requestHash": "e348df7faf0d316e0dce28ab9f4e0a670bf31dbaf9d64ccce0ce5bff01122313",
+  "recordedAt": "2026-10-05T20:13:41.695Z",
+  "sha256": "eb33705b9cd8a0b0eb8cce8f781f52060499994a6c687eecdef5744f3ea0b900",
+  "bytes": 16707,
+  "requestId": "7xwMnmCysRu5GJCJaAjD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9dd93e4700ef09141ef674a50d72c88c6a58e406f6653c5f4af869d9d0b14b9",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

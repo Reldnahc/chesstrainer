@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "The bishop leaves its original post for the first time. Development confirmed!"
+    },
+    "takeId": null
+  },
+  "requestHash": "bf618ddc471fbd8204b3b8644e886f58d835e987bae2d78613bc4793b841ee90",
+  "recordedAt": "2026-10-05T20:20:56.738Z",
+  "sha256": "780b8ab0b30b4ba5f6f71721b87dbfcf15c9f6f6b70d4c0b75a34727798f0f59",
+  "bytes": 17189,
+  "requestId": "ZuPikFMjICC66wKjM6vI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d22df41eed1d144a98ba013b1cf5b571212f8608f901f98c71b11cd49fc7d24b",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

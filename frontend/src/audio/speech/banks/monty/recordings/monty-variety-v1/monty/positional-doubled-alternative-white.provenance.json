@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "A different move would have doubled White's pawns. Same color, same file."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7fbd99511d7794eb73aad064ab7880ba1570a7376ae9d1eca7c04c253e86d38",
+  "recordedAt": "2026-10-05T20:15:16.870Z",
+  "sha256": "8f8f7fdd8b0181ce760da12a784e6630467dba0a32f97e705924c79ec6bac5bd",
+  "bytes": 16264,
+  "requestId": "kD5SG8suxJS9HKaiDTSw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4547eec2deea498333a1165968bfe78bb9a18e575322e835df8e6bfb773f7f50",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

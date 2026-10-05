@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-2",
+      "label": "Positional development alternative bishop 2",
+      "text": "The better move would have developed a bishop from its starting square. Trace the resulting diagonals."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e9323067ac507e32df5418b99e9a18f694afb59e72123d2b9595f2ee7b14698",
+  "recordedAt": "2026-10-05T20:18:42.102Z",
+  "sha256": "e6eb3dc510bb79cde7fb5fe2638a302e0f7cf70b50fac308975c6f0fb7e85cf7",
+  "bytes": 17932,
+  "requestId": "tsOmK59V7DQCsGfrTKVp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d91c952c7f3a25be7911f9c321ed4909d8d5dd266f4f8f15f33fd53d56db6346",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

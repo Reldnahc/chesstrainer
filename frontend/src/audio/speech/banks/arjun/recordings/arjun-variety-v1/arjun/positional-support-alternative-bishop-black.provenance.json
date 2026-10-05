@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "The better alternative would supply a defender for Black's undefended bishop. Compare the resulting support."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcb057c9247ac6c66c03a737d4458771c63cb81d0bcd296361e3dff2b5a11742",
+  "recordedAt": "2026-10-05T20:06:59.993Z",
+  "sha256": "51b654d221c0383ef46a1eec5aa52ac337c80034870f4fa742c83b41f1c14615",
+  "bytes": 21352,
+  "requestId": "t54TcYa5nDQvFCa1krG9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "517ab2aecae51f32397d10792e58ff826ff94afc3b74a6cde073835f7489ccc9",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

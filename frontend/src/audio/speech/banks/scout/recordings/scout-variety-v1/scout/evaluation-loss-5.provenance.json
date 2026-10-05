@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "evaluation-loss-5",
+      "label": "Evaluation loss 5",
+      "text": "Position value lost against the stronger choice. Trace both reply sequences and locate the difference."
+    },
+    "takeId": null
+  },
+  "requestHash": "566a13a5661102ddb6bb89d2bb9f0c4d6687e0cb54efe89ee39fb9bb2ddbcbf3",
+  "recordedAt": "2026-10-05T20:18:55.489Z",
+  "sha256": "00aff4572b4020ef6ca4d771e5821b0440d1d9265de34227b5f00c80d33272da",
+  "bytes": 20601,
+  "requestId": "4Frw5IInzRJW3Oza9F8Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a298a0ab60cdb7c4e6832db9f980b181bc1b7056686f80860b9b729265d3e154",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

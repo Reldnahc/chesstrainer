@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "White's bishop would have lost its remaining protection after the stronger move. That alone would not prove a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e8869aaa0144237b173821bcbab365aa96fe142b89931cb6606c4159c05c62f",
+  "recordedAt": "2026-10-05T20:10:43.804Z",
+  "sha256": "94aefffa127d268e5be60b0160aac9d68a3b3fa4b9b2da344482025970ae8505",
+  "bytes": 23362,
+  "requestId": "YTJ1pibOHBqUo384pQFq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0196a9ffaf663509784ba45d8c902e8314c84fe3742e2fc33713cb465ec155df",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

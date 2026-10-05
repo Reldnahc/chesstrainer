@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "The better move would have undone the remaining support for White's bishop. It would have been undefended."
+    },
+    "takeId": null
+  },
+  "requestHash": "040294ae41d93cf3d01c7a35cb9707399ca95a08a5b7a695829baae8a883f1f2",
+  "recordedAt": "2026-10-05T20:06:17.937Z",
+  "sha256": "aad52edc79ff0d2610ff1feac0dec3a69faeaaf8e6299e1f24f3bd10fdb438d7",
+  "bytes": 19102,
+  "requestId": "70zLPLWwrtJmwC1CAiqL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2039f7bcf3cd5e6d17637fcf214e8294b41569e5a50f96ca37f4c1a369b3c392",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

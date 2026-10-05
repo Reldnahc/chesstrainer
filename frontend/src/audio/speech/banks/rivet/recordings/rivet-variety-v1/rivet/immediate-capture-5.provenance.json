@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "immediate-capture-5",
+      "label": "Immediate capture 5",
+      "text": "The move permits a capture in reply immediately. Capturable does not mean free."
+    },
+    "takeId": null
+  },
+  "requestHash": "1aaa1308d62a33d64f888d59a4723154f0375d1c49d0077a88d1b5d35e246faa",
+  "recordedAt": "2026-10-05T20:05:26.254Z",
+  "sha256": "3cbb26a349987f60275b60ea101c061faea147d26756ef004cbae900a1cab9c0",
+  "bytes": 18962,
+  "requestId": "EmW8Lc4RflOUqMViYJMO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf95644f2e261511fe93c00a2d70d87397ffa4f8aa42a55fe4a5f75bb6a4fac1",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

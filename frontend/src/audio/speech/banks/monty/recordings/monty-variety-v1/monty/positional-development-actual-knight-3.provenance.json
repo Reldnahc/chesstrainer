@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "The knight was still at home. This move brings it out for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a90bee57aa479c61ae18d045f3af1700e47ab81231e0c790c2f73b10c26842e",
+  "recordedAt": "2026-10-05T20:15:23.856Z",
+  "sha256": "6be71adea8439dffb37d512d05b15389e58bca59c39be2baf295df59f2acc75c",
+  "bytes": 14688,
+  "requestId": "RqVl5hSkpkUfyUHUTjs6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3cf88d01d48f973e33ce7ff2c372859aa9b07105d12eb4e037bd3982f67449b8",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

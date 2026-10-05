@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black now has a passed pawn. No enemy pawn stands ahead on its file or the neighboring files."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2942c195d22b6ec841cda1cd8dc1b7ce99578a7fa2953e811207a30f801f2eb",
+  "recordedAt": "2026-10-05T20:04:23.258Z",
+  "sha256": "f1292becb9fc68569f6540ca64593ec798e579cbd177d111120cacab34360d6e",
+  "bytes": 21120,
+  "requestId": "N7RsC0GduzsNqsANiVKc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "efae3e3f3385ef5c1790066208d8704186c6238907c681367ac0e00e5fb8c550",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

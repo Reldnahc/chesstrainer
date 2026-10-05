@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "label": "Positional unsupported alternative bishop black",
+      "text": "Black's bishop would lose its last defender with the better move. A missing guard is worth noticing, even when the move is better."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e821fddf3df3e2d50a71370331b20c0de27b4aac9759aaa37cee0bc7b29ce32",
+  "recordedAt": "2026-10-05T20:19:24.929Z",
+  "sha256": "18cfcc0bd3553855d7dcb77a5be9f3d7814e8e37eeb903790a1c7d73ee1ccd63",
+  "bytes": 25169,
+  "requestId": "rkvj0ldbJ3Y2PVB2llzC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ceab0e5a06b45c59e703014ee6748e74dce7a58eccf86f8773478fa9ebdc4425",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The better move would have left Black's knight without a defender. Test the attacks before rejecting the move."
+    },
+    "takeId": null
+  },
+  "requestHash": "197e95263740f0ad27519177c0d3a100069b423bb576504a16e6d2cdd9adef24",
+  "recordedAt": "2026-10-05T20:18:43.343Z",
+  "sha256": "04643b6d8a591f83cf02f0322ab2d1dc7a43b3eb883c1c60aa5ae0d7810bd888",
+  "bytes": 19820,
+  "requestId": "zB96M0pt9XRE1tgX2MH0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de863776618dd002373438db8c849adbb6e9584e849acfbf5799ee4376042686",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

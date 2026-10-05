@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "The better move would have left White's knight unguarded. The next question would be whether anything could exploit that."
+    },
+    "takeId": null
+  },
+  "requestHash": "313eb73adb66a4bb4a5265469a6b56c2672b8faab823baf4a35e048fcbdf6593",
+  "recordedAt": "2026-10-05T20:19:18.334Z",
+  "sha256": "a92f73b6326ccf1e7332bd88b67a702011d19d20ef91a949df2a1a9b52cc98e3",
+  "bytes": 22035,
+  "requestId": "iBLz2ZZtsyRyttde8tfY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6fb91fb18a0b150254c97421f0afbc7a349bee8257b0a376078a60dfc5357947",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

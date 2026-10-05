@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "Black's queen would've had a defender after the better move, instead of having none. That's the change."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff097d367376f5612c95cafc1eeebcdfa7a645559d4352b779cbb9251e2708a5",
+  "recordedAt": "2026-10-05T20:05:56.699Z",
+  "sha256": "dc0a86c9ee076bebc1559789152d4bd91e62ad17f9309f15926c1d3387423b3f",
+  "bytes": 19404,
+  "requestId": "5WrvFqL9gVZVsx1EGC5E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7a0fda89ad6730dfcc9609ee750bac5d704df5fdf3668af4ae4717c1a20f87c",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

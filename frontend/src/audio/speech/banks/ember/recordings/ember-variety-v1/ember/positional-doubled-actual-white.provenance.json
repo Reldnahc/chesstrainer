@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-doubled-actual-white",
+      "label": "Positional doubled actual white",
+      "text": "White's pawns now share a file. Doubled pawns are a structural fact, not a verdict on the position."
+    },
+    "takeId": null
+  },
+  "requestHash": "e248a447eca86361ee537f8198ea3f61551181d3b3caaee17c656e9c871be422",
+  "recordedAt": "2026-10-05T20:10:08.074Z",
+  "sha256": "01e5f998d95c1e345472b33c0de559297526ae415e90fd45b2b9b466e5652e7a",
+  "bytes": 21826,
+  "requestId": "iZ1LWj9Lh13RQksZpiAf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "96b88ce829889ec4ffabdc4e6b7f705913e9008abb004ace39d14b464f6f40b7",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

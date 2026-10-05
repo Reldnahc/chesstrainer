@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The passed pawn's moving closer to promotion. Still a journey, but less of it now."
+    },
+    "takeId": null
+  },
+  "requestHash": "607503a526c05b68308f0f1b7e3b136b13b33ea97db129576f4e4e8c43116040",
+  "recordedAt": "2026-10-05T20:11:12.660Z",
+  "sha256": "bb0de2e6647fd3cee111c2092cfe702139e7b915bc38628a5c2ada8a4add70e3",
+  "bytes": 17933,
+  "requestId": "leArcM7OgcpbnQM1VkGc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ccc986f70c71bae08ee9c1720ea548d9926a11f0cb9cbf6571a01b324f52dd96",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

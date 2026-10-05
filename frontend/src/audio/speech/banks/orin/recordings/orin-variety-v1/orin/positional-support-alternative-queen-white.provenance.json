@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-white",
+      "label": "Positional support alternative queen white",
+      "text": "Old wisdom holds that no piece guards itself. The better move would have given White's queen a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "44dc183a7c836a7b50a6db5a6c7989b420b4029dce66bea355b48af0133bfdee",
+  "recordedAt": "2026-10-05T20:15:58.522Z",
+  "sha256": "e4ccd112a6265c839d9f4686a328272ed06f771baca68e28123850a8dee7e9fe",
+  "bytes": 22872,
+  "requestId": "w0Tyo8SOmv0SIswOu3mP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25f8b7cd96272f72e58f414c2420cd17e19cfd24da3c5678b687d1a3b5b01647",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

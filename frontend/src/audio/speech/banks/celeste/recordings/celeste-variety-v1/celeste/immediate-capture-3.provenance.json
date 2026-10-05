@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "immediate-capture-3",
+      "label": "Immediate capture 3",
+      "text": "An immediate capture is available to the opponent. Its consequences deserve a careful look."
+    },
+    "takeId": null
+  },
+  "requestHash": "52b67cca653483731947bd089b4c6b06eceec79e9c91915a989b394fed1e6645",
+  "recordedAt": "2026-10-05T20:09:44.661Z",
+  "sha256": "14527dd36c52631f537f32e642cdc1a929cf9ab1df26810164faac8cac1cf52b",
+  "bytes": 19671,
+  "requestId": "c6C5uYxtg1NWOwJOcLVk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e6de5cb4d66c06a035a9b1ee7dc21c9d5a54b569b6afc26934b9afdd9ce872f",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

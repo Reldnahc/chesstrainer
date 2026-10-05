@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "Another move would have given Black's knight a defender. That support job was going unfilled."
+    },
+    "takeId": null
+  },
+  "requestHash": "0dc3a35f462efd692b84d871d8e445cf0f8b024f0f42c12e8c04ab2bd93a37c9",
+  "recordedAt": "2026-10-05T20:16:27.968Z",
+  "sha256": "1b30a5efbea9c0795a325c1e1a202433641367e5a8f98234b53e1735da065486",
+  "bytes": 17540,
+  "requestId": "T9yVFrpFbEiXuD0q7Mpi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2656b211db81c19774d7159a7d7355650a1fc34a649ccfeddb0169dd7cabd78",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

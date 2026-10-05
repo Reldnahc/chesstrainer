@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Any pawns on that file? None! Black's rook has an open file now."
+    },
+    "takeId": null
+  },
+  "requestHash": "19b710cd676323bc54f6fdef37fa0510ec3ddbc85c57d77dc3887a7c5fd77578",
+  "recordedAt": "2026-10-05T20:17:15.818Z",
+  "sha256": "3948fdce3b1452a3aef4d804c1bf2a16ef19ff35089d4e6f84acb71aa0366064",
+  "bytes": 16849,
+  "requestId": "tvQubrNmLiiX15SIHFLA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40f74566a68da0ad87e0474ab3121913774310240d0f7d9dad4278678c34c11f",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

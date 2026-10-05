@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-doubled-actual-white",
+      "label": "Positional doubled actual white",
+      "text": "White's pawns now share a file: doubled pawns. An arrangement to examine, not a verdict by itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf9c7526ca15e1c598633def316783fd85951af5f1bbc5fa244e0e021cdf6cb5",
+  "recordedAt": "2026-10-05T20:21:51.305Z",
+  "sha256": "8672b7691ba1b8a81d7a03700969079c151b754deef9e46efb31d06888445f8b",
+  "bytes": 23386,
+  "requestId": "aC8omEvLzTzgRVVWhuc9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cc7de927c088d6add9b557701fe706144a641a9dcf1e387418728fa0ed5feb1",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

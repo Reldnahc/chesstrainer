@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "A knight comes out from home. Its development begins; the position gets the final vote."
+    },
+    "takeId": null
+  },
+  "requestHash": "471b58974996e33438cc4853720044a3a53e606f69bdb53f464f0840ebe96721",
+  "recordedAt": "2026-10-05T20:10:59.446Z",
+  "sha256": "96e5ad911eb4bcb5eb69171b11e009f93b904e026a4db856d7d934c8ed35e4b7",
+  "bytes": 19772,
+  "requestId": "efb4H95neROuBDsPeroP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "790bfe1b1bf213ea6b3426cb24e24f7499df849398b0ccfc9a98915c0f575462",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

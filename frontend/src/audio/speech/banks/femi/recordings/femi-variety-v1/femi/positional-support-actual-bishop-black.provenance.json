@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-black",
+      "label": "Positional support actual bishop black",
+      "text": "Ah, Black's bishop is guarded now. It was sitting without a defender before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "596d0330c42ffb0f4eb5fbdba95d691ca8e1948ab5194e3294e7e6a8d5e57079",
+  "recordedAt": "2026-10-05T20:11:10.128Z",
+  "sha256": "35ec01556cf5ff00268980204211d4e74dbd8e4972404beb7187959122cbca5d",
+  "bytes": 20071,
+  "requestId": "fz5LMgQwNYAM1El79n2d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2e9c5582579d15e05d560945b51706c8cc4947b12750e017c9b2399cc8c51e4",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

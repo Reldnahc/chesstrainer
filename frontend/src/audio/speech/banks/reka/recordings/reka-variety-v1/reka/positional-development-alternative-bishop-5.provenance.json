@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "The better alternative would start a bishop moving, away from its starting place for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab6824f9efddfe7f2813169aeeda701edb605f49dfa842c31f82c3cc0ef5dd7f",
+  "recordedAt": "2026-10-05T20:18:13.119Z",
+  "sha256": "d9acef1cd0b5b1d143c0258f67d766d2794b752755e6c724b17d34fd3cad4515",
+  "bytes": 18617,
+  "requestId": "HBdi7N6m7pcIG7s3aTvI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cee1c3afbeb06e17989ffffcf29d658dafbb83a53962e8141bf4655180fc28fd",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

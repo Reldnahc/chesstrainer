@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen loses its last defender here. Undefended does not mean capturable."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b6d5237447f73417507d1bea0c37c3e994ac8b4f875e7f26eb9956906072e7f",
+  "recordedAt": "2026-10-05T20:13:55.938Z",
+  "sha256": "04e2059d4e0a8ebc001cef0cff5904bd0c6059ea6302e232e26fffa1c52f40d9",
+  "bytes": 18291,
+  "requestId": "ljUINxf7TOyOqGbNk6ii",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "756af06ca0b07a6941555e9b5817a00c12d5a90bd44b2c29c13aaddbeb04f6d2",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

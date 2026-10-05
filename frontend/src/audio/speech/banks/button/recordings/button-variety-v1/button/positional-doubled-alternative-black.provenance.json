@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-black",
+      "label": "Positional doubled alternative black",
+      "text": "The better move would have left Black with doubled pawns. Same file, different squares."
+    },
+    "takeId": null
+  },
+  "requestHash": "5134b7b1151b9584e46659a821a4d35c6c4133dab4e322b7a4f6c1e08e00dc6a",
+  "recordedAt": "2026-10-05T20:06:28.133Z",
+  "sha256": "96e24218f61f20aa51c7afd1e4234bc23fc58a476d89b2121a590627970cd5bb",
+  "bytes": 17649,
+  "requestId": "NFqGwhm1UK2T53y0nOTP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c704334955a3919c118c183dc180bd1e090fce13718be5687e91c35085e95cac",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

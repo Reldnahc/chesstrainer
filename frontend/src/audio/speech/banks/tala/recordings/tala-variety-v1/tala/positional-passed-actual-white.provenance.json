@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-passed-actual-white",
+      "label": "Positional passed actual white",
+      "text": "What changed in the pawns? White has a new passer. The enemy pawns are not ahead on its file or the neighboring files, but pieces can still stop it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a66c6e513d2813173c557a1a5be71f1b057f1773fe95305c7fde034486d0763a",
+  "recordedAt": "2026-10-05T20:19:03.639Z",
+  "sha256": "aaaa908d55cce2a4a2f08dd5ace86232c43272318e6b5e2461f42204b332ba80",
+  "bytes": 32334,
+  "requestId": "PxUJ3uZRDaizenGOtLwq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b64fe939e3272998cae31757407f88bb64cc275e064f244fc0a2cbda586e90c",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

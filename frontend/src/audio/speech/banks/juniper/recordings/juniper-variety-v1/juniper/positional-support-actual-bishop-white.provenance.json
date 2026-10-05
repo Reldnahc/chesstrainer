@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "Someone watches White's bishop now. No one did before."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e9396650a40461b07478f4d917068d27b95bfb36a5b1c9a50a1a748fd6cda89",
+  "recordedAt": "2026-10-05T20:13:24.285Z",
+  "sha256": "9e30783b431130d79975fda40ab0aacaab8c25609fb2728b8e86ee21ddb46de0",
+  "bytes": 12962,
+  "requestId": "D5jNvlMJEH0OfpZwu5sG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b87d47118c6bb7a5d9dc187cebdf7d55cddd50ad115133ac51c582ab36f83d8",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

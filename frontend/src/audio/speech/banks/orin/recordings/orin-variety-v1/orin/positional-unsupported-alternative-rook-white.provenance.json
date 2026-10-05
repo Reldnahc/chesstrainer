@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-white",
+      "label": "Positional unsupported alternative rook white",
+      "text": "White's rook would have been left without a defender by the alternative. That alone would not prove a material loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "d923e4b17d27595d29fa3cc6f290deef050619e98efafb580807ed7e0a06c917",
+  "recordedAt": "2026-10-05T20:15:51.728Z",
+  "sha256": "48003f7d14cdfa28617161a1e4f649be2f90a6c920c84783beeb4980eb7ed2cd",
+  "bytes": 23225,
+  "requestId": "QA2snLhCY4AX8kwODjCn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fd3ef273fe2dea8e991e71b920d7dc3671cafc836b9931e87261066a7d265f2",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

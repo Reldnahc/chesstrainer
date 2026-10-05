@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "opening-recall-accepted-4",
+      "label": "Opening recall accepted 4",
+      "text": "That matches the opening you studied. Nicely remembered."
+    },
+    "takeId": null
+  },
+  "requestHash": "adaf862a3c1ea762b787d0a7130f6c79fdd00b47431567e419090f55b605a45c",
+  "recordedAt": "2026-10-05T20:13:41.776Z",
+  "sha256": "5a4814855c1971926a3a250e9df6f154b02f00a0b4f3cd1e88cccae36189e239",
+  "bytes": 12315,
+  "requestId": "aE66R0ghORjxyoL9Ga4Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "895a7ad5e3069fffc913fddd3059f5ecda880dc5ace90379df3b22c810348c6d",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

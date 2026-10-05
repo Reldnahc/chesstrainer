@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "The better move would have taken away the remaining defense of Black's queen. Notice what would no longer have been covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e37b84697dfc6bdd37283c02d1c928f36a679c010216b04fb0c4a95d583d0c2",
+  "recordedAt": "2026-10-05T20:21:22.478Z",
+  "sha256": "6353e02d945cb13d6238b5536a70f3ac46087b0afda5e717c69015c81b5a9ddd",
+  "bytes": 22629,
+  "requestId": "1dQt8DKmoiOCY8PwUAcj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "460c163d7808d1585c347321cfa7056d5a5d4b85aaee271649936b534f221442",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

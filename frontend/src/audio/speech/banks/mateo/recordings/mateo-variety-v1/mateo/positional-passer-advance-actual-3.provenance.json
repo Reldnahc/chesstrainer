@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "Further up the board goes the passed pawn. What could stop it from reaching promotion?"
+    },
+    "takeId": null
+  },
+  "requestHash": "9a68aa35d191fe0d2033e54e448c523b7042eb3c9611635d4a51c2846b4234d5",
+  "recordedAt": "2026-10-05T20:14:33.287Z",
+  "sha256": "7c7c6e611f28fbf94a351bce3291fef0e6f2d944b06d9d53f15239619fb0d71c",
+  "bytes": 17027,
+  "requestId": "hExfT5Ffu3bHOD9KRzAK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03420f6355d48fa8ac37dda0550dc5e73b254f91bd69e4f73488567c9666f647",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

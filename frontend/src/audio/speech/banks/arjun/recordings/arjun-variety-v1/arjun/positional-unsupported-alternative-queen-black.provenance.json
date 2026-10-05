@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "The better alternative would remove the last defender of Black's queen. Would that be exploitable? The replies matter."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9e248bcbab35c1b31a81008117c9a5fd67f18dc1b1d3307b9ca797960817b1c",
+  "recordedAt": "2026-10-05T20:07:05.596Z",
+  "sha256": "2a9333a44c988eeee9c8c3794425ee691836b722223120746503ce45c8437c78",
+  "bytes": 23819,
+  "requestId": "DxpbGtflQh4BnSjFlCoQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8503d6aa1fe5c7bbabe76bbb1a26db9457bcb61ddd4a87539ae102be5921ccc5",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

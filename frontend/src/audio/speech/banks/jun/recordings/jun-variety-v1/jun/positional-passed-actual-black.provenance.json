@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black has a newly passed pawn. No enemy pawn ahead on its file or either adjacent file."
+    },
+    "takeId": null
+  },
+  "requestHash": "10dd2c97e25a66ee62d5c2077687522cb80d303925c060870460d3a129c31069",
+  "recordedAt": "2026-10-05T20:12:46.159Z",
+  "sha256": "bba4f3a43de7a3a4964a078f14bec372c3ff5c58dec30813733469d8b1b126e8",
+  "bytes": 21023,
+  "requestId": "MX3K54Q1Kx0WbFBIuj0I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c63df85fcaee30d453119e3560f8a27f0a94cc6376878b82c29d4e1c1a6f79f",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

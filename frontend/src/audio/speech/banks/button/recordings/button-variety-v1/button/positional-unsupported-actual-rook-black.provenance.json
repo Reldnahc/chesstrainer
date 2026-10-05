@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-black",
+      "label": "Positional unsupported actual rook black",
+      "text": "The support has fallen away from Black's rook. It has no defender now."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0db3db1acb0acb4b642935cf65c2f473742417a06ddb42b47d68f969050b435",
+  "recordedAt": "2026-10-05T20:06:08.132Z",
+  "sha256": "32f632d8e61c1a5975c3a6dbe4714d3450c2aa2b1abc6068ccbbb889b8b81b9d",
+  "bytes": 15324,
+  "requestId": "bPwtzqxJA4slPeAyliDR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49108ec93a66196650afb8b697dd28ec18efe96effccaadf331311bc5d03cfa6",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

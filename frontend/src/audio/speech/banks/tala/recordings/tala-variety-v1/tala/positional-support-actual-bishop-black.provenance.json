@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-black",
+      "label": "Positional support actual bishop black",
+      "text": "Find the new connection to Black's bishop. It was unguarded; now something defends it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dff313235a3d3ba6cf55772b04b80068e67cb239e873e021ede9243564d2f490",
+  "recordedAt": "2026-10-05T20:19:13.964Z",
+  "sha256": "6a548bf30e27ac5785522f0ea182d455e65648bdc2405c50bc52cb668bac2944",
+  "bytes": 19651,
+  "requestId": "GttuFgqNTAaLLtMLxBVT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a4458a89e94b5dff590b90f5e7443fe7c3d9c069542f028f4060609afffb625",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

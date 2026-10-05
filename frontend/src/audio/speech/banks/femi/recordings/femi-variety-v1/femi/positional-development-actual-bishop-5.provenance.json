@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "That bishop had still been on its original square. Now it's made its first departure."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ad4aaea613f5515ea26539996828a3f9d4ea4c380e57b58eb2e26906baaa26f",
+  "recordedAt": "2026-10-05T20:11:45.733Z",
+  "sha256": "06daa35cb13fa3fbf505a3d5d7831db6cf8e64d569f34782efac90bbaaa7674c",
+  "bytes": 19357,
+  "requestId": "x5OU10TWlA8jrfzlWk2G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2505641b57b350cd782345e05113ce1ba872b3258f615fab6399485b5869d4f0",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

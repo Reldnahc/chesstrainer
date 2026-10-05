@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-black",
+      "label": "Positional doubled alternative black",
+      "text": "The doubled-pawn pattern must be judged within the whole position. It would arise for Black after the better move, with pawns sharing a file."
+    },
+    "takeId": null
+  },
+  "requestHash": "a107f5570d5be5d55e72ef9dd2e02c05dbfcc73555365e70d0d8dec97c749d1b",
+  "recordedAt": "2026-10-05T20:15:56.802Z",
+  "sha256": "689dee8873bdf2ff279f1592d6dbec10cf01abf32a8a9986e4528b0ff3f5cd71",
+  "bytes": 29802,
+  "requestId": "JrkcSkNF6whtCuvg6wH8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6bed8b5da217403a5a94c27922eec6b257875a04addcbec972d5b7d9d747f57",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

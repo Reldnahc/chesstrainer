@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-white",
+      "label": "Positional unsupported actual bishop white",
+      "text": "The guard is gone. White's bishop no longer has any defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "50c2859ad94c187df327217f3c6dccf33a81f8b7647e0bbe14f1c540a8fb7ad7",
+  "recordedAt": "2026-10-05T20:18:29.399Z",
+  "sha256": "a6e17545bbf4c5a0cb482da135eda16e140944c6406c4605aee49e95be6e85e7",
+  "bytes": 14727,
+  "requestId": "3z1jUNnIQdfMvgplVfGF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c6b807256e6b250b259f31a146c341d3121d970b77a54ccaf12e57eb62e26df",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

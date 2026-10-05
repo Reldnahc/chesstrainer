@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "Another move would give Black's knight a defender. It had been doing without one."
+    },
+    "takeId": null
+  },
+  "requestHash": "94dbc27575b6606ed04e0b93e972d6e9d5f309ca30cf8b9245f00ddd74aad9df",
+  "recordedAt": "2026-10-05T20:12:20.410Z",
+  "sha256": "6a896a04bf8be8499d90aaf30b7cb803138fc1e1efa9a004a385bcc8f138085c",
+  "bytes": 16254,
+  "requestId": "1RiMK3dAFWLgYkPCwrfu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49bdacac0212f95afb3696cd3ddad94119587c1b6af5e30ec3d22b4153b0db70",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

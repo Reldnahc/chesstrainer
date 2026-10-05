@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "The better move would add a defender to White's bishop, which had none before the choice."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf979e0d905d31589fbaed2dac991115e4198ecf1dcaf6d95bc55f1e52cbc4d9",
+  "recordedAt": "2026-10-05T20:12:22.348Z",
+  "sha256": "89c74634b3a1862d876458153137c7308a75a152128ba20ce0ddcc139b7af216",
+  "bytes": 17533,
+  "requestId": "6FlZHi6nvL86GrloKBS3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "492293d05dc173db67608675620348a81c972c1c6f70677a2b263945c8ff5cd2",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

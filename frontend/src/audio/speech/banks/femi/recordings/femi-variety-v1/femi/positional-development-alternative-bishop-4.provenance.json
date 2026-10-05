@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "With the better move, a bishop would've made its first departure from the starting square."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e86297c7d53e2dcf409d338bc3c366443581e48717b0620791d980bf8a44d7b",
+  "recordedAt": "2026-10-05T20:11:19.353Z",
+  "sha256": "b0370d9ed680372858c7fa9c90164aac26e9867fb5c03233af2a70f794a893a1",
+  "bytes": 16776,
+  "requestId": "Zefuk9wfAVBrWsWSL810",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06c29b4a5efdbfe4da27791644ce179485d2d58c1ba3dfe277e398838b3bfc83",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

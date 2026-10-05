@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "Out comes a bishop from its starting square. The first part of getting that piece moving is done."
+    },
+    "takeId": null
+  },
+  "requestHash": "30fa5e35942af0591d4ed82a7878d2a61708a7e7b992d19a07f7b8509906b14c",
+  "recordedAt": "2026-10-05T20:11:42.053Z",
+  "sha256": "c6688058b02165a8fb7e8db7a1984dbdaa77b7b20f079af7f560451bab57a69d",
+  "bytes": 19450,
+  "requestId": "BvPPGSEVfEJmozKvgdFy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c937798a1b6dfa4b18af6383e4192160fb85c88d71ef0a042c8c2a817a8f470",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

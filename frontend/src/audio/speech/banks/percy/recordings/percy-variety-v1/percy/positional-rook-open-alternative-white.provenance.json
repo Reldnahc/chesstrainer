@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-white",
+      "label": "Positional rook open alternative white",
+      "text": "The alternative would have given White's rook an open file. No pawns there, though pieces could still be in the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "40e8c85c19eec90fd651e4c128c9e8d9b79aa7cb1531b96e6f2de7f02ec94417",
+  "recordedAt": "2026-10-05T20:16:40.897Z",
+  "sha256": "c42a572655e1cd3cb2b26d909538ca0b4757f5fce5b7afbcb8311780064ed8f1",
+  "bytes": 22371,
+  "requestId": "ac7FKghcDcrDEUjzXdU7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c6016e5b61055d043b9cc717bbd06ed2450ab1ef278fe653545119660e7db37",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

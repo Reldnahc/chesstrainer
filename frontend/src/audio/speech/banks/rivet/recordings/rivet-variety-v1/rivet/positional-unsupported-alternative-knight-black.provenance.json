@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The better move would remove the last defender of Black's knight. Resulting support: absent."
+    },
+    "takeId": null
+  },
+  "requestHash": "99e302242c40e90aeb348e9076bb2631f3fbabb00467b25d10a0707b925ab779",
+  "recordedAt": "2026-10-05T20:05:08.253Z",
+  "sha256": "56711dbc4040611854e7dc931f1d85f1f38f87f59d51905ea74da286516e6447",
+  "bytes": 18976,
+  "requestId": "miSvgsmmnSYIvgvp5Fyj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7500b0b427eb944676f70fdba5416b8b519d2e8cb535fccea2ef3e1dafda3f3a",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

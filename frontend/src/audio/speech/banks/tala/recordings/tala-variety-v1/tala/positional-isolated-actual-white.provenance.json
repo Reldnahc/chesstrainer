@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-isolated-actual-white",
+      "label": "Positional isolated actual white",
+      "text": "Check the files beside White's isolated pawn. No friendly pawns there! Any protection has to come from pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "664d05180243923c2e518f6f307d964e6349beb6b0df701934c452c40e04c460",
+  "recordedAt": "2026-10-05T20:19:14.022Z",
+  "sha256": "33ef35ff70bc8148af1943153cfc6d5113b624d304e40d649353999443c77d0a",
+  "bytes": 24940,
+  "requestId": "Yc5INZyibAfVkHPFILsY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6839535e491c6d550a299b5b06416a8cf16ddb284d19dad36cc28eaf6ce9de3",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

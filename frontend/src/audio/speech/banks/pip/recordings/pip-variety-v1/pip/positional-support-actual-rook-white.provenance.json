@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "A change for White's rook: it has a defender now, after having none."
+    },
+    "takeId": null
+  },
+  "requestHash": "d58eb1d470eab57b647cacaf50bf1712e3a90bf51d8b48b54f19005547483219",
+  "recordedAt": "2026-10-05T20:17:31.645Z",
+  "sha256": "390ccb55e32a2d8a288710017cbc5cb0f8c4e7dc857cf207709319fa37c02367",
+  "bytes": 15633,
+  "requestId": "QoCV5U0hmMnQqMFK5TGQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "668e53cc3a044d2f73c3e4d34aa131fb5517b623fbcefc181993a98460d0c33e",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

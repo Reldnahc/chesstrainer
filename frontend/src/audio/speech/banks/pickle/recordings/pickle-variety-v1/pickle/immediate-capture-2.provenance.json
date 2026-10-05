@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "What can the other side take? There's a capture available right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "78bb389bd460691f5d6d89c0b3674b95665b287a9fc24589ee0b8fad451786ff",
+  "recordedAt": "2026-10-05T20:17:16.238Z",
+  "sha256": "20b931e9d5a1e23a802a3c4fbd2dfd6b2589c8532416f69e0ab5f0707fe2ea4d",
+  "bytes": 13847,
+  "requestId": "edHXpYySW5i9kqWAacxl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d02a4255f8216a92ceb8e2224ec59516e07cb0f101951f0b148220f05439e285",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

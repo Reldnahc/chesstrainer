@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "The better option would have begun the bishop's movement: its first move from the starting square."
+    },
+    "takeId": null
+  },
+  "requestHash": "54bb15e5f7b274e02fedb8e19821db23897e4ec4febc0f2f1a2068aef649968c",
+  "recordedAt": "2026-10-05T20:21:14.700Z",
+  "sha256": "c61f413d3a2b644822de92a25bb3345859bec563626565b3cb922928c2470559",
+  "bytes": 18131,
+  "requestId": "o9KECqaxBSwclgoYR5cX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a090ae08679ed54e1182b7b853f3eed13c330df253974706dee1a24378eafdd",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

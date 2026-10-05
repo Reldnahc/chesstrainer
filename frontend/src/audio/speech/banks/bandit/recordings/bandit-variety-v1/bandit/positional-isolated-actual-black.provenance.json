@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black now has an isolated pawn. No friendly pawns on the neighboring files; check what else is minding it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d14a69ed4e7d72dc3ba13158f4bb4a3250d4d34f30df37b2b770143cf8f617d",
+  "recordedAt": "2026-10-05T20:08:11.654Z",
+  "sha256": "d55fe8fd8c432a137b92c83325357154e5b7c79513345104bec25cd53b6f1c95",
+  "bytes": 22170,
+  "requestId": "KjDaoANrk8HxydOR8n5D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf258894d9a7f38bbebc6c44eabb56041850c5dc5c868a896a3368d95a684756",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Black's queen no longer has a defender. That is a fact to account for, not permission to assume it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7f39076996c14e87c839b86c0b26e89e674a358af3979ba114f2506ea685312",
+  "recordedAt": "2026-10-05T20:19:56.214Z",
+  "sha256": "a3a8739d69cb244dad6d75ea6d03582d1d3c92bffb6f3d1a386e778b0014bbc5",
+  "bytes": 23088,
+  "requestId": "t4VFyLH8o4IMYl36anr1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b85f26416219e6477d7e945d5024623ade396dd2bd9d44598ade4beb85ee6e8f",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

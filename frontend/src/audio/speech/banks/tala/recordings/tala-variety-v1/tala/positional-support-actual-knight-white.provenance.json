@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "Who is looking after White's knight now? It has gained a defender where it had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "61756b1fadf52f5d691b2cfd2bb1a01320cb60f023ef367fabc8e1ebc0da620b",
+  "recordedAt": "2026-10-05T20:19:08.721Z",
+  "sha256": "c0966462775ec2c150c1c13630712caa8ea433de99b043013738881fbb83a1f3",
+  "bytes": 17410,
+  "requestId": "4TtanbiaaHIxABHG6CQh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d72869b3694a403a6fbac79a0c3cc546ee41720071d0fec1f7d7b8ea7490e2d4",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

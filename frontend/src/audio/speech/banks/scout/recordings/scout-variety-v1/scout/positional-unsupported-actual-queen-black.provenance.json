@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Black's queen has lost its protection. Track the threats against it, without assuming a capture exists."
+    },
+    "takeId": null
+  },
+  "requestHash": "9939f725163e8e35728eeb0b00d62a29046999f81ccda0e0d0736addb7f536c3",
+  "recordedAt": "2026-10-05T20:18:39.562Z",
+  "sha256": "9360b6a541bc30c338a3704950b3e8457f905a326660da721f00f3e717c4a9bf",
+  "bytes": 20561,
+  "requestId": "lY2gL4Fe6ilrnqWIpMNz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0873193c54f9e5c81517257c9615830d2b41432fca30f743967fcb43b4a919bb",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

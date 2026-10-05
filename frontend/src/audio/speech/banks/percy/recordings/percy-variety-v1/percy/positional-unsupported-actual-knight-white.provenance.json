@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "White's knight has no defender now. The last guard is gone; that support job is empty."
+    },
+    "takeId": null
+  },
+  "requestHash": "118b778d80deea624d780dc69aa74558a3ae8e8894560bea169a0ebeefb880f8",
+  "recordedAt": "2026-10-05T20:16:41.916Z",
+  "sha256": "fbc99a9e4bfbee469d48c3eac2acec6876f310402362179445d6f43e0cc2c868",
+  "bytes": 18571,
+  "requestId": "1Y0Ht7fz7KG18Gl5ZlXo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b93d3d9ae5849535f92e3ac50fc670ea08ee61ed05d6170b7d2ed6fb103a96a",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

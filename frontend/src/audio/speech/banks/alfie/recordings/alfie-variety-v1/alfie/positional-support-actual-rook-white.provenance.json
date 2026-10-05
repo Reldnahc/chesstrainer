@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "White's rook has gained a defender after having none. Keep that new connection in mind when examining captures."
+    },
+    "takeId": null
+  },
+  "requestHash": "a55639f9dd63e54d77315af3937a5e4ee3bd83addc861d1bb2b9cb3f68b163ff",
+  "recordedAt": "2026-10-05T20:07:27.442Z",
+  "sha256": "f8c606cb7cdb2395b6a88181ab32f62177ef0ec86ba2ed972373953f82116647",
+  "bytes": 21357,
+  "requestId": "NYglzNDMPm5KGoM4LDxs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c270478725de0754baf9acd3dd4486126f1fd265c6746bc73477521e8a4d8719",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

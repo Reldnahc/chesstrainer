@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "With the better move, the bishop would have ended its stay on its original square. Its first bit of development."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9bb4708f81dc2163726ef5859c56d8059a030cc429d4e5e76c291011e9b92cb",
+  "recordedAt": "2026-10-05T20:06:21.172Z",
+  "sha256": "2ba9e6cecc45b8ca8f645878ed2da9bc61e007ef2aa0df8fc1d28a619dc83432",
+  "bytes": 21274,
+  "requestId": "aW9OPvzu718MkmQQYDyV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e71ce53789c7c46ea5b037c58f591ce6eed01804822879519bc48b41adec677",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

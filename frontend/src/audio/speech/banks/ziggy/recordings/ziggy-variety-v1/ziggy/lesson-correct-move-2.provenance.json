@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "lesson-correct-move-2",
+      "label": "Lesson correct move 2",
+      "text": "That matches the lesson's intended move. The example and your choice agree."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ad5bb8b37d0894279898cf81f95cdcca6551a98cb6a3c04eb21e3169002cb98",
+  "recordedAt": "2026-10-05T20:21:48.300Z",
+  "sha256": "0a388e41c5fc058e1daa46f5d96773c58f20ba1fc94e04b60ae7b8c67b85fe08",
+  "bytes": 16313,
+  "requestId": "NmLFXxj1XWJv8MeMRIlD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3642e652964104c16856d426c1e675979a66dab8eded7402774d4e684cb1ba19",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

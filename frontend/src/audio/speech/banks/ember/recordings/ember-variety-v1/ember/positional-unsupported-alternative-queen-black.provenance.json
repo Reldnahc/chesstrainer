@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "The better move would have left Black's queen without protection. Examine the replies before judging the cost."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a5c46b3d6428994ba40bf6e9a982dd95a6de000c74a65ad8af3307f93c2315e",
+  "recordedAt": "2026-10-05T20:10:17.758Z",
+  "sha256": "6438a9b839dccde7e56a4e1b80c0dbcea66df0bfd1cc919e605c564c6c19f324",
+  "bytes": 21634,
+  "requestId": "ecmXuo8Ux68P5fts3jTY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1d6decbcb772288a39c749b36bd6d39efb9557e6b9b888a2628d0115607b5ff",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

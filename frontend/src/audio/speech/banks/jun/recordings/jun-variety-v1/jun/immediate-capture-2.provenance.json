@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "An immediate capture is available to the opponent."
+    },
+    "takeId": null
+  },
+  "requestHash": "3aa65620ac1501c6821efe89a6f68f1f59cbcaa94f0964398ec186e571dde410",
+  "recordedAt": "2026-10-05T20:13:06.313Z",
+  "sha256": "234ba0479c3b937b8958138fe6b8e0056944a644cbffb7c69a7369bbd60de0a9",
+  "bytes": 10464,
+  "requestId": "9l9ogrXUh9BxOPD9jP1H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20fc543fe41396404020f46a2339a4ea1593a858f54ac10d4f007c8ab01e5f49",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

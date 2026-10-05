@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The best answer to this move is a check. That brings the king's safety to the front of the next decision."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9eed08b5136b9c868e90a8f5660834c3ea352112f8dff423af9a6316e7a40b3",
+  "recordedAt": "2026-10-05T20:04:28.339Z",
+  "sha256": "6f1533774aef2676b423977124dcf5d88331f082e39f2ca622276b0e29b8497d",
+  "bytes": 20167,
+  "requestId": "OXCItw4FSC3dlbQ9z7Nw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a870d8b4565b3d237bd687b7dee2f07ce3eb6ad730b558f10fa21a8413011308",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

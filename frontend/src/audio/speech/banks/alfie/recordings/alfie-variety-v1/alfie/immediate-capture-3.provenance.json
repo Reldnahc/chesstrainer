@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "immediate-capture-3",
+      "label": "Immediate capture 3",
+      "text": "After this move, the other side can capture at once. That is a concrete reply to include in the analysis."
+    },
+    "takeId": null
+  },
+  "requestHash": "feedd0d564690644e9ccf682c48083fef94ef413945f55b8efdb4c7ca465e6bf",
+  "recordedAt": "2026-10-05T20:07:50.713Z",
+  "sha256": "b61406b2485ce86eb11dfcda7ff643e79cecf3f6e7a33a8bd35e56b15e5db9b1",
+  "bytes": 22542,
+  "requestId": "wLczfS8NGwPMPfsSY8OR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d3c51288376353f2d58be4f5126e7d84e8a875fb7220f9a6a985082d99a94b5",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

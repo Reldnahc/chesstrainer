@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "Less of the board lies between this passed pawn and promotion after its advance. Follow it a little further in the calculation."
+    },
+    "takeId": null
+  },
+  "requestHash": "3064e8984dbd47a287d24bb345cd6eedaa53428d2f72131689e753ef0479940f",
+  "recordedAt": "2026-10-05T20:09:26.233Z",
+  "sha256": "2f60d442d72cd3764c3fa6d55e0377518cc26c93f229a71ef7f993d1f96e5983",
+  "bytes": 25045,
+  "requestId": "La1YI7IV9q9LPWGS2N3F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "929859f521b90a87b45d24514efe49ba61df1806ff0365de0fb6151ae86a7350",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

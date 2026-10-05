@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "Yes! They made a mistake, and you used the chance right away."
+    },
+    "takeId": null
+  },
+  "requestHash": "a601adfb537170e61209e68f3103080b9f293f82b4fcef92a291b9947c02fb41",
+  "recordedAt": "2026-10-05T20:09:12.822Z",
+  "sha256": "8a892a9170578f40046860a0719eb17b622066a2492e5ac63fe71c34aab6e6aa",
+  "bytes": 14673,
+  "requestId": "C0otNkDC1n1uW5GT0fCb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3eca8b4e88361dc02605bc4a1dc135fd73d148ff0a4a4a1449432e298c29f27",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

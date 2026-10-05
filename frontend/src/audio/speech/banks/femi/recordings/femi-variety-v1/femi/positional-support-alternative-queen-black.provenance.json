@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "The stronger move would have given Black's unguarded queen some cover. That's how the support would change."
+    },
+    "takeId": null
+  },
+  "requestHash": "05894538035935b331338b07c25202d9ba665465d09c60db300b691d2816e087",
+  "recordedAt": "2026-10-05T20:11:31.837Z",
+  "sha256": "315a033a814edb7cc3cff1af81b48679386b59f33fb567f99a6709460a70ba1f",
+  "bytes": 20823,
+  "requestId": "XWiW2RfpywGOYPbuukkh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d171c357deb1c5c8d84ccc1daf387b8e2c11b782f5f321aed8bb116faeea3602",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

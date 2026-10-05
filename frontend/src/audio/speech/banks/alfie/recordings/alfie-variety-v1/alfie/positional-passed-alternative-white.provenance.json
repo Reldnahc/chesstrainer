@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "The better move would have created a passed pawn for White. No enemy pawn would stand ahead on its own or neighboring files."
+    },
+    "takeId": null
+  },
+  "requestHash": "247f7282c364da46bc638ea18325f317af4616110d6b53d28f89481e28e284fa",
+  "recordedAt": "2026-10-05T20:07:22.000Z",
+  "sha256": "a163f053e13e0c2adafe3c9a37d2bb182b978fa8778e4c13224b9a52b7014607",
+  "bytes": 24850,
+  "requestId": "kIUGpmFndYr26GhK6ABY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "172ff67fbe19753f3dad9e3e290e2b9f166b8f216ff7a292894b335a745f4344",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-passed-alternative-black",
+      "label": "Positional passed alternative black",
+      "text": "Check the other route: a better move would have given Black a passed pawn, with no enemy pawn ahead on its file or neighboring files."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6b9807f3eb1620a79c94e5417666b3edee4ff411a422f52b62273c04b98c504",
+  "recordedAt": "2026-10-05T20:20:31.403Z",
+  "sha256": "bece791a584ee94eb8c872f7fa1fc39533b0f4245fa455a1a3d38e207785c522",
+  "bytes": 26710,
+  "requestId": "vkur7zNQqvpNNw6HBNMb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0885612c4f317c4a8c418afa53bf3043d97a3a33dd3936e3c4e50f3a6ac4fde9",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

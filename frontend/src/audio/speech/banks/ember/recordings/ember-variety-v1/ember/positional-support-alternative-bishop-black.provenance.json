@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "Black's bishop would have gained its missing guard with the stronger move. Include that in the comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9a8d1a31f6ac6b672c42cf159b868a8b30b47af7c5dbc6ff52f0e446d65584a",
+  "recordedAt": "2026-10-05T20:10:16.085Z",
+  "sha256": "e01beffc63ec6094d5d09104b1dd5479c78b4f6a7d7384080487b9a961105f14",
+  "bytes": 18875,
+  "requestId": "gtIpOJzLHL94bvSxX7FL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0505b97a52fa4ff3c77ee98083c610ebf026af2eae7a6f0d60c615780c07884d",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

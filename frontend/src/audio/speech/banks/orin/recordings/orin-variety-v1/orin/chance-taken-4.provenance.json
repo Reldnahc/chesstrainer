@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "chance-taken-4",
+      "label": "Chance taken 4",
+      "text": "You recognized what their last error offered and acted on it. That is how an opportunity becomes useful."
+    },
+    "takeId": null
+  },
+  "requestHash": "99ce5a1f50c94fc756dab62cf12869f0bc10f00fa4fc6f2d44cb1a4c31d75899",
+  "recordedAt": "2026-10-05T20:16:13.701Z",
+  "sha256": "4d4622bac6b250244d004db9bafa2e867578dc956e79980ec4fc40ea6167c931",
+  "bytes": 23786,
+  "requestId": "KVfvQKJ5C2O3Ax9CU7ZN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dce4aad2e5ab1b42f2a79568dec889f0403648c7af959fa39c05547bfb49a7aa",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

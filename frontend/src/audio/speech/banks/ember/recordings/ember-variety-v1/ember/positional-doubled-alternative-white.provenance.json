@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "The better move would have doubled White's pawns. Judge that structure alongside the whole position."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a2f9f28cc5a691380697f656c605506f76bfd2cd0f6d8513105c27662cb9aae",
+  "recordedAt": "2026-10-05T20:10:11.932Z",
+  "sha256": "cf56814bbbcb36076b6b03500ad0971eaffaa0cb85a2ffa862b33c4dbbe2c4fc",
+  "bytes": 19140,
+  "requestId": "zp9K21bTzkacYk3UwK0k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7455fc81268282d9e4e740d7e8e97d62e5096ab15ea8cb7ae8ad9b46af3c8bae",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

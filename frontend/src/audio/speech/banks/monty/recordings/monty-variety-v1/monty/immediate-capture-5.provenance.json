@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "immediate-capture-5",
+      "label": "Immediate capture 5",
+      "text": "There is something to take in reply. Whether taking pays off is a different question."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e79822c75bb28f6f69cb990f7722509c514136dde8f686a9aad65c34adb5166",
+  "recordedAt": "2026-10-05T20:15:26.479Z",
+  "sha256": "90306a009fc61c2aa6c2792d07d376f87a649a95d5b4685e80415483b49053ed",
+  "bytes": 17318,
+  "requestId": "QfBD5dvjth0TnfsdCxmW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3c60e1a871ca6f90b3c815a70b7a85bb3712460f5e5671f4c9c2744a8a20b21",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

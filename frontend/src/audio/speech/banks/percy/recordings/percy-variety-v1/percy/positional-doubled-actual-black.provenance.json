@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black has doubled pawns now, sharing a file. Pawns do notice the seating arrangements."
+    },
+    "takeId": null
+  },
+  "requestHash": "21ba8966b5eeee9d357efa14cf624daffeb5408ba4e2976a17aa1f6f5d0df3f0",
+  "recordedAt": "2026-10-05T20:16:29.025Z",
+  "sha256": "86901d48170f6da02fe2a7ca997c97226cc8678ff057c820556865bb1b6af458",
+  "bytes": 18151,
+  "requestId": "QnDdtdm0D0m9QIOM4LDd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04bb0c4b82596784fe53e25b016196792734c82dded7d1086ce5d7351b8b97f7",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

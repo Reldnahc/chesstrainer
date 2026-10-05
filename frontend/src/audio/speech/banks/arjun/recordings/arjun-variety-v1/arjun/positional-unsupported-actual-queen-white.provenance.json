@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen is now undefended. Worth distinguishing that from an actual threat to capture it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f86833b3d711a3b5aa972509654070e58f3194d6df2d71b0b2ac86115ecf725b",
+  "recordedAt": "2026-10-05T20:06:46.971Z",
+  "sha256": "8a14177758d536153b33f6395bd3b75e9010a55c4b9c49377cccddf4ac163f9d",
+  "bytes": 19511,
+  "requestId": "f27nOUTeb58hikCHw5vs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da7be8f39901d9a2a3784e79a3c0ee2cb2f3cd5be2ef715868635f27055ee3f0",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

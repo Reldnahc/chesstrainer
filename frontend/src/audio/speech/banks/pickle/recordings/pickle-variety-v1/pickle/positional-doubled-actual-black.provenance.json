@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Look at that stack. Black now has doubled pawns, sharing a file."
+    },
+    "takeId": null
+  },
+  "requestHash": "07e0b5c7c4db0e9709bafa4891995961364a88be6bed8c54fdaafeef65f9ba23",
+  "recordedAt": "2026-10-05T20:17:08.834Z",
+  "sha256": "d9ae01c6692f884cbcbdb616f804d597612153221a81cfb04dffdff1d39d5933",
+  "bytes": 16694,
+  "requestId": "FJ5UKol9rPwTvOUjGlQr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e946dd81a57c56613d9eebb1dd2ecd2b480db7d54f5136ee94e891ca78ae1ef",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "evaluation-loss-5",
+      "label": "Evaluation loss 5",
+      "text": "The engine prefers another move to this one. Try it on the board: what changes in the replies?"
+    },
+    "takeId": null
+  },
+  "requestHash": "52d8a5ba25d66bdb397dd9644682f0f27f557b3cbf9dd79f0fa189ea65f12d06",
+  "recordedAt": "2026-10-05T20:19:32.975Z",
+  "sha256": "9278e0960b990772c16779c240e93f3c62c616c452dfdfb6ad911167eac31f62",
+  "bytes": 20301,
+  "requestId": "MzL8ztWpEClkkjjOXwDv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab5f96aa82b1698705756f527d7932f6de8016745d7cc72cb6e381d957609b7d",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

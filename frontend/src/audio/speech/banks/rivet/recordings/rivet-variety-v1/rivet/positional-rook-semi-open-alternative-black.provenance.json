@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-black",
+      "label": "Positional rook semi open alternative black",
+      "text": "With the better move, Black's rook would have a semi-open file. Black pawns would be absent; white pawns would remain."
+    },
+    "takeId": null
+  },
+  "requestHash": "7cbfded3169e569dc27f989e9220f9ab8d2af93109a82e47afd1a524f3435200",
+  "recordedAt": "2026-10-05T20:05:25.475Z",
+  "sha256": "af25f7d57b922dec5632d72aa97a54886fee8375de06967cd35bcd676fed3d14",
+  "bytes": 23807,
+  "requestId": "VvYPKzqLwUatPjfoXkSz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b1a11a2f8a01a0a6260c1ee1c8f9fe2acfaa6278bdb33b0b5c78c7d59104308",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

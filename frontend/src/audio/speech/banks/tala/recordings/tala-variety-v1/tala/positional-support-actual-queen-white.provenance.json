@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen has gained a guard. Follow the new connection and see where it comes from."
+    },
+    "takeId": null
+  },
+  "requestHash": "c245a4868b997065e92b3a3785da4b05caac2bf10fff4de96a82518ca20dfc27",
+  "recordedAt": "2026-10-05T20:19:19.820Z",
+  "sha256": "7eae8006007b241e44a192369580ecbba0d01d2989962b8affb36b7eed452719",
+  "bytes": 17615,
+  "requestId": "rxjEVyA6TmFLYE7qiZK3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ddd078d46088b2a2483c73e404a47d485fb52b2b23e66814d3eec8eec6fa849d",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

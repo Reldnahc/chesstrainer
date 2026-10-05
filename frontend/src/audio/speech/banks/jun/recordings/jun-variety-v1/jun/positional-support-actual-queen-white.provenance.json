@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen is defended now, having had no defender before."
+    },
+    "takeId": null
+  },
+  "requestHash": "97d10049ab2c6a59f0eff5182690ab6d61eb6abf4b8e30c063cdc2f220bea2d1",
+  "recordedAt": "2026-10-05T20:12:53.397Z",
+  "sha256": "265f1176fba9642b8aa8e86814b64e13ed9780872691cb60c0e08dea4b22a6b9",
+  "bytes": 13638,
+  "requestId": "HCdqwzRHmfVyJSOTdIrn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "278e643e5d5bdc79600898153126db27ccbe4f31ec8ac525ab402e4da6e82caa",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

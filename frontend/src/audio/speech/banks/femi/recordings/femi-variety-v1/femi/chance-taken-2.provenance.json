@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "Nice, you made something of the opponent's last mistake. That's the chance taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d32609c896e6b74cf0d9f054ca21484bbeec8941f3dcda00eb756bf75241a7f",
+  "recordedAt": "2026-10-05T20:11:37.433Z",
+  "sha256": "8bb9c61e0259730f75bae8e2739db025e6e8f84ec86b32844fb87c142c0b2464",
+  "bytes": 17706,
+  "requestId": "w0PEUDaPuVbfAYbuJzTH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44e577985603206b5ce6a7599c69829f2301e7965cd6efbfa49dae82927f8463",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

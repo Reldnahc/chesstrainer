@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black now has doubled pawns, sharing a file. Their arrangement matters, but it doesn't by itself make the position bad."
+    },
+    "takeId": null
+  },
+  "requestHash": "6976e16a067bc27789acc992ad075c72c8b0e6a544b2aaad2115b559d06af680",
+  "recordedAt": "2026-10-05T20:07:39.865Z",
+  "sha256": "22697d11e5f830986cfc337377ad4c16195c8fdfa8a8612aaa7cdca3e0f04889",
+  "bytes": 26228,
+  "requestId": "Ya0wrBZHzxynuXU5lEXD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fd73aedd38a04d6df6a6c22ae499baced61ee90e705b0e0f940dbf2bb8b2eab",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "White's rook has lost all its support. Undefended is the fact. Anything further needs evidence."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec47aae2f79d9c68de5cfd56ba94d01524e2e3c3477f8597c256134b866b5718",
+  "recordedAt": "2026-10-05T20:10:32.976Z",
+  "sha256": "d7e85dd7889ca29bacb602d6489159bb76892347c0a2d70955e69028de0dcd0a",
+  "bytes": 22874,
+  "requestId": "4m0kNumpDXvW9L81y6SW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6377c7cd8c75eed86e4c2b6f2049e62ef1da8d87bf3f75f84e2d08870f91eeb2",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

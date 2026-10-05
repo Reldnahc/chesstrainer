@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "The better option would have removed the remaining defense of White's queen. Unguarded, not automatically lost!"
+    },
+    "takeId": null
+  },
+  "requestHash": "4bc4f3bbc1ee4e773dd9248eca0dea57b10f94a054266db5ef521cdb0236b798",
+  "recordedAt": "2026-10-05T20:20:45.552Z",
+  "sha256": "66398b19b89ca03230c838ac7c2cf088112801a15832d4227a1680efa8670dca",
+  "bytes": 22934,
+  "requestId": "beUpqjxMOjTov8nnWjb8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "53248996704aaab237c149238e55208731b36823ebb5320f8d54a91b53958442",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

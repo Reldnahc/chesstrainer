@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-black",
+      "label": "Positional unsupported actual rook black",
+      "text": "There's no defender left for Black's rook. Whether it can be won needs a look at the replies."
+    },
+    "takeId": null
+  },
+  "requestHash": "401708d9e806a5357a100198083067fa5a203ebb333bb7d4501472d1283189ad",
+  "recordedAt": "2026-10-05T20:06:45.113Z",
+  "sha256": "33948b52513050f6b3a425ef7fbafcfc057830f170cf8d71d8de5d0605ee1581",
+  "bytes": 19387,
+  "requestId": "WJ4bu4bMmu49ShydJn6K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1372a1ff4d033071ad443ef50cd5005c4a2a707282921a80e1dc102e2bc8633",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

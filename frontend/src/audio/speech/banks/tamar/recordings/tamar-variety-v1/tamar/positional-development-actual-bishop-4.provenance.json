@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-4",
+      "label": "Positional development actual bishop 4",
+      "text": "First departure from home for the bishop. Now judge what its new position offers."
+    },
+    "takeId": null
+  },
+  "requestHash": "76c74fd947fe69b70af11464f7bb4d33d4979d40a06139bb98de126bf13c5de6",
+  "recordedAt": "2026-10-05T20:20:26.505Z",
+  "sha256": "2303141e3c8afc16f94ed4e2ad250e13359b2c62ba9941f943306d440e786922",
+  "bytes": 17308,
+  "requestId": "9kcALGgC6b3a7yGOHivD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3723ec7e34539c6e559a8f1c66c7c01bd5632da844fc51be469957c3c69b3445",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

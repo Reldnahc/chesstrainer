@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black has an isolated pawn now. No Black pawn stands on either neighboring file to support it."
+    },
+    "takeId": null
+  },
+  "requestHash": "db164108b3974857986701eb4e8a4b2945e463d4c8ca015c7cfb6434de82ef1a",
+  "recordedAt": "2026-10-05T20:15:07.556Z",
+  "sha256": "be8a65efc64465708a9abe613eefe9284fc7dccbde60fd98b6f7029166c75dcb",
+  "bytes": 20631,
+  "requestId": "D5vdIVg9dGhiiG5AHk3F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a99f00b727da335f17c8ac310eeb116addf8c0a93f71cbbc6b7cb0f922d33d8",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

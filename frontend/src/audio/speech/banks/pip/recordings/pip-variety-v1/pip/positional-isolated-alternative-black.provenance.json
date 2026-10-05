@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "With the other move, Black would have an isolated pawn. There would be no friendly pawn on either neighboring file."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dc4e965c647c9e321d480833cf4ab2c4aa754bd79d92dbedd0e208c084e1279",
+  "recordedAt": "2026-10-05T20:17:38.978Z",
+  "sha256": "7f16d332353600b85f26a129d219ff17a69e541ec27af1f44afe1a44171c378a",
+  "bytes": 22875,
+  "requestId": "3RyP5pK8sD8ayhXIcEJg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "424b5aa2ab3926585cbc6c2262f5fe13fae0b70b53e1a660937bb9eafd353be5",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

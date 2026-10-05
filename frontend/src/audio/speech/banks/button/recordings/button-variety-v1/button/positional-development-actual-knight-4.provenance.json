@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "A starting square is empty of its knight now. That's the knight's first move out."
+    },
+    "takeId": null
+  },
+  "requestHash": "12789ff0281a77085d28c3087502a3a13df5bc1fedef5bf701b792c52ded4c26",
+  "recordedAt": "2026-10-05T20:06:33.687Z",
+  "sha256": "0a12ac38692e07918706c0b8bfa50b4b8e58ed01f5c8dfd996413011c2af53f8",
+  "bytes": 16878,
+  "requestId": "QguQuFjznuRxrP5NT66S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8620dcbc490b7f2d8a1b7c3d9c78df179258ed91c7198853e57d25e1537bfd09",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

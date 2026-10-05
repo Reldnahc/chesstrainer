@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "The opponent has an immediate capture. Check that reply before following any longer plan."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2ba95b121c6d25ca23ba477432be584624db904951972dc258f3d3f86cb6842",
+  "recordedAt": "2026-10-05T20:20:15.115Z",
+  "sha256": "3f9078e3af0e2fc63d81d69cf1c9c69bbc16c6bee0110d3bd14c8b4606a0d6e1",
+  "bytes": 18516,
+  "requestId": "SnF2QCHr8dtlUiltfhWp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5180fe083b618d5d73dc165c966d87f1e750cc8fd5a8d6df6ead79a6c4068d9b",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

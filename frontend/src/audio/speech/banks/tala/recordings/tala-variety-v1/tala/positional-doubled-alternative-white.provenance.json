@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "The better move would have put White's pawns together on a file. What would that doubled structure mean for the position?"
+    },
+    "takeId": null
+  },
+  "requestHash": "d74db4ecbcddca543a6c4cb104361edd19566a89da6078f0b167e5b0d91af368",
+  "recordedAt": "2026-10-05T20:19:28.271Z",
+  "sha256": "62d363ea5ff8055543d73d997ea26939f0997dc148588564bced23de94f52d44",
+  "bytes": 22109,
+  "requestId": "4VnohGzoSreVvPNLkwfI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9bfcc84326e81f160ba9080db1d80fa7c1ee8df3849a864d283e006efe866180",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

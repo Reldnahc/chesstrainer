@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-white",
+      "label": "Positional support alternative rook white",
+      "text": "The better move would have connected a defender to White's unprotected rook. That is the little difference to inspect."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f6debbdfe5077ffb9e32dfbf63d6ed07fce80442a1243f4dfb4334bb3abc610",
+  "recordedAt": "2026-10-05T20:19:31.404Z",
+  "sha256": "71da1aa13a4643bc54c9bcb49300832cc3cab85a8c43338ad84afefb213ef12d",
+  "bytes": 22746,
+  "requestId": "bSzGKrVZgJEqYdnlUsXz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2fc6f2be3d6856fd841f1e1d738174a9582d7865adec850b643f9d38412c6b32",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "Another move would give Black's unguarded queen some backup, a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "044908c3c4f75fe64b5e7d1e942099022c941d056726b33acc4cbba631a5352f",
+  "recordedAt": "2026-10-05T20:17:48.625Z",
+  "sha256": "2f52708a39f2e2388db1aa35ac4b302ba3d779df5328ae3b8db72e7bafdf01f1",
+  "bytes": 15956,
+  "requestId": "IhW5A7reA05pgzQy1VHa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "985ac8195709b9284a16984e1ee4c58fc336f427a6e69075a9d3deab27e6f191",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

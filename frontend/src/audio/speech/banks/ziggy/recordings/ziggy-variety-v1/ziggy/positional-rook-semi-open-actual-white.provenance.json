@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-white",
+      "label": "Positional rook semi open actual white",
+      "text": "The file is half-open from White's rook's perspective: its own pawns are absent, while enemy pawns remain. The name depends on which side is looking."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c68fc2282c456f245e917dbe23e982544d4b9b9aeb6d3e8097f251ce8d39ff8",
+  "recordedAt": "2026-10-05T20:22:09.673Z",
+  "sha256": "fb3eb36816cf879f90472ff6fafd62acf8c8d6214c95f5aebe7737f48f81107d",
+  "bytes": 30100,
+  "requestId": "kiBa41ZjDFwr9SevkC84",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71155d40827798ed5722ee50190860eaa926c11c77186512b537e12805cc67cb",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

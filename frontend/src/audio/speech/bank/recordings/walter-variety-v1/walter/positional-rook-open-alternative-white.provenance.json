@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-white",
+      "label": "Positional rook open alternative white",
+      "text": "The better move would have left White's rook on an open file. Neither side would have a pawn along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf18ec617cc48d74ade8b3ee5240a5de35e5ea2d6593792d536da7a1e78a4fbe",
+  "recordedAt": "2026-10-05T20:04:50.195Z",
+  "sha256": "e69158aa60023726f6fc042c8d4c94583010a43d2e46519aaba78e03ed3c99c5",
+  "bytes": 19233,
+  "requestId": "GkuoBrt18czkC2BT7vrA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6be846d9ce720d15e80d4048b058de27f511d83e2ea63f35627864b96530c5c0",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

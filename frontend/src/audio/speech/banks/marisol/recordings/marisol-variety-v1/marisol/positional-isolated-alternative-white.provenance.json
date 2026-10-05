@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "The better move would leave White with an isolated pawn, lacking friendly pawns on the adjacent files."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2a6c07f0045750fbd3fc297bbcb89229377dd2f20bd7afc051af225ae0d159a",
+  "recordedAt": "2026-10-05T20:14:02.964Z",
+  "sha256": "3e7f5762c6905c9bac4dcf90847a51494a1625679ae1ead467a88d3128f10c21",
+  "bytes": 20251,
+  "requestId": "N5XTX3V9Wr0kPSjt1Mlk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f02f4771b0592f6db86ad846970bf8b8e5b40fe5c74937f281cd7d0e968cbe2",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

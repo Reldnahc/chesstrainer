@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "Development on the field: the knight makes its first departure. Mark it!"
+    },
+    "takeId": null
+  },
+  "requestHash": "a8cc09e8c8c72963cb693b5341f20ced3802abb393e0dbb4bb0c4724178a3ebf",
+  "recordedAt": "2026-10-05T20:20:50.775Z",
+  "sha256": "f2f28c30a72737c3684e9f2093f62c84333f5741486d99002424b33426d370bd",
+  "bytes": 17318,
+  "requestId": "8hVk6dtbY9MboTKS7Ezn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3b71a514891752bc6c14043d9d6764afe69f1e0e95af2e1f0c6342da4a8a418",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

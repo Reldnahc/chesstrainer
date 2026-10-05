@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "White's rook is undefended after this move. Identify what stopped guarding it, then assess the possible attacks."
+    },
+    "takeId": null
+  },
+  "requestHash": "4684012360d3cce91da2cc2b8df213e31b85ddea07c2164b5f8975370c1896aa",
+  "recordedAt": "2026-10-05T20:19:49.807Z",
+  "sha256": "46f6eea8ba8201ce1ee0260fbab73fa765dfc004932d4831cce00715fabd4b52",
+  "bytes": 24926,
+  "requestId": "ta9SogX8bzeir1jBG0T3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf1e92fe149e6049532a9cb10f87f5dd7229e4d39292881bdb9f625f2e53947a",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

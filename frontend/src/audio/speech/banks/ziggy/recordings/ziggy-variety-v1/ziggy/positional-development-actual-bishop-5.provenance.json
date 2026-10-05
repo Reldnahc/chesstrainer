@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "The bishop was still on its starting square; now it has made its first departure. A visible beginning."
+    },
+    "takeId": null
+  },
+  "requestHash": "a8a8b94e5c070b85b92c4f2f8a9161ff57907a45affd8ab1c545fd4275a3107c",
+  "recordedAt": "2026-10-05T20:22:16.366Z",
+  "sha256": "2c33238fea3d4118f1f4d0f28b637c449536bf44327f789fda5bbd69c07664f0",
+  "bytes": 21433,
+  "requestId": "8CNBDaQOEwi952WBsjPq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d543dfe30f66661ace30935483e89dd16cde6b28a3f6ec52315964c790e20bdf",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

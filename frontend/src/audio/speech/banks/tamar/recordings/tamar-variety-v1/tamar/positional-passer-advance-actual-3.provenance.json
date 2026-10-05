@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "That passer is nearer the last rank now. The advance is real; promotion still has to be earned."
+    },
+    "takeId": null
+  },
+  "requestHash": "def06524311d5258503ad400c8f12c2f4e4d352ae4e4346b403ff656fac310bd",
+  "recordedAt": "2026-10-05T20:19:57.813Z",
+  "sha256": "ff7616c6785f3d4e4f133cf3f8e758bf75d26c7c9a2803059820d74580b33075",
+  "bytes": 20584,
+  "requestId": "achPJk8wGUNtZLY6qRqf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "90cfcb3fb26514f700fc88c02020406bb000a4c838ba19ab3b38827a50c9d41d",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

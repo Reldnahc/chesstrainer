@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "stronger-alternative-4",
+      "label": "Stronger alternative 4",
+      "text": "Put the stronger option on the board and inspect it!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2e1dcc27d432b8229baf2ee876ff122e773dde3cd79bdad9e5771ae5e7db2e14",
+  "recordedAt": "2026-10-05T20:20:30.800Z",
+  "sha256": "be33e6c3e5c6dbaac7840cb8083803f3f92c92d9613414bed37cc76990815cf7",
+  "bytes": 11618,
+  "requestId": "19FrTgChjUUhuQtTKh01",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a6382a6ff10fe2d4e781b56a2d8c45413677cc03a1e57888927065dd6fa052c",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

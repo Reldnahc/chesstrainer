@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "Capture available on the reply. Identify what can be taken, then check the exchange."
+    },
+    "takeId": null
+  },
+  "requestHash": "577e9880ca19d8243f65b836b2c60827f184daf30064a68e08124604e677db06",
+  "recordedAt": "2026-10-05T20:18:57.382Z",
+  "sha256": "a2d2a6741df7b86c6fffd8ed5cd8b87383cfb4becfee0c563d63a803c36750d8",
+  "bytes": 18296,
+  "requestId": "5YG3e933tIR6865OHPFt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50dcdf47d84e42b0f7b28a0ae9fdf70029cfe5b9882c276cb651527ae1c4203e",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

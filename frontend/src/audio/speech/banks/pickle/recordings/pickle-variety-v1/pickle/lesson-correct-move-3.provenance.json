@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "lesson-correct-move-3",
+      "label": "Lesson correct move 3",
+      "text": "Found the right piece of the lesson! That's its intended move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e452684c5454042e5219d4ce46d21d1beac36da4a3446d7070a53bd3e850ee52",
+  "recordedAt": "2026-10-05T20:17:06.387Z",
+  "sha256": "610f7e2b31add49f515e70d7153bad962ac08b654ca499010b4ea4994583b5b2",
+  "bytes": 13501,
+  "requestId": "ALiDReK2jYRn4djrg4Lw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "414cb92ca13ca1dfd072a25ea713d81509649670e6342516186245012bbc7e46",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

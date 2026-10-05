@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-black",
+      "label": "Positional rook semi open actual black",
+      "text": "Black's rook gets a half-open file! No friendly pawns on it, but enemy pawns are still there."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2e852d80f452f8bd5a02c93e2e54dcab8a5dab5a12c1f9a5075fab70ca64d87",
+  "recordedAt": "2026-10-05T20:18:29.239Z",
+  "sha256": "b3fa24c66bd59317facea22aeb207834be794048d5a48a90dd1dcd15b1e4ea97",
+  "bytes": 20227,
+  "requestId": "AOkHWUmN3jGJmdtcF3hZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "920ff243e0b053b6fb718558a1bfb59d44b37942b4ff87e49a4a6d8cc65b8862",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

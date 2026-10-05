@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-black",
+      "label": "Positional doubled alternative black",
+      "text": "The better move would have doubled Black's pawns. Judge the full result, not the pawn shape alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "67b31dafe31b8e6defbce3a04d69ff5269c5653f1c67a1ab8c1535cef44c6693",
+  "recordedAt": "2026-10-05T20:20:05.818Z",
+  "sha256": "b27a018ccbbad6ad69fcb390e8702ec45dc269b1b8e5130ea2546f5c68e4bf60",
+  "bytes": 19964,
+  "requestId": "ZZNbI8znDyfnpxrcgF4y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd03a6cfb4a55f8cd1eaef8a5e310f1c8ce75d28bafbb332114b27ade351340e",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

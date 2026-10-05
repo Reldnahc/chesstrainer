@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen no longer has a defender. Strength of movement does not replace support."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d830dd55ec6222036d7be67a4eb867c75c2b958745e6ce01773754ed394c805",
+  "recordedAt": "2026-10-05T20:10:01.077Z",
+  "sha256": "3995846aca946d047890d4fc1db40586d87dc8411cc33d71294daa6a7889f21e",
+  "bytes": 18427,
+  "requestId": "dL69rrEFCl07WFjfaQRm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae2f43aca262e04c883489e4744b70e8c4ba70c321517596213959b206320303",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "Bishop development, right there. It's left its starting place for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc81da4bdb7c7bf51b2d7e5b0585ce674ae7855f2f310b73f6155104f8fa4ec3",
+  "recordedAt": "2026-10-05T20:18:27.002Z",
+  "sha256": "ac9390855ad8d06cc3db7675329801af998e453099da8bcff0e3ce35bfdcc274",
+  "bytes": 16982,
+  "requestId": "t0PfeQWplG3eS0kN8hKp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f91b1c8c92f7c47283ee2d65a1e80092558fe7f13e419b0605ca589254e0c058",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

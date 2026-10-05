@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-white",
+      "label": "Positional rook open alternative white",
+      "text": "With the better move, White's rook would have a file with no pawns on it. Worth comparing with what was played."
+    },
+    "takeId": null
+  },
+  "requestHash": "8ff48cc711520eb564896631134cdb6bc9b6d4b5fd8104771480891954daf649",
+  "recordedAt": "2026-10-05T20:12:33.646Z",
+  "sha256": "34621e69bf7a01a18338e55df270517e07799e1b009dfe30a4be15455fead45e",
+  "bytes": 22188,
+  "requestId": "6HpcP2WiwrbpGJuTKMHY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a6313abb4f25fcb72c8eb5456b933085b6fd2ebd756184d0478f9c37ac83d07",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

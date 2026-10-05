@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "White's bishop would become undefended after the better move. Loss of the bishop is not implied."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e918dbb3ab535dee05da39029ddc6f7f6bd30dcf8fb16e6237bb8077b489ca8",
+  "recordedAt": "2026-10-05T20:05:10.137Z",
+  "sha256": "fb2fb27e4189337221a5fae86e15dbc3360862f3bff0b91063c06477f898afc5",
+  "bytes": 21015,
+  "requestId": "aPIX1BkIDMdB1XkzvNIF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b92c0f074e427e6e1b453e7fe4cf81125938d2d9ddb42fb8a021b9313e18397",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

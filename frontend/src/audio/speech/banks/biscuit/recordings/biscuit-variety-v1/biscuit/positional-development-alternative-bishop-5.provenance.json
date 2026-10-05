@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "Oh, a bishop's first move was waiting in the better choice! It would have left home."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ba1a50b0409725640b0bca0efbd4392a3b64fd1871789b2ef1bd3fa551ed697",
+  "recordedAt": "2026-10-05T20:08:57.175Z",
+  "sha256": "5cbcc9178474d8302dae0a2ee5b51873f026dcfacb36a16c64d55ce1a0345d96",
+  "bytes": 17902,
+  "requestId": "m1Xrd21TE0RQwaZAxv83",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eaf3f1cc12738f2796c1b856d0fb533ce12a6cff3f08f85499aca82bcad93852",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

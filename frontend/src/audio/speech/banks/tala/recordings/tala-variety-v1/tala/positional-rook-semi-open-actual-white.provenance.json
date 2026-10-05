@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-white",
+      "label": "Positional rook semi open actual white",
+      "text": "What makes this file half-open for White's rook? Enemy pawns are on it, but friendly pawns are not."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fdb98c2322aa47c07e8bf184519b28f2e312813656ad8e0de735f93ce40232d",
+  "recordedAt": "2026-10-05T20:19:41.799Z",
+  "sha256": "5f6babbb90170bb1836186a5e42d8b31d1b3e0a269dc8398d8a2eb5057b50618",
+  "bytes": 21875,
+  "requestId": "hQxUnQrw6hMu8SY9L7xv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9fe610de4328162a6db0a00ceb234b1a43a89449ce852a39a278fbdf397c7c6a",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

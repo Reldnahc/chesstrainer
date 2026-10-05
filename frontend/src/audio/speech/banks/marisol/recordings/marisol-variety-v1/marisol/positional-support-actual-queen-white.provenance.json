@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen gains a defender. Previously, nothing defended it."
+    },
+    "takeId": null
+  },
+  "requestHash": "562973d5b788ccb8cc501edc2b25c0b82fca3a0c83e95b6bd5a794137ebe89ea",
+  "recordedAt": "2026-10-05T20:14:01.567Z",
+  "sha256": "9a75e30127ad61a234743e94d7937e4863f6d7409e4a338a3431a3f295f3f204",
+  "bytes": 15025,
+  "requestId": "BNjGePgnCOHV0BxiBeLL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3405a67c96e11d2c86cd88ab2f3460fc4a5cafa4a5a1337bcd433865530c049d",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

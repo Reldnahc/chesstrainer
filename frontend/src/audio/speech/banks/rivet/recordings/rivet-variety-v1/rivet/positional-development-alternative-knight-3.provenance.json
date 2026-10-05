@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-3",
+      "label": "Positional development alternative knight 3",
+      "text": "A previously unmoved knight would come off its home square with the better move. That would be development."
+    },
+    "takeId": null
+  },
+  "requestHash": "3dc2c07250a52a87da0f1f6bc323caa0e218ce47d764783823ce47635eb00265",
+  "recordedAt": "2026-10-05T20:05:01.330Z",
+  "sha256": "dbb5ce433ff37a68c188052e785d3633cc6be168682f41df2b525ea9465aa51e",
+  "bytes": 20139,
+  "requestId": "omjsetNrajpJYm2HOq2s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24607da443fd1b9374b6e0da242d6e6c0cddd0c20b90158d225ff477700e9064",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

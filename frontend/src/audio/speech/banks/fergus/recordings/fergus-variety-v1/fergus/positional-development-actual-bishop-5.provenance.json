@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "The bishop leaves its starting square. That is all."
+    },
+    "takeId": null
+  },
+  "requestHash": "25f7bf4cbfaff30c680ee72cf7f9927117df6b51cd1290f2469aea36544a1185",
+  "recordedAt": "2026-10-05T20:12:04.971Z",
+  "sha256": "f54f724f13c2a519de25c220e37f153285c0c5f0281dacb6b5ecbfb638b2f40c",
+  "bytes": 11555,
+  "requestId": "DTd1QmPf6bOU1FTROBFY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebe5e46719d7782a0e1c87229d5c34983495ad6d9fc581834dd71e24d02333ab",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

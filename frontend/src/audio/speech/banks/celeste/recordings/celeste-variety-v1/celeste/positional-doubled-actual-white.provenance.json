@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-doubled-actual-white",
+      "label": "Positional doubled actual white",
+      "text": "White's pawn structure has changed: pawns now share a file. Doubled pawns deserve a closer look, not an instant verdict."
+    },
+    "takeId": null
+  },
+  "requestHash": "b53a74161816b69369eb66ae646f2d1fb79f6195cefda57f0e20471ed94730b6",
+  "recordedAt": "2026-10-05T20:09:32.289Z",
+  "sha256": "e3ef4161993a9bfaaaef75d1f5328c26a6af342ca62d0715616a78126560c088",
+  "bytes": 27004,
+  "requestId": "wgy0gOh7YxWswItyy0gy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d769682ccd0ecdfe54edc7be9b4eb625419e998bd4f22100487c579377ac9726",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

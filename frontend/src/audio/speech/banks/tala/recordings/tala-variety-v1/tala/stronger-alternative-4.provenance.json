@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "stronger-alternative-4",
+      "label": "Stronger alternative 4",
+      "text": "A stronger move was there. Spot the one small detail that sets it apart from the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "180364e18a0489e3a5332acdd5f519e7a2d4a663b0fcaed222c700e76a0a3371",
+  "recordedAt": "2026-10-05T20:19:13.600Z",
+  "sha256": "621ee9cf5afa37b663800029a6ab1783981d1885f0915044bd34b85cd112ce43",
+  "bytes": 19676,
+  "requestId": "7dVpMCJ76zIyYkO5w6y5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "443784a98c25e5e23a1f3b457eb240e6fff566f1642c210474e31e9ebd435c35",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

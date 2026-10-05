@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-black",
+      "label": "Positional doubled alternative black",
+      "text": "The better move would leave Black with doubled pawns. A shared file wouldn't tell the whole story."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ad27e84b90e3b19fad280027973409e13ef01fb2b209f2e5da816ab656182f7",
+  "recordedAt": "2026-10-05T20:12:27.421Z",
+  "sha256": "3eae2ddcff8efde04338df6e67823f316964cebd0960ef8ac3f4ec0497041ab4",
+  "bytes": 19702,
+  "requestId": "aQmX1AERKHe2FYbILBCK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bc68b57556c5e3fadc0c0c1f4e20b4abc13d77ee30d21664e07bc465e013ccc",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

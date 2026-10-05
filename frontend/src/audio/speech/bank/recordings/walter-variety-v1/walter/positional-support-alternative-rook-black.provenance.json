@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-black",
+      "label": "Positional support alternative rook black",
+      "text": "Black's rook had been without a defender. The better move would have changed that, giving the rook the support it lacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "761e04665afde9ae293f651bc50b59e1ce07e01a1ad302edc44a394394e89625",
+  "recordedAt": "2026-10-05T20:04:45.671Z",
+  "sha256": "7521d9e730930497b5e186a455d26a510e32a0637840740cbd43349de52e820f",
+  "bytes": 22071,
+  "requestId": "xbuOr9LHe8DFX92zJsTY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a56d6c323459d3f7fa39b4ea80dbfdc52d4fb4ad5984d4848680f110d7c08cf",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

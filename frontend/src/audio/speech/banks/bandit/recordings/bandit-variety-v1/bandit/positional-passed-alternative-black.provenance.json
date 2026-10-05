@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-passed-alternative-black",
+      "label": "Positional passed alternative black",
+      "text": "The better move would have made a passed pawn for Black. That's a prospect to examine, not a promotion to pocket yet."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c159dff2b489e8debb6256738c5cb61d43b72ed2eab726aea37d9b0cbe239f2",
+  "recordedAt": "2026-10-05T20:08:07.474Z",
+  "sha256": "a1f264fbe45ba176e6e4525e74792fc16ed401a81f5b6f65794adfeabd4d5757",
+  "bytes": 23593,
+  "requestId": "hzGkH9Z12F5sTfbniWzw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c976c7d75eb5bd1babef9838751785086e541e9eef5a0a552bbcbbcfa26d557",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

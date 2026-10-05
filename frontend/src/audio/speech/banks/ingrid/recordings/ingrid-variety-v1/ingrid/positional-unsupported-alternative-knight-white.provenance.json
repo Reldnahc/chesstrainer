@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "The better move would leave White's knight without a defender. That alone wouldn't mean a lost knight."
+    },
+    "takeId": null
+  },
+  "requestHash": "d60bd71d4eb30e848129b37ec46fffb7503f6f16f3a21a43fb0f5a5a5431c34a",
+  "recordedAt": "2026-10-05T20:12:14.720Z",
+  "sha256": "b2804618c4b53c0b4b591d4ac9df59e9a0847d3ea7eff0046cf4914a581e8a8d",
+  "bytes": 19929,
+  "requestId": "3dLatwFBHzdUamvXDSs5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c14a5132e707a3a83fb10abe19c5f14cf863bd322cba36bcbe3a38ecd8570f1",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

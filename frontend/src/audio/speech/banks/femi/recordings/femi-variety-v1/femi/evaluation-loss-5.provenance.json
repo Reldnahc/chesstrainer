@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "evaluation-loss-5",
+      "label": "Evaluation loss 5",
+      "text": "The position comes out worse than it would with the best move. That's the difference to look at here."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f0319a78a1a2baf7b83103b2b9a6d4c386b1606d0963827ec73df1d5cf4111c",
+  "recordedAt": "2026-10-05T20:11:28.514Z",
+  "sha256": "9ff7ae67b9e3e5f1694f12e2b7276e64759e7526858766b62da9679b3acaa45e",
+  "bytes": 18714,
+  "requestId": "ApHRG9ZqsPKSLN37dP8H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db77877fa6e2262eb6b78b490b2df0b34bad6b12bf0363fd6dfda36679e7e398",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "White's bishop is no longer undefended."
+    },
+    "takeId": null
+  },
+  "requestHash": "e434ebe222a5c87a935c2678102d31695d750d8ff6f5927d39da6b6b40070fcf",
+  "recordedAt": "2026-10-05T20:11:43.383Z",
+  "sha256": "609cf5dc1a69b5ffd1a5f7de551551e1da26e78d1fbcb5fc8aa128a27cc02a62",
+  "bytes": 10298,
+  "requestId": "R5k7j9xkzoD2acLgAXfa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5e76881fa6c406012a38ef3115dcbbde80a0f78fcaa8d37608f6c29c5424ee4",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

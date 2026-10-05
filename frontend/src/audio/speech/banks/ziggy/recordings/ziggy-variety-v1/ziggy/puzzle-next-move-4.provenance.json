@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "puzzle-next-move-4",
+      "label": "Puzzle next move 4",
+      "text": "You found the right move here. The next part of the puzzle remains to be solved."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9a86699d6d94593661a383354aef32a1441a487d0f0e73abca098e7c3adf203",
+  "recordedAt": "2026-10-05T20:21:55.311Z",
+  "sha256": "586c1a1fa81b713b40c72a9d4c11f5384625bcd259cfaf68e5282c05dcd175a7",
+  "bytes": 15075,
+  "requestId": "dgf3OO5FCJflo9tdmD2G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2917537b754d1ec534fd693639d02e1550f4bbf434371b9bee0747750ab617cd",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

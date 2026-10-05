@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "A previously unmoved bishop leaves its home square. Development is the change to track."
+    },
+    "takeId": null
+  },
+  "requestHash": "80e7cc3c59ef8c91168b1a772a8b50449440867391a1d20472c7efd6805359df",
+  "recordedAt": "2026-10-05T20:05:29.554Z",
+  "sha256": "40542c0941a7ae22e97ee3be6418da1a08a8ebc137a54ee9bdfca091d7064533",
+  "bytes": 19286,
+  "requestId": "rMtJuWsM7duPttXcG5hh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fe2154d5e09886b0b01d61a91f638a59ef26d8614cf9fbb04fd27deca60bb30",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

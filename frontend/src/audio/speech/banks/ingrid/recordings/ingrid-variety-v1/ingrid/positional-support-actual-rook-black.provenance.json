@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook gains a defender. It no longer has to be counted as unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a036875b00c8f885f399f450275c5f8489109fc9bba6c1b2ceef171f6fff47d",
+  "recordedAt": "2026-10-05T20:12:13.515Z",
+  "sha256": "46c5ad5b1a653fc1554ef38ac2a25a2cd7220196a80dc096147adf62c0b50492",
+  "bytes": 17713,
+  "requestId": "cq7xBl5LuIr63NsG3sPb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ae9e5edd81c9f709d0bb8171e8b588821721b2e406f1f198c7f9160661fe884",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

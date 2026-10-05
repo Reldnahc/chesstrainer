@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-2",
+      "label": "Positional development alternative bishop 2",
+      "text": "The better move would've brought a bishop out from home for the first time. That's development."
+    },
+    "takeId": null
+  },
+  "requestHash": "75c3d6ac7f465005f8153fadc4cbdbaa6d80b4722f20578ed033074edb999194",
+  "recordedAt": "2026-10-05T20:05:41.489Z",
+  "sha256": "4b38e670bc9d5105d10b715432f19fcfabf0e516a824988dfbddb9e0d213ac1e",
+  "bytes": 17244,
+  "requestId": "tRjc44zjYKPFPjn9Ovhm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9252526be5ca668d55cb3d3224b4a029fb49a93c5f37fdc84ff25ff2c46f2e89",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

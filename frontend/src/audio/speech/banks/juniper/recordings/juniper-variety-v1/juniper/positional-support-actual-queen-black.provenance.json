@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-black",
+      "label": "Positional support actual queen black",
+      "text": "Black's queen is covered now. It wasn't, before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcaf106ae2370cd1f60b82b9769290cf701bd0b53b9ec50788642e599c1e76d9",
+  "recordedAt": "2026-10-05T20:13:30.816Z",
+  "sha256": "52e347504f8c8f5b9c749499cda1ed5fd750ea739db7de588b5f3b7bdec0880c",
+  "bytes": 14318,
+  "requestId": "psAWPS4PvRTbWyETwmUM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13d92ba3a5875f9b6f6f949bb11db3cd90b9b1a2ec060bdfebfb9351f9062dd2",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

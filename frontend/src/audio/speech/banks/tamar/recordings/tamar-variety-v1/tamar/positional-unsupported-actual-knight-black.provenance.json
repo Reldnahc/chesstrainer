@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight has lost all its defenders. Check whether the opponent can exploit it. Do not confuse unguarded with lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0fc2de64cab96c2f42439d690e93d780567bf5b3db9db46b7a7c353ac5db9a7",
+  "recordedAt": "2026-10-05T20:20:22.047Z",
+  "sha256": "530e360b4cd7b596ba54dc59d30a5bd38b1e54e24f9b89ee4b05ef7c7ce100ac",
+  "bytes": 26889,
+  "requestId": "jfLxGgK49ix2DCggE0CM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c671a349abf7fe12ec3da66c21c05df2268f0620a22043fc7b1822b4046fcc8c",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

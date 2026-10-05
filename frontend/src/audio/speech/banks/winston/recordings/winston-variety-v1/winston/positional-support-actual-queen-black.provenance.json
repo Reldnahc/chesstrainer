@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-black",
+      "label": "Positional support actual queen black",
+      "text": "Black's queen isn't undefended anymore. The move has brought it some support."
+    },
+    "takeId": null
+  },
+  "requestHash": "e310d597cb32f4ebc09f3b709eb06ae44e632cb8dfb7cc13c2f788f49a0a3995",
+  "recordedAt": "2026-10-05T20:05:42.205Z",
+  "sha256": "1fbeae7a83d07566ea8053d65f401a0a071a282b34371103b1bbed9ed79aa499",
+  "bytes": 15398,
+  "requestId": "zL2hC2fqg4e6VRCmm7s9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c231f40eb6519a4e0f06fa8bff4505275afa9910f925b5671402c33c6783a26e",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

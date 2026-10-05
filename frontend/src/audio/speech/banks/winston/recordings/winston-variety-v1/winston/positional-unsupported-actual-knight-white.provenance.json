@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "White's knight has no defenders left now. No need to call it lost just from that."
+    },
+    "takeId": null
+  },
+  "requestHash": "e35a79682dbf8cf21750ae2984cd8c7406e5c5f3e01943b15c422fa00a1e39d2",
+  "recordedAt": "2026-10-05T20:05:58.238Z",
+  "sha256": "a25c39da733ca8f5d668915a38b47f7fb1df755fed5773c0ef2f53cbc1f4f29c",
+  "bytes": 15970,
+  "requestId": "vTgpdbfyevniLCDJsGHi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fe66cd1f7303b2c50fa596dc0cda30fae1999f9d919e53d78e4f3a0279c5314",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

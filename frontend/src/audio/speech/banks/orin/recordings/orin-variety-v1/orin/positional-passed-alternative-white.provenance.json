@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "The alternative would have given White a passed pawn. Remember the distinction: passed does not mean beyond capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f4ed0768a051417ae226efbf44ac14710a1a03a8ec8083f8d1c536d5766e7e2",
+  "recordedAt": "2026-10-05T20:15:34.704Z",
+  "sha256": "e1f7f9e4814668e7813996af753ae8618e306926fa21559b7469c791f63625de",
+  "bytes": 26051,
+  "requestId": "pOywVsXl1Fi1HFBR7tuE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4c091abb250f9da94187d1b25e912f823a9f5e0c17d7d63eab410da4b00ce79",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

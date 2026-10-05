@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "This move leaves White's rook undefended. That is the observation; any capture needs checking."
+    },
+    "takeId": null
+  },
+  "requestHash": "966debe31d990e608368aa0cfdd819576552ef85f6ee0b5505b554ebdf9a4291",
+  "recordedAt": "2026-10-05T20:13:52.506Z",
+  "sha256": "6d5381b3918189b643099e9c3f3af5e517e20b5461ff16dbd8b875c144652f9b",
+  "bytes": 20670,
+  "requestId": "yKS1wAb9BDsFnjB372oV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "827b30871684be85f534ecb3e8d7079bb041d331a548054b3ab8696a1d6bdbb5",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

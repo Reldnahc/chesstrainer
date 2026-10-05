@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "Black's bishop had no defender. With the better move, that support would have been in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "b45a99034a444a715c5201dae9a7c4b754bf9f74c0e1d900eb3b52e413455f17",
+  "recordedAt": "2026-10-05T20:04:41.489Z",
+  "sha256": "daf756cefa314106670bc3f7bad123ab4d0cdf614d6fcda4bb0fefd4b9c2b702",
+  "bytes": 18476,
+  "requestId": "QoUUoJP9dWeNfqnQjdAx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8634ebd05c5e5a0d2f71b65b29b54af48a4a891b5280895155392eacd5ac380b",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

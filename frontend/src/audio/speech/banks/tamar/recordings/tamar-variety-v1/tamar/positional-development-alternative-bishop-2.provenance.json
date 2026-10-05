@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-2",
+      "label": "Positional development alternative bishop 2",
+      "text": "The better choice would have developed a bishop from its original square. Examine its placement in that position."
+    },
+    "takeId": null
+  },
+  "requestHash": "613a645b985a39becd2a45530d488b65d1835771b9ee5746d6fa5cf935b0d074",
+  "recordedAt": "2026-10-05T20:19:59.733Z",
+  "sha256": "22fc9fce7078e1261f97302a04ed3f5301511e702e1caa6b65013a5ca432e0a1",
+  "bytes": 20641,
+  "requestId": "ZSAoWcuuVRX0k1DTyS0n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb0153a57583aefcb972f99a9cdb4a2c1c0503bd2f1ffc86b7a4217bb1439310",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

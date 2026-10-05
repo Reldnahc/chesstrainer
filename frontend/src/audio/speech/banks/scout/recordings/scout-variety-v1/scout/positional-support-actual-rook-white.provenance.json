@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "White's rook is newly defended. Identify what now covers it before continuing the calculation."
+    },
+    "takeId": null
+  },
+  "requestHash": "d516a245567188fd5551847e3ed9a05b7f136a1013b2f4d40e43ca551461e10f",
+  "recordedAt": "2026-10-05T20:18:39.607Z",
+  "sha256": "58509503b3a5304633425979a2e9440b105cf9ec05faabe5f4a886942325750c",
+  "bytes": 19824,
+  "requestId": "ncr6HZ4J7SfjFvhCuEDO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31165ae084ba4f2f463ec4907e752b26fa2754ebb2c0e6b6fb76e9391478fc31",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

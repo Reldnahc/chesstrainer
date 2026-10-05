@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "The better candidate would leave White's knight without a defender. That deserves a look in the alternative too."
+    },
+    "takeId": null
+  },
+  "requestHash": "42960f79b04f309343190607851b48cb80349ae1ee8affded2963ee1efd05265",
+  "recordedAt": "2026-10-05T20:06:50.868Z",
+  "sha256": "7bd006104abbe708f889876da2c2e5624894d74b704827b0a53b9bd46956dce3",
+  "bytes": 20859,
+  "requestId": "QcoEnBkauuywnhuUkxVZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ad19c2129ae15ecce3591c39a1d56f266e8b5ff8338db6ee67083db35883b54",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

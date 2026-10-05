@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "White's knight has picked up a defender. It didn't have that help before; now it does."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4325e4f7a0956571ddcc7894967a9fc5b61f27d57dc0c4f2f8514bea75bc5f1",
+  "recordedAt": "2026-10-05T20:11:04.769Z",
+  "sha256": "eaf8067bd25b0dcde73b0be51adff1a37d2f7c65e02966b2f7c87a34a5cc6c92",
+  "bytes": 18326,
+  "requestId": "ORCdIaan3UFoOGaIjhwi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea094c830e87dba5b698a3a381a02ddc56d3b407a3fb8fb48c1f2f012fa79f62",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

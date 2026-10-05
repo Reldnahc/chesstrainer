@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-good-6",
+      "label": "Grade good 6",
+      "text": "A good move, short of best. No drama required."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9376b5126b317725300349fe769cb5d27f9a9a8e67974df56ae2e2de1a96369",
+  "recordedAt": "2026-10-05T20:10:55.600Z",
+  "sha256": "9fc4ce9d7f2eb11c04db02acece9f7c4e3fe70d4d58e39feb7b81e34643bbcf1",
+  "bytes": 13419,
+  "requestId": "dC1Kquipfv8Pv1GfiKi8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0d3d499cb5582844e568cb68a863fb961058ff66d6d1568918e61e2e61b1f61",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

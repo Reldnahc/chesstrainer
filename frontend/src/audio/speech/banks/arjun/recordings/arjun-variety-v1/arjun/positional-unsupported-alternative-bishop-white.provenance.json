@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "With another move, White's bishop would lose its last defender. Examine the resulting position before deciding what that costs."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9ce572730c5b97134badfc69ed407506793fedbbc14379b7e285516f6cfd659",
+  "recordedAt": "2026-10-05T20:06:55.104Z",
+  "sha256": "a713031581c3690831ca8f2a9882aab254c2bc177113c12e50d5a825e71a6270",
+  "bytes": 25634,
+  "requestId": "XwX6IBmtrr1eB4XV2sU9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c183d544f49499e8b38d3541f777e4e50616a67c0b30cd6b85aa9e2f82d937d8",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

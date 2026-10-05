@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-2",
+      "label": "Positional development actual bishop 2",
+      "text": "The bishop has made its first departure from home. Its starting square is behind it now."
+    },
+    "takeId": null
+  },
+  "requestHash": "f57969bc8f146f603db3ee32288f59949f5f5f3b14b6f5a8d5d98d41db6a0d58",
+  "recordedAt": "2026-10-05T20:06:37.202Z",
+  "sha256": "39446afc7d543d773f6e1e8b29316b1acf616bf93433e216729d6b822c9c95ee",
+  "bytes": 17492,
+  "requestId": "MqdXvUow58f3ijeVI7xN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb3f6fb13b9ca265a4b86557fbe5df918c2359b11124133229b940d54362c4f7",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

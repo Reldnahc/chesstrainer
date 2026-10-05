@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "With the better move, White's rook would have a semi-open file: no friendly pawns, but enemy pawns still there. Check that post!"
+    },
+    "takeId": null
+  },
+  "requestHash": "e10f7ca20125605d7aceab865963a07d1b4050caa4316aae38023e54f7d4b86f",
+  "recordedAt": "2026-10-05T20:21:03.043Z",
+  "sha256": "f616f7eda9afc0f0b69ffda62eb9d5cfc205c755f44c80ce764de90ae9abda50",
+  "bytes": 28589,
+  "requestId": "7nkhPxWUCKVJQWdT7OFf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1112ddf5b733344a5093a04d2ed5373202d26a029076d67e8c2d24fb6d86b2eb",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-3",
+      "label": "Positional development alternative bishop 3",
+      "text": "The other choice would start developing a bishop. It would leave its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "64677aac391f1331bb13966896b7708754bd7903102c1bf1ef4f7b9a0c7c3bf8",
+  "recordedAt": "2026-10-05T20:17:38.491Z",
+  "sha256": "a9ec0f6f6f4d007c835d4f9f363815d4e6c21fd58b5e529130feaf5053b8872d",
+  "bytes": 16726,
+  "requestId": "13naZj9iwqBxG2zh8mnB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "079580207f954c5656d9e9b5481c24917d209857ee150dfd7b313b7f51094f76",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

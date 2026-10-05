@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Big picture: Black has doubled pawns now. Pawns of the same color share a file."
+    },
+    "takeId": null
+  },
+  "requestHash": "f834b2c8c6f17a42c37ff4aefeb0e3a65eb9fbfe48be5a09e85f7cf34c18dc68",
+  "recordedAt": "2026-10-05T20:15:15.300Z",
+  "sha256": "d4177a6e76a6a4780d157d5afe14704ba6f50c7ca001000a02c83f4c3c1717e3",
+  "bytes": 19193,
+  "requestId": "sCjBMH10rWZW7NAB5svd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "906bae83aed37197d1c1c83ccab17f110cdf034ca956c9129d528de910bb85e1",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

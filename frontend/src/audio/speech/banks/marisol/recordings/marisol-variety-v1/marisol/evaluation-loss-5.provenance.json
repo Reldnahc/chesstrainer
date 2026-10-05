@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "evaluation-loss-5",
+      "label": "Evaluation loss 5",
+      "text": "The loss is relative to the stronger choice. This does not alone mean the position is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "58e6493a45b163b3c428c051e16673744b9322bf045c9624dff76fcf6e8af562",
+  "recordedAt": "2026-10-05T20:14:10.898Z",
+  "sha256": "ea31fcbcb00b30cc1c4d26b752169bc41f543547a94dcdf890777a7118c19b9c",
+  "bytes": 18896,
+  "requestId": "6QgbMTZagMtIcPKlt6sU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0841171224884edaf2a04625bf5a0a19bc303f219a757219a5fe115313a3cc5e",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

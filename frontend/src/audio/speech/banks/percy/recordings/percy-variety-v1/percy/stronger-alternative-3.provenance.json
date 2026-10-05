@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "stronger-alternative-3",
+      "label": "Stronger alternative 3",
+      "text": "The stronger move is worth trying on the board. Compare what each choice leaves behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "357e3bef3155ba7ea13eb115705159612655c90c6391e235498468986d578c22",
+  "recordedAt": "2026-10-05T20:16:18.160Z",
+  "sha256": "3923b0aca390071b1e74c31b2b0a65816d8b22b1bf555fff51113c409ba5b6e0",
+  "bytes": 16985,
+  "requestId": "AcYRGs8SIxZiq7gfJDOM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24b4846f3a895b379d9369ad1f835645547375ab9f194391c9565c237dce37f7",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

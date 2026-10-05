@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-white",
+      "label": "Positional unsupported alternative rook white",
+      "text": "White's rook would have become undefended with the better move. Its previous support would be gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "d43dde1dea764ffe43a893ae447a72c7d8b75a41b59c1e415884f72a4fae8ea3",
+  "recordedAt": "2026-10-05T20:04:36.001Z",
+  "sha256": "e94e0e129957f1ba4e8b5c1f511b4c106545b6ed4df3f671ac1b43fd64693387",
+  "bytes": 18473,
+  "requestId": "dogqrTQZljrdU2ZZx6qq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84b1a44cff325ef06825e02086fb0e507e9ad2eef57694af00ef13ad0afdb95c",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

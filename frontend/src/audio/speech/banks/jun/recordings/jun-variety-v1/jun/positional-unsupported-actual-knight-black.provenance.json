@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight loses all defending support. That does not establish a forced loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1086b678d602e4d8a7eef30667d4e7cf4abc338ff7bcc5c9458c92fb0b471d2",
+  "recordedAt": "2026-10-05T20:13:11.101Z",
+  "sha256": "daaeea61ce92f317fae14b97d97d12c78055ed03a7749cc58a46053ba6356028",
+  "bytes": 18936,
+  "requestId": "knqCDEUWrfKDGqmjVYLX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9abffc7ec083656866de3a52debee060800d6573fe1d652a78c1be763242d0c6",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

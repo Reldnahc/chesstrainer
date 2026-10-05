@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "The better move would have supplied the missing defender for White's bishop. Notice support as well as attacking chances."
+    },
+    "takeId": null
+  },
+  "requestHash": "3fc69e981165b960439fabe3c183137a556b2c74307ba420ce9fa3be65b31f08",
+  "recordedAt": "2026-10-05T20:20:07.450Z",
+  "sha256": "b5fad8d0eded1b15c5e24469b68c1021fe0c5efeba26611cc5e0cda3551f35e5",
+  "bytes": 22621,
+  "requestId": "OG8agCQZ5Jlk5MxdWLT7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0fefe31092164030fa8f58f12a272c7975c1fd1766808656dd09dd7962e5ee4",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

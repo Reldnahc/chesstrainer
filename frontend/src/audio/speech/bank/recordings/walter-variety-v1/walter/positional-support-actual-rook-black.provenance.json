@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook is no longer undefended. This move provides the support it was missing."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3b770deed8bf5935c23b8ee99f68a6c7ac09b660ce610e90fd60be998e5dcb6",
+  "recordedAt": "2026-10-05T20:04:29.870Z",
+  "sha256": "ef2c48833971d00d76dc127d67abd3ee652e3932fe1385128e5f0ec908cd31b5",
+  "bytes": 17920,
+  "requestId": "cQ69LCDONwM53vTPuVgn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "945c07a0ae3c5b4b28b25074d4e2ab517ace2f3cb705dd3efd98dd42ca911df3",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

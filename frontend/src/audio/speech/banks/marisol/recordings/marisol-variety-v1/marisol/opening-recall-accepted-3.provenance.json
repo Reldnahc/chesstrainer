@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "opening-recall-accepted-3",
+      "label": "Opening recall accepted 3",
+      "text": "Accepted. This is the move assigned to the studied opening position."
+    },
+    "takeId": null
+  },
+  "requestHash": "76ca487851e371b5e6346ce49431495577726b63e441f8453b7f287639cff685",
+  "recordedAt": "2026-10-05T20:14:12.400Z",
+  "sha256": "0528c3d70ae1c439661ea16840829fb64132b51fa38f39be8ac380a328a2fbd3",
+  "bytes": 14146,
+  "requestId": "RLP756TKRBkEAMWUBiOf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bc083dcb107afe4bc4ce39743d002f6d702c0bf38289693d08f991340b9f655",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

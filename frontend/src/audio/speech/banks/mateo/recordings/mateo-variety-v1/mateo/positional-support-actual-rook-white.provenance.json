@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "Oh, White's rook just got a defender! It was all alone before."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f840d98f61d190358fe52957a3258c5c66afc5f420897b445b1eeef62a508d4",
+  "recordedAt": "2026-10-05T20:14:31.578Z",
+  "sha256": "a53bcdc4994c860fe542213946e820306b842ba7b137a61b587aa06037a67a66",
+  "bytes": 14931,
+  "requestId": "GpllDVvZ1u1lMe4WAv0i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2836e3b69363e9330681593495dfd47f3afd4d2df20151c00eb422ef7eca0f2c",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "evaluation-loss-5",
+      "label": "Evaluation loss 5",
+      "text": "This choice leaves less than the best move would. Give that better option a proper inspection!"
+    },
+    "takeId": null
+  },
+  "requestHash": "b2645500ac2337f3d1a341ace4c8c7e20872dd896d722abb0be7f1eaa8ef413a",
+  "recordedAt": "2026-10-05T20:16:38.567Z",
+  "sha256": "a190fa926ebd5b9e641a8d2fee734668de5e0dd7f5f12794ec5b2e60a635237a",
+  "bytes": 18011,
+  "requestId": "8ow0A2ezR9nNeFPpbVBE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69b8cc5cf46b4415f219d9ec69441046e4ecf969912e434e604a72bf6fc620c5",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

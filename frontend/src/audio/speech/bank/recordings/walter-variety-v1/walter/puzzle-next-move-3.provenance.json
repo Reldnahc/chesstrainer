@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "puzzle-next-move-3",
+      "label": "Puzzle next move 3",
+      "text": "You have this move right. There's more of the puzzle to work through."
+    },
+    "takeId": null
+  },
+  "requestHash": "b766f7a91c0b0433df44b810e8993b66723c46f6f528859567f6b2d92cc13a1d",
+  "recordedAt": "2026-10-05T20:04:36.273Z",
+  "sha256": "2351a303d1288eb295e86594aac2952602468afbde99345e0b84fb0798dcd5cb",
+  "bytes": 12760,
+  "requestId": "Sc6MHU38wK9KHb7ehKB7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ce4a34b26b1af168397cc4bfedd8b74143799a418dce8557fd263c20cbcc1b1",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

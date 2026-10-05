@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "The opponent's last move offered a chance, and you turned it into something. This is the response to remember."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6604046f49da6ca8d13cf83ef94b3fb2161dd04f2d1a8bc21d3c2c0451b78ab",
+  "recordedAt": "2026-10-05T20:04:50.697Z",
+  "sha256": "6fbff97cf284587c1249df4819974dbf2c119b7213f0a602a21b93119a904c20",
+  "bytes": 22660,
+  "requestId": "0qgsyxTlfz4VqslXgV1G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb02689428c1e84e396eb26209191895346e6ca1970711f408f187cc1cc82449",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

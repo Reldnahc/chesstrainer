@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "The previous error created an opportunity. Your move uses it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b660870a2c6066c2b7f89e438723c4207c46ab7528bcb36df7e89894b543490",
+  "recordedAt": "2026-10-05T20:13:12.830Z",
+  "sha256": "2e583b58273341f5c6f9ed925d56aa207dbf6c90b340b2cfc1aa0b51894553fe",
+  "bytes": 14897,
+  "requestId": "jySIIBkckvgikGKAjkFK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a3de61537ebecd2e425966fd12eaa4ceb434df117a3a1d5e7e6bd341cae9535",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "The alternative would have supplied the guard Black's bishop lacked. Someone would have been covering it."
+    },
+    "takeId": null
+  },
+  "requestHash": "08ddf485aab8fc475328362cd63cdfaaad0222b357752c5b9b91f3f81aabcdfc",
+  "recordedAt": "2026-10-05T20:16:31.656Z",
+  "sha256": "920627231639c23e5b7a3a07e9312c3d45878807206822907d8885740a514f15",
+  "bytes": 18486,
+  "requestId": "y4MCzB5rxtg6HS6dHvkF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eda14d401d6059b47cd68334686df9753150ce2f01a16ef99c2feab27fe4f00c",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

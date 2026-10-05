@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "The better move would have woven in some support for Black's undefended knight. It would have had a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "42ecfd0f120324aee91d262b6035e678442db45c27e7fea7205dc730f2e66310",
+  "recordedAt": "2026-10-05T20:06:21.001Z",
+  "sha256": "7ccc5cf996b9ccc57cc44ab66f431cf050a676286cfd19735b84650387b790f8",
+  "bytes": 20632,
+  "requestId": "57nOsSX31iYycvlAZM8v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8054a837715a15a830650c49622fd30cb27aa8fcfec86ee423d574e063912fd4",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

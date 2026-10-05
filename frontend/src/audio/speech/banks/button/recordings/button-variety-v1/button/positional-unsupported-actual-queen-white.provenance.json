@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen stands without a defender now. That is a missing connection, not a promise of capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c64bca9f25a02c561f55b22b7cc7229c1aaf03deabadc6bf1a29294c5572c0b",
+  "recordedAt": "2026-10-05T20:06:10.180Z",
+  "sha256": "68b4fbe504a0b9415a8d086a239014f9f8f8ca951811b32d38cff17c80e5d8ad",
+  "bytes": 21114,
+  "requestId": "HrhPlINoWStwrqWzADcT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f826acb8bbd7c85cc2ac60901edb69fd1a987099cf5110b9d0e7a23a29cb3694",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

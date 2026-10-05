@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-white",
+      "label": "Positional unsupported actual bishop white",
+      "text": "White's bishop no longer has a guard. That is a clue to investigate, not proof it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "fcd6b209edf63a78774a284a3485d09831a397dde43a50213e76eca10f2444a3",
+  "recordedAt": "2026-10-05T20:19:43.661Z",
+  "sha256": "e548033996f5a07dac13510721eacd17eb2d6462b58c6a0bb9e3ecd6ba33a46c",
+  "bytes": 21484,
+  "requestId": "I8ZY4RLQvN6zH6eDpL2t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "059d6c1e9c7f561fbe5a36bea302dfe6355f64088fde46ecec3023196ed2635d",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "A knight's first move. Development."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa9b800c9750ad49a56c5f9ecfd32b1b85a0eea9f065d387f2802c63288bb260",
+  "recordedAt": "2026-10-05T20:11:58.666Z",
+  "sha256": "76e3f29a1e33e5483c6d1920c89a861d0a5e65dc1937d0adb3e8848203218c2d",
+  "bytes": 9953,
+  "requestId": "ERXqAvqZAsZEe38hu4Uu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "018fedb1f0471094225689067d83f7d994b31df8c0193acc4997829d56d21e72",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

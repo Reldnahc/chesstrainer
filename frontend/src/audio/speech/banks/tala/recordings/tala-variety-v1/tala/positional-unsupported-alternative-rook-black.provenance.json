@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "The better move would leave Black's rook without protection. Could anything actually take it? That needs checking too."
+    },
+    "takeId": null
+  },
+  "requestHash": "151fc0e7bb3b32a288402eac73a4f0562a7358b51c3ad10cfdb792c2b657f996",
+  "recordedAt": "2026-10-05T20:19:29.098Z",
+  "sha256": "8d3d37eab29fdf65bbcf6ddf0337bfa36c9e4d07ca75ea19bf3405d395b85911",
+  "bytes": 23178,
+  "requestId": "2p2XSEldKEQndes8P8A4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9aeb9a0f7d54995faa7de1510c3b7eee0e68c953ca2f77561c1f63a8ab0ddeef",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "White's rook is no longer without support. It has gained a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "056ec3d8d82ff94da499802dd30f127d0d17f47838a7380b7bcffe82b4df92df",
+  "recordedAt": "2026-10-05T20:06:11.687Z",
+  "sha256": "053eb185efaf5759c7b49c4666d7fbf4e333ca593a3c8879ed90bcf8e2bda9e9",
+  "bytes": 14958,
+  "requestId": "jfetUfhe8IbDt5psQewV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9731da81d550ea478f125e4847239095b568b5a82a53013365ebf96e1071160",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "Black's rook would become undefended after the better move. A stronger choice can still include that detail."
+    },
+    "takeId": null
+  },
+  "requestHash": "46ffee1163b734e59de0a2c3f160d45a3b01b8db7bef7b1a88734c2dee6569b5",
+  "recordedAt": "2026-10-05T20:07:01.184Z",
+  "sha256": "07c1673c12e644425f9dd2c79cc520653f95168d0e1762f8ca8ba6f5e74ac9e6",
+  "bytes": 21465,
+  "requestId": "JcCzlzpO2tb8nCR7wBTc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39db026b275ba6d07e2afee524ac753218d1a7f9a2e6984d77349dfa267a5079",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

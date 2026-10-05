@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "The better move would have left Black's queen undefended. Include that fact, then verify what the opponent could do."
+    },
+    "takeId": null
+  },
+  "requestHash": "85699a1a328ed73d75fbdf25b881d9d049c8a37d5d9c15afdc66c53f65c27caa",
+  "recordedAt": "2026-10-05T20:20:13.721Z",
+  "sha256": "b0f5981e5c463c693fd5df569740f72b44ff0f3e8345969446c3e0b0cd386949",
+  "bytes": 23120,
+  "requestId": "uUPVchkoYsFFzeMDKmv4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "270edbd26817aef5a057e0811af3bd03e01be661d4d1d731c1996776c77e95e9",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

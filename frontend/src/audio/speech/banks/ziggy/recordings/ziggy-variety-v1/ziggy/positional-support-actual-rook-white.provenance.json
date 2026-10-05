@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "White's rook has acquired something it cannot provide for itself: a defender. It had none before."
+    },
+    "takeId": null
+  },
+  "requestHash": "b34b3782129e8e8ca10e859891599e107d8c05cf62e0d26d4fe65ee85d923a4c",
+  "recordedAt": "2026-10-05T20:21:41.165Z",
+  "sha256": "19919c20ba56495ec723279ac2c8c423467b282802008d1a8f2a8e3654296513",
+  "bytes": 20639,
+  "requestId": "mp26f5vTkmSIiPsABtjq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "582fc4eb34544adc0c40f91211b066e2f6405a4cac692669234f64f9f19fd7d1",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

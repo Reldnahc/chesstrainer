@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "White's rook has a guard now. That was missing before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c5d265e679cf19c04d8b53531f101391109da9108cb18fdb1b0375efb4362c8",
+  "recordedAt": "2026-10-05T20:15:03.813Z",
+  "sha256": "cb3fee046b39363c71bbb96f827fe95ab82875c18b159094f1d27f68cf10ab4a",
+  "bytes": 13884,
+  "requestId": "WzyYnrPzq2oACfbUFqQg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ab4480ea4a4b8e3dc7946b620adf9532a933d816af9e8b2396def283beba8e0",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

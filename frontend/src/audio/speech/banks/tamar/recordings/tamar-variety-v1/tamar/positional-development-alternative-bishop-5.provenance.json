@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "Bishop development belonged to the stronger option. It would have been the bishop's first move from its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "185f2af9e3947e6dd05f918d7c496a4944d0842949bff8b8f68cc1296dedda73",
+  "recordedAt": "2026-10-05T20:20:05.786Z",
+  "sha256": "6babb01458e470256e6dc81c53bdea2aa7bf482d0c11a4f9a0ba045fd51bf66a",
+  "bytes": 20929,
+  "requestId": "SjpbgUhP422HHFXYKh4o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "426ba6320318aed3901fd078e395896ab6f1ffd1b83fdb6aab88e42e546c2871",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

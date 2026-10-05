@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen has lost its final defender. Exposed, yes, though exposure alone decides nothing."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba0385de4d883190fa9601498b9873c8e5822aa57b8b470417f0ff715b3c7ff5",
+  "recordedAt": "2026-10-05T20:09:22.644Z",
+  "sha256": "3cff23f354c29fbb655a9f4b6d54cc44f300190bc36e8c7f62c40b0676a10b1c",
+  "bytes": 24742,
+  "requestId": "1Vv7NAhlkzqvdhLU1TMT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "541ae5819ee5c549d77d1da7f83bc56d9880f27bc5f33adb0fbfc7ffb70f8fb0",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

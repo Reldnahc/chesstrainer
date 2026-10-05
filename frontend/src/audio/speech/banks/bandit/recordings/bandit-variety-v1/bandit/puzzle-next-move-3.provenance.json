@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "puzzle-next-move-3",
+      "label": "Puzzle next move 3",
+      "text": "Got that part. Now find the next move in the puzzle."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8a2e92ef10c3f43f510a2606a7609119422e2a525b62a0d3d33f84c3c067e63",
+  "recordedAt": "2026-10-05T20:08:22.514Z",
+  "sha256": "1a7e812b1ed2ef384449de9914e2411c0e67b2b13a2ef433c1780f049edd2e6e",
+  "bytes": 11593,
+  "requestId": "ZQaKQubj2I5ursIdomjL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a040ed0950db5dc5833200c55d39480a760da1a813d36c4e6966cb99bedcd4f",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

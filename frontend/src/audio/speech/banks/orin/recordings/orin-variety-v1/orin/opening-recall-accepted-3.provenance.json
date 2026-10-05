@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "opening-recall-accepted-3",
+      "label": "Opening recall accepted 3",
+      "text": "Indeed, that move belongs to the repertoire passage at hand."
+    },
+    "takeId": null
+  },
+  "requestHash": "c782406a164b390d0f0a16fa50780aa2232e0df563be957b596272148ad06829",
+  "recordedAt": "2026-10-05T20:15:57.409Z",
+  "sha256": "f846b8d143deb30cbbfa61953f5cf03b040dfd8e8e960b0bce3cbf35dab635b9",
+  "bytes": 13910,
+  "requestId": "rh8eozfrVj9ONFRPWzBF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80906c6de57c253b4cf8132793eec5b6e8c44d5ac67d6bf05eddf8e8ba6275ca",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

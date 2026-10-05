@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-black",
+      "label": "Positional support actual knight black",
+      "text": "Black's knight has a defender now. Previously, it had none. Useful distinction."
+    },
+    "takeId": null
+  },
+  "requestHash": "67baaa6818861fc650a6d2472347df94bfd3e68ca79814d0115e77808d9bba2a",
+  "recordedAt": "2026-10-05T20:10:34.052Z",
+  "sha256": "9e4a4212f937cc7b5983bef18ed1ba13e14de7dddf33013a060d04d87a31857a",
+  "bytes": 19127,
+  "requestId": "NKamj681X8pzfYbCIWwZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9bed0b4432ef5a7aff9b2623893b94de438ada6bc2c6330cf5212279c46a12d6",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

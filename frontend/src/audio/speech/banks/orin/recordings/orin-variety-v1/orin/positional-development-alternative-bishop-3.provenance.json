@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-3",
+      "label": "Positional development alternative bishop 3",
+      "text": "The better move would have settled an old opening matter: this bishop would have left home for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf3715956f1e6318373f29df2cc90b98663097165b232ab9e0f4d4bf0ecef547",
+  "recordedAt": "2026-10-05T20:15:47.365Z",
+  "sha256": "1d9f30e22c3966bf8c68ed3064d128a58e9f0775db7df1413c9dc44127f55858",
+  "bytes": 22438,
+  "requestId": "T9UbnXTJF28Np9L9N7jQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69caa78a79654d60db590d85388238757bd011c0b4894c8947ec6e7dd7ae7d58",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

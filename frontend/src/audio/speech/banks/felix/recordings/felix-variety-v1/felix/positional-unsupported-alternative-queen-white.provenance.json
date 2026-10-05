@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "White's queen would have lost its last guard with the better move. Even the better choice has details to count."
+    },
+    "takeId": null
+  },
+  "requestHash": "41bb5c2b6808daa66d7b9c83bdd1c8e83c83f238020fa416970c615c99932735",
+  "recordedAt": "2026-10-05T20:10:52.277Z",
+  "sha256": "7a816e7b96230ca3a730778bba40555c1287b592f8b501f8928b05398e055b7c",
+  "bytes": 22820,
+  "requestId": "XW3riAQ9AdqO4YXHjzqx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35e9cd1d2ae477aced09f4f1091aed39b817c51664b663af4c715bfc19f312e8",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

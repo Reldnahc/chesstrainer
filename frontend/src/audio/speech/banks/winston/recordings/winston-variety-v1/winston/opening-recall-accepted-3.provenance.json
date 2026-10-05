@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "opening-recall-accepted-3",
+      "label": "Opening recall accepted 3",
+      "text": "Yes, you've matched the move in your repertoire."
+    },
+    "takeId": null
+  },
+  "requestHash": "8dd8bb3980ee4783425b7743433f9f752bc470ecf67f3d5f2319016dbab44234",
+  "recordedAt": "2026-10-05T20:05:53.594Z",
+  "sha256": "23b54fdb86199a64ef14177bfbad1503c63f57472a1b09f1999daa688c30aac1",
+  "bytes": 9868,
+  "requestId": "dn2U6UjRwwPn9wQEGSS8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b89845caa142a99551edb01bd48511d55c1e2e51d2d5e4024e14196fa3fc89c",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

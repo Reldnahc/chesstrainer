@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black has a passed pawn now. No white pawn is ahead of it on its file or the files beside it."
+    },
+    "takeId": null
+  },
+  "requestHash": "706eec189ccfa1a735a0b200b6372d2acd55e72b8a8b7ea878eaabbd147ebfe4",
+  "recordedAt": "2026-10-05T20:05:29.626Z",
+  "sha256": "72ec8333769167757d2bd778da0e7878313225e8bf31133c3a85ba460a41aec5",
+  "bytes": 19337,
+  "requestId": "zAzvV5wjOQZQVnkra22H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab46e0ab2856293d1ce56a39cffd01dce2658d1291fc44ebe40460c9e3047786",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

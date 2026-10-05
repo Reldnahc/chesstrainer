@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "Another move would have developed a bishop. First time off its square."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ff5a27dce868699efbbb9e654ffb24c88dd0a5979cfc55e12a6fcd78f199444",
+  "recordedAt": "2026-10-05T20:15:11.851Z",
+  "sha256": "5ac7fc4f761699bcb7abc4033122ec345e3dd2b082b2efccc5d520202aa9ad2b",
+  "bytes": 13911,
+  "requestId": "IRPrWtTI5VOw8WObzK1g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "316b9a8a896a9b65e8025058eb7970ea2b49fbf5d94fe63dbc6d8a58f90cbba7",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

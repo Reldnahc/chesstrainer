@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-3",
+      "label": "Positional development alternative bishop 3",
+      "text": "The better move would be this bishop's first departure from home. Worth a look."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb86f1f03520bdb637145a46721ef9dc23952748fbdd34d72ba6a176f2fc1b2d",
+  "recordedAt": "2026-10-05T20:13:28.944Z",
+  "sha256": "314d51215a4704545844e2d682c322cb6aef5d21579a6aafb6cafca1feb0f24d",
+  "bytes": 16130,
+  "requestId": "ss5Dc1LgALjbyTcn5ksl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dfa93af1cbc38465aa1f074e2019c4bdd76bfff3fc421a052f14a2a5d628bdc",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

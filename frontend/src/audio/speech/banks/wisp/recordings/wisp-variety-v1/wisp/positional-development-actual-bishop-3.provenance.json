@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "A bishop begins its movement through the game, leaving its original square for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "816438950bbfae6c68e0f589d5f8d0c48ce9ae8fd846c2cf900b1ce2910f146c",
+  "recordedAt": "2026-10-05T20:21:32.942Z",
+  "sha256": "fd7791fae1fc01a3570602aaaf7bc9a16eb9bb13f4de516c3a3fb016e26a7402",
+  "bytes": 18515,
+  "requestId": "c0wlyf6S6GXBV7xBqIPx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc06e3724bc42a72599cff7d88c19c145ff7b18881c576758cd06c0b94908e1d",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

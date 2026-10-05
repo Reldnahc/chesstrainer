@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-4",
+      "label": "Positional development actual bishop 4",
+      "text": "The bishop has left its starting place for the first time. A change to notice."
+    },
+    "takeId": null
+  },
+  "requestHash": "85da6af3c2935f00aa586995e29b441a3cd3347974786ceb3c1b3a97fa4b0031",
+  "recordedAt": "2026-10-05T20:13:48.474Z",
+  "sha256": "d858475541e18e2aa6c1fa082891327320dfdaafa415e905a332037a6ab189ed",
+  "bytes": 17301,
+  "requestId": "dw6e8UhL4bxI5F9RqfpV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3098b9955c1ff8ec7dc12bb5becb700574a0ce809a9eb0e27ba2e0f17f24daf6",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

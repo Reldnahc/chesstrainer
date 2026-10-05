@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "Watch White's rook: it was undefended, and now it has support."
+    },
+    "takeId": null
+  },
+  "requestHash": "97d705fcbc26b7d6acd4ba4184082b99ae4895e6bd89a52b25af36ca63ec0325",
+  "recordedAt": "2026-10-05T20:18:05.815Z",
+  "sha256": "be031bc617631f01872ce6fc9f91b3bbe01d4cf2941860fdca9ef4bec4a8fb5e",
+  "bytes": 15059,
+  "requestId": "23lLoOTdXIN4kmsGQywG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d64921e9535107b07cc889a2a922b90c4b4d2c65807d1c9aa34cd8ed4174c215",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

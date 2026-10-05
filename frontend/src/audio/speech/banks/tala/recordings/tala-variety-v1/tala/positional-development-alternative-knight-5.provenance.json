@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "The knight could have left its starting spot with the better move. That first departure was the development idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b15ad7913c7f7a909572ec4fe1fae12113fbcd56fa6b41f70ec318354b6646d",
+  "recordedAt": "2026-10-05T20:19:16.866Z",
+  "sha256": "0c329b3014f0a79e2a6929eaf4c5a765ab4b755f0603a19082b7ceb57c99f759",
+  "bytes": 20962,
+  "requestId": "p72Pohb6LAMcN1z3h0I5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ae41de7337b9242ecb592b390429673cd15c4f0f4e0a2d2a8483d3498e1b1c7",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

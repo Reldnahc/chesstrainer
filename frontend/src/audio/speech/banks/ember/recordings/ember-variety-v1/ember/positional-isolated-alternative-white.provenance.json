@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "With the better move, White would have an isolated pawn. Stronger play does not always mean a tidier pawn structure."
+    },
+    "takeId": null
+  },
+  "requestHash": "1072b06e5d5607ac70bd8aeca76479aacae27feff8bc163c8c0753d1bf2f71ff",
+  "recordedAt": "2026-10-05T20:10:04.092Z",
+  "sha256": "7eb21d400321e66f9aec41267352f62d43139a1cb134446877ab3539c41ce909",
+  "bytes": 23787,
+  "requestId": "2pSTjeKrdue0HWls0eBZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41e000d4178076ad5bb827870d6bdf646756e019d3b54d872f480fbf7ea9c158",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

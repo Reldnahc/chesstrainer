@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-black",
+      "label": "Positional rook open alternative black",
+      "text": "The better move would have put Black's rook on an open file. Pawnless, yes; automatically a way in, no."
+    },
+    "takeId": null
+  },
+  "requestHash": "baaeb7ec16430ce82de84e7467b3cb44a9f3119a79415216395ccee9c2da67ae",
+  "recordedAt": "2026-10-05T20:11:33.096Z",
+  "sha256": "cc9153f59855bcb9ec963e48c4f1f1ba3f1456a30b17d600c2f9116536e5e506",
+  "bytes": 25003,
+  "requestId": "NZG865PdtdLSFosNKK7H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d2d39a1e12b07176019f383fe22f43b718f530fbc1fc73a521b8fcac3090dfd",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

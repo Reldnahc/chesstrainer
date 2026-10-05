@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-white",
+      "label": "Positional support alternative queen white",
+      "text": "The better move held a defender for White's queen, which had none. Worth noticing what that would mend."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a79fe257b2af3974370bafcd9e4a1833d986b4f292416310e30bfafdb7213b5",
+  "recordedAt": "2026-10-05T20:09:44.622Z",
+  "sha256": "7ff3f123d6b7b1febbd48502f93a2d86261ee1ba72c84abe8821701d9abd9fc8",
+  "bytes": 21986,
+  "requestId": "TlOpofxPq5XPMsQRllxp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e51d286061d8792fdff2eeba1f25b5b975e4c4c98114a5ac30fa71a215c52f2",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

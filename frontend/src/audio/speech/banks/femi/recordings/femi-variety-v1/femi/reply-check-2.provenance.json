@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The strongest reply gives check here. So the king's the immediate business to deal with."
+    },
+    "takeId": null
+  },
+  "requestHash": "58110bd275d70e1098edec10cc37c63f3123c834beb68ee68b9ce4af15c71831",
+  "recordedAt": "2026-10-05T20:11:16.385Z",
+  "sha256": "16deba003dc78be3feb3514af308f136f93e3d087660d7860b2ab1af23490462",
+  "bytes": 18850,
+  "requestId": "7qmYFfJX85ueIUX7axiT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c286ff0b68cd6399165092224735165074c40ba20fa07bbdb8ee48ded55830d",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

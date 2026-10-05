@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black's pawns are doubled now: friendly pawns sharing a file. Check the formation before judging it!"
+    },
+    "takeId": null
+  },
+  "requestHash": "853dc89c202526c48ae84322f4e49e1d50dfd60afa203af21ca315e96da49ff7",
+  "recordedAt": "2026-10-05T20:20:43.535Z",
+  "sha256": "4df5be8ae5792e37feacc7d39da05ea62c763e06a709f90f3dd273024f73b0ac",
+  "bytes": 22140,
+  "requestId": "uAh3gjup9yrenmOBj8X4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "208bafcbc468572919cdf584d2c463e4306f22aba62b2d31f652d0a3c91b44cb",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

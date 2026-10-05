@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-black",
+      "label": "Positional unsupported actual bishop black",
+      "text": "Black's bishop is no longer defended. Mark the broken connection and test whether it matters tactically."
+    },
+    "takeId": null
+  },
+  "requestHash": "d73008e0a16d8770b84d23309eadb4bf6e42d7a5abce6de29ba8b705d00b653e",
+  "recordedAt": "2026-10-05T20:19:06.594Z",
+  "sha256": "440be85a140bc2662be2c7993216b7759cfb3f8d5c354551ec6a8c75c04bd4c8",
+  "bytes": 20388,
+  "requestId": "wo7uO7JDpEpZ1jubCHKU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13f424a3db6202434974d1d7a7e06bf7fc2e143c9f55fa509482ecd18d6a7faf",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

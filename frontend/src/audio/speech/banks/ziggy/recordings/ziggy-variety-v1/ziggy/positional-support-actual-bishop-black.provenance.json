@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-black",
+      "label": "Positional support actual bishop black",
+      "text": "What changed for Black's bishop is a relationship: it now has a defender where it had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "833b555138bc7505eb3ad2b5817431af5f9778eaa8aa7fd6b5709604db0d99b3",
+  "recordedAt": "2026-10-05T20:21:39.347Z",
+  "sha256": "ef6fbbe72611429c623fcd913e7b87038768c1f54a066569915c52c4df0bc0be",
+  "bytes": 18850,
+  "requestId": "3rlmv2DHTpwJWLiQkuin",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6204e6e3007592ad7d4d471fca98741052de4629e333a8c2d0a29b9d82c3eb3d",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

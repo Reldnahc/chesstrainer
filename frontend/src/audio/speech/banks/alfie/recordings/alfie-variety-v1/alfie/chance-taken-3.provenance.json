@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "Their last move offered an opportunity, and you acted on it. That's successful punishment of the error."
+    },
+    "takeId": null
+  },
+  "requestHash": "7536d491e1ccd6847df924972f49eb75314c27ee2085b12d67f2bb3b4fb409a9",
+  "recordedAt": "2026-10-05T20:07:58.119Z",
+  "sha256": "c1757d1d7dfb2ce2d8886cb215e7133fab91c55b0d430c3e832121ee965005b8",
+  "bytes": 20561,
+  "requestId": "ITAfdtw1J3ygVSwJA8s6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2af46d4bf624ad629b1d7064f6686477ae8719da601a7cc5c35563d7a62589f1",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

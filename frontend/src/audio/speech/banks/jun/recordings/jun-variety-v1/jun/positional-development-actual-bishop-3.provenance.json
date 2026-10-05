@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "Bishop development begins with this first move."
+    },
+    "takeId": null
+  },
+  "requestHash": "084fc978f2fd5735c81c20af397760b80565ba60e487d2a2d85fec5b21e7be9d",
+  "recordedAt": "2026-10-05T20:13:14.764Z",
+  "sha256": "e8d9ebcb9c8ce239c1f8774218802c8c44d32838037a7f5ba0be379341f37749",
+  "bytes": 10657,
+  "requestId": "KUAPfZ0hlS6EFdOUj5ar",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58bea4ef5855f61a8bc84c168a222ab1f3d54b8e7bf324c699e8cd75e1368e01",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

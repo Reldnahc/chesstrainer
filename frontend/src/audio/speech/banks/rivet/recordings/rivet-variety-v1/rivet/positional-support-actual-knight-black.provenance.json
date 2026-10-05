@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-black",
+      "label": "Positional support actual knight black",
+      "text": "Black's knight changes from undefended to defended. Support acquired."
+    },
+    "takeId": null
+  },
+  "requestHash": "aea39d1109d4bed75bb2a1cf7248fa5bc3ca91368b8534d5bd96b2058c4ba0ff",
+  "recordedAt": "2026-10-05T20:04:59.101Z",
+  "sha256": "a1aaf306a5a2f67936cf6378b1cdc35fbdd2c4631cc5544983da8740edae7ae5",
+  "bytes": 15999,
+  "requestId": "A7k0vHH2VNsGygtBUfVm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "050643ddad770f243bc8a5dcc19962ede39f23db5d296a61713a26f16df01178",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

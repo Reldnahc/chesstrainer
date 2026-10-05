@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "The other side has an immediate capture. Availability first; the value of the exchange is another question."
+    },
+    "takeId": null
+  },
+  "requestHash": "a391c845aa685ca6ce93875c212105aea797a38009a567632881596034023220",
+  "recordedAt": "2026-10-05T20:22:00.606Z",
+  "sha256": "b5cbce01c31d5afc75a8638290c71fe773b10eca51ab930503a7f3c66a4c672b",
+  "bytes": 22677,
+  "requestId": "TYJ635ZLVZ70rWTT543L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a66881daf2a5a49825da76173dc2a04ce0deffa75a9cea5303e2f1dbef28fcd",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

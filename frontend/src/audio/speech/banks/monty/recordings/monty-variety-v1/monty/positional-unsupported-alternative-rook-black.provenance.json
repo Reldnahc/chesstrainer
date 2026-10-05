@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "A different move would have left Black's rook unguarded. No defender, not necessarily a winning capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "9070fc51011658541acbfaf8adf0ebb8e507d09446e49d8bee0a1177fc6759b5",
+  "recordedAt": "2026-10-05T20:15:17.091Z",
+  "sha256": "37ba486cf38f23b1ad5b96e243d6b9c6a4a654787b616cf53591d99d5d8bf69a",
+  "bytes": 21500,
+  "requestId": "x6y88honvODeOw5uKtUy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e1773fcaa02a03ad4842e25633c7c0c407a7f039655775f067d7e29f43627109",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

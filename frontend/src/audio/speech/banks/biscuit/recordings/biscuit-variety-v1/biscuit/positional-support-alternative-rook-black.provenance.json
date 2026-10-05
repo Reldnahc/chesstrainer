@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-black",
+      "label": "Positional support alternative rook black",
+      "text": "Oh, with the better move, something would be guarding Black's rook! It had no defender before."
+    },
+    "takeId": null
+  },
+  "requestHash": "42df5141b454fe3e4a219911b1dc5d767119dcb0a2447f1cdf60ef0bc526caa6",
+  "recordedAt": "2026-10-05T20:09:02.993Z",
+  "sha256": "c03f985249dd6374412778c4715f971a6fc0d4f17d37ff524ad118d08ba5e1b6",
+  "bytes": 19662,
+  "requestId": "ZS6hHN2ToFKI5dqZQSBk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09b8133710dbb91645046f57f5b9254afbea09da30ed1c34726d3603c4c41b27",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

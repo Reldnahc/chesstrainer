@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The strongest answer brings the king into the conversation: check."
+    },
+    "takeId": null
+  },
+  "requestHash": "307136feab6e6f3303381b374d385830bb5c1ac62b1fed2e4f1edfd878fd809b",
+  "recordedAt": "2026-10-05T20:06:15.027Z",
+  "sha256": "3950af47a4909dcfe12fe7d52f4464c800838b31782b7f2527cf7d4e29924f3e",
+  "bytes": 14046,
+  "requestId": "rUtCij4a6yN90PHYMzMP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ea34c6ddfe1bb74e7653a3ed15bdb8b037a06de55130e09e59bf6852901c4af",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

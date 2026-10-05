@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "The better move would have given White a passed pawn. Enemy pawns would no longer stand ahead on its file or the neighboring files."
+    },
+    "takeId": null
+  },
+  "requestHash": "3012e4b8cb757560612603e8b9d62164ab6ae30fa8435a5f753d52cfe8dd1749",
+  "recordedAt": "2026-10-05T20:04:25.866Z",
+  "sha256": "7f3ded68ae79d97281adf9569c1f693b11ee1baaab06457aa8e4fc040991a7bb",
+  "bytes": 25235,
+  "requestId": "PZwI3THhZ6cGL1XogUTl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fbcb3199db6a0b5c69302a1d6291975709a12293ec9737c041b8d4b389e0cf3",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

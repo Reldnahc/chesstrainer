@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-passed-actual-white",
+      "label": "Positional passed actual white",
+      "text": "White gains a passed pawn. Defining condition: no enemy pawn ahead on its file or adjacent files."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f097cbe741623c5649de6847d9add7a1a1d9fb2f64b9f2b1dd24adc45bbf0ef",
+  "recordedAt": "2026-10-05T20:04:50.394Z",
+  "sha256": "995285061b21c128d1d247b027c2c824fa1a9c0e7317ee8159689c06029fa032",
+  "bytes": 22937,
+  "requestId": "OefKqul4x57vpwaTF6Xl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "54db42d372335ac304f512814e2159ef667c72d381e0290c9e5265ca70511942",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

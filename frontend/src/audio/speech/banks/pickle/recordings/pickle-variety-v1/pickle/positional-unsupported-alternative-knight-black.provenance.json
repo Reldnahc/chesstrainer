@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "A curious twist: the better move would leave Black's knight without any defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "baee2e45e2f3c34ecaa7c22a27c7bedb5eabd1e64b46daebe0022df443f3a24f",
+  "recordedAt": "2026-10-05T20:17:03.097Z",
+  "sha256": "1a785c828cdf874a3f0310050e708636e988438701b135f61f7be3af7e5b7ea4",
+  "bytes": 16960,
+  "requestId": "bw5Lx1f4mCvsm3T3t94S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c93979bd1f1140d999982073f05588cde1488e60febf06820bf2d5c895196c85",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

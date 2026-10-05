@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "The better move would take away the last defender of White's queen. That fact wouldn't settle whether the queen could be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a63bead26b48f25942678596bf1dcf595c46f97e7bb67f65bfeea2b7b1c4f23",
+  "recordedAt": "2026-10-05T20:12:26.881Z",
+  "sha256": "e136fab088c64a02a26ce8a0dba25d1c5d2a91695611e7111e9f14c40dc35111",
+  "bytes": 24561,
+  "requestId": "jlxeDXO5qVAgt5JwM6Ms",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1660e187c74107d56b5ade888202dc98c8d5452d804785d4240e74794d8afe5",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

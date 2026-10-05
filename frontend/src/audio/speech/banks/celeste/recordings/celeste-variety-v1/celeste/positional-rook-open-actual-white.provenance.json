@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-white",
+      "label": "Positional rook open actual white",
+      "text": "White's rook now stands on an open file, free of pawns of either color. The pieces still shape what is possible there."
+    },
+    "takeId": null
+  },
+  "requestHash": "032b07c35fae84f8e85ef5fd5f5bbe0aefb3d44b5b7fdbe29283453839f8027f",
+  "recordedAt": "2026-10-05T20:09:42.055Z",
+  "sha256": "24b14b1474613e9933ed0fac14ce4dcc8f96dcf2823b50b7718520d5fc807263",
+  "bytes": 25521,
+  "requestId": "vEDcfaIH6uOtS17viJr5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "634d10aa5b2f7614372496b5b0154c02a3647444606a92a3bc9a4d7b0a1cc4cf",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

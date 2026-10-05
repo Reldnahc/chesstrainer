@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "With the better move, Black would have an isolated pawn. No friendly pawns on the neighboring files, but that doesn't mean no help at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "a380f8ef93e959af4ae78545c69132ae63223af205ab898c482815f4610862e5",
+  "recordedAt": "2026-10-05T20:08:53.349Z",
+  "sha256": "0c322e6235450a663f705c5f12ebc52217ab3114aefead18fe8b80b5d6da7201",
+  "bytes": 26645,
+  "requestId": "AV2eGF3lb6MW1h3Cbm80",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0207c20a2088151e59a28744df5ca8ccc0c2dfb3434af4305f4500a30602fe52",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

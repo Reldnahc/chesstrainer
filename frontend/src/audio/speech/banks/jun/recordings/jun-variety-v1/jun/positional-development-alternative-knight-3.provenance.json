@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-3",
+      "label": "Positional development alternative knight 3",
+      "text": "A knight's initial departure was available through the alternative."
+    },
+    "takeId": null
+  },
+  "requestHash": "1115f72458beac9ae55ada1f2d097ff9c69d19ece57e2fc9b71166eb23bb9af9",
+  "recordedAt": "2026-10-05T20:12:51.539Z",
+  "sha256": "4f4fe5206b615d0a89c6fc1ba174723b063c7a8d3098e58708522948bfd965e5",
+  "bytes": 13016,
+  "requestId": "0jp14D9g0pP5Ukn0W1Y4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cfe4f99214a9e0f3480bf2f0692bd82cbe97f4b9ed382d8b3692a8b96fa61f98",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

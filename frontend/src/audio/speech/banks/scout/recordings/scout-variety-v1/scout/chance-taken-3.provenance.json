@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "The opponent slipped, and you made use of it. Identify the chance so it is easier to catch next time."
+    },
+    "takeId": null
+  },
+  "requestHash": "76ff8ef30b72d7b5cb53755aed46be34463f2b6031a407713fe7b23084c90bfb",
+  "recordedAt": "2026-10-05T20:19:06.477Z",
+  "sha256": "3d5a02868da6a1f6846e02f023442c408beef9a979b5977ce8062e2a616c55da",
+  "bytes": 20047,
+  "requestId": "6SonFE72m9p1sQXiJHhg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8be875e79a40656ed57157d04f07a7f4e4c74ea539e8aa7042b6fda24e743b2f",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

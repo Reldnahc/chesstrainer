@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "With the better move, Black's queen would have gained a defender instead of having none."
+    },
+    "takeId": null
+  },
+  "requestHash": "84a581c94c5940a5b805ea309902e5949882d4080e44a91c7f12688689302c25",
+  "recordedAt": "2026-10-05T20:04:48.722Z",
+  "sha256": "149d2109be8dc176ccb8fc40b04a70e82030a52b89d5d5e67b787a21cc4c32c4",
+  "bytes": 15702,
+  "requestId": "nS2C8ORvDR20RroJAJ9E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbdfbed206c4bb901e740cd2acb402f15bab51f2e9f06ac9e7fde90f3273037c",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

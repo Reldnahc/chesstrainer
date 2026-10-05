@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "The stronger alternative would double White's pawns on a common file."
+    },
+    "takeId": null
+  },
+  "requestHash": "f55106a3b711c8a8c29aa7438e5c6739a2e939463897e7cc67dfbd81dfa3fa49",
+  "recordedAt": "2026-10-05T20:13:02.338Z",
+  "sha256": "a93c7fa901fc7fbd8ec55c65fd1a90fd2439e9d3fa7e3b5d8f78a0d75e68da45",
+  "bytes": 14219,
+  "requestId": "eNOxA6PC4HGr3ax20H0P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91e0cb9774d454fbcd22112d9c768e310f2236127ec8560296cac218ce05a348",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

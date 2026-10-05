@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "Count support apart from a piece's own strength. The better move would give Black's knight the defender it lacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4229a3ce2d62cd1f93bb2915cbc7aa5d2ec7401e9f0793be516ec496c90ca9f",
+  "recordedAt": "2026-10-05T20:15:48.148Z",
+  "sha256": "7de822c335396196016185a2ce47c0af6baa2684d10868d78f1061ed2952a87a",
+  "bytes": 23212,
+  "requestId": "G1pXj3Sqq6zROcAAzCnK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d54a126b3331294776af92daa77b9e4732193c930ef1ffd5e28d85684fb8ae4a",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

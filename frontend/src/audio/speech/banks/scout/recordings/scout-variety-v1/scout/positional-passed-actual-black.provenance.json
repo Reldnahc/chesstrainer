@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black has a new passed pawn. Track the pieces that could block it; passed does not mean unstoppable."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd5465cd2a663ab9e3d01ccefa6a50f276dab1cbd98065e196e2a09436686e37",
+  "recordedAt": "2026-10-05T20:18:31.613Z",
+  "sha256": "dd429728c79a9e58d8795eb059bea8b12c40bf16735c4d69c4ec9ef449a4a360",
+  "bytes": 21265,
+  "requestId": "aBfcwJEavrTZoFXIITWb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0220cb6d17767f59b51bb8a4abb4358f0060f39057a3e6ad3742f5a1e59d33fa",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

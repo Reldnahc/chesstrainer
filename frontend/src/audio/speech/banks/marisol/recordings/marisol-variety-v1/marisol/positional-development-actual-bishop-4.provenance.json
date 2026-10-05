@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-4",
+      "label": "Positional development actual bishop 4",
+      "text": "Bishop development begins here, with a first departure from home."
+    },
+    "takeId": null
+  },
+  "requestHash": "6019355564651252a37f0c9828e80ac1117d0f11d8d91fe52f11d3cad324c1a5",
+  "recordedAt": "2026-10-05T20:14:24.615Z",
+  "sha256": "363875f472b46b4defe1fe084d93a19d92f312c63cc897586210bf50f7ff6260",
+  "bytes": 13644,
+  "requestId": "L3hNWVI7gAsZU7Fj7xI1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8d286cbb85e906a5dbb75f8366b88773c407b5bf321543a1e20c0ea31648782",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

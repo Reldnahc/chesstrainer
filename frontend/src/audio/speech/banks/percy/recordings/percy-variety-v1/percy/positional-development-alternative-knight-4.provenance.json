@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-4",
+      "label": "Positional development alternative knight 4",
+      "text": "A different move would have been that knight's first trip from its original square. That belongs in the comparison!"
+    },
+    "takeId": null
+  },
+  "requestHash": "b281d306b3f8989058a8274d2cc7e296926df58888d9a1d1894d5c458778f96a",
+  "recordedAt": "2026-10-05T20:16:21.506Z",
+  "sha256": "e2cfc1d5be4157d2f67de69e4875db03dcd30715900b1ade61b929dad28c4a9e",
+  "bytes": 19986,
+  "requestId": "yGZfNPRclBzeVUz2wSpu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "caf85443cda28a7a3f80bc4012e51a24755a78c7eb5ff86545686a56d8ded241",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

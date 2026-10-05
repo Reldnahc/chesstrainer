@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "A connection has come undone. White's knight has lost its last defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "817c69e14f9aa59fa811192b5a9cc1a1a7363547ce219ba4d9acefb91209fabb",
+  "recordedAt": "2026-10-05T20:06:32.209Z",
+  "sha256": "1cd9eae36f2085f8e684b2d5190d85e80ff898cd4fdf6b201bcc747094781b91",
+  "bytes": 16338,
+  "requestId": "Lq7Ecf2hG4UPb7VdtokS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "875584bb27deafaadfacf22d00dab7ebee7e79ed57cc0bc0eca1cef7e03ec6d9",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

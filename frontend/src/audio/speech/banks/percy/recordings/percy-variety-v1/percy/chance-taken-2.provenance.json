@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "You made their last mistake matter! An opportunity with a job to do, and you put it to work."
+    },
+    "takeId": null
+  },
+  "requestHash": "3fbbaf8ca280c2a44e50d41973e3576b7f222b5117c4cfbf6d43d79889e7dc4a",
+  "recordedAt": "2026-10-05T20:16:47.516Z",
+  "sha256": "4fe228e7d2dbbc853fd860d59220eb01e817acee38cc0ca75c6c0bbced5262ee",
+  "bytes": 20682,
+  "requestId": "llyqldJrnGWUPaz8s7YF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "051bccbd8ee9875a4d69da894e9fb4f1d71e254d3096f11708398640c1258ce4",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

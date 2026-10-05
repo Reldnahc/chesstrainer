@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-3",
+      "label": "Positional development alternative knight 3",
+      "text": "The better move included a knight's first departure from its starting post. Compare the resulting placement carefully."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a4bf3c888bd3ec781b6407919ca3461baf7ffa02911608bf4308b94f27bb51f",
+  "recordedAt": "2026-10-05T20:19:53.680Z",
+  "sha256": "206afdca65d373248b276b8c37e5ef8a0837f6e9ddd96ef8712301701cc1e30e",
+  "bytes": 22641,
+  "requestId": "GxoUCiMALEwO5oqBzQNr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a83e7eab7f38dae7f693cd08679f0ad8d5207641d163fa7c1d739791e6df8f30",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

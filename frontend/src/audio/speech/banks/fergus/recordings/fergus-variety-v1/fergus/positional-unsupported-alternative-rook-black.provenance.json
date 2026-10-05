@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "With the better move, Black's rook would lose its last defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "a29eb052b9f121961b5ebef066f2d028dcbbcf5c745666def69095f95bed85a0",
+  "recordedAt": "2026-10-05T20:11:54.160Z",
+  "sha256": "3af1d1ad835fe03d77a5bafddf214f6be570b17f47101f4f6c1c5a0d76df1e4d",
+  "bytes": 13614,
+  "requestId": "qukur5nkDILmqjxve6yR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04447e3efef2a47f3e274f6189a4a9d5d0e9d5f1fe318c4efb2e77c0b24edfcf",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

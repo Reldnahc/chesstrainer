@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Black's rook now occupies an open file. Open, in this case, means free of every pawn, not every piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "e8bd87bed6acbb9b7e8bc623dd8d33ff55e3874f0e89872c355c3ee7c43d16e0",
+  "recordedAt": "2026-10-05T20:16:01.420Z",
+  "sha256": "220571e6de6d028bc4ab1c7aa989c1fa92195719f3a57c5a1fd79688c5ebf61e",
+  "bytes": 27926,
+  "requestId": "w3cv0RGzqSFB0HC9LDVb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2c7f1d41bfec87e136081d6eb59ec764524754bd6502f3a631537d64656cf69",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

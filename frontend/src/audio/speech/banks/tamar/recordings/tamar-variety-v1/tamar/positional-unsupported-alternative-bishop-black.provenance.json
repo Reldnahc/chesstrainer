@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "label": "Positional unsupported alternative bishop black",
+      "text": "Black's bishop would have become undefended with the better move. Check the actual threats rather than rejecting it on appearance."
+    },
+    "takeId": null
+  },
+  "requestHash": "206a1ad4638953871bfae391be7f7515f1b8dcfb56e572e3dc26f30789567adf",
+  "recordedAt": "2026-10-05T20:20:04.827Z",
+  "sha256": "0924a0a474790ba8cf29b6683dd8af58b2d4332ade5c5aa4eb6b7a1698cd5aed",
+  "bytes": 24542,
+  "requestId": "Hpy3zWsYMoQYcEubAxac",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6383bd3d3840c268b3269c27c636eed41b2ff8e17af1c3f8da4c013e9bfd8fd",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-2",
+      "label": "Positional development actual knight 2",
+      "text": "The knight's coming off its starting square for the first time. There's its development step."
+    },
+    "takeId": null
+  },
+  "requestHash": "34c34d0c25c2c99a70b6c88f0c2fa78a8ba3059b813807e24416493631eed04f",
+  "recordedAt": "2026-10-05T20:11:33.476Z",
+  "sha256": "2d27fb4f5d8c59aa0090bd884fa9466dc583b21146b4d0c4b2dc0ee95a3896af",
+  "bytes": 18021,
+  "requestId": "EX0U2jl5OBXFVYkDCZPg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5170538262e336f393adcd5d3413709cb987e828d31dc790e65348370b91db42",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

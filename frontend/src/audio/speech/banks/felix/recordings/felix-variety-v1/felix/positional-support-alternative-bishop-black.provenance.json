@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "Black's bishop would have gained its missing defender with the stronger alternative. A guard was an option."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6481c585f13fe12b02fb5e9849c5ac62a77e404cdf40baf3cfa21285e732548",
+  "recordedAt": "2026-10-05T20:10:50.561Z",
+  "sha256": "b677bc7c2ed39d671804f27ed2065c3a291d38f52b740417a428c3a9975c5d7c",
+  "bytes": 20634,
+  "requestId": "J8OgqzeGpFaqUzmfdw5T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd473f75e544911309b9936930bf56aea0225879dea5cb27a0760f15120a341e",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

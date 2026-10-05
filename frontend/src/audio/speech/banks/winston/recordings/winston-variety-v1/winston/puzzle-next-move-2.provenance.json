@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "puzzle-next-move-2",
+      "label": "Puzzle next move 2",
+      "text": "Right so far. Take the rest of the puzzle at the same pace."
+    },
+    "takeId": null
+  },
+  "requestHash": "656417b1231ea4b2af1af86628a580397d549d513f50750fd21b55a04f436128",
+  "recordedAt": "2026-10-05T20:05:48.762Z",
+  "sha256": "634dfbc602e6724870863f9891ff6f009df82ae8e1bda007846983e318a455e2",
+  "bytes": 12318,
+  "requestId": "a1c7iJVT6VCUaPYFdkqE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5833c884f57e976e4e04c21abcea3ad15823805ce88568e27223c2d8c820e37a",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

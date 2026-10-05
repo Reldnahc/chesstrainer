@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "puzzle-next-move-4",
+      "label": "Puzzle next move 4",
+      "text": "That step checks out. Stay with the puzzle for the next move."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3a0a4d0cbdbfa8f95ca6b5f06970d30a40855c008e0d7627c6f7db0a404aa7e",
+  "recordedAt": "2026-10-05T20:18:50.601Z",
+  "sha256": "db62ea8011ef35b532669b3d12db16d93f88dfec9089d2a2b408eeb7c3c6e228",
+  "bytes": 11689,
+  "requestId": "0E2NDfsallup588W5Sqd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0782a371cfec8e61f24924c16a1a3b126cdb5a714950b7c1fd6828d75596928d",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

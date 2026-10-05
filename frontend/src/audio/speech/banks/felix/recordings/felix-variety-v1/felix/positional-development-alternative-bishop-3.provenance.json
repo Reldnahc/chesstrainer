@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-3",
+      "label": "Positional development alternative bishop 3",
+      "text": "A bishop's initial departure was available with the stronger choice. Check the proposed placement."
+    },
+    "takeId": null
+  },
+  "requestHash": "079dee41bf759b31f2c12070c15e170ef8e1964720d2692cd200c83c5c7b8895",
+  "recordedAt": "2026-10-05T20:10:41.313Z",
+  "sha256": "af94ebb740f5fea22e6fc39343a144e60340c8283e08ce69ca9cd849e61c1d6d",
+  "bytes": 20092,
+  "requestId": "CIZsbJnEfnUayZPexLUN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3be0fe77c1adf049c200c0778205eafce71217e3e4012491a005a74c4564b36d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "A passer for White! That's what the better move would have created, with no enemy pawn ahead on its file or the files beside it."
+    },
+    "takeId": null
+  },
+  "requestHash": "82e214f2ecab6c30797e8cbfb7fa6d73954c03b674139254792b9968771c6e9e",
+  "recordedAt": "2026-10-05T20:18:01.983Z",
+  "sha256": "98fe5873f602db6cbb16fc470951517cc9754f24d8ec8ad2cf19e8136472d417",
+  "bytes": 25061,
+  "requestId": "ZhJHdg9OrztFfZAFM5qj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7af27fcb32b0262acb9960e3904bfb39b8f22213075ef70ac765d4bc6c93927",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

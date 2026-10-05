@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "The opponent made a mistake. You used it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba0c2e851829e8b824fa9cf5817283db52499815d111f5a447aab469fd4e6411",
+  "recordedAt": "2026-10-05T20:12:01.752Z",
+  "sha256": "c22382e165e5615f74a8985c86b0b8cea2c4d287393b371fb38b64ff0c274b1f",
+  "bytes": 10619,
+  "requestId": "MGbXQpesPnYHYsl6FH6D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7a4f6c7298f98f87fbe9055e2d1a9c28d8c68492b8dcb55e6b4609de6dec112",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

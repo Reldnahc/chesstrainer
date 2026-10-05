@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Black's queen has lost its last defender. Impressive range, absent cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "24c6291dbfeab8f7fd93a004a7ab45ef21c9a45e241f363a277eec89dda701a1",
+  "recordedAt": "2026-10-05T20:10:38.524Z",
+  "sha256": "03d2c3ca4a983e113a2e068fc445358e3346c44f70d14c40030d38d78737a274",
+  "bytes": 19037,
+  "requestId": "uAX1uBSfWiqR2ojerMnz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b43f1eb6a6607b6c4811fe6c33e2b73383929c83ee33b04184ee7e2333ddce2b",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

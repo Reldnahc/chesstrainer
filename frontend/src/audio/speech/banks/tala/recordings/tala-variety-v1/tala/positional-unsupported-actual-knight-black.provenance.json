@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Something is missing around Black's knight: its last defender has gone. Can anything actually attack it now?"
+    },
+    "takeId": null
+  },
+  "requestHash": "827babe25e2577e9d7d6fc12eca42e7050c135fefe4b0794a710e4abb17b6fa4",
+  "recordedAt": "2026-10-05T20:19:41.492Z",
+  "sha256": "c9bf370aa668291973b521d7dbcaa7bed958dd28d28885da65d660a517621421",
+  "bytes": 22892,
+  "requestId": "AozMdEzVfZqMCybCBGEc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ceb5513004f928462ff56778f29236fc746bade3a4dcf05c356a641c3d015002",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

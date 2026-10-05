@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The existing passed pawn moves nearer its promotion square."
+    },
+    "takeId": null
+  },
+  "requestHash": "830fd92f203c5ebe5fb8a68ed6e55693fc7ceb1e4c5eb7bc45f07541e213b270",
+  "recordedAt": "2026-10-05T20:12:53.839Z",
+  "sha256": "797b539298439ab8ad42581700f5218500043e1e1d94bb7325de5ae4f8a8512c",
+  "bytes": 13306,
+  "requestId": "7Exb4bELXhwaCYYqrbju",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0e4d37ebfc319b3c9ea97e1dde47ebf79435cb3568e1fd26bba0dd3f170d6eb",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

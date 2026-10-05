@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-white",
+      "label": "Positional unsupported actual knight white",
+      "text": "White's knight has lost its last defender. Being undefended does not establish that a capture is available."
+    },
+    "takeId": null
+  },
+  "requestHash": "84800ada16d2f546cae375cadacb9fb46a0034aeed097f57a13705b2b7293af5",
+  "recordedAt": "2026-10-05T20:07:53.779Z",
+  "sha256": "77527019e496ce8b431384f4e176f919728327425804fdfb4e4b7c6cbbf625bb",
+  "bytes": 21793,
+  "requestId": "hHa7MffjhXj5KhALCbde",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30e488c8fb86f7609d650c0a1d1fc995d52577b8057cc8456972dc7709fe0d17",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

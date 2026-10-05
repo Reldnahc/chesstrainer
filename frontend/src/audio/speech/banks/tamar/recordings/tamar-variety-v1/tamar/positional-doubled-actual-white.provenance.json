@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-doubled-actual-white",
+      "label": "Positional doubled actual white",
+      "text": "White now has doubled pawns. They share a file; assess the position before calling that arrangement a weakness."
+    },
+    "takeId": null
+  },
+  "requestHash": "7515453821aa5a8abff9f61d56c27b3b6d75dc9026a2df0cf8bfef9efe085036",
+  "recordedAt": "2026-10-05T20:19:59.963Z",
+  "sha256": "c1ccefca27fdd9dfce515771084821f601f3eba633b8ae9e8de4d320e2635a0d",
+  "bytes": 23473,
+  "requestId": "wtvbwil3IwhAluPBJbdC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5df24924bfb732499795c32800c280b09d2081745598a26d0c2c1b2b23f95b88",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

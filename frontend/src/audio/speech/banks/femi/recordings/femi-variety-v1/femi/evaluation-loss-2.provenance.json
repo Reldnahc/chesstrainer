@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "evaluation-loss-2",
+      "label": "Evaluation loss 2",
+      "text": "The stronger choice would leave a better position than this. I'd put the moves alongside each other."
+    },
+    "takeId": null
+  },
+  "requestHash": "86e3dcd660c11f672ca49005a884b30af482ec61b06b12312d750a1d4e8810cf",
+  "recordedAt": "2026-10-05T20:11:23.248Z",
+  "sha256": "e8ddce2664c9b8864d0b99b0634b617b1dae9c5f05d2e580cdac4f37c838c9eb",
+  "bytes": 19269,
+  "requestId": "xprnn9d53sMK77BSutRD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7207f6aba00c6b1110974270498d632e31302a37aa61c3fc3a809c2ea7083b9",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

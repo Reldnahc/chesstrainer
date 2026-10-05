@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "White's rook has lost all its protection. Big piece, empty support team. That alone doesn't make it lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf70dc2ae9217ab2d76d8e543a6a2f7b4ebfbae63387d44e86312cc86d6ec692",
+  "recordedAt": "2026-10-05T20:16:16.345Z",
+  "sha256": "5ee22ed47ca04665ae5e1ad40e0a8e167a70e41db55efb8e676308ffd10503e8",
+  "bytes": 22784,
+  "requestId": "xdMTc8I4EMDJrnhafLkZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9231959f139d184cf2fbf090404ea406b71f377671f5b4d095452a70c461e95b",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

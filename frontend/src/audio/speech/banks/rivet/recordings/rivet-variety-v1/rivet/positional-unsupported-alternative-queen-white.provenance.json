@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "With the better move, White's queen would lose its last defender. An undefended queen is not automatically a lost queen."
+    },
+    "takeId": null
+  },
+  "requestHash": "93b7ff22d1d8f782e7fe3c326cb44bb19b09b3d12d4ec5ec72a352f06216377c",
+  "recordedAt": "2026-10-05T20:05:17.735Z",
+  "sha256": "c8da9a894b1e2fbd040ae269ccbb78995f68725e4dfe3130a75a5c22c1ef4379",
+  "bytes": 25335,
+  "requestId": "6uJN1tY1ujDcnka5nT9u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "230b706ac64d90725cdf16cf24ef3739737fb74afce1ba728308c2063876a226",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

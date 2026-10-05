@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "A curious twist: the better move would leave White's knight without any defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "e319ef3d0fbf0bc46762149d25ae3f4a0d1f1a75ba34ec13331da815b9decfea",
+  "recordedAt": "2026-10-05T20:17:01.479Z",
+  "sha256": "cef156cd55ec815149a8a3f516736e492761f5629af49d80b8dc931a32721b21",
+  "bytes": 17081,
+  "requestId": "gDpTEbIS42Q2VOuDiXHJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca900fbdcff3092e70a47b4bd606f5fea05315c35256330cd2df34c455617f43",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

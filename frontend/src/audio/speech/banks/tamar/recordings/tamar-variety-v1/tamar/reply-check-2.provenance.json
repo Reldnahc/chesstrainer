@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The strongest answer is a check. Calculate the legal replies before going further."
+    },
+    "takeId": null
+  },
+  "requestHash": "c76f2be41b84bc1929c49b3011922efff73ecb016e05a4d592a22f45abe888b0",
+  "recordedAt": "2026-10-05T20:19:59.443Z",
+  "sha256": "6608c031cece946421ddcd99ea109b2d57bc83578184b0d6a9c1f878224b8802",
+  "bytes": 17564,
+  "requestId": "QycN5OCnKO4qVZ4GJ2H3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8a968de5e90461b8fb2b39cdbb8f04d1cf453a838b7d0bd1863661d2c31aa77",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

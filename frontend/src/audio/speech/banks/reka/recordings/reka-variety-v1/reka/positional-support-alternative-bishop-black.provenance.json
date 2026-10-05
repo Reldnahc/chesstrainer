@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "A defender for Black's bishop was possible with the better move. It had no guard before."
+    },
+    "takeId": null
+  },
+  "requestHash": "35ddbea64ecb30b164d7ee55b1fbfba9e482088a91a76bb3e9ac71ee02e81516",
+  "recordedAt": "2026-10-05T20:18:18.439Z",
+  "sha256": "91f4d74e90b9bf14784f9c1457a47fff0d559cf7f104a160e2498559dc0cacfd",
+  "bytes": 17603,
+  "requestId": "PHMHsoCzM568gKl62ktq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49c771c893a2530c7cc9c7f263ca5d44a3b212acc070aa80b55502bb14c10075",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

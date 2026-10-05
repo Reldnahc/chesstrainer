@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "What if Black's rook gets attacked now? Unlike before this move, it has a defender to answer with."
+    },
+    "takeId": null
+  },
+  "requestHash": "11291f2108e1a932cdf1a3897584ff1cf1c39322d41353c1e416d048dd02a7ba",
+  "recordedAt": "2026-10-05T20:06:48.515Z",
+  "sha256": "1455d46d83c00bb3f634b36c7f8bb96c68d9248e96d17d37e0d7c311eb76cea6",
+  "bytes": 19243,
+  "requestId": "vGzFD0Xoc3CZ7M8OJNMv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2039452a8b93a038c2d841500173086b091c472714186704d18d2e5ab265ba2",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

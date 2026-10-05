@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-black",
+      "label": "Positional unsupported actual bishop black",
+      "text": "Black's bishop no longer has anyone defending it. Unsupported isn't the same as lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "246cd42031cf36cd5eb8c33f5ec4f8d57f3e5f57b80330218295d1deb77298fa",
+  "recordedAt": "2026-10-05T20:06:37.394Z",
+  "sha256": "317000fc88dc52b3d92fda5e9b462549feacdf59860fed5bd02ef4af9b6688ef",
+  "bytes": 19556,
+  "requestId": "McLtmvME6kOw7zG2LJfS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dfd41ac520221621e4a328929412978f362148f4e431be927bb8878383e863b",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

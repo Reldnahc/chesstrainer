@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-white",
+      "label": "Positional isolated alternative white",
+      "text": "The better candidate would leave White with an isolated pawn. Compare that pawn's support in the resulting positions."
+    },
+    "takeId": null
+  },
+  "requestHash": "22cd04346a92ee5d1e2a56ddc2a712b33630c69845a6232223fefd578e31c259",
+  "recordedAt": "2026-10-05T20:06:51.152Z",
+  "sha256": "5057c3af29363abc636484f8851aa410ac0c165bd39d5154d321b6a1ade65604",
+  "bytes": 22702,
+  "requestId": "CeqlnRZ0rWpZRfscsSZg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6deb25653ce087d04c9a9c0c29ee11e0326cfc4c22db52f0a3106680c9f6b595",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

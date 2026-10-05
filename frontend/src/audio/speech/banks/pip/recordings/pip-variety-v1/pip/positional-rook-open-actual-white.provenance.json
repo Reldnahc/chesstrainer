@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-white",
+      "label": "Positional rook open actual white",
+      "text": "White's rook has an open file. That means no pawns on it at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1689d4be0678a9d60d33bcc95ff532161e1b7467b4fa854f4bd150edc3fc298",
+  "recordedAt": "2026-10-05T20:17:46.881Z",
+  "sha256": "a1be48994c1057c0d916d47ec402b28ce21de316f4c849e174e9328e942cc064",
+  "bytes": 16708,
+  "requestId": "fc5ELU1OCrSz9sN3sQuZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab5756361ab9609aba7c7961f0e669aa89bb13a45436d234916eaa6cf35dc6b9",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

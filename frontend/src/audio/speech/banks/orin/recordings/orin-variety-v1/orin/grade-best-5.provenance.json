@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-best-5",
+      "label": "Grade best 5",
+      "text": "The strongest choice here. Let the merit of the move speak plainly: Best."
+    },
+    "takeId": null
+  },
+  "requestHash": "896154912a82a9fa659b6c8aa71c3e0700f7a9ebcbd153aa1e698e156f8c2bb9",
+  "recordedAt": "2026-10-05T20:16:00.541Z",
+  "sha256": "2643aaf167a6928081e5cf1b6265b5c259d78ba47e5b0cfc2667375c4a0695df",
+  "bytes": 17951,
+  "requestId": "2FX8ky9gXg61c5EO4XRj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ee6c082e995d20ff450d076063c7b0b83ec5593057b5985396160a92b692e1c",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

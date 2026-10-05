@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "reply-check-3",
+      "label": "Reply check 3",
+      "text": "The opponent's strongest answer checks the king. That's what needs attention first!"
+    },
+    "takeId": null
+  },
+  "requestHash": "0dffcccf1ad612f87da5d3eaf58db3bf597db50997d1dfdaa8c49474009123cc",
+  "recordedAt": "2026-10-05T20:08:53.333Z",
+  "sha256": "2a6def2565cd70ea47d033f9c3145e6ead373e62a37122240436f1c72099b565",
+  "bytes": 17906,
+  "requestId": "cDSe4Rt49BLhfQFpM1sx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85d0acc2b47b78e3a5a0036636a397a8c6ec68e3ac85b1b3b287b3a2ef83790d",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-3",
+      "label": "Positional development alternative knight 3",
+      "text": "A knight was still waiting on its home square. The better move would have brought it out."
+    },
+    "takeId": null
+  },
+  "requestHash": "46d151864a285b69851535d5331bdfba6aa58c60fffed299bbd04e72e18a9168",
+  "recordedAt": "2026-10-05T20:04:22.865Z",
+  "sha256": "8407ae838fd91f8c5709d532d4d91ebcc1c21344f87c364376823daf0298e943",
+  "bytes": 16195,
+  "requestId": "ahGQA2keKp0efOzd2xVu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a91ada4a432b519bd05e2228d5cea298ba7aa47b822a7df7b88fa84c4ade2e5",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

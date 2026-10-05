@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-good-5",
+      "label": "Grade good 5",
+      "text": "A good move, soundly chosen. There was a finer option, but this choice still has merit."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0e3a24efee5fe976101990559b362f15493b410c14d01ca1acea0b21a79d320",
+  "recordedAt": "2026-10-05T20:09:46.898Z",
+  "sha256": "5033ec0e5f922aee7cf30d58b4ba874063001cd8c789e5562e572c64302e2aac",
+  "bytes": 21313,
+  "requestId": "kbkPgjPNOcvBYPqCZzXB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3012ed16943cc780e159ebfdb34f77dd9f86d732b812d0ebd1b15b560b56338",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

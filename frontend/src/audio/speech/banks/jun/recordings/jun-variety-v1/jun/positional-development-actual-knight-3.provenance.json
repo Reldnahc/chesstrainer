@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "Knight development begins with this first move."
+    },
+    "takeId": null
+  },
+  "requestHash": "cebbe7c2ef8cefea4d40885e887d16c99b8c77b2a4d51e5c020fbef4cb671f9e",
+  "recordedAt": "2026-10-05T20:13:09.887Z",
+  "sha256": "4c6bf3dbec377a48ee243ecc1bef40b01a1fd8bfc57316a78bfb30dda6560c33",
+  "bytes": 10490,
+  "requestId": "RJLzq4UucVPmOmvwPgFK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f98e3692562088023325e4528c989b003eb694689c7b40eebbd6b7b5b88b30f1",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

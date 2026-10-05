@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "stronger-alternative-3",
+      "label": "Stronger alternative 3",
+      "text": "The other move does better. Put it on the board and look at the difference."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba382ba20dc65350ffe947833b008d3610d6bf02e0b81d47c6e1dec3b7e5059a",
+  "recordedAt": "2026-10-05T20:15:02.507Z",
+  "sha256": "23630563abe5d8322ceb49084d229fe8e22ec264e8fdaef781617fb9fe3c4e44",
+  "bytes": 14147,
+  "requestId": "vOhe9Ym3ZDNp4Wtc6m3H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd7e1c6052f7e2d667d0f518ea76a44e8ebf73e6d8d38322b25766e60612befb",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

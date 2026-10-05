@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "Put the stronger move on the board: Black's knight would have a guard, instead of having nobody defending it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ee731c574573fa4ba5c25d3ae6152052d8c0e092e28a81c9c8987deec8ee5a4",
+  "recordedAt": "2026-10-05T20:11:21.311Z",
+  "sha256": "eb205fb1b34f08ff107a2b1e644cb812f4563f3a02b07fe5dbc9671921f70c8e",
+  "bytes": 21458,
+  "requestId": "O8GZqStSUFps1bxZ1gTF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f75e0cd9c98770f2c98f4ae99bedf0fbcea61f1b47b88b14e6eba51b9c4e436",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

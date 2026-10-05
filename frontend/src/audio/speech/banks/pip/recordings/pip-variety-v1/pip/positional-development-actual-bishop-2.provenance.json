@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-2",
+      "label": "Positional development actual bishop 2",
+      "text": "The bishop is off! It's moving away from its starting square for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "7cac78cb4a1a93425f558152f11f2f342f3ceab5d8992829c88d94c0ebfae898",
+  "recordedAt": "2026-10-05T20:17:54.013Z",
+  "sha256": "42ea95082709fc7f0be73e5ff8af99829cd7178d207a2a7a09a4ce4b6a5ad716",
+  "bytes": 17411,
+  "requestId": "hzHQRrHUC6R0MNBHH24q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01d714313e9040aca01064b255a90c57b0bcd4b227461e53588f0f6da239bb97",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

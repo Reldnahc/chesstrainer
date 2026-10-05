@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "The better move would have given White a passed pawn. No enemy pawn ahead on its file or its neighbors, though other pieces would still matter."
+    },
+    "takeId": null
+  },
+  "requestHash": "b32d19fd6f482ffd9f07cfa7fad709fa912ac59190c4801f032baec1d89e01d2",
+  "recordedAt": "2026-10-05T20:21:38.237Z",
+  "sha256": "66d9956cf66615f9547ed7e45b0a624e2e2499095e1fce3e96034780057edca7",
+  "bytes": 27786,
+  "requestId": "O6guIFcTgrJAZEMc3AsM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aed90106163222a560195ffcbff4aab32cb09ee116a42fec263d044ab0077fb2",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

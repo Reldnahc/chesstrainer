@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "puzzle-next-move-4",
+      "label": "Puzzle next move 4",
+      "text": "That move is established. Now consider the next part of the puzzle."
+    },
+    "takeId": null
+  },
+  "requestHash": "2552f94345704bd43e9a1308a06abedf9bb3f11567603f476b9c706d22d654d5",
+  "recordedAt": "2026-10-05T20:15:54.824Z",
+  "sha256": "13b5b144827d553b39d155f98c152e4b02d54135e99234a7fc309895f8501d17",
+  "bytes": 15280,
+  "requestId": "iKA49wnNgCMnUImhI41j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0fcb188a1a9c1948f8c2b524be713ee28e2c501b670cab0b0c82d0fe7e815b5",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "Black would've been left with an isolated pawn after the better move. No black pawns would be on the neighboring files."
+    },
+    "takeId": null
+  },
+  "requestHash": "6625e6396f6eee3b58c88e6dfac1054ab3507348706382b50e990f4a5c2ad036",
+  "recordedAt": "2026-10-05T20:05:41.897Z",
+  "sha256": "28684fe5c047adfc79d7ef5b327018d51674a8ba99c39ff52bb68e94f5681a51",
+  "bytes": 21944,
+  "requestId": "UmVsaOyVvozGAkpTL6G4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a8a3bc4738a76cd80e9da00a5027ebca3f0af52ae6f1127c2d900ab6e0ab98a",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

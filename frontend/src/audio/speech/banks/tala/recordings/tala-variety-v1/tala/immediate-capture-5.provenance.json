@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "immediate-capture-5",
+      "label": "Immediate capture 5",
+      "text": "Start the investigation with the opponent's capture. It is available immediately after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "af0edcf7ac7d70c48acb7458262573386a1fea209f0896c8de9f1b45b5954717",
+  "recordedAt": "2026-10-05T20:19:40.033Z",
+  "sha256": "d1817f24120ee6fdb71aa7b9abf58382501d139d68c2240842d3978bb3b6e6c6",
+  "bytes": 19866,
+  "requestId": "g35CtbaYpgKASE5g5qAI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65bd918809d22a0f7f555a28d9cec2f08c3dd5b3f133a1132db530a6eaa465ec",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

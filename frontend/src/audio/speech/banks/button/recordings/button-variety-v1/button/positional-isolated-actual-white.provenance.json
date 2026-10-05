@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-isolated-actual-white",
+      "label": "Positional isolated actual white",
+      "text": "White has an isolated pawn now. No friendly pawns live on the neighboring files; pieces may still lend support."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c24b39aa42b87821814fcc6ec93213f0e9693d699abbacf2d2cb52c8f22bc34",
+  "recordedAt": "2026-10-05T20:06:13.585Z",
+  "sha256": "999c29236ea7dd4e149edcf59fc851f1ec0f27abf4519eb0eb35c7be5afd3f4c",
+  "bytes": 24246,
+  "requestId": "vthPDe4KK3aZVki41AAY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "893a8760bffdda03da2d726b44baec261a5e7031294accd46fb8e08615294faf",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

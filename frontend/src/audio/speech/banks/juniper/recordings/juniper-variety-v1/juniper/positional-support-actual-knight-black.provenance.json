@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-black",
+      "label": "Positional support actual knight black",
+      "text": "Black's knight has a guard now. Before, none. A small change to keep in view."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6c0548f0fc0ebb52e5c86e7dc29f18a3f9151839d693f0a84e7bd8d7c3ef296",
+  "recordedAt": "2026-10-05T20:13:18.769Z",
+  "sha256": "5a360a579b71fe14b8617a76b432a87f751e0d70ffe03dc229a082f03567ea42",
+  "bytes": 19094,
+  "requestId": "yZNHrldHG0fx863pkcye",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f74f32dc3b789de56a16f0db49c6ac1b7993901450d0d3e51f25e780c7d57f95",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

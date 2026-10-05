@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "Compare White's knight before and after this move: no defender before, a defender now."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff418d10defe1ef85553aba1c4403a0dbc255bae69a221ee439b78e876f9f16b",
+  "recordedAt": "2026-10-05T20:06:39.390Z",
+  "sha256": "d02aa059e3a23e2e90d7cbf697c5e3c01eed44208b7b475ed8693b045ecbd0dd",
+  "bytes": 20064,
+  "requestId": "bcXadk14baxlhf0CKCtK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0314eda92b53d51bce36ebb32aecbde7f02083efcaf223a514c7044c8dc2295",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

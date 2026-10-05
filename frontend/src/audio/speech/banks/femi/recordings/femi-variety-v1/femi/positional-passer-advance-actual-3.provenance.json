@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "That push takes the passer nearer the far end of the board. Getting there still isn't guaranteed."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb57a92dd7d916685eca08aae3508e4b908954879f47e9fedcad31333376d08c",
+  "recordedAt": "2026-10-05T20:11:14.708Z",
+  "sha256": "1dd4b845512734af6c049956097f8bec5dafc14022f6ac9610cb1029e8480d4e",
+  "bytes": 21128,
+  "requestId": "e3HyWbqI2078ejSYli6y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56d56f2432da288164b7107e43aa1b772f9b2ce912bc02bb6f1cfe7b761ae365",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

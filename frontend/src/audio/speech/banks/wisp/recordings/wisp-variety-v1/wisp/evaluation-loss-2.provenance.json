@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "evaluation-loss-2",
+      "label": "Evaluation loss 2",
+      "text": "The better choice was left on the board. This move gives up position value by comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dcbca62b5a687ad432203e7513110394ed662cd5d61e3cd5900fdbec10557f2",
+  "recordedAt": "2026-10-05T20:21:18.475Z",
+  "sha256": "03beb2e99ece4e48eeec578ec17571c169de77b8ae868e400f0a55c073f191e0",
+  "bytes": 18199,
+  "requestId": "DY1jIjKha41DJud3RPsN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97bb658b5248cdfcb0e0518e0c9a8198682e5cc7955b11de85ddc85fe041ed72",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

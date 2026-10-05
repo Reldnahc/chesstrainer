@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-5",
+      "label": "Positional development actual knight 5",
+      "text": "The knight is off its original square for the first time. Out it comes!"
+    },
+    "takeId": null
+  },
+  "requestHash": "10db098b08e52f76eb111b8fbed5ec8cd27ccc34c9fbf08ebc1a8c2b76cd38b5",
+  "recordedAt": "2026-10-05T20:14:52.381Z",
+  "sha256": "a4111f88d33b0860c045e693194974ac3cff77d4e3957fb1d989c4aeb8e7dbc6",
+  "bytes": 16312,
+  "requestId": "2nNd45k0wpcWXpVcoFRt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5f8d7a2823a6cef574950c36f78ff8deacbf8cdd9c73566d8b7d1ef9ac1b4e3",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

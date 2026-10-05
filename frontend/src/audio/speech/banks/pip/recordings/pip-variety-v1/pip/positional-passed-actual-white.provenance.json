@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-passed-actual-white",
+      "label": "Positional passed actual white",
+      "text": "Oh, White has a new passed pawn! No enemy pawn is ahead on its file or either neighboring file."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc8025bf1c177aca72b5130e5a275a0ceb9bc38fbfd6587f5c0995f81dbfc688",
+  "recordedAt": "2026-10-05T20:17:25.293Z",
+  "sha256": "42f517aeef57e4c98c0e642920b6ad644e6b3fc5053f31d4ba6174a3f098185c",
+  "bytes": 23076,
+  "requestId": "pg9W6KycGXEV5F7kd5w3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a39897f8eef80e68f850dfc0f9a1a03f926000f170404b89511cb0d928eabcd7",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

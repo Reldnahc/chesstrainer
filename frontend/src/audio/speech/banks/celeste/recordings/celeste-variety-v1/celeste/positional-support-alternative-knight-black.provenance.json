@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "With the better move, Black's knight would gain the connection it lacked: a defender to support it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a2b0a02da4a0440caef7a0e6688d2e310a8feba940e445f5cb05b94ce0857fd",
+  "recordedAt": "2026-10-05T20:09:35.039Z",
+  "sha256": "4c2010a0fdbd21c7920af61a34ad979d493ce5f99e40618ae4b0173d850cf675",
+  "bytes": 18953,
+  "requestId": "mNrzZT4QIkKE9DRJJvWL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ac99c71f353de480e01d124db358cee62f4932435ccf0fafbbdf175b2036c04",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

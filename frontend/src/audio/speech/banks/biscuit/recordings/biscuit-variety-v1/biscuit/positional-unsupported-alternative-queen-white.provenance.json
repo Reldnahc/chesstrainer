@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "Oh, the better move would leave White's queen unguarded! Still better overall, so look closely at why."
+    },
+    "takeId": null
+  },
+  "requestHash": "0770b1886a9349a15a54484229ae66ace629a0ec219f4d845ab011bf4369feb0",
+  "recordedAt": "2026-10-05T20:09:03.961Z",
+  "sha256": "093ad01e1d5f7e4be9c652321d7cad2bcb13408717016cf30649c00f73668e54",
+  "bytes": 22981,
+  "requestId": "cPIZJ0WwPfCLCui0lz0u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21ddce291d8646670a939d200b69fb25cd58fae3d1589eeb949369bc75de455c",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

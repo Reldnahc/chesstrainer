@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-white",
+      "label": "Positional rook semi open actual white",
+      "text": "White's rook now has a semi-open file. Black pawns remain along it, but White's pawns do not."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c62bd075f0ad4e68d76f1ec6e3a21809eb6ea3388ec0c729efb1562b6a52c66",
+  "recordedAt": "2026-10-05T20:04:53.776Z",
+  "sha256": "d06bdd3eb344b0684269f4e49e4124f0f4ab6bb34b5dcb43f4e95644c2fcd6c1",
+  "bytes": 21429,
+  "requestId": "uJpgTlGPlHYsjhy0o0O6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1174f9e9536746e1ae77aeb18fd66387f0284306d743269e02ae2e59806d2925",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

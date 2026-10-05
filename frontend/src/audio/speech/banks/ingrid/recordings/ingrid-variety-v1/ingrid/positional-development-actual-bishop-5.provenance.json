@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "A bishop leaves home here for the first time. Its new spot is worth a glance."
+    },
+    "takeId": null
+  },
+  "requestHash": "142bc6d01073bc604b57a7ffbc0a8a4f96b6254c702dc281b6078bfb3c7919cc",
+  "recordedAt": "2026-10-05T20:12:42.858Z",
+  "sha256": "9a5461a76b36c5e45934189df6fb170a1cfe6533a8be68d2af9b3354ac0f99cb",
+  "bytes": 17773,
+  "requestId": "zuNHeVLrnWMwPisJbIGr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "61a2dd18d43b2287d99d21df137419dda23d6ff4ac9d1a8f852025fa1764884d",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

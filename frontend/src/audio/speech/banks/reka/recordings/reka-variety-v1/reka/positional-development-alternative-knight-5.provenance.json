@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "Look at the alternative! A knight would make its first departure from its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1c6de5532d775b31b983e8b659fdadeae7fdcbb9c27f098de46bab9fb14affb",
+  "recordedAt": "2026-10-05T20:18:06.614Z",
+  "sha256": "9174f2946a9ee88ff1990f1b6d007507a4f9b4c70a2392b06aae1d74e485b01a",
+  "bytes": 16801,
+  "requestId": "d38s2yTpI81ndPTBkTpr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d8093a6fa64b0928622f0811534fdf50825a7fc92b4545feb978329da0deb15",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

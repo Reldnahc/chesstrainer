@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "stronger-alternative-2",
+      "label": "Stronger alternative 2",
+      "text": "The better alternative would leave a stronger position than the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4d5a5bd2e99f90b60d2708ad0dd5bb88dd8e005be527efba47255a95ef687ff",
+  "recordedAt": "2026-10-05T20:08:01.242Z",
+  "sha256": "05d1344a04f2d0c0fa7eefe4313986e8daba4bcabaf8c64a3b3cd35c2abdc7c4",
+  "bytes": 13665,
+  "requestId": "Rlievgd9yjWLC0NHOhO4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab276684f48d3b7d0e6abd4445854dd79524ce36b2dc13cbb84f55450ac3d0d8",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

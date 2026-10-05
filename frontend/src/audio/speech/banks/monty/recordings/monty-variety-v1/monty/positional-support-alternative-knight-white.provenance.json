@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-white",
+      "label": "Positional support alternative knight white",
+      "text": "A different move would have given White's knight the defender it lacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fe2074dd414683081acdd4c6f1a34505c13642d04dd21b3552449c273ede305",
+  "recordedAt": "2026-10-05T20:15:09.836Z",
+  "sha256": "c1920ca8d5828ef363bd362f1e0bbdaed5e86ff1b4a6d683f94feb9da494b088",
+  "bytes": 13174,
+  "requestId": "ZX0nrZvh6LJjhiOz331D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7af71eb9ebbb711bff2c5f6bf65e41c09ab4f3da6e05b9552a2b7aa2c84b5f2",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

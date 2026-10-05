@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "A knight has made its first trip off its original square. What does its new placement change?"
+    },
+    "takeId": null
+  },
+  "requestHash": "b62560bd9e24575d79c06b2e733bda8fddd7719ec06dbdc5b005fdc836c07f14",
+  "recordedAt": "2026-10-05T20:19:38.068Z",
+  "sha256": "2eec74babd02ed45c80d2b01391cdb663563d6b4ca862a48eb2deff23a3a1660",
+  "bytes": 19112,
+  "requestId": "wtE9oDvcyeOQbu1jZcXm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9965634c676ef158fe21a552ded5e3ea89834ce8332977ab975842b8524acda0",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

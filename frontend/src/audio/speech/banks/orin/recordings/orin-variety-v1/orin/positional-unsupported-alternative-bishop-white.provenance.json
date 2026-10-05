@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "Another move would have removed the remaining protection from White's bishop. Include that in the comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2661b828f45ef29e86af20ad7d7ebcdc6566131fa8d58a576e000e5e109e977",
+  "recordedAt": "2026-10-05T20:15:47.033Z",
+  "sha256": "5b9c98c3a1b33933427468edbb12520eab98bdad7a2115d358a3b1d91e307391",
+  "bytes": 20349,
+  "requestId": "nxRtINbyu0AUB3wrrKo0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2afdd8862055866d3ceab447f54b79241262a65e96cc518b857d514944e67651",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

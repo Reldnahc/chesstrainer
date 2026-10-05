@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-black",
+      "label": "Positional rook semi open alternative black",
+      "text": "With the stronger move, Black's rook would have had a half-open file. Only enemy pawns would remain on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7149a08f6ab34e6889412e0518b53cc580ea518bc69a9698dbbef31a500daeed",
+  "recordedAt": "2026-10-05T20:10:30.482Z",
+  "sha256": "8c5006d332c5eafc559a1f1c146078683f5e011b91766300956036ae0d00640d",
+  "bytes": 21451,
+  "requestId": "xOTH9ksk4hDDs2XTjgP9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f4e74695b1489bea0e54387389b7c4cc7877d648c28b94919c5ebd8efa12a9f",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

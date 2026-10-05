@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-5",
+      "label": "Positional development actual knight 5",
+      "text": "There's the knight's debut. It hadn't moved from its starting square before this."
+    },
+    "takeId": null
+  },
+  "requestHash": "8276aaedc697cdfbb22204ff6e6373f191c612ad50b6376b9bca3230654e261d",
+  "recordedAt": "2026-10-05T20:17:19.662Z",
+  "sha256": "120f19bd0941f02691281782822ea4692f86b8f136265d890bca8f7a3b25705f",
+  "bytes": 15789,
+  "requestId": "FQG4JADLoU4ooX7RR7Vg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a71c2d3723003ff8bc2d353d36da5bc5ae40df1672af5554f8b03c9df7f3c6f",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

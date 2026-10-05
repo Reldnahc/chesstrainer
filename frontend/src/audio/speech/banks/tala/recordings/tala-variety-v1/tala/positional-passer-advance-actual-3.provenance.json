@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "That pawn was already passed; now it has advanced toward the last rank. The journey is not over yet."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed01f83b8020443194aa0d8f8d7b28a41565364fcaff88000b7f15d5fc8e6603",
+  "recordedAt": "2026-10-05T20:19:17.621Z",
+  "sha256": "e05a5215a7f95f46d7a5336cf5895b352dbf93e9072e9b1043ca0f54d8c1d07a",
+  "bytes": 23045,
+  "requestId": "dv7XONvMywgkc2nQLsJ9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f801b26c549f800a33007cc5e09eac0b24f566471148019af45453c374ac4f3",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

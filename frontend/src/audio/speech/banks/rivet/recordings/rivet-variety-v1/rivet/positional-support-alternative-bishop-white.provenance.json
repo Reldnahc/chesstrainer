@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "White's bishop would gain previously absent support with the better move. A defender would be present."
+    },
+    "takeId": null
+  },
+  "requestHash": "ffe70c9945bfb11869ca280baa463dbadd9a800ed57462a2a4a2893615ddfd8a",
+  "recordedAt": "2026-10-05T20:05:14.209Z",
+  "sha256": "eaa009382f9f148fad50d537788b042de6232253b474df7bc55b534599a6d9b4",
+  "bytes": 19757,
+  "requestId": "gaVrINfggvrgMBMgj5g3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5666305ff0e5d41e13408366f47dd57689b80568e3fc0109102d50f8409b6c23",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

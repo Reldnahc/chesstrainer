@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "There's the new connection! White's queen now has a defender after having none."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d3113ab440249b6fe028ab73a69e804f18195a83146b11e2a9d084f2ec62be5",
+  "recordedAt": "2026-10-05T20:18:08.793Z",
+  "sha256": "b096f90043fe52ea185bd2bb54349e847dc4398b939deb59708d254e66408c07",
+  "bytes": 15967,
+  "requestId": "TUG9MBb8dzhZ2e4YfYOW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50e3710520667561f8bdf907725f09f5f67ee95921a424d616b729d161cfa421",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

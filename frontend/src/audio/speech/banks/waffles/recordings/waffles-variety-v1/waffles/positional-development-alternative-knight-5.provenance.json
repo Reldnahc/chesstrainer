@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "The better route would have brought a knight off its original square for the first time. Inspect that deployment!"
+    },
+    "takeId": null
+  },
+  "requestHash": "bddc82199e2655f5c8be8463c36618bd3779e1ed2eda29797dcf73b593f17b2f",
+  "recordedAt": "2026-10-05T20:20:35.575Z",
+  "sha256": "bab13d8e2ecce79662ae053a910e5ba28dc26a05bf90449224f1a021aea704eb",
+  "bytes": 21994,
+  "requestId": "mWHSxY78rQylWrE92DCt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de6f48bf08b5c6e1bb2c7be3552cebe7f550cab4a8f7ea3738c2fe83f08cd405",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

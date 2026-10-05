@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The better move would have left Black's knight without its earlier protection. No defender would remain."
+    },
+    "takeId": null
+  },
+  "requestHash": "7620c17d4994a0c1dd5824bfab6255421ba9f812e9cd77f3f6a421ab04bad3d1",
+  "recordedAt": "2026-10-05T20:04:29.955Z",
+  "sha256": "746e5d82132505d248cb44894cd770960b9053ff22a3b43fbf290cc9804c1e4e",
+  "bytes": 19435,
+  "requestId": "gfvakphZrYHtFzIPfqGy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f7ba506565ea9ac4a7c1b2593ab6b75e68aac09d4e16257a03e7b7758f6619e",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

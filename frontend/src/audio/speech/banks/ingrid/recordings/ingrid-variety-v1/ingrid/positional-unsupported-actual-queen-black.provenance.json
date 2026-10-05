@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Black's queen is left without any defender. Notice it, but don't assume a capture follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2fdac169cf4317ec97c9d57adc17615bfc045a005b62bffa8a8571e033f5217",
+  "recordedAt": "2026-10-05T20:12:12.821Z",
+  "sha256": "493e756f674ac9d56434a541629eec4df1f86e53950481dd81786c2bd68bb370",
+  "bytes": 21301,
+  "requestId": "EMQ7SX6h50tWDAcWtO6Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "70a912c3e46abe725383d6536ccc68c12355e18e058b30fdf119b02bdb04df4a",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

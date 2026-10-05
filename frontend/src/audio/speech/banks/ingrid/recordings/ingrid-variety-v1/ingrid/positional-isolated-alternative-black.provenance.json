@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "A better move would leave Black with an isolated pawn. That detail alone wouldn't make the move bad."
+    },
+    "takeId": null
+  },
+  "requestHash": "8aafe5b0fba2ad67492108ef68f58c498267ee7417932ca78817e31149b0bc49",
+  "recordedAt": "2026-10-05T20:12:20.135Z",
+  "sha256": "b436b49a7934062fc4d0bb4c4f1ffc2aeaea057f9f6c95a753f483541823a9d8",
+  "bytes": 21143,
+  "requestId": "yECsV3ZxGgHmK9v3DJeM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9698165dda83eb733236ea415f3dcca582667788e51d161942e69bce30709666",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

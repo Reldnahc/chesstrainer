@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook has gained support. Its undefended moment has passed."
+    },
+    "takeId": null
+  },
+  "requestHash": "667a5526e1109977bdf668fb46a2c79fa4f0632a212d7dddc6ed8a4d80d27b71",
+  "recordedAt": "2026-10-05T20:21:06.975Z",
+  "sha256": "b3b0d7d2d36a82fe5803cf927c4d5edd0cfc19f1181d3e1c13019e0ab1275408",
+  "bytes": 15373,
+  "requestId": "W6g9X8ayy5c4lutHzWK5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8ccf9329fe5b63729f57c27daa35a471fd28b6540358361cf08f75a917497a6",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "The better move would have defended Black's unguarded knight. Compare that protection with the position actually reached."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc18745dc667163c90ca80b29826e68e1cc90b69c8d51bfafc0c330d851940d0",
+  "recordedAt": "2026-10-05T20:20:05.390Z",
+  "sha256": "4bd437c87ee62b45f070072a4653d6ed3de0dfc758bf24e2346eaa5e33552539",
+  "bytes": 21939,
+  "requestId": "GWgFnzEZiyJC4GjeztdA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74aef27e2e07e99a8a4993f24871b8aef12c3a21e403063469eb57869695878d",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

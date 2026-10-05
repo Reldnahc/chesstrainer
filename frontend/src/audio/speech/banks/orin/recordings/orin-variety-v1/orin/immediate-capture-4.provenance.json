@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "immediate-capture-4",
+      "label": "Immediate capture 4",
+      "text": "An immediate capture belongs in the calculation here. Establish what can be taken before weighing the exchange."
+    },
+    "takeId": null
+  },
+  "requestHash": "866953aa6dc310b6d4d3fde8216669d017ddf70ba220cc2bfa49d5e4b1deb40f",
+  "recordedAt": "2026-10-05T20:16:05.690Z",
+  "sha256": "560c1f3ae966f83c8fe6faa61c9bfa54ca9f9fed730a6c454e2519ce3b75e65f",
+  "bytes": 23531,
+  "requestId": "TbAE4W5Kaz3KpZZcUwZY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d66f709523e713ed594588fc94fd470655404f1f05d396f317325be8f41b9f3",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

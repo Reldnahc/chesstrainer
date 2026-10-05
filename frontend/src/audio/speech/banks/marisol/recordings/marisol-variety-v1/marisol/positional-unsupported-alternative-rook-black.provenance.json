@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "The better move would remove the last defender of Black's rook. The overall comparison still favors it."
+    },
+    "takeId": null
+  },
+  "requestHash": "aae2ecb974fba8710db3236123d868751fb01a97ac139a82ef84066391e6d979",
+  "recordedAt": "2026-10-05T20:14:10.364Z",
+  "sha256": "ade354371c825ecbac7d67e4cc8eb98f45b44f82da1877b41264ee481abb13e7",
+  "bytes": 21330,
+  "requestId": "ABTlnp6cQOpdIgM4mQHC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e13869d4ad3e502d5c82e90fec4b14a4e3d319457b195c3272504cffbb716e2e",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

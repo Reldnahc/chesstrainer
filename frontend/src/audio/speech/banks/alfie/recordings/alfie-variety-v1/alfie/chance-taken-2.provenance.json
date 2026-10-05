@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "You made use of the opponent's previous error. The important connection is between that mistake and your response."
+    },
+    "takeId": null
+  },
+  "requestHash": "f45b627a39d4e542b9f85bb362de1931f5820b5f2427199024af4e9b79e450b7",
+  "recordedAt": "2026-10-05T20:07:56.256Z",
+  "sha256": "f6b35b71717642eef2f73f4fa8bb5eb28265bc287ce983c9d25a5ff17776dfa5",
+  "bytes": 22123,
+  "requestId": "RVNZ4rPbRbgcfZN9AHIB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6926235e85a78c5054d2be2271e967115c33f217711df22b65464186e1a2829f",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

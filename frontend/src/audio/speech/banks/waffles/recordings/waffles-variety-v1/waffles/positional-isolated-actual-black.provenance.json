@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black has an isolated pawn now. No friendly pawns on adjacent files. Note the formation!"
+    },
+    "takeId": null
+  },
+  "requestHash": "60728171dcfb595587c08e8bc90f68c01862b9487a76a6cd91ba642d43c319ec",
+  "recordedAt": "2026-10-05T20:20:35.298Z",
+  "sha256": "a8bb9fa3a1a3b11a83202309cddd0fe1edc72ad9b05e8dc98ded7f564e822b77",
+  "bytes": 21323,
+  "requestId": "jUxXQZfFIkXXAn6EmlCR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "727fd17155a620dd753cf845e201be99134140e533c06b536eef7b55c7c943e3",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

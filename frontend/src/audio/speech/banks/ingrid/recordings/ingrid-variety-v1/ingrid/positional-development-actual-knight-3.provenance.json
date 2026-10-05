@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "There's the knight leaving its starting square for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "76b885c59d8b613f61f52eb9c1a0495249fef58e982745fe28d2515b06a7e75c",
+  "recordedAt": "2026-10-05T20:12:32.907Z",
+  "sha256": "e6e17f717a4509ad0ed952b29f98ed8cb3e72d9c4f17db541f4dcb04123a3903",
+  "bytes": 12602,
+  "requestId": "snwDJ1vi8rJCQ71FWlmy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5e92a1ed0badd83323504a5109ba83b81bff22bf9c5727b275fd768a68f447c",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

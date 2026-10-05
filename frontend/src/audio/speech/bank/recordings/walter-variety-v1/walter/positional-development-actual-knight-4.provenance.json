@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "A knight that had stayed on its original square now comes out. Notice that change before looking further."
+    },
+    "takeId": null
+  },
+  "requestHash": "e6d7f8bad608b1760abbdb952889bebeae8826bfed2d01f8b10e941c602cfbdc",
+  "recordedAt": "2026-10-05T20:04:48.006Z",
+  "sha256": "45c33de10539eaeb1b376b5aceecb753b4cd330b1f486c7812df8f85adb77543",
+  "bytes": 20363,
+  "requestId": "xbAykbvxIqM6nv9f2lEn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d68249b7d8980f1151b8095654459c2f431af57fe6796f6db4d041c53c5d233",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

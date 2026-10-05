@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "You made the previous mistake count against the opponent. Good; an offered chance needs an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "380e23f59a5a8c1f8068046bd35765a02964ce8b8331b031e9ed084dc3fb3a78",
+  "recordedAt": "2026-10-05T20:10:27.164Z",
+  "sha256": "fa7699f2203f91099f4273b279abb8df9cf5edd7197c40bf7518992a3b85186b",
+  "bytes": 20086,
+  "requestId": "Xy84s7ttZcuhixgYQaKz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ddb8da0feba9a163d0fc4897be231d8fe215a1142e08cea7371eadf2ac5be726",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

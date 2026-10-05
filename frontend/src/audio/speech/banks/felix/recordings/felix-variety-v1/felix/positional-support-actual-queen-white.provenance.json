@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen is no longer unguarded. Royalty is not a substitute for support."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a2a1ad0a3f94a7bf328b838db738027a6e9d58396f8166be8ff35db7961c8e2",
+  "recordedAt": "2026-10-05T20:10:42.004Z",
+  "sha256": "cadd137c67eb2ed29ed92da78e0a5494e897bcbd324975ac80629109b951f217",
+  "bytes": 20083,
+  "requestId": "ddIl1WDqOB0B3yrILooG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0622ae5706b1208f06725e1f7eb4a0593086dcae941b7268dab5e319ca599425",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

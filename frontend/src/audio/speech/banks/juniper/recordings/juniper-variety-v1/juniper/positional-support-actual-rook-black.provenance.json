@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook was alone. Now something guards it."
+    },
+    "takeId": null
+  },
+  "requestHash": "39b82eda0bba789b7838d481f21aba4dad48f2e01ce2a3977b0d51c63dc3fb75",
+  "recordedAt": "2026-10-05T20:13:28.082Z",
+  "sha256": "5d440bbc6eb8d2495b7daa718f5e603bc62d0a119cc102ebba40706708fd7255",
+  "bytes": 13238,
+  "requestId": "nEW7Tks8zkHuhcg2SC1x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f75adc18e83fa7674af8a44a0f126165e832b213456b91ad71bb5bdfd226d9c9",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

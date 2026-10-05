@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-black",
+      "label": "Positional support alternative rook black",
+      "text": "With the better move, Black's rook would no longer stand undefended. It would have gained a quiet ally."
+    },
+    "takeId": null
+  },
+  "requestHash": "04ef382713905de850b49b9f0af7dd4478e7c14729597219a90368fb56fe7395",
+  "recordedAt": "2026-10-05T20:09:42.579Z",
+  "sha256": "3ce9bec83cafc054c1e728fab07d8ef063d3a4abfeb5652b8a657aebae90bb2b",
+  "bytes": 21757,
+  "requestId": "Od9YzY72E8mu1fpEAk10",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "36b6b6c3516c75252f02da5d5da01d08ab770af72b5b1b259d4e5817bcc820d5",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

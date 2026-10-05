@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "A different move would have left Black's queen without a guard. The queen's job and the defender's job aren't the same thing."
+    },
+    "takeId": null
+  },
+  "requestHash": "1088a1855ee9c54052bc38bdf6aaedabdf70a2bbc7008d321e1f1b32908e38b6",
+  "recordedAt": "2026-10-05T20:16:38.398Z",
+  "sha256": "3b8cb8b244a153d57a020d2c1852c56678e7df807bcd5457fb51336734d8318f",
+  "bytes": 22974,
+  "requestId": "NxgwGxvK53YrrDn0UsN2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "962aa676fbfd772bd46dd4d05639bc1924edf42b45d388fa98d2bf1610ab5596",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

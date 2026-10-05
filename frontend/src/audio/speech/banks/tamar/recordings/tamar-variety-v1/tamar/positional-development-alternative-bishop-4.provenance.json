@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "The better move would have brought a bishop off its starting square for the first time. Compare the resulting positions."
+    },
+    "takeId": null
+  },
+  "requestHash": "a09f5d4510b8f1f18166940befcb7093d03c99e131f5f50d5f871b960991b6f8",
+  "recordedAt": "2026-10-05T20:20:03.835Z",
+  "sha256": "252684e10bef7053fb5afde2810f77e1a446dd636d63cba7992434d2f452f53f",
+  "bytes": 21299,
+  "requestId": "MJHDtmaWivJd3VygvOKJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "446a11c6fa0c8cacf5b4f1ea023c5793e725c028fea9c3e133d2d7db18a9c530",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

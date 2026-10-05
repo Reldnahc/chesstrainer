@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "White's queen is now defended. The move adds support that was missing."
+    },
+    "takeId": null
+  },
+  "requestHash": "d723550cad22c5552e6d8cdfdfa252189b71fbc1c07a8f0e64609ca852193559",
+  "recordedAt": "2026-10-05T20:05:07.277Z",
+  "sha256": "8cb4a4f65e66ffbd87cc363e77a6d6f825ffc63f8926829d6786869ca8131581",
+  "bytes": 14959,
+  "requestId": "LnfbTvuIXUx8lSGP3vuf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1409e1e66a5bfcf083f0441fa48c03ab4b33e0e6f05c32d003962a0be229c5aa",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

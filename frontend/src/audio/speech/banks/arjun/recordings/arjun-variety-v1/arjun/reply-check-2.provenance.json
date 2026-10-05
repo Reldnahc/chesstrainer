@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The best reply is a check. How could that check be answered? That's where to start."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a6abc5bb3407c81e995c7a9e923996e30721d1141c5acb34d6dbf5d9465a64c",
+  "recordedAt": "2026-10-05T20:06:53.657Z",
+  "sha256": "8259632b11686c890de2730ff8f6183c7012d9acccbb8923ba48d0dba51fc4bc",
+  "bytes": 17570,
+  "requestId": "CP1mPyBn48Or4uf0mlC2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10165a9546ed11a62c53c92f78e354b3ef1bf8592748d52808ff543cacad3392",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

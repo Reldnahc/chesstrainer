@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "chance-taken-2",
+      "label": "Chance taken 2",
+      "text": "You used the chance from their last error. I like seeing the mistake and the response connected that clearly."
+    },
+    "takeId": null
+  },
+  "requestHash": "123d840486e043fe4361854fbd33e538fd75ca7a719f0f25a09f3f2bfa0d33bd",
+  "recordedAt": "2026-10-05T20:22:07.579Z",
+  "sha256": "f44d946881ad4daaf5335d1ed5a6dc17968c94c509a5740e0520d3bbef5433ef",
+  "bytes": 21132,
+  "requestId": "8j8xk6JjY8tG9tRprUm2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1ce352b307cbd0786af0c6793170188ef249f09829b71033e3312eaf509744d",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

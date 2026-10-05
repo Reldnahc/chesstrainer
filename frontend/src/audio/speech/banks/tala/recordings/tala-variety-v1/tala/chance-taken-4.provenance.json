@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "chance-taken-4",
+      "label": "Chance taken 4",
+      "text": "Their previous move gave you a chance, and this move takes it. Good catch; now look at how it worked."
+    },
+    "takeId": null
+  },
+  "requestHash": "27a9fe159078e3c69d20327a3a5be582183b3df0ed46e0bf5171e2f5e9d9bbda",
+  "recordedAt": "2026-10-05T20:19:45.609Z",
+  "sha256": "30343939ed9d7f92b20cb2d24e648daf39952972725427e2b43f7642473cbe56",
+  "bytes": 21402,
+  "requestId": "zZgTXmuKHNdH11uVQpPM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f3e71123e59cd4c9a21a19e3dc7d8c139be3219ee253ba702e97172ea76391e",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "label": "Positional unsupported alternative bishop black",
+      "text": "In the better line, Black's bishop would stand undefended. A cost, not a verdict."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a7df171f9d8369de1c5ee49617e8913af763dc8d3486feb5fbce19a57ac02ee",
+  "recordedAt": "2026-10-05T20:13:29.658Z",
+  "sha256": "6c1f13aa41c81fb9aacf59679404000fb6c04975d31ab4ac8b59f8c13daf4162",
+  "bytes": 19739,
+  "requestId": "wstrnQRjXtPiYMpdRFwc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25ae9e137dd897c9a53ecd778760c66999bc5d21d8cb7c4319444308e19f7db3",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

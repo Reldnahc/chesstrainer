@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-white",
+      "label": "Positional rook open actual white",
+      "text": "White's rook has an open file now. Any pawns on it? None from either side."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dd8aabd8803d30c81c23c8075d06f60b94084bd59d69a7f0bf5756e4fb4947f",
+  "recordedAt": "2026-10-05T20:14:46.328Z",
+  "sha256": "71b67285733f80f880d383005c779d2a530616c4d4185d8e0a0abaf652c5eaeb",
+  "bytes": 17065,
+  "requestId": "iYo3qAdszd81f2UwvOOZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d821d053af7bc707e81e17c079696abd18b41a54ce0efd8351fc03313f7795e",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

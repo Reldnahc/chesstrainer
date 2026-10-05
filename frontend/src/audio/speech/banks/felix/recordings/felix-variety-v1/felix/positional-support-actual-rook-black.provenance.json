@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook is defended after standing loose. Protection has arrived."
+    },
+    "takeId": null
+  },
+  "requestHash": "1302076c89ba40d714deda954e80b0c428f2484ded226a10179d05c84ba2f221",
+  "recordedAt": "2026-10-05T20:10:40.226Z",
+  "sha256": "9fef532add0d5229a255cd74738a4f2b84e22c703be2665a7c25213256159026",
+  "bytes": 16666,
+  "requestId": "yLI6LN8JzYPYQS9J2U05",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3eb870bca1ef08a06342acff2290a44acba7595e4aa28f07088f2f447cd69f6a",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

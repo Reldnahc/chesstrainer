@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "lesson-correct-move-2",
+      "label": "Lesson correct move 2",
+      "text": "Lesson move matched. Keep the pattern in focus."
+    },
+    "takeId": null
+  },
+  "requestHash": "603d87f875c584510b315e9ce72ffe1d166f7df18cfdbd23f1c29e21ee4ca1d0",
+  "recordedAt": "2026-10-05T20:18:44.378Z",
+  "sha256": "ac591c3f68d1ad27b19353dbf875df5bf8544181679c91d391760571f5fc873b",
+  "bytes": 11452,
+  "requestId": "FBTSILdy3SMLvBSp9aZV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e23ca88c3d252e1b837eee6dbd6390b0633457c02525f5ec83686970e526f342",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

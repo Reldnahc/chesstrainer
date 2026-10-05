@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-black",
+      "label": "Positional support actual knight black",
+      "text": "Black's knight has gained a defender. Find the new link; that is the pattern to retain."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e9d42f857c738cde8ebbb088694d3caea4e944f3c8165cf59f51225ed12f4ed",
+  "recordedAt": "2026-10-05T20:18:34.210Z",
+  "sha256": "c0be9dfd2abeb44cf1567a69402c49156d342c8c13124c34d8e03ad5b34ea999",
+  "bytes": 18426,
+  "requestId": "G2TjSh6SzeZgpLeQupAQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "978e0c13de3b5c70620ade3c88fe4d267063bcca22bc584ec1928d5b8235648f",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

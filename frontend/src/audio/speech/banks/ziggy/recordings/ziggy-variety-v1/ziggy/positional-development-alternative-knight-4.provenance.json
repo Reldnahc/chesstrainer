@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-4",
+      "label": "Positional development alternative knight 4",
+      "text": "The better move would have started that knight's development. Its first departure was possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "7092b96d003b8d94fd9ac6526b889528743d837031a58ee6e6b53c14b6e15055",
+  "recordedAt": "2026-10-05T20:21:42.026Z",
+  "sha256": "9bd61bbf132a03d2913bc48d93a9bfbe5ee3b2a5d6ed52c70ef92739e7190375",
+  "bytes": 17518,
+  "requestId": "DnNxjegKykquB2jGMdJm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2470c969294fa6ba8e7401eaa99d81a04f4368f328c02dc2f6a0297ddcf5a75b",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

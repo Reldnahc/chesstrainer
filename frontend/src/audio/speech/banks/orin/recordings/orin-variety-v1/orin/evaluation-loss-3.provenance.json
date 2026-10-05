@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "evaluation-loss-3",
+      "label": "Evaluation loss 3",
+      "text": "This falls below what the position offered. Compare the better move before deciding what has been surrendered."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1e87be2b4ad2e38659a06fc8c941fa6361efd36f9a98e0d344ac283f01cdb49",
+  "recordedAt": "2026-10-05T20:15:56.066Z",
+  "sha256": "88a40cb3fa6ce0fb8a5e1ee1c136e603a124c026749f1084571c2f4fee0c64d0",
+  "bytes": 23142,
+  "requestId": "nYeYt1jCmvZ7THxjI9en",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1fbcf7fe8392af5b466c10315b4f55815615be559ff687679938470f1c11deb",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

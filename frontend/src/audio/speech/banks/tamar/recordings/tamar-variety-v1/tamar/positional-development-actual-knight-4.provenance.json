@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "First move from home for the knight. Check its role from the new square."
+    },
+    "takeId": null
+  },
+  "requestHash": "204d2ef98bef2920cc227bed22c08856dbbcb2d64009730044427104b0be2790",
+  "recordedAt": "2026-10-05T20:20:19.216Z",
+  "sha256": "4ca1158e2162d55e27b8205b23b28359d19a91b9a728269eecbccf02a9ccea5a",
+  "bytes": 14160,
+  "requestId": "32rqC66cYjJjuNWYqwlH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2fd7c4fe9748a8e1ee56b5463bb354a6c8d344126126fafe9a323f937dd27e32",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

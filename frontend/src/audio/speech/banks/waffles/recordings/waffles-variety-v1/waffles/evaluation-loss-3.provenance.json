@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "evaluation-loss-3",
+      "label": "Evaluation loss 3",
+      "text": "This move leaves the position worse than the stronger choice would have. Compare the options!"
+    },
+    "takeId": null
+  },
+  "requestHash": "6979883b359453610982222bd45557419d0784cde4224a7a70d10a876e4ae22e",
+  "recordedAt": "2026-10-05T20:20:45.958Z",
+  "sha256": "6d35f732d14e918dba84e0ec33034ebb0bb7691c4dd559533d3ff5ca4bb63dcc",
+  "bytes": 19267,
+  "requestId": "EX2Lx0hZQpmrvFdo5Ocw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "995f763635844ff81e8934efec2d57d1a786cab8ad21811d8b06709e856b3a43",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

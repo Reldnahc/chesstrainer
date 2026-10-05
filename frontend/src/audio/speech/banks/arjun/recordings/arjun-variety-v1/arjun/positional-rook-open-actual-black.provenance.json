@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Black's rook now occupies an open file, without pawns of either color. What do the remaining pieces let it do?"
+    },
+    "takeId": null
+  },
+  "requestHash": "7e382d9adb5a2be0195498fddae874f2c2d36de1653fe34f15b95614cc22be34",
+  "recordedAt": "2026-10-05T20:07:05.966Z",
+  "sha256": "68ece8a0cb7fa9fab365d823d191bab2e46b8d89eafa459d363e1eef8f3cc0a1",
+  "bytes": 23039,
+  "requestId": "42iTEcts0bXn1sLljn1d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ac05ab36b4b68f60408b3ee0dce1895b2ad808c1e2216b002f89f61d87ee45a",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

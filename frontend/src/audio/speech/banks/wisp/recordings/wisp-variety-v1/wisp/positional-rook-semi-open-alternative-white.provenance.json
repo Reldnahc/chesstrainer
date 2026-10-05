@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "The better move would have given White's rook a semi-open file. No friendly pawn there, though enemy pawns would remain."
+    },
+    "takeId": null
+  },
+  "requestHash": "1660166a46140bf49b982ec0b2ff2e5c8ed3606d8aaa18b2c0361ed0d61eb7d0",
+  "recordedAt": "2026-10-05T20:21:34.279Z",
+  "sha256": "5c83fc1642f6ed0ffacd9a3c6159b5618c721895e27f3b32a1173d6707819172",
+  "bytes": 24535,
+  "requestId": "n8shrosybCWthXWdB1uT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b75ffc258b3d5a6ca07d95d4786da30615e05f6836e4ba63113ec538b5cac737",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

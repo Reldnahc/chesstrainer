@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "With the better move, White's bishop would stand without a defender. The move may still be wiser overall."
+    },
+    "takeId": null
+  },
+  "requestHash": "3096062485e276e27e77343b73ac4bfe125c4097077043f1eb32df84632d1521",
+  "recordedAt": "2026-10-05T20:09:31.180Z",
+  "sha256": "11f61386da0c04b555b67bae2e7924781e2682e92b7ef46eff27a5ecedff5ad9",
+  "bytes": 22336,
+  "requestId": "sCqPsPM4VA9UbtUNCeUs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a8214473d27fd68cfebddd1e296aca93d319e6a0a5332ebdb64d1576e8e96d8",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

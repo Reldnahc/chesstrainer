@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-black",
+      "label": "Positional support alternative queen black",
+      "text": "For Black's queen, the better move would change a relationship: a defender would cover it where none had before."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce78cbd22e8332e2d5925bc03edb857a2588afeeaf12d413c362ed069e36e446",
+  "recordedAt": "2026-10-05T20:22:01.442Z",
+  "sha256": "83eb974194e5a829b5d61495480a63723aadea3c3f831e8a41a14b25185cd893",
+  "bytes": 22220,
+  "requestId": "LgBQEbCYCTw9AEiJnyGD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05dd7f61113ed9277929f7cee607f1e38d400791adb098b4aa73cfd660b39c75",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

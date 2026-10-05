@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "The other move would leave White's queen without a defender. No guard left!"
+    },
+    "takeId": null
+  },
+  "requestHash": "3c1376ce9b228bd7758421c9217a09f9bf2b8273af6de0542636d30db2324918",
+  "recordedAt": "2026-10-05T20:18:16.342Z",
+  "sha256": "0dc50d82d5ad7d70e54971a0407a16d22d3211cf5fa9f072bf9885a841d83526",
+  "bytes": 15244,
+  "requestId": "OkYf5SC7UnEFEelY94en",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c60238ad30494bc3a5583c358187793720aef7a31e2abb9106ebb2ac5ba4b622",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

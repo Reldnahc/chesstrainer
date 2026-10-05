@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Watch the pawn structure. Black now has an isolated pawn, without friendly pawns on adjacent files."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ff26d7a332c2ec718e2776e39e9112186c7e4ec98732ff2d673a6e7c77fbf73",
+  "recordedAt": "2026-10-05T20:18:08.280Z",
+  "sha256": "43fcc4e5a6a32c6e9e9a77f1de71d9207030c3d3a1fb63fa647b2b444ec8e1dc",
+  "bytes": 21748,
+  "requestId": "BunCFoHQcoN8M5AaIBkd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84c1267ef25bca1c79c2076ef4c34b3cabcde4ead663afb8eb22a7995351f118",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

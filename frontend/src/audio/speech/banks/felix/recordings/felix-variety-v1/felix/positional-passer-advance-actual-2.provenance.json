@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The passed pawn moves nearer promotion. Nearer is not there."
+    },
+    "takeId": null
+  },
+  "requestHash": "e01420e0ed916f25320a828a21d43356fdd5307f8ef21cd32923ff8dc5afa45c",
+  "recordedAt": "2026-10-05T20:10:35.844Z",
+  "sha256": "e24d21406da17b0e55eae478f1ab526763075c92eeafe3c9bae0138d7ece9541",
+  "bytes": 16238,
+  "requestId": "MYFqOPyUDf3CBa7TNeC3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b85c0b014ef4ba0381ad765faa261c5acc120e2b2c51c95de91f73a5c0ffd4d",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

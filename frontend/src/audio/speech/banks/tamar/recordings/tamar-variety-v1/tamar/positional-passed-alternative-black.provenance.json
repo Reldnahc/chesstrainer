@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-passed-alternative-black",
+      "label": "Positional passed alternative black",
+      "text": "The better move would have created a passed pawn for Black. Study that option with the possible blockers in mind."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9d3486fdd2bb3676acfd0cce6fb4bf3b10153d52817fd80d95edb40fe8dd63e",
+  "recordedAt": "2026-10-05T20:19:49.006Z",
+  "sha256": "0268fb8bb5647e9f7be3f85349d434be9ddb7850208efcd078d4e9f6abee0c25",
+  "bytes": 21633,
+  "requestId": "WjrdKDcmijkpLh41EZWY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83434dfae207ff0fa6ce08a81248edd65f4fe229d1b8dd93c39c4c5175b0f36a",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

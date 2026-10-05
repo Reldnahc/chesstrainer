@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "evaluation-loss-5",
+      "label": "Evaluation loss 5",
+      "text": "This choice carries a cost against the best move. Start the comparison here, before moving further into the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3ee27f43e44df34d099561f8e3b1be54c27c1083c91c47b0d067c0638600d93",
+  "recordedAt": "2026-10-05T20:04:40.790Z",
+  "sha256": "818237908a00624fe93bf84644754784abd1bb5264f85f7fe7a32b0e9093c79c",
+  "bytes": 23024,
+  "requestId": "RXDtgr76hQFPr1jbzaBB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd67bb3de8458c8c3ea0e58590a86bfcd0bf72ce508dcab9f2b0a060f9299bbb",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

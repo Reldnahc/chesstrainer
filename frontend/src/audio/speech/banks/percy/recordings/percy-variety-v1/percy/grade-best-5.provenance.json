@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-best-5",
+      "label": "Grade best 5",
+      "text": "Best! The strongest move in the position deserves a proper nod."
+    },
+    "takeId": null
+  },
+  "requestHash": "820ccc833067fd4d0b0797adeaec3256bcbc841157e9312d393400c3731f4b9f",
+  "recordedAt": "2026-10-05T20:16:41.917Z",
+  "sha256": "b8a35e7eb1bf7216b7e7fda25c62a2c7d275cb3541e80461b9e07ba14502a169",
+  "bytes": 14795,
+  "requestId": "zKx1aiB3rzAwugV05PNb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbca4d49368248d86eee57602c250cea619f3e7c36711485ad8ca82f5c56aad2",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

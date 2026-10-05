@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-isolated-actual-white",
+      "label": "Positional isolated actual white",
+      "text": "White now has an isolated pawn. No friendly pawn stands on either adjacent file; piece support must be judged on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "986e2ffcf5661201a22c0fec9e45e76593ecf5ef7dc37fcda5d100fecc31802a",
+  "recordedAt": "2026-10-05T20:09:59.720Z",
+  "sha256": "500e580addffc7cf519d5cb0ecc5b065a31c1c1b4a1a9f84c5a4bbf198f6bf45",
+  "bytes": 26136,
+  "requestId": "yEM2DZwZUXc09HW03IEo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00d204312a6d2838acbd85095ac2d9295fe4c37415288aac95828f4549b34c20",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

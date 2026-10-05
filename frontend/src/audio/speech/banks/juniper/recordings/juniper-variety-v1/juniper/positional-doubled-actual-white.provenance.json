@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-doubled-actual-white",
+      "label": "Positional doubled actual white",
+      "text": "White's pawns now share a file. Doubled."
+    },
+    "takeId": null
+  },
+  "requestHash": "8506d86b31944b2e86f2aa8d9ce71391086eb1baafaff3e3339b8a282dfc6208",
+  "recordedAt": "2026-10-05T20:13:31.409Z",
+  "sha256": "cb9ce6df3302680e6f886d8838eed7e47ac399939d8b2d3809f4cc525f51ea1a",
+  "bytes": 11201,
+  "requestId": "5YJGrw7Hy0jtEAVsM39C",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "593f494d81263a9a92056e38c7352b4f69bca3a1921f3b55109fbc59fa386f28",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

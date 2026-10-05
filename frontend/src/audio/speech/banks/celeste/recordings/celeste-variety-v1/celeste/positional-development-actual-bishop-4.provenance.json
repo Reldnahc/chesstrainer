@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-4",
+      "label": "Positional development actual bishop 4",
+      "text": "A bishop joins the game, moving from the square where it began."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ce901afeb456fcd6089bc862fd21da7d90c6c5f1b97ef349957bb1f45bcb799",
+  "recordedAt": "2026-10-05T20:09:53.264Z",
+  "sha256": "2fc49b3df632c1b5f9d6b0ff2595744caf8abcecd65b8431f6259f6ef4d50b37",
+  "bytes": 13447,
+  "requestId": "hxE1wLXAhRBRVsbGPerm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e8b64a2250c0f4db251902f42142ca17118bc542737cde89adf401107914cb7",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

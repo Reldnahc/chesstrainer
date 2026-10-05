@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-white",
+      "label": "Positional unsupported actual bishop white",
+      "text": "White's bishop has lost its last defender. Nobody is covering it now, though that doesn't prove it can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "a61e31580c15dd1fa592abef745f772430ee36c2a56c36db20fbe44284dcc7c8",
+  "recordedAt": "2026-10-05T20:16:45.754Z",
+  "sha256": "0ea507101c5a38f59c27df8b9763f6d852c83b0fc5e6b910344f7d29252c62f6",
+  "bytes": 22480,
+  "requestId": "e2ene7ybyaavrmuciqmj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6828c827f537adec0cfc59ab4b945860b768dd79cafc3552a53d3fe1786e7025",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

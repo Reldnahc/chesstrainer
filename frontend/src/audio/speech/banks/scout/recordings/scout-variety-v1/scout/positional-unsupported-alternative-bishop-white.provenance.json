@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "label": "Positional unsupported alternative bishop white",
+      "text": "The better move would have removed the last defender of White's bishop. Check whether that bishop could actually be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "528dc16c88704ee3331dab42962419d802fad61c14d2d5ab8b339c37091d0b6d",
+  "recordedAt": "2026-10-05T20:18:45.432Z",
+  "sha256": "c21f906ea211aede4e779a1d4f2e7fadf7fa7088dd6b4a4befb654dccefb411d",
+  "bytes": 20903,
+  "requestId": "Jor3RycNKaJ6lB9fNOqs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8842a7e8ea7b989fa6d48cc6b7334df06602ff9ca356e3ed4d3385d191e865ef",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

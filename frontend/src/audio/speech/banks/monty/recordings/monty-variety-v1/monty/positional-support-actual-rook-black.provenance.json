@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Black's rook has a guard now. That was missing before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "9036f340deb798c7444caee31b03140c5f72acaf091b3e6e80fff541ab4302e3",
+  "recordedAt": "2026-10-05T20:15:05.211Z",
+  "sha256": "70f96e1b9ec08d371015cb0f0decfcb84b71f1cd018109636d971b9048e34816",
+  "bytes": 14288,
+  "requestId": "tcOLdXWFN3Fj6o8abIyr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a703cbda8e3241da5d0e6e459b48c043e57b32f07825c91e624929e9bf038106",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

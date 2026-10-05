@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "Their previous move offered a chance, and you put it to use. That's worth noticing."
+    },
+    "takeId": null
+  },
+  "requestHash": "527e90a1f859566439ae33bd744dc1cf62b64e73d97b230d3ff16c2137e7c403",
+  "recordedAt": "2026-10-05T20:12:38.012Z",
+  "sha256": "761add4ec6cafa2b674780e3033d64607939d1a16e6bc8048971b278e4db1193",
+  "bytes": 18365,
+  "requestId": "IEDm4odhU5ximWvK49Ey",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9a63f5051bf5014a2a50a2f79a1a452d4c02003eab080457cb0ef713557d2a9",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

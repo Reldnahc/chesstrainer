@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "A different move would have stripped White's queen of its last guard. Even for a queen, support deserves attention."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6642f869c76416603dab4681a0c2d9f37bc49a871daeb302d3cc456a0e99ce2",
+  "recordedAt": "2026-10-05T20:15:55.964Z",
+  "sha256": "43a9c02025a8092cbcefad36fa1b0cb0e7c91d44bad02cf121fe6a2fe4ea0849",
+  "bytes": 24243,
+  "requestId": "l9aVtnOSDwownbEn2d7T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b1f898649ab6059aa0a5bc88a5ea2e3064f57a9bbfbe7928e012c117900fb6e",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

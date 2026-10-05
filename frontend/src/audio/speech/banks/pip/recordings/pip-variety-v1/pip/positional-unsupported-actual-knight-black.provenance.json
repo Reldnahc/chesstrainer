@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight has lost its last defender. It has no guard now."
+    },
+    "takeId": null
+  },
+  "requestHash": "d994bee9b16bd66e758754d21bf931f759d84af29aa82262113539c6902142b3",
+  "recordedAt": "2026-10-05T20:17:51.963Z",
+  "sha256": "66b8afea5ce61d27bc4c672876c277d6b1cdc3e03898cca0424c35367854dea9",
+  "bytes": 15188,
+  "requestId": "Wd23cDDcBRbUwIPX5enG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "288117080fce3a28630cf91a29c64c01812e935ebcd516536348448009bb2072",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

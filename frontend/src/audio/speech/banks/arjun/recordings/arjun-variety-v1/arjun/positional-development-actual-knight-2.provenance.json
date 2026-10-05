@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-2",
+      "label": "Positional development actual knight 2",
+      "text": "The knight's first move away from its starting square is on the board. What could its next job be?"
+    },
+    "takeId": null
+  },
+  "requestHash": "a597e1159d69bb6d5d4a24b7dee6b4c57f08cb935aa4ec6589f921b4de10b83c",
+  "recordedAt": "2026-10-05T20:07:07.320Z",
+  "sha256": "46e48b9290541ea421d574719fec72b10aea8a2dcfd8fafe266468ccf90f6aa0",
+  "bytes": 18938,
+  "requestId": "OlCyJNuzFWevxYapiCst",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "603566434d15ae93d80e547fd4feb8cd5441dc83995e6f841dd7b32499cde207",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

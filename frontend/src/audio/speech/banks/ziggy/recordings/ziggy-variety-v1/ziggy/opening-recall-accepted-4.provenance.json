@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "opening-recall-accepted-4",
+      "label": "Opening recall accepted 4",
+      "text": "The opening answer matches your study. An exact connection between practice and the chosen move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f1a1acf979f843e885c45b8ae42ec3f13293200bd77287ecbda82f86f34e08b",
+  "recordedAt": "2026-10-05T20:22:00.544Z",
+  "sha256": "def652ceac417284434e1d55d1f63b066433d5710e1af306a0fc79bb9fa2a355",
+  "bytes": 19627,
+  "requestId": "jNlIAIh8BODeKlebb5j4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c3b0dab8ab5f2f63ea510f8dbedc747d25942fef19992a050a6db1e1f738d3a",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "The knight has waited on its starting square until this move. Now it has developed."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f071c0de56909782357f000ce7e0f42cae5564a5852c47dde1469532f9de33c",
+  "recordedAt": "2026-10-05T20:21:27.628Z",
+  "sha256": "13efb6c471f012d497f27d4e1cc807ace9800a44be26d0caa0156824af639ac7",
+  "bytes": 18050,
+  "requestId": "G3YxtP5hmuB3JPeiMZrJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72af875e9eb3adbaa3fcddeeb10cdaba668a5322062d16f72a1bac699f36bc75",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

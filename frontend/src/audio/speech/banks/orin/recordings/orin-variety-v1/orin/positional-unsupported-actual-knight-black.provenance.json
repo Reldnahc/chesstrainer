@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight has lost all its defenders. That is a fact about support, not yet a verdict that the knight is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ca48941f300f203daa1ca335e3c35a314b20b1e284923700c94d3a352c1cc93",
+  "recordedAt": "2026-10-05T20:16:05.495Z",
+  "sha256": "f2503eab3de6255512f97b8ceb16650937a1f74da9e4a75aa8e86e42f2fac70a",
+  "bytes": 25885,
+  "requestId": "y6lK8QOY96MDiGSgOz1W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a55b4f53e516487b72472ef09b766ce8dafe07db1e64f3bc9050ddbcd1d5747",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-2",
+      "label": "Positional development actual bishop 2",
+      "text": "The bishop sets out along its diagonals for the first time. Every opening asks this of its bishops."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d5f9c05a89bad1870f4e50981e909a1f8c01e0ab41c7b926f28294c9cd437a0",
+  "recordedAt": "2026-10-05T20:16:07.553Z",
+  "sha256": "38867c8d5ff8b438b8ec399d56c47e8221abee7c29c4d64d7e52fc82f3f932c5",
+  "bytes": 22987,
+  "requestId": "y3HzyAade8uQkhwjokKl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16d809063c96f7f2cb3a273aac03d4c2088662db4c3d3ac8237f66eadd785fc7",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

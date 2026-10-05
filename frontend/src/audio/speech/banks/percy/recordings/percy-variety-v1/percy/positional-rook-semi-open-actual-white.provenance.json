@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual-white",
+      "label": "Positional rook semi open actual white",
+      "text": "White's rook has a half-open file now. No White pawns on it, but Black pawns remain. The word half matters!"
+    },
+    "takeId": null
+  },
+  "requestHash": "01a6b927d6c6c923f08d87a7f6ed91a2ea1c7b15cf7dc175f8bd85054134c78b",
+  "recordedAt": "2026-10-05T20:16:45.430Z",
+  "sha256": "ca070824d37c5ab422a41c35b11b71cac2bc4f5822b9216ba4f95f3cc076f09e",
+  "bytes": 24839,
+  "requestId": "WOkZZ6NDJRBanhnTjBB0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e404407335237d27e5e331b8c533c97a4c22b2a90fb1b8e5b12ece8254c3447",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-white",
+      "label": "Positional support actual rook white",
+      "text": "There is a new detail around White's rook: it has a defender now. The support was missing before."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b3cb1b9865c73034789be490523bec2b0275432ee1bdd8f78c22afb251dd1ce",
+  "recordedAt": "2026-10-05T20:19:16.019Z",
+  "sha256": "0c895641b1209d854b7fae32138a80bc7f03983e3f8e325d552e831229d07c1d",
+  "bytes": 20997,
+  "requestId": "1jwhqHwVgpR7w2YRw43u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39bf02a7511b8a320fc70e978b8d3de610c15dc9c33d3da299096d2bcce7da89",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

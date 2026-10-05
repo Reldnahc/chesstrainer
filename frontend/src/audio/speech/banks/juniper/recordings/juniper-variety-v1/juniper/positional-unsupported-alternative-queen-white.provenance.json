@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "White's queen would lose its last defender with the better move. Noted. Not decisive."
+    },
+    "takeId": null
+  },
+  "requestHash": "08883faaa9f6411f1caaad777a0bb4fe7ffe7eabbf5129ec18b29f92c064abb7",
+  "recordedAt": "2026-10-05T20:13:35.071Z",
+  "sha256": "9f915ff3600c4126db8c49db6fbe8eb5275e8828e220291b08d2a699a600f080",
+  "bytes": 20847,
+  "requestId": "DpqpcawpzLQHVOrH2Itq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "511edaa9b8d017eecfc960a3ae74397717c51f20987341bf2073640903cd2d7d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "What makes the strongest reply forcing? It gives check, so answering it comes first."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ad2631f0b4febe9c8978631f294fb49c10e14033340f4979c22bd07eb042937",
+  "recordedAt": "2026-10-05T20:19:19.540Z",
+  "sha256": "fef13eda01edbd12c0f9bb60f9f3c58d556a6909fe9310ae4f8342232eeba319",
+  "bytes": 19800,
+  "requestId": "qtNM6c1RnNIFL1RHsAbX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eac0fcdae8c07c91af45cae7e6ea5db1005f9a7a925085d589d3c22c20995e36",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

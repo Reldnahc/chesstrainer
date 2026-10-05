@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The passer is closer to promotion after this push. What could still get in its way?"
+    },
+    "takeId": null
+  },
+  "requestHash": "599d3141d3f533125b18abd850ed06c27904f92c315fbd622f0b4ed28c819895",
+  "recordedAt": "2026-10-05T20:19:15.581Z",
+  "sha256": "3fb8ed6757032e89f1da6c480236a1259e1acd8e50f111d26ad08101bb88a6d5",
+  "bytes": 17283,
+  "requestId": "bcCO8nfetducVUNJAGXM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d709806779fe4ce0a2ded554dc7a90a1b4cb9085866454966063c2f7253ac86",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

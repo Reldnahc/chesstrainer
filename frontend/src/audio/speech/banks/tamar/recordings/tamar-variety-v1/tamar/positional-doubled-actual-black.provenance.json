@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black now has doubled pawns. They share a file; assess the position before calling that arrangement a weakness."
+    },
+    "takeId": null
+  },
+  "requestHash": "1bfd6a745dbf629e20f0ca4d3e88c7205fac2c8ae162918e577a081ef550daba",
+  "recordedAt": "2026-10-05T20:20:02.011Z",
+  "sha256": "72149660265310284e340ad8777db71764da87561fe0db48ea41955b3232d9c6",
+  "bytes": 23266,
+  "requestId": "GF6WKmZEdkhmayHr0wuD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97c23be7fd635228d130d74b2e037ddd921da044aeae4809fec4b6e53b0ad01b",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "Under the better alternative, White would have doubled pawns sharing a file."
+    },
+    "takeId": null
+  },
+  "requestHash": "e29610a63dbd46dc00c3c8201f8ba145880d8b612d14bb2c492ab4b12613e911",
+  "recordedAt": "2026-10-05T20:14:10.136Z",
+  "sha256": "ff59b3240e2ae585058e468e665de194602780974e161916ac8f4961cdc59989",
+  "bytes": 14470,
+  "requestId": "KkEO5ILMW5c1stFXUH1X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce84a35c7f0b0dea968613f07254be2259e6a59b4146827dd7aaa432647498ec",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

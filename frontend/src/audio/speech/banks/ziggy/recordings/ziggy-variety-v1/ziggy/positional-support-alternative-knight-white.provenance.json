@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-white",
+      "label": "Positional support alternative knight white",
+      "text": "The better move would change who supports White's knight: from no defender to having one."
+    },
+    "takeId": null
+  },
+  "requestHash": "890d142864e99829a95cd0019d87fe80990561fef12908e818499ff72fcaa03c",
+  "recordedAt": "2026-10-05T20:21:48.186Z",
+  "sha256": "d503c910ad118bd582c271c2405b6b655f1602cfd7ece0adaab5912b7077c261",
+  "bytes": 17605,
+  "requestId": "LahQcd1xvrtwH1VOhSzL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3325ccb3d7ffeef42dde912645ae10167f8f198888b13b1c4aeded34de2d4001",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

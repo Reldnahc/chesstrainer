@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "The better move would have put White's rook on a half-open file. Friendly pawns absent, enemy pawns present. Include that in the comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "a95227399c7d6abde83ecee11b06546b664ea9e697813649eb6d16e0d4cbcd98",
+  "recordedAt": "2026-10-05T20:20:21.712Z",
+  "sha256": "33180e5691cd481471a751a297fbee29f73925ed1ea418149bceb84b45fb48e9",
+  "bytes": 28111,
+  "requestId": "vz81j6whTYP2z2q4ewZQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3541d53a86bcffbcf8222c307c161f044698be8d9ef97594e29b814ca9ed746b",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "No pawns on this little strip of board. Black's rook now has an open file."
+    },
+    "takeId": null
+  },
+  "requestHash": "aeac50eafae0138e69124b826be39d475ecc8d1477c8a68f6b5b47bef05caf60",
+  "recordedAt": "2026-10-05T20:06:31.454Z",
+  "sha256": "edadab2a0a32bf3ddb87c44b015e15c8b838060bc8407092e1bfad51de4b85be",
+  "bytes": 17281,
+  "requestId": "WlK3vj9A2c5JnCGlUQca",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1fe251e8dca1b092b47b804c0cb2d9764045d633de29458367f0ae0ac13bf01",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

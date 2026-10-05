@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "reply-check-3",
+      "label": "Reply check 3",
+      "text": "The strongest answer places the king in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0468adafc6a0b767c5ff45c972ae12660adc9bf24b27f67c5f7c79ff782d828",
+  "recordedAt": "2026-10-05T20:12:57.740Z",
+  "sha256": "ad0ea4c157c54392b61d62d0b22d981159b8506e1d9b76e3940318eea06bc2f0",
+  "bytes": 10840,
+  "requestId": "4usfhM0Vc5RpIjVjcAoM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a077ff7b211dad8202b92407fb12a63e1e91af4e43c1fa023e322bb4b5f49ee0",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

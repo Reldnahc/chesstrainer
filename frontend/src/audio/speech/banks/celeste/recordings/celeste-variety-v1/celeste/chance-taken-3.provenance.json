@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "You met the opponent's error with a move that takes advantage of it. A chance recognized and used."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ec5092d762a228a7a146b25a0e6fef0d5601557211479b2282544c255ec22c5",
+  "recordedAt": "2026-10-05T20:09:51.554Z",
+  "sha256": "589fec1fbf721e54798609bb03e02c9127a46abb7de7ebeb147d0280ab1fb52d",
+  "bytes": 21198,
+  "requestId": "HDolMuthh1L4HGFH3CAv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dd3cf3d5274ffd473a6777d38fb158cbbe64d89178fddbc8fbb50886c7f8e76",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

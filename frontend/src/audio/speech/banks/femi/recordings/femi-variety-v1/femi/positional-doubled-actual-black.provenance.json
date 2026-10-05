@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black's pawns are doubled now, sharing a file. I'd look at the rest of the position before calling that good or bad."
+    },
+    "takeId": null
+  },
+  "requestHash": "d520673496d3e47ddd6e6fb4458d649e0fe977198985531fffe0a266b1b22168",
+  "recordedAt": "2026-10-05T20:11:19.195Z",
+  "sha256": "3b16c0ea8ac90d61262659b7ce2653246cdc280834002f9ab51c2146c0e2acb3",
+  "bytes": 23448,
+  "requestId": "VugmIYGhhrLSxAiajG8G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ef5eaf14ca705a19bd8895f4801d75545edf244128bc6e96dbab66d65b5da8a",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

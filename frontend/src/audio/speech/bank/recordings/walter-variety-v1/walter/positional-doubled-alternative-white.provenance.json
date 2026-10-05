@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "The better move would have left White with doubled pawns. Notice how white pawns would share a file."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf183ed1b6ee5bddf6b85fb8800609470765d1b9927f0b209d24fc25dc2f6030",
+  "recordedAt": "2026-10-05T20:04:42.340Z",
+  "sha256": "82320873cc748ce0e2c649f9f0dd7d77016fcdcd4f2a81f94ecc41143f2b18cd",
+  "bytes": 19070,
+  "requestId": "ly8t9Z9xeoT9sOHyULcD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f042fb78bfc50505235b25f3ad3f26d5195e645c5ed20f0e4b4d40a1bf14bc61",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

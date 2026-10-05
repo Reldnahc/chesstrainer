@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-white",
+      "label": "Positional unsupported alternative rook white",
+      "text": "The stronger alternative would leave White's rook without any defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ec8373518c0f1a5138a602971a9d8777648e9dac2560890a5b24626b33882ad",
+  "recordedAt": "2026-10-05T20:13:03.008Z",
+  "sha256": "8fb5e4b93823ef533e664e6c71efca409c05b55aceda33d3f564c550eddcb7e5",
+  "bytes": 14262,
+  "requestId": "5Tr3khY2Mug9hQAVmS7K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b148f71c3818e80cb34bc404905ec2fc593380f9bbf914e3c3df66ff0381bcf0",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

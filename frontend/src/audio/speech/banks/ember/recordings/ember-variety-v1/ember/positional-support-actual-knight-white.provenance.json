@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-white",
+      "label": "Positional support actual knight white",
+      "text": "White's knight has gained a defender. Its former lack of support has been addressed."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b0fe3a06b65bfb53973f1f9829f402c5ecf376dd1136b54fd15b04c81e419da",
+  "recordedAt": "2026-10-05T20:09:56.357Z",
+  "sha256": "ba3d7a319aa6a67a5f17a6a40faa81ad93c96972aeb66133095655d270319f54",
+  "bytes": 16371,
+  "requestId": "0suYx4hj587r3eXmKsEo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6bfa6565adac9dc2ed6436afd52a038de3440c91587485e89a4120f3adcd69e",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

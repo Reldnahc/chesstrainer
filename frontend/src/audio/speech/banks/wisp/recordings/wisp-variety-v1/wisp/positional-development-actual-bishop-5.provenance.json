@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-5",
+      "label": "Positional development actual bishop 5",
+      "text": "The bishop's starting square has been left behind for the first time. Development has begun for that piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "552b7295dea0382170a5bde7ced6913f3b1c90ed07547c24f54b0a52ef3c06bf",
+  "recordedAt": "2026-10-05T20:21:36.383Z",
+  "sha256": "a5d2197b5242475e7f9b23f9c208ab0ad71b4de035ab9bcfdeafca4d7dee6b65",
+  "bytes": 21042,
+  "requestId": "wxyUacrBQd0KdEE137wR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec8e4eed660bee89c7350db1a92ac20e107c6cc10d46a668b5f62c5eaf00477c",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "label": "Positional unsupported alternative bishop black",
+      "text": "With the better move, Black's bishop would be undefended. That does not make the alternative worse."
+    },
+    "takeId": null
+  },
+  "requestHash": "29e6392159d055fea3ed3ba1458dacee86cf03e2ef9b448ea02481e6b66f14be",
+  "recordedAt": "2026-10-05T20:14:06.189Z",
+  "sha256": "5f2e881c6debd5408bdb3745f124df4d0e2a08ae3c0e86de5d1ad6c730933295",
+  "bytes": 19927,
+  "requestId": "LIM4EHbVtsVLxU8Uh4eB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "267616113ddb58585665205c372325bbbc86000afd32d9594dfc0d9fce0cbe88",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

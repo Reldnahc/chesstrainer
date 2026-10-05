@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black's pawns now share a file: doubled pawns. Check the arrangement before calling it a bargain for the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "f677acd5fb162448e2af9a8f66669414aab2394d00e92409508c3d7f0da9c8c2",
+  "recordedAt": "2026-10-05T20:08:20.639Z",
+  "sha256": "f40af4a75085bd307256799efd7d472401dd7166af700a6191d98577367b3795",
+  "bytes": 24468,
+  "requestId": "2hx5nF6tQdzTk7b7PMoi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b82f3d3777585df4b92d1494f6d4f28116620ce73b08e53d8941b8f8c9a24c0f",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

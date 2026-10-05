@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-white",
+      "label": "Positional unsupported actual bishop white",
+      "text": "The guarding connection is gone: White's bishop has no defender now. Notice what the move has changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9204b3c886daa4996bf2b5ee460e7a9d8173c5f51fa983b48f3b096baf13942",
+  "recordedAt": "2026-10-05T20:16:07.669Z",
+  "sha256": "83318513468558ec3ed3de7a5ab6e26800061651561715adfb198857502ba57a",
+  "bytes": 22662,
+  "requestId": "G8hX0IxNvhIGXF6De4f5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9944f49c4cdda06ee78650305873d0a00c1f06365a13de891f8c679488b4423",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

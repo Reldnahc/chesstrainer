@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "A bishop begins to develop. Until this move, it had stayed on its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "c470175da6fc779912f30474548943250455304b12f3309f4f83bc93052fee0c",
+  "recordedAt": "2026-10-05T20:13:46.568Z",
+  "sha256": "c11835b8d40f2075eca91c8729463a45e97390b3fbc48ff7cc96b55a1982cd5d",
+  "bytes": 19230,
+  "requestId": "ufK7lc0rGwnGjWf68UAY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b019cc44e7d8214d2eaa1498cdf1d274ce645e2e8b061073f065834a705d8f5f",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

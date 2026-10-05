@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black now has an isolated pawn. How might the pieces support it without friendly pawns on the adjacent files?"
+    },
+    "takeId": null
+  },
+  "requestHash": "6e35d3c60ba483bfdc1f96319fe5f70dacdba35a6f004246f3c40ee4823f8737",
+  "recordedAt": "2026-10-05T20:06:49.192Z",
+  "sha256": "3fdcd9d69bfd01e7cba483f226dfa1b765b3cebee1e6f9959826e963cc9db8a5",
+  "bytes": 22433,
+  "requestId": "T9R9to3VrzMpQx5LDQLW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7a34aa9e481052e14ee684de61a6c2724ce3eb233b1127c1743acd4c4952d08",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

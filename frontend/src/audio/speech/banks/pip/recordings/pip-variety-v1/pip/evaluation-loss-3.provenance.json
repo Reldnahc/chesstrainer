@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "evaluation-loss-3",
+      "label": "Evaluation loss 3",
+      "text": "The position would be better after the engine's preferred move. This one costs something."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9c4efcff60e27112d0992b7c222d8e0e1364861fafbcfb96c89aa93df8d44a5",
+  "recordedAt": "2026-10-05T20:17:44.882Z",
+  "sha256": "94450c4f2b3f8a3ffa65fec0a523c9097388d192e3c673c0ad4937a6fdd953a9",
+  "bytes": 18227,
+  "requestId": "IlvM4P1Qp6is0IiMeIU7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5bd6814f5a24a9b0ec7594c86c329161a9d0d20ee66142d87f090997fafd8c11",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

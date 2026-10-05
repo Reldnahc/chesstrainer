@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "A bishop would have made its first move from home with the better choice. Where would that leave it?"
+    },
+    "takeId": null
+  },
+  "requestHash": "202a209b1d631c6a267dee2b98a15963d1eff5a3ed1bd0d4e887fd5855d10820",
+  "recordedAt": "2026-10-05T20:19:23.183Z",
+  "sha256": "2f5f161f68dc9c1917f52a2fe7c188c8ef9f5e5f210ff635b11e3a5e95e50c91",
+  "bytes": 18367,
+  "requestId": "TX5i2c84SO527V0QedkZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "673c498b2de470a92b89f38327555b86e9678ae2eada1b2d4c7d5b5a8bfab616",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

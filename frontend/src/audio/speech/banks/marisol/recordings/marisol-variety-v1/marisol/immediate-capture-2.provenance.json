@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "After this move, the opponent has a capture available on the very next turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "4985716dca1f0680717a205e5a1734881737da62c5e183ebb10b84d9734e5080",
+  "recordedAt": "2026-10-05T20:14:12.319Z",
+  "sha256": "f02e65c155b9086361a13b093c2d6b132f27c6d6ef83f7f41e2b5b63e2c75772",
+  "bytes": 16282,
+  "requestId": "PS7Kzf9lS0cDGvU1ce1h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a10fc358addfe9fec975ee66fcec540842247c3a6d32ddb307eb7f4ea7e0c193",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

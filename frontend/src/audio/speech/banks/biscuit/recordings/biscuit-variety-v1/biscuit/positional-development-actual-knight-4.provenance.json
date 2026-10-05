@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "There's the knight's first move from home. Next, take a look at its new square!"
+    },
+    "takeId": null
+  },
+  "requestHash": "360060d413a38066763272c87c09c5a2f686835e6e6d6c53fa082f22aa3cfcdf",
+  "recordedAt": "2026-10-05T20:09:10.470Z",
+  "sha256": "247d23cd70150f8dd9afa020ed85134ce4db500ae73a35ff1e20b2de60205f0b",
+  "bytes": 16888,
+  "requestId": "D1fS9tgMT9iJYEWzE8tq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a08dfded64e67d167111d4251d7b530ee350dbd3063bacf15186c8e305af551",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

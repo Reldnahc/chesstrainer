@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-white",
+      "label": "Positional support actual bishop white",
+      "text": "Simple point: White's bishop was undefended. Now something guards it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec317d22e81df8fc4d3f9568dd2c0b5d2e12f4d29dee6083fc66a4baf16bdcbb",
+  "recordedAt": "2026-10-05T20:15:00.834Z",
+  "sha256": "8f4cc15e29db2eeb3cbff457dc658bc82ebde6172c6609d550b020a50846e435",
+  "bytes": 16489,
+  "requestId": "tqUEGNjv9BYAQJp0EmYZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe32f2dcc2eb641d7fb102aede97df1d814da7b1d9becf69ca9a0552d82b39d1",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

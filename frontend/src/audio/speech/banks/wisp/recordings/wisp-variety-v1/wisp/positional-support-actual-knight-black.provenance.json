@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-black",
+      "label": "Positional support actual knight black",
+      "text": "Black's knight no longer stands undefended. Support has appeared where there was none."
+    },
+    "takeId": null
+  },
+  "requestHash": "761eafaeea3f2e1447113cdb3bb375a9c1f26290246e5107bd6d07a2c13429d8",
+  "recordedAt": "2026-10-05T20:21:01.082Z",
+  "sha256": "261bb9a0214c79cb8e3cb348caf4828bf8b2843e9214dea0f70915d845baf5f7",
+  "bytes": 17929,
+  "requestId": "cI8MBZSFhaMSNuvPUkUJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2c5d05d1cfe8f680982b1154ec553298e654aac8277befb8b2a1b7ac3170db7",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

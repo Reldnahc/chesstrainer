@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook-white",
+      "label": "Positional support alternative rook white",
+      "text": "A guard for White's rook, had the better move been played. It lacked one before."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7b7d5427e7ac26b65c02540824c2eb5fbdf1813d8f542bc873649eceb367033",
+  "recordedAt": "2026-10-05T20:10:52.283Z",
+  "sha256": "3a7192500eee24808e3134e74524a5a011b04659356a479ae3e508ddd75000ee",
+  "bytes": 17283,
+  "requestId": "Pft1d0YbQSvcBb31Hy9o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b317440ccb02377612a670cb5e9d033d4c877850ab09cc6de110e4b5f8ac7eb1",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

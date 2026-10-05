@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "evaluation-loss-2",
+      "label": "Evaluation loss 2",
+      "text": "A worse position than the better move offered. That difference is the cost."
+    },
+    "takeId": null
+  },
+  "requestHash": "96efcc78218eb4aa3cfe7d4b77452480ef3f2e95550fe239ee4dedc1a584b091",
+  "recordedAt": "2026-10-05T20:10:47.137Z",
+  "sha256": "58fb9467c995ab497200250c4c8c8d0d0a988a707475fda57c0b291b19087e34",
+  "bytes": 17399,
+  "requestId": "97xn4Yzgl48dN6bfmbu4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a235384149a35c81c95fc2a7fccef3a9574d2827334a4673a7a142b7f7faad0c",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

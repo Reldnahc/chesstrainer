@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "chance-taken-3",
+      "label": "Chance taken 3",
+      "text": "The opponent slipped, and you followed the clue. This move takes advantage of that error."
+    },
+    "takeId": null
+  },
+  "requestHash": "d44c5dd8803e0508417b3bdfbff7873048462e5071125ed70851d2593e890dba",
+  "recordedAt": "2026-10-05T20:17:26.155Z",
+  "sha256": "942e8107781f05bee26844aeeae4cd25ec7c9624129b3ba290868837f787b8f8",
+  "bytes": 18688,
+  "requestId": "Uev7VeLUaym4yh9Px3uK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc3c0512355b6678f46d0fccee78133430fab48619bd400d84705056028178c0",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

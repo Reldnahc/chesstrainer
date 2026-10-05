@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-passed-actual-white",
+      "label": "Positional passed actual white",
+      "text": "Look at White's new passed pawn. No enemy pawn ahead on its file or the files beside it. Pieces can still stop it, though."
+    },
+    "takeId": null
+  },
+  "requestHash": "c15de48d8cd215f6ed998ab3361f05698c96a375aecfdf617a1d643039b12ff2",
+  "recordedAt": "2026-10-05T20:14:22.262Z",
+  "sha256": "64bd768301e22f82245a8384d0ceb895e7ef524874ee9ffcba86f8cd74ccabff",
+  "bytes": 25692,
+  "requestId": "fKd2ObLblA9Ky9ZUqG26",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59c9833f9364323f5ae0e4c0379c19f8bfbb45433adfb6192b0644bf375bd5c3",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

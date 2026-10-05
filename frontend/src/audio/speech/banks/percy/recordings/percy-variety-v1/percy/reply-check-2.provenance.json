@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The strongest reply gives check. An attack on the king goes straight to the top of the jobs list!"
+    },
+    "takeId": null
+  },
+  "requestHash": "1692b84b8aec4116e4f0ab276208541aa8bebdc4bd6b183a8bd48037d55cb3ca",
+  "recordedAt": "2026-10-05T20:16:25.636Z",
+  "sha256": "fe2390b9553476f8b6bec2596e12b8458fd8d360266b650b6f655dec462299bd",
+  "bytes": 19333,
+  "requestId": "Vqq1vKNTnqHu4CJaHNQj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d78142c6111d61e4ec91854fd1e8d61727bb0af6f87edca16a34fb261133bbbe",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

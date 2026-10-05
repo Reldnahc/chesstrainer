@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "puzzle-next-move-3",
+      "label": "Puzzle next move 3",
+      "text": "This part of the solution is correct. There are more moves to find before the puzzle is complete."
+    },
+    "takeId": null
+  },
+  "requestHash": "39c199195e01eb605afcaf5722bc34f643bc60235fd744ee41231850d94c547b",
+  "recordedAt": "2026-10-05T20:07:43.743Z",
+  "sha256": "1d4561ad6615cc467713c0f87486006de237ab1cf714ebe09c32534e45d03631",
+  "bytes": 18471,
+  "requestId": "YLYFC2DE9adjBW3O0vQ6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "806173a6ebd5c419bacedea32a28240b365c3d214878210a726cb212f0b2a95f",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

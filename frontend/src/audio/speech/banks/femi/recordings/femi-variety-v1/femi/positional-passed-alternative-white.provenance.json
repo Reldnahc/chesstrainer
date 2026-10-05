@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-passed-alternative-white",
+      "label": "Positional passed alternative white",
+      "text": "The better move would have given White a passer. That's worth comparing, even though passed doesn't mean unstoppable."
+    },
+    "takeId": null
+  },
+  "requestHash": "200bdb21982a778b43efd32d3cea913e217f861f5a7f14905e063e6b56838479",
+  "recordedAt": "2026-10-05T20:11:03.052Z",
+  "sha256": "c0e0a1dc3f7b60a8c3fb5edd17d8ca11405518bfbd77d7e5428b39c7963c8c63",
+  "bytes": 23523,
+  "requestId": "wrJxhwUPCUO38jBDC4j0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05345ae478b68da5a06652e505d21e142dd8d9f7be2c232c0d8bc88ba679cdd1",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

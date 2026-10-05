@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Black's knight has lost its last defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d65da32ee49c429c30e31cc5b0ed427a75c18bd28762f8c16fbb485dbf98865",
+  "recordedAt": "2026-10-05T20:12:00.839Z",
+  "sha256": "2a0c5365efbaf5ec6070bfdc4dbbd4ed0f68f721a918cc8db211916792f88d21",
+  "bytes": 10051,
+  "requestId": "rvciTeM2RKKBRRHXGgbo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1f776381a4cb3933fe8d45d43bc7c26090580087d2697e3ec872a94bf5435c7",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

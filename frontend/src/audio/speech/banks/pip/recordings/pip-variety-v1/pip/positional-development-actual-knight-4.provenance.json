@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "Ah, the knight gets going! It hadn't left its starting square before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "c46bfeccf30ba17698334249a5bf9149bc5ff7c37b063535d0c902278a71e39a",
+  "recordedAt": "2026-10-05T20:17:50.583Z",
+  "sha256": "0c256f42dc52817092535795930f8c4a158c16dc957505a3a485883a26e1c3be",
+  "bytes": 17876,
+  "requestId": "sGLfopm6pg2cryWVHhdq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0b411c89ac93cc4e9fce550e0d6f1fd5448dcb69674ad1970b11c7a79866891",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

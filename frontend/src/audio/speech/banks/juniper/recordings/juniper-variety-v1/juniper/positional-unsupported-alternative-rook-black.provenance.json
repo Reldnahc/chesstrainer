@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "The better move would leave Black's rook without a guard. Notice it, then look deeper."
+    },
+    "takeId": null
+  },
+  "requestHash": "c61186ac5893651c154620acde8b66c83d72af615469137242d9040810dc0d29",
+  "recordedAt": "2026-10-05T20:13:33.147Z",
+  "sha256": "1a5ce0ca26d2001ce43c2bd060d4c0cf4920aeeec96e2749497ed9e51d8aac84",
+  "bytes": 18685,
+  "requestId": "e0n1N6WfoQMriEJCeate",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab86e8e667af87fca29899bf3d337051848fa602cd19fad8c7f7e06d8a179f7a",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

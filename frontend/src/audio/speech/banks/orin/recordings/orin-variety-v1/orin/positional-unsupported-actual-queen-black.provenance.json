@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Black's queen has lost its last guard. The queen's strength does not replace a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "48c4ed206fc3eb7d98b282e9b21fca1317aeedbf31036948c40042354309c898",
+  "recordedAt": "2026-10-05T20:15:41.050Z",
+  "sha256": "1f11dbd73c5514318b9cd6f056f6507f66e8290f56b0aaa00d15f8584c06dfe5",
+  "bytes": 20297,
+  "requestId": "MUlEwxZFr33hypTGsh24",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f8129b8abc64fd21c53f6d16a18a7ee47c5c3872aa5de97346c74c32b53724f",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-2",
+      "label": "Positional passer advance actual 2",
+      "text": "The existing passed pawn advances. Distance to the promotion rank decreases; arrival is not guaranteed."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d9998846f29e818ed4292bbbfc81ea47be926d8fa979bd0a4e1cd124d877e6d",
+  "recordedAt": "2026-10-05T20:05:05.513Z",
+  "sha256": "a2f978b1bd82e162be07c26d9d27f8d42ca8f354aebef6b55b8da8139c064af1",
+  "bytes": 23567,
+  "requestId": "IADC5n2olRqJl8sTlT5e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f38b9477ec9d86dcf5b07b0d39770d45a8dc933261d37e639fe2dd943199a193",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

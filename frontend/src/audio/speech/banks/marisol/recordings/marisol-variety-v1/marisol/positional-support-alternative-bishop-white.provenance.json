@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "With the better move, White's bishop would gain a defender. Before the move, it had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "ffdc4ec59c65ce7b3ffd2b9749a489f0b6eee3a030af97ce144e17b911d53cb0",
+  "recordedAt": "2026-10-05T20:14:07.787Z",
+  "sha256": "47ca4f0172b088f5e7bbed71157cd1462b6da0ec1a489794b11d69ddea69797d",
+  "bytes": 18236,
+  "requestId": "VL2S7au3ZPFnnmgZ4O86",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "906febed3203b438e5ac53134e8ce1d655818f9093b77d95cc1393884bf69d57",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

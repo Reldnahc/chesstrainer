@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-4",
+      "label": "Positional development alternative bishop 4",
+      "text": "The alternative included developing a bishop. It would have left the square where it began the game for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fa9ec3344a439ca55a7bea2c7778cc06dbf3c40fe973326334eb8f396155a87",
+  "recordedAt": "2026-10-05T20:07:33.676Z",
+  "sha256": "c9ad3d27c715e59436e66780fed0197f9577544bd0d7b35971c56413b0b9b650",
+  "bytes": 20555,
+  "requestId": "e8WgjMjRzyBxjxpMYF2Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "924366c102fbe003bc0542723ecb7ea7c4159e301a8b31b0cebd65c0e4483f23",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "The better move would give White's rook a half-open file. No friendly pawns there, but enemy pawns would remain."
+    },
+    "takeId": null
+  },
+  "requestHash": "22af8cf17b715a048e8adc5fd0e68da94f20b83f2e6022b43ce288fb6d85db0a",
+  "recordedAt": "2026-10-05T20:13:50.560Z",
+  "sha256": "9d5e8592d50f9f838876b77e179f4ab93f6caae4bcb8e8e5e92b0a3a4c1368c0",
+  "bytes": 24069,
+  "requestId": "DZqNBUvy1vs8DABTNJ6w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58574c7376ada25d72ae6fd06852558a4a06dcadd25eac078ab84a81b9dc97c2",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

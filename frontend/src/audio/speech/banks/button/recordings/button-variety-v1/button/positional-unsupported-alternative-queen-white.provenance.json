@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "The better move would have left White's queen without a defender. Even in that alternative, undefended needn't mean lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c648d9e6556df6ad8ba01398593ae3c354b992ecb18af96817d473bd723369e",
+  "recordedAt": "2026-10-05T20:06:25.601Z",
+  "sha256": "a19d29f9b44c6d00cc50eae2206242e7ff3a28b3985bcdbec9e6ad97c1903679",
+  "bytes": 25007,
+  "requestId": "hZRKGuJ9OE2dkQh9FO2L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9316912e3329c957f0bd1d4beaf5839283a2eb2636070a7c644e1876c828ee27",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

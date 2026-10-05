@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Big picture: Black's queen was guarded. After this move, it is not."
+    },
+    "takeId": null
+  },
+  "requestHash": "ecd900b82f2a5df1fa1ce56083c0a7f8e024ec77a2c7bfcaade601b41448641f",
+  "recordedAt": "2026-10-05T20:15:06.139Z",
+  "sha256": "c2afd308f81a5d231045d9d35dffd8ea178acbbb01569b0b9a6b27a213953fea",
+  "bytes": 16863,
+  "requestId": "AAO7oj3XRdo5NsSQsggt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d85e523e9a0c7bd3a97a5dcd7b1b0cfe68c2d16b44cbcd3c81959b2829e7ca63",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

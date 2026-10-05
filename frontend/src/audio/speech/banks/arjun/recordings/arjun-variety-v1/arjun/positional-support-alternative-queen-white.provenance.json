@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-white",
+      "label": "Positional support alternative queen white",
+      "text": "With the better move, White's queen would no longer be undefended. It would gain support."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc6ab69b7ae2f6ef60897faed7de1c081c8920ce9bfb76c1a0ea6463228d9b80",
+  "recordedAt": "2026-10-05T20:07:05.928Z",
+  "sha256": "887dabbc2212d829a58f779ceea10aa40ef79ffedafe5f046f1f35d8df1ec2fd",
+  "bytes": 17905,
+  "requestId": "MHD5w1xSC6arrMqqYBXZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a6993be1ecd2e0af01e953f6702d3c5930bd1c84ef5b54b9af66ac718a2ea29",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

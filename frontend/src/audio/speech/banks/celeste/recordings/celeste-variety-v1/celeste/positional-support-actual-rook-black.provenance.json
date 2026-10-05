@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-support-actual-rook-black",
+      "label": "Positional support actual rook black",
+      "text": "Support has arrived for Black's rook. Undefended a moment ago, it now has a guardian."
+    },
+    "takeId": null
+  },
+  "requestHash": "af4f8267d6dfb1122a1d13fa8600d3345b85ce79b1ee8b38a852f8add574cdf3",
+  "recordedAt": "2026-10-05T20:09:27.322Z",
+  "sha256": "a999b097addc0c1b1cbf0ee7af8a97b66a75a1680cd593c984f48a62e443e7a5",
+  "bytes": 19205,
+  "requestId": "BYfQm3kOkcyzz9aKlbZM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "adc93e8211063130a494d38a97a67f4cdc7ec1a5923c430e249e2ccdb67a5cd5",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

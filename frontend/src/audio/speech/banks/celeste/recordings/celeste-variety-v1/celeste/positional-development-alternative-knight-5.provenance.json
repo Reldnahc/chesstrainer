@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "The better choice offered a knight its first move from its original square. Consider that change alongside the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed9ebc0e02d4e6a436a9f255eb5a9f0086e89b48e3c6add63008d03bd08f129c",
+  "recordedAt": "2026-10-05T20:09:25.796Z",
+  "sha256": "72a0ebaa1d16a568f335ba826623f99c70c163af6e8348ccea4a87ef7ddecfe1",
+  "bytes": 24636,
+  "requestId": "RWa7FUnHXmd9t63qoeZd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f4003b7432147685dbb784964782edfb1979c46212ff31e6ba47d25d650195d",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-black",
+      "label": "Positional support actual queen black",
+      "text": "Black's queen has acquired a defender. Even a queen's support can go from absent to present."
+    },
+    "takeId": null
+  },
+  "requestHash": "74e8aaee723f97211f749fffa97c5df388ce34ba7988d67baa5dd7b4cc7914cb",
+  "recordedAt": "2026-10-05T20:21:46.556Z",
+  "sha256": "1a7b140cd03aaeac2cedbb7c2223a3e0e0ee92af0bc9c2af0da3b7c32f3d71df",
+  "bytes": 19884,
+  "requestId": "0dJnvgTpwo5OOmxCMlok",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "793ac2f23740e48ec42c2ac8727af0a20a4d90cebc57deeda4fd2984017ff5db",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

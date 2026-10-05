@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-passed-alternative-black",
+      "label": "Positional passed alternative black",
+      "text": "Try the better move and the pawn picture changes: Black would gain a passed pawn, with no enemy pawn ahead on its file or either neighboring file."
+    },
+    "takeId": null
+  },
+  "requestHash": "465f50339c2d346b9154300c2f0def389b7aceaa1023788ea020f9306c198e20",
+  "recordedAt": "2026-10-05T20:06:45.000Z",
+  "sha256": "d42c1ac7671129ebdc244ef7aa67fb63aa62316417f7d1928223155b2413fd85",
+  "bytes": 29421,
+  "requestId": "kzhJTBcwjPI010wMnahU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d8dba72fb7ae87c0eb7919c30103565c04bdcd3d038a08b14ae11670a6ad896",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

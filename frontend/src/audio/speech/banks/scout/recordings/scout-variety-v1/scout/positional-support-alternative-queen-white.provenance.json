@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen-white",
+      "label": "Positional support alternative queen white",
+      "text": "The better move would have covered White's undefended queen. Include that support in the comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9b623ef365d5e3eef1a0fc3b3ba63b3cf81c2903f4905525c86638479594bd6",
+  "recordedAt": "2026-10-05T20:18:56.918Z",
+  "sha256": "680ef57f8a64ab5fbbc160f2e55bb7c3af4a64874c1ef9f65ffcd6836f9b5b6b",
+  "bytes": 17871,
+  "requestId": "bA4uVcpKtMYRBou9M3LJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45089f1a820558e187b0336c3dd5b89e3d824767faafaa0637be227e5f92c406",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

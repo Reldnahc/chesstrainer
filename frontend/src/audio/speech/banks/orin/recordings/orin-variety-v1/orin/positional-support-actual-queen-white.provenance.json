@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "The queen needs defenders too. White's queen had none, and this move supplies protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7c7508b65a84c130c85b2e7d416963e0233f7e380138b9eed3137699ce33f54",
+  "recordedAt": "2026-10-05T20:15:42.178Z",
+  "sha256": "8334ba1879168474de86da96886f46f117e72144c18ec842e49e8a21ff4f18de",
+  "bytes": 20869,
+  "requestId": "cPFUWVsTcZ3luA0yoNfz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "63f887c9c72f3b897b6fbd01e7f8221869b4e827ba42be1d6a8c33f09aa20ebe",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

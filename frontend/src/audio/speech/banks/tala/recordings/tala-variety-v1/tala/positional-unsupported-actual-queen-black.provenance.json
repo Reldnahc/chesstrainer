@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Who protects Black's queen after this move? Nothing does now. Check the possible attacks before deciding what that costs."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2cf550d9cd95db6e8b58df4ab627d891321cddc522671d92eec46d40ce06369",
+  "recordedAt": "2026-10-05T20:19:16.318Z",
+  "sha256": "7e3393fd11165961926cf89ab99ae6ce5f3cda6b0ce22fab710e55495b4dddcc",
+  "bytes": 26001,
+  "requestId": "gtZNogvqHyulMeLeFh3m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ee34a297ada68616d34459b975c566f8fbb52a66adb252c7b5bfa4051421996",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

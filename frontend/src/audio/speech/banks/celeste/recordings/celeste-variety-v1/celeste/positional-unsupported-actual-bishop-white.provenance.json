@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop-white",
+      "label": "Positional unsupported actual bishop white",
+      "text": "White's bishop now stands without any defender. Its fate depends on what can actually reach it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6fa9790c7f1df9f15dde03582c6fc47f0f92d182abffe642ef271712e6047329",
+  "recordedAt": "2026-10-05T20:09:52.643Z",
+  "sha256": "82c5390e3ffed7e65cca23b69125be7f66c856388d67e9d28847782dfdd8757f",
+  "bytes": 20538,
+  "requestId": "2bbCnWq7mjfVuRFMxJKE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23d7f2ecde4b75e4ac94f3a32af2b831199f4888d81ab698ceed6a627dfe20f9",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

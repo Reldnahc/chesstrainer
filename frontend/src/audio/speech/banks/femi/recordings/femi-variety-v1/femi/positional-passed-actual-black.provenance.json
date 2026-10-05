@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "Black's got a passed pawn now. Enemy pawns ahead on its file and the files beside it are out of the picture; pieces aren't."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b3d3669ecb21d2e277152c3a27a1f5f4490d657839abadcc4fc81ef0e5cc753",
+  "recordedAt": "2026-10-05T20:11:00.826Z",
+  "sha256": "674a093f234a8c8da6df07a8cd0ecf2b51d723bab0adc1b940480c58d025569a",
+  "bytes": 27032,
+  "requestId": "3R8IjOeSO7rjaTncuCUd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c0c64cd7d54e94a8a9dbb1bd01d34027799438820cc76ff908975c31fd48c76",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

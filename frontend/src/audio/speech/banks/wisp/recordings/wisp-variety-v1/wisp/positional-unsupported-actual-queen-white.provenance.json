@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-white",
+      "label": "Positional unsupported actual queen white",
+      "text": "White's queen had a defender before. Now none remain. Notice the absence."
+    },
+    "takeId": null
+  },
+  "requestHash": "454b770674bcecbe8430d4af0788b3b0ac3816060acda8e2d625637919aadd08",
+  "recordedAt": "2026-10-05T20:21:04.627Z",
+  "sha256": "c10c1978f12da8d28868df0e549c65dc01bed85a4b96f66e62de902e219fb1fc",
+  "bytes": 19259,
+  "requestId": "b5XfndNIgCR9nfG1vvtE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "446e55a19bbf1df9ffb52de59604eea74d8b6d1885d8355479440d55d6a76315",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

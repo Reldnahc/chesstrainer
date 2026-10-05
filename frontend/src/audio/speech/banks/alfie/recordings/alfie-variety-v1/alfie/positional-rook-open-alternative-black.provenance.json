@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative-black",
+      "label": "Positional rook open alternative black",
+      "text": "The better move would give Black's rook an open file. That describes the absence of pawns, not the absence of every obstacle."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a1624084e87f865b5cadf00d3d24ba7bd721f372946f807dbd773b861182ad1",
+  "recordedAt": "2026-10-05T20:07:54.117Z",
+  "sha256": "45a72d6af33ea3cc4e6b1ab5bb7c11f842ec6c311fd6472fb402bf4e75a72069",
+  "bytes": 25660,
+  "requestId": "FmUkq5Izz01h0lHARnAZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b1b150df3c6c4fa1eeb15db3c9f33980deba89a31c331fb82bf9bc71363022a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

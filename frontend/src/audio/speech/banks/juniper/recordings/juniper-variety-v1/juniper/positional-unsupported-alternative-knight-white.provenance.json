@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "The better move would leave White's knight without its last guard. Unguarded need not mean lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dec9e56ab60b449552eb85bd75a17da2064f44ff9405345404f00ce3a7874f0",
+  "recordedAt": "2026-10-05T20:13:24.152Z",
+  "sha256": "1baaaa37eebd45382cdd1a8f0ada52429b798b7d04acb8d7d7091518c4d77aa8",
+  "bytes": 21198,
+  "requestId": "inPJumW2hMwcuCzvBr3E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ded9c7f7a910f8084ed718904775ff2b9f5713e8a09b3ab583a2b57e9e9c0f58",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

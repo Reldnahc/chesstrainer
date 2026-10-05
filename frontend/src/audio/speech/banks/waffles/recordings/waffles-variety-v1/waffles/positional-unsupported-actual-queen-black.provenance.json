@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen-black",
+      "label": "Positional unsupported actual queen black",
+      "text": "Support withdrawn from Black's queen! Nothing defends it now."
+    },
+    "takeId": null
+  },
+  "requestHash": "75b8a27a3dd6488b843adc6f78c8d2f32ad6ab1381027e2310ea9331155b39d3",
+  "recordedAt": "2026-10-05T20:20:32.966Z",
+  "sha256": "7200dcacc5b65511dfd9e2aaf44ad3d0fa994b963baa248aea262ba5e306bbee",
+  "bytes": 15049,
+  "requestId": "qK4KaZm7h1xdhdIVNSBf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5d8c617ef82b9af67703e2870f4fb4e7e8cc90c3ecc9b7b50e653b52fa911b0",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop-black",
+      "label": "Positional support actual bishop black",
+      "text": "Black's bishop has acquired a guard. It had none before."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2f5d0e54154e046b4d7929f03ebf048571e1534a7eade5659b9554cbe1f9d4c",
+  "recordedAt": "2026-10-05T20:10:36.910Z",
+  "sha256": "9e4f8d02bd71b6623931aea64fb0e903034c5a7629de89374f68d31d063d65c8",
+  "bytes": 14286,
+  "requestId": "qwrbj0AgUfWnXlOyotWy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71d2d5550d03a1002926fe47e038d1f0d20e4a94e8f0091fe4b814a96742fb89",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

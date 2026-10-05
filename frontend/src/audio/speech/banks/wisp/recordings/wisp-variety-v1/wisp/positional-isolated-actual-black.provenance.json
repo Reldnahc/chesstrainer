@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black's pawn is isolated now. The neighboring files hold no friendly pawns. Piece support is a different matter."
+    },
+    "takeId": null
+  },
+  "requestHash": "f710c9975c44f413d27866a356e11f991137cd7f4b918356808c8b19742beda3",
+  "recordedAt": "2026-10-05T20:21:08.719Z",
+  "sha256": "33386a6827f8ecc31844fa7634e0ddf18df7f87b6276c35cdf3922b8d7c3edf4",
+  "bytes": 24421,
+  "requestId": "nfpAbitg9ce2CBtE7r6U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9635d2a64bd42ad589f6bf2f9b6956d408753313daf8325874d9128d24666b76",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

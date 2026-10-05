@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "The better move would've left White with doubled pawns. They'd be sharing a file, then."
+    },
+    "takeId": null
+  },
+  "requestHash": "7afd9d29f9d7d1910f6ecab066b8eb5b287d351e829c0b4b38e93a8238ebaddd",
+  "recordedAt": "2026-10-05T20:05:47.213Z",
+  "sha256": "0103b6be9ae18bc513d2967bc64d9a2b1321313e55f1dcd1fb457d84604543c5",
+  "bytes": 16717,
+  "requestId": "csbkulfXbWTCqVZ3A9bL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b037349f53a514e91b04494d450c4b7c475399c089a43b9407727b3b0162a13c",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

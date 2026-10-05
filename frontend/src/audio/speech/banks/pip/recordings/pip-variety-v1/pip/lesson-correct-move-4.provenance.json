@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "lesson-correct-move-4",
+      "label": "Lesson correct move 4",
+      "text": "Good work. Your move matches what this lesson asks for."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0b31dab2c6be4dad0f0d294ab79e9de07f9026a48c1c2598ed5a5b0600122cb",
+  "recordedAt": "2026-10-05T20:17:42.855Z",
+  "sha256": "117e997f2bcb59bf63479861f4b0986a6d8664218b8a3481a42d94928d7796e5",
+  "bytes": 13385,
+  "requestId": "rujgJDocVx5kVL2i7gKo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1dd7ee1dd06a112125d318cab7e924f0871598a6bbbbfa69de2cc07f37317c2",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

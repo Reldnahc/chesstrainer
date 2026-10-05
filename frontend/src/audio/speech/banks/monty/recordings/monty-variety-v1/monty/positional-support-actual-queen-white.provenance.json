@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-support-actual-queen-white",
+      "label": "Positional support actual queen white",
+      "text": "Big picture: White's queen is no longer undefended. This move adds a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "a57176e7f58d8f66f5e6b738913e948b64ee94e45ed33df39254692f401d67c2",
+  "recordedAt": "2026-10-05T20:15:06.864Z",
+  "sha256": "5fee56909f1a8902051a48b27516bf4e115bc90b31ebddf8fa76e56356b4083b",
+  "bytes": 18780,
+  "requestId": "xcZe3kYZLs64S8k3hqQU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f6386981613deec098a03c46b94db0d0c529890e74e68877896153d49474ef8",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

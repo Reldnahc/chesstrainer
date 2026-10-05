@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "evaluation-loss-5",
+      "label": "Evaluation loss 5",
+      "text": "The stronger choice preserves more of the position's value. This move gives some of that away."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d2300a8f8387ca0a546cdf61bad9b04ab2eb5046cd020e6b0630083e4faa4f7",
+  "recordedAt": "2026-10-05T20:15:59.983Z",
+  "sha256": "df854be9a0b4ec4ce431d8e09f3169a27b20b8ff242e29bed2c6584c6e8ef318",
+  "bytes": 20245,
+  "requestId": "0SWIYLN3SvEfbamQMPwz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a60331c3165cde0c991239790fe90159eec3d0fa262a919782df3ac8c0033e2",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

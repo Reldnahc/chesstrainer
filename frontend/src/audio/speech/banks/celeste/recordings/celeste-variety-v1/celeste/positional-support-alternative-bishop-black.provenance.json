@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "The better move would have offered Black's bishop a defender it was missing. A small, graceful repair."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c28651ef8c462ca7f92f1522d5699335890c6101e94af523f2d2bd2f3b8a8f0",
+  "recordedAt": "2026-10-05T20:09:38.873Z",
+  "sha256": "d3c428d19f9db0fdca7d43e2b6d28639ea880d3c1e8312c04b1e8ca283475e9b",
+  "bytes": 21094,
+  "requestId": "RTADms5n6JN4nKPDN5xG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7e26dc5db77974b6b9bad7035f2cd0724225256835d9ca0c03dcd25c87cf713",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

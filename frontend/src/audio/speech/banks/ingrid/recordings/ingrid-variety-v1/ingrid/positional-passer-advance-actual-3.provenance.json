@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "That advances the passed pawn toward promotion, without settling whether it will get there."
+    },
+    "takeId": null
+  },
+  "requestHash": "abdf983a6c8a2f59c8d861b10b2fb7c2decfd2418b78c717e9bc55ed3bc6798e",
+  "recordedAt": "2026-10-05T20:12:15.054Z",
+  "sha256": "868a9b28fde754fc593999d08d4c2a67cda7290c2cad01889cc407a73555d2d3",
+  "bytes": 18184,
+  "requestId": "zGK2GpnO1GhsGaOWnEHK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1f0323ee5e6c88857d98188451e0fa3fe2d4553cd02a0b42d4d9fcf6e3c6efa",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-4",
+      "label": "Positional development actual bishop 4",
+      "text": "Until now, that bishop had stayed at home. This move develops it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7873e7e26d4d1d8d68486b70844aba68d6c1acfb39b643805133fafc5177fc6b",
+  "recordedAt": "2026-10-05T20:21:34.456Z",
+  "sha256": "1c6bbbbd1e95040287fe3233f117807c077ff68c1045b02e166ff27b38347146",
+  "bytes": 15334,
+  "requestId": "XzM6qaB2MrCf4P4yGqNi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef862969220d51d39d3944cb6cdf68d8da99070079538f3344efe5cb86b49b7e",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

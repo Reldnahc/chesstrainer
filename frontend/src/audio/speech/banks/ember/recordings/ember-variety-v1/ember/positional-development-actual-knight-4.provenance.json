@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-4",
+      "label": "Positional development actual knight 4",
+      "text": "The knight is deployed: its first departure from home. Examine what can challenge its new square."
+    },
+    "takeId": null
+  },
+  "requestHash": "35cb132160988e676294ad2775e8c2294e8b0c04d933692db880b1e8d1bd28c1",
+  "recordedAt": "2026-10-05T20:10:23.040Z",
+  "sha256": "739c010000a7ea5d4100b32de0d25e153c6f75362b8d483d0ef82e1cb10be1cb",
+  "bytes": 20470,
+  "requestId": "Su0fSHIx9KxAjjVNfKlx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "689aa8b99bd6f15d40446e6129dc8c0ec4c85ca2fa9ab1830b9638c282b4c792",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

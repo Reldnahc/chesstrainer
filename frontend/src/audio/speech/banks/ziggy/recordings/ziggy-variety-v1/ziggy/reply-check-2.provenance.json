@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "reply-check-2",
+      "label": "Reply check 2",
+      "text": "The strongest response gives check. That makes the king's immediate safety the next question to resolve."
+    },
+    "takeId": null
+  },
+  "requestHash": "33ccd44f902ed8d6d4968fcd8ba99478bfb2c97a32eb8af67e4a9f944675598e",
+  "recordedAt": "2026-10-05T20:21:45.339Z",
+  "sha256": "fe07b4a96b6b921699b2a543dd9259e0ec7915596b18476252eca050410be98d",
+  "bytes": 20723,
+  "requestId": "IGj9P3HnY5dfMmSqq7nV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d26352103d3be7d2a0e5be01c63b28beb46fa5c7c38b054d3d1ce1f171ff9fa5",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

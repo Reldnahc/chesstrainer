@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "The stronger move would take a knight off its original square for the first time. I'd look at where it would land."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1bf71d500e468a729f5a261961bfe348972b898dfb99f0ddd636d36289c247e",
+  "recordedAt": "2026-10-05T20:11:13.817Z",
+  "sha256": "5a69bae6a613b892aafa04c46219cbe800ab97460f95dd5b4a6c64bd796f00a5",
+  "bytes": 21114,
+  "requestId": "EktyvPOkBKGSJZGWuXO0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "418a0fe51aa18a64eb43a1ad59ed9bec3141e36c9130cc1c533d94fb942e2200",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

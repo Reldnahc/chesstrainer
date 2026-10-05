@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-good-5",
+      "label": "Grade good 5",
+      "text": "Sound, though something stronger exists. Good, then."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f927e856b54f0f51f7132c26ebc7225065be1e07bb59ae79d44a7217791caaa",
+  "recordedAt": "2026-10-05T20:10:54.478Z",
+  "sha256": "eff59b1e8d8bb5da7344a02880e980da1470806758e394be9396d47e5510009a",
+  "bytes": 14470,
+  "requestId": "sogaTlkACnrL1OQ1Xrgx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f367c594950da77a2bb19b5760f1137d0f53ae17d05de0d8b2a4b4cbd281df9",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

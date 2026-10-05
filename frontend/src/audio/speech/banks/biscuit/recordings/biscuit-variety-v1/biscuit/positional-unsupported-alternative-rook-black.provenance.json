@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "Here's a catch: the better move would leave Black's rook with no defender at all. Losing a guard isn't the same as losing the rook, though!"
+    },
+    "takeId": null
+  },
+  "requestHash": "640c82579eb9d8db144baa0eccf046fc609f14c37e21c9a28722567017371c5c",
+  "recordedAt": "2026-10-05T20:09:01.838Z",
+  "sha256": "e4a0796b1c58ebbebaea40969170c2173b12daf2ccc24cb28b26e3a53b0f4dd1",
+  "bytes": 27490,
+  "requestId": "0Q7ZC1jBbGvAhG6ScHM4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef43bae938ce15ae84d87161f2d01c68ebdad6a9ad3784e1705aab6bbc0a636b",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "With the better move, a defender would be there for Black's knight, where none had been."
+    },
+    "takeId": null
+  },
+  "requestHash": "d692a8b88a194926eeb40ac15eb3fb22c8982b6f4b08055c13365717cd7cac4e",
+  "recordedAt": "2026-10-05T20:13:34.260Z",
+  "sha256": "66c4a6b05ba6354135a448b2b05f3af542963499c5f7df7a305873a45ff8dcdb",
+  "bytes": 17146,
+  "requestId": "VonboL8pza4dBLPOGf6L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "034b21efd0135825ab711ff3aa5ea46cc27776afa196e773eefa7268dbd89567",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

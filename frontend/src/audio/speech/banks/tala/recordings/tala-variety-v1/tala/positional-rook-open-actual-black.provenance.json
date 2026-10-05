@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-rook-open-actual-black",
+      "label": "Positional rook open actual black",
+      "text": "Look along Black's rook's file. No pawns at all! It is open, though pieces can still get in the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "866e5b06883d138712ee14ad5b1d539c570843ab4164c8c6561fdc11a2c55bc2",
+  "recordedAt": "2026-10-05T20:19:34.466Z",
+  "sha256": "27b4aea24910a8e5f6ec6f7eaec11636a94ab0b69427403097653c08111b9b96",
+  "bytes": 22967,
+  "requestId": "lgzdOZd0TWNGqIP6hb86",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31b20fd72ac9ad6472c2dd0814e43b576a64cbe0754a1997c43cc22889ccceb2",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

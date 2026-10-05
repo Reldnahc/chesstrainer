@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-passed-actual-black",
+      "label": "Positional passed actual black",
+      "text": "A passed pawn has no enemy pawn ahead on its own or neighboring files. Black has one now; the next distinction is whether pieces can stop it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f10445689291a7f9a7caf27424afd6fc3169c185c0ddad77ba711d617d28f43d",
+  "recordedAt": "2026-10-05T20:15:32.581Z",
+  "sha256": "a49818867fed5bab966671000961e9d0cddc7a29fea96a14104b15d32f7575a5",
+  "bytes": 32949,
+  "requestId": "VkOau8LEJhYeSv5JwnMi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0c2d8c9cef39715ba9b3b7918decba0a79bd2924efbcb2e7f22dc622e12c734",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

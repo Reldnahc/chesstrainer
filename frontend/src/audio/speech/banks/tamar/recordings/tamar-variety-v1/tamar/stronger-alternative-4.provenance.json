@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "stronger-alternative-4",
+      "label": "Stronger alternative 4",
+      "text": "A stronger move is available in the engine analysis. Set it beside the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b1ab24317d2811b2498fd2ee9b3b7313bea056a1434d455837bb9f0eada3048",
+  "recordedAt": "2026-10-05T20:19:53.898Z",
+  "sha256": "5e55fbecf83e39bdd796fb7f5d4e74065b7fc81cc7a159da4ade2032af056cb2",
+  "bytes": 17575,
+  "requestId": "NL17eiuAKbrryc1BEIsv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf953ab26b1da963457991f8f7a1045dafad55b4a1dde09141e3ee7ebcf506b9",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

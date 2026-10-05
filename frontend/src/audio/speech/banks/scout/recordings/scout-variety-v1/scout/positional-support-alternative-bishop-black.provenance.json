@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-black",
+      "label": "Positional support alternative bishop black",
+      "text": "The better move would have guarded Black's previously unsupported bishop. Identify the connection it would create."
+    },
+    "takeId": null
+  },
+  "requestHash": "1cfcbec6127e24922f17b6677e214788df1210a366c8427f1290987b3b80fbd0",
+  "recordedAt": "2026-10-05T20:18:51.774Z",
+  "sha256": "e4c88280a66cb9cc2ac27f7e20463fee76db3986cfa5d882e61ee104ef68fc6c",
+  "bytes": 20486,
+  "requestId": "eEYeC4fHELgwSLbyUyqp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "297ada4f4e01799a44a9f2d34288cc70f3bc22f301e04a4d628e9c36bd22f2eb",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

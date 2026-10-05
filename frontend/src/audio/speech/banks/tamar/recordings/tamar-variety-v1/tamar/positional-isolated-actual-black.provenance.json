@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-isolated-actual-black",
+      "label": "Positional isolated actual black",
+      "text": "Black has an isolated pawn now. No friendly pawn occupies either adjacent file. Make piece support part of the assessment."
+    },
+    "takeId": null
+  },
+  "requestHash": "f87b122c3e47410fd6ac2e5d2645813da70329dc8fb5509d885ba93460c3bebe",
+  "recordedAt": "2026-10-05T20:19:53.780Z",
+  "sha256": "f89ce9b2e53344e94187b77009d73d4a1fd0e262fdf62586ad95b870b33c3a79",
+  "bytes": 26745,
+  "requestId": "whPTViBtWqKa2ukDF33i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac426be60a9a36418fa05c66bc34981c5563d3edd7722c4300dfb796bff7ed43",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

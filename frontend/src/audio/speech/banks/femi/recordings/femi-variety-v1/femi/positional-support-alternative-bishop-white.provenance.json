@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop-white",
+      "label": "Positional support alternative bishop white",
+      "text": "White's bishop would have picked up protection with the better choice. It had been undefended."
+    },
+    "takeId": null
+  },
+  "requestHash": "0833144d9f40f04e1ccffbb0aad99898c5872bdfe32ff83549e6e29276371523",
+  "recordedAt": "2026-10-05T20:11:22.962Z",
+  "sha256": "d75e40954e6235a76e7407337c56c6b02049fa910d25431730266076c6579a74",
+  "bytes": 17541,
+  "requestId": "JstiibujByF7SB4H2EhD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee77790c9cf27537560ea8557083615418bc7f9b3805f95f743bd1c7ac334acf",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

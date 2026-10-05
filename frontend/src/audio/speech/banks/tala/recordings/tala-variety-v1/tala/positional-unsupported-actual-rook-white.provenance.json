@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "Trace what stopped protecting White's rook. It is undefended now, though a capture is not guaranteed."
+    },
+    "takeId": null
+  },
+  "requestHash": "c200ea2d0aae71b646d8d09fb107ec571925a32c080852eca247ec9a193ed0fc",
+  "recordedAt": "2026-10-05T20:19:09.534Z",
+  "sha256": "b071b572766a4e622865f352b9d84470d35c0ac50ca2bb888eb9546989285c7d",
+  "bytes": 22138,
+  "requestId": "JOX8MjkdB1BGJFd44br3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b525487745bf95ef7735d44991a27582f5737b6b9790f08a9e16b06e259391ea",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

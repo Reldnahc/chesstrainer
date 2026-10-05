@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "immediate-capture-4",
+      "label": "Immediate capture 4",
+      "text": "The reply doesn't have to wait to capture. Whether it is worthwhile is the next question."
+    },
+    "takeId": null
+  },
+  "requestHash": "caf2c349598116b6c0bdb54ca811d61850636ce4332bd7684f8c9deadd85d6b0",
+  "recordedAt": "2026-10-05T20:07:12.006Z",
+  "sha256": "afa0d1d5d47303ddf7bc3402f11a68f165040d00750acaf8d0a5d5bccda58749",
+  "bytes": 18358,
+  "requestId": "ontuyWQl8MsRnrV3kGW1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfa3540cd11ee110786fbc93cc3c67f7bcf0bb6f3974ef217e3851a3008496f1",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

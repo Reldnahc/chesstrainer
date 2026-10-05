@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "immediate-capture-5",
+      "label": "Immediate capture 5",
+      "text": "Notice the opponent's capture option. It can happen on the very next move."
+    },
+    "takeId": null
+  },
+  "requestHash": "aec11efab6ac64f3b928c011ae64f89f8f36cdf52063e0b7445d7a74dfef3bb5",
+  "recordedAt": "2026-10-05T20:22:05.532Z",
+  "sha256": "fa40e3d730de3994d482d1d77c6d1124f5e4aa1984ef8924dc1dc05e7cd894f1",
+  "bytes": 15603,
+  "requestId": "zTINEYqaRfcvQCOztA3R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "90ad625b5adee1fcf8b7204b93a20bfb5168c6e601d903dda423d3f223e7faeb",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

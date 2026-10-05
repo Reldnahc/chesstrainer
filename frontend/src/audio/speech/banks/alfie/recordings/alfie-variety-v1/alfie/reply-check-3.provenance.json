@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "reply-check-3",
+      "label": "Reply check 3",
+      "text": "Check is the best answer to this move. Examine the legal ways to meet it before considering another plan."
+    },
+    "takeId": null
+  },
+  "requestHash": "d6f4f89981ecd36d61c086a142864c7f3a63b9af6a726b4c80136f86cbbb513a",
+  "recordedAt": "2026-10-05T20:07:31.901Z",
+  "sha256": "2746fb87878044d6fa3f535109869936787599e01392c30274fb0d3558c9e493",
+  "bytes": 21782,
+  "requestId": "c5azz56yOFxSZOlzRS0y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd804bf2817cad633f0658665845d8a3d221a118aa2c1de0c67e557464205d78",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

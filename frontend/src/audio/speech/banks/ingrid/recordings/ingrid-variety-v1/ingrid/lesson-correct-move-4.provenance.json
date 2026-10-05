@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "lesson-correct-move-4",
+      "label": "Lesson correct move 4",
+      "text": "Right, the move matches this part of the lesson."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbb6cb794f19654e394daaa82c71eb30ea9c5a1f728feb899a32ac1deefcf5da",
+  "recordedAt": "2026-10-05T20:12:21.876Z",
+  "sha256": "ba194e5e112a9867a02708b7471155cea6b6427d20225ec2189782deb8820f17",
+  "bytes": 10899,
+  "requestId": "NuRiwfvCDo9n4bpmOqek",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19cddb9077401342affeb93e462a85cfdef98455eeeac54d366f17a88a6b83cf",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

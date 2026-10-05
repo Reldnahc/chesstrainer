@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop-3",
+      "label": "Positional development actual bishop 3",
+      "text": "This is the bishop's debut away from home. Take a moment to notice its new square."
+    },
+    "takeId": null
+  },
+  "requestHash": "9edfec7e78f5a786072e24f90b69b7945c75bc689bdec8debd7642544a248756",
+  "recordedAt": "2026-10-05T20:04:53.117Z",
+  "sha256": "c98f1f6b625a88b50289e386ae0cacdc7afbdb06852b265981fec37467360ab2",
+  "bytes": 16869,
+  "requestId": "IhsZDrTq055riC8plZBh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbba943724039d4a18aadf37f760b0fbbbec6ccf6fb538a34eb5e7056bc73a45",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

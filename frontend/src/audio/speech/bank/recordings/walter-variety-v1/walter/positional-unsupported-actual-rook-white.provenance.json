@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook-white",
+      "label": "Positional unsupported actual rook white",
+      "text": "This leaves White's rook without any defender. Its earlier support is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d40014efe026536ee4e556e058b1685d8ff26ecde63602cdde6f11e8665177b",
+  "recordedAt": "2026-10-05T20:04:21.286Z",
+  "sha256": "c8b49da5db027c152bceadb62a53bf44fbc29513a4d0059d1c6ab2ded46c5777",
+  "bytes": 16483,
+  "requestId": "hWW4AuZk2jiOROwCDZFi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "363adf8a74199569e6686ce258c417a768e4055eefd5af7ae7a3f659f860ed65",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "The other side can capture right away. That's worth checking."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2b5dc75a3a9009fc37f7db7c1b19477d98cb2b79667c0179244382dbda61eb1",
+  "recordedAt": "2026-10-05T20:17:49.829Z",
+  "sha256": "840ad7597b923341fada644fc10ac55ed451de23079eefdb62a77e87ae148394",
+  "bytes": 12565,
+  "requestId": "YI5YjrYdtbpmBx1EmI6k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02261853d4f3bb3f199070f767da8ee50eaffc240913542e63aa621e4f9ad9a6",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

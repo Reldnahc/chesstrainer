@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "chance-taken-4",
+      "label": "Chance taken 4",
+      "text": "No wasted chance here! Your move punishes the error they just made."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9845eb6d596c3019b6d4b54a45d74cd5769ee95f77eb411e3492b0d6de59755",
+  "recordedAt": "2026-10-05T20:21:01.025Z",
+  "sha256": "eed7f280de13e332047a665d30a4aa5d95ba24f05a667769df8218265cf5c20e",
+  "bytes": 16623,
+  "requestId": "FcABiwgWw4JyXHfIOHAR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbc61c0b8ea247dca2a70ae22925a92104a14f2ce245ab1c18c2daf6d66a09aa",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

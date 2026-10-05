@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight-black",
+      "label": "Positional unsupported actual knight black",
+      "text": "Where did the guard go? Black's knight has lost its last defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "d7dcabae67bd36e97c4e16d72b509c6004f6fe18af8208f50bdcb155e9367d06",
+  "recordedAt": "2026-10-05T20:17:19.037Z",
+  "sha256": "47b5d3137b2fb58552293b02c2d076fdb761565d0b2a0862490f5c4a15e41be7",
+  "bytes": 14634,
+  "requestId": "oHgtXIDX7ShJd1ze7Zep",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e69d005f9d6d4cb92f9056280c72f0dade4af12509ff466926ec92c2a6129218",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

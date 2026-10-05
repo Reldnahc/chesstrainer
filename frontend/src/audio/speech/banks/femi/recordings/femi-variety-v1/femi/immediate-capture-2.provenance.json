@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "immediate-capture-2",
+      "label": "Immediate capture 2",
+      "text": "The other side can answer with a capture straight away. Whether that pays off still needs checking."
+    },
+    "takeId": null
+  },
+  "requestHash": "e623d406cb806a5f1b6e2e873a77e4d43e66024897141a6957469f6dffdd64eb",
+  "recordedAt": "2026-10-05T20:11:30.247Z",
+  "sha256": "5369b7516af9c1361229e97bd7aabb2d78ddc7743afb7c7fb088a90c8b9b6f7b",
+  "bytes": 20070,
+  "requestId": "FKLqsar7w4A0fXQVC2D6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8b06e6ed66230e476b987d4efaf60d92e6a9388cd1359145586f4f8e6deaa5bf",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

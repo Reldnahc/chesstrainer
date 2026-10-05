@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-2",
+      "label": "Positional development actual knight 2",
+      "text": "Knight developed. First departure from its starting square. Check its next job."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4a81f6f46762f9b6fa65e2e4966a84e3f74c068437c9a11cb9d57a8baa42da5",
+  "recordedAt": "2026-10-05T20:18:57.037Z",
+  "sha256": "4816761c13a6e6760ca983ec3f8e77fdb19e26d7b98e62ee8d63bfebf41ccd58",
+  "bytes": 15360,
+  "requestId": "HO5WhZzqdtOGIKlhwnbD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4fe5dfac4378aab161af2a77943e3f028d1e42d9f8f14cf47702359e57990b2b",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-5",
+      "label": "Positional development alternative knight 5",
+      "text": "With another move, a knight would have begun its development. It would leave its original square for the first time."
+    },
+    "takeId": null
+  },
+  "requestHash": "56c14da16ab43093869beb5b79797836369b5516b7f9fb2c1eecedada57f4de2",
+  "recordedAt": "2026-10-05T20:07:28.215Z",
+  "sha256": "1eaa66611afe58cdafe93034c96113ab8e836bf31424a8b0356c67dcc71b0c22",
+  "bytes": 20799,
+  "requestId": "jY2UrUqbfcDAGu4qTQjO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b927fa34d62be522ef8b8815c9ea590b5ceb91c045ef734c6f1149fb7707742",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

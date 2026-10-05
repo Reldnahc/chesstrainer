@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The better move would have left Black's knight without its defenders. A better position can contain an undefended piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "dca4ed9dd93e1a08edded92a4e540fc275fd81cf6baedf142bc2ef822316de73",
+  "recordedAt": "2026-10-05T20:21:48.898Z",
+  "sha256": "49ff499dced70274efd92daeedcae18a904e642f58cf0dabdbc88b0fa40890eb",
+  "bytes": 23095,
+  "requestId": "svd80ahUECZF18WLncyA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07fd5639ac793001e73eb7ece66317232bf762a794e6c1f167cba35b41019d9c",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

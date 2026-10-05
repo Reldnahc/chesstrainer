@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "puzzle-next-move-4",
+      "label": "Puzzle next move 4",
+      "text": "You've got this move right. Keep working through the puzzle."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c56fa7f665ca8c755969ed94e1485400a34b03171af9917d2f3318b2c6e85b1",
+  "recordedAt": "2026-10-05T20:12:26.382Z",
+  "sha256": "a9073bfc0c0f457ce82824d0e161b79c7fac930d732842afd47002f35fe479df",
+  "bytes": 11649,
+  "requestId": "8zlWsVLQAWbehpLMcsOO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d7e5efe5a01bbcbce0ef6e37292cc42947479edb7f91639bcb7180dc82be0b4",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

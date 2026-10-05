@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-doubled-alternative-white",
+      "label": "Positional doubled alternative white",
+      "text": "Another move would leave White's pawns sharing a file. They'd be doubled, not necessarily weak."
+    },
+    "takeId": null
+  },
+  "requestHash": "28d5f0d6ffadd61b72211ddf844fbcfc4f476e297a3ac921ffccf1746323d1eb",
+  "recordedAt": "2026-10-05T20:14:42.445Z",
+  "sha256": "83457f0a4b0215499c2ee3d19a548c16a8895fe8fd9189602bfc240b95d49be8",
+  "bytes": 20117,
+  "requestId": "vPwHvxeNS7jJjqtPhPtQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9107bf0ab6582d53bae519893b3df9bad1ab087b8e721f86d587b8349c4654e9",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

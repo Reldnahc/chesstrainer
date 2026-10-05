@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-black",
+      "label": "Positional unsupported alternative knight black",
+      "text": "The better move would leave Black's knight undefended. Losing its last defender would not automatically mean losing the knight."
+    },
+    "takeId": null
+  },
+  "requestHash": "a67767ad3fe1cacdfc9b12b8bd01604927e71e3d8f04a49788d78df69eab04a4",
+  "recordedAt": "2026-10-05T20:07:33.094Z",
+  "sha256": "c3238c7c84934c688da86a52751711afbff3977859c342b74de4e44dc4c2edfc",
+  "bytes": 23459,
+  "requestId": "B8BQO8EEfOBF9TwcrVYR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74f5c1460da1ed8c06160ca94562c92fe94f3aa0e02175dc198236a193268e93",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-3",
+      "label": "Positional development actual knight 3",
+      "text": "The knight is out of its original square for the first time. I like to keep track of who's left home."
+    },
+    "takeId": null
+  },
+  "requestHash": "a404603b76420d0211d311cd068e5fe6bb7dfeedf9c513e3be1399c7b0de92e3",
+  "recordedAt": "2026-10-05T20:16:42.396Z",
+  "sha256": "0c3bcdfe8ba24fc6087af6794aa6cb046e332f3e73e834b7d276a779e5648cc1",
+  "bytes": 18511,
+  "requestId": "lkE4sT8K10yEND0Vz1wR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ff6cc18bdf13fc59211f421b54ede105fd196330ff0daaf94ac1c704c349023",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

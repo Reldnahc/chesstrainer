@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight-white",
+      "label": "Positional unsupported alternative knight white",
+      "text": "The stronger move would have left White's knight without a defender. Better moves still require exact accounting."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fce41cc4fa5358ba2c14b4685e5372e9b9ce70efcc27787683b0bc7eb96e2bd",
+  "recordedAt": "2026-10-05T20:10:04.706Z",
+  "sha256": "4928dae65fff5995699a34541f54b4e9f616f61030ae38c38612524559fdde9c",
+  "bytes": 21576,
+  "requestId": "Q6rxmVvdTaxSVYJvVdS6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5872a4f6a53b933d1f257a9faa38189dd01a7e7cfdc7513dac0fe49d56a26389",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

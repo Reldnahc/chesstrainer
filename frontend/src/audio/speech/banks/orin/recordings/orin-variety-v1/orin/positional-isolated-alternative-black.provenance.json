@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-isolated-alternative-black",
+      "label": "Positional isolated alternative black",
+      "text": "Another move would have left Black a pawn without friendly pawns on adjacent files. That is the isolated-pawn pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "fee4d07d9387eee39d590f92348ef4184348f0f67c62e0c8cb64b355a4ddefff",
+  "recordedAt": "2026-10-05T20:15:46.408Z",
+  "sha256": "25c950cd95d61724be91ffd76c93070e579d0d052de8e630741bfa4432bbd241",
+  "bytes": 27677,
+  "requestId": "f56ddEWq8KACInw13vdG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41b19c0ce7bd9e1fcfcb77332d81f4c7032604278994663d3c75c5e1da6f321e",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

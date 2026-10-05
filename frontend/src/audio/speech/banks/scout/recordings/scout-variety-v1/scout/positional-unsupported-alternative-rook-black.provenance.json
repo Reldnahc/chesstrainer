@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-black",
+      "label": "Positional unsupported alternative rook black",
+      "text": "The better move would have left Black's rook unguarded. Compare the resulting threats, not just the missing cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a23d9a6c99954d423981b588de1e3cb0fb037ba6ee66fc6250ce728b0c63eb4",
+  "recordedAt": "2026-10-05T20:18:51.508Z",
+  "sha256": "432d53bd30b29b94f35556b7f1d5c0cefd2f7077b9fe5ce8ebadb08d9b17a612",
+  "bytes": 20863,
+  "requestId": "AKUvGB0hpYnT81hNsTst",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "121109d596886c480492fa00ef67f7e6ccd97d8a31bef01a5c36388136ca197f",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

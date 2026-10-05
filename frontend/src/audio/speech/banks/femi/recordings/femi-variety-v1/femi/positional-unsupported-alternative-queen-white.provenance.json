@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-white",
+      "label": "Positional unsupported alternative queen white",
+      "text": "Funny thing: the stronger choice would've left White's queen with no defender. I'd still want to see a real capture before calling it a problem."
+    },
+    "takeId": null
+  },
+  "requestHash": "027b16958abd5944e4569517d1369e284f927840bcde410060f471644af24ec6",
+  "recordedAt": "2026-10-05T20:11:28.765Z",
+  "sha256": "5ed877728fb008d4a47efd80c08e249df72ebe69622d042abc61666e6336cae6",
+  "bytes": 28110,
+  "requestId": "TBjnHWOf2qh8ij2b5Lur",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e778f66602b46a8ca95fa1591d0b8065a8f93d7ff3d151e3c847cf5f1d1e7326",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-passed-actual-white",
+      "label": "Positional passed actual white",
+      "text": "Simple point: White now has a passed pawn. No enemy pawn is ahead on its file or either neighboring file."
+    },
+    "takeId": null
+  },
+  "requestHash": "9738d36d4b3de6996ca1dd60ac4c7fd552cb5481a4c6e37bd495c635e922ba1a",
+  "recordedAt": "2026-10-05T20:14:56.595Z",
+  "sha256": "84161d1a57808ed9d9038723f3b0f65718b9c4e61893a8284d4c8504ae7cb98a",
+  "bytes": 23983,
+  "requestId": "64w3bUb3p3uOf7lWWxOo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67884728c03eccb6e356bcc94c9d6d77e3e7d9a48c5a93329efb74e5a954e994",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

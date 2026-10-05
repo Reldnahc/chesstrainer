@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-development-actual-knight-5",
+      "label": "Positional development actual knight 5",
+      "text": "The knight makes its first move. No longer on its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "85b9660e1e063de28e27f36d8316d7892c0e91d6e4e13596992507eb718d88d5",
+  "recordedAt": "2026-10-05T20:11:01.051Z",
+  "sha256": "7c4534b707bbac211987cb0d63d8c11ddcdaec5ca90e0180dff614bb10260dd9",
+  "bytes": 15648,
+  "requestId": "RRYza0Qlh4lArmDUrRhQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a6d601aec266e0203a84da1aa2ccd2fa85452e81c974fed65593774b75dd077b",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

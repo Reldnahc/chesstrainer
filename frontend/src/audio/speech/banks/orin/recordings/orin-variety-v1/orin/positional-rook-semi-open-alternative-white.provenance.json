@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "A half-open file has enemy pawns but no friendly pawns. That is the pattern White's rook would have after the alternative move."
+    },
+    "takeId": null
+  },
+  "requestHash": "be47a8606ef4486b72466ebfa1ccaafa2468f61d0671fa28ce1ad1add7d49fee",
+  "recordedAt": "2026-10-05T20:16:13.544Z",
+  "sha256": "6204756d41be8e2815deb2c67eab622ff8fce2e88aa277463bb607e16e3b2edf",
+  "bytes": 29178,
+  "requestId": "PfwdGL866AlVp2yX9ngd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "54c06f0b21f235185c3a91005a79e055c6c56947eb806396b04fd20ca1305c99",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

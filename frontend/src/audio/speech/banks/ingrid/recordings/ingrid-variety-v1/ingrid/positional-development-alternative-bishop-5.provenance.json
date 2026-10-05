@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "A bishop could have made its first move with the better choice. Worth picturing that."
+    },
+    "takeId": null
+  },
+  "requestHash": "48e5902a5b697e1fb07f83ab51d86bc54b2bc132c8cd446c25b106c4ddc82a2e",
+  "recordedAt": "2026-10-05T20:12:20.317Z",
+  "sha256": "f242bf6d3b7a03b2b39be6ee360c904da9b4b5e53becadc8c76f919fd5c37854",
+  "bytes": 16754,
+  "requestId": "wnzjZGJutrZAZ6EiY1NG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85b0dee70c4a62387f82e8533cb8269078e40823e20c52d11fb308e3e4de1af5",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

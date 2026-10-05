@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "lesson-correct-move-4",
+      "label": "Lesson correct move 4",
+      "text": "The lesson's line and your move agree."
+    },
+    "takeId": null
+  },
+  "requestHash": "c02f993666795c951aaa3c4e1d1b667f4d0c941b1a86f5ffcbc27d3d1dedbff4",
+  "recordedAt": "2026-10-05T20:21:17.244Z",
+  "sha256": "bb31cf6aacb120042bfcbf3dc1fd56cddb729814de58919f460a413ba21804f9",
+  "bytes": 9806,
+  "requestId": "kjaqXWMOo8bHeeBVcu4K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a33e147a9acfe4eb90b78d209b842d6b6c96cb1d3701e1a7e7a607e60853067",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

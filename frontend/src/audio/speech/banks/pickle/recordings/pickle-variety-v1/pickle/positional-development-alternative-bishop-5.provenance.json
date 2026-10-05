@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-5",
+      "label": "Positional development alternative bishop 5",
+      "text": "That different choice would have brought a bishop off its starting square for the first time. There's another possibility!"
+    },
+    "takeId": null
+  },
+  "requestHash": "a0c4d7c2df48a52bb158e7492e64638cc06e94acbcea49e35d9eb69fbe02be48",
+  "recordedAt": "2026-10-05T20:17:07.247Z",
+  "sha256": "412f842bcea4f7ee01f67b16ef7899d413fb0320f2f674f4478f869a678c7b8f",
+  "bytes": 20782,
+  "requestId": "sWlJNW9QYZYFQJM4wg93",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f648334c31ed98fe651ae51e27c11ea8b640736e34241095e2388f3a3c7c2e2e",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

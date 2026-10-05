@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop-3",
+      "label": "Positional development alternative bishop 3",
+      "text": "The stronger choice included a bishop's first move from home. Compare its resulting placement with the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "45089fdc74076e3d8c758c452fccca424c26da48e6126e90acd5ad97e8d3e94c",
+  "recordedAt": "2026-10-05T20:18:43.972Z",
+  "sha256": "2ca0e9fda40f8e1f6d20a0c7a95c44b14d4b969762f2edffc78598b532185c52",
+  "bytes": 19854,
+  "requestId": "vPQIIDArqkhs60z04M8s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77a72f8dc5c2792665befc046b32c4b34d188bd36ed98ad3b4f5474ad9db2c4b",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

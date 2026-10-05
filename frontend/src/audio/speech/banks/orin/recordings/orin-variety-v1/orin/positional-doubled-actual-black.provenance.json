@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black's pawns now share a file: doubled pawns. Whether that structure helps or hurts depends on the whole position."
+    },
+    "takeId": null
+  },
+  "requestHash": "f931d9973ec5f8c40128834df96ba2eedfc16e65ef3f95a39827d7df2606051a",
+  "recordedAt": "2026-10-05T20:15:51.355Z",
+  "sha256": "5685e4fafd9a9057b4fa8f4b5c3d89b277d9fb0ca5190070f0dc36a7fd60433a",
+  "bytes": 26666,
+  "requestId": "bhUhzvB0gb2Qj5dxCoKu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a615ecabb3fe7b69110df317e5449a61d71ac14e575593dce12a1bc11c09b99",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

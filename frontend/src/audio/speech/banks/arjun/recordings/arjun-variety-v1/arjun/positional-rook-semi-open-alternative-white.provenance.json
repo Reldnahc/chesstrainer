@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative-white",
+      "label": "Positional rook semi open alternative white",
+      "text": "Try the better candidate with White's rook on a semi-open file: enemy pawns there, none of its own. What could the rook actually reach?"
+    },
+    "takeId": null
+  },
+  "requestHash": "07e85c049c6121a30e8a7fc1014485379d54362304fe9810772a821b2c33cbbb",
+  "recordedAt": "2026-10-05T20:07:16.533Z",
+  "sha256": "0a3d630fc598e618675f5e83022b73e2271f7ddf9edb7968d4b946198ccddb74",
+  "bytes": 27178,
+  "requestId": "SbSS9h4AeLvsdc0f8ijh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af3e57beb98030ed6aa1cfb8dfbf1f5b15dcffbac3c15e84c4f871cf58f9a123",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

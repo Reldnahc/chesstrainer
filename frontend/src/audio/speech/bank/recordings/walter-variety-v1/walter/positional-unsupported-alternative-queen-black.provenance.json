@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen-black",
+      "label": "Positional unsupported alternative queen black",
+      "text": "The better move would have removed the last defender of Black's queen. That alone would not mean the queen could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea1539b8b34cb5f3c2f3abdf801f5dbca34eb1ab012228d2f6334c47e5280596",
+  "recordedAt": "2026-10-05T20:04:42.348Z",
+  "sha256": "e5cbf3ec5201091b1b40d52b032db531ca0b978881e664ec3526f4902bcaf98e",
+  "bytes": 22441,
+  "requestId": "qXRyQ5lPCWPEnA8fbMSM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a65cc2a88a9c6602a9c3523a684a55fc16883d4647a43b42f1a3adde0d6c4fb",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight-2",
+      "label": "Positional development alternative knight 2",
+      "text": "The better move would have started a knight's development. A first departure worth examining."
+    },
+    "takeId": null
+  },
+  "requestHash": "bcae3d4addc2372365f7b0a29a91702f0fa4ec2c4f7ad3f986951ea285cc0a6c",
+  "recordedAt": "2026-10-05T20:10:32.923Z",
+  "sha256": "29c1400704b7659990d9e5e9213c4deb96a7cbe6c7a9dbfaec78cc7dd07c6890",
+  "bytes": 18473,
+  "requestId": "CvDrEVG3BPPd8GULHJV3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62c0bf6c5373c04006ef4b836b0bd057d497e8f20443f162c4eb30b11b0868c2",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

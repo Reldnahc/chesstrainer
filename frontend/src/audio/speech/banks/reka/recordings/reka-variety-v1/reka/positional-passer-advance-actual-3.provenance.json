@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual-3",
+      "label": "Positional passer advance actual 3",
+      "text": "The passed pawn makes progress up the board. Another advance toward the last rank!"
+    },
+    "takeId": null
+  },
+  "requestHash": "02c5c811443cf5556c0918da53714e3aed15a676ea2ec65b5a24a4e19121ccfd",
+  "recordedAt": "2026-10-05T20:18:06.375Z",
+  "sha256": "5cc76c434789ba2648265cd0598485b13bf8326dbb86c2553966cd6463164673",
+  "bytes": 17476,
+  "requestId": "J4kVeSOXJutUx910DYHV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67d6209bb1923a3e25f76a2bb515a20b7114f7f259b54538bcc364bb23bd5dce",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

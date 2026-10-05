@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "lesson-correct-move-4",
+      "label": "Lesson correct move 4",
+      "text": "Your choice matches the lesson. Let that settle."
+    },
+    "takeId": null
+  },
+  "requestHash": "94158c0ce20b92533618a893b2c8737f6694c5576f26725ed6452bb1aa1a8466",
+  "recordedAt": "2026-10-05T20:13:33.514Z",
+  "sha256": "b295f921a70c851d5d886197c95d93c8af975d635d1fd5f9715f80a240ded9d3",
+  "bytes": 11412,
+  "requestId": "E12z2vw3Q4MKg4axi7IO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c35fba13ab69913c509bbd64d9d15e7988170e1983e61aee9303dc3247f48c5",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

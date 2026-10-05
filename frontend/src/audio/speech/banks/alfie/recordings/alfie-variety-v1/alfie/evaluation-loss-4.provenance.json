@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "evaluation-loss-4",
+      "label": "Evaluation loss 4",
+      "text": "This choice falls short of the best move. Put that move on the board, then compare the replies available to each."
+    },
+    "takeId": null
+  },
+  "requestHash": "adb21e993acf983a4eb0ab2c4e63838c60027b4ac704f79b2dcc4ca17768effe",
+  "recordedAt": "2026-10-05T20:07:43.768Z",
+  "sha256": "77cc0f60caf0dd74f272d4c4f540d66b5ef096268f5bbc2e0cd3d65b66213a97",
+  "bytes": 22307,
+  "requestId": "KoNNMxNEuyDsjsg247vB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5a31669142b4e00f1016842810d3d599b63bea7fba546d26f2c59101fd941e9",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-doubled-actual-black",
+      "label": "Positional doubled actual black",
+      "text": "Black's pawns now share a file. That's the doubled structure to notice after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "133f5392a83d357419e511ba99b761cdbaa50e626f4f49e63c21c87d4cb17125",
+  "recordedAt": "2026-10-05T20:04:40.551Z",
+  "sha256": "fc9dff670f374c00a210af951aa9150727d5a767cdd67b25654807635f5d2c1b",
+  "bytes": 17995,
+  "requestId": "EiWPUWvllnHt2D9SJAjn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "719a60f86e7919a6aa0f85a72308a6f937557c24a598b6b8a57999e3ddb9825a",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-actual-knight-black",
+      "label": "Positional support actual knight black",
+      "text": "Black's knight has gained a defender where it had none. Interesting how a piece's situation changes through a connection."
+    },
+    "takeId": null
+  },
+  "requestHash": "710d1b0a615bf0bdc578f660b347349524a79da3ce49b773589719356acb99d4",
+  "recordedAt": "2026-10-05T20:21:35.772Z",
+  "sha256": "1e25635c52ed7e6fff09d30f59fa7f6ce5a4f59948f03cfddab211a8dbaf542a",
+  "bytes": 22551,
+  "requestId": "Xt6LSBHK3ZJIdLMshaXM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d9769bad01ce88d97cc7ec8c53e572e5902452ae9bb299b48394c3659ed9b6c3",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

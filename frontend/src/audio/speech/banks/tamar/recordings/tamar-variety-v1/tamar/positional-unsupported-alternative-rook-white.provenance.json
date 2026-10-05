@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook-white",
+      "label": "Positional unsupported alternative rook white",
+      "text": "The better move would have left White's rook without a guard. Assess the consequences; missing protection does not prove a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "04fe789981e7ec45999e38ba07a96e34baf65456c8c38045bb10096d64d4ec2b",
+  "recordedAt": "2026-10-05T20:20:07.042Z",
+  "sha256": "dc1a1617532265d69028df2fcee80f2ab95c0667ad3802297bf3ddf9e007d4ca",
+  "bytes": 25274,
+  "requestId": "amLZi9u9ETsx9X5cAqS8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42f42c87952839208a7ad5edd904e2b48fc14038110a4d3122d91ab53d86b0e8",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

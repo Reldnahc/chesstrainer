@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-black",
+      "label": "Positional support alternative knight black",
+      "text": "The better move would have guarded Black's loose knight. Support was available."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed9287c13b63fac1b1a933b2d63d3cce062696bef71ad298b4ff48a22d6bd0c0",
+  "recordedAt": "2026-10-05T20:10:46.800Z",
+  "sha256": "2f7c8864a9e66b0e71836710a59a27e26a724db098bd42197576efb48185d702",
+  "bytes": 15860,
+  "requestId": "F5EQnBFYFL1HZvcjeoXW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe10add34c83fe2ee931517243637b9f4a791f5998816e5ca310b027b537f197",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight-white",
+      "label": "Positional support alternative knight white",
+      "text": "The better move would give White's knight a defender. It had none before."
+    },
+    "takeId": null
+  },
+  "requestHash": "a09197433a463d2afffff2596f30a6c9616f5b3488d01c5e5cf3055d847972f3",
+  "recordedAt": "2026-10-05T20:17:37.839Z",
+  "sha256": "897ff1d6cc3970faaa34a405a9ddd6bf4a0f3c1f0485c76cc5602079f45f2525",
+  "bytes": 14877,
+  "requestId": "exT7EfqhyJH8weLHKtdm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a437f4748c744a6db3b2d865a3eda2c704fb90d16ccd15bd87412e90d8a8aa28",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
