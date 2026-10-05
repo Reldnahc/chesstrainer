@@ -1980,6 +1980,600 @@
       "group": "game_review",
       "walterText": "The mate was already unavoidable for the side that played this, and it still comes, but no move in the search would have made the defense last longer. Holding out is the sensible course in a lost position.",
       "rivetText": "Status before this move: forced mate against the moving side, unavoidable. Delay achieved: maximum among searched moves. Classification: sensible resistance. Outcome: unchanged."
+    },
+    {
+      "id": "positional-passed-actual-white",
+      "group": "game_review",
+      "walterText": "White now has a passed pawn. No enemy pawn stands ahead on its file or the neighboring files.",
+      "rivetText": "White gains a passed pawn. Defining condition: no enemy pawn ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-passed-actual-black",
+      "group": "game_review",
+      "walterText": "Black now has a passed pawn. No enemy pawn stands ahead on its file or the neighboring files.",
+      "rivetText": "Black gains a passed pawn. Defining condition: no enemy pawn ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-passed-alternative-white",
+      "group": "game_review",
+      "walterText": "The better move would have given White a passed pawn. Enemy pawns would no longer stand ahead on its file or the neighboring files.",
+      "rivetText": "The better move would create a passed pawn for White. No enemy pawn would stand ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-passed-alternative-black",
+      "group": "game_review",
+      "walterText": "The better move would have given Black a passed pawn. Enemy pawns would no longer stand ahead on its file or the neighboring files.",
+      "rivetText": "The better move would create a passed pawn for Black. No enemy pawn would stand ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-isolated-actual-white",
+      "group": "game_review",
+      "walterText": "White is left with an isolated pawn here. The neighboring files have no white pawn to support it.",
+      "rivetText": "White has an isolated pawn now. Friendly pawns on adjacent files: absent."
+    },
+    {
+      "id": "positional-isolated-actual-black",
+      "group": "game_review",
+      "walterText": "Black is left with an isolated pawn here. The neighboring files have no black pawn to support it.",
+      "rivetText": "Black has an isolated pawn now. Friendly pawns on adjacent files: absent."
+    },
+    {
+      "id": "positional-isolated-alternative-white",
+      "group": "game_review",
+      "walterText": "With the better move, White would have had an isolated pawn. There would be no white pawn on either neighboring file.",
+      "rivetText": "The better move would leave White with an isolated pawn. Adjacent files would contain no white pawns."
+    },
+    {
+      "id": "positional-isolated-alternative-black",
+      "group": "game_review",
+      "walterText": "With the better move, Black would have had an isolated pawn. There would be no black pawn on either neighboring file.",
+      "rivetText": "The better move would leave Black with an isolated pawn. Adjacent files would contain no black pawns."
+    },
+    {
+      "id": "positional-doubled-actual-white",
+      "group": "game_review",
+      "walterText": "White's pawns now share a file. That's the doubled structure to notice after this move.",
+      "rivetText": "White's pawn structure is doubled on a file. Shared file, same color."
+    },
+    {
+      "id": "positional-doubled-actual-black",
+      "group": "game_review",
+      "walterText": "Black's pawns now share a file. That's the doubled structure to notice after this move.",
+      "rivetText": "Black's pawn structure is doubled on a file. Shared file, same color."
+    },
+    {
+      "id": "positional-doubled-alternative-white",
+      "group": "game_review",
+      "walterText": "The better move would have left White with doubled pawns. Notice how white pawns would share a file.",
+      "rivetText": "The better move would double White's pawns on a file. Same-color pawns would share that file."
+    },
+    {
+      "id": "positional-doubled-alternative-black",
+      "group": "game_review",
+      "walterText": "The better move would have left Black with doubled pawns. Notice how black pawns would share a file.",
+      "rivetText": "The better move would double Black's pawns on a file. Same-color pawns would share that file."
+    },
+    {
+      "id": "positional-rook-open-actual-white",
+      "group": "game_review",
+      "walterText": "White's rook now stands on an open file. The pawn structure has left that file free of pawns from either side.",
+      "rivetText": "White's rook occupies a pawnless file now. File classification: open."
+    },
+    {
+      "id": "positional-rook-open-actual-black",
+      "group": "game_review",
+      "walterText": "Black's rook now stands on an open file. The pawn structure has left that file free of pawns from either side.",
+      "rivetText": "Black's rook occupies a pawnless file now. File classification: open."
+    },
+    {
+      "id": "positional-rook-open-alternative-white",
+      "group": "game_review",
+      "walterText": "The better move would have left White's rook on an open file. Neither side would have a pawn along it.",
+      "rivetText": "The better move would leave White's rook on a pawnless file. Classification there: open."
+    },
+    {
+      "id": "positional-rook-open-alternative-black",
+      "group": "game_review",
+      "walterText": "The better move would have left Black's rook on an open file. Neither side would have a pawn along it.",
+      "rivetText": "The better move would leave Black's rook on a pawnless file. Classification there: open."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-white",
+      "group": "game_review",
+      "walterText": "White's rook now has a semi-open file. Black pawns remain along it, but White's pawns do not.",
+      "rivetText": "White's rook has a semi-open file. White pawns absent; black pawns present."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-black",
+      "group": "game_review",
+      "walterText": "Black's rook now has a semi-open file. White pawns remain along it, but Black's pawns do not.",
+      "rivetText": "Black's rook has a semi-open file. Black pawns absent; white pawns present."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-white",
+      "group": "game_review",
+      "walterText": "The better move would have given White's rook a semi-open file, with black pawns on it and no white pawns.",
+      "rivetText": "With the better move, White's rook would have a semi-open file. White pawns would be absent; black pawns would remain."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-black",
+      "group": "game_review",
+      "walterText": "The better move would have given Black's rook a semi-open file, with white pawns on it and no black pawns.",
+      "rivetText": "With the better move, Black's rook would have a semi-open file. Black pawns would be absent; white pawns would remain."
+    },
+    {
+      "id": "positional-support-actual-knight-white",
+      "group": "game_review",
+      "walterText": "White's knight has gained a defender. Before this move, it had no such support.",
+      "rivetText": "White's knight changes from undefended to defended. Support acquired."
+    },
+    {
+      "id": "positional-support-actual-knight-black",
+      "group": "game_review",
+      "walterText": "Black's knight has gained a defender. Before this move, it had no such support.",
+      "rivetText": "Black's knight changes from undefended to defended. Support acquired."
+    },
+    {
+      "id": "positional-support-actual-bishop-white",
+      "group": "game_review",
+      "walterText": "This changes the bishop's support: White's bishop was undefended, and now it has a defender.",
+      "rivetText": "White's bishop has acquired a defender. Previous support: absent."
+    },
+    {
+      "id": "positional-support-actual-bishop-black",
+      "group": "game_review",
+      "walterText": "This changes the bishop's support: Black's bishop was undefended, and now it has a defender.",
+      "rivetText": "Black's bishop has acquired a defender. Previous support: absent."
+    },
+    {
+      "id": "positional-support-actual-rook-white",
+      "group": "game_review",
+      "walterText": "White's rook is no longer undefended. This move provides the support it was missing.",
+      "rivetText": "Support connection established for White's rook. It was undefended before this move."
+    },
+    {
+      "id": "positional-support-actual-rook-black",
+      "group": "game_review",
+      "walterText": "Black's rook is no longer undefended. This move provides the support it was missing.",
+      "rivetText": "Support connection established for Black's rook. It was undefended before this move."
+    },
+    {
+      "id": "positional-support-actual-queen-white",
+      "group": "game_review",
+      "walterText": "White's queen now has a defender where it had none before. That's the connection this move adds.",
+      "rivetText": "White's queen is now defended. The move adds support that was missing."
+    },
+    {
+      "id": "positional-support-actual-queen-black",
+      "group": "game_review",
+      "walterText": "Black's queen now has a defender where it had none before. That's the connection this move adds.",
+      "rivetText": "Black's queen is now defended. The move adds support that was missing."
+    },
+    {
+      "id": "positional-support-alternative-knight-white",
+      "group": "game_review",
+      "walterText": "The better move would have given White's knight the defender it lacked. Follow where that support would come from.",
+      "rivetText": "The better move would supply White's knight with a defender. Its earlier lack of support would be resolved."
+    },
+    {
+      "id": "positional-support-alternative-knight-black",
+      "group": "game_review",
+      "walterText": "The better move would have given Black's knight the defender it lacked. Follow where that support would come from.",
+      "rivetText": "The better move would supply Black's knight with a defender. Its earlier lack of support would be resolved."
+    },
+    {
+      "id": "positional-support-alternative-bishop-white",
+      "group": "game_review",
+      "walterText": "White's bishop had no defender. With the better move, that support would have been in place.",
+      "rivetText": "White's bishop would gain previously absent support with the better move. A defender would be present."
+    },
+    {
+      "id": "positional-support-alternative-bishop-black",
+      "group": "game_review",
+      "walterText": "Black's bishop had no defender. With the better move, that support would have been in place.",
+      "rivetText": "Black's bishop would gain previously absent support with the better move. A defender would be present."
+    },
+    {
+      "id": "positional-support-alternative-rook-white",
+      "group": "game_review",
+      "walterText": "White's rook had been without a defender. The better move would have changed that, giving the rook the support it lacked.",
+      "rivetText": "The better move would change White's rook from undefended to defended. Support would be established."
+    },
+    {
+      "id": "positional-support-alternative-rook-black",
+      "group": "game_review",
+      "walterText": "Black's rook had been without a defender. The better move would have changed that, giving the rook the support it lacked.",
+      "rivetText": "The better move would change Black's rook from undefended to defended. Support would be established."
+    },
+    {
+      "id": "positional-support-alternative-queen-white",
+      "group": "game_review",
+      "walterText": "With the better move, White's queen would have gained a defender instead of having none.",
+      "rivetText": "With the better move, White's queen would acquire a defender. That support was absent before the move."
+    },
+    {
+      "id": "positional-support-alternative-queen-black",
+      "group": "game_review",
+      "walterText": "With the better move, Black's queen would have gained a defender instead of having none.",
+      "rivetText": "With the better move, Black's queen would acquire a defender. That support was absent before the move."
+    },
+    {
+      "id": "positional-unsupported-actual-knight-white",
+      "group": "game_review",
+      "walterText": "White's knight has lost its last defender. The change to notice is the support that was there before.",
+      "rivetText": "White's knight has lost all its defenders. Undefended does not automatically mean lost."
+    },
+    {
+      "id": "positional-unsupported-actual-knight-black",
+      "group": "game_review",
+      "walterText": "Black's knight has lost its last defender. The change to notice is the support that was there before.",
+      "rivetText": "Black's knight has lost all its defenders. Undefended does not automatically mean lost."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-white",
+      "group": "game_review",
+      "walterText": "White's bishop was defended before this move. Now it has no defender, though that alone doesn't prove a capture works.",
+      "rivetText": "Support removed from White's bishop. No defender remains after this move."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-black",
+      "group": "game_review",
+      "walterText": "Black's bishop was defended before this move. Now it has no defender, though that alone doesn't prove a capture works.",
+      "rivetText": "Support removed from Black's bishop. No defender remains after this move."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-white",
+      "group": "game_review",
+      "walterText": "This leaves White's rook without any defender. Its earlier support is gone.",
+      "rivetText": "White's rook changes from defended to undefended. A winning capture is not established by that fact alone."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-black",
+      "group": "game_review",
+      "walterText": "This leaves Black's rook without any defender. Its earlier support is gone.",
+      "rivetText": "Black's rook changes from defended to undefended. A winning capture is not established by that fact alone."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-white",
+      "group": "game_review",
+      "walterText": "White's queen no longer has a defender. Losing that support is not the same as losing the queen.",
+      "rivetText": "White's queen has lost its last defender. Support absent; capture outcome still needs checking."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-black",
+      "group": "game_review",
+      "walterText": "Black's queen no longer has a defender. Losing that support is not the same as losing the queen.",
+      "rivetText": "Black's queen has lost its last defender. Support absent; capture outcome still needs checking."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-white",
+      "group": "game_review",
+      "walterText": "The better move would have left White's knight without its earlier protection. No defender would remain.",
+      "rivetText": "The better move would remove the last defender of White's knight. Resulting support: absent."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-black",
+      "group": "game_review",
+      "walterText": "The better move would have left Black's knight without its earlier protection. No defender would remain.",
+      "rivetText": "The better move would remove the last defender of Black's knight. Resulting support: absent."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "group": "game_review",
+      "walterText": "With the better move, White's bishop would have lost its last defender. That would call for a look at what could actually be captured.",
+      "rivetText": "White's bishop would become undefended after the better move. Loss of the bishop is not implied."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "group": "game_review",
+      "walterText": "With the better move, Black's bishop would have lost its last defender. That would call for a look at what could actually be captured.",
+      "rivetText": "Black's bishop would become undefended after the better move. Loss of the bishop is not implied."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-white",
+      "group": "game_review",
+      "walterText": "White's rook would have become undefended with the better move. Its previous support would be gone.",
+      "rivetText": "The better move would leave White's rook without any defender. Its prior support would be removed."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-black",
+      "group": "game_review",
+      "walterText": "Black's rook would have become undefended with the better move. Its previous support would be gone.",
+      "rivetText": "The better move would leave Black's rook without any defender. Its prior support would be removed."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-white",
+      "group": "game_review",
+      "walterText": "The better move would have removed the last defender of White's queen. That alone would not mean the queen could be won.",
+      "rivetText": "With the better move, White's queen would lose its last defender. An undefended queen is not automatically a lost queen."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-black",
+      "group": "game_review",
+      "walterText": "The better move would have removed the last defender of Black's queen. That alone would not mean the queen could be won.",
+      "rivetText": "With the better move, Black's queen would lose its last defender. An undefended queen is not automatically a lost queen."
+    },
+    {
+      "id": "positional-development-actual-knight-2",
+      "group": "game_review",
+      "walterText": "The knight leaves its home square here, beginning its development. Follow where it has arrived.",
+      "rivetText": "Knight development begins. Departure from its original square confirmed."
+    },
+    {
+      "id": "positional-development-actual-knight-3",
+      "group": "game_review",
+      "walterText": "This is the knight's debut away from its starting square. That is the development this move brings.",
+      "rivetText": "The knight has moved off its original square for the first time. Development, specifically."
+    },
+    {
+      "id": "positional-development-actual-knight-4",
+      "group": "game_review",
+      "walterText": "A knight that had stayed on its original square now comes out. Notice that change before looking further.",
+      "rivetText": "A previously unmoved knight leaves home. Development status: started."
+    },
+    {
+      "id": "positional-development-actual-knight-5",
+      "group": "game_review",
+      "walterText": "The knight begins its part away from home with this move. It had not moved from its starting square before.",
+      "rivetText": "The knight is no longer on its untouched starting square. Its development has begun."
+    },
+    {
+      "id": "positional-development-actual-bishop-2",
+      "group": "game_review",
+      "walterText": "The bishop comes off its original square here. Its development begins with this move.",
+      "rivetText": "Bishop development begins with this move. Its original square is vacated for the first time."
+    },
+    {
+      "id": "positional-development-actual-bishop-3",
+      "group": "game_review",
+      "walterText": "This is the bishop's debut away from home. Take a moment to notice its new square.",
+      "rivetText": "A previously unmoved bishop leaves its home square. Development is the change to track."
+    },
+    {
+      "id": "positional-development-actual-bishop-4",
+      "group": "game_review",
+      "walterText": "A bishop that had remained on its starting square now comes into play. That is what has changed here.",
+      "rivetText": "The bishop makes its initial departure from its starting square. Development now under way."
+    },
+    {
+      "id": "positional-development-actual-bishop-5",
+      "group": "game_review",
+      "walterText": "The bishop starts its development now, leaving the square it began the game on.",
+      "rivetText": "This bishop had not moved before. It now leaves its original square and begins development."
+    },
+    {
+      "id": "positional-development-alternative-knight-2",
+      "group": "game_review",
+      "walterText": "The better move would have begun the knight's development, bringing it off its original square.",
+      "rivetText": "The better move would begin knight development. The knight would leave its original square for the first time."
+    },
+    {
+      "id": "positional-development-alternative-knight-3",
+      "group": "game_review",
+      "walterText": "A knight was still waiting on its home square. The better move would have brought it out.",
+      "rivetText": "A previously unmoved knight would come off its home square with the better move. That would be development."
+    },
+    {
+      "id": "positional-development-alternative-knight-4",
+      "group": "game_review",
+      "walterText": "With the better move, the knight would have made its debut away from its starting square.",
+      "rivetText": "The better move would start knight development with a departure from its original square."
+    },
+    {
+      "id": "positional-development-alternative-knight-5",
+      "group": "game_review",
+      "walterText": "The knight's development could have started with the better move. It would have left the square it began on.",
+      "rivetText": "With the better move, the knight would no longer remain unmoved at home. Its initial development would be recorded."
+    },
+    {
+      "id": "positional-development-alternative-bishop-2",
+      "group": "game_review",
+      "walterText": "The better move would have started the bishop's development by bringing it off its home square.",
+      "rivetText": "The better move would begin development of a bishop still on its original square."
+    },
+    {
+      "id": "positional-development-alternative-bishop-3",
+      "group": "game_review",
+      "walterText": "A bishop had yet to leave its original square. The better move would have changed that.",
+      "rivetText": "A previously unmoved bishop would depart its starting square with the better move. That is the development option."
+    },
+    {
+      "id": "positional-development-alternative-bishop-4",
+      "group": "game_review",
+      "walterText": "With the better move, the bishop would have come out from the square it began the game on.",
+      "rivetText": "With the better move, the bishop would make its initial move away from home. Its development would begin."
+    },
+    {
+      "id": "positional-development-alternative-bishop-5",
+      "group": "game_review",
+      "walterText": "The bishop could have made its debut away from home with the better move. That would have begun its development.",
+      "rivetText": "The better move would bring out the bishop that has not yet moved. Its original square would be vacated; development would begin."
+    },
+    {
+      "id": "evaluation-loss-2",
+      "group": "game_review",
+      "walterText": "This is where the chosen move gives something up compared with the stronger choice. Compare the positions they leave.",
+      "rivetText": "A stronger move was available. This choice gives up value in the engine comparison."
+    },
+    {
+      "id": "evaluation-loss-3",
+      "group": "game_review",
+      "walterText": "There was more to be kept in this position. The engine finds a better move than the move played.",
+      "rivetText": "Issue: the chosen move leaves a worse result than the best available move. Compare the resulting positions."
+    },
+    {
+      "id": "evaluation-loss-4",
+      "group": "game_review",
+      "walterText": "The position comes out worse than it needed to with this choice. The stronger move is worth a closer look.",
+      "rivetText": "This is a cost against the stronger option. It does not, by itself, establish a losing position."
+    },
+    {
+      "id": "evaluation-loss-5",
+      "group": "game_review",
+      "walterText": "This choice carries a cost against the best move. Start the comparison here, before moving further into the game.",
+      "rivetText": "The engine's comparison favors another move. The played move falls short of that result."
+    },
+    {
+      "id": "immediate-capture-2",
+      "group": "game_review",
+      "walterText": "This move leaves a capture available to the other side immediately. Follow that reply before looking further ahead.",
+      "rivetText": "An immediate capture is available to the opponent. Availability confirmed; profit not implied."
+    },
+    {
+      "id": "immediate-capture-3",
+      "group": "game_review",
+      "walterText": "The opponent can answer by taking something. Whether that capture pays off is a further question.",
+      "rivetText": "The other side can take something on the next move. Inspect that capture before extending the line."
+    },
+    {
+      "id": "immediate-capture-4",
+      "group": "game_review",
+      "walterText": "Notice the reply now available: the other side can capture at once. That's where to begin the comparison.",
+      "rivetText": "Reply option: capture. The opponent can make it immediately."
+    },
+    {
+      "id": "immediate-capture-5",
+      "group": "game_review",
+      "walterText": "A capture can follow straight after this move. Look at what changes when the opponent takes.",
+      "rivetText": "The move permits a capture in reply immediately. Capturable does not mean free."
+    },
+    {
+      "id": "chance-taken-2",
+      "group": "game_review",
+      "walterText": "The opponent's last move offered a chance, and you turned it into something. This is the response to remember.",
+      "rivetText": "Previous event: opponent error. Current response: opportunity used."
+    },
+    {
+      "id": "chance-taken-3",
+      "group": "game_review",
+      "walterText": "You made the previous mistake matter. The opponent offered an opportunity, and this move uses it.",
+      "rivetText": "Opponent error identified and exploited. Response successful."
+    },
+    {
+      "id": "chance-taken-4",
+      "group": "game_review",
+      "walterText": "That was an opportunity on the move before, and you followed through. The chance has been taken.",
+      "rivetText": "You used the opportunity from the opponent's last move. Error followed by punishment."
+    },
+    {
+      "id": "stronger-alternative-2",
+      "group": "game_review",
+      "walterText": "The engine finds a stronger choice; compare what happens after that move.",
+      "rivetText": "A different move produces a better result in the engine's analysis."
+    },
+    {
+      "id": "stronger-alternative-3",
+      "group": "game_review",
+      "walterText": "It is worth returning to the better move the engine found here.",
+      "rivetText": "The engine identifies a stronger alternative for comparison."
+    },
+    {
+      "id": "stronger-alternative-4",
+      "group": "game_review",
+      "walterText": "A different move comes out better in the engine's analysis, so compare the positions it leaves.",
+      "rivetText": "Compare the engine's preferred move; it is not the move played."
+    },
+    {
+      "id": "positional-passer-advance-actual-2",
+      "group": "game_review",
+      "walterText": "The pawn was already passed; this move takes it closer to promotion. Follow the reply from its new square.",
+      "rivetText": "The existing passed pawn advances. Distance to the promotion rank decreases; arrival is not guaranteed."
+    },
+    {
+      "id": "positional-passer-advance-actual-3",
+      "group": "game_review",
+      "walterText": "Another step toward the last rank for this passed pawn. Its new position is where to pick up the story.",
+      "rivetText": "Passed status predates this move. The pawn now advances closer to promotion."
+    },
+    {
+      "id": "reply-check-2",
+      "group": "game_review",
+      "walterText": "The best answer to this move is a check. That brings the king's safety to the front of the next decision.",
+      "rivetText": "The strongest response checks the king. Resolving check is mandatory."
+    },
+    {
+      "id": "reply-check-3",
+      "group": "game_review",
+      "walterText": "Check is the strongest reply here. The next move has to answer the threat to the king.",
+      "rivetText": "Best reply: an attack on the king with check. That threat requires an answer."
+    },
+    {
+      "id": "lesson-correct-move-2",
+      "group": "lessons",
+      "walterText": "Yes, you found the move this lesson is teaching.",
+      "rivetText": "Correct lesson move identified. Match accepted."
+    },
+    {
+      "id": "lesson-correct-move-3",
+      "group": "lessons",
+      "walterText": "That's the intended lesson move. Nicely done.",
+      "rivetText": "The move agrees with the lesson's intended answer."
+    },
+    {
+      "id": "lesson-correct-move-4",
+      "group": "lessons",
+      "walterText": "Good, you've matched the move shown in the lesson.",
+      "rivetText": "Lesson requirement met by that move. Proceed."
+    },
+    {
+      "id": "puzzle-next-move-2",
+      "group": "puzzles",
+      "walterText": "That's right so far. Stay with the puzzle and find what comes next.",
+      "rivetText": "Correct so far. Puzzle completion still pending."
+    },
+    {
+      "id": "puzzle-next-move-3",
+      "group": "puzzles",
+      "walterText": "You have this move right. There's more of the puzzle to work through.",
+      "rivetText": "That move fits the solution. Continue with the next decision."
+    },
+    {
+      "id": "puzzle-next-move-4",
+      "group": "puzzles",
+      "walterText": "Yes, that fits the puzzle. Keep going from this position.",
+      "rivetText": "Puzzle move confirmed. Further moves remain to be found."
+    },
+    {
+      "id": "opening-recall-accepted-2",
+      "group": "openings",
+      "walterText": "Yes, that's the move from the opening you're studying.",
+      "rivetText": "The move matches the opening under study. Recall accepted."
+    },
+    {
+      "id": "opening-recall-accepted-3",
+      "group": "openings",
+      "walterText": "You've recalled the move in your repertoire here. Well done.",
+      "rivetText": "Repertoire answer verified against the selected opening."
+    },
+    {
+      "id": "opening-recall-accepted-4",
+      "group": "openings",
+      "walterText": "That matches the opening line you've chosen to practice.",
+      "rivetText": "Opening recall check passed. The stored move and played move agree."
+    },
+    {
+      "id": "grade-best-5",
+      "group": "game_review",
+      "walterText": "This is as good a move as the position offers. I'd keep it just as it is.",
+      "rivetText": "Best available move. Selection requires no amendment."
+    },
+    {
+      "id": "grade-best-6",
+      "group": "game_review",
+      "walterText": "The right choice here, and the best available. It belongs among the moves to keep.",
+      "rivetText": "The move meets the best standard. No stronger replacement to recommend."
+    },
+    {
+      "id": "grade-good-5",
+      "group": "game_review",
+      "walterText": "A sound choice, though there was something better available. Good rather than best.",
+      "rivetText": "Sound move, with a better option available. Good is the applicable grade."
+    },
+    {
+      "id": "grade-good-6",
+      "group": "game_review",
+      "walterText": "This is a good move to have played. Take a moment to compare it with the stronger option.",
+      "rivetText": "Classification: Good. Sound choice; stronger alternative available."
     }
   ]
 }
