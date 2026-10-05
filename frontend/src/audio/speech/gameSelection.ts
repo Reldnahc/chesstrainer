@@ -326,20 +326,33 @@ export function gradeTakeIds(label: string): string[] {
   return pool ? Array.from({length: GRADE_TAKES}, (_, index) => `grade-${pool}-${index + 1}`) : [];
 }
 
-/** A ply whose whole line is the generic reading for its grade rotates through
- * that grade's takes. A mainline ply counts the earlier moves with the same
- * grade, so neighbouring same-grade moves never share a take, and replaying a
- * ply repeats its take. The game seeds where the cycle starts. A variation has
- * no move history and takes its position's take. The caller falls back to the
- * generic reading while a coach has no take recorded. */
+/** The takes in a seeded order: each round of the same game and grade is its own
+ * shuffle, and a round never opens with the take that closed the round before. */
+function shuffledTakes(ids: readonly string[], seed: readonly unknown[], round: number): string[] {
+  const order = [...ids];
+  for (let index = order.length - 1; index > 0; index--) {
+    const pick = Number.parseInt(stableKey([...seed, round, index]), 16) % (index + 1);
+    [order[index], order[pick]] = [order[pick], order[index]];
+  }
+  if (round > 0 && order.length > 1 && order[0] === shuffledTakes(ids, seed, round - 1).at(-1))
+    [order[0], order[1]] = [order[1], order[0]];
+  return order;
+}
+
+/** A ply whose whole line is the generic reading for its grade plays one of that
+ * grade's takes. A mainline ply counts the earlier moves with the same grade and
+ * walks a per-game shuffle: every take plays once before any repeats, neighbouring
+ * same-grade moves never share a take, and replaying a ply repeats its take. A
+ * variation has no move history and takes its position's first take. The caller
+ * falls back to the generic reading while a coach has no take recorded. */
 function gradeTake(context: GameSpeechContext, recordingId: string | null): string | undefined {
   const {game, report, frame, ply, variation = false} = context, label = report?.label;
   if (!recordingId || !label || !gradePools[label]
     || !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId)) return;
   const ids = gradeTakeIds(label);
-  const seed = Number.parseInt(stableKey(variation ? [frame?.fen, label] : [game.id, label]), 16);
   const earlier = variation ? 0 : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
-  return ids[(seed + earlier) % ids.length];
+  const order = shuffledTakes(ids, variation ? [frame?.fen, label] : [game.id, label], Math.floor(earlier / ids.length));
+  return order[earlier % ids.length];
 }
 
 /** Historical Walter-only consumers; new code selects meaning independently of voice. */

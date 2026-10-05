@@ -321,8 +321,9 @@ blunder; the best or good choice for a brilliant, great, best or good move)
 speaks one of four `grade-<grade>-<n>` takes instead (`gradeTake` in
 [gameSelection.ts](gameSelection.ts)). A capture, check, tactic, mate, opening or
 relationship keeps its own clip. Each mainline move counts the earlier moves with
-the same grade, so neighbouring same-grade moves never share a take and replaying
-a move repeats its take; the game seeds where the cycle starts. A coach without a
+the same grade and walks a per-game shuffle of the takes: every take plays once
+before any repeats, each round is reshuffled, a round never opens with the take
+that ended the last one, and replaying a move repeats its take. A coach without a
 take recorded keeps the generic reading. All 960 takes (32 per coach) are recorded
 under each bank's `recordings/<voice>-grades-v1/` with the coach's locked voice and
 settings: **65,807 input characters / 7,971 provider credits**, five requests at a
