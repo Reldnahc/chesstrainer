@@ -9,7 +9,7 @@ import MovePlaybackControls from "../MovePlaybackControls";
 import Notice from "../Notice";
 import { LoadingState, UnavailableState } from "../LoadState";
 import AudioMuteButton from "../audio/AudioMuteButton";
-import { scoreText, strength } from "../evaluation";
+import { positionScore, scoreText, strength } from "../evaluation";
 import { PlayerRow } from "../gameReview/Players";
 import PositionCoach from "../gameReview/PositionCoach";
 import ReviewMoves from "../gameReview/ReviewMoves";
@@ -51,7 +51,7 @@ export default function PlayGame({ id }: { id: string }) {
     );
   const shownOrientation = orientation ?? state.learner_color;
   const finished = state.status === "finished";
-  const score = report?.white_score ?? null;
+  const score = positionScore(report?.white_score, frame);
   const cues = report?.board_cues?.fen === frame?.fen ? (report?.board_cues ?? null) : null;
   const explaining = session.explaining && !!cues;
   const currentUci = frame?.uci ?? null;
