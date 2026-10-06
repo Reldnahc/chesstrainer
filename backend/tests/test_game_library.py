@@ -202,7 +202,9 @@ def test_library_backfill_never_holds_a_write_while_waiting_for_the_lock(setting
             lock = workspace.mutation_lock
             with lock:
                 response = {}
-                request = threading.Thread(target=lambda: response.update(r=client.get("/api/games")))
+                request = threading.Thread(
+                    target=lambda: response.update(r=client.get("/api/games"))
+                )
                 request.start()
                 time.sleep(0.5)  # The request now waits for the lock the "job" holds.
                 # The job's own write must still get the database at once.
