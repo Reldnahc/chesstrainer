@@ -64,8 +64,12 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       {best, opponent, reply: report.immediate_reply ? `${opponent}'s strongest reply is ${report.immediate_reply.san}.` : ""}, 100);
     // A move inside a forced mate is about the mate, ahead of any tactic or
     // structure. A played back-rank tactic already explains that same mate.
+    // Through a long mating run the same side's moves share a stage; it is told once,
+    // and later moves of that stage speak their grade instead of repeating it.
     if (event.kind === "forced_mate" && typeof f.stage === "string" && !events.some(other => other.kind === "tactic"
-      && other.facts.motif === "back_rank" && other.facts.role === "played"))
+      && other.facts.motif === "back_rank" && other.facts.role === "played")
+      && (variation || !game.frames[ply - 2]?.report?.intelligence?.events.some(other =>
+        other.kind === "forced_mate" && other.facts.stage === f.stage)))
       add(`forced_mate_${f.stage}`, {move, best, opponent, mate: Number(f.mate_in)}, 97);
     if (event.kind === "tactic") {
       const item = tacticalClaim(event, move, best, opponent);
@@ -82,9 +86,10 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       if (poor ? !explainsCost(f, mover) : f.line !== "actual") continue;
       // A defender gained or lost by a piece that is simply traded off is not the story.
       if (f.feature === "piece_support" && f.line === "actual" && recaptured && f.target === report.actual.uci.slice(2, 4)) continue;
-      // "A bishop could have developed" or "the alternative was to castle" is confusing
-      // when the played move developed a piece or castled too.
-      if (["first_development", "castling"].includes(String(f.feature)) && f.line !== "actual" && events.some(other =>
+      // "A bishop could have developed", "the alternative was to castle" or "another move
+      // would have pushed the passed pawn" is confusing when the played move did the same.
+      if (["first_development", "castling", "passed_pawn_advance", "passed_pawns", "rook_file"].includes(String(f.feature))
+        && f.line !== "actual" && events.some(other =>
         other.kind === "positional" && other.facts.feature === f.feature && other.facts.line === "actual")) continue;
       const item = positionalClaim(event, move, best);
       if (item) claims.push(item);
@@ -120,7 +125,8 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
         claims.splice(0, claims.length, ...claims.filter(item => !(item.code === "support" && !!restored && item.sourceIds.includes(restored))));
         linked("support_restored", {earlier, piece: words(f.piece)}, 75);
       }
-      if (relation.kind === "erosion") linked("erosion", {earlier}, 71);
+      // A run of concessions is only told on a move that is itself one.
+      if (relation.kind === "erosion" && poor) linked("erosion", {earlier}, 71);
       if (relation.kind === "advantage_run" && f.outcome === "converted") linked("conversion", {earlier, side}, 75);
     }
     for (const item of game.history?.weaknesses ?? []) if (item.status === "supported" && item.related_plies.includes(ply))

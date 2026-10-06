@@ -69,8 +69,9 @@ for (const coach of coaches) {
   // The bubble's recorded objective sentences play back to back; Maia adds nothing.
   const plain = (context: GameSpeechContext) => {
     const first = selectGameRecording(context), second = selectGameRecording({...context, claimIndex: 1});
-    // A cause clip already names the capture, so the hanging-piece clip never joins it.
-    return first && second && !(first.startsWith("cause-") && second.startsWith("tactic-hanging-piece-")) ? `${first}+${second}` : first;
+    // A cause clip already names the capture, so neither capture clip joins it.
+    const repeats = !!first?.startsWith("cause-") && !!second && ["tactic-hanging-piece-", "immediate-capture"].some(id => second.startsWith(id));
+    return first && second && !repeats ? `${first}+${second}` : first;
   };
 
   test(`${coach.id}: the selected defense insight is shown while the objective line speaks alone`, () => {

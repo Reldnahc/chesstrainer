@@ -91,7 +91,9 @@ for (const game of games) {
         history: {version: "cross-game-1", input_digest: "history", scope: "other_saved_games", recurrence_threshold: 2, limitations: [],
           weaknesses: [{skill_id: "abandoned_defender", title: "Abandoned defender", status: "supported", independent_games: 2,
             occurrences: 2, related_plies: [ply], evidence: recovery.evidence, decision_ids: ["other-decision"], game_ids: ["other-a", "other-b"]}]}};
-      expect(intentAt(modified, ply).claims.map(c => c.code)).toEqual(expect.arrayContaining([code, "history"]));
+      // A run of concessions is told only on a move that is itself a concession; this fixture's move is book.
+      if (kind === "erosion") expect(intentAt(modified, ply).claims.map(c => c.code)).not.toContain(code);
+      else expect(intentAt(modified, ply).claims.map(c => c.code)).toEqual(expect.arrayContaining([code, "history"]));
       const opposing = intentAt({...modified, orientation: opposite(learner)}, ply);
       expect(opposing.claims.map(c => c.code)).not.toEqual(expect.arrayContaining([code]));
       expect(opposing.claims.some(c => c.code === "history")).toBe(false);

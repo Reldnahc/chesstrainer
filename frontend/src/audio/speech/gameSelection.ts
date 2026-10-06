@@ -279,8 +279,7 @@ export function selectGameSpeech(context: GameSpeechContext) {
   if (primaryId && second && !humanInsightLabels[second.code] && ["game", "variation"].includes(context.intent.mode)) {
     secondId = selectGameRecording({...context, claimIndex: lead + 1});
     if (secondId && !(context.playable?.(secondId) ?? true)) secondId = null;
-    // A cause clip already says the piece can be taken; the hanging-piece clip would repeat it.
-    if (secondId && primaryId.startsWith("cause-") && secondId.startsWith("tactic-hanging-piece-")) secondId = null;
+    if (secondId && repeatsLead(primaryId, secondId, claims[lead + 1].code)) secondId = null;
     if (secondId && secondId !== primaryId) recordingId = sequenceRecordingId([primaryId, secondId]);
     else secondId = null;
   }
@@ -334,6 +333,19 @@ export function distinctOpeners(id: string, text: (id: string) => string | null 
   return second.some(alt => text(alt)) ? [parts[0], second.join(ALTERNATIVE_SEPARATOR)].join(SEQUENCE_SEPARATOR) : parts[0];
 }
 
+/** A second sentence that only restates the lead, or that refers back to an issue
+ * the lead does not name, is left out: the lead then plays alone. */
+function repeatsLead(lead: string, second: string, secondCode: string): boolean {
+  const names = ["cause-", "tactic-", "allowed-mate", "missed-mate"].some(prefix => lead.startsWith(prefix));
+  // "This issue also appears..." needs a lead that names the issue.
+  if (followOnly.has(secondCode)) return !names;
+  // Cause, hanging-piece and mate clips already say what the reply takes.
+  if (["cause-", "tactic-hanging-piece-allowed", "allowed-mate"].some(prefix => lead.startsWith(prefix))
+    && (second.startsWith("immediate-capture") || second.startsWith("tactic-hanging-piece-"))) return true;
+  // A missed tactic or mate already points at the better move.
+  return (lead.startsWith("missed-mate") || /^tactic-.*-missed/.test(lead)) && second.startsWith("stronger-alternative");
+}
+
 /** The side whose pawns, rook or piece a selected positional clip is about. */
 function positionalSide(context: GameSpeechContext): Side | null {
   const item = context.utterance.renderedClaims?.[context.claimIndex ?? 0];
@@ -376,8 +388,9 @@ export function gradeTakeIds(label: string): string[] {
 
 /** A ply whose whole line is the generic reading for its grade plays one of that
  * grade's takes. A mainline ply counts the earlier moves with the same grade and
- * walks a per-game shuffle: every take plays once before any repeats, neighbouring
- * same-grade moves never share a take, and replaying a ply repeats its take. A
+ * walks a per-game shuffle: every take plays once before any repeats, same-grade
+ * moves up to two apart (such as the learner's two moves either side of an
+ * opponent's) never share a take, and replaying a ply repeats its take. A
  * variation has no move history and takes its position's first take. The caller
  * falls back to the generic reading while a coach has no take recorded. */
 function gradeTake(context: GameSpeechContext, recordingId: string | null): string | undefined {

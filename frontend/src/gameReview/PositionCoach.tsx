@@ -16,7 +16,7 @@ import HumanInsight from "./HumanInsight";
 import {distinctOpeners, selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import {coachRecording, hasCoachVoice, recordedId} from "../audio/speech/voiceBank";
-import {spokenId as spokenMeaning, useSpokenText} from "../audio/speech/spokenText";
+import {spokenId as spokenMeaning, spokenText, useSpokenText} from "../audio/speech/spokenText";
 import CoachMovesLine, {movesLineFacts, movesLineText} from "./CoachMovesLine";
 import {useOptionalAudioPreferences} from "../audio/AudioProvider";
 import {useOptionalCoachPreferences} from "../coach/CoachProvider";
@@ -106,7 +106,7 @@ export default function PositionCoach({
   const {variants} = selectGameSpeech(selection);
   // Two joined lines never open with the same catchphrase ("Whoa, ... Whoa, ...").
   const speech = {...variants, recordingId: variants.recordingId
-    && distinctOpeners(variants.recordingId, id => coachRecording(utterance.coachId, id)?.text)};
+    && distinctOpeners(variants.recordingId, id => coachRecording(utterance.coachId, id)?.text ?? spokenText(utterance.coachId, id))};
   const {primaryId, gradeId} = speech;
   const coachId = utterance.coachId, voiced = hasCoachVoice(coachId);
   // A grade take replaces the generic reading once this coach has one.
