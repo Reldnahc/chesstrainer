@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "Whoa, fork time! One queen is threatening more than one target in the very same move, and that's so much fun to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "93238cc8aa2cf1622faf25654d760ea2e6e996bb9da964c9146a094ef61460be",
+  "recordedAt": "2026-10-06T04:01:40.583Z",
+  "sha256": "dfb19f3cdcada267bef21bb6a6f4dd95753a87aa0f75396a3d2e0cdf6d1db7dc",
+  "bytes": 26628,
+  "requestId": "r97qd69k6ISL7MS7GITb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9f65004c07e35abb1c03b53b1e3ad152de22a7bbb98a07d0d2fcf102a51abc1",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

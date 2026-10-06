@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "Another move had a fork tucked into it, the bishop eyeing more than one target. The game took another road."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ca94f3c67fdea5b83d2285000826822ce4677b6bb251597a25720bf88227e09",
+  "recordedAt": "2026-10-06T04:01:41.632Z",
+  "sha256": "7a54dfc7cc81395393c82f8364a48d9deff4daa80d2af2d385a284fc2770268e",
+  "bytes": 24057,
+  "requestId": "iBrC72NJDNbmfLrWL5ey",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "041e8a82e1e8e2651aa2ea893f22f05720691597b9c78e5796fc3eb6f0dd1de8",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

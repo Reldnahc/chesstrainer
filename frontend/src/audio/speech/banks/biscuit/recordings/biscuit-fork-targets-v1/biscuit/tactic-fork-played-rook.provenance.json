@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "Whoa, fork time! One rook is threatening more than one target in the very same move, and that's so much fun to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e31f32316f74cf1ce35beb9a5a22ee3b27f94d6aa4798bd3401998c286c0b18",
+  "recordedAt": "2026-10-06T04:01:38.498Z",
+  "sha256": "fb1e7900c379336fa3168989dd16149e893f00a35bb85298bf2e8890fe075bbd",
+  "bytes": 26817,
+  "requestId": "WyFWNeyMQli8jeyVueW1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66bf7ff5393f408409bb6cc99d7c945290532b1502423630fb3312492e6ed556",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

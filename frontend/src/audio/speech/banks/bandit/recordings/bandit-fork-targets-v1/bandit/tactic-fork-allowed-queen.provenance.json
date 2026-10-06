@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "This leaves the other side a fork: a queen of theirs could hit more than one target at once. Find that queen before it starts helping itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "7469034d6ec17ce929a4da89b3cc1de6a22672907c26ed15ab35427f6db5cfdf",
+  "recordedAt": "2026-10-06T04:01:35.637Z",
+  "sha256": "5759116b93dd84a038d1774b0146d1a8deb5bb9066cafc88062a2f5cc833e307",
+  "bytes": 28663,
+  "requestId": "vWPASAMtj9edfcHn9ILT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c259c891a9f584a5a30eafa80edcf63fc961257df46fd3af6b3ed52f7a6a1c8",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

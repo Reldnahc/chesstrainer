@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "Another move had a fork tucked into it, the queen eyeing more than one target. The game took another road."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b6c845daa35512249566c2f4240eeef1555ae96fa429935966360f86ce41ac8",
+  "recordedAt": "2026-10-06T04:01:45.757Z",
+  "sha256": "27c418de7194319c9f9566a42e2533168ef0a45387614e5cebe0f6dd3ad10685",
+  "bytes": 24282,
+  "requestId": "4QA10ejfuJmQEOrVLjod",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9de3ff1844dc7c89c69a552cb808036f0a57c5a7c48ebe376918e9745a2f5c4a",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
