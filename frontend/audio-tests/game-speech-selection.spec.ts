@@ -53,7 +53,11 @@ for (const fixture of causal) test(`Walter selects ${fixture.skill} for ${fixtur
 
 for (const fixture of positional) for (const line of ["actual", "alternative"] as const)
   test(`Walter preserves ${fixture.feature} ${line} scope (${fixture.mirrored ? "Black" : "White"})`, () => {
-    const current = onlyClaim(context(fixture[line]), fixture.code);
+    const report = structuredClone(fixture[line]);
+    // After an error only a cost-explaining fact is spoken: the better move doubles the opponent's pawns.
+    if (line === "alternative" && fixture.feature === "doubled_files") for (const event of report.intelligence!.events)
+      if (event.facts.feature === "doubled_files" && event.facts.line === "best") event.facts.side = event.facts.side === "white" ? "black" : "white";
+    const current = onlyClaim(context(report), fixture.code);
     const expected = `positional-${fixture.feature === "bishop_pair" ? "bishop-pair" : "doubled"}-${line}`;
     expect(selectWalterGameRecording(current)).toBe(expected);
     const malformed = structuredClone(current);
@@ -223,7 +227,14 @@ test("all positional speech branches validate their structured facts and keep al
     const event = {...original, id: `position-${line}-${example.name}`,
       facts: {side: "white", ...example.facts, line, uci: report[line].uci},
       evidence: [...original.evidence, {source: "pgn" as const, id: "pgn-history", field: "original_minor_piece_history"}]};
+    // After an error, the better move's line names only what it gains: the opponent's weaknesses.
+    if (line === "best" && ["isolated", "doubled", "unsupported"].includes(example.name)) event.facts.side = "black";
     report.intelligence!.events = [event];
+    if (line === "best" && example.name === "king-flight") {
+      // A king square never explains an error.
+      expect(context(report).intent.claims.some(item => item.code === "flights")).toBe(false);
+      continue;
+    }
     const current = onlyClaim(context(report), example.code);
     const id = `positional-${example.name}-${line === "actual" ? "actual" : "alternative"}`;
     expect(selectWalterGameRecording(current), id).toBe(id);
@@ -319,4 +330,8 @@ test("a joined pair never repeats the coach's opening catchphrase", () => {
   expect(distinctOpeners("fork+check", text)).toBe("fork+check");
   // A first sentence with no short catchphrase never filters anything.
   expect(distinctOpeners("check+capture", text)).toBe("check+capture");
+  // A "Label:" inside both lines counts as the same catchphrase.
+  const labelled: Record<string, string> = {first: "A fork is coming. Notebook rule: check every square.",
+    second: "Pawns share a file. Notebook rule: count them.", other: "Pawns share a file."};
+  expect(distinctOpeners("first+second|other", id => labelled[id])).toBe("first+other");
 });

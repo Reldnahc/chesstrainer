@@ -33,6 +33,11 @@ for (const fixture of positionFixtures) test(`${fixture.feature} preserves actua
     const turn = value.actual_line!.frames[1].fen.split(" ")[1] === "w" ? "white" : "black";
     const intent = gameIntent({...args, frame: {...frame, turn}, report: value});
     const item = intent.claims.find(c => c.code === fixture.code)!;
+    // The mover's own doubled pawns after the better move are its drawback, so they never explain the error.
+    if (kind === "alternative" && fixture.feature === "doubled_files") {
+      expect(item).toBeUndefined();
+      continue;
+    }
     expect(item).toBeTruthy();
     // Isolate one selected claim to prove its language even if a compact bubble
     // omits this lower-priority fact in favor of another supported consequence.

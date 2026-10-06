@@ -82,6 +82,8 @@ test("neighbouring same-grade moves play every take before any repeats", () => {
   expect(takes.every(Boolean)).toBe(true);
   // No take plays twice in a row, including across the end of a round.
   for (let index = 1; index < takes.length; index++) expect(takes[index]).not.toBe(takes[index - 1]);
+  // A side's back-to-back moves are two same-grade moves apart; they never share a take either.
+  for (let index = 2; index < takes.length; index++) expect(takes[index]).not.toBe(takes[index - 2]);
   for (let round = 0; round < rounds; round++)
     expect(new Set(takes.slice(round * GRADE_TAKES, (round + 1) * GRADE_TAKES)).size).toBe(GRADE_TAKES);
   // Later rounds are reshuffled rather than replaying the first round's order.

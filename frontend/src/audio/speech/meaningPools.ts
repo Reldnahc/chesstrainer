@@ -20,16 +20,25 @@ for (const meaning of catalogue.meanings as Meaning[]) {
   if (meaning.takeOf) takes.set(meaning.takeOf, [...takes.get(meaning.takeOf) ?? [], meaning]);
 }
 
-/** Takes in a seeded order: each round is its own shuffle, and a round never
- * opens with the take that closed the round before. */
+/** Takes in a seeded order: each round is its own shuffle, and a round never opens
+ * with a take from the end of the round before, so any two turns up to two apart
+ * get different takes whenever a meaning has three or more (a side's back-to-back
+ * moves are two turns apart). */
 export function shuffledTakes(ids: readonly string[], seed: readonly unknown[], round: number): string[] {
   const order = [...ids];
   for (let index = order.length - 1; index > 0; index--) {
     const pick = Number.parseInt(stableKey([...seed, round, index]), 16) % (index + 1);
     [order[index], order[pick]] = [order[pick], order[index]];
   }
-  if (round > 0 && order.length > 1 && order[0] === shuffledTakes(ids, seed, round - 1).at(-1))
-    [order[0], order[1]] = [order[1], order[0]];
+  if (round > 0 && order.length > 1) {
+    const previous = shuffledTakes(ids, seed, round - 1);
+    // The first take avoids the previous round's last two; the second avoids its last.
+    for (let index = 0; index < 2; index++) {
+      const recent = previous.slice(previous.length - 2 + index);
+      const swap = order.findIndex((id, at) => at >= index && !recent.includes(id));
+      if (swap > index) [order[index], order[swap]] = [order[swap], order[index]];
+    }
+  }
   return order;
 }
 

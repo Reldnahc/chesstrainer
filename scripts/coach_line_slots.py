@@ -91,6 +91,13 @@ EXTRA_TAKES = [
     ),
     ("reply-check", 2, "the strongest reply to the move played gives check", False),
     (
+        "positional-castling-actual",
+        1,
+        "the move played is castling (either side, kingside or queenside); it plays when both sides castle on"
+        " consecutive moves, so it must differ from the coach's existing castling line",
+        False,
+    ),
+    (
         "only-playable-move",
         3,
         "of the moves checked, the move played was the only one that kept the position playable;"
