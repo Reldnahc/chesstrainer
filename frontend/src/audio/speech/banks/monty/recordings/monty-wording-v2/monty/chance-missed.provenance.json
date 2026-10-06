@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "chance-missed",
+      "label": "Chance missed",
+      "text": "The opponent just made an error, and nobody makes them pay here. When they slip, look for the punishment."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d1da61d5e058008b9a487d2dbf7562e0976502034d2207f009563b5efd056ec",
+  "recordedAt": "2026-10-06T03:09:53.549Z",
+  "sha256": "8eb9c863996fdcfd0495e376cc8a1345055ea89ab6e6f938e221b6e5d24e9b72",
+  "bytes": 21381,
+  "requestId": "Ru2tfJQrHQsxAQ0SCotC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "164e28f1c0cf5b2d4331c3b73f92cb508d14f01e86fed6c56ff76e989bc685c3",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Only one survivor among the moves checked. This one. The others lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "b806edc6011f93ccdc899e2be313910ea3a36bb04bdb638bc2e45bac6c7713c0",
+  "recordedAt": "2026-10-06T03:09:28.462Z",
+  "sha256": "7644823c17a498122c921ef7218cd61c1d6d2b7375872795ca4ec7dff5ce2089",
+  "bytes": 17045,
+  "requestId": "KlvaWEgSeDeDncXA3Z6e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42fb37c684fbf629c35d4ebf8a57f766571fe6899e608eeaea82a5e67f05fbe1",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

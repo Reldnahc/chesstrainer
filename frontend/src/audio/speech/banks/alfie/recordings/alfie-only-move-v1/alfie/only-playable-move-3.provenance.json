@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "Here the useful step is to see why the choice was so narrow. Every other move checked was losing, and this one held."
+    },
+    "takeId": null
+  },
+  "requestHash": "76685c3802d1415348e52824eb6710ffb853cec7e69e047a1691d5553c85db6e",
+  "recordedAt": "2026-10-06T03:09:22.377Z",
+  "sha256": "8105d16bb3363cacaa4e69ea25df5ca2a4e909c0a6ee46ad94d8d9d76205c470",
+  "bytes": 25054,
+  "requestId": "mopguBVENeO6OtjC7bgF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d397c13813471d391fc12153e70966c0532755f30d44632d97ce3949b80e8597",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

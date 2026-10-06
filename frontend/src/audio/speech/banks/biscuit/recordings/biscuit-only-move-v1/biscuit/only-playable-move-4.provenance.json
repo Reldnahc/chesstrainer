@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Here's the one that held up! Among the moves checked, this one alone kept the game playable. Everything else lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b84e7be07338e37c118b96f99385f6d2a6e38e3b6d32e62ee8712134e31f393",
+  "recordedAt": "2026-10-06T03:09:24.512Z",
+  "sha256": "7c60abf2cbb3c3a2fae69343c7894e8d74367442a6c2ae4590e8828b621ede75",
+  "bytes": 24868,
+  "requestId": "qANzsN9GWGGUG8GhZ8nn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9aa05350b51944c5a6b235a7b56a6cee00de261fdc3230083ff8d71d9618e81e",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Instructive. Of the searched moves, this alone kept the position playable; every alternative lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "773e4075d7eff4de112a3a0276247c2a6f3f381dbff3e0bb9dbeae87f1a77ba2",
+  "recordedAt": "2026-10-06T03:09:51.225Z",
+  "sha256": "392b50478eb7c37738c46ded4933f0d003abba0e922ad82d459d91b685d59cc9",
+  "bytes": 22092,
+  "requestId": "6sKjym8Yke3xVAr1Bvj2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ec26ca7da20d27a17e5a91c90209b188f67726a90cb0cbb91832e17bd6a7fb6",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

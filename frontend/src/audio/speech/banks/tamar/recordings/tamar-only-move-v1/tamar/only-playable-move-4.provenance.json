@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "One move keeps the position playable here. Everything else checked lost. Learn to find that kind of move under pressure."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c022740e390e416da6c32470c86caf4eb1b83211ed6e6eb7cba30cd51ca73fd",
+  "recordedAt": "2026-10-06T03:09:46.248Z",
+  "sha256": "a3e63b353c9ab1342b242ee1cba954c07cd8a3758f7a0951ae607c82a0a60cc5",
+  "bytes": 23667,
+  "requestId": "HfQAc7SZd7P9AzLN2PF7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "135cd06417175d3120a13dc1d6f4178c25c0955fe8c48b4bfc3377486e055823",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

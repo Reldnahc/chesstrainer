@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "only-playable-move-2",
+      "label": "Only playable move 2",
+      "text": "Correct, and necessary. Every other checked move loses, and this one holds. That's the standard to train toward."
+    },
+    "takeId": null
+  },
+  "requestHash": "857d925627fc5b2af3543bb77c879ee30c293463833b0b392f6269e624447d42",
+  "recordedAt": "2026-10-06T03:09:42.189Z",
+  "sha256": "ea0560aade8d5f423f74e3b1e1bf97cd932204ea92b820882ca558ff6a89d56b",
+  "bytes": 25237,
+  "requestId": "9aIp9DFIn9ucMTJM3gNT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c7dea0f336cdf16c2237dc69b82da17c3ae9c3c8e9c74a64c73daaafac8159d",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

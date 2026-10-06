@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "only-playable-move-2",
+      "label": "Only playable move 2",
+      "text": "Single route, taken! Every other checked move lost; this one kept the position playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "50602691dd2616394a23f907114227c673cce13547b06cad27772d57a4036b86",
+  "recordedAt": "2026-10-06T03:09:43.439Z",
+  "sha256": "95f31ec2c7d3532d53be31d04dffd85a02bda85e3c56a771393e1225b173d1c7",
+  "bytes": 20465,
+  "requestId": "sfR26hjhbZaVYkmE4QQa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "860090a39fa6ff33895b1bb24137176fd9d529cc47e37fa11347cab396246252",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

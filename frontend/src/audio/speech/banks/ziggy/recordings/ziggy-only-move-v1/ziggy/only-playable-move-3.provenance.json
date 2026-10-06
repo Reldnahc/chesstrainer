@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "A curious feature of chess: sometimes the board tolerates just one move. Among the moves checked, this was the only one that kept things playable, and the others lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "c96dcaa8f559589c007a32e6c913fa5af8a32bff94eec28b45aca52c2499cfe9",
+  "recordedAt": "2026-10-06T03:09:49.383Z",
+  "sha256": "4287b0ad24e5bc3d9b99f9fd3a45031fd3f8db66740019b9b03643fee1e27f76",
+  "bytes": 35072,
+  "requestId": "n1kKc8jqadKQuplRFAU2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d569caf39f315f94a37370cc4b1b19806b5515a012df810c25a826f700957a5",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

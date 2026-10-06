@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Condition: every other checked move fails. Exception: this one. Outcome: position holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "29a0b7d0cbb213185efa4c9ebead5fc3f28a371eae2e6b5da0d0b80f7d7777c3",
+  "recordedAt": "2026-10-06T03:09:17.725Z",
+  "sha256": "7ae425e5f784f6c91ba011a2bb6a9aca8d0b28d8938337e1eea5b3a4e2b915bf",
+  "bytes": 22906,
+  "requestId": "SLBcnqwDYwTpN3b0dPlE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df08b9f0e9a0054e74d2b2581bf6e2bf86b1dc84a1f93ee3a69aeeb08e6b770d",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

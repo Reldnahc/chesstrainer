@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "That's an only move! Out of the moves checked, nothing else kept the position playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1e58d0ba721a61b4a78b590b5204ba9a21f7850ee30a26189445def69d5f28a",
+  "recordedAt": "2026-10-06T03:09:35.530Z",
+  "sha256": "40734847acf576b9ba4b7698a0e53e288a0ef8cef7ad344b0eb53944d4f47095",
+  "bytes": 18593,
+  "requestId": "S0J7ycbpaJrmN25dKmu9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7e4060d995051536cbac9ab8a5f158a3f1f4a89c74f6dedbc3572f5429ff112",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

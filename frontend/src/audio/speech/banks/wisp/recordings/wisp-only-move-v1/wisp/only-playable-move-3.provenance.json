@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "The danger was already there for every other move checked. Only this move left the position playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc3dbe21151c2892fd7a47c97ee226fdf6aad58889d975791577e1eb6496cbc4",
+  "recordedAt": "2026-10-06T03:09:45.701Z",
+  "sha256": "38195514932e5b3e70dabb328ac7aa3dc0f37df8bc7f6f8c90032b1ecd487def",
+  "bytes": 20693,
+  "requestId": "rja3iAaQNc30guQXHqv8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5964b52165d69faf05d7a30c7f875dbc34d0cc8cd70bc8d24e440aeb57b28060",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

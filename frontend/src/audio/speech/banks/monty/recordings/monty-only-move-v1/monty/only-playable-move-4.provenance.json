@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Simple problem: every move checked lost but one. This one kept the game playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "f29895f21f00e105ce1be502c8032f37e78c4757b9bbd13742edefd5ace78bb2",
+  "recordedAt": "2026-10-06T03:09:35.782Z",
+  "sha256": "278b3853c6d7be0ee5a987ad857aa833b17f3cf3b9eb0697544a659f0a8887f5",
+  "bytes": 19313,
+  "requestId": "2tRZ5K1XwSAEgD1umn53",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06ac1656f8bed79a0294609adcfc5900776a44dc2279f1b6bb4af02838dc2b69",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

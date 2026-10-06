@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "Here the game hung on a single move. Every alternative checked was losing, and this one kept it going."
+    },
+    "takeId": null
+  },
+  "requestHash": "ecb9b3ff56f7c9b7bc4e2fed5794d9f3eb0212a3b3fa11d695b1fdcff683392b",
+  "recordedAt": "2026-10-06T03:09:16.054Z",
+  "sha256": "9e61ff5528f0474db69c6e8f76455511a6ab6c110a818217109d105d9c182e5e",
+  "bytes": 23136,
+  "requestId": "4e7mzWBTOU5sNtejb57c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80e69ca92977d781bf1c4efe7e7d2195616a0d9609094bd47482cd7c6d37a007",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

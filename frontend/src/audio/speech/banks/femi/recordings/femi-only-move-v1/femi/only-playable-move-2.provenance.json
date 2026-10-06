@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "only-playable-move-2",
+      "label": "Only playable move 2",
+      "text": "Yeah, there was only one way to hold here. Every other move we checked lost; this one kept things playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "19d15f4d6c228a1485b2c86dfc380acc127951c1892bf1e860acd20682583e50",
+  "recordedAt": "2026-10-06T03:09:26.621Z",
+  "sha256": "dd9a234ccfa8d8b6717a8dcd4baa8ad75d0d83fb14078d93bf9c1f683c0987b7",
+  "bytes": 23987,
+  "requestId": "0U5zK5idhftFSopVAQef",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b32b4089b0c3ebac3e29899c39942ca603b814c38118068b0deed5ef2a89e258",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "This move stepped up where no other could: of the moves checked, it's the only one that kept things playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ea8c951ae89be4f21b79a3d06d580b53114284ab5448236ea75b9ba55b43790",
+  "recordedAt": "2026-10-06T03:09:37.780Z",
+  "sha256": "5d02e295c7654db6c2e1578e4f564cdef45f13222e6f06802ec8877be33c703e",
+  "bytes": 20838,
+  "requestId": "u1CLcsUvrkWw19KpRr41",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "779f5f70541d3a7ecf0c7204f79bfd83b289aa939e71dc571853a0984a93875d",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

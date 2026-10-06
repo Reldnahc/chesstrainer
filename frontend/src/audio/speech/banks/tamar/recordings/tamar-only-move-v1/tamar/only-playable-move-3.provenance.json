@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "Exactly one move held among those checked; the others lost. Practice positions like this until the answer comes quickly."
+    },
+    "takeId": null
+  },
+  "requestHash": "fca9d289f4a825ee2f4f8755b2b9e6a46ac7a1ed65a3b908c1e8007cabcfda52",
+  "recordedAt": "2026-10-06T03:09:44.337Z",
+  "sha256": "fa5709bc955f8f15075b5966ef5cf78d834d504837d688a6dcb4dbf14f1be393",
+  "bytes": 25493,
+  "requestId": "N3mGPcglOWeDLSnvr2mE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52e38e65edd2fc1767f981d1a1e469faf004054f28d441aec03b1d9d734a0bf9",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Out of the moves checked, every other one lost, so this one had to stand firm, and it did!"
+    },
+    "takeId": null
+  },
+  "requestHash": "23b25d4fe76de562258aab0d93b643c81bae4bf902f0731df2e1f389cd48f946",
+  "recordedAt": "2026-10-06T03:09:39.593Z",
+  "sha256": "835518c46961e5fd4178c4caffb65ce7267906b26be5a48f5e2927719f47589a",
+  "bytes": 21086,
+  "requestId": "iv1UNpoFM49wnARInrLz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "098d5a85035f8092079c9fa3a90713f2469d6706624ed7d8612abeb6dad1e9d9",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

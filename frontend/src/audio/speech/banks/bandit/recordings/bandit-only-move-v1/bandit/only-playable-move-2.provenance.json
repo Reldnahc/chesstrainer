@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "only-playable-move-2",
+      "label": "Only playable move 2",
+      "text": "Tight squeeze. Every other move checked lost, and this one slipped through to keep things playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "baa85f678d7dc0231a40f9ad0689dff085c9fc48a8439d45547f18c0211d8bf0",
+  "recordedAt": "2026-10-06T03:09:19.970Z",
+  "sha256": "4382b83107ca5f698c221197142b4a7f8fda7f4bfce492088ada2e320653abf3",
+  "bytes": 21238,
+  "requestId": "gA7yrtxZaNPnzHPJXIPD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9273dc386610d52202c73a2c9642c871f2b1a41e1308dd2cc772c865a8463d8a",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "only-playable-move-2",
+      "label": "Only playable move 2",
+      "text": "Precise. Every other move checked was losing, and this one held the position."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4caa8b69153caacf0119cd574d5c70e6811c70c763b55f162c2a01e45e6ce50",
+  "recordedAt": "2026-10-06T03:09:20.638Z",
+  "sha256": "eebf241e6d7ffb591f76966a493535a5e6b54ec1a967ccdee104d3d40cfb4aee",
+  "bytes": 17385,
+  "requestId": "kpCVav8q5KTu1g8BU4Jt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0468a9972a29c37b8559f28a0ef68659fbe249531f7fa5955b9fc96b7b79880b",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

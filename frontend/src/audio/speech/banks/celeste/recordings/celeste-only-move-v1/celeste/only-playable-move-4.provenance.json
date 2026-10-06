@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Among the moves examined, this alone stayed playable, and each alternative was losing. A delicate balance, and it held."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2370d0d6f92d6ede4f6cd1b56321aa7655d2e2cb813dd1ce75c2d5af1e50ec5",
+  "recordedAt": "2026-10-06T03:09:24.748Z",
+  "sha256": "59f6b69c5618d7a5ba063c93ac66e216a6f53e14a5c8c22bd49737b1e8764add",
+  "bytes": 28137,
+  "requestId": "lj47nZz7F8ZpNetG9FeB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "efe87f9727e93b6e0a540d7541eade4f21598e5a036d6e25ad79533f10b84ca4",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

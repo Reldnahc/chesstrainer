@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "only-playable-move-2",
+      "label": "Only playable move 2",
+      "text": "Pattern: only move. Every other searched option lost. Spot moves like this fast."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9d8b87e9c0d8b414394bd2e28eba06effb333e481699386f812116f0a798868",
+  "recordedAt": "2026-10-06T03:09:40.760Z",
+  "sha256": "a7f78e1a3f32fe9d251637680d12147aafafb5eb9e47b44a6091f86abb1d13d6",
+  "bytes": 19802,
+  "requestId": "69UbZ1r3aHDQjh7UeInp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e0eee849a0dc9d0b6808a66f5fec62ac9bd8f1516bd3c8e5decdca2da1d4fe3",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "Funny how much leaned on one move. Among the moves checked, this alone stayed playable, and each of the others lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c7c16cc1da043a808936656ff63ffacfb00bfb9695465fffac52f4c15cd9be3",
+  "recordedAt": "2026-10-06T03:09:18.365Z",
+  "sha256": "490f754b12de06035a18b09eeb2837947c8b9b92bf2aac56454e5390dcdff073",
+  "bytes": 25201,
+  "requestId": "v4emyHGxacrChyyTIodZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88e9dc24fd12bc1749bcfe8fc5273a66148f62971e6aeb881c85c989668606e2",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

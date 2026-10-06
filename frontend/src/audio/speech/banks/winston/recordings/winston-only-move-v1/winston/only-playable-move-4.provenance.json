@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "only-playable-move-4",
+      "label": "Only playable move 4",
+      "text": "No fuss about it. Every move checked except this one was losing, and this one held."
+    },
+    "takeId": null
+  },
+  "requestHash": "37501340fa6f8b8d90a08debace205a42e027ae64917136bccd708722f8563f6",
+  "recordedAt": "2026-10-06T03:09:17.508Z",
+  "sha256": "36e3a1b2e20a74e56dbf18d9cbc4902b66ad70bac9d453a237f2fb1215fa2035",
+  "bytes": 18673,
+  "requestId": "L4iqAVsHqWR2AOcJG9m0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57990dded9d360b6bb8a87f4feda06641e25a08c0993c79e61f99d5d87ce928d",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

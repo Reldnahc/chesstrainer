@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "Look at that: of the moves checked, this alone stayed playable. The rest all lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "80eef017284d9475ad940b38154072f8873b8453b92ff53cd1555bccbd03019c",
+  "recordedAt": "2026-10-06T03:09:39.860Z",
+  "sha256": "80e00b0927aeba895cab79a70262f2ec81d92dc4af74d4d78ad63e9f3827f208",
+  "bytes": 19738,
+  "requestId": "03Hrj1unVJiKzdAvdnMQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "acfff8454327181fc24e030fab46e77304a463442fadc6c631d21bf4201541bb",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

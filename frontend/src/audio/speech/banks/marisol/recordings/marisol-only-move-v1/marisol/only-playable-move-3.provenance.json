@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "only-playable-move-3",
+      "label": "Only playable move 3",
+      "text": "One checked move keeps the position playable: this one. The others all lose."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb58dc2fad95a1c13fce677209cb92f78fdb5652aac21473d2a15b8dfcb3f9bc",
+  "recordedAt": "2026-10-06T03:09:32.557Z",
+  "sha256": "a7a430e53352ddc036600efa342e5dffb947392437e5f83b5e3c00e85f094316",
+  "bytes": 17418,
+  "requestId": "73iCXPfJcxR3DcVEBHYC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cc57af3853d9441dbced96875f5a5441c7e2effc2087ef6df174254e77eb5d3",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
