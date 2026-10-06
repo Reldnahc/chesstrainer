@@ -5,7 +5,7 @@ import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
 import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
-import {ALTERNATIVE_SEPARATOR, sequenceRecordingId} from "./sequence";
+import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {hasPieceVariants, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants} from "./pieceVariants";
 import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
 import catalogue from "./meanings.json" with {type: "json"};
@@ -302,6 +302,24 @@ export function selectGameSpeech(context: GameSpeechContext) {
     ...(gradeId ? {gradeId: withPieceVariant(gradeId, sacrificed)} : {}),
   };
   return {recordingId, primaryId, ...(gradeId ? {gradeId} : {}), variants};
+}
+
+/** A line's opening catchphrase: the words before its first punctuation, when
+ * there are at most three of them ("Whoa", "Hold that thought"). */
+function opener(text: string | null | undefined): string | null {
+  const words = text && /^([^,:;!?.]+)[,:;!?.]/.exec(text)?.[1].trim().toLowerCase().split(/\s+/);
+  return words && words.length <= 3 ? words.join(" ") : null;
+}
+
+/** A joined pair whose second line keeps only takes that open differently from
+ * the first line's take. With no such recorded take, the first line plays alone. */
+export function distinctOpeners(id: string, text: (id: string) => string | null | undefined): string {
+  const parts = id.split(SEQUENCE_SEPARATOR);
+  const first = parts.length === 2 ? parts[0].split(ALTERNATIVE_SEPARATOR).find(alt => text(alt)) : undefined;
+  const lead = first ? opener(text(first)) : null;
+  if (!lead) return id;
+  const second = parts[1].split(ALTERNATIVE_SEPARATOR).filter(alt => opener(text(alt)) !== lead);
+  return second.some(alt => text(alt)) ? [parts[0], second.join(ALTERNATIVE_SEPARATOR)].join(SEQUENCE_SEPARATOR) : parts[0];
 }
 
 /** The side whose pawns, rook or piece a selected positional clip is about. */

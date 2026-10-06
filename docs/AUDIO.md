@@ -363,6 +363,8 @@ objective and have recordings, the two existing clips are
 joined into one buffer with a 250 ms gap (`audio/speech/sequence.ts`), and the
 second clip's mouth timing is offset by the first clip plus the gap. Stop ends
 both, and nothing overlaps. No extra recordings are needed for these pairs.
+The second clip never opens with the first clip's catchphrase ("Whoa, ... Whoa,"):
+another take of it is used, or the first clip plays alone (`distinctOpeners`).
 Selection and lifecycle checks happen again after asynchronous mouth/audio loads.
 Navigation, retry, changing coach, mute, hidden tabs and unmounting invalidate
 obsolete work. No playback backlog accumulates. Initial hydration, restored
