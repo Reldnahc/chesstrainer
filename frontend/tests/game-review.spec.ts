@@ -37,6 +37,9 @@ test('opening starts once, failures allow retry, pause sticks and reopening resu
 test('progress merges only new reports without reloading the board or duplicating searches', async ({page}, info) => {
   const {id} = await (await page.request.post(`/__test/game-review-fixture/progress-${info.project.name}`)).json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();
+  // The synthetic +8.25 on the last move scales the graph; a real final checkmate would read M0 instead.
+  game.frames.at(-1).termination = null;
+  game.frames.at(-1).result = null;
   let fullLoads = 0, analyses = 0;
   const accuracy = {version: 'lichess-2e653ad1-1', white: 86.432, black: 100};
   let finishReview: () => void = () => {};

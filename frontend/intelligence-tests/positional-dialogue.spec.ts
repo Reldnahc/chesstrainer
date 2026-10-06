@@ -16,6 +16,11 @@ for (const fixture of fixtures) test(`all coaches preserve ${fixture.feature} br
     const intent = gameIntent({game: {frames: [], orientation: turn === "white" ? "black" : "white"} as unknown as Game, frame: {turn} as Position,
       report, key: "positional-branch", ply: 1, expression: kind === "actual" ? "best" : "mistake"});
     const item = intent.claims.find(c => c.code === fixture.code)!;
+    // The mover's own doubled pawns after the better move are its drawback, so they never explain the mistake.
+    if (kind === "alternative" && fixture.feature === "doubled_files") {
+      expect(item).toBeUndefined();
+      continue;
+    }
     expect(item).toBeTruthy();
     for (const claims of [intent.claims, [item]]) {
       const outputs = await renderCoaches(page, {...intent, claims});
