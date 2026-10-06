@@ -1,4 +1,5 @@
 import { test, expect, type Locator } from '@playwright/test';
+import { positionScore, scoreSummary, scoreText } from '../src/evaluation';
 
 const geometry = (locator: Locator) => locator.evaluate(element => {
   const {x, y, width, height} = element.getBoundingClientRect();
@@ -19,7 +20,8 @@ test('evaluation scales to the game and preserves mate scores without a redundan
   const moves = Array.from({length: 24}, (_, index) => {
     const frame = source[index % source.length];
     const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 25}};
-    return {...frame, number: Math.floor(index / 2) + 1, san: index === 21 ? 'bxa8=Q+' : frame.san,
+    // Repeated source frames must not carry the source game's final checkmate, which now reads M0.
+    return {...frame, termination: null, result: null, number: Math.floor(index / 2) + 1, san: index === 21 ? 'bxa8=Q+' : frame.san,
       report: {label: labels[index % labels.length], coach: 'Position-specific coaching.', best: candidate, actual: candidate,
         white_score: scores[index] ?? {kind: 'cp', value: 100}, depth: 1, engine_version: 'Evaluation fixture', board_cues: null}};
   });
@@ -105,4 +107,16 @@ test('evaluation scales to the game and preserves mate scores without a redundan
   await expect(graph.locator('.evaluation-score')).toHaveText('—');
   await expect(coach.locator('.evaluation-score')).toHaveText('—');
   await expect(page.locator('.game-eval-bar > span')).toHaveText('—');
+});
+
+test('a checkmated position reads M0 for the winner instead of the mating move mate in 1', () => {
+  const mateInOne = {kind: 'mate' as const, value: 1, mate_given: false};
+  const white = positionScore(mateInOne, {termination: 'checkmate', result: '1-0'});
+  expect(scoreText(white)).toBe('+M0');
+  expect(scoreSummary(white)).toBe('White checkmates');
+  const black = positionScore({...mateInOne, value: -1}, {termination: 'checkmate', result: '0-1'});
+  expect(scoreText(black)).toBe('−M0');
+  expect(scoreSummary(black)).toBe('Black checkmates');
+  // Any other position keeps its analysis score.
+  expect(positionScore(mateInOne, {termination: null, result: null})).toBe(mateInOne);
 });

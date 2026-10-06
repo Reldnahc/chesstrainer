@@ -9,6 +9,16 @@ export function scoreSide(score: Score | null | undefined) {
     : "black";
 }
 
+/** The score to show for a position: a checkmated board has nothing left to
+ * search, so it reads M0 for the winner rather than the "mate in 1" of the move
+ * that delivered it. Other positions keep their analysis score. */
+export function positionScore(score: Score | null | undefined,
+  position?: { termination?: string | null; result?: string | null } | null): Score | null {
+  if (position?.termination === "checkmate" && (position.result === "1-0" || position.result === "0-1"))
+    return { kind: "mate", value: 0, mate_given: position.result === "1-0" };
+  return score ?? null;
+}
+
 export function scoreText(score: Score | null | undefined, decimals: 1 | 2 = 2) {
   if (!score) return "—";
   const sign = scoreSide(score) === "black" ? "−" : "+";

@@ -6,7 +6,8 @@ test('evaluation scrubs continuously, captures the pointer, and stops on release
   game.frames = game.frames.map((frame: typeof game.frames[number], ply: number) => {
     if (!ply) return frame;
     const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: ply * 100}};
-    return {...frame, report: {label: 'Good', best: candidate, actual: candidate,
+    // Synthetic scores replace the fixture's final checkmate, which would otherwise read M0.
+    return {...frame, termination: null, result: null, report: {label: 'Good', best: candidate, actual: candidate,
       white_score: candidate.score, depth: 1, engine_version: 'Scrubbing fixture', board_cues: null}};
   });
   game.job = {status: 'completed', completed: 4, total: 4};

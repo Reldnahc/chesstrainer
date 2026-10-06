@@ -1,10 +1,11 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import EvaluationScore from "./EvaluationScore";
-import { scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
+import { positionScore, scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
 
 type Frame = {
   number: number; actor: "white" | "black" | null; san: string;
+  termination?: string | null; result?: string | null;
   report: { label: string; white_score: Score } | null;
 };
 type Point = { ply: number; score: Score };
@@ -32,7 +33,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
   }, []);
 
   const last = frames.length - 1;
-  const reviewed = frames.flatMap((frame, ply) => frame.report ? [{ ply, score: frame.report.white_score }] : []);
+  const reviewed = frames.flatMap((frame, ply) => frame.report ? [{ ply, score: positionScore(frame.report.white_score, frame)! }] : []);
   const points: Point[] = initialScore ? [{ ply: 0, score: initialScore }, ...reviewed] : reviewed;
   // Keep one scale for the whole game, independent of the selected move. Mate
   // has no pawn value, so it sits at the edge without inflating the numeric axis.
@@ -46,7 +47,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
   const y = (score: Score) => middle - (score.kind === "mate"
     ? scoreSide(score) === "white" ? 1 : -1
     : score.value / 100 / limit) * (bottom - top) / 2;
-  const current = selected === 0 ? initialScore : frames[selected]?.report?.white_score;
+  const current = selected === 0 ? initialScore : positionScore(frames[selected]?.report?.white_score, frames[selected]);
   const tabStop = frames[selected]?.report ? selected : reviewed[0]?.ply;
   const segments: Point[][] = [];
   for (const point of points) {

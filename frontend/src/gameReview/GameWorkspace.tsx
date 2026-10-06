@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
-import { scoreText, strength } from "../evaluation";
+import { positionScore, scoreText, strength } from "../evaluation";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import Notice from "../Notice";
@@ -79,10 +79,10 @@ export default function GameWorkspace({
           (game?.frames[0].turn === "white" ? 1 : -1),
       }
     : null;
-  const score =
+  const score = positionScore(
     report?.white_score ||
     currentAnalysis?.score ||
-    (startingReport ? initialScore : null);
+    (startingReport ? initialScore : null), frame);
   const bestMove =
     report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
   const cues =
