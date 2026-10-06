@@ -169,11 +169,12 @@ for (const coachId of ["classic", "robot"] as const) {
 }
 
 test("classic: two recorded sentences play back to back as one playback behind one Stop", async ({page}) => {
-  const fixture = await mount(page, "classic", withoutHuman(enrichedGame));
+  // A cause clip plays alone (its capture sentence would repeat it), so the pair is the mate line and its book sentence.
+  const fixture = await mount(page, "classic", withoutHuman(games["allowed-mate-natural"]));
   const listen = region(page).getByRole("button", {name: /^Listen/});
   await expect(listen).toHaveCount(1);
   await listen.click();
-  await expect.poll(() => state(page).then(value => value.observed)).toMatch(new RegExp(`^${LEAD}[+]`));
+  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^allowed-mate(?:-next)?[+]/);
   const [first, second] = (await state(page)).observed!.split("+");
   await tick(page, 500);
   expect(await counts(page)).toEqual({starts: 1, stops: 0});

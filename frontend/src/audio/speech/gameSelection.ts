@@ -335,7 +335,7 @@ export function distinctOpeners(id: string, text: (id: string) => string | null 
 
 /** A second sentence that only restates the lead, or that refers back to an issue
  * the lead does not name, is left out: the lead then plays alone. */
-function repeatsLead(lead: string, second: string, secondCode: string): boolean {
+export function repeatsLead(lead: string, second: string, secondCode: string): boolean {
   const names = ["cause-", "tactic-", "allowed-mate", "missed-mate"].some(prefix => lead.startsWith(prefix));
   // "This issue also appears..." needs a lead that names the issue.
   if (followOnly.has(secondCode)) return !names;
@@ -395,9 +395,10 @@ export function gradeTakeIds(label: string): string[] {
  * falls back to the generic reading while a coach has no take recorded. */
 function gradeTake(context: GameSpeechContext, recordingId: string | null): string | undefined {
   const {game, report, frame, ply, variation = false} = context, label = report?.label;
-  // A move whose sentences have no clip at all still speaks its grade.
+  // A reviewed move whose sentences have no clip at all still speaks its grade. A
+  // legacy report without move intelligence keeps showing its own written coaching.
   if (!label || !gradePools[label] || (recordingId
-    && !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId))) return;
+    ? !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
   // Takes a coach has not recorded yet sit out, so every turn plays a take.
   const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
   const ids = recorded.length ? recorded : all;

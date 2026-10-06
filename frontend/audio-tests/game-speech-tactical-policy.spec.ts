@@ -6,7 +6,7 @@ import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaim
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
-import {selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
+import {repeatsLead, selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {sequenceRecordingId} from "../src/audio/speech/sequence";
 import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 import {semanticFixtures} from "../tests/semantic-fixtures";
@@ -39,7 +39,9 @@ for (const coach of [{id: "classic", personality: storyteller}, {id: "robot", pe
       const rendered = context.utterance.renderedClaims!;
       const second = claimIndex === 0 && rendered[1] && !humanInsightLabels[rendered[1].code]
         ? selectGameRecording({...context, claimIndex: 1}) : null;
-      expect(speech.recordingId).toBe(second && second !== objectiveId ? sequenceRecordingId([objectiveId, second]) : objectiveId);
+      // A second sentence that only restates the lead (such as a capture after a hanging piece) is left out.
+      const joins = second && second !== objectiveId && !repeatsLead(objectiveId, second, rendered[1].code);
+      expect(speech.recordingId).toBe(joins ? sequenceRecordingId([objectiveId, second]) : objectiveId);
       expect(speech.recordingId).not.toMatch(/(?:^|\+)(?:human-|combo-|combined-)/);
     });
   }
