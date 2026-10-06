@@ -7,7 +7,7 @@ import chess
 import chess.pgn
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 
 from trainer.chess_core import Score
 from trainer.contracts.common import JobStarted
@@ -100,14 +100,13 @@ def create_router(*, settings, engine_factory):
             completed_ids = [game.id for game, status in rows if status == "completed"]
             saved = load_accuracy_scores(db, completed_ids)
             items = []
-            backfilled = False
+            backfill = {}
             for game, status in rows:
                 # Headers are enough for the library; replaying moves is the slow part.
                 headers = chess.pgn.read_headers(io.StringIO(game.pgn)) or chess.pgn.Headers()
-                if game.move_count is None:
-                    game.move_count = sum(1 for _ in parsed_game(game).mainline_moves())
-                    backfilled = True
                 plies = game.move_count
+                if plies is None:
+                    plies = backfill[game.id] = sum(1 for _ in parsed_game(game).mainline_moves())
                 time_control = headers.get("TimeControl")
                 items.append(
                     {
@@ -137,9 +136,14 @@ def create_router(*, settings, engine_factory):
                     }
                 )
             total = db.scalar(select(func.count()).select_from(Game))
-            if backfilled:
+            if backfill:
                 # Rows imported before move counts were saved: one short write per page.
+                # The lock is taken before anything is written. Writing first (an
+                # autoflushed row) and then waiting for the lock deadlocks with a
+                # background job that holds the lock while waiting to write.
                 with workspace.mutation_lock:
+                    for game_id, plies in backfill.items():
+                        db.execute(update(Game).where(Game.id == game_id).values(move_count=plies))
                     db.commit()
             return {"items": items, "total": total}
 

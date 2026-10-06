@@ -174,3 +174,44 @@ def test_library_fills_a_missing_move_count_once(settings):
         assert client.get("/api/games").json()["items"][0]["move_count"] == 2
         with app.state.sessions() as db:
             assert db.scalar(select(Game)).move_count == 4
+
+
+def test_library_backfill_never_holds_a_write_while_waiting_for_the_lock(settings):
+    # A background job holds the workspace lock and then writes. The library must
+    # not write first and wait for that lock, or the two deadlock until SQLite's
+    # busy timeout fails the job (and stalls every page behind the lock).
+    import sqlite3
+    import threading
+    import time
+
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            import_games(
+                db,
+                "legacy.pgn",
+                "\n".join(['[White "Student"]', '[Black "Opponent"]', "", "1. e4 e5 0-1"]),
+                ["Student"],
+                None,
+                queue_analysis=False,
+            )
+            db.scalar(select(Game)).move_count = None
+            db.commit()
+            path = db.get_bind().url.database
+        with app.state.workspaces.open("local") as workspace:
+            lock = workspace.mutation_lock
+            with lock:
+                response = {}
+                request = threading.Thread(target=lambda: response.update(r=client.get("/api/games")))
+                request.start()
+                time.sleep(0.5)  # The request now waits for the lock the "job" holds.
+                # The job's own write must still get the database at once.
+                other = sqlite3.connect(path, timeout=0.5)
+                try:
+                    other.execute("BEGIN IMMEDIATE")
+                    other.execute("UPDATE games SET white = white")
+                    other.commit()
+                finally:
+                    other.close()
+            request.join(10)
+        assert response["r"].json()["items"][0]["move_count"] == 1
