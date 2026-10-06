@@ -2,7 +2,7 @@ import type { Game, Position, Report } from "../gameReview/types";
 import type {CoachExpression} from "../coach/model";
 import {scoreText} from "../evaluation";
 import {claim, makeIntent, type Claim, type DialoguePurpose, type EvidenceRef} from "./model";
-import {positionalClaim, tacticalClaim, words} from "./eventClaims";
+import {positionalClaim, strings, tacticalClaim, words} from "./eventClaims";
 import {humanClaims} from "./humanClaims";
 import {deriveBookPresentation} from "./openingPresentation";
 
@@ -55,6 +55,8 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   const events = report.intelligence?.events ?? [];
   const node = !variation ? game.context?.nodes.find(n => n.ply === ply && n.input_digest === report.intelligence?.input_digest) : undefined;
   const refs: EvidenceRef[] = node?.evidence ?? (report.practical?.stockfish_analysis_ids ?? []).map(id => ({source: "stockfish", id, field: "candidate_search", ply}));
+  const answer = report.immediate_reply;
+  const recaptured = !!answer?.capture && answer.uci?.slice(2, 4) === report.actual.uci.slice(2, 4) && move.includes("x");
   for (const event of events) {
     const f = event.facts;
     const add = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, event.evidence, [event.id]));
@@ -75,11 +77,15 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       if (learnerMove) purpose = f.difficult ? "difficult_defense" : "only_move";
     }
     if (event.kind === "positional") {
-      // Positive explanations describe the played move; errors can compare the better candidate.
-      if ((!poor && f.line !== "actual") || (poor && f.line === "actual" && f.feature === "first_development")) continue;
-      // "A bishop could have developed" is confusing when the played move developed one too.
-      if (f.feature === "first_development" && f.line !== "actual" && events.some(other => other.kind === "positional"
-        && other.facts.feature === "first_development" && other.facts.line === "actual")) continue;
+      // Positive explanations describe the played move. An error keeps only facts
+      // that explain its cost, never a gain of the played move or a drawback of the better one.
+      if (poor ? !explainsCost(f, mover) : f.line !== "actual") continue;
+      // A defender gained or lost by a piece that is simply traded off is not the story.
+      if (f.feature === "piece_support" && f.line === "actual" && recaptured && f.target === report.actual.uci.slice(2, 4)) continue;
+      // "A bishop could have developed" or "the alternative was to castle" is confusing
+      // when the played move developed a piece or castled too.
+      if (["first_development", "castling"].includes(String(f.feature)) && f.line !== "actual" && events.some(other =>
+        other.kind === "positional" && other.facts.feature === f.feature && other.facts.line === "actual")) continue;
       const item = positionalClaim(event, move, best);
       if (item) claims.push(item);
     }
@@ -144,4 +150,21 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   return makeIntent(`${key}:${report.intelligence?.input_digest ?? "legacy"}`, purpose, mode, expression, claims,
     ["stockfish_quality_separate_from_human_policy", variation ? "branch_has_no_recorded_game_relationships" : "current_ply_context_only",
       "saved_learner_perspective", ...(practical?.limitations ?? [])], subject);
+}
+
+/** Whether a board fact helps explain why a move graded as an error cost something:
+ * the mover's own losses after the played move, the opponent's gains, or what the
+ * better move would have gained. King-square trivia never explains an error. */
+function explainsCost(f: Record<string, unknown>, mover: string | null | undefined): boolean {
+  const own = f.side === mover, actual = f.line === "actual";
+  switch (f.feature) {
+    case "piece_support": {
+      const defended = strings(f.after).length > 0;
+      return actual ? own && !defended : own === defended;
+    }
+    case "doubled_files": case "isolated_pawns": case "bishop_pair": return actual ? own : !own;
+    case "rook_file": case "passed_pawns": return actual ? !own : own;
+    case "passed_pawn_advance": case "first_development": case "castling": return !actual;
+    default: return false;
+  }
 }

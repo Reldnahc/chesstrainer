@@ -60,6 +60,7 @@ const simpleIds: Readonly<Record<string, string>> = {
   repeated: "repeated-issue", support_restored: "support-restored", erosion: "gradual-erosion",
   conversion: "advantage-converted", history: "saved-history-recurrence",
 };
+const followOnly = new Set(["history", "repeated"]);
 const tacticalMotifs = new Set(["fork", "pin", "skewer", "removing_defender", "back_rank", "promotion_awareness",
   "discovered_attack", "double_attack", "deflection"]);
 const forcedMateStages = new Set(["started", "continued", "slower", "next", "hastened", "held"]);
@@ -267,7 +268,8 @@ export function selectGameSpeech(context: GameSpeechContext) {
   const claims = context.utterance.renderedClaims ?? [];
   let lead = -1, primaryId: string | null = null;
   for (let index = 0; index < claims.length && !primaryId; index++) {
-    if (humanInsightLabels[claims[index].code]) continue;
+    // "This issue also appears..." only follows the sentence that names the issue.
+    if (humanInsightLabels[claims[index].code] || followOnly.has(claims[index].code)) continue;
     const id = selectGameRecording({...context, claimIndex: index});
     primaryId = id && (context.playable?.(id) ?? true) ? id : null;
     if (primaryId || lead < 0) lead = index;
@@ -277,6 +279,8 @@ export function selectGameSpeech(context: GameSpeechContext) {
   if (primaryId && second && !humanInsightLabels[second.code] && ["game", "variation"].includes(context.intent.mode)) {
     secondId = selectGameRecording({...context, claimIndex: lead + 1});
     if (secondId && !(context.playable?.(secondId) ?? true)) secondId = null;
+    // A cause clip already says the piece can be taken; the hanging-piece clip would repeat it.
+    if (secondId && primaryId.startsWith("cause-") && secondId.startsWith("tactic-hanging-piece-")) secondId = null;
     if (secondId && secondId !== primaryId) recordingId = sequenceRecordingId([primaryId, secondId]);
     else secondId = null;
   }
@@ -311,14 +315,22 @@ function opener(text: string | null | undefined): string | null {
   return words && words.length <= 3 ? words.join(" ") : null;
 }
 
-/** A joined pair whose second line keeps only takes that open differently from
+/** A line's catchphrases: its opener and any short "Label:" that starts a later sentence. */
+function catchphrases(text: string | null | undefined): Set<string> {
+  const found = new Set<string>(), first = opener(text);
+  if (first) found.add(first);
+  for (const match of text?.matchAll(/[.!?]\s+([A-Z][\w']*(?: [\w']+){0,2}):/g) ?? []) found.add(match[1].toLowerCase());
+  return found;
+}
+
+/** A joined pair whose second line keeps only takes whose catchphrases differ from
  * the first line's take. With no such recorded take, the first line plays alone. */
 export function distinctOpeners(id: string, text: (id: string) => string | null | undefined): string {
   const parts = id.split(SEQUENCE_SEPARATOR);
   const first = parts.length === 2 ? parts[0].split(ALTERNATIVE_SEPARATOR).find(alt => text(alt)) : undefined;
-  const lead = first ? opener(text(first)) : null;
-  if (!lead) return id;
-  const second = parts[1].split(ALTERNATIVE_SEPARATOR).filter(alt => opener(text(alt)) !== lead);
+  const used = first ? catchphrases(text(first)) : new Set<string>();
+  if (!used.size) return id;
+  const second = parts[1].split(ALTERNATIVE_SEPARATOR).filter(alt => ![...catchphrases(text(alt))].some(phrase => used.has(phrase)));
   return second.some(alt => text(alt)) ? [parts[0], second.join(ALTERNATIVE_SEPARATOR)].join(SEQUENCE_SEPARATOR) : parts[0];
 }
 
@@ -370,8 +382,9 @@ export function gradeTakeIds(label: string): string[] {
  * falls back to the generic reading while a coach has no take recorded. */
 function gradeTake(context: GameSpeechContext, recordingId: string | null): string | undefined {
   const {game, report, frame, ply, variation = false} = context, label = report?.label;
-  if (!recordingId || !label || !gradePools[label]
-    || !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId)) return;
+  // A move whose sentences have no clip at all still speaks its grade.
+  if (!label || !gradePools[label] || (recordingId
+    && !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId))) return;
   // Takes a coach has not recorded yet sit out, so every turn plays a take.
   const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
   const ids = recorded.length ? recorded : all;
