@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "A graceful little crossing: the king castles, and the rook glides in beside it."
+    },
+    "takeId": null
+  },
+  "requestHash": "228aab6eebdd6a291e308f4c66c7c61195976d91e4c8986a85520a6cd0ea5e32",
+  "recordedAt": "2026-10-06T11:23:43.545Z",
+  "sha256": "9862dd5f046ece2967290846b18447c4b3b5d72bd86ce7fcfe7154385a43004b",
+  "bytes": 19035,
+  "requestId": "niNwjjc3kL8h8v7Bc2aP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0c6f94cbbeebb6a4cbe2f0c4c7fe130f18e2789ed8c0a6ae76ca378dcd4b070",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

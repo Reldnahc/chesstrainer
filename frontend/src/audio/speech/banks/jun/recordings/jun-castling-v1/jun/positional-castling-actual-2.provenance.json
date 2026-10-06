@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "Castling. King two squares toward the rook; rook to the square the king passed over."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9ef69775d167a287ffcb87eb6bd05dfff2504c366aea66fa9638de9e4fd6194",
+  "recordedAt": "2026-10-06T11:23:46.576Z",
+  "sha256": "3d0a0d3bdc1e2d6c3f46aca8d6440dffa1ab33278be9f9be219486ea27f012d8",
+  "bytes": 19216,
+  "requestId": "3Yk7cD0lNFOpOqFpaGgY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29ac61cbfcc7dc6eeb2b69529a8da759d4a891de88cd76bfe1fde77a668a8c70",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

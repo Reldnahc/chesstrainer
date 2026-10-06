@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "King two squares over, rook shifted. Castling, in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4afdfbe4e801d16ad2275f3a89cc45eae4e6bbf9110f9cbd058376457042e130",
+  "recordedAt": "2026-10-06T11:23:45.898Z",
+  "sha256": "61ba0818e551efa40cef0c55b70d22262bd7e431959f3c59b1fade1f312eaa4c",
+  "bytes": 16333,
+  "requestId": "BKNWc1OCY83tGTyyQVZH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81cd82f6778d8f860420cd0df75aa4dd0f356e754ff2a22b24b3fb8d831f5722",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "Ooh, castling! The king and the rook finish right next to each other."
+    },
+    "takeId": null
+  },
+  "requestHash": "06e7f386f5ba7b4e0f5b00b9c13a77e5b59873fed532eab5f662901519e074a6",
+  "recordedAt": "2026-10-06T11:23:50.793Z",
+  "sha256": "54b30fb5be81f214d5c7264c333b5e683b4548d7c28481782bcc233fb99c51c9",
+  "bytes": 16133,
+  "requestId": "mbnFTZRxbFnTdTwChKez",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a75f5ef9f96377f4a82d2733df86cb4721f2075059caa90fe4467c573e5a6ef",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

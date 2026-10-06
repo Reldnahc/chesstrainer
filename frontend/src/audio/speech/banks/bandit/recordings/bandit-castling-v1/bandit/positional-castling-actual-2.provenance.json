@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "Two pieces for the price of one move: the king slides off to the side, and the rook settles in next to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "53acfac9c9276e6318eb5e04cb0e0079635d7f7edbc676dc8575bcac67e1bebc",
+  "recordedAt": "2026-10-06T11:23:43.577Z",
+  "sha256": "27aebcade4223d38c4874fb3964c69707fd94fdb55314f27defc27fbed3bd15e",
+  "bytes": 21529,
+  "requestId": "ae0ptTuNkLFo9aoItfmF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c18d64afc8b861b9d43837c5a35dc2529c578ef845a5b5c0a0042d0e4aa14e29",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

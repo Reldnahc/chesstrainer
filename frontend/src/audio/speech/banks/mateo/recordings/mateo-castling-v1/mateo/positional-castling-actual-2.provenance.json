@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "Whoa, castling! Two pieces in one move, and the rook switches from one side of the king to the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "203e3356dd5b1c0530c93b54ade6fde7f28df1c93f78a714f53c7eda5eed0c4f",
+  "recordedAt": "2026-10-06T11:23:48.624Z",
+  "sha256": "40467425a206e5430755ad8e222d3acf0b1db65ef25217cfe02ac96aa777ad82",
+  "bytes": 22420,
+  "requestId": "z0QtguO4wBPJpNpydM7p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3018e5304d869db06fb7cb9af3a06d79eef05185e9ff2d87f1605fdbd2939a0",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

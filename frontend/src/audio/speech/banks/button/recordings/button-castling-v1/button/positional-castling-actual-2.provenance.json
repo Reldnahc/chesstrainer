@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "A small shuffle near the edge of the board. The king edges over, and the rook ends up snug against it."
+    },
+    "takeId": null
+  },
+  "requestHash": "96ebca44590539bc4686435e27a9364770d57af85c2d4188800eadac12fccb3d",
+  "recordedAt": "2026-10-06T11:23:41.141Z",
+  "sha256": "e32f6b0cfc44b136626d9e8f5a85d260d3e8c6d9fd98bbbad705eef7161cc41e",
+  "bytes": 21490,
+  "requestId": "xnDHgTEzBvoKkyOCfaeY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f0ae0979b7e781e99243fc37bf74695f9c876533a5691a4097e7d998365531e",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

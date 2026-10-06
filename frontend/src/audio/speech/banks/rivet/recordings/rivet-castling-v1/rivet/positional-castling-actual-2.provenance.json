@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-castling-actual-2",
+      "label": "Positional castling actual 2",
+      "text": "Operation: castling. King displacement: two squares. Rook: relocated beside king."
+    },
+    "takeId": null
+  },
+  "requestHash": "97a003c6f3be39bad2984f04522f64f6023e281f7954619db4f29b25c66de693",
+  "recordedAt": "2026-10-06T11:23:41.085Z",
+  "sha256": "d035828fa59de691df71073bfe2008a5afc23e46ca6406eccd80815fa7d5f6bd",
+  "bytes": 21843,
+  "requestId": "p048i9gOUOCIMpQnQBUZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe80cfb6c57e55c4622039aa5a3bae4fc29b7ad2ea489a6e6f52ab07332417d4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
