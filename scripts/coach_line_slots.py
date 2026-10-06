@@ -90,6 +90,13 @@ EXTRA_TAKES = [
         False,
     ),
     ("reply-check", 2, "the strongest reply to the move played gives check", False),
+    (
+        "only-playable-move",
+        3,
+        "of the moves checked, the move played was the only one that kept the position playable;"
+        " every other move checked was losing",
+        False,
+    ),
     ("lesson-correct-move", 3, "in a lesson, the learner played the move the lesson teaches", True),
     (
         "puzzle-next-move",
