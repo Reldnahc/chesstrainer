@@ -5,7 +5,7 @@ import {gameIntent} from "../src/dialogue/gameIntent";
 import {claim, makeIntent} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
-import {selectWalterGameRecording, type WalterGameSpeechContext} from "../src/audio/speech/gameSelection";
+import {distinctOpeners, selectWalterGameRecording, type WalterGameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import inventory from "../src/audio/speech/walter-dialogue-inventory.json" with {type: "json"};
 
@@ -305,4 +305,18 @@ test("Show why speaks a legal reply only when the producer marks the entire curr
   const findingIntent = gameIntent({...finding, key: "finding-show-why", explaining: true, expression: "explaining"});
   expect(finding.report!.board_cues!.caption_kind).toBeNull();
   expect(selectWalterGameRecording({...finding, intent: findingIntent, utterance: renderDialogue(findingIntent, walter)})).toBeNull();
+});
+
+test("a joined pair never repeats the coach's opening catchphrase", () => {
+  const lines: Record<string, string> = {
+    fork: "Whoa, a fork for the other side.", capture: "Whoa, a capture is ready.",
+    "capture-2": "Something can be taken at once.", check: "The reply gives check.",
+  };
+  const text = (id: string) => lines[id];
+  expect(distinctOpeners("fork+capture|capture-2", text)).toBe("fork+capture-2");
+  // With no other recorded take the first line plays alone.
+  expect(distinctOpeners("fork+capture", text)).toBe("fork");
+  expect(distinctOpeners("fork+check", text)).toBe("fork+check");
+  // A first sentence with no short catchphrase never filters anything.
+  expect(distinctOpeners("check+capture", text)).toBe("check+capture");
 });

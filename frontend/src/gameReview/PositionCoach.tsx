@@ -13,7 +13,7 @@ import { useDialogue } from "../dialogue/useDialogue";
 import {humanInsightIntent} from "../dialogue/humanClaims";
 import DialogueText from "../dialogue/DialogueText";
 import HumanInsight from "./HumanInsight";
-import {selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection";
+import {distinctOpeners, selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import {coachRecording, hasCoachVoice, recordedId} from "../audio/speech/voiceBank";
 import {spokenId as spokenMeaning, useSpokenText} from "../audio/speech/spokenText";
@@ -103,7 +103,10 @@ export default function PositionCoach({
   // The Maia insight is shown beside the bubble but never voiced.
   // Each clip prefers its piece-named variant ("the pinned knight") when this
   // coach has one, falling back to the generic line.
-  const {variants: speech} = selectGameSpeech(selection);
+  const {variants} = selectGameSpeech(selection);
+  // Two joined lines never open with the same catchphrase ("Whoa, ... Whoa, ...").
+  const speech = {...variants, recordingId: variants.recordingId
+    && distinctOpeners(variants.recordingId, id => coachRecording(utterance.coachId, id)?.text)};
   const {primaryId, gradeId} = speech;
   const coachId = utterance.coachId, voiced = hasCoachVoice(coachId);
   // A grade take replaces the generic reading once this coach has one.

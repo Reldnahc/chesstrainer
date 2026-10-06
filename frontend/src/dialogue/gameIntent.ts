@@ -77,6 +77,9 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     if (event.kind === "positional") {
       // Positive explanations describe the played move; errors can compare the better candidate.
       if ((!poor && f.line !== "actual") || (poor && f.line === "actual" && f.feature === "first_development")) continue;
+      // "A bishop could have developed" is confusing when the played move developed one too.
+      if (f.feature === "first_development" && f.line !== "actual" && events.some(other => other.kind === "positional"
+        && other.facts.feature === "first_development" && other.facts.line === "actual")) continue;
       const item = positionalClaim(event, move, best);
       if (item) claims.push(item);
     }
@@ -102,10 +105,15 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       }
       if (relation.kind === "punishment") linked(f.outcome === "capitalized" ? "punishment" : "missed_punishment", {earlier, side}, 81);
       if (relation.kind === "repeated_motif" && ["allowed", "caused", "missed"].includes(String(f.role))) linked("repeated", {count: Number(f.occurrence), motif: words(f.motif)}, 74);
-      // A restored defender matters only when this move's piece is under attack.
-      if (relation.kind === "support_restored" && report.intelligence?.events.some(event =>
-        event.id === relation.event_ids.at(-1) && event.facts.attacked === true))
+      // A restored defender matters only when this move's piece is under attack,
+      // and is never good news on a move graded as an error. It replaces the plain
+      // "gains a defender" fact from the same event rather than repeating it.
+      const restored = relation.event_ids.at(-1);
+      if (relation.kind === "support_restored" && !poor && report.intelligence?.events.some(event =>
+        event.id === restored && event.facts.attacked === true)) {
+        claims.splice(0, claims.length, ...claims.filter(item => !(item.code === "support" && !!restored && item.sourceIds.includes(restored))));
         linked("support_restored", {earlier, piece: words(f.piece)}, 75);
+      }
       if (relation.kind === "erosion") linked("erosion", {earlier}, 71);
       if (relation.kind === "advantage_run" && f.outcome === "converted") linked("conversion", {earlier, side}, 75);
     }
