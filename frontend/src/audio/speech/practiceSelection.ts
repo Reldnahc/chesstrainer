@@ -12,7 +12,7 @@ export function explanationFrameRecording(frame: ExplanationFrame | null | undef
   }
   if (!frame.capture && !frame.promotion && ending === "mate") return "mate-finished";
   const id = `explanation-frame-${frame.capture ? "capture" : "quiet"}-${frame.promotion ? "promotion" : "move"}-${ending}`;
-  return withPieceVariant(id, capturedPieces(frame));
+  return withPieceVariant(id, capturedPieces(frame)?.pieces);
 }
 
 const summaryRecordings: Record<string, string | undefined> = {
@@ -78,7 +78,7 @@ export function explanationFindingRecording(data: MoveExplanation, finding: Patt
   if (!currentFinding(data, finding, index) || !finding.mechanism) return null;
   const id = findingAliases[finding.mechanism] ?? (findingMechanisms.has(finding.mechanism)
     ? `explanation-finding-${finding.mechanism.replaceAll("_", "-")}` : null);
-  return id && withPieceVariant(id, findingPieces(data, finding));
+  return id && withPieceVariant(id, findingPieces(data, finding)?.pieces);
 }
 export function explanationCueRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
   if (!currentFinding(data, finding, index) || !finding.cue_key || finding.cue_key !== finding.skill_id || !cueKeys.has(finding.cue_key)) return null;

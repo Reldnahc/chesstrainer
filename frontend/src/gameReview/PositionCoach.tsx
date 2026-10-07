@@ -129,9 +129,11 @@ export default function PositionCoach({
   const spokenLead = useSpokenText(coachId, explaining || voiced || openerId ? null : primaryId);
   const spoken = spokenLine ?? spokenLead;
   const spokenSource = spokenMeaning(coachId, spokenLine ? spokenId : spokenLead ? primaryId : null);
-  const displayed = !spoken ? utterance : openerId
+  // The bubble writes where a named piece stands ("the bishop on e4"); the voice does not say it.
+  const written = spoken && (spokenText(coachId, spokenLine ? spokenId : primaryId, variants.squares) ?? spoken);
+  const displayed = !spoken || !written ? utterance : openerId
     ? {...utterance, id: `${utterance.id}:greeting`, text: spoken, speechText: spoken}
-    : {...utterance, text: spoken, speechText: spoken};
+    : {...utterance, text: written, speechText: spoken};
   const moves = spoken && !openerId ? movesLineFacts({report, frame, intent}) : null;
   // A game can load before saved voice preferences, and opening a finished
   // review restarts its session, which begins a new analysis epoch and so a new
