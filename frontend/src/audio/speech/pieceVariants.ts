@@ -36,14 +36,19 @@ export type Squares = ReadonlyMap<string, string>;
 
 /** Writes the square after the one piece a variant names ("the bishop on e4").
  * Only the bubble shows it; the recording stays as spoken. A line that names
- * the piece more than once, or only in the possessive, is left as it is. */
+ * the piece more than once, only in the possessive, or followed by "on" or a
+ * noun the square cannot describe ("knight fork") is left as it is. In a
+ * compound offer the square follows the whole noun ("a rook sacrifice on e4"). */
 export function withSquares(id: string, text: string, squares: Squares | undefined): string {
   const square = squares?.get(id), pieces = named.get(id);
   if (!square || pieces?.length !== 1) return text;
   const found = [...text.matchAll(new RegExp(`\\b${pieces[0]}\\b`, "gi"))];
   if (found.length !== 1) return text;
-  const end = found[0].index + found[0][0].length;
-  if (/^['’]s\b/.test(text.slice(end))) return text;
+  let end = found[0].index + found[0][0].length;
+  const rest = text.slice(end);
+  if (/^['’]s\b/.test(rest) || /^\s+(on|forks?|pairs?|trades?)\b/i.test(rest)) return text;
+  const compound = /^\s+(sacrifices?|sac|offers?)\b/i.exec(rest);
+  if (compound) end += compound[0].length;
   return `${text.slice(0, end)} on ${square}${text.slice(end)}`;
 }
 

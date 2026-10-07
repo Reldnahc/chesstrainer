@@ -79,6 +79,10 @@ test("the bubble writes the named piece's square; the generic line and spoken te
   expect(withSquares("tactic-pin-played-knight", "The knight is pinned, and the knight can't move.", squares))
     .toBe("The knight is pinned, and the knight can't move.");
   expect(withSquares("tactic-pin-played-knight", "The knight's retreat is gone.", squares)).toBe("The knight's retreat is gone.");
+  // "on" after the piece, or a noun the square cannot describe, keeps the line; a compound offer takes the square after it.
+  expect(withSquares("tactic-pin-played-knight", "The knight on the rim is pinned.", squares)).toBe("The knight on the rim is pinned.");
+  expect(withSquares("tactic-pin-played-knight", "A knight fork is gone.", squares)).toBe("A knight fork is gone.");
+  expect(withSquares("tactic-pin-played-knight", "A bold knight sacrifice pins.", squares)).toBe("A bold knight sacrifice on f6 pins.");
   // A capture frame names the taken piece's square, beside the destination for en passant.
   expect(capturedPieces({capture: "bishop", highlights: ["e1", "e4"]})).toEqual({pieces: ["bishop"], square: "e4"});
   expect(capturedPieces({capture: "pawn", highlights: ["e5", "d6", "d5"]})).toEqual({pieces: ["pawn"], square: "d5"});
