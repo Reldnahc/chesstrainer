@@ -6,7 +6,7 @@ import {object, strings} from "../../dialogue/eventClaims";
 import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
-import {hasPieceVariants, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants} from "./pieceVariants";
+import {capturedPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants, type NamedPieces} from "./pieceVariants";
 import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
 import catalogue from "./meanings.json" with {type: "json"};
 import registry from "./banks/registry.json" with {type: "json"};
@@ -285,10 +285,16 @@ export function selectGameSpeech(context: GameSpeechContext) {
   }
   const gradeId = gradeTake(context, recordingId);
   // Each sentence and grade take may also name its piece; the generic line stays the fallback.
-  const pieces = new Map<string, readonly string[]>(), sides = new Map<string, Side>();
+  // The bubble also writes where a named piece stands; the squares key the variant that names it.
+  const pieces = new Map<string, readonly string[]>(), sides = new Map<string, Side>(), squares = new Map<string, string>();
+  const nameSquare = (id: string, named: NamedPieces | null) => {
+    const variant = pieceVariantId(id, named?.pieces);
+    if (variant && named?.square) squares.set(variant, named.square);
+  };
   for (const [index, id] of [[lead, primaryId], [lead + 1, secondId]] as const) {
     const named = id && hasPieceVariants(id) ? gamePieces({...context, claimIndex: index}, id) : null;
-    if (id && named) pieces.set(id, named);
+    if (id && named) pieces.set(id, named.pieces);
+    if (id) nameSquare(id, named);
     const side = id?.startsWith("positional-") ? positionalSide({...context, claimIndex: index}) : null;
     if (id && side) sides.set(id, side);
   }
@@ -302,8 +308,10 @@ export function selectGameSpeech(context: GameSpeechContext) {
   const variants = {
     recordingId: recordingId && pooled(recordingId),
     primaryId: primaryId && pooled(primaryId),
-    ...(gradeId ? {gradeId: withPieceVariant(gradeId, sacrificed)} : {}),
+    ...(gradeId ? {gradeId: withPieceVariant(gradeId, sacrificed?.pieces)} : {}),
+    squares,
   };
+  if (gradeId) nameSquare(gradeId, sacrificed);
   return {recordingId, primaryId, ...(gradeId ? {gradeId} : {}), variants};
 }
 
@@ -354,13 +362,20 @@ function positionalSide(context: GameSpeechContext): Side | null {
 }
 
 /** The piece a selected game-review clip is about, from the evidence that selected it. */
-function gamePieces(context: GameSpeechContext, id: string): string[] | null {
+function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null {
   const item = context.utterance.renderedClaims?.[context.claimIndex ?? 0];
   if (!item || !context.report) return null;
-  if (item.code === "support_restored") return typeof item.slots.piece === "string" ? [item.slots.piece] : null;
+  if (item.code === "support_restored") return typeof item.slots.piece === "string" ? {pieces: [item.slots.piece]} : null;
+  // The immediate reply's frame records what it captures and where.
+  if (item.code === "reply_capture") return context.report.immediate_reply ? capturedPieces(context.report.immediate_reply) : null;
   const event = eventFor(item, context.report);
   if (!event) return null;
-  if (id.startsWith("positional-")) return typeof event.facts.piece === "string" ? [event.facts.piece] : null;
+  if (id.startsWith("positional-")) {
+    if (typeof event.facts.piece !== "string") return null;
+    // Support facts name the played piece's square; an alternative's piece stands elsewhere.
+    const target = event.facts.target;
+    return {pieces: [event.facts.piece], ...(id.endsWith("-actual") && square(target) ? {square: target} : {})};
+  }
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useOptionalCoachPreferences } from '../../coach/CoachProvider';
 import { coachRecording } from './voiceBank';
+import { withSquares, type Squares } from './pieceVariants';
 import { ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR } from './sequence';
 
 /** The words a coach says for a meaning: its recorded line when the bank has
@@ -45,9 +46,10 @@ function partId(coachId: string, part: string): string | undefined {
   const alternatives = part.split(ALTERNATIVE_SEPARATOR);
   return alternatives.find(id => coachRecording(coachId, id)) ?? alternatives.find(id => loadedScripts.get(coachId)?.has(id));
 }
-function partText(coachId: string, part: string): string | undefined {
+function partText(coachId: string, part: string, squares?: Squares): string | undefined {
   const id = partId(coachId, part);
-  return id ? coachRecording(coachId, id)?.text ?? loadedScripts.get(coachId)?.get(id) : undefined;
+  const text = id ? coachRecording(coachId, id)?.text ?? loadedScripts.get(coachId)?.get(id) : undefined;
+  return id && text ? withSquares(id, text, squares) : text;
 }
 
 /** The meaning whose words {@link spokenText} shows, with any alternatives resolved. */
@@ -57,22 +59,23 @@ export function spokenId(coachId: string | null | undefined, id: string | null |
   return parts.every((part): part is string => !!part) ? parts.join(SEQUENCE_SEPARATOR) : id;
 }
 
-/** Synchronous lookup; a script that has not loaded yet reads as unknown (null). */
-export function spokenText(coachId: string | null | undefined, id: string | null | undefined): string | null {
+/** Synchronous lookup; a script that has not loaded yet reads as unknown (null).
+ * Squares are written after the pieces a line names, for the bubble only. */
+export function spokenText(coachId: string | null | undefined, id: string | null | undefined, squares?: Squares): string | null {
   if (!coachId || !id) return null;
   const recorded = coachRecording(coachId, id);
-  if (recorded) return recorded.text;
+  if (recorded) return withSquares(id, recorded.text, squares);
   // A sequence is one line only when every sentence resolves.
-  const parts = id.split(SEQUENCE_SEPARATOR).map(part => partText(coachId, part));
+  const parts = id.split(SEQUENCE_SEPARATOR).map(part => partText(coachId, part, squares));
   return parts.every((part): part is string => !!part) ? parts.join(' ') : null;
 }
 
 /** Null while the coach's script loads or when it has no line for this meaning;
  * callers then show their written text. A failed load is retried when the
  * meaning or coach changes, so one network failure does not last until remount. */
-export function useSpokenText(coachId: string | null | undefined, id: string | null | undefined): string | null {
+export function useSpokenText(coachId: string | null | undefined, id: string | null | undefined, squares?: Squares): string | null {
   const [, setLoaded] = useState(0);
-  const text = spokenText(coachId, id);
+  const text = spokenText(coachId, id, squares);
   const waiting = !!coachId && !!id && text === null && hasCoachScript(coachId) && !loadedScripts.has(coachId);
   useEffect(() => {
     if (!waiting || !coachId) return;

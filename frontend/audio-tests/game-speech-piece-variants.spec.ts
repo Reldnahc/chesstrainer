@@ -7,7 +7,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {explanationFindingRecording, explanationFrameRecording} from "../src/audio/speech/practiceSelection";
-import {pieceOn, withPieceVariant, withPieceVariants} from "../src/audio/speech/pieceVariants";
+import {capturedPieces, pieceOn, withPieceVariant, withPieceVariants, withSquares} from "../src/audio/speech/pieceVariants";
 import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 import planned from "../src/audio/speech/planned-meanings.json" with {type: "json"};
 import {withColourAndTakes} from "../src/audio/speech/meaningPools";
@@ -32,7 +32,7 @@ test("every piece variant names a real base meaning and pieces that can occur th
   const ids = new Set(meanings.map(item => item.id));
   const pieces = ["pawn", "knight", "bishop", "rook", "queen", "king"];
   const variants = meanings.filter(item => item.variantOf);
-  expect(variants).toHaveLength(268);
+  expect(variants).toHaveLength(273);
   for (const item of variants) {
     const base = meanings.find(meaning => meaning.id === item.variantOf)!;
     expect(base.variantOf).toBeUndefined();
@@ -48,6 +48,7 @@ test("every piece variant names a real base meaning and pieces that can occur th
   const of = (base: string) => variants.filter(item => item.variantOf === base).map(item => item.pieces!.join("-"));
   expect(of("tactic-pin-played")).toEqual(["pawn", "knight", "bishop", "rook", "queen"]);
   expect(of("tactic-back-rank-played")).toEqual(["rook", "queen"]);
+  expect(of("immediate-capture")).toEqual(["pawn", "knight", "bishop", "rook", "queen"]);
   expect(of("explanation-frame-capture-promotion-ordinary")).toEqual(["knight", "bishop", "rook", "queen"]);
   expect(of("grade-brilliant-1")).toEqual(["knight", "bishop", "rook", "queen"]);
   expect(of("explanation-finding-double-check")).toHaveLength(9);
@@ -68,6 +69,23 @@ test("a variant goes first with the generic line as its fallback, sentence by se
   expect(pieceOn("4k3/4n3/8/8/8/8/8/4R1K1 b - - 0 1", "e7")).toEqual({piece: "knight", color: "black"});
   expect(pieceOn("4k3/4n3/8/8/8/8/8/4R1K1 b - - 0 1", "e1")).toEqual({piece: "rook", color: "white"});
   expect(pieceOn("4k3/4n3/8/8/8/8/8/4R1K1 b - - 0 1", "e2")).toBeNull();
+});
+
+test("the bubble writes the named piece's square; the generic line and spoken text stay as they are", () => {
+  const squares = new Map([["tactic-pin-played-knight", "f6"]]);
+  expect(withSquares("tactic-pin-played-knight", "That pins the knight to the king.", squares)).toBe("That pins the knight on f6 to the king.");
+  expect(withSquares("tactic-pin-played", "That pins a piece.", squares)).toBe("That pins a piece.");
+  // Named twice, or only in the possessive, the line is left alone rather than guessed at.
+  expect(withSquares("tactic-pin-played-knight", "The knight is pinned, and the knight can't move.", squares))
+    .toBe("The knight is pinned, and the knight can't move.");
+  expect(withSquares("tactic-pin-played-knight", "The knight's retreat is gone.", squares)).toBe("The knight's retreat is gone.");
+  // "on" after the piece, or a noun the square cannot describe, keeps the line; a compound offer takes the square after it.
+  expect(withSquares("tactic-pin-played-knight", "The knight on the rim is pinned.", squares)).toBe("The knight on the rim is pinned.");
+  expect(withSquares("tactic-pin-played-knight", "A knight fork is gone.", squares)).toBe("A knight fork is gone.");
+  expect(withSquares("tactic-pin-played-knight", "A bold knight sacrifice pins.", squares)).toBe("A bold knight sacrifice on f6 pins.");
+  // A capture frame names the taken piece's square, beside the destination for en passant.
+  expect(capturedPieces({capture: "bishop", highlights: ["e1", "e4"]})).toEqual({pieces: ["bishop"], square: "e4"});
+  expect(capturedPieces({capture: "pawn", highlights: ["e5", "d6", "d5"]})).toEqual({pieces: ["pawn"], square: "d5"});
 });
 
 // The real detectors and report projection choose these; each was checked on its board.

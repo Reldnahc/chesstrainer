@@ -10,8 +10,10 @@ type Meaning = {id: string; variantOf?: string; pieces?: string[]};
 // A piece variant names the one piece its meaning is about ("the pinned knight")
 // instead of a generic "piece". The catalogue lists every piece that can occur.
 const variants = new Map<string, Map<string, string>>();
+const named = new Map<string, readonly string[]>();
 for (const meaning of catalogue.meanings as Meaning[]) {
   if (!meaning.variantOf || !meaning.pieces) continue;
+  named.set(meaning.id, meaning.pieces);
   const set = variants.get(meaning.variantOf) ?? new Map<string, string>();
   set.set(meaning.pieces.join("-"), meaning.id);
   variants.set(meaning.variantOf, set);
@@ -21,8 +23,33 @@ export const hasPieceVariants = (id: string) => variants.has(id);
 
 /** The variant naming these pieces, then the generic line. Unknown pieces keep the generic line. */
 export function withPieceVariant(id: string, pieces: readonly string[] | null | undefined): string {
-  const variant = pieces?.length ? variants.get(id)?.get(pieces.join("-")) : undefined;
+  const variant = pieceVariantId(id, pieces);
   return variant ? `${variant}${ALTERNATIVE_SEPARATOR}${id}` : id;
+}
+
+/** The piece variant a line would play for these pieces, if there is one. */
+export const pieceVariantId = (id: string, pieces: readonly string[] | null | undefined) =>
+  pieces?.length ? variants.get(id)?.get(pieces.join("-")) : undefined;
+
+/** Squares of named pieces, keyed by the piece variant that names them. */
+export type Squares = ReadonlyMap<string, string>;
+
+/** Writes the square after the one piece a variant names ("the bishop on e4").
+ * Only the bubble shows it; the recording stays as spoken. A line that names
+ * the piece more than once, only in the possessive, or followed by "on" or a
+ * noun the square cannot describe ("knight fork") is left as it is. In a
+ * compound offer the square follows the whole noun ("a rook sacrifice on e4"). */
+export function withSquares(id: string, text: string, squares: Squares | undefined): string {
+  const square = squares?.get(id), pieces = named.get(id);
+  if (!square || pieces?.length !== 1) return text;
+  const found = [...text.matchAll(new RegExp(`\\b${pieces[0]}\\b`, "gi"))];
+  if (found.length !== 1) return text;
+  let end = found[0].index + found[0][0].length;
+  const rest = text.slice(end);
+  if (/^['’]s\b/.test(rest) || /^\s+(on|forks?|pairs?|trades?)\b/i.test(rest)) return text;
+  const compound = /^\s+(sacrifices?|sac|offers?)\b/i.exec(rest);
+  if (compound) end += compound[0].length;
+  return `${text.slice(0, end)} on ${square}${text.slice(end)}`;
 }
 
 /** Applies a variant to each sentence of a sequence that has one. */
@@ -54,23 +81,26 @@ export function pieceOn(fen: string | null | undefined, square: string): {piece:
 
 type Lookup = (square: string) => {piece?: unknown; color?: unknown} | null;
 
+/** The pieces a line names, and the square of that piece when it is just one. */
+export type NamedPieces = {pieces: string[]; square?: string};
+
 /** One piece type shared by every square of a role, all of the expected side. */
-function single(squares: string[], side: Side, at: Lookup): string[] | null {
+function single(squares: string[], side: Side, at: Lookup): NamedPieces | null {
   const found = squares.map(at);
   if (!squares.length || !found.every(item => item?.color === side && order.includes(String(item.piece)))) return null;
   const types = new Set(found.map(item => String(item!.piece)));
-  return types.size === 1 ? [...types] : null;
+  return types.size === 1 ? {pieces: [...types], ...(squares.length === 1 ? {square: squares[0]} : {})} : null;
 }
 
 /** Two checking pieces, named in a fixed order ("knight-rook"). */
-function pair(squares: string[], side: Side, at: Lookup): string[] | null {
+function pair(squares: string[], side: Side, at: Lookup): NamedPieces | null {
   const found = squares.map(at);
   if (squares.length !== 2 || !found.every(item => item?.color === side && order.includes(String(item.piece)))) return null;
-  return found.map(item => String(item!.piece)).sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  return {pieces: found.map(item => String(item!.piece)).sort((a, b) => order.indexOf(a) - order.indexOf(b))};
 }
 
 /** Where a pattern's subject piece is recorded in its witness roles. */
-function subject(kind: string, roles: Record<string, unknown>, actor: Side, at: Lookup, moved?: string): string[] | null {
+function subject(kind: string, roles: Record<string, unknown>, actor: Side, at: Lookup, moved?: string): NamedPieces | null {
   const role = (key: string) => strings(roles[key]);
   const own = (key: string) => single(role(key), actor, at), theirs = (key: string) => single(role(key), opposite(actor), at);
   switch (kind) {
@@ -107,11 +137,16 @@ const tacticSubjects: Record<string, string> = {
 };
 
 /** The subject piece of a game-review tactic, from its witness roles and pieces. */
-export function tacticPieces(event: Event): string[] | null {
+export function tacticPieces(event: Event): NamedPieces | null {
   const f = event.facts, kind = tacticSubjects[String(f.motif)], pieces = object(f.pieces);
   if (!kind || (event.actor !== "white" && event.actor !== "black")) return null;
-  return subject(kind, object(f.roles), event.actor, square => object(pieces[square]));
+  const named = subject(kind, object(f.roles), event.actor, square => object(pieces[square]));
+  // A tactic's attacker may still have to move there, so only a piece that stays put keeps its square.
+  return named && !standing.has(kind) ? {pieces: named.pieces} : named;
 }
+
+/** Subjects that stand on their square before the tactic: its targets and defenders. */
+const standing = new Set(["pin", "pin_target", "pinned", "skewer", "capture", "defender", "own_target"]);
 
 const findingSubjects: Record<string, string> = {
   fork_recognized: "fork", fork_collected: "fork", pin_prevents_capture: "pinned", pin_restricts_escape: "pinned",
@@ -124,20 +159,23 @@ const findingSubjects: Record<string, string> = {
 };
 
 /** The subject piece of an explanation finding, read from the board its roles describe. */
-export function findingPieces(data: MoveExplanation, finding: PatternFinding): string[] | null {
+export function findingPieces(data: MoveExplanation, finding: PatternFinding): NamedPieces | null {
   const kind = finding.mechanism ? findingSubjects[finding.mechanism] : undefined;
   const fen = data.frames[finding.frame_ply]?.fen;
   if (!kind || !fen || !finding.roles) return null;
   return subject(kind, finding.roles, finding.actor, square => pieceOn(fen, square), finding.moves[0]?.slice(2, 4));
 }
 
-/** The piece a capture frame takes. */
-export function capturedPieces(frame: ExplanationFrame): string[] | null {
-  return frame.capture && order.includes(frame.capture) ? [frame.capture] : null;
+/** The piece a capture frame takes, on the square it stood. A frame highlights
+ * from and to, then the captured square when it differs (en passant). */
+export function capturedPieces(frame: Pick<ExplanationFrame, "capture" | "highlights">): NamedPieces | null {
+  if (!frame.capture || !order.includes(frame.capture)) return null;
+  const square = frame.highlights?.[2] ?? frame.highlights?.[1];
+  return {pieces: [frame.capture], ...(square && /^[a-h][1-8]$/.test(square) ? {square} : {})};
 }
 
 /** The piece a sound sacrifice offers: the one its accepting capture takes. */
-export function sacrificedPieces(acceptance: unknown, fen: string | null | undefined, mover: Side): string[] | null {
+export function sacrificedPieces(acceptance: unknown, fen: string | null | undefined, mover: Side): NamedPieces | null {
   const square = typeof acceptance === "string" ? acceptance.slice(2, 4) : null, found = square ? pieceOn(fen, square) : null;
-  return found && found.color === mover ? [found.piece] : null;
+  return found && found.color === mover ? {pieces: [found.piece], square: square!} : null;
 }
