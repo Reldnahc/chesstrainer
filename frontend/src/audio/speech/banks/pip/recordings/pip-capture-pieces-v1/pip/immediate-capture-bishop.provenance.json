@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "The opponent can capture the bishop at once. A quick count of what follows, then."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef93db0b7922292021ebaa9a4c9dc7f8e017a79f8824539ea63484c2b73b9f2e",
+  "recordedAt": "2026-10-07T02:21:14.987Z",
+  "sha256": "6d093fd3844652aa065ac63243bb59125cbf06717ac331ba86e04a2b15f17389",
+  "bytes": 16514,
+  "requestId": "7p8DlrZuQRG0LuyzBnvv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6a70b22832de96d29aaf1a2ca9fcdca443f3786f8d46153343b766286bec2b4",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

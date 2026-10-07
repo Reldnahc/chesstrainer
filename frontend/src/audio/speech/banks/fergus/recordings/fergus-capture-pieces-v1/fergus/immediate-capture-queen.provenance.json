@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "immediate-capture-queen",
+      "label": "Immediate capture queen",
+      "text": "The opponent can take the queen at once. Rather a significant detail."
+    },
+    "takeId": null
+  },
+  "requestHash": "44ff85f902c8cb7c39e3f472b7546ee9378bd99ad929c299b0a2f4a8d1985c32",
+  "recordedAt": "2026-10-07T02:20:59.961Z",
+  "sha256": "74bd6cae67035348c245a11cb614a49f3a830c3c4adb5964806c3e8ca3e893f9",
+  "bytes": 15704,
+  "requestId": "mugYXyRpSHPkRwLSQxPN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6e452d0eef02824c35d94879aa42f67ee000b0a371a846493b3b4b5907c7f40",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

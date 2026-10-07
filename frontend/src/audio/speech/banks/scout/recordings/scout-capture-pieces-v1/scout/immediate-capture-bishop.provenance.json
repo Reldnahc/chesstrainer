@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "Reply scan first. The next move can take the bishop immediately. Follow that line before going deeper."
+    },
+    "takeId": null
+  },
+  "requestHash": "1775764640fd5dd1733b2883e88da44d3e33ede92c6b7ed574a36725f0e704b1",
+  "recordedAt": "2026-10-07T02:21:18.006Z",
+  "sha256": "0971d22d1ef6790b3b6b299ce7e23b2f8fd33d60fcc2bd8cc5b403270f359626",
+  "bytes": 21177,
+  "requestId": "J80oMSYBlL09sPgLe3ey",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0da10d98deb0cb5697d5aacc4a8b5d0bd9045f70997f79c42e1207ddb0a025a4",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

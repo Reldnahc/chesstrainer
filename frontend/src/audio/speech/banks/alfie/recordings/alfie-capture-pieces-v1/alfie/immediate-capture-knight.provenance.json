@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "One capture to examine first: the other side can take the knight at once. Count what follows from it."
+    },
+    "takeId": null
+  },
+  "requestHash": "91cf9bb6a98142d790d6a73b3aaabe32b0330c292a223df559f767ef0ef9dfc2",
+  "recordedAt": "2026-10-07T02:20:44.918Z",
+  "sha256": "99df435096ae821fa186af93aca9f91f5de9b33eefaab7a80de828e2ddc5ef1c",
+  "bytes": 20561,
+  "requestId": "Eabe6v8bmbJ4B2y16Kqg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d74e70e38bb279d11a87eb1e7a92a8262b8f0a69857c5f5a647ceff07d48f996",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "The other side can take the rook without preparation. Calculate the cost of that reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "714c41d25877c2943132e6c1e5ce0aed5f70025760b517d8ffe7d31c87ce1fc6",
+  "recordedAt": "2026-10-07T02:20:59.319Z",
+  "sha256": "701a3e88330ee67ce88e51817d72d9b989b3064c3ece5ca2ac9dad615852b96b",
+  "bytes": 17617,
+  "requestId": "SRHXlyqiepJjjwRcsdY1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8743e52021e5292761729da6500dc7d07cf9e05c5f3000add3598a37d00b9186",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

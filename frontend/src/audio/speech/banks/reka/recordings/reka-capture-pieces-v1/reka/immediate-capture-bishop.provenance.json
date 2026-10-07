@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "Eyes on the reply! The other side can take the bishop immediately, so see what that does to the balance."
+    },
+    "takeId": null
+  },
+  "requestHash": "17065f08271dc40a19c51826b5fbf1aa473b90c06d22c54058376be2b07c21cc",
+  "recordedAt": "2026-10-07T02:21:15.680Z",
+  "sha256": "6a12442936bd93fcf46f80a7b73d8a60a70908f13d098ed27da8726f44272912",
+  "bytes": 20779,
+  "requestId": "El8ysnNg4MYC6baB3GbM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "455f90c7c36b4c76059d2d05d85f2ce07df82e3b5592e0f125db937cdaff5ff3",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

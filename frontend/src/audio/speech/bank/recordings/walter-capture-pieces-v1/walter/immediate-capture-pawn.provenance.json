@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "immediate-capture-pawn",
+      "label": "Immediate capture pawn",
+      "text": "The reply can take the pawn straight away. It is worth following that line a little further before going on."
+    },
+    "takeId": null
+  },
+  "requestHash": "d16ce0c1e83ab3e223d28ef9ad1deebbc114c959287dfcabbc2e0e1a5756a8f3",
+  "recordedAt": "2026-10-07T02:20:34.516Z",
+  "sha256": "e29447ed030edd733e62443603fbc55d5851205d93f18636777c6ba051d14fe7",
+  "bytes": 20483,
+  "requestId": "bpgcM8rzCqWxj3zCMEEn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "602810f8fb19a6a0998a0544f7b6c4650e8b0251d93e546e9627c70603b5ce24",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

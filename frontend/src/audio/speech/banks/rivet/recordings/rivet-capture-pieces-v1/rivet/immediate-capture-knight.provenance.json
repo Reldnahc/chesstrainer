@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "Next move available to the opponent: capture of the knight. Cost: not yet calculated. Calculate it."
+    },
+    "takeId": null
+  },
+  "requestHash": "48e9532434392d8f8d2e72c80ea36ce9f48775aeef96c696bcbf68000f629de5",
+  "recordedAt": "2026-10-07T02:20:36.279Z",
+  "sha256": "a6588e5299dd837a6b72a0860049f3949aceccb05b51e678a05f957e0fd2dcb1",
+  "bytes": 22617,
+  "requestId": "cQfHMpwH2qAEaPRw0kxd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7b5b54e3e8f02ee60fa27006146f2981552aa2b026c167ec1f37b77c3854ab8",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

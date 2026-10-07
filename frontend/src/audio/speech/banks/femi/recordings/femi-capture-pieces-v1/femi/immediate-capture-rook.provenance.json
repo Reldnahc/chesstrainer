@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "The opponent can capture the rook immediately. Put that reply on the board and play it forward a few moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "83608e377d47b85e122fb5d67d81076882b99903c225bd6f97593c79cfc4193b",
+  "recordedAt": "2026-10-07T02:20:57.853Z",
+  "sha256": "45392decae5259ac775520b722d5c69e12246114eb3c7ba7e069a612e4af8c37",
+  "bytes": 21250,
+  "requestId": "wKD2A4yNB3B4fnH5W8y4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a46242a72da4ebd10abadd53cbb435ddaa339a1f5b8ebb9588688456389d014f",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

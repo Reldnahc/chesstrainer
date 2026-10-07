@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "How sturdy is this move against the reply? The knight can be taken at once, so weigh what that capture is worth."
+    },
+    "takeId": null
+  },
+  "requestHash": "a22e8f0658ec0f75416ce78f382784a1f9a337da8d570b730414172aed6f7f0f",
+  "recordedAt": "2026-10-07T02:20:36.438Z",
+  "sha256": "8c263c8fcf871ca128c096ef3c1d7e34b28cf65aa32a84ecb05f9680782f5b78",
+  "bytes": 23118,
+  "requestId": "fK5LJBJXkmnv3EAkasK8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac7085a0a2ebe0830c93f2e585419c4df6ed53f564f67c5f5ad7ef84ba5169dc",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

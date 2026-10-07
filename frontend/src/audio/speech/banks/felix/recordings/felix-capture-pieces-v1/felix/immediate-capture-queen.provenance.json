@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "immediate-capture-queen",
+      "label": "Immediate capture queen",
+      "text": "The opponent can take the queen at once. That comes before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "7385b30b207f107efdf8388950c86d5a2781430cc18e6b4a802cbecafa008cfd",
+  "recordedAt": "2026-10-07T02:20:58.013Z",
+  "sha256": "976180a2b1e8263f710eb85842fbf072a73ecf5d42798a8cf93228e859a4023d",
+  "bytes": 16121,
+  "requestId": "DpmgMkGIohxn82IvoSGo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4664e496972f545dfb8c533285c6464a575423091d180bb2aed09edc6152264a",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

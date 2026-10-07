@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "immediate-capture-queen",
+      "label": "Immediate capture queen",
+      "text": "Fascinating, and important: the reply can take the queen at once. Count what that would cost before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbb09218c75bd70d2bf0a5a426afc4ed9d26a06d8848cbe352854c4f1710f033",
+  "recordedAt": "2026-10-07T02:21:32.203Z",
+  "sha256": "0fc23ce561d8eac9d4d3f5e751273fb2992f7ce9834f94508839c838f5a156bd",
+  "bytes": 23743,
+  "requestId": "n1YC69adbuUA7ivWFlxM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3274bd84238b7b9fe1bfcacce954a9c7acfb04b52f2d3e23e0e0ef48a91fc9bc",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Curious detail: the opponent's reply can capture the rook. I would play that line out completely before trusting this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8f8eb8e97c2ee26a3efd4d13dd26b6e7420e7bb02c7297b1974cdeb237d58fe",
+  "recordedAt": "2026-10-07T02:21:30.274Z",
+  "sha256": "59cf96ef4194d22246a5762459f675343f1f778e8e3f35e50c1d3dbd17a03a1b",
+  "bytes": 24695,
+  "requestId": "GMrU567TzvuFB6EpOzj8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aad3817f963047124ff4b7d805e23008518a72e75c73b40e2beb6c64c273baa7",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

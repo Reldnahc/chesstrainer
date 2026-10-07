@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "The knight can be taken right away. Worth playing that reply out in full."
+    },
+    "takeId": null
+  },
+  "requestHash": "145a3d6e40f550d1d1189aef50fff18764e2ba00abf2c770bf93b0d423f47296",
+  "recordedAt": "2026-10-07T02:21:13.132Z",
+  "sha256": "3d22da3b9a6b3b71fb6dc05e4c34ba79c62dd2949cd1f9b529b8df32e9f83dd3",
+  "bytes": 15447,
+  "requestId": "DTJSWXFcl8luGj7ur4RT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57a86efe3f51048bd5a5ac0b2203b05bc8a7b898c7c02a7f7a1e6347621a68aa",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "An immediate capture of the bishop is available to the opposing side. Count the material."
+    },
+    "takeId": null
+  },
+  "requestHash": "a68a254cb8c9974930d75ccd6bc617902e5544076a31e5db2176b42bc2ff4ef4",
+  "recordedAt": "2026-10-07T02:20:57.539Z",
+  "sha256": "4ac0a1b7f45e27f2b89f397db241e218c5aaa64e5d712f6ee1f044db474f4017",
+  "bytes": 17804,
+  "requestId": "TIHxUkFI488suAY2Ki1u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a64eca1a6c5917852b711a39aca0fcb943ff3f1afe12d027b058cc789b5ca36",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

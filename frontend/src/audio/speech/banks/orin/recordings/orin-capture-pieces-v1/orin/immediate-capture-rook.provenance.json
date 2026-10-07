@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "In reply, the rook can be taken at once. Follow the line through to its end before judging this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "402cfada9037b13a17d2066e3952eee111e5243d89d1e42b451f110405dea0bf",
+  "recordedAt": "2026-10-07T02:21:10.230Z",
+  "sha256": "8e954ac5ab1d0d2eb46f6fe9716b43aa50895fdd85dfd0a1700961b1a8646937",
+  "bytes": 23437,
+  "requestId": "xaLkIUr69ncKvC2dFYAu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffdd358ebc889fa45f8cd2ff0a707a49ba053885bcfd97039352f3b7210a9215",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

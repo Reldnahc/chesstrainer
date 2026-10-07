@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Simple point: the opponent's next move can capture the rook. Work out the price."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9753c7c7fcedc7e61d808b86e8926aed62eb5540c91d150338ca109c8e747c3",
+  "recordedAt": "2026-10-07T02:21:07.917Z",
+  "sha256": "0b6c05c21e8256bdcffc6e184d9144bdd72c390547efb2e4abc24377bb84b822",
+  "bytes": 18112,
+  "requestId": "n9GtAwnxBJKdPvbnZlPw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "039fbc78139277dca0a5ddc9e9ff9a3e38d866d5cbda50ec245bdcb2de03117e",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

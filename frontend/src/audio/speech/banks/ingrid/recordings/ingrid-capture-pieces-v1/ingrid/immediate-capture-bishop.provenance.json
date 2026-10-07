@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "Start with the reply that takes the bishop. Look at what comes back before judging it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d80976d68b622aad207012ffa841d23f51edc97d69d5ff1bda450870604986c",
+  "recordedAt": "2026-10-07T02:20:58.226Z",
+  "sha256": "82a0fa99d3251856ffabeb51642521582fb46c22176ea14d814c499afa8afc0e",
+  "bytes": 17622,
+  "requestId": "KHDVigiP48zOWk9FzOiT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28d4860ebeecb06fab77de092afab67a9f8499bf3ffbd7e51ca95bafeafbbeea",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

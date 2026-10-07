@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "There is a capture waiting for the bishop. Take a moment and notice what shifts after it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dac458036f853af1ee4380ef12a2446cbdd16ff1dbab62ed45a271141b1329ba",
+  "recordedAt": "2026-10-07T02:21:03.807Z",
+  "sha256": "9edc7fa74fc8bc6c8896d286be83f2303a2d0d51419406fa60dba66a0bc0ec93",
+  "bytes": 19050,
+  "requestId": "Np08kftvQHJ0X3dXVefI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6a1cc1e02a7e4eb55fe8a4749d796bf39db0ffcd9345dfc5b53cc0507941f03",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

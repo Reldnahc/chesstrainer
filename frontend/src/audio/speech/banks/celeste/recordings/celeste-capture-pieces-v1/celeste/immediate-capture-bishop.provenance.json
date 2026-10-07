@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "The other side is able to capture the bishop immediately. Weigh what follows before moving on."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7f440afded4c1092c85cc20845a16be5ac3ecda952a2987b11dd6717e2b8838",
+  "recordedAt": "2026-10-07T02:20:48.331Z",
+  "sha256": "79f5e20f2b1d08f36ccd2498934fe83c86c92ae13abe2da71e3a8d51db7b6f4b",
+  "bytes": 19831,
+  "requestId": "jsqDJb4Dwkvu0WcDPnKP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68fae46de0cfd93a40860e3539ad78e0972a0e76127361ad8544462d41345f64",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

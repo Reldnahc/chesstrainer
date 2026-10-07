@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Ah, the reply can take the rook at once. That's worth a careful look."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc53cfd19694fa5d0ca3a7cb24e1479e8f64bb544e5597b3ca54fa0962ae01cb",
+  "recordedAt": "2026-10-07T02:21:16.581Z",
+  "sha256": "53e6584b16efbdd6c4c2b3c1420fcaefa3d63ebf2fb3c4b658270ea9d52943d0",
+  "bytes": 16355,
+  "requestId": "k0uvtMxYfqRavYoqXAh5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7c44b4d726704c41d59be7635f7e3db2745fe845161d621b1d5148428d7209f",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

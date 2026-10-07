@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "Big picture: the knight can be taken straight away. Line that up next to the better move."
+    },
+    "takeId": null
+  },
+  "requestHash": "249520cf2b088dfd4551b4deed1b1cafdc4e9d0ca2125d36c0f017a0545f0428",
+  "recordedAt": "2026-10-07T02:21:04.697Z",
+  "sha256": "c33ed03911037a139cf22be9aed580924d97968e42616da06040bc506fe59229",
+  "bytes": 18770,
+  "requestId": "hiXpwSkar8nmVb8w1E8G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c99c9fc60727e9bd4945f594c9b6d3e86c9e083c05447211e2cbd2401a0cd91",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "immediate-capture-queen",
+      "label": "Immediate capture queen",
+      "text": "The other side can take the queen immediately after this. That reply deserves careful attention before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "eccc1b6d6402f8bcd97c11ad3800a034646272830b38306db6f7a278240c295c",
+  "recordedAt": "2026-10-07T02:20:42.623Z",
+  "sha256": "64c83f97df4fa0668a9d1086e0c59dedab6b7dc94996a3bcd46f12939b13c390",
+  "bytes": 22657,
+  "requestId": "Aswddl06LUrlzXPc2hAK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c55dc5675d8794d4fd0fe59a18da1fa93ff69377de1a68580d8fb41c3c0146c0",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

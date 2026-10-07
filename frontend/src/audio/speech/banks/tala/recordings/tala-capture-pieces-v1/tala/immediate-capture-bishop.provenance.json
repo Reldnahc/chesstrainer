@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "One thing hiding here: the reply can take the bishop immediately. Does that exchange pay for the other side? Find out!"
+    },
+    "takeId": null
+  },
+  "requestHash": "8c5dc13fa0f5eaaeb7305552e6909301da2fa45caa3502e17a5fc136f1e50f68",
+  "recordedAt": "2026-10-07T02:21:22.204Z",
+  "sha256": "2af8266e7d0f6ac42ee81756046897783b5eea1840d9462947c69d3f49a38cbf",
+  "bytes": 25505,
+  "requestId": "jKP8eugUZQL1MUVJQIQ4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2e80242e3859d49cb40e37c12549db59fb58aba3b168b0b3c4f37d71c7ab05e",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

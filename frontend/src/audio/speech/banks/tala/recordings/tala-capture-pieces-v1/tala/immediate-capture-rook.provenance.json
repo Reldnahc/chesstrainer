@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Look closely at the next move. The other side can capture the rook, so follow where that capture leads."
+    },
+    "takeId": null
+  },
+  "requestHash": "432b49782ed8100a4bc6786990cef0a19f345b429fd4e3b0cdaab5bae5a06977",
+  "recordedAt": "2026-10-07T02:21:24.030Z",
+  "sha256": "cdd4fa4b66f8c675d50bd5ba8305f69b7086f3ca37b587703a539d03305b7b02",
+  "bytes": 21940,
+  "requestId": "LmL6r7bnb3E4pfTqNU8s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37be2f94d3e6c4ecbeaf411a98feaae570e166213cf0fef955ce45d30d591820",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "The rook can be taken by the reply straight away. A gentle look at how things settle afterwards would help."
+    },
+    "takeId": null
+  },
+  "requestHash": "e590fe860d033e9c820a69f4a91121830a49c457be5a1e5057a8fb69049f4255",
+  "recordedAt": "2026-10-07T02:20:39.519Z",
+  "sha256": "701940aeffbd3758310b365922969a9d080f754597b31f3f0d75f520edaa3dad",
+  "bytes": 21086,
+  "requestId": "xdKHQum4ouImGsknnLf9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "228b8a651b132f6e3037f565be0440e02971d16fc40561b4fed321cff64859bd",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

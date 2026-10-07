@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "An immediate capture of the bishop is available to the opponent. Its consequences should be weighed carefully."
+    },
+    "takeId": null
+  },
+  "requestHash": "589644927844d2b3a3dd289e72e1c56c0074e0437ef21fb1d0c635ac181b0125",
+  "recordedAt": "2026-10-07T02:21:06.077Z",
+  "sha256": "880b5967b6563f1c80cb7bab7ee739f4fe08836e1e75a78fecaada80fb2b5384",
+  "bytes": 21012,
+  "requestId": "V8ruUipGhVK0BXlHxnZw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ce07983c64672bd608aa02b2d2a25ab9a8d736c43e35078007f00280f612ead",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

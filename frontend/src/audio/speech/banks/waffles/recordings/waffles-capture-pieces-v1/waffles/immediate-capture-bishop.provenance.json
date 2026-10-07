@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "Report in! The opponent can take the bishop at once. Tally the exchange before advancing!"
+    },
+    "takeId": null
+  },
+  "requestHash": "fd5c48b551777b436d004438778cc6a8ec43f881151f6e1d0aa6734563b1e755",
+  "recordedAt": "2026-10-07T02:21:23.762Z",
+  "sha256": "bd5c0ab18b62e7ce522c9d835e582ff63a22578bb91c6a8b9847f3b26425fab8",
+  "bytes": 20947,
+  "requestId": "xbA6vfaTmfaqUkfh4QOW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0be50285a9f6b92a05607bf405a0c1a3614acf30e6445f5ffdcfbb4d91c4dea2",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

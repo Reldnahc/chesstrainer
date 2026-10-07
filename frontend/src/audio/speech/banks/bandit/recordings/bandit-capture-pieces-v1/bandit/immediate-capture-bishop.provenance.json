@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "The reply can swipe the bishop immediately. Count the loot before deciding how bad it is."
+    },
+    "takeId": null
+  },
+  "requestHash": "27bc03104324f30416b41113778efb04d21d405f5091a21f3db8cacbb7cb1022",
+  "recordedAt": "2026-10-07T02:20:46.992Z",
+  "sha256": "2965e01d8094217d8218cfdc934dedab8201ef973337143c39719e4a2cf8585a",
+  "bytes": 19293,
+  "requestId": "M8eL1P7RmAz9XwQ5f3Tr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b09e5dbb0f630805754d44e91a03e123946cf35b6781e036fdd437477deabbeb",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

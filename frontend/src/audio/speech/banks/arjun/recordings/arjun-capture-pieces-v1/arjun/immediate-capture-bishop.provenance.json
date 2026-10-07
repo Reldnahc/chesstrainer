@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "The other side can capture the bishop immediately. What does the position look like once that happens?"
+    },
+    "takeId": null
+  },
+  "requestHash": "9633c8a0f358bcc3d6a3995baa042824a2122f6e7636bb36fbd2045ca7a6664e",
+  "recordedAt": "2026-10-07T02:20:38.235Z",
+  "sha256": "f32d5a13feda95e6b7bcbd6ee59e34a31e4ab87775af99458a6ae9cd52660ed2",
+  "bytes": 19339,
+  "requestId": "VM27CQ5T5PC4z03nfHSL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0f90015ed25f2afcaae2fb5341881ffe559875664df9aa7e9686b8ffda4dce1",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "immediate-capture-queen",
+      "label": "Immediate capture queen",
+      "text": "Look at this! The next move can snatch the queen. Check right away how much that capture changes!"
+    },
+    "takeId": null
+  },
+  "requestHash": "9c310804c670fde8de946ce2854a961c0c5fbb63b0f69c1be43ce7573a9a9309",
+  "recordedAt": "2026-10-07T02:20:52.147Z",
+  "sha256": "8737d9f7bc5f87931814f4d31846c0c5bcebfee4da2a2c8712f25f548522e6d3",
+  "bytes": 22343,
+  "requestId": "Hx88uE5rxqf3I9pLCB31",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4c2980963735d3b49e2860520e62f953e2d2c18d5c7e710fd8d5d1711594325e",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

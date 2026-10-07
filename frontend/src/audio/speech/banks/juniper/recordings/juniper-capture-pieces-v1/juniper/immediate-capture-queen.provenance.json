@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "immediate-capture-queen",
+      "label": "Immediate capture queen",
+      "text": "Slow down here. The opponent can take the queen right away. Stay with that reply for a moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "3bf6d27886584e9ee3a8395e4222bc609148791831fb0092ab97fc4ac3ceb7a3",
+  "recordedAt": "2026-10-07T02:21:07.039Z",
+  "sha256": "6ab4bf1f0975dc2eefd26b1f540e925570a92e7d4c895fc2cc04e8ba8915afcf",
+  "bytes": 20298,
+  "requestId": "RePlkSIjmTkm8NtZZrIs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8641f98d92d092df9fce2c7ebba8a89bc6830c05f5c5df7d1d381c2e443a13b9",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

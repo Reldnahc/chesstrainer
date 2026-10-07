@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "The opponent can pocket the knight straight away. See what that grab actually nets before moving on."
+    },
+    "takeId": null
+  },
+  "requestHash": "01487915ca4a885c19a8b9afafcc4a25ea9f8adf56a44e3b53d913356b137b84",
+  "recordedAt": "2026-10-07T02:20:45.012Z",
+  "sha256": "e559dcab3080c5595ee6efa213447e24bb5c6b4cb979a469a645bed9c9a3636e",
+  "bytes": 20038,
+  "requestId": "cA5z1r9pyuLj55LU27ex",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92496ef6ea78d72b6f0a86a4831b43a773381b8c349690bd41e05c9a769f2d0b",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

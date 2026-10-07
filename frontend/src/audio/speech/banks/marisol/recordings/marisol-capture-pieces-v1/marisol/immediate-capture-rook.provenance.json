@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "The other side can take the rook immediately, without any preparation. Assess what that costs."
+    },
+    "takeId": null
+  },
+  "requestHash": "290e91b4f730cb977755862a67bd0651ad4bc9282b99cd2c3825e8c96c33f9fd",
+  "recordedAt": "2026-10-07T02:21:07.806Z",
+  "sha256": "d37cd1255c09b0c3a29ffdc75a69a3e4526afcf5402bf4d09339420c563fecdc",
+  "bytes": 19561,
+  "requestId": "2YUdq7STQIOxOBE6CGo3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e006e1431893177c5c03a192201656872434f0e797087fe0182bfe4a4f808099",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

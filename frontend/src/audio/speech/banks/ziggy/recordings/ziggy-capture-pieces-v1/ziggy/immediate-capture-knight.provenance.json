@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "Interesting. The other side can capture the knight immediately. What happens after that capture is the part worth studying."
+    },
+    "takeId": null
+  },
+  "requestHash": "ac26be45fd33f3aaea676c9db92140948ff029babbff8115a1c4d4272b110d86",
+  "recordedAt": "2026-10-07T02:21:26.159Z",
+  "sha256": "6da83b65452d660e22ab33273bb4f1af397ac5775220342edfffab57e933741b",
+  "bytes": 23377,
+  "requestId": "74Qp6KHTEtHCRajdrYe2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4d25cdb2647d5823908de5454da62b64614c6073728f090322b24b6b09559ec",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

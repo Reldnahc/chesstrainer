@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Checkpoint! The next move can capture the rook. Inspect what follows, right now!"
+    },
+    "takeId": null
+  },
+  "requestHash": "110ec3d0685c323c67ddc5b8f5ef93173ba72ed1e260cdacf1a271873c0e77df",
+  "recordedAt": "2026-10-07T02:21:25.502Z",
+  "sha256": "1debda78b802b1c001b773192b1641d84a957e11ec6e86e46c24fd0fbde474b0",
+  "bytes": 18583,
+  "requestId": "o8TuSs1i3WTjpE9FKsQS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74e8f3c0ec3910eb6e4b508c49b39c2589e9439ca65d6f33f7ace9637823479c",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

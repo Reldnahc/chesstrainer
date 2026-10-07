@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "After this move, the bishop can be captured on the very next reply. Include that capture in the analysis and see what it costs."
+    },
+    "takeId": null
+  },
+  "requestHash": "68d5aa3f15a6597a5c2652a4500f545890e53854953538ee039552ecf08b1ef0",
+  "recordedAt": "2026-10-07T02:20:46.783Z",
+  "sha256": "bcfd5e9d7322af84f308820423aece38dc67819d0746f2009ea39badd0100eb5",
+  "bytes": 24922,
+  "requestId": "g4rdUvk5heE2cAOZsVuu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ef972153790a084ffe695f066fe47c70ff3b91903d10a3fc95e12c651050811",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

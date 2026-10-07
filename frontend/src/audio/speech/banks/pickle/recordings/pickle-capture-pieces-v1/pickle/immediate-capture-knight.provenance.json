@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "What's the reply? It can take the knight right now. What happens after that?"
+    },
+    "takeId": null
+  },
+  "requestHash": "9d6ae5accd40820afae2ca964d3c42310e866435a0ba886fce7e72283d6f9760",
+  "recordedAt": "2026-10-07T02:21:12.401Z",
+  "sha256": "f1d4baef5d5ec0ad3bd3c791a992115b0f58b23292cacf0ae53def321c1ac3d6",
+  "bytes": 15486,
+  "requestId": "5ztfxFf7pasDBDZYm6S9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "511d93b0c59b1760c6fda9abb673781d860f78eac4681719b5a677ebeae19007",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

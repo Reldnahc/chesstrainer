@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "There it is: the next move can grab the knight at once. Quick, play it out and see what happens next!"
+    },
+    "takeId": null
+  },
+  "requestHash": "5d77cbc42f0b389779dadd82e05aaa5b932221051dfe0baf6b02b5e6f5194872",
+  "recordedAt": "2026-10-07T02:21:13.973Z",
+  "sha256": "fc8559ad9dfe9d45d0bf348c9c97b0dbde92b1f1c24cd37c0c424d3e7540d53e",
+  "bytes": 20322,
+  "requestId": "n0jB7Wwi6Bf1ZPxR3YUv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab23c4ab23ff23495d4a968d4b5205aebac5cf60289c7a78cf1bbe5ab3741d75",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

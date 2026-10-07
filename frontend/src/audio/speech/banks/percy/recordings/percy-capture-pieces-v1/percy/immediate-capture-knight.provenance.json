@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "The other side can capture the knight immediately! Count that reply carefully!"
+    },
+    "takeId": null
+  },
+  "requestHash": "0861bb68aa12d2fcc282f8df261fc6e54495c772cd8d3f94059a6bab1a6b4037",
+  "recordedAt": "2026-10-07T02:21:10.515Z",
+  "sha256": "5606124f652ab2a9ac5ac8c05531dcab663f26b3f7491f93cb73acf093debd0b",
+  "bytes": 15356,
+  "requestId": "U9RYOD07Pgx5sB6dUihJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7b89063cea3e155d22943575e8aa3614992c0ad3beb52f8c3adde22e792800a",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

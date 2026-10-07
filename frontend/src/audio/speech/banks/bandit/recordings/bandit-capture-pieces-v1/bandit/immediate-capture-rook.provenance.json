@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Somebody's eyeing the rook: the other side can take it next move. Check the price of that."
+    },
+    "takeId": null
+  },
+  "requestHash": "521a2700fb4af04bc4df2d3e1a331d164b6bf87fbf51fc5ee987c54954ca6125",
+  "recordedAt": "2026-10-07T02:20:48.697Z",
+  "sha256": "e54a6252c6ad1bde2739688b245727daf9b26cb9ea11e4e8facf89733894f6d4",
+  "bytes": 18038,
+  "requestId": "F3TArmBZlaJvo9NTA5ta",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68dc8c4e49480ff25a3cfc64f9ce4778a6073a244928455bbfac30347858ccf7",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

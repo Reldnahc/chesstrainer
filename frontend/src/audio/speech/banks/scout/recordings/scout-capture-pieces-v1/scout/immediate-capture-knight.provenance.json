@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "Target spotted: the knight. The opponent can capture it right away. Log that capture and scan what follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "16cf7bb8685b528b6a98735fda98a766905b59f1ab0187f26780ceae1e25e395",
+  "recordedAt": "2026-10-07T02:21:16.281Z",
+  "sha256": "ebac09a3bb878c815fae87311450881b81194d2de493a9ed6a5ec4776f0bd6c2",
+  "bytes": 22301,
+  "requestId": "HfQBhpXzWUtf58xrMKoD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bcdee2f63c5ad4c01825db2a886cf9cace310fc8673472322543352cb6b81286",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

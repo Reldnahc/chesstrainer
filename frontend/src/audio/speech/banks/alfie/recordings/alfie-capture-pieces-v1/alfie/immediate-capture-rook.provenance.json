@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "The opponent has an immediate capture of the rook available. Check carefully what the position looks like afterwards."
+    },
+    "takeId": null
+  },
+  "requestHash": "8292575e8099e44d5747bf985285b26d39c4bd2b0b4ea46717cf584aa8fb56ae",
+  "recordedAt": "2026-10-07T02:20:48.579Z",
+  "sha256": "e9839124e0331305b0b6b214dd0a36d9fc99a4890ffd97d19d00f90e377dc90b",
+  "bytes": 21091,
+  "requestId": "q31HBw3H5jZmnZ0YXyl8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e14cab908d758a65a6e37df289dca31275eba77e57cf89776c2a5158d60d4f4",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

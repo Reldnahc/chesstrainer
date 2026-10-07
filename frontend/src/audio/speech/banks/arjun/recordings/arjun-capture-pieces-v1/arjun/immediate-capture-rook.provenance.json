@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Here's a puzzle worth a moment: the opponent can snap up the rook straight away. What would that capture change for both sides?"
+    },
+    "takeId": null
+  },
+  "requestHash": "6da4b300e8946a17864d5c854fd98195c31b7c881a9cdae7b9debca37b983170",
+  "recordedAt": "2026-10-07T02:20:40.586Z",
+  "sha256": "d6a1a8a9a6f9758325eec9a5a2c2a7e0ef1647f29e92175de279177c531907b2",
+  "bytes": 24991,
+  "requestId": "NzejzYUzOQWP4wjNpJHL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8413412c1947bb0bf3f279bad774e92a05ad4b8b55f594e3ae46248dc94b7eec",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

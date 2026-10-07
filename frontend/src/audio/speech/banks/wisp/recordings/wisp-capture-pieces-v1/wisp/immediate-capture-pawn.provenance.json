@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "immediate-capture-pawn",
+      "label": "Immediate capture pawn",
+      "text": "The reply is already waiting to take the pawn. Notice what that leaves behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "7615d4d92d1a4416b201f0cb7c3bf25ebc11ddddabb05ce4ea88d7694d3e6bb1",
+  "recordedAt": "2026-10-07T02:21:21.537Z",
+  "sha256": "21ad2006ec85c44edee9dadd8f298fbefda2dca833ac585eefde65c95fc61fd4",
+  "bytes": 17038,
+  "requestId": "0y2CmVVVeNT4KDRVLPiE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7962c82ee4f54497f5b6110550d8a1d084ff45228a629b27556fc133c941cf4",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

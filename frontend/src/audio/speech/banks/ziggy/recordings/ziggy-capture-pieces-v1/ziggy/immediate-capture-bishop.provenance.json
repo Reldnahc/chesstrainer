@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "Noted: the next move can take the bishop straight away. The cost of that capture deserves inspection."
+    },
+    "takeId": null
+  },
+  "requestHash": "2aac8690fd8c032e593eab3cca49cef023c6b9517f1a8adb8d4998fb3889b976",
+  "recordedAt": "2026-10-07T02:21:28.131Z",
+  "sha256": "eb758e748409cb61ffe166b08ffd06730355232982a1b6a35dc1f7a2e7cdbc28",
+  "bytes": 20532,
+  "requestId": "ISi4akwWOkMXOWpwo8Oz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86b3a40837e95f7eb4e801939e09210215595908c17cc15b8353feb90df9da8e",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

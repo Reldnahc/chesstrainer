@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "immediate-capture-pawn",
+      "label": "Immediate capture pawn",
+      "text": "What can the reply take first? The pawn, straight away. Does that capture open anything else up?"
+    },
+    "takeId": null
+  },
+  "requestHash": "b53fc76a5e12b83c601b93b34c5936fb567858de48781802f437d66c95fc5ffe",
+  "recordedAt": "2026-10-07T02:20:34.357Z",
+  "sha256": "db401e446404640cd08d71356abaad84091d54f85e6c37ffc6b9110ea920712a",
+  "bytes": 20133,
+  "requestId": "hAxQ21F2k28uU4sVzNgN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce2834185921d90a9ed5d1d123f117b0c9d149e697a4a7eeb47152f711aba983",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "immediate-capture-pawn",
+      "label": "Immediate capture pawn",
+      "text": "Hold on: the other side can take the pawn straight away. Worth weighing that capture first."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f505bfe55a3b5214e9b4c89e80203d6856c9baf50cdf21a5168a9e2154494ba",
+  "recordedAt": "2026-10-07T02:20:52.627Z",
+  "sha256": "394c19ab03d7ed7b755aef21418453edbbf0fafe247c66a7a0c0db65f7665a8d",
+  "bytes": 18843,
+  "requestId": "kMKGt2pO5uI92BBwr80y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e050b03489be9708ea9596dd68fd90a5d0be807a6bfafe0f1bb6bc5ef7b834b6",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

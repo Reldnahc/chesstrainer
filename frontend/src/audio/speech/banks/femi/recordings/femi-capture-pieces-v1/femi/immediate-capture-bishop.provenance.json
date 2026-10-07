@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "Just a moment: the bishop can be taken on the very next move. Check how that works out."
+    },
+    "takeId": null
+  },
+  "requestHash": "1aea0e58641cbd5947c27b8332f7db32c2991d74a735425c51ff83b19cd2e423",
+  "recordedAt": "2026-10-07T02:20:56.110Z",
+  "sha256": "1fcba7e2b55892577292b85b44d2c4fdf9e2f81065d34e0072b0a2e13179dadc",
+  "bytes": 18561,
+  "requestId": "pScYSIQnDXrSqqfH8PHs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "deab1ffdead645c1abf8a06b8d4be99649da944f0a56192762bf56feaab32508",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

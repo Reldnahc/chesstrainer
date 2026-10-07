@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "immediate-capture-queen",
+      "label": "Immediate capture queen",
+      "text": "The very next reply can capture the queen. Pause and weigh what that would mean."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a6fcb43edb85ee0513ab30f0109afc96c723946b6e80f97b7f3bc7bccb05846",
+  "recordedAt": "2026-10-07T02:20:41.286Z",
+  "sha256": "dc4c3fde9f56298e8691b9c5a9eb89b63e72c7c1270463ee9306b184919fa48c",
+  "bytes": 18580,
+  "requestId": "Enp7P0bnMJjQLE4MUKCD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16d07e249d9e4ff68afba9354e3a6646016ac5bfca548a1d39687cda3c16e557",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

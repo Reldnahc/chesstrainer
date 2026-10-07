@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "An immediate capture of the rook is possible. Worth a look at the price."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2f89a931eb5da153a04c4ddb808907f3448446dddd0f22d774f5871679e35b1",
+  "recordedAt": "2026-10-07T02:20:58.543Z",
+  "sha256": "034df43b67cee4310a504ca189e8394374f466eb0cf781fc94f84961bf0a30d6",
+  "bytes": 14677,
+  "requestId": "4AytJViFQCDoAVcGDOBx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7f1b11b1f2b8dd22c6a034b7971d757001cd6809bad05b0b6c4b9de3908b1c7",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

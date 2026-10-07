@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "Quietly, the other side can capture the knight at once. Its cost deserves a look."
+    },
+    "takeId": null
+  },
+  "requestHash": "c83c92f4efa82ee486d564002345b7e497f6629ac05acb4e0ac831d5e2528f8a",
+  "recordedAt": "2026-10-07T02:21:23.245Z",
+  "sha256": "391e9a4b4c6f6281a6dca314fb293654242cc808dd71d11f51a0e8c7013e004f",
+  "bytes": 18127,
+  "requestId": "TZF4BK0quWMmSMxfm4h5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd1ae9112742f600b4c27300fe073e785d12f9c047a1de6588575f86d167f46d",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "immediate-capture-pawn",
+      "label": "Immediate capture pawn",
+      "text": "The opponent can capture the pawn at once. What remains afterward deserves a careful look."
+    },
+    "takeId": null
+  },
+  "requestHash": "c353004b9df8d7f30749a942d9f274066f457d24f9a270be1f081e777fb49c8a",
+  "recordedAt": "2026-10-07T02:20:44.775Z",
+  "sha256": "6a32973e76ec733ae74a1b0dce2e2c6de53c7675dd44c564c9ae7939bfb4a069",
+  "bytes": 19943,
+  "requestId": "c7nUv8SSEGo4p4LZN3Zd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f90c5e7b365b559b08675068ef0867c2787e1e0542aba1f42f762d67af0559c1",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

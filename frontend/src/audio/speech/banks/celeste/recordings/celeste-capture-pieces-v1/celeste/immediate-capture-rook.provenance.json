@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "Look first at the rook: the reply can capture it straight away. Hold this choice up against the better move before going on."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc822f43b954814b93e197acc6d40cab877faf9767a414dd37a09d4f3a423a22",
+  "recordedAt": "2026-10-07T02:20:50.608Z",
+  "sha256": "67fb9ec683c9c2cf2bf8ae6d7f89884d30276d61472dc11555053bd0d684d32e",
+  "bytes": 26021,
+  "requestId": "6ecTroS7ZW7ig2msd08a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ae4be2d54c1e9a04f8d29c629536c80b71e0b96d50e153bd8ce77338ae3a17c",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

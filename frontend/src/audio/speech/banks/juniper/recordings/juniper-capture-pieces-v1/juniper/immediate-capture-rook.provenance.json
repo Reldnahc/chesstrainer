@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "The reply comes quickly. The other side can take the rook, so notice what follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e3d1aedbdc705282c23f8aba12f1e94f83192eb44289517e49bb85a3abc8361",
+  "recordedAt": "2026-10-07T02:21:05.371Z",
+  "sha256": "581ffa61df37394265e430634e71736778b16f351c1d79c3e51a89324efdb1ae",
+  "bytes": 17910,
+  "requestId": "3foRJjqBFGt2LmqgrVif",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11a738349eed4d2e0e6e18a3a8f803978a21fd6483941e0aa6a86f71cb5b5519",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

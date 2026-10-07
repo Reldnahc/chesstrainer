@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "The reply can take the bishop at once. That line deserves a careful walk-through!"
+    },
+    "takeId": null
+  },
+  "requestHash": "33ad05fc9f7142c78bfe744dbc290c15fb06b8d9093c624d8137843ef1b7c397",
+  "recordedAt": "2026-10-07T02:21:12.104Z",
+  "sha256": "6687179b5373c65b7c968084e4d13da5675ce7a840fe0a2a46844e4a016c1bc3",
+  "bytes": 16829,
+  "requestId": "INyN1nqBSfwtikQeengh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ae64a4b3ae2c4b558ef00d40d70bc9b79bec7cc9d8e80e95651f7a9945acc5a",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

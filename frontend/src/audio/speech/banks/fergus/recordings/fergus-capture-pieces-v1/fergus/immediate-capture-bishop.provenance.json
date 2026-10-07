@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "The other side can take the bishop straight away. Best to look at that before going on."
+    },
+    "takeId": null
+  },
+  "requestHash": "91d068c05c34d1deb9473fba589e96a06988cfcb5bdb96596a7be48b4969cd0d",
+  "recordedAt": "2026-10-07T02:20:57.073Z",
+  "sha256": "0ea6e0244aaea1332ab6eb29a2290f8a34426e1496dc2cc567740e4b7487e550",
+  "bytes": 17230,
+  "requestId": "OL4iQAz0EvD71vCsnWDi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c05228e6632b526f60e3d6ef98f76570005ab1da4ecdf33ebc540c8d38438c1d",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "Note it: the other side can take the bishop immediately. Make tallying that reply a habit."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d7598016a85fb92b2e4613a7cd9be306288dc25635b872a33014eff8b732bc8",
+  "recordedAt": "2026-10-07T02:21:23.616Z",
+  "sha256": "914eb1e6e716a5f0a168b192dbfd1c5cae3580fbf75c3b341d8cf5e22ebafcf0",
+  "bytes": 20388,
+  "requestId": "wQvDY9pN2M5iuOVgmgjq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2068e98e7037f6430eda3fd394f66f673a146b1535386f1d840bd665eacf7e64",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

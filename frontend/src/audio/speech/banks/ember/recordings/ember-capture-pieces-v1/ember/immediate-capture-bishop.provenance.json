@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "An immediate capture of the bishop is available. Measure this move against the stronger alternative."
+    },
+    "takeId": null
+  },
+  "requestHash": "69240fd3190dd4a170e503ad27130d2a5e6f5a5cb4dc6bfe16498c3fec5d153d",
+  "recordedAt": "2026-10-07T02:20:47.977Z",
+  "sha256": "0a8c0473b91eea5b55fa5faa52eeb2e5076c93f10cd030a8b19ecbf40251d66b",
+  "bytes": 18517,
+  "requestId": "v1BkXltiqdtvHzKeXjLp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f32eef592d424de0ddbd4fcefd81f95652146d0db30963fdfb024d2f28f9cb1",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

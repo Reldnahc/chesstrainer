@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "Right away, the reply may take the knight. Consider gently how the position settles after that capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "adf76af709d4e917943eeca962dfef7df66c67c51d34f9b8d73db46a724c7a4a",
+  "recordedAt": "2026-10-07T02:20:46.752Z",
+  "sha256": "211c0bbff4f0b5bdf1a08a851e9e81f971835b162f5963bbfcadfbbac013d8c0",
+  "bytes": 22729,
+  "requestId": "v40U5DNdPulvb0NVa6F9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10e5a0ea0fc5ab4e9faf779bee6c947ea88198961f72f7de70b9a6b5a13de637",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

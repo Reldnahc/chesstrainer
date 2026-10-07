@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "immediate-capture-knight",
+      "label": "Immediate capture knight",
+      "text": "Right after this move, the knight can be captured. Take a slow look before going any further."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff6777bf73cf9482ac02e688cd36f00586fd0677e21fd224706e5a29b6af01a2",
+  "recordedAt": "2026-10-07T02:20:36.098Z",
+  "sha256": "586d4b61f0adfe54c004b20d57d5b0627d0a0567a58606e10aeee76fd80495c3",
+  "bytes": 20039,
+  "requestId": "sPBP8zugzV9JKVWUEYZR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4ce37d6b060fe33fee529bc60f53f297326b38894b5eed2ac083b06428db8b3",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

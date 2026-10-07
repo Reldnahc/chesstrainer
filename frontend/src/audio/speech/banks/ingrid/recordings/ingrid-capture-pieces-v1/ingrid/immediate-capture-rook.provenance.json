@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "immediate-capture-rook",
+      "label": "Immediate capture rook",
+      "text": "The opponent has a capture of the rook ready right now. That's the reply to check first."
+    },
+    "takeId": null
+  },
+  "requestHash": "24348d7c22ecc0f2a1dcbf400cafdb469f105f5d4497be56c1866e8d178500a9",
+  "recordedAt": "2026-10-07T02:21:00.066Z",
+  "sha256": "a601b071ff0fa988edee238a4f5763f13de7f7fd64d34987ddbff76186ec0550",
+  "bytes": 18898,
+  "requestId": "8kqAYUyR9JCp4ypdJatY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3db218d2e6d387004f817fc138533160c1f742d3b9bee7bb8adaf6456f0bca6",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

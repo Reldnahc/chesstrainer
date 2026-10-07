@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "immediate-capture-pawn",
+      "label": "Immediate capture pawn",
+      "text": "Here's a clue in the reply: the other side can take the pawn straight away. What does that capture cost?"
+    },
+    "takeId": null
+  },
+  "requestHash": "96303106a08361bff1ae8950ea5d357db2c6768b250d96b988b0da53f6cc121c",
+  "recordedAt": "2026-10-07T02:21:17.765Z",
+  "sha256": "2fce86b325a07361e92d5df71526e7a59b6f7f87cad3bd72d53a941f33a1f099",
+  "bytes": 22556,
+  "requestId": "QE9rUvjFBqajNowYfMby",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6741652fe0b2caf49d9faec80dc9e585ce90709d29074ac9881366e59ffa09c",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

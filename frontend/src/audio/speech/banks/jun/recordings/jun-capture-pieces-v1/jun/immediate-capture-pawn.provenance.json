@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "immediate-capture-pawn",
+      "label": "Immediate capture pawn",
+      "text": "The opponent can capture the pawn immediately. Calculate the material balance afterward."
+    },
+    "takeId": null
+  },
+  "requestHash": "b80f26d7563bd6774caa808b934aafc13e583b4a6ef7f74e1436f433e1dfbaec",
+  "recordedAt": "2026-10-07T02:20:54.454Z",
+  "sha256": "2510a77158409146b3b607dfc231dd1a6f30e078c2729763da835a9e63b25744",
+  "bytes": 17635,
+  "requestId": "L0kh79bbaMZznOJjUEBV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9383990b8e948c0ac4e96794ab208113ff969b9e32aaf3bf143b7975ff70cc0a",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

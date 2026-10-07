@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "immediate-capture-bishop",
+      "label": "Immediate capture bishop",
+      "text": "A capture of the bishop is already waiting in the reply. Check what the position gives up after it."
+    },
+    "takeId": null
+  },
+  "requestHash": "567460410de9654701c38eeed461a580d5887418710a7576fa0bce3a2c94882f",
+  "recordedAt": "2026-10-07T02:20:37.805Z",
+  "sha256": "3b60ab01c27827390e824c8fe3e23de62f13f1335be03f547032bf5bcb5b331e",
+  "bytes": 18959,
+  "requestId": "4ukFx8cVDwxObm9v6vKm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "816e4d3d0af8f9296023e4d5d1f633cd4ef6d107cfc779dea150829f6d2276f2",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
