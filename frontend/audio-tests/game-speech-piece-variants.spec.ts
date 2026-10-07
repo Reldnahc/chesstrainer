@@ -32,7 +32,7 @@ test("every piece variant names a real base meaning and pieces that can occur th
   const ids = new Set(meanings.map(item => item.id));
   const pieces = ["pawn", "knight", "bishop", "rook", "queen", "king"];
   const variants = meanings.filter(item => item.variantOf);
-  expect(variants).toHaveLength(268);
+  expect(variants).toHaveLength(273);
   for (const item of variants) {
     const base = meanings.find(meaning => meaning.id === item.variantOf)!;
     expect(base.variantOf).toBeUndefined();
@@ -48,6 +48,7 @@ test("every piece variant names a real base meaning and pieces that can occur th
   const of = (base: string) => variants.filter(item => item.variantOf === base).map(item => item.pieces!.join("-"));
   expect(of("tactic-pin-played")).toEqual(["pawn", "knight", "bishop", "rook", "queen"]);
   expect(of("tactic-back-rank-played")).toEqual(["rook", "queen"]);
+  expect(of("immediate-capture")).toEqual(["pawn", "knight", "bishop", "rook", "queen"]);
   expect(of("explanation-frame-capture-promotion-ordinary")).toEqual(["knight", "bishop", "rook", "queen"]);
   expect(of("grade-brilliant-1")).toEqual(["knight", "bishop", "rook", "queen"]);
   expect(of("explanation-finding-double-check")).toHaveLength(9);
