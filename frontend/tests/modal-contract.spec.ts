@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer, transformWithEsbuild, type ViteDevServer } from "vite";
 import { devRecordingAssets } from "../vite.shared";
+import { isolatedServer } from "./helpers/vite";
 
 // Real production components in a small browser fixture allow changes to board
 // inputs while a modal is open, without coupling these contracts to an engine.
@@ -97,7 +98,7 @@ test.beforeAll(async () => {
         });
       },
     }],
-    server: { host: "127.0.0.1", port: 0 },
+    ...(await isolatedServer()),
   });
   await server.listen();
   origin = server.resolvedUrls!.local[0];

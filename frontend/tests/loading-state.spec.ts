@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer, transformWithEsbuild, type ViteDevServer } from "vite";
 import { devRecordingAssets } from "../vite.shared";
+import { isolatedServer } from "./helpers/vite";
 
 // Exercise production consumers and their real requests without a database or
 // engine. Deferred routes let the test observe the otherwise brief load state.
@@ -83,7 +84,7 @@ test.beforeAll(async () => {
         });
       },
     }],
-    server: { host: "127.0.0.1", port: 0 },
+    ...(await isolatedServer()),
   });
   await server.listen();
   origin = server.resolvedUrls!.local[0];

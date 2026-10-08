@@ -8,5 +8,6 @@ export default defineConfig({
   root: fileURLToPath(new URL("./coach-studio", import.meta.url)),
   plugins: [react(), devRecordingAssets(), speechManifests()],
   publicDir: false,
+  cacheDir: fileURLToPath(new URL("./node_modules/.vite-coach", import.meta.url)),
   server: { host: "127.0.0.1", port: 5174, strictPort: true },
 });
