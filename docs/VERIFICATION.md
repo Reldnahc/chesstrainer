@@ -4,6 +4,66 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Dragon and Vienna course review — October 8, 2026
+
+Owner request: review both new courses before merging. Four independent
+reviewers walked every step of the Sicilian Dragon (two reviewers, split by
+chapter) and the Vienna Gambit on python-chess boards. They checked claims
+against Stockfish 18 at depth 20 to 26, Maia-3 at 1200 and 1600, and published
+sources; a fourth reviewer read the branch diff as a code review. About 80
+first-pass findings were confirmed and fixed, rejected only with a stated reason,
+and then six further rechecks of the changed steps followed until a pass found
+nothing wrong or misleading. No taught move or line changed; both courses keep
+revision `2026-10-v1` because they are unreleased.
+
+The corrections fixed wrong board claims (a knight still pinned to the queen,
+a threat that lost the knight, 12.Qxc3?? missing Bxc3+), added warnings for
+common traps (4.Ng5 Nxe4?? Bxf7+, 10.Nxd6+ Ke7, 9.Bxh6 Bxh6 10.Qxh6 Rxh6),
+explained terms on first use and sharpened frequency and evaluation words. The
+claims tests now build each taught board through `course_claims.Boards`, which
+fails if the position is not in the course, use a stricter pin check, and pin
+every corrected fact. `test_italian_native.py` now also audits both courses.
+
+## Vienna Gambit course — October 8, 2026
+
+Owner request: a Vienna Gambit course for White. `vienna-gambit` (`2026-10-v1`)
+has four chapters and 19 recall lines: 3...exf4 4.e5, 3...d5, Black declining
+with 3...d6 or 3...Nc6, and Black's other second moves 2...Nc6 and 2...Bc5, with
+15 side trips. Maia-3 chose the shown Black moves: its most common choice,
+averaged over 1200 and 1600. Stockfish 18 at depth 20 on
+this PC checked every White move; each is the first choice or within 0.3 pawns,
+except the gambit move `3.f4` itself (about 0.4 behind `3.Nf3`). No historical
+game is included. The [Vienna source record](VIENNA_COURSE_SOURCES.md) lists
+the Maia percentages, engine scores and names.
+
+Checks: `ruff check` and `ruff format --check` on the changed Python files;
+`pytest backend/tests/test_italian_course.py backend/tests/test_dragon_claims.py
+backend/tests/test_vienna_claims.py backend/tests/test_course_recall_agreement.py
+backend/tests/test_fundamentals_course.py backend/tests/test_study_lessons.py`:
+**81 passed**, with native Stockfish. `npm run test:types` passes. The
+`opening-courses` browser spec walks all four Vienna chapters on desktop and
+mobile: **8 passed**.
+
+## Sicilian Dragon course — October 8, 2026
+
+Owner request: a Sicilian Dragon course for Black. `sicilian-dragon`
+(`2026-10-v1`) has five chapters and 29 recall lines: a quiet Be2 setup, the
+Yugoslav Attack, Bg5, and White's second- and third-move alternatives, with 24
+side trips. Maia-3 chose the shown White moves: its most common choice, averaged over
+1200 and 1600, except the deliberate main lines the source record lists (6.Be2,
+7.f3, 10.exd5). Stockfish 18 at depth 20 on
+this PC checked every Black move; each is the first choice or within 0.3 pawns,
+except the Dragon move `5...g6` itself (0.27 to 0.39 behind `5...a6`). No
+historical game is included. The [Dragon source record](DRAGON_COURSE_SOURCES.md)
+lists the Maia percentages, engine scores and names.
+
+Checks: `ruff check` and `ruff format --check` on the changed Python files;
+`pytest backend/tests/test_italian_course.py backend/tests/test_dragon_claims.py
+backend/tests/test_course_recall_agreement.py backend/tests/test_fundamentals_course.py
+backend/tests/test_study_lessons.py`: **71 passed**, with native Stockfish.
+`npm run test:types` passes. The `opening-courses` browser spec walks all five
+Dragon chapters on desktop and mobile: **10 passed**.
+
 ## Opening-course common replies — October 8, 2026
 
 Owner request: strengthen the three Study courses, which skipped common
