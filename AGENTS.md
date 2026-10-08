@@ -6,7 +6,8 @@ The project owner requires commits throughout development.
 - Use coherent, descriptive commits, with validation appropriate to the change. Do not fabricate intermediate commits for work already completed as one combined change.
 - Before ending an implementation turn, commit the completed work unless the user explicitly requests otherwise. Preserve unrelated existing changes and keep them out of your commit unless the user authorizes including them.
 - Push when the user requests it; committing locally and publishing to the remote are separate actions.
-- The test suite is large. Validate locally with only the focused tests that cover what changed; do not run the full suite or full browser/Playwright runs, and leave broad coverage to CI.
+- While working, validate with only the focused tests that cover the change (`python scripts/test_affected.py`); never run the full suite or a CI run for a small change.
+- Before every push to origin, run the full suite locally first; this machine is faster than CI and catches failures before they cost a CI run. Run `python scripts/test_affected.py --full`, then the CI checks it does not cover: `python scripts/export_api_contract.py --check`, `alembic upgrade head && alembic check` against a throwaway `DATABASE_PATH` (never `data/trainer.sqlite3`), and `python -B -S scripts/prepare_coach_voice_bank.py --check`. See [Testing](docs/TESTING.md#before-pushing).
 - Keep secrets, private PGNs, databases, backups, generated analysis reports, native binaries, and dependency folders out of commits. Update living documentation when behavior or architecture changes.
 
 ## Frontend component reuse

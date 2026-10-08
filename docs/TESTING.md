@@ -309,6 +309,24 @@ formatting and parallel backend tests, the build or type checks, and the selecte
 browser suites side by side. `--dry-run` prints the selection only, `--base`
 changes the comparison and `--project desktop` limits the browser viewports.
 
+### Before pushing
+
+While working on a change, run only `python scripts/test_affected.py` (or a
+narrower focused test). Before every push to origin, run the full suite locally:
+it finishes faster than CI and catches failures before they spend a CI run.
+`--full` selects every check `test_affected.py` knows; the commands after it are
+the backend job's checks it leaves out. The migration check runs against a
+throwaway database so it never migrates `data/trainer.sqlite3`.
+
+```sh
+python scripts/test_affected.py --full
+python scripts/export_api_contract.py --check
+DATABASE_PATH="$(mktemp -d)/migrate-check.sqlite3" sh -c 'alembic upgrade head && alembic check'
+python -B -S scripts/prepare_coach_voice_bank.py --check
+```
+
+CI's Docker install check (`scripts/smoke_install.py`) is not part of this set.
+
 Inspect selection locally without running suites:
 
 ```sh
