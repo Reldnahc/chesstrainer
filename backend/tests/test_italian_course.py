@@ -318,8 +318,8 @@ def test_illustrative_passages_support_their_specific_board_claims():
     (
         (
             "italian-foundations",
-            "2026-10-v3",
-            "37297b889f502b07663ee9556b3a31d9b4d806c846fba97d3e02897b7312b9c1",
+            "2026-10-v4",
+            "43bb521674526a868980bae699a2ea27df7051a6c725e4a0204dcbf7b48e11f7",
         ),
         (
             "italian-black-foundations",

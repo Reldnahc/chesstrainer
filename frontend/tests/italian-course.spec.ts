@@ -3,7 +3,7 @@ import type { Schema } from "../src/api";
 import { expectNoNewDueReviews, settledDueReviews } from "./helpers/server";
 
 const courseId = "italian-foundations";
-const courseRevision = "2026-10-v3";
+const courseRevision = "2026-10-v4";
 const coursePath = `/study/openings/courses/${courseId}?revision=${courseRevision}`;
 const savedMotion = new WeakMap<Page, Schema["MotionPreferences"]>();
 const enrolled = new WeakMap<Page, string[]>();
@@ -120,33 +120,17 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   await command(page, "Continue");
   await move(page, "f1c4");
   const anchor = await command(page, "Continue");
-  expect(anchor.step.id).toBe("black-choice");
+  expect(anchor.step.id).toBe("knight-jump-choice");
   await command(page, "Explore alternative");
   const alternative = await command(page, "Play continuation");
-  expect(alternative.playback.map(frame => frame.uci)).toEqual(["g8f6"]);
-  await command(page, "Continue");
-  const defended = await move(page, "d2d3");
-  expect(defended.playback.map(frame => frame.uci)).toEqual(["d2d3", "f8c5"]);
-  let branch = await command(page, "Continue");
-  let sourceInspected = false;
-  for (let steps = 0; branch.actions.includes("continue") && steps < 12; steps++) {
-    if (branch.step.kind === "game_excerpt" && branch.step.phase === "complete" && !sourceInspected) {
-      const game = await command(page, "Explore full game");
-      expect(game.game?.title).toContain("Pollock–Schiffers");
-      expect(game.game?.attributions.length).toBeGreaterThan(0);
-      await expect(page.locator(".lesson-attributions")).toContainText(game.game!.attributions[0].text);
-      await command(page, "From the beginning");
-      await command(page, "Next game move");
-      const closed = await command(page, "Return to lesson");
-      expect(closed.history).toEqual(branch.history);
-      expect(closed.fen).toBe(branch.fen);
-      branch = closed;
-      sourceInspected = true;
-    } else {
-      branch = await command(page, ["demonstration", "game_excerpt"].includes(branch.step.kind) && branch.step.phase === "ready" ? "Play continuation" : "Continue");
-    }
+  expect(alternative.playback.map(frame => frame.uci)).toEqual(["c6d4"]);
+  for (const [uci, reply] of [["f3d4", "e5d4"], ["e1g1", "f8c5"], ["c4f7", "e8f7"], ["d1h5", "f7f8"], ["h5c5", null]] as const) {
+    await command(page, "Continue");
+    const played = await move(page, uci);
+    expect(played.playback.map(frame => frame.uci)).toEqual(reply ? [uci, reply] : [uci]);
   }
-  expect(sourceInspected).toBe(true);
+  const branch = await command(page, "Continue");
+  expect(branch.step.id).toBe("knight-jump-summary");
   expect(branch.branch).not.toBeNull();
   expect(branch.actions).not.toContain("continue");
   await page.reload();
@@ -155,6 +139,8 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   const returned = await command(page, "Return to main line");
   expect(returned.history).toEqual(anchor.history);
   expect(returned.fen).toBe(anchor.fen);
+  const skipped = await command(page, "Continue");
+  expect(skipped.step.id).toBe("early-h6-choice");
   await command(page, "Continue");
   await command(page, "Play continuation");
   await command(page, "Continue");
@@ -204,7 +190,7 @@ test("the real Italian course teaches a quiet line, returns from its alternative
 
 test("full-game controls interrupt Mason-Lasker playback without waiting for its timer", async ({ page }) => {
   let session = await start(page, "finish-development");
-  for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
+  for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
     const label = session.actions.includes("show_move") ? "Show move"
       : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
     session = await command(page, label);
@@ -261,7 +247,7 @@ test("full-game seeking keeps the coach and controls steady while serializing re
   const originalCoach: Schema["CoachPreferences"] = await preference.json();
   try {
     let session = await start(page, "finish-development");
-    for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
+    for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
       const label = session.actions.includes("show_move") ? "Show move"
         : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
       session = await command(page, label);
@@ -377,12 +363,12 @@ test("full-game seeking keeps the coach and controls steady while serializing re
   }
 });
 
-test("the development and central-break chapters show distinct sourced game passages with exact returns from full-game playback", async ({ page }, info) => {
+test("the Two Knights, development and central-break chapters show distinct sourced game passages with exact returns from full-game playback", async ({ page }, info) => {
   const games = new Set<string>();
-  for (const chapterId of ["central-break", "finish-development"]) {
+  for (const chapterId of ["central-break", "finish-development", "two-knights"]) {
     let session = await start(page, chapterId);
     // Walk authored guidance to its real game passage; no fixture curriculum.
-    for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
+    for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
       const label = session.actions.includes("show_move") ? "Show move"
         : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
       session = await command(page, label);
@@ -407,7 +393,7 @@ test("the development and central-break chapters show distinct sourced game pass
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `test-results/italian-${chapterId}-${info.project.name}.png`, fullPage: true });
   }
-  expect(games.size).toBe(2);
+  expect(games.size).toBe(3);
 });
 
 
@@ -419,11 +405,25 @@ const continuationChapters: {
   branches: number;
 }[] = [
   {
+    id: "two-knights",
+    anchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "g8f6"],
+    moves: ["d2d3", "e4d5", "e1g1", "f1e1"],
+    branchMoves: {
+      "two-knights-h6-castle": "e1g1", "two-knights-h6-prepare": "c2c3",
+      "two-knights-d6-attack": "f3g5", "two-knights-d6-take": "g5e6", "two-knights-d6-pawn": "c4e6",
+      "two-knights-check-block": "c2c3", "two-knights-check-castle": "e1g1",
+    },
+    branches: 3,
+  },
+  {
     id: "finish-development",
     anchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6"],
     moves: ["c2c3", "f1e1", "c4b3", "b1d2", "d2f1", "c1e3", "f1e3"],
-    branchMoves: { "capture-break": "e4d5", "win-center-pawn": "f3e5", "recover-knight": "e1e5", "save-bishop": "b3c2" },
-    branches: 2,
+    branchMoves: {
+      "pin-question": "h2h3", "pin-support": "b1d2",
+      "capture-break": "e4d5", "win-center-pawn": "f3e5", "recover-knight": "e1e5", "save-bishop": "b3c2",
+    },
+    branches: 3,
   },
   {
     id: "central-break",
