@@ -31,9 +31,12 @@ Checks: `ruff check` and `ruff format --check` on the changed Python files;
 backend/tests/test_italian_black_claims.py backend/tests/test_italian_white_claims.py
 backend/tests/test_kings_gambit_claims.py backend/tests/test_course_recall_agreement.py
 backend/tests/test_study_lessons.py backend/tests/test_opening_sources.py`:
-**113 passed**, with native Stockfish. Not run here: `npm run test:types` and
-the `italian-course`, `opening-courses` and `source-attribution` browser specs,
-which were updated for the new chapters, side trips and revisions.
+**113 passed**, with native Stockfish. `npm run test:types` passes. The
+`italian-course`, `opening-courses` and `source-attribution` browser specs,
+updated for the new chapters, side trips and revisions, pass on desktop and
+mobile (**34 passed**, with a preinstalled Chromium). Their chapter walks now
+allow 90 seconds: walking every side trip takes up to about 40 seconds, past
+the default 30.
 
 ## Opening-course chess check — October 8, 2026
 
