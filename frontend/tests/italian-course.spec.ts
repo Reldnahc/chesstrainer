@@ -129,6 +129,9 @@ test("the real Italian course teaches a quiet line, returns from its alternative
     const played = await move(page, uci);
     expect(played.playback.map(frame => frame.uci)).toEqual(reply ? [uci, reply] : [uci]);
   }
+  const summary = await command(page, "Continue");
+  expect(summary.step.id).toBe("knight-jump-summary");
+  // The side trip ends once its closing explanation is read.
   const branch = await command(page, "Continue");
   expect(branch.step.id).toBe("knight-jump-summary");
   expect(branch.branch).not.toBeNull();
@@ -436,6 +439,8 @@ const continuationChapters: {
 
 for (const content of continuationChapters) {
   test(`${content.id} teaches the continuation and counterplay before anchored recall`, async ({ page }) => {
+    // Each chapter walk includes every side trip.
+    test.setTimeout(90_000);
     const before = await studyIds(page);
     const dueBefore = await settledDueReviews(page);
     let session = await start(page, content.id);

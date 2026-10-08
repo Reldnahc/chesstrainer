@@ -100,6 +100,8 @@ async function studyIds(page: Page) {
 
 for (const content of courses) {
   test(`${content.id}/${content.chapter} teaches its own side and preserves exploration without automatic recalls`, async ({ page }, info) => {
+    // Each journey walks every side trip and reloads at each one, which outlasts the default 30s.
+    test.setTimeout(90_000);
     const preferences = await page.request.get("/api/preferences/motion");
     expect(preferences.ok()).toBe(true);
     const originalMotion: Schema["MotionPreferences"] = await preferences.json();
