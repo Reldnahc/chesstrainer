@@ -22,6 +22,7 @@ LessonAction = Literal[
     "close_game",
     "game_seek",
 ]
+LessonTopic = Literal["opening", "skills"]
 
 
 class LessonAttribution(Contract):
@@ -66,6 +67,7 @@ class LessonCourseSummary(Contract):
     learner_color: Color
     chapter_count: int
     completed_chapters: int
+    topic: LessonTopic
 
 
 class LessonCourseView(Contract):
@@ -74,6 +76,7 @@ class LessonCourseView(Contract):
     title: str
     description: str
     learner_color: Color
+    topic: LessonTopic
     chapters: list[LessonChapterSummary]
     attributions: list[LessonAttribution]
     lines: list[LessonLineSummary]
@@ -84,6 +87,7 @@ class LessonResume(Contract):
     course_id: str
     course_revision: str
     course_title: str
+    course_topic: LessonTopic
     chapter_id: str
     chapter_title: str
     updated_at: str
@@ -146,6 +150,7 @@ class LessonSessionView(Contract):
     course_id: str
     course_revision: str
     course_title: str
+    course_topic: LessonTopic
     chapter_id: str
     chapter_title: str
     orientation: Color

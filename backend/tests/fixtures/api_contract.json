@@ -4473,6 +4473,14 @@
           "title": {
             "title": "Title",
             "type": "string"
+          },
+          "topic": {
+            "enum": [
+              "opening",
+              "skills"
+            ],
+            "title": "Topic",
+            "type": "string"
           }
         },
         "required": [
@@ -4482,7 +4490,8 @@
           "description",
           "learner_color",
           "chapter_count",
-          "completed_chapters"
+          "completed_chapters",
+          "topic"
         ],
         "title": "LessonCourseSummary",
         "type": "object"
@@ -4534,6 +4543,14 @@
           "title": {
             "title": "Title",
             "type": "string"
+          },
+          "topic": {
+            "enum": [
+              "opening",
+              "skills"
+            ],
+            "title": "Topic",
+            "type": "string"
           }
         },
         "required": [
@@ -4542,6 +4559,7 @@
           "title",
           "description",
           "learner_color",
+          "topic",
           "chapters",
           "attributions",
           "lines"
@@ -4707,6 +4725,14 @@
             "title": "Course Title",
             "type": "string"
           },
+          "course_topic": {
+            "enum": [
+              "opening",
+              "skills"
+            ],
+            "title": "Course Topic",
+            "type": "string"
+          },
           "id": {
             "title": "Id",
             "type": "string"
@@ -4721,6 +4747,7 @@
           "course_id",
           "course_revision",
           "course_title",
+          "course_topic",
           "chapter_id",
           "chapter_title",
           "updated_at"
@@ -4782,6 +4809,14 @@
           },
           "course_title": {
             "title": "Course Title",
+            "type": "string"
+          },
+          "course_topic": {
+            "enum": [
+              "opening",
+              "skills"
+            ],
+            "title": "Course Topic",
             "type": "string"
           },
           "failed": {
@@ -4867,6 +4902,7 @@
           "course_id",
           "course_revision",
           "course_title",
+          "course_topic",
           "chapter_id",
           "chapter_title",
           "orientation",

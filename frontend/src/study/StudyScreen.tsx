@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, BookOpen, Clock3, Puzzle, RotateCcw, Search } from "lucide-react";
+import { ArrowRight, BookOpen, Clock3, GraduationCap, Puzzle, RotateCcw, Search } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ResumeLink from "../ResumeLink";
 import ActionLink from "../ActionLink";
@@ -30,6 +30,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   const [due, setDue] = useState<number | null>(null);
   const [puzzles, setPuzzles] = useState<Schema["PuzzleLibrary"] | null>(null);
   const [openings, setOpenings] = useState<Schema["OpeningStudyLibrary"] | null>(null);
+  const [skillChapters, setSkillChapters] = useState<number | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState<PuzzleMode | null>(null);
   const [selection, setSelection] = useState<PuzzleSelection>(loadPuzzleSelection);
@@ -49,12 +50,17 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
     if (mode === "home") read(api.GET("/api/opening-studies", { signal: controller.signal }))
       .then(result => { if (!controller.signal.aborted) setOpenings(result); })
       .catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    if (mode === "home") read(api.GET("/api/study/courses", { signal: controller.signal }))
+      .then(result => { if (!controller.signal.aborted) setSkillChapters(result.courses
+        .filter(course => course.topic === "skills")
+        .reduce((sum, course) => sum + course.chapter_count - course.completed_chapters, 0)); })
+      .catch(e => { if (!controller.signal.aborted) setError(e.message); });
     return () => { controller.abort(); beginRequest.current?.abort(); };
   }, [mode]);
   useEffect(() => {
     const title = mode === "home" ? "Study" : mode === "openings"
       ? openingSection === "catalogue" ? "Opening catalogue" : openingSection === "studies" ? "My opening studies" : "Openings"
-      : "Puzzles";
+      : mode === "skills" ? "Skills" : "Puzzles";
     document.title = `${title} · Fieldwork`;
   }, [mode, openingSection]);
   function select(changes: Partial<PuzzleSelection>) {
@@ -102,7 +108,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   const generation = puzzles?.generation ?? null;
   const gamesCount = generation?.puzzles ?? 0;
   return <>
-    <PageTitle eyebrow="YOUR NEXT MOVE" title={mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"} />
+    <PageTitle eyebrow="YOUR NEXT MOVE" title={mode === "home" ? "Study" : mode === "openings" ? "Openings" : mode === "skills" ? "Skills" : "Puzzles"} />
     <div className="study-page">
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     {mode === "home" && <div className="study-options">
@@ -120,6 +126,12 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         <ActionLink variant="secondary" href={studyPaths.openings}>Explore openings <ArrowRight size={16} /></ActionLink>
       </section>
       <section className="panel study-option">
+        <GraduationCap aria-hidden="true" size={22} /><h2>Skills</h2>
+        <p>Tactics and the basics of good play, one step at a time.</p>
+        <p className="study-count">{skillChapters ?? "—"} <span>{skillChapters === 1 ? "Chapter to learn" : "Chapters to learn"}</span></p>
+        <ActionLink variant="secondary" href={studyPaths.skills}>Learn skills <ArrowRight size={16} /></ActionLink>
+      </section>
+      <section className="panel study-option">
         <Puzzle aria-hidden="true" size={22} /><h2>Puzzles</h2>
         <p>{!puzzles ? "Calculation practice from installed collections." : puzzles.available
           ? `${puzzles.solved_puzzles} ${puzzles.solved_puzzles === 1 ? "puzzle" : "puzzles"} solved.${gamesCount ? ` ${gamesCount} from your own games.` : ""}` : "No puzzle collections are installed yet."}</p>
@@ -134,8 +146,9 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         { id: "studies", label: "My studies", href: `${studyPaths.openings}/studies` },
       ]} />}
       {openingSection === "catalogue" ? <OpeningCatalogue query={openingQuery} eco={openingEco} offset={openingOffset} />
-        : openingSection === "studies" ? <OpeningStudies /> : <LessonLibrary courseId={courseId} revision={courseRevision} />}
+        : openingSection === "studies" ? <OpeningStudies /> : <LessonLibrary topic="opening" courseId={courseId} revision={courseRevision} />}
     </>}
+    {mode === "skills" && <LessonLibrary topic="skills" courseId={courseId} revision={courseRevision} />}
     {mode === "puzzles" && <>
       <SectionNavigation label="Puzzle sources" current={source ?? "all"} items={[
         { id: "all", label: "All puzzles", href: studyPaths.puzzles },

@@ -2,6 +2,7 @@
 
 from trainer.chess_core import legal_move_options
 from trainer.contracts.study_lessons import LessonAnnotations, LessonSessionView
+from trainer.study_lessons.bundled import course_topic
 from trainer.study_lessons.content import CourseDefinition, Position
 from trainer.study_lessons.player import available_actions
 
@@ -38,6 +39,7 @@ def view(session, playback=()):
         course_id=course.id,
         course_revision=course.revision,
         course_title=course.title,
+        course_topic=course_topic(course.id),
         chapter_id=chapter.id,
         chapter_title=chapter.title,
         orientation=course.learner_color,

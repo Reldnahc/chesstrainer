@@ -41,7 +41,7 @@ function dashboardData(): DashboardData {
   const courses: Schema["LessonCourseSummary"][] = [{
     id: "home-course", revision: "revision-1", title: "Build an opening plan",
     description: "Develop your pieces with a purpose.", learner_color: "white",
-    chapter_count: 4, completed_chapters: 1,
+    chapter_count: 4, completed_chapters: 1, topic: "opening",
   }];
   return {
     due: { due: 7 },
@@ -63,7 +63,7 @@ function dashboardData(): DashboardData {
       resume: Array.from({ length: 3 }, (_, index) => ({
         id: `home-lesson-${index}`, chapter_id: `chapter-${index}`, chapter_title: `Saved chapter ${index + 1}`,
         course_id: courses[0].id, course_revision: courses[0].revision,
-        course_title: `Saved lesson ${index + 1}`, updated_at: "2026-09-26T16:00:00+00:00",
+        course_title: `Saved lesson ${index + 1}`, course_topic: "opening", updated_at: "2026-09-26T16:00:00+00:00",
       })),
     },
     openings: {

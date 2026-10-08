@@ -38,6 +38,63 @@ mobile (**34 passed**, with a preinstalled Chromium). Their chapter walks now
 allow 90 seconds: walking every side trip takes up to about 40 seconds, past
 the default 30.
 
+## Study Skills card — October 8, 2026
+
+The tactics and fundamentals courses moved from Study → Openings to their own
+Study → Skills section, with a fourth Study home card counting their unfinished
+chapters. Course content and both pinned hashes are unchanged; the topic comes
+from a fixed list of skill course ids outside course content.
+
+Checks: the five lesson test files, `test_api_contract.py` and a new topic test
+in `test_fundamentals_course.py` passed (71); `ruff check` and `ruff format
+--check` passed; `npm run api:check`, `test:types`, `test:symbols`,
+`test:styles` and `build` passed; the changed browser specs
+(`study-lessons.spec.ts`, `dashboard.spec.ts`,
+`practice-speech-selection.spec.ts`) passed on desktop and mobile (60). Not run:
+the full backend suite and the other browser specs.
+
+## Fundamentals course — October 8, 2026
+
+A fifth bundled course, `chess-fundamentals` revision `2026-10-v1`, teaches six
+basic skills on 12 short examples; see
+[Fundamentals course sources](FUNDAMENTALS_COURSE_SOURCES.md). The tactics
+course's `example` and `practice` helpers moved to the shared authoring module;
+the tactics course's content hash is unchanged.
+
+Checks: `test_fundamentals_course.py` (every chapter through the API, exact board
+claims including the unique mates, the stalemate and the square and opposition
+moves, the pinned hash), `test_tactics_course.py`, `test_italian_course.py`,
+`test_study_lessons.py` and `test_lesson_journey.py` passed; `ruff check` and
+`ruff format --check` passed on the changed Python files. Stockfish 17.1 checked
+every taught move and scripted reply, and Syzygy tablebases checked the endings;
+the record is in the sources file. Not run: browser tests and the full backend
+suite.
+
+Independent review, same day: separate reviews of both new courses rechecked
+every board claim, decision and reply, the endings and the sources. They found
+no unsound taught move; the text fixes are listed in each course's sources file,
+and both courses keep revision `2026-10-v1` with new pinned hashes because
+neither had been released. The same five test files passed again, with new
+assertions for the corrected claims, and `ruff check` and `ruff format --check`
+passed.
+
+## Tactics course — October 8, 2026
+
+A fourth bundled course, `tactics-foundations` revision `2026-10-v1`, teaches six
+tactical patterns on 18 short examples; see
+[Tactics course sources](TACTICS_COURSE_SOURCES.md). Course validation now lets an
+explanation start a separate example from another initial FEN. Every other
+transition keeps the existing history rule, and the opening courses' content
+hashes are unchanged.
+
+Checks: `test_tactics_course.py` (every chapter through the API, the board change
+and Back, exact board claims, the new validation rule and its limits, the pinned
+hash), `test_italian_course.py`, `test_study_lessons.py` and
+`test_lesson_journey.py` passed; `ruff check` and `ruff format --check` passed on
+the changed Python files. Stockfish 17.1 checked every taught move and scripted
+reply; the record is in the sources file. Not run: browser tests and the full
+backend suite.
+
 ## Opening-course chess check — October 8, 2026
 
 Owner request: check the chess quality of the three Study courses against

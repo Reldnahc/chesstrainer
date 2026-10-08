@@ -30,7 +30,8 @@ spelling alone does not invalidate recalls or change retirement and due dates.
 `/review`, root exercise links and focused Weakness links resolve to Due through
 history replacement. Legacy `unit` links are stripped, not revived. Imports stay
 in Settings and saved game analysis stays in Games.
-The Study home cards lead to Due, Openings and Puzzles. The main navigation's
+The Study home cards lead to Due, Openings, Skills and Puzzles. The Skills card
+counts the skills-course chapters not yet completed. The main navigation's
 Study link returns to that overview; subpages do not repeat a section selector.
 Overview cards place descriptions below their headings and show the scheduled
 recall and active opening-line counts separately. The Puzzles card's count is
@@ -201,7 +202,10 @@ history at graph edges and requires explicit targets for each accepted decision
 alternative. A branch retains its exact anchor and has an explicit return action.
 Excerpts can open the entire source game's known history and return to the same
 lesson context. Only excerpts and rehearsals can intentionally establish a new
-position/history; ordinary step transitions cannot silently replace the board.
+position/history within one starting position. An explanation may also begin a
+separate example from a different starting position (initial FEN); the board
+changes without move playback, and Back returns to the previous example. Other
+transitions, including branches, cannot silently replace the board.
 
 Each lesson session pins the complete course revision and its content hash. A
 provider cannot silently replace a saved revision, and saved sessions still work
@@ -244,12 +248,22 @@ remounting the coach or moving keyboard focus.
 The `/study/openings` library links course chapters and recent resumable sessions.
 `/study/openings/courses/:id?revision=…` pins the chapter list, and
 `/study/openings/sessions/:id` resumes the exact private player state.
+`/study/skills` is the same library limited to the tactics and fundamentals
+courses, with the same `courses/:id?revision=…` and `sessions/:id` routes under
+it; the Openings Lessons tab lists only opening courses. The backend reports each
+course's topic (`opening` or `skills`) from a fixed list of skill course ids in
+`study_lessons/bundled.py`, outside course content, so the topic never changes a
+content hash. Every other course, including opening-study practice sessions, is
+an opening course. A course page and the lesson player follow the course's own
+topic for their back links, so an older `/study/openings` link to a skills course
+still opens and returns to Skills.
 
 ### Included courses
 
-All three courses ship locally and use the same player, account progress and
-explicit line-enrollment flow. They are focused repertoires: an authored answer
-is a move chosen for that lesson, not a claim that every other legal move is bad.
+All five courses ship locally and use the same player and account progress; the
+three opening courses also share the explicit line-enrollment flow. The opening
+courses are focused repertoires: an authored answer is a move chosen for that
+lesson, not a claim that every other legal move is bad.
 Historical games illustrate plans and mistakes; their moves are not all
 recommendations. No course starts an engine job or downloads material at runtime.
 
@@ -258,11 +272,18 @@ recommendations. No course starts an engine job or downloads material at runtime
 | Italian Game · A quiet White repertoire | White | Recognize the setup and punish 3...Nd4; meet the Two Knights Defense; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
 | Italian Game · A practical Black repertoire | Black | Develop and meet White's common fourth moves; choose a post-castling plan; meet c3/d4; meet the Nc3 gambit; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
 | King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; Black's other common replies; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
+| Tactics · Six basic patterns | White | Forks; pins; skewers; discovered attacks and double check; removing a defender; back-rank checkmate | [Tactics sources](TACTICS_COURSE_SOURCES.md) |
+| Fundamentals · Six basic skills | White | Piece values; counting attackers and defenders; checks, captures and threats before every move; opening principles; checkmating a lone king; king and pawn endings | [Fundamentals sources](FUNDAMENTALS_COURSE_SOURCES.md) |
+
+`tactics-foundations` and `chess-fundamentals` (both revision `2026-10-v1`)
+teach patterns and basic skills rather than an opening. Their examples start
+from separate positions, and they have no recall lines, so they never add
+anything to Due.
 
 The current revisions are `2026-10-v4` for `italian-foundations`, and
 `2026-10-v5` for `italian-black-foundations` and `kings-gambit-foundations`.
 Black decisions and rehearsal use Black orientation
-and automatically play White’s intervening replies. All three course definitions
+and automatically play White’s intervening replies. All five course definitions
 are cached as immutable source data and returned as independent copies. Shared
 SAN authoring helpers produce the same validated content format. Existing saved
 sessions, enrolled lines and their earlier revisions retain their own snapshots.

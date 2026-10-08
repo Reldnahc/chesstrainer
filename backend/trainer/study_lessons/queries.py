@@ -7,6 +7,7 @@ from fastapi import HTTPException
 from sqlalchemy import select
 
 from trainer.models import StudyLessonProgress, StudyLessonSession
+from trainer.study_lessons.bundled import course_topic
 from trainer.study_lessons.content import CourseDefinition
 
 
@@ -78,6 +79,7 @@ def library(db, providers):
                     (course.id, course.revision, chapter.id) in completed
                     for chapter in course.chapters
                 ),
+                "topic": course_topic(course.id),
             }
         )
     resume = db.execute(
@@ -96,7 +98,14 @@ def library(db, providers):
     )
     return {
         "courses": courses,
-        "resume": [{**row._mapping, "updated_at": row.updated_at.isoformat()} for row in resume],
+        "resume": [
+            {
+                **row._mapping,
+                "course_topic": course_topic(row.course_id),
+                "updated_at": row.updated_at.isoformat(),
+            }
+            for row in resume
+        ],
     }
 
 
@@ -109,6 +118,7 @@ def course_view(db, providers, course_id, revision=None):
         "title": course.title,
         "description": course.description,
         "learner_color": course.learner_color,
+        "topic": course_topic(course.id),
         "chapters": [
             {
                 "id": chapter.id,

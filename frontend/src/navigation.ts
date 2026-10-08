@@ -11,9 +11,12 @@ export const pagePaths = {
 export const studyPaths = {
   due: "/study/due",
   openings: "/study/openings",
+  skills: "/study/skills",
   puzzles: "/study/puzzles",
 } as const;
 export type StudyMode = "home" | keyof typeof studyPaths;
+export type LessonTopic = "opening" | "skills";
+const lessonRoot = (topic: LessonTopic) => topic === "skills" ? studyPaths.skills : studyPaths.openings;
 export type Tab = keyof typeof pagePaths;
 export type SettingsTab = "imports" | "coach" | "sound" | "account" | "advanced";
 export type InsightsSection = "overview" | "patterns" | "outcomes";
@@ -63,8 +66,9 @@ function readRoute() {
   const gameMatch = path.match(/^\/games\/([^/]+)$/);
   const playMatch = path.match(/^\/play\/([^/]+)$/);
   const puzzleMatch = path.match(/^\/study\/puzzles\/sessions\/([^/]+)$/);
-  const lessonMatch = path.match(/^\/study\/openings\/sessions\/([^/]+)$/);
-  const courseMatch = path.match(/^\/study\/openings\/courses\/([^/]+)$/);
+  const lessonMatch = path.match(/^\/study\/(openings|skills)\/sessions\/([^/]+)$/);
+  const courseMatch = path.match(/^\/study\/(openings|skills)\/courses\/([^/]+)$/);
+  const skillsLesson = (lessonMatch ?? courseMatch)?.[1] === "skills";
   const catalogueMatch = path.match(/^\/study\/openings\/catalogue\/([^/]+)$/);
   const courseLineMatch = path.match(/^\/study\/openings\/courses\/([^/]+)\/lines\/([^/]+)$/);
   let gameId: string | null = null;
@@ -77,8 +81,8 @@ function readRoute() {
   try { if (gameMatch) gameId = decodeURIComponent(gameMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (playMatch) playGameId = decodeURIComponent(playMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (puzzleMatch) puzzleSessionId = decodeURIComponent(puzzleMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
-  try { if (lessonMatch) lessonSessionId = decodeURIComponent(lessonMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
-  try { if (courseMatch) lessonCourseId = decodeURIComponent(courseMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
+  try { if (lessonMatch) lessonSessionId = decodeURIComponent(lessonMatch[2]); } catch { /* An invalid URL shows the not-found screen. */ }
+  try { if (courseMatch) lessonCourseId = decodeURIComponent(courseMatch[2]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (catalogueMatch) openingCatalogueKey = decodeURIComponent(catalogueMatch[1]); } catch { /* Invalid source links show the not-found screen. */ }
   try { if (courseLineMatch) openingCourseLine = { courseId: decodeURIComponent(courseLineMatch[1]), lineId: decodeURIComponent(courseLineMatch[2]), revision: url.searchParams.get("revision") || "", color: url.searchParams.get("color") === "black" ? "black" : "white" }; } catch { /* Invalid source links show the not-found screen. */ }
   const openingSection: "catalogue" | "studies" | "lessons" = path === `${studyPaths.openings}/catalogue` || openingCatalogueKey ? "catalogue"
@@ -87,6 +91,7 @@ function readRoute() {
     : path === "/study/puzzles/games" ? "games" : null;
   const studyMode: StudyMode | null = path === pagePaths.Study ? "home"
     : puzzleSessionId || puzzleSource ? "puzzles"
+    : skillsLesson && (lessonSessionId || lessonCourseId) ? "skills"
     : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
   const tab: Tab | null = studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"
@@ -153,12 +158,12 @@ export function puzzleSessionPath(id: string) {
   return `${studyPaths.puzzles}/sessions/${encodeURIComponent(id)}`;
 }
 
-export function lessonSessionPath(id: string) {
-  return `${studyPaths.openings}/sessions/${encodeURIComponent(id)}`;
+export function lessonSessionPath(id: string, topic: LessonTopic = "opening") {
+  return `${lessonRoot(topic)}/sessions/${encodeURIComponent(id)}`;
 }
 
-export function lessonCoursePath(id: string, revision?: string) {
-  return `${studyPaths.openings}/courses/${encodeURIComponent(id)}${revision ? `?revision=${encodeURIComponent(revision)}` : ""}`;
+export function lessonCoursePath(id: string, revision?: string, topic: LessonTopic = "opening") {
+  return `${lessonRoot(topic)}/courses/${encodeURIComponent(id)}${revision ? `?revision=${encodeURIComponent(revision)}` : ""}`;
 }
 
 export function openingCataloguePath(key?: string) {

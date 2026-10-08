@@ -161,7 +161,7 @@ test("each lesson command picks at most one generic prompt from its own action a
     annotations: {squares: [], arrows: []} as unknown as Schema["LessonStepView"]["annotations"]};
   const before: Schema["LessonSessionView"] = {id: "lesson", revision: 1, status: "active", actions: ["move", "hint", "show_move"],
     assisted: false, branch: null, chapter_id: "chapter", chapter_title: "Chapter", course_id: "course", course_revision: "1",
-    course_title: "Course", failed: false, feedback: null, fen: "start", game: null, history: [], legal_moves: [],
+    course_title: "Course", course_topic: "opening", failed: false, feedback: null, fen: "start", game: null, history: [], legal_moves: [],
     orientation: "white", playback: [], step};
   const frame = {} as Schema["PuzzleFrame"];
   const select = (action: Schema["LessonCommand"]["action"], after: Partial<Schema["LessonSessionView"]>, from = before) =>
