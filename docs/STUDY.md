@@ -32,8 +32,8 @@ history replacement. Legacy `unit` links are stripped, not revived. Imports stay
 in Settings and saved game analysis stays in Games.
 The Study home cards lead to Due, Lessons and Puzzles. The Lessons card counts
 the chapters not yet completed across every lesson course. Lessons is one
-section with four tabs: Openings (the opening courses), Fundamentals (the
-tactics and fundamentals courses), Catalogue and My studies. Home's Keep
+section with four tabs: Fundamentals (the tactics and fundamentals courses),
+Openings (the opening courses), Catalogue and My studies. Home's Keep
 learning panel links to Lessons and, without a saved lesson, suggests the first
 opening course and the first fundamentals course. The main navigation's
 Study link returns to that overview; subpages do not repeat a section selector.

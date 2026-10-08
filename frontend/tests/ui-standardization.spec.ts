@@ -27,7 +27,7 @@ test("Settings and Openings share section navigation appearance and preserve URL
   await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Study", exact: true }).click();
   await page.getByRole("link", { name: "Open lessons", exact: true }).click();
   const openings = page.getByRole("navigation", { name: "Lesson sections" });
-  await expect(openings.getByRole("link")).toHaveText(["Openings", "Fundamentals", "Catalogue", "My studies"]);
+  await expect(openings.getByRole("link")).toHaveText(["Fundamentals", "Openings", "Catalogue", "My studies"]);
   await expect(openings.getByRole("link", { name: "Openings", exact: true })).toHaveAttribute("aria-current", "page");
   expect(await sectionAppearance(openings)).toEqual(settingsAppearance);
   const originalBounds = await openings.boundingBox();
@@ -48,7 +48,7 @@ test("section navigation keeps phone targets and disappears inside a lesson cour
   await page.setViewportSize({ width: 320, height: 700 });
   for (const { route, links } of [
     { route: "/settings?section=advanced", links: ["Games & imports", "Coach & animations", "Sound", "Advanced"] },
-    { route: "/study/openings", links: ["Openings", "Fundamentals", "Catalogue", "My studies"] },
+    { route: "/study/openings", links: ["Fundamentals", "Openings", "Catalogue", "My studies"] },
   ]) {
     await page.goto(route);
     const navigation = page.locator(".section-navigation");

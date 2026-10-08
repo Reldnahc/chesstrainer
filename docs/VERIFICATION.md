@@ -43,7 +43,7 @@ the default 30.
 Owner request: Openings and Skills become one Study section called Lessons.
 The Study home has three cards again (Due now, Lessons, Puzzles); the Lessons
 card counts unfinished chapters across every lesson course. The section's tabs
-are Openings, Fundamentals (the tactics and fundamentals courses), Catalogue and
+are Fundamentals (the tactics and fundamentals courses), Openings, Catalogue and
 My studies. URLs are unchanged: `/study/openings` is the Openings tab and
 `/study/skills` the Fundamentals tab. Home's Keep learning link and the
 caught-up Due action now say Lessons, and without a saved lesson Keep learning

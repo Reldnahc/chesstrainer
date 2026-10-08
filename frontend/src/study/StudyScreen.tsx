@@ -131,8 +131,8 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
     </div>}
     {mode === "openings" && <>
       {!courseId && <SectionNavigation label="Lesson sections" current={openingSection} items={[
-        { id: "lessons", label: "Openings", href: studyPaths.openings },
         { id: "fundamentals", label: "Fundamentals", href: studyPaths.skills },
+        { id: "lessons", label: "Openings", href: studyPaths.openings },
         { id: "catalogue", label: "Catalogue", href: `${studyPaths.openings}/catalogue` },
         { id: "studies", label: "My studies", href: `${studyPaths.openings}/studies` },
       ]} />}
