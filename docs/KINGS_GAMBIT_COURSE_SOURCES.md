@@ -1,6 +1,6 @@
 # King's Gambit course sources
 
-`kings-gambit-foundations`, revision `2026-09-v3`, is an original Fieldwork
+`kings-gambit-foundations`, revision `2026-10-v4`, is an original Fieldwork
 course for White. The chapters teach a bounded selection, not a complete
 repertoire or a promise that the gambit gives White an advantage. Explanations,
 prompts, feedback and position annotations are original. Sources informed the
@@ -76,7 +76,11 @@ The selected `9.O-O` is also a study choice; `9.Nc3` appears in the literature.
 - **Premature castling:** after `7...Bd6`, the demonstration follows
   `8.O-O? Bxe5 9.Re1 Qe7 10.d4 Bxd4+`. White has lost a knight and pawn.
   The particular follow-up is illustrative, not a claim that all White replies
-  are forced. Return to the branch and play `8.d4` first.
+  are forced. Return to the branch and play `8.d4` first. `8.O-O` is the
+  [Rice Gambit](https://en.wikipedia.org/wiki/King%27s_Gambit,_Rice_Gambit),
+  whose main line continues `10.c3` rather than `10.d4`. Stockfish 17.1 rates
+  `10.c3` about −1.9 and `10.d4` about −3.8 for White. The gambit has been
+  abandoned in serious play, so the summary names it without teaching it.
 - **The tempting e5-pawn:** after `2...Bc5`, the comparison is
   `3.fxe5? Qh4+ 4.Ke2 Qxe4#`. `Ke2` is explicitly only one losing reply.
   `4.g3 Qxe4+` instead illustrates the king/rook fork explained in the text.
@@ -127,6 +131,35 @@ The annotation at ply 35 points to the later `18.cxd4`, connecting the preparati
 to its eventual use. The source records resignation after check, not checkmate.
 The [Gutenberg catalogue](https://www.gutenberg.org/ebooks/16377) identifies this
 1910 book as public domain in the United States.
+
+## October 2026 chess check and revision v4
+
+The
+[October 2026 chess check](VERIFICATION.md#opening-course-chess-check--october-8-2026)
+rechecked every taught move, shown reply, comparison and rehearsal line with
+Stockfish 17.1 at depth 22. No taught move is a mistake. `2.f4` itself scores
+about −0.7 for White, which is normal for this gambit, and `5.Bb5+`, `6.Bc4` and
+`7.d4` trail the engine's first choice by 0.3–0.5. Rosanes–Anderssen matches
+[Edward Winter's score](https://chesshistory.com/winter/extra/rosanesanderssen.html).
+Revision v4 corrects six explanations without changing any move:
+
+- **Bc5 refusal, `7.Nc3`:** nothing else defends e4 against the f6-knight, so
+  Nc3 is its only defender, not “another” one.
+- **Modern Defense, `7...Bd6`:** the bishop defends f4 but cannot reach h2;
+  Black's own f4-pawn blocks it.
+- **Pawn chain, `5.Ne5`:** the rejected alternative is the Allgaier Gambit,
+  `5.Ng5 h6 6.Nxf7`, which gives the knight up on f7, not g5.
+- **Premature castling:** `9.Re1` pins the bishop to the king, `9...Qe7` defends
+  it and shields the king, and `10...Bxd4+` escapes with check. The summary now
+  names the Rice Gambit and its usual `10.c3`.
+- **After `9.O-O`:** counting attackers suggests `Bxf4` wins a pawn, but after
+  `9...O-O 10.Bxf4` Black ignores the bishop and plays `10...Qxh4` with a strong
+  attack (about −2.9 for White). `Rxf4` lets the h5-knight take the rook. The
+  text now says both.
+
+Morphy–Bornemann was not rechecked, because the cited Blue Book pages could not
+be opened during the check. chessgames.com lists the game as 32 moves, so its
+score may continue one move beyond `31.cxd7+`.
 
 ## Verification
 

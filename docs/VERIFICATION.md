@@ -4,6 +4,32 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Opening-course chess check — October 8, 2026
+
+Owner request: check the chess quality of the three Study courses against
+outside sources. Stockfish 17.1 at depth 22 rechecked every taught move, shown
+reply, comparison and rehearsal line, and python-chess confirmed the board facts
+behind each corrected explanation. Five of the six historical scores match
+[IRLchess](https://www.irlchess.com/hastings1895_allfiles/openings_hastings1895.html),
+the 1896 Hastings book (archive.org full text) or Edward Winter's articles.
+Morphy–Bornemann could not be rechecked against its cited Blue Book pages. No
+taught move is a mistake, and no move changed.
+
+Ten explanations were corrected: three were wrong, three misleading, three
+unclear, and one comparison now names the Rice Gambit. The courses move to
+`italian-foundations` `2026-10-v3` and to `2026-10-v4` for
+`italian-black-foundations` and `kings-gambit-foundations`; each source record
+lists its corrections. Existing sessions, progress and enrolled studies keep
+their earlier revisions, so chapter completion starts fresh under the new ones.
+
+Checks: `ruff check` and `ruff format --check` on the course files; `pytest
+backend/tests/test_italian_course.py backend/tests/test_italian_native.py
+backend/tests/test_italian_black_claims.py backend/tests/test_italian_white_claims.py
+backend/tests/test_kings_gambit_claims.py backend/tests/test_study_lessons.py
+backend/tests/test_opening_sources.py`: **96 passed**, with native Stockfish.
+Not run: the `italian-course`, `opening-courses` and `source-attribution`
+browser specs, whose only change is the pinned revision.
+
 ## Clock lines dropped — October 3, 2026
 
 Owner decision: coaches no longer comment on the clock. An investigation of 100

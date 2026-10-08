@@ -148,7 +148,7 @@ def chapter(excerpt, games):
             kind="explanation",
             id="historical-center-takeaway",
             title="Same pawn move, different calculation",
-            text="White has castled, but the central exchanges and Black's active pieces created a different game. Our repertoire first supported e4 and prepared a c-pawn recapture. Remember those requirements, then calculate the actual response to d4.",
+            text="White has castled, but the central exchanges and Black's active pieces created a different game. Our repertoire supported e4 and castled before playing d4. Remember those requirements, then calculate the actual response to d4.",
             position=games["steinitz-bardeleben"].position.after(
                 games["steinitz-bardeleben"].moves[:18]
             ),
