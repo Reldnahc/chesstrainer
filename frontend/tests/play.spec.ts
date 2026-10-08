@@ -1,3 +1,4 @@
+import juniperScript from "../src/audio/speech/banks/juniper/scripts.json" with {type: "json"};
 import {test, expect, type Page} from "@playwright/test";
 
 // A live game against the coach's bot, served by mocked play endpoints so the
@@ -118,4 +119,12 @@ test("a finished game offers its saved review", async ({page}) => {
   await expect(page.getByText("You resigned. Walter takes the game.")).toBeVisible();
   await expect(page.getByRole("link", {name: "Open Walter's review"})).toHaveAttribute("href", "/games/saved9");
   await expect(page.getByRole("button", {name: "Resign"})).toHaveCount(0);
+});
+
+test("the setup page's coach asks for a game in its own words", async ({page}) => {
+  await mockPlay(page);
+  await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: "cat-black", motion: "still"}}));
+  const line = juniperScript.records.find(record => record.id === "play-invitation")!.text;
+  await page.goto("/play");
+  await expect(page.getByLabel("Juniper says")).toHaveText(line);
 });

@@ -147,6 +147,11 @@ already under way stays quiet, and the review greeting `game-review-opened` is n
 longer used in Play. Until a coach's clip is recorded, the bubble shows its
 script line.
 
+Before any game, the setup page shows `play-invitation` in a bubble under the
+coach's portrait: one line per coach asking for a game. It claims nothing about
+strength, opponent type or color, since the learner has not chosen them yet. The
+bubble shows the script line; once recorded, the clip plays as the page opens.
+
 These moments have no catalogue entry yet, so they currently show plain page text
 or stay silent:
 

@@ -20,5 +20,31 @@
 .play-result { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
 @media (max-width: 760px) {
   .play-setup { grid-template-columns: 1fr; }
-  .play-setup-coach { order: -1; width: 160px; }
+  .play-setup-coach { order: -1; width: 100%; }
+  .play-setup-portrait { width: 160px; margin-inline: auto; }
 }
+/* The coach's line sits under the portrait, pointing up at it. */
+.play-setup-speech {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.play-setup-speech::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.play-setup-speech p { flex: 1; margin: 0; font-size: 14px; line-height: 1.45; }

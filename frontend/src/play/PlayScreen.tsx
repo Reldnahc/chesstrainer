@@ -8,6 +8,9 @@ import Notice from "../Notice";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
 import CoachAvatar from "../coach/CoachAvatar";
+import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
+import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
+import { PLAY_INVITATION } from "../audio/speech/voiceBank";
 import { useCoachPreferences } from "../coach/CoachProvider";
 import { getCoach } from "../coach/registry";
 import { navigate, playGamePath } from "../navigation";
@@ -79,6 +82,18 @@ function PlaySetup() {
       window.clearTimeout(timer);
     };
   }, []);
+  // The coach asks for a game when the page opens: its clip plays when recorded,
+  // and the bubble shows the line either way.
+  // The page opening is the narration event, raised once the clip can play so
+  // that loading preferences never swallows it.
+  const [invited, setInvited] = useState<string | null>(null);
+  const voice = useCoachSpeech({ scopeKey: `play-setup:${coach.id}`, recordingId: PLAY_INVITATION,
+    automaticEventId: invited });
+  const playable = voice.canPlay(PLAY_INVITATION);
+  useEffect(() => {
+    if (playable) setInvited(`play-setup:${coach.id}`);
+  }, [playable, coach.id]);
+  const invitation = useSelectedCoachSpokenText(PLAY_INVITATION);
   const range = opponent === "human" ? HUMAN : ENGINE;
   const clamped = Math.max(range.min, Math.min(range.max, rating));
   const matched = profile?.default_rating ?? 1200;
@@ -168,7 +183,15 @@ function PlaySetup() {
           </div>
         </section>
         <div className="play-setup-coach">
-          <CoachAvatar reaction={{ key: "play-setup", state: "neutral" }} />
+          <div className="play-setup-portrait">
+            <CoachAvatar reaction={{ key: "play-setup", state: "neutral" }} speech={voice.speech} speechTrack={voice.speechTrack} />
+          </div>
+          {invitation && (
+            <div className="play-setup-speech" aria-label={`${coach.name} says`}>
+              <p>{invitation}</p>
+              {voice.control}
+            </div>
+          )}
         </div>
       </div>
       {!profile && !error && <LoadingState>Loading…</LoadingState>}

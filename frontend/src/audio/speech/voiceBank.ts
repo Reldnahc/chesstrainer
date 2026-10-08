@@ -67,6 +67,10 @@ function loadTracks(coachId: string, url: string): Promise<Record<string, Speech
  * coach's clip exists the picker stays silent for that coach. */
 export const COACH_INTRODUCTION = 'coach-introduction';
 
+/** Shown in the coach's bubble when the Play setup page opens: the coach asks
+ * for a game. A recorded clip also plays; until then the bubble alone shows it. */
+export const PLAY_INVITATION = 'play-invitation';
+
 export function hasCoachVoice(coachId: string): boolean { return banks.has(coachId); }
 
 /** Each sentence's first alternative this coach has recorded ("a|b+c"), or null. */
