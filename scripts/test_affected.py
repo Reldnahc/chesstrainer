@@ -4,6 +4,7 @@ import argparse
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -36,10 +37,39 @@ def working_tree_paths():
     return [path.decode() for path in (changed + untracked).split(b"\0") if path]
 
 
-def step(name, command, cwd=ROOT):
+def step(name, command, cwd=ROOT, env=None):
     started = time.monotonic()
-    result = subprocess.run(command, cwd=cwd, capture_output=True, text=True, errors="replace")
+    result = subprocess.run(
+        command, cwd=cwd, env=env, capture_output=True, text=True, errors="replace"
+    )
     return name, result.returncode, result.stdout + result.stderr, time.monotonic() - started
+
+
+def migrations():
+    """Upgrade a throwaway database and compare it with the models, never data/trainer.sqlite3."""
+    with tempfile.TemporaryDirectory() as folder:
+        env = {**os.environ, "DATABASE_PATH": str(Path(folder) / "migrations.sqlite3")}
+        alembic = [sys.executable, "-m", "alembic"]
+        _, code, output, seconds = step("migrations", [*alembic, "upgrade", "head"], env=env)
+        if code == 0:
+            _, code, more, extra = step("migrations", [*alembic, "check"], env=env)
+            output, seconds = output + more, seconds + extra
+        return "migrations", code, output, seconds
+
+
+def static_checks(pool):
+    """The backend job's contract, migration and voice-bank checks, run beside everything else."""
+    return [
+        pool.submit(
+            step, "contract", [sys.executable, "scripts/export_api_contract.py", "--check"]
+        ),
+        pool.submit(migrations),
+        pool.submit(
+            step,
+            "voice bank",
+            [sys.executable, "-B", "-S", "scripts/prepare_coach_voice_bank.py", "--check"],
+        ),
+    ]
 
 
 def report(results):
@@ -75,6 +105,8 @@ def main(argv=None):
         return 0
 
     started = time.monotonic()
+    background = ThreadPoolExecutor(3)
+    statics = static_checks(background) if plan["backend"] else []
     first = []
     if plan["backend"]:
         lint = ["backend", "scripts", "migrations"]
@@ -104,6 +136,8 @@ def main(argv=None):
             )
         )
     failed |= report(browser)
+    failed |= report([future.result() for future in statics])
+    background.shutdown()
     print(
         f"{'FAILED' if failed else 'All selected checks passed'} in {time.monotonic() - started:.0f}s"
     )
