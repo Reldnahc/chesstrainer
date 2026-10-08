@@ -5,6 +5,7 @@ from trainer.study_lessons.courses.authoring import decision as _decision
 from trainer.study_lessons.courses.authoring import demo as _demo
 from trainer.study_lessons.courses.authoring import position
 from trainer.study_lessons.courses.authoring import step as _step
+from trainer.study_lessons.courses.italian_center import ACTIVE_BREAK
 from trainer.study_lessons.courses.italian_center import chapter as center_chapter
 from trainer.study_lessons.courses.italian_development import chapter as development_chapter
 from trainer.study_lessons.courses.italian_games import source_games
@@ -14,6 +15,17 @@ from trainer.study_lessons.courses.italian_positions import (
     ITALIAN,
     KNIGHT_ROUTE,
     QUIET,
+)
+from trainer.study_lessons.courses.italian_two_knights import chapter as two_knights_chapter
+from trainer.study_lessons.courses.italian_two_knights import lines as two_knights_lines
+from trainer.study_lessons.courses.italian_variations import (
+    BISHOP_THREAT,
+    EARLY_H6,
+    KNIGHT_JUMP,
+    PIN,
+    PREMATURE_BREAK,
+    early_h6_trip,
+    knight_jump_trip,
 )
 
 
@@ -93,7 +105,7 @@ def course():
             "explanation",
             "welcome",
             "A setup you can explain",
-            "Start with central development and king safety. Later you will finish development, handle threats to your bishop and decide how to open the center. These are selected study moves, not the only good moves in every position.",
+            "Start with central development and king safety. Later chapters cover the Two Knights Defense, finishing development, threats to your bishop and when to open the center. These are selected study moves, not the only good moves in every position.",
             next_step="center",
         ),
         _demo(
@@ -122,64 +134,30 @@ def course():
             "e4 e5 Nf3 Nc6",
             "Bc4",
             None,
-            "black-choice",
+            "knight-jump-choice",
             "Bc4 establishes the Italian. The bishop points at f7, but one attacker alone does not justify sacrificing it there.",
             "The bishop on f1 can reach c4.",
         ),
         _step(
             "branch",
-            "black-choice",
-            "Recognize the move order",
-            "We continue with ...Bc5. The optional branch shows ...Nf6 attacking e4 first, then ...Bc5 reaching the same setup. Black can instead choose ...Be7; that is a separate setup, not an automatic transposition.",
+            "knight-jump-choice",
+            "If Black plays ...Nd4",
+            "Black has several common third moves. This chapter's main line is ...Bc5; side trips show ...Nd4 and ...h6 first, and the next chapter covers ...Nf6, the Two Knights Defense. Explore ...Nd4, or continue to the next reply.",
             ITALIAN,
-            branch_start="alternate",
+            branch_start="knight-jump",
+            next_step="early-h6-choice",
+        ),
+        *knight_jump_trip(),
+        _step(
+            "branch",
+            "early-h6-choice",
+            "If Black plays ...h6",
+            "Explore ...h6, which keeps your pieces off g5, or continue to the main line.",
+            ITALIAN,
+            branch_start="early-h6",
             next_step="quiet-setup",
         ),
-        _demo(
-            "alternate",
-            "The Two Knights attacks e4",
-            "Black develops a second knight before the bishop. First account for the attack on your central pawn.",
-            ITALIAN,
-            ITALIAN + " Nf6",
-            "two-support",
-        ),
-        _decision(
-            "two-support",
-            "Keep your center defended",
-            "Support the attacked e-pawn while opening a path for your other bishop.",
-            ITALIAN + " Nf6",
-            "d3",
-            "Bc5",
-            "two-castle",
-            "d3 defends e4. In this selected continuation ...Bc5 reaches exactly the same board as ...Bc5, d3 and ...Nf6 in the main line.",
-            "Move the d-pawn one square, from d2 to d3.",
-        ),
-        _demo(
-            "two-castle",
-            "Recognize the familiar position",
-            "Once Black chooses ...Bc5, the same castle and ...d6 lead to our quiet setup. Recognize the shared position and reuse the same development plan.",
-            ITALIAN + " Nf6 d3 Bc5",
-            ITALIAN + " Nf6 d3 Bc5 O-O d6",
-            "two-game",
-        ),
-        excerpt(
-            "two-game",
-            "A sharper choice changes the game",
-            "Pollock–Schiffers, Hastings 1895. Pollock chooses d4 and Ng5 instead of our d3. The ensuing exchanges show why this is a separate choice, not a continuation to memorize for the quiet setup.",
-            "pollock-schiffers",
-            5,
-            20,
-            "two-takeaway",
-        ),
-        dict(
-            kind="explanation",
-            id="two-takeaway",
-            title="A move order is not a whole repertoire",
-            text="The historical game has opposite-side castling and very different pawn and piece placement. Return to the quiet line. Against ...Nf6 our first job was defending e4; only the later ...Bc5 brought us back to the same setup.",
-            position=games["pollock-schiffers"].position.after(
-                games["pollock-schiffers"].moves[:20]
-            ),
-        ),
+        *early_h6_trip(),
         _demo(
             "quiet-setup",
             "Black develops the bishop first",
@@ -196,7 +174,7 @@ def course():
             "d3",
             "Nf6",
             "castle",
-            "d3 supports e4. Black's ...Nf6 now attacks a defended pawn, so you can attend to king safety.",
+            "d3 supports e4. Black's ...Nf6 now attacks a defended pawn, so you can attend to king safety. If Black plays ...d6 or ...h6 instead, castle all the same.",
             "Move the d-pawn from d2 to d3.",
         ),
         _decision(
@@ -207,14 +185,14 @@ def course():
             "O-O",
             "d6",
             "quiet-takeaway",
-            "Castling puts the king on g1 and rook on f1. Black's ...d6 supports e5. Both players still have work to do on the queenside.",
+            "Castling puts the king on g1 and rook on f1. Black's ...d6 supports e5. Both players still have work to do on the queenside. If Black castles or plays ...h6 instead of ...d6, continue with c3, as in the development chapter.",
             "Move your king from e1 to g1 to castle.",
         ),
         _step(
             "explanation",
             "quiet-takeaway",
             "A starting point, not a finished plan",
-            "Your b1-knight and c1-bishop have not moved. The next chapter gives them useful jobs and prepares a central break. First rehearse this short setup; optional scheduled recall is your choice after the lesson.",
+            "Your b1-knight and c1-bishop have not moved. A later chapter gives them useful jobs and prepares a central break. First rehearse this short setup; optional scheduled recall is your choice after the lesson.",
             QUIET,
             next_step="quiet-recall",
         ),
@@ -240,15 +218,16 @@ def course():
 
     chapters = (
         ("quiet-development", "Build the quiet setup", quiet_steps),
+        ("two-knights", "Meet the Two Knights Defense", two_knights_chapter(excerpt, games)),
         ("finish-development", "Give every piece a job", development_chapter(excerpt, games)),
         ("central-break", "Choose when to open the center", center_chapter(excerpt, games)),
     )
     return CourseDefinition.model_validate(
         dict(
             id="italian-foundations",
-            revision="2026-10-v3",
+            revision="2026-10-v4",
             title="Italian Game · A quiet White repertoire",
-            description="Learn the setup, finish development and play the central break. Compare bishop exchanges, punish a premature ...d5, and meet Black's better-prepared counterplay. Historical examples illustrate different choices; this is a starter repertoire, not coverage of every Italian line.",
+            description="Learn the setup, meet the Two Knights Defense and Black's other common third moves, finish development and play the central break. Compare bishop exchanges, punish a premature ...d5, and meet Black's better-prepared counterplay. Historical examples illustrate different choices; this is a starter repertoire, not coverage of every Italian line.",
             learner_color="white",
             attributions=[
                 dict(
@@ -259,14 +238,38 @@ def course():
             games=list(games.values()),
             lines=[
                 line("quiet-italian", "Quiet Italian · develop and castle", "", QUIET),
+                line("knight-jump", "Italian Game · punish 3...Nd4", "", KNIGHT_JUMP),
+                line("early-h6", "Italian Game · meet 3...h6", "", EARLY_H6),
+            ]
+            + two_knights_lines()
+            + [
                 line(
                     "central-preparation", "Quiet Italian · complete development", QUIET, DEVELOPED
+                ),
+                line("central-pin", "Quiet Italian · answer the ...Bg4 pin", QUIET, PIN),
+                line(
+                    "premature-break",
+                    "Quiet Italian · punish an early ...d5",
+                    QUIET,
+                    PREMATURE_BREAK,
+                ),
+                line(
+                    "bishop-threat",
+                    "Quiet Italian · save the bishop from ...Na5",
+                    QUIET,
+                    BISHOP_THREAT,
                 ),
                 line(
                     "central-break",
                     "Quiet Italian · play d4 and rebuild the center",
                     KNIGHT_ROUTE,
                     CENTRAL,
+                ),
+                line(
+                    "active-break",
+                    "Quiet Italian · meet Black's active ...d5",
+                    KNIGHT_ROUTE,
+                    ACTIVE_BREAK,
                 ),
             ],
             chapters=[

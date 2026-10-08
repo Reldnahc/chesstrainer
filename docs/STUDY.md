@@ -255,12 +255,12 @@ recommendations. No course starts an engine job or downloads material at runtime
 
 | Course | Side | Chapters | Source record |
 |---|---|---|---|
-| Italian Game · A quiet White repertoire | White | Recognize the setup; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
-| Italian Game · A practical Black repertoire | Black | Quiet development; choose a post-castling plan; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
-| King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
+| Italian Game · A quiet White repertoire | White | Recognize the setup and punish 3...Nd4; meet the Two Knights Defense; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
+| Italian Game · A practical Black repertoire | Black | Develop and meet White's common fourth moves; choose a post-castling plan; meet c3/d4; meet the Nc3 gambit; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
+| King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; Black's other common replies; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
 
-The current revisions are `2026-10-v3` for `italian-foundations`, and
-`2026-10-v4` for `italian-black-foundations` and `kings-gambit-foundations`.
+The current revisions are `2026-10-v4` for `italian-foundations`, and
+`2026-10-v5` for `italian-black-foundations` and `kings-gambit-foundations`.
 Black decisions and rehearsal use Black orientation
 and automatically play White’s intervening replies. All three course definitions
 are cached as immutable source data and returned as independent copies. Shared
@@ -289,6 +289,11 @@ it teaches good chess. Before publishing or revising a course:
 - Explain the purpose of decisions and important tempting mistakes. Use existing
   returnable demonstrations for counterexamples; do not put deliberate mistakes
   into the learner's required answers or recall lines.
+- Cover the opponent's common replies, not only the main line. A reply that keeps
+  the same plan can be a side trip; give it its own optional recall line that
+  starts where the chapter's main line starts. Recall accepts every enrolled
+  line's move at a position, so a course's lessons and lines must give one answer
+  wherever they meet; `test_course_recall_agreement.py` checks this.
 - Give the learner a chance to apply the explanation. Purpose-based prompts may
   scaffold a decision; explicit destinations belong in hints where practical.
   A longer line or more prose is not evidence of better teaching. Later rehearsal
@@ -313,10 +318,12 @@ no moves and corrected ten explanations; each source record lists its correction
 
 #### White Italian course
 
-The original pilot's repeated Two Knights setup is now a returnable comparison
-within the introduction. The later chapters connect development to bishop
-management and recapture choices, then actually play d4 and respond to Black's
-central resources. Short optional comparisons distinguish a premature break
+The original pilot's repeated Two Knights setup was condensed into the
+introduction. Revision v4 gives the Two Knights its own chapter again, because
+Black's common fourth moves there need different answers. The later chapters
+connect development to bishop management and recapture choices, then actually
+play d4 and respond to Black's central resources. Short optional comparisons
+punish 3...Nd4, answer 3...h6 and the ...Bg4 pin, distinguish a premature break
 from a prepared one and require responding to a bishop threat rather than
 blindly repeating the setup. Later rehearsal starts from an established position,
 retaining its full legal history. Only designated lines are available for optional

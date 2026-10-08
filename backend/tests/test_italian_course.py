@@ -318,18 +318,18 @@ def test_illustrative_passages_support_their_specific_board_claims():
     (
         (
             "italian-foundations",
-            "2026-10-v3",
-            "37297b889f502b07663ee9556b3a31d9b4d806c846fba97d3e02897b7312b9c1",
+            "2026-10-v4",
+            "43bb521674526a868980bae699a2ea27df7051a6c725e4a0204dcbf7b48e11f7",
         ),
         (
             "italian-black-foundations",
-            "2026-10-v4",
-            "649aefe41f847410274f4c3788f5ee6d46974232cb152135ffa778e631ef35dc",
+            "2026-10-v5",
+            "af8f42f95d93deb491a88e13e5b45de062872316c32fb051e9e398a5d8c0750c",
         ),
         (
             "kings-gambit-foundations",
-            "2026-10-v4",
-            "df00911674e26736220f9b573067967d19d23a457f4bba5f9285b10da98ed969",
+            "2026-10-v5",
+            "1b46ad40f6ff90e0692a10e077bd24b7020372537a60384fded9b9acba89eb77",
         ),
     ),
 )

@@ -1,0 +1,13 @@
+"""Shared SAN positions for the Black Italian course and its side trips."""
+
+ITALIAN = "e4 e5 Nf3 Nc6 Bc4 Bc5"
+QUIET = ITALIAN + " d3 Nf6 O-O d6 c3 O-O"
+KNIGHT_THREAT = ITALIAN + " d3 Nf6"
+ADVANCE = ITALIAN + " c3 Nf6 d4"
+CENTER = ADVANCE + " exd4 cxd4"
+CHECK = CENTER + " Bb4+"
+EXCHANGED = CHECK + " Bd2 Bxd2+"
+RECAPTURED = EXCHANGED + " Nbxd2 d5 exd5 Nxd5"
+CENTRAL = RECAPTURED + " O-O O-O"
+EVANS = ITALIAN + " b4 Bb6 c3 d6 a4 a6 a5 Ba7"
+EVANS_QUIET = EVANS + " d3 Nf6 O-O O-O"

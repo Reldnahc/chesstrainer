@@ -4,6 +4,40 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Opening-course common replies — October 8, 2026
+
+Owner request: strengthen the three Study courses, which skipped common
+replies. This is the first batch: the most common missing replies, plus a
+recall line for every side trip. Maia-3, the app's own
+human-move model, estimated how often 1200- and 1600-rated players choose each
+reply; the shown opponent moves are its most common choices unless a source
+record notes otherwise. Stockfish 17.1 at depth 20 to 22 checked every taught
+move in chapters, side trips and recall lines, and each side trip's advice for
+the opponent's other common replies. Every new taught move is the engine's
+first choice or within 0.3 pawns of it. The larger gaps are the ones the
+source records already list: the King's Gambit's `2.f4` itself and three moves
+0.3 to 0.5 behind, the White Italian's `d4` break (0.3) and the Black
+Italian's `4...Bb6` (0.4).
+
+The courses move to `2026-10-v5` for `kings-gambit-foundations` and
+`italian-black-foundations` and to `2026-10-v4` for `italian-foundations`.
+Each source record lists the additions with Maia's percentages and Stockfish's
+scores. A new test requires each course's lessons and recall lines to give the
+same answer wherever they reach the same position, because Recall accepts
+every enrolled line's move there.
+
+Checks: `ruff check` and `ruff format --check` on the changed Python files;
+`pytest backend/tests/test_italian_course.py backend/tests/test_italian_native.py
+backend/tests/test_italian_black_claims.py backend/tests/test_italian_white_claims.py
+backend/tests/test_kings_gambit_claims.py backend/tests/test_course_recall_agreement.py
+backend/tests/test_study_lessons.py backend/tests/test_opening_sources.py`:
+**113 passed**, with native Stockfish. `npm run test:types` passes. The
+`italian-course`, `opening-courses` and `source-attribution` browser specs,
+updated for the new chapters, side trips and revisions, pass on desktop and
+mobile (**34 passed**, with a preinstalled Chromium). Their chapter walks now
+allow 90 seconds: walking every side trip takes up to about 40 seconds, past
+the default 30.
+
 ## Opening-course chess check — October 8, 2026
 
 Owner request: check the chess quality of the three Study courses against
