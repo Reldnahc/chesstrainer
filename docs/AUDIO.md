@@ -392,6 +392,12 @@ to the start of a game already under way. All 30 lines are written and reviewed
 (operational, in each `scripts.json` and Walter's and Rivet's in
 `banks/pilot-additions.json`), and all 30 are recorded under each bank's
 `recordings/<voice>-start-v1/`.
+The Play setup page shows `play-invitation` in a bubble above the coach: one
+operational line per coach asking for a game, written and reviewed in each
+`scripts.json` and Walter's and Rivet's in `banks/pilot-additions.json`. It is
+listed under `awaitingRecording` in `planned-meanings.json`, so the bubble shows
+the script line until a clip is recorded; a recorded clip then plays once per
+page visit in Automatic mode, with the replay control beside the text.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
 evidence can update visible text (and so the bubble's objective recording) without

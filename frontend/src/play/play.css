@@ -1,18 +1,63 @@
 /* Setup for a game against the coach: one form panel beside the coach's portrait. */
-.play-setup { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 18px; align-items: start; }
-.play-setup-coach { width: min(100%, 240px); justify-self: center; }
+/* The form keeps a readable width; the coach takes the rest of the row. */
+.play-setup { display: grid; grid-template-columns: minmax(0, 920px) minmax(240px, 1fr); gap: 32px; align-items: start; }
+.play-setup-coach { width: min(100%, 440px); justify-self: center; }
+.play-setup-portrait { width: min(100%, 300px); margin-inline: auto; }
 .play-setup-form { display: grid; gap: 20px; }
 .play-field { display: grid; gap: 8px; }
 .play-field > span:first-child { font-weight: 600; }
 .play-field .small { margin: 0; }
-.play-strength { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.play-strength { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; max-width: 780px; }
 .play-strength input[type="range"] { width: 100%; accent-color: var(--accent); }
-.play-strength output { font-variant-numeric: tabular-nums; font-weight: 650; font-size: 20px; min-width: 3.5ch; text-align: right; }
+.play-strength output { font-variant-numeric: tabular-nums; font-weight: 650; font-size: 18px; min-width: 3.5ch; text-align: right; }
+/* Hidden alternatives still size the shared cell. */
+.play-swap { display: grid; }
+.play-swap > * { grid-area: 1 / 1; align-self: center; }
+.play-swap > [hidden] { visibility: hidden; }
+.play-swap > p[hidden] { display: block; }
 .play-level { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; }
 .play-level strong { font-size: 28px; font-weight: 650; }
 .play-resume { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
 .play-result { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
 @media (max-width: 760px) {
   .play-setup { grid-template-columns: 1fr; }
-  .play-setup-coach { order: -1; width: 160px; }
+  .play-setup-coach { order: -1; width: 100%; }
+  .play-setup-portrait { width: 160px; margin-inline: auto; }
 }
+/* The coach's line sits above the portrait in the shared bubble style,
+   pointing down at it. Label and message reuse the review bubble's classes. */
+.play-setup-speech {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: var(--coach-bubble-background);
+  border: 1px solid var(--coach-bubble-border);
+  border-radius: 10px;
+}
+.play-setup-speech::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: calc(50% - 6.5px);
+  width: 13px;
+  height: 13px;
+  background: var(--coach-bubble-background);
+  border-right: 1px solid var(--coach-bubble-border);
+  border-bottom: 1px solid var(--coach-bubble-border);
+  transform: rotate(45deg);
+}
+.play-setup-speech .coach-label { min-height: 28px; }
+.play-setup-speech .coach-title strong { margin: 0; }
+.play-setup-speech .coach-message { min-height: 0; overflow: visible; }
+/* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
+@media (min-width: 761px) {
+  .play-setup-speech { padding: 14px 18px; }
+  .play-setup-speech .coach-label { font-size: 15px; }
+  .play-setup-speech .coach-message p { font-size: 16px; }
+}
+/* Phones reuse ReviewCoach, but this bubble holds one short line and nothing
+   changes under it, so it fits its text instead of the review's fixed height. */
+.play-setup-coach .review-coach .coach-speech { height: auto; }
+.play-setup-coach .review-coach .coach-message { min-height: 0; overflow: visible; }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -8,6 +8,10 @@ import Notice from "../Notice";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
 import CoachAvatar from "../coach/CoachAvatar";
+import ReviewCoach from "../ReviewCoach";
+import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
+import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
+import { PLAY_INVITATION } from "../audio/speech/voiceBank";
 import { useCoachPreferences } from "../coach/CoachProvider";
 import { getCoach } from "../coach/registry";
 import { navigate, playGamePath } from "../navigation";
@@ -40,7 +44,21 @@ export default function PlayScreen({ gameId }: { gameId: string | null }) {
   return <PlaySetup />;
 }
 
+// Phones use the shared ReviewCoach layout; desktop keeps the large portrait.
+const PHONE = "(max-width: 760px)";
+function usePhone() {
+  return useSyncExternalStore(
+    (change) => {
+      const query = window.matchMedia(PHONE);
+      query.addEventListener("change", change);
+      return () => query.removeEventListener("change", change);
+    },
+    () => window.matchMedia(PHONE).matches,
+  );
+}
+
 function PlaySetup() {
+  const phone = usePhone();
   const { preferences } = useCoachPreferences();
   const coach = getCoach(preferences.coach_id);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -79,6 +97,18 @@ function PlaySetup() {
       window.clearTimeout(timer);
     };
   }, []);
+  // The coach asks for a game when the page opens: its clip plays when recorded,
+  // and the bubble shows the line either way.
+  // The page opening is the narration event, raised once the clip can play so
+  // that loading preferences never swallows it.
+  const [invited, setInvited] = useState<string | null>(null);
+  const voice = useCoachSpeech({ scopeKey: `play-setup:${coach.id}`, recordingId: PLAY_INVITATION,
+    automaticEventId: invited });
+  const playable = voice.canPlay(PLAY_INVITATION);
+  useEffect(() => {
+    if (playable) setInvited(`play-setup:${coach.id}`);
+  }, [playable, coach.id]);
+  const invitation = useSelectedCoachSpokenText(PLAY_INVITATION);
   const range = opponent === "human" ? HUMAN : ENGINE;
   const clamped = Math.max(range.min, Math.min(range.max, rating));
   const matched = profile?.default_rating ?? 1200;
@@ -127,27 +157,32 @@ function PlaySetup() {
               setOpponent(value);
               if (value === "engine") setLevel("choose");
             }} />
-            <p className="small muted">
-              {opponent === "human"
-                ? `${coach.name} plays like a person at the chosen rating: the mistakes of that level, not an engine's random ones.`
-                : `${coach.name} plays engine chess at a limited strength. Stockfish cannot imitate players below 1800.`}
-            </p>
+            {/* Both descriptions share one cell so switching never changes its height. */}
+            <div className="play-swap">
+              <p className="small muted" hidden={opponent !== "human"}>
+                {coach.name} plays like a person at the chosen rating: the mistakes of that level, not an engine's random ones.
+              </p>
+              <p className="small muted" hidden={opponent !== "engine"}>
+                {coach.name} plays engine chess at a limited strength. Stockfish cannot imitate players below 1800.
+              </p>
+            </div>
           </div>
           <div className="play-field">
             <span>Strength</span>
-            {opponent === "human" && <ChoiceGroup label="Strength" options={LEVELS} value={level} onChange={setLevel} />}
-            {level === "match" && opponent === "human" ? (
-              <div className="play-level">
+            {/* The engine cannot match a human level; keep the choice visible but unavailable. */}
+            <ChoiceGroup label="Strength" value={opponent === "human" ? level : "choose"} onChange={setLevel}
+              options={LEVELS.map(option => ({ ...option, disabled: opponent !== "human" && option.value === "match" }))} />
+            <div className="play-swap">
+              <div className="play-level" hidden={!(level === "match" && opponent === "human")}>
                 <strong>{profile?.status === "computing" && !profile.fitted_rating ? "…" : matched}</strong>
                 <span className="small muted">{fitLine}</span>
               </div>
-            ) : (
-              <div className="play-strength">
+              <div className="play-strength" hidden={level === "match" && opponent === "human"}>
                 <input id="play-rating" type="range" aria-label="Opponent rating" min={range.min} max={range.max}
                   step={range.step} value={clamped} onChange={(event) => setRating(Number(event.target.value))} />
                 <output htmlFor="play-rating">{clamped}</output>
               </div>
-            )}
+            </div>
           </div>
           <div className="play-field">
             <span>Your color</span>
@@ -162,9 +197,29 @@ function PlaySetup() {
             </Button>
           </div>
         </section>
+        {phone && invitation ? (
+          <div className="play-setup-coach">
+            <ReviewCoach title={<strong>{coach.name}</strong>} voice={voice}
+              reaction={{ key: "play-setup", state: "neutral" }}>
+              <p aria-label={`${coach.name} says`}>{invitation}</p>
+            </ReviewCoach>
+          </div>
+        ) : (
         <div className="play-setup-coach">
-          <CoachAvatar reaction={{ key: "play-setup", state: "neutral" }} />
+          {invitation && (
+            <div className="play-setup-speech" aria-label={`${coach.name} says`}>
+              <div className="coach-label">
+                <div className="coach-title"><strong>{coach.name}</strong></div>
+                {voice.control && <div className="coach-label-actions">{voice.control}</div>}
+              </div>
+              <div className="coach-message"><p>{invitation}</p></div>
+            </div>
+          )}
+          <div className="play-setup-portrait">
+            <CoachAvatar reaction={{ key: "play-setup", state: "neutral" }} speech={voice.speech} speechTrack={voice.speechTrack} />
+          </div>
         </div>
+        )}
       </div>
       {!profile && !error && <LoadingState>Loading…</LoadingState>}
     </>

@@ -1,3 +1,4 @@
+import juniperScript from "../src/audio/speech/banks/juniper/scripts.json" with {type: "json"};
 import {test, expect, type Page} from "@playwright/test";
 
 // A live game against the coach's bot, served by mocked play endpoints so the
@@ -66,9 +67,16 @@ test("the setup page explains the measured level and starts a live game", async 
   await page.goto("/play");
   await expect(page.getByRole("heading", {name: "Play Walter"})).toBeVisible();
   await expect(page.getByText("Measured from 60 of your own decisions across 100 imported games, where you were rated 723.")).toBeVisible();
+  // Switching opponent keeps the form's height and the rows below it in place.
+  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
+    document.querySelector('[aria-label="Your color"]')!.getBoundingClientRect().top]);
+  const before = await layout();
   await page.getByRole("button", {name: "Engine"}).click();
   await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveAttribute("min", "1800");
+  await expect(page.getByRole("button", {name: "Match my level"})).toBeDisabled();
+  expect(await layout()).toEqual(before);
   await page.getByRole("button", {name: "Human-like"}).click();
+  expect(await layout()).toEqual(before);
   await page.getByRole("button", {name: "Match my level"}).click();
   await page.getByRole("button", {name: "White", exact: true}).click();
   const started = page.waitForRequest(request => request.url().endsWith("/api/play") && request.method() === "POST");
@@ -111,4 +119,14 @@ test("a finished game offers its saved review", async ({page}) => {
   await expect(page.getByText("You resigned. Walter takes the game.")).toBeVisible();
   await expect(page.getByRole("link", {name: "Open Walter's review"})).toHaveAttribute("href", "/games/saved9");
   await expect(page.getByRole("button", {name: "Resign"})).toHaveCount(0);
+});
+
+test("the setup page's coach asks for a game in its own words", async ({page}, testInfo) => {
+  await mockPlay(page);
+  await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: "cat-black", motion: "still"}}));
+  const line = juniperScript.records.find(record => record.id === "play-invitation")!.text;
+  await page.goto("/play");
+  await expect(page.getByLabel("Juniper says")).toContainText(line);
+  // Phones show it in the same coach layout as review; desktop keeps the large portrait.
+  await expect(page.locator(".play-setup-coach .review-coach")).toHaveCount(testInfo.project.name === "mobile" ? 1 : 0);
 });

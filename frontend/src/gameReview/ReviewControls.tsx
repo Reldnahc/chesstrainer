@@ -26,7 +26,9 @@ export default function ReviewControls({
         All games
       </ActionLink>
       <MovePlaybackControls label="Game move playback" current={current} maximum={maximum}
-        first={{ "aria-label": "Start of game", title: "Starting position of the original game", disabled: !branch && cursor.ply === 0, onClick: () => navigate(0) }}
+        first={branch
+          ? { "aria-label": "Start of variation", title: "Game position where this variation began", onClick: () => navigate(branch.root) }
+          : { "aria-label": "Start of game", title: "Starting position of the original game", disabled: cursor.ply === 0, onClick: () => navigate(0) }}
         previous={{ "aria-label": "Previous move", disabled: current === 0, onClick: () => step(-1) }}
         next={{ "aria-label": "Next move", disabled: current === maximum, onClick: () => step(1) }}
         last={{ "aria-label": "Last move", disabled: current === maximum, onClick: () => selectStep(maximum) }} />
