@@ -54,7 +54,7 @@ def castle_trip():
             "explanation",
             "early-castle-summary",
             "Back on familiar ground",
-            "If White plays c3 next, castle: you are back in the main line. Against Bg5, h3 or Nc3, play h6 first. Against Ng5, either now or instead of d3, castle. Earlier, if White had played Nc3 or Re1 instead of d3, d6 was still the move. Against c3, nothing defended e4: take it with Nxe4, and answer d4 with d5. Against d4, take with the bishop: after Bxd4 Nxd4 Nxd4 you are a pawn ahead.",
+            "If White plays c3 next, castle: you are back in the main line. Against Bg5, h3 or Nc3, play h6 first; against Ng5, castle. Earlier, against Ng5 instead of d3, castle too, and against Nc3 or Re1, d6 was still the move. If White had played c3 instead of d3, nothing defended e4: take it with Nxe4, and answer d4 with d5. Against d4 instead of d3, take with the bishop: after Bxd4 Nxd4 Nxd4 you are a pawn ahead.",
             CASTLED_FIRST,
         ),
     ]
@@ -202,7 +202,7 @@ def center_trip():
             "explanation",
             "early-center-summary",
             "A pawn ahead",
-            "Next, develop your g8-knight and castle. If White's queen had gone to d5 instead of f3, it threatens the same mate, and Qf6 defends again. Earlier, if White had attacked f7 with Ng5 instead of taking your bishop, defend with Nh6, and against c3, retreat the bishop to b6. If White had brought the queen to h5 instead of playing c3, Qe7 guards both f7 and e5; against Be3, which attacks your knight, bring it back to c6.",
+            "Next, develop your g8-knight and castle. If White's queen had gone to d5 instead of f3, it threatens the same mate, and Qf6 defends again. Earlier, if White had attacked f7 with Ng5 instead of taking your bishop, defend with Nh6; if White had attacked the bishop with c3, retreat it to b6. If White had brought the queen to h5 instead of playing c3, Qe7 guards both f7 and e5; if White had attacked your knight with Be3, bring it back to c6.",
             EARLY_CENTER,
         ),
     ]
@@ -255,7 +255,7 @@ def push_trip():
             "explanation",
             "central-push-summary",
             "Active pieces",
-            "Castle next. If White takes your c6-knight with check first, recapture with the b-pawn. Earlier, if White had taken your knight with exf6 or recaptured with cxd4, take the c4-bishop with dxc4; after exf6 dxc4, answer fxg7 with Rg8. Against exd6, recapture with your queen. If the bishop had gone to b3 or e2 instead of b5, Ne4 was still the move.",
+            "Castle next. If White takes your c6-knight with check first, recapture with the b-pawn. Earlier, if White had taken your knight with exf6 or recaptured with cxd4, take the c4-bishop with dxc4; after exf6 dxc4, answer fxg7 with Rg8. If White had captured your d-pawn en passant with exd6, recapture with your queen. If the bishop had gone to b3 or e2 instead of b5, Ne4 was still the move.",
             PUSHED,
         ),
     ]
@@ -339,7 +339,7 @@ def check_trip():
             "explanation",
             "central-queen-check-summary",
             "The same plan",
-            "White's d4-pawn is isolated, as in the main line: keep your knight on d5 and aim at d4. Earlier, if White had taken on d5 instead of castling, recapture with the queen, because your e6-bishop is pinned. If White had attacked that bishop with Ng5, take the knight with your queen: nothing defends it. Against Ne5, take the d4-pawn with your c6-knight, which also attacks the queen.",
+            "White's d4-pawn is isolated, as in the main line: keep your knight on d5 and aim at d4. Earlier, if White had taken on d5 instead of castling, recapture with the queen, because your e6-bishop is pinned. If White had attacked that bishop with Ng5, take the knight with your queen: nothing defends it. If White had played Ne5, take the d4-pawn with your c6-knight, which also attacks the queen.",
             QUEEN_CHECK,
         ),
     ]

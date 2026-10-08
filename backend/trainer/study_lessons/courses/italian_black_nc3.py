@@ -66,7 +66,7 @@ def queen_trip():
             "explanation",
             "block-queen-summary",
             "White's king is still in the center",
-            "Your king is safe, while White's c3-knight is still pinned and attacked twice. Against Bb3 instead of Bb5, castle too. If White takes on d5 with the bishop, recapture with your queen. If White castles instead, first take the c3-knight with your bishop.",
+            "Your king is safe, while White's c3-knight is still pinned and attacked twice. Earlier, if White had played Bb3 instead of Bb5, castle too, and if the bishop had taken on d5, recapture with your queen. If White had castled instead of moving the bishop, take the c3-knight with your bishop first.",
             QUEEN,
         ),
     ]
@@ -108,7 +108,7 @@ def moller_trip():
             "explanation",
             "block-moller-summary",
             "Two pawns ahead",
-            "White has quick development for the pawns, so castle soon. Earlier, if White had played Re1 instead of dxc6, move your c6-knight to e7; after Rxe4, castle.",
+            "White is ahead in development in return for the pawns, so castle soon. Earlier, if White had played Re1 instead of dxc6, move your c6-knight to e7; after Rxe4, castle.",
             MOLLER,
         ),
     ]
