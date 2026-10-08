@@ -52,7 +52,7 @@ def _games():
             ),
             (
                 49,
-                "The recorded game ends at Rxh7+ and Black's resignation. This is check, not the final position of a played checkmate.",
+                "The recorded game ends at Rxh7+. Von Bardeleben left the room instead of resigning and lost on time. This is check, not the final position of a played checkmate.",
             ),
         ),
     }
@@ -171,7 +171,7 @@ def course():
             "Bc5",
             "d3",
             "develop",
-            "Bc5 clears f8 for castling. White supports e4 with d3; the center stays closed for now.",
+            "Bc5 clears f8 for castling. White supports e4 with d3; no central pawns have been exchanged yet.",
             "Move f8 to c5.",
         ),
         decision(
@@ -516,7 +516,7 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="italian-black-foundations",
-            revision="2026-09-v3",
+            revision="2026-10-v4",
             title="Italian Game · A practical Black repertoire",
             description="Develop with Bc5, choose a plan after castling, meet the early d4 break, and decline the Evans Gambit. Guided decisions connect the moves to their resulting positions.",
             learner_color="black",

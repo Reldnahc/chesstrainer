@@ -1,6 +1,6 @@
 # White Italian Game: curriculum and source record
 
-Revision `2026-09-v2` teaches a connected quiet White setup, its remaining development, and an actual central break. Historical games provide explicitly contrasting examples rather than substitutes for the repertoire's missing plans. Only their factual move scores were transcribed. All Fieldwork instructional explanations, decisions, highlights, and repertoire selections are original writing; no modern game annotations are reproduced.
+Revision `2026-10-v3` teaches a connected quiet White setup, its remaining development, and an actual central break. Historical games provide explicitly contrasting examples rather than substitutes for the repertoire's missing plans. Only their factual move scores were transcribed. All Fieldwork instructional explanations, decisions, highlights, and repertoire selections are original writing; no modern game annotations are reproduced.
 
 ## Why these chapter boundaries
 
@@ -43,6 +43,8 @@ Specific checks prevent misleading generalizations:
 
 Revision `2026-09-v1` sessions and enrolled studies keep their saved snapshots. The new chapter graph and longer lines are published only under `2026-09-v2`.
 
+Revision `2026-10-v3` changes wording only, after the [October 2026 chess check](VERIFICATION.md#opening-course-chess-check--october-8-2026). The Mason–Lasker note now says each side has developed one bishop; White's c1-bishop is still at home. The Steinitz comparison now names the real difference from our setup: we supported e4 and castled before d4. Steinitz also prepared a c-pawn recapture, so that was not the difference. Moves, chapters and recall lines are unchanged, and earlier sessions and enrolled studies keep their snapshots.
+
 ## Primary publication and reuse
 
 Horace F. Cheshire (editor), *The Hastings Chess Tournament 1895: Containing the authorised account of the 230 games played Aug.–Sept. 1895*, published in 1896 by G. P. Putnam's Sons / Chatto & Windus.
@@ -58,7 +60,7 @@ The Commons file record identifies the original book as public domain in its cou
 | Game | Purpose | Printed pages | Complete recorded score |
 | --- | --- | --- | --- |
 | James Mason–Emanuel Lasker, 27 August 1895 | Quiet development with 4.d3; exchanges change the pawn structure | [264–265](https://archive.org/details/cu31924029919820/page/n319/mode/1up) | 82.Kh8, drawn; 163 plies |
-| Wilhelm Steinitz–Curt von Bardeleben, 17 August 1895 | Prepare an immediate central opening with 4.c3 and 5.d4 | [157–158](https://archive.org/details/cu31924029919820/page/n200/mode/1up) | 25.Rxh7+, Black resigned; 49 plies |
+| Wilhelm Steinitz–Curt von Bardeleben, 17 August 1895 | Prepare an immediate central opening with 4.c3 and 5.d4 | [157–158](https://archive.org/details/cu31924029919820/page/n200/mode/1up) | 25.Rxh7+, White won (see below); 49 plies |
 | William H. K. Pollock–Emanuel Schiffers, 2 September 1895 | Black's Two Knights development and central counterplay require a different response | [330](https://archive.org/details/cu31924029919820/page/n391/mode/1up) | 44...a2, White resigned; 88 plies |
 
 The historical games illustrate choices and consequences. Their complete continuations are examples, not automatically enrolled repertoire or a claim that every move was best. Pollock's loss is explicitly a warning example. Lesson excerpts need not require learners to memorize the later middlegame or endgame.
@@ -71,6 +73,6 @@ The named printed pages were visually inspected in the primary scan. Every move 
 
 - **Mason–Lasker:** the book plays 8...c6 and 10...O-O. Some modern scores exchange those moves, reaching the same position after move 10. Fieldwork follows the printed order, so source-game histories and excerpt anchors remain exact.
 - **Pollock–Schiffers:** the primary book includes 44...a2 before “White resigns.” The IRLchess PGN ends after 44.h6. Fieldwork includes the final legal black move recorded on printed page 330.
-- **Steinitz–von Bardeleben:** the actual score ends at 25.Rxh7+ and resignation. The book subsequently prints an illustrative mate continuation; that analysis is not included as played moves.
+- **Steinitz–von Bardeleben:** the actual score ends at 25.Rxh7+. The book prints “Resigns”, but reports from the tournament, collected in [Edward Winter's article](https://chesshistory.com/winter/extra/steinitzvonbardeleben.html), say von Bardeleben left the room without resigning and lost on time. The White course says only that White won; the Black course explains the loss on time. The book subsequently prints an illustrative mate continuation; that analysis is not included as played moves.
 
 The primary book calls Steinitz “W. Steinitz.” Modern catalogues may use William or Wilhelm; Fieldwork displays the surname and does not infer additional biography from the score.

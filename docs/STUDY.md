@@ -259,8 +259,8 @@ recommendations. No course starts an engine job or downloads material at runtime
 | Italian Game · A practical Black repertoire | Black | Quiet development; choose a post-castling plan; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
 | King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
 
-The current revisions are `2026-09-v2` for `italian-foundations`, and
-`2026-09-v3` for `italian-black-foundations` and `kings-gambit-foundations`.
+The current revisions are `2026-10-v3` for `italian-foundations`, and
+`2026-10-v4` for `italian-black-foundations` and `kings-gambit-foundations`.
 Black decisions and rehearsal use Black orientation
 and automatically play White’s intervening replies. All three course definitions
 are cached as immutable source data and returned as independent copies. Shared
@@ -307,6 +307,9 @@ it teaches good chess. Before publishing or revising a course:
 
 The September 2026 second review corrected substantive gaps in both new courses;
 their source records document the research, decisions and remaining boundaries.
+The October 2026 chess check of all three courses rechecked every taught move
+with Stockfish and the historical scores against published sources. It changed
+no moves and corrected ten explanations; each source record lists its corrections.
 
 #### White Italian course
 

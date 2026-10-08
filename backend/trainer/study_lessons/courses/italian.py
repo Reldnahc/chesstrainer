@@ -21,7 +21,10 @@ def course():
     games = {game.id: game for game in source_games()}
     notes = {
         "mason-lasker": (
-            (8, "Both bishops are developed; d3 supports e4 without opening the center yet."),
+            (
+                8,
+                "Each side has developed one bishop; d3 supports e4 without opening the center yet.",
+            ),
             (
                 10,
                 "Mason chooses Nc3. Our repertoire castles here instead: a game example can differ from your study.",
@@ -243,7 +246,7 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="italian-foundations",
-            revision="2026-09-v2",
+            revision="2026-10-v3",
             title="Italian Game · A quiet White repertoire",
             description="Learn the setup, finish development and play the central break. Compare bishop exchanges, punish a premature ...d5, and meet Black's better-prepared counterplay. Historical examples illustrate different choices; this is a starter repertoire, not coverage of every Italian line.",
             learner_color="white",
