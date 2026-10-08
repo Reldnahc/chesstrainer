@@ -2,19 +2,48 @@
 
 from trainer.study_lessons.content import CourseDefinition, GameAnnotation, SourceGame
 from trainer.study_lessons.courses.authoring import decision, demo, position, step
+from trainer.study_lessons.courses.italian_black_nc3 import chapter as knight_block_chapter
+from trainer.study_lessons.courses.italian_black_nc3 import lines as knight_block_lines
 from trainer.study_lessons.courses.italian_black_plan import quiet_plan
+from trainer.study_lessons.courses.italian_black_positions import (
+    ADVANCE,
+    CENTER,
+    CENTRAL,
+    CHECK,
+    EVANS,
+    EVANS_QUIET,
+    EXCHANGED,
+    ITALIAN,
+    KNIGHT_THREAT,
+    QUIET,
+    RECAPTURED,
+)
+from trainer.study_lessons.courses.italian_black_variations import (
+    CASTLED_FIRST,
+    EARLY_ATTACK,
+    EARLY_CENTER,
+    KNIGHT_FIRST,
+    PUSHED,
+    QUEEN_CHECK,
+    QUEEN_PRESSURE,
+    QUEEN_RECAPTURE,
+    attack_trip,
+    castle_trip,
+    center_trip,
+    check_trip,
+    knight_trip,
+    pressure_trip,
+    push_trip,
+    queen_trip,
+)
 from trainer.study_lessons.courses.italian_games import (
     BOOK_URL,
     PUBLIC_DOMAIN_ATTRIBUTION,
     source_games,
 )
 
-ITALIAN = "e4 e5 Nf3 Nc6 Bc4 Bc5"
-QUIET = ITALIAN + " d3 Nf6 O-O d6 c3 O-O"
-KNIGHT_THREAT = ITALIAN + " d3 Nf6"
-CENTRAL = ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5 exd5 Nxd5 O-O O-O"
-EVANS = ITALIAN + " b4 Bb6 c3 d6 a4 a6 a5 Ba7"
-EVANS_QUIET = EVANS + " d3 Nf6 O-O O-O"
+KNIGHT_ATTACK = KNIGHT_THREAT + " Ng5 O-O"
+EVANS_FLANK = EVANS + " b5 axb5 Bxb5 Nf6 a6 Nxe4"
 
 # Factual score from the original 1896 book, p. 115. The lesson does not reuse
 # Tarrasch's annotations or treat the whole historical game as a repertoire.
@@ -169,10 +198,58 @@ def course():
             "Place your kingside bishop on the diagonal toward f2 and clear part of the castling route.",
             "e4 e5 Nf3 Nc6 Bc4",
             "Bc5",
-            "d3",
-            "develop",
-            "Bc5 clears f8 for castling. White supports e4 with d3; no central pawns have been exchanged yet.",
+            None,
+            "early-castle-choice",
+            "Bc5 clears f8 for castling. Now White chooses a plan.",
             "Move f8 to c5.",
+        ),
+        step(
+            "branch",
+            "early-castle-choice",
+            "If White castles",
+            "White has several common fourth moves. This chapter's main line is d3; side trips show castling, Nc3, Ng5 and d4 first, and later chapters cover c3 and the Evans Gambit, b4. Explore castling, or continue to the next reply.",
+            ITALIAN,
+            branch_start="early-castle",
+            next_step="early-knight-choice",
+        ),
+        *castle_trip(),
+        step(
+            "branch",
+            "early-knight-choice",
+            "If White plays Nc3",
+            "Explore Nc3, or continue to the next reply.",
+            ITALIAN,
+            branch_start="early-knight",
+            next_step="early-attack-choice",
+        ),
+        *knight_trip(),
+        step(
+            "branch",
+            "early-attack-choice",
+            "If White plays Ng5",
+            "Explore Ng5, an early attack on f7, or continue to the next reply.",
+            ITALIAN,
+            branch_start="early-attack",
+            next_step="early-center-choice",
+        ),
+        *attack_trip(),
+        step(
+            "branch",
+            "early-center-choice",
+            "If White plays d4",
+            "Explore d4, which strikes at the center at once, or continue to the main line.",
+            ITALIAN,
+            branch_start="early-center",
+            next_step="white-supports",
+        ),
+        *center_trip(),
+        demo(
+            "white-supports",
+            "White supports the center",
+            "White supports e4 with d3; no central pawns have been exchanged yet.",
+            ITALIAN,
+            ITALIAN + " d3",
+            "develop",
         ),
         decision(
             "develop",
@@ -196,18 +273,29 @@ def course():
         ),
         demo(
             "quiet-knight-threat",
-            "Castle to reinforce f7",
-            "Ng5 joins the c4-bishop in attacking f7. Castling brings the rook from h8 to f8, adding a defender while making the king safer.",
+            "White attacks f7",
+            "Ng5 joins the c4-bishop in attacking f7 and threatens Nxf7, forking your queen and h8-rook.",
             KNIGHT_THREAT,
-            KNIGHT_THREAT + " Ng5 O-O",
+            KNIGHT_THREAT + " Ng5",
+            "quiet-threat-castle",
+        ),
+        decision(
+            "quiet-threat-castle",
+            "Castle to reinforce f7",
+            "Castle: the rook comes from h8 to f8, adding a defender while making the king safer.",
+            KNIGHT_THREAT + " Ng5",
+            "O-O",
+            None,
             "quiet-threat-summary",
+            "Your king and the f8-rook now both defend f7.",
+            "Castle kingside by moving e8 to g8.",
         ),
         step(
             "explanation",
             "quiet-threat-summary",
             "Check the defenders, not just the threat",
             "The rook on f8 and king on g8 now defend f7. If White captures there with the knight, Rxf7 is available. This is why the bishop-first move order matters: you can castle after developing Nf6. Return to the quiet line when ready.",
-            KNIGHT_THREAT + " Ng5 O-O",
+            KNIGHT_ATTACK,
             annotations={"squares": ["f7", "f8", "g8"]},
         ),
         demo(
@@ -281,47 +369,83 @@ def course():
             "Nf6",
             "d4",
             "central-capture",
-            "White plays d4, attacking your e5-pawn and c5-bishop. The center now needs a concrete response.",
+            "White plays d4, attacking your e5-pawn and c5-bishop. The center now needs a concrete response. If White plays d3 instead, play d6 and castle: that leads back to your quiet setup.",
             "Move g8 to f6.",
         ),
         decision(
             "central-capture",
             "Resolve the pawn contact",
             "Capture the pawn that has advanced to d4.",
-            ITALIAN + " c3 Nf6 d4",
+            ADVANCE,
             "exd4",
-            "cxd4",
-            "central-check",
-            "After cxd4, White has pawns on d4 and e4. Your bishop is still attacked by the pawn on d4.",
+            None,
+            "central-push-choice",
+            "exd4 removes the pawn that attacked your bishop and e5-pawn.",
             "The e5-pawn can capture on d4.",
+        ),
+        step(
+            "branch",
+            "central-push-choice",
+            "If White pushes e5",
+            "White usually takes back with cxd4. A side trip shows e5 first, which attacks your knight. Explore e5, or continue to the main line.",
+            ADVANCE + " exd4",
+            branch_start="central-push",
+            next_step="central-recaptures",
+        ),
+        *push_trip(),
+        demo(
+            "central-recaptures",
+            "White takes back",
+            "After cxd4, White has pawns on d4 and e4, and your bishop is attacked again by the new pawn on d4.",
+            ADVANCE + " exd4",
+            CENTER,
+            "central-check",
         ),
         decision(
             "central-check",
             "Move the bishop with check",
             "Save the c5-bishop while making White answer a check.",
-            ITALIAN + " c3 Nf6 d4 exd4 cxd4",
+            CENTER,
             "Bb4+",
             "Bd2",
             "central-trade",
-            "Bb4+ moves the bishop out of attack. White blocks the check with Bd2; we will exchange that bishop before breaking in the center.",
+            "Bb4+ moves the bishop out of attack. White blocks the check with Bd2; we will exchange that bishop before breaking in the center. The next chapter covers blocking with Nc3 instead.",
             "Move c5 to b4.",
         ),
         decision(
             "central-trade",
             "Exchange the blocking bishop",
             "Capture the bishop on d2 with check. White can develop a knight while recapturing.",
-            ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2",
+            CHECK + " Bd2",
             "Bxd2+",
-            "Nbxd2",
-            "central-break",
-            "After Nbxd2, each side has traded a bishop. Your d-pawn can now challenge White's center.",
+            None,
+            "central-queen-choice",
+            "Bxd2+ trades your bishop for White's and gives check.",
             "Move the bishop from b4 to d2.",
+        ),
+        step(
+            "branch",
+            "central-queen-choice",
+            "If White recaptures with the queen",
+            "The main line recaptures with the knight. Explore Qxd2, which leaves e4 without a defender, or continue to the main line.",
+            EXCHANGED,
+            branch_start="central-queen",
+            next_step="central-knight-recaptures",
+        ),
+        *queen_trip(),
+        demo(
+            "central-knight-recaptures",
+            "White recaptures with the knight",
+            "After Nbxd2, each side has traded a bishop. Your d-pawn can now challenge White's center.",
+            EXCHANGED,
+            EXCHANGED + " Nbxd2",
+            "central-break",
         ),
         decision(
             "central-break",
             "Challenge both central targets",
             "Advance your d-pawn two squares, attacking e4 and the bishop on c4.",
-            ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2",
+            EXCHANGED + " Nbxd2",
             "d5",
             "exd5",
             "central-recapture",
@@ -338,18 +462,46 @@ def course():
             "central-recapture",
             "Recapture with a piece",
             "Restore the material balance with a knight and occupy the square in front of White's d-pawn.",
-            ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5 exd5",
+            EXCHANGED + " Nbxd2 d5 exd5",
             "Nxd5",
-            "O-O",
-            "central-castle",
-            "Nxd5 restores equal material and places a knight in the center. White castles; now attend to your own king.",
+            None,
+            "central-queen-check-choice",
+            "Nxd5 restores equal material and places a knight in the center.",
             "Move f6 to d5.",
+        ),
+        step(
+            "branch",
+            "central-queen-check-choice",
+            "If White checks with the queen",
+            "White's main line here is castling. Side trips show Qe2+ and Qb3 first. Explore Qe2+, or continue to the next reply.",
+            RECAPTURED,
+            branch_start="central-queen-check",
+            next_step="central-queen-b3-choice",
+        ),
+        *check_trip(),
+        step(
+            "branch",
+            "central-queen-b3-choice",
+            "If White plays Qb3",
+            "Explore Qb3, which lines the queen up behind the bishop against d5, or continue to the main line.",
+            RECAPTURED,
+            branch_start="central-queen-b3",
+            next_step="central-white-castles",
+        ),
+        *pressure_trip(),
+        demo(
+            "central-white-castles",
+            "White castles",
+            "White castles. Now attend to your own king.",
+            RECAPTURED,
+            RECAPTURED + " O-O",
+            "central-castle",
         ),
         decision(
             "central-castle",
             "Castle after the exchanges",
             "The kingside route is clear. Castle before deciding where your remaining bishop belongs.",
-            ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5 exd5 Nxd5 O-O",
+            RECAPTURED + " O-O",
             "O-O",
             None,
             "central-plan",
@@ -368,7 +520,7 @@ def course():
         excerpt(
             "central-game",
             "A different reply to the bishop check",
-            "Steinitz–von Bardeleben, Hastings 1895. White blocks Bb4+ with Nc3 instead of Bd2. Black also plays d5 here, but it is a different position. Compare the piece placement; the later Black loss is not part of your taught line.",
+            "Steinitz–von Bardeleben, Hastings 1895. White blocks Bb4+ with Nc3 instead of Bd2, and Black answers d5. Stockfish prefers Nxe4 there, which the next chapter teaches. The later Black loss is not part of your taught line.",
             "steinitz-bardeleben",
             6,
             18,
@@ -446,25 +598,58 @@ def course():
             "branch",
             "evans-choice",
             "White can keep pushing or develop",
-            "Our rehearsal uses d3 followed by castling. Explore White's b5 advance to see Lasker's historical response, then return here to the quiet continuation.",
+            "The main line continues with d3 and castling. Explore White's b5 advance, which Pollock played against Lasker, or continue to the main line.",
             EVANS,
             branch_start="evans-flank",
             next_step="evans-quiet-reply",
         ),
         demo(
             "evans-flank",
-            "Another pawn advance changes the position",
-            "In Pollock–Lasker, b5 was met by axb5. After Bxb5, Black developed Nf6; White pushed a6 and Black castled. This is an illustration, not a second required line.",
+            "White pushes the b-pawn again",
+            "Pollock played b5 against Lasker. The pawn attacks your c6-knight, but your a6-pawn can take it.",
             EVANS,
-            EVANS + " b5 axb5 Bxb5 Nf6 a6 O-O",
+            EVANS + " b5",
+            "evans-flank-take",
+        ),
+        decision(
+            "evans-flank-take",
+            "Take the pawn",
+            "Capture the b5-pawn with your a-pawn.",
+            EVANS + " b5",
+            "axb5",
+            "Bxb5",
+            "evans-flank-develop",
+            "axb5 removes the attacker. White's bishop takes back on b5 and pins your c6-knight to your king.",
+            "Capture on b5 with the a6-pawn.",
+        ),
+        decision(
+            "evans-flank-develop",
+            "Develop with an attack",
+            "Develop your kingside knight, attacking e4.",
+            EVANS + " b5 axb5 Bxb5",
+            "Nf6",
+            "a6",
+            "evans-flank-pawn",
+            "Nf6 develops and attacks e4. White pushes a6 instead of defending it.",
+            "Move g8 to f6.",
+        ),
+        decision(
+            "evans-flank-pawn",
+            "Take the loose pawn",
+            "Nothing defends e4. Take it.",
+            EVANS + " b5 axb5 Bxb5 Nf6 a6",
+            "Nxe4",
+            None,
             "evans-branch-summary",
+            "Nxe4 wins a pawn. In Pollock–Lasker, Black castled here instead, which is also good.",
+            "Capture on e4 with the knight from f6.",
         ),
         step(
             "explanation",
             "evans-branch-summary",
-            "Separate space from development",
-            "White's advanced a-pawn is visible, but Black has two developed knights and a castled king. Return to the branch point to practice the quieter continuation.",
-            EVANS + " b5 axb5 Bxb5 Nf6 a6 O-O",
+            "A pawn ahead",
+            "Castle next, but if White's queen attacks your knight from e2, retreat it to f6 first. If White takes on b7 with the a-pawn, recapture with the c8-bishop. Return to the branch point to practice the quieter continuation.",
+            EVANS_FLANK,
         ),
         demo(
             "evans-quiet-reply",
@@ -516,9 +701,9 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="italian-black-foundations",
-            revision="2026-10-v4",
+            revision="2026-10-v5",
             title="Italian Game · A practical Black repertoire",
-            description="Develop with Bc5, choose a plan after castling, meet the early d4 break, and decline the Evans Gambit. Guided decisions connect the moves to their resulting positions.",
+            description="Develop with Bc5 and meet White's common fourth moves, choose a plan after castling, meet the early d4 break and the Nc3 gambit, and decline the Evans Gambit. Guided decisions connect the moves to their resulting positions.",
             learner_color="black",
             attributions=[
                 dict(
@@ -531,16 +716,47 @@ def course():
                 dict(id=identity, title=title, moves=position(san).moves, repertoire=True, eco=eco)
                 for identity, title, san, eco in (
                     ("black-quiet-italian", "Black Italian · develop and castle", QUIET, "C50"),
+                    ("black-castled-first", "Black Italian · meet 4.O-O", CASTLED_FIRST, "C50"),
+                    ("black-knight-first", "Black Italian · meet 4.Nc3", KNIGHT_FIRST, "C50"),
+                    ("black-early-attack", "Black Italian · punish 4.Ng5", EARLY_ATTACK, "C50"),
+                    ("black-early-center", "Black Italian · meet 4.d4", EARLY_CENTER, "C50"),
+                    (
+                        "black-knight-attack",
+                        "Black Italian · castle against 5.Ng5",
+                        KNIGHT_ATTACK,
+                        "C50",
+                    ),
+                )
+            ]
+            + [plan_line]
+            + [
+                dict(id=identity, title=title, moves=position(san).moves, repertoire=True, eco=eco)
+                for identity, title, san, eco in (
                     ("black-central-counterplay", "Black Italian · meet c3 and d4", CENTRAL, "C54"),
+                    ("black-central-push", "Black Italian · meet 6.e5", PUSHED, "C54"),
+                    ("black-central-queen", "Black Italian · meet 8.Qxd2", QUEEN_RECAPTURE, "C54"),
+                    ("black-central-check", "Black Italian · meet 10.Qe2+", QUEEN_CHECK, "C54"),
+                    (
+                        "black-central-pressure",
+                        "Black Italian · meet 10.Qb3",
+                        QUEEN_PRESSURE,
+                        "C54",
+                    ),
+                )
+            ]
+            + knight_block_lines()
+            + [
+                dict(id=identity, title=title, moves=position(san).moves, repertoire=True, eco=eco)
+                for identity, title, san, eco in (
                     (
                         "black-evans-declined",
                         "Evans Declined · preserve the bishop and develop",
                         EVANS_QUIET,
                         "C51",
                     ),
+                    ("black-evans-flank", "Evans Declined · meet the b5 push", EVANS_FLANK, "C51"),
                 )
-            ]
-            + [plan_line],
+            ],
             chapters=[
                 dict(
                     id="quiet-development",
@@ -554,6 +770,7 @@ def course():
                 dict(id=identity, title=title, entry_step=steps[0]["id"], steps=steps)
                 for identity, title, steps in (
                     ("central-break", "Meet the central advance", central),
+                    ("knight-block", "Meet the Nc3 gambit", knight_block_chapter()),
                     ("evans-declined", "Decline the Evans Gambit", evans),
                 )
             ],
