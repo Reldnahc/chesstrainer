@@ -64,14 +64,14 @@ export default function HomeScreen() {
           <StatList prominence="featured" items={[{ label: "Scheduled recalls", value: data.due }]} />
           <p className="muted">{data.due > 0 ? "Pick up your practice with the positions ready for recall." : "You’re caught up. Learn a new line or revisit a game."}</p>
           <ActionLink variant="primary" href={data.due > 0 ? studyPaths.due : studyPaths.openings}>
-            {data.due > 0 ? "Start studying" : "Explore openings"}<ArrowRight size={16} aria-hidden="true" />
+            {data.due > 0 ? "Start studying" : "Explore lessons"}<ArrowRight size={16} aria-hidden="true" />
           </ActionLink>
         </>}</HomeResult>
       </section>
 
       <section className="panel home-learning" aria-labelledby="home-learning-title">
         <div className="home-section-heading"><h2 id="home-learning-title"><BookOpen size={20} aria-hidden="true" />Keep learning</h2>
-          <ActionLink variant="quiet" size="compact" href={studyPaths.openings}>Openings<ArrowRight size={16} aria-hidden="true" /></ActionLink>
+          <ActionLink variant="quiet" size="compact" href={studyPaths.openings}>Lessons<ArrowRight size={16} aria-hidden="true" /></ActionLink>
         </div>
         <HomeResult query={lessons} label="lessons">{data => <div className="study-resume-list">
           {data.resume.length ? data.resume.slice(0, 2).map(session => <ResumeLink key={session.id}
@@ -79,8 +79,8 @@ export default function HomeScreen() {
             : data.courses.length ? <ResumeLink href={lessonCoursePath(data.courses[0].id, data.courses[0].revision, data.courses[0].topic)}
               description={`${data.courses[0].completed_chapters} of ${data.courses[0].chapter_count} chapters completed`}>
               {data.courses[0].title}
-            </ResumeLink> : <EmptyState presentation="compact" title="Choose an opening to study.">
-              Browse the catalogue and build your repertoire.
+            </ResumeLink> : <EmptyState presentation="compact" title="Choose a lesson to study.">
+              Learn an opening, a tactic or a fundamental skill.
             </EmptyState>}
         </div>}</HomeResult>
         <HomeResult query={openings} label="opening studies">{data => <StatList items={[

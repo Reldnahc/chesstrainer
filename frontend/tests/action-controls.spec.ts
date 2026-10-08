@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("primary and secondary destination actions share geometry and preserve keyboard navigation", async ({ page }) => {
   await page.goto("/study");
   const primary = page.getByRole("link", { name: "Start studying", exact: true });
-  const secondary = page.getByRole("link", { name: "Explore openings", exact: true });
+  const secondary = page.getByRole("link", { name: "Open lessons", exact: true });
   await expect(primary).toBeVisible();
   await expect(secondary).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
@@ -85,7 +85,7 @@ test("action links retain desktop modifier clicks", async ({ page, context }, in
   test.skip(info.project.name !== "desktop", "Modifier click is a desktop interaction.");
   await page.goto("/study");
   const opened = context.waitForEvent("page");
-  await page.getByRole("link", { name: "Explore openings", exact: true }).click({ modifiers: ["ControlOrMeta"] });
+  await page.getByRole("link", { name: "Open lessons", exact: true }).click({ modifiers: ["ControlOrMeta"] });
   const other = await opened;
   try {
     await expect(other).toHaveURL("/study/openings");

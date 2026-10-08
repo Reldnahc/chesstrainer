@@ -159,5 +159,5 @@ position. The opening courses' content hashes are unchanged.
 
 - Every example is White to move; there are no defensive tactics.
 - Each decision has one accepted answer.
-- The course appears under Study → Skills with the fundamentals course, apart
+- The course appears under Study → Lessons → Fundamentals with the fundamentals course, apart
   from the opening courses.

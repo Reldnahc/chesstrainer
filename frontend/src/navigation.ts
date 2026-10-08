@@ -85,13 +85,15 @@ function readRoute() {
   try { if (courseMatch) lessonCourseId = decodeURIComponent(courseMatch[2]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (catalogueMatch) openingCatalogueKey = decodeURIComponent(catalogueMatch[1]); } catch { /* Invalid source links show the not-found screen. */ }
   try { if (courseLineMatch) openingCourseLine = { courseId: decodeURIComponent(courseLineMatch[1]), lineId: decodeURIComponent(courseLineMatch[2]), revision: url.searchParams.get("revision") || "", color: url.searchParams.get("color") === "black" ? "black" : "white" }; } catch { /* Invalid source links show the not-found screen. */ }
-  const openingSection: "catalogue" | "studies" | "lessons" = path === `${studyPaths.openings}/catalogue` || openingCatalogueKey ? "catalogue"
-    : path === `${studyPaths.openings}/studies` ? "studies" : "lessons";
+  // The Study Lessons section holds the opening and fundamentals courses beside the
+  // opening catalogue and studies; skills courses keep their own URLs.
+  const openingSection: "catalogue" | "studies" | "lessons" | "fundamentals" = path === `${studyPaths.openings}/catalogue` || openingCatalogueKey ? "catalogue"
+    : path === `${studyPaths.openings}/studies` ? "studies"
+    : path === studyPaths.skills || skillsLesson ? "fundamentals" : "lessons";
   const puzzleSource: "generic" | "games" | null = path === "/study/puzzles/generic" ? "generic"
     : path === "/study/puzzles/games" ? "games" : null;
   const studyMode: StudyMode | null = path === pagePaths.Study ? "home"
     : puzzleSessionId || puzzleSource ? "puzzles"
-    : skillsLesson && (lessonSessionId || lessonCourseId) ? "skills"
     : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
   const tab: Tab | null = studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"

@@ -165,5 +165,5 @@ tablebases.
 - Each decision has one accepted answer.
 - Most of the starter pack's pawn-ending puzzles are rated above 1200, so that
   practice set is harder than the chapter.
-- The course appears under Study → Skills with the tactics course, apart from
+- The course appears under Study → Lessons → Fundamentals with the tactics course, apart from
   the opening courses.

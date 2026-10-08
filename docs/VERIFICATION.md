@@ -38,6 +38,22 @@ mobile (**34 passed**, with a preinstalled Chromium). Their chapter walks now
 allow 90 seconds: walking every side trip takes up to about 40 seconds, past
 the default 30.
 
+## Study Lessons section — October 8, 2026
+
+Owner request: Openings and Skills become one Study section called Lessons.
+The Study home has three cards again (Due now, Lessons, Puzzles); the Lessons
+card counts unfinished chapters across every lesson course. The section's tabs
+are Openings, Fundamentals (the tactics and fundamentals courses), Catalogue and
+My studies. URLs are unchanged: `/study/openings` is the Openings tab and
+`/study/skills` the Fundamentals tab. Home's Keep learning link and the
+caught-up Due action now say Lessons.
+
+Checks: `npm run build`, `test:types`, `test:symbols` and `test:styles` passed;
+`dashboard.spec.ts`, `ui-standardization.spec.ts`, `action-controls.spec.ts`,
+`study-lessons.spec.ts` and `opening-library.spec.ts` passed on desktop and
+mobile (55 passed, 1 desktop-only skip). Not run: the backend suite (no backend
+change) and the other browser specs.
+
 ## Study Skills card — October 8, 2026
 
 The tactics and fundamentals courses moved from Study → Openings to their own

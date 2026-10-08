@@ -30,14 +30,17 @@ spelling alone does not invalidate recalls or change retirement and due dates.
 `/review`, root exercise links and focused Weakness links resolve to Due through
 history replacement. Legacy `unit` links are stripped, not revived. Imports stay
 in Settings and saved game analysis stays in Games.
-The Study home cards lead to Due, Openings, Skills and Puzzles. The Skills card
-counts the skills-course chapters not yet completed. The main navigation's
+The Study home cards lead to Due, Lessons and Puzzles. The Lessons card counts
+the chapters not yet completed across every lesson course. Lessons is one
+section with four tabs: Openings (the opening courses), Fundamentals (the
+tactics and fundamentals courses), Catalogue and My studies. Home's Keep
+learning panel links to Lessons. The main navigation's
 Study link returns to that overview; subpages do not repeat a section selector.
 Overview cards place descriptions below their headings and show the scheduled
-recall and active opening-line counts separately. The Puzzles card's count is
+recall and lesson-chapter counts separately. The Puzzles card's count is
 installed puzzles not yet solved, and its description gives how many distinct
 installed puzzles have been solved at least once (a solve after a mistake counts;
-a reveal or a repeat solve does not add one). Opening counts reflect enrolled
+a reveal or a repeat solve does not add one). Home's opening count reflects enrolled
 active lines, including zero; merely viewing a lesson does not increase them.
 
 ## Puzzle boundary
@@ -250,13 +253,14 @@ The `/study/openings` library links course chapters and recent resumable session
 `/study/openings/sessions/:id` resumes the exact private player state.
 `/study/skills` is the same library limited to the tactics and fundamentals
 courses, with the same `courses/:id?revision=…` and `sessions/:id` routes under
-it; the Openings Lessons tab lists only opening courses. The backend reports each
+it, and is the Lessons section's Fundamentals tab; the Openings tab lists only
+opening courses. The backend reports each
 course's topic (`opening` or `skills`) from a fixed list of skill course ids in
 `study_lessons/bundled.py`, outside course content, so the topic never changes a
 content hash. Every other course, including opening-study practice sessions, is
 an opening course. A course page and the lesson player follow the course's own
 topic for their back links, so an older `/study/openings` link to a skills course
-still opens and returns to Skills.
+still opens and returns to Fundamentals.
 
 ### Included courses
 

@@ -35,7 +35,7 @@ test("catalogue search previews a real line, enrolls either side and preserves h
     expect((await page.request.delete(`/api/opening-studies/${study.id}`)).ok()).toBe(true);
   }
   await page.goto("/study/openings");
-  await expect(page).toHaveTitle("Openings · Fieldwork");
+  await expect(page).toHaveTitle("Lessons · Fieldwork");
   await page.getByRole("link", { name: "Catalogue", exact: true }).click();
   await expect(page).toHaveTitle("Opening catalogue · Fieldwork");
   await page.getByLabel("Opening name", { exact: true }).fill("Italian Game");

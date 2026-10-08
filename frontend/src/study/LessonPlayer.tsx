@@ -34,7 +34,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     document.title = `${session?.course_title || "Opening lesson"} · Fieldwork`;
   }, [session?.course_title]);
   if (loading) return <LoadingState presentation="panel">Loading your lesson…</LoadingState>;
-  if (!session) return <UnavailableState presentation="panel" heading={<h1>Lesson unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.openings}>All openings</ActionLink></>}>{error}</UnavailableState>;
+  if (!session) return <UnavailableState presentation="panel" heading={<h1>Lesson unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.openings}>All lessons</ActionLink></>}>{error}</UnavailableState>;
   const has = (action: LessonAction) => session.actions.includes(action);
   const finished = session.status === "completed";
   const { step, feedback } = session;

@@ -271,13 +271,13 @@ test("a new library offers useful destinations without suggesting an empty recal
   const fixture = await mockDashboard(page, data);
   await page.goto("/");
   const due = region(page, "Due now");
-  await expect(due.getByRole("link", { name: "Explore openings", exact: true })).toHaveAttribute("href", "/study/openings");
+  await expect(due.getByRole("link", { name: "Explore lessons", exact: true })).toHaveAttribute("href", "/study/openings");
   await expect(due.getByRole("link", { name: "Start studying", exact: true })).toHaveCount(0);
   await expect(region(page, "Recent games")).toContainText(/import/i);
   await expect(region(page, "Recent games").locator('a[href="/settings"]')).toBeVisible();
   await expect(region(page, "Practice focus")).toContainText("No patterns ready to practice yet.");
   await expect(region(page, "Practice focus").locator('a[href^="/study/due?focus="]')).toHaveCount(0);
-  await expect(region(page, "Keep learning")).toContainText("Choose an opening to study.");
+  await expect(region(page, "Keep learning")).toContainText("Choose a lesson to study.");
   await expect(region(page, "Keep learning").getByRole("definition")).toHaveText(["0"]);
   await expect(region(page, "Keep learning").locator('a[href^="/study/openings/sessions/"]')).toHaveCount(0);
   await expect(page.getByRole("alert")).toHaveCount(0);

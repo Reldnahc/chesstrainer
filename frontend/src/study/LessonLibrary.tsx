@@ -14,7 +14,7 @@ import LessonAttribution from "./LessonAttribution";
 
 const TOPIC_TEXT = {
   opening: { home: studyPaths.openings, back: "All openings", loading: "Loading opening lessons…", empty: "No opening lessons yet.", emptyText: "Opening lessons will appear here when a course is available." },
-  skills: { home: studyPaths.skills, back: "All skills", loading: "Loading skill lessons…", empty: "No skill lessons yet.", emptyText: "Skill lessons will appear here when a course is available." },
+  skills: { home: studyPaths.skills, back: "All fundamentals", loading: "Loading fundamentals lessons…", empty: "No fundamentals lessons yet.", emptyText: "Fundamentals lessons will appear here when a course is available." },
 } as const;
 
 export default function LessonLibrary({ topic, courseId, revision }: { topic: LessonTopic; courseId: string | null; revision: string | null }) {
