@@ -25,10 +25,10 @@ test("Settings and Openings share section navigation appearance and preserve URL
   expect(settingsAppearance.height).toBeGreaterThanOrEqual(44);
 
   await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Study", exact: true }).click();
-  await page.getByRole("link", { name: "Explore openings", exact: true }).click();
-  const openings = page.getByRole("navigation", { name: "Opening study modes" });
-  await expect(openings.getByRole("link")).toHaveText(["Lessons", "Catalogue", "My studies"]);
-  await expect(openings.getByRole("link", { name: "Lessons", exact: true })).toHaveAttribute("aria-current", "page");
+  await page.getByRole("link", { name: "Open lessons", exact: true }).click();
+  const openings = page.getByRole("navigation", { name: "Lesson sections" });
+  await expect(openings.getByRole("link")).toHaveText(["Fundamentals", "Openings", "Catalogue", "My studies"]);
+  await expect(openings.getByRole("link", { name: "Openings", exact: true })).toHaveAttribute("aria-current", "page");
   expect(await sectionAppearance(openings)).toEqual(settingsAppearance);
   const originalBounds = await openings.boundingBox();
   await openings.getByRole("link", { name: "Catalogue", exact: true }).click();
@@ -37,7 +37,7 @@ test("Settings and Openings share section navigation appearance and preserve URL
   expect(await openings.boundingBox()).toEqual(originalBounds);
   await page.goBack();
   await expect(page).toHaveURL("/study/openings");
-  await expect(openings.getByRole("link", { name: "Lessons", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(openings.getByRole("link", { name: "Openings", exact: true })).toHaveAttribute("aria-current", "page");
   await page.goForward();
   await expect(openings.getByRole("link", { name: "Catalogue", exact: true })).toHaveAttribute("aria-current", "page");
   expect(documents).toHaveLength(1);
@@ -48,7 +48,7 @@ test("section navigation keeps phone targets and disappears inside a lesson cour
   await page.setViewportSize({ width: 320, height: 700 });
   for (const { route, links } of [
     { route: "/settings?section=advanced", links: ["Games & imports", "Coach & animations", "Sound", "Advanced"] },
-    { route: "/study/openings", links: ["Lessons", "Catalogue", "My studies"] },
+    { route: "/study/openings", links: ["Fundamentals", "Openings", "Catalogue", "My studies"] },
   ]) {
     await page.goto(route);
     const navigation = page.locator(".section-navigation");
@@ -61,7 +61,7 @@ test("section navigation keeps phone targets and disappears inside a lesson cour
   }
   await page.locator(".lesson-course-card").first().click();
   await expect(page.locator(".lesson-course")).toBeVisible();
-  await expect(page.getByRole("navigation", { name: "Opening study modes" })).toHaveCount(0);
+  await expect(page.getByRole("navigation", { name: "Lesson sections" })).toHaveCount(0);
   await page.getByRole("link", { name: "All openings", exact: true }).click();
-  await expect(page.getByRole("navigation", { name: "Opening study modes" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Lesson sections" })).toBeVisible();
 });

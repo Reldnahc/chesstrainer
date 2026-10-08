@@ -12,6 +12,8 @@ from trainer.study_lessons.courses.italian_positions import (
     PREPARED,
     QUIET,
 )
+from trainer.study_lessons.courses.italian_two_knights import TWO_KNIGHTS, WAIT
+from trainer.study_lessons.courses.italian_variations import EARLY_H6, KNIGHT_JUMP
 
 
 def board(san):
@@ -22,18 +24,113 @@ def step_board(chapter_id, step_id):
     return course().chapter(chapter_id).step(step_id).position.board()
 
 
-def test_two_knights_branch_transposes_only_after_the_bishop_choice():
+def test_two_knights_chapter_defends_e4_and_answers_the_d5_strike():
     knight_first = position(ITALIAN + " Nf6 d3 Bc5")
     bishop_first = position(ITALIAN + " Bc5 d3 Nf6")
     assert knight_first.moves != bishop_first.moves
     assert knight_first.board().fen() == bishop_first.board().fen()
-    before_reply = board(ITALIAN + " Nf6 d3")
-    assert chess.D3 in before_reply.attackers(chess.WHITE, chess.E4)
-    assert before_reply.parse_san("Be7") in before_reply.legal_moves
-    assert board(ITALIAN + " Nf6 d3 Be7").board_fen() != bishop_first.board().board_fen()
-    branch = course().chapter("quiet-development").step("two-support")
-    assert branch.choices[0].uci == "d2d3"
-    assert branch.choices[0].reply == ("f8c5",)
+    defend = course().chapter("two-knights").step("two-knights-defend")
+    assert defend.choices[0].uci == "d2d3" and defend.choices[0].reply == ()
+    attacked = defend.position.board()
+    assert chess.F6 in attacked.attackers(chess.BLACK, chess.E4)
+    assert not attacked.attackers(chess.WHITE, chess.E4)
+    attacked.push_san("d3")
+    assert chess.D3 in attacked.attackers(chess.WHITE, chess.E4)
+
+    strike = step_board("two-knights", "two-knights-take")
+    assert {chess.C4, chess.E4} <= set(strike.attacks(chess.D5))
+    for san in ("exd5", "Nxd5", "O-O", "Be6"):
+        strike.push_san(san)
+    assert chess.E6 in strike.attackers(chess.BLACK, chess.D5)
+    strike.push_san("Re1")
+    assert {chess.E1, chess.F3} <= set(strike.attackers(chess.WHITE, chess.E5))
+    assert set(strike.attackers(chess.BLACK, chess.E5)) == {chess.C6}
+    strike.push_san("Bd6")
+    assert set(strike.attackers(chess.BLACK, chess.E5)) == {chess.C6, chess.D6}
+    assert strike.king(chess.BLACK) == chess.E8
+
+
+def test_two_knights_d6_side_trip_wins_the_undefended_e6_pawn():
+    weak = step_board("two-knights", "two-knights-d6-attack")
+    assert set(weak.attackers(chess.BLACK, chess.F7)) == {chess.E8}
+    assert {
+        square for square in weak.attacks(chess.F8) if weak.color_at(square) != chess.BLACK
+    } == {chess.E7}
+    weak.push_san("Ng5")
+    assert {chess.C4, chess.G5} <= set(weak.attackers(chess.WHITE, chess.F7))
+    fork = weak.copy()
+    fork.push_san("a6")
+    fork.push_san("Nxf7")
+    assert {chess.D8, chess.H8} <= set(fork.attacks(chess.F7))
+    for san in ("Be6", "Nxe6", "fxe6"):
+        weak.push_san(san)
+    assert not weak.attackers(chess.BLACK, chess.E6)
+    assert chess.C4 in weak.attackers(chess.WHITE, chess.E6)
+    weak.push_san("Bxe6")
+    assert len(weak.pieces(chess.PAWN, chess.WHITE)) == 8
+    assert len(weak.pieces(chess.PAWN, chess.BLACK)) == 7
+    assert not weak.pieces(chess.BISHOP, chess.BLACK) & chess.BB_LIGHT_SQUARES
+
+
+def test_knight_jump_trap_and_its_punishment_state_real_board_facts():
+    trap = board(ITALIAN + " Nd4")
+    assert not trap.attackers(chess.BLACK, chess.E5)
+    assert chess.D4 in trap.attackers(chess.BLACK, chess.F3)
+    greedy = board(ITALIAN + " Nd4 Nxe5 Qg5")
+    assert {chess.E5, chess.G2} <= set(greedy.attacks(chess.G5))
+
+    sacrifice = step_board("quiet-development", "knight-jump-sacrifice")
+    assert set(sacrifice.attackers(chess.BLACK, chess.F7)) == {chess.E8}
+    assert chess.C5 in sacrifice.attackers(chess.BLACK, chess.D4)
+    for san in ("Bxf7+", "Kxf7", "Qh5+"):
+        sacrifice.push_san(san)
+    assert sacrifice.is_check()
+    # Every way out of the check leaves the c5-bishop attacked and undefended.
+    for move in list(sacrifice.legal_moves):
+        reply = sacrifice.copy()
+        reply.push(move)
+        assert reply.piece_at(chess.C5) == chess.Piece(chess.BISHOP, chess.BLACK)
+        assert chess.H5 in reply.attackers(chess.WHITE, chess.C5)
+        assert not reply.attackers(chess.BLACK, chess.C5)
+
+    finish = board(KNIGHT_JUMP)
+    assert finish.is_check()
+    assert not finish.has_castling_rights(chess.BLACK)
+    assert len(finish.pieces(chess.PAWN, chess.WHITE)) == 8
+    assert len(finish.pieces(chess.PAWN, chess.BLACK)) == 7
+    for kind in (chess.KNIGHT, chess.BISHOP, chess.ROOK, chess.QUEEN):
+        assert len(finish.pieces(kind, chess.WHITE)) == len(finish.pieces(kind, chess.BLACK))
+    finish.push_san("d6")
+    assert not finish.attackers(chess.BLACK, chess.D4)
+    assert chess.C5 in finish.attackers(chess.WHITE, chess.D4)
+    knight = board(ITALIAN + " Nd4 Nxd4 exd4 O-O Nf6")
+    assert chess.F6 in knight.attackers(chess.BLACK, chess.E4)
+    assert not knight.attackers(chess.WHITE, chess.E4)
+    knight.push_san("Re1")
+    assert chess.E1 in knight.attackers(chess.WHITE, chess.E4)
+
+
+def test_h6_side_trips_reach_the_quiet_setup_from_three_move_orders():
+    main = board(ITALIAN + " Bc5 d3 Nf6 O-O h6 c3")
+    assert board(EARLY_H6).fen() == main.fen()
+    assert board(WAIT).fen() == main.fen()
+
+
+def test_pin_side_trip_supports_the_knight_and_keeps_the_king_pawns():
+    pinned = step_board("finish-development", "pin-question")
+    assert chess.G4 in pinned.attackers(chess.BLACK, chess.F3)
+    assert pinned.piece_at(chess.E2) is None
+    assert pinned.piece_at(chess.D1) == chess.Piece(chess.QUEEN, chess.WHITE)
+    # A relative pin to the queen, not a legal pin to the king.
+    assert not pinned.is_pinned(chess.WHITE, chess.F3)
+    support = step_board("finish-development", "pin-support")
+    support.push_san("Nbd2")
+    assert chess.D2 in support.attackers(chess.WHITE, chess.F3)
+    taken = board(QUIET + " c3 Bg4 h3 Bxf3")
+    assert chess.D1 in taken.attackers(chess.WHITE, chess.F3)
+    taken.push_san("gxf3")
+    assert not taken.pieces(chess.PAWN, chess.WHITE) & chess.BB_FILE_G
+    assert len(taken.pieces(chess.PAWN, chess.WHITE) & chess.BB_FILE_F) == 2
 
 
 def test_rook_and_knight_route_provide_the_claimed_support_without_blocking_each_other():
@@ -160,7 +257,7 @@ def test_better_prepared_black_break_recovers_material_with_active_pieces():
     assert {chess.F2, chess.H2} <= set(position_after_break.attacks(chess.G4))
 
 
-def test_later_rehearsals_use_the_taught_anchor_and_do_not_enroll_illustrative_branches():
+def test_recall_lines_start_where_their_chapters_start():
     lesson = course()
     development = lesson.line("central-preparation")
     central = lesson.line("central-break")
@@ -168,9 +265,27 @@ def test_later_rehearsals_use_the_taught_anchor_and_do_not_enroll_illustrative_b
     assert development.position.after(development.moves) == position(DEVELOPED)
     assert central.position == position(KNIGHT_ROUTE)
     assert central.position.after(central.moves) == position(CENTRAL)
-    assert set(line.id for line in lesson.lines) == {
-        "quiet-italian",
-        "central-preparation",
-        "central-break",
+    anchors = {
+        "quiet-italian": "",
+        "knight-jump": "",
+        "early-h6": "",
+        "two-knights-center": TWO_KNIGHTS,
+        "two-knights-h6": TWO_KNIGHTS,
+        "two-knights-d6": TWO_KNIGHTS,
+        "two-knights-check": TWO_KNIGHTS,
+        "central-preparation": QUIET,
+        "central-pin": QUIET,
+        "premature-break": QUIET,
+        "bishop-threat": QUIET,
+        "central-break": KNIGHT_ROUTE,
+        "active-break": KNIGHT_ROUTE,
     }
-    assert "two-knights" not in {chapter.id for chapter in lesson.chapters}
+    assert {line.id: line.position for line in lesson.lines} == {
+        identity: position(san) for identity, san in anchors.items()
+    }
+    assert [chapter.id for chapter in lesson.chapters] == [
+        "quiet-development",
+        "two-knights",
+        "finish-development",
+        "central-break",
+    ]

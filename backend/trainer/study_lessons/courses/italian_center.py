@@ -6,6 +6,7 @@ from trainer.study_lessons.courses.italian_positions import CENTRAL, KNIGHT_ROUT
 READY = KNIGHT_ROUTE + " Ng3 Be6"
 ADVANCE = READY + " d4"
 EXCHANGE = ADVANCE + " exd4 Bxe6 fxe6"
+ACTIVE_BREAK = ADVANCE + " d5 dxe5 Ng4 Nd4"
 
 
 def chapter(excerpt, games):

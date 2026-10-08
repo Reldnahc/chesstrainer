@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, BookOpen, Clock3, Flag } from "lucide-react";
-import { api, read } from "./api";
+import { api, read, type Schema } from "./api";
 import ActionLink from "./ActionLink";
 import Button from "./Button";
 import EmptyState from "./EmptyState";
@@ -17,6 +17,12 @@ const loadGames = (signal: AbortSignal) => read(api.GET("/api/games", { params: 
 const loadWeaknesses = (signal: AbortSignal) => read(api.GET("/api/weaknesses", { signal }));
 const loadLessons = (signal: AbortSignal) => read(api.GET("/api/study/courses", { signal }));
 const loadOpenings = (signal: AbortSignal) => read(api.GET("/api/opening-studies", { signal }));
+
+// Without a saved lesson, suggest the first opening and the first fundamentals
+// course so both halves of Study's Lessons section are reachable from Home.
+function firstCourses(courses: Schema["LessonCourseSummary"][]) {
+  return courses.filter((course, index) => courses.findIndex(other => other.topic === course.topic) === index).slice(0, 2);
+}
 
 // Each summary can recover independently; leaving Home disposes every request.
 function useHomeQuery<T>(load: (signal: AbortSignal) => Promise<T>) {
@@ -64,23 +70,23 @@ export default function HomeScreen() {
           <StatList prominence="featured" items={[{ label: "Scheduled recalls", value: data.due }]} />
           <p className="muted">{data.due > 0 ? "Pick up your practice with the positions ready for recall." : "You’re caught up. Learn a new line or revisit a game."}</p>
           <ActionLink variant="primary" href={data.due > 0 ? studyPaths.due : studyPaths.openings}>
-            {data.due > 0 ? "Start studying" : "Explore openings"}<ArrowRight size={16} aria-hidden="true" />
+            {data.due > 0 ? "Start studying" : "Explore lessons"}<ArrowRight size={16} aria-hidden="true" />
           </ActionLink>
         </>}</HomeResult>
       </section>
 
       <section className="panel home-learning" aria-labelledby="home-learning-title">
         <div className="home-section-heading"><h2 id="home-learning-title"><BookOpen size={20} aria-hidden="true" />Keep learning</h2>
-          <ActionLink variant="quiet" size="compact" href={studyPaths.openings}>Openings<ArrowRight size={16} aria-hidden="true" /></ActionLink>
+          <ActionLink variant="quiet" size="compact" href={studyPaths.openings}>Lessons<ArrowRight size={16} aria-hidden="true" /></ActionLink>
         </div>
         <HomeResult query={lessons} label="lessons">{data => <div className="study-resume-list">
           {data.resume.length ? data.resume.slice(0, 2).map(session => <ResumeLink key={session.id}
-            href={lessonSessionPath(session.id)} description={`Continue · ${session.chapter_title}`}>{session.course_title}</ResumeLink>)
-            : data.courses.length ? <ResumeLink href={lessonCoursePath(data.courses[0].id, data.courses[0].revision)}
-              description={`${data.courses[0].completed_chapters} of ${data.courses[0].chapter_count} chapters completed`}>
-              {data.courses[0].title}
-            </ResumeLink> : <EmptyState presentation="compact" title="Choose an opening to study.">
-              Browse the catalogue and build your repertoire.
+            href={lessonSessionPath(session.id, session.course_topic)} description={`Continue · ${session.chapter_title}`}>{session.course_title}</ResumeLink>)
+            : data.courses.length ? firstCourses(data.courses).map(course => <ResumeLink key={course.id} href={lessonCoursePath(course.id, course.revision, course.topic)}
+              description={`${course.completed_chapters} of ${course.chapter_count} chapters completed`}>
+              {course.title}
+            </ResumeLink>) : <EmptyState presentation="compact" title="Choose a lesson to study.">
+              Learn an opening, a tactic or a fundamental skill.
             </EmptyState>}
         </div>}</HomeResult>
         <HomeResult query={openings} label="opening studies">{data => <StatList items={[

@@ -41,7 +41,7 @@ function dashboardData(): DashboardData {
   const courses: Schema["LessonCourseSummary"][] = [{
     id: "home-course", revision: "revision-1", title: "Build an opening plan",
     description: "Develop your pieces with a purpose.", learner_color: "white",
-    chapter_count: 4, completed_chapters: 1,
+    chapter_count: 4, completed_chapters: 1, topic: "opening",
   }];
   return {
     due: { due: 7 },
@@ -63,7 +63,7 @@ function dashboardData(): DashboardData {
       resume: Array.from({ length: 3 }, (_, index) => ({
         id: `home-lesson-${index}`, chapter_id: `chapter-${index}`, chapter_title: `Saved chapter ${index + 1}`,
         course_id: courses[0].id, course_revision: courses[0].revision,
-        course_title: `Saved lesson ${index + 1}`, updated_at: "2026-09-26T16:00:00+00:00",
+        course_title: `Saved lesson ${index + 1}`, course_topic: "opening", updated_at: "2026-09-26T16:00:00+00:00",
       })),
     },
     openings: {
@@ -271,13 +271,13 @@ test("a new library offers useful destinations without suggesting an empty recal
   const fixture = await mockDashboard(page, data);
   await page.goto("/");
   const due = region(page, "Due now");
-  await expect(due.getByRole("link", { name: "Explore openings", exact: true })).toHaveAttribute("href", "/study/openings");
+  await expect(due.getByRole("link", { name: "Explore lessons", exact: true })).toHaveAttribute("href", "/study/openings");
   await expect(due.getByRole("link", { name: "Start studying", exact: true })).toHaveCount(0);
   await expect(region(page, "Recent games")).toContainText(/import/i);
   await expect(region(page, "Recent games").locator('a[href="/settings"]')).toBeVisible();
   await expect(region(page, "Practice focus")).toContainText("No patterns ready to practice yet.");
   await expect(region(page, "Practice focus").locator('a[href^="/study/due?focus="]')).toHaveCount(0);
-  await expect(region(page, "Keep learning")).toContainText("Choose an opening to study.");
+  await expect(region(page, "Keep learning")).toContainText("Choose a lesson to study.");
   await expect(region(page, "Keep learning").getByRole("definition")).toHaveText(["0"]);
   await expect(region(page, "Keep learning").locator('a[href^="/study/openings/sessions/"]')).toHaveCount(0);
   await expect(page.getByRole("alert")).toHaveCount(0);
@@ -294,6 +294,21 @@ test("an available course is offered when there is no saved lesson", async ({ pa
   await expect(learning.getByRole("link", { name: /Build an opening plan/ })).toHaveAttribute("href", "/study/openings/courses/home-course?revision=revision-1");
   await expect(learning.locator('a[href^="/study/openings/sessions/"]')).toHaveCount(0);
   expectReadOnly(fixture.requests);
+});
+
+test("without a saved lesson Home suggests one opening and one fundamentals course", async ({ page }) => {
+  const data = dashboardData();
+  data.lessons.resume = [];
+  const opening = data.lessons.courses[0];
+  data.lessons.courses = [opening, { ...opening, id: "second-opening", title: "Another opening" },
+    { ...opening, id: "basic-skills", title: "Basic skills", topic: "skills" }];
+  await mockDashboard(page, data);
+  await page.goto("/");
+  const learning = region(page, "Keep learning");
+  await expect(learning.locator(".study-resume-list a")).toHaveCount(2);
+  await expect(learning.getByRole("link", { name: /Build an opening plan/ })).toHaveAttribute("href", "/study/openings/courses/home-course?revision=revision-1");
+  await expect(learning.getByRole("link", { name: /Basic skills/ })).toHaveAttribute("href", "/study/skills/courses/basic-skills?revision=revision-1");
+  await expect(learning.getByRole("link", { name: "Lessons", exact: true })).toHaveAttribute("href", "/study/openings");
 });
 
 for (const failed of Object.keys(endpoints) as Area[]) {

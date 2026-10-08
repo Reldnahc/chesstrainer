@@ -200,6 +200,29 @@ test("the lesson library resumes saved content and opens a chapter without expos
   await expect(page.getByRole("heading", { name: "Start from the beginning" })).toBeVisible();
 });
 
+test("Study home opens Lessons, whose Fundamentals tab alone lists the tactics and fundamentals courses", async ({ page }) => {
+  const skillTitles = ["Fundamentals · Six basic skills", "Tactics · Six basic patterns"];
+  await page.goto("/study");
+  await expect(page.locator(".study-option h2")).toHaveText(["Due now", "Lessons", "Puzzles"]);
+  const card = page.locator(".study-option").filter({ has: page.getByRole("heading", { name: "Lessons", exact: true }) });
+  await expect(card).toContainText(/\d+ Chapters? to learn/);
+  await card.getByRole("link", { name: "Open lessons", exact: true }).click();
+  await expect(page).toHaveURL("/study/openings");
+  await expect(page.getByRole("heading", { level: 1, name: "Lessons" })).toBeVisible();
+  const sections = page.getByRole("navigation", { name: "Lesson sections" });
+  await expect(sections.getByRole("link", { name: "Openings", exact: true })).toHaveAttribute("aria-current", "page");
+  await sections.getByRole("link", { name: "Fundamentals", exact: true }).click();
+  await expect(page).toHaveURL("/study/skills");
+  await expect(sections.getByRole("link", { name: "Fundamentals", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(page.locator(".lesson-course-card h2")).toHaveText(skillTitles);
+  await page.getByRole("link", { name: new RegExp(skillTitles[0]) }).click();
+  await expect(page).toHaveURL(/\/study\/skills\/courses\/chess-fundamentals\?revision=/);
+  await expect(page.getByRole("link", { name: "All fundamentals", exact: true })).toHaveAttribute("href", "/study/skills");
+  await page.goto("/study/openings");
+  await expect(page.locator(".lesson-course-card").first()).toBeVisible();
+  for (const title of skillTitles) await expect(page.locator(".lesson-course-card", { hasText: title })).toHaveCount(0);
+});
+
 test("Still motion shows the committed demonstration without a playback phase", async ({ page }, info) => {
   const lesson = await fixture(page, `still-${info.project.name}`);
   await page.goto(lesson.path);

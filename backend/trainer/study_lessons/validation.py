@@ -1,6 +1,13 @@
 """Reject ambiguous continuations before authored material can become a lesson."""
 
-from trainer.study_lessons.content import Branch, Decision, Demonstration, GameExcerpt, Rehearsal
+from trainer.study_lessons.content import (
+    Branch,
+    Decision,
+    Demonstration,
+    Explanation,
+    GameExcerpt,
+    Rehearsal,
+)
 
 
 def unique(items, label):
@@ -31,6 +38,13 @@ def validate_chapter(course, chapter):
         destination = steps[target]
         # These two kinds explicitly establish a new authored game/line context.
         reset = isinstance(destination, (GameExcerpt, Rehearsal)) and not branch
+        # An explanation may introduce a separate example from another starting
+        # position; within one starting position the history must still continue.
+        reset |= (
+            isinstance(destination, Explanation)
+            and not branch
+            and destination.position.initial_fen != result.initial_fen
+        )
         if not reset and destination.position != result:
             raise ValueError(f"Lesson transition to {target} has incompatible chess history")
         links[step.id].append(target)

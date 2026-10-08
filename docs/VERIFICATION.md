@@ -4,6 +4,115 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Opening-course common replies — October 8, 2026
+
+Owner request: strengthen the three Study courses, which skipped common
+replies. This is the first batch: the most common missing replies, plus a
+recall line for every side trip. Maia-3, the app's own
+human-move model, estimated how often 1200- and 1600-rated players choose each
+reply; the shown opponent moves are its most common choices unless a source
+record notes otherwise. Stockfish 17.1 at depth 20 to 22 checked every taught
+move in chapters, side trips and recall lines, and each side trip's advice for
+the opponent's other common replies. Every new taught move is the engine's
+first choice or within 0.3 pawns of it. The larger gaps are the ones the
+source records already list: the King's Gambit's `2.f4` itself and three moves
+0.3 to 0.5 behind, the White Italian's `d4` break (0.3) and the Black
+Italian's `4...Bb6` (0.4).
+
+The courses move to `2026-10-v5` for `kings-gambit-foundations` and
+`italian-black-foundations` and to `2026-10-v4` for `italian-foundations`.
+Each source record lists the additions with Maia's percentages and Stockfish's
+scores. A new test requires each course's lessons and recall lines to give the
+same answer wherever they reach the same position, because Recall accepts
+every enrolled line's move there.
+
+Checks: `ruff check` and `ruff format --check` on the changed Python files;
+`pytest backend/tests/test_italian_course.py backend/tests/test_italian_native.py
+backend/tests/test_italian_black_claims.py backend/tests/test_italian_white_claims.py
+backend/tests/test_kings_gambit_claims.py backend/tests/test_course_recall_agreement.py
+backend/tests/test_study_lessons.py backend/tests/test_opening_sources.py`:
+**113 passed**, with native Stockfish. `npm run test:types` passes. The
+`italian-course`, `opening-courses` and `source-attribution` browser specs,
+updated for the new chapters, side trips and revisions, pass on desktop and
+mobile (**34 passed**, with a preinstalled Chromium). Their chapter walks now
+allow 90 seconds: walking every side trip takes up to about 40 seconds, past
+the default 30.
+
+## Study Lessons section — October 8, 2026
+
+Owner request: Openings and Skills become one Study section called Lessons.
+The Study home has three cards again (Due now, Lessons, Puzzles); the Lessons
+card counts unfinished chapters across every lesson course. The section's tabs
+are Fundamentals (the tactics and fundamentals courses), Openings, Catalogue and
+My studies. URLs are unchanged: `/study/openings` is the Openings tab and
+`/study/skills` the Fundamentals tab. Home's Keep learning link and the
+caught-up Due action now say Lessons, and without a saved lesson Keep learning
+suggests the first opening and the first fundamentals course.
+
+Checks: `npm run build`, `test:types`, `test:symbols` and `test:styles` passed;
+`dashboard.spec.ts`, `ui-standardization.spec.ts`, `action-controls.spec.ts`,
+`study-lessons.spec.ts` and `opening-library.spec.ts` passed on desktop and
+mobile (55 passed, 1 desktop-only skip); `dashboard.spec.ts` passed again (24)
+with a new case for the two course suggestions. Not run: the backend suite (no backend
+change) and the other browser specs.
+
+## Study Skills card — October 8, 2026
+
+The tactics and fundamentals courses moved from Study → Openings to their own
+Study → Skills section, with a fourth Study home card counting their unfinished
+chapters. Course content and both pinned hashes are unchanged; the topic comes
+from a fixed list of skill course ids outside course content.
+
+Checks: the five lesson test files, `test_api_contract.py` and a new topic test
+in `test_fundamentals_course.py` passed (71); `ruff check` and `ruff format
+--check` passed; `npm run api:check`, `test:types`, `test:symbols`,
+`test:styles` and `build` passed; the changed browser specs
+(`study-lessons.spec.ts`, `dashboard.spec.ts`,
+`practice-speech-selection.spec.ts`) passed on desktop and mobile (60). Not run:
+the full backend suite and the other browser specs.
+
+## Fundamentals course — October 8, 2026
+
+A fifth bundled course, `chess-fundamentals` revision `2026-10-v1`, teaches six
+basic skills on 12 short examples; see
+[Fundamentals course sources](FUNDAMENTALS_COURSE_SOURCES.md). The tactics
+course's `example` and `practice` helpers moved to the shared authoring module;
+the tactics course's content hash is unchanged.
+
+Checks: `test_fundamentals_course.py` (every chapter through the API, exact board
+claims including the unique mates, the stalemate and the square and opposition
+moves, the pinned hash), `test_tactics_course.py`, `test_italian_course.py`,
+`test_study_lessons.py` and `test_lesson_journey.py` passed; `ruff check` and
+`ruff format --check` passed on the changed Python files. Stockfish 17.1 checked
+every taught move and scripted reply, and Syzygy tablebases checked the endings;
+the record is in the sources file. Not run: browser tests and the full backend
+suite.
+
+Independent review, same day: separate reviews of both new courses rechecked
+every board claim, decision and reply, the endings and the sources. They found
+no unsound taught move; the text fixes are listed in each course's sources file,
+and both courses keep revision `2026-10-v1` with new pinned hashes because
+neither had been released. The same five test files passed again, with new
+assertions for the corrected claims, and `ruff check` and `ruff format --check`
+passed.
+
+## Tactics course — October 8, 2026
+
+A fourth bundled course, `tactics-foundations` revision `2026-10-v1`, teaches six
+tactical patterns on 18 short examples; see
+[Tactics course sources](TACTICS_COURSE_SOURCES.md). Course validation now lets an
+explanation start a separate example from another initial FEN. Every other
+transition keeps the existing history rule, and the opening courses' content
+hashes are unchanged.
+
+Checks: `test_tactics_course.py` (every chapter through the API, the board change
+and Back, exact board claims, the new validation rule and its limits, the pinned
+hash), `test_italian_course.py`, `test_study_lessons.py` and
+`test_lesson_journey.py` passed; `ruff check` and `ruff format --check` passed on
+the changed Python files. Stockfish 17.1 checked every taught move and scripted
+reply; the record is in the sources file. Not run: browser tests and the full
+backend suite.
+
 ## Opening-course chess check — October 8, 2026
 
 Owner request: check the chess quality of the three Study courses against

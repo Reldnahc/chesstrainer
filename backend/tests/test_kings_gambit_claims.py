@@ -10,6 +10,23 @@ def after_choice(chapter, identity):
     return decision.position.after((choice.uci, *choice.reply)).board()
 
 
+def after_move(chapter, identity):
+    decision = chapter.step(identity)
+    return decision.position.after((decision.choices[0].uci,)).board()
+
+
+def after_demo(chapter, identity):
+    demonstration = chapter.step(identity)
+    return demonstration.position.after(demonstration.moves).board()
+
+
+def play(board, *sans):
+    board = board.copy()
+    for san in sans:
+        board.push_san(san)
+    return board
+
+
 def assert_piece(board, square, symbol):
     piece = board.piece_at(chess.parse_square(square))
     assert piece is not None and piece.symbol() == symbol
@@ -21,7 +38,7 @@ def test_modern_defense_explains_counterdevelopment_and_actual_pawn_balance():
     assert chess.H4 in developed.attacks(chess.F3)
     assert chess.E4 in developed.attacks(chess.D5)
     # After exd5/Nf6, neither player has an extra pawn; the d5-pawn is attacked.
-    central = after_choice(chapter, "answer-central-break")
+    central = after_demo(chapter, "modern-knight")
     assert len(central.pieces(chess.PAWN, chess.WHITE)) == 7
     assert len(central.pieces(chess.PAWN, chess.BLACK)) == 7
     assert chess.D5 in central.attacks(chess.F6)
@@ -139,7 +156,7 @@ def test_falkbeer_has_its_own_recall_and_does_not_repeat_the_bishop_first_chapte
     assert line.moves[0] == "e4d5"
     assert line.moves[-1] == "c1e3"
     assert line.position.after(line.moves) == chapter.step("falkbeer-summary").position
-    # Alternative move orders and the exchange illustration are not forced recall.
+    # Alternative move orders and the exchange are separate optional lines.
     assert chapter.step("falkbeer-modern").moves[0] == "e5f4"
     assert line.moves[1] == "e5e4"
     assert chapter.step("falkbeer-resolution").moves[0] == "e4c3"
@@ -190,9 +207,11 @@ def test_falkbeer_pin_changes_when_the_queens_and_bishop_intervene():
 
 def test_falkbeer_transposes_to_modern_without_replacing_its_history():
     bundled = course()
-    comparison = bundled.chapter("falkbeer-countergambit").step("falkbeer-modern")
-    other_history = comparison.position.after(comparison.moves)
-    modern = bundled.chapter("accepted-development").step("develop-bishop").position
+    comparison = bundled.chapter("falkbeer-countergambit").step("falkbeer-modern-check")
+    other_history = comparison.position
+    modern = bundled.chapter("accepted-development").step("develop-bishop")
+    assert comparison.choices[0].uci == modern.choices[0].uci
+    modern = modern.position
     assert other_history.moves != modern.moves
     left, right = other_history.board(), modern.board()
     assert left.board_fen() == right.board_fen()
@@ -204,14 +223,19 @@ def test_falkbeer_transposes_to_modern_without_replacing_its_history():
 
 def test_falkbeer_exchange_comparison_counts_minor_pieces_and_removes_castling():
     chapter = course().chapter("falkbeer-countergambit")
-    demonstration = chapter.step("falkbeer-resolution")
-    attacked = demonstration.position.after(demonstration.moves[:1]).board()
+    attacked = after_demo(chapter, "falkbeer-resolution")
     assert chess.E2 in attacked.attacks(chess.C3)
-    counterattack = demonstration.position.after(demonstration.moves[:2]).board()
+    # Recapturing with the b-pawn would leave e3 attacked twice and defended once.
+    assert {chess.E7, chess.C5} <= set(attacked.attackers(chess.BLACK, chess.E3))
+    assert set(attacked.attackers(chess.WHITE, chess.E3)) == {chess.E2}
+    counterattack = after_move(chapter, "falkbeer-resolution-counter")
     assert chess.E7 in counterattack.attacks(chess.C5)
-    exchanged = demonstration.position.after(demonstration.moves[:3]).board()
+    exchanged = after_choice(chapter, "falkbeer-resolution-counter")
     assert exchanged.is_check()
-    final = demonstration.position.after(demonstration.moves).board()
+    recaptured = after_choice(chapter, "falkbeer-resolution-recapture")
+    assert not recaptured.is_check()
+    assert set(recaptured.attackers(chess.WHITE, chess.E2)) == {chess.E1}
+    final = after_move(chapter, "falkbeer-resolution-king")
     assert not final.pieces(chess.QUEEN, chess.WHITE)
     assert not final.pieces(chess.QUEEN, chess.BLACK)
     for side in (chess.WHITE, chess.BLACK):
@@ -300,3 +324,148 @@ def test_source_annotations_preserve_real_pawns_blockers_and_published_endpoints
     before_end = morphy.position.after(morphy.moves[:-1]).board()
     assert before_end.san(chess.Move.from_uci(morphy.moves[-1])) == "cxd7+"
     assert not morphy.position.after(morphy.moves).board().is_checkmate()
+
+
+def test_modern_queen_recapture_trades_a_pawn_for_development():
+    chapter = course().chapter("accepted-development")
+    branch = chapter.step("central-queen-choice")
+    assert branch.next_step == "modern-knight"
+    recaptured = after_demo(chapter, "modern-queen")
+    assert len(recaptured.pieces(chess.PAWN, chess.WHITE)) == 6
+    assert len(recaptured.pieces(chess.PAWN, chess.BLACK)) == 7
+    attacked = after_move(chapter, "modern-queen-knight")
+    assert chess.D5 in attacked.attacks(chess.C3)
+    assert after_choice(chapter, "modern-queen-knight").is_check()
+    castled = after_move(chapter, "modern-queen-castle")
+    assert_piece(castled, "g1", "K")
+    assert_piece(castled, "f4", "p")
+    # d4 is what opens the c1-bishop toward f4.
+    assert chess.F4 not in castled.attacks(chess.C1)
+    assert chess.F4 in play(castled, "a6", "d4").attacks(chess.C1)
+
+
+def test_other_replies_share_one_center_plan():
+    bundled = course()
+    chapter = bundled.chapter("other-replies")
+    assert [item.id for item in bundled.chapters].index("other-replies") == 2
+    covered = after_move(chapter, "others-knight")
+    assert chess.H4 in covered.attacks(chess.F3)
+    # Bishop sorties on move three: d4 attacks Bc5, and Bd6 blocks Black's d-pawn.
+    assert chess.C5 in play(covered, "Bc5", "d4").attacks(chess.D4)
+    blocked = play(covered, "Bd6")
+    assert not any(move.from_square == chess.D7 for move in blocked.legal_moves)
+    center = after_move(chapter, "others-center")
+    assert_piece(center, "d4", "P")
+    assert_piece(center, "e4", "P")
+    assert chess.F4 in center.attacks(chess.C1)
+    assert chess.C6 in play(center, "g5", "d5").attacks(chess.D5)
+    assert chess.F6 in play(center, "Nf6", "e5").attacks(chess.E5)
+    assert not play(center, "Bb4+", "c3").is_check()
+    calm = after_demo(chapter, "others-calm")
+    assert not calm.attackers(chess.BLACK, chess.F4)
+    pinned = after_choice(chapter, "others-recapture")
+    assert chess.between(chess.G4, chess.D1) & pinned.occupied == chess.BB_F3
+    unpinned = after_move(chapter, "others-bishop")
+    assert_piece(unpinned, "e2", "B")
+    final = chapter.step("others-summary").position.board()
+    assert len(final.pieces(chess.PAWN, chess.WHITE)) == 7
+    assert len(final.pieces(chess.PAWN, chess.BLACK)) == 7
+    line = bundled.line("others-center")
+    assert line.position.after(line.moves) == chapter.step("others-summary").position
+    assert chapter.step("others-rehearsal").line_id == line.id
+
+
+def test_other_replies_side_trips_state_real_board_facts():
+    chapter = course().chapter("other-replies")
+    held = after_choice(chapter, "others-hold-knight")
+    assert set(held.attackers(chess.WHITE, chess.E5)) == {chess.F4, chess.F3}
+    assert set(held.attackers(chess.BLACK, chess.E5)) == {chess.C6, chess.D6}
+    aimed = after_move(chapter, "others-hold-bishop")
+    assert chess.F7 in aimed.attacks(chess.C4)
+    assert set(aimed.attackers(chess.BLACK, chess.F7)) == {chess.E8}
+    fischer = after_demo(chapter, "others-fischer")
+    assert chess.E5 in fischer.attacks(chess.D6)
+    chain = after_choice(chapter, "others-fischer-center")
+    assert chess.F4 in chain.attacks(chess.G5)
+    assert chess.G5 in chain.attacks(chess.H6)
+    challenged = after_move(chapter, "others-fischer-chain")
+    assert chess.G5 in challenged.attacks(chess.H4)
+    # If Black ignores h4, the h-file opens onto an unprotected rook.
+    opened = play(challenged, "Nc6", "hxg5", "hxg5")
+    assert chess.H8 in opened.attacks(chess.H1)
+    assert not opened.attackers(chess.BLACK, chess.H8)
+    assert chess.H8 in play(challenged, "Bg7").attacks(chess.G7)
+    schallopp = after_demo(chapter, "others-schallopp")
+    assert chess.E4 in schallopp.attacks(chess.F6)
+    assert not schallopp.attackers(chess.WHITE, chess.E4)
+    threatened = after_choice(chapter, "others-schallopp-defend")
+    assert chess.C3 in threatened.attacks(chess.B4)
+    assert set(threatened.attackers(chess.WHITE, chess.E4)) == {chess.C3}
+    advanced = after_move(chapter, "others-schallopp-advance")
+    assert not advanced.attackers(chess.BLACK, chess.E5)
+    assert chess.F6 in advanced.attacks(chess.E5)
+    recaptured = after_move(chapter, "others-schallopp-recapture")
+    assert chess.F4 in recaptured.attacks(chess.C1)
+    assert len(recaptured.pieces(chess.PAWN, chess.BLACK)) == 8
+    assert len(recaptured.pieces(chess.PAWN, chess.WHITE)) == 7
+    assert play(recaptured, "Qe7").is_pinned(chess.WHITE, chess.E5)
+    checked = after_choice(chapter, "others-cunningham-bishop")
+    assert checked.is_check()
+    assert chess.Move.from_uci("f4g3") in play(checked, "g3").legal_moves
+    stepped = after_move(chapter, "others-cunningham-king")
+    assert not stepped.has_castling_rights(chess.WHITE)
+    assert chess.H4 in stepped.attacks(chess.F3)
+    assert set(stepped.attackers(chess.BLACK, chess.H4)) == {chess.D8}
+    # The trap: Nf6 cuts the queen's defense of h4.
+    assert not play(stepped, "Nf6").attackers(chess.BLACK, chess.H4)
+    struck = after_demo(chapter, "others-strike")
+    assert chess.E4 in struck.attacks(chess.D5)
+    chased = after_move(chapter, "others-strike-knight")
+    assert chess.D5 in chased.attacks(chess.C3)
+    assert play(chased, "Bb4").is_pinned(chess.WHITE, chess.C3)
+    assert after_choice(chapter, "others-strike-knight").is_check()
+
+
+def test_falkbeer_side_trips_state_real_board_facts():
+    bundled = course()
+    chapter = bundled.chapter("falkbeer-countergambit")
+    early = after_demo(chapter, "falkbeer-early-queen")
+    assert len(early.pieces(chess.PAWN, chess.WHITE)) == len(early.pieces(chess.PAWN, chess.BLACK))
+    assert chess.E5 in early.attacks(chess.F4)
+    shielded = after_choice(chapter, "falkbeer-early-chase")
+    assert_piece(shielded, "e6", "q")
+    assert not shielded.is_check()
+    assert after_choice(chapter, "falkbeer-early-pawn").is_check()
+    pinned = after_choice(chapter, "falkbeer-early-block")
+    assert pinned.is_pinned(chess.WHITE, chess.E2)
+    assert chess.E2 in pinned.attacks(chess.G4)
+    # Nf3 would lose to Bxf3: neither the pinned bishop nor the queen can recapture.
+    trap = play(pinned, "Nf3", "Bxf3")
+    recaptures = {move.from_square for move in trap.legal_moves if move.to_square == chess.F3}
+    assert recaptures == {chess.G2}
+    assert chess.E5 in after_move(chapter, "falkbeer-early-center").attacks(chess.D4)
+    supported = after_demo(chapter, "falkbeer-wedge-queen")
+    assert chess.E4 in supported.attacks(chess.D5)
+    pinned_knight = after_choice(chapter, "falkbeer-wedge-queen-knight")
+    assert pinned_knight.is_pinned(chess.WHITE, chess.C3)
+    assert chess.Move(chess.C3, chess.D5) not in pinned_knight.legal_moves
+    diagonal = after_move(chapter, "falkbeer-wedge-queen-recapture")
+    assert chess.G7 in diagonal.attacks(chess.C3)
+    swapped = after_choice(chapter, "falkbeer-wedge-take-bishop")
+    assert len(swapped.pieces(chess.PAWN, chess.WHITE)) == len(
+        swapped.pieces(chess.PAWN, chess.BLACK)
+    )
+    # After Qxg2, Be4 attacks the queen and every queen move lands on a guarded square.
+    trapped = play(after_move(chapter, "falkbeer-wedge-take-knight"), "Qxg2", "Be4")
+    assert chess.G2 in trapped.attacks(chess.E4)
+    for move in trapped.legal_moves:
+        if move.from_square == chess.G2:
+            assert play(trapped, trapped.san(move)).is_attacked_by(chess.WHITE, move.to_square)
+    for identity in (
+        "falkbeer-modern",
+        "falkbeer-queen",
+        "falkbeer-wedge-queen",
+        "falkbeer-wedge-take",
+    ):
+        line = bundled.line(identity)
+        assert line.repertoire and line.position == bundled.line("falkbeer-center").position
