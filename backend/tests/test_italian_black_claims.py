@@ -400,6 +400,7 @@ def test_central_side_trips_state_real_board_facts():
     board = _board(ADVANCE + " exd4 e5 d5 exf6 dxc4 fxg7")
     assert chess.H8 in board.attacks(chess.G7)
     assert board.parse_san("Rg8") == chess.Move(chess.H8, chess.G8)
+    assert pushed.is_en_passant(pushed.parse_san("exd6"))
     board = _board(ADVANCE + " exd4 e5 d5 exd6")
     assert board.parse_san("Qxd6") == chess.Move(chess.D8, chess.D6)
     assert _board(ADVANCE + " exd4 e5 d5 Bb5").is_pinned(chess.BLACK, chess.C6)

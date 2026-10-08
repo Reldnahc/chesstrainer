@@ -324,7 +324,7 @@ def test_illustrative_passages_support_their_specific_board_claims():
         (
             "italian-black-foundations",
             "2026-10-v5",
-            "95585f8e2b863902d3ce369decd730eb21ca90e010246a63a2de8690274c96a5",
+            "af8f42f95d93deb491a88e13e5b45de062872316c32fb051e9e398a5d8c0750c",
         ),
         (
             "kings-gambit-foundations",
