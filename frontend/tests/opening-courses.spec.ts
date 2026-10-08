@@ -17,16 +17,34 @@ type CourseJourney = {
 };
 const courses: CourseJourney[] = [
   {
-    id: "italian-black-foundations", revision: "2026-10-v4", color: "black", chapter: "quiet-development",
+    id: "italian-black-foundations", revision: "2026-10-v5", color: "black", chapter: "quiet-development",
     moves: ["e7e5", "b8c6", "f8c5", "g8f6", "d7d6", "e8g8"],
-    line: "black-quiet-italian", branches: 1, sourceGame: true,
+    line: "black-quiet-italian", branches: 5, sourceGame: true,
+    branchMoves: {
+      "early-castle-knight": "g8f6", "early-castle-support": "d7d6",
+      "early-knight-develop": "g8f6", "early-knight-support": "d7d6",
+      "early-attack-take": "d8g5", "early-attack-punish": "g5g2",
+      "early-center-take": "c5d4", "early-center-recapture": "c6d4", "early-center-retreat": "d4c6", "early-center-guard": "d8f6",
+      "quiet-threat-castle": "e8g8",
+    },
   },
   {
-    id: "italian-black-foundations", revision: "2026-10-v4", color: "black", chapter: "quiet-bishop-plan",
+    id: "italian-black-foundations", revision: "2026-10-v5", color: "black", chapter: "quiet-bishop-plan",
     moves: ["a7a5", "c8e6", "f7e6"],
     line: "black-quiet-bishop-plan", branches: 0, sourceGame: false,
     // Rehearsal retains the opening history and automatically plays White's Re1.
     rehearsalAnchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6", "c2c3", "e8g8", "f1e1"],
+  },
+  {
+    id: "italian-black-foundations", revision: "2026-10-v5", color: "black", chapter: "knight-block",
+    moves: ["f6e4", "b4c3", "d7d5", "e8g8"],
+    line: "black-knight-block", branches: 2, sourceGame: false,
+    branchMoves: {
+      "block-queen-defend": "d7d5", "block-queen-castle": "e8g8",
+      "block-moller-bishop": "c3f6", "block-moller-recapture": "b7c6",
+    },
+    // Rehearsal starts at the bishop check and automatically plays White's Nc3.
+    rehearsalAnchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "c2c3", "g8f6", "d2d4", "e5d4", "c3d4", "c5b4", "b1c3"],
   },
   {
     id: "kings-gambit-foundations", revision: "2026-10-v5", color: "white", chapter: "pawn-chain",
