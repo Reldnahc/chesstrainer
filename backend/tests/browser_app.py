@@ -9,9 +9,26 @@ from puzzle_fixtures import BrowserGamePuzzleProvider, BrowserPuzzleProvider
 from study_lesson_fixtures import BrowserLessonProvider
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
+from trainer.config import Settings
 from trainer.game_providers.lichess import LichessClient
 from trainer.study_lessons.bundled import bundled_providers
 from trainer.workspaces import CurrentWorkspace
+
+# Test servers run as they do on CI, whatever a developer's .env tunes for real use:
+# a dozen parallel servers each taking that machine-sized engine pool, or loading an
+# installed Maia model CI never has, starve one another and time tests out.
+CI_DEFAULTS = (
+    "engine_slots",
+    "stockfish_workers",
+    "stockfish_threads",
+    "stockfish_hash_mb",
+    "classification_workers",
+)
+
+
+def ci_settings():
+    defaults = {name: Settings.model_fields[name].default for name in CI_DEFAULTS}
+    return Settings(**defaults, human_model_path="data/models/not-installed-in-tests.pt")
 
 
 def create_app():
@@ -84,6 +101,7 @@ def create_app():
     game_puzzle_provider = BrowserGamePuzzleProvider()
     lesson_provider = BrowserLessonProvider()
     app = production_app(
+        ci_settings(),
         chesscom_factory=factory,
         provider_factories={"lichess": lichess_factory},
         puzzle_providers=(puzzle_provider, game_puzzle_provider),

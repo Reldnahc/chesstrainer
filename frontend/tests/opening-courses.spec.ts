@@ -204,6 +204,10 @@ async function studyIds(page: Page) {
   return library.items.map(item => item.id).sort();
 }
 
+// Each journey restores what it changes, and one alone takes most of a minute, so the
+// journeys spread over workers instead of queueing behind one another in one.
+test.describe.configure({ mode: "parallel" });
+
 for (const content of courses) {
   test(`${content.id}/${content.chapter} teaches its own side and preserves exploration without automatic recalls`, async ({ page }, info) => {
     // Each journey walks every side trip and reloads at each one, which outlasts the default 30s.
