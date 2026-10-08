@@ -57,3 +57,7 @@
   .play-setup-speech .coach-label { font-size: 15px; }
   .play-setup-speech .coach-message p { font-size: 16px; }
 }
+/* Phones reuse ReviewCoach, but this bubble holds one short line and nothing
+   changes under it, so it fits its text instead of the review's fixed height. */
+.play-setup-coach .review-coach .coach-speech { height: auto; }
+.play-setup-coach .review-coach .coach-message { min-height: 0; overflow: visible; }
