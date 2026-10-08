@@ -50,7 +50,7 @@ def queen_trip():
         decision(
             "setup-queen-recapture",
             "Take back with the bishop",
-            "Recapture on c6 with the d7-bishop. It now aims along the long diagonal at White's e4-pawn.",
+            "Recapture on c6 with the d7-bishop. It now aims along the other long diagonal, from a8 toward h1, at White's e4-pawn.",
             OPEN + " Qxd4 Nc6 Bb5 Bd7 Bxc6",
             "Bxc6",
             "Nc3",
@@ -77,7 +77,7 @@ def queen_trip():
             "e6",
             None,
             "setup-queen-summary",
-            "Your bishops, knight and pawns are working together, and White has given up the light-squared bishop.",
+            "Your bishops, knight and pawns are working together. White has given up the f1-bishop, so you have two bishops against one.",
             "Move e7 to e6.",
         ),
         step(
@@ -145,12 +145,12 @@ def early_e3_trip():
         decision(
             "setup-e3-castle",
             "Castle",
-            "Castle kingside. Your king is safe whatever White chooses.",
+            "Castle kingside. Your king is safer there, and you are ready whichever side White castles.",
             QUIET + " Be3",
             "O-O",
             "Qd2",
             "setup-e3-knight",
-            "White plays Qd2, connecting the queen and the e3-bishop and preparing to castle queenside.",
+            "White plays Qd2 and prepares to castle queenside.",
             "Move the king from e8 to g8.",
         ),
         decision(
@@ -179,7 +179,7 @@ def early_e3_trip():
             "explanation",
             "setup-e3-summary",
             "Answer the king on c1 in the center",
-            "When White's king goes to c1, open the center at once with d5. Once the f6-knight moves, the g7-bishop's long diagonal points at b2, next to White's king. The Yugoslav Attack chapter shows the same d5 break in detail.",
+            "When White's king goes to c1, open the center at once with d5. If White takes on d5, take back with the f6-knight; if White takes on c6, take back with the b-pawn. Once the f6-knight moves and White's knights on d4 and c3 are traded, the g7-bishop's long diagonal points at b2, next to White's king. The Yugoslav Attack chapter shows the same d5 break in detail.",
             EARLY_E3,
         ),
     ]
@@ -198,7 +198,7 @@ def queen_d2_trip():
         decision(
             "setup-d2-break",
             "Strike in the center",
-            "Push d5. It attacks the e4-pawn while White's queen is busy on d2.",
+            "Push d5. It attacks the e4-pawn, which only White's c3-knight defends.",
             CLASSICAL_KNIGHT + " Qd2",
             "d5",
             None,
@@ -210,7 +210,7 @@ def queen_d2_trip():
             "explanation",
             "setup-d2-summary",
             "The same break",
-            "The d5 break is the Dragon's main way to fight for the center. Here it comes with tempo: White must deal with the attack on e4 before continuing.",
+            "The d5 break is the Dragon's main way to fight for the center. Here it also gains time: it creates a threat, so White has to answer the attack on e4 instead of carrying out a plan.",
             QUEEN_D2,
         ),
     ]
@@ -246,7 +246,7 @@ def chapter():
         ),
         decision(
             "setup-support",
-            "Prepare the knight's square",
+            "Control e5",
             "Push your d-pawn one square. It controls e5 and opens the c8-bishop's path.",
             "e4 c5 Nf3",
             "d6",
@@ -298,12 +298,12 @@ def chapter():
         decision(
             "setup-dragon",
             "Prepare the fianchetto",
-            "Push your g-pawn one square. This makes room for the f8-bishop on g7, a fianchetto.",
+            "Push your g-pawn one square to make room for the f8-bishop on g7. Developing a bishop on g7 behind a g6-pawn like this is called a fianchetto; from g7 the bishop looks down the long diagonal toward a1.",
             CENTER,
             "g6",
             None,
             "setup-c4-choice",
-            "This is the Dragon. The Russian master Fyodor Dus-Chotimirsky named it in 1901, because Black's kingside pawns reminded him of the constellation Draco, the dragon.",
+            "This is the Dragon. The Russian master Fyodor Dus-Chotimirsky later said he named it in 1901, because Black's kingside pawns reminded him of the constellation Draco, the dragon.",
             "Move g7 to g6.",
         ),
         step(
@@ -419,7 +419,7 @@ def chapter():
             "explanation",
             "setup-summary",
             "Your Dragon setup",
-            "Your king is castled behind the g7-bishop, and your pawns on c6 and d5 claim the center. The b-file is open for a rook on b8, which can press against b2. If White pushes e5 to attack your f6-knight, jump it to g4, where it attacks the e3-bishop; your c8-bishop defends it there.",
+            "Your king is castled behind the g7-bishop, and your pawns on c6 and d5 claim the center. The b-file is open for a rook on b8, which can press against b2. If White takes on d5, take back with the c6-pawn to keep a pawn in the center. If White pushes e5 to attack your f6-knight, jump it to g4, where it attacks the e3-bishop; your c8-bishop defends it there.",
             CLASSICAL,
             next_step="setup-rehearsal",
         ),

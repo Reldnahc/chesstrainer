@@ -338,14 +338,14 @@ def test_illustrative_passages_support_their_specific_board_claims():
             "1b46ad40f6ff90e0692a10e077bd24b7020372537a60384fded9b9acba89eb77",
         ),
         (
-            "vienna-gambit",
-            "2026-10-v1",
-            "3af01867dee26e8c878bd85bec2f019eb81aa41e1e8989836fbc218ae48dfb33",
-        ),
-        (
             "sicilian-dragon",
             "2026-10-v1",
-            "b99041aad8dc08480ca7da50d2472d1aaeebca9d575e6159dd669401b127b4f3",
+            "1c645d0f3c8a05cfbc9238aa7fd2cd6a6fea3b6b277fae96f58f0d0f50701c73",
+        ),
+        (
+            "vienna-gambit",
+            "2026-10-v1",
+            "8c8aaa6c0dd588778458d4fb2a3ed9e17112d213aa5fec9001bb74d5c63fb62f",
         ),
     ),
 )

@@ -24,7 +24,7 @@ def queen_trip():
         demo(
             "accepted-queen",
             "The queen blocks the e-file",
-            "Black moves the queen to e7 instead of retreating the knight. The queen now attacks your e5-pawn, and your king on e1 stands behind it on the same file.",
+            "Black moves the queen to e7 instead of retreating the knight. The queen now attacks your e5-pawn, and your king on e1 stands behind it on the same file. That pawn is pinned: it cannot take the f6-knight, because that would expose your king to the queen.",
             PUSHED,
             PUSHED + " Qe7",
             "accepted-queen-guard",
@@ -119,7 +119,7 @@ def knight_trip():
         decision(
             "accepted-knight-pin",
             "Pin the knight",
-            "Develop the f1-bishop to b5. It pins the c6-knight to Black's king: if the knight moved, the bishop would give check.",
+            "Develop the f1-bishop to b5. It pins the c6-knight to Black's king: the knight cannot move, because that would leave the king in check. This is called a pin.",
             before + " d4 d6",
             "Bb5",
             "Bd7",
@@ -153,7 +153,7 @@ def knight_trip():
             "explanation",
             "accepted-knight-summary",
             "Pressure on e5",
-            "Black is still a pawn ahead, but your d4-pawn, f3-knight, f4-bishop and e2-queen all attack the e5-pawn, and Black's kingside pieces have not moved.",
+            "Black is still a pawn ahead, but your d4-pawn, f3-knight, f4-bishop and e2-queen all attack the e5-pawn, and Black's kingside pieces are still on their starting squares.",
             KNIGHT,
         ),
     ]
@@ -165,7 +165,7 @@ def pin_trip():
         demo(
             "accepted-pin",
             "Black pins the knight",
-            "Black develops the c8-bishop to g4, pinning your f3-knight to the queen on d1.",
+            "Black develops the c8-bishop to g4, pinning your f3-knight to the queen on d1. The knight may still move, but then the bishop would take your queen.",
             CENTER,
             before,
             "accepted-pin-take",
@@ -249,7 +249,7 @@ def block_trip():
             "explanation",
             "accepted-block-summary",
             "Two targets",
-            "Your b5-knight threatens to jump into c7 with check, and your queen attacks the e5-pawn. Black has to deal with both.",
+            "Your queen threatens to take the e5-pawn with check, and your b5-knight eyes the c7-pawn. Black has to deal with both.",
             BLOCK,
         ),
     ]
@@ -280,7 +280,7 @@ def king_takes_trip():
             "explanation",
             "accepted-king-takes-summary",
             "The open d-file",
-            "Both sides' d-pawns had left the d-file, so your queen on d1 was looking straight at Black's queen on d8. When the king took your bishop, nothing stood in the way.",
+            "Once Black's pawn took on c3, the two queens faced each other on the empty d-file. Your check on f7 came first, and taking the bishop did nothing to save Black's queen.",
             KING_TAKES,
         ),
     ]
@@ -322,7 +322,7 @@ def king_back_trip():
             "explanation",
             "accepted-king-back-summary",
             "A discovered check",
-            "When one piece moves out of the way and another piece behind it gives check, it is a discovered check. The moving knight was free to attack the queen.",
+            "When one piece moves out of the way and another piece behind it gives check, it is a discovered check. The moving knight was free to attack the queen. Once Black takes your knight on e7, material is about level, but Black's king has no shelter, your pieces are attacking it, and White is clearly winning.",
             KING_BACK,
         ),
     ]
@@ -334,7 +334,7 @@ def chapter():
             "explanation",
             "accepted-welcome",
             "The Vienna Gambit",
-            "You play White. After 1.e4 e5 2.Nc3 Nf6 you push f4, offering a pawn to open lines for your pieces. This is the Vienna Gambit. Most club players take the pawn with exf4, and this chapter shows how to punish that.",
+            "You play White. After 1.e4 e5 2.Nc3 Nf6 you push f4, offering a pawn to open lines for your pieces. Offering material like this to gain time or open lines is called a gambit; this one is the Vienna Gambit. Many club players take the pawn with exf4, and this chapter shows how to punish that.",
             next_step="accepted-king-pawn",
         ),
         decision(
@@ -378,7 +378,7 @@ def chapter():
             "e5",
             None,
             "accepted-queen-choice",
-            "The knight is attacked and must move.",
+            "The knight is attacked. Black usually moves it back.",
             "Move the pawn from e4 to e5.",
         ),
         step(
@@ -407,7 +407,7 @@ def chapter():
             "Nf3",
             None,
             "accepted-knight-choice",
-            "Your knight is out, and Black's queen can no longer check on h4.",
+            "Your knight is out, and if Black's queen checks on h4, your knight takes it.",
             "Move the knight from g1 to f3.",
         ),
         step(
@@ -460,7 +460,7 @@ def chapter():
         decision(
             "accepted-check",
             "Check before recapturing",
-            "Give check with the f1-bishop on b5. Taking back on e5 with the d-pawn would let Black trade queens with Qxd1+.",
+            "Give check with the f1-bishop on b5. Taking back on e5 with the d-pawn would let Black trade queens with Qxd1+, and without queens your attack is gone.",
             CENTER + " dxe5",
             "Bb5+",
             None,
@@ -505,13 +505,13 @@ def chapter():
             "Bxf4",
             "dxc3",
             "accepted-sacrifice",
-            "Black takes your c3-knight. Now count the pieces aimed at Black's king.",
+            "Black takes your c3-knight. Black's queen now attacks yours on d1, so your next move must be a check.",
             "Move the bishop from c1 to f4.",
         ),
         decision(
             "accepted-sacrifice",
             "Sacrifice on f7",
-            "Take the f7-pawn with your bishop, with check.",
+            "Take the f7-pawn with your bishop, with check. Giving up material on purpose like this is called a sacrifice.",
             CHECK + " c6 Bc4 exd4 Bxf4 dxc3",
             "Bxf7+",
             None,
@@ -591,7 +591,7 @@ def chapter():
         decision(
             "accepted-fork",
             "Fork king, queen and rook",
-            "Jump the e5-knight to f7 with check. From f7 it also attacks Black's queen on d8 and rook on h8.",
+            "Jump the e5-knight to f7 with check. From f7 it also attacks Black's queen on d8 and rook on h8. One piece attacking several pieces at once is called a fork.",
             HUNT + " Kf6 Bg5+ Kxg5",
             "Nf7+",
             None,
@@ -603,7 +603,7 @@ def chapter():
             "explanation",
             "accepted-summary",
             "Checks first, material later",
-            "You gave up a knight and two bishops, but every move was a check, so Black never had time to defend. Now Black's king must move, and your knight wins the queen or the rook. When the opponent's king is exposed, look at checks first.",
+            "You gave up a knight and two bishops, but from Bxf7+ onward every move was a check, so Black never had time to defend. Now Black's king must move, and your knight wins the queen or the rook. When the opponent's king is exposed, look at checks first.",
             FORK,
             next_step="accepted-rehearsal",
         ),

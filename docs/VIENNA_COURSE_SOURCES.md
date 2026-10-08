@@ -24,7 +24,7 @@ they share; `test_course_recall_agreement.py` checks this.
 
 Maia-3, the human-move model Fieldwork uses in game review, estimated how often
 1200- and 1600-rated players choose each Black move. These are model estimates,
-not counted games: the Lichess opening explorer requires a login. Black's moves
+not counted games. Black's moves
 in the lessons are Maia's most common choice at that point, averaged over both
 ratings, except where a chapter or side trip covers a less common reply on
 purpose.
@@ -59,7 +59,8 @@ first choice or within 0.3 pawns of it, with one documented exception:
 `2.Nc3` trails `2.Nf3` by about 0.2, and `3.Bc4` against `2...Nc6` trails
 `3.Nf3` by about 0.1. Against `2...Nc6`, `3.f4` is about 0.8 worse than the
 best move, so the course develops first. In the `4...Qe7` side trip, `6.d4` is
-taught rather than `6.Nf3`, which is about 0.3 behind.
+the engine's first choice, up to about 0.45 ahead of
+`6.Nf3` at depths 18 to 26 (sometimes nearly level), varying between runs.
 
 Scores in pawns from White's side at the end of each line:
 
@@ -72,7 +73,7 @@ Scores in pawns from White's side at the end of each line:
 | `5...Nc6 … 9.Bxf4` | +3.0 | |
 | `3...d5` main line, `10.h3` | +2.2 | `10...Bh5` is Black's most common reply. |
 | `3...d6` main line, `9.O-O-O` | +0.8 | |
-| `2...Nc6` main line, `7.h3` | +0.6 | |
+| `2...Nc6` main line, `7.h3` | +0.2 to +0.4 | |
 | `2...Bc5 … 8.Bg3` | +1.0 | |
 
 ## Names and codes
@@ -81,7 +82,12 @@ The [Wikipedia article on the Vienna Game](https://en.wikipedia.org/wiki/Vienna_
 and its sources give the names used here: the Vienna Gambit `2...Nf6 3.f4`,
 `5.Nf3` as the traditional main move after `3...d5 4.fxe5 Nxe4`, `5.Qe2` against
 `4...Qe7`, and the Anderssen Defense `2...Bc5`. The article advises Black not to
-accept with `3...exf4` because of `4.e5`. ECO codes: C25 for `2...Nc6` and
+accept with `3...exf4` because of `4.e5`. It also notes that the name "Vienna Gambit"
+traditionally applied to `2...Nc6 3.f4`, and that `2...Nf6` is Black's most common
+reply; Maia rates `2...Nc6` slightly more common at club level.
+Lichess's opening file names `2...Nf6 3.f4` "Vienna Game: Vienna Gambit" (C29)
+([lichess-org/chess-openings](https://github.com/lichess-org/chess-openings/blob/master/c.tsv)).
+ECO codes: C25 for `2...Nc6` and
 `2...Bc5`, C28 for `2...Nc6 3.Bc4 Nf6`, and C29 for the Vienna Gambit `2...Nf6 3.f4`.
 
 ## Verification

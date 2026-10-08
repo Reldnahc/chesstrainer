@@ -25,7 +25,7 @@ they share; `test_course_recall_agreement.py` checks this.
 
 Maia-3, the human-move model Fieldwork uses in game review, estimated how often
 1200- and 1600-rated players choose each White move. These are model estimates,
-not counted games: the Lichess opening explorer requires a login. White's moves
+not counted games. White's moves
 in the lessons are Maia's most common choice at that point, averaged over both
 ratings, except where a chapter or side trip deliberately follows a less common
 move:
@@ -65,12 +65,12 @@ Other notable checks, scores in pawns from Black's side at the end of each line:
 |---|---|---|
 | Quiet `6.Be2` setup | 0.0 | `10...d5` is level with `10...Qc7` and `10...a5`. |
 | Yugoslav, `9.O-O-O d5` | +0.2 | `13...Be6` is first choice; after `14.Bxg7`, `Kxg7` is the only recapture. |
-| `7.Qd2 Ng4 8.Bf4 Bxd4 9.Qxd4 e5` | +2.4 | `7...O-O` is about 0.3 worse than `7...Ng4`. |
+| `7.Qd2 Ng4 8.Bf4 Bxd4 9.Qxd4 e5` | +2.4 | `7...O-O` is about 0.2 worse than `7...Ng4` at depth 22. |
 | Rook offer, `13...Qc7 14.Qxa8 Bf5 15.Qxf8+ Kxf8` | +0.8 | Queen against two rooks and a pawn; `15...Bxf8` is about −0.2. |
-| `6.Bg5 … 8.Be3 Ng4 9.Bf4 e5 10.h3 exd4 11.hxg4 dxc3` | +4.0 | After `12.bxc3` or `12.Qxc3`, Black is a knight up for a pawn. |
+| `6.Bg5 … 8.Be3 Ng4 9.Bf4 e5 10.h3 exd4 11.hxg4 dxc3` | +4.0 | After `12.bxc3`, Black is a knight up for a pawn; `12.Qxc3?? Bxc3+` wins the queen, and `12.Qxd6 Qxd6` keeps the extra knight (+4.6). |
 | `8.Bf4 e5` | +2.2 | The fork wins material. |
 | `3.c3 Nf6 4.d4 Nxe4 5.dxc5 Nxc5` | +1.0 | Black keeps the extra pawn. |
-| Smith-Morra, `7...Nf6` | +0.1 | `8.Qe2 Be7` is the engine's choice next. |
+| Smith-Morra, `7...Nf6` | +0.1 | After `8.Qe2`, `8...Be7`, `8...Bd7` and `8...a6` are about equal. |
 
 Summary advice that goes beyond the taught moves was checked too: `11.e5 Ng4`
 in the quiet line (`11...Nd7` is about 0.5 worse), `10.exd5 Nxd5` after
@@ -82,8 +82,9 @@ third-move chapter.
 The opening, variation names and ECO codes follow the
 [Wikipedia article on the Dragon](https://en.wikipedia.org/wiki/Sicilian_Defence,_Dragon_Variation)
 (B70 to B79, including B76 for the Yugoslav Attack with `7...O-O` and B77 for
-`9.Bc4`) and its sources. The article also records that Fyodor Dus-Chotimirsky
-named the variation in 1901 after the constellation Draco, and that `9...d5` is
+`9.Bc4`) and its sources. The article also records that Fyodor Dus-Chotimirsky, in his 1953 autobiography, said he
+named the variation in 1901 after the constellation Draco (Edward Winter's
+earliest printed use is from 1914), and that `9...d5` is
 Black's usual reply to `9.O-O-O`. The other names are standard: Alapin
 Variation (`2.c3`, B22), Smith-Morra Gambit (`2.d4 cxd4 3.c3`, B21), Moscow
 Variation (`3.Bb5+`, B51 to B52).

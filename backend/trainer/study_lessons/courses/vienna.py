@@ -36,7 +36,7 @@ LINES = (
     ("vienna-king-back", "Vienna Gambit · 3...exf4, 12...Ke8", KING_BACK, "C29"),
     ("vienna-block", "Vienna Gambit · 3...exf4, 7...Bd7", BLOCK, "C29"),
     ("vienna-queen", "Vienna Gambit · 3...exf4 4.e5 Qe7", QUEEN, "C29"),
-    ("vienna-knight", "Vienna Gambit · 3...exf4, 5...Nc6", KNIGHT, "C29"),
+    ("vienna-accepted-knight", "Vienna Gambit · 3...exf4, 5...Nc6", KNIGHT, "C29"),
     ("vienna-pin", "Vienna Gambit · 3...exf4, 6...Bg4", PIN, "C29"),
     ("vienna-strike", "Vienna Gambit · 3...d5 main line", STRIKE_LINE, "C29"),
     ("vienna-strike-pin", "Vienna Gambit · 3...d5, 5...Bg4", STRIKE_PIN, "C29"),
@@ -46,9 +46,9 @@ LINES = (
     ("vienna-solid-pin", "Vienna Gambit · 3...d6 4.Nf3 Bg4", SOLID_PIN, "C29"),
     ("vienna-solid-take", "Vienna Gambit · 3...d6 4.Nf3 exf4", SOLID_TAKE, "C29"),
     ("vienna-defended", "Vienna Gambit · 3...Nc6", DEFENDED, "C29"),
-    ("vienna-knights", "Vienna Game · 2...Nc6 main line", KNIGHTS_LINE, "C28"),
-    ("vienna-knights-early", "Vienna Game · 2...Nc6 3.Bc4 Bc5", KNIGHTS_EARLY, "C25"),
-    ("vienna-knights-pin", "Vienna Game · 2...Nc6 3.Bc4 Nf6 4.d3 Bb4", KNIGHTS_PIN, "C28"),
+    ("vienna-second-knights", "Vienna Game · 2...Nc6 main line", KNIGHTS_LINE, "C28"),
+    ("vienna-second-knights-early", "Vienna Game · 2...Nc6 3.Bc4 Bc5", KNIGHTS_EARLY, "C25"),
+    ("vienna-second-knights-pin", "Vienna Game · 2...Nc6 3.Bc4 Nf6 4.d3 Bb4", KNIGHTS_PIN, "C28"),
     ("vienna-bishop-first", "Vienna Game · Anderssen Defense, 2...Bc5", BISHOP_FIRST, "C25"),
 )
 

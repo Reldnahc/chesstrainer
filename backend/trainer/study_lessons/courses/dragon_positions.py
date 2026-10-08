@@ -36,7 +36,7 @@ BG5_F6 = BG5_ASK + " Bxf6 Bxf6 O-O-O Nc6"
 BG5_F4 = BG5_ASK + " Bf4 e5"
 
 SECOND = "e4 c5 Bc4 e6 Nf3 Nc6 O-O Nf6 d3 d5 exd5 exd5"
-CLOSED = "e4 c5 Nc3 d6 Nf3 Nf6 d4 cxd4 Nxd4 g6"
+SECOND_KNIGHT = "e4 c5 Nc3 d6 Nf3 Nf6 d4 cxd4 Nxd4 g6"
 ALAPIN = "e4 c5 c3 Nf6 e5 Nd5 d4 cxd4 cxd4 d6 Nf3 Nc6"
 EARLY_QUEEN = "e4 c5 d4 cxd4 Qxd4 Nc6 Qd1 Nf6 Nc3 g6"
 MORRA = "e4 c5 d4 cxd4 c3 dxc3 Nxc3 d6 Nf3 Nc6 Bc4 e6 O-O Nf6"

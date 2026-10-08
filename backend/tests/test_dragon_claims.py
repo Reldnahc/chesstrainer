@@ -1,38 +1,11 @@
 """Pin the board facts behind the authored Sicilian Dragon explanations."""
 
 import chess
+from course_claims import Boards, attackers, attacks, count, minor, piece, sq
 from trainer.study_lessons.courses import dragon_positions as p
-from trainer.study_lessons.courses.authoring import position
 from trainer.study_lessons.courses.dragon import course
 
-
-def board(san):
-    return position(san).board()
-
-
-def sq(name):
-    return chess.parse_square(name)
-
-
-def piece(b, name):
-    found = b.piece_at(sq(name))
-    return found.symbol() if found else None
-
-
-def attacks(b, origin, target):
-    return sq(target) in b.attacks(sq(origin))
-
-
-def attackers(b, color, target):
-    return {chess.square_name(s) for s in b.attackers(color, sq(target))}
-
-
-def count(b, kind, color):
-    return len(b.pieces(kind, color))
-
-
-def minor(b, color):
-    return count(b, chess.KNIGHT, color) + count(b, chess.BISHOP, color)
+board = Boards(course())
 
 
 def test_course_loads_with_every_chapter_ending_in_a_rehearsal():
@@ -100,7 +73,7 @@ def test_setup_chapter_claims():
     assert attacks(final, "d5", "e4")
     assert not final.pieces(chess.PAWN, chess.BLACK) & chess.BB_FILE_B
     assert piece(final, "b2") == "P"
-    pushed = board(p.CLASSICAL + " e5 Ng4")
+    pushed = board(p.CLASSICAL + " e5 Ng4", beyond=True)
     assert attacks(pushed, "g4", "e3") and attacks(pushed, "c8", "g4")
 
 
@@ -225,14 +198,14 @@ def test_bg5_chapter_claims():
         and count(final, chess.KNIGHT, chess.BLACK) == 1
     )
     for recapture in ("bxc3", "Qxc3"):
-        after = board(p.BG5_LINE + " " + recapture)
+        after = board(p.BG5_LINE + " " + recapture, beyond=True)
         assert minor(after, chess.BLACK) == minor(after, chess.WHITE) + 1
         assert count(after, chess.PAWN, chess.WHITE) == count(after, chess.PAWN, chess.BLACK) + 1
 
 
 def test_second_move_chapter_claims():
     dragon = board(p.DRAGON)
-    closed = board(p.CLOSED)
+    closed = board(p.SECOND_KNIGHT)
     assert closed.board_fen() == dragon.board_fen() and closed.turn == dragon.turn
 
     alapin = board("e4 c5 c3")
@@ -295,3 +268,101 @@ def test_third_move_chapter_claims():
     assert final.king(chess.BLACK) == sq("g8") and piece(final, "g7") == "b"
     assert piece(final, "d3") == "P" and piece(final, "e4") == "P"
     assert piece(final, "d6") == "p" and piece(final, "e7") == "p"
+
+
+def test_review_corrections_hold_on_the_board():
+    # The c6-knight prepares d5 but does not guard it.
+    assert not attacks(board(p.YUGOSLAV_KNIGHT), "c6", "d5")
+    # Against 10.Qa4+ in the Qd2 side trip, Bd7 blocks and attacks the queen.
+    check = board(p.YUGOSLAV_BISHOP + " Qd2 Ng4 Bf4 Bxd4 Qxd4 e5 Qa4+", beyond=True)
+    assert check.is_check()
+    blocked = board(p.YUGOSLAV_BISHOP + " Qd2 Ng4 Bf4 Bxd4 Qxd4 e5 Qa4+ Bd7", beyond=True)
+    assert attacks(blocked, "d7", "a4") and piece(blocked, "a4") == "Q"
+    # After Bf5 in the rook offer, Qxc2 would be checkmate.
+    threat = board(p.GAMBIT_QUEEN + " Qxa8 Bf5")
+    threat.push(chess.Move.null())
+    threat.push_san("Qxc2")
+    assert threat.is_checkmate()
+    # White's knights stand on the g7-bishop's long diagonal.
+    early = board(p.EARLY_E3)
+    assert [piece(early, name) for name in ("f6", "d4", "c3")] == ["n", "N", "N"]
+    # The other long diagonal runs from a8 to h1 through c6 and e4.
+    assert sq("c6") in chess.SquareSet.ray(sq("a8"), sq("h1"))
+    # Bg5 chapter: same rank, the knight's escape and the c3-pawn's attack.
+    retreat = board(p.BG5_ASK + " Bf4")
+    assert chess.square_rank(sq("f4")) == chess.square_rank(sq("d4")) == 3
+    escape = board(p.BG5_F4 + " Ndb5", beyond=True)
+    assert attacks(escape, "b5", "d6") and piece(escape, "d6") == "p"
+    final = board(p.BG5_LINE)
+    assert attacks(final, "c3", "d2") and piece(final, "d2") == "Q"
+    assert piece(retreat, "d4") == "N"
+    # Second moves: Re1+ is a check that Be7 blocks.
+    rook = board(p.SECOND + " Re1+", beyond=True)
+    assert rook.is_check()
+    rook.push_san("Be7")
+    assert not rook.is_check()
+    # Third moves: after Ng5, Nxe4 loses to Bxf7+.
+    trap = board(p.THIRD_BISHOP + " Ng5 Nxe4 Bxf7+", beyond=True)
+    assert trap.is_check()
+    assert attacks(board(p.THIRD_BISHOP + " Ng5 Nxe4", beyond=True), "g5", "e4")
+
+
+def test_second_review_corrections_hold_on_the_board():
+    # The Yugoslav main line ends with no Black knights left.
+    assert count(board(p.YUGOSLAV), chess.KNIGHT, chess.BLACK) == 0
+    # After Bf5 the f8-rook attacks the a8-queen, and after Qxf8+ Kxf8 Qxc2 is still mate.
+    offer = board(p.GAMBIT_QUEEN + " Qxa8 Bf5")
+    assert attacks(offer, "f8", "a8") and piece(offer, "a8") == "Q"
+    still = board(p.YUGOSLAV_GAMBIT)
+    still.push(chess.Move.null())
+    still.push_san("Qxc2")
+    assert still.is_checkmate()
+    # After 9.Ndb5 exf4 10.Nxd6+, White has taken two pawns for the piece.
+    two = board(p.BG5_F4 + " Ndb5 exf4 Nxd6+ Kf8 O-O-O Ne8 Qxf4 Nxd6 Rxd6", beyond=True)
+    assert minor(two, chess.BLACK) == minor(two, chess.WHITE) + 1
+    assert count(two, chess.PAWN, chess.WHITE) == count(two, chess.PAWN, chess.BLACK) + 2
+
+
+def test_third_review_corrections_hold_on_the_board():
+    # 12.Qxc3?? walks into Bxc3+ along the opened long diagonal.
+    queen = board(p.BG5_LINE + " Qxc3", beyond=True)
+    assert attacks(queen, "g7", "c3") and piece(queen, "c3") == "Q"
+    queen.push_san("Bxc3+")
+    assert queen.is_check()
+    # After 10.Nxd6+ the knight on d6 is guarded by White's queen on d2.
+    check = board(p.BG5_F4 + " Ndb5 exf4 Nxd6+", beyond=True)
+    assert check.is_check() and attacks(check, "d2", "d6")
+    assert check.is_legal(check.parse_san("Kf8"))
+
+
+def test_fourth_review_corrections_hold_on_the_board():
+    # The f2-pawn already guards e3, and the e2-bishop controls g4.
+    setup = board(p.QUIET + " Be3 O-O Qd2")
+    assert "f2" in attackers(setup, chess.WHITE, "e3")
+    assert attacks(setup, "e2", "g4")
+    # After 9.Ndb5 the e5-pawn can take the f4-bishop.
+    escape = board(p.BG5_F4 + " Ndb5", beyond=True)
+    assert attacks(escape, "e5", "f4") and piece(escape, "f4") == "B"
+    # 12.Qxd6 can be met by Qxd6.
+    raid = board(p.BG5_LINE + " Qxd6", beyond=True)
+    assert attacks(raid, "d8", "d6") and piece(raid, "d6") == "Q"
+
+
+def test_fifth_review_corrections_hold_on_the_board():
+    # Against 9.Be3 the e5-pawn takes the d4-knight.
+    retreat = board(p.BG5_F4 + " Be3", beyond=True)
+    assert attacks(retreat, "e5", "d4") and piece(retreat, "d4") == "N"
+    # After 9.Bb5+ Bd7 10.Bxd7+, the queen can take back.
+    exchange = board(p.BG5_F4 + " Bb5+ Bd7 Bxd7+", beyond=True)
+    assert exchange.is_legal(exchange.parse_san("Qxd7"))
+
+
+def test_sixth_review_corrections_hold_on_the_board():
+    # 9.Bg3 still leaves the d4-knight to the e5-pawn.
+    assert attacks(board(p.BG5_F4 + " Bg3", beyond=True), "e5", "d4")
+    # 9.Bxh6 Bxh6 10.Qxh6: the h8-rook takes the queen.
+    trap = board(p.BG5_F4 + " Bxh6 Bxh6 Qxh6", beyond=True)
+    assert attacks(trap, "h8", "h6") and piece(trap, "h6") == "Q"
+    # After 10.Nxd6+, Ke7 is legal but the course steers the king to f8.
+    check = board(p.BG5_F4 + " Ndb5 exf4 Nxd6+", beyond=True)
+    assert check.is_legal(check.parse_san("Ke7")) and check.is_legal(check.parse_san("Kf8"))

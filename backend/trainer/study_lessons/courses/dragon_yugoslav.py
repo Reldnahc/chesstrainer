@@ -87,8 +87,8 @@ def queen_trip():
         step(
             "explanation",
             "yugoslav-queen-summary",
-            "Use the open square",
-            "You traded your g7-bishop and e-pawn for White's d4-knight and f4-bishop: a piece for a pawn. If White's bishop had gone to g5 instead, h6 would chase it; if White had castled queenside, Nxe3 would take the bishop.",
+            "Punish an early Qd2",
+            "You traded your g7-bishop and e-pawn for White's d4-knight and f4-bishop: a piece for a pawn. If White checks with Qa4+ instead of taking on e5, block with Bd7: the bishop attacks the queen, and you still win material. Earlier, if White's bishop had gone to g5 instead of f4, h6 would chase it; if White had castled queenside, Nxe3 would trade your knight for that bishop.",
             YUGOSLAV_QUEEN,
         ),
     ]
@@ -200,14 +200,14 @@ def exchange_trip():
             "Be6",
             None,
             "yugoslav-exchange-summary",
-            "All your minor pieces are developed and the b-file points at White's king.",
+            "Your knight and both bishops are developed, and the b-file, open on your side, points at b2, next to White's king on c1.",
             "Move the bishop from c8 to e6.",
         ),
         step(
             "explanation",
             "yugoslav-exchange-summary",
-            "Rooks to the open file",
-            "Next, put a rook on b8 and consider Qa5. If White had played Bh6 instead of castling, you would trade bishops with Bxh6 and, after Qxh6, play Qb6.",
+            "Bring a rook to the b-file",
+            "Next, put a rook on b8 and consider Qa5. If White plays Bh6, now or earlier instead of castling, trade bishops with Bxh6 and, after Qxh6, play Qb6.",
             YUGOSLAV_EXCHANGE,
         ),
     ]
@@ -271,12 +271,12 @@ def gambit_trip():
         decision(
             "yugoslav-gambit-bishop",
             "Attack with the bishop",
-            "Develop the c8-bishop to f5. It attacks c2 together with your queen.",
+            "Develop the c8-bishop to f5. Together with your queen it attacks c2: now Qxc2 would be checkmate.",
             GAMBIT_QUEEN + " Qxa8",
             "Bf5",
             "Qxf8+",
             "yugoslav-gambit-king",
-            "White gives the queen back for your f8-rook, with check.",
+            "Your f8-rook now attacks White's queen too, so White takes the rook with check rather than lose the queen for nothing. White still has to stop Qxc2 mate next move.",
             "Move the bishop from c8 to f5.",
         ),
         decision(
@@ -329,13 +329,13 @@ def late_trip():
             "cxd5",
             "Qxd5",
             "yugoslav-late-offer",
-            "White's queen takes the pawn. This is the same position as in the previous side trip.",
+            "White's queen takes the pawn. This is the same position as when White trades knights on c6 before taking on d5.",
             "Move the pawn from c6 to d5.",
         ),
         decision(
             "yugoslav-late-offer",
             "Offer the rook",
-            "Move your queen to c7, as in the previous side trip.",
+            "Move your queen to c7. You leave the a8-rook to be taken; in return your queen and g7-bishop aim at c2 and b2, beside White's king.",
             YUGOSLAV_RECAPTURE + " Nxc6 bxc6 Nxd5 cxd5 Qxd5",
             "Qc7",
             None,
@@ -347,7 +347,7 @@ def late_trip():
             "explanation",
             "yugoslav-late-summary",
             "Two roads to one position",
-            "Whether White takes on c6 first or a move later, you reach the same position. Your queen and g7-bishop point at c2 and b2.",
+            "After Nxd5 cxd5 Qxd5 you reached the same position as when White trades knights on c6 before taking on d5. Earlier, if White had played Bd4 instead of Nxd5, you would trade bishops with Bxd4 and, after Qxd4, bring your queen to b6.",
             YUGOSLAV_LATE,
         ),
     ]
@@ -359,7 +359,7 @@ def chapter():
             "explanation",
             "yugoslav-welcome",
             "The Yugoslav Attack",
-            "The most dangerous plan against the Dragon is the Yugoslav Attack: White plays Be3, f3 and Qd2, castles queenside and then pushes the kingside pawns at your king. Your answer is simple: castle, develop Nc6, and as soon as White castles queenside, strike in the center with d5.",
+            "In master games, White's main plan against the Dragon, and one of its sharpest, is the Yugoslav Attack: White plays Be3, f3 and Qd2, castles queenside and then pushes the kingside pawns at your king. Your answer is simple: castle, develop Nc6, and as soon as White castles queenside, strike in the center with d5, as long as your knight is still on c6. If the knights have already been traded, the side trips show what to do instead.",
             next_step="yugoslav-arrival",
         ),
         demo(
@@ -436,7 +436,7 @@ def chapter():
             "Nc6",
             None,
             "yugoslav-exchange-choice",
-            "Your knight presses on d4 and supports a later d5.",
+            "Your knight presses on d4 and prepares a later d5.",
             "Move the knight from b8 to c6.",
         ),
         step(
@@ -545,7 +545,7 @@ def chapter():
             "Be6",
             None,
             "yugoslav-summary",
-            "All your pieces are in play. If White takes on g7, recapture with the king.",
+            "Your bishops and queen are active; your rooks come next. If White takes on g7, recapture with the king.",
             "Move the bishop from c8 to e6.",
         ),
         step(
