@@ -46,12 +46,14 @@ card counts unfinished chapters across every lesson course. The section's tabs
 are Openings, Fundamentals (the tactics and fundamentals courses), Catalogue and
 My studies. URLs are unchanged: `/study/openings` is the Openings tab and
 `/study/skills` the Fundamentals tab. Home's Keep learning link and the
-caught-up Due action now say Lessons.
+caught-up Due action now say Lessons, and without a saved lesson Keep learning
+suggests the first opening and the first fundamentals course.
 
 Checks: `npm run build`, `test:types`, `test:symbols` and `test:styles` passed;
 `dashboard.spec.ts`, `ui-standardization.spec.ts`, `action-controls.spec.ts`,
 `study-lessons.spec.ts` and `opening-library.spec.ts` passed on desktop and
-mobile (55 passed, 1 desktop-only skip). Not run: the backend suite (no backend
+mobile (55 passed, 1 desktop-only skip); `dashboard.spec.ts` passed again (24)
+with a new case for the two course suggestions. Not run: the backend suite (no backend
 change) and the other browser specs.
 
 ## Study Skills card — October 8, 2026

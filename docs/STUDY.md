@@ -34,7 +34,8 @@ The Study home cards lead to Due, Lessons and Puzzles. The Lessons card counts
 the chapters not yet completed across every lesson course. Lessons is one
 section with four tabs: Openings (the opening courses), Fundamentals (the
 tactics and fundamentals courses), Catalogue and My studies. Home's Keep
-learning panel links to Lessons. The main navigation's
+learning panel links to Lessons and, without a saved lesson, suggests the first
+opening course and the first fundamentals course. The main navigation's
 Study link returns to that overview; subpages do not repeat a section selector.
 Overview cards place descriptions below their headings and show the scheduled
 recall and lesson-chapter counts separately. The Puzzles card's count is

@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, BookOpen, Clock3, Flag } from "lucide-react";
-import { api, read } from "./api";
+import { api, read, type Schema } from "./api";
 import ActionLink from "./ActionLink";
 import Button from "./Button";
 import EmptyState from "./EmptyState";
@@ -17,6 +17,12 @@ const loadGames = (signal: AbortSignal) => read(api.GET("/api/games", { params: 
 const loadWeaknesses = (signal: AbortSignal) => read(api.GET("/api/weaknesses", { signal }));
 const loadLessons = (signal: AbortSignal) => read(api.GET("/api/study/courses", { signal }));
 const loadOpenings = (signal: AbortSignal) => read(api.GET("/api/opening-studies", { signal }));
+
+// Without a saved lesson, suggest the first opening and the first fundamentals
+// course so both halves of Study's Lessons section are reachable from Home.
+function firstCourses(courses: Schema["LessonCourseSummary"][]) {
+  return courses.filter((course, index) => courses.findIndex(other => other.topic === course.topic) === index).slice(0, 2);
+}
 
 // Each summary can recover independently; leaving Home disposes every request.
 function useHomeQuery<T>(load: (signal: AbortSignal) => Promise<T>) {
@@ -76,10 +82,10 @@ export default function HomeScreen() {
         <HomeResult query={lessons} label="lessons">{data => <div className="study-resume-list">
           {data.resume.length ? data.resume.slice(0, 2).map(session => <ResumeLink key={session.id}
             href={lessonSessionPath(session.id, session.course_topic)} description={`Continue · ${session.chapter_title}`}>{session.course_title}</ResumeLink>)
-            : data.courses.length ? <ResumeLink href={lessonCoursePath(data.courses[0].id, data.courses[0].revision, data.courses[0].topic)}
-              description={`${data.courses[0].completed_chapters} of ${data.courses[0].chapter_count} chapters completed`}>
-              {data.courses[0].title}
-            </ResumeLink> : <EmptyState presentation="compact" title="Choose a lesson to study.">
+            : data.courses.length ? firstCourses(data.courses).map(course => <ResumeLink key={course.id} href={lessonCoursePath(course.id, course.revision, course.topic)}
+              description={`${course.completed_chapters} of ${course.chapter_count} chapters completed`}>
+              {course.title}
+            </ResumeLink>) : <EmptyState presentation="compact" title="Choose a lesson to study.">
               Learn an opening, a tactic or a fundamental skill.
             </EmptyState>}
         </div>}</HomeResult>

@@ -296,6 +296,21 @@ test("an available course is offered when there is no saved lesson", async ({ pa
   expectReadOnly(fixture.requests);
 });
 
+test("without a saved lesson Home suggests one opening and one fundamentals course", async ({ page }) => {
+  const data = dashboardData();
+  data.lessons.resume = [];
+  const opening = data.lessons.courses[0];
+  data.lessons.courses = [opening, { ...opening, id: "second-opening", title: "Another opening" },
+    { ...opening, id: "basic-skills", title: "Basic skills", topic: "skills" }];
+  await mockDashboard(page, data);
+  await page.goto("/");
+  const learning = region(page, "Keep learning");
+  await expect(learning.locator(".study-resume-list a")).toHaveCount(2);
+  await expect(learning.getByRole("link", { name: /Build an opening plan/ })).toHaveAttribute("href", "/study/openings/courses/home-course?revision=revision-1");
+  await expect(learning.getByRole("link", { name: /Basic skills/ })).toHaveAttribute("href", "/study/skills/courses/basic-skills?revision=revision-1");
+  await expect(learning.getByRole("link", { name: "Lessons", exact: true })).toHaveAttribute("href", "/study/openings");
+});
+
 for (const failed of Object.keys(endpoints) as Area[]) {
   test(`${failed} can be retried without hiding or reloading the other Home summaries`, async ({ page }) => {
     const fixture = await mockDashboard(page, dashboardData(), new Set([failed]));
