@@ -18,6 +18,9 @@ NPX = "npx.cmd" if os.name == "nt" else "npx"
 NPM = "npm.cmd" if os.name == "nt" else "npm"
 # These suites serve the built application; the studios use their own dev servers.
 BUILT_SUITES = {"local", "accounts"}
+# Local runs spread the application suite over the machine's cores the way CI spreads
+# it over matrix shards. Each worker owns an application server and database.
+LOCAL_WORKERS = max(4, (os.cpu_count() or 4) // 2)
 
 
 def working_tree_paths():
@@ -40,9 +43,25 @@ def working_tree_paths():
 def step(name, command, cwd=ROOT, env=None):
     started = time.monotonic()
     result = subprocess.run(
-        command, cwd=cwd, env=env, capture_output=True, text=True, errors="replace"
+        command,
+        cwd=cwd,
+        env=env,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        errors="replace",
     )
-    return name, result.returncode, result.stdout + result.stderr, time.monotonic() - started
+    return name, result.returncode, result.stdout, time.monotonic() - started
+
+
+def chain(*steps):
+    """Run steps in order, stopping at the first failure, and return every result."""
+    results = []
+    for name, command, *rest in steps:
+        results.append(step(name, command, *rest))
+        if results[-1][1]:
+            break
+    return results
 
 
 def migrations():
@@ -105,39 +124,43 @@ def main(argv=None):
         return 0
 
     started = time.monotonic()
-    background = ThreadPoolExecutor(3)
-    statics = static_checks(background) if plan["backend"] else []
-    first = []
+    projects = ["--project", args.project] if args.project else []
+
+    def browser(suite):
+        env = os.environ.copy()
+        if suite == "local":
+            env.setdefault("PLAYWRIGHT_WORKERS", str(LOCAL_WORKERS))
+        command = [NPX, "playwright", "test", "--config", ci_plan.SUITES[suite]]
+        return step(suite, [*command, "--reporter=line", *projects], FRONTEND, env)
+
+    # The build comes first and alone: it gates the suites that serve frontend/dist,
+    # and starved of cores beside everything else it takes several times as long.
+    failed = False
+    if any(suite in BUILT_SUITES for suite in plan["suites"]):
+        failed = report([step("build", [NPM, "run", "build"], FRONTEND)])
+    elif plan["build"]:
+        failed = report([step("types", [NPM, "run", "test:types"], FRONTEND)])
+    suites = [s for s in plan["suites"] if not (failed and s in BUILT_SUITES)]
+
+    # Then the backend tests, every browser suite and the static checks run at once:
+    # they share no ports or databases, and each browser worker owns its server.
+    pool = ThreadPoolExecutor(10)
+    jobs = []
     if plan["backend"]:
         lint = ["backend", "scripts", "migrations"]
-        first.append(step("ruff", [sys.executable, "-m", "ruff", "check", *lint]))
-        first.append(step("format", [sys.executable, "-m", "ruff", "format", "--check", *lint]))
-        first.append(step("backend", [sys.executable, "scripts/pytest_parallel.py", "-q"]))
-    if plan["build"]:
-        # The full build also gates the suites that serve frontend/dist.
-        if BUILT_SUITES & set(plan["suites"]):
-            first.append(step("build", [NPM, "run", "build"], FRONTEND))
-        else:
-            first.append(step("types", [NPM, "run", "test:types"], FRONTEND))
-    failed = report(first)
-
-    projects = ["--project", args.project] if args.project else []
-    suites = [(suite, ci_plan.SUITES[suite]) for suite in plan["suites"]]
-    # Each suite owns its port, so different suites run side by side.
-    with ThreadPoolExecutor(max(1, len(suites))) as pool:
-        browser = list(
-            pool.map(
-                lambda item: step(
-                    item[0],
-                    [NPX, "playwright", "test", "--config", item[1], "--reporter=line", *projects],
-                    FRONTEND,
-                ),
-                suites,
+        jobs.append(
+            pool.submit(
+                chain,
+                ("ruff", [sys.executable, "-m", "ruff", "check", *lint]),
+                ("format", [sys.executable, "-m", "ruff", "format", "--check", *lint]),
+                ("backend", [sys.executable, "scripts/pytest_parallel.py", "-q"]),
             )
         )
-    failed |= report(browser)
+    jobs += [pool.submit(lambda suite=suite: [browser(suite)]) for suite in suites]
+    statics = static_checks(pool) if plan["backend"] else []
+    failed |= report([result for job in jobs for result in job.result()])
     failed |= report([future.result() for future in statics])
-    background.shutdown()
+    pool.shutdown()
     print(
         f"{'FAILED' if failed else 'All selected checks passed'} in {time.monotonic() - started:.0f}s"
     )

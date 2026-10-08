@@ -306,7 +306,10 @@ Cache hits never replace test execution. QEMU is unnecessary for the existing na
 Before merging, `python scripts/test_affected.py` runs locally what CI would select
 for the branch against `main`, including uncommitted and untracked files: lint,
 formatting and parallel backend tests, the build or type checks, and the selected
-browser suites side by side. When backend checks are selected, the API contract,
+browser suites. The build runs first and alone; then the backend tests, every
+browser suite and the static checks run at once, and the application suite spreads
+over half the machine's threads (at least 4) the way CI spreads it over shards, each
+worker with its own server and database. When backend checks are selected, the API contract,
 migration and voice-bank checks run beside everything else; the migration check
 upgrades a throwaway database, never `data/trainer.sqlite3`. `--dry-run` prints the selection only, `--base` changes the
 comparison and `--project desktop` limits the browser viewports.
