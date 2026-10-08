@@ -31,8 +31,8 @@ function Fixture() {
   let contents;
   if (view === "lesson") contents = <LessonPlayer sessionId="loading-fixture" />;
   else if (view === "puzzle") contents = <PuzzlePlayer sessionId="loading-fixture" />;
-  else if (view === "library") contents = <LessonLibrary courseId={null} revision={null} />;
-  else if (view === "chapters") contents = <LessonLibrary courseId="loading-fixture" revision="fixture-v1" />;
+  else if (view === "library") contents = <LessonLibrary topic="opening" courseId={null} revision={null} />;
+  else if (view === "chapters") contents = <LessonLibrary topic="opening" courseId="loading-fixture" revision="fixture-v1" />;
   else if (view === "preview") contents = <OpeningLinePreview catalogueKey="loading-fixture" courseLine={null} />;
   else if (view === "course-preview") contents = <OpeningLinePreview catalogueKey={null} courseLine={{courseId: "loading-fixture", lineId: "line", revision: "fixture-v1"}} />;
   else if (view === "game") contents = <GameWorkspace id="loading-fixture" initialPly={0} libraryHref="/games?page=3" />;
@@ -129,7 +129,7 @@ async function expectLoading(page: Page, message: string) {
 }
 
 for (const fixture of [
-  { view: "lesson", endpoint: "/api/study/lesson-sessions/loading-fixture", message: "Loading your lesson…", heading: "Lesson unavailable", link: "All openings", href: "/study/openings" },
+  { view: "lesson", endpoint: "/api/study/lesson-sessions/loading-fixture", message: "Loading your lesson…", heading: "Lesson unavailable", link: "All lessons", href: "/study/openings" },
   { view: "puzzle", endpoint: "/api/puzzle-sessions/loading-fixture", message: "Loading your puzzle…", heading: "Puzzle unavailable", link: "All puzzles", href: "/study/puzzles" },
 ]) {
   test(`${fixture.view} loading and retry preserve caller-owned recovery commands`, async ({ page }) => {

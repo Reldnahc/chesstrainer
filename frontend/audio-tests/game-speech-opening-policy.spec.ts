@@ -78,7 +78,7 @@ for (const coach of coaches) {
       expect(codes.some(code => humanInsightLabels[code])).toBe(false);
       expect(selectGameRecording(context)).toBe("opening-departure");
       expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[state]]);
-      expect(selectGameSpeech(context)).toEqual({...departure, variants: departure});
+      expect(selectGameSpeech(context)).toEqual({...departure, variants: {...departure, squares: new Map()}});
       observed.add(state);
     }
     expect(observed.size).toBe(4);

@@ -17,17 +17,22 @@ def fingerprint(course):
     ).hexdigest()
 
 
-def course_for(db, providers, course_id, revision=None, *, for_start=False):
+def course_for(db, providers, course_id, revision=None, *, for_start=False, installed=None):
+    """``installed`` is a course the caller already read from ``providers``,
+    so a catalogue listing validates each course once rather than once per entry."""
     saved = select(StudyLessonSession.snapshot).where(StudyLessonSession.course_id == course_id)
     if revision is not None:
         saved = saved.where(StudyLessonSession.course_revision == revision)
-    try:
-        course = providers.get(db, course_id, revision)
-    except HTTPException as exc:
-        snapshot = db.scalar(saved.order_by(StudyLessonSession.started_at.desc()).limit(1))
-        if snapshot is None:
-            raise exc
-        return CourseDefinition.model_validate(snapshot)
+    if installed is not None:
+        course = installed
+    else:
+        try:
+            course = providers.get(db, course_id, revision)
+        except HTTPException as exc:
+            snapshot = db.scalar(saved.order_by(StudyLessonSession.started_at.desc()).limit(1))
+            if snapshot is None:
+                raise exc
+            return CourseDefinition.model_validate(snapshot)
     existing_hash = db.scalar(
         select(StudyLessonProgress.content_hash)
         .where(
@@ -66,7 +71,7 @@ def library(db, providers):
     completed = completions(db)
     courses = []
     for candidate in providers.courses(db):
-        course = course_for(db, providers, candidate.id, candidate.revision)
+        course = course_for(db, providers, candidate.id, candidate.revision, installed=candidate)
         courses.append(
             {
                 "id": course.id,

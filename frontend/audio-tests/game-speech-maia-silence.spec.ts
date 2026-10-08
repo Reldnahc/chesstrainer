@@ -55,7 +55,7 @@ function insight(current: GameSpeechContext) {
 }
 
 const maia = (codes: {code: string}[]) => codes.filter(item => humanInsightLabels[item.code]);
-const silent = {primaryId: null, recordingId: null, variants: {primaryId: null, recordingId: null}};
+const silent = {primaryId: null, recordingId: null, variants: {primaryId: null, recordingId: null, squares: new Map()}};
 
 test("the speech catalogue has no Maia meanings or combinations", () => {
   expect(catalogue.meanings.map(item => item.id).filter(id => /^(?:human-|combo-|combined-)/.test(id))).toEqual([]);
