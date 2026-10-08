@@ -328,8 +328,8 @@ def test_illustrative_passages_support_their_specific_board_claims():
         ),
         (
             "kings-gambit-foundations",
-            "2026-10-v4",
-            "df00911674e26736220f9b573067967d19d23a457f4bba5f9285b10da98ed969",
+            "2026-10-v5",
+            "1b46ad40f6ff90e0692a10e077bd24b7020372537a60384fded9b9acba89eb77",
         ),
     ),
 )

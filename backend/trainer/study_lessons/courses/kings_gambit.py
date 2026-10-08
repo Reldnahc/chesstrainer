@@ -3,11 +3,15 @@
 from trainer.study_lessons.content import CourseDefinition, GameAnnotation
 from trainer.study_lessons.courses.authoring import decision, demo, position, step
 from trainer.study_lessons.courses.kings_gambit_falkbeer import chapter as falkbeer_chapter
-from trainer.study_lessons.courses.kings_gambit_falkbeer import recall_line as falkbeer_line
+from trainer.study_lessons.courses.kings_gambit_falkbeer import recall_lines as falkbeer_lines
 from trainer.study_lessons.courses.kings_gambit_games import source_games
+from trainer.study_lessons.courses.kings_gambit_others import chapter as others_chapter
+from trainer.study_lessons.courses.kings_gambit_others import lines as others_lines
 
 GAMBIT = "e4 e5 f4"
 ACCEPTED = GAMBIT + " exf4 Nf3"
+QUEEN = ACCEPTED + " d5 exd5 Qxd5"
+QUEEN_LINE = QUEEN + " Nc3 Qe6+ Be2 Nf6 O-O"
 MODERN_CENTER = ACCEPTED + " d5 exd5 Nf6 Bb5+ c6 dxc6 Nxc6 d4 Bd6"
 MODERN_DEVELOPMENT = MODERN_CENTER + " O-O O-O Nbd2"
 MODERN = MODERN_DEVELOPMENT + " Bg4 c3"
@@ -94,7 +98,7 @@ def course():
             "explanation",
             "accepted-welcome",
             "Offer a pawn, keep a plan",
-            "The King's Gambit offers the f-pawn to draw Black's e-pawn away from the center. White wants development and central space; Black can counterattack before White castles. We will study the Modern Defense, the g5 pawn chain, and two distinct refusals: Bc5 and the Falkbeer countergambit. These are selected responses, not every possible defense.",
+            "The King's Gambit offers the f-pawn to draw Black's e-pawn away from the center. White wants development and central space; Black can counterattack before White castles. We will study the Modern Defense, the g5 pawn chain, Black's other common replies, and two refusals: Bc5 and the Falkbeer countergambit. These are the common responses, not every possible defense.",
             next_step="offer-pawn",
         ),
         demo(
@@ -133,10 +137,75 @@ def course():
             "Capture on d5. Black's pawn is attacking e4, and taking it keeps a white pawn in the center while opening the e-file.",
             ACCEPTED + " d5",
             "exd5",
-            "Nf6",
-            "develop-bishop",
-            "Material is equal again. Nf6 develops with an attack on d5. Instead of defending the pawn passively, we can develop with check.",
+            None,
+            "central-queen-choice",
+            "Material is equal again. Black can take back with the queen or develop the g8-knight with an attack on d5.",
             "Move the pawn from e4 to d5.",
+        ),
+        step(
+            "branch",
+            "central-queen-choice",
+            "If the queen takes back",
+            "Black's queen usually takes back on d5. Explore that side trip, or continue for Nf6, this chapter's main line.",
+            ACCEPTED + " d5 exd5",
+            branch_start="modern-queen",
+            next_step="modern-knight",
+        ),
+        demo(
+            "modern-queen",
+            "The queen takes back",
+            "Black's queen recaptures on d5, so Black is a pawn up again. But a queen in the middle of the board can be attacked by your developing pieces.",
+            ACCEPTED + " d5 exd5",
+            QUEEN,
+            "modern-queen-knight",
+        ),
+        decision(
+            "modern-queen-knight",
+            "Develop with an attack",
+            "Develop the b1-knight to c3, attacking Black's queen.",
+            QUEEN,
+            "Nc3",
+            "Qe6+",
+            "modern-queen-block",
+            "The queen moves again and checks along the e-file. Block the check with a piece that needs to develop anyway.",
+            "Move the knight from b1 to c3.",
+        ),
+        decision(
+            "modern-queen-block",
+            "Block with development",
+            "Block the check with the f1-bishop on e2.",
+            QUEEN + " Nc3 Qe6+",
+            "Be2",
+            "Nf6",
+            "modern-queen-castle",
+            "Black develops Nf6. Your bishop has cleared f1, so the king can leave the center.",
+            "Move the bishop from f1 to e2.",
+        ),
+        decision(
+            "modern-queen-castle",
+            "Castle",
+            "Castle before the center opens further.",
+            QUEEN + " Nc3 Qe6+ Be2 Nf6",
+            "O-O",
+            None,
+            "modern-queen-summary",
+            "Your king is safe and three of your pieces are developed, while Black's queen has moved twice.",
+            "Move the king from e1 to g1.",
+        ),
+        step(
+            "explanation",
+            "modern-queen-summary",
+            "Development for a pawn",
+            "Black is a pawn up, but you are ahead in development: that is what you get in return for the pawn. Next, d4 opens the c1-bishop's path toward the f4-pawn. If the queen had retreated to d8 or a5 instead of checking, you would play d4 at once.",
+            QUEEN_LINE,
+        ),
+        demo(
+            "modern-knight",
+            "Black develops instead",
+            "In this chapter's main line Black develops Nf6, attacking d5. Instead of defending the pawn passively, we can develop with check.",
+            ACCEPTED + " d5 exd5",
+            ACCEPTED + " d5 exd5 Nf6",
+            "develop-bishop",
         ),
         decision(
             "develop-bishop",
@@ -474,9 +543,9 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="kings-gambit-foundations",
-            revision="2026-10-v4",
+            revision="2026-10-v5",
             title="King's Gambit · Active play with White",
-            description="Meet the Modern Defense, challenge the g5 pawn chain, build a center against Bc5, and untangle the Falkbeer countergambit. Separate chapters follow the different decisions each defense demands, with comparisons and two contrasting historical games.",
+            description="Meet the Modern Defense, challenge the g5 pawn chain, handle Black's other common replies, build a center against Bc5, and untangle the Falkbeer countergambit. Separate chapters follow the different decisions each defense demands, with side trips for common replies and two contrasting historical games.",
             learner_color="white",
             attributions=[
                 dict(
@@ -495,21 +564,44 @@ def course():
                         "C36",
                     ),
                     (
+                        "modern-queen",
+                        "King's Gambit · Modern Defense, queen takes back (4...Qxd5)",
+                        QUEEN_LINE,
+                        "C36",
+                    ),
+                    (
                         "challenge-pawn-chain",
                         "King's Gambit · challenge the g5 pawn chain",
                         CHAIN,
                         "C39",
                     ),
-                    ("declined-center", "King's Gambit Declined · prepare d4", DECLINED, "C30"),
                 )
             ]
-            + [falkbeer_line()],
+            + others_lines()
+            + [
+                dict(
+                    id="declined-center",
+                    title="King's Gambit Declined · prepare d4",
+                    moves=position(DECLINED).moves,
+                    repertoire=True,
+                    eco="C30",
+                )
+            ]
+            + falkbeer_lines(),
             chapters=[
                 dict(id=identity, title=title, entry_step=steps[0]["id"], steps=steps)
                 for identity, title, steps in (
                     ("accepted-development", "A pawn for active play", accepted_steps),
                     ("pawn-chain", "Challenge the pawn chain", chain_steps),
-                    ("declined-center", "Build a center against Bc5", declined_steps),
+                )
+            ]
+            + [others_chapter()]
+            + [
+                dict(
+                    id="declined-center",
+                    title="Build a center against Bc5",
+                    entry_step=declined_steps[0]["id"],
+                    steps=declined_steps,
                 )
             ]
             + [falkbeer_chapter()],
