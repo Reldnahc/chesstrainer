@@ -201,7 +201,7 @@ test("the lesson library resumes saved content and opens a chapter without expos
 });
 
 test("Study home opens Lessons, whose Fundamentals tab alone lists the tactics and fundamentals courses", async ({ page }) => {
-  const skillTitles = ["Tactics · Six basic patterns", "Fundamentals · Six basic skills"];
+  const skillTitles = ["Fundamentals · Six basic skills", "Tactics · Six basic patterns"];
   await page.goto("/study");
   await expect(page.locator(".study-option h2")).toHaveText(["Due now", "Lessons", "Puzzles"]);
   const card = page.locator(".study-option").filter({ has: page.getByRole("heading", { name: "Lessons", exact: true }) });
@@ -216,7 +216,7 @@ test("Study home opens Lessons, whose Fundamentals tab alone lists the tactics a
   await expect(sections.getByRole("link", { name: "Fundamentals", exact: true })).toHaveAttribute("aria-current", "page");
   await expect(page.locator(".lesson-course-card h2")).toHaveText(skillTitles);
   await page.getByRole("link", { name: new RegExp(skillTitles[0]) }).click();
-  await expect(page).toHaveURL(/\/study\/skills\/courses\/tactics-foundations\?revision=/);
+  await expect(page).toHaveURL(/\/study\/skills\/courses\/chess-fundamentals\?revision=/);
   await expect(page.getByRole("link", { name: "All fundamentals", exact: true })).toHaveAttribute("href", "/study/skills");
   await page.goto("/study/openings");
   await expect(page.locator(".lesson-course-card").first()).toBeVisible();

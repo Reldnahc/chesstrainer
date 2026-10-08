@@ -28,8 +28,8 @@ def _courses():
             italian_white(),
             italian_black(),
             kings_gambit(),
-            tactics(),
             fundamentals(),
+            tactics(),
         )
     )
 
