@@ -4,6 +4,23 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Tactics course — October 8, 2026
+
+A fourth bundled course, `tactics-foundations` revision `2026-10-v1`, teaches six
+tactical patterns on 18 short examples; see
+[Tactics course sources](TACTICS_COURSE_SOURCES.md). Course validation now lets an
+explanation start a separate example from another initial FEN. Every other
+transition keeps the existing history rule, and the opening courses' content
+hashes are unchanged.
+
+Checks: `test_tactics_course.py` (every chapter through the API, the board change
+and Back, exact board claims, the new validation rule and its limits, the pinned
+hash), `test_italian_course.py`, `test_study_lessons.py` and
+`test_lesson_journey.py` passed; `ruff check` and `ruff format --check` passed on
+the changed Python files. Stockfish 17.1 checked every taught move and scripted
+reply; the record is in the sources file. Not run: browser tests and the full
+backend suite.
+
 ## Opening-course chess check — October 8, 2026
 
 Owner request: check the chess quality of the three Study courses against

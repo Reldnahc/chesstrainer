@@ -201,7 +201,10 @@ history at graph edges and requires explicit targets for each accepted decision
 alternative. A branch retains its exact anchor and has an explicit return action.
 Excerpts can open the entire source game's known history and return to the same
 lesson context. Only excerpts and rehearsals can intentionally establish a new
-position/history; ordinary step transitions cannot silently replace the board.
+position/history within one starting position. An explanation may also begin a
+separate example from a different starting position (initial FEN); the board
+changes without move playback, and Back returns to the previous example. Other
+transitions, including branches, cannot silently replace the board.
 
 Each lesson session pins the complete course revision and its content hash. A
 provider cannot silently replace a saved revision, and saved sessions still work
@@ -247,9 +250,10 @@ The `/study/openings` library links course chapters and recent resumable session
 
 ### Included courses
 
-All three courses ship locally and use the same player, account progress and
-explicit line-enrollment flow. They are focused repertoires: an authored answer
-is a move chosen for that lesson, not a claim that every other legal move is bad.
+All four courses ship locally and use the same player and account progress; the
+three opening courses also share the explicit line-enrollment flow. The opening
+courses are focused repertoires: an authored answer is a move chosen for that
+lesson, not a claim that every other legal move is bad.
 Historical games illustrate plans and mistakes; their moves are not all
 recommendations. No course starts an engine job or downloads material at runtime.
 
@@ -258,11 +262,16 @@ recommendations. No course starts an engine job or downloads material at runtime
 | Italian Game · A quiet White repertoire | White | Recognize the setup; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
 | Italian Game · A practical Black repertoire | Black | Quiet development; choose a post-castling plan; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
 | King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
+| Tactics · Six basic patterns | White | Forks; pins; skewers; discovered attacks and double check; removing a defender; back-rank checkmate | [Tactics sources](TACTICS_COURSE_SOURCES.md) |
+
+`tactics-foundations` (revision `2026-10-v1`) teaches patterns rather than an
+opening. Its examples start from separate positions, and it has no recall lines,
+so it never adds anything to Due.
 
 The current revisions are `2026-10-v3` for `italian-foundations`, and
 `2026-10-v4` for `italian-black-foundations` and `kings-gambit-foundations`.
 Black decisions and rehearsal use Black orientation
-and automatically play White’s intervening replies. All three course definitions
+and automatically play White’s intervening replies. All four course definitions
 are cached as immutable source data and returned as independent copies. Shared
 SAN authoring helpers produce the same validated content format. Existing saved
 sessions, enrolled lines and their earlier revisions retain their own snapshots.
