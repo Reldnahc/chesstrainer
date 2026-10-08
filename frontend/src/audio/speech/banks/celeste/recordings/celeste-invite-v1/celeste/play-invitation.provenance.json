@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Oh, I'd adore a game with you. Two minds across one board, each reaching for an idea: few things are lovelier."
+    },
+    "takeId": null
+  },
+  "requestHash": "370fb32ed74bcc87f3386e7f83e0ba3e1fb0038832745e5ff502b858e10b9f4a",
+  "recordedAt": "2026-10-08T20:19:17.453Z",
+  "sha256": "79e736781d0757ca2fdbc13d91ff1d3074e891f79459afa08e67c4985b8a2484",
+  "bytes": 27964,
+  "requestId": "dPrX7cHc43QB6SvMQi9g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a62482d5f4de99121b955dd6c8563d7341f9d705cfdfdae86db83862dc08d9fa",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Got time for a game? Honestly, there's nothing I'd rather be doing right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "c93b1a814b54fe1eb4c702937c2cf22676800acb1c6b209f2bd9b3631462d753",
+  "recordedAt": "2026-10-08T20:19:24.765Z",
+  "sha256": "33fee60a4a7cd7b338b9895b2d67b70000b7e7a4c827b1e99f7ecaf918513112",
+  "bytes": 16086,
+  "requestId": "eGv53mZNM0Gs6UQgr7jO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8aa02258e85a536a8f0a709a45e65fb94a177d3dbe77f4b2ac372386da6fd0cc",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

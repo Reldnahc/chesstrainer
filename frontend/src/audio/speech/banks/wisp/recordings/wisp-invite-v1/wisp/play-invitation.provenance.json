@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Play a game against me. I would like that. For now the board is still, and every piece is safe."
+    },
+    "takeId": null
+  },
+  "requestHash": "b873dae84acb0fa4c70368fefa9261c2124a513569572fd54bbb803c47ba2aa7",
+  "recordedAt": "2026-10-08T20:20:10.195Z",
+  "sha256": "b2cbd851e01f63a5c33823e64df8f4e2eade96ef4eb618d186e8f9d59e7b177a",
+  "bytes": 21399,
+  "requestId": "VYp9EOXXSmgNoKjSHvy7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7635be743f5247115ca9905c4f0cda8625e99b7e0e8a42aa3e2b8ee664a9ab8a",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

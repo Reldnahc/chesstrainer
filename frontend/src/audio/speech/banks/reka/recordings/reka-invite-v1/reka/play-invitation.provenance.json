@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Let's play! Bring every fork, pin and sneaky trick you've got, and try them on me. Ooh, this'll be fun!"
+    },
+    "takeId": null
+  },
+  "requestHash": "908733bba41b01e0c99198198aa4f3fcf44e749bb82f562ef7660fe9e4e106bd",
+  "recordedAt": "2026-10-08T20:19:53.454Z",
+  "sha256": "9073e74574b14383e443ac333d966dd27aa8eb49fb4b315c344d5fda18c115de",
+  "bytes": 25157,
+  "requestId": "y7Nb8WM5K8INf0hJ0wjO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66c9f0e80510fb7f4d80c56c71c75671aee201ba255e06d98d6baa30266f385a",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

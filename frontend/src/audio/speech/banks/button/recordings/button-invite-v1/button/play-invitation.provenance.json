@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "I've been hoping you might play me. It would be nice to see which of your pieces end up looking after each other, and which of mine do."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2b242736d5d467bca4f79ee234ed5f1aafcd3098d98c1f5c7e535b90d286430",
+  "recordedAt": "2026-10-08T20:19:14.762Z",
+  "sha256": "015074016cd00fde29e6190c5b1faf4115dc910a317119ccf38d62bf4054800d",
+  "bytes": 23974,
+  "requestId": "BEdn9JbpqRxhIfDRbJPf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd625a3edd9861b06e6074773c0c0cd2a487f96014829d7e5f41dbe593047a70",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

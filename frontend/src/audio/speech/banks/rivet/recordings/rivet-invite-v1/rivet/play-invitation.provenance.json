@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Request: one game. Opponent: you. Purpose: observe your decisions under live conditions. Status: awaiting your input."
+    },
+    "takeId": null
+  },
+  "requestHash": "85ebd05f1f704fbe8d6c038f1554e0c491ce93a50782e05eb65a60da623d1778",
+  "recordedAt": "2026-10-08T20:19:56.356Z",
+  "sha256": "dcf1ed66c2bfadf088faf1d3090b865a34c235eaaad8047509ab9bbd5a592b1f",
+  "bytes": 30222,
+  "requestId": "91r9QN8vSQx3OGUCNb3i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db71a42f76dc0efc3be96e64f9775a3d2c6ab874f40d0e80b9cefcf42de8e7c4",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Human chess is best studied from across the board, so I would very much like to play you."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa13aa40c3e84c3a79af9c633cec811fcc8bd71cb0cffabdaaf8a4e85fed4ae4",
+  "recordedAt": "2026-10-08T20:20:12.632Z",
+  "sha256": "f1ba1a162a1443b14807431cbc490632589927fe2e0114a6caecd30d5eb8f60c",
+  "bytes": 18389,
+  "requestId": "sbYK2iX1CWE6QTZmSOLB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b822ea101488c4c30b0427f1c403c51bef60474ff15c7f16662b9717207358d4",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

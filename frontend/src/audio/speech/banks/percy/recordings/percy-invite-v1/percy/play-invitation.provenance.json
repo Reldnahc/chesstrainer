@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Me, playing you? I'd be honored! I take every game real serious, and I'll take this one most serious of all."
+    },
+    "takeId": null
+  },
+  "requestHash": "334776b3fb690806112f06762698eb7399d44f0f549e82bd41c5392f239ec913",
+  "recordedAt": "2026-10-08T20:19:45.249Z",
+  "sha256": "63a4f628beee0e80166d6319baf474bbd529f275639b4be3dd71c4ef39d2400a",
+  "bytes": 26563,
+  "requestId": "kpFdQYqvtDFs3ZrrTZxf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9238dbdd99bc2f0738b523acef17129eb8dffaabb04d894644c6034fc62e3813",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

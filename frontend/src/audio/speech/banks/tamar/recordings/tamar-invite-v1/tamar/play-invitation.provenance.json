@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "I want to play you myself. A game against me shows us exactly what to train next."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b3f8bf27a186628ff93c7d70e83e1606ad0ae49fa5b956a58873ff4e0a84d89",
+  "recordedAt": "2026-10-08T20:20:03.508Z",
+  "sha256": "60e90fd9d49394f173b0ba296142ff9761eed1659f99ead7455068aa908c8fbe",
+  "bytes": 18005,
+  "requestId": "iU1zUe15XR1p1jMOC7hY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "70265001c2049c163f6b512040b479fb3edaa514c7cbdca7585487604997f0f9",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

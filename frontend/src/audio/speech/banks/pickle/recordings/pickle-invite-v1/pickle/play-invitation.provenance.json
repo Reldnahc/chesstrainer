@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "One game, just you and me? Strictly for investigative purposes, of course! If your moves are hiding anything, I intend to find out."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9650b346586790c4609b5d3c7354b481232c57d112e537bf5ed9e9417ec9b6f",
+  "recordedAt": "2026-10-08T20:19:48.229Z",
+  "sha256": "5ef9e6e37196505cc82fbfbfc387426f33563dbbb55b3cb19066e7b3a44bbf56",
+  "bytes": 28217,
+  "requestId": "exaqtMy7vOSF7ojFOvdf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7cb5100b9a73e5343fbbca7157aec7a94cdee34d23c18d438a80a6d37e82189",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

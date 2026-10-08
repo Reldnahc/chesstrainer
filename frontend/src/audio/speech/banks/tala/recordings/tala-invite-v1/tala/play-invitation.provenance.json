@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Now there's a puzzle I want to crack: what happens when you and I play each other? Let's find the answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "94ade9621136e14d4f79776f40dac0c2b0993714e96875a9e0984ce98f8d26c2",
+  "recordedAt": "2026-10-08T20:20:01.288Z",
+  "sha256": "a38bee81c4fdeedacc8e5b23d3df18bd557e2e7928551eb7d5ead6070ce11ef0",
+  "bytes": 20849,
+  "requestId": "Hx4SVYcRoRpT4HfASGvo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c491ffec879e3c783ba39e1cfa9e07f0e72f7cedcf756c883da11f53191b719b",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

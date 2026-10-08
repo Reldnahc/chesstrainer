@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Hey, want to play me? Come on, say yes! I really want to see how I do against you."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc633d0f48093b389448ba38204a88e5f1ac772e9bf1536e99b6d340a2c2394e",
+  "recordedAt": "2026-10-08T20:19:37.346Z",
+  "sha256": "c7d6d2138446a61c66e289e185c31296c7d9fc511ac98e13bd4861413a236b32",
+  "bytes": 18558,
+  "requestId": "JOGRNAfE6DRRVt4B0XVr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cb42afd5d08a1a05ff5f9ba1d314e163d2fd4e34c369f61cd5a66cd06b8decb",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

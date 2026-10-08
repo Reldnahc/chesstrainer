@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "play-invitation",
+      "label": "Play invitation",
+      "text": "Challenge me. I would welcome the game. My respect is earned over the board, move by move, so come and earn it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b83e1e31e6118f709ed1378fd44a89d311f446f0562c085b8ca92ff2643810e8",
+  "recordedAt": "2026-10-08T20:19:20.230Z",
+  "sha256": "1ad7b2b62d9383cb44274371f5f024dcdac25c338be2a9afca78f954ff8b19a1",
+  "bytes": 24793,
+  "requestId": "fAkThx5Ohkoj3VYi6fKp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0e7576fb52b501ee98f29a25742bbc0f0a6891a6098b1d2abf73e3aeda999b5",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
