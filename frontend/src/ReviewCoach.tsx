@@ -27,7 +27,8 @@ export default function ReviewCoach({
   badge?: ReactNode;
   evaluation?: ReactNode;
   children: ReactNode;
-  actions: ReactNode;
+  /** Omitted where the page owns its own actions (Play setup on phones). */
+  actions?: ReactNode;
   context?: ReactNode;
   portraitCaption?: ReactNode;
   /** A short fact line outside the scrolling message, so it stays visible. It wraps beside the insight. */
@@ -75,7 +76,7 @@ export default function ReviewCoach({
           {(detail || insight) && <div className="coach-footer">{detail}{insight && <div className="coach-insight">{insight}</div>}</div>}
         </div>
       </div>
-      <div className="coach-actions">{actions}</div>
+      {actions && <div className="coach-actions">{actions}</div>}
       {context && <div className="coach-context">{context}</div>}
     </section>
   );

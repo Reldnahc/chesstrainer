@@ -121,10 +121,12 @@ test("a finished game offers its saved review", async ({page}) => {
   await expect(page.getByRole("button", {name: "Resign"})).toHaveCount(0);
 });
 
-test("the setup page's coach asks for a game in its own words", async ({page}) => {
+test("the setup page's coach asks for a game in its own words", async ({page}, testInfo) => {
   await mockPlay(page);
   await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: "cat-black", motion: "still"}}));
   const line = juniperScript.records.find(record => record.id === "play-invitation")!.text;
   await page.goto("/play");
-  await expect(page.getByLabel("Juniper says").locator(".coach-message")).toHaveText(line);
+  await expect(page.getByLabel("Juniper says")).toContainText(line);
+  // Phones show it in the same coach layout as review; desktop keeps the large portrait.
+  await expect(page.locator(".play-setup-coach .review-coach")).toHaveCount(testInfo.project.name === "mobile" ? 1 : 0);
 });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -8,6 +8,7 @@ import Notice from "../Notice";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
 import CoachAvatar from "../coach/CoachAvatar";
+import ReviewCoach from "../ReviewCoach";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { PLAY_INVITATION } from "../audio/speech/voiceBank";
@@ -43,7 +44,21 @@ export default function PlayScreen({ gameId }: { gameId: string | null }) {
   return <PlaySetup />;
 }
 
+// Phones use the shared ReviewCoach layout; desktop keeps the large portrait.
+const PHONE = "(max-width: 760px)";
+function usePhone() {
+  return useSyncExternalStore(
+    (change) => {
+      const query = window.matchMedia(PHONE);
+      query.addEventListener("change", change);
+      return () => query.removeEventListener("change", change);
+    },
+    () => window.matchMedia(PHONE).matches,
+  );
+}
+
 function PlaySetup() {
+  const phone = usePhone();
   const { preferences } = useCoachPreferences();
   const coach = getCoach(preferences.coach_id);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -182,6 +197,14 @@ function PlaySetup() {
             </Button>
           </div>
         </section>
+        {phone && invitation ? (
+          <div className="play-setup-coach">
+            <ReviewCoach title={<strong>{coach.name}</strong>} voice={voice}
+              reaction={{ key: "play-setup", state: "neutral" }}>
+              <p aria-label={`${coach.name} says`}>{invitation}</p>
+            </ReviewCoach>
+          </div>
+        ) : (
         <div className="play-setup-coach">
           {invitation && (
             <div className="play-setup-speech" aria-label={`${coach.name} says`}>
@@ -196,6 +219,7 @@ function PlaySetup() {
             <CoachAvatar reaction={{ key: "play-setup", state: "neutral" }} speech={voice.speech} speechTrack={voice.speechTrack} />
           </div>
         </div>
+        )}
       </div>
       {!profile && !error && <LoadingState>Loading…</LoadingState>}
     </>
