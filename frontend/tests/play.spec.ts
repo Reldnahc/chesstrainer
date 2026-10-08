@@ -66,9 +66,16 @@ test("the setup page explains the measured level and starts a live game", async 
   await page.goto("/play");
   await expect(page.getByRole("heading", {name: "Play Walter"})).toBeVisible();
   await expect(page.getByText("Measured from 60 of your own decisions across 100 imported games, where you were rated 723.")).toBeVisible();
+  // Switching opponent keeps the form's height and the rows below it in place.
+  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
+    document.querySelector('[aria-label="Your color"]')!.getBoundingClientRect().top]);
+  const before = await layout();
   await page.getByRole("button", {name: "Engine"}).click();
   await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveAttribute("min", "1800");
+  await expect(page.getByRole("button", {name: "Match my level"})).toBeDisabled();
+  expect(await layout()).toEqual(before);
   await page.getByRole("button", {name: "Human-like"}).click();
+  expect(await layout()).toEqual(before);
   await page.getByRole("button", {name: "Match my level"}).click();
   await page.getByRole("button", {name: "White", exact: true}).click();
   const started = page.waitForRequest(request => request.url().endsWith("/api/play") && request.method() === "POST");
