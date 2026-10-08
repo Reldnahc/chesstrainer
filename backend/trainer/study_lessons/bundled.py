@@ -16,6 +16,7 @@ def course_topic(course_id):
 
 @cache
 def _courses():
+    from trainer.study_lessons.courses.dragon import course as dragon
     from trainer.study_lessons.courses.fundamentals import course as fundamentals
     from trainer.study_lessons.courses.italian import course as italian_white
     from trainer.study_lessons.courses.italian_black import course as italian_black
@@ -28,6 +29,7 @@ def _courses():
             italian_white(),
             italian_black(),
             kings_gambit(),
+            dragon(),
             fundamentals(),
             tactics(),
         )

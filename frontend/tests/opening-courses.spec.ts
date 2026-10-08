@@ -64,6 +64,68 @@ const courses: CourseJourney[] = [
     },
     rehearsalAnchor: ["e2e4", "e7e5", "f2f4", "d7d5"],
   },
+  {
+    id: "sicilian-dragon", revision: "2026-10-v1", color: "black", chapter: "dragon-setup",
+    moves: ["c7c5", "d7d6", "c5d4", "g8f6", "g7g6", "f8g7", "e8g8", "b8c6", "b7c6", "d6d5"],
+    line: "dragon-classical", branches: 4, sourceGame: false,
+    branchMoves: {
+      "setup-queen-knight": "b8c6", "setup-queen-pin": "c8d7", "setup-queen-recapture": "d7c6",
+      "setup-queen-develop": "g8f6", "setup-queen-center": "e7e6", "setup-c4-fianchetto": "f8g7",
+      "setup-c4-castle": "e8g8", "setup-e3-castle": "e8g8", "setup-e3-knight": "b8c6",
+      "setup-e3-break": "d6d5", "setup-d2-break": "d6d5",
+    },
+  },
+  {
+    id: "sicilian-dragon", revision: "2026-10-v1", color: "black", chapter: "dragon-yugoslav",
+    moves: ["f8g7", "e8g8", "b8c6", "d6d5", "f6d5", "d8d5", "d5c6", "c8e6"],
+    line: "dragon-yugoslav", branches: 5, sourceGame: false,
+    branchMoves: {
+      "yugoslav-queen-jump": "f6g4", "yugoslav-queen-take": "g7d4", "yugoslav-queen-fork": "e7e5",
+      "yugoslav-queen-capture": "d6e5", "yugoslav-queen-king": "e8d8", "yugoslav-c4-knight": "b8c6",
+      "yugoslav-c4-trade": "c6d4", "yugoslav-c4-block": "c8e6", "yugoslav-c4-recapture": "f7e6",
+      "yugoslav-c4-queen": "d8a5", "yugoslav-exchange-recapture": "b7c6", "yugoslav-exchange-bishop": "c8e6",
+      "yugoslav-gambit-recapture": "b7c6", "yugoslav-gambit-pawn": "c6d5", "yugoslav-gambit-knight": "f6d5",
+      "yugoslav-gambit-offer": "d8c7", "yugoslav-gambit-bishop": "c8f5", "yugoslav-gambit-king": "g8f8",
+      "yugoslav-late-recapture": "b7c6", "yugoslav-late-pawn": "c6d5", "yugoslav-late-offer": "d8c7",
+    },
+  },
+  {
+    id: "sicilian-dragon", revision: "2026-10-v1", color: "black", chapter: "dragon-bg5",
+    moves: ["f8g7", "h7h6", "f6g4", "e7e5", "e5d4", "d4c3"],
+    line: "dragon-bg5", branches: 6, sourceGame: false,
+    branchMoves: {
+      "bg5-check-block": "c8d7", "bg5-check-recapture": "b8d7", "bg5-check-fianchetto": "f8g7",
+      "bg5-c4-castle": "e8g8", "bg5-c4-ask": "h7h6", "bg5-c4-knight": "b8c6",
+      "bg5-b5-block": "c8d7", "bg5-b5-recapture": "b8d7", "bg5-b5-castle": "e8g8",
+      "bg5-h4-knight": "b8c6", "bg5-f6-recapture": "g7f6", "bg5-f6-knight": "b8c6",
+      "bg5-f4-fork": "e7e5",
+    },
+  },
+  {
+    id: "sicilian-dragon", revision: "2026-10-v1", color: "black", chapter: "dragon-second-moves",
+    moves: ["c7c5", "e7e6", "b8c6", "g8f6", "d7d5", "e6d5"],
+    line: "dragon-second-bishop", branches: 4, sourceGame: false,
+    branchMoves: {
+      "second-closed-pawn": "d7d6", "second-closed-knight": "g8f6", "second-closed-trade": "c5d4",
+      "second-closed-dragon": "g7g6", "second-c3-knight": "g8f6", "second-c3-jump": "f6d5",
+      "second-c3-trade": "c5d4", "second-c3-pawn": "d7d6", "second-c3-develop": "b8c6",
+      "second-queen-knight": "b8c6", "second-queen-develop": "g8f6", "second-queen-fianchetto": "g7g6",
+      "second-morra-accept": "d4c3", "second-morra-pawn": "d7d6", "second-morra-knight": "b8c6",
+      "second-morra-block": "e7e6", "second-morra-develop": "g8f6",
+    },
+  },
+  {
+    id: "sicilian-dragon", revision: "2026-10-v1", color: "black", chapter: "dragon-third-moves",
+    moves: ["d7d6", "g8f6", "b8c6", "g7g6", "f8g7", "e8g8"],
+    line: "dragon-third-bishop", branches: 5, sourceGame: false,
+    branchMoves: {
+      "third-check-block": "c8d7", "third-check-recapture": "b8d7", "third-check-knight": "g8f6",
+      "third-check-fianchetto": "g7g6", "third-check-bishop": "f8g7", "third-nc3-knight": "g8f6",
+      "third-nc3-trade": "c5d4", "third-nc3-dragon": "g7g6", "third-c3-knight": "g8f6",
+      "third-c3-take": "f6e4", "third-c3-recapture": "e4c5", "third-ng5-block": "e7e6",
+      "third-ng5-break": "d6d5", "third-bc4-nc3-block": "e7e6", "third-bc4-nc3-trade": "c5d4",
+    },
+  },
 ];
 
 async function saved(page: Page, id: string): Promise<Schema["LessonSessionView"]> {

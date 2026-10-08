@@ -265,8 +265,8 @@ still opens and returns to Fundamentals.
 
 ### Included courses
 
-All five courses ship locally and use the same player and account progress; the
-three opening courses also share the explicit line-enrollment flow. The opening
+All six courses ship locally and use the same player and account progress; the
+four opening courses also share the explicit line-enrollment flow. The opening
 courses are focused repertoires: an authored answer is a move chosen for that
 lesson, not a claim that every other legal move is bad.
 Historical games illustrate plans and mistakes; their moves are not all
@@ -277,6 +277,7 @@ recommendations. No course starts an engine job or downloads material at runtime
 | Italian Game · A quiet White repertoire | White | Recognize the setup and punish 3...Nd4; meet the Two Knights Defense; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
 | Italian Game · A practical Black repertoire | Black | Develop and meet White's common fourth moves; choose a post-castling plan; meet c3/d4; meet the Nc3 gambit; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
 | King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; Black's other common replies; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
+| Sicilian Dragon · A fighting Black repertoire | Black | Build the Dragon against a quiet Be2; meet the Yugoslav Attack with d5; answer Bg5 with h6, Ng4 and e5; White's second-move alternatives; White's third-move alternatives | [Dragon sources](DRAGON_COURSE_SOURCES.md) |
 | Tactics · Six basic patterns | White | Forks; pins; skewers; discovered attacks and double check; removing a defender; back-rank checkmate | [Tactics sources](TACTICS_COURSE_SOURCES.md) |
 | Fundamentals · Six basic skills | White | Piece values; counting attackers and defenders; checks, captures and threats before every move; opening principles; checkmating a lone king; king and pawn endings | [Fundamentals sources](FUNDAMENTALS_COURSE_SOURCES.md) |
 
@@ -287,8 +288,9 @@ anything to Due.
 
 The current revisions are `2026-10-v4` for `italian-foundations`, and
 `2026-10-v5` for `italian-black-foundations` and `kings-gambit-foundations`.
+The Sicilian Dragon, `sicilian-dragon`, starts at `2026-10-v1`.
 Black decisions and rehearsal use Black orientation
-and automatically play White’s intervening replies. All five course definitions
+and automatically play White’s intervening replies. All six course definitions
 are cached as immutable source data and returned as independent copies. Shared
 SAN authoring helpers produce the same validated content format. Existing saved
 sessions, enrolled lines and their earlier revisions retain their own snapshots.

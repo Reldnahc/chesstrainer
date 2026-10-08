@@ -4,6 +4,25 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Sicilian Dragon course — October 8, 2026
+
+Owner request: a Sicilian Dragon course for Black. `sicilian-dragon`
+(`2026-10-v1`) has five chapters and 29 recall lines: a quiet Be2 setup, the
+Yugoslav Attack, Bg5, and White's second- and third-move alternatives, with 24
+side trips. Maia-3 chose the shown White moves (its most common choice at 1200
+and 1600 unless the source record notes otherwise). Stockfish 18 at depth 20 on
+this PC checked every Black move; each is the first choice or within 0.3 pawns,
+except the Dragon move `5...g6` itself (0.27 to 0.39 behind `5...a6`). No
+historical game is included. The [Dragon source record](DRAGON_COURSE_SOURCES.md)
+lists the Maia percentages, engine scores and names.
+
+Checks: `ruff check` and `ruff format --check` on the changed Python files;
+`pytest backend/tests/test_italian_course.py backend/tests/test_dragon_claims.py
+backend/tests/test_course_recall_agreement.py backend/tests/test_fundamentals_course.py
+backend/tests/test_study_lessons.py`: **71 passed**, with native Stockfish.
+`npm run test:types` passes. The `opening-courses` browser spec walks all five
+Dragon chapters on desktop and mobile: **10 passed**.
+
 ## Opening-course common replies — October 8, 2026
 
 Owner request: strengthen the three Study courses, which skipped common
