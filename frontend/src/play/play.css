@@ -1,7 +1,8 @@
 /* Setup for a game against the coach: one form panel beside the coach's portrait. */
 /* The form keeps a readable width; the coach takes the rest of the row. */
 .play-setup { display: grid; grid-template-columns: minmax(0, 920px) minmax(240px, 1fr); gap: 32px; align-items: start; }
-.play-setup-coach { width: min(100%, 300px); justify-self: center; }
+.play-setup-coach { width: min(100%, 440px); justify-self: center; }
+.play-setup-portrait { width: min(100%, 300px); margin-inline: auto; }
 .play-setup-form { display: grid; gap: 20px; }
 .play-field { display: grid; gap: 8px; }
 .play-field > span:first-child { font-weight: 600; }
@@ -50,3 +51,9 @@
 .play-setup-speech .coach-label { min-height: 28px; }
 .play-setup-speech .coach-title strong { margin: 0; }
 .play-setup-speech .coach-message { min-height: 0; overflow: visible; }
+/* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
+@media (min-width: 761px) {
+  .play-setup-speech { padding: 14px 18px; }
+  .play-setup-speech .coach-label { font-size: 15px; }
+  .play-setup-speech .coach-message p { font-size: 16px; }
+}
