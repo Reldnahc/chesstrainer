@@ -24,6 +24,7 @@ COURSE_IDS = (
     "italian-black-foundations",
     "kings-gambit-foundations",
     "sicilian-dragon",
+    "vienna-gambit",
 )
 
 
@@ -335,6 +336,11 @@ def test_illustrative_passages_support_their_specific_board_claims():
             "kings-gambit-foundations",
             "2026-10-v5",
             "1b46ad40f6ff90e0692a10e077bd24b7020372537a60384fded9b9acba89eb77",
+        ),
+        (
+            "vienna-gambit",
+            "2026-10-v1",
+            "3af01867dee26e8c878bd85bec2f019eb81aa41e1e8989836fbc218ae48dfb33",
         ),
         (
             "sicilian-dragon",

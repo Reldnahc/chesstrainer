@@ -35,7 +35,9 @@ move:
   (18% / 16%) and `6.Bb5+` (15% / 7%); each has a chapter or side trip.
 - `7.f3` (13% / 33%) defines the Yugoslav Attack; `7.Qd2` (39% / 31%) is its
   side trip. `10.exd5` (26% / 33%) and `10.Nxc6` (27% / 34%) are almost equally
-  common; both are taught.
+  common; both are taught. Books treat `9.Bc4` as White's main ninth move, but
+  Maia rates it only 4% / 8%, and `9.g4` 4% / 6%. Neither has its own side trip;
+  `9.Bc4 Nxd4` reaches the same position as the `8.Bc4` side trip.
 - `2.Bc4` (17% / 12%) is the most common second move after `2.Nf3`; `2.d4`
   (10% / 8%), `2.Nc3` (8% / 7%) and `2.c3` (4% / 6%) are side trips. After
   `2.d4 cxd4`, `3.Qxd4` (76% / 37%) and `3.c3` (14% / 47%) are both covered.

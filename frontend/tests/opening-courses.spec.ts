@@ -126,6 +126,50 @@ const courses: CourseJourney[] = [
       "third-ng5-break": "d6d5", "third-bc4-nc3-block": "e7e6", "third-bc4-nc3-trade": "c5d4",
     },
   },
+  {
+    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-accepted",
+    moves: ["e2e4", "b1c3", "f2f4", "e4e5", "g1f3", "d2d4", "f1b5", "b5c4", "c1f4", "c4f7", "d1e2", "f3e5", "f4g5", "e5f7"],
+    line: "vienna-accepted", branches: 6, sourceGame: false,
+    branchMoves: {
+      "accepted-queen-guard": "d1e2", "accepted-queen-develop": "d2d4", "accepted-queen-jump": "c3d5",
+      "accepted-queen-discover": "e5d6", "accepted-queen-fork": "d6c7", "accepted-knight-center": "d2d4",
+      "accepted-knight-pin": "f1b5", "accepted-knight-queen": "d1e2", "accepted-knight-recapture": "c1f4",
+      "accepted-pin-take": "c1f4", "accepted-pin-recapture": "f4e5", "accepted-pin-bishop": "f1b5",
+      "accepted-block-queen": "d1e2", "accepted-block-recapture": "c3b5", "accepted-king-takes-queen": "d1d8",
+      "accepted-king-back-discover": "e5c6", "accepted-king-back-queen": "c6e7",
+    },
+  },
+  {
+    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-strike",
+    moves: ["f4e5", "g1f3", "b2c3", "d2d4", "f1d3", "e1g1", "h2h3"],
+    line: "vienna-strike", branches: 3, sourceGame: false,
+    branchMoves: {
+      "strike-pin-queen": "d1e2", "strike-pin-recapture": "d2c3", "strike-pin-guard": "c1f4",
+      "strike-bishop-center": "d2d4", "strike-bishop-block": "c1d2", "strike-bishop-recapture": "d1d2",
+      "strike-knight-center": "d2d4", "strike-knight-bishop": "f1d3", "strike-knight-castle": "e1g1",
+    },
+  },
+  {
+    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-declined",
+    moves: ["g1f3", "d2d4", "f3d4", "d1d4", "c1e3", "e1c1"],
+    line: "vienna-solid", branches: 3, sourceGame: false,
+    branchMoves: {
+      "solid-knight-take": "f4e5", "solid-knight-chase": "d2d4", "solid-knight-push": "e4e5",
+      "solid-knight-develop": "g1f3", "solid-pin-ask": "h2h3", "solid-pin-recapture": "d1f3",
+      "solid-pin-bishop": "f1b5", "solid-take-center": "d2d4", "solid-take-back": "c1f4",
+    },
+  },
+  {
+    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-second-moves",
+    moves: ["f1c4", "d2d3", "g1f3", "e1g1", "h2h3"],
+    line: "vienna-knights", branches: 3, sourceGame: false,
+    branchMoves: {
+      "second-bishop-knight": "g1f3", "second-bishop-center": "d2d4", "second-bishop-recapture": "f3d4",
+      "second-bishop-pin": "c1g5", "second-bishop-keep": "g5h4", "second-bishop-retreat": "h4g3",
+      "knights-early-knight": "g1f3", "knights-early-castle": "e1g1", "knights-early-support": "d2d3",
+      "knights-pin-develop": "g1f3", "knights-pin-recapture": "b2c3",
+    },
+  },
 ];
 
 async function saved(page: Page, id: string): Promise<Schema["LessonSessionView"]> {

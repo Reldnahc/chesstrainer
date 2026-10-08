@@ -22,6 +22,7 @@ def _courses():
     from trainer.study_lessons.courses.italian_black import course as italian_black
     from trainer.study_lessons.courses.kings_gambit import course as kings_gambit
     from trainer.study_lessons.courses.tactics import course as tactics
+    from trainer.study_lessons.courses.vienna import course as vienna
 
     return tuple(
         CourseDefinition.model_validate(record.model_dump())
@@ -30,6 +31,7 @@ def _courses():
             italian_black(),
             kings_gambit(),
             dragon(),
+            vienna(),
             fundamentals(),
             tactics(),
         )

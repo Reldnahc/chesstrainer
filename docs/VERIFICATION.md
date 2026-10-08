@@ -4,6 +4,25 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Vienna Gambit course — October 8, 2026
+
+Owner request: a Vienna Gambit course for White. `vienna-gambit` (`2026-10-v1`)
+has four chapters and 19 recall lines: 3...exf4 4.e5, 3...d5, Black declining
+with 3...d6 or 3...Nc6, and Black's other second moves 2...Nc6 and 2...Bc5, with
+15 side trips. Maia-3 chose the shown Black moves. Stockfish 18 at depth 20 on
+this PC checked every White move; each is the first choice or within 0.3 pawns,
+except the gambit move `3.f4` itself (about 0.4 behind `3.Nf3`). No historical
+game is included. The [Vienna source record](VIENNA_COURSE_SOURCES.md) lists
+the Maia percentages, engine scores and names.
+
+Checks: `ruff check` and `ruff format --check` on the changed Python files;
+`pytest backend/tests/test_italian_course.py backend/tests/test_dragon_claims.py
+backend/tests/test_vienna_claims.py backend/tests/test_course_recall_agreement.py
+backend/tests/test_fundamentals_course.py backend/tests/test_study_lessons.py`:
+**81 passed**, with native Stockfish. `npm run test:types` passes. The
+`opening-courses` browser spec walks all four Vienna chapters on desktop and
+mobile: **8 passed**.
+
 ## Sicilian Dragon course — October 8, 2026
 
 Owner request: a Sicilian Dragon course for Black. `sicilian-dragon`
