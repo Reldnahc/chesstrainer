@@ -183,15 +183,18 @@ function PlaySetup() {
           </div>
         </section>
         <div className="play-setup-coach">
+          {invitation && (
+            <div className="play-setup-speech" aria-label={`${coach.name} says`}>
+              <div className="coach-label">
+                <div className="coach-title"><strong>{coach.name}</strong></div>
+                {voice.control && <div className="coach-label-actions">{voice.control}</div>}
+              </div>
+              <div className="coach-message"><p>{invitation}</p></div>
+            </div>
+          )}
           <div className="play-setup-portrait">
             <CoachAvatar reaction={{ key: "play-setup", state: "neutral" }} speech={voice.speech} speechTrack={voice.speechTrack} />
           </div>
-          {invitation && (
-            <div className="play-setup-speech" aria-label={`${coach.name} says`}>
-              <p>{invitation}</p>
-              {voice.control}
-            </div>
-          )}
         </div>
       </div>
       {!profile && !error && <LoadingState>Loading…</LoadingState>}

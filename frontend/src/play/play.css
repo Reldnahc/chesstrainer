@@ -23,28 +23,30 @@
   .play-setup-coach { order: -1; width: 100%; }
   .play-setup-portrait { width: 160px; margin-inline: auto; }
 }
-/* The coach's line sits under the portrait, pointing up at it. */
+/* The coach's line sits above the portrait in the shared bubble style,
+   pointing down at it. Label and message reuse the review bubble's classes. */
 .play-setup-speech {
   position: relative;
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  margin-top: 14px;
-  padding: 12px 14px;
-  background: var(--raised);
-  border: 1px solid var(--line);
+  display: grid;
+  gap: 4px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: var(--coach-bubble-background);
+  border: 1px solid var(--coach-bubble-border);
   border-radius: 10px;
 }
-.play-setup-speech::before {
+.play-setup-speech::after {
   content: "";
   position: absolute;
-  top: -7px;
-  left: calc(50% - 6px);
-  width: 12px;
-  height: 12px;
-  background: inherit;
-  border-left: 1px solid var(--line);
-  border-top: 1px solid var(--line);
+  bottom: -8px;
+  left: calc(50% - 6.5px);
+  width: 13px;
+  height: 13px;
+  background: var(--coach-bubble-background);
+  border-right: 1px solid var(--coach-bubble-border);
+  border-bottom: 1px solid var(--coach-bubble-border);
   transform: rotate(45deg);
 }
-.play-setup-speech p { flex: 1; margin: 0; font-size: 14px; line-height: 1.45; }
+.play-setup-speech .coach-label { min-height: 28px; }
+.play-setup-speech .coach-title strong { margin: 0; }
+.play-setup-speech .coach-message { min-height: 0; overflow: visible; }

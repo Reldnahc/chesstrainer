@@ -126,5 +126,5 @@ test("the setup page's coach asks for a game in its own words", async ({page}) =
   await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: "cat-black", motion: "still"}}));
   const line = juniperScript.records.find(record => record.id === "play-invitation")!.text;
   await page.goto("/play");
-  await expect(page.getByLabel("Juniper says")).toHaveText(line);
+  await expect(page.getByLabel("Juniper says").locator(".coach-message")).toHaveText(line);
 });

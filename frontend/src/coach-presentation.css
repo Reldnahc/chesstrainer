@@ -1,4 +1,9 @@
 /* Coach feedback presentation shared with both development tools. */
+:root {
+  /* Every coach speech bubble shares these, including Play setup's. */
+  --coach-bubble-background: #242d28;
+  --coach-bubble-border: #47554d;
+}
 .review-coach {
   --coach-height: 136px;
   --coach-avatar-width: 92.8px;
@@ -46,10 +51,10 @@
   grid-template-rows: 28px minmax(0, 1fr);
   gap: 4px;
   height: var(--coach-height);
-  border: 1px solid #47554d;
+  border: 1px solid var(--coach-bubble-border);
   border-radius: 10px;
   padding: 10px 14px;
-  background: #242d28;
+  background: var(--coach-bubble-background);
 }
 .review-coach--compact-label .coach-speech {
   /* Lessons have no evaluation or voice control, so the title row fits the
@@ -63,9 +68,9 @@
   top: 27px;
   width: 13px;
   height: 13px;
-  background: #242d28;
-  border-left: 1px solid #47554d;
-  border-bottom: 1px solid #47554d;
+  background: var(--coach-bubble-background);
+  border-left: 1px solid var(--coach-bubble-border);
+  border-bottom: 1px solid var(--coach-bubble-border);
   transform: rotate(45deg);
 }
 .coach-label {

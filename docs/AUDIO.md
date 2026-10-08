@@ -392,7 +392,7 @@ to the start of a game already under way. All 30 lines are written and reviewed
 (operational, in each `scripts.json` and Walter's and Rivet's in
 `banks/pilot-additions.json`), and all 30 are recorded under each bank's
 `recordings/<voice>-start-v1/`.
-The Play setup page shows `play-invitation` in a bubble under the coach: one
+The Play setup page shows `play-invitation` in a bubble above the coach: one
 operational line per coach asking for a game, written and reviewed in each
 `scripts.json` and Walter's and Rivet's in `banks/pilot-additions.json`. It is
 listed under `awaitingRecording` in `planned-meanings.json`, so the bubble shows
