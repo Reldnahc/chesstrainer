@@ -10,6 +10,8 @@ type CourseJourney = {
   moves: string[];
   line: string;
   branches: number;
+  // Learner moves inside side trips, keyed by decision step.
+  branchMoves?: Record<string, string>;
   sourceGame: boolean;
   rehearsalAnchor?: string[];
 };
@@ -27,14 +29,21 @@ const courses: CourseJourney[] = [
     rehearsalAnchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6", "c2c3", "e8g8", "f1e1"],
   },
   {
-    id: "kings-gambit-foundations", revision: "2026-10-v4", color: "white", chapter: "pawn-chain",
+    id: "kings-gambit-foundations", revision: "2026-10-v5", color: "white", chapter: "pawn-chain",
     moves: ["h2h4", "f3e5", "f1c4", "e4d5", "d2d4", "e1g1"],
     line: "challenge-pawn-chain", branches: 1, sourceGame: true,
   },
   {
-    id: "kings-gambit-foundations", revision: "2026-10-v4", color: "white", chapter: "falkbeer-countergambit",
+    id: "kings-gambit-foundations", revision: "2026-10-v5", color: "white", chapter: "falkbeer-countergambit",
     moves: ["e4d5", "d2d3", "d3e4", "g1f3", "d1e2", "b1c3", "c1e3"],
-    line: "falkbeer-center", branches: 2, sourceGame: false,
+    line: "falkbeer-center", branches: 5, sourceGame: false,
+    branchMoves: {
+      "falkbeer-modern-knight": "g1f3", "falkbeer-modern-check": "f1b5",
+      "falkbeer-early-chase": "b1c3", "falkbeer-early-pawn": "f4e5", "falkbeer-early-block": "f1e2", "falkbeer-early-center": "d2d4",
+      "falkbeer-wedge-queen-knight": "b1c3", "falkbeer-wedge-queen-pin": "c1d2", "falkbeer-wedge-queen-recapture": "d2c3",
+      "falkbeer-wedge-take-bishop": "f1d3", "falkbeer-wedge-take-knight": "b1c3",
+      "falkbeer-resolution-counter": "e3c5", "falkbeer-resolution-recapture": "f1e2", "falkbeer-resolution-king": "e1e2",
+    },
     rehearsalAnchor: ["e2e4", "e7e5", "f2f4", "d7d5"],
   },
 ];
@@ -119,14 +128,13 @@ for (const content of courses) {
       let branchAnchor: Schema["LessonSessionView"] | null = null;
       const explored = new Set<string>();
       // Include the new teaching contrasts, then resume the exact main-line board.
-      for (let step = 0; session.step.kind !== "rehearsal" && step < 70; step++) {
+      for (let step = 0; session.step.kind !== "rehearsal" && step < 200; step++) {
         if (session.step.kind === "branch" && !session.branch && !explored.has(session.step.id)) {
           explored.add(session.step.id);
           branchAnchor = session;
           session = await command(page, "Explore alternative");
           expect(session.branch).not.toBeNull();
-        } else if (session.branch && !session.actions.includes("continue")) {
-          expect(session.actions).not.toContain("move");
+        } else if (session.branch && !session.actions.includes("continue") && !session.actions.includes("move")) {
           expect(branchAnchor).not.toBeNull();
           const branch = session;
           await page.reload();
@@ -145,6 +153,12 @@ for (const content of courses) {
         } else if (session.actions.includes("move")) {
           expect(session.step.kind).toBe("decision");
           expect(session.fen.split(" ")[1]).toBe(content.color === "white" ? "w" : "b");
+          if (session.branch) {
+            const uci = content.branchMoves?.[session.step.id];
+            expect(uci, session.step.id).toBeTruthy();
+            session = await move(page, uci!);
+            continue;
+          }
           expect(decisions).toBeLessThan(content.moves.length);
           if (decisions === 0 && content.rehearsalAnchor) {
             expect(session.history.map(frame => frame.uci)).toEqual(content.rehearsalAnchor);

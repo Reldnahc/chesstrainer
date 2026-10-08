@@ -257,10 +257,11 @@ recommendations. No course starts an engine job or downloads material at runtime
 |---|---|---|---|
 | Italian Game · A quiet White repertoire | White | Recognize the setup; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
 | Italian Game · A practical Black repertoire | Black | Quiet development; choose a post-castling plan; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
-| King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
+| King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; Black's other common replies; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
 
-The current revisions are `2026-10-v3` for `italian-foundations`, and
-`2026-10-v4` for `italian-black-foundations` and `kings-gambit-foundations`.
+The current revisions are `2026-10-v3` for `italian-foundations`,
+`2026-10-v4` for `italian-black-foundations` and `2026-10-v5` for
+`kings-gambit-foundations`.
 Black decisions and rehearsal use Black orientation
 and automatically play White’s intervening replies. All three course definitions
 are cached as immutable source data and returned as independent copies. Shared
@@ -289,6 +290,11 @@ it teaches good chess. Before publishing or revising a course:
 - Explain the purpose of decisions and important tempting mistakes. Use existing
   returnable demonstrations for counterexamples; do not put deliberate mistakes
   into the learner's required answers or recall lines.
+- Cover the opponent's common replies, not only the main line. A reply that keeps
+  the same plan can be a side trip; give it its own optional recall line that
+  starts where the chapter's main line starts. Recall accepts every enrolled
+  line's move at a position, so a course's lessons and lines must give one answer
+  wherever they meet; `test_course_recall_agreement.py` checks this.
 - Give the learner a chance to apply the explanation. Purpose-based prompts may
   scaffold a decision; explicit destinations belong in hints where practical.
   A longer line or more prose is not evidence of better teaching. Later rehearsal

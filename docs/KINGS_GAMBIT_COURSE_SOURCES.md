@@ -1,6 +1,6 @@
 # King's Gambit course sources
 
-`kings-gambit-foundations`, revision `2026-10-v4`, is an original Fieldwork
+`kings-gambit-foundations`, revision `2026-10-v5`, is an original Fieldwork
 course for White. The chapters teach a bounded selection, not a complete
 repertoire or a promise that the gambit gives White an advantage. Explanations,
 prompts, feedback and position annotations are original. Sources informed the
@@ -12,6 +12,7 @@ choice of lines; their prose has not been copied into the lessons.
 |---|---|---|
 | A pawn for active play | `1.e4 e5 2.f4 exf4 3.Nf3 d5 4.exd5 Nf6 5.Bb5+ c6 6.dxc6 Nxc6 7.d4 Bd6 8.O-O O-O 9.Nbd2 Bg4 10.c3` | Develop with check, answer a counterattack, then carry out the central-support plan while recognizing the relative pin. Material is equal, but Black has active play. |
 | Challenge the pawn chain | `1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Nf6 6.Bc4 d5 7.exd5 Bd6 8.d4 Nh5 9.O-O` | Follow the opponent's threats: defend Ne5 before castling. Explain the defended f4-pawn and the possible knight jump to g3. |
+| Meet Black's other replies | `1.e4 e5 2.f4 exf4 3.Nf3 Nc6 4.d4 d6 5.Bxf4 Bg4 6.Be2` | One plan for the common replies the other chapters skip: cover h4, take the center with d4, win back f4 with the c1-bishop. Side trips cover 2...Nc6, 3...d6, 3...Nf6, 3...Be7 and 4...d5. |
 | Build a center against Bc5 | `1.e4 e5 2.f4 Bc5 3.Nf3 d6 4.c3 Nf6 5.d4 exd4 6.cxd4 Bb6 7.Nc3` | Cover h4, prepare the central break, and preserve the d4-pawn's role in blocking the bishop's diagonal to g1. |
 | Meet the Falkbeer countergambit | From `1.e4 e5 2.f4 d5`: `3.exd5 e4 4.d3 Nf6 5.dxe4 Nxe4 6.Nf3 Bc5 7.Qe2 Bf5 8.Nc3 Qe7 9.Be3` | Remove the e4 wedge before Nf3, use the open e-file, then recognize how intervening pieces change the pin. |
 
@@ -42,11 +43,10 @@ The chapter count follows the positions' learning demands, not a quota:
   starts after `2...d5`, with the full game history preserved, rather than
   adding repeated initial e4/f4 decisions.
 
-This is still a bounded foundation. Fischer (`3...d6`), Cunningham (`3...Be7`)
-and other accepted defenses are not silently covered by these scripts. A
-complete repertoire would require their own researched choices; listing their
-names or reusing the g5 line would not supply that teaching. No new chapter has
-been added merely to match another course's length.
+Revision v5 adds the chapter for Black's other common replies; see
+[Common replies and revision v5](#october-2026-common-replies-and-revision-v5).
+It is still a bounded foundation, not a complete repertoire. Rarer second and
+third moves, and deeper alternatives inside each chapter, are not covered.
 
 The Modern Defense uses an established bishop-check line instead of the first
 draft's `5.d4 Nxd5 6.Bc4 Nb6` script. Ian Simpson's [original Modern Defense
@@ -86,15 +86,16 @@ The selected `9.O-O` is also a study choice; `9.Nc3` appears in the literature.
   `4.g3 Qxe4+` instead illustrates the king/rook fork explained in the text.
   Exeter's [introductory King's Gambit lesson](https://exeterchessclub.org.uk/content/ideas-behind-kings-gambit)
   also teaches the queen-check hazard.
-- **Falkbeer move-order recognition:** after `2...d5 3.exd5`, the optional
-  `...exf4 4.Nf3 Nf6` comparison reaches the Modern Defense board. It keeps its
-  actual move history; the position is not substituted with another history.
-- **Falkbeer exchange sequence:** after `9.Be3`, one optional continuation is
-  `9...Nxc3 10.Bxc5 Qxe2+ 11.Bxe2 Nxe2 12.Kxe2`. White answers an attack on the
-  queen with a counterattack, then meets the checking exchange. Both queens
-  and two minor pieces per side are removed; White has one extra pawn and has
-  lost castling rights. It is explicitly one possible resolution, not a
-  forced continuation or part of the new recall line.
+- **Falkbeer move-order recognition:** after `2...d5 3.exd5`, the side trip
+  `3...exf4 4.Nf3 Nf6 5.Bb5+` reaches the Modern Defense board and asks for the
+  same bishop check. It keeps its actual move history; the position is not
+  substituted with another history.
+- **Falkbeer exchange sequence:** after `9.Be3`, the side trip
+  `9...Nxc3 10.Bxc5 Qxe2+ 11.Bxe2 Nxe2 12.Kxe2` asks the learner for each
+  White move. White answers an attack on the queen with a counterattack, then
+  meets the checking exchange. `10.bxc3` instead loses the e3-bishop, which the
+  c5-bishop and e7-queen both attack. Both queens and two minor pieces per side
+  are removed; White has one extra pawn and has lost castling rights.
 
 Ian Simpson's [original Falkbeer analysis](https://www.ianchessgambits.com/kings-gambit-falkbeer-counter-gambit.html)
 informs the immediate d3 challenge and the Nf3/Qe2 coordination. Exeter's
@@ -106,8 +107,11 @@ not copied source annotations. The historical full-game library is unchanged.
 The classical `3...e4` is a named alternative Black may choose, not a claim that
 it is stronger than transposing to the Modern Defense with `3...exf4`.
 
-Each chapter ends in independent rehearsal. Historical games and comparison
-branches never automatically schedule their moves for recall.
+Each chapter ends in independent rehearsal. Historical games and side trips
+never automatically schedule their moves for recall. Since v5, each side trip
+that shows a common opponent reply has its own optional recall line. The two
+mistake demonstrations, premature castling and `3.fxe5?`, have none: their
+White moves are what not to play.
 
 ## Historical scores
 
@@ -160,6 +164,48 @@ Revision v4 corrects six explanations without changing any move:
 Morphy–Bornemann was not rechecked, because the cited Blue Book pages could not
 be opened during the check. chessgames.com lists the game as 32 moves, so its
 score may continue one move beyond `31.cxd7+`.
+
+## October 2026 common replies and revision v5
+
+After the chess check, Maia-3 (the human-move model Fieldwork uses in game
+review) estimated how often 1200- and 1600-rated players choose each reply.
+These are model estimates, not counted games: the Lichess opening explorer now
+requires a login. By Black's third move only about 11% (1200) and 21% (1600) of
+games were still in a line v4 taught, and `2...Nc6` alone was about a quarter
+of Black's replies to `2.f4`. Revision v5 adds the most common replies.
+
+Every taught White move, in chapters, side trips and recall lines, was checked
+with Stockfish 17.1 at depth 20 to 22. Each new one is the engine's first choice
+or within 0.2 pawns of it. Scores are pawns from White's side; the accepted
+gambit is about half a pawn better for Black, so negative scores are normal.
+Black's shown replies are the most common in Maia's estimate unless noted.
+
+| Black's reply (Maia 1200 / 1600) | Taught White moves | Stockfish | Notes in the lesson |
+|---|---|---|---|
+| `2...Nc6` (25% / 24%) | `3.Nf3 d6 4.Bc4` | +0.3 | `4...Bg4 5.h3`; `4...exf4 5.d4` (+0.1) |
+| `3...Nc6` (26% / 20%), chapter main line | `4.d4 d6 5.Bxf4 Bg4 6.Be2` | +0.3, then +1.2 | `4...Nf6 5.e5`, `4...g5 5.d5`, `4...Bb4+ 5.c3`, `5...Nf6 6.Nc3` |
+| `3...Nc6 4.d4 d5` (27% / 31%) | `5.exd5 Qxd5 6.Nc3 Qe6+ 7.Be2` | +1.6 | Black's best is `6...Bb4`; `7.Bd3` (+0.7) |
+| `3...d6` (11% / 16%) | `4.Bc4 h6 5.d4 g5 6.h4` | −0.5 | `6...g4 7.Ng1` (+0.3; other knight moves about −1); `4...Bg4 5.d4` |
+| `3...Nf6` (19% / 9%) | `4.Nc3 Bb4 5.e5 Bxc3 6.dxc3` | +1.4 to +1.7 | `6.bxc3` is +0.8; `6...Qe7` pins e5, then `7.Be2` |
+| `3...Be7` (– / 11%) | `4.Bc4 Bh4+ 5.Kf1 d6 6.d4` | about 0.0 | `5.g3` is −0.7; `5...Nf6? 6.Nxh4` (+2.9) |
+| `3...Bc5`, `3...Bd6` (3% to 7%) | `4.d4` | +1.1 to +1.3 | feedback note only |
+| `3...d5 4.exd5 Qxd5` (88% / 77%) | `5.Nc3 Qe6+ 6.Be2 Nf6 7.O-O` | +0.8 | `5...Qd8` or `5...Qa5 6.d4` |
+| `2...d5 3.exd5 Qxd5` (45% / 29%) | `4.Nc3 Qe6 5.fxe5 Qxe5+ 6.Be2 Bg4 7.d4` | +0.9 | `7.Nf3? Bxf3 8.gxf3` is −1.2: the e2-bishop is pinned |
+| `3...e4 4.d3 Qxd5` (36% / 27%) | `5.Nc3 Bb4 6.Bd2 Bxc3 7.Bxc3` | +0.5 | |
+| `3...e4 4.d3 exd3` (15% / 20%) | `5.Bxd3 Qxd5 6.Nc3` | +0.8 | `5.Qxd3` is as good; `6...Qxg2? 7.Be4` traps the queen (+3.9) |
+
+The Fischer line keeps Stockfish's main line `4...h6` rather than the more common
+`4...Bg4`, because it shows the h4 challenge from the pawn-chain chapter; `4...Bg4`
+is a note. In the Falkbeer, the existing `3...exf4` and `9...Nxc3` comparisons
+became side trips with decisions and their own recall lines. The Modern Defense
+and Falkbeer chapters each gained their queen-recapture side trips; the bishop's
+check `5.Bb5+` in the transposition trip trails Stockfish's `5.c4` by about 0.2,
+as in the Modern Defense chapter itself.
+
+Recall lines for side trips start where their chapter's main line starts. A
+test checks that the course's lessons and recall lines give the same answer
+wherever they reach the same position, because Recall accepts every enrolled
+line's move there.
 
 ## Verification
 
