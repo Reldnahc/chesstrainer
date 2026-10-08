@@ -7,6 +7,7 @@ from trainer.study_lessons.content import CourseDefinition
 
 @cache
 def _courses():
+    from trainer.study_lessons.courses.fundamentals import course as fundamentals
     from trainer.study_lessons.courses.italian import course as italian_white
     from trainer.study_lessons.courses.italian_black import course as italian_black
     from trainer.study_lessons.courses.kings_gambit import course as kings_gambit
@@ -14,7 +15,13 @@ def _courses():
 
     return tuple(
         CourseDefinition.model_validate(record.model_dump())
-        for record in (italian_white(), italian_black(), kings_gambit(), tactics())
+        for record in (
+            italian_white(),
+            italian_black(),
+            kings_gambit(),
+            tactics(),
+            fundamentals(),
+        )
     )
 
 

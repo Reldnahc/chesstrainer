@@ -168,7 +168,11 @@ def test_default_library_ships_reviewed_courses_and_explicit_empty_override_work
         assert installed_course(course_id).chapters[0].title == original.chapters[0].title
     with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
         library = response_json(client.get("/api/study/courses"))
-        assert {item["id"] for item in library["courses"]} == {*COURSE_IDS, "tactics-foundations"}
+        assert {item["id"] for item in library["courses"]} == {
+            *COURSE_IDS,
+            "tactics-foundations",
+            "chess-fundamentals",
+        }
         assert all(item["completed_chapters"] == 0 for item in library["courses"])
     with TestClient(
         create_app(settings, workers=False, start_engine=False, lesson_providers=())

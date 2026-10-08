@@ -250,7 +250,7 @@ The `/study/openings` library links course chapters and recent resumable session
 
 ### Included courses
 
-All four courses ship locally and use the same player and account progress; the
+All five courses ship locally and use the same player and account progress; the
 three opening courses also share the explicit line-enrollment flow. The opening
 courses are focused repertoires: an authored answer is a move chosen for that
 lesson, not a claim that every other legal move is bad.
@@ -263,15 +263,17 @@ recommendations. No course starts an engine job or downloads material at runtime
 | Italian Game · A practical Black repertoire | Black | Quiet development; choose a post-castling plan; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
 | King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
 | Tactics · Six basic patterns | White | Forks; pins; skewers; discovered attacks and double check; removing a defender; back-rank checkmate | [Tactics sources](TACTICS_COURSE_SOURCES.md) |
+| Fundamentals · Six basic skills | White | Piece values; counting attackers and defenders; checks, captures and threats before every move; opening principles; checkmating a lone king; king and pawn endings | [Fundamentals sources](FUNDAMENTALS_COURSE_SOURCES.md) |
 
-`tactics-foundations` (revision `2026-10-v1`) teaches patterns rather than an
-opening. Its examples start from separate positions, and it has no recall lines,
-so it never adds anything to Due.
+`tactics-foundations` and `chess-fundamentals` (both revision `2026-10-v1`)
+teach patterns and basic skills rather than an opening. Their examples start
+from separate positions, and they have no recall lines, so they never add
+anything to Due.
 
 The current revisions are `2026-10-v3` for `italian-foundations`, and
 `2026-10-v4` for `italian-black-foundations` and `kings-gambit-foundations`.
 Black decisions and rehearsal use Black orientation
-and automatically play White’s intervening replies. All four course definitions
+and automatically play White’s intervening replies. All five course definitions
 are cached as immutable source data and returned as independent copies. Shared
 SAN authoring helpers produce the same validated content format. Existing saved
 sessions, enrolled lines and their earlier revisions retain their own snapshots.

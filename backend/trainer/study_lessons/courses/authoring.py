@@ -49,3 +49,24 @@ def decision(
         hint=hint,
         choices=[dict(uci=move, reply=replies, next_step=next_step, feedback=feedback)],
     )
+
+
+def example(identity, title, text, fen, next_step, san="", squares=(), arrows=()):
+    """Open a separate example; its board replaces the previous example's."""
+    return step(
+        "explanation",
+        identity,
+        title,
+        text,
+        san,
+        fen,
+        annotations=dict(
+            squares=list(squares),
+            arrows=[dict(from_square=start, to_square=end) for start, end in arrows],
+        ),
+        next_step=next_step,
+    )
+
+
+def practice(theme):
+    return f"To practice, open Puzzles in Study and choose the {theme} theme."

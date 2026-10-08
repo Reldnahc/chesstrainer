@@ -3,7 +3,7 @@
 import chess
 
 from trainer.study_lessons.content import CourseDefinition
-from trainer.study_lessons.courses.authoring import decision, demo, step
+from trainer.study_lessons.courses.authoring import decision, demo, example, practice, step
 
 # Positions without a named source were composed for this course. White moves
 # first in every example; docs/TACTICS_COURSE_SOURCES.md records the checks.
@@ -25,27 +25,6 @@ ONLY_DEFENDER = "5rk1/ppp2ppp/2n5/1B2b3/8/1N5P/PPP2PP1/4R1K1 w - - 0 1"
 OPEN_BACK_RANK = "6k1/ppr2ppp/8/q7/2Q5/2P5/PP3PPP/4R1K1 w - - 0 1"
 GUARDED_BACK_RANK = "4r1k1/pprb1ppp/1n6/8/8/2N5/PPP1RPPP/4RBK1 w - - 0 1"
 QUEEN_SACRIFICE = "2r3k1/pp1q1ppp/8/8/8/7P/PPQ2PP1/2R3K1 w - - 0 1"
-
-
-def example(identity, title, text, fen, next_step, san="", squares=(), arrows=()):
-    """Open a separate example; its board replaces the previous example's."""
-    return step(
-        "explanation",
-        identity,
-        title,
-        text,
-        san,
-        fen,
-        annotations=dict(
-            squares=list(squares),
-            arrows=[dict(from_square=start, to_square=end) for start, end in arrows],
-        ),
-        next_step=next_step,
-    )
-
-
-def practice(theme):
-    return f"To practice, open Puzzles in Study and choose the {theme} theme."
 
 
 def course():

@@ -4,6 +4,23 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Fundamentals course — October 8, 2026
+
+A fifth bundled course, `chess-fundamentals` revision `2026-10-v1`, teaches six
+basic skills on 12 short examples; see
+[Fundamentals course sources](FUNDAMENTALS_COURSE_SOURCES.md). The tactics
+course's `example` and `practice` helpers moved to the shared authoring module;
+the tactics course's content hash is unchanged.
+
+Checks: `test_fundamentals_course.py` (every chapter through the API, exact board
+claims including the unique mates, the stalemate and the square and opposition
+moves, the pinned hash), `test_tactics_course.py`, `test_italian_course.py`,
+`test_study_lessons.py` and `test_lesson_journey.py` passed; `ruff check` and
+`ruff format --check` passed on the changed Python files. Stockfish 17.1 checked
+every taught move and scripted reply, and Syzygy tablebases checked the endings;
+the record is in the sources file. Not run: browser tests and the full backend
+suite.
+
 ## Tactics course — October 8, 2026
 
 A fourth bundled course, `tactics-foundations` revision `2026-10-v1`, teaches six
