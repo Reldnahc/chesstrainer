@@ -109,6 +109,11 @@ def test_lesson_text_matches_the_boards():
         if not fork.piece_at(square) and targets.issubset(chess.BB_KNIGHT_ATTACKS[square])
     ] == [chess.E7]
     assert replies(board(tactics.KNIGHT_FORK, "Ne7+")) == ["Kh8"]
+    count = board(tactics.PAWN_FORK)
+    assert material(count, chess.BLACK) - material(count, chess.WHITE) == 1
+    assert (
+        len(count.pieces(chess.PAWN, chess.WHITE)) - len(count.pieces(chess.PAWN, chess.BLACK)) == 2
+    )
     pawn = board(tactics.PAWN_FORK, "e5")
     assert guards(pawn, chess.WHITE, "e5") == {"d4", "f3"}
     assert "d7" in guards(board(tactics.PAWN_FORK, "e5 Nd7"), chess.BLACK, "e5")
@@ -132,17 +137,24 @@ def test_lesson_text_matches_the_boards():
     pinned.turn = chess.BLACK
     assert not [move for move in pinned.legal_moves if move.from_square == chess.E6]
     assert board(tactics.PINNED_KNIGHT, "d5 Ke7").is_pinned(chess.BLACK, chess.E6)
+    assert guards(board(tactics.PINNED_KNIGHT, "d5"), chess.BLACK, "e6") == {"f7"}
+    assert guards(board(tactics.PINNED_KNIGHT, "d5 Ke7"), chess.BLACK, "e6") == {"e7", "f7"}
     pinned_queen = board(tactics.PINNED_QUEEN, "Bb5")
     assert {
         pinned_queen.san(move) for move in pinned_queen.legal_moves if move.from_square == chess.D7
     } == {"Qc6", "Qxb5"}
     assert guards(pinned_queen, chess.WHITE, "b5") == {"c3", "e2"}
+    assert "a6" in guards(board(tactics.PINNED_QUEEN, "Bb5 a6"), chess.BLACK, "b5")
     trap = board(san=tactics.CARO_KANN_TRAP)
     assert [
         chess.square_name(square)
         for square in chess.SquareSet.between(chess.E2, chess.E8)
         if trap.piece_at(square)
     ] == ["e4", "e7"]
+    checks = [
+        move for move in trap.legal_moves if move.from_square == chess.E4 and trap.gives_check(move)
+    ]
+    assert sorted(trap.san(move) for move in checks) == ["Nd6#", "Nxf6+"]
     trap.push_san("Nd6#")
     assert trap.is_checkmate() and trap.is_pinned(chess.BLACK, chess.E7)
 
@@ -158,6 +170,7 @@ def test_lesson_text_matches_the_boards():
             for move in checked.legal_moves
         )
         assert not guards(board(fen, capture), chess.BLACK, square)
+    assert not guards(board(tactics.FILE_SKEWER, "Re1+ Kd5"), chess.BLACK, "e8")
     rook_up = board(tactics.RANK_SKEWER, "Ra7+ Kd6 Rxh7")
     assert (material(rook_up, chess.WHITE), material(rook_up, chess.BLACK)) == (8, 2)
     diagonal = board(tactics.DIAGONAL_SKEWER)
@@ -167,6 +180,16 @@ def test_lesson_text_matches_the_boards():
     assert material(queen_won, chess.WHITE) - material(queen_won, chess.BLACK) == 8
 
     # Discovered attacks: the moving piece uncovers a second attacker.
+    trap_start = board(san=tactics.PETROV_TRAP)
+    queen_hits = [
+        trap_start.san(move)
+        for move in trap_start.legal_moves
+        if move.from_square == chess.E5
+        and chess.D8 in chess.SquareSet(chess.BB_KNIGHT_ATTACKS[move.to_square])
+    ]
+    assert sorted(queen_hits) == ["Nc6+", "Nxf7+"]
+    assert "Kxf7" in replies(board(san=tactics.PETROV_TRAP + " Nxf7+"))
+    assert chess.E5 in board(san="e4 e5 Nf3 Nf6 Nxe5 d6").attacks(chess.D6)
     petrov = board(san=tactics.PETROV_TRAP + " Nc6+")
     assert {chess.square_name(item) for item in petrov.checkers()} == {"e2"}
     assert chess.D8 in petrov.attacks(chess.C6)
@@ -185,6 +208,13 @@ def test_lesson_text_matches_the_boards():
         for square in chess.SquareSet.between(chess.D1, chess.D8)
         if reti.piece_at(square)
     ] == ["d2"]
+    doubles = {}
+    for move in [move for move in reti.legal_moves if move.from_square == chess.D2]:
+        reti.push(move)
+        if len(reti.checkers()) == 2:
+            doubles[chess.square_name(move.to_square)] = chess.E7 in reti.attacks(move.to_square)
+        reti.pop()
+    assert doubles == {"a5": False, "g5": True}
     reti.push_san("Bg5+")
     assert len(reti.checkers()) == 2 and replies(reti) == ["Kc7", "Ke8"]
     for finish in ("Kc7 Bd8#", "Ke8 Rd8#"):
@@ -208,6 +238,8 @@ def test_lesson_text_matches_the_boards():
         chased.push(move)
         assert chess.H7 not in chased.attacks(move.to_square)
         chased.pop()
+    assert "g6" in replies(board(tactics.CHASED_GUARD, "e5"))
+    assert chess.G6 in chess.SquareSet.between(chess.B1, chess.H7)
     exposed = board(tactics.CHASED_GUARD, "e5 Rfe8 exf6 gxf6 Qxh7+")
     assert exposed.is_check()
     counted = board(tactics.ONLY_DEFENDER)
@@ -296,4 +328,4 @@ def test_published_revision_keeps_its_content_identity():
     # Intentional edits require a new revision and hash together.
     course = installed_course(COURSE_ID)
     assert course.revision == "2026-10-v1"
-    assert fingerprint(course) == "8252427312820949598dd5f5fdb62871a92cbc35db768f4353c3ca6639aff79f"
+    assert fingerprint(course) == "4709dfffc85c72af4fc2d20f7831ab2fb0ed6cf6307cf842f1730ea093c8c95f"

@@ -49,8 +49,10 @@ filter; those themes exist in the bundled Lichess starter pack.
   Georg Marco published the game in the *Neues Wiener Tagblatt* on 1 April 1910
   with the finish `10 Bg5+ Resigns`, as did Bachmann's 1911 *Schachjahrbuch*.
   Tartakower later called it a casual game (*Freipartie*). The commonly given
-  `10...Kc7 11.Bd8#` (and `10...Ke8 11.Rd8#`) are continuations, not moves of the
-  earliest published score; the lesson says so when it plays them. The example
+  finish `10...Kc7 11.Bd8#` (Tartakower, *A Breviary of Chess*) is a
+  continuation, not part of the earliest published score; the lesson says so
+  when it plays it. `10...Ke8 11.Rd8#` is the other mate, which the feedback
+  mentions. The example
   starts after `8...Nxe4` and demonstrates `9.Qd8+ Kxd8`.
 
 The 15 composed positions have no source. Their FENs are constants at the top of
@@ -85,14 +87,14 @@ python-chess in `backend/tests/test_tactics_course.py`.
 | Queen sacrifice | Qxc8+ | mate in 2 | −0.14 |
 
 Every taught move, including each follow-up capture, is Stockfish's first choice
-or within 15 centipawns of it. The two near-ties are a pinned knight that cannot
+or within about 20 centipawns of it. The two near-ties are a pinned knight that cannot
 escape (after `d5 Ke7`, h4 and dxe6 score the same) and a second queen win
 (Rb5+ beside Bxh7 in the diagonal skewer). A decision accepts only the taught
 move; another winning move gets the player's standard "different continuation"
 message.
 
-Every scripted reply is within 40 centipawns of Stockfish's best defense, or is
-mated just as quickly:
+Every scripted reply is within 40 centipawns of Stockfish's best defense, is
+mated just as quickly, or is named below with its gap:
 
 - **Pinned knight:** the reply is Stockfish's ...Ke7, which defends the knight
   but keeps the pin. An earlier draft used ...Kf8, ranked 13th of 18.
@@ -103,6 +105,10 @@ mated just as quickly:
   gives the other mate.
 - **Pawn fork:** ...Nd7 scored within 35 centipawns of the best reply in both
   runs.
+- **Rank skewer:** every king move loses the rook and the game; Stockfish
+  prefers ...Kc6 to the scripted ...Kd6, which loses faster.
+- **Chased guard:** ...Rfe8 is about a pawn worse than ...g6 (+5.84 against
+  +4.89 at depth 24); the feedback names ...g6 as the tougher defense.
 
 Composed positions were revised while authoring when the engine found a rival
 idea: the pawn fork's White rook moved from e1 to d1 so ...Bb4 no longer comes
@@ -110,6 +116,35 @@ with tempo, and its reply became ...Nd7 because ...Nd5 let c4 compete with
 exd6; a first queen fork (Qd5+) failed to ...Be6 and became Qa4+; the pinned
 queen's knight moved from f6 to g6 so e5 was no longer a rival; the
 only-defender knight moved from d2 to b3 so ...Bf4 no longer gained a tempo.
+
+## Independent review
+
+Before merging, independent reviews rechecked every board claim with
+python-chess, every decision and reply with Stockfish 17.1 (depth 20 to 24), the
+named lines against Wikipedia and Edward Winter, and the definitions against
+Wikipedia and Lichess. Every taught move held, and these text changes followed:
+
+- **Prompts with a second answer:** the double-check prompt asks for the square
+  where the bishop also guards e7, because Ba5+ is a double check too (and
+  loses); the Caro-Kann prompt asks for checkmate, because Nxf6+ also checks; the
+  Petrov prompt asks for a knight move that attacks the queen where the king
+  cannot take it, because Ng6+ also attacks something valuable.
+- **Checks:** a check can be blocked or the checking piece captured, so the fork
+  and skewer texts no longer say that the king must move.
+- **Pins:** a piece pinned to something other than the king may legally move,
+  so the summary says a pinned piece cannot leave its line without exposing the
+  piece behind it.
+- **Pawn fork:** Black has an extra piece for two pawns, one point ahead, not
+  "a piece ahead".
+- **Petrov:** 3...Nxe4 is already dubious; Black's usual move is 3...d6
+  ([Wikipedia](https://en.wikipedia.org/wiki/Petrov%27s_Defence)).
+- **Chased guard:** the feedback names ...g6 as the tougher defense.
+- **Smaller fixes:** the f7-pawn already defended the pinned knight; the
+  skewered rook was never defended; the pinned-queen prompt names ...axb5; a
+  "line attack" is now "an attack along a rank, file or diagonal".
+
+The course had not been released, so it keeps revision `2026-10-v1` with a new
+content hash.
 
 ## Framework change
 

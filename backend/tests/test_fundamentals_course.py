@@ -116,6 +116,10 @@ def test_material_and_counting_claims_match_the_boards():
     assert mates(scholar) == ["Qxf7#"]
     for defence in ("g6", "Qe7"):
         assert not mates(board(san="e4 e5 Bc4 Nc6 Qh5 " + defence))
+    assert mates(board(san="e4 e5 Bc4 Nc6 Qh5 g6 Qf3 Bg7")) == ["Qxf7#"]
+    assert not mates(board(san="e4 e5 Bc4 Nc6 Qh5 g6 Qf3 Nf6"))
+    early = board(san="e4 e5 Qh5 g6 Qxe5+")
+    assert early.is_check() and chess.H8 in early.attacks(chess.E5)
 
 
 def test_opening_claims_match_the_boards():
@@ -153,6 +157,8 @@ def test_opening_claims_match_the_boards():
     italian.turn = chess.BLACK
     italian.push_san("Nxf2")
     assert {chess.D1, chess.H1}.issubset(italian.attacks(chess.F2))
+    traded = board(fundamentals.KNIGHT_ON_G4, "O-O Nxf2 Rxf2 Bxf2+ Kxf2")
+    assert balance(traded) == balance(board(fundamentals.KNIGHT_ON_G4))
     castled = board(fundamentals.KNIGHT_ON_G4, "O-O O-O")
     assert guards(castled, chess.WHITE, "f2") == {"f1", "g1"}
 
@@ -178,7 +184,9 @@ def test_endgame_claims_match_the_boards():
     # The square of the pawn: one king move enters it each time.
     race = board(fundamentals.PAWN_RACE)
     assert king_moves_into(race, area("bcde", "1234")) == ["Ke4"]
-    assert king_moves_into(board(fundamentals.PAWN_RACE, "Ke4 b3"), area("bcd", "123")) == ["Kd3"]
+    shrunk = board(fundamentals.PAWN_RACE, "Ke4 b3")
+    assert shrunk.king(chess.WHITE) not in area("bcd", "123")
+    assert king_moves_into(shrunk, area("bcd", "123")) == ["Kd3"]
     near_b1 = chess.SquareSet(chess.BB_KING_ATTACKS[chess.B1])
     assert king_moves_into(board(fundamentals.PAWN_RACE, "Ke4 b3 Kd3 b2"), near_b1) == ["Kc2"]
     promoted = board(fundamentals.PAWN_RACE, "Ke4 b3 Kd3 b2 Kc2 b1=Q+")
@@ -207,4 +215,4 @@ def test_published_revision_keeps_its_content_identity():
     # Intentional edits require a new revision and hash together.
     course = installed_course(COURSE_ID)
     assert course.revision == "2026-10-v1"
-    assert fingerprint(course) == "17f7a69b5a2974670e233605b049ee2b622b2676dd43837bd007c06b2af45e15"
+    assert fingerprint(course) == "0dd65745c65159bd659f1cfd87998aa4c7ae81e29ef36ae908f62b02121c0722"

@@ -21,6 +21,14 @@ every taught move and scripted reply, and Syzygy tablebases checked the endings;
 the record is in the sources file. Not run: browser tests and the full backend
 suite.
 
+Independent review, same day: separate reviews of both new courses rechecked
+every board claim, decision and reply, the endings and the sources. They found
+no unsound taught move; the text fixes are listed in each course's sources file,
+and both courses keep revision `2026-10-v1` with new pinned hashes because
+neither had been released. The same five test files passed again, with new
+assertions for the corrected claims, and `ruff check` and `ruff format --check`
+passed.
+
 ## Tactics course — October 8, 2026
 
 A fourth bundled course, `tactics-foundations` revision `2026-10-v1`, teaches six
