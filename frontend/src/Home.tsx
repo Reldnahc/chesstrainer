@@ -75,8 +75,8 @@ export default function HomeScreen() {
         </div>
         <HomeResult query={lessons} label="lessons">{data => <div className="study-resume-list">
           {data.resume.length ? data.resume.slice(0, 2).map(session => <ResumeLink key={session.id}
-            href={lessonSessionPath(session.id)} description={`Continue · ${session.chapter_title}`}>{session.course_title}</ResumeLink>)
-            : data.courses.length ? <ResumeLink href={lessonCoursePath(data.courses[0].id, data.courses[0].revision)}
+            href={lessonSessionPath(session.id, session.course_topic)} description={`Continue · ${session.chapter_title}`}>{session.course_title}</ResumeLink>)
+            : data.courses.length ? <ResumeLink href={lessonCoursePath(data.courses[0].id, data.courses[0].revision, data.courses[0].topic)}
               description={`${data.courses[0].completed_chapters} of ${data.courses[0].chapter_count} chapters completed`}>
               {data.courses[0].title}
             </ResumeLink> : <EmptyState presentation="compact" title="Choose an opening to study.">

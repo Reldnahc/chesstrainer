@@ -200,6 +200,23 @@ test("the lesson library resumes saved content and opens a chapter without expos
   await expect(page.getByRole("heading", { name: "Start from the beginning" })).toBeVisible();
 });
 
+test("Study home opens Skills, which alone lists the tactics and fundamentals courses", async ({ page }) => {
+  const skillTitles = ["Tactics · Six basic patterns", "Fundamentals · Six basic skills"];
+  await page.goto("/study");
+  const card = page.locator(".study-option").filter({ has: page.getByRole("heading", { name: "Skills", exact: true }) });
+  await expect(card).toContainText(/\d+ Chapters? to learn/);
+  await card.getByRole("link", { name: "Learn skills", exact: true }).click();
+  await expect(page).toHaveURL("/study/skills");
+  await expect(page.getByRole("heading", { level: 1, name: "Skills" })).toBeVisible();
+  await expect(page.locator(".lesson-course-card h2")).toHaveText(skillTitles);
+  await page.getByRole("link", { name: new RegExp(skillTitles[0]) }).click();
+  await expect(page).toHaveURL(/\/study\/skills\/courses\/tactics-foundations\?revision=/);
+  await expect(page.getByRole("link", { name: "All skills", exact: true })).toHaveAttribute("href", "/study/skills");
+  await page.goto("/study/openings");
+  await expect(page.locator(".lesson-course-card").first()).toBeVisible();
+  for (const title of skillTitles) await expect(page.locator(".lesson-course-card", { hasText: title })).toHaveCount(0);
+});
+
 test("Still motion shows the committed demonstration without a playback phase", async ({ page }, info) => {
   const lesson = await fixture(page, `still-${info.project.name}`);
   await page.goto(lesson.path);

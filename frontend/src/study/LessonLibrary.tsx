@@ -8,11 +8,17 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
-import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths } from "../navigation";
+import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths, type LessonTopic } from "../navigation";
 import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
 
-export default function LessonLibrary({ courseId, revision }: { courseId: string | null; revision: string | null }) {
+const TOPIC_TEXT = {
+  opening: { home: studyPaths.openings, back: "All openings", loading: "Loading opening lessons…", empty: "No opening lessons yet.", emptyText: "Opening lessons will appear here when a course is available." },
+  skills: { home: studyPaths.skills, back: "All skills", loading: "Loading skill lessons…", empty: "No skill lessons yet.", emptyText: "Skill lessons will appear here when a course is available." },
+} as const;
+
+export default function LessonLibrary({ topic, courseId, revision }: { topic: LessonTopic; courseId: string | null; revision: string | null }) {
+  const text = TOPIC_TEXT[topic];
   const [library, setLibrary] = useState<Schema["LessonLibrary"] | null>(null);
   const [course, setCourse] = useState<Schema["LessonCourseView"] | null>(null);
   const [error, setError] = useState("");
@@ -43,12 +49,15 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
     setError("");
     try {
       const session = await startLesson({ course_id: course.id, course_revision: course.revision, chapter_id: chapterId }, controller.signal);
-      if (!controller.signal.aborted && session) navigate(lessonSessionPath(session.id));
+      if (!controller.signal.aborted && session) navigate(lessonSessionPath(session.id, session.course_topic));
     } catch (e) { if (!controller.signal.aborted) setError((e as Error).message); }
     finally { if (!controller.signal.aborted) { setBusy(null); request.current = null; } }
   }
+  // A course page follows its course's own topic, so an older link still
+  // returns to the section that lists the course.
+  const courseText = TOPIC_TEXT[course?.topic ?? topic];
   if (courseId) return <section className="panel lesson-course">
-    <ActionLink variant="quiet" href={studyPaths.openings}><ArrowLeft size={16} />All openings</ActionLink>
+    <ActionLink variant="quiet" href={courseText.home}><ArrowLeft size={16} />{courseText.back}</ActionLink>
     {error && (course ? <Notice announcement="alert" tone="error">{error}</Notice> : <UnavailableState>{error}</UnavailableState>)}
     {course ? <>
       <header className="lesson-course-title">
@@ -68,10 +77,12 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
       <LessonAttribution attributions={course.attributions} />
     </> : !error && <LoadingState>Loading lesson chapters…</LoadingState>}
   </section>;
-  if (!library) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading opening lessons…</LoadingState>;
+  if (!library) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">{text.loading}</LoadingState>;
+  const resume = library.resume.filter(session => session.course_topic === topic);
+  const courses = library.courses.filter(item => item.topic === topic);
   return <>
-    {!!library.resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{library.resume.map(session => <ResumeLink key={session.id} href={lessonSessionPath(session.id)} description={session.chapter_title}>{session.course_title}</ResumeLink>)}</div></section>}
-    {library.courses.length ? <div className="lesson-course-grid">{library.courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}<ArrowRight size={16} /></span></Link>)}</div>
-      : <EmptyState title="No opening lessons yet." icon={<BookOpen />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>Opening lessons will appear here when a course is available.</EmptyState>}
+    {!!resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{resume.map(session => <ResumeLink key={session.id} href={lessonSessionPath(session.id, topic)} description={session.chapter_title}>{session.course_title}</ResumeLink>)}</div></section>}
+    {courses.length ? <div className="lesson-course-grid">{courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision, topic)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}<ArrowRight size={16} /></span></Link>)}</div>
+      : <EmptyState title={text.empty} icon={<BookOpen />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>{text.emptyText}</EmptyState>}
   </>;
 }

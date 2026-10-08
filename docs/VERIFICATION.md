@@ -4,6 +4,21 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Study Skills card — October 8, 2026
+
+The tactics and fundamentals courses moved from Study → Openings to their own
+Study → Skills section, with a fourth Study home card counting their unfinished
+chapters. Course content and both pinned hashes are unchanged; the topic comes
+from a fixed list of skill course ids outside course content.
+
+Checks: the five lesson test files, `test_api_contract.py` and a new topic test
+in `test_fundamentals_course.py` passed (71); `ruff check` and `ruff format
+--check` passed; `npm run api:check`, `test:types`, `test:symbols`,
+`test:styles` and `build` passed; the changed browser specs
+(`study-lessons.spec.ts`, `dashboard.spec.ts`,
+`practice-speech-selection.spec.ts`) passed on desktop and mobile (60). Not run:
+the full backend suite and the other browser specs.
+
 ## Fundamentals course — October 8, 2026
 
 A fifth bundled course, `chess-fundamentals` revision `2026-10-v1`, teaches six

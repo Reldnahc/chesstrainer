@@ -2,7 +2,7 @@
 
 import chess
 from fastapi.testclient import TestClient
-from test_italian_course import installed_course, walk_chapter
+from test_italian_course import COURSE_IDS, installed_course, start, walk_chapter
 from test_opening_journey import response_json
 from test_tactics_course import board, guards, material, replies
 from trainer.api import create_app
@@ -209,6 +209,24 @@ def test_endgame_claims_match_the_boards():
     finish = board(fundamentals.OPPOSITION, fundamentals.PAWN_FINISH)
     assert finish.is_check() and guards(finish, chess.WHITE, "e8") == {"f7"}
     assert chess.SquareSet([chess.E6, chess.E7, chess.E8]).issubset(chess.BB_KING_ATTACKS[chess.F7])
+
+
+def test_skill_courses_are_listed_apart_from_the_opening_courses(settings):
+    # The topic is presentation only, so it never enters the pinned content hashes.
+    tactics = installed_course("tactics-foundations")
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        library = response_json(client.get("/api/study/courses"))
+        assert {item["id"]: item["topic"] for item in library["courses"]} == {
+            **dict.fromkeys(COURSE_IDS, "opening"),
+            "tactics-foundations": "skills",
+            COURSE_ID: "skills",
+        }
+        for course_id, topic in ((COURSE_ID, "skills"), (COURSE_IDS[0], "opening")):
+            assert response_json(client.get(f"/api/study/courses/{course_id}"))["topic"] == topic
+        session = start(client, tactics, tactics.chapters[0])
+        assert session["course_topic"] == "skills"
+        resume = response_json(client.get("/api/study/courses"))["resume"]
+        assert [(row["id"], row["course_topic"]) for row in resume] == [(session["id"], "skills")]
 
 
 def test_published_revision_keeps_its_content_identity():

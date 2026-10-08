@@ -2769,6 +2769,11 @@ export interface components {
             revision: string;
             /** Title */
             title: string;
+            /**
+             * Topic
+             * @enum {string}
+             */
+            topic: "opening" | "skills";
         };
         /** LessonCourseView */
         LessonCourseView: {
@@ -2791,6 +2796,11 @@ export interface components {
             revision: string;
             /** Title */
             title: string;
+            /**
+             * Topic
+             * @enum {string}
+             */
+            topic: "opening" | "skills";
         };
         /** LessonFeedback */
         LessonFeedback: {
@@ -2848,6 +2858,11 @@ export interface components {
             course_revision: string;
             /** Course Title */
             course_title: string;
+            /**
+             * Course Topic
+             * @enum {string}
+             */
+            course_topic: "opening" | "skills";
             /** Id */
             id: string;
             /** Updated At */
@@ -2870,6 +2885,11 @@ export interface components {
             course_revision: string;
             /** Course Title */
             course_title: string;
+            /**
+             * Course Topic
+             * @enum {string}
+             */
+            course_topic: "opening" | "skills";
             /** Failed */
             failed: boolean;
             feedback: components["schemas"]["LessonFeedback"] | null;

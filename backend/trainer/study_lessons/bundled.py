@@ -4,6 +4,15 @@ from functools import cache
 
 from trainer.study_lessons.content import CourseDefinition
 
+# Study lists these under Skills. Every other course, including installed
+# providers and test fixtures, is an opening course. The topic is presentation
+# only and stays outside course content, so it never changes a content hash.
+SKILL_COURSES = frozenset({"tactics-foundations", "chess-fundamentals"})
+
+
+def course_topic(course_id):
+    return "skills" if course_id in SKILL_COURSES else "opening"
+
 
 @cache
 def _courses():
