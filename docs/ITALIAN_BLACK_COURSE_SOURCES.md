@@ -1,6 +1,6 @@
 # Black Italian: source and authoring record
 
-`italian-black-foundations`, revision `2026-09-v3`, teaches Black through a
+`italian-black-foundations`, revision `2026-10-v4`, teaches Black through a
 bishop-first Italian repertoire. The chapters cover quiet development, choosing
 a post-castling plan, the early c3/d4 central advance, and declining the Evans
 Gambit. Each ends in independent rehearsal; only its four designated lines can
@@ -21,7 +21,7 @@ book, not from modern instructional commentary.
 | Game | Lesson purpose | Primary source | Complete score endpoint |
 | --- | --- | --- | --- |
 | Mason–Lasker, 27 August 1895 | Black's quiet development; bishop exchanges change White's pawn structure | [pp. 264–265](https://archive.org/details/cu31924029919820/page/n319/mode/1up) | 82.Kh8, draw; 163 plies |
-| Steinitz–von Bardeleben, 17 August 1895 | Black answers c3/d4 with exchanges, Bb4+ and d5 | [pp. 157–158](https://archive.org/details/cu31924029919820/page/n200/mode/1up) | 25.Rxh7+, Black resigned; 49 plies |
+| Steinitz–von Bardeleben, 17 August 1895 | Black answers c3/d4 with exchanges, Bb4+ and d5 | [pp. 157–158](https://archive.org/details/cu31924029919820/page/n200/mode/1up) | 25.Rxh7+; Black left without resigning and lost on time; 49 plies |
 | Pollock–Lasker, 13 August 1895 | Declining b4, preserving the bishop and returning to development | [p. 115](https://archive.org/details/cu31924029919820/page/n152/mode/1up) | 23...Ne2+, White resigned; 46 plies |
 
 The first two scores reuse the existing validated transcriptions, with their own
@@ -117,6 +117,25 @@ and many early Italian sidelines, are not silently claimed as covered.
 
 Existing v1/v2 lesson-session snapshots remain pinned to their saved material;
 new sessions use v3. Existing enrolled studies are not rewritten by this change.
+
+## October 2026 chess check and revision v4
+
+The
+[October 2026 chess check](VERIFICATION.md#opening-course-chess-check--october-8-2026)
+found no taught move to change. Every taught move was within about 0.25 pawns
+of Stockfish 17.1's first choice at depth 22, except the deliberate Evans
+decline with `4...Bb6` (about 0.4).
+Revision v4 corrects two explanations:
+
+- The Steinitz–von Bardeleben note no longer says Black resigned. The 1896 book
+  prints “Resigns”, but reports from the tournament, collected by
+  [Edward Winter](https://chesshistory.com/winter/extra/steinitzvonbardeleben.html),
+  say von Bardeleben left the room without resigning and lost on time.
+- The bishop-first feedback no longer calls the center “closed”, a term for
+  locked pawn chains. It now says no central pawns have been exchanged yet.
+
+Existing v1–v3 lesson-session snapshots and enrolled studies keep their saved
+material.
 
 ## Checks
 

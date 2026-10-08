@@ -3,7 +3,7 @@ import type { Schema } from "../src/api";
 import { expectNoNewDueReviews, settledDueReviews } from "./helpers/server";
 
 const courseId = "italian-foundations";
-const courseRevision = "2026-09-v2";
+const courseRevision = "2026-10-v3";
 const coursePath = `/study/openings/courses/${courseId}?revision=${courseRevision}`;
 const savedMotion = new WeakMap<Page, Schema["MotionPreferences"]>();
 const enrolled = new WeakMap<Page, string[]>();

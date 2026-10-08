@@ -168,7 +168,7 @@ def course():
             "d4",
             "Bd6",
             "accepted-castle",
-            "Black develops Bd6, defending f4 and pointing toward h2. Castle before beginning an attack of your own.",
+            "Black develops Bd6, defending the f4-pawn. Castle before beginning an attack of your own.",
             "Move d2 to d4.",
         ),
         decision(
@@ -250,7 +250,7 @@ def course():
         decision(
             "escape-knight",
             "Move the attacked knight",
-            "Move the knight to e5. This course uses the Kieseritzky setup; we are not sacrificing it on g5.",
+            "Move the knight to e5. This course uses the Kieseritzky setup; we are not playing Ng5, the Allgaier Gambit, where the knight is given up on f7.",
             ACCEPTED + " g5 h4 g4",
             "Ne5",
             "Nf6",
@@ -292,7 +292,7 @@ def course():
         demo(
             "premature-castle",
             "Castling leaves the knight behind",
-            "In this comparison, White castles and Black takes the undefended knight. Re1 tries to pin the bishop, but Qe7 shields Black's king. Watch how the late d4 is then met by Bxd4+.",
+            "In this comparison, White castles and Black takes the undefended knight. Re1 pins the bishop to Black's king, but Qe7 defends the bishop and shields the king. Watch how the late d4 is then met by Bxd4+.",
             CHAIN_CENTER,
             CHAIN_CENTER + " O-O Bxe5 Re1 Qe7 d4 Bxd4+",
             "premature-summary",
@@ -301,7 +301,7 @@ def course():
             "explanation",
             "premature-summary",
             "Defend first, castle next",
-            "Black has won a knight and a pawn in this illustrative continuation. Re1 did not trap the bishop because Qe7 blocked the e-file. Return to the decision: d4 immediately protects Ne5 and avoids giving it away.",
+            "Black has won a knight and a pawn in this illustrative continuation. Re1 pinned the bishop, but Qe7 defended it, and Bxd4+ escaped with check. This castling line is called the Rice Gambit. After Re1 Qe7, White usually plays c3 rather than d4, and Black is still better. Return to the decision: d4 immediately protects Ne5 and avoids giving it away.",
             CHAIN_CENTER + " O-O Bxe5 Re1 Qe7 d4 Bxd4+",
         ),
         decision(
@@ -330,7 +330,7 @@ def course():
             "explanation",
             "chain-summary",
             "Activity requires calculation",
-            "Material is equal, but your kingside pawns have moved and Black can castle too. Finish developing Nb1 and Bc1 while watching the knight's jump to g3, which attacks Rf1. Taking f4 is not a free pawn: count its h5-knight defender before considering an exchange sacrifice.",
+            "Material is equal, but your kingside pawns have moved and Black can castle too. Finish developing Nb1 and Bc1 while watching the knight's jump to g3, which attacks Rf1. Taking f4 is not a free pawn. After Bxf4, Black can ignore the bishop and attack your king with Qxh4. After Rxf4, the h5-knight can take your rook.",
             CHAIN,
             next_step="chain-game",
         ),
@@ -438,7 +438,7 @@ def course():
         decision(
             "declined-develop",
             "Develop behind your center",
-            "Bring the b1-knight to c3, adding another defender to e4.",
+            "Bring the b1-knight to c3. Black's f6-knight attacks e4, and nothing else defends it.",
             DECLINED.rsplit(" ", 1)[0],
             "Nc3",
             None,
@@ -474,7 +474,7 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="kings-gambit-foundations",
-            revision="2026-09-v3",
+            revision="2026-10-v4",
             title="King's Gambit · Active play with White",
             description="Meet the Modern Defense, challenge the g5 pawn chain, build a center against Bc5, and untangle the Falkbeer countergambit. Separate chapters follow the different decisions each defense demands, with comparisons and two contrasting historical games.",
             learner_color="white",
