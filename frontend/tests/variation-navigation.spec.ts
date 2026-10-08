@@ -114,10 +114,18 @@ test("backward navigation exits a variation when it reaches the original branch 
   }
 });
 
-test("start of game always exits variations at original-game ply zero", async ({page}, info) => {
+test("start of variation exits to the branch point, then start of game reaches ply zero", async ({page}, info) => {
   const {play, onMainline} = await openGame(page, `first-${info.project.name}`);
   await play("e2e4");
+  await play("b8c6");
+  const toBranch = page.getByRole("button", {name: "Start of variation", exact: true});
   const first = page.getByRole("button", {name: "Start of game", exact: true});
+  await expect(first).toHaveCount(0);
+  await expect(toBranch).toBeEnabled();
+  await toBranch.click();
+  await onMainline(2);
+  await expect(page.locator(".move-playback-counter")).toHaveText("2 / 4");
+  await expect(toBranch).toHaveCount(0);
   await expect(first).toBeEnabled();
   await first.click();
   await onMainline(0);
@@ -131,10 +139,10 @@ test("start of game always exits variations at original-game ply zero", async ({
   await expect(first).toBeEnabled();
   await first.click();
   await onMainline(0);
-  await page.getByRole("button", {name: "Last move", exact: true}).click();
-  await first.click();
-  await onMainline(0);
-  await page.locator(".game-variation-row button").first().click();
-  await first.click();
-  await onMainline(0);
+  // Reopening either step of the remembered variation still returns to its branch point.
+  for (const row of [0, 1]) {
+    await page.locator(".game-variation-row button").nth(row).click();
+    await toBranch.click();
+    await onMainline(2);
+  }
 });

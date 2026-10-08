@@ -83,9 +83,10 @@ keeps that half-width when Return to game appears beside it. The best move sits
 directly beneath the coach portrait, with its notation kept on one line even in
 compact panels. Human insight information keeps a separate compact line below
 the actions, so neither readout can squeeze the buttons.
-Stepping backward to that point also exits the variation. The **Start of game** (`<<`)
-control always selects the original game's initial position (ply 0), even from a
-variation. It is disabled when already at that position. Escape returns to the
+Stepping backward to that point also exits the variation. In a variation the `<<`
+control is **Start of variation**: it exits to the original-game position where the
+variation began. On the original game it is **Start of game**, selecting the initial
+position (ply 0), and it is disabled when already there. Escape returns to the
 game when explanation cues are already hidden. Variations are not saved across leaving
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
