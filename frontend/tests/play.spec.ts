@@ -204,9 +204,10 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   await expect(page.getByText("Your move")).toBeVisible();
   // Nothing about the practice sits above the board; the book move is there on request.
   await expect(page.getByText(/Practicing/)).toHaveCount(0);
-  const showBook = page.getByRole("button", {name: "Show book move"});
+  // "Show book" sits with the coach's own actions.
+  const showBook = page.locator(".coach-actions").getByRole("button", {name: "Show book"});
   await showBook.click();
-  await expect(page.getByRole("button", {name: "Hide book move"})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".coach-actions").getByRole("button", {name: "Hide book"})).toHaveAttribute("aria-pressed", "true");
 
   const playE4 = async () => {
     await page.locator('[data-square="e2"]').first().click();
@@ -220,7 +221,7 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   await expect(page.locator(".game-move-list")).toContainText("e4");
   await expect(page.getByText("Walter is thinking…")).toHaveCount(0);
   await expect(page.getByText("Your move")).toHaveCount(0);
-  await expect(page.getByRole("button", {name: "Show book move"})).toBeVisible();
+  await expect(page.locator(".coach-actions").getByRole("button", {name: "Show book"})).toBeVisible();
   await page.getByRole("button", {name: "Take back"}).click();
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.locator(".game-move-list")).not.toContainText("e4");
@@ -229,7 +230,7 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   await playE4();
   await page.getByRole("button", {name: "Play on"}).click();
   await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 10000});
-  await expect(page.getByRole("button", {name: "Show book move"})).toHaveCount(0);
+  await expect(page.getByRole("button", {name: "Show book"})).toHaveCount(0);
   // Two comparisons, one per off-book move, then the usual reply.
   expect(requests.length).toBe(3);
 });

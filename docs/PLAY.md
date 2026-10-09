@@ -129,7 +129,7 @@ book moves, each keeping at least a 10% share so rarer lines still come up. Book
 replies do no engine work and are shown without waiting for the learner's grade.
 
 Nothing about the practice is shown above the board. While the learner is in book,
-**Show book move** beside Resign draws the book move (every book move, where the
+**Show book** among the coach's actions draws the book move (every book move, where the
 course has several) as an arrow; it stays available right after an off-book move.
 
 When the learner leaves the book, the move stays on the board and the bot waits.

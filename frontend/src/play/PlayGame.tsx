@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, FlipVertical2 } from "lucide-react";
+import { ArrowRight, FlipVertical2 } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
@@ -86,7 +86,7 @@ export default function PlayGame({ id }: { id: string }) {
   const session = usePlaySession(id);
   const { state, game, frame, report, ply, latest } = session;
   const [orientation, setOrientation] = useState<"white" | "black" | null>(null);
-  // "Show book move": arrows for the book moves where the learner is deciding.
+  // "Show book": arrows for the book moves where the learner is deciding.
   const [showBook, setShowBook] = useState(false);
   const bookMoves = state?.status === "active" ? (state.practice?.book_moves ?? []) : [];
   const bookKey = `${state?.frames.length}:${state?.practice?.status}`;
@@ -203,13 +203,6 @@ export default function PlayGame({ id }: { id: string }) {
             ) : (
               <div className="game-board-actions">
                 <Button size="compact" onClick={session.resign}>Resign</Button>
-                {bookMoves.length > 0 && (session.learnerToMove || session.deviation) && (
-                  <IconButton aria-label={showBook ? "Hide book move" : "Show book move"}
-                    title={showBook ? "Hide book move" : "Show book move"} aria-pressed={showBook}
-                    onClick={() => setShowBook((value) => !value)}>
-                    <BookOpen size={17} />
-                  </IconButton>
-                )}
               </div>
             )}
             <MovePlaybackControls label="Game move playback" current={ply} maximum={latest}
@@ -248,6 +241,12 @@ export default function PlayGame({ id }: { id: string }) {
           onVoicePlaying={session.onVoicePlaying}
           live={latest === 0 ? "new" : "underway"}
           prompt={prompt}
+          extraAction={bookMoves.length > 0 && (session.learnerToMove || session.deviation) && !session.browsing ? (
+            <Button size="compact" aria-pressed={showBook} title="Show the book move on the board"
+              onClick={() => setShowBook((value) => !value)}>
+              {showBook ? "Hide book" : "Show book"}
+            </Button>
+          ) : undefined}
         />
         <ReviewMoves
           game={game}
