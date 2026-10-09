@@ -141,7 +141,7 @@ def test_practice_follows_the_book_and_stops_the_learner_off_it(settings, stockf
             "status": "book",
             "ended": None,
             "deviation": None,
-            "hint": [],
+            "book_moves": ["e2e4", "g1f3"],
         }
 
         def move(ply, uci):
@@ -152,7 +152,7 @@ def test_practice_follows_the_book_and_stops_the_learner_off_it(settings, stockf
         def reply():
             return client.post(f"/api/play/{play_id}/reply").json()
 
-        move(0, "e2e4")
+        assert move(0, "e2e4")["practice"]["book_moves"] == []
         answered = reply()
         assert answered["reply"]["source"] == "book" and answered["reply"]["uci"] == "e7e5"
         move(2, "g1f3")
@@ -160,13 +160,15 @@ def test_practice_follows_the_book_and_stops_the_learner_off_it(settings, stockf
         assert answered["reply"]["uci"] in {"b8c6", "d7d6"}
         # After 2...Nc6 the transposed line adds 3.Bb5 to the book.
         book = {"b8c6": {"f1c4", "f1b5"}, "d7d6": {"d2d4"}}[answered["reply"]["uci"]]
+        assert set(answered["practice"]["book_moves"]) == book
 
         # Off book: the bot waits, and the reply request reports how the move compares.
         off = move(4, "a2a3")
         assert off["practice"]["status"] == "deviation"
         assert off["practice"]["deviation"]["verdict"] is None
         assert off["practice"]["deviation"]["san"] == "a3"
-        assert not off["practice"]["deviation"]["repeated"]
+        # The book moves stay available for the spot the learner left.
+        assert set(off["practice"]["book_moves"]) == book
         judged = reply()
         assert judged["reply"] is None and len(judged["frames"]) == 6
         deviation = judged["practice"]["deviation"]
@@ -178,19 +180,16 @@ def test_practice_follows_the_book_and_stops_the_learner_off_it(settings, stockf
 
         back = client.post(f"/api/play/{play_id}/takeback").json()
         assert len(back["frames"]) == 5 and back["practice"]["status"] == "book"
-        assert back["practice"]["hint"] == []
+        assert set(back["practice"]["book_moves"]) == book
         assert client.post(f"/api/play/{play_id}/takeback").status_code == 409
-
-        # A second miss at the same spot shows the book move once the learner goes back.
-        assert move(4, "h2h3")["practice"]["deviation"]["repeated"]
-        hinted = client.post(f"/api/play/{play_id}/takeback").json()
-        assert set(hinted["practice"]["hint"]) == book
+        assert client.post(f"/api/play/{play_id}/keep-playing").status_code == 409
 
         # Carrying on turns it into an ordinary game against the usual bot.
         move(4, "a2a3")
         carried = client.post(f"/api/play/{play_id}/carry-on").json()
         assert carried["practice"]["status"] == "ended"
         assert carried["practice"]["ended"] == "carried_on"
+        assert carried["practice"]["book_moves"] == []
         assert reply()["reply"]["source"] == "human"
 
 
@@ -227,10 +226,13 @@ def test_the_book_ending_hands_over_to_the_usual_bot(settings, stockfish_path):
             client.post(f"/api/play/{play_id}/move", json={"ply": ply, "uci": uci})
             state = client.post(f"/api/play/{play_id}/reply").json()
             assert state["reply"]["source"] == "book"
-        # The bot's last book move ends the book; the game plays on from there.
-        assert state["practice"]["status"] == "ended"
-        assert state["practice"]["ended"] == "book_end"
+        # The bot's last book move ends the line; the game waits for the learner's choice.
+        assert state["practice"]["status"] == "book_end"
         ply = len(state["frames"]) - 1
         legal = sorted(m.uci() for m in chess.Board(state["frames"][-1]["fen"]).legal_moves)
+        waiting = client.post(f"/api/play/{play_id}/move", json={"ply": ply, "uci": legal[0]})
+        assert waiting.status_code == 409
+        kept = client.post(f"/api/play/{play_id}/keep-playing").json()
+        assert kept["practice"]["status"] == "ended" and kept["practice"]["ended"] == "book_end"
         client.post(f"/api/play/{play_id}/move", json={"ply": ply, "uci": legal[0]})
         assert client.post(f"/api/play/{play_id}/reply").json()["reply"]["source"] == "human"

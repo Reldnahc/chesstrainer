@@ -155,10 +155,14 @@ def _order(score: Score):
 
 
 # Where a practice game stands against its book. The state is stored on the game as
-# JSON; every transition returns a new dict so the change is saved.
+# JSON; every transition returns a new dict so the change is saved. "book_moves" are
+# the learner's book moves at the spot they are deciding: the current position on
+# their turn in book, or the position they left the book from.
 
 
 def start_practice(course) -> dict:
+    book = book_for(course)
+    learner_first = course.learner_color == "white"
     return {
         "course_id": course.id,
         "revision": course.revision,
@@ -166,13 +170,17 @@ def start_practice(course) -> dict:
         "status": "book",
         "ended": None,
         "deviation": None,
-        "misses": {},
-        "hint": [],
+        "book_moves": list(book.book_moves(chess.Board())) if learner_first else [],
     }
 
 
+def _book_end(practice: dict) -> dict:
+    """The line is over; the game waits until the learner keeps playing or goes again."""
+    return {**practice, "status": "book_end", "deviation": None, "book_moves": []}
+
+
 def _ended(practice: dict, reason: str) -> dict:
-    return {**practice, "status": "ended", "ended": reason, "deviation": None, "hint": []}
+    return {**practice, "status": "ended", "ended": reason, "deviation": None, "book_moves": []}
 
 
 def learner_moved(practice: dict, book: Book, before: chess.Board, move: chess.Move) -> dict:
@@ -181,38 +189,36 @@ def learner_moved(practice: dict, book: Book, before: chess.Board, move: chess.M
         return practice
     book_moves = book.book_moves(before)
     if not book_moves:
-        return _ended(practice, "book_end")
+        return _book_end(practice)
     after = before.copy(stack=False)
     after.push(move)
     if move.uci() in book_moves:
         if not book.book_moves(after):
-            return _ended(practice, "book_end")
-        return {**practice, "hint": []}
-    spot = str(before.ply())
-    misses = {**practice.get("misses", {}), spot: practice.get("misses", {}).get(spot, 0) + 1}
+            return _book_end(practice)
+        return {**practice, "book_moves": []}
     return {
         **practice,
         "status": "deviation",
-        "misses": misses,
-        "hint": [],
+        "book_moves": list(book_moves),
         "deviation": {
             "ply": before.ply() + 1,
             "san": before.san(move),
             "uci": move.uci(),
             "book": [before.san(chess.Move.from_uci(uci)) for uci in book_moves],
-            "book_uci": list(book_moves),
             "verdict": None,
             "loss_cp": None,
             "compared_with": None,
-            "repeated": misses[spot] > 1,
         },
     }
 
 
 def bot_moved(practice: dict, book: Book, after: chess.Board) -> dict:
-    if practice["status"] == "book" and not book.book_moves(after):
-        return _ended(practice, "book_end")
-    return practice
+    if practice["status"] != "book":
+        return practice
+    book_moves = book.book_moves(after)
+    if not book_moves:
+        return _book_end(practice)
+    return {**practice, "book_moves": list(book_moves)}
 
 
 def judged(practice: dict, before: chess.Board, verdict: dict) -> dict:
@@ -227,19 +233,25 @@ def judged(practice: dict, before: chess.Board, verdict: dict) -> dict:
 
 
 def taken_back(practice: dict) -> dict:
-    """Back to the book; a spot missed more than once shows the book move."""
-    deviation = practice["deviation"]
-    repeated = deviation["repeated"]
-    return {
-        **practice,
-        "status": "book",
-        "deviation": None,
-        "hint": list(deviation["book_uci"]) if repeated else [],
-    }
+    """Back to the book, at the spot the learner left it."""
+    return {**practice, "status": "book", "deviation": None}
 
 
 def carried_on(practice: dict) -> dict:
     return _ended(practice, "carried_on")
+
+
+def kept_playing(practice: dict) -> dict:
+    return _ended(practice, "book_end")
+
+
+DEVIATION_FIELDS = ("ply", "san", "uci", "book", "verdict", "loss_cp", "compared_with")
+
+
+def book_moves(practice: dict) -> list[str]:
+    """Games started before "Show book move" kept the off-book spot's moves elsewhere."""
+    deviation = practice.get("deviation") or {}
+    return practice.get("book_moves") or deviation.get("book_uci") or []
 
 
 def practice_view(practice: dict | None) -> dict | None:
@@ -251,10 +263,6 @@ def practice_view(practice: dict | None) -> dict | None:
         "title": practice["title"],
         "status": practice["status"],
         "ended": practice["ended"],
-        "deviation": (
-            {key: value for key, value in deviation.items() if key != "book_uci"}
-            if deviation
-            else None
-        ),
-        "hint": practice["hint"],
+        "deviation": {key: deviation[key] for key in DEVIATION_FIELDS} if deviation else None,
+        "book_moves": book_moves(practice),
     }

@@ -771,6 +771,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/play/{play_id}/keep-playing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Keep Playing
+         * @description Opening practice: the line is over; play on as an ordinary game.
+         */
+        post: operations["keep_playing_api_play__play_id__keep_playing_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/play/{play_id}/move": {
         parameters: {
             query?: never;
@@ -3405,8 +3425,6 @@ export interface components {
             loss_cp: number | null;
             /** Ply */
             ply: number;
-            /** Repeated */
-            repeated: boolean;
             /** San */
             san: string;
             /** Uci */
@@ -3423,18 +3441,18 @@ export interface components {
         };
         /** PlayPractice */
         PlayPractice: {
+            /** Book Moves */
+            book_moves: string[];
             /** Course Id */
             course_id: string;
             deviation: components["schemas"]["PlayDeviation"] | null;
             /** Ended */
             ended: ("carried_on" | "book_end") | null;
-            /** Hint */
-            hint: string[];
             /**
              * Status
              * @enum {string}
              */
-            status: "book" | "deviation" | "ended";
+            status: "book" | "deviation" | "book_end" | "ended";
             /** Title */
             title: string;
         };
@@ -5899,6 +5917,37 @@ export interface operations {
         };
     };
     carry_on_api_play__play_id__carry_on_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    keep_playing_api_play__play_id__keep_playing_post: {
         parameters: {
             query?: never;
             header?: never;

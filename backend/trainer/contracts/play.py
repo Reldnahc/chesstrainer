@@ -64,18 +64,17 @@ class PlayDeviation(Contract):
     verdict: Literal["fine", "worse"] | None
     loss_cp: int | None
     compared_with: str | None
-    # The learner has missed here before; going back shows the book move.
-    repeated: bool
 
 
 class PlayPractice(Contract):
     course_id: str
     title: str
-    status: Literal["book", "deviation", "ended"]
+    # "book_end": the line is over and the game waits to keep playing or go again.
+    status: Literal["book", "deviation", "book_end", "ended"]
     ended: Literal["carried_on", "book_end"] | None
     deviation: PlayDeviation | None
-    # Book moves to draw as arrows: the learner missed this spot at least twice.
-    hint: list[str]
+    # The learner's book moves (UCI) where they are deciding, for "Show book move".
+    book_moves: list[str]
 
 
 class PracticeCourse(Contract):

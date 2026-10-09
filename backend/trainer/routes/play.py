@@ -21,10 +21,12 @@ from trainer.engine import EngineUnavailable
 from trainer.models import PlayGame, User
 from trainer.play.book import (
     book_for,
+    book_moves,
     bot_moved,
     carried_on,
     deviation_verdict,
     judged,
+    kept_playing,
     learner_moved,
     practice_courses,
     practice_lines,
@@ -81,9 +83,13 @@ def create_router(
         )
         return book_for(course) if course else None
 
-    def waiting_on_learner(play):
+    def off_book(play):
         """Off book, the bot does not answer until the learner goes back or carries on."""
         return bool(play.practice) and play.practice["status"] == "deviation"
+
+    def waiting_on_learner(play):
+        """Off book, or at the end of the line, the bot waits for the learner's choice."""
+        return bool(play.practice) and play.practice["status"] in {"deviation", "book_end"}
 
     def compute_reply(workspace, play, book):
         """Engine and model work runs between transactions, never inside one."""
@@ -109,7 +115,7 @@ def create_router(
         with workspace.variation_lock:
             try:
                 return deviation_verdict(
-                    workspace.engine, before, deviation["uci"], deviation["book_uci"]
+                    workspace.engine, before, deviation["uci"], book_moves(play.practice)
                 )
             except EngineUnavailable as exc:
                 raise HTTPException(503, str(exc)) from exc
@@ -219,6 +225,8 @@ def create_router(
                 board = board_for(play)
                 if board.turn != learner_is_white(play):
                     raise HTTPException(409, "It is not your move.")
+                if waiting_on_learner(play):
+                    raise HTTPException(409, "Choose to keep playing or go again first.")
                 try:
                     move = legal_move(board, data.uci)
                 except ValueError as exc:
@@ -246,17 +254,17 @@ def create_router(
                 play = require_play(db, play_id)
                 name = learner_name(db, workspace)
                 if waiting_on_learner(play):
-                    if play.practice["deviation"]["verdict"] is not None:
+                    if not off_book(play) or play.practice["deviation"]["verdict"] is not None:
                         return state(play, name)
                 elif not bot_to_move(play, board_for(play)):
                     return state(play, name, last_reply(play) if play.status == "active" else None)
                 book = practice_book(db, play)
-            if waiting_on_learner(play):
+            if off_book(play):
                 # Off book the bot waits; the reply request reports how the move compares.
                 verdict = judge_deviation(workspace, play)
                 with workspace.sessions() as db:
                     play = require_play(db, play_id)
-                    if waiting_on_learner(play) and play.practice["deviation"]["verdict"] is None:
+                    if off_book(play) and play.practice["deviation"]["verdict"] is None:
                         before = board_for(play, play.practice["deviation"]["ply"] - 1)
                         play.practice = judged(play.practice, before, verdict)
                         db.commit()
@@ -309,13 +317,16 @@ def create_router(
             db.commit()
         return {"report": report, "score": report["white_score"], "best_move": None}
 
-    def require_deviation(db, play_id):
+    def require_practice(db, play_id, status):
         play = require_play(db, play_id)
         if play.status != "active":
             raise HTTPException(409, "This game has finished.")
-        if not waiting_on_learner(play):
-            raise HTTPException(409, "There is no off-book move to answer.")
+        if not play.practice or play.practice["status"] != status:
+            raise HTTPException(409, "There is nothing to answer here.")
         return play
+
+    def require_deviation(db, play_id):
+        return require_practice(db, play_id, "deviation")
 
     @router.post(
         "/api/play/{play_id}/takeback", response_model=PlayState, response_model_exclude_unset=True
@@ -341,6 +352,20 @@ def create_router(
             play = require_deviation(db, play_id)
             name = learner_name(db, workspace)
             play.practice = carried_on(play.practice)
+            db.commit()
+            return state(play, name)
+
+    @router.post(
+        "/api/play/{play_id}/keep-playing",
+        response_model=PlayState,
+        response_model_exclude_unset=True,
+    )
+    def keep_playing(workspace: CurrentWorkspace, play_id: str):
+        """Opening practice: the line is over; play on as an ordinary game."""
+        with workspace.mutation_lock, workspace.sessions() as db:
+            play = require_practice(db, play_id, "book_end")
+            name = learner_name(db, workspace)
+            play.practice = kept_playing(play.practice)
             db.commit()
             return state(play, name)
 

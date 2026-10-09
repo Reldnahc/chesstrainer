@@ -6232,10 +6232,6 @@
             "title": "Ply",
             "type": "integer"
           },
-          "repeated": {
-            "title": "Repeated",
-            "type": "boolean"
-          },
           "san": {
             "title": "San",
             "type": "string"
@@ -6267,8 +6263,7 @@
           "book",
           "verdict",
           "loss_cp",
-          "compared_with",
-          "repeated"
+          "compared_with"
         ],
         "title": "PlayDeviation",
         "type": "object"
@@ -6299,6 +6294,13 @@
       "PlayPractice": {
         "additionalProperties": false,
         "properties": {
+          "book_moves": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Book Moves",
+            "type": "array"
+          },
           "course_id": {
             "title": "Course Id",
             "type": "string"
@@ -6328,17 +6330,11 @@
             ],
             "title": "Ended"
           },
-          "hint": {
-            "items": {
-              "type": "string"
-            },
-            "title": "Hint",
-            "type": "array"
-          },
           "status": {
             "enum": [
               "book",
               "deviation",
+              "book_end",
               "ended"
             ],
             "title": "Status",
@@ -6355,7 +6351,7 @@
           "status",
           "ended",
           "deviation",
-          "hint"
+          "book_moves"
         ],
         "title": "PlayPractice",
         "type": "object"
@@ -11544,6 +11540,46 @@
           }
         },
         "summary": "Carry On"
+      }
+    },
+    "/api/play/{play_id}/keep-playing": {
+      "post": {
+        "description": "Opening practice: the line is over; play on as an ordinary game.",
+        "operationId": "keep_playing_api_play__play_id__keep_playing_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Keep Playing"
       }
     },
     "/api/play/{play_id}/move": {
