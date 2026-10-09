@@ -25,6 +25,9 @@ class PlayRequest(Contract):
     color: Literal["white", "black", "random"] = "random"
     opponent: OpponentKind = "human"
     rating: int = Field(ge=600, le=2600)
+    # Opening practice: the bot answers from this course's repertoire lines, and the
+    # learner plays the course's side whatever color was asked for.
+    course_id: str | None = Field(default=None, min_length=1, max_length=100)
 
     @model_validator(mode="after")
     def rating_within_the_opponent_range(self):
@@ -47,7 +50,43 @@ class PlayReply(Contract):
     ply: int
     san: str
     uci: str
-    source: Literal["human", "engine", "fallback"]
+    source: Literal["human", "engine", "fallback", "book"]
+
+
+class PlayDeviation(Contract):
+    """The learner left the book: their move, the book's moves and how much it costs."""
+
+    ply: int
+    san: str
+    uci: str
+    book: list[str]
+    # Filled once the engine has compared the move with the best book move.
+    verdict: Literal["fine", "worse"] | None
+    loss_cp: int | None
+    compared_with: str | None
+    # The learner has missed here before; going back shows the book move.
+    repeated: bool
+
+
+class PlayPractice(Contract):
+    course_id: str
+    title: str
+    status: Literal["book", "deviation", "ended"]
+    ended: Literal["carried_on", "book_end"] | None
+    deviation: PlayDeviation | None
+    # Book moves to draw as arrows: the learner missed this spot at least twice.
+    hint: list[str]
+
+
+class PracticeCourse(Contract):
+    id: str
+    title: str
+    learner_color: Color
+    lines: int
+
+
+class PracticeCourses(Contract):
+    courses: list[PracticeCourse]
 
 
 class PlayState(Contract):
@@ -67,6 +106,7 @@ class PlayState(Contract):
     termination: str | None
     saved_game_id: str | None
     reply: PlayReply | None
+    practice: PlayPractice | None = None
     frames: list[GameFrame]
 
 

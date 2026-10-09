@@ -6195,6 +6195,84 @@
         "title": "PhaseRate",
         "type": "object"
       },
+      "PlayDeviation": {
+        "additionalProperties": false,
+        "description": "The learner left the book: their move, the book's moves and how much it costs.",
+        "properties": {
+          "book": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Book",
+            "type": "array"
+          },
+          "compared_with": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Compared With"
+          },
+          "loss_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Loss Cp"
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          },
+          "repeated": {
+            "title": "Repeated",
+            "type": "boolean"
+          },
+          "san": {
+            "title": "San",
+            "type": "string"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "enum": [
+                  "fine",
+                  "worse"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verdict"
+          }
+        },
+        "required": [
+          "ply",
+          "san",
+          "uci",
+          "book",
+          "verdict",
+          "loss_cp",
+          "compared_with",
+          "repeated"
+        ],
+        "title": "PlayDeviation",
+        "type": "object"
+      },
       "PlayMoveRequest": {
         "additionalProperties": false,
         "properties": {
@@ -6216,6 +6294,70 @@
           "uci"
         ],
         "title": "PlayMoveRequest",
+        "type": "object"
+      },
+      "PlayPractice": {
+        "additionalProperties": false,
+        "properties": {
+          "course_id": {
+            "title": "Course Id",
+            "type": "string"
+          },
+          "deviation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlayDeviation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "ended": {
+            "anyOf": [
+              {
+                "enum": [
+                  "carried_on",
+                  "book_end"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ended"
+          },
+          "hint": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Hint",
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "book",
+              "deviation",
+              "ended"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "course_id",
+          "title",
+          "status",
+          "ended",
+          "deviation",
+          "hint"
+        ],
+        "title": "PlayPractice",
         "type": "object"
       },
       "PlayProfile": {
@@ -6317,7 +6459,8 @@
             "enum": [
               "human",
               "engine",
-              "fallback"
+              "fallback",
+              "book"
             ],
             "title": "Source",
             "type": "string"
@@ -6390,6 +6533,19 @@
             ],
             "title": "Color",
             "type": "string"
+          },
+          "course_id": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Course Id"
           },
           "opponent": {
             "default": "human",
@@ -6464,6 +6620,16 @@
             ],
             "title": "Opponent",
             "type": "string"
+          },
+          "practice": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlayPractice"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "rating": {
             "title": "Rating",
@@ -6689,6 +6855,56 @@
           "components"
         ],
         "title": "PracticalAssessment",
+        "type": "object"
+      },
+      "PracticeCourse": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "learner_color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Learner Color",
+            "type": "string"
+          },
+          "lines": {
+            "title": "Lines",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "learner_color",
+          "lines"
+        ],
+        "title": "PracticeCourse",
+        "type": "object"
+      },
+      "PracticeCourses": {
+        "additionalProperties": false,
+        "properties": {
+          "courses": {
+            "items": {
+              "$ref": "#/components/schemas/PracticeCourse"
+            },
+            "title": "Courses",
+            "type": "array"
+          }
+        },
+        "required": [
+          "courses"
+        ],
+        "title": "PracticeCourses",
         "type": "object"
       },
       "PracticeQueueItem": {
@@ -11148,6 +11364,24 @@
         "summary": "Active Game"
       }
     },
+    "/api/play/openings": {
+      "get": {
+        "operationId": "opening_courses_api_play_openings_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PracticeCourses"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Opening Courses"
+      }
+    },
     "/api/play/profile": {
       "get": {
         "operationId": "level_profile_api_play_profile_get",
@@ -11270,6 +11504,46 @@
           }
         },
         "summary": "Analyze Play Move"
+      }
+    },
+    "/api/play/{play_id}/carry-on": {
+      "post": {
+        "description": "Opening practice: keep the off-book move and play on as an ordinary game.",
+        "operationId": "carry_on_api_play__play_id__carry_on_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Carry On"
       }
     },
     "/api/play/{play_id}/move": {
@@ -11397,6 +11671,46 @@
           }
         },
         "summary": "Resign"
+      }
+    },
+    "/api/play/{play_id}/takeback": {
+      "post": {
+        "description": "Opening practice: undo the learner's off-book move and try again.",
+        "operationId": "take_back_api_play__play_id__takeback_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Take Back"
       }
     },
     "/api/practice/queue": {

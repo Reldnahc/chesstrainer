@@ -12,6 +12,7 @@ from trainer.game_review import analyze_move, position, public_report
 from trainer.human_models.runtime import HumanUnavailable
 from trainer.imports import import_games
 from trainer.models import ImportGame, PlayGame
+from trainer.play.book import book_move, practice_view
 from trainer.play.bot import bot_request, engine_move, human_move, seeded
 
 
@@ -114,6 +115,7 @@ def state(play: PlayGame, learner_name: str, reply=None) -> dict:
         "termination": play.termination,
         "saved_game_id": play.saved_game_id,
         "reply": reply,
+        "practice": practice_view(play.practice),
         "frames": frames_for(play),
     }
 
@@ -149,8 +151,12 @@ def result_for(outcome) -> tuple[str, str]:
     return outcome.result(), outcome.termination.name.replace("_", " ").lower()
 
 
-def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Board):
+def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Board, book=None):
     rng = seeded(play.id, len(play.moves))
+    if book is not None and play.practice and play.practice["status"] == "book":
+        book_moves = book.book_moves(board)
+        if book_moves:
+            return book_move(human_models, sessions, play, board, book_moves, rng)
     if play.opponent_kind == "engine":
         return engine_move(engine, board, play.opponent_rating, rng)
     request = bot_request(board, play.opponent_rating, play.learner_rating)

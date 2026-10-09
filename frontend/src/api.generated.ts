@@ -666,6 +666,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/play/openings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Opening Courses */
+        get: operations["opening_courses_api_play_openings_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/play/profile": {
         parameters: {
             query?: never;
@@ -734,6 +751,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/play/{play_id}/carry-on": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Carry On
+         * @description Opening practice: keep the off-book move and play on as an ordinary game.
+         */
+        post: operations["carry_on_api_play__play_id__carry_on_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/play/{play_id}/move": {
         parameters: {
             query?: never;
@@ -779,6 +816,26 @@ export interface paths {
         put?: never;
         /** Resign */
         post: operations["resign_api_play__play_id__resign_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/{play_id}/takeback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Take Back
+         * @description Opening practice: undo the learner's off-book move and try again.
+         */
+        post: operations["take_back_api_play__play_id__takeback_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3335,12 +3392,51 @@ export interface components {
              */
             phase: "opening" | "middlegame" | "endgame";
         };
+        /**
+         * PlayDeviation
+         * @description The learner left the book: their move, the book's moves and how much it costs.
+         */
+        PlayDeviation: {
+            /** Book */
+            book: string[];
+            /** Compared With */
+            compared_with: string | null;
+            /** Loss Cp */
+            loss_cp: number | null;
+            /** Ply */
+            ply: number;
+            /** Repeated */
+            repeated: boolean;
+            /** San */
+            san: string;
+            /** Uci */
+            uci: string;
+            /** Verdict */
+            verdict: ("fine" | "worse") | null;
+        };
         /** PlayMoveRequest */
         PlayMoveRequest: {
             /** Ply */
             ply: number;
             /** Uci */
             uci: string;
+        };
+        /** PlayPractice */
+        PlayPractice: {
+            /** Course Id */
+            course_id: string;
+            deviation: components["schemas"]["PlayDeviation"] | null;
+            /** Ended */
+            ended: ("carried_on" | "book_end") | null;
+            /** Hint */
+            hint: string[];
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "book" | "deviation" | "ended";
+            /** Title */
+            title: string;
         };
         /** PlayProfile */
         PlayProfile: {
@@ -3374,7 +3470,7 @@ export interface components {
              * Source
              * @enum {string}
              */
-            source: "human" | "engine" | "fallback";
+            source: "human" | "engine" | "fallback" | "book";
             /** Uci */
             uci: string;
         };
@@ -3393,6 +3489,8 @@ export interface components {
              * @enum {string}
              */
             color: "white" | "black" | "random";
+            /** Course Id */
+            course_id?: string | null;
             /**
              * Opponent
              * @default human
@@ -3428,6 +3526,7 @@ export interface components {
              * @enum {string}
              */
             opponent: "human" | "engine";
+            practice?: components["schemas"]["PlayPractice"] | null;
             /** Rating */
             rating: number;
             reply: components["schemas"]["PlayReply"] | null;
@@ -3503,6 +3602,25 @@ export interface components {
              * @constant
              */
             version: "practical-2";
+        };
+        /** PracticeCourse */
+        PracticeCourse: {
+            /** Id */
+            id: string;
+            /**
+             * Learner Color
+             * @enum {string}
+             */
+            learner_color: "white" | "black";
+            /** Lines */
+            lines: number;
+            /** Title */
+            title: string;
+        };
+        /** PracticeCourses */
+        PracticeCourses: {
+            /** Courses */
+            courses: components["schemas"]["PracticeCourse"][];
         };
         /** PracticeQueueItem */
         PracticeQueueItem: {
@@ -5654,6 +5772,26 @@ export interface operations {
             };
         };
     };
+    opening_courses_api_play_openings_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PracticeCourses"];
+                };
+            };
+        };
+    };
     level_profile_api_play_profile_get: {
         parameters: {
             query?: never;
@@ -5760,6 +5898,37 @@ export interface operations {
             };
         };
     };
+    carry_on_api_play__play_id__carry_on_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     play_move_api_play__play_id__move_post: {
         parameters: {
             query?: never;
@@ -5827,6 +5996,37 @@ export interface operations {
         };
     };
     resign_api_play__play_id__resign_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    take_back_api_play__play_id__takeback_post: {
         parameters: {
             query?: never;
             header?: never;

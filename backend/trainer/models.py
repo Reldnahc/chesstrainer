@@ -232,6 +232,9 @@ class PlayGame(Owned, Base):
     moves: Mapped[list] = mapped_column(JSON, default=list)
     # Public move reports keyed by ply, produced on request or live during play.
     reports: Mapped[dict] = mapped_column(JSON, default=dict)
+    # Opening practice: the course whose repertoire is the bot's book, and where the
+    # game stands against it. None for an ordinary game.
+    practice: Mapped[dict | None] = mapped_column(JSON)
     status: Mapped[str] = mapped_column(default="active", index=True)
     result: Mapped[str | None]
     termination: Mapped[str | None]

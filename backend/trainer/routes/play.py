@@ -15,9 +15,22 @@ from trainer.contracts.play import (
     PlayRequest,
     PlayState,
     PlyRequest,
+    PracticeCourses,
 )
 from trainer.engine import EngineUnavailable
 from trainer.models import PlayGame, User
+from trainer.play.book import (
+    book_for,
+    bot_moved,
+    carried_on,
+    deviation_verdict,
+    judged,
+    learner_moved,
+    practice_courses,
+    practice_lines,
+    start_practice,
+    taken_back,
+)
 from trainer.play.level import LevelFits
 from trainer.play.sessions import (
     analyze_ply,
@@ -30,12 +43,16 @@ from trainer.play.sessions import (
     result_for,
     state,
 )
+from trainer.study_lessons.providers import CourseProviders
 from trainer.workspaces import CurrentWorkspace
 
 
-def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
+def create_router(
+    *, settings, fits: LevelFits | None = None, courses: CourseProviders | None = None
+) -> APIRouter:
     router = APIRouter()
     fits = fits or LevelFits()
+    courses = courses or CourseProviders()
 
     def learner_name(db, workspace):
         user = db.get(User, workspace.user_id) if settings.accounts_enabled else None
@@ -52,7 +69,23 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
             select(PlayGame).where(PlayGame.status == "active").order_by(PlayGame.created_at.desc())
         )
 
-    def compute_reply(workspace, play):
+    def practice_book(db, play):
+        """The game's book, from the course revision it started with when still installed."""
+        if not play.practice:
+            return None
+        practice = play.practice
+        installed = [course for course in courses.courses(db) if course.id == practice["course_id"]]
+        course = next(
+            (course for course in installed if course.revision == practice["revision"]),
+            installed[-1] if installed else None,
+        )
+        return book_for(course) if course else None
+
+    def waiting_on_learner(play):
+        """Off book, the bot does not answer until the learner goes back or carries on."""
+        return bool(play.practice) and play.practice["status"] == "deviation"
+
+    def compute_reply(workspace, play, book):
         """Engine and model work runs between transactions, never inside one."""
         board = board_for(play)
         if not bot_to_move(play, board):
@@ -60,17 +93,35 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
         with workspace.variation_lock:
             try:
                 return choose_reply(
-                    workspace.engine, workspace.human_models, workspace.sessions, play, board
+                    workspace.engine,
+                    workspace.human_models,
+                    workspace.sessions,
+                    play,
+                    board,
+                    book,
                 )
             except EngineUnavailable as exc:
                 raise HTTPException(503, str(exc)) from exc
 
-    def apply_reply(db, play, choice, name):
+    def judge_deviation(workspace, play):
+        deviation = play.practice["deviation"]
+        before = board_for(play, deviation["ply"] - 1)
+        with workspace.variation_lock:
+            try:
+                return deviation_verdict(
+                    workspace.engine, before, deviation["uci"], deviation["book_uci"]
+                )
+            except EngineUnavailable as exc:
+                raise HTTPException(503, str(exc)) from exc
+
+    def apply_reply(db, play, choice, name, book):
         """The bot answers, and the game ends here when the board says so. It never resigns."""
         if choice is None or play.status != "active":
             return None
         play.moves = [*play.moves, choice.uci]
         board = board_for(play)
+        if play.practice and book is not None:
+            play.practice = bot_moved(play.practice, book, board)
         outcome = board_outcome(board)
         if outcome:
             finish(db, play, *result_for(outcome), name)
@@ -102,6 +153,11 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
     def refresh_level_profile(workspace: CurrentWorkspace):
         return fits.profile(workspace, refresh=True)
 
+    @router.get("/api/play/openings", response_model=PracticeCourses)
+    def opening_courses(workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
+            return {"courses": practice_courses(courses.courses(db))}
+
     @router.get("/api/play/active", response_model=ActivePlay, response_model_exclude_unset=True)
     def active_game(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
@@ -119,6 +175,12 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
                     previous.status, previous.result = "finished", "*"
                     previous.termination = "abandoned"
                 color = data.color if data.color != "random" else random.choice(["white", "black"])
+                practice = None
+                if data.course_id:
+                    course = courses.get(db, data.course_id)
+                    if not practice_lines(course):
+                        raise HTTPException(422, "That course has no lines to practice.")
+                    color, practice = course.learner_color, start_practice(course)
                 profile = fits.profile(workspace)
                 play = PlayGame(
                     coach_id=data.coach_id,
@@ -130,6 +192,7 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
                     commentary="live",
                     moves=[],
                     reports={},
+                    practice=practice,
                 )
                 db.add(play)
                 db.commit()
@@ -160,6 +223,10 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
                     move = legal_move(board, data.uci)
                 except ValueError as exc:
                     raise HTTPException(422, str(exc)) from exc
+                if play.practice:
+                    book = practice_book(db, play)
+                    if book is not None:
+                        play.practice = learner_moved(play.practice, book, board, move)
                 play.moves = [*play.moves, move.uci()]
                 board.push(move)
                 outcome = board_outcome(board)
@@ -178,14 +245,28 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
             with workspace.sessions() as db:
                 play = require_play(db, play_id)
                 name = learner_name(db, workspace)
-                if not bot_to_move(play, board_for(play)):
+                if waiting_on_learner(play):
+                    if play.practice["deviation"]["verdict"] is not None:
+                        return state(play, name)
+                elif not bot_to_move(play, board_for(play)):
                     return state(play, name, last_reply(play) if play.status == "active" else None)
-            choice = compute_reply(workspace, play)
+                book = practice_book(db, play)
+            if waiting_on_learner(play):
+                # Off book the bot waits; the reply request reports how the move compares.
+                verdict = judge_deviation(workspace, play)
+                with workspace.sessions() as db:
+                    play = require_play(db, play_id)
+                    if waiting_on_learner(play) and play.practice["deviation"]["verdict"] is None:
+                        before = board_for(play, play.practice["deviation"]["ply"] - 1)
+                        play.practice = judged(play.practice, before, verdict)
+                        db.commit()
+                    return state(play, name)
+            choice = compute_reply(workspace, play, book)
             with workspace.sessions() as db:
                 play = require_play(db, play_id)
                 reply = (
-                    apply_reply(db, play, choice, name)
-                    if bot_to_move(play, board_for(play))
+                    apply_reply(db, play, choice, name, book)
+                    if bot_to_move(play, board_for(play)) and not waiting_on_learner(play)
                     else last_reply(play)
                 )
                 db.commit()
@@ -201,6 +282,7 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
             play = require_play(db, play_id)
             name = learner_name(db, workspace)
             saved = play.reports.get(str(data.ply))
+            analysed = play.moves[: data.ply]
         if saved:
             return {"report": saved, "score": saved["white_score"], "best_move": None}
         if data.ply > len(play.moves):
@@ -219,9 +301,48 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
                 raise HTTPException(503, str(exc)) from exc
         with workspace.mutation_lock, workspace.sessions() as db:
             play = require_play(db, play_id)
+            # A take-back can replace the move while it is analysed; keep only a
+            # report that still describes the game.
+            if play.moves[: data.ply] != analysed:
+                raise HTTPException(409, "That move was taken back.")
             play.reports = {**play.reports, str(data.ply): report}
             db.commit()
         return {"report": report, "score": report["white_score"], "best_move": None}
+
+    def require_deviation(db, play_id):
+        play = require_play(db, play_id)
+        if play.status != "active":
+            raise HTTPException(409, "This game has finished.")
+        if not waiting_on_learner(play):
+            raise HTTPException(409, "There is no off-book move to answer.")
+        return play
+
+    @router.post(
+        "/api/play/{play_id}/takeback", response_model=PlayState, response_model_exclude_unset=True
+    )
+    def take_back(workspace: CurrentWorkspace, play_id: str):
+        """Opening practice: undo the learner's off-book move and try again."""
+        with workspace.mutation_lock, workspace.sessions() as db:
+            play = require_deviation(db, play_id)
+            name = learner_name(db, workspace)
+            ply = play.practice["deviation"]["ply"]
+            play.moves = play.moves[: ply - 1]
+            play.reports = {key: value for key, value in play.reports.items() if int(key) < ply}
+            play.practice = taken_back(play.practice)
+            db.commit()
+            return state(play, name)
+
+    @router.post(
+        "/api/play/{play_id}/carry-on", response_model=PlayState, response_model_exclude_unset=True
+    )
+    def carry_on(workspace: CurrentWorkspace, play_id: str):
+        """Opening practice: keep the off-book move and play on as an ordinary game."""
+        with workspace.mutation_lock, workspace.sessions() as db:
+            play = require_deviation(db, play_id)
+            name = learner_name(db, workspace)
+            play.practice = carried_on(play.practice)
+            db.commit()
+            return state(play, name)
 
     @router.post(
         "/api/play/{play_id}/resign", response_model=PlayState, response_model_exclude_unset=True
