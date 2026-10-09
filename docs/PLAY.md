@@ -68,11 +68,17 @@ the design uses the engine as a veto, never as a blend.
 
 The learner's move is saved and shown at once; the move request does no engine
 or model work. The page then asks for the bot's reply (`/reply`) and for the
-review's report on the learner's move in parallel. The reply is revealed only
-after the coach has had its say: once that report has arrived and the coach's
-voice line, if one plays, has finished, plus a pause of 2.5 seconds. If no report
-arrives within 20 seconds the reply shows anyway. A repeated reply request after
-the bot has moved returns the same move.
+review's report on the learner's move in parallel. The reply is revealed 0.4
+seconds after that report arrives; it does not wait for the coach's voice. If no
+report arrives within 20 seconds the reply shows anyway. A repeated reply request
+after the bot has moved returns the same move.
+
+The coach's line about the learner's move keeps playing over the reply: the coach
+panel stays on that move until its line finishes (or, with no voice, for 2.5
+seconds after the grade), then follows the board and says its one line about the
+reply. The learner may move as soon as the reply is on the board; their move, or
+navigating the game, cuts any line still playing. Each ply gets one automatic
+playback.
 
 ### No resignation, no draw offers
 

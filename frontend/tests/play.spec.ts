@@ -57,6 +57,8 @@ async function mockPlay(page: Page) {
   });
   await page.route("**/api/play/play1/analyze", async route => {
     const {ply} = route.request().postDataJSON() as {ply: number};
+    // Grading takes a moment, so the wait for it is visible.
+    if (ply === 1) await new Promise(resolve => setTimeout(resolve, 1000));
     const value = ply === 1 ? report("e4", "e2e4", "Best", 30) : report("e5", "e7e5", "Good", 20);
     await route.fulfill({json: {report: value, score: value.white_score, best_move: null}});
   });
@@ -92,18 +94,21 @@ test("the setup page explains the measured level and starts a live game", async 
   await expect(page.locator(".review-board-meta .game-accuracy")).toHaveCount(0);
 });
 
-test("the coach comments on the move before the bot answers it", async ({page}) => {
+test("the bot answers once the move is graded while the coach finishes its line", async ({page}) => {
   await mockPlay(page);
   await page.goto("/play/play1");
   await page.locator('[data-square="e2"]').first().click();
   await page.locator('[data-square="e4"]').first().click();
-  // The learner's move shows at once with its grade; the answer waits for the coach.
+  // The learner's move shows at once; the answer waits only for its grade.
   await expect(page.locator(".game-move-list")).toContainText("e4");
-  await expect(page.locator(".coach-quality-name")).toHaveText("Best");
   await expect(page.getByText("Walter is thinking…")).toBeVisible();
   await expect(page.locator(".game-move-list")).not.toContainText("e5");
-  await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 10000});
-  await expect(page.locator(".coach-quality-name")).toHaveText("Good");
+  await expect(page.locator(".coach-quality-name")).toHaveText("Best");
+  await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 2000});
+  // The coach stays on the learner's move for a moment after the reply lands.
+  await expect(page.locator(".coach-quality-name")).toHaveText("Best");
+  await expect(page.getByText("Your move")).toBeVisible();
+  await expect(page.locator(".coach-quality-name")).toHaveText("Good", {timeout: 10000});
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("2 / 2");
   await page.keyboard.press("ArrowLeft");

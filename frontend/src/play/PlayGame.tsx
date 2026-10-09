@@ -55,7 +55,10 @@ export default function PlayGame({ id }: { id: string }) {
   const cues = report?.board_cues?.fen === frame?.fen ? (report?.board_cues ?? null) : null;
   const explaining = session.explaining && !!cues;
   const currentUci = frame?.uci ?? null;
-  const actor = ply > 0 && frame?.san ? (frame.turn === "white" ? "Black" : "White") : null;
+  // The coach can still be on the learner's move while the board shows the reply.
+  const coach = session.coach;
+  const coachHeld = coach.ply !== ply;
+  const actor = coach.ply > 0 && coach.frame?.san ? (coach.frame.turn === "white" ? "Black" : "White") : null;
   const bot = state.coach_name;
   const name = (color: "white" | "black") => {
     const rating = color === "white" ? state.white_rating : state.black_rating;
@@ -157,22 +160,22 @@ export default function PlayGame({ id }: { id: string }) {
         }
       >
         <PositionCoach
-          positionKey={`${id}:${ply}`}
-          dialogueKey={`${id}:${ply}`}
-          ply={ply}
+          positionKey={`${id}:${coach.ply}`}
+          dialogueKey={`${id}:${coach.ply}`}
+          ply={coach.ply}
           variation={false}
           game={game}
-          report={report}
-          frame={frame}
+          report={coach.report}
+          frame={coach.frame}
           actor={actor}
-          score={score}
-          bestMove={report?.best.san}
-          explaining={explaining}
-          cues={cues}
+          score={coachHeld ? positionScore(coach.report?.white_score, coach.frame) : score}
+          bestMove={coach.report?.best.san}
+          explaining={explaining && !coachHeld}
+          cues={coachHeld ? null : cues}
           errorAtPosition={session.analysisError}
           reviewStarting={false}
-          speechPending={session.moving || (!!session.speechNavigation?.awaitAnalysis && !report && !session.analysisError)}
-          speechEventId={session.speechNavigation?.eventId}
+          speechPending={session.moving || (!!coach.speechNavigation?.awaitAnalysis && !coach.report && !session.analysisError)}
+          speechEventId={coach.speechNavigation?.eventId}
           onExplain={() => (session.analysisError ? session.retryAnalysis() : session.toggleExplanation())}
           onReturnToGame={() => session.navigate(latest)}
           onVoicePlaying={session.onVoicePlaying}
