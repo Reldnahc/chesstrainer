@@ -45,7 +45,8 @@ const LEVELS = [
 ] as const;
 
 export default function PlayScreen({ gameId }: { gameId: string | null }) {
-  if (gameId) return <PlayGame id={gameId} />;
+  // Keyed so "Go again" starts the new game with a fresh session.
+  if (gameId) return <PlayGame key={gameId} id={gameId} />;
   return <PlaySetup />;
 }
 

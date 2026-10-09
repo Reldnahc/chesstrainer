@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api, read, type Schema } from "../api";
+import { navigate as openPage, playGamePath } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
 import type { Analysis, Game, Report } from "../gameReview/types";
 import type { SpeechNavigation } from "../gameReview/useGameExploration";
@@ -143,6 +144,9 @@ export function usePlaySession(id: string) {
   // Off book in opening practice the bot waits for the learner to go back or carry on;
   // the reply request then only reports how the move compares with the book.
   const deviation = state?.practice?.status === "deviation" ? state.practice.deviation : null;
+  // At the end of the line the bot also waits: keep playing, or go again.
+  const lineOver = state?.status === "active" && state.practice?.status === "book_end";
+  const choosing = !!deviation || lineOver;
   const botToMove =
     !!state && state.status === "active" && shown === state.frames.length - 1 && state.frames[shown]?.turn !== learnerColor;
   useEffect(() => {
@@ -290,6 +294,44 @@ export function usePlaySession(id: string) {
     }
   }
 
+  async function keepPlaying() {
+    if (!state || !lineOver) return;
+    setError("");
+    try {
+      const next = await read(
+        api.POST("/api/play/{play_id}/keep-playing", { params: { path: { play_id: id } } }),
+      );
+      if (!mounted.current) return;
+      replyRequested.current = null;
+      accept(next);
+    } catch (e) {
+      if (mounted.current) setError((e as Error).message);
+    }
+  }
+
+  // A fresh practice game with the same course, coach and strength.
+  async function goAgain() {
+    if (!state?.practice) return;
+    setError("");
+    try {
+      const next = await read(
+        api.POST("/api/play", {
+          body: {
+            coach_id: state.coach_id as Schema["PlayRequest"]["coach_id"],
+            coach_name: state.coach_name,
+            color: state.learner_color,
+            opponent: state.opponent,
+            rating: state.rating,
+            course_id: state.practice.course_id,
+          },
+        }),
+      );
+      openPage(playGamePath(next.id));
+    } catch (e) {
+      if (mounted.current) setError((e as Error).message);
+    }
+  }
+
   async function resign() {
     if (!state || state.status !== "active") return;
     setError("");
@@ -369,9 +411,9 @@ export function usePlaySession(id: string) {
   }, [state, latest, reports]);
 
   const waitingForBot =
-    !!state && state.status === "active" && !deviation && state.frames[latest]?.turn !== state.learner_color;
+    !!state && state.status === "active" && !choosing && state.frames[latest]?.turn !== state.learner_color;
   const learnerToMove =
-    !!state && state.status === "active" && !deviation && !waitingForBot && !pending;
+    !!state && state.status === "active" && !choosing && !waitingForBot && !pending;
   // The coach panel's position: the board's, or the learner's move while its line plays.
   const coachPly = held !== null && cursor === null && held < latest ? held : ply;
   return {
@@ -404,6 +446,9 @@ export function usePlaySession(id: string) {
     resign,
     practice: state?.practice ?? null,
     deviation,
+    lineOver,
+    keepPlaying,
+    goAgain,
     takeBack,
     carryOn,
     retryAnalysis: () => requestAnalysis(ply),

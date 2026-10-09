@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import MoveBadge from "../MoveBadge";
 import ReviewCoach from "../ReviewCoach";
 import Button from "../Button";
@@ -43,6 +43,7 @@ export default function PositionCoach({
   speechOpening = false,
   onVoicePlaying,
   live,
+  prompt,
 }: {
   game: Game;
   report?: Report | null;
@@ -67,6 +68,8 @@ export default function PositionCoach({
   onVoicePlaying?: (playing: boolean) => void;
   /** A game against the coach: "new" before its first move, then "underway". */
   live?: "new" | "underway";
+  /** A question the page puts to the learner in the coach's bubble, with its answers. */
+  prompt?: { title: ReactNode; text: ReactNode; actions: ReactNode } | null;
 }) {
   const reaction = gameReaction({
     key: positionKey,
@@ -146,6 +149,13 @@ export default function PositionCoach({
   useEffect(() => {
     onVoicePlaying?.(voice.playing);
   }, [voice.playing, onVoicePlaying]);
+  if (prompt)
+    return (
+      <ReviewCoach reaction={{...reaction, state: utterance.expression}} voice={voice}
+        title={prompt.title} evaluation={<EvaluationScore score={score} />} actions={prompt.actions}>
+        {prompt.text}
+      </ReviewCoach>
+    );
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}

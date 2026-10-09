@@ -128,14 +128,22 @@ with several it samples them by the Maia policy at the chosen rating restricted 
 book moves, each keeping at least a 10% share so rarer lines still come up. Book
 replies do no engine work and are shown without waiting for the learner's grade.
 
-When the learner leaves the book, the bot waits. The page names the move "not the
-line" and offers **Go back** (a take-back of that move) or **Carry on**. The reply
-request compares the move with the best book move in one restricted Stockfish
-search: within 0.3 pawns it is "decent, but not the line", otherwise it "costs
-something", with the loss in pawns. The prompt appears even when the move is fine.
-A second miss at the same spot shows the book move as an arrow after going back.
-Carrying on, or reaching the end of the book, turns the game into an ordinary one
-against the usual bot; at the end of the book the coach says the opening is done.
+Nothing about the practice is shown above the board. While the learner is in book,
+**Show book move** beside Resign draws the book move (every book move, where the
+course has several) as an arrow; it stays available right after an off-book move.
+
+When the learner leaves the book, the move stays on the board and the bot waits.
+The coach's own bubble says it is not the line, with **Take back** and **Play on**
+in place of its usual actions. The reply request compares the move with the best
+book move in one restricted Stockfish search: within 0.3 pawns it is "decent, but
+not the line", otherwise it "costs something", with the loss in pawns. The question
+appears even when the move is fine. Play on turns the game into an ordinary one
+against the usual bot.
+
+At the end of the line the bot waits again and the bubble asks whether to **Keep
+playing** (the game goes on as an ordinary one) or **Go again** (a new practice game
+with the same course, coach and strength). While the bubble asks, the coach's voice
+stays quiet.
 
 The coach's practice messages are text only, one placeholder line per moment shared
 by every coach (`PRACTICE_LINES` in `frontend/src/play/PlayGame.tsx`); they have no
@@ -167,6 +175,7 @@ one abandoned without saving it.
 | `GET /api/play/openings` | Courses with repertoire lines to practice |
 | `POST /api/play/{id}/takeback` | Opening practice: undo the learner's off-book move |
 | `POST /api/play/{id}/carry-on` | Opening practice: keep it and play on as an ordinary game |
+| `POST /api/play/{id}/keep-playing` | Opening practice: the line is over; play on as an ordinary game |
 
 Engine and model work runs between database transactions, serialized per
 account by the existing variation lock, on the account's warm engine (the shared
