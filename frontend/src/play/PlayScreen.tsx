@@ -20,6 +20,7 @@ import PlayGame from "./PlayGame";
 type Profile = Schema["PlayProfile"];
 type Opponent = Schema["PlayRequest"]["opponent"];
 type Color = Schema["PlayRequest"]["color"];
+type PracticeCourse = Schema["PracticeCourse"];
 
 // Measured ranges: Maia's rating dial scales play up to about 2500; Stockfish's
 // own limiter cannot imitate anyone weaker than a strong club player.
@@ -34,6 +35,10 @@ const OPPONENTS: readonly { value: Opponent; label: string }[] = [
   { value: "human", label: "Human-like" },
   { value: "engine", label: "Engine" },
 ];
+const MODES = [
+  { value: "free", label: "Any opening" },
+  { value: "practice", label: "Practice an opening" },
+] as const;
 const LEVELS = [
   { value: "match", label: "Match my level" },
   { value: "choose", label: "Choose a rating" },
@@ -67,6 +72,9 @@ function PlaySetup() {
   const [opponent, setOpponent] = useState<Opponent>("human");
   const [rating, setRating] = useState(1200);
   const [color, setColor] = useState<Color>("random");
+  const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("free");
+  const [courses, setCourses] = useState<PracticeCourse[]>([]);
+  const [courseId, setCourseId] = useState("");
   const [error, setError] = useState("");
   const [starting, setStarting] = useState(false);
   useEffect(() => {
@@ -87,6 +95,13 @@ function PlaySetup() {
           if (active) setError(e.message);
         });
     load();
+    read(api.GET("/api/play/openings"))
+      .then((value) => {
+        if (!active) return;
+        setCourses(value.courses);
+        setCourseId((current) => current || value.courses[0]?.id || "");
+      })
+      .catch(() => undefined);
     read(api.GET("/api/play/active"))
       .then((value) => {
         if (active) setActive(value.game);
@@ -113,13 +128,19 @@ function PlaySetup() {
   const clamped = Math.max(range.min, Math.min(range.max, rating));
   const matched = profile?.default_rating ?? 1200;
   const chosen = level === "match" && opponent === "human" ? matched : clamped;
+  // Practice plays the course's side; the color choice shows it but cannot change it.
+  const course = mode === "practice" ? courses.find((item) => item.id === courseId) ?? null : null;
+  const shownColor: Color = course ? course.learner_color : color;
   async function start() {
     setStarting(true);
     setError("");
     try {
       const game = await read(
         api.POST("/api/play", {
-          body: { coach_id: coach.id, coach_name: coach.name, color, opponent, rating: chosen },
+          body: {
+            coach_id: coach.id, coach_name: coach.name, color: shownColor, opponent, rating: chosen,
+            ...(course ? { course_id: course.id } : {}),
+          },
         }),
       );
       navigate(playGamePath(game.id));
@@ -151,6 +172,25 @@ function PlaySetup() {
       )}
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
+          <div className="play-field">
+            <span>Opening</span>
+            <ChoiceGroup label="Opening" value={mode} onChange={setMode}
+              options={MODES.map(option => ({ ...option, disabled: option.value === "practice" && !courses.length }))} />
+            <div className="play-swap">
+              <p className="small muted" hidden={mode !== "free"}>
+                {coach.name} chooses its own opening moves.
+              </p>
+              <div className="play-practice" hidden={mode !== "practice"}>
+                <select aria-label="Course to practice" value={courseId} onChange={(event) => setCourseId(event.target.value)}>
+                  {courses.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
+                </select>
+                <p className="small muted">
+                  {course ? `You play ${course.learner_color === "white" ? "White" : "Black"}. ` : ""}
+                  {coach.name} plays the course's lines and stops you when you leave them.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="play-field">
             <span id="play-opponent">Opponent</span>
             <ChoiceGroup label="Opponent" options={OPPONENTS} value={opponent} onChange={(value) => {
@@ -186,10 +226,11 @@ function PlaySetup() {
           </div>
           <div className="play-field">
             <span>Your color</span>
-            <ChoiceGroup label="Your color" options={COLORS} value={color} onChange={setColor} />
+            <ChoiceGroup label="Your color" value={shownColor} onChange={setColor}
+              options={COLORS.map(option => ({ ...option, disabled: !!course && option.value !== course.learner_color }))} />
           </div>
           <p className="small muted">
-            {coach.name} comments on every move as you play, with the evaluation and the graph, like a review of a game in progress. {coach.name} answers after having its say.
+            {coach.name} comments on every move as you play, with the evaluation and the graph, like a review of a game in progress. {coach.name} answers as soon as your move is graded.
           </p>
           <div className="button-row">
             <Button variant="primary" onClick={start} disabled={starting}>

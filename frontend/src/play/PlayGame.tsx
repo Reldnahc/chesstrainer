@@ -14,7 +14,60 @@ import { PlayerRow } from "../gameReview/Players";
 import PositionCoach from "../gameReview/PositionCoach";
 import ReviewMoves from "../gameReview/ReviewMoves";
 import { gamesPath, pagePaths } from "../navigation";
-import { usePlaySession } from "./usePlaySession";
+import { usePlaySession, type PlaySession } from "./usePlaySession";
+
+// Opening practice speaks in text only: one placeholder line per moment, shared by
+// every coach until lines are written and recorded for it.
+export const PRACTICE_LINES = {
+  checking: "That's not the line.",
+  fine: "Decent, but that's not the line.",
+  worse: "That's not the line, and it costs you something.",
+  ended: "That's the end of the book. The opening is done, so play on.",
+} as const;
+
+function pawns(cp: number) {
+  const value = (cp / 100).toFixed(1);
+  return `${value} ${value === "1.0" ? "pawn" : "pawns"}`;
+}
+
+function PracticeNotice({ session, bot }: { session: PlaySession; bot: string }) {
+  const { practice, deviation } = session;
+  if (!practice || session.state?.status !== "active") return null;
+  if (deviation) {
+    const line = deviation.verdict ? PRACTICE_LINES[deviation.verdict] : PRACTICE_LINES.checking;
+    const detail = !deviation.verdict
+      ? `Checking how ${deviation.san} compares with the book move…`
+      : deviation.verdict === "fine"
+        ? `${deviation.san} is within ${pawns(30)} of the book move.`
+        : deviation.loss_cp === null
+          ? `${deviation.san} walks into a mate the book move avoids.`
+          : `${deviation.san} gives up about ${pawns(deviation.loss_cp)} against the book move.`;
+    return (
+      <Notice announcement="status" className="play-practice-notice" actions={<>
+        <Button variant="primary" size="compact" onClick={session.takeBack}>Go back</Button>
+        <Button size="compact" onClick={session.carryOn}>Carry on</Button>
+      </>}>
+        <p><strong>{bot}:</strong> {line}</p>
+        <p className="small">
+          {detail} {deviation.repeated ? "Go back to see the book move on the board." : "Go back to try again, or carry on as an ordinary game."}
+        </p>
+      </Notice>
+    );
+  }
+  if (practice.status === "ended" && practice.ended === "book_end")
+    return (
+      <Notice announcement="status" tone="success" className="play-practice-notice">
+        <p><strong>{bot}:</strong> {PRACTICE_LINES.ended}</p>
+      </Notice>
+    );
+  return (
+    <Notice announcement="passive" appearance="inline" className="play-practice-notice">
+      {practice.status === "book"
+        ? `Practicing ${practice.title}. ${bot} plays the course's lines and stops you if you leave them.`
+        : `Practicing ${practice.title}. You left the book, so this is now an ordinary game.`}
+    </Notice>
+  );
+}
 
 function resultLine(state: NonNullable<ReturnType<typeof usePlaySession>["state"]>) {
   const learnerWon = state.result === (state.learner_color === "white" ? "1-0" : "0-1");
@@ -86,6 +139,7 @@ export default function PlayGame({ id }: { id: string }) {
           {resultLine(state)}
         </Notice>
       )}
+      <PracticeNotice session={session} bot={bot} />
       <ReviewWorkspace
         boardLabel="Game board and controls"
         aboveBoard={
@@ -132,7 +186,13 @@ export default function PlayGame({ id }: { id: string }) {
                     ...a,
                     color: a.kind === "move" ? "#b8d69be6" : a.kind === "reply" ? "#ffb17be6" : "#ff7187db",
                   }))
-                : []
+                : session.learnerToMove && !session.browsing
+                  ? (session.practice?.hint ?? []).map((uci) => ({
+                      startSquare: uci.slice(0, 2),
+                      endSquare: uci.slice(2, 4),
+                      color: "#f5b56abb",
+                    }))
+                  : []
             }
           />
         }

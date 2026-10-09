@@ -113,6 +113,35 @@ is reviewed afresh by the ordinary review job.
 The coach speaks only recorded meanings, exactly as in the review. Nothing is
 spoken for moments the catalogue does not cover.
 
+## Opening practice
+
+The setup page can start a game that practices an opening instead: "Practice an
+opening" lists every Lessons course with repertoire lines (the Italian for each
+color, the King's Gambit, the Sicilian Dragon and the Vienna). The learner plays
+the course's side; the color choice shows it but cannot change it.
+
+The course's repertoire lines from the standard start are merged into one tree keyed
+by position without move counters (`trainer/play/book.py`), so a transposition joins
+the line it reaches: the Dragon's 2.Nc3 and 3.Nc3 lines meet the main Dragon. While
+the game is in that tree the bot answers from it. With one book move it plays that;
+with several it samples them by the Maia policy at the chosen rating restricted to the
+book moves, each keeping at least a 10% share so rarer lines still come up. Book
+replies do no engine work and are shown without waiting for the learner's grade.
+
+When the learner leaves the book, the bot waits. The page names the move "not the
+line" and offers **Go back** (a take-back of that move) or **Carry on**. The reply
+request compares the move with the best book move in one restricted Stockfish
+search: within 0.3 pawns it is "decent, but not the line", otherwise it "costs
+something", with the loss in pawns. The prompt appears even when the move is fine.
+A second miss at the same spot shows the book move as an arrow after going back.
+Carrying on, or reaching the end of the book, turns the game into an ordinary one
+against the usual bot; at the end of the book the coach says the opening is done.
+
+The coach's practice messages are text only, one placeholder line per moment shared
+by every coach (`PRACTICE_LINES` in `frontend/src/play/PlayGame.tsx`); they have no
+catalogue meaning or recording yet. Practice games are saved and reviewed like any
+other game.
+
 ## Hand-off into Games
 
 When a game ends (checkmate, draw by rule, or the learner resigning) the moves
@@ -129,12 +158,15 @@ one abandoned without saving it.
 | `GET /api/play/profile` | The level fit, starting or refreshing it in the background when stale |
 | `POST /api/play/profile/refresh` | Recompute the fit |
 | `GET /api/play/active` | The account's game in progress, if any |
-| `POST /api/play` | Start a game: coach, color, opponent kind and rating |
+| `POST /api/play` | Start a game: coach, color, opponent kind, rating and optionally a course to practice |
 | `GET /api/play/{id}` | Game state with review-shaped frames |
 | `POST /api/play/{id}/move` | Save the learner's move at an expected ply; no engine work |
-| `POST /api/play/{id}/reply` | The bot's answer, computed now, or repeated if it has already moved |
+| `POST /api/play/{id}/reply` | The bot's answer, computed now, or repeated if it has already moved; off book in practice, the move's comparison with the book instead |
 | `POST /api/play/{id}/analyze` | The review's report for one played ply, saved on the game |
 | `POST /api/play/{id}/resign` | The learner resigns |
+| `GET /api/play/openings` | Courses with repertoire lines to practice |
+| `POST /api/play/{id}/takeback` | Opening practice: undo the learner's off-book move |
+| `POST /api/play/{id}/carry-on` | Opening practice: keep it and play on as an ordinary game |
 
 Engine and model work runs between database transactions, serialized per
 account by the existing variation lock, on the account's warm engine (the shared

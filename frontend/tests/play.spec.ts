@@ -136,3 +136,90 @@ test("the setup page's coach asks for a game in its own words", async ({page}, t
   // Phones show it in the same coach layout as review; desktop keeps the large portrait.
   await expect(page.locator(".play-setup-coach .review-coach")).toHaveCount(testInfo.project.name === "mobile" ? 1 : 0);
 });
+
+test("opening practice stops an off-book move and offers to go back or carry on", async ({page}) => {
+  const book = {course_id: "italian", title: "Italian Game", status: "book", ended: null, deviation: null, hint: [] as string[]};
+  const deviation = (repeated: boolean, verdict: string | null) => ({
+    ply: 1, san: "e4", uci: "e2e4", book: ["d4"], verdict, loss_cp: verdict ? 120 : null,
+    compared_with: verdict ? "d4" : null, repeated,
+  });
+  let practice: Record<string, unknown> = book;
+  let moves: string[] = [];
+  let misses = 0;
+  const requests: string[] = [];
+  const state = (reply: unknown = null) => ({...base, reply, practice,
+    frames: [frame0, ...(moves.length ? [frame1] : []), ...(moves.length > 1 ? [frame2] : [])]});
+  await page.route("**/api/play/profile", route => route.fulfill({json: {
+    status: "ready", fitted_rating: 1000, platform_rating: null, platform: null, positions: 60, games: 100,
+    computed_at: "2026-10-03T00:00:00Z", default_rating: 1000,
+  }}));
+  await page.route("**/api/play/active", route => route.fulfill({json: {game: null}}));
+  await page.route("**/api/play/openings", route => route.fulfill({json: {courses: [
+    {id: "dragon", title: "Sicilian Dragon", learner_color: "black", lines: 29},
+    {id: "italian", title: "Italian Game", learner_color: "white", lines: 13},
+  ]}}));
+  await page.route("**/api/play", route => route.request().method() === "POST"
+    ? route.fulfill({json: state()}) : route.continue());
+  await page.route("**/api/play/play1", route => route.fulfill({json: state()}));
+  await page.route("**/api/play/play1/move", async route => {
+    moves = ["e2e4"];
+    misses += 1;
+    practice = {...book, status: "deviation", deviation: deviation(misses > 1, null)};
+    await route.fulfill({json: state()});
+  });
+  await page.route("**/api/play/play1/reply", async route => {
+    requests.push("reply");
+    if (practice.status === "deviation") {
+      practice = {...practice, deviation: deviation(misses > 1, "worse")};
+      return route.fulfill({json: state()});
+    }
+    moves = ["e2e4", "e7e5"];
+    await route.fulfill({json: state({ply: 2, san: "e5", uci: "e7e5", source: "human"})});
+  });
+  await page.route("**/api/play/play1/takeback", async route => {
+    moves = [];
+    practice = {...book, hint: misses > 1 ? ["d2d4"] : []};
+    await route.fulfill({json: state()});
+  });
+  await page.route("**/api/play/play1/carry-on", async route => {
+    practice = {...book, status: "ended", ended: "carried_on"};
+    await route.fulfill({json: state()});
+  });
+  await page.route("**/api/play/play1/analyze", route => {
+    const value = report("e4", "e2e4", "Good", 20);
+    return route.fulfill({json: {report: value, score: value.white_score, best_move: null}});
+  });
+
+  await page.goto("/play");
+  await page.getByRole("button", {name: "Practice an opening"}).click();
+  // The course decides the side: the Dragon is Black's, so White cannot be chosen.
+  await expect(page.getByRole("button", {name: "Black", exact: true})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", {name: "White", exact: true})).toBeDisabled();
+  await page.getByLabel("Course to practice").selectOption("italian");
+  await expect(page.getByText("You play White.")).toBeVisible();
+  const started = page.waitForRequest(request => request.url().endsWith("/api/play") && request.method() === "POST");
+  await page.getByRole("button", {name: "Play Walter"}).click();
+  expect((await started).postDataJSON()).toEqual({coach_id: "classic", coach_name: "Walter", color: "white",
+    opponent: "human", rating: 1000, course_id: "italian"});
+  await expect(page.getByText("Practicing Italian Game.")).toBeVisible();
+
+  const playE4 = async () => {
+    await page.locator('[data-square="e2"]').first().click();
+    await page.locator('[data-square="e4"]').first().click();
+  };
+  await playE4();
+  await expect(page.getByText("Walter: That's not the line, and it costs you something.")).toBeVisible();
+  await expect(page.getByText("e4 gives up about 1.2 pawns against the book move.")).toBeVisible();
+  await expect(page.getByText("Walter is thinking…")).toHaveCount(0);
+  await page.getByRole("button", {name: "Go back"}).click();
+  await expect(page.getByText("Your move")).toBeVisible();
+  await expect(page.locator(".game-move-list")).not.toContainText("e4");
+
+  // A second miss at the same spot: going back would show the book move, carrying on plays on.
+  await playE4();
+  await expect(page.getByText("Go back to see the book move on the board.")).toBeVisible();
+  await page.getByRole("button", {name: "Carry on"}).click();
+  await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 10000});
+  await expect(page.getByText("You left the book, so this is now an ordinary game.")).toBeVisible();
+  expect(requests.length).toBe(3);
+});

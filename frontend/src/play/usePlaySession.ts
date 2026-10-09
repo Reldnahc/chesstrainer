@@ -50,6 +50,8 @@ export function usePlaySession(id: string) {
   const analysisQueue = useRef<Promise<unknown>>(Promise.resolve());
   const requested = useRef(new Set<number>());
   const replyRequested = useRef<number | null>(null);
+  // A take-back retires analysis already in flight for the moves it removed.
+  const epoch = useRef(0);
 
   useEffect(() => {
     mounted.current = true;
@@ -105,7 +107,9 @@ export function usePlaySession(id: string) {
     (ply: number) => {
       if (ply < 1 || requested.current.has(ply)) return analysisQueue.current;
       requested.current.add(ply);
+      const started = epoch.current;
       const run = async () => {
+        if (started !== epoch.current) return;
         try {
           const result: Analysis = await read(
             api.POST("/api/play/{play_id}/analyze", {
@@ -113,10 +117,11 @@ export function usePlaySession(id: string) {
               body: { ply },
             }),
           );
-          if (!mounted.current) return;
+          if (!mounted.current || started !== epoch.current) return;
           if (result.report) setReports((saved) => ({ ...saved, [ply]: result.report as Report }));
           setAnalysisError(null);
         } catch (e) {
+          if (started !== epoch.current) return;
           requested.current.delete(ply);
           if (mounted.current) setAnalysisError((e as Error).message);
         }
@@ -135,6 +140,9 @@ export function usePlaySession(id: string) {
 
   // Ask for the bot's answer whenever the shown position leaves it to move.
   const learnerColor = state?.learner_color;
+  // Off book in opening practice the bot waits for the learner to go back or carry on;
+  // the reply request then only reports how the move compares with the book.
+  const deviation = state?.practice?.status === "deviation" ? state.practice.deviation : null;
   const botToMove =
     !!state && state.status === "active" && shown === state.frames.length - 1 && state.frames[shown]?.turn !== learnerColor;
   useEffect(() => {
@@ -239,6 +247,49 @@ export function usePlaySession(id: string) {
     }
   }
 
+  // Opening practice: answer the off-book prompt.
+  async function takeBack() {
+    if (!state || !deviation) return;
+    setError("");
+    try {
+      const next = await read(
+        api.POST("/api/play/{play_id}/takeback", { params: { path: { play_id: id } } }),
+      );
+      if (!mounted.current) return;
+      epoch.current += 1;
+      const kept = next.frames.length - 1;
+      for (const ply of [...requested.current]) if (ply > kept) requested.current.delete(ply);
+      replyRequested.current = null;
+      audio.cancel();
+      setHeld(null);
+      setSpeechNavigations({});
+      setReports((saved) => Object.fromEntries(Object.entries(saved).filter(([ply]) => Number(ply) <= kept)));
+      setAnalysisError(null);
+      setExplanationKey(null);
+      accept(next);
+      setShown(kept);
+      setCursor(null);
+    } catch (e) {
+      if (mounted.current) setError((e as Error).message);
+    }
+  }
+
+  async function carryOn() {
+    if (!state || !deviation) return;
+    setError("");
+    try {
+      const next = await read(
+        api.POST("/api/play/{play_id}/carry-on", { params: { path: { play_id: id } } }),
+      );
+      if (!mounted.current) return;
+      // The usual bot answers the move the learner kept.
+      replyRequested.current = null;
+      accept(next);
+    } catch (e) {
+      if (mounted.current) setError((e as Error).message);
+    }
+  }
+
   async function resign() {
     if (!state || state.status !== "active") return;
     setError("");
@@ -317,7 +368,8 @@ export function usePlaySession(id: string) {
     };
   }, [state, latest, reports]);
 
-  const waitingForBot = !!state && state.status === "active" && state.frames[latest]?.turn !== state.learner_color;
+  const waitingForBot =
+    !!state && state.status === "active" && !deviation && state.frames[latest]?.turn !== state.learner_color;
   const learnerToMove = !!state && state.status === "active" && !waitingForBot && !pending;
   // The coach panel's position: the board's, or the learner's move while its line plays.
   const coachPly = held !== null && cursor === null && held < latest ? held : ply;
@@ -349,6 +401,10 @@ export function usePlaySession(id: string) {
     navigate,
     play,
     resign,
+    practice: state?.practice ?? null,
+    deviation,
+    takeBack,
+    carryOn,
     retryAnalysis: () => requestAnalysis(ply),
     retryReply: () => {
       replyRequested.current = null;
