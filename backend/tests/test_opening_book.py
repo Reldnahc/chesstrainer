@@ -59,6 +59,18 @@ def test_transpositions_and_move_counters_share_recognition():
     assert book_move(second.fen(), other.uci()) == expected
 
 
+def test_a_move_that_transposes_into_a_catalogued_line_is_book():
+    # The catalogue lists the Vienna as 1.e4 e5 2.Nc3, never 1.Nc3 e5 2.e4.
+    board = chess.Board()
+    labels = []
+    for san in "Nc3 e5 e4 Nf6 f4".split():
+        move = board.parse_san(san)
+        labels.append(book_move(board.fen(), move.uci()))
+        board.push(move)
+    assert all(labels)
+    assert "Vienna Game" in labels[2]["name"]
+
+
 def test_names_do_not_make_every_following_move_book_and_position_rights_matter():
     board, move = before_last("e4 e5 Ke2 Nc6")
     assert book_move(board.fen(), move.uci()) is None
