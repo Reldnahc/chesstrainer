@@ -200,12 +200,14 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   await page.getByRole("button", {name: "Play Walter"}).click();
   expect((await started).postDataJSON()).toEqual({coach_id: "classic", coach_name: "Walter", color: "white",
     opponent: "human", rating: 1000, course_id: "italian"});
+  await expect(page).toHaveURL(/\/play\/play1$/);
   await expect(page.getByText("Your move")).toBeVisible();
   // Nothing about the practice sits above the board; the book move is there on request.
   await expect(page.getByText(/Practicing/)).toHaveCount(0);
-  const showBook = page.getByRole("button", {name: "Show book move"});
+  // "Show book" sits with the coach's own actions.
+  const showBook = page.locator(".coach-actions").getByRole("button", {name: "Show book"});
   await showBook.click();
-  await expect(page.getByRole("button", {name: "Hide book move"})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".coach-actions").getByRole("button", {name: "Hide book"})).toHaveAttribute("aria-pressed", "true");
 
   const playE4 = async () => {
     await page.locator('[data-square="e2"]').first().click();
@@ -219,7 +221,7 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   await expect(page.locator(".game-move-list")).toContainText("e4");
   await expect(page.getByText("Walter is thinking…")).toHaveCount(0);
   await expect(page.getByText("Your move")).toHaveCount(0);
-  await expect(page.getByRole("button", {name: "Show book move"})).toBeVisible();
+  await expect(page.locator(".coach-actions").getByRole("button", {name: "Show book"})).toBeVisible();
   await page.getByRole("button", {name: "Take back"}).click();
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.locator(".game-move-list")).not.toContainText("e4");
@@ -228,7 +230,7 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   await playE4();
   await page.getByRole("button", {name: "Play on"}).click();
   await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 10000});
-  await expect(page.getByRole("button", {name: "Show book move"})).toHaveCount(0);
+  await expect(page.getByRole("button", {name: "Show book"})).toHaveCount(0);
   // Two comparisons, one per off-book move, then the usual reply.
   expect(requests.length).toBe(3);
 });
@@ -255,4 +257,31 @@ test("at the end of the line the coach offers to keep playing or go again", asyn
     opponent: "human", rating: 1000, course_id: "italian"});
   await expect(page).toHaveURL(/\/play\/play2$/);
   await expect(page.getByText("Your move")).toBeVisible();
+});
+
+test("a new game after a finished one starts from that game's settings", async ({page}) => {
+  await mockPlay(page);
+  await page.route("**/api/play/openings", route => route.fulfill({json: {courses: [
+    {id: "dragon", title: "Sicilian Dragon", learner_color: "black", lines: 29},
+    {id: "italian", title: "Italian Game", learner_color: "white", lines: 13},
+  ]}}));
+  const finished = {...base, status: "finished", result: "1-0", termination: "resignation", saved_game_id: null,
+    opponent: "engine", rating: 2000, learner_color: "black", frames: [frame0, frame1, frame2]};
+  await page.route("**/api/play/play1", route => route.fulfill({json: finished}));
+  await page.route("**/api/play/play2", route => route.fulfill({json: {...finished, id: "play2",
+    opponent: "human", rating: 1000, learner_color: "white",
+    practice: {course_id: "italian", title: "Italian Game", status: "ended", ended: "book_end", deviation: null, book_moves: []}}}));
+  await page.goto("/play/play1");
+  await page.getByRole("link", {name: "New game"}).first().click();
+  await expect(page).toHaveURL(/\/play\?from=play1$/);
+  await expect(page.getByRole("button", {name: "Engine"})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveValue("2000");
+  await expect(page.getByRole("button", {name: "Black", exact: true})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", {name: "Any opening"})).toHaveAttribute("aria-pressed", "true");
+  // A practice game brings back its course and the matched level.
+  await page.goto("/play?from=play2");
+  await expect(page.getByRole("button", {name: "Practice an opening"})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByLabel("Course to practice")).toHaveValue("italian");
+  await expect(page.getByRole("button", {name: "Match my level"})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", {name: "White", exact: true})).toHaveAttribute("aria-pressed", "true");
 });

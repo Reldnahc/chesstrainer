@@ -103,6 +103,20 @@ function PlaySetup() {
         setCourseId((current) => current || value.courses[0]?.id || "");
       })
       .catch(() => undefined);
+    // "New game" after a game starts from that game's settings.
+    const from = new URLSearchParams(window.location.search).get("from");
+    if (from)
+      read(api.GET("/api/play/{play_id}", { params: { path: { play_id: from } } }))
+        .then((previous) => {
+          if (!active) return;
+          setOpponent(previous.opponent);
+          setRating(previous.rating);
+          setLevel(previous.opponent === "human" && previous.rating === previous.learner_rating ? "match" : "choose");
+          setColor(previous.learner_color);
+          setMode(previous.practice ? "practice" : "free");
+          if (previous.practice) setCourseId(previous.practice.course_id);
+        })
+        .catch(() => undefined);
     read(api.GET("/api/play/active"))
       .then((value) => {
         if (active) setActive(value.game);

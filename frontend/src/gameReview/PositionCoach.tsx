@@ -44,6 +44,7 @@ export default function PositionCoach({
   onVoicePlaying,
   live,
   prompt,
+  extraAction,
 }: {
   game: Game;
   report?: Report | null;
@@ -70,6 +71,8 @@ export default function PositionCoach({
   live?: "new" | "underway";
   /** A question the page puts to the learner in the coach's bubble, with its answers. */
   prompt?: { title: ReactNode; text: ReactNode; actions: ReactNode } | null;
+  /** One more action beside the coach's own, kept while a prompt is shown. */
+  extraAction?: ReactNode;
 }) {
   const reaction = gameReaction({
     key: positionKey,
@@ -152,7 +155,7 @@ export default function PositionCoach({
   if (prompt)
     return (
       <ReviewCoach reaction={{...reaction, state: utterance.expression}} voice={voice}
-        title={prompt.title} evaluation={<EvaluationScore score={score} />} actions={prompt.actions}>
+        title={prompt.title} evaluation={<EvaluationScore score={score} />} actions={<>{prompt.actions}{extraAction}</>}>
         {prompt.text}
       </ReviewCoach>
     );
@@ -213,6 +216,7 @@ export default function PositionCoach({
               Return to game
             </ReturnButton>
           )}
+          {extraAction}
         </>
       }
       detail={moves && <CoachMovesLine facts={moves} />}
