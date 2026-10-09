@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, FlipVertical2 } from "lucide-react";
+import { ArrowRight, BookOpen, FlipVertical2 } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
@@ -13,7 +13,7 @@ import { positionScore, scoreText, strength } from "../evaluation";
 import { PlayerRow } from "../gameReview/Players";
 import PositionCoach from "../gameReview/PositionCoach";
 import ReviewMoves from "../gameReview/ReviewMoves";
-import { gamesPath, pagePaths } from "../navigation";
+import { gamesPath, pagePaths, playSetupPath } from "../navigation";
 import { usePlaySession, type PlaySession } from "./usePlaySession";
 
 // Opening practice speaks in text only: one placeholder line per moment, shared by
@@ -136,7 +136,7 @@ export default function PlayGame({ id }: { id: string }) {
           <ActionLink variant="primary" size="compact" href={gamesPath(1, state.saved_game_id)}>
             Open {bot}'s review <ArrowRight size={16} aria-hidden="true" />
           </ActionLink>
-        ) : <ActionLink variant="secondary" size="compact" href={pagePaths.Play}>New game</ActionLink>}>
+        ) : <ActionLink variant="secondary" size="compact" href={playSetupPath(state.id)}>New game</ActionLink>}>
           {resultLine(state)}
         </Notice>
       )}
@@ -199,14 +199,16 @@ export default function PlayGame({ id }: { id: string }) {
         boardControls={
           <div className="game-board-controls" role="group" aria-label="Game controls">
             {finished ? (
-              <ActionLink size="compact" className="game-library-link" href={pagePaths.Play}>New game</ActionLink>
+              <ActionLink size="compact" className="game-library-link" href={playSetupPath(state.id)}>New game</ActionLink>
             ) : (
               <div className="game-board-actions">
                 <Button size="compact" onClick={session.resign}>Resign</Button>
                 {bookMoves.length > 0 && (session.learnerToMove || session.deviation) && (
-                  <Button size="compact" aria-pressed={showBook} onClick={() => setShowBook((value) => !value)}>
-                    {showBook ? "Hide book move" : "Show book move"}
-                  </Button>
+                  <IconButton aria-label={showBook ? "Hide book move" : "Show book move"}
+                    title={showBook ? "Hide book move" : "Show book move"} aria-pressed={showBook}
+                    onClick={() => setShowBook((value) => !value)}>
+                    <BookOpen size={17} />
+                  </IconButton>
                 )}
               </div>
             )}

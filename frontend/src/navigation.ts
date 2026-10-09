@@ -156,6 +156,11 @@ export function playGamePath(id: string) {
   return `/play/${encodeURIComponent(id)}`;
 }
 
+/** The Play setup, filled in with an earlier game's settings when one is given. */
+export function playSetupPath(from?: string) {
+  return from ? `${pagePaths.Play}?from=${encodeURIComponent(from)}` : pagePaths.Play;
+}
+
 export function puzzleSessionPath(id: string) {
   return `${studyPaths.puzzles}/sessions/${encodeURIComponent(id)}`;
 }
