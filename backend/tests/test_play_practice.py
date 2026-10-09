@@ -158,7 +158,8 @@ def test_practice_follows_the_book_and_stops_the_learner_off_it(settings, stockf
         move(2, "g1f3")
         answered = reply()
         assert answered["reply"]["uci"] in {"b8c6", "d7d6"}
-        book = {"b8c6": "f1c4", "d7d6": "d2d4"}[answered["reply"]["uci"]]
+        # After 2...Nc6 the transposed line adds 3.Bb5 to the book.
+        book = {"b8c6": {"f1c4", "f1b5"}, "d7d6": {"d2d4"}}[answered["reply"]["uci"]]
 
         # Off book: the bot waits, and the reply request reports how the move compares.
         off = move(4, "a2a3")
@@ -183,7 +184,7 @@ def test_practice_follows_the_book_and_stops_the_learner_off_it(settings, stockf
         # A second miss at the same spot shows the book move once the learner goes back.
         assert move(4, "h2h3")["practice"]["deviation"]["repeated"]
         hinted = client.post(f"/api/play/{play_id}/takeback").json()
-        assert hinted["practice"]["hint"] == [book]
+        assert set(hinted["practice"]["hint"]) == book
 
         # Carrying on turns it into an ordinary game against the usual bot.
         move(4, "a2a3")

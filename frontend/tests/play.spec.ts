@@ -211,6 +211,7 @@ test("opening practice stops an off-book move and offers to go back or carry on"
   await expect(page.getByText("Walter: That's not the line, and it costs you something.")).toBeVisible();
   await expect(page.getByText("e4 gives up about 1.2 pawns against the book move.")).toBeVisible();
   await expect(page.getByText("Walter is thinking…")).toHaveCount(0);
+  await expect(page.getByText("Your move")).toHaveCount(0);
   await page.getByRole("button", {name: "Go back"}).click();
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.locator(".game-move-list")).not.toContainText("e4");

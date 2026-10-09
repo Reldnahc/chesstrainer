@@ -370,7 +370,8 @@ export function usePlaySession(id: string) {
 
   const waitingForBot =
     !!state && state.status === "active" && !deviation && state.frames[latest]?.turn !== state.learner_color;
-  const learnerToMove = !!state && state.status === "active" && !waitingForBot && !pending;
+  const learnerToMove =
+    !!state && state.status === "active" && !deviation && !waitingForBot && !pending;
   // The coach panel's position: the board's, or the learner's move while its line plays.
   const coachPly = held !== null && cursor === null && held < latest ? held : ply;
   return {
