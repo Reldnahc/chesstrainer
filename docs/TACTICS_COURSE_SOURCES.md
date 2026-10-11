@@ -55,8 +55,8 @@ filter; those themes exist in the bundled Lichess starter pack.
   mentions. The example
   starts after `8...Nxe4` and demonstrates `9.Qd8+ Kxd8`.
 
-The 15 composed positions have no source. Their FENs are constants at the top of
-`backend/trainer/study_lessons/courses/tactics.py`.
+The 15 composed positions have no source. Their FENs are in the course file,
+`backend/trainer/study_lessons/courses/tactics-foundations.json`.
 
 ## Engine verification
 

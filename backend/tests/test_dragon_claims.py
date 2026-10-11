@@ -1,9 +1,13 @@
 """Pin the board facts behind the authored Sicilian Dragon explanations."""
 
 import chess
-from course_claims import Boards, attackers, attacks, count, minor, piece, sq
-from trainer.study_lessons.courses import dragon_positions as p
-from trainer.study_lessons.courses.dragon import course
+from course_claims import Boards, attackers, attacks, built_in, count, minor, piece, sq
+from course_positions import dragon as p
+
+
+def course():
+    return built_in("sicilian-dragon")
+
 
 board = Boards(course())
 
