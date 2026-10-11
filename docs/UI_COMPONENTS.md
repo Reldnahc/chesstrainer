@@ -111,11 +111,39 @@ not React components.
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
 | Source attribution | [SourceLine](../frontend/src/SourceLine.tsx), [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Shared text, optional license/revision and valid absolute HTTP(S) source/license links. Optional licenseUrl links the existing license label separately from View source. LessonAttribution resolves Repository license at render time without changing saved course fingerprints. Lesson sources remain multiple records; puzzle provenance remains completion-only. The audio studio uses SourceLine for recording credits; source-line.css is shared-safe. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. It accepts any navigator with the exploration fields it reads, so the live game shares the notation and quality tabs. |
-| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
+| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. foundation.css also owns the [spacing scale](#spacing) and the `.stack` / `.cluster` layout primitives. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
 
 Quick mute belongs to each page's board-controls group rather than trailing it,
 so it never wraps onto its own row or keeps a different size from its neighbours.
 The cold SRS toolbar contains only that mute control; it is not an empty row to hide.
+
+## Spacing
+
+Every margin, padding and gap in every stylesheet (application, studios and lab)
+uses the spacing scale defined in [foundation.css](../frontend/src/foundation.css).
+Owner decision, October 11, 2026: one scale and container-owned spacing across
+the whole site, enforced by a check.
+
+- **Scale.** `--space-0-5` (2px), `--space-1` (4px), `--space-1-5` (6px),
+  `--space-2` (8px), `--space-3` (12px), `--space-4` (16px), `--space-5` (20px),
+  `--space-6` (24px), `--space-8` (32px), `--space-10` (40px), `--space-12` (48px),
+  `--space-16` (64px), `--space-20` (80px). The number is the multiple of 4px.
+  2px and 6px exist only for tight controls. There is no 10px, 14px or 18px step:
+  pick the neighbouring step that reads right.
+- **Semantic tokens.** `--page-gap` spaces a page's top-level blocks (24px desktop,
+  16px phone) and `--panel-padding` pads `.panel` (24px desktop, 20px phone, 16px
+  in phone workspaces). Change the rhythm there, not in each page.
+- **Containers own spacing.** `main.workspace-page` is a column that spaces its
+  title, notices and panels with `--page-gap` and zeroes their block margins, so
+  page sections never set their own top or bottom margin. Inside a component, use
+  `gap` on the container; the shared `.stack` (column, 16px, `--tight` 8px,
+  `--loose` 24px) and `.cluster` (wrapping row, 8px) primitives cover the common
+  cases. Avoid outer margins on reusable components.
+- **Check.** `node scripts/spacing-scale.mjs` (part of `npm run test:styles` and
+  `npm run build`) rejects any raw px value above 1px in margin, padding, gap or a
+  spacing custom property. `0`, `1px`, `%`, `auto` and em/rem remain allowed.
+  Positioning (`top`, `left`, `inset`), sizes and artwork geometry are not spacing
+  and are not checked.
 
 ## Audit baseline and coverage
 
