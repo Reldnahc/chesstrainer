@@ -151,3 +151,63 @@ def test_editor_check_keeps_boards_while_a_step_is_unfinished(settings):
         assert result["error"] == "Chapter start, step push needs the learner's move"
         assert result["steps"]["start/watch"]["position"] == ""
         assert save(client, unfinished).status_code == 422
+
+
+def test_a_revision_is_never_reused_for_different_content(settings):
+    with app_client(settings) as client:
+        exported = client.get(f"{LIBRARY}/italian-foundations/file").json()
+        first = {**exported, "title": "First club version"}
+        assert save(client, first).json()["revision_changed"]
+        # The same stale export again, changed differently: still a new revision.
+        second = {**exported, "title": "Second club version"}
+        saved = save(client, second).json()
+        assert saved["revision_changed"] and saved["revision"] != exported["revision"]
+        assert client.delete(f"{FILES}/italian-foundations").status_code == 200
+        # Even after the club file is deleted, its revisions stay taken.
+        third = client.get(f"{LIBRARY}/italian-foundations/file").json()
+        third = {**third, "revision": saved["revision"], "title": "Third"}
+        assert save(client, third).json()["revision"] != saved["revision"]
+
+
+def test_editor_saves_refuse_to_replace_courses_by_accident(settings):
+    with app_client(settings) as client:
+        conflict = client.post(
+            f"{FILES}?create=true", content=json.dumps(sample(id="vienna-gambit"))
+        )
+        assert conflict.status_code == 409 and "already exists" in conflict.json()["detail"]
+        assert client.post(f"{FILES}?create=true", content=json.dumps(sample())).status_code == 200
+        changed = sample()
+        changed["title"] = "Changed elsewhere"
+        assert save(client, changed).status_code == 200
+        stale = client.post(f"{FILES}?base_revision=1", content=json.dumps(sample()))
+        assert stale.status_code == 409 and "after you opened it" in stale.json()["detail"]
+
+
+def test_a_broken_club_file_never_takes_study_down(settings):
+    folder = settings.database_path.parent / "courses"
+    folder.mkdir(parents=True)
+    broken = sample(id="broken")
+    broken["chapters"][0]["steps"][0]["fen"] = "rnbqkbnr/pppp"
+    (folder / "broken.json").write_text(json.dumps(broken), encoding="utf-8")
+    with app_client(settings) as client:
+        library = client.get(LIBRARY).json()
+        assert "vienna-gambit" in {course["id"] for course in library["courses"]}
+        assert "cannot be read" in library["problems"][0]["message"]
+        check = client.post(f"{FILES}/check", content=json.dumps(broken)).json()
+        assert "cannot be read" in check["error"]
+
+
+def test_empty_eco_round_trips_and_steps_report_their_starting_fen(settings):
+    data = sample()
+    data["lines"][0]["eco"] = ""
+    example = sample()
+    fen = "8/8/8/4k3/8/8/4P3/4K3 w - - 0 1"
+    example["chapters"][0]["steps"] = [
+        {"id": "intro", "title": "Intro", "fen": fen, "position": "", "show": "e4"}
+    ]
+    with app_client(settings) as client:
+        assert save(client, data).status_code == 200
+        check = client.post(f"{FILES}/check", content=json.dumps(example)).json()
+        assert check["error"] is None
+        assert check["steps"]["start/intro"]["initial_fen"] == fen
+        assert check["steps"]["start/intro"]["end_position"] == "e4"

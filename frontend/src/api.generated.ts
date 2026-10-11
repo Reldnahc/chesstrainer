@@ -1256,6 +1256,9 @@ export interface paths {
         /**
          * Save Course
          * @description Import or save a course file. Administrators only.
+         *
+         *     The editor sends ``create`` for a new course and ``base_revision`` for the
+         *     revision it opened, so a save never silently replaces another course.
          */
         post: operations["save_course_api_study_course_files_post"];
         delete?: never;
@@ -2054,6 +2057,8 @@ export interface components {
             end_position: string;
             /** Fen */
             fen: string;
+            /** Initial Fen */
+            initial_fen: string;
             /** Position */
             position: string;
         };
@@ -7098,7 +7103,10 @@ export interface operations {
     };
     save_course_api_study_course_files_post: {
         parameters: {
-            query?: never;
+            query?: {
+                base_revision?: string | null;
+                create?: boolean;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -7118,6 +7126,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["CourseFileSaved"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

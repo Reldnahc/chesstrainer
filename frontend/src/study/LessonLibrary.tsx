@@ -102,10 +102,10 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
         </div>
       </header>
       <div className="button-row lesson-course-actions">
-        {course.can_manage && <ActionLink size="compact" variant="secondary" href={courseEditorPath(course.id, course.revision)}><Pencil size={16} />Edit course</ActionLink>}
+        {course.can_manage && <ActionLink size="compact" variant="secondary" href={courseEditorPath(course.id)}><Pencil size={16} />Edit course</ActionLink>}
         <Button size="compact" variant="secondary" disabled={fileBusy} onClick={() => fileAction(() => downloadCourseFile(course.id, course.revision))}><Download size={16} />Download course file</Button>
         {course.can_manage && course.source === "club" && (confirmDelete
-          ? <><Button size="compact" variant="primary" disabled={fileBusy} onClick={removeCourse}><Trash2 size={16} />Delete for everyone</Button>
+          ? <><Button size="compact" variant="secondary" disabled={fileBusy} onClick={removeCourse}><Trash2 size={16} />Delete for everyone</Button>
             <Button size="compact" variant="quiet" disabled={fileBusy} onClick={() => setConfirmDelete(false)}>Keep it</Button></>
           : <Button size="compact" variant="quiet" disabled={fileBusy} onClick={() => setConfirmDelete(true)}><Trash2 size={16} />Delete course</Button>)}
       </div>

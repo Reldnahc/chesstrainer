@@ -4,6 +4,7 @@ import json
 
 import chess
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import Response
 
 from trainer.chess_core import legal_move_options
@@ -21,6 +22,7 @@ from trainer.contracts.study_lessons import (
 )
 from trainer.study_lessons import course_files, presentation, queries, sessions
 from trainer.study_lessons.bundled import course_topic
+from trainer.study_lessons.club import CourseConflict
 from trainer.study_lessons.course_files import CourseFileError
 from trainer.workspaces import CurrentWorkspace
 
@@ -40,9 +42,25 @@ def require_manager(request):
         raise HTTPException(403, "Only an administrator can change courses.")
 
 
+async def read_course_json(request):
+    """The request body as JSON, refusing anything over the size limit before reading it all."""
+    declared = request.headers.get("content-length")
+    if declared and declared.isdigit() and int(declared) > MAX_COURSE_FILE_BYTES:
+        raise HTTPException(413, "The course file is too large.")
+    body = bytearray()
+    async for chunk in request.stream():
+        body.extend(chunk)
+        if len(body) > MAX_COURSE_FILE_BYTES:
+            raise HTTPException(413, "The course file is too large.")
+    try:
+        return json.loads(bytes(body))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise HTTPException(422, f"The file is not valid JSON: {exc}") from exc
+
+
 def create_router(*, providers, installed=None):
     router = APIRouter()
-    source = installed.source if installed else (lambda course_id: "built_in")
+    source = installed.source if installed else (lambda course_id, revision=None: "built_in")
 
     def club():
         if installed is None:
@@ -115,23 +133,23 @@ def create_router(*, providers, installed=None):
             }
         },
     )
-    async def save_course(workspace: CurrentWorkspace, request: Request):
-        """Import or save a course file. Administrators only."""
+    async def save_course(request: Request, base_revision: str | None = None, create: bool = False):
+        """Import or save a course file. Administrators only.
+
+        The editor sends ``create`` for a new course and ``base_revision`` for the
+        revision it opened, so a save never silently replaces another course.
+        """
         require_manager(request)
-        body = await request.body()
-        if len(body) > MAX_COURSE_FILE_BYTES:
-            raise HTTPException(413, "The course file is too large.")
-        try:
-            data = json.loads(body)
-        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-            raise HTTPException(422, f"The file is not valid JSON: {exc}") from exc
+        data = await read_course_json(request)
         folder = club()
-        with workspace.mutation_lock, workspace.sessions() as db:
-            current = {course.id: course for course in providers.courses(db)}
         try:
-            course, _, changed = folder.save(data, current)
+            course, _, changed = await run_in_threadpool(
+                folder.save, data, base_revision=base_revision, create=create
+            )
         except CourseFileError as exc:
             raise HTTPException(422, str(exc)) from exc
+        except CourseConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
         return {
             "id": course.id,
             "revision": course.revision,
@@ -154,14 +172,8 @@ def create_router(*, providers, installed=None):
     async def check_course(request: Request):
         """The lesson editor's live check: the first problem and each step's board."""
         require_manager(request)
-        body = await request.body()
-        if len(body) > MAX_COURSE_FILE_BYTES:
-            raise HTTPException(413, "The course file is too large.")
-        try:
-            data = json.loads(body)
-        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-            raise HTTPException(422, f"The file is not valid JSON: {exc}") from exc
-        return course_files.check(data)
+        data = await read_course_json(request)
+        return await run_in_threadpool(course_files.check, data)
 
     @router.post("/api/study/course-files/position", response_model=EditorPosition)
     def editor_position(request: Request, data: EditorPositionRequest):

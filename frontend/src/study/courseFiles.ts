@@ -28,8 +28,8 @@ export async function fetchCourseFile(courseId: string, revision?: string, signa
   return data as CourseFile;
 }
 
-export function saveCourseFile(file: CourseFile): Promise<Schema["CourseFileSaved"]> {
-  return read(api.POST("/api/study/course-files", { body: file }));
+export function saveCourseFile(file: CourseFile, query: { base_revision?: string; create?: boolean } = {}): Promise<Schema["CourseFileSaved"]> {
+  return read(api.POST("/api/study/course-files", { body: file, params: { query } }));
 }
 
 /** Read a chosen file as a course file; the server checks everything else. */

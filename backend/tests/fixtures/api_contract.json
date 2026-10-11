@@ -1458,6 +1458,10 @@
             "title": "Fen",
             "type": "string"
           },
+          "initial_fen": {
+            "title": "Initial Fen",
+            "type": "string"
+          },
           "position": {
             "title": "Position",
             "type": "string"
@@ -1465,6 +1469,7 @@
         },
         "required": [
           "fen",
+          "initial_fen",
           "position",
           "end_fen",
           "end_position"
@@ -13107,8 +13112,36 @@
     },
     "/api/study/course-files": {
       "post": {
-        "description": "Import or save a course file. Administrators only.",
+        "description": "Import or save a course file. Administrators only.\n\nThe editor sends ``create`` for a new course and ``base_revision`` for the\nrevision it opened, so a save never silently replaces another course.",
         "operationId": "save_course_api_study_course_files_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "base_revision",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Base Revision"
+            }
+          },
+          {
+            "in": "query",
+            "name": "create",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Create",
+              "type": "boolean"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -13130,6 +13163,16 @@
               }
             },
             "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
           }
         },
         "summary": "Save Course"

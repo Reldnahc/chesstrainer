@@ -64,7 +64,7 @@ class FileStep(Marks):
     reply: str | None = None
     feedback: str | None = None
     hint: str | None = None
-    choices: tuple[FileChoice, ...] | None = None
+    choices: tuple[FileChoice, ...] | None = Field(default=None, min_length=1)
     branch: str | None = None
     game: str | None = None
     from_ply: int | None = Field(default=None, alias="from")
@@ -125,7 +125,12 @@ class CourseFile(FileModel):
 
 def san_moves(where, san, fen=None, history=()):
     """UCI for SAN tokens played after ``history`` from ``fen``."""
-    board = chess.Board(fen or chess.STARTING_FEN)
+    try:
+        board = chess.Board(fen or chess.STARTING_FEN)
+    except ValueError as exc:
+        raise CourseFileError(f"{where}: the FEN {fen!r} cannot be read") from exc
+    if not board.is_valid():
+        raise CourseFileError(f"{where}: the FEN {fen!r} is not a legal chess position")
     for uci in history:
         board.push_uci(uci)
     moves = []
@@ -200,7 +205,7 @@ def sources(source):
                 position=dict(initial_fen=line.fen or chess.STARTING_FEN, moves=setup),
                 moves=san_moves(f"Line {line.id}", line.moves, line.fen, setup),
                 repertoire=line.repertoire,
-                eco=line.eco,
+                eco=line.eco or None,
             )
         )
     games = []
@@ -419,7 +424,7 @@ def check(data):
                 continue
             board = start.board()
             end = board.copy()
-            if step["kind"] == "decision":
+            if step["kind"] == "decision" and step["choices"]:
                 choice = step["choices"][0]
                 played = (choice["uci"], *choice["reply"])
             elif step["kind"] == "rehearsal" and step["line_id"] in known["lines"]:
@@ -440,6 +445,7 @@ def check(data):
             )
             steps[f"{chapter.id}/{step['id']}"] = dict(
                 fen=board.fen(),
+                initial_fen=start.initial_fen,
                 position=san_text(Position(initial_fen=start.initial_fen), start.moves),
                 end_fen=end.fen(),
                 end_position=san_text(Position(initial_fen=start.initial_fen), reached),
@@ -473,6 +479,9 @@ def unfinished_steps(data):
                 for field in ("move", "reply", "hint", "feedback"):
                     step.pop(field, None)
                 problems.append(f"{where} needs the learner's move")
+            if step.get("rehearse") == "":
+                step.pop("rehearse")
+                problems.append(f"{where} needs a line to rehearse")
             if step.get("show") == "":
                 step.pop("show")
                 problems.append(f"{where} needs at least one move to show")

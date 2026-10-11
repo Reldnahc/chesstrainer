@@ -29,14 +29,13 @@ def course_topic(course_id):
     return _topics.get(course_id, "opening")
 
 
-def remember_topic(course_id, topic):
-    _topics[course_id] = topic
-
-
-def restore_built_in_topics():
-    """Undo a club course's topic when its file no longer replaces a built-in one."""
+def set_club_topics(club):
+    """Publish the topics for the current club files in one assignment, so a reader
+    never sees a half-updated map. A deleted club course keeps its last topic, so its
+    saved lessons stay in the same Study section."""
+    global _topics
     _courses()
-    _topics.update(_built_in_topics)
+    _topics = {**_topics, **_built_in_topics, **club}
 
 
 def read_course_file(path):
@@ -61,8 +60,7 @@ def _courses():
     loaded = []
     for path in sorted(BUILT_IN.glob("*.json")):
         course, topic = read_course_file(path)
-        remember_topic(course.id, topic)
-        _built_in_topics[course.id] = topic
+        _topics[course.id] = _built_in_topics[course.id] = topic
         loaded.append(course)
     return tuple(ordered(loaded))
 

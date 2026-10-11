@@ -143,9 +143,16 @@ function persistScroll() {
   window.history.replaceState({ ...window.history.state, [scrollKey]: scrollPositions.get(entry) }, "");
 }
 
+// A screen with unsaved work (the lesson editor) may ask before in-app navigation.
+let leaveGuard: (() => boolean) | null = null;
+export function setLeaveGuard(guard: (() => boolean) | null) {
+  leaveGuard = guard;
+}
+
 export function navigate(href: string) {
   const url = new URL(href, window.location.href);
   if (url.origin !== window.location.origin || url.href === window.location.href) return;
+  if (leaveGuard && !leaveGuard()) return;
   persistScroll();
   window.history.pushState({ [entryKey]: newEntry() }, "", url);
   window.dispatchEvent(new Event(navigationEvent));

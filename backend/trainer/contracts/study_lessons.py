@@ -114,6 +114,8 @@ class LessonLibrary(Contract):
 class CourseFileStep(Contract):
     # Where a step starts (FEN and the SAN moves that reach it) and where it ends.
     fen: str
+    # The position the SAN moves start from: the initial position or a step's own FEN.
+    initial_fen: str
     position: str
     end_fen: str
     end_position: str

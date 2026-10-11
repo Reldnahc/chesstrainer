@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { ArrowDown, ArrowLeft, ArrowUp, Circle, Plus, Save, Square, Trash2 } from "lucide-react";
 import { api, read, type LegalMove, type Promotion, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -9,7 +9,7 @@ import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
 import ReviewWorkspace from "../ReviewWorkspace";
 import TurnIndicator from "../TurnIndicator";
-import { lessonCoursePath, studyPaths, type LessonTopic } from "../navigation";
+import { lessonCoursePath, setLeaveGuard, studyPaths, type LessonTopic } from "../navigation";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 // The editor edits the readable course file itself (docs/COURSE_FILES.md), so
@@ -66,6 +66,8 @@ const KINDS: { value: Kind; label: string; help: string }[] = [
   { value: "game_excerpt", label: "Game excerpt", help: "Plays part of a source game." },
 ];
 const KIND_FIELDS = ["show", "move", "reply", "feedback", "hint", "choices", "branch", "game", "from", "to", "rehearse"];
+// Emptying one of these keeps it as "", so the step keeps its kind while being written.
+const KIND_DEFINING = new Set(["show", "move", "rehearse", "branch", "game"]);
 const FOLLOWING = "__following__";
 const END = "__end__";
 const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
@@ -83,7 +85,7 @@ function newCourse(): Course {
   return {
     format: "fieldwork-course-1",
     id: "new-course",
-    revision: new Date().toISOString().slice(0, 10),
+    revision: new Date().toLocaleDateString("sv"),
     title: "New course",
     description: "",
     side: "white",
@@ -118,13 +120,20 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   const [recording, setRecording] = useState<Recording | null>(null);
   const [showEnd, setShowEnd] = useState(false);
   const [saved, setSaved] = useState<Schema["CourseFileSaved"] | null>(null);
+  // The revision the editor opened (null for a new course), so a save never
+  // replaces someone else's newer save or an existing course by accident.
+  const [base, setBase] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+  const edits = useRef(0);
+  const recordingRef = useRef<Recording | null>(null);
+  recordingRef.current = recording;
 
   useEffect(() => {
     document.title = "Lesson editor · Fieldwork";
     if (!courseId) return;
     const controller = new AbortController();
     fetchCourseFile(courseId, revision || undefined, controller.signal)
-      .then(file => { if (!controller.signal.aborted) setCourse(file as Course); })
+      .then(file => { if (!controller.signal.aborted) { setCourse(file as Course); setBase((file as Course).revision); } })
       .catch(e => { if (!controller.signal.aborted) setLoadError((e as Error).message); });
     return () => controller.abort();
   }, [courseId, revision]);
@@ -137,7 +146,11 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     const timer = window.setTimeout(() => {
       read(api.POST("/api/study/course-files/check", { body: course, signal: controller.signal }))
         .then(result => { if (!controller.signal.aborted) { setCheck(result); setChecking(false); } })
-        .catch(e => { if (!controller.signal.aborted) { setError((e as Error).message); setChecking(false); } });
+        .catch(e => {
+          if (controller.signal.aborted) return;
+          setCheck({ error: (e as Error).message, steps: {} });
+          setChecking(false);
+        });
     }, 350);
     return () => { window.clearTimeout(timer); controller.abort(); };
   }, [course]);
@@ -146,7 +159,8 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     if (!dirty) return;
     const warn = (event: BeforeUnloadEvent) => event.preventDefault();
     window.addEventListener("beforeunload", warn);
-    return () => window.removeEventListener("beforeunload", warn);
+    setLeaveGuard(() => window.confirm("Leave the lesson editor? Your unsaved changes will be lost."));
+    return () => { window.removeEventListener("beforeunload", warn); setLeaveGuard(null); };
   }, [dirty]);
 
   const chapter = course?.chapters[Math.min(chapterIndex, (course?.chapters.length ?? 1) - 1)];
@@ -167,7 +181,9 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       update(draft);
       return draft;
     });
+    edits.current += 1;
     setDirty(true);
+    setError("");
     setNotice("");
     setSaved(null);
   }
@@ -175,8 +191,20 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   const editStep = (update: (draft: Step) => void) => editChapter(draft => update(draft.steps[stepIndex]));
   function setField(field: keyof Step, value: unknown) {
     editStep(draft => {
-      if (value === undefined || value === "") delete draft[field];
+      if (value === "" && KIND_DEFINING.has(field as string)) draft[field] = "";
+      else if (value === undefined || value === "") delete draft[field];
       else draft[field] = value;
+    });
+  }
+  function renameStep(id: string) {
+    const previous = step!.id;
+    editChapter(draft => {
+      for (const item of draft.steps) {
+        if (item.next === previous) item.next = id;
+        if (item.branch === previous) item.branch = id;
+      }
+      if (draft.entry === previous) draft.entry = id;
+      draft.steps[stepIndex].id = id;
     });
   }
   function setKind(next: Kind) {
@@ -241,7 +269,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   }
   async function record(field: Recording["field"]) {
     setError("");
-    const fen = field === "position" ? (step!.fen ?? START_FEN) : board?.fen;
+    const fen = field === "position" ? (step!.fen || START_FEN) : board?.fen;
     if (!fen) { setError("Fix the problem above first, so this step has a board to start from."); return; }
     try {
       const result = await play(fen, "");
@@ -249,9 +277,13 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     } catch (e) { setError((e as Error).message); }
   }
   async function recordMove(from: string, to: string, promotion?: Promotion) {
-    if (!recording) return;
+    const recording = recordingRef.current;
+    if (!recording || pending) return;
+    setPending(true);
     try {
       const result = await play(recording.fen, recording.moves, { from_square: from, to_square: to, promotion });
+      // Recording stopped or moved to another step while the server answered.
+      if (recordingRef.current !== recording) return;
       const next = { ...recording, moves: result.moves, legal: result.legal_moves, turnFen: result.fen };
       if (recording.field === "show") setField("show", result.moves);
       if (recording.field === "position") setField("position", result.moves);
@@ -267,6 +299,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       }
       setRecording(next);
     } catch (e) { setError((e as Error).message); }
+    finally { setPending(false); }
   }
   function startRecording(field: Recording["field"]) {
     if (field === "show") setField("show", "");
@@ -279,10 +312,13 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     if (saving) return;
     setSaving(true);
     setError("");
+    const sent = edits.current;
     try {
-      const result = await saveCourseFile(current);
+      const result = await saveCourseFile(current, base === null ? { create: true } : { base_revision: base });
       setCourse(previous => previous && { ...previous, revision: result.revision });
-      setDirty(false);
+      setBase(result.revision);
+      // Edits made while the save was in flight are still unsaved.
+      if (edits.current === sent) setDirty(false);
       setSaved(result);
       setNotice(savedMessage(result));
     } catch (e) { setError((e as Error).message); }
@@ -313,7 +349,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       {recording ? <Button size="compact" variant="secondary" onClick={() => setRecording(null)}><Square size={16} />Stop recording</Button>
         : <ChoiceGroup label="Board shows" value={showEnd ? "end" : "start"} onChange={value => setShowEnd(value === "end")} options={[{ value: "start", label: "Step start" }, { value: "end", label: "Step end" }]} />}
     </div>}
-    board={<Board fen={fen ?? START_FEN} orientation={current.side} legalMoves={recording?.legal ?? []} disabled={!recording} onMove={recordMove} highlights={step.squares ?? []} arrows={arrows} />}
+    board={<Board fen={fen ?? START_FEN} orientation={current.side} legalMoves={recording?.legal ?? []} disabled={!recording || pending} onMove={recordMove} highlights={step.squares ?? []} arrows={arrows} />}
   >
     {checking && !check ? <Notice announcement="status">Checking the course…</Notice>
       : check?.error ? <Notice announcement="status" tone="error">{check.error}</Notice>
@@ -355,7 +391,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
         <button type="button" aria-current={index === stepIndex ? "step" : undefined} onClick={() => selectStep(index)}>
           <span className="lesson-editor-step-kind">{KINDS.find(option => option.value === kindOf(item))?.label}</span>
           <span>{item.title || item.id}</span>
-          {check?.error?.includes(`step ${item.id}:`) && <Circle size={10} aria-label="Has a problem" className="lesson-editor-problem" />}
+          {problemStep(check?.error, chapter.id, item.id) && <Circle size={10} role="img" aria-label="Has a problem" className="lesson-editor-problem" />}
         </button>
       </li>)}</ol>
       <div className="button-row">
@@ -373,7 +409,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
           <select value={kind} onChange={event => setKind(event.target.value as Kind)}>{KINDS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select>
         </Field>
         <Field label="Title"><input value={step.title} onChange={event => setField("title", event.target.value)} /></Field>
-        <Field label="Step id" help="Other steps link to this name."><input value={step.id} onChange={event => setField("id", event.target.value)} /></Field>
+        <Field label="Step id" help="Other steps link to this name."><input value={step.id} onChange={event => renameStep(event.target.value)} /></Field>
         <Field label="Text"><textarea rows={4} value={step.text ?? ""} onChange={event => setField("text", event.target.value)} /></Field>
 
         {kind === "demonstration" && <Field label="Moves to play" help="Ordinary notation, such as Nf3 Nc6."
@@ -388,7 +424,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
           <Field label="Feedback" help="Shown after the right move."><input value={step.feedback ?? ""} onChange={event => setField("feedback", event.target.value)} /></Field>
         </>)}
         {kind === "branch" && <Field label="Side trip starts at" help="The side trip's last step should end the chapter, so the learner returns here.">
-          <select value={step.branch ?? ""} onChange={event => setField("branch", event.target.value)}>{otherSteps.map(item => <option key={item.id} value={item.id}>{item.title} ({item.id})</option>)}</select>
+          <select value={step.branch ?? ""} onChange={event => setField("branch", event.target.value)}><option value="">Choose a step</option>{otherSteps.map(item => <option key={item.id} value={item.id}>{item.title} ({item.id})</option>)}</select>
         </Field>}
         {kind === "rehearsal" && <Field label="Line to rehearse">
           <select value={step.rehearse ?? ""} onChange={event => setField("rehearse", event.target.value)}>
@@ -397,7 +433,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
           </select>
         </Field>}
         {kind === "game_excerpt" && <>
-          <Field label="Source game"><select value={step.game ?? ""} onChange={event => setField("game", event.target.value)}>{(current.games ?? []).map(game => <option key={game.id} value={game.id}>{game.title}</option>)}</select></Field>
+          <Field label="Source game"><select value={step.game ?? ""} onChange={event => setField("game", event.target.value)}><option value="">Choose a game</option>{(current.games ?? []).map(game => <option key={game.id} value={game.id}>{game.title}</option>)}</select></Field>
           <Field label="From ply"><input type="number" min={0} value={step.from ?? 0} onChange={event => setField("from", Number(event.target.value))} /></Field>
           <Field label="To ply"><input type="number" min={1} value={step.to ?? 1} onChange={event => setField("to", Number(event.target.value))} /></Field>
         </>}
@@ -411,7 +447,10 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
         </Field>
         <Field group label="Starts from" help="Most steps carry on from the step before them.">
           <ChoiceGroup label="Starts from" value={step.position !== undefined || step.fen !== undefined ? "own" : "carry"} onChange={value => editStep(draft => {
-            if (value === "own") draft.position = board?.position ?? "";
+            if (value === "own") {
+              draft.position = board?.position ?? "";
+              if (board && board.initial_fen !== START_FEN) draft.fen = board.initial_fen;
+            }
             else { delete draft.position; delete draft.fen; }
           })} options={[{ value: "carry", label: "Carries on" }, { value: "own", label: "Its own position" }]} />
         </Field>
@@ -445,12 +484,27 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   </ReviewWorkspace>;
 }
 
-/** One labelled control; a group of buttons is named by its own aria-label instead. */
+/** Whether the check's problem names this step: "Chapter <id>, step <id> ...". */
+function problemStep(error: string | null | undefined, chapterId: string, stepId: string) {
+  return !!error && error.includes(`Chapter ${chapterId}, step ${stepId}`)
+    && !/[\w-]/.test(error.charAt(error.indexOf(`Chapter ${chapterId}, step ${stepId}`) + `Chapter ${chapterId}, step ${stepId}`.length));
+}
+
+/** One labelled control; a group of buttons is named by its own aria-label instead.
+ * Help text describes the field's own control through aria-describedby. */
 function Field({ label, help, action, group, children }: { label: string; help?: string; action?: ReactNode; group?: boolean; children: ReactNode }) {
-  return <div className="lesson-editor-field">
+  const helpId = useId();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const control = ref.current?.querySelector("input, select, textarea, [role=group]");
+    if (!control) return;
+    if (help) control.setAttribute("aria-describedby", helpId);
+    else control.removeAttribute("aria-describedby");
+  });
+  return <div className="lesson-editor-field" ref={ref}>
     {group ? <><span className="lesson-editor-label">{label}</span>{children}</>
       : <label><span className="lesson-editor-label">{label}</span>{children}</label>}
     {action}
-    {help && <span className="small muted">{help}</span>}
+    {help && <span className="small muted" id={helpId}>{help}</span>}
   </div>;
 }

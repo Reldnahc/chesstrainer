@@ -136,7 +136,10 @@ saves a club copy that replaces it.
 A club's own courses live in a `courses` folder beside the database
 (`/data/courses` in the Docker image), or in `COURSES_PATH` when it is set.
 That folder is on the same volume as the database, so club courses survive
-updates and are backed up with it.
+updates. `scripts/backup.py export` includes the course files with the
+database snapshot, and `restore` puts them in a `courses` folder beside the
+restored database (or `<name>-courses` when that folder is already in use; point
+`COURSES_PATH` at it).
 
 - **Everyone** can download any course from its course page with *Download
   course file*.
@@ -149,7 +152,10 @@ updates and are backed up with it.
   only; members never see a broken course.
 - A club course with the same `id` as a built-in course replaces it. Deleting
   the club file brings the built-in course back.
-- Saving or importing a course whose content changed but whose `revision` is
-  already installed gives it a new revision (today's date). Members who started
-  the earlier revision keep the version they began; their progress is keyed by
-  revision.
+- Saving or importing a course under a revision that was ever used for different
+  content (a built-in revision, or an earlier save, even one since deleted) gives
+  it a new revision (today's date). Members who started the earlier revision keep
+  the version they began; their progress is keyed by revision. The folder's
+  `revisions.ledger` remembers every saved revision for this.
+- The editor refuses to save a new course over an existing id, and refuses to
+  save over a course someone else saved after the editor opened it.
