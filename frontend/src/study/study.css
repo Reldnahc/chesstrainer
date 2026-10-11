@@ -88,26 +88,27 @@
   .opening-management-heading, .opening-study { flex-direction: column; align-items: stretch; gap: var(--space-3); }
   .opening-study .button-row button { flex: 1; }
 }
-.lesson-course-download { margin-top: 12px; }
 .course-settings-row .button-row { flex: none; flex-wrap: wrap; justify-content: flex-end; }
 .course-settings-row .button-row .action-control { flex: none; }
-.lesson-editor-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
-.lesson-editor-heading h1 { margin: 0; font-size: 20px; }
-.lesson-editor-section { display: grid; gap: 10px; }
-.lesson-editor-section h2 { margin: 8px 0 0; font-size: 16px; }
-.lesson-editor-fields { display: grid; gap: 12px; }
-.lesson-editor-field { display: grid; gap: 6px; }
-.lesson-editor-field > label { display: grid; gap: 6px; }
+.lesson-editor-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.lesson-editor-heading h1 { font-size: 20px; }
+/* Open details sections use the shared details spacing; plain sections stack
+   their heading and fields, with extra room above the heading. */
+section.lesson-editor-section { display: grid; gap: var(--space-3); padding-top: var(--space-2); }
+.lesson-editor-section h2 { font-size: 16px; }
+.lesson-editor-fields { display: grid; gap: var(--space-3); }
+.lesson-editor-field { display: grid; gap: var(--space-1-5); }
+.lesson-editor-field > label { display: grid; gap: var(--space-1-5); }
 .lesson-editor-field > .action-control { justify-self: start; }
 .lesson-editor-label { font-size: 13px; font-weight: 600; }
 .lesson-editor-field input:not([type="checkbox"]), .lesson-editor-field textarea, .lesson-editor-field select { width: 100%; }
-.lesson-editor-steps { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.lesson-editor-steps button { display: flex; align-items: center; justify-content: flex-start; gap: 10px; width: 100%; min-height: 44px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: inherit; text-align: left; font: inherit; cursor: pointer; }
+.lesson-editor-steps { display: grid; gap: var(--space-1); padding: 0; list-style: none; }
+.lesson-editor-steps button { display: flex; align-items: center; justify-content: flex-start; gap: var(--space-3); width: 100%; min-height: 44px; padding: var(--space-1-5) var(--space-3); border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: inherit; text-align: left; font: inherit; cursor: pointer; }
 .lesson-editor-steps button[aria-current] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
 .lesson-editor-step-kind { flex: none; width: 104px; color: var(--muted); font-size: 12px; }
 .lesson-editor-problem { flex: none; margin-left: auto; color: var(--accent); fill: currentColor; }
-.lesson-editor-line { padding-block: 10px; border-top: 1px solid var(--line); }
-.lesson-editor-check { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.lesson-editor-line { padding-block: var(--space-3); border-top: 1px solid var(--line); }
+.lesson-editor-check { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; }
 @media (max-width: 760px) {
   .course-settings .settings-section-heading { flex-direction: column; align-items: stretch; }
   .course-settings-row .button-row { justify-content: flex-start; }
