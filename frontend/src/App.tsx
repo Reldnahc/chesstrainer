@@ -182,7 +182,7 @@ export default function App() {
                 onEvidence={setEvidenceId}
               />
             )}
-            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && !route.openingCatalogueKey && !route.openingCourseLine && !route.courseEditor && (
+            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && !route.openingCatalogueKey && !route.openingCourseLine && (
               <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} courseId={route.lessonCourseId} courseRevision={route.lessonRevision} openingSection={route.openingSection} openingQuery={route.openingQuery} openingEco={route.openingEco} openingOffset={route.openingOffset} />
             )}
             {route.courseEditor && (
@@ -212,7 +212,7 @@ export default function App() {
                 category={route.insightsSection}
               />
             )}
-            {tab === "Settings" && (
+            {tab === "Settings" && !route.courseEditor && (
               <SettingsScreen health={health} fail={fail} section={route.settingsTab} importSource={route.importSource} restoringScroll={route.restoringScroll} />
             )}
             {!tab && (

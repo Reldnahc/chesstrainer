@@ -94,9 +94,9 @@
   .opening-study .button-row button { flex: 1; }
   .opening-preview-details { margin-top: 12px; }
 }
-.lesson-course-actions { margin-top: 14px; }
-.lesson-course-tools { display: grid; gap: 10px; margin-bottom: 18px; }
-.lesson-course-tools p { margin: 0; }
+.lesson-course-download { margin-top: 12px; }
+.course-settings-row .button-row { flex: none; flex-wrap: wrap; justify-content: flex-end; }
+.course-settings-row .button-row .action-control { flex: none; }
 .lesson-editor-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
 .lesson-editor-heading h1 { margin: 0; font-size: 20px; }
 .lesson-editor-section { display: grid; gap: 10px; }
@@ -114,3 +114,7 @@
 .lesson-editor-problem { flex: none; margin-left: auto; color: var(--accent); fill: currentColor; }
 .lesson-editor-line { padding-block: 10px; border-top: 1px solid var(--line); }
 .lesson-editor-check { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+@media (max-width: 760px) {
+  .course-settings .settings-section-heading { flex-direction: column; align-items: stretch; }
+  .course-settings-row .button-row { justify-content: flex-start; }
+}

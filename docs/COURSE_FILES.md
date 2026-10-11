@@ -114,8 +114,9 @@ board, as [Study](STUDY.md#reviewing-authored-course-quality) describes.
 
 ## Lesson editor
 
-Administrators can write and change courses in the app: *New course* on the
-Lessons page, or *Edit course* on any course page. Editing a built-in course
+Administrators manage courses in **Settings → Courses**, which only they see:
+*New course*, *Import course file*, and *Edit*, *Download* or *Delete* for each
+course. Lessons itself stays free of these tools. Editing a built-in course
 saves a club copy that replaces it.
 
 - The board on the left shows where the selected step starts (or ends). The
@@ -144,8 +145,7 @@ restored database (or `<name>-courses` when that folder is already in use; point
 - **Everyone** can download any course from its course page with *Download
   course file*.
 - **Administrators** (and the single user of a local install without accounts)
-  can import a course file from the Lessons page and delete a club course from
-  its course page. The first administrator is created with
+  can import, edit and delete courses in Settings → Courses. The first administrator is created with
   `python -m trainer.accounts create-admin YOUR_USERNAME` (see [Accounts](ACCOUNTS.md)).
 - A file dropped into the folder by hand appears on the next visit to Lessons.
   A file that cannot be loaded is listed, with its problem, to administrators

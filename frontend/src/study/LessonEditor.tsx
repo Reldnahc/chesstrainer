@@ -9,7 +9,7 @@ import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
 import ReviewWorkspace from "../ReviewWorkspace";
 import TurnIndicator from "../TurnIndicator";
-import { lessonCoursePath, setLeaveGuard, studyPaths, type LessonTopic } from "../navigation";
+import { courseSettingsPath, lessonCoursePath, setLeaveGuard, type LessonTopic } from "../navigation";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 // The editor edits the readable course file itself (docs/COURSE_FILES.md), so
@@ -339,7 +339,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     heading={<div className="lesson-editor-heading">
       <h1>{current.title || "Untitled course"}</h1>
       <div className="button-row">
-        <ActionLink size="compact" variant="quiet" href={courseId ? lessonCoursePath(courseId, undefined, current.topic ?? "opening") : studyPaths.openings}><ArrowLeft size={16} />Back</ActionLink>
+        <ActionLink size="compact" variant="quiet" href={courseSettingsPath}><ArrowLeft size={16} />Courses</ActionLink>
         <Button size="compact" variant="primary" disabled={saving} onClick={save}><Save size={16} />{saving ? "Saving…" : dirty ? "Save course" : "Saved"}</Button>
       </div>
     </div>}

@@ -18,7 +18,7 @@ export type StudyMode = "home" | keyof typeof studyPaths;
 export type LessonTopic = "opening" | "skills";
 const lessonRoot = (topic: LessonTopic) => topic === "skills" ? studyPaths.skills : studyPaths.openings;
 export type Tab = keyof typeof pagePaths;
-export type SettingsTab = "imports" | "coach" | "sound" | "account" | "advanced";
+export type SettingsTab = "imports" | "coach" | "sound" | "account" | "courses" | "advanced";
 export type InsightsSection = "overview" | "patterns" | "outcomes";
 export const insightsPaths: Record<InsightsSection, string> = {
   overview: "/insights",
@@ -70,7 +70,7 @@ function readRoute() {
   const courseMatch = path.match(/^\/study\/(openings|skills)\/courses\/([^/]+)$/);
   const skillsLesson = (lessonMatch ?? courseMatch)?.[1] === "skills";
   const catalogueMatch = path.match(/^\/study\/openings\/catalogue\/([^/]+)$/);
-  const editorMatch = path === `${studyPaths.openings}/editor`;
+  const editorMatch = path === courseEditorRoot;
   const courseEditor = editorMatch ? { courseId: url.searchParams.get("course"), revision: url.searchParams.get("revision") } : null;
   const courseLineMatch = path.match(/^\/study\/openings\/courses\/([^/]+)\/lines\/([^/]+)$/);
   let gameId: string | null = null;
@@ -96,9 +96,9 @@ function readRoute() {
     : path === "/study/puzzles/games" ? "games" : null;
   const studyMode: StudyMode | null = path === pagePaths.Study ? "home"
     : puzzleSessionId || puzzleSource ? "puzzles"
-    : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || courseEditor || openingSection !== "lessons" ? "openings"
+    : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
-  const tab: Tab | null = studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"
+  const tab: Tab | null = courseEditor ? "Settings" : studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
   const settingsSection = url.searchParams.get("section");
   return {
@@ -106,7 +106,7 @@ function readRoute() {
     href: url.pathname + url.search,
     scrollAnchor: url.hash.slice(1),
     tab,
-    settingsTab: (["coach", "sound", "account", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
+    settingsTab: (["coach", "sound", "account", "courses", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
     importSource: url.searchParams.get("import"),
     insightsSection: (["patterns", "outcomes"].includes(url.searchParams.get("section") ?? "") ? url.searchParams.get("section") : "overview") as InsightsSection,
     gameId,
@@ -179,13 +179,17 @@ export function lessonSessionPath(id: string, topic: LessonTopic = "opening") {
   return `${lessonRoot(topic)}/sessions/${encodeURIComponent(id)}`;
 }
 
+// The lesson editor belongs to administrators' Settings, not to Lessons.
+const courseEditorRoot = "/settings/courses/editor";
+export const courseSettingsPath = "/settings?section=courses";
+
 /** The lesson editor, for a new course or an existing one. */
 export function courseEditorPath(id?: string, revision?: string) {
   const query = new URLSearchParams();
   if (id) query.set("course", id);
   if (id && revision) query.set("revision", revision);
   const search = query.toString();
-  return `${studyPaths.openings}/editor${search ? `?${search}` : ""}`;
+  return `${courseEditorRoot}${search ? `?${search}` : ""}`;
 }
 
 export function lessonCoursePath(id: string, revision?: string, topic: LessonTopic = "opening") {
