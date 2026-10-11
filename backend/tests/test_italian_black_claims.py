@@ -302,7 +302,8 @@ def test_evans_excerpt_reaches_the_central_break_not_just_repeated_development()
 
 
 def test_new_course_annotations_do_not_change_the_existing_white_course():
-    from course_positions.italian import course as white_course
+    def white_course():
+        return built_in("italian-foundations")
 
     before = white_course().model_dump(mode="json")
     black = course()
