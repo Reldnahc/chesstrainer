@@ -111,3 +111,26 @@ offered in Study.
 These checks prove that a course plays; they do not prove that it teaches good
 chess. Check the taught moves with an engine and the explanations against the
 board, as [Study](STUDY.md#reviewing-authored-course-quality) describes.
+
+## Club courses
+
+A club's own courses live in a `courses` folder beside the database
+(`/data/courses` in the Docker image), or in `COURSES_PATH` when it is set.
+That folder is on the same volume as the database, so club courses survive
+updates and are backed up with it.
+
+- **Everyone** can download any course from its course page with *Download
+  course file*.
+- **Administrators** (and the single user of a local install without accounts)
+  can import a course file from the Lessons page and delete a club course from
+  its course page. The first administrator is created with
+  `python -m trainer.accounts create-admin YOUR_USERNAME` (see [Accounts](ACCOUNTS.md)).
+- A file dropped into the folder by hand appears on the next visit to Lessons.
+  A file that cannot be loaded is listed, with its problem, to administrators
+  only; members never see a broken course.
+- A club course with the same `id` as a built-in course replaces it. Deleting
+  the club file brings the built-in course back.
+- Saving or importing a course whose content changed but whose `revision` is
+  already installed gives it a new revision (today's date). Members who started
+  the earlier revision keep the version they began; their progress is keyed by
+  revision.

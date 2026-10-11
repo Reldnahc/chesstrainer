@@ -23,6 +23,7 @@ LessonAction = Literal[
     "game_seek",
 ]
 LessonTopic = Literal["opening", "skills"]
+LessonSource = Literal["built_in", "club"]
 
 
 class LessonAttribution(Contract):
@@ -68,6 +69,7 @@ class LessonCourseSummary(Contract):
     chapter_count: int
     completed_chapters: int
     topic: LessonTopic
+    source: LessonSource = "built_in"
 
 
 class LessonCourseView(Contract):
@@ -80,6 +82,8 @@ class LessonCourseView(Contract):
     chapters: list[LessonChapterSummary]
     attributions: list[LessonAttribution]
     lines: list[LessonLineSummary]
+    source: LessonSource = "built_in"
+    can_manage: bool = False
 
 
 class LessonResume(Contract):
@@ -93,9 +97,26 @@ class LessonResume(Contract):
     updated_at: str
 
 
+class CourseFileProblem(Contract):
+    file: str
+    message: str
+
+
 class LessonLibrary(Contract):
     courses: list[LessonCourseSummary]
     resume: list[LessonResume]
+    # Course files may be imported, edited and deleted only by an administrator.
+    can_manage: bool = False
+    # Club course files that could not be loaded; listed for administrators only.
+    problems: list[CourseFileProblem] = Field(default_factory=list)
+
+
+class CourseFileSaved(Contract):
+    id: str
+    revision: str
+    title: str
+    # True when a changed course received a new revision so saved progress stays intact.
+    revision_changed: bool
 
 
 class LessonStart(Contract):

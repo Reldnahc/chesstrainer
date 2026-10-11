@@ -13,6 +13,7 @@ PRIVATE_SETTINGS = frozenset(
         "allowed_hosts",
         "server_host",
         "database_path",
+        "courses_path",
         "public_origin",
         "stockfish_path",
         "human_model_path",
@@ -26,6 +27,9 @@ class Settings(BaseSettings):
     server_host: str = "127.0.0.1"
     server_port: int = Field(default=8000, ge=1, le=65535)
     database_path: Path = Path("data/trainer.sqlite3")
+    # The club's own Study course files; blank keeps them in a courses folder
+    # beside the database, so they live on the same volume.
+    courses_path: Path | None = None
     accounts_enabled: bool = False
     session_secure: bool = True
     public_origin: str = ""

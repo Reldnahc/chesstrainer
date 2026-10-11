@@ -37,7 +37,7 @@ from trainer.routes import (
 from trainer.routes.compatibility import ManualRequest as ManualRequest
 from trainer.routes.review import MoveRequest as MoveRequest
 from trainer.scheduling import FSRSScheduler
-from trainer.study_lessons.bundled import bundled_providers
+from trainer.study_lessons.club import ClubCourses, InstalledCourses, courses_folder
 from trainer.study_lessons.providers import CourseProviders
 from trainer.taxonomy import seed_skills
 from trainer.web import configure_http, serve_frontend
@@ -60,7 +60,11 @@ def create_app(
     settings = (settings or Settings()).for_runtime()
     if puzzle_providers is None:
         puzzle_providers = production_providers(settings)
-    courses = CourseProviders(bundled_providers() if lesson_providers is None else lesson_providers)
+    # Tests and development tools may supply their own courses; a real install
+    # offers the built-in courses and the club's course folder.
+    club = ClubCourses(courses_folder(settings)) if lesson_providers is None else None
+    installed = InstalledCourses(club) if club else None
+    courses = CourseProviders((installed,) if installed else lesson_providers)
     sql_engine, sessions = database(settings.database_path)
     health = EngineHealth()
     engine_factory = health.observe(engine_factory)
@@ -147,7 +151,7 @@ def create_app(
     app.include_router(
         puzzles.create_router(providers=app.state.puzzle_providers, settings=settings)
     )
-    app.include_router(study_lessons.create_router(providers=courses))
+    app.include_router(study_lessons.create_router(providers=courses, installed=installed))
     app.include_router(opening_studies.create_router(providers=courses, scheduler=scheduler))
     app.include_router(classification.create_router(settings=settings, classifier=classifier))
     app.include_router(compatibility.create_router(scheduler=scheduler))

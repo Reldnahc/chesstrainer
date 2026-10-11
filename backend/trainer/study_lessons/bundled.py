@@ -21,6 +21,7 @@ ORDER = (
 # Each course file names its Study section. The topic is presentation only and
 # stays outside course content, so it never changes a content hash.
 _topics = {}
+_built_in_topics = {}
 
 
 def course_topic(course_id):
@@ -30,6 +31,12 @@ def course_topic(course_id):
 
 def remember_topic(course_id, topic):
     _topics[course_id] = topic
+
+
+def restore_built_in_topics():
+    """Undo a club course's topic when its file no longer replaces a built-in one."""
+    _courses()
+    _topics.update(_built_in_topics)
 
 
 def read_course_file(path):
@@ -55,6 +62,7 @@ def _courses():
     for path in sorted(BUILT_IN.glob("*.json")):
         course, topic = read_course_file(path)
         remember_topic(course.id, topic)
+        _built_in_topics[course.id] = topic
         loaded.append(course)
     return tuple(ordered(loaded))
 

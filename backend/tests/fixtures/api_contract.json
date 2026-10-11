@@ -1347,6 +1347,54 @@
         "title": "Conversion",
         "type": "object"
       },
+      "CourseFileProblem": {
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "title": "File",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file",
+          "message"
+        ],
+        "title": "CourseFileProblem",
+        "type": "object"
+      },
+      "CourseFileSaved": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "string"
+          },
+          "revision_changed": {
+            "title": "Revision Changed",
+            "type": "boolean"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "title",
+          "revision_changed"
+        ],
+        "title": "CourseFileSaved",
+        "type": "object"
+      },
       "Coverage": {
         "additionalProperties": false,
         "properties": {
@@ -4470,6 +4518,15 @@
             "title": "Revision",
             "type": "string"
           },
+          "source": {
+            "default": "built_in",
+            "enum": [
+              "built_in",
+              "club"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
           "title": {
             "title": "Title",
             "type": "string"
@@ -4506,6 +4563,11 @@
             "title": "Attributions",
             "type": "array"
           },
+          "can_manage": {
+            "default": false,
+            "title": "Can Manage",
+            "type": "boolean"
+          },
           "chapters": {
             "items": {
               "$ref": "#/components/schemas/LessonChapterSummary"
@@ -4538,6 +4600,15 @@
           },
           "revision": {
             "title": "Revision",
+            "type": "string"
+          },
+          "source": {
+            "default": "built_in",
+            "enum": [
+              "built_in",
+              "club"
+            ],
+            "title": "Source",
             "type": "string"
           },
           "title": {
@@ -4656,11 +4727,23 @@
       "LessonLibrary": {
         "additionalProperties": false,
         "properties": {
+          "can_manage": {
+            "default": false,
+            "title": "Can Manage",
+            "type": "boolean"
+          },
           "courses": {
             "items": {
               "$ref": "#/components/schemas/LessonCourseSummary"
             },
             "title": "Courses",
+            "type": "array"
+          },
+          "problems": {
+            "items": {
+              "$ref": "#/components/schemas/CourseFileProblem"
+            },
+            "title": "Problems",
             "type": "array"
           },
           "resume": {
@@ -12825,6 +12908,69 @@
         "summary": "Stats"
       }
     },
+    "/api/study/course-files": {
+      "post": {
+        "description": "Import or save a course file. Administrators only.",
+        "operationId": "save_course_api_study_course_files_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseFileSaved"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Save Course"
+      }
+    },
+    "/api/study/course-files/{course_id}": {
+      "delete": {
+        "description": "Remove a club course file. A built-in course it replaced comes back.",
+        "operationId": "delete_course_api_study_course_files__course_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "title": "Course Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Course"
+      }
+    },
     "/api/study/courses": {
       "get": {
         "operationId": "library_api_study_courses_get",
@@ -12896,6 +13042,58 @@
           }
         },
         "summary": "Course"
+      }
+    },
+    "/api/study/courses/{course_id}/file": {
+      "get": {
+        "description": "Anyone may download a course as a course file.",
+        "operationId": "export_course_api_study_courses__course_id__file_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "title": "Course Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "revision",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Export Course"
       }
     },
     "/api/study/lesson-sessions": {

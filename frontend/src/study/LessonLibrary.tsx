@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, Download, Trash2, Upload } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import ResumeLink from "../ResumeLink";
@@ -11,6 +11,7 @@ import Notice from "../Notice";
 import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths, type LessonTopic } from "../navigation";
 import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
+import { deleteCourseFile, downloadCourseFile, readChosenFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 const TOPIC_TEXT = {
   opening: { home: studyPaths.openings, back: "All openings", loading: "Loading opening lessons…", empty: "No opening lessons yet.", emptyText: "Opening lessons will appear here when a course is available." },
@@ -23,6 +24,11 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
   const [course, setCourse] = useState<Schema["LessonCourseView"] | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
+  const [fileBusy, setFileBusy] = useState(false);
+  const [fileNotice, setFileNotice] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [reload, setReload] = useState(0);
+  const chooser = useRef<HTMLInputElement>(null);
   const [startLesson] = useState(() => retryableStart(
     async (body: Omit<Schema["LessonStart"], "request_id">) => body,
     (body, signal) => read(api.POST("/api/study/lesson-sessions", { body, signal })),
@@ -40,7 +46,34 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
         .catch(e => { if (!controller.signal.aborted) setError(e.message); });
     }
     return () => { controller.abort(); request.current?.abort(); };
-  }, [courseId, revision]);
+  }, [courseId, revision, reload]);
+  async function fileAction(action: () => Promise<string | void>) {
+    if (fileBusy) return;
+    setFileBusy(true);
+    setError("");
+    setFileNotice("");
+    try {
+      const message = await action();
+      if (message) setFileNotice(message);
+    } catch (e) { setError((e as Error).message); }
+    finally { setFileBusy(false); }
+  }
+  function importChosen(file: File | undefined) {
+    if (chooser.current) chooser.current.value = "";
+    if (!file) return;
+    void fileAction(async () => {
+      const saved = await saveCourseFile(await readChosenFile(file));
+      setReload(value => value + 1);
+      return savedMessage(saved, "Imported");
+    });
+  }
+  function removeCourse() {
+    if (!course) return;
+    void fileAction(async () => {
+      await deleteCourseFile(course.id);
+      navigate(courseText.home);
+    });
+  }
   async function begin(chapterId: string) {
     if (!course || request.current) return;
     const controller = new AbortController();
@@ -68,6 +101,14 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
           <p>{course.description}</p>
         </div>
       </header>
+      <div className="button-row lesson-course-actions">
+        <Button size="compact" variant="secondary" disabled={fileBusy} onClick={() => fileAction(() => downloadCourseFile(course.id, course.revision))}><Download size={16} />Download course file</Button>
+        {course.can_manage && course.source === "club" && (confirmDelete
+          ? <><Button size="compact" variant="primary" disabled={fileBusy} onClick={removeCourse}><Trash2 size={16} />Delete for everyone</Button>
+            <Button size="compact" variant="quiet" disabled={fileBusy} onClick={() => setConfirmDelete(false)}>Keep it</Button></>
+          : <Button size="compact" variant="quiet" disabled={fileBusy} onClick={() => setConfirmDelete(true)}><Trash2 size={16} />Delete course</Button>)}
+      </div>
+      {confirmDelete && <Notice announcement="status">Deleting removes this club course from Study. Members who started it keep their progress. A built-in course it replaced comes back.</Notice>}
       <ol className="lesson-chapters">{course.chapters.map((chapter, index) => <li key={chapter.id}>
         <span className="lesson-chapter-number">{chapter.completed ? <Check size={18} aria-label="Completed" /> : index + 1}</span>
         <div><h3>{chapter.title}</h3><span className="muted">{chapter.completed ? "Completed · revisit any time" : "Guided lesson"}</span></div>
@@ -81,8 +122,18 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
   const resume = library.resume.filter(session => session.course_topic === topic);
   const courses = library.courses.filter(item => item.topic === topic);
   return <>
+    {library.can_manage && <section className="panel lesson-course-tools" aria-label="Course files">
+      <div className="button-row">
+        <Button variant="secondary" disabled={fileBusy} onClick={() => chooser.current?.click()}><Upload size={16} />{fileBusy ? "Importing…" : "Import course file"}</Button>
+        <input ref={chooser} hidden type="file" accept=".json,application/json" aria-label="Course file" onChange={event => importChosen(event.target.files?.[0])} />
+      </div>
+      <p className="small muted">Importing adds a course for every member. A course with the same id as an existing one replaces it.</p>
+      {fileNotice && <Notice announcement="status" tone="success">{fileNotice}</Notice>}
+      {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+      {(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}
+    </section>}
     {!!resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{resume.map(session => <ResumeLink key={session.id} href={lessonSessionPath(session.id, topic)} description={session.chapter_title}>{session.course_title}</ResumeLink>)}</div></section>}
-    {courses.length ? <div className="lesson-course-grid">{courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision, topic)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}<ArrowRight size={16} /></span></Link>)}</div>
+    {courses.length ? <div className="lesson-course-grid">{courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision, topic)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}{item.source === "club" ? " · Club course" : ""}<ArrowRight size={16} /></span></Link>)}</div>
       : <EmptyState title={text.empty} icon={<BookOpen />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>{text.emptyText}</EmptyState>}
   </>;
 }
