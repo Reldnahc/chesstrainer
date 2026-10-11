@@ -97,3 +97,27 @@ def test_unreachable_step_needs_its_own_position():
     )
     with pytest.raises(CourseFileError, match="aside cannot be reached"):
         course_files.load(data)
+
+
+def test_built_in_files_match_the_python_courses_they_replace():
+    from trainer.study_lessons.courses import (
+        dragon,
+        fundamentals,
+        italian,
+        italian_black,
+        kings_gambit,
+        tactics,
+        vienna,
+    )
+
+    python = [
+        module.course()
+        for module in (italian, italian_black, kings_gambit, dragon, vienna, fundamentals, tactics)
+    ]
+    files = BundledCourses().courses(None)
+    assert files == tuple(python)
+    assert [fingerprint(course) for course in files] == [fingerprint(course) for course in python]
+    assert {course.id for course in files if course_topic(course.id) == "skills"} == {
+        "chess-fundamentals",
+        "tactics-foundations",
+    }

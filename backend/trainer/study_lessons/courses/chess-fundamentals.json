@@ -1,0 +1,409 @@
+{
+  "format": "fieldwork-course-1",
+  "id": "chess-fundamentals",
+  "revision": "2026-10-v1",
+  "title": "Fundamentals · Six basic skills",
+  "description": "Learn six skills every player needs: what the pieces are worth, counting attackers and defenders, looking for checks, captures and threats before every move, opening principles, checkmating a lone king, and king and pawn endings. Each chapter explains one skill, then you try it in two positions. Some examples start from common openings or from Scholar's mate, a well-known trap; the others were composed for this course. Stockfish checked every answer in the first four chapters, and endgame tablebases checked the endings.",
+  "side": "white",
+  "topic": "skills",
+  "credits": [
+    {
+      "text": "Original Fieldwork instruction. Positions without a named source were composed for this course.",
+      "license": "Repository license"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "piece-values",
+      "title": "What the pieces are worth",
+      "steps": [
+        {
+          "id": "values-intro",
+          "title": "Points for each piece",
+          "text": "Players count a pawn as 1 point, a knight or a bishop as 3, a rook as 5 and a queen as 9. The king is never captured, so it has no points. Your pieces and pawns, counted this way, are your material. Use these numbers to judge a capture: add up what you take and what you can lose back. Black's knight has jumped to d4. Two of your pieces can take it, but the e5-pawn and the c5-bishop defend it, so whatever takes it will be taken back.",
+          "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O h3 Nd4",
+          "squares": [
+            "d4"
+          ],
+          "arrows": [
+            "c3-d4",
+            "f3-d4"
+          ]
+        },
+        {
+          "id": "values-cheaper",
+          "title": "Capture with the cheaper piece",
+          "text": "Take the knight on d4 with the cheaper of your two pieces.",
+          "move": "cxd4",
+          "reply": "exd4",
+          "feedback": "cxd4 takes a knight (3) with a pawn (1). Black takes back with ...exd4, and you are two points ahead. Taking with the knight, Nxd4 exd4, would only have traded knights.",
+          "hint": "Capture on d4 with the c3-pawn."
+        },
+        {
+          "id": "values-exchange-intro",
+          "title": "Win the exchange",
+          "text": "A rook (5) is worth more than a bishop or a knight (3). Giving a bishop or a knight for a rook is called winning the exchange. Your bishop on a3 looks down an open diagonal at Black's rook on f8.",
+          "fen": "r1bq1rk1/ppp2ppp/2n2n2/3p4/3P4/BPN2N2/P1P2PPP/R2Q1RK1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "f8"
+          ],
+          "arrows": [
+            "a3-f8"
+          ]
+        },
+        {
+          "id": "values-exchange",
+          "title": "Take the rook",
+          "text": "Capture the rook. Black will take your bishop back, so count who comes out ahead.",
+          "move": "Bxf8",
+          "reply": "Qxf8",
+          "feedback": "Bxf8 takes a rook (5). After ...Qxf8 you have lost a bishop (3), so you are two points ahead: you have won the exchange.",
+          "hint": "Capture on f8 with the bishop."
+        },
+        {
+          "id": "values-summary",
+          "title": "Count before you capture",
+          "text": "Before you capture, add up what you take and what you can lose. When two pieces can make the same capture, use the cheaper one. The points are a guide, not a rule: checkmate is worth more than any amount of material."
+        }
+      ]
+    },
+    {
+      "id": "count-attackers",
+      "title": "Count attackers and defenders",
+      "steps": [
+        {
+          "id": "count-intro",
+          "title": "Attackers against defenders",
+          "text": "Before you take something, count. Your attackers are the pieces that can capture on that square; the defenders are the pieces that can take back. With more attackers than defenders, you can usually win what stands there. Black's pawn on e5 is attacked by your knight on f3 and your rook on e1, and defended only by the knight on c6.",
+          "fen": "r2q1rk1/ppp1bppp/2n2n2/4p3/8/2NP1N2/PPP2PPP/R1BQR1K1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "e5"
+          ],
+          "arrows": [
+            "f3-e5",
+            "e1-e5"
+          ]
+        },
+        {
+          "id": "count-first",
+          "title": "Start with the cheaper attacker",
+          "text": "Two attackers, one defender. Take the pawn, starting with your cheaper piece.",
+          "move": "Nxe5",
+          "reply": "Nxe5",
+          "feedback": "Nxe5 takes the pawn, and Black takes back with ...Nxe5. So far you have given a knight for a pawn, but your rook still attacks e5, and nothing defends it now.",
+          "hint": "Capture on e5 with the f3-knight."
+        },
+        {
+          "id": "count-second",
+          "title": "Finish the trade",
+          "text": "Take back on e5.",
+          "move": "Rxe5",
+          "feedback": "Rxe5 finishes the trade: you won a pawn and a knight (4) for your knight (3), so you are one point ahead. Starting with Rxe5 would have left you a point behind, because the c6-knight would have taken your rook (5).",
+          "hint": "Capture on e5 with the rook."
+        },
+        {
+          "id": "count-pin-intro",
+          "title": "Count only real defenders",
+          "text": "Count only the pieces that can legally take back. A piece pinned to its own king may not leave the line between the attacker and the king, and a pinned knight cannot move at all. Black's e5-pawn seems to be defended by the knight on d7, but your bishop on b5 pins that knight to the king on e8.",
+          "fen": "r1bqkb1r/pppn1ppp/5n2/1B2p3/4P3/2N2N2/PPP1QPPP/R1B2RK1 w kq - 0 1",
+          "position": "",
+          "squares": [
+            "e5",
+            "d7"
+          ],
+          "arrows": [
+            "b5-e8"
+          ]
+        },
+        {
+          "id": "count-pin",
+          "title": "Take the pawn",
+          "text": "Count the defenders that can really take back, then capture on e5.",
+          "move": "Nxe5",
+          "reply": "Be7",
+          "feedback": "Nxe5 wins a pawn for nothing: the knight on d7 is pinned, so it cannot take back. Black brings out a bishop with ...Be7 and stays a pawn down.",
+          "hint": "Capture on e5 with the f3-knight."
+        },
+        {
+          "id": "count-summary",
+          "title": "Count, then capture",
+          "text": "Count the attackers and the defenders that can really take back; a piece pinned to its king often cannot. Then capture with your cheapest attacker first. To practice, open Puzzles in Study and choose the Hanging piece theme."
+        }
+      ]
+    },
+    {
+      "id": "before-you-move",
+      "title": "Before every move: checks, captures, threats",
+      "steps": [
+        {
+          "id": "habit-intro",
+          "title": "Three questions",
+          "text": "Before every move, look at checks, captures and threats, for both sides. A threat is something a move sets up for next turn, such as capturing a piece or giving checkmate. Here Black's bishop on g4 attacks your queen. Before you simply move the queen away, look at your captures.",
+          "fen": "r2q1rk1/pppnbppp/2np4/4p3/3PP1b1/2NB4/PPPN1PPP/R1BQ1RK1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "g4"
+          ],
+          "arrows": [
+            "g4-d1"
+          ]
+        },
+        {
+          "id": "habit-capture",
+          "title": "Look at captures",
+          "text": "Find a capture that wins material. Check whether Black can take back.",
+          "move": "Qxg4",
+          "reply": "Nxd4",
+          "feedback": "Qxg4 takes the bishop, and no black piece can take back. Black wins your d4-pawn with ...Nxd4, but you are still a bishop for a pawn ahead. Moving the queen away would have let the bishop escape.",
+          "hint": "Capture on g4 with the queen."
+        },
+        {
+          "id": "habit-check-intro",
+          "title": "Checks come first",
+          "text": "Checks come first, because your opponent must answer them. Black's last move, ...Nf6, attacks your queen on h5. Before you save the queen, look at every check you can give. Early in the game, the pawn on f7 is defended only by Black's king.",
+          "position": "e4 e5 Bc4 Nc6 Qh5 Nf6",
+          "squares": [
+            "f7"
+          ]
+        },
+        {
+          "id": "habit-check",
+          "title": "Find the check",
+          "text": "One of your checks ends the game. Find it before you save the queen.",
+          "move": "Qxf7#",
+          "feedback": "Qxf7 is checkmate, a trap called Scholar's mate. Your bishop on c4 defends the queen, so the king cannot take it, and the king has no square to go to. If someone tries this trap against you as Black, answer Qh5 with ...g6 or ...Qe7 instead of ...Nf6. Play ...g6 only when your e5-pawn is defended, as it is here, or Qxe5+ wins your rook on h8. After ...g6, watch for Qf3, which aims at f7 again; ...Nf6 then blocks it.",
+          "hint": "Capture on f7 with the queen."
+        },
+        {
+          "id": "habit-summary",
+          "title": "Make it a habit",
+          "text": "Before every move, ask which checks, captures and threats you have, and what your opponent's last move threatens. Ask even when the move looks obvious. To practice, open Puzzles in Study and choose the Mate in 1 theme."
+        }
+      ]
+    },
+    {
+      "id": "opening-principles",
+      "title": "Opening principles",
+      "steps": [
+        {
+          "id": "opening-intro",
+          "title": "Three goals in the opening",
+          "text": "In the opening, aim for three things: control the center (d4, d5, e4 and e5), develop your knights and bishops (bring them out from their starting squares), and castle your king to safety. Moving one piece again and again, or bringing the queen out early, usually wastes time. Here Black's queen has come out early to d5.",
+          "position": "e4 d5 exd5 Qxd5",
+          "squares": [
+            "d5"
+          ]
+        },
+        {
+          "id": "opening-tempo",
+          "title": "Develop with a threat",
+          "text": "Bring out a knight so that it attacks Black's queen.",
+          "move": "Nc3",
+          "reply": "Qa5",
+          "feedback": "Nc3 develops a piece and attacks the queen, so Black has to spend a move saving it. This is called gaining a tempo: you develop while Black loses time. The queen goes to a5.",
+          "hint": "Move the b1-knight to c3."
+        },
+        {
+          "id": "opening-center",
+          "title": "Claim the center",
+          "text": "Put a pawn on one of the four center squares.",
+          "move": "d4",
+          "reply": "Nf6",
+          "feedback": "d4 puts a pawn in the center, where it controls c5 and e5, and it opens a diagonal for your c1-bishop. Black develops a knight with ...Nf6.",
+          "hint": "Move the d-pawn two squares, to d4."
+        },
+        {
+          "id": "opening-develop",
+          "title": "Develop toward the center",
+          "text": "Develop your other knight to a square where it controls the center without blocking your bishops.",
+          "move": "Nf3",
+          "reply": "Bf5",
+          "feedback": "Nf3 controls d4 and e5 and keeps the way clear for your bishops. Once your f1-bishop moves, you can castle. Black develops too, with ...Bf5.",
+          "hint": "Move the g1-knight to f3."
+        },
+        {
+          "id": "opening-castle-intro",
+          "title": "Castle early",
+          "text": "This position comes from the Italian Game: 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3 Nf6 5.Nc3 Ng4. Black's knight and bishop both aim at f2, which only your king defends. Taking there, ...Nxf2, would attack your queen and your rook at once.",
+          "fen": "r1bqk2r/pppp1ppp/2n5/2b1p3/2B1P1n1/2NP1N2/PPP2PPP/R1BQK2R w KQkq - 3 6",
+          "position": "",
+          "squares": [
+            "f2"
+          ],
+          "arrows": [
+            "g4-f2",
+            "c5-f2"
+          ]
+        },
+        {
+          "id": "opening-castle",
+          "title": "Castle",
+          "text": "Castle kingside: your king moves two squares toward the rook, and the rook jumps over it to f1.",
+          "move": "O-O",
+          "reply": "O-O",
+          "feedback": "O-O moves your king to safety and brings the rook to f1, where it defends f2. If Black takes there, Rxf2 Bxf2+ Kxf2 gives Black a rook and a pawn for a knight and a bishop. That is 6 points for 6, but while many pieces are on the board, a knight and a bishop are usually stronger than a rook and a pawn. Black castles too.",
+          "hint": "Move the king from e1 to g1."
+        },
+        {
+          "id": "opening-summary",
+          "title": "An opening checklist",
+          "text": "In the first moves, put pawns in the center, develop your knights and bishops toward it, and castle early. Avoid moving one piece many times and bringing your queen out early. The opening courses next to this one show these ideas in complete openings."
+        }
+      ]
+    },
+    {
+      "id": "lone-king-mates",
+      "title": "Checkmate a lone king",
+      "steps": [
+        {
+          "id": "mate-queen",
+          "title": "Queen and king against king",
+          "text": "A queen cannot checkmate a lone king without help from its own king. First drive the enemy king to the edge, then bring your king close. Here your queen controls the g-file, so Black's king can only move along the h-file. Watch out for stalemate: if the player to move is not in check but has no legal move, the game is a draw. Qg6 now would be stalemate.",
+          "fen": "7k/8/8/5K2/8/8/8/6Q1 w - - 0 1",
+          "position": "",
+          "arrows": [
+            "g1-g8"
+          ]
+        },
+        {
+          "id": "mate-queen-king",
+          "title": "Bring your king closer",
+          "text": "Find the king move that forces checkmate next move.",
+          "move": "Kf6",
+          "reply": "Kh7",
+          "feedback": "Kf6 brings your king next to g7, the square where your queen will give mate. Black's only legal move is ...Kh7.",
+          "hint": "Move the king from f5 to f6."
+        },
+        {
+          "id": "mate-queen-mate",
+          "title": "Checkmate with the queen",
+          "text": "Give checkmate.",
+          "move": "Qg7#",
+          "feedback": "Qg7 is checkmate. Your king defends the queen, so Black's king cannot take it, and the queen covers every square the king could go to.",
+          "hint": "Move the queen to g7."
+        },
+        {
+          "id": "mate-rook",
+          "title": "Rook and king against king",
+          "text": "A rook also needs its king. The usual mate has the enemy king on the edge, your king facing it with one square between them, and your rook checking along the edge. Checking now with Re8+ fails, because Black's king escapes to h7.",
+          "fen": "6k1/8/5K2/8/8/8/8/4R3 w - - 0 1",
+          "position": ""
+        },
+        {
+          "id": "mate-rook-wait",
+          "title": "Take away the corner",
+          "text": "Find a rook move that is not a check but forces checkmate next move.",
+          "move": "Rh1",
+          "reply": "Kf8",
+          "feedback": "Rh1 takes away h7 and h8. Black's only legal move is ...Kf8, straight in front of your king.",
+          "hint": "Move the rook from e1 to h1."
+        },
+        {
+          "id": "mate-rook-mate",
+          "title": "Mate on the edge",
+          "text": "The kings face each other with one square between them. Give checkmate.",
+          "move": "Rh8#",
+          "feedback": "Rh8 is checkmate. The rook checks along the eighth rank, the edge of the board, and your king covers e7, f7 and g7.",
+          "hint": "Move the rook to h8."
+        },
+        {
+          "id": "mate-summary",
+          "title": "Mating a lone king",
+          "text": "Drive the enemy king to the edge, bring your own king close, then give mate. Before each move that is not a check, make sure the enemy king still has a legal move, or the game ends in stalemate. With a rook, put your king in front of the enemy king and check along the edge."
+        }
+      ]
+    },
+    {
+      "id": "king-and-pawn",
+      "title": "King and pawn endings",
+      "steps": [
+        {
+          "id": "pawn-square",
+          "title": "The square of the pawn",
+          "text": "In a pawn race, count moves. A pawn promotes when it reaches the last rank, usually becoming a queen. Black's b-pawn needs three moves to promote and your h-pawn needs four, so pushing your pawn now loses. Use the rule of the square instead: draw a square from the pawn to its promotion square, here with corners b4, e4, e1 and b1. If your king can step into that square on this move, it catches the pawn.",
+          "fen": "k7/8/8/5K2/1p5P/8/8/8 w - - 0 1",
+          "position": "",
+          "squares": [
+            "b4",
+            "e4",
+            "e1",
+            "b1"
+          ]
+        },
+        {
+          "id": "pawn-square-enter",
+          "title": "Step into the square",
+          "text": "Move your king into the square of Black's pawn.",
+          "move": "Ke4",
+          "reply": "b3",
+          "feedback": "Ke4 steps into the square, so your king will catch the pawn. Black pushes anyway with ...b3, and the square shrinks to b3, d3, d1 and b1.",
+          "hint": "Move the king from f5 to e4."
+        },
+        {
+          "id": "pawn-square-follow",
+          "title": "Step into the smaller square",
+          "text": "The pawn moved, so its square shrank. Step into the smaller square.",
+          "move": "Kd3",
+          "reply": "b2",
+          "feedback": "Kd3 steps into the smaller square. Black pushes again with ...b2.",
+          "hint": "Move the king to d3."
+        },
+        {
+          "id": "pawn-square-stop",
+          "title": "Guard the promotion square",
+          "text": "Put your king next to b1, the square where the pawn promotes.",
+          "move": "Kc2",
+          "reply": "b1=Q+",
+          "feedback": "Kc2 guards b1. Black promotes with ...b1=Q+, but the new queen lands next to your king.",
+          "hint": "Move the king to c2."
+        },
+        {
+          "id": "pawn-square-capture",
+          "title": "Take the new queen",
+          "text": "Black's new queen gives check. Take it.",
+          "move": "Kxb1",
+          "feedback": "Kxb1 takes the new queen, and Black has only a king left. Now the rule of the square works for you: your h-pawn's square runs from d4 to h8, and Black's king on a8 cannot step into it, so your pawn will promote.",
+          "hint": "Capture on b1 with the king."
+        },
+        {
+          "id": "pawn-opposition",
+          "title": "Take the opposition",
+          "text": "With king and pawn against king, walk your king in front of the pawn first. When the two kings stand on the same file with one square between them, the player who does not have to move has the opposition: the other king must step aside. Take the opposition here, and Black's king has to let yours through.",
+          "fen": "8/4k3/8/3K4/4P3/8/8/8 w - - 0 1",
+          "position": ""
+        },
+        {
+          "id": "pawn-opposition-take",
+          "title": "Face the king",
+          "text": "Move your king so that it faces Black's king on the same file, with one square between them.",
+          "move": "Ke5",
+          "reply": "Kd7",
+          "feedback": "Ke5 takes the opposition, so Black has to give way. Any other move, even pushing the pawn, would let Black draw. Black steps aside with ...Kd7.",
+          "hint": "Move the king from d5 to e5."
+        },
+        {
+          "id": "pawn-opposition-pass",
+          "title": "Go around",
+          "text": "Black's king stepped aside. Move your king forward.",
+          "move": "Kf6",
+          "reply": "Kd8",
+          "feedback": "Kf6 stands next to e5, e6 and e7, the squares your pawn must cross. Black stays close with ...Kd8.",
+          "hint": "Move the king from e5 to f6."
+        },
+        {
+          "id": "pawn-opposition-finish",
+          "title": "Walk the pawn home",
+          "text": "Watch the finish. From f7 your king guards e6, e7 and e8, so Black's king can never get in front of the pawn, and the pawn promotes with check.",
+          "show": "Kf7 Kd7 e5 Kd8 e6 Kc7 e7 Kd7 e8=Q+"
+        },
+        {
+          "id": "pawn-summary",
+          "title": "Count, then lead with the king",
+          "text": "Count how many moves each pawn needs, and use the square to see whether a king can catch it. With king and pawn against king, bring your king in front of the pawn and take the opposition. This often fails with an a-pawn or an h-pawn: if the defending king reaches the corner in front of the pawn, the game is a draw. To practice, open Puzzles in Study and choose the Pawn endgame theme."
+        }
+      ]
+    }
+  ]
+}
