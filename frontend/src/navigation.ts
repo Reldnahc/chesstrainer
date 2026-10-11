@@ -70,6 +70,8 @@ function readRoute() {
   const courseMatch = path.match(/^\/study\/(openings|skills)\/courses\/([^/]+)$/);
   const skillsLesson = (lessonMatch ?? courseMatch)?.[1] === "skills";
   const catalogueMatch = path.match(/^\/study\/openings\/catalogue\/([^/]+)$/);
+  const editorMatch = path === `${studyPaths.openings}/editor`;
+  const courseEditor = editorMatch ? { courseId: url.searchParams.get("course"), revision: url.searchParams.get("revision") } : null;
   const courseLineMatch = path.match(/^\/study\/openings\/courses\/([^/]+)\/lines\/([^/]+)$/);
   let gameId: string | null = null;
   let playGameId: string | null = null;
@@ -94,7 +96,7 @@ function readRoute() {
     : path === "/study/puzzles/games" ? "games" : null;
   const studyMode: StudyMode | null = path === pagePaths.Study ? "home"
     : puzzleSessionId || puzzleSource ? "puzzles"
-    : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
+    : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || courseEditor || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
   const tab: Tab | null = studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
@@ -118,6 +120,7 @@ function readRoute() {
     openingSection,
     openingCatalogueKey,
     openingCourseLine,
+    courseEditor,
     openingQuery: url.searchParams.get("q") || "",
     openingEco: url.searchParams.get("eco") || "",
     openingOffset: nonnegativeInteger(url.searchParams.get("offset")),
@@ -167,6 +170,15 @@ export function puzzleSessionPath(id: string) {
 
 export function lessonSessionPath(id: string, topic: LessonTopic = "opening") {
   return `${lessonRoot(topic)}/sessions/${encodeURIComponent(id)}`;
+}
+
+/** The lesson editor, for a new course or an existing one. */
+export function courseEditorPath(id?: string, revision?: string) {
+  const query = new URLSearchParams();
+  if (id) query.set("course", id);
+  if (id && revision) query.set("revision", revision);
+  const search = query.toString();
+  return `${studyPaths.openings}/editor${search ? `?${search}` : ""}`;
 }
 
 export function lessonCoursePath(id: string, revision?: string, topic: LessonTopic = "opening") {

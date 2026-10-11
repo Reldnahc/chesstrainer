@@ -112,6 +112,25 @@ These checks prove that a course plays; they do not prove that it teaches good
 chess. Check the taught moves with an engine and the explanations against the
 board, as [Study](STUDY.md#reviewing-authored-course-quality) describes.
 
+## Lesson editor
+
+Administrators can write and change courses in the app: *New course* on the
+Lessons page, or *Edit course* on any course page. Editing a built-in course
+saves a club copy that replaces it.
+
+- The board on the left shows where the selected step starts (or ends). The
+  form on the right edits the course details, chapters, steps and the lines to
+  remember.
+- *Record on the board* fills a demonstration's moves, a decision's move and
+  reply, or a step's own starting position by playing the moves; the server
+  supplies the legal moves.
+- The course is checked shortly after every change. The first problem is shown
+  above the form, and steps keep their boards while another step is unfinished.
+- *Save course* writes the course file into the club's courses folder. The
+  editor edits the file itself, so anything it does not show (source games, a
+  decision with several accepted moves) is kept unchanged; edit those in the
+  file.
+
 ## Club courses
 
 A club's own courses live in a `courses` folder beside the database

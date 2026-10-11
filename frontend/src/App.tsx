@@ -19,6 +19,7 @@ import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
 import { pagePaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
+import LessonEditor from "./study/LessonEditor";
 import PlayScreen from "./play/PlayScreen";
 import PuzzlePlayer from "./study/PuzzlePlayer";
 import LessonPlayer from "./study/LessonPlayer";
@@ -181,8 +182,11 @@ export default function App() {
                 onEvidence={setEvidenceId}
               />
             )}
-            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && !route.openingCatalogueKey && !route.openingCourseLine && (
+            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && !route.openingCatalogueKey && !route.openingCourseLine && !route.courseEditor && (
               <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} courseId={route.lessonCourseId} courseRevision={route.lessonRevision} openingSection={route.openingSection} openingQuery={route.openingQuery} openingEco={route.openingEco} openingOffset={route.openingOffset} />
+            )}
+            {route.courseEditor && (
+              <LessonEditor key={`${refresh}-${route.href}`} courseId={route.courseEditor.courseId} revision={route.courseEditor.revision} />
             )}
             {route.puzzleSessionId && (
               <PuzzlePlayer key={`${refresh}-${route.puzzleSessionId}`} sessionId={route.puzzleSessionId} />

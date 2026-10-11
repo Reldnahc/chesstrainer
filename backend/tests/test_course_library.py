@@ -62,7 +62,7 @@ def test_local_install_imports_exports_replaces_and_deletes(settings):
         courses = listed(client)
         assert courses["vienna-gambit"]["title"] == "Our Vienna"
         assert courses["vienna-gambit"]["source"] == "club"
-        assert client.delete(f"{FILES}/vienna-gambit").status_code == 204
+        assert client.delete(f"{FILES}/vienna-gambit").json()["built_in_restored"]
         assert listed(client)["vienna-gambit"]["title"].startswith("Vienna Gambit")
         assert client.delete(f"{FILES}/vienna-gambit").status_code == 404
 
@@ -112,4 +112,42 @@ def test_only_administrators_change_courses(settings):
         headers = origin | {"X-CSRF-Token": admin["csrf"]}
         assert client.get(LIBRARY).json()["can_manage"]
         assert save(client, sample(), headers).status_code == 200
-        assert client.delete(f"{FILES}/sample", headers=headers).status_code == 204
+        assert client.delete(f"{FILES}/sample", headers=headers).status_code == 200
+
+
+def test_editor_check_reports_boards_and_the_first_problem(settings):
+    with app_client(settings) as client:
+        good = client.post(f"{FILES}/check", content=json.dumps(sample())).json()
+        assert good["error"] is None
+        push = good["steps"]["start/push"]
+        assert push["position"] == "" and push["end_fen"].startswith("rnbqkbnr/pppp1ppp/8/4p3/4P3")
+        assert good["steps"]["start/watch"]["position"] == "e4 e5"
+
+        broken = sample()
+        broken["chapters"][0]["steps"][2]["next"] = "missing"
+        result = client.post(f"{FILES}/check", content=json.dumps(broken)).json()
+        assert "missing" in result["error"] and "start/watch" in result["steps"]
+
+
+def test_editor_position_records_moves_with_server_legality(settings):
+    with app_client(settings) as client:
+        after = client.post(
+            f"{FILES}/position",
+            json={"moves": "e4 e5", "move": {"from_square": "g1", "to_square": "f3"}},
+        ).json()
+        assert after["moves"] == "e4 e5 Nf3" and after["san"] == "Nf3"
+        assert after["turn"] == "black" and after["legal_moves"]
+        illegal = client.post(
+            f"{FILES}/position", json={"move": {"from_square": "e2", "to_square": "e5"}}
+        )
+        assert illegal.status_code == 422
+
+
+def test_editor_check_keeps_boards_while_a_step_is_unfinished(settings):
+    unfinished = sample()
+    unfinished["chapters"][0]["steps"][1]["move"] = ""
+    with app_client(settings) as client:
+        result = client.post(f"{FILES}/check", content=json.dumps(unfinished)).json()
+        assert result["error"] == "Chapter start, step push needs the learner's move"
+        assert result["steps"]["start/watch"]["position"] == ""
+        assert save(client, unfinished).status_code == 422

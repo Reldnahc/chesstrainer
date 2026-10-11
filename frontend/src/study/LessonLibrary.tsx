@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, Check, Download, Trash2, Upload } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, Download, Pencil, Plus, Trash2, Upload } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import ResumeLink from "../ResumeLink";
@@ -8,7 +8,7 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
-import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths, type LessonTopic } from "../navigation";
+import { courseEditorPath, courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths, type LessonTopic } from "../navigation";
 import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
 import { deleteCourseFile, downloadCourseFile, readChosenFile, saveCourseFile, savedMessage } from "./courseFiles";
@@ -102,6 +102,7 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
         </div>
       </header>
       <div className="button-row lesson-course-actions">
+        {course.can_manage && <ActionLink size="compact" variant="secondary" href={courseEditorPath(course.id, course.revision)}><Pencil size={16} />Edit course</ActionLink>}
         <Button size="compact" variant="secondary" disabled={fileBusy} onClick={() => fileAction(() => downloadCourseFile(course.id, course.revision))}><Download size={16} />Download course file</Button>
         {course.can_manage && course.source === "club" && (confirmDelete
           ? <><Button size="compact" variant="primary" disabled={fileBusy} onClick={removeCourse}><Trash2 size={16} />Delete for everyone</Button>
@@ -124,10 +125,11 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
   return <>
     {library.can_manage && <section className="panel lesson-course-tools" aria-label="Course files">
       <div className="button-row">
+        <ActionLink variant="secondary" href={courseEditorPath()}><Plus size={16} />New course</ActionLink>
         <Button variant="secondary" disabled={fileBusy} onClick={() => chooser.current?.click()}><Upload size={16} />{fileBusy ? "Importing…" : "Import course file"}</Button>
         <input ref={chooser} hidden type="file" accept=".json,application/json" aria-label="Course file" onChange={event => importChosen(event.target.files?.[0])} />
       </div>
-      <p className="small muted">Importing adds a course for every member. A course with the same id as an existing one replaces it.</p>
+      <p className="small muted">Write a course in the lesson editor, or import a course file. Every member sees it. A course with the same id as an existing one replaces it.</p>
       {fileNotice && <Notice announcement="status" tone="success">{fileNotice}</Notice>}
       {error && <Notice announcement="alert" tone="error">{error}</Notice>}
       {(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}

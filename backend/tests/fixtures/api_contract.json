@@ -1347,6 +1347,54 @@
         "title": "Conversion",
         "type": "object"
       },
+      "CourseFileCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "steps": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CourseFileStep"
+            },
+            "title": "Steps",
+            "type": "object"
+          }
+        },
+        "required": [
+          "error",
+          "steps"
+        ],
+        "title": "CourseFileCheck",
+        "type": "object"
+      },
+      "CourseFileDeleted": {
+        "additionalProperties": false,
+        "properties": {
+          "built_in_restored": {
+            "title": "Built In Restored",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "built_in_restored"
+        ],
+        "title": "CourseFileDeleted",
+        "type": "object"
+      },
       "CourseFileProblem": {
         "additionalProperties": false,
         "properties": {
@@ -1393,6 +1441,35 @@
           "revision_changed"
         ],
         "title": "CourseFileSaved",
+        "type": "object"
+      },
+      "CourseFileStep": {
+        "additionalProperties": false,
+        "properties": {
+          "end_fen": {
+            "title": "End Fen",
+            "type": "string"
+          },
+          "end_position": {
+            "title": "End Position",
+            "type": "string"
+          },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "position": {
+            "title": "Position",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fen",
+          "position",
+          "end_fen",
+          "end_position"
+        ],
+        "title": "CourseFileStep",
         "type": "object"
       },
       "Coverage": {
@@ -1733,6 +1810,126 @@
           "reasons"
         ],
         "title": "Domain",
+        "type": "object"
+      },
+      "EditorMove": {
+        "additionalProperties": false,
+        "properties": {
+          "from_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "From Square",
+            "type": "string"
+          },
+          "promotion": {
+            "anyOf": [
+              {
+                "enum": [
+                  "q",
+                  "r",
+                  "b",
+                  "n"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promotion"
+          },
+          "to_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "To Square",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_square",
+          "to_square"
+        ],
+        "title": "EditorMove",
+        "type": "object"
+      },
+      "EditorPosition": {
+        "additionalProperties": false,
+        "properties": {
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "legal_moves": {
+            "items": {
+              "$ref": "#/components/schemas/LegalMove"
+            },
+            "title": "Legal Moves",
+            "type": "array"
+          },
+          "moves": {
+            "title": "Moves",
+            "type": "string"
+          },
+          "san": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "San"
+          },
+          "turn": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Turn",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fen",
+          "moves",
+          "san",
+          "turn",
+          "legal_moves"
+        ],
+        "title": "EditorPosition",
+        "type": "object"
+      },
+      "EditorPositionRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "fen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fen"
+          },
+          "move": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EditorMove"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "moves": {
+            "default": "",
+            "maxLength": 10000,
+            "title": "Moves",
+            "type": "string"
+          }
+        },
+        "title": "EditorPositionRequest",
         "type": "object"
       },
       "EndgameRecord": {
@@ -12938,6 +13135,75 @@
         "summary": "Save Course"
       }
     },
+    "/api/study/course-files/check": {
+      "post": {
+        "description": "The lesson editor's live check: the first problem and each step's board.",
+        "operationId": "check_course_api_study_course_files_check_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseFileCheck"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Check Course"
+      }
+    },
+    "/api/study/course-files/position": {
+      "post": {
+        "description": "Play recorded editor moves; legality stays on the server.",
+        "operationId": "editor_position_api_study_course_files_position_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditorPositionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditorPosition"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editor Position"
+      }
+    },
     "/api/study/course-files/{course_id}": {
       "delete": {
         "description": "Remove a club course file. A built-in course it replaced comes back.",
@@ -12954,7 +13220,14 @@
           }
         ],
         "responses": {
-          "204": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseFileDeleted"
+                }
+              }
+            },
             "description": "Successful Response"
           },
           "422": {
@@ -13078,7 +13351,24 @@
         "responses": {
           "200": {
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "description": "A course file; see docs/COURSE_FILES.md.",
+                  "properties": {
+                    "format": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "revision": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
             },
             "description": "Successful Response"
           },

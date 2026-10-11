@@ -1264,6 +1264,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/study/course-files/check": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Check Course
+         * @description The lesson editor's live check: the first problem and each step's board.
+         */
+        post: operations["check_course_api_study_course_files_check_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/course-files/position": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Editor Position
+         * @description Play recorded editor moves; legality stays on the server.
+         */
+        post: operations["editor_position_api_study_course_files_position_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/study/course-files/{course_id}": {
         parameters: {
             query?: never;
@@ -1972,6 +2012,22 @@ export interface components {
             /** Winning Games */
             winning_games: number;
         };
+        /** CourseFileCheck */
+        CourseFileCheck: {
+            /** Error */
+            error: string | null;
+            /** Steps */
+            steps: {
+                [key: string]: components["schemas"]["CourseFileStep"];
+            };
+        };
+        /** CourseFileDeleted */
+        CourseFileDeleted: {
+            /** Built In Restored */
+            built_in_restored: boolean;
+            /** Id */
+            id: string;
+        };
         /** CourseFileProblem */
         CourseFileProblem: {
             /** File */
@@ -1989,6 +2045,17 @@ export interface components {
             revision_changed: boolean;
             /** Title */
             title: string;
+        };
+        /** CourseFileStep */
+        CourseFileStep: {
+            /** End Fen */
+            end_fen: string;
+            /** End Position */
+            end_position: string;
+            /** Fen */
+            fen: string;
+            /** Position */
+            position: string;
         };
         /** Coverage */
         Coverage: {
@@ -2106,6 +2173,42 @@ export interface components {
             time_class: string | null;
             /** Time Control */
             time_control: string | null;
+        };
+        /** EditorMove */
+        EditorMove: {
+            /** From Square */
+            from_square: string;
+            /** Promotion */
+            promotion?: ("q" | "r" | "b" | "n") | null;
+            /** To Square */
+            to_square: string;
+        };
+        /** EditorPosition */
+        EditorPosition: {
+            /** Fen */
+            fen: string;
+            /** Legal Moves */
+            legal_moves: components["schemas"]["LegalMove"][];
+            /** Moves */
+            moves: string;
+            /** San */
+            san: string | null;
+            /**
+             * Turn
+             * @enum {string}
+             */
+            turn: "white" | "black";
+        };
+        /** EditorPositionRequest */
+        EditorPositionRequest: {
+            /** Fen */
+            fen?: string | null;
+            move?: components["schemas"]["EditorMove"] | null;
+            /**
+             * Moves
+             * @default
+             */
+            moves: string;
         };
         /** EndgameRecord */
         EndgameRecord: {
@@ -7019,6 +7122,65 @@ export interface operations {
             };
         };
     };
+    check_course_api_study_course_files_check_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    [key: string]: unknown;
+                };
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseFileCheck"];
+                };
+            };
+        };
+    };
+    editor_position_api_study_course_files_position_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EditorPositionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EditorPosition"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     delete_course_api_study_course_files__course_id__delete: {
         parameters: {
             query?: never;
@@ -7031,11 +7193,13 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Successful Response */
-            204: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["CourseFileDeleted"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -7120,7 +7284,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": {
+                        format?: string;
+                        id?: string;
+                        revision?: string;
+                    } & {
+                        [key: string]: unknown;
+                    };
                 };
             };
             /** @description Validation Error */

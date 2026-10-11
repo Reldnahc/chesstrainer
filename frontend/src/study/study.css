@@ -97,3 +97,20 @@
 .lesson-course-actions { margin-top: 14px; }
 .lesson-course-tools { display: grid; gap: 10px; margin-bottom: 18px; }
 .lesson-course-tools p { margin: 0; }
+.lesson-editor-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.lesson-editor-heading h1 { margin: 0; font-size: 20px; }
+.lesson-editor-section { display: grid; gap: 10px; }
+.lesson-editor-section h2 { margin: 8px 0 0; font-size: 16px; }
+.lesson-editor-fields { display: grid; gap: 12px; }
+.lesson-editor-field { display: grid; gap: 6px; }
+.lesson-editor-field > label { display: grid; gap: 6px; }
+.lesson-editor-field > .action-control { justify-self: start; }
+.lesson-editor-label { font-size: 13px; font-weight: 600; }
+.lesson-editor-field input:not([type="checkbox"]), .lesson-editor-field textarea, .lesson-editor-field select { width: 100%; }
+.lesson-editor-steps { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.lesson-editor-steps button { display: flex; align-items: center; justify-content: flex-start; gap: 10px; width: 100%; min-height: 44px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: inherit; text-align: left; font: inherit; cursor: pointer; }
+.lesson-editor-steps button[aria-current] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.lesson-editor-step-kind { flex: none; width: 104px; color: var(--muted); font-size: 12px; }
+.lesson-editor-problem { flex: none; margin-left: auto; color: var(--accent); fill: currentColor; }
+.lesson-editor-line { padding-block: 10px; border-top: 1px solid var(--line); }
+.lesson-editor-check { display: flex; align-items: center; gap: 8px; min-height: 44px; }

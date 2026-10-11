@@ -2,11 +2,17 @@
 
 import json
 
+import chess
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response
 
+from trainer.chess_core import legal_move_options
 from trainer.contracts.study_lessons import (
+    CourseFileCheck,
+    CourseFileDeleted,
     CourseFileSaved,
+    EditorPosition,
+    EditorPositionRequest,
     LessonCommand,
     LessonCourseView,
     LessonLibrary,
@@ -65,7 +71,24 @@ def create_router(*, providers, installed=None):
     @router.get(
         "/api/study/courses/{course_id}/file",
         response_class=Response,
-        responses={200: {"content": {"application/json": {}}}},
+        responses={
+            200: {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "description": "A course file; see docs/COURSE_FILES.md.",
+                            "properties": {
+                                "format": {"type": "string"},
+                                "id": {"type": "string"},
+                                "revision": {"type": "string"},
+                            },
+                            "additionalProperties": True,
+                        }
+                    }
+                }
+            }
+        },
     )
     def export_course(workspace: CurrentWorkspace, course_id: str, revision: str | None = None):
         """Anyone may download a course as a course file."""
@@ -116,13 +139,73 @@ def create_router(*, providers, installed=None):
             "revision_changed": changed,
         }
 
-    @router.delete("/api/study/course-files/{course_id}", status_code=204)
+    @router.post(
+        "/api/study/course-files/check",
+        response_model=CourseFileCheck,
+        openapi_extra={
+            "requestBody": {
+                "required": True,
+                "content": {
+                    "application/json": {"schema": {"type": "object", "additionalProperties": True}}
+                },
+            }
+        },
+    )
+    async def check_course(request: Request):
+        """The lesson editor's live check: the first problem and each step's board."""
+        require_manager(request)
+        body = await request.body()
+        if len(body) > MAX_COURSE_FILE_BYTES:
+            raise HTTPException(413, "The course file is too large.")
+        try:
+            data = json.loads(body)
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise HTTPException(422, f"The file is not valid JSON: {exc}") from exc
+        return course_files.check(data)
+
+    @router.post("/api/study/course-files/position", response_model=EditorPosition)
+    def editor_position(request: Request, data: EditorPositionRequest):
+        """Play recorded editor moves; legality stays on the server."""
+        require_manager(request)
+        try:
+            board = chess.Board(data.fen or chess.STARTING_FEN)
+            if not board.is_valid():
+                raise ValueError("That FEN is not a legal position")
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        history = []
+        for token in data.moves.split():
+            try:
+                move = board.parse_san(token)
+            except ValueError as exc:
+                raise HTTPException(422, f"{token} is not a legal move here") from exc
+            history.append(board.san(move))
+            board.push(move)
+        san = None
+        if data.move:
+            uci = data.move.from_square + data.move.to_square + (data.move.promotion or "")
+            move = chess.Move.from_uci(uci)
+            if move not in board.legal_moves:
+                raise HTTPException(422, "That move is not legal here")
+            san = board.san(move)
+            history.append(san)
+            board.push(move)
+        return {
+            "fen": board.fen(),
+            "moves": " ".join(history),
+            "san": san,
+            "turn": "white" if board.turn else "black",
+            "legal_moves": legal_move_options(board),
+        }
+
+    @router.delete("/api/study/course-files/{course_id}", response_model=CourseFileDeleted)
     def delete_course(request: Request, course_id: str):
         """Remove a club course file. A built-in course it replaced comes back."""
         require_manager(request)
-        if not club().delete(course_id):
+        folder = club()
+        if not folder.delete(course_id):
             raise HTTPException(404, "No club course file has that id.")
-        return Response(status_code=204)
+        return {"id": course_id, "built_in_restored": course_id in installed.built_in_ids()}
 
     @router.post("/api/study/lesson-sessions", response_model=LessonSessionView)
     def start(workspace: CurrentWorkspace, data: LessonStart):

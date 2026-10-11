@@ -12,6 +12,7 @@ rehearsal starts where its line starts and a game excerpt where its game
 reaches ``from``. ``next`` defaults to the following step in the chapter.
 """
 
+import copy
 from typing import Literal
 
 import chess
@@ -185,11 +186,12 @@ def parse(data):
         raise CourseFileError(f"{place}: {problem['msg']}") from exc
 
 
-def load(data):
-    """Return ``(CourseDefinition, topic)`` for a parsed JSON course file."""
-    source = parse(data)
+def sources(source):
+    """Lines and games as course records, and both by id for steps that refer to them."""
     lines = []
     for line in source.lines:
+        if not line.moves.split():
+            raise CourseFileError(f"Line {line.id} needs at least one move")
         setup = san_moves(f"Line {line.id}", line.position, line.fen)
         lines.append(
             dict(
@@ -220,6 +222,13 @@ def load(data):
     known = dict(
         lines={line["id"]: line for line in lines}, games={game["id"]: game for game in games}
     )
+    return lines, games, known
+
+
+def load(data):
+    """Return ``(CourseDefinition, topic)`` for a parsed JSON course file."""
+    source = parse(data)
+    lines, games, known = sources(source)
     record = dict(
         id=source.id,
         revision=source.revision,
@@ -358,12 +367,14 @@ def chapter_record(chapter, known):
             choices = []
             for move, reply, feedback, choice_next in decision_choices(step):
                 played = san_moves(label, move, fen, history)
+                if not played:
+                    raise CourseFileError(f"{label} needs the learner's move")
                 answer = san_moves(label, reply, fen, (*history, *played))
+                if len(played) != 1 or len(answer) > 1:
+                    raise CourseFileError(f"{label}: a decision is one move and one reply")
                 choices.append(
                     dict(uci=played[0], reply=answer, next_step=choice_next, feedback=feedback)
                 )
-                if len(played) != 1 or len(answer) > 1:
-                    raise CourseFileError(f"{label}: a decision is one move and one reply")
             record.update(choices=choices, hint=step.hint, next_step=None)
             if step.next != "__following__" and step.choices is not None:
                 raise CourseFileError(f"{label}: with choices, next belongs to each choice")
@@ -371,6 +382,8 @@ def chapter_record(chapter, known):
             record["next_step"] = target(step, step.next)
             if kind == "demonstration":
                 record["moves"] = san_moves(label, step.show, fen, history)
+                if not record["moves"]:
+                    raise CourseFileError(f"{label} needs at least one move to show")
             elif kind == "branch":
                 record["branch_start"] = step.branch
             elif kind == "game_excerpt":
@@ -379,6 +392,99 @@ def chapter_record(chapter, known):
                 record["line_id"] = step.rehearse
         steps.append(record)
     return dict(id=chapter.id, title=chapter.title, entry_step=entry, steps=steps)
+
+
+def check(data):
+    """For the editor: the first problem, if any, and where each step starts and ends.
+
+    Positions are reported for every chapter that resolves, even when another part
+    of the course still has a problem, so the editor can keep showing boards.
+    """
+    unfinished, data = unfinished_steps(data)
+    try:
+        source = parse(data)
+        _, _, known = sources(source)
+    except CourseFileError as exc:
+        return dict(error=str(exc), steps={})
+    problem, steps = (unfinished[0] if unfinished else None), {}
+    for chapter in source.chapters:
+        try:
+            record = chapter_record(chapter, known)
+        except CourseFileError as exc:
+            problem = problem or str(exc)
+            continue
+        for step in record["steps"]:
+            start = Position(**step["position"]) if _legal(step["position"]) else None
+            if start is None:
+                continue
+            board = start.board()
+            end = board.copy()
+            if step["kind"] == "decision":
+                choice = step["choices"][0]
+                played = (choice["uci"], *choice["reply"])
+            elif step["kind"] == "rehearsal" and step["line_id"] in known["lines"]:
+                played = known["lines"][step["line_id"]]["moves"]
+            elif step["kind"] == "game_excerpt" and step["game_id"] in known["games"]:
+                game = known["games"][step["game_id"]]["moves"]
+                played = game[step["from_ply"] : step["to_ply"] or 0]
+            else:
+                played = step.get("moves", ())
+            try:
+                for uci in played:
+                    end.push_uci(uci)
+            except ValueError:
+                end = board.copy()
+            reached = (
+                *start.moves,
+                *(move.uci() for move in end.move_stack[len(board.move_stack) :]),
+            )
+            steps[f"{chapter.id}/{step['id']}"] = dict(
+                fen=board.fen(),
+                position=san_text(Position(initial_fen=start.initial_fen), start.moves),
+                end_fen=end.fen(),
+                end_position=san_text(Position(initial_fen=start.initial_fen), reached),
+            )
+    if problem is None:
+        try:
+            load(data)
+        except CourseFileError as exc:
+            problem = str(exc)
+    return dict(error=problem, steps=steps)
+
+
+def unfinished_steps(data):
+    """Treat a decision or demonstration with no moves yet as an explanation.
+
+    The editor creates these while a step is being written; the rest of the
+    chapter keeps its boards, and the first one is reported as the problem.
+    """
+    problems = []
+    if not isinstance(data, dict) or not isinstance(data.get("chapters"), list):
+        return problems, data
+    data = copy.deepcopy(data)
+    for chapter in data["chapters"]:
+        if not isinstance(chapter, dict) or not isinstance(chapter.get("steps"), list):
+            continue
+        for step in chapter["steps"]:
+            if not isinstance(step, dict):
+                continue
+            where = f"Chapter {chapter.get('id')}, step {step.get('id')}"
+            if step.get("move") == "" and "choices" not in step:
+                for field in ("move", "reply", "hint", "feedback"):
+                    step.pop(field, None)
+                problems.append(f"{where} needs the learner's move")
+            if step.get("show") == "":
+                step.pop("show")
+                problems.append(f"{where} needs at least one move to show")
+    return problems, data
+
+
+def _legal(position):
+    try:
+        Position(**position)
+    except (ValueError, ValidationError):
+        return False
+    return True
 
 
 # --- Writing ---------------------------------------------------------------

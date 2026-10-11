@@ -157,5 +157,8 @@ class InstalledCourses:
             )
         )
 
+    def built_in_ids(self):
+        return {course.id for course in bundled.BundledCourses().courses(None)}
+
     def source(self, course_id):
         return "club" if course_id in self.club.ids() else "built_in"

@@ -111,6 +111,47 @@ class LessonLibrary(Contract):
     problems: list[CourseFileProblem] = Field(default_factory=list)
 
 
+class CourseFileStep(Contract):
+    # Where a step starts (FEN and the SAN moves that reach it) and where it ends.
+    fen: str
+    position: str
+    end_fen: str
+    end_position: str
+
+
+class CourseFileCheck(Contract):
+    error: str | None
+    # Keyed "chapter-id/step-id".
+    steps: dict[str, CourseFileStep]
+
+
+class EditorMove(Contract):
+    from_square: str = Field(pattern="^[a-h][1-8]$")
+    to_square: str = Field(pattern="^[a-h][1-8]$")
+    promotion: Literal["q", "r", "b", "n"] | None = None
+
+
+class EditorPositionRequest(Contract):
+    fen: str | None = None
+    moves: str = Field(default="", max_length=10_000)
+    move: EditorMove | None = None
+
+
+class EditorPosition(Contract):
+    fen: str
+    # SAN moves from the start, including the move just added.
+    moves: str
+    san: str | None
+    turn: Color
+    legal_moves: list[LegalMove]
+
+
+class CourseFileDeleted(Contract):
+    id: str
+    # True when deleting the club file brought back the built-in course it replaced.
+    built_in_restored: bool
+
+
 class CourseFileSaved(Contract):
     id: str
     revision: str
