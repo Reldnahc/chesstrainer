@@ -41,46 +41,50 @@ function MotionDiagnostics({ snapshot }: { snapshot: CoachPerformanceSnapshot | 
             <div><dt>Next event</dt><dd>{remaining(snapshot.at, next)}</dd></div>
             <div><dt>Eye deadline</dt><dd>{remaining(snapshot.at, diagnostics?.blinkDueAt ?? null)}</dd></div>
           </dl>
-          <p className="studio-motion-active">
-            <strong>Active</strong>{" "}
-            {snapshot.active.length ? snapshot.active.map(({ gesture }) => (
-              <span key={gesture.id}>
-                {gesture.id} <small>({gesture.tracks.map(({ channel }) => channel).join(", ")})</small>
-              </span>
-            )) : "No active gesture"}
-          </p>
-          <p className="studio-motion-history">
-            <strong>Recent</strong>{" "}
-            {diagnostics?.recent.length ? diagnostics.recent.map((id, index) => <span key={index}>
-              {index > 0 && <ArrowRight className="studio-motion-arrow" size={12} aria-label="then" role="img" />}{id}
-            </span>) : "No automatic gestures yet"}
-          </p>
+          <div className="studio-motion-now">
+            <p className="studio-motion-active">
+              <strong>Active</strong>{" "}
+              {snapshot.active.length ? snapshot.active.map(({ gesture }) => (
+                <span key={gesture.id}>
+                  {gesture.id} <small>({gesture.tracks.map(({ channel }) => channel).join(", ")})</small>
+                </span>
+              )) : "No active gesture"}
+            </p>
+            <p className="studio-motion-history">
+              <strong>Recent</strong>{" "}
+              {diagnostics?.recent.length ? diagnostics.recent.map((id, index) => <span key={index}>
+                {index > 0 && <ArrowRight className="studio-motion-arrow" size={12} aria-label="then" role="img" />}{id}
+              </span>) : "No automatic gestures yet"}
+            </p>
+          </div>
           <details className="studio-motion-details">
             <summary>Scheduling details{diagnostics?.issues.length ? ` · ${diagnostics.issues.length} issues` : ""}</summary>
-            <div className="studio-motion-tables">
-              <div>
-                <h3>Gesture cooldowns</h3>
-                {diagnostics ? (
-                  <dl>{diagnostics.cooldowns.map(({ id, readyAt }) => (
-                    <div key={id}><dt>{id}</dt><dd>{readyAt <= snapshot.at ? "Ready" : remaining(snapshot.at, readyAt)}</dd></div>
-                  ))}</dl>
-                ) : <p>No scheduler frame while paused.</p>}
+            <div className="studio-motion-details-body">
+              <div className="studio-motion-tables">
+                <div>
+                  <h3>Gesture cooldowns</h3>
+                  {diagnostics ? (
+                    <dl>{diagnostics.cooldowns.map(({ id, readyAt }) => (
+                      <div key={id}><dt>{id}</dt><dd>{readyAt <= snapshot.at ? "Ready" : remaining(snapshot.at, readyAt)}</dd></div>
+                    ))}</dl>
+                  ) : <p>No scheduler frame while paused.</p>}
+                </div>
+                <div>
+                  <h3>Skipped candidates</h3>
+                  {diagnostics?.rejected.length ? (
+                    <dl>{diagnostics.rejected.map(({ id, reason }) => (
+                      <div key={id}><dt>{id}</dt><dd>{reason}</dd></div>
+                    ))}</dl>
+                  ) : <p>No candidates rejected in this frame.</p>}
+                </div>
               </div>
-              <div>
-                <h3>Skipped candidates</h3>
-                {diagnostics?.rejected.length ? (
-                  <dl>{diagnostics.rejected.map(({ id, reason }) => (
-                    <div key={id}><dt>{id}</dt><dd>{reason}</dd></div>
-                  ))}</dl>
-                ) : <p>No candidates rejected in this frame.</p>}
-              </div>
+              {!!diagnostics?.issues.length && (
+                <ul className="studio-motion-issues">
+                  {diagnostics.issues.map((issue) => <li key={issue}>{issue}</li>)}
+                </ul>
+              )}
+              <p className="studio-motion-caption">Times are relative to the last scheduler event, not a live countdown.</p>
             </div>
-            {!!diagnostics?.issues.length && (
-              <ul className="studio-motion-issues">
-                {diagnostics.issues.map((issue) => <li key={issue}>{issue}</li>)}
-              </ul>
-            )}
-            <p className="studio-motion-caption">Times are relative to the last scheduler event, not a live countdown.</p>
           </details>
         </>
       ) : <p>Waiting for the selected portrait.</p>}

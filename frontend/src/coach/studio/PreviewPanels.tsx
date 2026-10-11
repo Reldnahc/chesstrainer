@@ -66,8 +66,10 @@ export function ConceptComparison({
             />
           </div>
           <div className="studio-concept-copy">
-            <h3>{direction.name}</h3>
-            <p>{direction.description}</p>
+            <div>
+              <h3>{direction.name}</h3>
+              <p>{direction.description}</p>
+            </div>
             <span>{direction.character}</span>
           </div>
           <button

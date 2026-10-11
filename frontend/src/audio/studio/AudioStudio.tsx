@@ -68,74 +68,87 @@ export default function AudioStudio() {
   const history = events.filter(event => event.type !== "requested" && event.type !== "ended").slice(-18).reverse();
 
   return <main className="audio-studio">
-    <header className="audio-studio-heading">
-      <div className="audio-studio-brand"><AudioLines size={22} aria-hidden="true" /><span>FIELDWORK / AUDIO STUDIO</span></div>
-      <span className="audio-studio-badge">Development only</span>
-      <h1>A little sound. A clearer game.</h1>
-      <p>Choose voices for the cast, compare recordings in context, and preview the approved game sounds.</p>
-    </header>
-
-    <StudioTransport player={player} />
-
-    <RecordedCoachComparison player={player} catalog={recordedCoachCatalog} />
-
-    <WalterWordingReview player={player} catalog={walterWordingCatalog} />
-
-
-    <div className="audio-studio-workspace">
-      <section className="audio-studio-library" aria-labelledby="cue-library-heading">
-        <div className="audio-studio-section-heading">
-          <div><span className="audio-studio-step">01 / APPROVED SOUNDS</span><h2 id="cue-library-heading">The game sound set</h2></div>
-          <span className="audio-studio-count">{cueCatalog.length} cues</span>
+    <div className="audio-studio-content">
+      <header className="audio-studio-heading">
+        <div className="audio-studio-brand"><AudioLines size={22} aria-hidden="true" /><span>FIELDWORK / AUDIO STUDIO</span></div>
+        <span className="audio-studio-badge">Development only</span>
+        <div className="audio-studio-headline">
+          <h1>A little sound. A clearer game.</h1>
+          <p>Choose voices for the cast, compare recordings in context, and preview the approved game sounds.</p>
         </div>
-        <ChoiceGroup label="Cue category" value={filter} options={cueFilters} onChange={setFilter} />
-        <div className="audio-studio-cues">
-          {visibleCues.map(cue => {
-            const palette = paletteCatalog.find(item => item.id === productionCuePalettes[cue.id]);
-            if (!palette) return null;
-            return <article key={cue.id} className="audio-studio-cue-row" data-cue={cue.id} data-palette={palette.id} aria-labelledby={`cue-${cue.id}`}>
-              <div className="audio-studio-cue-name"><h3 id={`cue-${cue.id}`}>{cue.label}</h3><p>{cue.description}</p></div>
-              <div className="audio-studio-cue-preview">
-                <span className="audio-studio-palette-name">{palette.label}</span>
-                <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} onClick={() => void playCue(cue.id, palette.id)}>
-                  <Play size={13} aria-hidden="true" />Play
-                </Button>
+      </header>
+
+      <StudioTransport player={player} />
+
+      <div className="audio-studio-reviews">
+        <RecordedCoachComparison player={player} catalog={recordedCoachCatalog} />
+
+        <WalterWordingReview player={player} catalog={walterWordingCatalog} />
+
+        <div className="audio-studio-workspace">
+          <section className="audio-studio-library" aria-labelledby="cue-library-heading">
+            <div className="audio-studio-library-head">
+              <div className="audio-studio-section-heading">
+                <div className="audio-studio-title"><span className="audio-studio-step">01 / APPROVED SOUNDS</span><h2 id="cue-library-heading">The game sound set</h2></div>
+                <span className="audio-studio-count">{cueCatalog.length} cues</span>
               </div>
-              <CueSource cue={cue.id} palette={palette.id} />
-              {cue.id === "retry" && <div className="audio-studio-context-controls">
-                <ChoiceGroup label="Retry context" value={retryContextId} options={retryContextOptions}
-                  onChange={value => { stop(); setRetryContextId(value); }} />
-                <p id="retry-context-description" className="audio-studio-context-description"><strong>About {retryContext.durationSeconds} seconds.</strong> {retryContext.description}</p>
-                <Button size="compact" aria-label="Hear Try again in context" aria-describedby="retry-context-description" onClick={() => void playScenario(retryContext)}>In context</Button>
-              </div>}
-            </article>;
-          })}
+              <ChoiceGroup label="Cue category" value={filter} options={cueFilters} onChange={setFilter} />
+            </div>
+            <div className="audio-studio-cues">
+              {visibleCues.map(cue => {
+                const palette = paletteCatalog.find(item => item.id === productionCuePalettes[cue.id]);
+                if (!palette) return null;
+                return <article key={cue.id} className="audio-studio-cue-row" data-cue={cue.id} data-palette={palette.id} aria-labelledby={`cue-${cue.id}`}>
+                  <div className="audio-studio-cue-name"><h3 id={`cue-${cue.id}`}>{cue.label}</h3><p>{cue.description}</p></div>
+                  <div className="audio-studio-cue-preview">
+                    <span className="audio-studio-palette-name">{palette.label}</span>
+                    <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} onClick={() => void playCue(cue.id, palette.id)}>
+                      <Play size={13} aria-hidden="true" />Play
+                    </Button>
+                  </div>
+                  <CueSource cue={cue.id} palette={palette.id} />
+                  {cue.id === "retry" && <div className="audio-studio-context-controls">
+                    <ChoiceGroup label="Retry context" value={retryContextId} options={retryContextOptions}
+                      onChange={value => { stop(); setRetryContextId(value); }} />
+                    <div className="audio-studio-context-play">
+                      <p id="retry-context-description" className="audio-studio-context-description"><strong>About {retryContext.durationSeconds} seconds.</strong> {retryContext.description}</p>
+                      <Button size="compact" aria-label="Hear Try again in context" aria-describedby="retry-context-description" onClick={() => void playScenario(retryContext)}>In context</Button>
+                    </div>
+                  </div>}
+                </article>;
+              })}
+            </div>
+          </section>
+
+          <aside className="audio-studio-sidebar">
+            <section className="audio-studio-panel" aria-labelledby="scenario-heading">
+              <header className="audio-studio-panel-heading">
+                <div className="audio-studio-title"><span className="audio-studio-step">02 / IN CONTEXT</span><h2 id="scenario-heading">Hear the flow</h2></div>
+                <p>Uses the same sound mapping and player as the application.</p>
+              </header>
+              <div className="audio-studio-scenario">
+                <label>Scenario<select value={selectedScenario} onChange={event => { stop(); setSelectedScenario(event.target.value); }}>
+                  {auditionScenarios.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+                </select></label>
+                <p className="audio-studio-scenario-description">{scenario.description}</p>
+                <Button variant="primary" onClick={() => void playScenario(scenario)}><Play size={15} aria-hidden="true" />Play scenario</Button>
+              </div>
+            </section>
+
+            <section className="audio-studio-panel audio-studio-history" aria-label="Playback history">
+              <details className="disclosure audio-studio-details">
+                <summary>Playback history <span>{history.filter(event => event.type === "started").length} played</span></summary>
+                <p>Live events from the shared audio player.</p>
+                {history.length ? <ol>{history.map(event => <li key={event.traceId} data-event-type={event.type} data-bus={event.bus} data-cue={event.cue} data-palette={event.palette} data-reason={event.reason}>
+                  <span>{event.type === "started" && <Check size={12} aria-hidden="true" />}{eventLabel(event)}</span>
+                  <strong>{event.bus === "speech" ? event.coachName ?? "Coach" : cueLabel(event.cue)}</strong><small>{event.bus === "speech" ? "Voice preview" : paletteLabel(event.palette)}{event.reason && ` · ${event.reason.replaceAll("-", " ")}`}</small>
+                </li>)}</ol> : <p>No playback yet.</p>}
+              </details>
+            </section>
+            <p className="audio-studio-speech-note">Completed voice banks are available in the application. Choose voices for the rest of the cast here.</p>
+          </aside>
         </div>
-      </section>
-
-      <aside className="audio-studio-sidebar">
-        <section className="audio-studio-panel" aria-labelledby="scenario-heading">
-          <span className="audio-studio-step">02 / IN CONTEXT</span><h2 id="scenario-heading">Hear the flow</h2>
-          <p>Uses the same sound mapping and player as the application.</p>
-          <label>Scenario<select value={selectedScenario} onChange={event => { stop(); setSelectedScenario(event.target.value); }}>
-            {auditionScenarios.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
-          </select></label>
-          <p className="audio-studio-scenario-description">{scenario.description}</p>
-          <Button variant="primary" onClick={() => void playScenario(scenario)}><Play size={15} aria-hidden="true" />Play scenario</Button>
-        </section>
-
-        <section className="audio-studio-panel audio-studio-history" aria-label="Playback history">
-          <details className="disclosure audio-studio-details">
-            <summary>Playback history <span>{history.filter(event => event.type === "started").length} played</span></summary>
-            <p>Live events from the shared audio player.</p>
-            {history.length ? <ol>{history.map(event => <li key={event.traceId} data-event-type={event.type} data-bus={event.bus} data-cue={event.cue} data-palette={event.palette} data-reason={event.reason}>
-              <span>{event.type === "started" && <Check size={12} aria-hidden="true" />}{eventLabel(event)}</span>
-              <strong>{event.bus === "speech" ? event.coachName ?? "Coach" : cueLabel(event.cue)}</strong><small>{event.bus === "speech" ? "Voice preview" : paletteLabel(event.palette)}{event.reason && ` · ${event.reason.replaceAll("-", " ")}`}</small>
-            </li>)}</ol> : <p>No playback yet.</p>}
-          </details>
-        </section>
-        <p className="audio-studio-speech-note">Completed voice banks are available in the application. Choose voices for the rest of the cast here.</p>
-      </aside>
+      </div>
     </div>
     <footer className="audio-studio-footer">Casting choices save to this computer. Playback controls do not change account preferences.</footer>
   </main>;

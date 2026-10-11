@@ -1,8 +1,22 @@
+.speech-inspector,
+.speech-inspector-held,
+.speech-inspector-intro {
+  display: flex;
+  flex-direction: column;
+}
+.speech-inspector {
+  gap: var(--space-8);
+}
+.speech-inspector-held {
+  gap: var(--space-5);
+}
+.speech-inspector-intro {
+  gap: var(--space-4);
+}
 .speech-inspector-note {
   color: var(--studio-muted);
   font-size: 13px;
   line-height: 1.6;
-  margin: 0 0 var(--space-5);
   max-width: 700px;
 }
 .speech-inspector-grid {
@@ -17,8 +31,10 @@
   --speech-preview-width: 185.6px;
 }
 .speech-shape {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
   min-width: 0;
-  margin: 0;
   padding: var(--space-5) var(--space-4) var(--space-4);
   border: 1px solid #424b40;
   border-radius: 12px;
@@ -37,7 +53,6 @@
 .speech-shape figcaption {
   display: grid;
   gap: var(--space-1-5);
-  margin-top: var(--space-3);
   text-align: center;
 }
 .speech-shape strong {
@@ -55,7 +70,6 @@
 }
 .speech-authored-reference {
   max-width: 760px;
-  margin-top: var(--space-8);
 }
 .speech-authored-reference .coach-message > p {
   margin: 0;

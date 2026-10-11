@@ -101,12 +101,14 @@ export default function ExpressionCollection({
               idle={false}
               label={expressionInfo[state].label}
             />
-            <span>{expressionInfo[state].label}</span>
-            <small>
-              {state === "brilliant" || state === "blunder"
-                ? "Signature reaction"
-                : expressionIntent(coach, state).split(".")[0]}
-            </small>
+            <span className="studio-expression-copy">
+              <span>{expressionInfo[state].label}</span>
+              <small>
+                {state === "brilliant" || state === "blunder"
+                  ? "Signature reaction"
+                  : expressionIntent(coach, state).split(".")[0]}
+              </small>
+            </span>
           </button>
         ))}
       </div>
