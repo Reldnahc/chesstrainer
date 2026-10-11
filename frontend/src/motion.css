@@ -1,9 +1,9 @@
 /* Account animation preference controls. */
 .motion-controls {
   display: grid;
-  gap: 16px;
+  gap: var(--space-4);
 }
 .motion-preference + .motion-preference {
-  padding-top: 16px;
+  padding-top: var(--space-4);
   border-top: 1px solid var(--line);
 }

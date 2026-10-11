@@ -1,25 +1,25 @@
-.weakness-content { margin-top: 24px; }
-.weakness-content > .section-navigation--compact { margin-bottom: 24px; }
-.weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.weakness-content { margin-top: var(--space-6); }
+.weakness-content > .section-navigation--compact { margin-bottom: var(--space-6); }
+.weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
 .weakness-section-heading h2 { margin: 0; font-size: 20px; }
 .weakness-section-heading > span { flex-shrink: 0; }
 .weakness-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: var(--space-5);
 }
-.weakness { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
-.weakness-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 16px; }
+.weakness { display: flex; flex-direction: column; gap: var(--space-5); min-width: 0; }
+.weakness-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3) var(--space-4); }
 .weakness-heading h3 { margin: 0; font-size: 20px; overflow-wrap: anywhere; }
 /* Every cue fits two lines at 64ch. Reserving both keeps cards the same height
    whichever category is showing, whether or not this card's cue wraps. */
 .weakness-cue { margin: 0; color: #d4d8de; max-width: 64ch; min-height: 2lh; }
 .weakness .stat-list { margin-top: 0; }
-.weakness-practice { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: auto; }
+.weakness-practice { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); margin-top: auto; }
 .weakness-practice p { margin: 0; }
 .weakness-practice strong { color: #d4d8de; font-weight: 500; font-variant-numeric: tabular-nums; }
-.weakness-evidence { border-top: 1px solid var(--line); padding-top: 8px; }
-.weakness-practice-note { margin: 20px 0 0; font-size: 12px; }
+.weakness-evidence { border-top: 1px solid var(--line); padding-top: var(--space-2); }
+.weakness-practice-note { margin: var(--space-5) 0 0; font-size: 12px; }
 .evidence-dialog {
   width: 100%;
   max-width: 1080px;
@@ -31,16 +31,16 @@
 .evidence-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 25px;
+  gap: var(--space-8);
+  margin-top: var(--space-6);
   align-items: start;
 }
 .candidate {
   display: grid;
   grid-template-columns: 1fr auto;
   border-bottom: 1px solid var(--line);
-  padding: 12px 0;
-  gap: 8px;
+  padding: var(--space-3) 0;
+  gap: var(--space-2);
   font-size: 13px;
 }
 .candidate code {
@@ -51,14 +51,14 @@
 }
 .interpretation {
   border-left: 2px solid var(--accent);
-  padding-left: 16px;
-  margin-top: 24px;
+  padding-left: var(--space-4);
+  margin-top: var(--space-6);
 }
 .audit {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   background: #121416;
-  padding: 14px;
+  padding: var(--space-4);
   font-size: 11px;
 }
 .evidence-dialog::backdrop {
@@ -72,10 +72,10 @@ body:has(dialog[open]) {
   top: -28px;
   z-index: 2;
   background: var(--surface);
-  padding-block: 10px;
+  padding-block: var(--space-3);
 }
 .evidence-dialog .eyebrow {
-  margin-bottom: 6px;
+  margin-bottom: var(--space-1-5);
 }
 .evidence-dialog h2 {
   margin-bottom: 0;
@@ -86,12 +86,12 @@ body:has(dialog[open]) {
 .evidence-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
   max-height: 220px;
   overflow-y: auto;
-  padding: 6px;
-  margin-inline: -6px;
+  padding: var(--space-1-5);
+  margin-inline: calc(-1 * var(--space-1-5));
 }
 @media (max-width: 1000px) {
   .weakness-list { grid-template-columns: minmax(0, 1fr); }
@@ -99,12 +99,12 @@ body:has(dialog[open]) {
 @media (max-width: 760px) {
   .evidence-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
-    margin-top: 12px;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
   }
-  .weakness-content { margin-top: 20px; }
-  .weakness-list { gap: 16px; }
-  .weakness-section-heading { gap: 12px; margin-bottom: 16px; }
+  .weakness-content { margin-top: var(--space-5); }
+  .weakness-list { gap: var(--space-4); }
+  .weakness-section-heading { gap: var(--space-3); margin-bottom: var(--space-4); }
   .weakness-practice { align-items: stretch; }
   .evidence-dialog {
     width: 100%;
@@ -113,7 +113,7 @@ body:has(dialog[open]) {
     height: 100dvh;
     border: 0;
     border-radius: 0;
-    padding: max(12px, env(safe-area-inset-top)) 12px
+    padding: max(var(--space-3), env(safe-area-inset-top)) var(--space-3)
       max(16px, env(safe-area-inset-bottom));
   }
   .evidence-dialog h2 {

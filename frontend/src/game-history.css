@@ -11,8 +11,8 @@
   grid-template-columns: var(--history-columns);
   grid-template-areas: "time players result accuracy moves date open";
   align-items: center;
-  column-gap: 14px;
-  padding: 11px 16px;
+  column-gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
 }
 .game-library-heading {
   background: #191b1e;
@@ -55,7 +55,7 @@
   min-height: 24px;
 }
 .history-player {
-  gap: 7px;
+  gap: var(--space-2);
   min-width: 0;
 }
 .history-player strong {
@@ -92,7 +92,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 .history-scores,
 .game-library-item .history-accuracy {
@@ -106,7 +106,7 @@
   font-size: 10px;
   font-weight: 600;
   border-radius: 3px;
-  padding: 3px 5px;
+  padding: var(--space-1) var(--space-1-5);
 }
 .history-accuracy {
   grid-area: accuracy;
@@ -117,7 +117,7 @@
   align-items: center;
   justify-content: center;
   min-height: 30px;
-  padding: 4px 9px;
+  padding: var(--space-1) var(--space-2);
   border: 1px solid #53635a;
   border-radius: 4px;
   background: #29332e;
@@ -134,7 +134,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
   min-width: 0;
   text-align: center;
 }
@@ -183,8 +183,8 @@
   .game-library-heading,
   .game-library-item {
     grid-template-areas: "players result accuracy open";
-    column-gap: 6px;
-    padding: 9px 10px;
+    column-gap: var(--space-1-5);
+    padding: var(--space-2) var(--space-3);
   }
   .game-library-heading {
     font-size: 10px;
@@ -196,10 +196,10 @@
   }
   .game-library-item {
     grid-template-areas: "players result accuracy open" "meta meta meta meta";
-    row-gap: 7px;
+    row-gap: var(--space-2);
   }
   .history-player {
-    gap: 5px;
+    gap: var(--space-1-5);
   }
   .history-player strong {
     font-size: 13px;
@@ -208,13 +208,13 @@
     font-size: 11px;
   }
   .history-result {
-    gap: 4px;
+    gap: var(--space-1);
   }
   .history-outcome {
-    padding-inline: 4px;
+    padding-inline: var(--space-1);
   }
   .history-review-action {
-    padding-inline: 5px;
+    padding-inline: var(--space-1-5);
     font-size: 11px;
   }
   .history-meta {
@@ -222,7 +222,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 6px 14px;
+    gap: var(--space-1-5) var(--space-4);
     color: var(--muted);
   }
   .game-library-item .history-time {
@@ -261,23 +261,23 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 9px;
-  padding: 14px 0;
+  gap: var(--space-2);
+  padding: var(--space-4) 0;
   border-radius: 4px;
 }
 .game-library--compact .game-library-list > li:first-child .game-library-item { padding-top: 0; }
 .game-library--compact .game-library-list > li:last-child .game-library-item { padding-bottom: 0; }
-.game-library--compact .history-player { gap: 8px; }
+.game-library--compact .history-player { gap: var(--space-2); }
 .game-library--compact .history-player strong { font-size: 15px; }
-.history-player-score { margin-left: auto; padding-left: 12px; font: 13px var(--mono); }
+.history-player-score { margin-left: auto; padding-left: var(--space-3); font: 13px var(--mono); }
 .history-recent-details {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px 12px;
+  gap: var(--space-1-5) var(--space-3);
 }
 .game-library--compact .history-meta { display: contents; color: var(--muted); }
-.game-library--compact .history-time { flex-direction: row; gap: 5px; }
+.game-library--compact .history-time { flex-direction: row; gap: var(--space-1-5); }
 .game-library--compact .history-time > svg { width: 14px; height: 14px; }
 .game-library--compact .history-date { margin-left: 0; font-size: 11px; }
 .game-library--compact .history-moves { display: none; }
@@ -285,12 +285,12 @@
 .history-recent-accuracy, .history-recent-side, .history-recent-action {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-1-5);
 }
-.history-recent-accuracy { gap: 12px; font-size: 11px; color: var(--muted); }
+.history-recent-accuracy { gap: var(--space-3); font-size: 11px; color: var(--muted); }
 .history-recent-side .history-line { min-height: 0; color: #eceef1; font: 11px var(--mono); }
 .history-recent-action { margin-left: auto; font-size: 12px; font-weight: 500; color: #c1d6c8; }
 @container (max-width: 400px) {
   .game-library--compact .history-player strong { font-size: 14px; }
-  .history-recent-details { gap: 6px 8px; }
+  .history-recent-details { gap: var(--space-1-5) var(--space-2); }
 }

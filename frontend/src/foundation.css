@@ -31,6 +31,54 @@
   --board-light: #c7cbd0;
   --board-dark: #737e8b;
   --mono: "IBM Plex Mono", monospace;
+  /* Spacing scale: every margin, padding and gap uses one of these steps
+     (a 4px grid, plus 2px and 6px for tight controls). The step number is the
+     multiple of 4px, as in Tailwind. scripts/spacing-scale.mjs rejects raw
+     values; see docs/UI_COMPONENTS.md#spacing. */
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  /* Semantic spacing: the rhythm between a page's blocks and inside its panels. */
+  --page-gap: var(--space-6);
+  --panel-padding: var(--space-6);
+}
+/* Layout primitives. A container spaces its children; children carry no outer
+   margin of their own. Stack: vertical rhythm. Cluster: a wrapping row. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap, var(--space-4));
+}
+.stack > * {
+  margin-block: 0;
+}
+.stack--tight {
+  --stack-gap: var(--space-2);
+}
+.stack--loose {
+  --stack-gap: var(--space-6);
+}
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cluster-gap, var(--space-2));
+}
+@media (max-width: 760px) {
+  :root {
+    --page-gap: var(--space-4);
+    --panel-padding: var(--space-5);
+  }
 }
 * {
   box-sizing: border-box;
@@ -60,9 +108,9 @@ button,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: var(--space-2);
   min-height: 42px;
-  padding: 10px 16px;
+  padding: var(--space-3) var(--space-4);
   border: 1px solid #44484f;
   border-radius: 6px;
   background: var(--raised);
@@ -121,7 +169,7 @@ summary:focus-visible {
 .icon-button {
   border: 0;
   background: transparent;
-  padding: 8px;
+  padding: var(--space-2);
   flex-shrink: 0;
 }
 .small {
@@ -151,36 +199,36 @@ h1 {
   font-weight: 500;
   letter-spacing: -1.1px;
   line-height: 1.15;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-3);
 }
 h2 {
   font-size: 23px;
   font-weight: 500;
   letter-spacing: -0.5px;
   line-height: 1.25;
-  margin-bottom: 14px;
+  margin-bottom: var(--space-4);
 }
 h3 {
   font-size: 15px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-3);
 }
 p {
   font-size: 14px;
   color: var(--muted);
   line-height: 1.65;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-5);
 }
 .eyebrow {
   font: 10px var(--mono);
   letter-spacing: 1.3px;
   color: var(--muted);
-  margin-bottom: 13px;
+  margin-bottom: var(--space-3);
 }
 label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
   font-size: 12px;
   font-weight: 500;
   min-width: 0;
@@ -191,7 +239,7 @@ select {
   width: 100%;
   min-width: 0;
   min-height: 44px;
-  padding: 11px 12px;
+  padding: var(--space-3) var(--space-3);
   border: 1px solid #484d55;
   border-radius: 5px;
   background: #17191c;
@@ -220,10 +268,10 @@ summary {
   cursor: pointer;
   font-size: 13px;
   color: #d1d6df;
-  padding: 5px 0;
+  padding: var(--space-1-5) 0;
 }
 details[open] > summary {
-  margin-bottom: 18px;
+  margin-bottom: var(--space-5);
 }
 .error-text {
   color: #ffacb4;
@@ -234,9 +282,9 @@ details[open] > summary {
 dl {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 16px;
+  gap: var(--space-4);
   font-size: 13px;
-  margin: 24px 0;
+  margin: var(--space-6) 0;
 }
 dt {
   color: var(--muted);

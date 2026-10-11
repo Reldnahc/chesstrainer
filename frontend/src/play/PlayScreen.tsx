@@ -191,7 +191,9 @@ function PlaySetup() {
             <span>Opening</span>
             <ChoiceGroup label="Opening" value={mode} onChange={setMode}
               options={MODES.map(option => ({ ...option, disabled: option.value === "practice" && !courses.length }))} />
-            <div className="play-swap">
+            {/* Only the shown description takes room: the course picker is much taller
+                than the one-line description, and reserving it left a gap under that line. */}
+            <div>
               <p className="small muted" hidden={mode !== "free"}>
                 {coach.name} chooses its own opening moves.
               </p>

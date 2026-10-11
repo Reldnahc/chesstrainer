@@ -1,7 +1,7 @@
 /* Shared by SRS, explanation playback and full-game review. */
 main:has(.review-workspace-layout) {
   min-height: 0;
-  padding: 12px var(--page-inline-padding);
+  padding: var(--space-3) var(--page-inline-padding);
 }
 .review-workspace-layout {
   --review-gutter: 35px;
@@ -13,7 +13,7 @@ main:has(.review-workspace-layout) {
   grid-template-columns:
     minmax(0, var(--review-board-width, calc(100dvh - 130px)))
     minmax(var(--review-sidebar-min), 1fr);
-  gap: 20px;
+  gap: var(--space-5);
   align-items: start;
 }
 .review-board-area,
@@ -33,7 +33,7 @@ main:has(.review-workspace-layout) {
 .review-board-row {
   display: grid;
   grid-template-columns: calc(var(--review-gutter) - 8px) minmax(0, 1fr);
-  gap: 8px;
+  gap: var(--space-2);
 }
 .review-board-square {
   grid-column: 2;
@@ -45,7 +45,7 @@ main:has(.review-workspace-layout) {
 }
 .review-board-toolbar {
   min-height: calc(var(--review-controls-height) + 10px);
-  padding-block: 4px 6px;
+  padding-block: var(--space-1) var(--space-1-5);
   display: flex;
   align-items: center;
 }
@@ -60,7 +60,7 @@ main:has(.review-workspace-layout) {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
   height: var(--review-height, calc(100dvh - 84px));
   min-height: 0;
   overflow-y: auto;
@@ -72,7 +72,7 @@ main:has(.review-workspace-layout) {
 .review-workspace-heading {
   display: flex;
   align-items: center;
-  gap: 4px 14px;
+  gap: var(--space-1) var(--space-4);
   min-height: 28px;
   color: var(--muted);
   font-size: 11px;
@@ -99,12 +99,12 @@ main:has(.review-workspace-layout) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 .review-position-status > span:first-child {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 .review-position-status > span:last-child {
   font: 9px var(--mono);
@@ -124,12 +124,12 @@ main:has(.review-workspace-layout) {
 }
 @media (max-width: 1000px) and (min-width: 761px) {
   .review-workspace-layout {
-    gap: 14px;
+    gap: var(--space-4);
   }
 }
 @media (max-width: 760px) {
   main:has(.review-workspace-layout) {
-    padding-block: 8px 24px;
+    padding-block: var(--space-2) var(--space-6);
   }
   .review-workspace-layout {
     --review-gutter: 27px;
@@ -146,17 +146,17 @@ main:has(.review-workspace-layout) {
   }
   .review-workspace-heading {
     order: -2;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-2);
   }
   .review-workspace-heading h1 {
     font-size: 14px;
   }
   .review-board-row {
     grid-template-columns: calc(var(--review-gutter) - 5px) minmax(0, 1fr);
-    gap: 5px;
+    gap: var(--space-1-5);
   }
   .review-board-toolbar {
-    padding: 4px 0 6px;
+    padding: var(--space-1) 0 var(--space-1-5);
   }
   /* Desktop reserves matching board chrome across review modes. On phones,
      an unused toolbar should not separate the board from the coach. */
@@ -164,7 +164,7 @@ main:has(.review-workspace-layout) {
     display: none;
   }
   .review-workspace-layout .review-sidebar > .practice-panel {
-    margin: 10px 0 14px;
+    margin: var(--space-3) 0 var(--space-4);
   }
   .review-workspace-layout .practice-panel:has(.review-coach),
   .review-workspace-layout .review-explanation {
@@ -172,6 +172,6 @@ main:has(.review-workspace-layout) {
   }
   .review-workspace-layout .review-coach {
     order: -1;
-    margin: 0 0 12px;
+    margin: 0 0 var(--space-3);
   }
 }

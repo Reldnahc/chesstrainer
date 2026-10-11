@@ -1,10 +1,10 @@
 .settings-content {
-  margin-top: 24px;
+  margin-top: var(--space-6);
 }
 .settings-content,
 .settings-import {
   display: grid;
-  gap: 20px;
+  gap: var(--space-5);
   min-width: 0;
 }
 .settings-section {
@@ -16,15 +16,15 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 .settings-section-heading h2 {
   margin: 0;
   font-size: 20px;
 }
 .settings-section-heading p {
-  margin: 8px 0 0;
+  margin: var(--space-2) 0 0;
   color: var(--muted);
   font-size: 14px;
 }
@@ -32,12 +32,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding-block: 20px;
+  gap: var(--space-6);
+  padding-block: var(--space-5);
   border-top: 1px solid var(--line);
 }
 .settings-tool h3 {
-  margin: 0 0 6px;
+  margin: 0 0 var(--space-1-5);
   font-size: 16px;
 }
 .settings-tool p {
@@ -51,11 +51,11 @@
 }
 .settings-tool-status {
   border-top: 1px solid var(--line);
-  padding-top: 16px;
+  padding-top: var(--space-4);
   font-size: 14px;
 }
 .settings-tool-status p {
-  margin: 0 0 8px;
+  margin: 0 0 var(--space-2);
 }
 .settings-tool-status p:empty {
   margin: 0;
@@ -69,20 +69,20 @@
   white-space: nowrap;
 }
 .settings-source a svg {
-  margin-left: 4px;
+  margin-left: var(--space-1);
   vertical-align: -1px;
 }
 @media (max-width: 760px) {
   .settings-content {
-    margin-top: 16px;
+    margin-top: var(--space-4);
   }
   .settings-content,
   .settings-import {
-    gap: 16px;
+    gap: var(--space-4);
   }
   .settings-section-heading {
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
   }
   .workspace-page .settings-section-heading h2 {
     margin: 0;
@@ -90,8 +90,8 @@
   .settings-tool {
     align-items: stretch;
     flex-direction: column;
-    gap: 12px;
-    padding-block: 16px;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
   }
   .settings-tool button {
     flex: auto;

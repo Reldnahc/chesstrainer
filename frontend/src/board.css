@@ -84,7 +84,7 @@
   color: inherit;
   background: var(--surface);
   border: 1px solid #757d89;
-  padding: 20px;
+  padding: var(--space-5);
   border-radius: 8px;
   box-shadow: 0 12px 50px #0008;
   z-index: 10;
@@ -108,10 +108,10 @@
   .promotion {
     --promotion-inline-inset: 0.03;
     --promotion-block-inset: 0.2;
-    padding: 16px;
+    padding: var(--space-4);
   }
   .promotion button {
-    padding: 8px;
+    padding: var(--space-2);
     min-height: 44px;
   }
   .board-quality {
