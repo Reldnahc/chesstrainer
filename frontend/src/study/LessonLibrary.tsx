@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, Download } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import ResumeLink from "../ResumeLink";
@@ -11,6 +11,7 @@ import Notice from "../Notice";
 import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths, type LessonTopic } from "../navigation";
 import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
+import { downloadCourseFile } from "./courseFiles";
 
 const TOPIC_TEXT = {
   opening: { home: studyPaths.openings, back: "All openings", loading: "Loading opening lessons…", empty: "No opening lessons yet.", emptyText: "Opening lessons will appear here when a course is available." },
@@ -23,6 +24,7 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
   const [course, setCourse] = useState<Schema["LessonCourseView"] | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState(false);
   const [startLesson] = useState(() => retryableStart(
     async (body: Omit<Schema["LessonStart"], "request_id">) => body,
     (body, signal) => read(api.POST("/api/study/lesson-sessions", { body, signal })),
@@ -41,6 +43,14 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
     }
     return () => { controller.abort(); request.current?.abort(); };
   }, [courseId, revision]);
+  async function download() {
+    if (!course || downloading) return;
+    setDownloading(true);
+    setError("");
+    try { await downloadCourseFile(course.id, course.revision); }
+    catch (e) { setError((e as Error).message); }
+    finally { setDownloading(false); }
+  }
   async function begin(chapterId: string) {
     if (!course || request.current) return;
     const controller = new AbortController();
@@ -75,6 +85,7 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
       </li>)}</ol>
       {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <ResumeLink href={courseLinePath(course.id, line.id, course.revision, course.learner_color)} key={line.id} description="Preview and add to study">{line.title}</ResumeLink>)}</section>}
       <LessonAttribution attributions={course.attributions} />
+      <Button className="lesson-course-download" size="compact" variant="quiet" disabled={downloading} onClick={download}><Download size={16} />Download course file</Button>
     </> : !error && <LoadingState>Loading lesson chapters…</LoadingState>}
   </section>;
   if (!library) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">{text.loading}</LoadingState>;
@@ -82,7 +93,7 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
   const courses = library.courses.filter(item => item.topic === topic);
   return <>
     {!!resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{resume.map(session => <ResumeLink key={session.id} href={lessonSessionPath(session.id, topic)} description={session.chapter_title}>{session.course_title}</ResumeLink>)}</div></section>}
-    {courses.length ? <div className="lesson-course-grid">{courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision, topic)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}<ArrowRight size={16} /></span></Link>)}</div>
+    {courses.length ? <div className="lesson-course-grid">{courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision, topic)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}{item.source === "club" ? " · Club course" : ""}<ArrowRight size={16} /></span></Link>)}</div>
       : <EmptyState title={text.empty} icon={<BookOpen />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>{text.emptyText}</EmptyState>}
   </>;
 }

@@ -1,0 +1,1882 @@
+{
+  "format": "fieldwork-course-1",
+  "id": "sicilian-dragon",
+  "revision": "2026-10-v1",
+  "title": "Sicilian Dragon · A fighting Black repertoire",
+  "description": "Answer e4 with the Sicilian and fianchetto your bishop on g7. Build the setup, meet the Yugoslav Attack with an early d5, punish Bg5 with h6, Ng4 and e5, and handle White's early alternatives. Side trips cover the replies club players choose most often.",
+  "side": "black",
+  "topic": "opening",
+  "credits": [
+    {
+      "text": "Original Fieldwork instruction. Opponent replies were chosen with the Maia-3 human move model and every taught move was checked with Stockfish.",
+      "license": "Repository license"
+    }
+  ],
+  "lines": [
+    {
+      "id": "dragon-classical",
+      "title": "Sicilian Dragon · quiet Be2 setup",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be2 Bg7 O-O O-O Be3 Nc6 Nxc6 bxc6 Qd2 d5",
+      "repertoire": true,
+      "eco": "B73"
+    },
+    {
+      "id": "dragon-queen-recapture",
+      "title": "Sicilian · 4.Qxd4 Nc6 5.Bb5",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Qxd4 Nc6 Bb5 Bd7 Bxc6 Bxc6 Nc3 Nf6 Bg5 e6",
+      "repertoire": true,
+      "eco": "B53"
+    },
+    {
+      "id": "dragon-quiet-c4",
+      "title": "Sicilian Dragon · 6.Bc4",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bc4 Bg7 O-O O-O",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-early-e3",
+      "title": "Sicilian Dragon · 6.Be2 Bg7 7.Be3",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be2 Bg7 Be3 O-O Qd2 Nc6 O-O-O d5",
+      "repertoire": true,
+      "eco": "B72"
+    },
+    {
+      "id": "dragon-queen-d2",
+      "title": "Sicilian Dragon · 9.Qd2 d5",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be2 Bg7 O-O O-O Be3 Nc6 Qd2 d5",
+      "repertoire": true,
+      "eco": "B73"
+    },
+    {
+      "id": "dragon-yugoslav",
+      "title": "Sicilian Dragon · Yugoslav Attack, 9.O-O-O d5",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be3 Bg7 f3 O-O Qd2 Nc6 O-O-O d5 exd5 Nxd5 Nxd5 Qxd5 Nxc6 Qxc6 Bh6 Be6",
+      "repertoire": true,
+      "eco": "B76"
+    },
+    {
+      "id": "dragon-yugoslav-queen",
+      "title": "Sicilian Dragon · 7.Qd2 Ng4",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be3 Bg7 Qd2 Ng4 Bf4 Bxd4 Qxd4 e5 Bxe5 dxe5 Qxd8+ Kxd8",
+      "repertoire": true,
+      "eco": "B72"
+    },
+    {
+      "id": "dragon-yugoslav-c4",
+      "title": "Sicilian Dragon · Yugoslav Attack, 8.Bc4",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be3 Bg7 f3 O-O Bc4 Nc6 Qd2 Nxd4 Bxd4 Be6 Bxe6 fxe6 O-O-O Qa5",
+      "repertoire": true,
+      "eco": "B77"
+    },
+    {
+      "id": "dragon-yugoslav-exchange",
+      "title": "Sicilian Dragon · Yugoslav Attack, 9.Nxc6",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be3 Bg7 f3 O-O Qd2 Nc6 Nxc6 bxc6 O-O-O Be6",
+      "repertoire": true,
+      "eco": "B76"
+    },
+    {
+      "id": "dragon-yugoslav-gambit",
+      "title": "Sicilian Dragon · Yugoslav Attack, 10.Nxc6",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be3 Bg7 f3 O-O Qd2 Nc6 O-O-O d5 Nxc6 bxc6 exd5 cxd5 Nxd5 Nxd5 Qxd5 Qc7 Qxa8 Bf5 Qxf8+ Kxf8",
+      "repertoire": true,
+      "eco": "B76"
+    },
+    {
+      "id": "dragon-yugoslav-late",
+      "title": "Sicilian Dragon · Yugoslav Attack, 11.Nxc6",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be3 Bg7 f3 O-O Qd2 Nc6 O-O-O d5 exd5 Nxd5 Nxc6 bxc6 Nxd5 cxd5 Qxd5 Qc7",
+      "repertoire": true,
+      "eco": "B76"
+    },
+    {
+      "id": "dragon-bg5",
+      "title": "Sicilian Dragon · 6.Bg5 Bg7 7.Qd2 h6",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bg5 Bg7 Qd2 h6 Be3 Ng4 Bf4 e5 h3 exd4 hxg4 dxc3",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-check-six",
+      "title": "Sicilian Dragon · 6.Bb5+",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bb5+ Bd7 Bxd7+ Nbxd7 O-O Bg7",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-bg5-c4",
+      "title": "Sicilian Dragon · 6.Bg5 Bg7 7.Bc4",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bg5 Bg7 Bc4 O-O O-O h6 Bh4 Nc6",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-bg5-check",
+      "title": "Sicilian Dragon · 6.Bg5 Bg7 7.Bb5+",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bg5 Bg7 Bb5+ Bd7 Bxd7+ Nbxd7 O-O O-O",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-bg5-h4",
+      "title": "Sicilian Dragon · 6.Bg5, 8.Bh4",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bg5 Bg7 Qd2 h6 Bh4 Nc6",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-bg5-f6",
+      "title": "Sicilian Dragon · 6.Bg5, 8.Bxf6",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bg5 Bg7 Qd2 h6 Bxf6 Bxf6 O-O-O Nc6",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-bg5-f4",
+      "title": "Sicilian Dragon · 6.Bg5, 8.Bf4",
+      "moves": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Bg5 Bg7 Qd2 h6 Bf4 e5",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-second-bishop",
+      "title": "Sicilian · 2.Bc4",
+      "moves": "e4 c5 Bc4 e6 Nf3 Nc6 O-O Nf6 d3 d5 exd5 exd5",
+      "repertoire": true,
+      "eco": "B20"
+    },
+    {
+      "id": "dragon-second-knight",
+      "title": "Sicilian · 2.Nc3, back to the Dragon",
+      "moves": "e4 c5 Nc3 d6 Nf3 Nf6 d4 cxd4 Nxd4 g6",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-alapin",
+      "title": "Sicilian · Alapin Variation, 2.c3 Nf6",
+      "moves": "e4 c5 c3 Nf6 e5 Nd5 d4 cxd4 cxd4 d6 Nf3 Nc6",
+      "repertoire": true,
+      "eco": "B22"
+    },
+    {
+      "id": "dragon-early-queen",
+      "title": "Sicilian · 2.d4 cxd4 3.Qxd4",
+      "moves": "e4 c5 d4 cxd4 Qxd4 Nc6 Qd1 Nf6 Nc3 g6",
+      "repertoire": true,
+      "eco": "B21"
+    },
+    {
+      "id": "dragon-morra",
+      "title": "Sicilian · Smith-Morra Gambit accepted",
+      "moves": "e4 c5 d4 cxd4 c3 dxc3 Nxc3 d6 Nf3 Nc6 Bc4 e6 O-O Nf6",
+      "repertoire": true,
+      "eco": "B21"
+    },
+    {
+      "id": "dragon-third-bishop",
+      "title": "Sicilian · 3.Bc4 Nf6 4.d3",
+      "moves": "e4 c5 Nf3 d6 Bc4 Nf6 d3 Nc6 O-O g6 Bg5 Bg7 Nc3 O-O",
+      "repertoire": true,
+      "eco": "B50"
+    },
+    {
+      "id": "dragon-moscow",
+      "title": "Sicilian · Moscow Variation, 3.Bb5+",
+      "moves": "e4 c5 Nf3 d6 Bb5+ Bd7 Bxd7+ Nxd7 O-O Ngf6 Re1 g6 c3 Bg7",
+      "repertoire": true,
+      "eco": "B52"
+    },
+    {
+      "id": "dragon-third-knight",
+      "title": "Sicilian · 3.Nc3, back to the Dragon",
+      "moves": "e4 c5 Nf3 d6 Nc3 Nf6 d4 cxd4 Nxd4 g6",
+      "repertoire": true,
+      "eco": "B70"
+    },
+    {
+      "id": "dragon-third-c3",
+      "title": "Sicilian · 3.c3 Nf6 4.d4",
+      "moves": "e4 c5 Nf3 d6 c3 Nf6 d4 Nxe4 dxc5 Nxc5",
+      "repertoire": true,
+      "eco": "B50"
+    },
+    {
+      "id": "dragon-third-jump",
+      "title": "Sicilian · 3.Bc4 Nf6 4.Ng5",
+      "moves": "e4 c5 Nf3 d6 Bc4 Nf6 Ng5 e6 d3 d5",
+      "repertoire": true,
+      "eco": "B50"
+    },
+    {
+      "id": "dragon-third-c4-knight",
+      "title": "Sicilian · 3.Bc4 Nf6 4.Nc3",
+      "moves": "e4 c5 Nf3 d6 Bc4 Nf6 Nc3 e6 d4 cxd4",
+      "repertoire": true,
+      "eco": "B50"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "dragon-setup",
+      "title": "Build the Dragon",
+      "steps": [
+        {
+          "id": "setup-welcome",
+          "title": "The Sicilian Dragon",
+          "text": "You play Black. Against e4 you answer c5, the Sicilian Defense. After White opens the center with d4, you trade pawns and put your f8-bishop on g7. That bishop, aiming along the long diagonal from g7 to a1, gives the Dragon its strength. This chapter builds the setup against a quiet White plan."
+        },
+        {
+          "id": "setup-arrival",
+          "title": "White opens with e4",
+          "text": "White starts with the king's pawn.",
+          "show": "e4"
+        },
+        {
+          "id": "setup-sicilian",
+          "title": "Answer from the side",
+          "text": "Push your c-pawn two squares. It controls d4 without facing the e4-pawn directly.",
+          "move": "c5",
+          "reply": "Nf3",
+          "feedback": "This is the Sicilian Defense. White develops the g1-knight to f3, preparing d4.",
+          "hint": "Move c7 to c5."
+        },
+        {
+          "id": "setup-support",
+          "title": "Control e5",
+          "text": "Push your d-pawn one square. It controls e5 and opens the c8-bishop's path.",
+          "move": "d6",
+          "reply": "d4",
+          "feedback": "White pushes d4 to open the center.",
+          "hint": "Move d7 to d6."
+        },
+        {
+          "id": "setup-trade",
+          "title": "Trade a side pawn for a center pawn",
+          "text": "Capture on d4 with your c-pawn. You give up a side pawn for one of White's center pawns.",
+          "move": "cxd4",
+          "feedback": "White will take back on d4.",
+          "hint": "Move the pawn from c5 to d4."
+        },
+        {
+          "id": "setup-queen-choice",
+          "title": "If the queen takes back",
+          "text": "White usually takes back with the knight. Explore the queen recapture, or continue with the main line.",
+          "branch": "setup-queen",
+          "next": "setup-knight-back"
+        },
+        {
+          "id": "setup-queen",
+          "title": "The queen takes back",
+          "text": "White recaptures on d4 with the queen instead of the knight. The queen stands in the middle of the board, where your pieces can attack it.",
+          "show": "Qxd4"
+        },
+        {
+          "id": "setup-queen-knight",
+          "title": "Develop with an attack",
+          "text": "Develop the b8-knight to c6. It attacks White's queen on d4.",
+          "move": "Nc6",
+          "reply": "Bb5",
+          "feedback": "White pins your knight with Bb5: if the c6-knight moved, the bishop could take your king.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "setup-queen-pin",
+          "title": "Break the pin",
+          "text": "Develop the c8-bishop to d7. It defends the c6-knight and stands between the bishop and your king.",
+          "move": "Bd7",
+          "reply": "Bxc6",
+          "feedback": "White exchanges the bishop for your knight.",
+          "hint": "Move the bishop from c8 to d7."
+        },
+        {
+          "id": "setup-queen-recapture",
+          "title": "Take back with the bishop",
+          "text": "Recapture on c6 with the d7-bishop. It now aims along the other long diagonal, from a8 toward h1, at White's e4-pawn.",
+          "move": "Bxc6",
+          "reply": "Nc3",
+          "feedback": "White develops Nc3 and defends e4.",
+          "hint": "Move the bishop from d7 to c6."
+        },
+        {
+          "id": "setup-queen-develop",
+          "title": "Bring out the last knight",
+          "text": "Develop the g8-knight to f6. It adds a second attacker on e4.",
+          "move": "Nf6",
+          "reply": "Bg5",
+          "feedback": "White's Bg5 attacks your f6-knight.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "setup-queen-center",
+          "title": "Open the f8-bishop",
+          "text": "Play e6. The pawn opens a path for the f8-bishop, which can then develop and let you castle.",
+          "move": "e6",
+          "feedback": "Your bishops, knight and pawns are working together. White has given up the f1-bishop, so you have two bishops against one.",
+          "hint": "Move e7 to e6."
+        },
+        {
+          "id": "setup-queen-summary",
+          "title": "A different structure",
+          "text": "This is not a Dragon: your g-pawn stays on g7. Next, develop the f8-bishop to e7 and castle. You still have both bishops, while White has given up the f1-bishop.",
+          "next": null
+        },
+        {
+          "id": "setup-knight-back",
+          "title": "The knight takes back",
+          "text": "White recaptures with the f3-knight. You have two central pawns, on d6 and e7, against White's one on e4.",
+          "show": "Nxd4"
+        },
+        {
+          "id": "setup-knight",
+          "title": "Develop with an attack",
+          "text": "Develop the g8-knight to f6. It attacks White's e4-pawn.",
+          "move": "Nf6",
+          "reply": "Nc3",
+          "feedback": "White defends e4 with Nc3.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "setup-dragon",
+          "title": "Prepare the fianchetto",
+          "text": "Push your g-pawn one square to make room for the f8-bishop on g7. Developing a bishop on g7 behind a g6-pawn like this is called a fianchetto; from g7 the bishop looks down the long diagonal toward a1.",
+          "move": "g6",
+          "feedback": "This is the Dragon. The Russian master Fyodor Dus-Chotimirsky later said he named it in 1901, because Black's kingside pawns reminded him of the constellation Draco, the dragon.",
+          "hint": "Move g7 to g6."
+        },
+        {
+          "id": "setup-c4-choice",
+          "title": "If the bishop goes to c4",
+          "text": "White has several sixth moves. This chapter follows the quiet Be2; the next chapters cover Be3 with f3 and Bg5. Explore Bc4 first, or continue with Be2.",
+          "branch": "setup-c4",
+          "next": "setup-quiet"
+        },
+        {
+          "id": "setup-c4",
+          "title": "White's bishop goes to c4",
+          "text": "White develops the f1-bishop to c4, where it points at f7. Your setup does not change.",
+          "show": "Bc4"
+        },
+        {
+          "id": "setup-c4-fianchetto",
+          "title": "Fianchetto the bishop",
+          "text": "Develop the f8-bishop to g7.",
+          "move": "Bg7",
+          "reply": "O-O",
+          "feedback": "White castles.",
+          "hint": "Move the bishop from f8 to g7."
+        },
+        {
+          "id": "setup-c4-castle",
+          "title": "Castle",
+          "text": "Castle kingside. Your king will sit behind the g7-bishop and the f7, g6 and h7 pawns.",
+          "move": "O-O",
+          "feedback": "Both kings are safe. The f7-pawn is now defended by your rook on f8 as well as your king.",
+          "hint": "Move the king from e8 to g8."
+        },
+        {
+          "id": "setup-c4-summary",
+          "title": "Same setup, different bishop",
+          "text": "The c4-bishop looks at f7, but your rook and king defend it. Keep developing: your b8-knight and c8-bishop are still at home.",
+          "next": null
+        },
+        {
+          "id": "setup-quiet",
+          "title": "A quiet bishop move",
+          "text": "White develops the f1-bishop to e2 and prepares to castle. The bishop on e2 does not attack anything yet.",
+          "show": "Be2"
+        },
+        {
+          "id": "setup-fianchetto",
+          "title": "Fianchetto the bishop",
+          "text": "Develop the f8-bishop to g7, on the long diagonal. Your f6-knight stands in front of it for now.",
+          "move": "Bg7",
+          "feedback": "Your bishop is on its best diagonal, and your king is ready to castle.",
+          "hint": "Move the bishop from f8 to g7."
+        },
+        {
+          "id": "setup-e3-choice",
+          "title": "If White plays Be3 first",
+          "text": "White can castle or develop the c1-bishop first. Explore Be3, or continue with castling.",
+          "branch": "setup-e3",
+          "next": "setup-white-castles"
+        },
+        {
+          "id": "setup-e3",
+          "title": "White develops the bishop before castling",
+          "text": "White develops the c1-bishop to e3 before castling, keeping the choice of which side the king goes.",
+          "show": "Be3"
+        },
+        {
+          "id": "setup-e3-castle",
+          "title": "Castle",
+          "text": "Castle kingside. Your king is safer there, and you are ready whichever side White castles.",
+          "move": "O-O",
+          "reply": "Qd2",
+          "feedback": "White plays Qd2 and prepares to castle queenside.",
+          "hint": "Move the king from e8 to g8."
+        },
+        {
+          "id": "setup-e3-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6.",
+          "move": "Nc6",
+          "reply": "O-O-O",
+          "feedback": "White castles queenside. The kings are now on opposite sides of the board.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "setup-e3-break",
+          "title": "Strike in the center",
+          "text": "Push d5. It attacks the e4-pawn and opens lines toward White's king on c1.",
+          "move": "d5",
+          "feedback": "d5 attacks e4. If White takes it with exd5, take back with the f6-knight.",
+          "hint": "Move d6 to d5."
+        },
+        {
+          "id": "setup-e3-summary",
+          "title": "Answer the king on c1 in the center",
+          "text": "When White's king goes to c1, open the center at once with d5. If White takes on d5, take back with the f6-knight; if White takes on c6, take back with the b-pawn. Once the f6-knight moves and White's knights on d4 and c3 are traded, the g7-bishop's long diagonal points at b2, next to White's king. The Yugoslav Attack chapter shows the same d5 break in detail.",
+          "next": null
+        },
+        {
+          "id": "setup-white-castles",
+          "title": "White castles",
+          "text": "White castles kingside.",
+          "show": "O-O"
+        },
+        {
+          "id": "setup-castle",
+          "title": "Castle",
+          "text": "Castle kingside. Your king tucks in behind the g7-bishop.",
+          "move": "O-O",
+          "reply": "Be3",
+          "feedback": "White develops Be3, which protects the d4-knight.",
+          "hint": "Move the king from e8 to g8."
+        },
+        {
+          "id": "setup-knight-c6",
+          "title": "Develop the last knight",
+          "text": "Develop the b8-knight to c6, where it attacks the d4-knight.",
+          "move": "Nc6",
+          "feedback": "The d4-knight is attacked by your c6-knight and defended twice, by the e3-bishop and the queen on d1.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "setup-d2-choice",
+          "title": "If White plays Qd2",
+          "text": "White usually exchanges knights or plays Qd2. Explore Qd2, or continue with the exchange.",
+          "branch": "setup-d2",
+          "next": "setup-exchange"
+        },
+        {
+          "id": "setup-d2",
+          "title": "White brings the queen to d2",
+          "text": "White plays Qd2 instead of exchanging knights. The queen connects with the e3-bishop.",
+          "show": "Qd2"
+        },
+        {
+          "id": "setup-d2-break",
+          "title": "Strike in the center",
+          "text": "Push d5. It attacks the e4-pawn, which only White's c3-knight defends.",
+          "move": "d5",
+          "feedback": "d5 and your f6-knight both attack e4, and only White's c3-knight defends it.",
+          "hint": "Move d6 to d5."
+        },
+        {
+          "id": "setup-d2-summary",
+          "title": "The same break",
+          "text": "The d5 break is the Dragon's main way to fight for the center. Here it also gains time: it creates a threat, so White has to answer the attack on e4 instead of carrying out a plan.",
+          "next": null
+        },
+        {
+          "id": "setup-exchange",
+          "title": "White exchanges knights",
+          "text": "White takes your c6-knight with the d4-knight.",
+          "show": "Nxc6"
+        },
+        {
+          "id": "setup-recapture",
+          "title": "Take back toward the center",
+          "text": "Recapture with the b-pawn. The pawn moves toward the center, where it can support d5, and the b-file opens for your rook.",
+          "move": "bxc6",
+          "reply": "Qd2",
+          "feedback": "White plays Qd2. Your c6-pawn now covers d5.",
+          "hint": "Move the pawn from b7 to c6."
+        },
+        {
+          "id": "setup-break",
+          "title": "Take the center",
+          "text": "Push d5. The c6-pawn supports it, and it attacks White's e4-pawn.",
+          "move": "d5",
+          "feedback": "You have a pawn on d5, supported by the c6-pawn and attacking e4.",
+          "hint": "Move d6 to d5."
+        },
+        {
+          "id": "setup-summary",
+          "title": "Your Dragon setup",
+          "text": "Your king is castled behind the g7-bishop, and your pawns on c6 and d5 claim the center. The b-file is open for a rook on b8, which can press against b2. If White takes on d5, take back with the c6-pawn to keep a pawn in the center. If White pushes e5 to attack your f6-knight, jump it to g4, where it attacks the e3-bishop; your c8-bishop defends it there."
+        },
+        {
+          "id": "setup-rehearsal",
+          "title": "Play the Dragon setup",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "dragon-classical"
+        }
+      ]
+    },
+    {
+      "id": "dragon-yugoslav",
+      "title": "Meet the Yugoslav Attack",
+      "steps": [
+        {
+          "id": "yugoslav-welcome",
+          "title": "The Yugoslav Attack",
+          "text": "In master games, White's main plan against the Dragon, and one of its sharpest, is the Yugoslav Attack: White plays Be3, f3 and Qd2, castles queenside and then pushes the kingside pawns at your king. Your answer is simple: castle, develop Nc6, and as soon as White castles queenside, strike in the center with d5, as long as your knight is still on c6. If the knights have already been traded, the side trips show what to do instead."
+        },
+        {
+          "id": "yugoslav-arrival",
+          "title": "Reach the Yugoslav Attack",
+          "text": "You reach the Dragon, and White develops the c1-bishop to e3.",
+          "show": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6 Be3"
+        },
+        {
+          "id": "yugoslav-fianchetto",
+          "title": "Fianchetto the bishop",
+          "text": "Develop the f8-bishop to g7.",
+          "move": "Bg7",
+          "feedback": "Your bishop is on the long diagonal and you are ready to castle.",
+          "hint": "Move the bishop from f8 to g7."
+        },
+        {
+          "id": "yugoslav-queen-choice",
+          "title": "If White plays Qd2 first",
+          "text": "White can play f3 or Qd2 here. Explore Qd2 first, or continue with f3.",
+          "branch": "yugoslav-queen",
+          "next": "yugoslav-f3"
+        },
+        {
+          "id": "yugoslav-queen",
+          "title": "Qd2 before f3",
+          "text": "White plays Qd2 before f3. Without a pawn on f3, nothing controls the g4-square.",
+          "show": "Qd2"
+        },
+        {
+          "id": "yugoslav-queen-jump",
+          "title": "Attack the bishop",
+          "text": "Jump the f6-knight to g4, where it attacks White's e3-bishop.",
+          "move": "Ng4",
+          "reply": "Bf4",
+          "feedback": "White moves the bishop to f4. Now the d4-knight is defended only by the queen, and your g7-bishop sees it.",
+          "hint": "Move the knight from f6 to g4."
+        },
+        {
+          "id": "yugoslav-queen-take",
+          "title": "Take the knight",
+          "text": "Capture the d4-knight with the g7-bishop.",
+          "move": "Bxd4",
+          "reply": "Qxd4",
+          "feedback": "White takes back with the queen. Now a pawn can attack two pieces at once.",
+          "hint": "Move the bishop from g7 to d4."
+        },
+        {
+          "id": "yugoslav-queen-fork",
+          "title": "Fork queen and bishop",
+          "text": "Push e5. The pawn attacks White's queen on d4 and bishop on f4 at the same time, a fork.",
+          "move": "e5",
+          "reply": "Bxe5",
+          "feedback": "White takes the pawn with the bishop, which now attacks your rook on h8.",
+          "hint": "Move e7 to e5."
+        },
+        {
+          "id": "yugoslav-queen-capture",
+          "title": "Take the bishop",
+          "text": "Capture the e5-bishop with your d-pawn.",
+          "move": "dxe5",
+          "reply": "Qxd8+",
+          "feedback": "White trades queens with check.",
+          "hint": "Move the pawn from d6 to e5."
+        },
+        {
+          "id": "yugoslav-queen-king",
+          "title": "Take the queen",
+          "text": "Recapture the queen with your king.",
+          "move": "Kxd8",
+          "feedback": "The queens are gone and you have an extra piece for a pawn.",
+          "hint": "Move the king from e8 to d8."
+        },
+        {
+          "id": "yugoslav-queen-summary",
+          "title": "Punish an early Qd2",
+          "text": "You traded your g7-bishop and e-pawn for White's d4-knight and f4-bishop: a piece for a pawn. If White checks with Qa4+ instead of taking on e5, block with Bd7: the bishop attacks the queen, and you still win material. Earlier, if White's bishop had gone to g5 instead of f4, h6 would chase it; if White had castled queenside, Nxe3 would trade your knight for that bishop.",
+          "next": null
+        },
+        {
+          "id": "yugoslav-f3",
+          "title": "White plays f3",
+          "text": "f3 supports the e4-pawn and keeps your knight off g4.",
+          "show": "f3"
+        },
+        {
+          "id": "yugoslav-castle",
+          "title": "Castle",
+          "text": "Castle kingside.",
+          "move": "O-O",
+          "feedback": "Your king is safe behind the g7-bishop for now.",
+          "hint": "Move the king from e8 to g8."
+        },
+        {
+          "id": "yugoslav-c4-choice",
+          "title": "If the bishop goes to c4",
+          "text": "White usually plays Qd2. Explore Bc4, or continue with Qd2.",
+          "branch": "yugoslav-c4",
+          "next": "yugoslav-qd2"
+        },
+        {
+          "id": "yugoslav-c4",
+          "title": "The bishop aims at your king",
+          "text": "White develops the f1-bishop to c4, on the diagonal that leads to f7 and your king on g8.",
+          "show": "Bc4"
+        },
+        {
+          "id": "yugoslav-c4-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6.",
+          "move": "Nc6",
+          "reply": "Qd2",
+          "feedback": "White plays Qd2.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "yugoslav-c4-trade",
+          "title": "Trade knights",
+          "text": "Take the d4-knight with your c6-knight.",
+          "move": "Nxd4",
+          "reply": "Bxd4",
+          "feedback": "White recaptures with the bishop.",
+          "hint": "Move the knight from c6 to d4."
+        },
+        {
+          "id": "yugoslav-c4-block",
+          "title": "Block the diagonal",
+          "text": "Develop the c8-bishop to e6. It blocks the c4-bishop's path toward your king and offers a trade.",
+          "move": "Be6",
+          "reply": "Bxe6",
+          "feedback": "White exchanges bishops.",
+          "hint": "Move the bishop from c8 to e6."
+        },
+        {
+          "id": "yugoslav-c4-recapture",
+          "title": "Take back with the f-pawn",
+          "text": "Recapture with the f-pawn. The e6-pawn now controls d5 and f5.",
+          "move": "fxe6",
+          "reply": "O-O-O",
+          "feedback": "White castles queenside.",
+          "hint": "Move the pawn from f7 to e6."
+        },
+        {
+          "id": "yugoslav-c4-queen",
+          "title": "Bring the queen toward White's king",
+          "text": "Move your queen to a5. It attacks the a2-pawn and the c3-knight, near White's king.",
+          "move": "Qa5",
+          "feedback": "Your queen is active and your rooks can use the c- and f-files.",
+          "hint": "Move the queen from d8 to a5."
+        },
+        {
+          "id": "yugoslav-c4-summary",
+          "title": "Trade the attackers",
+          "text": "The bishop aiming at your king is gone. A rook on c8 would use the c-file, which leads to White's king on c1.",
+          "next": null
+        },
+        {
+          "id": "yugoslav-qd2",
+          "title": "White plays Qd2",
+          "text": "Qd2 connects the queen with the e3-bishop. Together they can aim at h6 to exchange your g7-bishop, and the queen clears d1 so that White can castle queenside.",
+          "show": "Qd2"
+        },
+        {
+          "id": "yugoslav-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6, where it attacks the d4-knight.",
+          "move": "Nc6",
+          "feedback": "Your knight presses on d4 and prepares a later d5.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "yugoslav-exchange-choice",
+          "title": "If White trades knights now",
+          "text": "White usually castles queenside. Explore the knight trade first, or continue with castling.",
+          "branch": "yugoslav-exchange",
+          "next": "yugoslav-long-castle"
+        },
+        {
+          "id": "yugoslav-exchange",
+          "title": "White trades knights early",
+          "text": "White exchanges knights before castling.",
+          "show": "Nxc6"
+        },
+        {
+          "id": "yugoslav-exchange-recapture",
+          "title": "Take back toward the center",
+          "text": "Recapture with the b-pawn. It supports a later d5 and opens the b-file for a rook.",
+          "move": "bxc6",
+          "reply": "O-O-O",
+          "feedback": "White castles queenside.",
+          "hint": "Move the pawn from b7 to c6."
+        },
+        {
+          "id": "yugoslav-exchange-bishop",
+          "title": "Develop the last bishop",
+          "text": "Develop the c8-bishop to e6, where it covers d5 and looks toward a2.",
+          "move": "Be6",
+          "feedback": "Your knight and both bishops are developed, and the b-file, open on your side, points at b2, next to White's king on c1.",
+          "hint": "Move the bishop from c8 to e6."
+        },
+        {
+          "id": "yugoslav-exchange-summary",
+          "title": "Bring a rook to the b-file",
+          "text": "Next, put a rook on b8 and consider Qa5. If White plays Bh6, now or earlier instead of castling, trade bishops with Bxh6 and, after Qxh6, play Qb6.",
+          "next": null
+        },
+        {
+          "id": "yugoslav-long-castle",
+          "title": "White castles queenside",
+          "text": "White's king goes to c1. The kings are now on opposite sides, so each side will attack the other's king.",
+          "show": "O-O-O"
+        },
+        {
+          "id": "yugoslav-break",
+          "title": "Strike in the center",
+          "text": "Push d5. It attacks the e4-pawn and opens the center before White's kingside attack arrives.",
+          "move": "d5",
+          "feedback": "If White takes on d5, your pieces recapture and come to life.",
+          "hint": "Move d6 to d5."
+        },
+        {
+          "id": "yugoslav-gambit-choice",
+          "title": "If White trades knights first",
+          "text": "White most often takes on d5 or trades knights on c6. Explore the knight trade, or continue with exd5.",
+          "branch": "yugoslav-gambit",
+          "next": "yugoslav-takes"
+        },
+        {
+          "id": "yugoslav-gambit",
+          "title": "White trades knights first",
+          "text": "Before taking on d5, White exchanges knights on c6.",
+          "show": "Nxc6"
+        },
+        {
+          "id": "yugoslav-gambit-recapture",
+          "title": "Take back with the b-pawn",
+          "text": "Recapture with the b-pawn so that it supports d5.",
+          "move": "bxc6",
+          "reply": "exd5",
+          "feedback": "White takes your d5-pawn.",
+          "hint": "Move the pawn from b7 to c6."
+        },
+        {
+          "id": "yugoslav-gambit-pawn",
+          "title": "Take back with the pawn",
+          "text": "Recapture on d5 with the c6-pawn.",
+          "move": "cxd5",
+          "reply": "Nxd5",
+          "feedback": "White's knight takes your d5-pawn.",
+          "hint": "Move the pawn from c6 to d5."
+        },
+        {
+          "id": "yugoslav-gambit-knight",
+          "title": "Take the knight",
+          "text": "Capture the d5-knight with your f6-knight.",
+          "move": "Nxd5",
+          "reply": "Qxd5",
+          "feedback": "White's queen takes your knight. You are a pawn down, and the queen also attacks your rook on a8.",
+          "hint": "Move the knight from f6 to d5."
+        },
+        {
+          "id": "yugoslav-gambit-offer",
+          "title": "Offer the rook",
+          "text": "Move your queen to c7. You leave the a8-rook to be taken; in return your queen and g7-bishop aim at c2 and b2, beside White's king.",
+          "move": "Qc7",
+          "reply": "Qxa8",
+          "feedback": "White takes the rook. Now White's queen is far from its king.",
+          "hint": "Move the queen from d8 to c7."
+        },
+        {
+          "id": "yugoslav-gambit-bishop",
+          "title": "Attack with the bishop",
+          "text": "Develop the c8-bishop to f5. Together with your queen it attacks c2: now Qxc2 would be checkmate.",
+          "move": "Bf5",
+          "reply": "Qxf8+",
+          "feedback": "Your f8-rook now attacks White's queen too, so White takes the rook with check rather than lose the queen for nothing. White still has to stop Qxc2 mate next move.",
+          "hint": "Move the bishop from c8 to f5."
+        },
+        {
+          "id": "yugoslav-gambit-king",
+          "title": "Take the queen",
+          "text": "Capture the queen with your king.",
+          "move": "Kxf8",
+          "feedback": "You have the queen for two rooks and a pawn, and White's king is under attack.",
+          "hint": "Move the king from g8 to f8."
+        },
+        {
+          "id": "yugoslav-gambit-summary",
+          "title": "Queen and bishops against rooks",
+          "text": "Your queen and two bishops all aim at White's king on c1, while White's rooks are not yet working together. Keep attacking c2 and b2 rather than counting material.",
+          "next": null
+        },
+        {
+          "id": "yugoslav-takes",
+          "title": "White takes on d5",
+          "text": "White captures your d5-pawn with the e-pawn.",
+          "show": "exd5"
+        },
+        {
+          "id": "yugoslav-recapture",
+          "title": "Take back with the knight",
+          "text": "Recapture on d5 with the f6-knight. Moving the knight also opens the g7-bishop's diagonal.",
+          "move": "Nxd5",
+          "feedback": "Your knight attacks the c3-knight and the e3-bishop, and your g7-bishop now sees the d4-knight.",
+          "hint": "Move the knight from f6 to d5."
+        },
+        {
+          "id": "yugoslav-late-choice",
+          "title": "If White trades on c6",
+          "text": "White usually exchanges knights on d5. Explore the trade on c6 first, or continue with Nxd5.",
+          "branch": "yugoslav-late",
+          "next": "yugoslav-trade"
+        },
+        {
+          "id": "yugoslav-late",
+          "title": "White takes on c6 a move later",
+          "text": "White exchanges knights on c6 instead of taking on d5.",
+          "show": "Nxc6"
+        },
+        {
+          "id": "yugoslav-late-recapture",
+          "title": "Take back with the b-pawn",
+          "text": "Recapture with the b-pawn. Your d5-knight is still defended by your queen.",
+          "move": "bxc6",
+          "reply": "Nxd5",
+          "feedback": "White takes your d5-knight.",
+          "hint": "Move the pawn from b7 to c6."
+        },
+        {
+          "id": "yugoslav-late-pawn",
+          "title": "Take back with the pawn",
+          "text": "Recapture on d5 with the c6-pawn.",
+          "move": "cxd5",
+          "reply": "Qxd5",
+          "feedback": "White's queen takes the pawn. This is the same position as when White trades knights on c6 before taking on d5.",
+          "hint": "Move the pawn from c6 to d5."
+        },
+        {
+          "id": "yugoslav-late-offer",
+          "title": "Offer the rook",
+          "text": "Move your queen to c7. You leave the a8-rook to be taken; in return your queen and g7-bishop aim at c2 and b2, beside White's king.",
+          "move": "Qc7",
+          "feedback": "If White takes the a8-rook, continue with Bf5.",
+          "hint": "Move the queen from d8 to c7."
+        },
+        {
+          "id": "yugoslav-late-summary",
+          "title": "Two roads to one position",
+          "text": "After Nxd5 cxd5 Qxd5 you reached the same position as when White trades knights on c6 before taking on d5. Earlier, if White had played Bd4 instead of Nxd5, you would trade bishops with Bxd4 and, after Qxd4, bring your queen to b6.",
+          "next": null
+        },
+        {
+          "id": "yugoslav-trade",
+          "title": "White trades knights on d5",
+          "text": "White's c3-knight takes your d5-knight.",
+          "show": "Nxd5"
+        },
+        {
+          "id": "yugoslav-queen-back",
+          "title": "Take back with the queen",
+          "text": "Recapture on d5 with your queen. It now attacks the d4-knight a third time, with the c6-knight and g7-bishop.",
+          "move": "Qxd5",
+          "reply": "Nxc6",
+          "feedback": "White exchanges the attacked knight on c6. White's queen on d2 now faces yours along the d-file.",
+          "hint": "Move the queen from d8 to d5."
+        },
+        {
+          "id": "yugoslav-queen-recapture",
+          "title": "Take back and step off the d-file",
+          "text": "Recapture on c6 with your queen. It leaves the d-file, where White's queen and rook were lined up against it.",
+          "move": "Qxc6",
+          "reply": "Bh6",
+          "feedback": "White plays Bh6 to exchange your g7-bishop.",
+          "hint": "Move the queen from d5 to c6."
+        },
+        {
+          "id": "yugoslav-develop",
+          "title": "Finish developing",
+          "text": "Develop the c8-bishop to e6. From there it looks along the diagonal toward a2, near White's king.",
+          "move": "Be6",
+          "feedback": "Your bishops and queen are active; your rooks come next. If White takes on g7, recapture with the king.",
+          "hint": "Move the bishop from c8 to e6."
+        },
+        {
+          "id": "yugoslav-summary",
+          "title": "Your attack comes first",
+          "text": "Material is equal. Your queen on c6 aims down the c-file at c2, beside White's king, and your rooks can join on c8 and d8. White's g- and h-pawns have not moved yet. Striking with d5 the moment White castled queenside is what made this possible."
+        },
+        {
+          "id": "yugoslav-rehearsal",
+          "title": "Play against the Yugoslav Attack",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "dragon-yugoslav"
+        }
+      ]
+    },
+    {
+      "id": "dragon-bg5",
+      "title": "When the bishop goes to g5",
+      "steps": [
+        {
+          "id": "bg5-welcome",
+          "title": "When the bishop goes to g5",
+          "text": "At club level, Bg5 is one of White's most common sixth moves. The bishop attacks your f6-knight. You answer with simple development, and when White's queen comes to d2, a pawn on h6 starts a chain of attacks on White's pieces."
+        },
+        {
+          "id": "bg5-arrival",
+          "title": "Reach the Dragon",
+          "text": "You reach the Dragon position from the first chapter. Your g6-pawn makes room for your f8-bishop on g7.",
+          "show": "e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 g6"
+        },
+        {
+          "id": "bg5-check-choice",
+          "title": "If White checks on move six",
+          "text": "Explore the bishop check on b5, or continue with Bg5.",
+          "branch": "bg5-check",
+          "next": "bg5-move"
+        },
+        {
+          "id": "bg5-check",
+          "title": "White gives check",
+          "text": "White checks your king with the f1-bishop on b5.",
+          "show": "Bb5+"
+        },
+        {
+          "id": "bg5-check-block",
+          "title": "Block with a bishop",
+          "text": "Block the check with the c8-bishop on d7.",
+          "move": "Bd7",
+          "reply": "Bxd7+",
+          "feedback": "White exchanges bishops with check.",
+          "hint": "Move the bishop from c8 to d7."
+        },
+        {
+          "id": "bg5-check-recapture",
+          "title": "Take back with the queenside knight",
+          "text": "Recapture with the b8-knight. Your f6-knight stays where it attacks e4.",
+          "move": "Nbxd7",
+          "reply": "O-O",
+          "feedback": "White castles.",
+          "hint": "Move the knight from b8 to d7."
+        },
+        {
+          "id": "bg5-check-fianchetto",
+          "title": "Fianchetto the bishop",
+          "text": "Develop the f8-bishop to g7.",
+          "move": "Bg7",
+          "feedback": "Your bishop is on the long diagonal, and you can castle next.",
+          "hint": "Move the bishop from f8 to g7."
+        },
+        {
+          "id": "bg5-check-summary",
+          "title": "A trade of light bishops",
+          "text": "The light-squared bishops are gone. Castle next; your d7-knight can later jump to c5 or e5.",
+          "next": null
+        },
+        {
+          "id": "bg5-move",
+          "title": "The bishop goes to g5",
+          "text": "White develops the c1-bishop to g5, where it attacks your f6-knight.",
+          "show": "Bg5"
+        },
+        {
+          "id": "bg5-fianchetto",
+          "title": "Fianchetto and defend",
+          "text": "Develop the f8-bishop to g7. Developing a bishop on g7 behind a g6-pawn like this is called a fianchetto; from g7 the bishop looks down the long diagonal toward a1. It also defends your f6-knight.",
+          "move": "Bg7",
+          "feedback": "Your f6-knight is now defended twice, by the e7-pawn and the g7-bishop.",
+          "hint": "Move the bishop from f8 to g7."
+        },
+        {
+          "id": "bg5-c4-choice",
+          "title": "If White plays Bc4",
+          "text": "White most often plays Qd2, Bc4 or Bb5+. Explore Bc4, or continue to the next reply.",
+          "branch": "bg5-c4",
+          "next": "bg5-b5-choice"
+        },
+        {
+          "id": "bg5-c4",
+          "title": "White develops Bc4",
+          "text": "White develops the f1-bishop to c4 instead of playing Qd2.",
+          "show": "Bc4"
+        },
+        {
+          "id": "bg5-c4-castle",
+          "title": "Castle",
+          "text": "Castle kingside. Your rook on f8 and your king will both guard f7.",
+          "move": "O-O",
+          "reply": "O-O",
+          "feedback": "White castles too.",
+          "hint": "Move the king from e8 to g8."
+        },
+        {
+          "id": "bg5-c4-ask",
+          "title": "Ask the bishop",
+          "text": "Push h6 to attack the g5-bishop.",
+          "move": "h6",
+          "reply": "Bh4",
+          "feedback": "The bishop retreats to h4, where it still looks at your f6-knight.",
+          "hint": "Move h7 to h6."
+        },
+        {
+          "id": "bg5-c4-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6, where it attacks the d4-knight.",
+          "move": "Nc6",
+          "feedback": "Only your c8-bishop, queen and a8-rook are left to develop.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "bg5-c4-summary",
+          "title": "Calm development",
+          "text": "Your f6-knight is defended by the e7-pawn and the g7-bishop, so the h4-bishop is not winning anything. Your king is castled and both knights are in play.",
+          "next": null
+        },
+        {
+          "id": "bg5-b5-choice",
+          "title": "If White checks after Bg5",
+          "text": "Explore the bishop check, or continue with Qd2.",
+          "branch": "bg5-b5",
+          "next": "bg5-queen"
+        },
+        {
+          "id": "bg5-b5",
+          "title": "A bishop check",
+          "text": "White checks with the f1-bishop on b5.",
+          "show": "Bb5+"
+        },
+        {
+          "id": "bg5-b5-block",
+          "title": "Block with a bishop",
+          "text": "Block the check with the c8-bishop on d7.",
+          "move": "Bd7",
+          "reply": "Bxd7+",
+          "feedback": "White exchanges bishops with check.",
+          "hint": "Move the bishop from c8 to d7."
+        },
+        {
+          "id": "bg5-b5-recapture",
+          "title": "Take back with the queenside knight",
+          "text": "Recapture with the b8-knight, as in the side trip where the bishop checks on move six. Your f6-knight stays where it attacks e4.",
+          "move": "Nbxd7",
+          "reply": "O-O",
+          "feedback": "White castles.",
+          "hint": "Move the knight from b8 to d7."
+        },
+        {
+          "id": "bg5-b5-castle",
+          "title": "Castle",
+          "text": "Castle kingside.",
+          "move": "O-O",
+          "feedback": "Both kings are castled, and your knights and bishop are developed.",
+          "hint": "Move the king from e8 to g8."
+        },
+        {
+          "id": "bg5-b5-summary",
+          "title": "Same answer to the check",
+          "text": "Whenever the bishop checks on b5, block with the c8-bishop and take back with the b8-knight. Your queen and rooks are next to develop.",
+          "next": null
+        },
+        {
+          "id": "bg5-queen",
+          "title": "White plays Qd2",
+          "text": "White brings the queen to d2, preparing to castle queenside.",
+          "show": "Qd2"
+        },
+        {
+          "id": "bg5-ask",
+          "title": "Ask the bishop",
+          "text": "Push h6 to attack the g5-bishop and make it decide where to go.",
+          "move": "h6",
+          "feedback": "The bishop must move or be traded for your knight.",
+          "hint": "Move h7 to h6."
+        },
+        {
+          "id": "bg5-h4-choice",
+          "title": "If the bishop goes to h4",
+          "text": "White most often retreats to e3. Explore Bh4, Bxf6 and Bf4 first, or continue to the next reply.",
+          "branch": "bg5-h4",
+          "next": "bg5-f6-choice"
+        },
+        {
+          "id": "bg5-h4",
+          "title": "The bishop keeps watching f6",
+          "text": "White retreats the bishop to h4, where it still looks at your f6-knight.",
+          "show": "Bh4"
+        },
+        {
+          "id": "bg5-h4-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6, where it attacks the d4-knight.",
+          "move": "Nc6",
+          "feedback": "Your knight presses on d4.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "bg5-h4-summary",
+          "title": "Develop and castle",
+          "text": "Your f6-knight is defended by the e7-pawn and the g7-bishop. Castle soon; your king will be safe behind the g7-bishop.",
+          "next": null
+        },
+        {
+          "id": "bg5-f6-choice",
+          "title": "If White takes on f6",
+          "text": "Explore the trade on f6, or continue to the next reply.",
+          "branch": "bg5-f6",
+          "next": "bg5-f4-choice"
+        },
+        {
+          "id": "bg5-f6",
+          "title": "White trades the bishop",
+          "text": "White gives up the bishop for your f6-knight.",
+          "show": "Bxf6"
+        },
+        {
+          "id": "bg5-f6-recapture",
+          "title": "Take back with the bishop",
+          "text": "Recapture with the g7-bishop. Your pawns stay healthy and you keep both bishops.",
+          "move": "Bxf6",
+          "reply": "O-O-O",
+          "feedback": "White castles queenside.",
+          "hint": "Move the bishop from g7 to f6."
+        },
+        {
+          "id": "bg5-f6-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6, where it attacks the d4-knight.",
+          "move": "Nc6",
+          "feedback": "Your knight and f6-bishop both attack d4.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "bg5-f6-summary",
+          "title": "Two bishops",
+          "text": "You have two bishops and a knight against White's bishop and two knights. Your f6-bishop and c6-knight both attack the d4-knight.",
+          "next": null
+        },
+        {
+          "id": "bg5-f4-choice",
+          "title": "If the bishop goes to f4",
+          "text": "Explore Bf4, or continue with Be3.",
+          "branch": "bg5-f4",
+          "next": "bg5-retreat"
+        },
+        {
+          "id": "bg5-f4",
+          "title": "The bishop retreats to f4",
+          "text": "White moves the bishop to f4. It now stands on the same row, the fourth rank, as the d4-knight.",
+          "show": "Bf4"
+        },
+        {
+          "id": "bg5-f4-fork",
+          "title": "Fork the knight and bishop",
+          "text": "Push e5. The pawn attacks the d4-knight and the f4-bishop at the same time.",
+          "move": "e5",
+          "feedback": "Both White pieces are attacked by one pawn.",
+          "hint": "Move e7 to e5."
+        },
+        {
+          "id": "bg5-f4-summary",
+          "title": "A pawn fork",
+          "text": "When one pawn or piece attacks two enemy pieces at once, that is a fork. White cannot save both with one move. If White checks on b5, block with Bd7, and take back with the queen if White exchanges bishops. If the bishop takes on e5, take it back with your d-pawn. If it retreats to e3 or g3, take the d4-knight with your e5-pawn. If it takes your h6-pawn, take it with your g7-bishop; if White's queen then takes on h6, your h8-rook takes the queen. If the knight escapes to b5, take the f4-bishop; if the knight then takes your d6-pawn with check, move your king to f8, not e7. Do not take that knight: White's queen guards d6. In every line you come out with more material.",
+          "next": null
+        },
+        {
+          "id": "bg5-retreat",
+          "title": "The bishop retreats to e3",
+          "text": "White retreats the bishop to e3. Your h6-pawn now controls g5, so the bishop cannot safely come back there: the pawn would take it.",
+          "show": "Be3"
+        },
+        {
+          "id": "bg5-jump",
+          "title": "Attack the bishop again",
+          "text": "Jump the f6-knight to g4, where it attacks the e3-bishop. White has no pawn on f3 to stop it.",
+          "move": "Ng4",
+          "reply": "Bf4",
+          "feedback": "The bishop moves to f4. Now it stands on the same row, the fourth rank, as the d4-knight.",
+          "hint": "Move the knight from f6 to g4."
+        },
+        {
+          "id": "bg5-fork",
+          "title": "Fork the knight and bishop",
+          "text": "Push e5. The pawn attacks the d4-knight and the f4-bishop at the same time; attacking two pieces at once is called a fork.",
+          "move": "e5",
+          "reply": "h3",
+          "feedback": "White ignores the fork and attacks your g4-knight with h3.",
+          "hint": "Move e7 to e5."
+        },
+        {
+          "id": "bg5-take",
+          "title": "Take a knight first",
+          "text": "Capture the d4-knight with your e-pawn. The pawn on d4 then attacks White's c3-knight.",
+          "move": "exd4",
+          "reply": "hxg4",
+          "feedback": "White takes your g4-knight. So far you have traded knights, but your d4-pawn still attacks the c3-knight.",
+          "hint": "Move the pawn from e5 to d4."
+        },
+        {
+          "id": "bg5-second",
+          "title": "Take the second knight",
+          "text": "Capture the c3-knight with your d4-pawn.",
+          "move": "dxc3",
+          "feedback": "You have taken both of White's knights and lost only one of yours. Your c3-pawn also attacks White's queen on d2.",
+          "hint": "Move the pawn from d4 to c3."
+        },
+        {
+          "id": "bg5-summary",
+          "title": "A knight for a pawn",
+          "text": "White will usually take your c3-pawn back with the b-pawn, and you will be a knight ahead for a pawn. If White's queen takes on c3 instead, your g7-bishop takes the queen with check: the long diagonal is now open. If White's queen takes your d6-pawn, trade queens with Qxd6. Earlier, if White had saved the c3-knight with Nd5 instead of taking on g4, you would move your g4-knight to f6 or e5 and be a whole knight ahead. Earlier, if White had castled queenside instead of playing Bf4, Nxe3 would trade your knight for that bishop. Remember the pattern: h6 takes g5 away from the bishop, Ng4 chases it again, and e5 forks the d4-knight and f4-bishop."
+        },
+        {
+          "id": "bg5-rehearsal",
+          "title": "Play against Bg5",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "dragon-bg5"
+        }
+      ]
+    },
+    {
+      "id": "dragon-second-moves",
+      "title": "White's second-move alternatives",
+      "steps": [
+        {
+          "id": "second-welcome",
+          "title": "When White avoids Nf3",
+          "text": "Not every opponent plays 2.Nf3 and 3.d4. This chapter covers White's most common other second moves: Bc4, Nc3, c3 and d4. Some lead back to the Dragon; others need their own plan."
+        },
+        {
+          "id": "second-arrival",
+          "title": "White opens with e4",
+          "text": "White starts with the king's pawn.",
+          "show": "e4"
+        },
+        {
+          "id": "second-sicilian",
+          "title": "Answer from the side",
+          "text": "Play the Sicilian: push your c-pawn two squares.",
+          "move": "c5",
+          "feedback": "Now White chooses a second move.",
+          "hint": "Move c7 to c5."
+        },
+        {
+          "id": "second-nc3-choice",
+          "title": "If White plays Nc3",
+          "text": "This chapter's main line is Bc4. Explore Nc3 first, or continue to the next reply.",
+          "branch": "second-nc3",
+          "next": "second-c3-choice"
+        },
+        {
+          "id": "second-nc3",
+          "title": "White develops the queenside knight",
+          "text": "White plays Nc3 instead of Nf3.",
+          "show": "Nc3"
+        },
+        {
+          "id": "second-nc3-pawn",
+          "title": "Same pawn move",
+          "text": "Push d6, as in the Dragon from the first chapter.",
+          "move": "d6",
+          "reply": "Nf3",
+          "feedback": "White develops Nf3.",
+          "hint": "Move d7 to d6."
+        },
+        {
+          "id": "second-nc3-knight",
+          "title": "Develop with an attack",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Nf6",
+          "reply": "d4",
+          "feedback": "White opens the center with d4.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "second-nc3-trade",
+          "title": "Trade on d4",
+          "text": "Capture on d4 with your c-pawn.",
+          "move": "cxd4",
+          "reply": "Nxd4",
+          "feedback": "White takes back with the knight.",
+          "hint": "Move the pawn from c5 to d4."
+        },
+        {
+          "id": "second-nc3-dragon",
+          "title": "Play the Dragon move",
+          "text": "Push g6.",
+          "move": "g6",
+          "feedback": "This is the Dragon position from the first chapter.",
+          "hint": "Move g7 to g6."
+        },
+        {
+          "id": "second-nc3-summary",
+          "title": "A different road to the Dragon",
+          "text": "The moves came in a different order, but the position is exactly the Dragon from the first chapter. Use the same plans.",
+          "next": null
+        },
+        {
+          "id": "second-c3-choice",
+          "title": "If White plays c3",
+          "text": "Explore c3, or continue to the next reply.",
+          "branch": "second-c3",
+          "next": "second-queen-choice"
+        },
+        {
+          "id": "second-c3",
+          "title": "White prepares d4 with c3",
+          "text": "White plays c3 to support a later d4. The pawn now stands on the c3-square, where White's knight usually develops.",
+          "show": "c3"
+        },
+        {
+          "id": "second-c3-knight",
+          "title": "Attack the e4-pawn",
+          "text": "Develop the g8-knight to f6, where it attacks e4. White's c-pawn has taken the c3-square, so no knight can defend e4 from there.",
+          "move": "Nf6",
+          "reply": "e5",
+          "feedback": "White pushes e5 and attacks your knight.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "second-c3-jump",
+          "title": "Jump to the center",
+          "text": "Move the knight to d5, in the middle of the board.",
+          "move": "Nd5",
+          "reply": "d4",
+          "feedback": "White builds a center with d4.",
+          "hint": "Move the knight from f6 to d5."
+        },
+        {
+          "id": "second-c3-trade",
+          "title": "Trade on d4",
+          "text": "Capture on d4 with your c-pawn.",
+          "move": "cxd4",
+          "reply": "cxd4",
+          "feedback": "White takes back with the c-pawn. Now no white pawn can reach c4 to chase your d5-knight.",
+          "hint": "Move the pawn from c5 to d4."
+        },
+        {
+          "id": "second-c3-pawn",
+          "title": "Challenge the e5-pawn",
+          "text": "Push d6. The pawn attacks e5 and opens your c8-bishop.",
+          "move": "d6",
+          "reply": "Nf3",
+          "feedback": "White defends e5 with Nf3.",
+          "hint": "Move d7 to d6."
+        },
+        {
+          "id": "second-c3-develop",
+          "title": "Add pressure",
+          "text": "Develop the b8-knight to c6. It attacks both d4 and e5.",
+          "move": "Nc6",
+          "feedback": "Your pieces press against White's center pawns.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "second-c3-summary",
+          "title": "Pressure on the center",
+          "text": "White's pawns on d4 and e5 look strong, but they can become targets. Your d6-pawn and c6-knight attack e5, and the c6-knight also attacks d4.",
+          "next": null
+        },
+        {
+          "id": "second-queen-choice",
+          "title": "If White plays d4 and Qxd4",
+          "text": "Explore d4 with a queen recapture, or continue to the next reply.",
+          "branch": "second-queen",
+          "next": "second-morra-choice"
+        },
+        {
+          "id": "second-queen",
+          "title": "White takes back with the queen",
+          "text": "White plays d4 at once and recaptures on d4 with the queen.",
+          "show": "d4 cxd4 Qxd4"
+        },
+        {
+          "id": "second-queen-knight",
+          "title": "Develop with an attack",
+          "text": "Develop the b8-knight to c6, attacking White's queen.",
+          "move": "Nc6",
+          "reply": "Qd1",
+          "feedback": "The queen retreats all the way to d1. You have gained a move.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "second-queen-develop",
+          "title": "Attack the e4-pawn",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Nf6",
+          "reply": "Nc3",
+          "feedback": "White defends e4 with Nc3.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "second-queen-fianchetto",
+          "title": "Prepare the fianchetto",
+          "text": "Push g6 to prepare Bg7, as in the Dragon. Developing a bishop on g7 behind a g6-pawn like this is called a fianchetto; from g7 the bishop looks down the long diagonal toward a1.",
+          "move": "g6",
+          "feedback": "Your bishop will go to g7 next.",
+          "hint": "Move g7 to g6."
+        },
+        {
+          "id": "second-queen-summary",
+          "title": "A Dragon-style setup",
+          "text": "Next, develop the bishop to g7 and castle. Your d-pawn is still on d7, so you keep the choice between d6 and d5 later.",
+          "next": null
+        },
+        {
+          "id": "second-morra-choice",
+          "title": "If White plays d4 and c3",
+          "text": "Explore the Smith-Morra Gambit, or continue with Bc4.",
+          "branch": "second-morra",
+          "next": "second-bishop"
+        },
+        {
+          "id": "second-morra",
+          "title": "The Smith-Morra Gambit",
+          "text": "After d4 and your cxd4, White plays c3, offering a pawn for quick development. This is the Smith-Morra Gambit.",
+          "show": "d4 cxd4 c3"
+        },
+        {
+          "id": "second-morra-accept",
+          "title": "Accept the pawn",
+          "text": "Capture the c3-pawn with your d4-pawn.",
+          "move": "dxc3",
+          "reply": "Nxc3",
+          "feedback": "White takes back with the knight. You are a pawn ahead, and White is ahead in development.",
+          "hint": "Move the pawn from d4 to c3."
+        },
+        {
+          "id": "second-morra-pawn",
+          "title": "Control e5",
+          "text": "Push d6. It controls e5 and opens the c8-bishop's path.",
+          "move": "d6",
+          "reply": "Nf3",
+          "feedback": "White develops Nf3.",
+          "hint": "Move d7 to d6."
+        },
+        {
+          "id": "second-morra-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6.",
+          "move": "Nc6",
+          "reply": "Bc4",
+          "feedback": "White's bishop on c4 aims at f7.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "second-morra-block",
+          "title": "Block the bishop",
+          "text": "Push e6. The pawn blocks the c4-bishop's path to f7 and opens your f8-bishop.",
+          "move": "e6",
+          "reply": "O-O",
+          "feedback": "White castles.",
+          "hint": "Move e7 to e6."
+        },
+        {
+          "id": "second-morra-develop",
+          "title": "Develop the last knight",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Nf6",
+          "feedback": "Your knights are developed and the f8-bishop is free to come out.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "second-morra-summary",
+          "title": "Keep the extra pawn safely",
+          "text": "You are a pawn ahead. Next, develop the f8-bishop to e7 and castle. Finish development before trying to win more.",
+          "next": null
+        },
+        {
+          "id": "second-bishop",
+          "title": "White develops the bishop first",
+          "text": "White develops the f1-bishop to c4, where it aims at f7.",
+          "show": "Bc4"
+        },
+        {
+          "id": "second-block",
+          "title": "Block the bishop",
+          "text": "Push e6. The pawn blocks the c4-bishop's path to f7 and prepares d5.",
+          "move": "e6",
+          "reply": "Nf3",
+          "feedback": "White develops Nf3.",
+          "hint": "Move e7 to e6."
+        },
+        {
+          "id": "second-knight",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6.",
+          "move": "Nc6",
+          "reply": "O-O",
+          "feedback": "White castles.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "second-attack",
+          "title": "Attack the e4-pawn",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Nf6",
+          "reply": "d3",
+          "feedback": "White defends e4 with d3.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "second-break",
+          "title": "Strike in the center",
+          "text": "Push d5. The pawn attacks the c4-bishop and the e4-pawn.",
+          "move": "d5",
+          "reply": "exd5",
+          "feedback": "White takes on d5.",
+          "hint": "Move d7 to d5."
+        },
+        {
+          "id": "second-recapture",
+          "title": "Take back with the e-pawn",
+          "text": "Recapture with the e6-pawn. Your new d5-pawn attacks the c4-bishop again.",
+          "move": "exd5",
+          "feedback": "Your d5-pawn attacks the bishop, so it will have to move. White may first check with Re1+; then block with the f8-bishop on e7. Both of your bishops now have open diagonals.",
+          "hint": "Move the pawn from e6 to d5."
+        },
+        {
+          "id": "second-summary",
+          "title": "A pawn in the center",
+          "text": "Your d5-pawn controls the center and chases the bishop. Next, develop the f8-bishop to d6 or e7 and castle."
+        },
+        {
+          "id": "second-rehearsal",
+          "title": "Play against Bc4",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "dragon-second-bishop"
+        }
+      ]
+    },
+    {
+      "id": "dragon-third-moves",
+      "title": "White's third-move alternatives",
+      "steps": [
+        {
+          "id": "third-welcome",
+          "title": "When White avoids d4",
+          "text": "After 1.e4 c5 2.Nf3 d6, the most common third move other than d4 is Bc4. This chapter shows a Dragon-style setup against it, plus Bb5+, Nc3 and c3 on move three, and Ng5 and Nc3 after Bc4."
+        },
+        {
+          "id": "third-arrival",
+          "title": "Reach the second move",
+          "text": "White opens with e4 and develops Nf3.",
+          "show": "e4 c5 Nf3"
+        },
+        {
+          "id": "third-pawn",
+          "title": "Control e5",
+          "text": "Push d6, as in the first chapter.",
+          "move": "d6",
+          "feedback": "Now White chooses a third move.",
+          "hint": "Move d7 to d6."
+        },
+        {
+          "id": "third-check-choice",
+          "title": "If White checks on b5",
+          "text": "This chapter's main line is Bc4. Explore Bb5+ first, or continue to the next reply.",
+          "branch": "third-check",
+          "next": "third-nc3-choice"
+        },
+        {
+          "id": "third-check",
+          "title": "The Moscow Variation",
+          "text": "White checks with the f1-bishop on b5. This is the Moscow Variation.",
+          "show": "Bb5+"
+        },
+        {
+          "id": "third-check-block",
+          "title": "Block with a bishop",
+          "text": "Block the check with the c8-bishop on d7.",
+          "move": "Bd7",
+          "reply": "Bxd7+",
+          "feedback": "White exchanges bishops with check.",
+          "hint": "Move the bishop from c8 to d7."
+        },
+        {
+          "id": "third-check-recapture",
+          "title": "Take back with the knight",
+          "text": "Recapture with the b8-knight.",
+          "move": "Nxd7",
+          "reply": "O-O",
+          "feedback": "White castles.",
+          "hint": "Move the knight from b8 to d7."
+        },
+        {
+          "id": "third-check-knight",
+          "title": "Attack the e4-pawn",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Ngf6",
+          "reply": "Re1",
+          "feedback": "White defends e4 with the rook on e1.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "third-check-fianchetto",
+          "title": "Prepare the fianchetto",
+          "text": "Push g6 to make room for the bishop on g7. Developing a bishop on g7 behind a g6-pawn like this is called a fianchetto; from g7 the bishop looks down the long diagonal toward a1.",
+          "move": "g6",
+          "reply": "c3",
+          "feedback": "White plays c3 to prepare d4.",
+          "hint": "Move g7 to g6."
+        },
+        {
+          "id": "third-check-bishop",
+          "title": "Fianchetto the bishop",
+          "text": "Develop the f8-bishop to g7.",
+          "move": "Bg7",
+          "feedback": "Your bishop is on the long diagonal and you can castle next.",
+          "hint": "Move the bishop from f8 to g7."
+        },
+        {
+          "id": "third-check-summary",
+          "title": "Ready for d4",
+          "text": "Castle next. White's c3 prepares d4, so expect the center to open soon.",
+          "next": null
+        },
+        {
+          "id": "third-nc3-choice",
+          "title": "If White plays Nc3 on move three",
+          "text": "Explore Nc3, or continue to the next reply.",
+          "branch": "third-nc3",
+          "next": "third-c3-choice"
+        },
+        {
+          "id": "third-nc3",
+          "title": "White develops the queenside knight",
+          "text": "White plays Nc3 before d4.",
+          "show": "Nc3"
+        },
+        {
+          "id": "third-nc3-knight",
+          "title": "Develop with an attack",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Nf6",
+          "reply": "d4",
+          "feedback": "White opens the center with d4.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "third-nc3-trade",
+          "title": "Trade on d4",
+          "text": "Capture on d4 with your c-pawn.",
+          "move": "cxd4",
+          "reply": "Nxd4",
+          "feedback": "White takes back with the knight.",
+          "hint": "Move the pawn from c5 to d4."
+        },
+        {
+          "id": "third-nc3-dragon",
+          "title": "Play the Dragon move",
+          "text": "Push g6.",
+          "move": "g6",
+          "feedback": "This is the Dragon position from the first chapter.",
+          "hint": "Move g7 to g6."
+        },
+        {
+          "id": "third-nc3-summary",
+          "title": "Back in the Dragon",
+          "text": "A different move order has reached the same Dragon position. Use the plans from the earlier chapters.",
+          "next": null
+        },
+        {
+          "id": "third-c3-choice",
+          "title": "If White plays c3",
+          "text": "Explore c3, or continue with Bc4.",
+          "branch": "third-c3",
+          "next": "third-bishop"
+        },
+        {
+          "id": "third-c3",
+          "title": "White plays c3",
+          "text": "White plays c3 to prepare d4. The c3-pawn takes the square where White's knight would defend e4.",
+          "show": "c3"
+        },
+        {
+          "id": "third-c3-knight",
+          "title": "Attack the e4-pawn",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Nf6",
+          "reply": "d4",
+          "feedback": "White pushes d4 but does not defend the e4-pawn.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "third-c3-take",
+          "title": "Take the pawn",
+          "text": "Capture the e4-pawn with your knight.",
+          "move": "Nxe4",
+          "reply": "dxc5",
+          "feedback": "White takes your c5-pawn.",
+          "hint": "Move the knight from f6 to e4."
+        },
+        {
+          "id": "third-c3-recapture",
+          "title": "Take back on c5",
+          "text": "Recapture the c5-pawn with your knight.",
+          "move": "Nxc5",
+          "feedback": "You are a pawn ahead.",
+          "hint": "Move the knight from e4 to c5."
+        },
+        {
+          "id": "third-c3-summary",
+          "title": "A free pawn",
+          "text": "White did not defend e4, and you won it. Develop your other pieces next and keep the extra pawn.",
+          "next": null
+        },
+        {
+          "id": "third-bishop",
+          "title": "White develops the bishop",
+          "text": "White develops the f1-bishop to c4, where it aims at f7.",
+          "show": "Bc4"
+        },
+        {
+          "id": "third-knight",
+          "title": "Attack the e4-pawn",
+          "text": "Develop the g8-knight to f6, where it attacks e4.",
+          "move": "Nf6",
+          "feedback": "White must deal with the attack on e4.",
+          "hint": "Move the knight from g8 to f6."
+        },
+        {
+          "id": "third-ng5-choice",
+          "title": "If the knight jumps to g5",
+          "text": "White defends e4 with d3 or Nc3, about equally often, or jumps Ng5. Explore Ng5 and Nc3 first, or continue to the next reply.",
+          "branch": "third-ng5",
+          "next": "third-bc4-nc3-choice"
+        },
+        {
+          "id": "third-ng5",
+          "title": "The knight jumps to g5",
+          "text": "White's knight jumps to g5. Together with the c4-bishop it attacks f7, which only your king defends. Do not take e4 with your knight: Bxf7+ would check your king and win a pawn and your knight.",
+          "show": "Ng5"
+        },
+        {
+          "id": "third-ng5-block",
+          "title": "Block the bishop",
+          "text": "Push e6. The pawn blocks the c4-bishop's path to f7.",
+          "move": "e6",
+          "reply": "d3",
+          "feedback": "White defends e4 with d3.",
+          "hint": "Move e7 to e6."
+        },
+        {
+          "id": "third-ng5-break",
+          "title": "Strike in the center",
+          "text": "Push d5. The pawn attacks the c4-bishop and the e4-pawn.",
+          "move": "d5",
+          "feedback": "Your pawns take over the center.",
+          "hint": "Move d6 to d5."
+        },
+        {
+          "id": "third-ng5-summary",
+          "title": "The attack on f7 is over",
+          "text": "The e6-pawn blocks the c4-bishop, so the knight on g5 has no help against f7. If White takes on d5 with the e-pawn, recapture with the e6-pawn.",
+          "next": null
+        },
+        {
+          "id": "third-bc4-nc3-choice",
+          "title": "If White plays Nc3 after Bc4",
+          "text": "Explore Nc3, or continue with d3.",
+          "branch": "third-bc4-nc3",
+          "next": "third-defend"
+        },
+        {
+          "id": "third-bc4-nc3",
+          "title": "White develops Nc3",
+          "text": "White develops the b1-knight to c3, defending e4.",
+          "show": "Nc3"
+        },
+        {
+          "id": "third-bc4-nc3-block",
+          "title": "Block the bishop",
+          "text": "Push e6 to block the c4-bishop's path to f7.",
+          "move": "e6",
+          "reply": "d4",
+          "feedback": "White opens the center with d4.",
+          "hint": "Move e7 to e6."
+        },
+        {
+          "id": "third-bc4-nc3-trade",
+          "title": "Trade on d4",
+          "text": "Capture on d4 with your c-pawn.",
+          "move": "cxd4",
+          "feedback": "White will take back on d4.",
+          "hint": "Move the pawn from c5 to d4."
+        },
+        {
+          "id": "third-bc4-nc3-summary",
+          "title": "A solid setup",
+          "text": "After White takes back with the knight, develop the f8-bishop to e7 or push a6. Your e6-pawn keeps the c4-bishop away from f7.",
+          "next": null
+        },
+        {
+          "id": "third-defend",
+          "title": "White defends with d3",
+          "text": "White defends the e4-pawn with d3.",
+          "show": "d3"
+        },
+        {
+          "id": "third-develop",
+          "title": "Develop the knight",
+          "text": "Develop the b8-knight to c6.",
+          "move": "Nc6",
+          "reply": "O-O",
+          "feedback": "White castles.",
+          "hint": "Move the knight from b8 to c6."
+        },
+        {
+          "id": "third-fianchetto",
+          "title": "Prepare the fianchetto",
+          "text": "Push g6 to make room for the bishop on g7.",
+          "move": "g6",
+          "reply": "Bg5",
+          "feedback": "White's bishop attacks your f6-knight from g5.",
+          "hint": "Move g7 to g6."
+        },
+        {
+          "id": "third-bishop-g7",
+          "title": "Fianchetto and defend",
+          "text": "Develop the f8-bishop to g7. It also defends the f6-knight.",
+          "move": "Bg7",
+          "reply": "Nc3",
+          "feedback": "White develops Nc3.",
+          "hint": "Move the bishop from f8 to g7."
+        },
+        {
+          "id": "third-castle",
+          "title": "Castle",
+          "text": "Castle kingside.",
+          "move": "O-O",
+          "feedback": "Your king is safe and your pieces stand as in a Dragon.",
+          "hint": "Move the king from e8 to g8."
+        },
+        {
+          "id": "third-summary",
+          "title": "A Dragon without d4",
+          "text": "Your bishop is on g7, your king is castled and both knights are developed. White has kept the d-pawn on d3, so no central pawns have been exchanged. If White's knight jumps to d5, take it with your f6-knight."
+        },
+        {
+          "id": "third-rehearsal",
+          "title": "Play against Bc4",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "dragon-third-bishop"
+        }
+      ]
+    }
+  ]
+}

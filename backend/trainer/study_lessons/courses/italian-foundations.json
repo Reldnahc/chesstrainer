@@ -1,0 +1,930 @@
+{
+  "format": "fieldwork-course-1",
+  "id": "italian-foundations",
+  "revision": "2026-10-v4",
+  "title": "Italian Game · A quiet White repertoire",
+  "description": "Learn the setup, meet the Two Knights Defense and Black's other common third moves, finish development and play the central break. Compare bishop exchanges, punish a premature ...d5, and meet Black's better-prepared counterplay. Historical examples illustrate different choices; this is a starter repertoire, not coverage of every Italian line.",
+  "side": "white",
+  "topic": "opening",
+  "credits": [
+    {
+      "text": "Original Fieldwork instruction and annotations. Historical game scores are credited separately.",
+      "license": "Repository license"
+    }
+  ],
+  "lines": [
+    {
+      "id": "quiet-italian",
+      "title": "Quiet Italian · develop and castle",
+      "moves": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "knight-jump",
+      "title": "Italian Game · punish 3...Nd4",
+      "moves": "e4 e5 Nf3 Nc6 Bc4 Nd4 Nxd4 exd4 O-O Bc5 Bxf7+ Kxf7 Qh5+ Kf8 Qxc5+",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "early-h6",
+      "title": "Italian Game · meet 3...h6",
+      "moves": "e4 e5 Nf3 Nc6 Bc4 h6 O-O Nf6 d3 Bc5 c3",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "two-knights-center",
+      "title": "Two Knights · meet 4...d5",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Nf6",
+      "moves": "d3 d5 exd5 Nxd5 O-O Be6 Re1",
+      "repertoire": true,
+      "eco": "C55"
+    },
+    {
+      "id": "two-knights-h6",
+      "title": "Two Knights · 4...h6",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Nf6",
+      "moves": "d3 h6 O-O Bc5 c3",
+      "repertoire": true,
+      "eco": "C55"
+    },
+    {
+      "id": "two-knights-d6",
+      "title": "Two Knights · 4...d6 5.Ng5",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Nf6",
+      "moves": "d3 d6 Ng5 Be6 Nxe6 fxe6 Bxe6",
+      "repertoire": true,
+      "eco": "C55"
+    },
+    {
+      "id": "two-knights-check",
+      "title": "Two Knights · 4...Bb4+",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Nf6",
+      "moves": "d3 Bb4+ c3 Ba5 O-O",
+      "repertoire": true,
+      "eco": "C55"
+    },
+    {
+      "id": "central-preparation",
+      "title": "Quiet Italian · complete development",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6",
+      "moves": "c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8 Be3 Bxe3 Nxe3",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "central-pin",
+      "title": "Quiet Italian · answer the ...Bg4 pin",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6",
+      "moves": "c3 Bg4 h3 Bh5 Nbd2",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "premature-break",
+      "title": "Quiet Italian · punish an early ...d5",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6",
+      "moves": "c3 O-O Re1 d5 exd5 Nxd5 Nxe5 Nxe5 Rxe5",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "bishop-threat",
+      "title": "Quiet Italian · save the bishop from ...Na5",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6",
+      "moves": "c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Na5 Bc2",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "central-break",
+      "title": "Quiet Italian · play d4 and rebuild the center",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8",
+      "moves": "Ng3 Be6 d4 exd4 Bxe6 fxe6 cxd4 Qe7 Be3",
+      "repertoire": true,
+      "eco": "C50"
+    },
+    {
+      "id": "active-break",
+      "title": "Quiet Italian · meet Black's active ...d5",
+      "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8",
+      "moves": "Ng3 Be6 d4 d5 dxe5 Ng4 Nd4",
+      "repertoire": true,
+      "eco": "C50"
+    }
+  ],
+  "games": [
+    {
+      "id": "mason-lasker",
+      "title": "Mason–Lasker · Hastings 1895 · ½–½",
+      "moves": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 Nc3 d6 Be3 Bxe3 fxe3 Na5 Bb3 c6 O-O Nxb3 axb3 O-O Qe1 Ne8 Qg3 f6 Nh4 Be6 Rf2 Qb6 Raf1 Rd8 Kh1 Rd7 Nf5 Kh8 Na4 Qc7 Qh4 b6 Nc3 Qd8 Qg3 Nc7 Nh4 Re8 Qf3 Bf7 Nf5 Be6 Qg3 Bxf5 Rxf5 Ne6 Qf2 Ng5 Qe1 d5 Qh4 d4 exd4 Rxd4 Ne2 Rd7 Qf2 Ne6 Qe3 Qe7 R5f2 Qb4 Ng3 a5 Ra1 Nc5 Qc1 Red8 Nf5 Qb5 g4 Ne6 Qe3 Nf4 Rd2 c5 Qf2 c4 dxc4 Rxd2 Qxd2 Rxd2 cxb5 Rxc2 Rb1 Nh3 Ne3 Rc5 Kg2 Nf4+ Kf3 h5 b4 Rxb5 bxa5 hxg4+ Kxg4 bxa5 Nc4 Ne6 h4 Nd4 Ra1 Nc6 Kf5 Rb4 Nxa5 Nxa5 Rxa5 Rxb2 Kg6 Rg2+ Kh5 Kh7 Ra7 Re2 Rb7 Kg8 Kg6 Rg2+ Kh5 g6+ Kh6 Rg4 Rg7+ Kf8 Ra7 f5 exf5 gxf5 Kh5 Rg7 Ra8+ Kf7 Ra7+ Kg8 Ra5 f4 Rxe5 f3 Rf5 Rf7 Rg5+ Kf8 Rg1 Rg7 Rf1 Rg3 Kh6 Kf7 h5 Kf6 Kh7 Kf5 h6 Kf4 Kh8",
+      "notes": [
+        {
+          "ply": 8,
+          "text": "Each side has developed one bishop; d3 supports e4 without opening the center yet."
+        },
+        {
+          "ply": 10,
+          "text": "Mason chooses Nc3. Our repertoire castles here instead: a game example can differ from your study."
+        },
+        {
+          "ply": 14,
+          "text": "After Be3 Bxe3 fxe3, White has doubled e-pawns and a semi-open f-file. Development choices can change the structure."
+        }
+      ],
+      "credits": [
+        {
+          "text": "Cheshire (ed.), The Hastings Chess Tournament 1895 (1896), pp. 264–265.",
+          "url": "https://archive.org/details/cu31924029919820/page/n319/mode/1up",
+          "license": "Public domain"
+        },
+        {
+          "text": "The original tournament book is public domain; lesson explanations are original Fieldwork writing.",
+          "url": "https://commons.wikimedia.org/wiki/File:The_Hastings_chess_tournament_1895._Containing_the_authorised_account_of_the_230_games_played_Aug.-Sept._1895_(IA_cu31924029919820).pdf",
+          "license": "Public Domain Mark 1.0"
+        }
+      ]
+    },
+    {
+      "id": "steinitz-bardeleben",
+      "title": "Steinitz–von Bardeleben · Hastings 1895 · 1–0",
+      "moves": "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d4 exd4 cxd4 Bb4+ Nc3 d5 exd5 Nxd5 O-O Be6 Bg5 Be7 Bxd5 Bxd5 Nxd5 Qxd5 Bxe7 Nxe7 Re1 f6 Qe2 Qd7 Rac1 c6 d5 cxd5 Nd4 Kf7 Ne6 Rhc8 Qg4 g6 Ng5+ Ke8 Rxe7+ Kf8 Rf7+ Kg8 Rg7+ Kh8 Rxh7+",
+      "notes": [
+        {
+          "ply": 7,
+          "text": "Here c3 prepares d4 immediately, earlier than in our quiet setup."
+        },
+        {
+          "ply": 12,
+          "text": "White has pawns on d4 and e4. Black has moved the bishop out of attack with check on b4."
+        },
+        {
+          "ply": 18,
+          "text": "White has castled after the center opened. This is a contrasting plan, not an extra line to memorize."
+        },
+        {
+          "ply": 49,
+          "text": "The recorded game ends after Rxh7+ with a White win. The famous mating analysis is not part of the played score."
+        }
+      ],
+      "credits": [
+        {
+          "text": "Cheshire (ed.), The Hastings Chess Tournament 1895 (1896), pp. 157–158.",
+          "url": "https://archive.org/details/cu31924029919820/page/n200/mode/1up",
+          "license": "Public domain"
+        },
+        {
+          "text": "The original tournament book is public domain; lesson explanations are original Fieldwork writing.",
+          "url": "https://commons.wikimedia.org/wiki/File:The_Hastings_chess_tournament_1895._Containing_the_authorised_account_of_the_230_games_played_Aug.-Sept._1895_(IA_cu31924029919820).pdf",
+          "license": "Public Domain Mark 1.0"
+        }
+      ]
+    },
+    {
+      "id": "pollock-schiffers",
+      "title": "Pollock–Schiffers · Hastings 1895 · 0–1",
+      "moves": "e4 e5 Nf3 Nc6 Bc4 Nf6 d4 exd4 Ng5 d5 exd5 Na5 Qxd4 Nxc4 Qxc4 Qxd5 Qe2+ Be6 O-O O-O-O Nxe6 Qxe6 Qxe6+ fxe6 Nc3 Bb4 Bg5 Bxc3 bxc3 Rd5 Be3 Rhd8 c4 Ra5 a4 Rd6 Rfb1 Ng4 Rb5 Rxa4 Rab1 Nxe3 fxe3 Rb6 Rf1 Rxc4 Rg5 g6 Rf8+ Kd7 Rf7+ Kd6 Rxh7 Rb1+ Kf2 Rxc2+ Kg3 b5 Rxg6 Rb3 Kf4 Rc4+ Kg5 Rxe3 Rgg7 Re5+ Kh6 Rh4+ Kg6 Rxh7 Rxh7 b4 g4 b3 Rh3 Rb5 Rd3+ Ke7 Rd1 b2 Rb1 a5 h4 a4 h5 a3 h6 a2",
+      "notes": [
+        {
+          "ply": 6,
+          "text": "The Two Knights: Nf6 attacks e4 before Black develops the f8-bishop."
+        },
+        {
+          "ply": 10,
+          "text": "Pollock chooses d4 and then Ng5. Our d3 setup avoids entering this particular forcing line."
+        },
+        {
+          "ply": 16,
+          "text": "Black has exchanged White's c4-bishop and the central pawns. This is already a very different position."
+        },
+        {
+          "ply": 20,
+          "text": "The players castle on opposite sides. Follow the full game if you want to explore what came next; it is not assigned recall material."
+        }
+      ],
+      "credits": [
+        {
+          "text": "Cheshire (ed.), The Hastings Chess Tournament 1895 (1896), pp. 330.",
+          "url": "https://archive.org/details/cu31924029919820/page/n391/mode/1up",
+          "license": "Public domain"
+        },
+        {
+          "text": "The original tournament book is public domain; lesson explanations are original Fieldwork writing.",
+          "url": "https://commons.wikimedia.org/wiki/File:The_Hastings_chess_tournament_1895._Containing_the_authorised_account_of_the_230_games_played_Aug.-Sept._1895_(IA_cu31924029919820).pdf",
+          "license": "Public Domain Mark 1.0"
+        }
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "quiet-development",
+      "title": "Build the quiet setup",
+      "steps": [
+        {
+          "id": "welcome",
+          "title": "A setup you can explain",
+          "text": "Start with central development and king safety. Later chapters cover the Two Knights Defense, finishing development, threats to your bishop and when to open the center. These are selected study moves, not the only good moves in every position."
+        },
+        {
+          "id": "center",
+          "title": "Begin with the center",
+          "text": "The e-pawns take central space and open paths for the bishops.",
+          "show": "e4 e5"
+        },
+        {
+          "id": "knight",
+          "title": "Develop with a purpose",
+          "text": "Bring out a knight while attacking Black's central pawn.",
+          "move": "Nf3",
+          "reply": "Nc6",
+          "feedback": "Nf3 develops a piece and attacks e5. Black's Nc6 develops while defending that pawn.",
+          "hint": "Move the kingside knight from g1 to f3."
+        },
+        {
+          "id": "bishop",
+          "title": "Choose an active diagonal",
+          "text": "Develop the king's bishop toward f7 and clear another square between your king and rook.",
+          "move": "Bc4",
+          "feedback": "Bc4 establishes the Italian. The bishop points at f7, but one attacker alone does not justify sacrificing it there.",
+          "hint": "The bishop on f1 can reach c4."
+        },
+        {
+          "id": "knight-jump-choice",
+          "title": "If Black plays ...Nd4",
+          "text": "Black has several common third moves. This chapter's main line is ...Bc5; side trips show ...Nd4 and ...h6 first, and the next chapter covers ...Nf6, the Two Knights Defense. Explore ...Nd4, or continue to the next reply.",
+          "branch": "knight-jump",
+          "next": "early-h6-choice"
+        },
+        {
+          "id": "knight-jump",
+          "title": "The knight jumps to d4",
+          "text": "...Nd4 attacks your f3-knight and leaves the e5-pawn undefended. It is a trap: Nxe5 looks like it wins a pawn, but Black answers ...Qg5, attacking the e5-knight and your g2-pawn at once.",
+          "show": "Nd4"
+        },
+        {
+          "id": "knight-jump-trade",
+          "title": "Trade the active knight",
+          "text": "Take the d4-knight with your f3-knight instead of grabbing e5.",
+          "move": "Nxd4",
+          "reply": "exd4",
+          "feedback": "Nxd4 removes Black's most active piece. Black recaptures with the e-pawn, which now stands on d4.",
+          "hint": "Capture on d4 with the knight from f3."
+        },
+        {
+          "id": "knight-jump-castle",
+          "title": "Put the king away",
+          "text": "Castle. Your king gets safe and your rook comes closer to the center.",
+          "move": "O-O",
+          "reply": "Bc5",
+          "feedback": "Black develops the bishop to c5, where it defends the d4-pawn. Look at f7: your bishop attacks it, and only Black's king defends it.",
+          "hint": "Move your king from e1 to g1 to castle."
+        },
+        {
+          "id": "knight-jump-sacrifice",
+          "title": "Count before you sacrifice",
+          "text": "Take on f7 with check. The king can take your bishop; before you play it, find the queen move that follows.",
+          "move": "Bxf7+",
+          "reply": "Kxf7",
+          "feedback": "Black takes the bishop. Now one queen move can attack both the king on f7 and the bishop on c5.",
+          "hint": "Capture the f7-pawn with your bishop."
+        },
+        {
+          "id": "knight-jump-fork",
+          "title": "Check and attack",
+          "text": "Give check with your queen from a square that also attacks the c5-bishop.",
+          "move": "Qh5+",
+          "reply": "Kf8",
+          "feedback": "Black must answer the check, so the c5-bishop cannot be saved. The king steps to f8.",
+          "hint": "Move the queen from d1 to h5."
+        },
+        {
+          "id": "knight-jump-recover",
+          "title": "Take back the piece",
+          "text": "Collect the bishop your check attacked.",
+          "move": "Qxc5+",
+          "feedback": "Qxc5+ wins back your bishop with check. You have won the f7-pawn, and Black's king can no longer castle.",
+          "hint": "Capture the c5-bishop with your queen."
+        },
+        {
+          "id": "knight-jump-summary",
+          "title": "A pawn up",
+          "text": "If Black blocks this check with ...d6, your queen can also take the d4-pawn. Earlier, if Black had blocked Qh5+ with ...g6, you would still take the bishop. If Black declines your bishop with ...Kf8 instead of taking on f7, retreat it to b3: you are still a pawn up. And if Black answers your castling with ...Nf6 instead of ...Bc5, defend e4 with Re1; against ...d6, play c3 to attack the d4-pawn.",
+          "next": null
+        },
+        {
+          "id": "early-h6-choice",
+          "title": "If Black plays ...h6",
+          "text": "Explore ...h6, which keeps your pieces off g5, or continue to the main line.",
+          "branch": "early-h6",
+          "next": "quiet-setup"
+        },
+        {
+          "id": "early-h6",
+          "title": "A quiet pawn move",
+          "text": "...h6 stops your knight and bishop from using g5, but it does not develop a piece. Carry on with your setup.",
+          "show": "h6"
+        },
+        {
+          "id": "early-h6-castle",
+          "title": "Castle first",
+          "text": "Black spent a move on a pawn. Use the time to put your king away.",
+          "move": "O-O",
+          "reply": "Nf6",
+          "feedback": "Black develops the knight and attacks your e4-pawn.",
+          "hint": "Move your king from e1 to g1 to castle."
+        },
+        {
+          "id": "early-h6-support",
+          "title": "Secure your e-pawn",
+          "text": "Defend the attacked pawn and open your c1-bishop's diagonal.",
+          "move": "d3",
+          "reply": "Bc5",
+          "feedback": "d3 supports e4. Black develops the bishop to c5.",
+          "hint": "Move the d-pawn from d2 to d3."
+        },
+        {
+          "id": "early-h6-prepare",
+          "title": "Prepare the center",
+          "text": "Make room for a later d4, as in your quiet setup.",
+          "move": "c3",
+          "feedback": "c3 supports a future d4. This is your quiet setup, with Black's pawn on h6.",
+          "hint": "Move c2 to c3."
+        },
+        {
+          "id": "early-h6-summary",
+          "title": "The same setup",
+          "text": "This exact position also arises from the main line if Black plays ...h6 instead of ...d6, and from the Two Knights. Continue with Re1, Bb3 and Nbd2, as in the development chapter. If Black answers castling with ...Bc5 instead of ...Nf6, play c3 and then d4: Black has spent a move on ...h6, so a quick center is strong.",
+          "next": null
+        },
+        {
+          "id": "quiet-setup",
+          "title": "Black develops the bishop first",
+          "text": "The c5-bishop points toward f2. Your next move can support the center and free your remaining bishop.",
+          "show": "Bc5"
+        },
+        {
+          "id": "support-center",
+          "title": "Secure your e-pawn",
+          "text": "Build a pawn support for e4 before Black's knight attacks it, while opening your c1-bishop's diagonal.",
+          "move": "d3",
+          "reply": "Nf6",
+          "feedback": "d3 supports e4. Black's ...Nf6 now attacks a defended pawn, so you can attend to king safety. If Black plays ...d6 or ...h6 instead, castle all the same.",
+          "hint": "Move the d-pawn from d2 to d3."
+        },
+        {
+          "id": "castle",
+          "title": "Put the king away",
+          "text": "Your central pawn is supported and the kingside path is clear. Secure the king and bring its rook closer to the center.",
+          "move": "O-O",
+          "reply": "d6",
+          "feedback": "Castling puts the king on g1 and rook on f1. Black's ...d6 supports e5. Both players still have work to do on the queenside. If Black castles or plays ...h6 instead of ...d6, continue with c3, as in the development chapter.",
+          "hint": "Move your king from e1 to g1 to castle."
+        },
+        {
+          "id": "quiet-takeaway",
+          "title": "A starting point, not a finished plan",
+          "text": "Your b1-knight and c1-bishop have not moved. A later chapter gives them useful jobs and prepares a central break. First rehearse this short setup; optional scheduled recall is your choice after the lesson."
+        },
+        {
+          "id": "quiet-recall",
+          "title": "Play your quiet Italian",
+          "text": "Play the setup you learned.",
+          "rehearse": "quiet-italian"
+        }
+      ]
+    },
+    {
+      "id": "two-knights",
+      "title": "Meet the Two Knights Defense",
+      "steps": [
+        {
+          "id": "two-knights-welcome",
+          "title": "The Two Knights Defense",
+          "text": "We return to move 3. Instead of ...Bc5, Black develops the other knight to f6, where it attacks your e4-pawn. This is the Two Knights Defense. Defend the pawn first, then answer Black's fourth move.",
+          "position": "e4 e5 Nf3 Nc6 Bc4 Nf6"
+        },
+        {
+          "id": "two-knights-defend",
+          "title": "Defend e4",
+          "text": "Support the attacked e-pawn while opening a path for your c1-bishop.",
+          "move": "d3",
+          "feedback": "d3 defends e4. If Black now plays ...Bc5, castle: you are back in the first chapter's quiet setup. Against ...Be7, castle too.",
+          "hint": "Move the d-pawn one square, from d2 to d3."
+        },
+        {
+          "id": "two-knights-h6-choice",
+          "title": "If Black plays ...h6",
+          "text": "This chapter's main line is ...d5; side trips show ...h6, ...d6 and ...Bb4+ first. Explore ...h6, or continue to the next reply.",
+          "branch": "two-knights-h6",
+          "next": "two-knights-d6-choice"
+        },
+        {
+          "id": "two-knights-h6",
+          "title": "A quiet pawn move",
+          "text": "...h6 keeps your knight and bishop off g5. It does not develop a piece, so continue with your setup.",
+          "show": "h6"
+        },
+        {
+          "id": "two-knights-h6-castle",
+          "title": "Put the king away",
+          "text": "Your e4-pawn is defended, so castle.",
+          "move": "O-O",
+          "reply": "Bc5",
+          "feedback": "Black develops the bishop to c5.",
+          "hint": "Move your king from e1 to g1 to castle."
+        },
+        {
+          "id": "two-knights-h6-prepare",
+          "title": "Prepare the center",
+          "text": "Make room for a later d4, as in your quiet setup.",
+          "move": "c3",
+          "feedback": "c3 supports a future d4. This is your quiet setup, with Black's pawn on h6.",
+          "hint": "Move c2 to c3."
+        },
+        {
+          "id": "two-knights-h6-summary",
+          "title": "The same setup",
+          "text": "The first chapter's h6 side trip reaches this exact position. Continue with Re1, Bb3 and Nbd2, as in the development chapter. If Black plays ...d6 instead of ...Bc5, play c3 all the same.",
+          "next": null
+        },
+        {
+          "id": "two-knights-d6-choice",
+          "title": "If Black plays ...d6",
+          "text": "Explore ...d6, which leaves f7 weak for a moment, or continue to the next reply.",
+          "branch": "two-knights-d6",
+          "next": "two-knights-check-choice"
+        },
+        {
+          "id": "two-knights-d6",
+          "title": "Black supports e5 with ...d6",
+          "text": "...d6 defends e5, but it also shuts in the f8-bishop: it can only reach e7, so Black cannot castle next move. For now, only Black's king defends f7.",
+          "show": "d6"
+        },
+        {
+          "id": "two-knights-d6-attack",
+          "title": "Attack f7 twice",
+          "text": "Your bishop already aims at f7. Add a second attacker.",
+          "move": "Ng5",
+          "reply": "Be6",
+          "feedback": "Ng5 threatens Nxf7, which would attack Black's queen and h8-rook. Black blocks your bishop's path to f7 with ...Be6.",
+          "hint": "Move the knight from f3 to g5."
+        },
+        {
+          "id": "two-knights-d6-take",
+          "title": "Remove the blocker",
+          "text": "Take the bishop that blocks your c4-bishop.",
+          "move": "Nxe6",
+          "reply": "fxe6",
+          "feedback": "Black recaptures with the f-pawn. Check what defends the new pawn on e6.",
+          "hint": "Capture on e6 with your knight."
+        },
+        {
+          "id": "two-knights-d6-pawn",
+          "title": "Win the pawn",
+          "text": "Nothing defends the e6-pawn. Take it.",
+          "move": "Bxe6",
+          "feedback": "Bxe6 wins a pawn, and Black's light-squared bishop is gone.",
+          "hint": "Capture on e6 with the bishop from c4."
+        },
+        {
+          "id": "two-knights-d6-summary",
+          "title": "A pawn ahead",
+          "text": "If Black attacks your bishop with ...Qe7 or ...Nd4, retreat it to h3. Black's best answer to Ng5 was ...d5, which blocks your bishop: take the pawn with exd5. Then, if the c6-knight goes to a5 to attack your bishop, check with Bb5+; if the f6-knight takes on d5, castle.",
+          "next": null
+        },
+        {
+          "id": "two-knights-check-choice",
+          "title": "If Black gives check",
+          "text": "Explore ...Bb4+, or continue to the main line.",
+          "branch": "two-knights-check",
+          "next": "two-knights-strike"
+        },
+        {
+          "id": "two-knights-check",
+          "title": "A bishop check",
+          "text": "...Bb4+ develops the bishop with check.",
+          "show": "Bb4+"
+        },
+        {
+          "id": "two-knights-check-block",
+          "title": "Block with a useful pawn",
+          "text": "Block the check with a pawn move that also prepares a later d4.",
+          "move": "c3",
+          "reply": "Ba5",
+          "feedback": "c3 blocks the check and supports a later d4. Black keeps the bishop on the same diagonal with ...Ba5.",
+          "hint": "Move c2 to c3."
+        },
+        {
+          "id": "two-knights-check-castle",
+          "title": "Castle",
+          "text": "Put your king away, as in your usual setup.",
+          "move": "O-O",
+          "feedback": "Your king is safe, and your pawns stand on c3, d3 and e4 as usual.",
+          "hint": "Move your king from e1 to g1 to castle."
+        },
+        {
+          "id": "two-knights-check-summary",
+          "title": "The usual setup",
+          "text": "Later, a4 and b4 gain space against the a5-bishop. If Black's bishop had gone back to c5 or e7 instead of a5, you would castle all the same.",
+          "next": null
+        },
+        {
+          "id": "two-knights-strike",
+          "title": "Black strikes in the center",
+          "text": "...d5 attacks your bishop on c4 and your e4-pawn at the same time.",
+          "show": "d5"
+        },
+        {
+          "id": "two-knights-take",
+          "title": "Remove the attacker",
+          "text": "Deal with the d5-pawn. If you only move the bishop away, Black takes your e4-pawn.",
+          "move": "exd5",
+          "reply": "Nxd5",
+          "feedback": "exd5 removes the pawn that attacked both. Black recaptures with the f6-knight, which now stands in the center.",
+          "hint": "Capture on d5 with your e4-pawn."
+        },
+        {
+          "id": "two-knights-castle",
+          "title": "Castle before the center opens",
+          "text": "The center is opening. Put your king away before Black's pieces can use the open lines.",
+          "move": "O-O",
+          "reply": "Be6",
+          "feedback": "Black develops the bishop to e6, where it defends the d5-knight.",
+          "hint": "Move your king from e1 to g1 to castle."
+        },
+        {
+          "id": "two-knights-rook",
+          "title": "Bring a rook to the e-file",
+          "text": "Bring your f1-rook to the e-file. With your e-pawn gone, it can attack e5 directly.",
+          "move": "Re1",
+          "reply": "Bd6",
+          "feedback": "Re1 attacks e5 together with your f3-knight, and only the c6-knight defends it. Black adds a second defender with ...Bd6.",
+          "hint": "Move the rook from f1 to e1."
+        },
+        {
+          "id": "two-knights-summary",
+          "title": "Open the center",
+          "text": "Black's king is still on e8. Next, d4 opens the center while it stands there; it is also strong if Black defended e5 with ...f6 instead of ...Bd6. If Black developed with ...Bg4 or ...Bc5 instead of ...Be6, Re1 was still the move."
+        },
+        {
+          "id": "two-knights-game",
+          "title": "A sharper choice changes the game",
+          "text": "Pollock–Schiffers, Hastings 1895. Pollock chooses d4 and Ng5 instead of our d3. The exchanges that follow show why this is a separate choice, not a continuation of our setup to memorize.",
+          "game": "pollock-schiffers",
+          "from": 5,
+          "to": 20
+        },
+        {
+          "id": "two-knights-takeaway",
+          "title": "A move order is not a whole repertoire",
+          "text": "The historical game has opposite-side castling and very different pawn and piece placement. Return to your plan: against ...Nf6, defend e4 with d3 first, then answer Black's fourth move as this chapter showed."
+        },
+        {
+          "id": "two-knights-recall",
+          "title": "Play against the Two Knights",
+          "text": "Rehearse the main line: defend e4, take on d5, castle and bring the rook to e1.",
+          "rehearse": "two-knights-center"
+        }
+      ]
+    },
+    {
+      "id": "finish-development",
+      "title": "Give every piece a job",
+      "steps": [
+        {
+          "id": "development-welcome",
+          "title": "Castling is the beginning",
+          "text": "We resume after 5...d6. Your queenside knight and bishop still need jobs. Build support for the center, find a safe diagonal for your Italian bishop, and bring the remaining pieces into play.",
+          "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6"
+        },
+        {
+          "id": "prepare-center",
+          "title": "Make room for a central advance",
+          "text": "Which pawn move can support a later d4 while leaving the queenside knight another route into the game?",
+          "move": "c3",
+          "feedback": "c3 supports d4. The knight will use d2 rather than the square now occupied by your c-pawn.",
+          "hint": "Move c2 to c3; the knight can later develop to d2."
+        },
+        {
+          "id": "pin-choice",
+          "title": "If Black pins your knight",
+          "text": "Black often answers with ...Bg4, pinning your f3-knight to the queen. Explore it in a side trip, or continue to the main line, where Black castles.",
+          "branch": "pin"
+        },
+        {
+          "id": "black-castles",
+          "title": "Black castles",
+          "text": "Black puts the king away. Your king is already safe, so keep improving your pieces.",
+          "show": "O-O"
+        },
+        {
+          "id": "support-e4",
+          "title": "Support the center and clear a route",
+          "text": "Improve the rook that castling brought into play. Its new file supports e4 and frees a square your queenside knight can use later.",
+          "move": "Re1",
+          "feedback": "Re1 supports e4 and clears f1. Before continuing, compare what happens if Black opens the center too soon.",
+          "hint": "Move the rook on f1 to e1."
+        },
+        {
+          "id": "premature-break-choice",
+          "title": "A central break needs preparation",
+          "text": "Our main line continues with ...a6. Explore premature ...d5 here: opening the center can leave the e5-pawn tactically vulnerable. This does not mean every ...d5 is a mistake.",
+          "branch": "premature-break"
+        },
+        {
+          "id": "black-retreat-plan",
+          "title": "Black prepares a bishop retreat",
+          "text": "Black's ...a6 controls b5 and makes a7 available for the bishop. We will keep improving our pieces while respecting Black's options.",
+          "show": "a6"
+        },
+        {
+          "id": "bishop-retreat",
+          "title": "Give your bishop a safe route",
+          "text": "Keep the bishop on its diagonal toward f7, but arrange an escape to c2 if Black attacks it with a knight from c6.",
+          "move": "Bb3",
+          "reply": "Ba7",
+          "feedback": "Bb3 keeps the f7 diagonal and makes Bc2 available against ...Na5. Black's bishop also steps away from a future pawn attack by d4.",
+          "hint": "Retreat the c4-bishop one square to b3."
+        },
+        {
+          "id": "develop-queen-knight",
+          "title": "Bring the last knight into play",
+          "text": "Develop the queenside knight so it reinforces e4 without displacing your c-pawn.",
+          "move": "Nbd2",
+          "reply": "h6",
+          "feedback": "Nbd2 adds support to e4. Black's h6 controls g5. Your knight can now travel through the f1-square freed by the rook.",
+          "hint": "Move the knight from b1 to d2."
+        },
+        {
+          "id": "bishop-threat-choice",
+          "title": "If Black attacks your bishop",
+          "text": "The main line continues the knight route. Explore a nearby ...Na5 example to see why the retreat to b3 gave you a useful escape square.",
+          "branch": "bishop-threat-arrives"
+        },
+        {
+          "id": "reroute-knight",
+          "title": "Make a route, not a one-move threat",
+          "text": "Move the d2-knight toward e3 or g3. This also clears the diagonal of your undeveloped bishop.",
+          "move": "Nf1",
+          "reply": "Re8",
+          "feedback": "Nf1 clears d2 for the c1-bishop. From f1 the knight can recapture on e3 or later reach g3; Black's rook now supports e5.",
+          "hint": "Move the knight from d2 to f1."
+        },
+        {
+          "id": "develop-last-bishop",
+          "title": "Use the route you cleared",
+          "text": "Develop your last bishop toward the center. With the knight ready behind it, you can meet an exchange without moving a pawn in front of your king.",
+          "move": "Be3",
+          "reply": "Bxe3",
+          "feedback": "Be3 develops the bishop and offers a trade. Black accepts; now choose how to recapture.",
+          "hint": "The c1-bishop can reach e3 through the empty d2-square."
+        },
+        {
+          "id": "recapture-piece",
+          "title": "Recapture while improving a piece",
+          "text": "Recover the bishop using the knight route you prepared, keeping your f-pawn in place.",
+          "move": "Nxe3",
+          "feedback": "Nxe3 restores material and puts the knight on an active central square. Your pawns remain on e4 and f2; you did not create doubled e-pawns.",
+          "hint": "Move the knight from f1 to e3."
+        },
+        {
+          "id": "development-takeaway",
+          "title": "Development creates choices",
+          "text": "Your minor pieces have left their starting squares, and the e3-knight eyes d5 and f5. Recheck Black's threats before choosing a central break. The next chapter uses the other knight route, to g3, to show d4 in action."
+        },
+        {
+          "id": "quiet-game",
+          "title": "The same exchange, a different structure",
+          "text": "Mason–Lasker, Hastings 1895. Mason develops Nc3 and Be3 early, then recaptures with the f-pawn. Compare that structure with the knight recapture you just played; this historical line is not an extra repertoire assignment.",
+          "game": "mason-lasker",
+          "from": 6,
+          "to": 14
+        },
+        {
+          "id": "exchange-comparison",
+          "title": "Look at the recapture, not just the trade",
+          "text": "Mason has pawns on e3 and e4 and no pawn on the f-file. That gives a semi-open f-file but changes his central structure. Our Nxe3 kept the pawns intact. Neither recapture is a universal rule: the available pieces and resulting activity decide."
+        },
+        {
+          "id": "development-recall",
+          "title": "Finish development from your setup",
+          "text": "Practise the new decisions from the position after 5...d6.",
+          "rehearse": "central-preparation",
+          "next": null
+        },
+        {
+          "id": "pin",
+          "title": "Black pins your knight",
+          "text": "...Bg4 pins your f3-knight to the queen: if the knight moved, Black's bishop could take your queen.",
+          "show": "Bg4"
+        },
+        {
+          "id": "pin-question",
+          "title": "Ask the bishop",
+          "text": "Attack the bishop with a pawn, so Black must decide whether to take your knight or step back.",
+          "move": "h3",
+          "reply": "Bh5",
+          "feedback": "h3 asks the bishop to decide. Black keeps the pin with ...Bh5.",
+          "hint": "Move h2 to h3."
+        },
+        {
+          "id": "pin-support",
+          "title": "Support the pinned knight",
+          "text": "Develop your b1-knight so it defends the f3-knight.",
+          "move": "Nbd2",
+          "feedback": "Nbd2 develops and protects the f3-knight. If Black takes on f3, recapture with this knight and keep your pawns in front of the king.",
+          "hint": "Move the knight from b1 to d2."
+        },
+        {
+          "id": "pin-summary",
+          "title": "The pin is only a nuisance",
+          "text": "Continue with Re1 and the knight route through f1, as in the main line. If Black takes on f3 right after h3, recapture with the queen: gxf3 would break up the pawns in front of your king. Black can also pin after castling and Re1; answer with h3 there too.",
+          "next": null
+        },
+        {
+          "id": "premature-break",
+          "title": "Black opens the center too soon",
+          "text": "Here ...d5 attacks your e4-pawn and bishop. Watch the concrete exchanges rather than continuing your quiet setup automatically.",
+          "show": "d5"
+        },
+        {
+          "id": "capture-break",
+          "title": "Challenge the advancing pawn",
+          "text": "Capture the pawn that just challenged your center. Then inspect what Black's recapturing knight leaves behind.",
+          "move": "exd5",
+          "reply": "Nxd5",
+          "feedback": "exd5 draws the f6-knight to d5. Black's e5-pawn is now defended only by the c6-knight, while your rook supports the e-file.",
+          "hint": "Move the e4-pawn diagonally to d5."
+        },
+        {
+          "id": "win-center-pawn",
+          "title": "Use your rook's support",
+          "text": "Your knight can capture e5 even though Black has a defender there. Calculate your reply to ...Nxe5 before playing it.",
+          "move": "Nxe5",
+          "reply": "Nxe5",
+          "feedback": "Nxe5 wins the e-pawn. Black takes your knight, but the rook behind it can complete the exchange.",
+          "hint": "Move the f3-knight to e5; then your e1-rook can recapture."
+        },
+        {
+          "id": "recover-knight",
+          "title": "Finish the exchange",
+          "text": "Recover the knight and count what remains, rather than stopping the calculation after the first capture.",
+          "move": "Rxe5",
+          "reply": "c6",
+          "feedback": "Rxe5 restores the piece balance. White has seven pawns to Black's six; Black uses ...c6 to support the d5-knight.",
+          "hint": "Move the rook on e1 to e5."
+        },
+        {
+          "id": "premature-takeaway",
+          "title": "A pawn, not an automatic win",
+          "text": "You won a pawn because the rook could join the exchanges. The rook is now exposed on e5, so finish development and be ready to retreat it if attacked. Later, with more pieces supporting the center, Black's ...d5 can be perfectly sound.",
+          "next": null
+        },
+        {
+          "id": "bishop-threat-arrives",
+          "title": "A knight comes after the bishop",
+          "text": "In this illustrative continuation White improves the knight and Black attacks the bishop. The threat needs an answer before continuing your plan.",
+          "show": "Nf1 Na5"
+        },
+        {
+          "id": "save-bishop",
+          "title": "Keep a useful bishop",
+          "text": "Move the attacked bishop to a safe square behind your central pawns.",
+          "move": "Bc2",
+          "feedback": "Bc2 escapes the a5-knight. The d3-pawn still blocks its diagonal; if that pawn advances, the bishop will help defend e4 along c2–d3–e4.",
+          "hint": "Move the bishop from b3 to c2."
+        },
+        {
+          "id": "bishop-safe",
+          "title": "A retreat can have a purpose",
+          "text": "The knight no longer attacks your bishop. The bishop has a future role behind the center, but d3 still blocks its ray to e4. Do not count that bishop as an e4-defender until the pawn moves."
+        }
+      ]
+    },
+    {
+      "id": "central-break",
+      "title": "Choose when to open the center",
+      "steps": [
+        {
+          "id": "central-welcome",
+          "title": "Now use the preparation",
+          "text": "We return to the position after ...Re8. This time the f1-knight goes to g3 before the c1-bishop develops. Follow what changes when the d-pawn advances, then compare Black's two central replies.",
+          "position": "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8"
+        },
+        {
+          "id": "support-before-break",
+          "title": "Replace the pawn's defensive job",
+          "text": "The pawn on d3 currently defends e4. Improve the f1-knight so e4 keeps another defender when that pawn advances.",
+          "move": "Ng3",
+          "reply": "Be6",
+          "feedback": "Ng3 supports e4 alongside the e1-rook. Black develops ...Be6, challenging your bishop on b3. The center is ready for a concrete decision.",
+          "hint": "Move the knight from f1 to g3."
+        },
+        {
+          "id": "play-break",
+          "title": "Challenge the center",
+          "text": "Use your prepared pawn advance to challenge e5. Your c-pawn can recapture on the advance square, and e4 remains defended when d3 is vacated.",
+          "move": "d4",
+          "feedback": "d4 challenges e5 and takes central space, with your queen and knight also supporting d4. Black can capture there or strike back with ...d5. Neither reply ends the calculation.",
+          "hint": "Advance the d3-pawn to d4."
+        },
+        {
+          "id": "central-reply-choice",
+          "title": "Black can challenge your plan",
+          "text": "The main line shows ...exd4. Explore ...d5 for Black's more active response: the extra developed pieces make this break very different from the premature example in the previous chapter.",
+          "branch": "active-break",
+          "next": "black-captures"
+        },
+        {
+          "id": "active-break",
+          "title": "Black contests the center immediately",
+          "text": "Black does not have to accept your ideal pawn center. Here ...d5 is a sound counterstrike, supported by active pieces.",
+          "show": "d5"
+        },
+        {
+          "id": "answer-active-break",
+          "title": "Resolve one part of the tension",
+          "text": "Use the pawn that just advanced to capture e5. Do not confuse this with moving your e-pawn: the two captures create different positions.",
+          "move": "dxe5",
+          "reply": "Ng4",
+          "feedback": "dxe5 removes Black's e-pawn. ...Ng4 adds pressure on f2 and joins the c6-knight in attacking your pawn on e5. Keep developing actively rather than trying to hold every pawn.",
+          "hint": "Capture from d4 to e5."
+        },
+        {
+          "id": "centralize-under-pressure",
+          "title": "Challenge a developed piece",
+          "text": "Centralize your f3-knight with an attack on Black's e6-bishop. Black can recover the pawn; your priority is active pieces, not hanging on to a temporary extra pawn.",
+          "move": "Nd4",
+          "reply": "Ncxe5",
+          "feedback": "Nd4 attacks the bishop on e6. Black's c6-knight recovers the pawn on e5. Material is level again, with active pieces on both sides.",
+          "hint": "Move the knight from f3 to d4."
+        },
+        {
+          "id": "active-break-takeaway",
+          "title": "Counterplay changes the lesson",
+          "text": "Both sides have seven pawns. Black keeps a pawn on d5 and knights on e5 and g4; the g4-knight attacks f2 and h2. White has central activity, but no lasting pawn advantage. Continue checking those threats instead of treating the quiet setup as a fixed script.",
+          "next": null
+        },
+        {
+          "id": "black-captures",
+          "title": "Black exchanges the e-pawn",
+          "text": "In this continuation Black captures on d4. Before recapturing, consider the bishop on e6: it could otherwise reach g4 and pin your knight to your queen.",
+          "show": "exd4"
+        },
+        {
+          "id": "trade-before-recapture",
+          "title": "Choose the order of exchanges",
+          "text": "Exchange the bishop that can pin your f3-knight before you rebuild the pawn center. Immediate cxd4 is playable too; we choose the cleaner sequence here.",
+          "move": "Bxe6",
+          "reply": "fxe6",
+          "feedback": "Bxe6 removes Black's light-squared bishop and the ...Bg4 option. ...fxe6 makes Black's f-file semi-open and puts a pawn on e6. Black's original e-pawn is on d4, so these are not doubled e-pawns.",
+          "hint": "Capture the bishop on e6 with your bishop from b3."
+        },
+        {
+          "id": "rebuild-center",
+          "title": "Make the c-pawn's preparation count",
+          "text": "Recover the pawn on d4 with the pawn you prepared on c3, keeping two pawns in the center.",
+          "move": "cxd4",
+          "reply": "Qe7",
+          "feedback": "cxd4 leaves White pawns on d4 and e4. Black develops the queen to e7. You have central space, but your c1-bishop still needs to join the game.",
+          "hint": "Capture the pawn on d4 with your c3-pawn."
+        },
+        {
+          "id": "finish-after-break",
+          "title": "Complete the plan, not just the pawn push",
+          "text": "Develop your remaining bishop so it also supports the new d4-pawn.",
+          "move": "Be3",
+          "feedback": "Be3 completes your minor-piece development and supports d4. The central break now connects to a working piece setup, not just a memorized pawn move.",
+          "hint": "Move the bishop from c1 to e3."
+        },
+        {
+          "id": "central-takeaway",
+          "title": "Space comes with responsibilities",
+          "text": "Your d4- and e4-pawns give space, and your pieces support them. Black can still challenge d4 with ...e5 or chase the e3-bishop with ...Ng4. Recheck those ideas before another pawn push. The lesson gives you a plan, not a promise of an attack."
+        },
+        {
+          "id": "central-game",
+          "title": "Compare a much earlier d4",
+          "text": "Steinitz–von Bardeleben, Hastings 1895. White opens the center before castling here, unlike our prepared break. Watch ...Bb4+ and Black's own ...d5: opening lines changes what both players can do.",
+          "game": "steinitz-bardeleben",
+          "from": 6,
+          "to": 18
+        },
+        {
+          "id": "historical-center-takeaway",
+          "title": "Same pawn move, different calculation",
+          "text": "White has castled, but the central exchanges and Black's active pieces created a different game. Our repertoire supported e4 and castled before playing d4. Remember those requirements, then calculate the actual response to d4."
+        },
+        {
+          "id": "central-recall",
+          "title": "Play the central plan",
+          "text": "Start from the knight-route position and carry the break through to development.",
+          "rehearse": "central-break"
+        }
+      ]
+    }
+  ]
+}

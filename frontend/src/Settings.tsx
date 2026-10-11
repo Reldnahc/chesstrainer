@@ -1,6 +1,6 @@
 import Button from "./Button";
 import Notice from "./Notice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
 import ImportSettings from "./Import";
@@ -13,12 +13,14 @@ import SectionNavigation from "./SectionNavigation";
 import Link from "./Link";
 import { ExternalLink } from "lucide-react";
 import { navigate, type SettingsTab } from "./navigation";
+import CourseSettings from "./study/CourseSettings";
 
 const sections: { id: SettingsTab; label: string }[] = [
   { id: "imports", label: "Games & imports" },
   { id: "coach", label: "Coach & animations" },
   { id: "sound", label: "Sound" },
   { id: "account", label: "Account" },
+  { id: "courses", label: "Courses" },
   { id: "advanced", label: "Advanced" },
 ];
 
@@ -30,7 +32,16 @@ export default function SettingsScreen({ health, fail, section, importSource, re
   restoringScroll: boolean;
 }) {
   const account = useAccount();
-  const active = section === "account" && !account ? "imports" : section;
+  // Only administrators (or the single user of a local install) manage courses.
+  const [canManage, setCanManage] = useState<boolean | null>(null);
+  useEffect(() => {
+    const controller = new AbortController();
+    read(api.GET("/api/study/courses", { signal: controller.signal }))
+      .then(result => { if (!controller.signal.aborted) setCanManage(!!result.can_manage); })
+      .catch(() => { if (!controller.signal.aborted) setCanManage(false); });
+    return () => controller.abort();
+  }, []);
+  const active = (section === "account" && !account) || (section === "courses" && canManage === false) ? "imports" : section;
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState<"classify" | "deepen" | null>(null);
   async function classify(enrich = false) {
@@ -49,7 +60,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
     <>
       <PageTitle eyebrow="YOUR WORKSPACE" title="Settings" />
       <SectionNavigation label="Settings sections" current={active}
-        items={sections.filter(item => item.id !== "account" || account).map(item => ({
+        items={sections.filter(item => (item.id !== "account" || account) && (item.id !== "courses" || canManage)).map(item => ({
           ...item, href: item.id === "imports" ? "/settings" : `/settings?section=${item.id}`,
         }))} />
       <div className="settings-content">
@@ -58,6 +69,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
         {active === "coach" && <><MotionSettings /><CoachSettings /></>}
         {active === "sound" && <AudioSettings />}
         {active === "account" && <AccountSettings />}
+        {active === "courses" && canManage && <CourseSettings />}
         {active === "advanced" && <>
           <SettingsSection id="settings-training" title="Training tools">
             <div className="settings-tool">

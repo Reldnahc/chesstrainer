@@ -2,6 +2,7 @@
 
 import chess
 import pytest
+from course_positions import tactics
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from test_italian_course import installed_course, walk_chapter
@@ -9,7 +10,6 @@ from test_opening_journey import response_json
 from trainer.api import create_app
 from trainer.contracts.study_lessons import LessonCommand
 from trainer.study_lessons.content import CourseDefinition, Position
-from trainer.study_lessons.courses import tactics
 from trainer.study_lessons.player import enter_step, initial_state, transition
 from trainer.study_lessons.queries import fingerprint
 

@@ -1,12 +1,12 @@
 """The fundamentals course: exact board claims for every skill and a pinned revision."""
 
 import chess
+from course_positions import fundamentals
 from fastapi.testclient import TestClient
 from test_italian_course import COURSE_IDS, installed_course, start, walk_chapter
 from test_opening_journey import response_json
 from test_tactics_course import board, guards, material, replies
 from trainer.api import create_app
-from trainer.study_lessons.courses import fundamentals
 from trainer.study_lessons.queries import fingerprint
 
 COURSE_ID = "chess-fundamentals"

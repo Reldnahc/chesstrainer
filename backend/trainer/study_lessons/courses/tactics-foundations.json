@@ -1,0 +1,589 @@
+{
+  "format": "fieldwork-course-1",
+  "id": "tactics-foundations",
+  "revision": "2026-10-v1",
+  "title": "Tactics · Six basic patterns",
+  "description": "Learn six basic tactics: forks, pins, skewers, discovered attacks, removing a defender and back-rank checkmate. Each chapter explains one pattern, then you find the winning moves in three positions. Two positions are well-known opening traps and one comes from Réti–Tartakower, Vienna 1910; the others were composed for this course. Stockfish checked every answer.",
+  "side": "white",
+  "topic": "skills",
+  "credits": [
+    {
+      "text": "Original Fieldwork instruction. Positions without a named source were composed for this course.",
+      "license": "Repository license"
+    },
+    {
+      "text": "Réti–Tartakower, Vienna 1910: score and first publication as researched by Edward Winter, Chess Notes",
+      "url": "https://www.chesshistory.com/winter/extra/retitartakower.html"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "forks",
+      "title": "Forks: attack two pieces at once",
+      "steps": [
+        {
+          "id": "fork-knight",
+          "title": "One move, two targets",
+          "text": "A fork is a move that attacks two enemy pieces at once. Your opponent can usually save only one. Count what you win with the usual piece values: pawn 1, knight or bishop 3, rook 5, queen 9. Here Black's king and queen are both a knight's jump from one empty square.",
+          "fen": "r1b2rk1/pppn1ppp/2q5/3N4/8/8/PPP2PPP/R1BQ1RK1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "g8",
+            "c6"
+          ]
+        },
+        {
+          "id": "fork-knight-check",
+          "title": "Fork with check",
+          "text": "Move your knight so that it checks the king and attacks the queen at the same time.",
+          "move": "Ne7+",
+          "reply": "Kh8",
+          "feedback": "Ne7+ forks the king and queen. A check must be answered first, and ...Kh8 is Black's only legal move. The queen is still attacked.",
+          "hint": "Move the knight from d5 to e7. From there it attacks g8 and c6."
+        },
+        {
+          "id": "fork-knight-collect",
+          "title": "Collect the queen",
+          "text": "The king has stepped out of check. Take the piece your fork was aiming at.",
+          "move": "Nxc6",
+          "reply": "bxc6",
+          "feedback": "Nxc6 wins the queen. Black takes back with ...bxc6, so you gave a knight (3) for a queen (9). A fork with check is especially strong, because Black must answer the check before saving anything else.",
+          "hint": "Capture on c6 with the knight."
+        },
+        {
+          "id": "fork-pawn",
+          "title": "Pawns fork too",
+          "text": "Any piece can fork, even a pawn. A pawn attacks the two squares diagonally ahead of it, so it can hit two pieces that stand on the same rank with one square between them. Black has an extra piece here, and you have two extra pawns.",
+          "fen": "4r1k1/ppp2ppp/3b1n2/8/3PP3/5N2/PPP2PPP/3R2K1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "d6",
+            "f6"
+          ]
+        },
+        {
+          "id": "fork-pawn-push",
+          "title": "Fork with a pawn",
+          "text": "Push a pawn that attacks Black's bishop and knight together. Make sure the pawn is defended on its new square.",
+          "move": "e5",
+          "reply": "Nd7",
+          "feedback": "e5 forks the bishop and the knight. Black cannot simply take the pawn, because your d4-pawn and f3-knight defend it. Black saves the knight with ...Nd7, which also attacks e5, but the bishop is still attacked.",
+          "hint": "Move the pawn from e4 to e5. Your d4-pawn and f3-knight defend it there."
+        },
+        {
+          "id": "fork-pawn-collect",
+          "title": "Win the bishop",
+          "text": "The knight escaped. Take the piece that is still attacked.",
+          "move": "exd6",
+          "reply": "cxd6",
+          "feedback": "exd6 wins the bishop for your pawn after ...cxd6. Black's extra piece is gone, and you are now a pawn ahead.",
+          "hint": "Capture on d6 with the e5-pawn."
+        },
+        {
+          "id": "fork-queen",
+          "title": "The queen forks in every direction",
+          "text": "A queen attacks along ranks, files and diagonals, so it can fork pieces that stand far apart. The best targets are the king and loose pieces: pieces with no defender. Black's bishop on b4 has no defender, and the diagonal leading to Black's king on e8 is open.",
+          "fen": "r1bqk2r/ppp2ppp/4pn2/8/1b1P4/4PN2/PP2BPPP/R1BQ1RK1 w kq - 0 1",
+          "position": "",
+          "squares": [
+            "e8",
+            "b4"
+          ]
+        },
+        {
+          "id": "fork-queen-check",
+          "title": "Check and attack the bishop",
+          "text": "Give a queen check that also attacks the loose bishop on b4.",
+          "move": "Qa4+",
+          "reply": "Bd7",
+          "feedback": "Qa4+ checks along the diagonal and attacks b4 along the rank. No answer to the check also defends the bishop. Black blocks with ...Bd7, which attacks your queen.",
+          "hint": "Move the queen from d1 to a4."
+        },
+        {
+          "id": "fork-queen-collect",
+          "title": "Take the loose bishop",
+          "text": "Your queen is attacked. Move it to safety by capturing the bishop.",
+          "move": "Qxb4",
+          "feedback": "Qxb4 wins the bishop for nothing. Before every move, notice which enemy pieces have no defender: they are the easiest targets for a fork.",
+          "hint": "Capture on b4 with the queen."
+        },
+        {
+          "id": "fork-summary",
+          "title": "Look for forks",
+          "text": "When two enemy pieces can be attacked from one square, look for a piece that can reach that square safely. Kings and undefended pieces make the best targets. To practice, open Puzzles in Study and choose the Fork theme."
+        }
+      ]
+    },
+    {
+      "id": "pins",
+      "title": "Pins: hold a piece in front of a bigger one",
+      "steps": [
+        {
+          "id": "pin-knight",
+          "title": "A piece that cannot move",
+          "text": "A pin is an attack along a rank, file or diagonal on a piece with a more valuable piece behind it. If the piece behind is the king, moving the pinned piece off the line is illegal. Your rook on e1 pins Black's knight on e6 to the king on e8, so the knight has no legal moves.",
+          "fen": "4k2r/ppp2ppp/4n3/8/3P4/3B4/PPP2PPP/4R1K1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "e6"
+          ],
+          "arrows": [
+            "e1-e8"
+          ]
+        },
+        {
+          "id": "pin-knight-attack",
+          "title": "Attack the pinned piece",
+          "text": "A pinned piece is a target. Attack the knight with something worth less than it.",
+          "move": "d5",
+          "reply": "Ke7",
+          "feedback": "d5 attacks the knight, and the pin stops it from running. The f7-pawn already defends it, and ...Ke7 adds the king, but the king now stands right behind the knight, so the pin remains.",
+          "hint": "Move the pawn from d4 to d5."
+        },
+        {
+          "id": "pin-knight-collect",
+          "title": "Take the pinned knight",
+          "text": "The knight is defended, but it is still pinned and attacked by a pawn. Take it.",
+          "move": "dxe6",
+          "reply": "fxe6",
+          "feedback": "dxe6 wins the knight for a pawn after ...fxe6. A defender does not help a pinned piece that is attacked by something cheaper. When you pin a piece, look for a way to attack it again.",
+          "hint": "Capture on e6 with the d-pawn."
+        },
+        {
+          "id": "pin-queen",
+          "title": "Pin the queen",
+          "text": "A pin hurts most when the pinned piece is valuable. Black's queen on d7 and king on e8 stand on one diagonal. If your bishop reaches that diagonal, the queen may only move along it.",
+          "fen": "r1b1kb1r/pp1q1ppp/4p1n1/2p5/4P3/2NB4/PPP1QPPP/R1B2RK1 w kq - 0 1",
+          "position": "",
+          "squares": [
+            "d7",
+            "e8"
+          ]
+        },
+        {
+          "id": "pin-queen-bishop",
+          "title": "Pin the queen to the king",
+          "text": "Put your bishop on the diagonal through d7 and e8, on a square where it is defended.",
+          "move": "Bb5",
+          "reply": "a6",
+          "feedback": "Bb5 pins the queen. It can only move along the pin, to c6 or b5, and either way you can take it. Black attacks your bishop with ...a6, but the queen is still pinned.",
+          "hint": "Move the bishop from d3 to b5. Your knight on c3 and queen on e2 defend it there."
+        },
+        {
+          "id": "pin-queen-collect",
+          "title": "Take the pinned queen",
+          "text": "Your bishop is attacked by the a6-pawn. Capture the queen now, before ...axb5 takes your bishop and ends the pin.",
+          "move": "Bxd7+",
+          "reply": "Bxd7",
+          "feedback": "Bxd7+ wins the queen with check. Black takes back with ...Bxd7, so you traded a bishop (3) for a queen (9).",
+          "hint": "Capture on d7 with the bishop."
+        },
+        {
+          "id": "pin-trap",
+          "title": "A pinned piece cannot capture",
+          "text": "A piece pinned to its king cannot capture off the pin line either. Watch a well-known trap in the Caro-Kann Defense, an opening that begins 1.e4 c6. Follow the e-file: your queen will stand on it, opposite Black's king.",
+          "position": ""
+        },
+        {
+          "id": "pin-trap-opening",
+          "title": "The trap is set",
+          "text": "Your queen goes to e2, and Black develops with ...Ngf6, attacking your knight on e4. Only that knight and Black's e7-pawn stand between your queen and Black's king.",
+          "show": "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nd7 Qe2 Ngf6"
+        },
+        {
+          "id": "pin-trap-mate",
+          "title": "Checkmate with a knight",
+          "text": "Move the e4-knight to give checkmate. Once it leaves e4, your queen pins the e7-pawn.",
+          "move": "Nd6#",
+          "feedback": "Nd6 is checkmate. The e7-pawn cannot take the knight because it is pinned to the king, and Black's own pieces block every escape square.",
+          "hint": "Move the knight from e4 to d6."
+        },
+        {
+          "id": "pin-summary",
+          "title": "Use your pins",
+          "text": "A pinned piece cannot leave its line without exposing the piece behind it, so attack it again, ideally with a pawn. Remember that a piece pinned to the king may not leave the line at all, not even to capture. To practice, open Puzzles in Study and choose the Pin theme."
+        }
+      ]
+    },
+    {
+      "id": "skewers",
+      "title": "Skewers: attack through the bigger piece",
+      "steps": [
+        {
+          "id": "skewer-rank",
+          "title": "The pin turned around",
+          "text": "A skewer is an attack along a rank, file or diagonal on a valuable piece with another piece behind it. When the front piece moves away, you capture the one behind. A check works best: if Black cannot block it or capture the checking piece, the king has to move. Black's king on c7 and rook on h7 stand on the same rank with nothing between them.",
+          "fen": "8/2k4r/5p2/6p1/8/3K4/5PPP/R7 w - - 0 1",
+          "position": "",
+          "squares": [
+            "c7",
+            "h7"
+          ]
+        },
+        {
+          "id": "skewer-rank-check",
+          "title": "Check along the rank",
+          "text": "Give a check along the seventh rank.",
+          "move": "Ra7+",
+          "reply": "Kd6",
+          "feedback": "Ra7+ checks the king, with Black's rook behind it on the same rank. The king must leave the rank, and Black plays ...Kd6.",
+          "hint": "Move the rook from a1 to a7."
+        },
+        {
+          "id": "skewer-rank-collect",
+          "title": "Take the piece behind",
+          "text": "The king has moved. Collect the rook it was shielding.",
+          "move": "Rxh7",
+          "feedback": "Rxh7 wins the rook, and nothing can take back. You now have a rook and three pawns against two pawns.",
+          "hint": "Capture on h7 with the rook."
+        },
+        {
+          "id": "skewer-diagonal",
+          "title": "Bishops skewer too",
+          "text": "Bishops and queens skewer along diagonals. Black has a queen against your rook and bishop, but the king on f5 and the queen on h7 stand on one diagonal, with only g6 between them.",
+          "fen": "8/p6q/1p3p2/5kp1/8/6P1/P4PKP/1R3B2 w - - 0 1",
+          "position": "",
+          "squares": [
+            "f5",
+            "h7"
+          ]
+        },
+        {
+          "id": "skewer-diagonal-check",
+          "title": "Check on the diagonal",
+          "text": "Check the king along the diagonal that leads to the queen.",
+          "move": "Bd3+",
+          "reply": "Ke5",
+          "feedback": "Bd3+ checks the king, and the queen stands behind it. The king must step off the diagonal, and Black plays ...Ke5.",
+          "hint": "Move the bishop from f1 to d3."
+        },
+        {
+          "id": "skewer-diagonal-collect",
+          "title": "Win the queen",
+          "text": "Take the queen that the king left behind.",
+          "move": "Bxh7",
+          "feedback": "Bxh7 wins the queen for nothing. A moment ago Black was ahead; now you are a rook and a bishop up.",
+          "hint": "Capture on h7 with the bishop."
+        },
+        {
+          "id": "skewer-file",
+          "title": "Skewers on a file",
+          "text": "Rooks skewer along files as well as ranks. Black's king on e4 and rook on e8 share the e-file, and the squares between them are empty.",
+          "fen": "4r3/8/p5p1/1p5p/4k3/2P3KP/1P4P1/R7 w - - 0 1",
+          "position": "",
+          "squares": [
+            "e4",
+            "e8"
+          ]
+        },
+        {
+          "id": "skewer-file-check",
+          "title": "Check along the file",
+          "text": "Check the king along the e-file.",
+          "move": "Re1+",
+          "reply": "Kd5",
+          "feedback": "Re1+ checks the king with Black's rook behind it on the e-file. The king steps aside to d5.",
+          "hint": "Move the rook from a1 to e1."
+        },
+        {
+          "id": "skewer-file-collect",
+          "title": "Take the rook",
+          "text": "The king has left the file. Take the rook behind it.",
+          "move": "Rxe8",
+          "feedback": "Rxe8 wins the rook. Black had to move the king off the file, and nothing defends the rook behind it.",
+          "hint": "Capture on e8 with the rook."
+        },
+        {
+          "id": "skewer-summary",
+          "title": "Look behind the king",
+          "text": "In a pin, the less valuable piece stands in front. In a skewer, the more valuable piece is in front and must move. Before giving a check, look at what stands behind the king on that line. To practice, open Puzzles in Study and choose the Skewer theme."
+        }
+      ]
+    },
+    {
+      "id": "discovered-attacks",
+      "title": "Discovered attacks and double check",
+      "steps": [
+        {
+          "id": "discovered-intro",
+          "title": "Uncover an attack",
+          "text": "In a discovered attack, you move one piece out of a line and uncover an attack by the piece behind it. The piece that moves can make a threat of its own, so your opponent faces two at once. If the uncovered attack is a check, it is a discovered check. Watch a trap in the Petrov Defense, which begins 1.e4 e5 2.Nf3 Nf6."
+        },
+        {
+          "id": "discovered-trap-opening",
+          "title": "The Petrov trap",
+          "text": "Black copies your capture with ...Nxe4. Your queen attacks that knight from e2, and Black retreats with ...Nf6, leaving only your knight on e5 between your queen and Black's king.",
+          "show": "e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2 Nf6"
+        },
+        {
+          "id": "discovered-trap-check",
+          "title": "Discovered check",
+          "text": "Move the e5-knight so your queen gives check and the knight attacks Black's queen, on a square where Black's king cannot take it.",
+          "move": "Nc6+",
+          "reply": "Qe7",
+          "feedback": "Nc6+ uncovers check from your queen, and the knight attacks Black's queen. Black must answer the check first and blocks with ...Qe7.",
+          "hint": "Move the knight from e5 to c6. It attacks Black's queen on d8."
+        },
+        {
+          "id": "discovered-trap-collect",
+          "title": "Take the queen",
+          "text": "Black's queen has blocked on e7, still within your knight's reach.",
+          "move": "Nxe7",
+          "reply": "Bxe7",
+          "feedback": "Nxe7 wins the queen for your knight after ...Bxe7. Black's losing mistake was 4...Nf6, which reopened the e-file; 4...Qe7 would have kept it closed. Copying with 3...Nxe4 was already risky: Black's usual third move is 3...d6, which chases your knight first.",
+          "hint": "Capture on e7 with the knight."
+        },
+        {
+          "id": "discovered-bishop",
+          "title": "Check with the moving piece",
+          "text": "The moving piece can give check itself. Then your opponent must deal with the check, and the uncovered attack lands for free. Your rook on d1 is lined up with Black's queen on d6, but your bishop on d3 is in the way.",
+          "fen": "r1b2rk1/pp1n1ppp/2pq4/8/8/3B1N2/PPP1QPPP/R2R2K1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "d3"
+          ],
+          "arrows": [
+            "d1-d6"
+          ]
+        },
+        {
+          "id": "discovered-bishop-check",
+          "title": "Move the bishop with check",
+          "text": "Move the d3-bishop with check, uncovering your rook's attack on the queen.",
+          "move": "Bxh7+",
+          "reply": "Kxh7",
+          "feedback": "Bxh7+ checks the king and uncovers your rook's attack on the queen. Black has to answer the check, and ...Kxh7 cannot also save the queen.",
+          "hint": "Capture on h7 with the bishop."
+        },
+        {
+          "id": "discovered-bishop-collect",
+          "title": "Collect the queen",
+          "text": "Now take the queen your rook uncovered.",
+          "move": "Rxd6",
+          "feedback": "Rxd6 wins the queen. You gave a bishop but won a pawn and the queen.",
+          "hint": "Capture on d6 with the rook."
+        },
+        {
+          "id": "double-check",
+          "title": "Double check",
+          "text": "In a double check, the piece that moves gives check while uncovering a second check. No single move can block or capture two checking pieces, so the king must move. This position is from Réti–Tartakower, a casual game played in Vienna in 1910. Black has just taken your knight on e4.",
+          "position": "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nf6 Qd3 e5 dxe5 Qa5+ Bd2 Qxe5 O-O-O Nxe4"
+        },
+        {
+          "id": "double-check-sacrifice",
+          "title": "The queen sacrifice",
+          "text": "Réti, playing White, gives up the queen with Qd8+, and the king must take it. Now only your bishop on d2 stands between your rook on d1 and the king.",
+          "show": "Qd8+ Kxd8"
+        },
+        {
+          "id": "double-check-move",
+          "title": "Give double check",
+          "text": "Move the d2-bishop so that it gives check and uncovers your rook's check too. Choose the square where the bishop also guards e7.",
+          "move": "Bg5+",
+          "reply": "Kc7",
+          "feedback": "Bg5+ is double check: the bishop checks along the diagonal and the rook along the d-file. Only a king move helps. The earliest published score ends here with Black resigning; the lesson plays ...Kc7 to show the finish.",
+          "hint": "Move the bishop from d2 to g5."
+        },
+        {
+          "id": "double-check-mate",
+          "title": "Finish the game",
+          "text": "Find the checkmate.",
+          "move": "Bd8#",
+          "feedback": "Bd8 is checkmate. Your rook covers the d-file, the bishop covers b6, and Black's own pieces block the other squares. After ...Ke8 instead, Rd8 would also have been mate.",
+          "hint": "Move the bishop from g5 to d8."
+        },
+        {
+          "id": "discovered-summary",
+          "title": "Look for hidden lines",
+          "text": "Look for your queen, rooks and bishops lined up on enemy pieces with one of your own pieces in between. Moving that piece with a threat of its own creates two threats at once. To practice, open Puzzles in Study and choose the Discovered attack or Double check theme."
+        }
+      ]
+    },
+    {
+      "id": "remove-the-defender",
+      "title": "Remove the defender",
+      "steps": [
+        {
+          "id": "defender-capture",
+          "title": "Take away the guard",
+          "text": "Many pieces have a job, such as guarding a square. Remove the guard and the job is left undone. Your queen on d3 and bishop on b1 aim at h7. Black's knight on f6 is the piece that stops Qxh7 from being checkmate.",
+          "fen": "r2q1rk1/pp3ppp/2p1pn2/3p2B1/3P4/2PQ4/PP3PPP/RB3RK1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "f6"
+          ],
+          "arrows": [
+            "b1-h7"
+          ]
+        },
+        {
+          "id": "defender-capture-take",
+          "title": "Capture the guard",
+          "text": "Remove the knight that guards h7.",
+          "move": "Bxf6",
+          "reply": "g6",
+          "feedback": "Bxf6 removes the guard and also attacks Black's queen on d8. If Black takes the bishop, Qxh7 is checkmate, so Black blocks your diagonal with ...g6.",
+          "hint": "Capture on f6 with the g5-bishop."
+        },
+        {
+          "id": "defender-capture-collect",
+          "title": "Take the queen",
+          "text": "Your bishop on f6 still attacks the queen.",
+          "move": "Bxd8",
+          "reply": "Raxd8",
+          "feedback": "Bxd8 wins the queen, and Black takes back with a rook. Your bishop captured a knight and a queen before it was lost.",
+          "hint": "Capture on d8 with the bishop."
+        },
+        {
+          "id": "defender-chase",
+          "title": "Chase the guard away",
+          "text": "You do not always have to capture a guard. Attacking it can be enough, because a guard that moves leaves its job. Black's knight on f6 guards h7 again, and this time your own pawn on e4 blocks your queen's diagonal.",
+          "fen": "r4rk1/pbq2ppp/1p2pn2/2p5/3PP3/2PQ4/PP1N1PPP/RB3RK1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "e4",
+            "f6"
+          ]
+        },
+        {
+          "id": "defender-chase-push",
+          "title": "Attack the guard",
+          "text": "Push a pawn that attacks the knight and opens your queen's diagonal at the same time.",
+          "move": "e5",
+          "reply": "Rfe8",
+          "feedback": "e5 attacks the knight. If it moves away, it stops guarding h7. A tougher defense was ...g6, blocking your diagonal as in the last example. Black plays ...Rfe8 instead, freeing f8 for the king, and gives up the knight.",
+          "hint": "Move the pawn from e4 to e5."
+        },
+        {
+          "id": "defender-chase-collect",
+          "title": "Win the knight",
+          "text": "The knight is still attacked.",
+          "move": "exf6",
+          "reply": "gxf6",
+          "feedback": "exf6 wins the knight for a pawn after ...gxf6. Black's king is also more exposed: Qxh7+ wins another pawn with check next.",
+          "hint": "Capture on f6 with the e5-pawn."
+        },
+        {
+          "id": "defender-count",
+          "title": "Count attackers and defenders",
+          "text": "Count the attackers and defenders of a piece. Your rook on e1 attacks Black's bishop on e5, and only the knight on c6 defends it. Remove that knight and the bishop is undefended.",
+          "fen": "5rk1/ppp2ppp/2n5/1B2b3/8/1N5P/PPP2PP1/4R1K1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "e5",
+            "c6"
+          ]
+        },
+        {
+          "id": "defender-count-take",
+          "title": "Remove the only defender",
+          "text": "Capture the bishop's only defender.",
+          "move": "Bxc6",
+          "reply": "bxc6",
+          "feedback": "Bxc6 removes the defender. Black takes back with ...bxc6, and the bishop on e5 is left undefended. If Black saves the bishop instead, for example with ...Bf6, you have still won the knight.",
+          "hint": "Capture on c6 with the bishop."
+        },
+        {
+          "id": "defender-count-collect",
+          "title": "Take the bishop",
+          "text": "The bishop on e5 has lost its only defender.",
+          "move": "Rxe5",
+          "feedback": "Rxe5 wins the bishop. You traded your bishop for the knight, then took Black's bishop for free.",
+          "hint": "Capture on e5 with the rook."
+        },
+        {
+          "id": "defender-summary",
+          "title": "Ask what each piece guards",
+          "text": "Before attacking a piece or square, ask what defends it. Capture the defender, or attack it so it has to move, and what it protected becomes a target. To practice, open Puzzles in Study and choose the Capturing defender or Deflection theme."
+        }
+      ]
+    },
+    {
+      "id": "back-rank",
+      "title": "Back-rank checkmate",
+      "steps": [
+        {
+          "id": "back-rank-open",
+          "title": "Trapped behind its own pawns",
+          "text": "A castled king often sits behind three unmoved pawns. They shield the king, but they also block its escape. If a rook or queen checks along the back rank and nothing can capture it or block, it is checkmate. No black piece guards e8 here.",
+          "fen": "6k1/ppr2ppp/8/q7/2Q5/2P5/PP3PPP/4R1K1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "f7",
+            "g7",
+            "h7"
+          ]
+        },
+        {
+          "id": "back-rank-open-mate",
+          "title": "Mate on the back rank",
+          "text": "Find the checkmate on Black's back rank, the eighth rank.",
+          "move": "Re8#",
+          "feedback": "Re8 is checkmate. The rook checks along the eighth rank, the pawns on f7, g7 and h7 hold the king in, and no black piece can take the rook or block on f8.",
+          "hint": "Move the rook from e1 to e8."
+        },
+        {
+          "id": "back-rank-count",
+          "title": "Count the guards",
+          "text": "When the back rank is guarded, count. Black's rook on e8 holds the back rank, and the bishop on d7 defends it. Your rooks are doubled: one behind the other on the e-file.",
+          "fen": "4r1k1/pprb1ppp/1n6/8/8/2N5/PPP1RPPP/4RBK1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "e8",
+            "d7"
+          ]
+        },
+        {
+          "id": "back-rank-count-trade",
+          "title": "Start the exchange",
+          "text": "Capture on e8 with check, then count what can take back.",
+          "move": "Rxe8+",
+          "reply": "Bxe8",
+          "feedback": "Rxe8+ leaves Black only one legal move, ...Bxe8. Now no other black piece guards e8.",
+          "hint": "Capture on e8 with the e2-rook."
+        },
+        {
+          "id": "back-rank-count-mate",
+          "title": "The last capture",
+          "text": "Make the last capture on e8.",
+          "move": "Rxe8#",
+          "feedback": "Rxe8 is checkmate. You had two rooks attacking e8 and Black had only one piece to take back, so your last capture landed with mate.",
+          "hint": "Capture on e8 with the e1-rook."
+        },
+        {
+          "id": "back-rank-sacrifice",
+          "title": "Break the guard with a sacrifice",
+          "text": "Sometimes the guard can only be broken by giving up material. Black's rook on c8 holds the back rank, and Black's queen on d7 defends it. Your queen and rook are doubled on the c-file.",
+          "fen": "2r3k1/pp1q1ppp/8/8/8/7P/PPQ2PP1/2R3K1 w - - 0 1",
+          "position": "",
+          "squares": [
+            "c8",
+            "d7"
+          ]
+        },
+        {
+          "id": "back-rank-sacrifice-queen",
+          "title": "Give up the queen",
+          "text": "Capture the c8-rook with your queen, with check.",
+          "move": "Qxc8+",
+          "reply": "Qxc8",
+          "feedback": "Qxc8+ checks along the eighth rank. Black can block on d8 or e8, or take your queen with ...Qxc8, and every answer is mated next move. Black takes the queen.",
+          "hint": "Capture on c8 with the queen."
+        },
+        {
+          "id": "back-rank-sacrifice-mate",
+          "title": "Mate with the rook",
+          "text": "Finish on the back rank.",
+          "move": "Rxc8#",
+          "feedback": "Rxc8 is checkmate. Your queen pulled Black's queen away from d7, and the rook behind it finished the job.",
+          "hint": "Capture on c8 with the rook."
+        },
+        {
+          "id": "back-rank-summary",
+          "title": "Give your own king air",
+          "text": "Look at your own back rank too. Your pawn on h3 gives your king an escape square on h2, so a check along your back rank need not be mate. Chess players call such a square luft, German for air. To practice, open Puzzles in Study and choose the Back rank mate theme."
+        }
+      ]
+    }
+  ]
+}

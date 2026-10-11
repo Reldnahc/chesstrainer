@@ -1244,6 +1244,89 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/study/course-files": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Save Course
+         * @description Import or save a course file. Administrators only.
+         *
+         *     The editor sends ``create`` for a new course and ``base_revision`` for the
+         *     revision it opened, so a save never silently replaces another course.
+         */
+        post: operations["save_course_api_study_course_files_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/course-files/check": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Check Course
+         * @description The lesson editor's live check: the first problem and each step's board.
+         */
+        post: operations["check_course_api_study_course_files_check_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/course-files/position": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Editor Position
+         * @description Play recorded editor moves; legality stays on the server.
+         */
+        post: operations["editor_position_api_study_course_files_position_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/course-files/{course_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Course
+         * @description Remove a club course file. A built-in course it replaced comes back.
+         */
+        delete: operations["delete_course_api_study_course_files__course_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/study/courses": {
         parameters: {
             query?: never;
@@ -1270,6 +1353,26 @@ export interface paths {
         };
         /** Course */
         get: operations["course_api_study_courses__course_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/courses/{course_id}/file": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Export Course
+         * @description Anyone may download a course as a course file.
+         */
+        get: operations["export_course_api_study_courses__course_id__file_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1912,6 +2015,53 @@ export interface components {
             /** Winning Games */
             winning_games: number;
         };
+        /** CourseFileCheck */
+        CourseFileCheck: {
+            /** Error */
+            error: string | null;
+            /** Steps */
+            steps: {
+                [key: string]: components["schemas"]["CourseFileStep"];
+            };
+        };
+        /** CourseFileDeleted */
+        CourseFileDeleted: {
+            /** Built In Restored */
+            built_in_restored: boolean;
+            /** Id */
+            id: string;
+        };
+        /** CourseFileProblem */
+        CourseFileProblem: {
+            /** File */
+            file: string;
+            /** Message */
+            message: string;
+        };
+        /** CourseFileSaved */
+        CourseFileSaved: {
+            /** Id */
+            id: string;
+            /** Revision */
+            revision: string;
+            /** Revision Changed */
+            revision_changed: boolean;
+            /** Title */
+            title: string;
+        };
+        /** CourseFileStep */
+        CourseFileStep: {
+            /** End Fen */
+            end_fen: string;
+            /** End Position */
+            end_position: string;
+            /** Fen */
+            fen: string;
+            /** Initial Fen */
+            initial_fen: string;
+            /** Position */
+            position: string;
+        };
         /** Coverage */
         Coverage: {
             /** Abstention Reasons */
@@ -2028,6 +2178,42 @@ export interface components {
             time_class: string | null;
             /** Time Control */
             time_control: string | null;
+        };
+        /** EditorMove */
+        EditorMove: {
+            /** From Square */
+            from_square: string;
+            /** Promotion */
+            promotion?: ("q" | "r" | "b" | "n") | null;
+            /** To Square */
+            to_square: string;
+        };
+        /** EditorPosition */
+        EditorPosition: {
+            /** Fen */
+            fen: string;
+            /** Legal Moves */
+            legal_moves: components["schemas"]["LegalMove"][];
+            /** Moves */
+            moves: string;
+            /** San */
+            san: string | null;
+            /**
+             * Turn
+             * @enum {string}
+             */
+            turn: "white" | "black";
+        };
+        /** EditorPositionRequest */
+        EditorPositionRequest: {
+            /** Fen */
+            fen?: string | null;
+            move?: components["schemas"]["EditorMove"] | null;
+            /**
+             * Moves
+             * @default
+             */
+            moves: string;
         };
         /** EndgameRecord */
         EndgameRecord: {
@@ -2844,6 +3030,12 @@ export interface components {
             learner_color: "white" | "black";
             /** Revision */
             revision: string;
+            /**
+             * Source
+             * @default built_in
+             * @enum {string}
+             */
+            source: "built_in" | "club";
             /** Title */
             title: string;
             /**
@@ -2856,6 +3048,11 @@ export interface components {
         LessonCourseView: {
             /** Attributions */
             attributions: components["schemas"]["LessonAttribution"][];
+            /**
+             * Can Manage
+             * @default false
+             */
+            can_manage: boolean;
             /** Chapters */
             chapters: components["schemas"]["LessonChapterSummary"][];
             /** Description */
@@ -2871,6 +3068,12 @@ export interface components {
             lines: components["schemas"]["LessonLineSummary"][];
             /** Revision */
             revision: string;
+            /**
+             * Source
+             * @default built_in
+             * @enum {string}
+             */
+            source: "built_in" | "club";
             /** Title */
             title: string;
             /**
@@ -2909,8 +3112,15 @@ export interface components {
         };
         /** LessonLibrary */
         LessonLibrary: {
+            /**
+             * Can Manage
+             * @default false
+             */
+            can_manage: boolean;
             /** Courses */
             courses: components["schemas"]["LessonCourseSummary"][];
+            /** Problems */
+            problems?: components["schemas"]["CourseFileProblem"][];
             /** Resume */
             resume: components["schemas"]["LessonResume"][];
         };
@@ -6891,6 +7101,134 @@ export interface operations {
             };
         };
     };
+    save_course_api_study_course_files_post: {
+        parameters: {
+            query?: {
+                base_revision?: string | null;
+                create?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    [key: string]: unknown;
+                };
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseFileSaved"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    check_course_api_study_course_files_check_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    [key: string]: unknown;
+                };
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseFileCheck"];
+                };
+            };
+        };
+    };
+    editor_position_api_study_course_files_position_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EditorPositionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EditorPosition"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_course_api_study_course_files__course_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CourseFileDeleted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     library_api_study_courses_get: {
         parameters: {
             query?: never;
@@ -6931,6 +7269,45 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["LessonCourseView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    export_course_api_study_courses__course_id__file_get: {
+        parameters: {
+            query?: {
+                revision?: string | null;
+            };
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        format?: string;
+                        id?: string;
+                        revision?: string;
+                    } & {
+                        [key: string]: unknown;
+                    };
                 };
             };
             /** @description Validation Error */

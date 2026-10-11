@@ -2,10 +2,10 @@
 
 import chess
 import pytest
+from course_claims import position
+from course_positions.italian import KNIGHT_ROUTE
 from trainer.chess_core import position_key
 from trainer.study_lessons.bundled import BundledCourses
-from trainer.study_lessons.courses.authoring import position
-from trainer.study_lessons.courses.italian_positions import KNIGHT_ROUTE
 
 COURSES = BundledCourses().courses(None)
 # The White Italian deliberately teaches two plans from one position: chapter 2

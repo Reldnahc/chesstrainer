@@ -1,0 +1,1293 @@
+{
+  "format": "fieldwork-course-1",
+  "id": "vienna-gambit",
+  "revision": "2026-10-v1",
+  "title": "Vienna Gambit · An attacking White repertoire",
+  "description": "Offer the f-pawn after 1.e4 e5 2.Nc3 Nf6 and punish the most common replies: a chain of checks against exf4, a strong center against d5, and calm development against d6, Nc6 and Black's other second moves. Side trips cover the replies club players choose most often.",
+  "side": "white",
+  "topic": "opening",
+  "credits": [
+    {
+      "text": "Original Fieldwork instruction. Opponent replies were chosen with the Maia-3 human move model and every taught move was checked with Stockfish.",
+      "license": "Repository license"
+    }
+  ],
+  "lines": [
+    {
+      "id": "vienna-accepted",
+      "title": "Vienna Gambit · 3...exf4 4.e5, attack on f7",
+      "moves": "e4 e5 Nc3 Nf6 f4 exf4 e5 Ng8 Nf3 d6 d4 dxe5 Bb5+ c6 Bc4 exd4 Bxf4 dxc3 Bxf7+ Ke7 Qe2+ Kxf7 Ne5+ Kf6 Bg5+ Kxg5 Nf7+",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-king-takes",
+      "title": "Vienna Gambit · 3...exf4, 10...Kxf7",
+      "moves": "e4 e5 Nc3 Nf6 f4 exf4 e5 Ng8 Nf3 d6 d4 dxe5 Bb5+ c6 Bc4 exd4 Bxf4 dxc3 Bxf7+ Kxf7 Qxd8",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-king-back",
+      "title": "Vienna Gambit · 3...exf4, 12...Ke8",
+      "moves": "e4 e5 Nc3 Nf6 f4 exf4 e5 Ng8 Nf3 d6 d4 dxe5 Bb5+ c6 Bc4 exd4 Bxf4 dxc3 Bxf7+ Ke7 Qe2+ Kxf7 Ne5+ Ke8 Nxc6+ Qe7 Nxe7",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-block",
+      "title": "Vienna Gambit · 3...exf4, 7...Bd7",
+      "moves": "e4 e5 Nc3 Nf6 f4 exf4 e5 Ng8 Nf3 d6 d4 dxe5 Bb5+ Bd7 Qe2 Bxb5 Nxb5",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-queen",
+      "title": "Vienna Gambit · 3...exf4 4.e5 Qe7",
+      "moves": "e4 e5 Nc3 Nf6 f4 exf4 e5 Qe7 Qe2 Ng8 d4 d6 Nd5 Qd7 exd6+ Kd8 dxc7+",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-accepted-knight",
+      "title": "Vienna Gambit · 3...exf4, 5...Nc6",
+      "moves": "e4 e5 Nc3 Nf6 f4 exf4 e5 Ng8 Nf3 Nc6 d4 d6 Bb5 Bd7 Qe2 dxe5 Bxf4",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-pin",
+      "title": "Vienna Gambit · 3...exf4, 6...Bg4",
+      "moves": "e4 e5 Nc3 Nf6 f4 exf4 e5 Ng8 Nf3 d6 d4 Bg4 Bxf4 dxe5 Bxe5 Nc6 Bb5",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-strike",
+      "title": "Vienna Gambit · 3...d5 main line",
+      "moves": "e4 e5 Nc3 Nf6 f4 d5 fxe5 Nxe4 Nf3 Nxc3 bxc3 Bg4 d4 Nc6 Bd3 Be7 O-O O-O h3",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-strike-pin",
+      "title": "Vienna Gambit · 3...d5, 5...Bg4",
+      "moves": "e4 e5 Nc3 Nf6 f4 d5 fxe5 Nxe4 Nf3 Bg4 Qe2 Nxc3 dxc3 Nc6 Bf4",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-strike-bishop",
+      "title": "Vienna Gambit · 3...d5, 5...Bc5",
+      "moves": "e4 e5 Nc3 Nf6 f4 d5 fxe5 Nxe4 Nf3 Bc5 d4 Bb4 Bd2 Nxd2 Qxd2",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-strike-knight",
+      "title": "Vienna Gambit · 3...d5, 6...Nc6",
+      "moves": "e4 e5 Nc3 Nf6 f4 d5 fxe5 Nxe4 Nf3 Nxc3 bxc3 Nc6 d4 Bg4 Bd3 Be7 O-O",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-solid",
+      "title": "Vienna Gambit · 3...d6 main line",
+      "moves": "e4 e5 Nc3 Nf6 f4 d6 Nf3 Nc6 d4 exd4 Nxd4 Nxd4 Qxd4 Be7 Be3 O-O O-O-O",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-solid-pin",
+      "title": "Vienna Gambit · 3...d6 4.Nf3 Bg4",
+      "moves": "e4 e5 Nc3 Nf6 f4 d6 Nf3 Bg4 h3 Bxf3 Qxf3 Nc6 Bb5",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-solid-take",
+      "title": "Vienna Gambit · 3...d6 4.Nf3 exf4",
+      "moves": "e4 e5 Nc3 Nf6 f4 d6 Nf3 exf4 d4 Bg4 Bxf4",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-defended",
+      "title": "Vienna Gambit · 3...Nc6",
+      "moves": "e4 e5 Nc3 Nf6 f4 Nc6 fxe5 Nxe5 d4 Nc6 e5 Ng8 Nf3",
+      "repertoire": true,
+      "eco": "C29"
+    },
+    {
+      "id": "vienna-second-knights",
+      "title": "Vienna Game · 2...Nc6 main line",
+      "moves": "e4 e5 Nc3 Nc6 Bc4 Nf6 d3 Bc5 Nf3 d6 O-O Bg4 h3",
+      "repertoire": true,
+      "eco": "C28"
+    },
+    {
+      "id": "vienna-second-knights-early",
+      "title": "Vienna Game · 2...Nc6 3.Bc4 Bc5",
+      "moves": "e4 e5 Nc3 Nc6 Bc4 Bc5 Nf3 Nf6 O-O O-O d3",
+      "repertoire": true,
+      "eco": "C25"
+    },
+    {
+      "id": "vienna-second-knights-pin",
+      "title": "Vienna Game · 2...Nc6 3.Bc4 Nf6 4.d3 Bb4",
+      "moves": "e4 e5 Nc3 Nc6 Bc4 Nf6 d3 Bb4 Nf3 Bxc3+ bxc3",
+      "repertoire": true,
+      "eco": "C28"
+    },
+    {
+      "id": "vienna-bishop-first",
+      "title": "Vienna Game · Anderssen Defense, 2...Bc5",
+      "moves": "e4 e5 Nc3 Bc5 Nf3 d6 d4 exd4 Nxd4 Nf6 Bg5 h6 Bh4 g5 Bg3",
+      "repertoire": true,
+      "eco": "C25"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "vienna-accepted",
+      "title": "The gambit accepted",
+      "steps": [
+        {
+          "id": "accepted-welcome",
+          "title": "The Vienna Gambit",
+          "text": "You play White. After 1.e4 e5 2.Nc3 Nf6 you push f4, offering a pawn to open lines for your pieces. Offering material like this to gain time or open lines is called a gambit; this one is the Vienna Gambit. Many club players take the pawn with exf4, and this chapter shows how to punish that."
+        },
+        {
+          "id": "accepted-king-pawn",
+          "title": "Open with the king's pawn",
+          "text": "Push your e-pawn two squares.",
+          "move": "e4",
+          "reply": "e5",
+          "feedback": "Black answers in the center with e5.",
+          "hint": "Move e2 to e4."
+        },
+        {
+          "id": "accepted-development",
+          "title": "Develop the queenside knight",
+          "text": "Develop the b1-knight to c3. Unlike Nf3, it leaves your f-pawn free to advance.",
+          "move": "Nc3",
+          "reply": "Nf6",
+          "feedback": "Black develops Nf6.",
+          "hint": "Move the knight from b1 to c3."
+        },
+        {
+          "id": "accepted-gambit",
+          "title": "Offer the f-pawn",
+          "text": "Push f4. The pawn attacks e5 and offers itself to open the f-file.",
+          "move": "f4",
+          "reply": "exf4",
+          "feedback": "Black takes the pawn.",
+          "hint": "Move f2 to f4."
+        },
+        {
+          "id": "accepted-push",
+          "title": "Chase the knight",
+          "text": "Push e5. The pawn attacks Black's f6-knight.",
+          "move": "e5",
+          "feedback": "The knight is attacked. Black usually moves it back.",
+          "hint": "Move the pawn from e4 to e5."
+        },
+        {
+          "id": "accepted-queen-choice",
+          "title": "If the queen goes to e7",
+          "text": "The knight usually goes back to g8. Explore Qe7 first, or continue with Ng8.",
+          "branch": "accepted-queen",
+          "next": "accepted-retreat"
+        },
+        {
+          "id": "accepted-queen",
+          "title": "The queen blocks the e-file",
+          "text": "Black moves the queen to e7 instead of retreating the knight. The queen now attacks your e5-pawn, and your king on e1 stands behind it on the same file. That pawn is pinned: it cannot take the f6-knight, because that would expose your king to the queen.",
+          "show": "Qe7"
+        },
+        {
+          "id": "accepted-queen-guard",
+          "title": "Guard the e-file",
+          "text": "Move your queen to e2. It defends e5 and stands between Black's queen and your king.",
+          "move": "Qe2",
+          "reply": "Ng8",
+          "feedback": "Black's knight retreats to g8.",
+          "hint": "Move the queen from d1 to e2."
+        },
+        {
+          "id": "accepted-queen-develop",
+          "title": "Support the pawn",
+          "text": "Push d4. It supports e5 and opens the c1-bishop's path toward f4.",
+          "move": "d4",
+          "reply": "d6",
+          "feedback": "Black attacks your e5-pawn with d6.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "accepted-queen-jump",
+          "title": "Attack the queen",
+          "text": "Jump the c3-knight to d5. It attacks Black's queen on e7 and the c7-pawn.",
+          "move": "Nd5",
+          "reply": "Qd7",
+          "feedback": "The queen moves to d7. Now the e-file between your queen and Black's king is clear except for your e5-pawn.",
+          "hint": "Move the knight from c3 to d5."
+        },
+        {
+          "id": "accepted-queen-discover",
+          "title": "Uncover a check",
+          "text": "Capture on d6 with the e5-pawn. Moving the pawn opens the e-file, so your queen on e2 gives check.",
+          "move": "exd6+",
+          "reply": "Kd8",
+          "feedback": "The king steps to d8. Your d6-pawn can capture again.",
+          "hint": "Move the pawn from e5 to d6."
+        },
+        {
+          "id": "accepted-queen-fork",
+          "title": "Check again",
+          "text": "Capture the c7-pawn with your d6-pawn. It gives check and attacks the b8-knight.",
+          "move": "dxc7+",
+          "feedback": "The pawn checks the king from c7.",
+          "hint": "Move the pawn from d6 to c7."
+        },
+        {
+          "id": "accepted-queen-summary",
+          "title": "Watch the knight on d5",
+          "text": "Black's king cannot take on c7, because your d5-knight guards that square. If Black's queen takes the pawn, your knight takes the queen.",
+          "next": null
+        },
+        {
+          "id": "accepted-retreat",
+          "title": "The knight goes home",
+          "text": "Black's knight retreats to g8, its starting square.",
+          "show": "Ng8"
+        },
+        {
+          "id": "accepted-develop",
+          "title": "Develop and cover h4",
+          "text": "Develop the g1-knight to f3. It controls h4, where Black's queen could otherwise give check.",
+          "move": "Nf3",
+          "feedback": "Your knight is out, and if Black's queen checks on h4, your knight takes it.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "accepted-knight-choice",
+          "title": "If Black plays Nc6",
+          "text": "Black most often attacks e5 with d6. Explore Nc6 first, or continue with d6.",
+          "branch": "accepted-knight",
+          "next": "accepted-challenge"
+        },
+        {
+          "id": "accepted-knight",
+          "title": "Black develops the knight",
+          "text": "Black develops the b8-knight to c6, where it attacks your e5-pawn.",
+          "show": "Nc6"
+        },
+        {
+          "id": "accepted-knight-center",
+          "title": "Support the pawn",
+          "text": "Push d4. It supports e5 and opens a path for the c1-bishop toward f4.",
+          "move": "d4",
+          "reply": "d6",
+          "feedback": "Black attacks e5 a second time with d6.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "accepted-knight-pin",
+          "title": "Pin the knight",
+          "text": "Develop the f1-bishop to b5. It pins the c6-knight to Black's king: the knight cannot move, because that would leave the king in check. This is called a pin.",
+          "move": "Bb5",
+          "reply": "Bd7",
+          "feedback": "Black defends the c6-knight with Bd7.",
+          "hint": "Move the bishop from f1 to b5."
+        },
+        {
+          "id": "accepted-knight-queen",
+          "title": "Bring the queen to the e-file",
+          "text": "Move your queen to e2. It defends the b5-bishop and lines up on the e-file toward Black's king.",
+          "move": "Qe2",
+          "reply": "dxe5",
+          "feedback": "Black takes your e5-pawn.",
+          "hint": "Move the queen from d1 to e2."
+        },
+        {
+          "id": "accepted-knight-recapture",
+          "title": "Win back the gambit pawn",
+          "text": "Take the f4-pawn with the c1-bishop.",
+          "move": "Bxf4",
+          "feedback": "Your bishop is developed and attacks the e5-pawn.",
+          "hint": "Move the bishop from c1 to f4."
+        },
+        {
+          "id": "accepted-knight-summary",
+          "title": "Pressure on e5",
+          "text": "Black is still a pawn ahead, but your d4-pawn, f3-knight, f4-bishop and e2-queen all attack the e5-pawn, and Black's kingside pieces are still on their starting squares.",
+          "next": null
+        },
+        {
+          "id": "accepted-challenge",
+          "title": "Black attacks e5",
+          "text": "Black pushes d6 to attack your e5-pawn.",
+          "show": "d6"
+        },
+        {
+          "id": "accepted-center",
+          "title": "Support the pawn",
+          "text": "Push d4. It supports e5 and opens the c1-bishop's path toward f4.",
+          "move": "d4",
+          "feedback": "Your pawns on d4 and e5 control the center.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "accepted-pin-choice",
+          "title": "If Black pins with Bg4",
+          "text": "Black usually takes on e5. Explore the pin with Bg4 first, or continue with dxe5.",
+          "branch": "accepted-pin",
+          "next": "accepted-exchange"
+        },
+        {
+          "id": "accepted-pin",
+          "title": "Black pins the knight",
+          "text": "Black develops the c8-bishop to g4, pinning your f3-knight to the queen on d1. The knight may still move, but then the bishop would take your queen.",
+          "show": "Bg4"
+        },
+        {
+          "id": "accepted-pin-take",
+          "title": "Win back the pawn",
+          "text": "Take the f4-pawn with the c1-bishop. It also defends your e5-pawn.",
+          "move": "Bxf4",
+          "reply": "dxe5",
+          "feedback": "Black takes on e5.",
+          "hint": "Move the bishop from c1 to f4."
+        },
+        {
+          "id": "accepted-pin-recapture",
+          "title": "Take back",
+          "text": "Recapture on e5 with the bishop.",
+          "move": "Bxe5",
+          "reply": "Nc6",
+          "feedback": "Black develops Nc6 and attacks your e5-bishop.",
+          "hint": "Move the bishop from f4 to e5."
+        },
+        {
+          "id": "accepted-pin-bishop",
+          "title": "Pin the knight back",
+          "text": "Develop the f1-bishop to b5. It pins the c6-knight to Black's king.",
+          "move": "Bb5",
+          "feedback": "The c6-knight cannot take your e5-bishop without exposing Black's king to check.",
+          "hint": "Move the bishop from f1 to b5."
+        },
+        {
+          "id": "accepted-pin-summary",
+          "title": "Material is level",
+          "text": "Both sides have won and lost two pawns, so material is level. Your bishops are active and you can castle next.",
+          "next": null
+        },
+        {
+          "id": "accepted-exchange",
+          "title": "Black takes on e5",
+          "text": "Black's d-pawn takes your e5-pawn.",
+          "show": "dxe5"
+        },
+        {
+          "id": "accepted-check",
+          "title": "Check before recapturing",
+          "text": "Give check with the f1-bishop on b5. Taking back on e5 with the d-pawn would let Black trade queens with Qxd1+, and without queens your attack is gone.",
+          "move": "Bb5+",
+          "feedback": "Black must answer the check.",
+          "hint": "Move the bishop from f1 to b5."
+        },
+        {
+          "id": "accepted-block-choice",
+          "title": "If Black blocks with Bd7",
+          "text": "Black usually blocks with c6. Explore Bd7 first, or continue with c6.",
+          "branch": "accepted-block",
+          "next": "accepted-pawn-block"
+        },
+        {
+          "id": "accepted-block",
+          "title": "Black blocks with the bishop",
+          "text": "Black blocks the check with the c8-bishop on d7.",
+          "show": "Bd7"
+        },
+        {
+          "id": "accepted-block-queen",
+          "title": "Attack e5 and guard the bishop",
+          "text": "Move your queen to e2. It attacks the e5-pawn and defends your b5-bishop.",
+          "move": "Qe2",
+          "reply": "Bxb5",
+          "feedback": "Black exchanges bishops.",
+          "hint": "Move the queen from d1 to e2."
+        },
+        {
+          "id": "accepted-block-recapture",
+          "title": "Take back with the knight",
+          "text": "Recapture on b5 with the c3-knight.",
+          "move": "Nxb5",
+          "feedback": "Your knight on b5 attacks c7.",
+          "hint": "Move the knight from c3 to b5."
+        },
+        {
+          "id": "accepted-block-summary",
+          "title": "Two targets",
+          "text": "Your queen threatens to take the e5-pawn with check, and your b5-knight eyes the c7-pawn. Black has to deal with both.",
+          "next": null
+        },
+        {
+          "id": "accepted-pawn-block",
+          "title": "Black blocks with a pawn",
+          "text": "Black blocks the check with c6, and the pawn attacks your bishop.",
+          "show": "c6"
+        },
+        {
+          "id": "accepted-bishop",
+          "title": "Aim at f7",
+          "text": "Move the bishop to c4, where it aims at f7.",
+          "move": "Bc4",
+          "reply": "exd4",
+          "feedback": "Black takes your d4-pawn. The pawn on d4 now attacks your c3-knight.",
+          "hint": "Move the bishop from b5 to c4."
+        },
+        {
+          "id": "accepted-recapture",
+          "title": "Take back the gambit pawn",
+          "text": "Take the f4-pawn with the c1-bishop. Let Black take your knight: you are getting your pieces out for an attack.",
+          "move": "Bxf4",
+          "reply": "dxc3",
+          "feedback": "Black takes your c3-knight. Black's queen now attacks yours on d1, so your next move must be a check.",
+          "hint": "Move the bishop from c1 to f4."
+        },
+        {
+          "id": "accepted-sacrifice",
+          "title": "Sacrifice on f7",
+          "text": "Take the f7-pawn with your bishop, with check. Giving up material on purpose like this is called a sacrifice.",
+          "move": "Bxf7+",
+          "feedback": "Black's king must move or take the bishop.",
+          "hint": "Move the bishop from c4 to f7."
+        },
+        {
+          "id": "accepted-king-takes-choice",
+          "title": "If the king takes at once",
+          "text": "Black most often steps to e7. Explore Kxf7 first, or continue with Ke7.",
+          "branch": "accepted-king-takes",
+          "next": "accepted-step"
+        },
+        {
+          "id": "accepted-king-takes",
+          "title": "The king takes at once",
+          "text": "Black's king takes your bishop on f7 instead of stepping to e7.",
+          "show": "Kxf7"
+        },
+        {
+          "id": "accepted-king-takes-queen",
+          "title": "Take the queen",
+          "text": "Take Black's queen on d8 with your queen. The d-file is completely open.",
+          "move": "Qxd8",
+          "feedback": "You have won Black's queen.",
+          "hint": "Move the queen from d1 to d8."
+        },
+        {
+          "id": "accepted-king-takes-summary",
+          "title": "The open d-file",
+          "text": "Once Black's pawn took on c3, the two queens faced each other on the empty d-file. Your check on f7 came first, and taking the bishop did nothing to save Black's queen.",
+          "next": null
+        },
+        {
+          "id": "accepted-step",
+          "title": "The king steps aside",
+          "text": "Black's king steps to e7.",
+          "show": "Ke7"
+        },
+        {
+          "id": "accepted-queen-check",
+          "title": "Check on the e-file",
+          "text": "Move your queen to e2 with check. The e-file is open all the way to Black's king.",
+          "move": "Qe2+",
+          "reply": "Kxf7",
+          "feedback": "The king takes your bishop on f7.",
+          "hint": "Move the queen from d1 to e2."
+        },
+        {
+          "id": "accepted-knight-check",
+          "title": "Check with the knight",
+          "text": "Jump the f3-knight to e5 with check.",
+          "move": "Ne5+",
+          "feedback": "The king must move again.",
+          "hint": "Move the knight from f3 to e5."
+        },
+        {
+          "id": "accepted-king-back-choice",
+          "title": "If the king goes back",
+          "text": "Black most often plays Kf6. Explore Ke8 first, or continue with Kf6.",
+          "branch": "accepted-king-back",
+          "next": "accepted-king-out"
+        },
+        {
+          "id": "accepted-king-back",
+          "title": "The king goes back",
+          "text": "Black's king steps back to e8 instead of f6.",
+          "show": "Ke8"
+        },
+        {
+          "id": "accepted-king-back-discover",
+          "title": "Uncover a check",
+          "text": "Take the c6-pawn with your e5-knight. Moving the knight opens the e-file, so your queen gives check, and the knight now attacks Black's queen.",
+          "move": "Nxc6+",
+          "reply": "Qe7",
+          "feedback": "Black blocks the check with the queen on e7.",
+          "hint": "Move the knight from e5 to c6."
+        },
+        {
+          "id": "accepted-king-back-queen",
+          "title": "Take the queen",
+          "text": "Capture Black's queen on e7 with the knight.",
+          "move": "Nxe7",
+          "feedback": "You have won Black's queen.",
+          "hint": "Move the knight from c6 to e7."
+        },
+        {
+          "id": "accepted-king-back-summary",
+          "title": "A discovered check",
+          "text": "When one piece moves out of the way and another piece behind it gives check, it is a discovered check. The moving knight was free to attack the queen. Once Black takes your knight on e7, material is about level, but Black's king has no shelter, your pieces are attacking it, and White is clearly winning.",
+          "next": null
+        },
+        {
+          "id": "accepted-king-out",
+          "title": "The king walks out",
+          "text": "Black's king steps forward to f6.",
+          "show": "Kf6"
+        },
+        {
+          "id": "accepted-lure",
+          "title": "Lure the king",
+          "text": "Give check with the f4-bishop on g5. If the king takes it, your knight can check again.",
+          "move": "Bg5+",
+          "reply": "Kxg5",
+          "feedback": "The king takes your bishop on g5.",
+          "hint": "Move the bishop from f4 to g5."
+        },
+        {
+          "id": "accepted-fork",
+          "title": "Fork king, queen and rook",
+          "text": "Jump the e5-knight to f7 with check. From f7 it also attacks Black's queen on d8 and rook on h8. One piece attacking several pieces at once is called a fork.",
+          "move": "Nf7+",
+          "feedback": "The king must move, and then your knight takes the queen or the rook.",
+          "hint": "Move the knight from e5 to f7."
+        },
+        {
+          "id": "accepted-summary",
+          "title": "Checks first, material later",
+          "text": "You gave up a knight and two bishops, but from Bxf7+ onward every move was a check, so Black never had time to defend. Now Black's king must move, and your knight wins the queen or the rook. When the opponent's king is exposed, look at checks first."
+        },
+        {
+          "id": "accepted-rehearsal",
+          "title": "Play the accepted gambit",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "vienna-accepted"
+        }
+      ]
+    },
+    {
+      "id": "vienna-strike",
+      "title": "Black strikes with d5",
+      "steps": [
+        {
+          "id": "strike-welcome",
+          "title": "Black strikes with d5",
+          "text": "The classical answer to the Vienna Gambit is d5: instead of taking your f-pawn, Black hits back in the center. You take on e5, develop quickly and build a center with d4."
+        },
+        {
+          "id": "strike-arrival",
+          "title": "Reach the Vienna Gambit",
+          "text": "You offer the f-pawn, and Black answers with d5, attacking your e4-pawn.",
+          "show": "e4 e5 Nc3 Nf6 f4 d5"
+        },
+        {
+          "id": "strike-take",
+          "title": "Take on e5",
+          "text": "Capture the e5-pawn with your f-pawn. Your new pawn on e5 attacks the f6-knight.",
+          "move": "fxe5",
+          "reply": "Nxe4",
+          "feedback": "Black's knight takes your e4-pawn and stands in the center.",
+          "hint": "Move the pawn from f4 to e5."
+        },
+        {
+          "id": "strike-develop",
+          "title": "Develop and guard e5",
+          "text": "Develop the g1-knight to f3. It defends the e5-pawn.",
+          "move": "Nf3",
+          "feedback": "Black most often trades knights on c3.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "strike-pin-choice",
+          "title": "If Black pins with Bg4",
+          "text": "Explore Bg4 and Bc5 first, or continue to the next reply.",
+          "branch": "strike-pin",
+          "next": "strike-bishop-choice"
+        },
+        {
+          "id": "strike-pin",
+          "title": "Black pins the knight first",
+          "text": "Black develops the c8-bishop to g4 instead of trading knights. It pins your f3-knight to the queen on d1.",
+          "show": "Bg4"
+        },
+        {
+          "id": "strike-pin-queen",
+          "title": "Attack the knight",
+          "text": "Move your queen to e2. It attacks Black's e4-knight. Your f3-knight is still pinned, now to the queen on e2, but your queen also guards the knight.",
+          "move": "Qe2",
+          "reply": "Nxc3",
+          "feedback": "Black's knight takes your c3-knight.",
+          "hint": "Move the queen from d1 to e2."
+        },
+        {
+          "id": "strike-pin-recapture",
+          "title": "Take back with the d-pawn",
+          "text": "Recapture with the d-pawn. It opens the path for your c1-bishop.",
+          "move": "dxc3",
+          "reply": "Nc6",
+          "feedback": "Black's Nc6 attacks your e5-pawn.",
+          "hint": "Move the pawn from d2 to c3."
+        },
+        {
+          "id": "strike-pin-guard",
+          "title": "Defend the pawn",
+          "text": "Develop the c1-bishop to f4, where it defends e5.",
+          "move": "Bf4",
+          "feedback": "Your e5-pawn is defended by the f3-knight, the f4-bishop and your queen.",
+          "hint": "Move the bishop from c1 to f4."
+        },
+        {
+          "id": "strike-pin-summary",
+          "title": "Castle queenside next",
+          "text": "Your queen and c1-bishop have left the back rank, so you can castle queenside next. The e5-pawn gives you space in the center.",
+          "next": null
+        },
+        {
+          "id": "strike-bishop-choice",
+          "title": "If Black plays Bc5",
+          "text": "Explore Bc5, or continue with the knight trade.",
+          "branch": "strike-bishop",
+          "next": "strike-trade"
+        },
+        {
+          "id": "strike-bishop",
+          "title": "Black develops the bishop",
+          "text": "Black develops the f8-bishop to c5, aiming at g1.",
+          "show": "Bc5"
+        },
+        {
+          "id": "strike-bishop-center",
+          "title": "Attack the bishop",
+          "text": "Push d4. The pawn attacks the c5-bishop and takes the center.",
+          "move": "d4",
+          "reply": "Bb4",
+          "feedback": "The bishop moves to b4 and pins your c3-knight to your king.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "strike-bishop-block",
+          "title": "Break the pin",
+          "text": "Develop the c1-bishop to d2, between the b4-bishop and your king.",
+          "move": "Bd2",
+          "reply": "Nxd2",
+          "feedback": "Black's knight takes your d2-bishop.",
+          "hint": "Move the bishop from c1 to d2."
+        },
+        {
+          "id": "strike-bishop-recapture",
+          "title": "Take back with the queen",
+          "text": "Recapture on d2 with your queen.",
+          "move": "Qxd2",
+          "feedback": "Your queen defends the c3-knight. The knight is still pinned to your queen, but if Black takes it, you take back.",
+          "hint": "Move the queen from d1 to d2."
+        },
+        {
+          "id": "strike-bishop-summary",
+          "title": "A big center",
+          "text": "Your pawns on d4 and e5 give you space. Your b1-knight, c1-bishop and queen have all left the back rank, so you can castle queenside next.",
+          "next": null
+        },
+        {
+          "id": "strike-trade",
+          "title": "Black trades knights",
+          "text": "Black's e4-knight takes your c3-knight.",
+          "show": "Nxc3"
+        },
+        {
+          "id": "strike-recapture",
+          "title": "Take back toward the center",
+          "text": "Recapture with the b-pawn. It moves toward the center and leaves the b-file without a white pawn, ready for a rook.",
+          "move": "bxc3",
+          "feedback": "Black can pin your knight with Bg4 or develop Nc6.",
+          "hint": "Move the pawn from b2 to c3."
+        },
+        {
+          "id": "strike-knight-choice",
+          "title": "If Black plays Nc6",
+          "text": "Black most often pins with Bg4. Explore Nc6 first, or continue with Bg4.",
+          "branch": "strike-knight",
+          "next": "strike-pinned"
+        },
+        {
+          "id": "strike-knight",
+          "title": "Black develops the knight first",
+          "text": "Black develops the b8-knight to c6 before pinning with the bishop.",
+          "show": "Nc6"
+        },
+        {
+          "id": "strike-knight-center",
+          "title": "Take the center",
+          "text": "Push d4. Your pawns on c3, d4 and e5 form a strong center.",
+          "move": "d4",
+          "reply": "Bg4",
+          "feedback": "Black pins your f3-knight with Bg4.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "strike-knight-bishop",
+          "title": "Develop the bishop",
+          "text": "Develop the f1-bishop to d3 so that you can castle.",
+          "move": "Bd3",
+          "reply": "Be7",
+          "feedback": "Black develops Be7.",
+          "hint": "Move the bishop from f1 to d3."
+        },
+        {
+          "id": "strike-knight-castle",
+          "title": "Castle",
+          "text": "Castle kingside. Your rook arrives on f1, on a file with no pawn of yours.",
+          "move": "O-O",
+          "feedback": "Your king is safe and your rook is on f1.",
+          "hint": "Move the king from e1 to g1."
+        },
+        {
+          "id": "strike-knight-summary",
+          "title": "Same position, different order",
+          "text": "If Black castles now, you reach the chapter's main line: play h3 to question the g4-bishop.",
+          "next": null
+        },
+        {
+          "id": "strike-pinned",
+          "title": "Black pins the knight",
+          "text": "Black's Bg4 pins your f3-knight to the queen on d1: if the knight moved, the bishop would take your queen.",
+          "show": "Bg4"
+        },
+        {
+          "id": "strike-center",
+          "title": "Build the center",
+          "text": "Push d4. Your pawns on c3, d4 and e5 form a strong center.",
+          "move": "d4",
+          "reply": "Nc6",
+          "feedback": "Black develops Nc6, which attacks d4 and e5.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "strike-bishop-out",
+          "title": "Develop the bishop",
+          "text": "Develop the f1-bishop to d3 so that you can castle.",
+          "move": "Bd3",
+          "reply": "Be7",
+          "feedback": "Black develops Be7.",
+          "hint": "Move the bishop from f1 to d3."
+        },
+        {
+          "id": "strike-castle",
+          "title": "Castle",
+          "text": "Castle kingside. Your rook arrives on f1, on a file with no pawn of yours.",
+          "move": "O-O",
+          "reply": "O-O",
+          "feedback": "Black castles too.",
+          "hint": "Move the king from e1 to g1."
+        },
+        {
+          "id": "strike-question",
+          "title": "Question the bishop",
+          "text": "Push h3 to attack the g4-bishop.",
+          "move": "h3",
+          "feedback": "The bishop must retreat or take your knight.",
+          "hint": "Move h2 to h3."
+        },
+        {
+          "id": "strike-summary",
+          "title": "Space and open files",
+          "text": "Your pawns on c3, d4 and e5 give you space. Your f1-rook has a file with no pawn of yours, and a rook on b1 would use the b-file the same way. Black usually retreats the bishop to h5; then your d3-bishop can take on h7 with check and win a pawn."
+        },
+        {
+          "id": "strike-rehearsal",
+          "title": "Play against d5",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "vienna-strike"
+        }
+      ]
+    },
+    {
+      "id": "vienna-declined",
+      "title": "Black declines the gambit",
+      "steps": [
+        {
+          "id": "solid-welcome",
+          "title": "Black declines the gambit",
+          "text": "Not every player takes the pawn or answers d5. Some defend e5 with d6 or Nc6. Then you develop and open the center with d4."
+        },
+        {
+          "id": "solid-arrival",
+          "title": "Reach the Vienna Gambit",
+          "text": "You offer the f-pawn.",
+          "show": "e4 e5 Nc3 Nf6 f4"
+        },
+        {
+          "id": "solid-defended-choice",
+          "title": "If Black plays Nc6",
+          "text": "Black defends with d6 or Nc6 about equally often. Explore Nc6 first, or continue with d6.",
+          "branch": "solid-defended",
+          "next": "solid-pawn"
+        },
+        {
+          "id": "solid-defended",
+          "title": "Black defends with the knight",
+          "text": "Black defends e5 with the b8-knight on c6.",
+          "show": "Nc6"
+        },
+        {
+          "id": "solid-defended-take",
+          "title": "Take on e5",
+          "text": "Capture the e5-pawn with your f-pawn.",
+          "move": "fxe5",
+          "reply": "Nxe5",
+          "feedback": "Black's knight takes back on e5.",
+          "hint": "Move the pawn from f4 to e5."
+        },
+        {
+          "id": "solid-defended-chase",
+          "title": "Chase the knight",
+          "text": "Push d4. The pawn attacks the e5-knight.",
+          "move": "d4",
+          "reply": "Nc6",
+          "feedback": "The knight goes back to c6.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "solid-defended-push",
+          "title": "Chase the other knight",
+          "text": "Push e5. The pawn attacks the f6-knight.",
+          "move": "e5",
+          "reply": "Ng8",
+          "feedback": "Black's knight goes back to g8.",
+          "hint": "Move the pawn from e4 to e5."
+        },
+        {
+          "id": "solid-defended-develop",
+          "title": "Develop the knight",
+          "text": "Develop the g1-knight to f3.",
+          "move": "Nf3",
+          "feedback": "You have more space and more developed pieces.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "solid-defended-summary",
+          "title": "Space in the center",
+          "text": "Your pawns on d4 and e5 push Black's pieces back. Black's g8-knight cannot go to f6 without being taken by your e5-pawn, so Black will need several moves to develop.",
+          "next": null
+        },
+        {
+          "id": "solid-pawn",
+          "title": "Black defends with a pawn",
+          "text": "Black defends e5 with d6.",
+          "show": "d6"
+        },
+        {
+          "id": "solid-develop",
+          "title": "Develop with an attack",
+          "text": "Develop the g1-knight to f3. It attacks e5 a second time, together with your f4-pawn.",
+          "move": "Nf3",
+          "feedback": "Black has to decide how to hold e5.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "solid-pin-choice",
+          "title": "If Black pins with Bg4",
+          "text": "Black most often develops Nc6. Explore Bg4 and exf4 first, or continue to the next reply.",
+          "branch": "solid-pin",
+          "next": "solid-take-choice"
+        },
+        {
+          "id": "solid-pin",
+          "title": "Black pins the knight",
+          "text": "Black's Bg4 pins your f3-knight to the queen on d1: if the knight moved, the bishop would take your queen.",
+          "show": "Bg4"
+        },
+        {
+          "id": "solid-pin-ask",
+          "title": "Question the bishop",
+          "text": "Push h3 to attack the g4-bishop.",
+          "move": "h3",
+          "reply": "Bxf3",
+          "feedback": "Black takes your knight.",
+          "hint": "Move h2 to h3."
+        },
+        {
+          "id": "solid-pin-recapture",
+          "title": "Take back with the queen",
+          "text": "Recapture with your queen, so your kingside pawns stay together.",
+          "move": "Qxf3",
+          "reply": "Nc6",
+          "feedback": "Black develops Nc6.",
+          "hint": "Move the queen from d1 to f3."
+        },
+        {
+          "id": "solid-pin-bishop",
+          "title": "Pin the knight",
+          "text": "Develop the f1-bishop to b5. It pins the c6-knight to Black's king.",
+          "move": "Bb5",
+          "feedback": "Black's c6-knight cannot move without exposing the king.",
+          "hint": "Move the bishop from f1 to b5."
+        },
+        {
+          "id": "solid-pin-summary",
+          "title": "Two bishops",
+          "text": "You have both bishops, while Black has given up the c8-bishop. Two bishops work well together once the position opens. Castle next.",
+          "next": null
+        },
+        {
+          "id": "solid-take-choice",
+          "title": "If Black takes on f4",
+          "text": "Explore exf4, or continue with Nc6.",
+          "branch": "solid-take",
+          "next": "solid-defend"
+        },
+        {
+          "id": "solid-take",
+          "title": "Black takes the pawn late",
+          "text": "Black takes your f4-pawn after all.",
+          "show": "exf4"
+        },
+        {
+          "id": "solid-take-center",
+          "title": "Take the center",
+          "text": "Push d4. Your pawns stand side by side on d4 and e4, and the c1-bishop's path to f4 opens.",
+          "move": "d4",
+          "reply": "Bg4",
+          "feedback": "Black pins your f3-knight with Bg4.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "solid-take-back",
+          "title": "Win back the pawn",
+          "text": "Take the f4-pawn with the c1-bishop.",
+          "move": "Bxf4",
+          "feedback": "Material is level and your center stands.",
+          "hint": "Move the bishop from c1 to f4."
+        },
+        {
+          "id": "solid-take-summary",
+          "title": "A big center",
+          "text": "Your pawns on d4 and e4 control the center, and your bishop is developed. Develop the f1-bishop and castle next.",
+          "next": null
+        },
+        {
+          "id": "solid-defend",
+          "title": "Black adds a defender",
+          "text": "Black develops Nc6, defending e5 again.",
+          "show": "Nc6"
+        },
+        {
+          "id": "solid-center",
+          "title": "Open the center",
+          "text": "Push d4, attacking the e5-pawn a third time.",
+          "move": "d4",
+          "reply": "exd4",
+          "feedback": "Black takes on d4.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "solid-recapture",
+          "title": "Take back with the knight",
+          "text": "Recapture on d4 with the f3-knight.",
+          "move": "Nxd4",
+          "reply": "Nxd4",
+          "feedback": "Black trades knights on d4.",
+          "hint": "Move the knight from f3 to d4."
+        },
+        {
+          "id": "solid-queen",
+          "title": "Take back with the queen",
+          "text": "Recapture with your queen. The c6-knight that could have chased it is gone.",
+          "move": "Qxd4",
+          "reply": "Be7",
+          "feedback": "Black develops Be7.",
+          "hint": "Move the queen from d1 to d4."
+        },
+        {
+          "id": "solid-bishop",
+          "title": "Develop and protect the queen",
+          "text": "Develop the c1-bishop to e3, where it defends your queen.",
+          "move": "Be3",
+          "reply": "O-O",
+          "feedback": "Black castles kingside.",
+          "hint": "Move the bishop from c1 to e3."
+        },
+        {
+          "id": "solid-castle",
+          "title": "Castle queenside",
+          "text": "Castle queenside. Your rook lands on d1, behind your queen.",
+          "move": "O-O-O",
+          "feedback": "Your king is on c1 and Black's on g8.",
+          "hint": "Move the king from e1 to c1."
+        },
+        {
+          "id": "solid-summary",
+          "title": "Kings on opposite sides",
+          "text": "With the kings castled on opposite sides, both players usually attack. Your queen stands in the center with the d1-rook behind it, and your pawns on e4 and f4 are ready to advance."
+        },
+        {
+          "id": "solid-rehearsal",
+          "title": "Play against d6",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "vienna-solid"
+        }
+      ]
+    },
+    {
+      "id": "vienna-second-moves",
+      "title": "Black's other second moves",
+      "steps": [
+        {
+          "id": "knights-welcome",
+          "title": "Black's other second moves",
+          "text": "Among club players, Nc6 is as common a reply to 2.Nc3 as Nf6. Against Nc6, pushing f4 at once is a weaker gambit, so you develop the f1-bishop to c4 first. This chapter also covers Bc5 on move two."
+        },
+        {
+          "id": "knights-arrival",
+          "title": "Reach the Vienna",
+          "text": "You play e4, Black answers e5, and you develop Nc3.",
+          "show": "e4 e5 Nc3"
+        },
+        {
+          "id": "knights-bishop-choice",
+          "title": "If Black plays Bc5 on move two",
+          "text": "Black most often plays Nc6. Explore Bc5 first, or continue with Nc6.",
+          "branch": "anderssen",
+          "next": "knights-reply"
+        },
+        {
+          "id": "anderssen",
+          "title": "Black develops the bishop first",
+          "text": "Black develops the f8-bishop to c5 on move two.",
+          "show": "Bc5"
+        },
+        {
+          "id": "anderssen-knight",
+          "title": "Develop the knight",
+          "text": "Develop the g1-knight to f3. It attacks e5.",
+          "move": "Nf3",
+          "reply": "d6",
+          "feedback": "Black defends e5 with d6.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "anderssen-center",
+          "title": "Open the center",
+          "text": "Push d4. It attacks the e5-pawn and the c5-bishop.",
+          "move": "d4",
+          "reply": "exd4",
+          "feedback": "Black takes on d4.",
+          "hint": "Move d2 to d4."
+        },
+        {
+          "id": "anderssen-recapture",
+          "title": "Take back with the knight",
+          "text": "Recapture on d4 with the f3-knight.",
+          "move": "Nxd4",
+          "reply": "Nf6",
+          "feedback": "Black develops Nf6.",
+          "hint": "Move the knight from f3 to d4."
+        },
+        {
+          "id": "anderssen-pin",
+          "title": "Pin the knight",
+          "text": "Develop the c1-bishop to g5. It pins the f6-knight to Black's queen.",
+          "move": "Bg5",
+          "reply": "h6",
+          "feedback": "Black attacks the bishop with h6.",
+          "hint": "Move the bishop from c1 to g5."
+        },
+        {
+          "id": "anderssen-keep",
+          "title": "Keep the pin",
+          "text": "Retreat the bishop to h4, where it still pins the knight.",
+          "move": "Bh4",
+          "reply": "g5",
+          "feedback": "Black pushes g5 to break the pin.",
+          "hint": "Move the bishop from g5 to h4."
+        },
+        {
+          "id": "anderssen-retreat",
+          "title": "Retreat the bishop",
+          "text": "Retreat the bishop to g3.",
+          "move": "Bg3",
+          "feedback": "Your bishop is safe on g3.",
+          "hint": "Move the bishop from h4 to g3."
+        },
+        {
+          "id": "anderssen-summary",
+          "title": "Pawns that cannot go back",
+          "text": "Black's h- and g-pawns have moved forward to chase your bishop. Pawns never move backward, so the kingside squares, where Black's king would usually castle, will stay weak.",
+          "next": null
+        },
+        {
+          "id": "knights-reply",
+          "title": "Black develops the knight",
+          "text": "Black develops the b8-knight to c6.",
+          "show": "Nc6"
+        },
+        {
+          "id": "knights-bishop",
+          "title": "Aim at f7",
+          "text": "Develop the f1-bishop to c4, where it aims at f7.",
+          "move": "Bc4",
+          "feedback": "Black most often develops Nf6.",
+          "hint": "Move the bishop from f1 to c4."
+        },
+        {
+          "id": "knights-early-choice",
+          "title": "If Black plays Bc5 after Bc4",
+          "text": "Explore Bc5 first, or continue with Nf6.",
+          "branch": "knights-early",
+          "next": "knights-knight"
+        },
+        {
+          "id": "knights-early",
+          "title": "Black develops the bishop early",
+          "text": "Black develops the f8-bishop to c5 before the g8-knight.",
+          "show": "Bc5"
+        },
+        {
+          "id": "knights-early-knight",
+          "title": "Develop the knight",
+          "text": "Develop the g1-knight to f3.",
+          "move": "Nf3",
+          "reply": "Nf6",
+          "feedback": "Black develops Nf6.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "knights-early-castle",
+          "title": "Castle",
+          "text": "Castle kingside.",
+          "move": "O-O",
+          "reply": "O-O",
+          "feedback": "Black castles too.",
+          "hint": "Move the king from e1 to g1."
+        },
+        {
+          "id": "knights-early-support",
+          "title": "Support the pawn",
+          "text": "Push d3. It defends e4 and opens your c1-bishop's path.",
+          "move": "d3",
+          "feedback": "Your knights and f1-bishop are developed and your king is safe.",
+          "hint": "Move d2 to d3."
+        },
+        {
+          "id": "knights-early-summary",
+          "title": "A quiet setup",
+          "text": "Both sides have developed and castled. Your d3-pawn supports e4, and your c1-bishop can now develop.",
+          "next": null
+        },
+        {
+          "id": "knights-knight",
+          "title": "Black attacks e4",
+          "text": "Black develops Nf6, attacking your e4-pawn.",
+          "show": "Nf6"
+        },
+        {
+          "id": "knights-support",
+          "title": "Defend the pawn",
+          "text": "Push d3. It defends e4 and opens your c1-bishop's path.",
+          "move": "d3",
+          "feedback": "Black most often develops Bc5.",
+          "hint": "Move d2 to d3."
+        },
+        {
+          "id": "knights-pin-choice",
+          "title": "If Black plays Bb4",
+          "text": "Explore Bb4 first, or continue with Bc5.",
+          "branch": "knights-pin",
+          "next": "knights-c5"
+        },
+        {
+          "id": "knights-pin",
+          "title": "Black pins the knight",
+          "text": "Black develops the f8-bishop to b4, attacking your c3-knight.",
+          "show": "Bb4"
+        },
+        {
+          "id": "knights-pin-develop",
+          "title": "Develop the knight",
+          "text": "Develop the g1-knight to f3 and prepare to castle.",
+          "move": "Nf3",
+          "reply": "Bxc3+",
+          "feedback": "Black takes your knight with check.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "knights-pin-recapture",
+          "title": "Take back",
+          "text": "Recapture with the b-pawn.",
+          "move": "bxc3",
+          "feedback": "You keep both bishops.",
+          "hint": "Move the pawn from b2 to c3."
+        },
+        {
+          "id": "knights-pin-summary",
+          "title": "Two bishops",
+          "text": "Black gave up a bishop for your knight, so you have both bishops, which work well together once the position opens. Castle next.",
+          "next": null
+        },
+        {
+          "id": "knights-c5",
+          "title": "Black develops the bishop",
+          "text": "Black develops the f8-bishop to c5.",
+          "show": "Bc5"
+        },
+        {
+          "id": "knights-develop",
+          "title": "Develop the knight",
+          "text": "Develop the g1-knight to f3.",
+          "move": "Nf3",
+          "reply": "d6",
+          "feedback": "Black supports e5 with d6.",
+          "hint": "Move the knight from g1 to f3."
+        },
+        {
+          "id": "knights-castle",
+          "title": "Castle",
+          "text": "Castle kingside.",
+          "move": "O-O",
+          "reply": "Bg4",
+          "feedback": "Black pins your f3-knight to the queen with Bg4.",
+          "hint": "Move the king from e1 to g1."
+        },
+        {
+          "id": "knights-question",
+          "title": "Question the bishop",
+          "text": "Push h3 to attack the g4-bishop.",
+          "move": "h3",
+          "feedback": "The bishop must retreat or take your knight.",
+          "hint": "Move h2 to h3."
+        },
+        {
+          "id": "knights-summary",
+          "title": "Calm development",
+          "text": "Your knights and f1-bishop are out, your king is castled, and the c1-bishop is ready to develop. Black usually retreats the bishop to h5."
+        },
+        {
+          "id": "knights-rehearsal",
+          "title": "Play against Nc6",
+          "text": "Play the main line from the first move without prompts.",
+          "rehearse": "vienna-second-knights"
+        }
+      ]
+    }
+  ]
+}

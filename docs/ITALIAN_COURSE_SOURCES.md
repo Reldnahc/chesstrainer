@@ -92,7 +92,7 @@ The historical games illustrate choices and consequences. Their complete continu
 
 ## Transcription checks and differences
 
-The named printed pages were visually inspected in the primary scan. Every move in all three complete scores is legal under python-chess; the course content model also validates the full histories when loading. SAN is retained in `backend/trainer/study_lessons/courses/italian_games.py` as a readable transcription and converted to UCI through python-chess.
+The named printed pages were visually inspected in the primary scan. Every move in all three complete scores is legal under python-chess; the course content model also validates the full histories when loading. SAN is retained in the course file, `backend/trainer/study_lessons/courses/italian-foundations.json`, as a readable transcription and converted to UCI through python-chess.
 
 [IRLchess's Hastings collection](https://www.irlchess.com/hastings1895_allfiles/openings_hastings1895.html), which cites the tournament book, was used as a secondary cross-check. Differences were resolved against the primary scan:
 

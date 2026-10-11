@@ -256,9 +256,8 @@ The `/study/openings` library links course chapters and recent resumable session
 courses, with the same `courses/:id?revision=…` and `sessions/:id` routes under
 it, and is the Lessons section's Fundamentals tab; the Openings tab lists only
 opening courses. The backend reports each
-course's topic (`opening` or `skills`) from a fixed list of skill course ids in
-`study_lessons/bundled.py`, outside course content, so the topic never changes a
-content hash. Every other course, including opening-study practice sessions, is
+course's topic (`opening` or `skills`) from the `topic` field of its course
+file, outside course content, so the topic never changes a content hash. Every other course, including opening-study practice sessions, is
 an opening course. A course page and the lesson player follow the course's own
 topic for their back links, so an older `/study/openings` link to a skills course
 still opens and returns to Fundamentals.
@@ -292,10 +291,11 @@ The current revisions are `2026-10-v4` for `italian-foundations`, and
 The Sicilian Dragon, `sicilian-dragon`, and the Vienna Gambit, `vienna-gambit`,
 start at `2026-10-v1`.
 Black decisions and rehearsal use Black orientation
-and automatically play White’s intervening replies. All seven course definitions
-are cached as immutable source data and returned as independent copies. Shared
-SAN authoring helpers produce the same validated content format. Existing saved
-sessions, enrolled lines and their earlier revisions retain their own snapshots.
+and automatically play White’s intervening replies. Each course is a readable
+JSON file in the [course file format](COURSE_FILES.md); the seven built-in files
+are in `backend/trainer/study_lessons/courses`. They are cached as immutable
+source data and returned as independent copies. Existing saved sessions,
+enrolled lines and their earlier revisions retain their own snapshots.
 
 ### Reviewing authored course quality
 

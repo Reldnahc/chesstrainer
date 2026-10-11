@@ -11,6 +11,7 @@ from contextlib import closing
 from pathlib import Path
 
 from trainer.config import Settings
+from trainer.study_lessons.club import LEDGER, SAFE_ID, courses_folder
 
 SIDECARS = ("-wal", "-shm", "-journal")
 
@@ -44,6 +45,12 @@ def export_backup(destination: Path, settings: Settings):
         def write_archive(path):
             with zipfile.ZipFile(path, "x", compression=zipfile.ZIP_DEFLATED) as archive:
                 archive.write(snapshot, "trainer.sqlite3")
+                # The club's own Study course files and their revision ledger.
+                folder = courses_folder(settings)
+                if folder.is_dir():
+                    for item in sorted(folder.glob("*.json")) + [folder / LEDGER]:
+                        if item.is_file():
+                            archive.write(item, f"courses/{item.name}")
                 archive.writestr(
                     "manifest.json",
                     json.dumps({"format": 1, "application": "local-chess-trainer"}),
@@ -104,7 +111,33 @@ def restore_backup(archive_path: Path, destination: Path):
                     shutil.copyfileobj(source, output)
 
             write_atomically(write_database, destination)
+        restore_courses(archive, destination)
     return destination
+
+
+def restore_courses(archive, destination: Path):
+    """Put the club's course files beside the restored database, never over existing ones."""
+    names = [
+        name
+        for name in archive.namelist()
+        if name.startswith("courses/")
+        and (
+            name == f"courses/{LEDGER}"
+            or (name.endswith(".json") and SAFE_ID.match(name.removeprefix("courses/")[:-5]))
+        )
+    ]
+    if not names:
+        return None
+    folder = destination.parent / "courses"
+    if folder.exists() and any(folder.iterdir()):
+        folder = destination.parent / f"{destination.stem}-courses"
+        if folder.exists():
+            raise ValueError(f"Course folder exists; move it away first: {folder}")
+    folder.mkdir(parents=True, exist_ok=True)
+    for name in names:
+        (folder / name.removeprefix("courses/")).write_bytes(archive.read(name))
+    print(f"Club course files restored to {folder}")
+    return folder
 
 
 def main():

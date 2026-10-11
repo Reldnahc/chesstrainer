@@ -179,7 +179,12 @@ def test_default_library_ships_reviewed_courses_and_explicit_empty_override_work
     with TestClient(
         create_app(settings, workers=False, start_engine=False, lesson_providers=())
     ) as client:
-        assert response_json(client.get("/api/study/courses")) == {"courses": [], "resume": []}
+        assert response_json(client.get("/api/study/courses")) == {
+            "courses": [],
+            "resume": [],
+            "can_manage": True,
+            "problems": [],
+        }
 
 
 @pytest.mark.parametrize("course_id", COURSE_IDS)

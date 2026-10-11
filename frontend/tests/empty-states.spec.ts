@@ -3,7 +3,7 @@ import type { Schema } from "../src/api";
 
 test.beforeEach(async ({ page }) => {
   await page.route("**/api/games?offset=*", route => route.fulfill({ json: { items: [], total: 0 } }));
-  await page.route("**/api/study/courses", route => route.fulfill({ json: { courses: [], resume: [] } satisfies Schema["LessonLibrary"] }));
+  await page.route("**/api/study/courses", route => route.fulfill({ json: { courses: [], resume: [], can_manage: false } satisfies Schema["LessonLibrary"] }));
   await page.route("**/api/puzzles", route => route.fulfill({ json: {
     available: 0, sources: [], themes: [], retry_available: 0, solved_puzzles: 0, resume: [], stats: { solved: 0, clean: 0, failed_then_solved: 0, revealed: 0 },
     generation: { automatic: true, analyzed_games: 0, searched_games: 0, unsearched_games: 0, puzzles: 0, candidates: 0, kept: 0, last_searched_at: null, job_status: null },

@@ -1,19 +1,24 @@
 """Board evidence for the White Italian's actual decisions and contrasting branches."""
 
 import chess
-from trainer.study_lessons.courses.authoring import position
-from trainer.study_lessons.courses.italian import course
-from trainer.study_lessons.courses.italian_center import ADVANCE
-from trainer.study_lessons.courses.italian_positions import (
+from course_claims import built_in, position
+from course_positions.italian import (
+    ADVANCE,
     CENTRAL,
     DEVELOPED,
+    EARLY_H6,
     ITALIAN,
+    KNIGHT_JUMP,
     KNIGHT_ROUTE,
     PREPARED,
     QUIET,
+    TWO_KNIGHTS,
+    WAIT,
 )
-from trainer.study_lessons.courses.italian_two_knights import TWO_KNIGHTS, WAIT
-from trainer.study_lessons.courses.italian_variations import EARLY_H6, KNIGHT_JUMP
+
+
+def course():
+    return built_in("italian-foundations")
 
 
 def board(san):
