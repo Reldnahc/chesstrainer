@@ -1,7 +1,11 @@
 """Pin the board facts behind the authored King's Gambit explanations."""
 
 import chess
-from trainer.study_lessons.courses.kings_gambit import course
+from course_claims import built_in
+
+
+def course():
+    return built_in("kings-gambit-foundations")
 
 
 def after_choice(chapter, identity):

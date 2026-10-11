@@ -1,27 +1,33 @@
 """Concrete board claims in the Black Italian curriculum have replayable evidence."""
 
 import chess
-from trainer.study_lessons.courses.authoring import position
-from trainer.study_lessons.courses.italian_black import EVANS_FLANK, course
-from trainer.study_lessons.courses.italian_black_nc3 import GAMBIT, LINE, MOLLER, QUEEN
-from trainer.study_lessons.courses.italian_black_positions import (
+from course_claims import built_in, position
+from course_positions.italian_black import (
     ADVANCE,
-    CHECK,
-    EVANS,
-    EXCHANGED,
-    ITALIAN,
-    QUIET,
-    RECAPTURED,
-)
-from trainer.study_lessons.courses.italian_black_variations import (
     CASTLED_FIRST,
+    CHECK,
     EARLY_ATTACK,
+    EVANS,
+    EVANS_FLANK,
+    EXCHANGED,
+    GAMBIT,
+    ITALIAN,
     KNIGHT_FIRST,
+    LINE,
+    MOLLER,
     PUSHED,
+    QUEEN,
     QUEEN_CHECK,
     QUEEN_PRESSURE,
     QUEEN_RECAPTURE,
+    QUIET,
+    RECAPTURED,
 )
+
+
+def course():
+    return built_in("italian-black-foundations")
+
 
 VALUES = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
 # Each optional side trip, by chapter and first step, and the recall line that rehearses it.
@@ -296,7 +302,8 @@ def test_evans_excerpt_reaches_the_central_break_not_just_repeated_development()
 
 
 def test_new_course_annotations_do_not_change_the_existing_white_course():
-    from trainer.study_lessons.courses.italian import course as white_course
+    def white_course():
+        return built_in("italian-foundations")
 
     before = white_course().model_dump(mode="json")
     black = course()

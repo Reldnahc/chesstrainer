@@ -1,0 +1,83 @@
+import { useEffect, useRef, useState } from "react";
+import { Download, Pencil, Plus, Trash2, Upload } from "lucide-react";
+import { api, read, type Schema } from "../api";
+import ActionLink from "../ActionLink";
+import Button from "../Button";
+import { LoadingState, UnavailableState } from "../LoadState";
+import Notice from "../Notice";
+import SettingsSection from "../SettingsSection";
+import { courseEditorPath } from "../navigation";
+import { deleteCourseFile, downloadCourseFile, readChosenFile, saveCourseFile, savedMessage } from "./courseFiles";
+
+/** Administrator course management: write, import, export and delete Study courses. */
+export default function CourseSettings() {
+  const [library, setLibrary] = useState<Schema["LessonLibrary"] | null>(null);
+  const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [confirming, setConfirming] = useState<string | null>(null);
+  const [reload, setReload] = useState(0);
+  const chooser = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const controller = new AbortController();
+    read(api.GET("/api/study/courses", { signal: controller.signal }))
+      .then(result => { if (!controller.signal.aborted) setLibrary(result); })
+      .catch(e => { if (!controller.signal.aborted) setError((e as Error).message); });
+    return () => controller.abort();
+  }, [reload]);
+  async function act(action: () => Promise<string | void>) {
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      const message = await action();
+      if (message) setNotice(message);
+    } catch (e) { setError((e as Error).message); }
+    finally { setBusy(false); }
+  }
+  function importChosen(file: File | undefined) {
+    if (chooser.current) chooser.current.value = "";
+    if (!file) return;
+    void act(async () => {
+      const saved = await saveCourseFile(await readChosenFile(file));
+      setReload(value => value + 1);
+      return savedMessage(saved, "Imported");
+    });
+  }
+  function remove(course: Schema["LessonCourseSummary"]) {
+    setConfirming(null);
+    void act(async () => {
+      await deleteCourseFile(course.id);
+      setReload(value => value + 1);
+      return `Deleted “${course.title}”.`;
+    });
+  }
+  if (!library) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading courses…</LoadingState>;
+  return <SettingsSection id="settings-courses" className="course-settings" title="Courses"
+    description="Write Study lessons for your members, or import a course file. Members see every course here in Lessons."
+    actions={<div className="button-row">
+      <ActionLink variant="primary" href={courseEditorPath()}><Plus size={16} />New course</ActionLink>
+      <Button variant="secondary" disabled={busy} onClick={() => chooser.current?.click()}><Upload size={16} />{busy ? "Working…" : "Import course file"}</Button>
+      <input ref={chooser} hidden type="file" accept=".json,application/json" aria-label="Course file" onChange={event => importChosen(event.target.files?.[0])} />
+    </div>}>
+    {notice && <Notice announcement="status" tone="success">{notice}</Notice>}
+    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    {(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}
+    {library.courses.map(course => <div className="settings-tool course-settings-row" key={course.id}>
+      <div>
+        <h3>{course.title}</h3>
+        <p>{course.source === "club" ? "Club course" : "Built-in course"} · {course.topic === "skills" ? "Fundamentals" : "Openings"} · {course.chapter_count} {course.chapter_count === 1 ? "chapter" : "chapters"} · revision {course.revision}</p>
+      </div>
+      <div className="button-row">
+        <ActionLink size="compact" variant="secondary" href={courseEditorPath(course.id)}><Pencil size={16} />Edit</ActionLink>
+        <Button size="compact" variant="quiet" disabled={busy} onClick={() => act(() => downloadCourseFile(course.id, course.revision))}><Download size={16} />Download</Button>
+        {course.source === "club" && (confirming === course.id
+          ? <><Button size="compact" variant="secondary" disabled={busy} onClick={() => remove(course)}><Trash2 size={16} />Delete for everyone</Button>
+            <Button size="compact" variant="quiet" onClick={() => setConfirming(null)}>Keep it</Button></>
+          : <Button size="compact" variant="quiet" disabled={busy} onClick={() => setConfirming(course.id)}><Trash2 size={16} />Delete</Button>)}
+      </div>
+    </div>)}
+    <p className="small muted">Editing a built-in course saves a club copy that replaces it; deleting that copy brings the built-in course back. Members who started a course keep the version they began.</p>
+  </SettingsSection>;
+}

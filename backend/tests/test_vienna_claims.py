@@ -1,9 +1,24 @@
 """Pin the board facts behind the authored Vienna Gambit explanations."""
 
 import chess
-from course_claims import Boards, attackers, attacks, count, minor, pawn_balance, piece, pins_to, sq
-from trainer.study_lessons.courses import vienna_positions as p
-from trainer.study_lessons.courses.vienna import course
+from course_claims import (
+    Boards,
+    attackers,
+    attacks,
+    built_in,
+    count,
+    minor,
+    pawn_balance,
+    piece,
+    pins_to,
+    sq,
+)
+from course_positions import vienna as p
+
+
+def course():
+    return built_in("vienna-gambit")
+
 
 board = Boards(course())
 

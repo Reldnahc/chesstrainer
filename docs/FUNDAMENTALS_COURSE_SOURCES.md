@@ -58,8 +58,8 @@ points to the opening courses instead.
   stored as a FEN because the chapter's first example also starts from the
   initial position. A test plays the moves and compares the FEN.
 
-The eight composed positions have no source. Their FENs are constants at the top
-of `backend/trainer/study_lessons/courses/fundamentals.py`.
+The eight composed positions have no source. Their FENs are in the course file,
+`backend/trainer/study_lessons/courses/chess-fundamentals.json`.
 
 ## Engine verification
 

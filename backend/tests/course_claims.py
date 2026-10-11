@@ -1,7 +1,8 @@
 """Board helpers shared by the opening-course claims tests."""
 
 import chess
-from trainer.study_lessons.courses.authoring import position
+from trainer.study_lessons.bundled import BUILT_IN, read_course_file
+from trainer.study_lessons.content import Position
 
 VALUES = {
     chess.PAWN: 1,
@@ -11,6 +12,17 @@ VALUES = {
     chess.QUEEN: 9,
     chess.KING: 100,
 }
+
+
+def position(san="", fen=chess.STARTING_FEN):
+    board = chess.Board(fen)
+    moves = [board.push_san(token).uci() for token in san.split()]
+    return Position(initial_fen=fen, moves=tuple(moves))
+
+
+def built_in(course_id):
+    """A built-in course, read from its course file."""
+    return read_course_file(BUILT_IN / f"{course_id}.json")[0]
 
 
 def key(board):

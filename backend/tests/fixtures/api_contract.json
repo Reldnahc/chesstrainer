@@ -1347,6 +1347,136 @@
         "title": "Conversion",
         "type": "object"
       },
+      "CourseFileCheck": {
+        "additionalProperties": false,
+        "properties": {
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "steps": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CourseFileStep"
+            },
+            "title": "Steps",
+            "type": "object"
+          }
+        },
+        "required": [
+          "error",
+          "steps"
+        ],
+        "title": "CourseFileCheck",
+        "type": "object"
+      },
+      "CourseFileDeleted": {
+        "additionalProperties": false,
+        "properties": {
+          "built_in_restored": {
+            "title": "Built In Restored",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "built_in_restored"
+        ],
+        "title": "CourseFileDeleted",
+        "type": "object"
+      },
+      "CourseFileProblem": {
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "title": "File",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file",
+          "message"
+        ],
+        "title": "CourseFileProblem",
+        "type": "object"
+      },
+      "CourseFileSaved": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "string"
+          },
+          "revision_changed": {
+            "title": "Revision Changed",
+            "type": "boolean"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "title",
+          "revision_changed"
+        ],
+        "title": "CourseFileSaved",
+        "type": "object"
+      },
+      "CourseFileStep": {
+        "additionalProperties": false,
+        "properties": {
+          "end_fen": {
+            "title": "End Fen",
+            "type": "string"
+          },
+          "end_position": {
+            "title": "End Position",
+            "type": "string"
+          },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "initial_fen": {
+            "title": "Initial Fen",
+            "type": "string"
+          },
+          "position": {
+            "title": "Position",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fen",
+          "initial_fen",
+          "position",
+          "end_fen",
+          "end_position"
+        ],
+        "title": "CourseFileStep",
+        "type": "object"
+      },
       "Coverage": {
         "additionalProperties": false,
         "properties": {
@@ -1685,6 +1815,126 @@
           "reasons"
         ],
         "title": "Domain",
+        "type": "object"
+      },
+      "EditorMove": {
+        "additionalProperties": false,
+        "properties": {
+          "from_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "From Square",
+            "type": "string"
+          },
+          "promotion": {
+            "anyOf": [
+              {
+                "enum": [
+                  "q",
+                  "r",
+                  "b",
+                  "n"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promotion"
+          },
+          "to_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "To Square",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_square",
+          "to_square"
+        ],
+        "title": "EditorMove",
+        "type": "object"
+      },
+      "EditorPosition": {
+        "additionalProperties": false,
+        "properties": {
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "legal_moves": {
+            "items": {
+              "$ref": "#/components/schemas/LegalMove"
+            },
+            "title": "Legal Moves",
+            "type": "array"
+          },
+          "moves": {
+            "title": "Moves",
+            "type": "string"
+          },
+          "san": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "San"
+          },
+          "turn": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Turn",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fen",
+          "moves",
+          "san",
+          "turn",
+          "legal_moves"
+        ],
+        "title": "EditorPosition",
+        "type": "object"
+      },
+      "EditorPositionRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "fen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fen"
+          },
+          "move": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EditorMove"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "moves": {
+            "default": "",
+            "maxLength": 10000,
+            "title": "Moves",
+            "type": "string"
+          }
+        },
+        "title": "EditorPositionRequest",
         "type": "object"
       },
       "EndgameRecord": {
@@ -4470,6 +4720,15 @@
             "title": "Revision",
             "type": "string"
           },
+          "source": {
+            "default": "built_in",
+            "enum": [
+              "built_in",
+              "club"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
           "title": {
             "title": "Title",
             "type": "string"
@@ -4506,6 +4765,11 @@
             "title": "Attributions",
             "type": "array"
           },
+          "can_manage": {
+            "default": false,
+            "title": "Can Manage",
+            "type": "boolean"
+          },
           "chapters": {
             "items": {
               "$ref": "#/components/schemas/LessonChapterSummary"
@@ -4538,6 +4802,15 @@
           },
           "revision": {
             "title": "Revision",
+            "type": "string"
+          },
+          "source": {
+            "default": "built_in",
+            "enum": [
+              "built_in",
+              "club"
+            ],
+            "title": "Source",
             "type": "string"
           },
           "title": {
@@ -4656,11 +4929,23 @@
       "LessonLibrary": {
         "additionalProperties": false,
         "properties": {
+          "can_manage": {
+            "default": false,
+            "title": "Can Manage",
+            "type": "boolean"
+          },
           "courses": {
             "items": {
               "$ref": "#/components/schemas/LessonCourseSummary"
             },
             "title": "Courses",
+            "type": "array"
+          },
+          "problems": {
+            "items": {
+              "$ref": "#/components/schemas/CourseFileProblem"
+            },
+            "title": "Problems",
             "type": "array"
           },
           "resume": {
@@ -12825,6 +13110,183 @@
         "summary": "Stats"
       }
     },
+    "/api/study/course-files": {
+      "post": {
+        "description": "Import or save a course file. Administrators only.\n\nThe editor sends ``create`` for a new course and ``base_revision`` for the\nrevision it opened, so a save never silently replaces another course.",
+        "operationId": "save_course_api_study_course_files_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "base_revision",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Base Revision"
+            }
+          },
+          {
+            "in": "query",
+            "name": "create",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Create",
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseFileSaved"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Save Course"
+      }
+    },
+    "/api/study/course-files/check": {
+      "post": {
+        "description": "The lesson editor's live check: the first problem and each step's board.",
+        "operationId": "check_course_api_study_course_files_check_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseFileCheck"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Check Course"
+      }
+    },
+    "/api/study/course-files/position": {
+      "post": {
+        "description": "Play recorded editor moves; legality stays on the server.",
+        "operationId": "editor_position_api_study_course_files_position_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditorPositionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditorPosition"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editor Position"
+      }
+    },
+    "/api/study/course-files/{course_id}": {
+      "delete": {
+        "description": "Remove a club course file. A built-in course it replaced comes back.",
+        "operationId": "delete_course_api_study_course_files__course_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "title": "Course Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseFileDeleted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Course"
+      }
+    },
     "/api/study/courses": {
       "get": {
         "operationId": "library_api_study_courses_get",
@@ -12896,6 +13358,75 @@
           }
         },
         "summary": "Course"
+      }
+    },
+    "/api/study/courses/{course_id}/file": {
+      "get": {
+        "description": "Anyone may download a course as a course file.",
+        "operationId": "export_course_api_study_courses__course_id__file_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "title": "Course Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "revision",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "description": "A course file; see docs/COURSE_FILES.md.",
+                  "properties": {
+                    "format": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "revision": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Export Course"
       }
     },
     "/api/study/lesson-sessions": {

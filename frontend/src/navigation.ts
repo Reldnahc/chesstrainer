@@ -18,7 +18,7 @@ export type StudyMode = "home" | keyof typeof studyPaths;
 export type LessonTopic = "opening" | "skills";
 const lessonRoot = (topic: LessonTopic) => topic === "skills" ? studyPaths.skills : studyPaths.openings;
 export type Tab = keyof typeof pagePaths;
-export type SettingsTab = "imports" | "coach" | "sound" | "account" | "advanced";
+export type SettingsTab = "imports" | "coach" | "sound" | "account" | "courses" | "advanced";
 export type InsightsSection = "overview" | "patterns" | "outcomes";
 export const insightsPaths: Record<InsightsSection, string> = {
   overview: "/insights",
@@ -70,6 +70,8 @@ function readRoute() {
   const courseMatch = path.match(/^\/study\/(openings|skills)\/courses\/([^/]+)$/);
   const skillsLesson = (lessonMatch ?? courseMatch)?.[1] === "skills";
   const catalogueMatch = path.match(/^\/study\/openings\/catalogue\/([^/]+)$/);
+  const editorMatch = path === courseEditorRoot;
+  const courseEditor = editorMatch ? { courseId: url.searchParams.get("course"), revision: url.searchParams.get("revision") } : null;
   const courseLineMatch = path.match(/^\/study\/openings\/courses\/([^/]+)\/lines\/([^/]+)$/);
   let gameId: string | null = null;
   let playGameId: string | null = null;
@@ -96,7 +98,7 @@ function readRoute() {
     : puzzleSessionId || puzzleSource ? "puzzles"
     : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
-  const tab: Tab | null = studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"
+  const tab: Tab | null = courseEditor ? "Settings" : studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
   const settingsSection = url.searchParams.get("section");
   return {
@@ -104,7 +106,7 @@ function readRoute() {
     href: url.pathname + url.search,
     scrollAnchor: url.hash.slice(1),
     tab,
-    settingsTab: (["coach", "sound", "account", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
+    settingsTab: (["coach", "sound", "account", "courses", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
     importSource: url.searchParams.get("import"),
     insightsSection: (["patterns", "outcomes"].includes(url.searchParams.get("section") ?? "") ? url.searchParams.get("section") : "overview") as InsightsSection,
     gameId,
@@ -118,6 +120,7 @@ function readRoute() {
     openingSection,
     openingCatalogueKey,
     openingCourseLine,
+    courseEditor,
     openingQuery: url.searchParams.get("q") || "",
     openingEco: url.searchParams.get("eco") || "",
     openingOffset: nonnegativeInteger(url.searchParams.get("offset")),
@@ -140,9 +143,16 @@ function persistScroll() {
   window.history.replaceState({ ...window.history.state, [scrollKey]: scrollPositions.get(entry) }, "");
 }
 
+// A screen with unsaved work (the lesson editor) may ask before in-app navigation.
+let leaveGuard: (() => boolean) | null = null;
+export function setLeaveGuard(guard: (() => boolean) | null) {
+  leaveGuard = guard;
+}
+
 export function navigate(href: string) {
   const url = new URL(href, window.location.href);
   if (url.origin !== window.location.origin || url.href === window.location.href) return;
+  if (leaveGuard && !leaveGuard()) return;
   persistScroll();
   window.history.pushState({ [entryKey]: newEntry() }, "", url);
   window.dispatchEvent(new Event(navigationEvent));
@@ -167,6 +177,19 @@ export function puzzleSessionPath(id: string) {
 
 export function lessonSessionPath(id: string, topic: LessonTopic = "opening") {
   return `${lessonRoot(topic)}/sessions/${encodeURIComponent(id)}`;
+}
+
+// The lesson editor belongs to administrators' Settings, not to Lessons.
+const courseEditorRoot = "/settings/courses/editor";
+export const courseSettingsPath = "/settings?section=courses";
+
+/** The lesson editor, for a new course or an existing one. */
+export function courseEditorPath(id?: string, revision?: string) {
+  const query = new URLSearchParams();
+  if (id) query.set("course", id);
+  if (id && revision) query.set("revision", revision);
+  const search = query.toString();
+  return `${courseEditorRoot}${search ? `?${search}` : ""}`;
 }
 
 export function lessonCoursePath(id: string, revision?: string, topic: LessonTopic = "opening") {

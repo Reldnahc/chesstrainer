@@ -67,7 +67,7 @@ def completions(db):
     )
 
 
-def library(db, providers):
+def library(db, providers, source=lambda course_id, revision=None: "built_in"):
     completed = completions(db)
     courses = []
     for candidate in providers.courses(db):
@@ -85,6 +85,7 @@ def library(db, providers):
                     for chapter in course.chapters
                 ),
                 "topic": course_topic(course.id),
+                "source": source(course.id, course.revision),
             }
         )
     resume = db.execute(
@@ -114,7 +115,9 @@ def library(db, providers):
     }
 
 
-def course_view(db, providers, course_id, revision=None):
+def course_view(
+    db, providers, course_id, revision=None, source=lambda course_id, revision=None: "built_in"
+):
     course = course_for(db, providers, course_id, revision)
     completed = completions(db)
     return {
@@ -124,6 +127,7 @@ def course_view(db, providers, course_id, revision=None):
         "description": course.description,
         "learner_color": course.learner_color,
         "topic": course_topic(course.id),
+        "source": source(course.id, course.revision),
         "chapters": [
             {
                 "id": chapter.id,

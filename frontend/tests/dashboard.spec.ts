@@ -41,7 +41,7 @@ function dashboardData(): DashboardData {
   const courses: Schema["LessonCourseSummary"][] = [{
     id: "home-course", revision: "revision-1", title: "Build an opening plan",
     description: "Develop your pieces with a purpose.", learner_color: "white",
-    chapter_count: 4, completed_chapters: 1, topic: "opening",
+    chapter_count: 4, completed_chapters: 1, topic: "opening", source: "built_in",
   }];
   return {
     due: { due: 7 },
@@ -60,6 +60,7 @@ function dashboardData(): DashboardData {
     },
     lessons: {
       courses,
+      can_manage: false,
       resume: Array.from({ length: 3 }, (_, index) => ({
         id: `home-lesson-${index}`, chapter_id: `chapter-${index}`, chapter_title: `Saved chapter ${index + 1}`,
         course_id: courses[0].id, course_revision: courses[0].revision,
@@ -266,7 +267,7 @@ test("a new library offers useful destinations without suggesting an empty recal
   data.due = { due: 0 };
   data.games = { items: [], total: 0 };
   data.weaknesses.skills = [];
-  data.lessons = { courses: [], resume: [] };
+  data.lessons = { courses: [], resume: [], can_manage: false };
   data.openings = { items: [], active_studies: 0, due_positions: 0, learning_positions: 0 };
   const fixture = await mockDashboard(page, data);
   await page.goto("/");
