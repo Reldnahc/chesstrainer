@@ -218,14 +218,15 @@
   outline: 1px solid #9bb6a5;
   outline-offset: 2px;
 }
+.coach-message {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+}
 .coach-message p {
   color: #e0e8e2;
   font-size: 13px;
   line-height: 1.55;
-  margin: 0;
-}
-.coach-message p + p {
-  margin-top: var(--space-2);
 }
 .coach-actions {
   --coach-action-gap: var(--space-2);
@@ -305,24 +306,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-3);
 }
-.human-insight-popover h3 { margin: 0; font-size: 15px; color: #a9d6e1; }
-.human-insight-popover p { margin: var(--space-1-5) 0 0; }
+/* The open popover stacks its header, line, meaning and source. */
+.human-insight-popover:popover-open {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+}
+.human-insight-popover > header + * { margin-top: var(--space-1-5); }
+.human-insight-popover h3 { font-size: 15px; color: #a9d6e1; }
 .human-insight-source {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-1-5) var(--space-3);
-  margin-top: var(--space-4);
   padding-top: var(--space-3);
   border-top: 1px solid #47554d;
   font-size: 12px;
   color: #b8c9bf;
 }
-.human-insight-source a { color: #a9d6e1; white-space: nowrap; }
-.human-insight-source a svg { margin-left: var(--space-1); vertical-align: -1px; }
+.human-insight-source a { display: inline-flex; align-items: center; gap: var(--space-1); color: #a9d6e1; white-space: nowrap; }
 .move-badge {
   display: inline-flex;
   gap: var(--space-1-5);
@@ -384,10 +388,10 @@
   }
   .coach-avatar {
     height: auto;
-    margin-top: var(--space-1-5);
   }
   .coach-portrait {
     grid-row: 1;
+    padding-top: var(--space-1-5);
   }
   .coach-speech {
     grid-template-rows: 28px minmax(0, 1fr);
@@ -416,10 +420,10 @@
   }
   .coach-avatar {
     height: auto;
-    margin-top: var(--space-1-5);
   }
   .coach-portrait {
     grid-row: 1;
+    padding-top: var(--space-1-5);
   }
   .coach-speech {
     grid-template-rows: 28px minmax(0, 1fr);

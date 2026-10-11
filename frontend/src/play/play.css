@@ -1,10 +1,9 @@
 /* Setup for a game against the coach: one form panel beside the coach's portrait. */
 /* The form keeps a readable width; the coach takes the rest of the row. */
 .play-setup { display: grid; grid-template-columns: minmax(0, 920px) minmax(240px, 1fr); gap: var(--page-gap); align-items: start; }
-.play-setup-coach { width: min(100%, 440px); justify-self: center; }
+.play-setup-coach { display: flex; flex-direction: column; gap: var(--space-4); width: min(100%, 440px); justify-self: center; }
 .play-setup-portrait { width: min(100%, 300px); margin-inline: auto; }
 .play-setup-form { display: grid; gap: var(--space-6); }
-.play-setup-form > *, .play-field p { margin: 0; }
 .play-field { display: grid; gap: var(--space-2); }
 .play-field > span:first-child { font-weight: 600; }
 .play-strength { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; max-width: 780px; }
@@ -19,7 +18,6 @@
 .play-practice[hidden] { display: none; }
 .play-practice select { width: min(100%, 520px); }
 .play-practice-prompt { display: grid; gap: var(--space-1); }
-.play-practice-prompt p { margin: 0; }
 .play-level { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: baseline; }
 .play-level strong { font-size: 28px; font-weight: 650; }
 .play-resume { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; }
@@ -35,7 +33,6 @@
   position: relative;
   display: grid;
   gap: var(--space-1);
-  margin-bottom: var(--space-4);
   padding: var(--space-3) var(--space-4);
   background: var(--coach-bubble-background);
   border: 1px solid var(--coach-bubble-border);
@@ -54,7 +51,6 @@
   transform: rotate(45deg);
 }
 .play-setup-speech .coach-label { min-height: 28px; }
-.play-setup-speech .coach-title strong { margin: 0; }
 .play-setup-speech .coach-message { min-height: 0; overflow: visible; }
 /* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
 @media (min-width: 761px) {

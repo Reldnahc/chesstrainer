@@ -163,8 +163,17 @@ main:has(.review-workspace-layout) {
   .review-board-toolbar:empty {
     display: none;
   }
+  /* The phone column flattens the board and sidebar so they can be reordered;
+     gap cannot vary per item, so the layout spaces its sidebar blocks here. */
   .review-workspace-layout .review-sidebar > .practice-panel {
     margin: var(--space-3) 0 var(--space-4);
+  }
+  .review-workspace-layout .review-sidebar > .panel {
+    margin-top: var(--space-3);
+  }
+  .review-workspace-layout .practice-panel:has(.review-coach) > :not(.review-coach),
+  .review-workspace-layout .review-explanation > :not(.review-coach) {
+    margin-top: var(--space-2);
   }
   .review-workspace-layout .practice-panel:has(.review-coach),
   .review-workspace-layout .review-explanation {

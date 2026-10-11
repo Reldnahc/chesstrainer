@@ -133,12 +133,28 @@ the whole site, enforced by a check.
 - **Semantic tokens.** `--page-gap` spaces a page's top-level blocks (24px desktop,
   16px phone) and `--panel-padding` pads `.panel` (24px desktop, 20px phone, 16px
   in phone workspaces). Change the rhythm there, not in each page.
-- **Containers own spacing.** `main.workspace-page` is a column that spaces its
-  title, notices and panels with `--page-gap` and zeroes their block margins, so
-  page sections never set their own top or bottom margin. Inside a component, use
-  `gap` on the container; the shared `.stack` (column, 16px, `--tight` 8px,
-  `--loose` 24px) and `.cluster` (wrapping row, 8px) primitives cover the common
-  cases. Avoid outer margins on reusable components.
+- **Containers own spacing.** Elements carry no outer margins. foundation.css
+  resets headings, paragraphs, lists, `dl`/`dd`, `figure`, `blockquote` and `pre`
+  to zero margin (as Tailwind's preflight does), and components such as notices,
+  load states and pagination have none. The container sets the space between its
+  children with `gap`:
+  - `main.workspace-page` is a column spaced by `--page-gap`.
+  - `.panel` is a column with a 16px gap; a panel can set `--panel-gap` for a
+    different rhythm, or its own `display` when it lays out differently. A bare
+    action inside a panel keeps its natural width. Dialogs keep the browser's
+    open/closed display.
+  - An open `details` spaces its contents below the summary.
+  - The shared `.stack` (column, 16px, `--tight` 8px, `--loose` 24px) and
+    `.cluster` (wrapping row, 8px) primitives cover other common cases.
+
+  When a heading and its description sit beside other content, group them in a
+  wrapper with its own smaller gap rather than giving either a margin.
+- **Exceptions.** `auto` margins for alignment, negative margins that bleed into
+  padding, and `margin-inline` on small icons or swatches inside running text.
+  A fieldset `legend` sits outside the fieldset's layout, so it pads itself. The
+  phone review workspace flattens the board and sidebar with `display: contents`
+  to reorder them; gap cannot vary per item there, so review-presentation.css
+  spaces those items through the layout's own selectors.
 - **Check.** `node scripts/spacing-scale.mjs` (part of `npm run test:styles` and
   `npm run build`) rejects any raw px value above 1px in margin, padding, gap or a
   spacing custom property. `0`, `1px`, `%`, `auto` and em/rem remain allowed.

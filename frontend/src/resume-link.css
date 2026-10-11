@@ -8,6 +8,6 @@
   border-radius: 5px;
   text-decoration: none;
 }
-.study-resume small { display: block; margin-top: var(--space-1); color: var(--muted); }
-.study-resume > span { min-width: 0; overflow-wrap: anywhere; }
+.study-resume small { color: var(--muted); }
+.study-resume > span { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; overflow-wrap: anywhere; }
 .study-resume > svg { flex: none; }

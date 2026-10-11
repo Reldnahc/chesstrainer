@@ -188,42 +188,49 @@ pre {
 main:focus {
   outline: none;
 }
+/* Text and lists carry no margins of their own (as in Tailwind's preflight):
+   the container that holds them sets the gap between them. */
 h1,
 h2,
 h3,
-p {
-  margin-top: 0;
+h4,
+h5,
+h6,
+p,
+dl,
+dd,
+ul,
+ol,
+figure,
+blockquote,
+pre {
+  margin: 0;
 }
 h1 {
   font-size: 36px;
   font-weight: 500;
   letter-spacing: -1.1px;
   line-height: 1.15;
-  margin-bottom: var(--space-3);
 }
 h2 {
   font-size: 23px;
   font-weight: 500;
   letter-spacing: -0.5px;
   line-height: 1.25;
-  margin-bottom: var(--space-4);
 }
 h3 {
   font-size: 15px;
   font-weight: 500;
-  margin-bottom: var(--space-3);
 }
 p {
   font-size: 14px;
   color: var(--muted);
   line-height: 1.65;
-  margin-bottom: var(--space-5);
 }
 .eyebrow {
   font: 10px var(--mono);
   letter-spacing: 1.3px;
   color: var(--muted);
-  margin-bottom: var(--space-3);
 }
 label {
   display: flex;
@@ -270,8 +277,12 @@ summary {
   color: #d1d6df;
   padding: var(--space-1-5) 0;
 }
-details[open] > summary {
-  margin-bottom: var(--space-5);
+/* The details element spaces its open contents below the summary, as a stack. */
+details[open] > summary ~ * {
+  margin-top: var(--space-3);
+}
+details[open] > summary ~ * ~ * {
+  margin-top: var(--space-4);
 }
 .error-text {
   color: #ffacb4;
@@ -284,7 +295,6 @@ dl {
   grid-template-columns: 1fr 1.5fr;
   gap: var(--space-4);
   font-size: 13px;
-  margin: var(--space-6) 0;
 }
 dt {
   color: var(--muted);

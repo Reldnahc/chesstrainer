@@ -1,7 +1,7 @@
-.weakness-content { margin-top: var(--space-6); }
-.weakness-content > .section-navigation--compact { margin-bottom: var(--space-6); }
-.weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
-.weakness-section-heading h2 { margin: 0; font-size: 20px; }
+.weakness-content { display: flex; flex-direction: column; gap: var(--space-6); }
+.weakness-section { display: flex; flex-direction: column; gap: var(--space-5); }
+.weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
+.weakness-section-heading h2 { font-size: 20px; }
 .weakness-section-heading > span { flex-shrink: 0; }
 .weakness-list {
   display: grid;
@@ -10,16 +10,14 @@
 }
 .weakness { display: flex; flex-direction: column; gap: var(--space-5); min-width: 0; }
 .weakness-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3) var(--space-4); }
-.weakness-heading h3 { margin: 0; font-size: 20px; overflow-wrap: anywhere; }
+.weakness-heading h3 { font-size: 20px; overflow-wrap: anywhere; }
 /* Every cue fits two lines at 64ch. Reserving both keeps cards the same height
    whichever category is showing, whether or not this card's cue wraps. */
-.weakness-cue { margin: 0; color: #d4d8de; max-width: 64ch; min-height: 2lh; }
-.weakness .stat-list { margin-top: 0; }
+.weakness-cue { color: #d4d8de; max-width: 64ch; min-height: 2lh; }
 .weakness-practice { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); margin-top: auto; }
-.weakness-practice p { margin: 0; }
 .weakness-practice strong { color: #d4d8de; font-weight: 500; font-variant-numeric: tabular-nums; }
 .weakness-evidence { border-top: 1px solid var(--line); padding-top: var(--space-2); }
-.weakness-practice-note { margin: var(--space-5) 0 0; font-size: 12px; }
+.weakness-practice-note { font-size: 12px; }
 .evidence-dialog {
   width: 100%;
   max-width: 1080px;
@@ -28,18 +26,36 @@
   color: #eceef1;
   margin: auto;
 }
+.evidence-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.evidence-dialog > .row-between > div,
+.evidence-grid > div:last-child,
+.interpretation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.evidence-dialog > .row-between > div {
+  gap: var(--space-1-5);
+}
+.interpretation {
+  align-items: flex-start;
+  gap: var(--space-2);
+}
 .evidence-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-8);
-  margin-top: var(--space-6);
   align-items: start;
 }
 .candidate {
   display: grid;
   grid-template-columns: 1fr auto;
   border-bottom: 1px solid var(--line);
-  padding: var(--space-3) 0;
+  padding: 0 0 var(--space-3);
   gap: var(--space-2);
   font-size: 13px;
 }
@@ -52,7 +68,6 @@
 .interpretation {
   border-left: 2px solid var(--accent);
   padding-left: var(--space-4);
-  margin-top: var(--space-6);
 }
 .audit {
   white-space: pre-wrap;
@@ -74,12 +89,6 @@ body:has(dialog[open]) {
   background: var(--surface);
   padding-block: var(--space-3);
 }
-.evidence-dialog .eyebrow {
-  margin-bottom: var(--space-1-5);
-}
-.evidence-dialog h2 {
-  margin-bottom: 0;
-}
 .evidence-grid > * {
   min-width: 0;
 }
@@ -87,7 +96,6 @@ body:has(dialog[open]) {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-top: var(--space-2);
   max-height: 220px;
   overflow-y: auto;
   padding: var(--space-1-5);
@@ -100,11 +108,9 @@ body:has(dialog[open]) {
   .evidence-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-4);
-    margin-top: var(--space-3);
   }
-  .weakness-content { margin-top: var(--space-5); }
   .weakness-list { gap: var(--space-4); }
-  .weakness-section-heading { gap: var(--space-3); margin-bottom: var(--space-4); }
+  .weakness-section-heading { gap: var(--space-3); }
   .weakness-practice { align-items: stretch; }
   .evidence-dialog {
     width: 100%;

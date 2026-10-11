@@ -1,11 +1,10 @@
 .load-state {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
   min-width: 0;
 }
-.load-state--compact {
-  margin-block: var(--space-4);
-}
 .load-state-message {
-  margin: 0;
   overflow-wrap: anywhere;
 }
 .load-state-actions {
@@ -13,5 +12,4 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
-  margin-top: var(--space-4);
 }

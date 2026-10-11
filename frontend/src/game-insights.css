@@ -1,7 +1,7 @@
 /* Insights > Overview: library-wide patterns. Shared panels, StatList, ChoiceGroup and outcome colours.
    Spacing rule: containers own the gaps; their children carry no outer margins. */
 .insights { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
-.insights :where(h2, h3, h4, p, ul, dl, table) { margin: 0; }
+.insights :where(ul, table) { margin: 0; }
 
 .insight-toolbar { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); }
 .insight-filter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
@@ -48,16 +48,16 @@
 .insight-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-1) var(--space-4); }
 .insight-heading h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.2px; }
 .insight-meta { font: 11px var(--mono); color: var(--muted); }
-.insight-panel h4 { margin-bottom: var(--space-3); font: 10px var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.insight-panel h4 { font: 10px var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
 .insight-lead { color: #d4d8de; line-height: 1.55; }
 .insight-lead strong { color: #fff; font-weight: 600; }
 .insight-note { font-size: 12px; line-height: 1.55; color: var(--muted); }
 .insight-panel > .insight-note:last-child { padding-top: var(--space-4); border-top: 1px solid var(--line); }
 .insight-summary > .insight-note:last-child { padding-top: var(--space-4); border-top: 1px solid var(--line); }
 .insight-stack { display: grid; gap: var(--space-5); }
+.insight-stack > div { display: grid; gap: var(--space-3); }
 .insight-subgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-6) var(--space-8); }
 .insight-subgrid > div { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
-.insight-subgrid h4 { margin-bottom: 0; }
 
 /* Horizontal bars: one hue for magnitude, value always printed. */
 .insight-bars { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
@@ -88,7 +88,6 @@
 .insight-swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
 
 .insight-games { display: grid; gap: var(--space-2); }
-.insight-games h4 { margin-bottom: 0; }
 .insight-games ul { list-style: none; padding: 0; display: grid; }
 .insight-games li + li { border-top: 1px solid #2a2d32; }
 .insight-games a {

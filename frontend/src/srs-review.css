@@ -1,5 +1,9 @@
+/* The panel stacks the coach, receipt and details; its empty state groups
+   an introduction and actions with a looser rhythm. */
 .practice-panel {
-  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -12,47 +16,51 @@
   font: 10px var(--mono);
   letter-spacing: 1px;
   color: var(--muted);
-  margin-bottom: var(--space-8);
+}
+.practice-panel--start {
+  gap: var(--space-6);
+}
+.practice-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.practice-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 .practice-panel h2 {
   font-size: 29px;
   letter-spacing: -0.8px;
 }
-.practice-panel > p {
-  margin-bottom: var(--space-6);
-}
-.practice-panel > .action-control--primary,
-.practice-panel > .action-control--secondary {
-  width: 100%;
-  margin-bottom: var(--space-3);
-}
-.practice-panel > .button-link {
+.practice-actions > .button-link {
   display: flex;
+  width: 100%;
 }
-.practice-panel > .action-control--primary {
+.practice-actions > .action-control--primary {
   justify-content: space-between;
 }
 .aside-note {
-  margin-top: var(--space-6);
   padding-top: var(--space-6);
   border-top: 1px solid var(--line);
   display: flex;
   gap: var(--space-3);
   color: var(--muted);
 }
+/* Optical alignment with the note's first line. */
 .aside-note svg {
   flex-shrink: 0;
-  margin-top: var(--space-1);
+  position: relative;
+  top: var(--space-1);
 }
 .aside-note p {
   font-size: 12px;
-  margin-bottom: 0;
 }
 .answer-feedback {
   display: flex;
   gap: var(--space-3);
   padding: var(--space-5);
-  margin-bottom: var(--space-5);
   border: 1px solid #4b535e;
   background: #292e35;
   border-radius: 6px;
@@ -70,7 +78,6 @@
   font-size: 12px;
   color: #bbc4d1;
   line-height: 1.6;
-  margin-top: var(--space-1-5);
 }
 .review-move {
   font: 20px var(--mono);
@@ -78,26 +85,17 @@
 }
 .review-details {
   border-top: 1px solid var(--line);
-  margin-top: var(--space-3);
 }
 .review-details p {
   font-size: 13px;
-  margin-bottom: var(--space-3);
 }
 .review-details .answer-feedback {
   padding: var(--space-3);
-  margin: 0 0 var(--space-3);
-}
-
-.explanation-summary {
-  font-size: 13px;
-  margin: var(--space-2) 0 var(--space-3);
 }
 .explanation-controls {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin: var(--space-3) 0;
 }
 .explanation-move-caption {
   font: 12px var(--mono);
@@ -105,7 +103,6 @@
 .explanation-caption {
   font-size: 13px;
   min-height: 3.3em;
-  margin-bottom: var(--space-2);
 }
 .review-explanation details {
   font-size: 12px;
@@ -115,13 +112,12 @@
   font-size: 12px;
 }
 .review-explanation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   min-width: 0;
 }
-.review-explanation .explanation-summary {
-  margin: var(--space-2) 0;
-}
 .review-session .practice-panel {
-  margin-top: 0;
   padding: 0;
   min-width: 0;
   border: 0;
@@ -131,10 +127,15 @@
 .opening-recall-names {
   font-size: 12px;
   line-height: 1.4;
-  margin: 0 0 var(--space-1-5);
 }
 .opening-recall-names svg {
   vertical-align: -2px;
+}
+.opening-recall-answers,
+.opening-recall-line {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
 }
 .opening-recall-answers {
   border-top: 1px solid var(--line);
@@ -143,7 +144,6 @@
 .opening-recall-answers h3,
 .opening-recall-line h4 {
   font-size: 13px;
-  margin: 0 0 var(--space-1-5);
 }
 .opening-recall-line {
   padding-block: var(--space-3);
@@ -152,7 +152,6 @@
 .opening-recall-line p {
   font: 12px/1.8 var(--mono);
   overflow-wrap: anywhere;
-  margin: 0;
 }
 .review-explanation .explanation-caption {
   min-height: 0;
@@ -187,18 +186,13 @@
   border-left: 2px solid var(--accent);
   padding-left: var(--space-3);
 }
-.practice-note {
-  margin: var(--space-2) 0 0;
-}
 .explanation-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
   align-items: start;
-  margin: var(--space-2) 0;
 }
 .explanation-actions > .pattern-tools {
-  margin: 0;
   flex: 1 1 auto;
 }
 @media (max-width: 1100px) {
@@ -211,26 +205,12 @@
 }
 @media (max-width: 760px) {
   .practice-panel {
-    margin-top: 0;
     padding: var(--space-6);
-  }
-  .section-number {
-    margin-bottom: var(--space-5);
   }
   .practice-panel h2 {
     font-size: 25px;
   }
   .review-session .review-move {
     font-size: 17px;
-  }
-  .review-session .review-details {
-    margin-top: var(--space-1-5);
-  }
-  .explanation-summary {
-    font-size: 12px;
-    margin-block: var(--space-2);
-  }
-  .review-session .explanation-controls {
-    margin: var(--space-2) 0;
   }
 }
