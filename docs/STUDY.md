@@ -297,6 +297,10 @@ are cached as immutable source data and returned as independent copies. Shared
 SAN authoring helpers produce the same validated content format. Existing saved
 sessions, enrolled lines and their earlier revisions retain their own snapshots.
 
+Courses can also be written as readable JSON files in the
+[course file format](COURSE_FILES.md), which loads into the same validated
+content.
+
 ### Reviewing authored course quality
 
 Legal histories and passing player tests establish that a course works, not that
