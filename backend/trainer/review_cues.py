@@ -2,6 +2,44 @@
 
 import chess
 
+from trainer.tactical_geometry import relative_pinners
+
+SLIDERS = {chess.BISHOP, chess.ROOK, chess.QUEEN}
+
+
+def pins(board):
+    """Every pin on the board as (pinning piece, pinned piece, piece behind)."""
+    found = set()
+    for square, piece in board.piece_map().items():
+        if piece.piece_type == chess.KING:
+            continue
+        if board.is_pinned(piece.color, square):
+            king = board.king(piece.color)
+            for source in board.pin(piece.color, square):
+                pinner = board.piece_at(source)
+                if (
+                    pinner
+                    and pinner.color != piece.color
+                    and pinner.piece_type in SLIDERS
+                    and square in chess.SquareSet(chess.between(source, king))
+                ):
+                    found.add((source, square, king))
+        found.update((slider, square, rear) for slider, rear in relative_pinners(board, square))
+    return found
+
+
+def new_pins(before, after):
+    """Pins the move just made, never ones carried over from earlier moves."""
+    return [
+        {
+            "startSquare": chess.square_name(source),
+            "endSquare": chess.square_name(rear),
+            "kind": "pin",
+            "pinned": chess.square_name(pinned),
+        }
+        for source, pinned, rear in sorted(pins(after) - pins(before))
+    ]
+
 
 def review_cues(line, *, mistake=False):
     frames = line["frames"]
@@ -94,6 +132,7 @@ def review_cues(line, *, mistake=False):
     return {
         "fen": current.fen(),
         "arrows": arrows,
+        "pins": new_pins(chess.Board(frames[0]["fen"]), current),
         "roles": roles,
         "caption": caption,
         "caption_kind": "legal_reply" if reply_only else None,

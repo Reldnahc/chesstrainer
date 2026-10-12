@@ -155,3 +155,28 @@ def test_absent_or_illegal_reply_never_authorizes_generic_reply_recording():
     illegal = review_cues(evidence, mistake=True)
     assert illegal["caption_kind"] is None
     assert illegal["caption_reply_uci"] is None
+
+
+def test_pin_arrow_appears_on_the_move_that_makes_the_pin():
+    # Bg5 pins the f6 knight to the queen on d8.
+    board = chess.Board()
+    for san in ["d4", "d5", "c4", "e6", "Nc3", "Nf6"]:
+        board.push_san(san)
+    cues = review_cues(line(board.fen(), ["c1g5", "f8e7"]))
+    assert cues["pins"] == [{"startSquare": "g5", "endSquare": "d8", "kind": "pin", "pinned": "f6"}]
+    assert BoardCues.model_validate(cues).pins[0].pinned == "f6"
+
+
+def test_pin_kept_from_an_earlier_move_is_not_drawn_again():
+    board = chess.Board()
+    for san in ["d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5"]:
+        board.push_san(san)
+    assert review_cues(line(board.fen(), ["h7h6", "g5h4"]))["pins"] == []
+
+
+def test_walking_into_an_absolute_pin_counts_as_making_it():
+    # Nd2 blocks the b4 bishop's check and is pinned to the king by that move.
+    evidence = line("4k3/8/8/8/1b6/8/8/1N2K3 w - - 0 1", ["b1d2"])
+    assert review_cues(evidence)["pins"] == [
+        {"startSquare": "b4", "endSquare": "e1", "kind": "pin", "pinned": "d2"}
+    ]

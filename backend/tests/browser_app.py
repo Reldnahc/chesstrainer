@@ -275,6 +275,19 @@ def create_app():
             import_games(db, "clock-fixture.pgn", pgn, [white], None, queue_analysis=False)
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
+    @app.post("/__test/pin-review-fixture/{key}")
+    def pin_review_fixture(key: str):
+        from sqlalchemy import select
+        from trainer.imports import import_games
+        from trainer.models import Game
+
+        with app.state.sessions() as db:
+            white = f"Pin-{key}"
+            # 4. Bg5 pins the f6 knight to the queen; 4...h6 keeps that pin in place.
+            pgn = f'[White "{white}"]\n[Black "PinFixture"]\n\n1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 h6 *'
+            import_games(db, "pin-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            return {"id": db.scalar(select(Game.id).where(Game.white == white))}
+
     @app.post("/__test/book-review-fixture/{key}")
     def book_review_fixture(key: str):
         from sqlalchemy import select

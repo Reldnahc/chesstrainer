@@ -70,7 +70,12 @@ highlights on the current board without moving pieces, changing the selected
 move, requesting more analysis, or creating a variation. **Hide why** or Escape
 clears those cues. Outside Show why, the opponent's strongest reply to the
 selected move is drawn as one faded blue arrow, and the same reply appears as
-**Reply** under **Best** beside the coach portrait. The action row sits below the speech bubble.
+**Reply** under **Best** beside the coach portrait. A pin the selected move
+makes (absolute, or relative to a more valuable piece; the mover's own pieces
+included) is drawn as a faded red arrow from the pinning piece through the
+pinned piece to the piece behind it, with or without Show why. A pin kept from
+an earlier move is not drawn again. The board cues' `pins` list carries these
+from `review_cues.py`. The action row sits below the speech bubble.
 The compact coach shows the move and rating together, with a prominent signed
 evaluation in the opposite corner. Scores always use White's perspective, even
 in a variation or after flipping the board: positive favors White, negative favors

@@ -58,9 +58,19 @@ class BoardArrow(Contract):
     kind: Literal["move", "reply", "threat"]
 
 
+class PinArrow(Contract):
+    """A pin the move just made: from the pinning piece to the piece behind."""
+
+    startSquare: str
+    endSquare: str
+    kind: Literal["pin"]
+    pinned: str
+
+
 class BoardCues(Contract):
     fen: str
     arrows: list[BoardArrow]
+    pins: list[PinArrow] = []
     roles: dict[str, list[str]]
     caption: str
     caption_kind: Literal["legal_reply"] | None = None

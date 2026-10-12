@@ -317,6 +317,14 @@
             "title": "Fen",
             "type": "string"
           },
+          "pins": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/PinArrow"
+            },
+            "title": "Pins",
+            "type": "array"
+          },
           "roles": {
             "additionalProperties": {
               "items": {
@@ -6659,6 +6667,37 @@
           "blunders_per_100"
         ],
         "title": "PhaseRate",
+        "type": "object"
+      },
+      "PinArrow": {
+        "additionalProperties": false,
+        "description": "A pin the move just made: from the pinning piece to the piece behind.",
+        "properties": {
+          "endSquare": {
+            "title": "Endsquare",
+            "type": "string"
+          },
+          "kind": {
+            "const": "pin",
+            "title": "Kind",
+            "type": "string"
+          },
+          "pinned": {
+            "title": "Pinned",
+            "type": "string"
+          },
+          "startSquare": {
+            "title": "Startsquare",
+            "type": "string"
+          }
+        },
+        "required": [
+          "startSquare",
+          "endSquare",
+          "kind",
+          "pinned"
+        ],
+        "title": "PinArrow",
         "type": "object"
       },
       "PlayDeviation": {

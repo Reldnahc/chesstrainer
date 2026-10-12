@@ -1793,6 +1793,11 @@ export interface components {
             caption_reply_uci?: string | null;
             /** Fen */
             fen: string;
+            /**
+             * Pins
+             * @default []
+             */
+            pins: components["schemas"]["PinArrow"][];
             /** Roles */
             roles: {
                 [key: string]: string[];
@@ -3823,6 +3828,23 @@ export interface components {
              * @enum {string}
              */
             phase: "opening" | "middlegame" | "endgame";
+        };
+        /**
+         * PinArrow
+         * @description A pin the move just made: from the pinning piece to the piece behind.
+         */
+        PinArrow: {
+            /** Endsquare */
+            endSquare: string;
+            /**
+             * Kind
+             * @constant
+             */
+            kind: "pin";
+            /** Pinned */
+            pinned: string;
+            /** Startsquare */
+            startSquare: string;
         };
         /**
          * PlayDeviation
