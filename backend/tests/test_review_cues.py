@@ -190,3 +190,15 @@ def test_sliding_along_a_held_pin_does_not_redraw_it():
     # The king stepping onto a new line behind its own piece is a new pin.
     king = line("3k4/4r3/8/8/8/8/8/4RK2 b - - 0 1", ["d8e8"])
     assert review_cues(king)["pins"] == [{"startSquare": "e1", "endSquare": "e8", "kind": "pin", "pinned": "e7"}]
+
+
+
+def test_only_piece_pins_to_the_king_or_something_worth_more_get_an_arrow():
+    # Bb5 pins the d7 pawn to the king: a pawn, so no arrow.
+    assert review_cues(line("4k3/3p4/8/8/8/8/4B3/4K3 w - - 0 1", ["e2b5"]))["pins"] == []
+    # Qa1 lines the c3 knight up with the e5 rook, which is worth less than the queen.
+    assert review_cues(line("7K/8/8/4r3/8/2n5/8/1Q5k w - - 0 1", ["b1a1"]))["pins"] == []
+    # Re2 pins the e5 knight to the queen, which is worth more than the rook.
+    assert review_cues(line("4q2k/8/8/4n3/8/8/R7/K7 w - - 0 1", ["a2e2"]))["pins"] == [
+        {"startSquare": "e2", "endSquare": "e8", "kind": "pin", "pinned": "e5"}
+    ]

@@ -2,16 +2,21 @@
 
 import chess
 
+from trainer.chess_core import VALUES
 from trainer.tactical_geometry import relative_pinners
 
 SLIDERS = {chess.BISHOP, chess.ROOK, chess.QUEEN}
 
 
 def pins(board):
-    """Every pin on the board as (pinning piece, pinned piece, piece behind)."""
+    """Pins worth an arrow, as (pinning piece, pinned piece, piece behind): a
+    piece (never a pawn) pinned to its king, or to something worth more than
+    the pinning piece. On real games pawn and lesser pins put an arrow on about
+    one move in six; this keeps it near one in twenty (owner decision,
+    2026-10-12)."""
     found = set()
     for square, piece in board.piece_map().items():
-        if piece.piece_type == chess.KING:
+        if piece.piece_type in {chess.KING, chess.PAWN}:
             continue
         if board.is_pinned(piece.color, square):
             king = board.king(piece.color)
@@ -24,7 +29,11 @@ def pins(board):
                     and square in chess.SquareSet(chess.between(source, king))
                 ):
                     found.add((source, square, king))
-        found.update((slider, square, rear) for slider, rear in relative_pinners(board, square))
+        found.update(
+            (slider, square, rear)
+            for slider, rear in relative_pinners(board, square)
+            if VALUES[board.piece_type_at(rear)] > VALUES[board.piece_type_at(slider)]
+        )
     return found
 
 
