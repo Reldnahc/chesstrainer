@@ -8,7 +8,7 @@ test("actual-size previews keep the production compact coach actions", async ({ 
     await expect(action).toBeDisabled();
     await expect(action).toHaveText("Show why");
     await expect(action).toHaveCSS("font-size", "12px");
-    await expect(action).toHaveCSS("padding", "6px 10px");
+    await expect(action).toHaveCSS("padding", "6px 12px");
     if (await action.isVisible()) expect((await action.boundingBox())!.height).toBeGreaterThanOrEqual(44);
   }
 });

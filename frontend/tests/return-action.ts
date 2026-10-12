@@ -23,7 +23,7 @@ export async function expectReturnAction(button: Locator) {
   });
   expect(presentation).toMatchObject({
     color: "rgb(33, 20, 55)", borderColor: "rgb(207, 191, 255)",
-    fontSize: "12px", fontWeight: "700", padding: "6px 10px", gap: "6px",
+    fontSize: "12px", fontWeight: "700", padding: "6px 12px", gap: "6px",
   });
   return presentation;
 }
