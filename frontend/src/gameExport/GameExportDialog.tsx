@@ -39,8 +39,8 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 /** PGN, FEN and an animated GIF of one game. */
 export default function GameExportDialog({ id, fen, onClose }: {
   id: string;
-  /** The position on screen; without it the FEN is the game's final position. */
-  fen?: string;
+  /** The position on the board. */
+  fen: string;
   onClose: () => void;
 }) {
   const dialog = useModalDialog(onClose);
@@ -72,7 +72,6 @@ export default function GameExportDialog({ id, fen, onClose }: {
       setProgress(null);
     }
   }
-  const shownFen = fen ?? game?.positions.at(-1)?.fen ?? "";
   return (
     <dialog {...dialog} aria-labelledby={`${ids}-title`} className="game-export-dialog panel">
       <div className="row-between">
@@ -97,10 +96,10 @@ export default function GameExportDialog({ id, fen, onClose }: {
         </section>
         <section className="game-export-section" aria-labelledby={`${ids}-fen`}>
           <div className="row-between">
-            <h3 id={`${ids}-fen`}>FEN <span className="muted">{fen ? "Position on the board" : "Final position"}</span></h3>
-            <CopyButton text={shownFen} label="Copy FEN" />
+            <h3 id={`${ids}-fen`}>FEN <span className="muted">Position on the board</span></h3>
+            <CopyButton text={fen} label="Copy FEN" />
           </div>
-          <input readOnly value={shownFen} aria-labelledby={`${ids}-fen`} spellCheck={false} />
+          <input readOnly value={fen} aria-labelledby={`${ids}-fen`} spellCheck={false} />
         </section>
         <section className="game-export-section" aria-labelledby={`${ids}-gif`}>
           <div className="row-between">

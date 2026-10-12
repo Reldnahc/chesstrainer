@@ -76,9 +76,8 @@ included) is drawn as a faded red arrow from the pinning piece through the
 pinned piece to the piece behind it, with or without Show why. A pin kept from
 an earlier move is not drawn again. The board cues' `pins` list carries these
 from `review_cues.py`. The action row sits below the speech bubble.
-The export icon beside **Next mistake** (and a small icon on each row of the
-Games and Home lists) opens one dialog: the saved PGN to copy or download, the
-FEN of the position on the board (the final position from a list), and a GIF of
+The export icon beside **Next mistake** opens one dialog: the saved PGN to copy
+or download, the FEN of the position on the board, and a GIF of
 the whole game from the board's side, one move a second, made in the browser.
 `GET /api/games/{id}/export` supplies the PGN and every mainline position.
 The compact coach shows the move and rating together, with a prominent signed

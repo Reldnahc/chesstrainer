@@ -41,22 +41,11 @@ test('the review exports PGN, the FEN on the board and a GIF of the game', async
   await expect(open).toBeFocused();
 });
 
-test('game lists open the same export with the final position', async ({page}, info) => {
+test('game lists have no export button; it lives on the review page', async ({page}, info) => {
   await page.request.post(`/__test/clock-review-fixture/list-export-${info.project.name}`);
   for (const path of ['/games', '/']) {
     await page.goto(path);
-    const button = page.getByRole('button', {name: `Export Clock-list-export-${info.project.name} vs ClockFixture`});
-    await expect(button).toBeVisible({timeout: 30_000});
-    const box = (await button.boundingBox())!;
-    // Small on purpose, phones included: no 44px target for a secondary row command.
-    expect(box.width).toBeLessThanOrEqual(28);
-    expect(box.height).toBeLessThanOrEqual(28);
-    await page.locator('.game-library').screenshot({path: `test-results/export-list${path === '/' ? '-home' : ''}-${info.project.name}.png`});
-    await button.click();
-    const dialog = page.getByRole('dialog', {name: 'Export game'});
-    await expect(dialog.getByRole('textbox', {name: /FEN/})).toHaveValue(/^r1b1kbnr\/pppp1ppp\/8\/4N1q1\/2BnP3\/8\/PPPP1PPP\/RNBQK2R w KQkq - 1 5$/);
-    await dialog.getByRole('button', {name: 'Close export'}).click();
-    await expect(dialog).toHaveCount(0);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await expect(page.locator('.game-library-item').first()).toBeVisible({timeout: 30_000});
+    await expect(page.getByRole('button', {name: /^Export/})).toHaveCount(0);
   }
 });

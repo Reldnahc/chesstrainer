@@ -185,7 +185,7 @@ def create_router(*, settings, engine_factory):
 
     @router.get("/api/games/{game_id}/export", response_model=GameExport)
     def game_export(view: ViewedGame, game_id: str):
-        # Light enough for the library lists: no reports, review state or legal moves.
+        # Only what export needs: no reports, review state or legal moves.
         with view.sessions() as db:
             game = require_game(db, game_id)
             parsed = parsed_game(game)

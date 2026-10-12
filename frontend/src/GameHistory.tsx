@@ -1,7 +1,5 @@
-import { useState } from "react";
 import type { Schema } from "./api";
-import { ChevronRight, Clock3, Share } from "lucide-react";
-import GameExportDialog from "./gameExport/GameExportDialog";
+import { ChevronRight, Clock3 } from "lucide-react";
 import Link from "./Link";
 import { gamesPath } from "./navigation";
 import { AccuracyReadout } from "./gameReview/Players";
@@ -99,7 +97,6 @@ export default function GameHistory({
   presentation?: "library" | "compact";
 }) {
   const compact = presentation === "compact";
-  const [exporting, setExporting] = useState<string | null>(null);
   return (
     <section className={`game-library${compact ? " game-library--compact" : ""}`} aria-label="Game history">
       {!compact && <div className="game-library-heading" aria-hidden="true">
@@ -208,16 +205,10 @@ export default function GameHistory({
                   {description}
                 </span>
               </Link>
-              {/* A sibling of the row's link: a command cannot sit inside a destination. */}
-              <button type="button" className="history-export" aria-label={`Export ${item.white} vs ${item.black}`}
-                title="Export PGN, FEN or GIF" onClick={() => setExporting(item.id)}>
-                <Share size={14} />
-              </button>
             </li>
           );
         })}
       </ul>
-      {exporting && <GameExportDialog id={exporting} onClose={() => setExporting(null)} />}
     </section>
   );
 }
