@@ -414,6 +414,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/games/{game_id}/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Game Export */
+        get: operations["game_export_api_games__game_id__export_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/games/{game_id}/position": {
         parameters: {
             query?: never;
@@ -2458,6 +2475,13 @@ export interface components {
              */
             source: "stockfish" | "human" | "rule" | "pgn" | "book" | "position" | "weakness";
         };
+        /** ExportPosition */
+        ExportPosition: {
+            /** Fen */
+            fen: string;
+            /** Uci */
+            uci: string | null;
+        };
         /** Finding */
         Finding: {
             /**
@@ -2639,6 +2663,27 @@ export interface components {
             white: string;
             /** White Rating */
             white_rating: number | null;
+        };
+        /**
+         * GameExport
+         * @description What the export dialog needs: the saved PGN and every mainline position.
+         */
+        GameExport: {
+            /** Black */
+            black: string;
+            /**
+             * Orientation
+             * @enum {string}
+             */
+            orientation: "white" | "black";
+            /** Pgn */
+            pgn: string;
+            /** Positions */
+            positions: components["schemas"]["ExportPosition"][];
+            /** Result */
+            result: string;
+            /** White */
+            white: string;
         };
         /** GameFrame */
         GameFrame: {
@@ -5672,6 +5717,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["GameAnalysis"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    game_export_api_games__game_id__export_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                game_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GameExport"];
                 };
             };
             /** @description Validation Error */

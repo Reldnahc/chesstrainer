@@ -176,6 +176,23 @@ class GameDetail(Contract):
     accuracy: GameAccuracy | None
 
 
+class ExportPosition(Contract):
+    fen: str
+    # The move that reached this position; None for the starting position.
+    uci: str | None
+
+
+class GameExport(Contract):
+    """What the export dialog needs: the saved PGN and every mainline position."""
+
+    white: str
+    black: str
+    result: str
+    orientation: Color
+    pgn: str
+    positions: list[ExportPosition]
+
+
 class ReviewedMove(Contract):
     ply: int
     report: GameMoveReport

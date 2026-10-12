@@ -16,6 +16,7 @@ from trainer.contracts.common import JobStarted
 from trainer.contracts.games import (
     GameAnalysis,
     GameDetail,
+    GameExport,
     GameHistory,
     GamePosition,
     ReviewProgress,
@@ -181,6 +182,26 @@ def create_router(*, settings, engine_factory):
                         db.execute(update(Game).where(Game.id == game_id).values(move_count=plies))
                     db.commit()
             return {"items": items, "total": total}
+
+    @router.get("/api/games/{game_id}/export", response_model=GameExport)
+    def game_export(view: ViewedGame, game_id: str):
+        # Light enough for the library lists: no reports, review state or legal moves.
+        with view.sessions() as db:
+            game = require_game(db, game_id)
+            parsed = parsed_game(game)
+            board = parsed.board()
+            positions = [{"fen": board.fen(), "uci": None}]
+            for move in parsed.mainline_moves():
+                board.push(move)
+                positions.append({"fen": board.fen(), "uci": move.uci()})
+            return {
+                "white": game.white,
+                "black": game.black,
+                "result": parsed.headers.get("Result", "*"),
+                "orientation": "white" if game.learner_color else "black",
+                "pgn": game.pgn.strip() + "\n",
+                "positions": positions,
+            }
 
     @router.get(
         "/api/games/{game_id}", response_model=GameDetail, response_model_exclude_unset=True
