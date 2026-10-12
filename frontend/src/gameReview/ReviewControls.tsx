@@ -18,6 +18,10 @@ export default function ReviewControls({
       role="group"
       aria-label="Game navigation"
     >
+      {/* Flip balances mute: one tool either side of the move controls. */}
+      <IconButton className="game-board-flip" aria-label="Flip board" onClick={flip}>
+        <FlipVertical2 size={17} />
+      </IconButton>
       <MovePlaybackControls label="Game move playback" current={current} maximum={maximum}
         first={branch
           ? { "aria-label": "Start of variation", title: "Game position where this variation began", onClick: () => navigate(branch.root) }
@@ -26,9 +30,6 @@ export default function ReviewControls({
         next={{ "aria-label": "Next move", disabled: current === maximum, onClick: () => step(1) }}
         last={{ "aria-label": "Last move", disabled: current === maximum, onClick: () => selectStep(maximum) }} />
       <div className="game-board-tools">
-        <IconButton aria-label="Flip board" onClick={flip}>
-          <FlipVertical2 size={17} />
-        </IconButton>
         <AudioMuteButton />
       </div>
     </div>

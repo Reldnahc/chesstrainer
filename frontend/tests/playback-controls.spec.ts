@@ -46,13 +46,13 @@ test("shared move playback preserves counter geometry and fits the complete game
           || control.top >= previous.bottom - 1 || control.bottom <= previous.top + 1).toBe(true);
       }
     }
-    // Quick mute is the last control in the same group, sized and spaced like Flip.
+    // Flip starts the row and quick mute ends it, either side of the move controls, sized alike.
     const mute = (await toolbar.getByRole("button", { name: "Mute sound on this device", exact: true }).boundingBox())!;
     const flip = (await toolbar.getByRole("button", { name: "Flip board", exact: true }).boundingBox())!;
     const navigationBox = (await toolbar.boundingBox())!;
     expect(mute.y).toBe(flip.y);
-    expect(mute.width).toBeCloseTo(flip.width, 1);
-    expect(mute.x - flip.x - flip.width).toBeCloseTo(width <= 760 ? 2 : 6, 1);
+    expect(mute.width).toBeCloseTo(flip.width, 0);
+    expect(flip.x).toBeCloseTo(navigationBox.x, 1);
     expect(mute.x + mute.width).toBeCloseTo(navigationBox.x + navigationBox.width, 1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
