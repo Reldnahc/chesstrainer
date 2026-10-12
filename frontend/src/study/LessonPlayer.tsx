@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, Lightbulb, Play } from "l
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
-import Button from "../Button";
+import Button, { IconButton } from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
@@ -74,6 +74,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const action = (name: LessonAction, label: string, primary = false, icon?: ReactNode) => {
     if (!has(name)) return null;
     const props = { ...(name === "close_game" ? gameButtonState() : { disabled }), onClick: () => state.command(name) };
+    if (name === "back") return <IconButton key={name} size="compact" variant="secondary" aria-label={label} title={label} {...props}>{icon}</IconButton>;
     return name === "return_branch" || name === "close_game"
       ? <ReturnButton key={name} {...props}>{label}</ReturnButton>
       : <Button key={name} size="compact" variant={primary ? "primary" : "secondary"} {...props}>{icon}{label}</Button>;

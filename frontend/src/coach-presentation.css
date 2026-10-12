@@ -274,6 +274,12 @@
   min-width: 0;
   max-width: calc((100% - var(--coach-action-gap)) / 2);
 }
+/* A square icon command (such as Back) keeps its own width beside labelled actions. */
+.coach-actions > .action-control.action-control--icon {
+  flex: none;
+  width: 44px;
+  height: auto;
+}
 .coach-actions button[aria-pressed="true"] {
   border-color: #b8cfc2;
   background: #34483c;

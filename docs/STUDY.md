@@ -252,6 +252,9 @@ A demonstration or game excerpt that plays one move offers *Play the move*
 rather than *Play continuation*; while it plays, the coach is titled “Watch the
 move.”, keeps the step's own text and plays no guided-playback clip. Each step
 reports `plies`, the number of moves it plays, for this.
+The coach's row shows Back as an arrow-only button, and a side trip's *Main
+line* button sits in the side-trip panel under its title, so the row holds at
+most three buttons.
 
 The `/study/openings` library links course chapters and recent resumable sessions.
 `/study/openings/courses/:id?revision=…` pins the chapter list, and
