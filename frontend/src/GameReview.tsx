@@ -9,6 +9,7 @@ import Notice from "./Notice";
 import EmptyState from "./EmptyState";
 import { gamesPath, pagePaths } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
+import { LoadingState } from "./LoadState";
 
 export default function GamesScreen({
   page,
@@ -78,7 +79,7 @@ export default function GamesScreen({
         </Notice>
       )}
       {loading ? (
-        <p role="status">Loading your games…</p>
+        <LoadingState>Loading your games…</LoadingState>
       ) : !items.length ? (
         <EmptyState title={page > 1
               ? "No games on this page."
