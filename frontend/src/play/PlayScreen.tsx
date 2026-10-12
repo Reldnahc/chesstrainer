@@ -133,7 +133,8 @@ function PlaySetup() {
   const matched = profile?.default_rating ?? 1200;
   const chosen = level === "match" && opponent === "human" ? matched : clamped;
   // Practice plays the course's side; the color choice shows it but cannot change it.
-  const course = mode === "practice" ? courses.find((item) => item.id === courseId) ?? null : null;
+  const picked = courses.find((item) => item.id === courseId) ?? null;
+  const course = mode === "practice" ? picked : null;
   const shownColor: Color = course ? course.learner_color : color;
   async function start() {
     setStarting(true);
@@ -180,21 +181,20 @@ function PlaySetup() {
             <span>Opening</span>
             <ChoiceGroup label="Opening" value={mode} onChange={setMode}
               options={MODES.map(option => ({ ...option, disabled: option.value === "practice" && !courses.length }))} />
-            {/* Only the shown description takes room: the course picker is much taller
-                than the one-line description, and reserving it left a gap under that line. */}
-            <div>
+            {/* The course picker stays in place, unavailable until practice is chosen, so
+                choosing practice never pushes the rows below it down. */}
+            <select className="play-course" aria-label="Course to practice" value={courseId}
+              disabled={mode !== "practice"} onChange={(event) => setCourseId(event.target.value)}>
+              {courses.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
+            </select>
+            <div className="play-swap">
               <p className="small muted" hidden={mode !== "free"}>
                 {coach.name} chooses its own opening moves.
               </p>
-              <div className="play-practice" hidden={mode !== "practice"}>
-                <select aria-label="Course to practice" value={courseId} onChange={(event) => setCourseId(event.target.value)}>
-                  {courses.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
-                </select>
-                <p className="small muted">
-                  {course ? `You play ${course.learner_color === "white" ? "White" : "Black"}. ` : ""}
-                  {coach.name} plays the course's lines and stops you when you leave them.
-                </p>
-              </div>
+              <p className="small muted" hidden={mode !== "practice"}>
+                {picked ? `You play ${picked.learner_color === "white" ? "White" : "Black"}. ` : ""}
+                {coach.name} plays the course's lines and stops you when you leave them.
+              </p>
             </div>
           </div>
           <div className="play-field">

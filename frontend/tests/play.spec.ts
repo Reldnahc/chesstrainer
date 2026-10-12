@@ -193,7 +193,15 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   });
 
   await page.goto("/play");
+  // Choosing practice enables the course picker in place: the rows below it do not move.
+  await expect(page.getByLabel("Walter says")).toBeVisible();
+  await expect(page.getByLabel("Course to practice")).toBeDisabled();
+  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
+    document.querySelector('[aria-label="Opponent"]')!.getBoundingClientRect().top + window.scrollY]);
+  const before = await layout();
   await page.getByRole("button", {name: "Practice an opening"}).click();
+  await expect(page.getByLabel("Course to practice")).toBeEnabled();
+  expect(await layout()).toEqual(before);
   // The course decides the side: the Dragon is Black's, so White cannot be chosen.
   await expect(page.getByRole("button", {name: "Black", exact: true})).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("button", {name: "White", exact: true})).toBeDisabled();
