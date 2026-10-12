@@ -57,7 +57,9 @@ function PlaySetup() {
   const { preferences } = useCoachPreferences();
   const coach = getCoach(preferences.coach_id);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [active, setActive] = useState<Schema["PlayState"] | null>(null);
+  // Undefined until the server says whether a game is in progress. The setup waits for
+  // that answer and the measured level, so neither moves it after it appears.
+  const [active, setActive] = useState<Schema["PlayState"] | null | undefined>(undefined);
   const [level, setLevel] = useState<(typeof LEVELS)[number]["value"]>("match");
   const [opponent, setOpponent] = useState<Opponent>("human");
   const [rating, setRating] = useState(1200);
@@ -110,7 +112,9 @@ function PlaySetup() {
       .then((value) => {
         if (active) setActive(value.game);
       })
-      .catch(() => undefined);
+      .catch(() => {
+        if (active) setActive(null);
+      });
     return () => {
       active = false;
       window.clearTimeout(timer);
@@ -133,7 +137,8 @@ function PlaySetup() {
   const matched = profile?.default_rating ?? 1200;
   const chosen = level === "match" && opponent === "human" ? matched : clamped;
   // Practice plays the course's side; the color choice shows it but cannot change it.
-  const course = mode === "practice" ? courses.find((item) => item.id === courseId) ?? null : null;
+  const picked = courses.find((item) => item.id === courseId) ?? null;
+  const course = mode === "practice" ? picked : null;
   const shownColor: Color = course ? course.learner_color : color;
   async function start() {
     setStarting(true);
@@ -174,27 +179,27 @@ function PlaySetup() {
           </ActionLink>
         </section>
       )}
+      {active === undefined || (!profile && !error) ? <LoadingState>Loading…</LoadingState> : (
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
           <div className="play-field">
             <span>Opening</span>
             <ChoiceGroup label="Opening" value={mode} onChange={setMode}
               options={MODES.map(option => ({ ...option, disabled: option.value === "practice" && !courses.length }))} />
-            {/* Only the shown description takes room: the course picker is much taller
-                than the one-line description, and reserving it left a gap under that line. */}
-            <div>
+            {/* The course picker stays in place, unavailable until practice is chosen, so
+                choosing practice never pushes the rows below it down. */}
+            <select className="play-course" aria-label="Course to practice" value={courseId}
+              disabled={mode !== "practice"} onChange={(event) => setCourseId(event.target.value)}>
+              {courses.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
+            </select>
+            <div className="play-swap">
               <p className="small muted" hidden={mode !== "free"}>
                 {coach.name} chooses its own opening moves.
               </p>
-              <div className="play-practice" hidden={mode !== "practice"}>
-                <select aria-label="Course to practice" value={courseId} onChange={(event) => setCourseId(event.target.value)}>
-                  {courses.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
-                </select>
-                <p className="small muted">
-                  {course ? `You play ${course.learner_color === "white" ? "White" : "Black"}. ` : ""}
-                  {coach.name} plays the course's lines and stops you when you leave them.
-                </p>
-              </div>
+              <p className="small muted" hidden={mode !== "practice"}>
+                {picked ? `You play ${picked.learner_color === "white" ? "White" : "Black"}. ` : ""}
+                {coach.name} plays the course's lines and stops you when you leave them.
+              </p>
             </div>
           </div>
           <div className="play-field">
@@ -268,7 +273,7 @@ function PlaySetup() {
         </div>
         )}
       </div>
-      {!profile && !error && <LoadingState>Loading…</LoadingState>}
+      )}
     </>
   );
 }

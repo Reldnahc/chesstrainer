@@ -5,6 +5,7 @@ import ActionLink from "./ActionLink";
 import { pagePaths } from "./navigation";
 import ProviderUsernameField from "./ProviderUsernameField";
 import Notice from "./Notice";
+import { LoadingState } from "./LoadState";
 
 type Sync = Schema["SyncStatus"];
 type Provider = Schema["GameProvider"];
@@ -194,7 +195,7 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
   return <section className="game-connections" aria-label="Connected game accounts">
     <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks for new games every minute and analyzes each one automatically, newest first. Older imported games are analyzed after your recent ones. Checks pause after a week without visiting.</p>{connected && button}</div>
     {connected && <AnalysisQueueStatus />}
-    {loading && providers.length === 0 && <p role="status" className="small">Loading game connections…</p>}
+    {loading && providers.length === 0 && <LoadingState>Loading game connections…</LoadingState>}
     <div className="provider-connections">{providers.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
   </section>;
