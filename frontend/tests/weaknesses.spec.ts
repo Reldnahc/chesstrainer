@@ -221,7 +221,8 @@ test('Insights opens on the overview and keeps the old insight and weakness link
   await expect(page.locator('main h1')).toHaveText('Insights');
   await expect(sections(page).getByRole('link', {name: 'Overview', exact: true})).toHaveAttribute('aria-current', 'page');
   await expect(categories(page)).toHaveCount(0);
-  await expect(page.getByRole('group', {name: 'Period'})).toBeVisible();
+  // Phones show the Period choice as a dropdown; wider screens as a button group.
+  await expect(page.getByRole('group', {name: 'Period'}).or(page.getByRole('combobox', {name: 'Period'}))).toBeVisible();
   await expect(page.getByRole('heading', {name: 'Pinned defender', exact: true})).toHaveCount(0);
   await page.goto('/weaknesses?category=outcomes');
   await expect(page).toHaveURL('/insights?section=outcomes');

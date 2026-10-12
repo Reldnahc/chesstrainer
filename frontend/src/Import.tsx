@@ -213,60 +213,63 @@ export default function ImportSettings({
   return <div className="settings-import">
     <SettingsSection id="settings-imports" title="Import games">
       <GameSync onChanged={reload} onStatusChange={connectionChanged} onImportOlderGames={openSource} />
-      <div className="pgn-import-launcher">
-        <div><h3>Have a PGN file?</h3><p className="small">Import a game or a collection from any chess site.</p></div>
-        <Button variant="secondary" onClick={() => openSource("pgn")}><FileUp size={17} />Import PGN</Button>
-      </div>
-      <div className="import-form" ref={formRef} tabIndex={source ? -1 : undefined}
-        aria-labelledby={source ? "import-form-title" : undefined} aria-hidden={!source || undefined}
-        data-open={!!source && !closing || undefined} data-closing={closing || undefined} inert={!source || closing}
-        onTransitionEnd={event => {
-          if (event.target !== event.currentTarget || event.propertyName !== "grid-template-rows") return;
-          if (closing) finishClose();
-          else if (!restoringScroll && expansionScrollY.current === window.scrollY && document.activeElement === event.currentTarget) {
-            // Use the expanded bounds, and never override a reader who scrolled meanwhile.
-            event.currentTarget.scrollIntoView({ block: "nearest", behavior: "instant" });
-            expansionScrollY.current = null;
-          }
-        }}>
-        <div className="import-form-clip">
-          {source && <div className="import-form-body">
-            <div className="import-form-heading">
-              <h3 id="import-form-title">{source === "pgn" ? "Import PGN" : selectedProvider ? `Import from ${selectedProvider.name}` : "Import games"}</h3>
-              <IconButton variant="quiet" aria-label="Close import form" title="Close import form" onClick={closeForm}><X size={18} aria-hidden="true" /></IconButton>
-            </div>
-            {health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}
-            {source !== "pgn" ? (
-              selectedProvider
-                ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
-                : <p role="status">{loadingProviders ? "Loading game providers…" : "That game provider is unavailable. Choose an import action above."}</p>
-            ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
-              <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
-              <div className="import-options">
-                <label>
-                  Your username(s)
-                  <input value={names} onChange={event => setNames(event.target.value)} placeholder="Match the White or Black PGN headers" required={side === "auto"} />
-                  <small>Separate multiple usernames with commas. Matching ignores case.</small>
-                </label>
-                <label>
-                  Learner side
-                  <select value={side} onChange={event => setSide(event.target.value as typeof side)}>
-                    <option value="auto">Match my username in each game</option>
-                    <option value="white">I played White in every game</option>
-                    <option value="black">I played Black in every game</option>
-                  </select>
-                </label>
+      {/* The launcher and its form stay together, so the closed form reserves no gap. */}
+      <div className="pgn-import">
+        <div className="pgn-import-launcher">
+          <div><h3>Have a PGN file?</h3><p className="small">Import a game or a collection from any chess site.</p></div>
+          <Button variant="secondary" onClick={() => openSource("pgn")}><FileUp size={17} />Import PGN</Button>
+        </div>
+        <div className="import-form" ref={formRef} tabIndex={source ? -1 : undefined}
+          aria-labelledby={source ? "import-form-title" : undefined} aria-hidden={!source || undefined}
+          data-open={!!source && !closing || undefined} data-closing={closing || undefined} inert={!source || closing}
+          onTransitionEnd={event => {
+            if (event.target !== event.currentTarget || event.propertyName !== "grid-template-rows") return;
+            if (closing) finishClose();
+            else if (!restoringScroll && expansionScrollY.current === window.scrollY && document.activeElement === event.currentTarget) {
+              // Use the expanded bounds, and never override a reader who scrolled meanwhile.
+              event.currentTarget.scrollIntoView({ block: "nearest", behavior: "instant" });
+              expansionScrollY.current = null;
+            }
+          }}>
+          <div className="import-form-clip">
+            {source && <div className="import-form-reveal"><div className="import-form-body">
+              <div className="import-form-heading">
+                <h3 id="import-form-title">{source === "pgn" ? "Import PGN" : selectedProvider ? `Import from ${selectedProvider.name}` : "Import games"}</h3>
+                <IconButton variant="quiet" aria-label="Close import form" title="Close import form" onClick={closeForm}><X size={18} aria-hidden="true" /></IconButton>
               </div>
-              <div className="import-form-actions">
-                <ImportSubmitButton busy={busy} busyLabel="Importing…"
-                  disabled={pgnMode === "file" ? !file : !text.trim()} />
-              </div>
-              {result && <Notice announcement="status">
-                <p>{result.imported} imported · {result.duplicates} duplicate(s).</p>
-                {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
-              </Notice>}
-            </form>}
-          </div>}
+              {health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}
+              {source !== "pgn" ? (
+                selectedProvider
+                  ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
+                  : <p role="status">{loadingProviders ? "Loading game providers…" : "That game provider is unavailable. Choose an import action above."}</p>
+              ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
+                <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
+                <div className="import-options">
+                  <label>
+                    Your username(s)
+                    <input value={names} onChange={event => setNames(event.target.value)} placeholder="Match the White or Black PGN headers" required={side === "auto"} />
+                    <small>Separate multiple usernames with commas. Matching ignores case.</small>
+                  </label>
+                  <label>
+                    Learner side
+                    <select value={side} onChange={event => setSide(event.target.value as typeof side)}>
+                      <option value="auto">Match my username in each game</option>
+                      <option value="white">I played White in every game</option>
+                      <option value="black">I played Black in every game</option>
+                    </select>
+                  </label>
+                </div>
+                <div className="import-form-actions">
+                  <ImportSubmitButton busy={busy} busyLabel="Importing…"
+                    disabled={pgnMode === "file" ? !file : !text.trim()} />
+                </div>
+                {result && <Notice announcement="status">
+                  <p>{result.imported} imported · {result.duplicates} duplicate(s).</p>
+                  {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
+                </Notice>}
+              </form>}
+            </div></div>}
+          </div>
         </div>
       </div>
     </SettingsSection>

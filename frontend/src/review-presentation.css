@@ -32,7 +32,9 @@ main:has(.review-workspace-layout) {
 }
 .review-board-row {
   display: grid;
-  grid-template-columns: calc(var(--review-gutter) - 8px) minmax(0, 1fr);
+  /* The evaluation column plus the gap fill exactly one gutter, so boards with
+     and without an evaluation bar keep the same size. */
+  grid-template-columns: calc(var(--review-gutter) - var(--space-2)) minmax(0, 1fr);
   gap: var(--space-2);
 }
 .review-board-square {
@@ -152,7 +154,7 @@ main:has(.review-workspace-layout) {
     font-size: var(--text-base);
   }
   .review-board-row {
-    grid-template-columns: calc(var(--review-gutter) - 5px) minmax(0, 1fr);
+    grid-template-columns: calc(var(--review-gutter) - var(--space-1-5)) minmax(0, 1fr);
     gap: var(--space-1-5);
   }
   .review-board-toolbar {
