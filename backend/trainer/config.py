@@ -15,7 +15,6 @@ PRIVATE_SETTINGS = frozenset(
         "database_path",
         "courses_path",
         "public_origin",
-        "signups_open",  # Reported by /api/auth/me instead.
         "stockfish_path",
         "human_model_path",
         "chesscom_user_agent",
@@ -32,9 +31,6 @@ class Settings(BaseSettings):
     # beside the database, so they live on the same volume.
     courses_path: Path | None = None
     accounts_enabled: bool = False
-    # Account mode: whether visitors may create their own accounts. Closed, only
-    # administrators add members in Settings.
-    signups_open: bool = False
     session_secure: bool = True
     public_origin: str = ""
     engine_slots: int = Field(default=4, ge=1, le=32)

@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { KeyRound, ShieldCheck, Trash2, UserCheck, UserPlus, UserX } from "lucide-react";
+import { DoorClosed, DoorOpen, KeyRound, ShieldCheck, Trash2, UserCheck, UserPlus, UserX } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
@@ -9,7 +9,7 @@ import SettingsSection from "./SettingsSection";
 type ManagedAccount = Schema["ManagedAccount"];
 type Pending = { id: string; action: "password" | "delete" } | { id: "new"; action: "add" } | null;
 
-/** Administrator account management: add members, reset passwords, disable, promote and delete accounts. */
+/** Administrator account management: add members, open sign-ups, reset passwords, disable, promote and delete accounts. */
 export default function AccountAdmin({ selfId }: { selfId: string }) {
   const [accounts, setAccounts] = useState<ManagedAccount[] | null>(null);
   const [signupsOpen, setSignupsOpen] = useState(false);
@@ -66,15 +66,20 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
   const adding = pending?.action === "add";
   if (!accounts) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading accounts…</LoadingState>;
   return <SettingsSection id="settings-accounts" title="Accounts"
-    description="Everyone who can sign in to this Fieldwork server. Administrators add and manage members here.">
+    description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
     {notice && <Notice announcement="status" tone="success">{notice}</Notice>}
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Sign-ups</h3>
-        <p>{signupsOpen
-          ? "Open. Anyone who can reach this server can create an account. Set SIGNUPS_OPEN=false on the server to close them."
-          : "Closed. Only administrators can add accounts. Set SIGNUPS_OPEN=true on the server to let people sign up."}</p>
+        <p>{signupsOpen ? "Open. Anyone who can reach this server can create an account." : "Closed. Only administrators can add accounts."}</p>
+      </div>
+      <div className="button-row">
+        <Button size="compact" variant="secondary" disabled={busy}
+          onClick={() => act(() => read(api.PUT("/api/auth/signups", { body: { open: !signupsOpen } })),
+            signupsOpen ? "Sign-ups are closed." : "Sign-ups are open. Anyone who can reach this server can create an account.")}>
+          {signupsOpen ? <><DoorClosed size={16} />Close sign-ups</> : <><DoorOpen size={16} />Open sign-ups</>}
+        </Button>
       </div>
     </div>
     <div className="settings-tool settings-tool-row">

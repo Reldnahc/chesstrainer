@@ -87,20 +87,25 @@ test('administrators reset, disable, promote and delete other accounts', async (
   ]);
 });
 
-test('administrators add members while sign-ups are closed', async ({page}, info) => {
+test('administrators add members and open sign-ups', async ({page}, info) => {
   await signedIn(page, true);
   const accounts = [account('keeper-id', 'keeper', true)];
+  let signups_open = false;
   const calls: string[] = [];
   await page.route('**/api/auth/accounts', async route => {
     const request = route.request();
-    if (request.method() === 'GET') return route.fulfill({json: {accounts, signups_open: false} satisfies Schema['ManagedAccounts']});
+    if (request.method() === 'GET') return route.fulfill({json: {accounts, signups_open} satisfies Schema['ManagedAccounts']});
     calls.push(`POST accounts ${request.postData()}`);
     accounts.push(account('friend-id', request.postDataJSON().username));
     return route.fulfill({status: 201, json: {ok: true} satisfies Schema['Ok']});
   });
+  await page.route('**/api/auth/signups', async route => {
+    calls.push(`PUT signups ${route.request().postData()}`);
+    signups_open = route.request().postDataJSON().open;
+    return route.fulfill({json: {ok: true} satisfies Schema['Ok']});
+  });
   await page.goto('/settings?section=account');
-  await expect(row(page, 'Sign-ups')).toContainText('Closed. Only administrators can add accounts. Set SIGNUPS_OPEN=true on the server to let people sign up.');
-  await expect(row(page, 'Sign-ups').getByRole('button')).toHaveCount(0);
+  await expect(row(page, 'Sign-ups')).toContainText('Closed. Only administrators can add accounts.');
   await row(page, 'Add member').getByRole('button', {name: 'Add member'}).click();
   const name = row(page, 'Add member').getByLabel('Username');
   await expect(name).toBeFocused();
@@ -113,8 +118,15 @@ test('administrators add members while sign-ups are closed', async ({page}, info
   await expect(section(page).getByRole('status')).toHaveText('Added friend. Pass on the temporary password; they will choose their own when they first sign in.');
   await expect(row(page, 'Add member').getByLabel('Username')).toHaveCount(0);
   await expect(row(page, 'friend')).toContainText('Member');
+
+  await row(page, 'Sign-ups').getByRole('button', {name: 'Open sign-ups'}).click();
+  await expect(row(page, 'Sign-ups')).toContainText('Open. Anyone who can reach this server can create an account.');
+  await row(page, 'Sign-ups').getByRole('button', {name: 'Close sign-ups'}).click();
+  await expect(row(page, 'Sign-ups')).toContainText('Closed.');
   expect(calls).toEqual([
     'POST accounts {"username":"friend","password":"a-temporary-pass"}',
+    'PUT signups {"open":true}',
+    'PUT signups {"open":false}',
   ]);
 });
 

@@ -13,15 +13,17 @@ The app authenticates its own users; it does not trust Cloudflare email headers.
 
 ### Who can create an account
 
-Sign-ups are closed unless the host sets `SIGNUPS_OPEN=true`, so finding the
-address is not enough to get an account. Administrators add members in
-**Settings → Account → Add member** with a username and a temporary password,
-which the member replaces at first sign-in (the same forced change as a password
-reset). With `SIGNUPS_OPEN=true` the sign-in page also offers **Create an
-account**; visitors who sign up are ordinary members, never administrators.
+Sign-ups start closed, on new servers and on servers upgraded from earlier
+versions, so finding the address is not enough to get an account. Administrators
+add members in **Settings → Account → Add member** with a username and a
+temporary password, which the member replaces at first sign-in (the same forced
+change as a password reset). A club that wants self-service can use **Open
+sign-ups** in the same section; the sign-in page then offers **Create an
+account**, and visitors who sign up are ordinary members, never administrators.
 While sign-ups are closed the sign-in page tells visitors to ask whoever runs the
-server, and `POST /api/auth/signup` answers 403. Restart after changing the
-variable; Settings → Account shows its current value.
+server, and `POST /api/auth/signup` answers 403. The switch is stored in the
+`site_settings` table; host operators can also run
+`python -m trainer.accounts open-signups` or `close-signups`.
 
 Signed-out visitors cannot add analysis load. Every route that runs Stockfish or
 Maia needs a signed-in account; a shared game link only reads the saved review
@@ -98,7 +100,7 @@ The command prompts for a password twice and makes that account the administrato
 It changes ownership identity in place, preserving every game and review. Run this
 before first login. For a fresh installation use `create-admin YOUR_USERNAME`.
 Neither command grants privileges to the first person who registers, and sign-ups
-stay closed unless `SIGNUPS_OPEN=true`. To make an
+stay closed until an administrator opens them. To make an
 account that already signed up an administrator, use `promote USERNAME` (see
 [Administration and recovery](#administration-and-recovery)).
 
@@ -126,7 +128,7 @@ Everyone can change their own password in **Settings → Account → Password** 
 entering the current one; their other devices are signed out and this one stays.
 
 Administrators manage other accounts in **Settings → Account**, below their own
-sign-in controls: add a member, reset a password, disable or enable, make administrator, or
+sign-in controls: open or close sign-ups, add a member, reset a password, disable or enable, make administrator, or
 delete. A reset sets a temporary password and signs that account out; the
 administrator passes it on, and at the next sign-in the account must choose its
 own password before anything else works. Members never see this section and the `/api/auth/accounts` endpoints
@@ -143,6 +145,8 @@ python -m trainer.accounts promote USERNAME
 python -m trainer.accounts reset-password USERNAME
 python -m trainer.accounts disable USERNAME
 python -m trainer.accounts enable USERNAME
+python -m trainer.accounts open-signups
+python -m trainer.accounts close-signups
 ```
 
 `promote` makes an existing account an administrator from the host; an existing

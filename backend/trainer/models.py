@@ -48,6 +48,14 @@ class AuthSession(Base):
     expires: Mapped[float]
 
 
+class SiteSetting(Base):
+    """One server-wide setting changed by administrators; absent means its default."""
+
+    __tablename__ = "site_settings"
+    key: Mapped[str] = mapped_column(primary_key=True)
+    value: Mapped[object] = mapped_column(JSON)
+
+
 class Owned:
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), default="local", index=True)
 

@@ -136,8 +136,6 @@ raw exception details. There are no additional container variables for this.
 
 - Accounts require `ACCOUNTS_ENABLED=true`. The default, false, selects the shared
   local workspace, in Docker too.
-- `SIGNUPS_OPEN=false` (accounts only) lets only administrators add members, in
-  Settings → Account. `true` lets anyone who can reach the server create an account.
 - `PUBLIC_ORIGIN` is optional. Blank accepts writes whose Origin matches the request's
   Host; set the exact public origin only when a reverse proxy rewrites Host.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.

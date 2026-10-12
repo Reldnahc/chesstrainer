@@ -14,6 +14,6 @@ export default defineConfig({
   webServer: {
     command: `"${python}" -m uvicorn browser_app:create_app --app-dir backend/tests --factory --host 127.0.0.1 --port 8766 --proxy-headers --forwarded-allow-ips 127.0.0.1`,
     cwd: root, url: 'http://127.0.0.1:8766/api/auth/me', reuseExistingServer: false,
-    env: {DATABASE_PATH: path.join(root, `data/account-ui-test-${Date.now()}.sqlite3`), ACCOUNTS_ENABLED: 'true', SIGNUPS_OPEN: 'true', SESSION_SECURE: 'false', PUBLIC_ORIGIN: 'http://127.0.0.1:8766', LAN_ACCESS_TOKEN: ''},
+    env: {DATABASE_PATH: path.join(root, `data/account-ui-test-${Date.now()}.sqlite3`), ACCOUNTS_ENABLED: 'true', SESSION_SECURE: 'false', PUBLIC_ORIGIN: 'http://127.0.0.1:8766', LAN_ACCESS_TOKEN: ''},
   },
 });

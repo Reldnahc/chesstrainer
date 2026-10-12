@@ -5,7 +5,6 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select, update
 from trainer.accounts import COOKIE, Accounts
 from trainer.api import create_app
-from trainer.config import Settings
 from trainer.db import database, migrate
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, Game, GameReview, User
@@ -13,6 +12,8 @@ from trainer.ownership import account_sessions
 
 ORIGIN = {"Origin": "http://testserver"}
 PGN = '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'
+# The stored switch; conftest opens sign-ups for every other test.
+STORED_SIGNUPS = Accounts.signups_open
 
 
 @pytest.mark.parametrize("origin", ["", "https://chess.example.test"])
@@ -438,22 +439,14 @@ def test_administrators_manage_other_accounts_from_settings(settings):
         assert sign_in("friend", "a-new-password")[0] == 401
 
 
-def test_signups_start_closed_and_administrators_add_members(settings):
+def test_signups_start_closed_and_administrators_add_members(settings, monkeypatch, capsys):
+    monkeypatch.setattr(Accounts, "signups_open", STORED_SIGNUPS)
     settings.accounts_enabled = True
-    settings.signups_open = Settings.model_fields["signups_open"].default
     settings.public_origin = ORIGIN["Origin"]
     settings.session_secure = False
     settings.stockfish_path = "missing-no-signup-engine"
     accounts = Accounts(settings.database_path)
     payload = {"username": "stranger", "password": "testing-password"}
-
-    def sign_in(client, name, password="testing-password"):
-        response = client.post(
-            "/api/auth/login", json={"username": name, "password": password}, headers=ORIGIN
-        )
-        assert response.status_code == 200, response.text
-        return response.json(), ORIGIN | {"X-CSRF-Token": response.json()["csrf"]}
-
     with TestClient(create_app(settings, workers=False)) as client:
         assert client.get("/api/auth/me").json()["signups_open"] is False
         closed = client.post("/api/auth/signup", json=payload, headers=ORIGIN)
@@ -462,38 +455,74 @@ def test_signups_start_closed_and_administrators_add_members(settings):
         assert accounts.by_name("stranger") is None
 
         accounts.create("keeper", "testing-password", admin=True)
-        _, headers = sign_in(client, "keeper")
+        response = client.post(
+            "/api/auth/login",
+            json={"username": "keeper", "password": "testing-password"},
+            headers=ORIGIN,
+        )
+        headers = ORIGIN | {"X-CSRF-Token": response.json()["csrf"]}
         assert client.get("/api/auth/accounts").json()["signups_open"] is False
         new = {"username": "Friend", "password": "a-temporary-pass"}
-        assert client.post("/api/auth/accounts", json=new, headers=ORIGIN).status_code == 403
         assert client.post("/api/auth/accounts", json=new, headers=headers).status_code == 201
         repeat = client.post("/api/auth/accounts", json=new, headers=headers)
         assert repeat.status_code == 409
         assert repeat.json()["detail"] == "That username is unavailable."
+        assert (
+            client.post("/api/auth/accounts", json=new, headers=ORIGIN).status_code == 403
+        )  # CSRF still applies.
 
         # The new member signs in with the temporary password and must replace it.
         client.post("/api/auth/logout", headers=headers)
-        friend, friend_headers = sign_in(client, "friend", "a-temporary-pass")
+        response = client.post(
+            "/api/auth/login",
+            json={"username": "friend", "password": "a-temporary-pass"},
+            headers=ORIGIN,
+        )
+        assert response.status_code == 200
+        friend = response.json()
         assert friend["user"]["password_change_required"] and not friend["user"]["admin"]
+        friend_headers = ORIGIN | {"X-CSRF-Token": friend["csrf"]}
         assert client.get("/api/games").status_code == 403
+        # Members cannot add accounts or open sign-ups.
         changed = client.post(
             "/api/auth/password",
             json={"current_password": "a-temporary-pass", "new_password": "friend-password"},
             headers=friend_headers,
         )
         assert changed.status_code == 200
-        # Members cannot add accounts.
         assert (
             client.post("/api/auth/accounts", json=payload, headers=friend_headers).status_code
             == 403
         )
+        assert (
+            client.put("/api/auth/signups", json={"open": True}, headers=friend_headers).status_code
+            == 403
+        )
 
-    settings.signups_open = True
-    with TestClient(create_app(settings, workers=False)) as client:
+        response = client.post(
+            "/api/auth/login",
+            json={"username": "keeper", "password": "testing-password"},
+            headers=ORIGIN,
+        )
+        headers = ORIGIN | {"X-CSRF-Token": response.json()["csrf"]}
+        assert (
+            client.put("/api/auth/signups", json={"open": True}, headers=headers).status_code == 200
+        )
+        assert client.get("/api/auth/accounts").json()["signups_open"] is True
+        client.post("/api/auth/logout", headers=headers)
         assert client.get("/api/auth/me").json()["signups_open"] is True
         opened = client.post("/api/auth/signup", json=payload, headers=ORIGIN)
         assert opened.status_code == 201, opened.text
         assert not opened.json()["user"]["admin"]
+
+    # Host operators can flip the same switch without signing in.
+    from trainer import accounts as module
+
+    monkeypatch.setattr(module, "Settings", lambda: settings)
+    monkeypatch.setattr("sys.argv", ["trainer.accounts", "close-signups"])
+    module.main()
+    assert accounts.signups_open() is False
+    assert "Sign-ups are closed" in capsys.readouterr().out
 
 
 def test_members_change_their_own_password_and_keep_this_device(settings):
