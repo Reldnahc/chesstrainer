@@ -180,7 +180,8 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
         assert db.get(AnalysisJob, "alice-first").status == "cancelled"
         assert db.get(AnalysisJob, "bob-first").status == "completed"
         assert db.get(AnalysisJob, "fetch").status == "completed"
-        assert db.get(AnalysisJob, "disabled").status == "running"
+        # Recovery requeues a disabled owner's stale job too; claiming still skips it.
+        assert db.get(AnalysisJob, "disabled").status == "queued"
         assert db.get(AnalysisJob, "local-private").status == "queued"
     assert observed[-1] == ("alice-next", alice)
     assert app.state.workspaces._locks == {}
