@@ -64,7 +64,7 @@ export default function CourseSettings() {
     {notice && <Notice announcement="status" tone="success">{notice}</Notice>}
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     {(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}
-    {library.courses.map(course => <div className="settings-tool course-settings-row" key={course.id}>
+    {library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id}>
       <div>
         <h3>{course.title}</h3>
         <p>{course.source === "club" ? "Club course" : "Built-in course"} · {course.topic === "skills" ? "Fundamentals" : "Openings"} · {course.chapter_count} {course.chapter_count === 1 ? "chapter" : "chapters"} · revision {course.revision}</p>

@@ -90,6 +90,15 @@ and session tokens are never returned in API responses or included in public set
 
 ## Administration and recovery
 
+Administrators manage other accounts in **Settings → Account**, below their own
+sign-in controls: reset a password, disable or enable, make administrator, or
+delete. Members never see this section and the `/api/auth/accounts` endpoints
+refuse them. An administrator cannot reset, disable or delete their own account
+there. Deleting asks for confirmation, removes every row the account owns (games,
+reviews, jobs, training and Study history) and keeps shared engine analysis; it
+waits while that account has analysis running, so disable the account first and
+retry once the analysis stops. Disable instead to keep the account's history.
+
 Host commands (passwords are entered interactively, never in command arguments):
 
 ```
@@ -105,7 +114,7 @@ account does not exist or is already an administrator, and its open sessions gai
 the privilege on their next request. The other commands revoke existing sessions. Disabling prevents further requests; stop/restart
 the service if you also need to interrupt that account's already-running analysis.
 Enabling requeues analysis that was interrupted while the account was disabled.
-There is no email delivery dependency or web admin dashboard in this version.
+There is no email delivery dependency in this version.
 The existing SQLite backup/restore tool includes all accounts and their data in
 one snapshot. Treat backups as private: they include password hashes and sessions.
 Once accounts exist, schema downgrade is refused; restore a pre-upgrade snapshot instead.

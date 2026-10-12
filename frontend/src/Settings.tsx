@@ -14,6 +14,7 @@ import Link from "./Link";
 import { ExternalLink } from "lucide-react";
 import { navigate, type SettingsTab } from "./navigation";
 import CourseSettings from "./study/CourseSettings";
+import AccountAdmin from "./AccountAdmin";
 
 const sections: { id: SettingsTab; label: string }[] = [
   { id: "imports", label: "Games & imports" },
@@ -69,6 +70,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
         {active === "coach" && <><MotionSettings /><CoachSettings /></>}
         {active === "sound" && <AudioSettings />}
         {active === "account" && <AccountSettings />}
+        {active === "account" && account?.admin && <AccountAdmin selfId={account.id} />}
         {active === "courses" && canManage && <CourseSettings />}
         {active === "advanced" && <>
           <SettingsSection id="settings-training" title="Training tools">

@@ -92,8 +92,6 @@
   .opening-management-heading, .opening-study { flex-direction: column; align-items: stretch; gap: var(--space-3); }
   .opening-study .button-row button { flex: 1; }
 }
-.course-settings-row .button-row { flex: none; flex-wrap: wrap; justify-content: flex-end; }
-.course-settings-row .button-row .action-control { flex: none; }
 .lesson-editor-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
 .lesson-editor-heading h1 { font-size: var(--text-2xl); }
 /* Open details sections use the shared details spacing; plain sections stack
@@ -115,5 +113,4 @@ section.lesson-editor-section { display: grid; gap: var(--space-3); padding-top:
 .lesson-editor-check { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; }
 @media (max-width: 760px) {
   .course-settings .settings-section-heading { flex-direction: column; align-items: stretch; }
-  .course-settings-row .button-row { justify-content: flex-start; }
 }
