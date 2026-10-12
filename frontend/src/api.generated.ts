@@ -190,6 +190,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/auth/password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Change Password
+         * @description Choose a new password; other devices are signed out, this one stays.
+         */
+        post: operations["change_password_api_auth_password_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/auth/signup": {
         parameters: {
             query?: never;
@@ -1646,6 +1666,8 @@ export interface components {
             id: string;
             /** Onboarding Completed */
             onboarding_completed: boolean;
+            /** Password Change Required */
+            password_change_required: boolean;
             /** Username */
             username: string;
         };
@@ -3710,7 +3732,17 @@ export interface components {
             /** Source Version */
             source_version: string;
         };
-        /** PasswordReset */
+        /** PasswordChange */
+        PasswordChange: {
+            /** Current Password */
+            current_password: string;
+            /** New Password */
+            new_password: string;
+        };
+        /**
+         * PasswordReset
+         * @description An administrator's temporary password; the account replaces it at next sign-in.
+         */
         PasswordReset: {
             /** Password */
             password: string;
@@ -5209,6 +5241,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AccountProfile"];
+                };
+            };
+        };
+    };
+    change_password_api_auth_password_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordChange"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountProfile"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

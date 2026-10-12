@@ -11,6 +11,7 @@ class Account(Contract):
     admin: bool
     chesscom_username: str
     onboarding_completed: bool
+    password_change_required: bool
 
 
 class Identity(Contract):
@@ -38,7 +39,14 @@ class ManagedAccounts(Contract):
 
 
 class PasswordReset(Contract):
+    """An administrator's temporary password; the account replaces it at next sign-in."""
+
     password: str = Field(min_length=10, max_length=128)
+
+
+class PasswordChange(Contract):
+    current_password: str = Field(min_length=1, max_length=128)
+    new_password: str = Field(min_length=10, max_length=128)
 
 
 class AccountAccess(Contract):

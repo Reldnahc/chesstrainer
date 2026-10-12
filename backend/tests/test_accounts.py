@@ -374,6 +374,11 @@ def test_administrators_manage_other_accounts_from_settings(settings):
         )
         assert sign_in("friend", "testing-password")[0] == 401
         assert sign_in("friend", "a-new-password")[0] == 200
+        # The administrator's password is temporary: only choosing a new one is allowed.
+        assert client.get("/api/auth/me").json()["user"]["password_change_required"]
+        blocked = client.get("/api/games")
+        assert blocked.status_code == 403
+        assert blocked.json()["detail"] == "Choose a new password to continue."
         _, headers = sign_in("keeper")
         assert client.post(target + "/admin", headers=headers).status_code == 200
         repeat = client.post(target + "/admin", headers=headers)
@@ -403,3 +408,52 @@ def test_administrators_manage_other_accounts_from_settings(settings):
                     ).fetchone()[0]
         assert owned == 0
         assert sign_in("friend", "a-new-password")[0] == 401
+
+
+def test_members_change_their_own_password_and_keep_this_device(settings):
+    settings.accounts_enabled = True
+    settings.public_origin = ORIGIN["Origin"]
+    settings.session_secure = False
+    settings.stockfish_path = "missing-no-signup-engine"
+    app = create_app(settings, workers=False)
+    accounts = Accounts(settings.database_path)
+    with TestClient(app) as client:
+        member, _ = signup(client, "member")
+        other_device = accounts.issue(member["user"]["id"])
+        headers = ORIGIN | {"X-CSRF-Token": member["csrf"]}
+
+        def change(current, new):
+            return client.post(
+                "/api/auth/password",
+                json={"current_password": current, "new_password": new},
+                headers=headers,
+            )
+
+        assert change("wrong-password", "another-password").status_code == 403
+        assert change("testing-password", "testing-password").status_code == 422
+        assert change("testing-password", "short").status_code == 422
+        changed = change("testing-password", "another-password")
+        assert changed.status_code == 200, changed.text
+        assert changed.json()["user"]["username"] == "member"
+        assert client.get("/api/games").status_code == 200
+        assert accounts.resolve(other_device) is None
+        relogin = client.post(
+            "/api/auth/login",
+            json={"username": "member", "password": "another-password"},
+            headers=ORIGIN,
+        )
+        assert relogin.status_code == 200
+
+        # After an administrator's reset, choosing a new password lifts the block.
+        accounts.set_password(accounts.by_name("member"), "temporary-pass", temporary=True)
+        login = client.post(
+            "/api/auth/login",
+            json={"username": "member", "password": "temporary-pass"},
+            headers=ORIGIN,
+        ).json()
+        assert login["user"]["password_change_required"]
+        headers = ORIGIN | {"X-CSRF-Token": login["csrf"]}
+        assert client.get("/api/games").status_code == 403
+        cleared = change("temporary-pass", "my-own-password")
+        assert not cleared.json()["user"]["password_change_required"]
+        assert client.get("/api/games").status_code == 200

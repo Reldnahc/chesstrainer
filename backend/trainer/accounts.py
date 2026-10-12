@@ -134,11 +134,22 @@ class Accounts:
         with self.connect() as db:
             db.execute("UPDATE users SET admin=1 WHERE id=?", (user["id"],))
 
-    def set_password(self, user, password):
+    def set_password(self, user, password, *, temporary=False, keep_session=None):
+        """Replace the password and sign the account out, except ``keep_session``.
+
+        A temporary password (an administrator's reset) must be replaced at the
+        next sign-in; choosing one's own password clears that requirement.
+        """
         encoded = password_hash(password)
         with self.connect() as db:
-            db.execute("UPDATE users SET password=? WHERE id=?", (encoded, user["id"]))
-            db.execute("DELETE FROM auth_sessions WHERE user_id=?", (user["id"],))
+            db.execute(
+                "UPDATE users SET password=?, password_change_required=? WHERE id=?",
+                (encoded, int(temporary), user["id"]),
+            )
+            db.execute(
+                "DELETE FROM auth_sessions WHERE user_id=? AND digest!=?",
+                (user["id"], token_hash(keep_session) if keep_session else ""),
+            )
 
     def set_disabled(self, user, disabled):
         with self.connect() as db:
@@ -186,7 +197,14 @@ class Accounts:
     def public(user):
         return {
             key: user[key]
-            for key in ("id", "username", "admin", "chesscom_username", "onboarding_completed")
+            for key in (
+                "id",
+                "username",
+                "admin",
+                "chesscom_username",
+                "onboarding_completed",
+                "password_change_required",
+            )
         }
 
 
