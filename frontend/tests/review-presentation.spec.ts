@@ -166,7 +166,10 @@ test('review modes share board and coach sizing with only useful mobile controls
       const board = await geometry(page.locator('.board-shell'));
       const meta = await geometry(page.locator('.review-board-meta').first());
       expect(actions.top - coach.top - coach.height).toBeCloseTo(8, 1);
-      expect(meta.top - actions.top - actions.height).toBeCloseTo(12, 1);
+      // The same 4px gap sits above the top player bar and below the bottom one.
+      const lastMeta = await geometry(page.locator('.review-board-meta').last());
+      expect(meta.top - actions.top - actions.height).toBeCloseTo(4, 1);
+      expect((await geometry(mute)).top - lastMeta.top - lastMeta.height).toBeCloseTo(4, 1);
       expect(board.top).toBeGreaterThan(actions.top + actions.height);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
