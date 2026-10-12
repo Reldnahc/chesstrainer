@@ -170,7 +170,7 @@ test("each lesson command picks at most one generic prompt from its own action a
     select("move", {feedback: {kind: "incorrect", text: "Try again."}}),
     select("move", {feedback: {kind: "correct", text: "That is the move in this line."}, playback: [frame]}),
     select("show_move", {feedback: {kind: "revealed", text: "The lesson plays e4."}}),
-    select("continue", {playback: [frame], actions: []}),
+    select("continue", {playback: [frame, frame], actions: []}),
     select("continue", {step: {...step, kind: "rehearsal"}}),
     select("enter_branch", {branch: {title: "Alternative"} as Schema["LessonSessionView"]["branch"]}),
     select("move", {status: "completed", feedback: {kind: "correct", text: "Done."}}),
@@ -183,6 +183,8 @@ test("each lesson command picks at most one generic prompt from its own action a
   // Hints, authored step text, game navigation and reveal-completions stay written.
   expect(select("hint", {feedback: {kind: "hint", text: "Look at the centre."}})).toBeNull();
   expect(select("continue", {})).toBeNull();
+  // A single demonstrated move is not introduced as a continuation.
+  expect(select("continue", {playback: [frame], actions: []})).toBeNull();
   const inGame = {...before, game: {ply: 3} as Schema["LessonSessionView"]["game"], actions: ["game_seek", "close_game"] as Schema["LessonSessionView"]["actions"]};
   expect(select("game_seek", {}, inGame)).toBeNull();
   expect(select("show_move", {status: "completed", feedback: {kind: "revealed", text: "The lesson plays e4."}})).toBe("lesson-move-revealed");

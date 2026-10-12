@@ -248,6 +248,12 @@ their continuation to finish. Annotations belong to the displayed position and
 are suppressed during intermediate animation frames.
 New lesson feedback or steps reset the explanation's scroll position without
 remounting the coach or moving keyboard focus.
+A demonstration or game excerpt that plays one move offers *Play the move*
+rather than *Play continuation*; while it plays, the coach is titled “Watch the
+move.”, keeps the step's own text and plays no guided-playback clip. Each step
+reports `plies`, the number of moves it plays, for this.
+The coach's row shows Back as an arrow-only button, so up to four commands
+(Back, Main line, Show move and Hint in a side trip) fit on one row.
 
 The `/study/openings` library links course chapters and recent resumable sessions.
 `/study/openings/courses/:id?revision=…` pins the chapter list, and

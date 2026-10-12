@@ -268,13 +268,13 @@ for (const content of courses) {
           expect(branchAnchor).not.toBeNull();
           const branch = session;
           await page.reload();
-          await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
+          await expect(page.getByRole("button", { name: "Main line", exact: true })).toBeVisible();
           const restored = await saved(page, session.id);
           expect(restored.fen).toBe(branch.fen);
           expect(restored.branch).toEqual(branch.branch);
           await expect(page.locator(".coach-message")).toContainText(branch.step.text);
           await page.screenshot({ path: `test-results/${content.id}-${content.chapter}-${branch.step.id}-contrast-${info.project.name}.png`, fullPage: true });
-          session = await command(page, "Return to main line");
+          session = await command(page, "Main line");
           expect(session.fen).toBe(branchAnchor!.fen);
           expect(session.history).toEqual(branchAnchor!.history);
           expect(session.step.id).toBe(branchAnchor!.step.id);
@@ -314,7 +314,7 @@ for (const content of courses) {
         } else {
           session = await command(page,
             ["demonstration", "game_excerpt"].includes(session.step.kind) && session.step.phase === "ready"
-              ? "Play continuation" : "Continue");
+              ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue");
         }
       }
       expect(decisions).toBe(content.moves.length);

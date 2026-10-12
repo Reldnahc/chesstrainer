@@ -1,9 +1,9 @@
 import { useEffect, type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, Lightbulb, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
-import Button from "../Button";
+import Button, { IconButton } from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
@@ -41,6 +41,9 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const frame = playback.frame;
   const fen = playback.fen || session.fen;
   const guidedPlayback = playback.playing && !session.game;
+  // A single move is not a continuation: the coach names it as one move and
+  // keeps the step's own text rather than announcing a sequence.
+  const singleMove = guidedPlayback && session.playback.length === 1;
   const expression: CoachExpression = error ? "uncertain" : session.game ? "explaining" : busy ? "thinking"
     : playback.playing ? "explaining"
     : feedback?.kind === "incorrect" ? "encouraging"
@@ -56,7 +59,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const spokenFor = (id: string, when: boolean) => when && speech?.recordingId?.split("|").includes(id) ? spoken : null;
   // An error keeps its written instruction, which a paraphrase can drop.
   const status = (error ? "Reload the saved lesson before continuing." : null)
-    ?? spokenFor("lesson-guided-playback", guidedPlayback) ?? (guidedPlayback ? "Watch how this position develops." : null)
+    ?? spokenFor("lesson-guided-playback", guidedPlayback && !singleMove) ?? (guidedPlayback && !singleMove ? "Watch how this position develops." : null)
     ?? (session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : null)
     ?? spokenFor("lesson-chapter-complete", finished) ?? (finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text);
   const feedbackText = feedback && (spokenFor("lesson-wrong-move", feedback.kind === "incorrect")
@@ -71,8 +74,9 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const action = (name: LessonAction, label: string, primary = false, icon?: ReactNode) => {
     if (!has(name)) return null;
     const props = { ...(name === "close_game" ? gameButtonState() : { disabled }), onClick: () => state.command(name) };
+    if (name === "back") return <IconButton key={name} size="compact" variant="secondary" aria-label={label} title={label} {...props}>{icon}</IconButton>;
     return name === "return_branch" || name === "close_game"
-      ? <ReturnButton key={name} {...props}>{label}</ReturnButton>
+      ? <ReturnButton key={name} className={name === "return_branch" ? "lesson-branch-return" : undefined} {...props}>{label}</ReturnButton>
       : <Button key={name} size="compact" variant={primary ? "primary" : "secondary"} {...props}>{icon}{label}</Button>;
   };
   return <ReviewWorkspace
@@ -85,15 +89,15 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
       next={{ "aria-label": "Next game move", ...gameButtonState(session.game.ply === session.game.total_plies), onClick: () => state.command("game_seek", { ply: session.game!.ply + 1 }) }} />}<AudioMuteButton /></div>}
     board={<Board fen={fen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={disabled || !has("move")} onMove={state.answer} feedback={feedback?.kind === "incorrect" ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : annotations?.squares || []} arrows={annotations?.arrows?.map(arrow => ({ startSquare: arrow.from_square, endSquare: arrow.to_square, color: "#f5b56abb" })) || []} />}
   >
-    <ReviewCoach compactLabel={!voice.available} voice={voice} title={<h2>{error ? "Let’s restore your lesson." : guidedPlayback ? "Follow the continuation." : session.game ? session.game.title : finished ? "Chapter completed." : step.title}</h2>}
+    <ReviewCoach compactLabel={!voice.available} voice={voice} title={<h2>{error ? "Let’s restore your lesson." : singleMove ? "Watch the move." : guidedPlayback ? "Follow the continuation." : session.game ? session.game.title : finished ? "Chapter completed." : step.title}</h2>}
       reaction={{ state: expression, key: reactionKey }}
       messageResetKey={`${session.id}:${session.revision}:${guidedPlayback}:${error || ""}`}
       actions={<>{error ? <Button size="compact" variant="primary" onClick={state.reload}>Reload lesson</Button> : <>
         {session.game ? <>{action("close_game", "Return to lesson")}<Button size="compact" variant="secondary" {...gameButtonState(session.game.ply === 0)} onClick={() => state.command("game_seek", { ply: 0 })}><Play size={16} />From the beginning</Button></> : <>
-          {action("back", "Back", false, <ChevronLeft size={16} />)}
-          {action("continue", (step.kind === "demonstration" || step.kind === "game_excerpt") && step.phase === "ready" ? "Play continuation" : finished ? "Review chapter" : "Continue", true, <ArrowRight size={16} />)}
+          {action("back", "Back", false, <ArrowLeft size={16} />)}
+          {action("continue", (step.kind === "demonstration" || step.kind === "game_excerpt") && step.phase === "ready" ? step.plies === 1 ? "Play the move" : "Play continuation" : finished ? "Review chapter" : "Continue", true, <ArrowRight size={16} />)}
           {action("enter_branch", "Explore alternative", true, <Play size={16} />)}
-          {action("return_branch", "Return to main line")}
+          {action("return_branch", "Main line")}
           {action("show_move", "Show move")}
           {action("hint", "Hint", false, <Lightbulb size={16} />)}
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}

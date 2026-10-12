@@ -3350,6 +3350,8 @@ export interface components {
              * @enum {string}
              */
             phase: "ready" | "complete";
+            /** Plies */
+            plies?: number | null;
             /** Text */
             text: string;
             /** Title */

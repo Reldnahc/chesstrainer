@@ -122,7 +122,7 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   const anchor = await command(page, "Continue");
   expect(anchor.step.id).toBe("knight-jump-choice");
   await command(page, "Explore alternative");
-  const alternative = await command(page, "Play continuation");
+  const alternative = await command(page, "Play the move");
   expect(alternative.playback.map(frame => frame.uci)).toEqual(["c6d4"]);
   for (const [uci, reply] of [["f3d4", "e5d4"], ["e1g1", "f8c5"], ["c4f7", "e8f7"], ["d1h5", "f7f8"], ["h5c5", null]] as const) {
     await command(page, "Continue");
@@ -137,15 +137,15 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   expect(branch.branch).not.toBeNull();
   expect(branch.actions).not.toContain("continue");
   await page.reload();
-  await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Main line", exact: true })).toBeVisible();
   expect((await saved(page, session.id)).history).toEqual(branch.history);
-  const returned = await command(page, "Return to main line");
+  const returned = await command(page, "Main line");
   expect(returned.history).toEqual(anchor.history);
   expect(returned.fen).toBe(anchor.fen);
   const skipped = await command(page, "Continue");
   expect(skipped.step.id).toBe("early-h6-choice");
   await command(page, "Continue");
-  await command(page, "Play continuation");
+  await command(page, "Play the move");
   await command(page, "Continue");
   await move(page, "d2d3");
   await command(page, "Continue");
@@ -195,7 +195,7 @@ test("full-game controls interrupt Mason-Lasker playback without waiting for its
   let session = await start(page, "finish-development");
   for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
     const label = session.actions.includes("show_move") ? "Show move"
-      : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
+      : session.step.kind === "demonstration" && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue";
     session = await command(page, label);
   }
   expect(session.step.kind).toBe("game_excerpt");
@@ -252,7 +252,7 @@ test("full-game seeking keeps the coach and controls steady while serializing re
     let session = await start(page, "finish-development");
     for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
       const label = session.actions.includes("show_move") ? "Show move"
-        : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
+        : session.step.kind === "demonstration" && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue";
       session = await command(page, label);
     }
     expect(session.step.kind).toBe("game_excerpt");
@@ -381,7 +381,7 @@ for (const [chapterId, gameTitle] of Object.entries(sourcedGames)) {
     // Walk authored guidance to its real game passage; no fixture curriculum.
     for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
       const label = session.actions.includes("show_move") ? "Show move"
-        : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
+        : session.step.kind === "demonstration" && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue";
       session = await command(page, label);
     }
     expect(session.step.kind).toBe("game_excerpt");
@@ -473,9 +473,9 @@ for (const content of continuationChapters) {
         expect(branchAnchor).not.toBeNull();
         const terminal = session;
         await page.reload();
-        await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
+        await expect(page.getByRole("button", { name: "Main line", exact: true })).toBeVisible();
         expect((await saved(page, session.id)).history).toEqual(terminal.history);
-        session = await command(page, "Return to main line");
+        session = await command(page, "Main line");
         expect(session.history).toEqual(branchAnchor!.history);
         expect(session.fen).toBe(branchAnchor!.fen);
         expect(session.step.id).toBe(branchAnchor!.step.id);
@@ -487,7 +487,7 @@ for (const content of continuationChapters) {
         if (session.branch) attemptedBranches.add(session.step.id);
         session = await move(page, uci);
       } else {
-        session = await command(page, ["demonstration", "game_excerpt"].includes(session.step.kind) && session.step.phase === "ready" ? "Play continuation" : "Continue");
+        session = await command(page, ["demonstration", "game_excerpt"].includes(session.step.kind) && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue");
       }
     }
     expect(decisions).toBe(mainMoves.length);

@@ -77,8 +77,8 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   expect(branch.branch).not.toBeNull();
   expect(branch.step.id).toBe("quiet-explanation");
   await page.reload();
-  await expect(page.getByRole("button", { name: "Return to main line" })).toBeVisible();
-  const branchReturn = page.getByRole("button", { name: "Return to main line", exact: true });
+  await expect(page.getByRole("button", { name: "Main line", exact: true })).toBeVisible();
+  const branchReturn = page.getByRole("button", { name: "Main line", exact: true });
   const returnPresentation = await expectReturnAction(branchReturn);
   const viewport = page.viewportSize()!;
   await page.setViewportSize({ width: 320, height: 700 });
@@ -97,9 +97,9 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   await page.goBack();
   await expect(page).toHaveURL("/settings");
   await page.goBack();
-  await expect(page.getByRole("button", { name: "Return to main line" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Main line", exact: true })).toBeVisible();
   expect((await saved(page, lesson.session_id)).fen).toBe(branch.fen);
-  const returned = await command(page, "Return to main line");
+  const returned = await command(page, "Main line");
   expect(returned.branch).toBeNull();
   expect(returned.fen).toBe(anchor.fen);
   expect(returned.history).toEqual(anchor.history);
