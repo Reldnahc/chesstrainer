@@ -71,6 +71,13 @@ accounts stay private when switching modes. Restart after changes. See
 
 ## Settings
 
+Only the settings that must exist before the database opens, or that guard
+access, are container variables after the first start. Engine, Maia, sync,
+review, puzzle and import tuning is stored in the database and edited in
+Settings → Advanced → Server, which can also restart the container's server; the
+variables below for those settings only seed the first value. See
+[stored server settings](CONFIGURATION.md#stored-server-settings).
+
 | Variable | Image default | Meaning |
 | --- | --- | --- |
 | `ACCOUNTS_ENABLED` | `false` | `false`: one local no-login workspace. `true`: separate accounts with sign-in. |

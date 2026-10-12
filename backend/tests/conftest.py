@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 from trainer import presence
+from trainer.accounts import Accounts
 from trainer.config import Settings
 from trainer.db import database, migrate
 
@@ -12,6 +13,13 @@ from trainer.db import database, migrate
 def fresh_presence():
     # Each test database must record its own first request.
     presence.forget()
+
+
+@pytest.fixture(autouse=True)
+def open_signups(monkeypatch):
+    # Most account tests create members by signing up, as visitors do once an
+    # administrator opens sign-ups; test_accounts covers the closed default.
+    monkeypatch.setattr(Accounts, "signups_open", lambda self: True)
 
 
 @pytest.fixture
