@@ -85,7 +85,11 @@
   justify-self: start;
   white-space: nowrap;
 }
-/* A live game's Resign and Offer draw share the library link's start slot. */
+/* The start slot holds Play's New game link or a live game's Resign and Offer
+   draw; game review leaves it empty, so playback keeps the centre column. */
+.game-board-controls > .move-playback-controls {
+  grid-column: 2;
+}
 .game-board-actions {
   justify-self: start;
   display: flex;

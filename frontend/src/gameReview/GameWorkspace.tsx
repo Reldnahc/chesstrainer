@@ -197,7 +197,7 @@ export default function GameWorkspace({
             }
           />
         }
-        boardControls={<ReviewControls exploration={exploration} libraryHref={libraryHref} />}
+        boardControls={<ReviewControls exploration={exploration} />}
       >
         <PositionCoach
           positionKey={`${id}:${analysisEpoch}:${key}`}

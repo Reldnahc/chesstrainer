@@ -37,9 +37,9 @@ remain independent of coach motion.
 Each game opens at `/games/<id>`. Browser Back returns to the previous page and
 Forward reopens the review. You can bookmark a game or open its library link in
 another tab. Selecting a move records `?ply=<half-move>` in the same history entry,
-so refreshing or returning from another screen restores that position. **All games**
-at the bottom left below the board opens the library, retaining its page when the
-game was opened from a later page. The sidebar starts directly with the coach;
+so refreshing or returning from another screen restores that position. The header's
+**Games** tab opens the library, retaining its page when the game was opened from
+a later page; the board controls carry no separate library link. The sidebar starts directly with the coach;
 player names remain beside the board without a repeated matchup/date heading.
 Normal arrow keys move through the game; Alt+Left/Right remain browser shortcuts.
 

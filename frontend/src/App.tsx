@@ -17,7 +17,7 @@ import SettingsScreen from "./Settings";
 import InsightsScreen from "./Weaknesses";
 import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
-import { pagePaths, useRoute } from "./navigation";
+import { gamesPath, pagePaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
 import LessonEditor from "./study/LessonEditor";
 import PlayScreen from "./play/PlayScreen";
@@ -104,7 +104,7 @@ export default function App() {
             {tabs.map(([name, Icon]) => (
               <Link
                 key={name}
-                href={pagePaths[name]}
+                href={name === "Games" && route.gameId ? gamesPath(route.page) : pagePaths[name]}
                 aria-current={tab === name ? "page" : undefined}
                 className={
                   tab === name

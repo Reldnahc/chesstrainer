@@ -1,5 +1,4 @@
-import { ArrowLeft, FlipVertical2 } from "lucide-react";
-import ActionLink from "../ActionLink";
+import { FlipVertical2 } from "lucide-react";
 import { IconButton } from "../Button";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
@@ -7,10 +6,8 @@ import type { GameExploration } from "./useGameExploration";
 
 export default function ReviewControls({
   exploration,
-  libraryHref,
 }: {
   exploration: GameExploration;
-  libraryHref: string;
 }) {
   const {
     branch, cursor, current, maximum, navigate, step, selectStep, flip,
@@ -21,10 +18,6 @@ export default function ReviewControls({
       role="group"
       aria-label="Game navigation"
     >
-      <ActionLink size="compact" className="game-library-link" href={libraryHref}>
-        <ArrowLeft size={16} />
-        All games
-      </ActionLink>
       <MovePlaybackControls label="Game move playback" current={current} maximum={maximum}
         first={branch
           ? { "aria-label": "Start of variation", title: "Game position where this variation began", onClick: () => navigate(branch.root) }

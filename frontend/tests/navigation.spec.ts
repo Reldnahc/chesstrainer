@@ -48,7 +48,7 @@ test('Back, Forward and refresh restore the game and move without a history entr
   await page.reload();
   await expect(page.getByRole('button', {name: '2... Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page).toHaveTitle(`Review-history-${info.project.name} vs CoachFixture · Fieldwork`);
-  await page.getByRole('link', {name: 'All games', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page).toHaveURL('/games');
 });
 
@@ -113,7 +113,7 @@ test('returning to the library restores its page and scroll after the list loads
   expect(scroll).toBeGreaterThan(500);
   await gameLink.click();
   await expect(page).toHaveURL(`/games/${id}?page=2`);
-  await expect(page.getByRole('link', {name: 'All games', exact: true})).toHaveAttribute('href', '/games?page=2');
+  await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: 'Games', exact: true})).toHaveAttribute('href', '/games?page=2');
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   await page.goBack();
   await expect(page).toHaveURL('/games?page=2');
@@ -142,7 +142,7 @@ test('invalid game positions and missing pages give a usable return path', async
   await expect(page).toHaveURL(`/games/${id}?ply=4`);
   await page.goto(`/games/${id}?ply=-1&page=invalid`);
   await expect(page.locator('.game-board-controls')).toContainText('0 / 4');
-  await expect(page.getByRole('link', {name: 'All games', exact: true})).toHaveAttribute('href', '/games');
+  await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: 'Games', exact: true})).toHaveAttribute('href', '/games');
   await page.goto('/games/missing-game');
   await expect(page.getByRole('alert')).toContainText('Game not found');
   await page.getByRole('link', {name: 'All games', exact: true}).click();

@@ -102,12 +102,10 @@ test('review modes share board and coach sizing with only useful mobile controls
     expect(game.actions.buttonHeight).toBeGreaterThanOrEqual(44);
     await expect(page.locator('.review-workspace-heading')).toHaveCount(0);
     const navigation = page.getByRole('group', {name: 'Game navigation'});
-    const allGames = navigation.getByRole('link', {name: 'All games', exact: true});
-    await expect(allGames).toHaveAttribute('href', '/games');
-    const link = await geometry(allGames);
-    expect(link.top).toBeGreaterThanOrEqual(game.board.y + game.board.height);
-    expect((await allGames.boundingBox())!.x).toBe((await navigation.boundingBox())!.x);
-    expect(await allGames.evaluate(element => getComputedStyle(element).borderTopWidth)).toBe('1px');
+    // The header's Games tab returns to the library; the board controls have no link.
+    await expect(navigation.getByRole('link')).toHaveCount(0);
+    await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: 'Games', exact: true})).toHaveAttribute('href', '/games');
+    expect((await geometry(navigation)).top).toBeGreaterThanOrEqual(game.board.y + game.board.height);
     if (size.width <= 760) {
       const controls = await navigation.evaluate(element => [...element.children].map(child => {
         const {left, right, top, height} = child.getBoundingClientRect();
@@ -121,7 +119,6 @@ test('review modes share board and coach sizing with only useful mobile controls
           expect(control.height).toBe(44);
         }
       }
-      expect(await allGames.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
     }
     if (size.width > 760) {
       expect(game.coach.y).toBe((await page.locator('.review-sidebar').boundingBox())!.y);

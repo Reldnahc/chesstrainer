@@ -81,7 +81,7 @@ test('history aligns players, results and accuracy with compact metadata and wor
   await first.focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(`/games/${id}`);
-  await expect(page.getByRole('link', {name: 'All games', exact: true})).toBeVisible();
+  await expect(page.getByRole('group', {name: 'Game navigation'})).toBeVisible();
   await page.goBack();
   await expect(rows).toHaveCount(8);
 });

@@ -289,7 +289,7 @@ test('review both players, explain in place, and branch without changing the gam
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
-  await page.getByRole('link', {name: 'All games', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: 'Games', exact: true}).click();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await expect(page.locator('.game-summary caption')).toHaveText('Complete game');
   await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
