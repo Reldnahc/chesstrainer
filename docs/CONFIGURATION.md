@@ -135,7 +135,8 @@ Administrator logs contain exception chains; shared health responses do not cont
 raw exception details. There are no additional container variables for this.
 
 - Accounts require `ACCOUNTS_ENABLED=true`. The default, false, selects the shared
-  local workspace, in Docker too.
+  local workspace when running from source. The container image defaults to true and
+  refuses to start with false.
 - `PUBLIC_ORIGIN` is optional. Blank accepts writes whose Origin matches the request's
   Host; set the exact public origin only when a reverse proxy rewrites Host.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.

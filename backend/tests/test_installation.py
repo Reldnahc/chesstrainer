@@ -49,7 +49,18 @@ def test_https_origin_normalized_without_mutating_settings(settings):
     assert settings.public_origin.startswith(" ")
 
 
-def test_unraid_template_defaults_select_local_mode():
+def test_container_refuses_no_login_mode(settings, monkeypatch, tmp_path):
+    marker = tmp_path / "fieldwork-container"
+    marker.touch()
+    monkeypatch.setattr("trainer.config.CONTAINER_MARKER", marker)
+    with pytest.raises(ValueError, match="requires ACCOUNTS_ENABLED=true"):
+        settings.model_copy(update={"accounts_enabled": False}).for_runtime()
+    assert settings.model_copy(update={"accounts_enabled": True}).for_runtime().accounts_enabled
+    marker.unlink()
+    assert not settings.model_copy(update={"accounts_enabled": False}).for_runtime().accounts_enabled
+
+
+def test_unraid_template_defaults_select_accounts():
     root = Path(__file__).resolve().parents[2]
     template = ElementTree.parse(root / "unraid/fieldwork.xml").getroot()
     variables = {
@@ -58,7 +69,7 @@ def test_unraid_template_defaults_select_local_mode():
         if field.attrib["Type"] == "Variable"
     }
     config = Settings(_env_file=None, **variables).for_runtime()
-    assert not config.accounts_enabled
+    assert config.accounts_enabled
     assert template.findtext("WebUI") == "http://[IP]:[PORT:8000]"
     for field in template.findall("Config"):
         assert field.attrib["Description"]
