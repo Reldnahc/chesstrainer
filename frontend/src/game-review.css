@@ -149,6 +149,15 @@
   border-color: transparent;
   gap: var(--space-1);
 }
+.game-move-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.game-move-heading .game-export-button {
+  min-width: 28px;
+  justify-content: center;
+}
 .game-move-heading button[hidden] {
   display: none;
 }

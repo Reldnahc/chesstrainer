@@ -1,4 +1,5 @@
-import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
@@ -12,6 +13,7 @@ import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
 import ReviewMoves from "./ReviewMoves";
 import ReviewProgress from "./ReviewProgress";
+import GameExportDialog from "../gameExport/GameExportDialog";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
@@ -42,6 +44,7 @@ export default function GameWorkspace({
     analysisEpoch,
   } = session;
   const exploration = useGameExploration(id, initialPly, game, setError);
+  const [exporting, setExporting] = useState(false);
   const {
     cursor,
     branch,
@@ -261,6 +264,12 @@ export default function GameWorkspace({
           game={game}
           exploration={exploration}
           getAnalysis={analysis.get}
+          actions={
+            <button className="game-export-button" aria-label="Export game" title="Export PGN, FEN or GIF"
+              onClick={() => setExporting(true)}>
+              <Share size={14} />
+            </button>
+          }
           progress={
             <ReviewProgress
               game={game}
@@ -282,6 +291,7 @@ export default function GameWorkspace({
           onScrubEnd={exploration.finishScrubbing}
         />
       </ReviewWorkspace>
+      {exporting && <GameExportDialog id={id} fen={displayed.fen} onClose={() => setExporting(false)} />}
     </div>
   );
 }

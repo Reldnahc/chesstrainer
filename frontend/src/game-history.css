@@ -1,6 +1,6 @@
 .game-library {
   container-type: inline-size;
-  --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 17px;
+  --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 28px 17px;
   border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
@@ -9,7 +9,7 @@
 .game-library-item {
   display: grid;
   grid-template-columns: var(--history-columns);
-  grid-template-areas: "time players result accuracy moves date open";
+  grid-template-areas: "time players result accuracy moves date export open";
   align-items: center;
   column-gap: var(--space-4);
   padding: var(--space-3) var(--space-4);
@@ -25,6 +25,7 @@
   margin: 0;
 }
 .game-library-list > li {
+  position: relative;
   border-top: 1px solid var(--line);
   background: #191b1e;
 }
@@ -172,6 +173,37 @@
   grid-area: open;
   color: #b8cfc2;
 }
+/* Export sits over the row's empty export column, beside the link rather than
+   inside it. Small and quiet on purpose (owner decision, 2026-10-12): it is a
+   secondary command on every row, so it is not given the 44px phone target. */
+.history-export {
+  position: absolute;
+  top: 50%;
+  right: calc(var(--space-4) * 2 + 17px);
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+/* Outranks the workspace's 44px phone minimum for plain buttons. */
+.game-library .game-library-list button.history-export {
+  min-height: 0;
+}
+.history-export:hover,
+.history-export:focus-visible {
+  color: #eceef1;
+  background: #ffffff14;
+}
 .history-mobile-label {
   display: none;
 }
@@ -251,6 +283,16 @@
     font-size: var(--text-xs);
     margin-left: auto;
   }
+  /* Narrow rows: export ends the details line, after the date. */
+  .history-meta {
+    padding-right: var(--space-8);
+  }
+  .history-export {
+    top: auto;
+    bottom: 0;
+    right: var(--space-3);
+    transform: none;
+  }
 }
 
 /* A summary list for constrained surfaces. The library keeps its comparison columns. */
@@ -293,6 +335,15 @@
 .history-recent-accuracy { gap: var(--space-3); font-size: var(--text-xs); color: var(--muted); }
 .history-recent-side .history-line { min-height: 0; color: #eceef1; font: var(--text-xs) var(--mono); }
 .history-recent-action { margin-left: auto; font-size: var(--text-sm); font-weight: 500; color: #c1d6c8; }
+/* Export ends the footer line, after the review link. */
+.game-library--compact .history-recent-details { padding-right: var(--space-8); }
+.game-library--compact .history-export {
+  top: auto;
+  bottom: calc(var(--space-4) - var(--space-1));
+  right: var(--history-bleed, 0px);
+  transform: none;
+}
+.game-library--compact .game-library-list > li:last-child .history-export { bottom: calc(-1 * var(--space-1)); }
 @container (max-width: 400px) {
   .game-library--compact .history-player strong { font-size: var(--text-base); }
   .history-recent-details { gap: var(--space-1-5) var(--space-2); }
@@ -312,6 +363,7 @@
   .game-library-item {
     padding-inline: 0;
   }
+  .game-library-list .history-export { right: 0; }
   /* Phone panels are flat with no side padding, so there is nothing to bleed into. */
   .panel .game-library--compact { --history-bleed: 0px; }
 }
