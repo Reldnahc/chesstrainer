@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useGuest } from "./AccountGate";
 
 export type SavedPreferences<T, W = T> = {
   preferences: T;
@@ -22,12 +23,14 @@ export function useSavedPreferences<T extends object, W = T>({defaults, load, wr
   const [revision, setRevision] = useState(0);
   const generation = useRef(0);
   const writing = useRef(false);
+  // A signed-out visitor of a shared game keeps choices for this page only.
+  const guest = useGuest();
   useEffect(() => {
     const version = ++generation.current;
     const controller = new AbortController();
     setReady(false);
     setError("");
-    load(controller.signal)
+    (guest ? Promise.resolve({}) : load(controller.signal))
       .then((value) => {
         if (version === generation.current) {
           setPreferences({ ...defaults, ...value });
@@ -42,7 +45,7 @@ export function useSavedPreferences<T extends object, W = T>({defaults, load, wr
       generation.current++;
       controller.abort();
     };
-  }, [revision, defaults, load]);
+  }, [revision, defaults, load, guest]);
   const save = useCallback(async (value: W) => {
     if (writing.current) return false;
     const version = generation.current;
@@ -50,7 +53,7 @@ export function useSavedPreferences<T extends object, W = T>({defaults, load, wr
     setSaving(true);
     setError("");
     try {
-      const saved = await write(value);
+      const saved = guest ? (value as unknown as Partial<T>) : await write(value);
       if (version !== generation.current) return false;
       setPreferences({ ...defaults, ...saved });
       return true;
@@ -61,6 +64,6 @@ export function useSavedPreferences<T extends object, W = T>({defaults, load, wr
       writing.current = false;
       if (version === generation.current) setSaving(false);
     }
-  }, [defaults, write]);
+  }, [defaults, write, guest]);
   return {preferences, ready, saving, error, save, retry: () => setRevision(value => value + 1)};
 }

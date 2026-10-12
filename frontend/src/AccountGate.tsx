@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import { api, read, setAccountSession, type Schema } from "./api";
+import { useRoute } from "./navigation";
 
 import Onboarding from "./Onboarding";
 import ChangePasswordForm from "./ChangePasswordForm";
@@ -23,6 +24,10 @@ type AccountSession = {
 };
 const AccountContext = createContext<AccountSession | null>(null);
 export const useAccount = () => useContext(AccountContext)?.user ?? null;
+// A signed-out visitor opening a shared game link; the value opens sign-in.
+const GuestContext = createContext<(() => void) | null>(null);
+export const useGuestSignIn = () => useContext(GuestContext);
+export const useGuest = () => !!useContext(GuestContext);
 
 export function AccountSettings() {
   const session = useContext(AccountContext);
@@ -72,6 +77,8 @@ export default function AccountGate({ children }: { children: ReactNode }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [signingIn, setSigningIn] = useState(false);
+  const route = useRoute();
   function accept(value: Identity) {
     setAccountSession(value.enabled, value.csrf);
     setIdentity(value);
@@ -129,6 +136,13 @@ export default function AccountGate({ children }: { children: ReactNode }) {
       </main>
     );
   if (!identity.enabled) return <>{children}</>;
+  // Anyone with a game's link may read its review without an account.
+  if (!identity.user && route.gameId && !signingIn)
+    return (
+      <GuestContext.Provider value={() => setSigningIn(true)}>
+        {children}
+      </GuestContext.Provider>
+    );
   if (!identity.user)
     return (
       <main className="account-entry">
@@ -187,6 +201,11 @@ export default function AccountGate({ children }: { children: ReactNode }) {
               ? "Already have an account? Sign in"
               : "New here? Create an account"}
           </Button>
+          {signingIn && route.gameId && (
+            <Button variant="quiet" disabled={busy} onClick={() => setSigningIn(false)}>
+              Back to the shared game
+            </Button>
+          )}
         </section>
       </main>
     );

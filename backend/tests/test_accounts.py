@@ -111,9 +111,18 @@ def test_sessions_isolation_csrf_and_restart(settings):
         bob, bob_token = signup(client, "bobby")
         assert client.get("/api/games").json()["total"] == 0
         assert client.get("/api/jobs").json() == []
-        assert client.get(f"/api/games/{game}").status_code == 404
-        assert client.get(f"/api/games/{game}/review?after=0").status_code == 404
+        # A game link opens read-only for another account, without the owner's history.
+        shared = client.get(f"/api/games/{game}").json()
+        assert shared["read_only"] and "history" not in shared
+        assert client.get(f"/api/games/{game}/review?after=0").status_code == 200
         bob_headers = ORIGIN | {"X-CSRF-Token": bob["csrf"]}
+        assert (
+            client.post(
+                f"/api/games/{game}/position", json={"ply": 1}, headers=bob_headers
+            ).status_code
+            == 200
+        )
+        assert client.post(f"/api/games/{game}/train", headers=bob_headers).status_code == 404
         assert (
             client.post(f"/api/games/{game}/review", json={}, headers=bob_headers).status_code
             == 404
@@ -139,6 +148,8 @@ def test_sessions_isolation_csrf_and_restart(settings):
         second = client.cookies.get(COOKIE)
         assert second != token
         assert client.get("/api/games").json()["items"][0]["id"] == game
+        owned = client.get(f"/api/games/{game}").json()
+        assert not owned["read_only"] and "history" in owned
         assert (
             client.post(
                 "/api/auth/logout", headers=ORIGIN | {"X-CSRF-Token": response.json()["csrf"]}
@@ -149,6 +160,19 @@ def test_sessions_isolation_csrf_and_restart(settings):
         assert app.state.accounts.resolve(token) is not None
         assert app.state.accounts.resolve(bob_token) is not None
     with TestClient(create_app(settings, workers=False)) as client:
+        # Signed out, the link still opens the review and steps through moves.
+        assert client.get(f"/api/games/{game}").json()["read_only"]
+        assert client.get(f"/api/games/{game}/review?after=0").status_code == 200
+        assert (
+            client.post(f"/api/games/{game}/position", json={"ply": 1}, headers=ORIGIN).status_code
+            == 200
+        )
+        assert client.get("/api/games/missing").status_code == 404
+        # Everything else, including engine analysis and the library, needs an account.
+        assert client.get("/api/games").status_code == 401
+        assert client.post(f"/api/games/{game}/review", json={}, headers=ORIGIN).status_code == 401
+        assert client.post(f"/api/games/{game}/analyze", json={}, headers=ORIGIN).status_code == 401
+        assert client.post(f"/api/games/{game}/train", headers=ORIGIN).status_code == 401
         client.cookies.set(COOKIE, token)
         assert client.get("/api/games").json()["items"][0]["id"] == game
 

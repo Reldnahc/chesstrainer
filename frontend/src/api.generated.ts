@@ -2618,6 +2618,11 @@ export interface components {
             played_on: string | null;
             /** Rating */
             rating: number;
+            /**
+             * Read Only
+             * @default false
+             */
+            read_only: boolean;
             /** Result */
             result: string;
             /**
