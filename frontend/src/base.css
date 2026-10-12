@@ -57,6 +57,10 @@
   font-weight: 400;
   color: var(--muted);
 }
+/* Signed-out visitors of a shared game get sign-in in place of navigation. */
+.app-header .guest-sign-in {
+  margin-left: auto;
+}
 .app-header nav {
   display: flex;
   gap: var(--space-1-5);
@@ -344,6 +348,13 @@ footer > span:last-child {
   .app-header .brand,
   .app-footer {
     display: none;
+  }
+  /* A shared game's visitor has no navigation row, so the brand names the site. */
+  .app-header .header-inner--guest {
+    padding: var(--space-2) var(--space-3);
+  }
+  .app-header .header-inner--guest .brand {
+    display: flex;
   }
   .app-header .nav-item {
     gap: var(--space-1);

@@ -146,6 +146,8 @@ class ReviewJob(Contract):
 
 class GameDetail(Contract):
     history: CrossGameContext | None = None
+    # Opened through a shared link by someone other than its owner.
+    read_only: bool = False
     context: GameContext | None = None
     review_revision: int = 0
     id: str

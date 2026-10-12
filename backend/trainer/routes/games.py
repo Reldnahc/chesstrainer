@@ -3,10 +3,11 @@
 import io
 import math
 from datetime import timezone
+from typing import Annotated
 
 import chess
 import chess.pgn
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select, update
 
@@ -73,6 +74,38 @@ def job_progress(job, completed, total, review=None):
         if job
         else None
     )
+
+
+class GameView:
+    """Read-only sessions bound to a game's owner, for anyone holding its link.
+
+    With accounts enabled a review link opens for any visitor, signed in or not.
+    Only the owner's own workspace may change the game, so writes keep using
+    CurrentWorkspace and return 404 to everyone else. Single-user mode never
+    reaches another account's games.
+    """
+
+    def __init__(self, sessions, owned):
+        self.sessions, self.owned = sessions, owned
+
+
+def game_view(request: Request, game_id: str):
+    app = request.app.state
+    if app.settings.accounts_enabled:
+        user = getattr(request.state, "user", None)
+        viewer = user["id"] if user else None
+    else:
+        viewer = "local"
+    sql_engine = app.workspaces.sql_engine
+    # The one cross-account read: which account owns this game, if any.
+    with sql_engine.connect() as connection:
+        owner = connection.scalar(select(Game.user_id).where(Game.id == game_id))
+    if owner is None or (owner != viewer and not app.settings.accounts_enabled):
+        raise HTTPException(404, "Game not found")
+    return GameView(app.workspaces.sessions(owner), owner == viewer)
+
+
+ViewedGame = Annotated[GameView, Depends(game_view)]
 
 
 def create_router(*, settings, engine_factory):
@@ -152,8 +185,8 @@ def create_router(*, settings, engine_factory):
     @router.get(
         "/api/games/{game_id}", response_model=GameDetail, response_model_exclude_unset=True
     )
-    def game_detail(workspace: CurrentWorkspace, game_id: str):
-        with workspace.sessions() as db:
+    def game_detail(view: ViewedGame, game_id: str):
+        with view.sessions() as db:
             game = require_game(db, game_id)
             parsed = parsed_game(game)
             board = parsed.board()
@@ -193,7 +226,13 @@ def create_router(*, settings, engine_factory):
             return {
                 "id": game.id,
                 "context": context,
-                "history": cross_game_context(db, settings, game, reports, context),
+                # The owner's other games stay private, so viewers get no history.
+                **(
+                    {"history": cross_game_context(db, settings, game, reports, context)}
+                    if view.owned
+                    else {}
+                ),
+                "read_only": not view.owned,
                 "white": game.white,
                 "black": game.black,
                 "played_on": game.played_on,
@@ -220,12 +259,12 @@ def create_router(*, settings, engine_factory):
         response_model_exclude_unset=True,
     )
     def review_progress(
-        workspace: CurrentWorkspace,
+        view: ViewedGame,
         game_id: str,
         after: int = Query(0, ge=0),
         after_revision: int | None = Query(None, ge=0),
     ):
-        with workspace.sessions() as db:
+        with view.sessions() as db:
             game = require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review is None:
@@ -284,7 +323,11 @@ def create_router(*, settings, engine_factory):
                 "job": job_progress(job, len(saved), total, review),
                 "moves": moves,
                 "context": context,
-                "history": cross_game_context(db, settings, game, reports, context),
+                **(
+                    {"history": cross_game_context(db, settings, game, reports, context)}
+                    if view.owned
+                    else {}
+                ),
                 "accuracy": accuracy,
                 "revision": max([after_revision or 0, *(revisions[ply] for ply in plies)]),
             }
@@ -345,8 +388,8 @@ def create_router(*, settings, engine_factory):
         response_model=GamePosition,
         response_model_exclude_unset=True,
     )
-    def variation_position(workspace: CurrentWorkspace, game_id: str, data: VariationRequest):
-        with workspace.sessions() as db:
+    def variation_position(view: ViewedGame, game_id: str, data: VariationRequest):
+        with view.sessions() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
         san = None
@@ -390,8 +433,11 @@ def create_router(*, settings, engine_factory):
         response_model=GameAnalysis,
         response_model_exclude_unset=True,
     )
-    def analyze_variation(workspace: CurrentWorkspace, game_id: str, data: VariationRequest):
-        with workspace.sessions() as db:
+    def analyze_variation(
+        view: ViewedGame, workspace: CurrentWorkspace, game_id: str, data: VariationRequest
+    ):
+        # Signed-in viewers may analyze a shared game; the engine runs as their account.
+        with view.sessions() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
             parsed = parsed_game(game)

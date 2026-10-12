@@ -39,6 +39,20 @@ sessions, limited to reconciliation and scheduling metadata respectively; they
 never pass those sessions into request handlers or domain job execution. New
 private models must inherit `Owned`; tests must cover their API.
 
+### Shared game links
+
+A game review's address (`/games/<id>`) works for anyone who has it. Signed-out
+visitors see that review alone, with a Sign in button in place of navigation, and
+can step through moves but not try their own. Signed-in viewers from another account
+can also explore variations, analyzed as their own account. Viewers read the game
+through sessions bound to its owner (`game_view` in `routes/games.py`); the only
+cross-account lookup is which account owns the ID. The owner's other games stay
+private: viewers get `read_only: true` and no cross-game history, cannot start,
+pause or refine the review, and never see the game in their own library. Only
+`GET /api/games/<id>`, `GET /api/games/<id>/review` and
+`POST /api/games/<id>/position` accept signed-out requests. Local single-user mode
+never opens another account's games.
+
 One host-wide engine pool limits native processes through `ENGINE_SLOTS` (default
 4); each process uses `STOCKFISH_THREADS` and `STOCKFISH_HASH_MB`. One application
 serves every account. There are exactly `ENGINE_SLOTS` host analysis coordinators

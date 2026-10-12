@@ -15,6 +15,7 @@ import ReviewProgress from "./ReviewProgress";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
+import { useGuest } from "../AccountGate";
 
 export default function GameWorkspace({
   id,
@@ -26,6 +27,8 @@ export default function GameWorkspace({
   libraryHref: string;
 }) {
   const session = useGameReviewSession(id);
+  // Signed-out visitors step through a shared review; trying moves needs the engine.
+  const guest = useGuest();
   const {
     game,
     busy,
@@ -63,6 +66,7 @@ export default function GameWorkspace({
     path,
     positionKey: key,
     browse:
+      !guest &&
       !!game &&
       !saved &&
       !startingReport &&
@@ -192,8 +196,8 @@ export default function GameWorkspace({
           <Board
             fen={displayed.fen}
             orientation={orientation}
-            legalMoves={frame?.legal_moves || []}
-            disabled={!frame || moving}
+            legalMoves={guest ? [] : frame?.legal_moves || []}
+            disabled={!frame || moving || guest}
             onMove={play}
             highlights={
               currentUci ? [currentUci.slice(0, 2), currentUci.slice(2, 4)] : []

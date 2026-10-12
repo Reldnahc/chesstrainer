@@ -91,6 +91,11 @@ export function useGameReviewSession(id: string) {
   useEffect(() => {
     if (!game || openedReview.current) return;
     openedReview.current = true;
+    // Someone else's shared game is read as it is; only its owner starts reviews.
+    if (game.read_only) {
+      setReviewStarting(false);
+      return;
+    }
     if (!game.job || ["failed", "cancelled", "completed"].includes(game.job.status))
       void start();
     else {
