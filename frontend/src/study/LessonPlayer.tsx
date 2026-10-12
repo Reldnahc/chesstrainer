@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, Lightbulb, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
@@ -94,9 +94,10 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
       messageResetKey={`${session.id}:${session.revision}:${guidedPlayback}:${error || ""}`}
       actions={<>{error ? <Button size="compact" variant="primary" onClick={state.reload}>Reload lesson</Button> : <>
         {session.game ? <>{action("close_game", "Return to lesson")}<Button size="compact" variant="secondary" {...gameButtonState(session.game.ply === 0)} onClick={() => state.command("game_seek", { ply: 0 })}><Play size={16} />From the beginning</Button></> : <>
-          {action("back", "Back", false, <ChevronLeft size={16} />)}
+          {action("back", "Back", false, <ArrowLeft size={16} />)}
           {action("continue", (step.kind === "demonstration" || step.kind === "game_excerpt") && step.phase === "ready" ? step.plies === 1 ? "Play the move" : "Play continuation" : finished ? "Review chapter" : "Continue", true, <ArrowRight size={16} />)}
           {action("enter_branch", "Explore alternative", true, <Play size={16} />)}
+          {action("return_branch", "Main line")}
           {action("show_move", "Show move")}
           {action("hint", "Hint", false, <Lightbulb size={16} />)}
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}
@@ -108,9 +109,6 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
       <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
       <h2>{session.branch?.title || session.game?.title || session.chapter_title}</h2>
       <p className="small">{finished ? "Completed" : step.kind === "rehearsal" ? "Independent rehearsal" : "Guided learning"}{session.assisted ? " · Help used" : ""}</p>
-      {/* The way back from a side trip sits with its title, so the coach's
-          row never needs more than three buttons. */}
-      {session.branch && !session.game && <div className="button-row">{action("return_branch", "Main line")}</div>}
       {session.game && <LessonAttribution attributions={session.game.attributions} />}
       {finished && <ActionLink variant="primary" href={lessonCoursePath(session.course_id, session.course_revision, session.course_topic)}>Choose a chapter <ArrowRight size={16} /></ActionLink>}
     </section>
