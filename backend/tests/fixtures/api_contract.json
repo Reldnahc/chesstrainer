@@ -9253,20 +9253,6 @@
         "title": "Shape",
         "type": "object"
       },
-      "SignupAccess": {
-        "additionalProperties": false,
-        "properties": {
-          "open": {
-            "title": "Open",
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "open"
-        ],
-        "title": "SignupAccess",
-        "type": "object"
-      },
       "SkillPriority": {
         "additionalProperties": false,
         "properties": {
@@ -10793,45 +10779,6 @@
           }
         },
         "summary": "Signup"
-      }
-    },
-    "/api/auth/signups": {
-      "put": {
-        "description": "Let visitors create their own accounts, or leave that to administrators.",
-        "operationId": "signup_access_api_auth_signups_put",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SignupAccess"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Ok"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Signup Access"
       }
     },
     "/api/classification-runs/{run_id}": {

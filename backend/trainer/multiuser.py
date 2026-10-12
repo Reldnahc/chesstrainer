@@ -29,7 +29,6 @@ from trainer.contracts.accounts import (
     NewAccount,
     PasswordChange,
     PasswordReset,
-    SignupAccess,
 )
 from trainer.contracts.common import Ok
 
@@ -212,7 +211,7 @@ def configure_accounts(app, settings):
             "enabled": True,
             "user": accounts.public(user) if user else None,
             "csrf": csrf_token(request.cookies[COOKIE]) if user else None,
-            "signups_open": accounts.signups_open(),
+            "signups_open": settings.signups_open,
         }
 
     @app.post(
@@ -222,7 +221,7 @@ def configure_accounts(app, settings):
         response_model_exclude_unset=True,
     )
     async def signup(data: Credentials, request: Request, response: Response):
-        if not await run_in_threadpool(accounts.signups_open):
+        if not settings.signups_open:
             raise HTTPException(
                 403, "Sign-ups are closed. Ask whoever runs this Fieldwork server for an account."
             )
@@ -283,7 +282,7 @@ def configure_accounts(app, settings):
     def list_accounts(request: Request):
         require_admin(request)
         return {
-            "signups_open": accounts.signups_open(),
+            "signups_open": settings.signups_open,
             "accounts": [
                 {
                     **row,
@@ -301,12 +300,6 @@ def configure_accounts(app, settings):
         require_admin(request)
         with password_lock:
             return administer(lambda: accounts.create(data.username, data.password, temporary=True))
-
-    @app.put("/api/auth/signups", response_model=Ok)
-    def signup_access(data: SignupAccess, request: Request):
-        """Let visitors create their own accounts, or leave that to administrators."""
-        require_admin(request)
-        return administer(accounts.set_signups_open, data.open)
 
     @app.post("/api/auth/accounts/{account_id}/password", response_model=Ok)
     def reset_password(account_id: str, data: PasswordReset, request: Request):

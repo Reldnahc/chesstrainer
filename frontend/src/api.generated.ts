@@ -231,26 +231,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/auth/signups": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /**
-         * Signup Access
-         * @description Let visitors create their own accounts, or leave that to administrators.
-         */
-        put: operations["signup_access_api_auth_signups_put"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/classification-runs/{run_id}": {
         parameters: {
             query?: never;
@@ -4658,11 +4638,6 @@ export interface components {
             /** Wins */
             wins: number;
         };
-        /** SignupAccess */
-        SignupAccess: {
-            /** Open */
-            open: boolean;
-        };
         /** SkillPriority */
         SkillPriority: {
             /** Cue */
@@ -5422,39 +5397,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Identity"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    signup_access_api_auth_signups_put: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SignupAccess"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Ok"];
                 };
             };
             /** @description Validation Error */

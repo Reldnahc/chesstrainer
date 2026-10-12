@@ -2,13 +2,11 @@
 
 import json
 import re
-from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
 import httpx
 from puzzle_fixtures import BrowserGamePuzzleProvider, BrowserPuzzleProvider
 from study_lesson_fixtures import BrowserLessonProvider
-from trainer.accounts import Accounts
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
 from trainer.config import Settings
@@ -109,17 +107,6 @@ def create_app():
         puzzle_providers=(puzzle_provider, game_puzzle_provider),
         lesson_providers=(*bundled_providers(), lesson_provider),
     )
-    startup = app.router.lifespan_context
-
-    @asynccontextmanager
-    async def lifespan(app):
-        async with startup(app) as state:
-            # Account specs sign up as visitors; servers start with sign-ups closed.
-            if app.state.settings.accounts_enabled:
-                Accounts(app.state.settings.database_path).set_signups_open(True)
-            yield state
-
-    app.router.lifespan_context = lifespan
 
     # POST, like the other fixtures: the SPA fallback owns every unmatched GET.
     @app.post("/__test/active-jobs")

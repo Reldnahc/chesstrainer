@@ -84,20 +84,6 @@ class Accounts:
                 raise ValueError("That username is unavailable.") from exc
         return self.by_name(name)
 
-    def signups_open(self):
-        """Whether visitors may create their own accounts; closed unless an administrator opens it."""
-        with self.connect() as db:
-            row = db.execute("SELECT signups_open FROM site_settings WHERE id=1").fetchone()
-            return bool(row and row[0])
-
-    def set_signups_open(self, value):
-        with self.connect() as db:
-            db.execute(
-                "INSERT INTO site_settings(id, signups_open) VALUES(1, ?) "
-                "ON CONFLICT(id) DO UPDATE SET signups_open=excluded.signups_open",
-                (int(value),),
-            )
-
     def by_name(self, name):
         with self.connect() as db:
             row = db.execute(
@@ -228,22 +214,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "action",
-        choices=[
-            "create-admin",
-            "promote",
-            "reset-password",
-            "disable",
-            "enable",
-            "claim-local",
-            "open-signups",
-            "close-signups",
-        ],
+        choices=["create-admin", "promote", "reset-password", "disable", "enable", "claim-local"],
     )
-    parser.add_argument("username", nargs="?")
+    parser.add_argument("username")
     args = parser.parse_args()
-    signups = args.action in {"open-signups", "close-signups"}
-    if not signups and not args.username:
-        parser.error(f"{args.action} needs a username")
     from trainer.db import database, migrate
 
     settings = Settings()
@@ -251,10 +225,6 @@ def main():
     migrate(engine)
     engine.dispose()
     accounts = Accounts(settings.database_path)
-    if signups:
-        accounts.set_signups_open(args.action == "open-signups")
-        print("Sign-ups are " + ("open" if args.action == "open-signups" else "closed"))
-        return
     try:
         user = accounts.by_name(username(args.username))
         if user and user["username"] == "__local__":

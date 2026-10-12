@@ -74,6 +74,7 @@ accounts stay private when switching modes. Restart after changes. See
 | Variable | Image default | Meaning |
 | --- | --- | --- |
 | `ACCOUNTS_ENABLED` | `false` | `false`: one local no-login workspace. `true`: separate accounts with sign-in. |
+| `SIGNUPS_OPEN` | `false` | Accounts only. `false`: administrators add members in Settings → Account. `true`: anyone who can reach the server can create an account. |
 | `PUBLIC_ORIGIN` | empty | Optional, accounts only. Blank accepts writes from the address the browser used. Set the exact HTTP(S) browser address, including nonstandard port and no path, only when a proxy rewrites Host. |
 | `SESSION_SECURE` | `true` | HTTPS-only account cookies. Set false for intentional HTTP accounts. Unused without login. |
 | `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines and host analysis jobs. One additional worker fetches games without analysis. Worker count is independent of account count; busy requests/jobs wait. |

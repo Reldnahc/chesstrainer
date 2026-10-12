@@ -4,7 +4,6 @@ from pathlib import Path
 
 import pytest
 from trainer import presence
-from trainer.accounts import Accounts
 from trainer.config import Settings
 from trainer.db import database, migrate
 
@@ -15,18 +14,13 @@ def fresh_presence():
     presence.forget()
 
 
-@pytest.fixture(autouse=True)
-def open_signups(monkeypatch):
-    # Most account tests create members by signing up, as visitors do once an
-    # administrator opens sign-ups; test_accounts covers the closed default.
-    monkeypatch.setattr(Accounts, "signups_open", lambda self: True)
-
-
 @pytest.fixture
 def settings(tmp_path):
     return Settings(
         _env_file=None,
         database_path=tmp_path / "test.sqlite3",
+        # Account tests create members by signing up; test_accounts covers the closed default.
+        signups_open=True,
         # Fallback tests must not discover a developer's installed model. Native tests opt in.
         human_model_path=tmp_path / "unconfigured-maia.pt",
         triage_depth=8,
