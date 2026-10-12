@@ -187,6 +187,8 @@ export function useReviewSession({
       if (!result.completed) setHadFailure(true);
       setSubmittedMove(from + to + (promotion || ""));
       if (result.completed) recordCompletion(position.exercise_id, !result.non_scheduling_reason);
+      // The answer is graded, so the board takes the next attempt while the count refreshes.
+      setBusy(false);
       // The exact count includes positions outside the bounded queue batch and
       // may change in another tab. Never infer it from this session's outcome.
       if (!focusSkill) await refreshDue(version);
