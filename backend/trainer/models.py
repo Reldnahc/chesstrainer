@@ -53,7 +53,7 @@ class SiteSetting(Base):
 
     __tablename__ = "site_settings"
     key: Mapped[str] = mapped_column(primary_key=True)
-    value: Mapped[object] = mapped_column(JSON)
+    value: Mapped[str] = mapped_column(Text)  # JSON text
 
 
 class Owned:

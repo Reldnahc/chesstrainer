@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from sqlalchemy.orm import sessionmaker
 
+from trainer import site_settings
 from trainer.chesscom import ChessComClient
 from trainer.config import Settings
 from trainer.contracts.accounts import Identity
@@ -30,6 +31,7 @@ from trainer.routes import (
     play,
     puzzles,
     review,
+    server_settings,
     study_lessons,
     sync,
     workspace,
@@ -57,7 +59,9 @@ def create_app(
     puzzle_providers=None,
     lesson_providers=None,
 ):
-    settings = (settings or Settings()).for_runtime()
+    # A real start reads server settings from the database; callers passing their
+    # own Settings (tests, tools) get exactly those.
+    settings = (settings or site_settings.load(Settings())).for_runtime()
     if puzzle_providers is None:
         puzzle_providers = production_providers(settings)
     # Tests and development tools may supply their own courses; a real install
@@ -155,5 +159,6 @@ def create_app(
     app.include_router(opening_studies.create_router(providers=courses, scheduler=scheduler))
     app.include_router(classification.create_router(settings=settings, classifier=classifier))
     app.include_router(compatibility.create_router(scheduler=scheduler))
+    app.include_router(server_settings.create_router(settings=settings, sql_engine=sql_engine))
     serve_frontend(app)
     return app

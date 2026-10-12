@@ -18,7 +18,8 @@ def upgrade():
     op.create_table(
         "site_settings",
         sa.Column("key", sa.String(), primary_key=True),
-        sa.Column("value", sa.JSON(), nullable=False),
+        # JSON text; a TEXT column keeps SQLite from turning "6" into a number.
+        sa.Column("value", sa.Text(), nullable=False),
     )
 
 

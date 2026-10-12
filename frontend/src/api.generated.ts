@@ -1342,6 +1342,41 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/server-settings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Server Settings */
+        get: operations["get_server_settings_api_server_settings_get"];
+        /** Put Server Settings */
+        put: operations["put_server_settings_api_server_settings_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/server/restart": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restart Server */
+        post: operations["restart_server_api_server_restart_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/settings": {
         parameters: {
             query?: never;
@@ -4640,6 +4675,58 @@ export interface components {
             /** Value */
             value: number;
         };
+        /**
+         * ServerSetting
+         * @description One setting stored in the database; ``value`` applies at the next restart.
+         */
+        ServerSetting: {
+            /** Choices */
+            choices: string[] | null;
+            /** Default */
+            default: boolean | number | string | null;
+            /** Help */
+            help: string;
+            /** Key */
+            key: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "boolean" | "integer" | "number" | "choice";
+            /** Label */
+            label: string;
+            /** Maximum */
+            maximum?: number | null;
+            /** Minimum */
+            minimum?: number | null;
+            /** Nullable */
+            nullable: boolean;
+            /** Running */
+            running: boolean | number | string | null;
+            /** Value */
+            value: boolean | number | string | null;
+        };
+        /** ServerSettingGroup */
+        ServerSettingGroup: {
+            /** Settings */
+            settings: components["schemas"]["ServerSetting"][];
+            /** Title */
+            title: string;
+        };
+        /** ServerSettings */
+        ServerSettings: {
+            /** Groups */
+            groups: components["schemas"]["ServerSettingGroup"][];
+            /** Restart Available */
+            restart_available: boolean;
+        };
+        /** ServerSettingsChange */
+        ServerSettingsChange: {
+            /** Values */
+            values: {
+                [key: string]: boolean | number | string | null;
+            };
+        };
         /** Shape */
         Shape: {
             /** Draws */
@@ -7553,6 +7640,79 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_server_settings_api_server_settings_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ServerSettings"];
+                };
+            };
+        };
+    };
+    put_server_settings_api_server_settings_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ServerSettingsChange"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ServerSettings"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restart_server_api_server_restart_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Ok"];
                 };
             };
         };
