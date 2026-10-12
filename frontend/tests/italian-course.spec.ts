@@ -74,10 +74,10 @@ for (const motion of ["still", "natural"] as const) {
     expect((await page.request.put("/api/preferences/motion", { data: { motion } })).ok()).toBe(true);
     await start(page, "quiet-development");
     await command(page, "Continue");
-    await command(page, "Play continuation");
+    let position = await command(page, "Play continuation");
     const board = page.locator(".board-shell");
     for (const uci of ["g1f3", "f1c4"]) {
-      const position = await command(page, "Continue");
+      if (uci !== "g1f3") position = await command(page, "Continue");
       await expect(page.getByRole("heading", { name: position.step.title, exact: true })).toBeVisible();
       const source = board.locator(`[data-square="${uci.slice(0, 2)}"]`);
       const target = board.locator(`[data-square="${uci.slice(2, 4)}"]`);
@@ -114,7 +114,8 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   await command(page, "Continue");
   const center = await command(page, "Play continuation");
   expect(center.playback.map(frame => frame.uci)).toEqual(["e2e4", "e7e5"]);
-  await command(page, "Continue");
+  // A demonstration goes straight on to the decision it leads to.
+  expect(center.step.kind).toBe("decision");
   const knight = await move(page, "g1f3");
   expect(knight.playback.map(frame => frame.uci)).toEqual(["g1f3", "b8c6"]);
   await command(page, "Continue");
@@ -124,8 +125,8 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   await command(page, "Explore alternative");
   const alternative = await command(page, "Play the move");
   expect(alternative.playback.map(frame => frame.uci)).toEqual(["c6d4"]);
-  for (const [uci, reply] of [["f3d4", "e5d4"], ["e1g1", "f8c5"], ["c4f7", "e8f7"], ["d1h5", "f7f8"], ["h5c5", null]] as const) {
-    await command(page, "Continue");
+  for (const [index, [uci, reply]] of ([["f3d4", "e5d4"], ["e1g1", "f8c5"], ["c4f7", "e8f7"], ["d1h5", "f7f8"], ["h5c5", null]] as const).entries()) {
+    if (index) await command(page, "Continue");
     const played = await move(page, uci);
     expect(played.playback.map(frame => frame.uci)).toEqual(reply ? [uci, reply] : [uci]);
   }
@@ -146,7 +147,6 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   expect(skipped.step.id).toBe("early-h6-choice");
   await command(page, "Continue");
   await command(page, "Play the move");
-  await command(page, "Continue");
   await move(page, "d2d3");
   await command(page, "Continue");
   const castled = await move(page, "e1g1");

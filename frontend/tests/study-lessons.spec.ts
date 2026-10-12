@@ -45,8 +45,8 @@ async function move(page: Page, uci: string) {
 const piece = (page: Page, square: string, symbol: string) => page.locator(`.board-shell [data-square="${square}"] [data-piece="${symbol}"]`);
 async function reachDecision(page: Page) {
   await command(page, "Continue");
+  // A demonstration that ends where the next step starts goes straight on.
   await command(page, "Play continuation");
-  await command(page, "Continue");
   await expect(page.getByRole("heading", { name: "Develop a knight", exact: true })).toBeVisible();
 }
 
@@ -72,7 +72,6 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   const anchor = await saved(page, lesson.session_id);
   await command(page, "Explore alternative");
   await command(page, "Play continuation");
-  await command(page, "Continue");
   const branch = await saved(page, lesson.session_id);
   expect(branch.branch).not.toBeNull();
   expect(branch.step.id).toBe("quiet-explanation");
@@ -105,7 +104,6 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   expect(returned.history).toEqual(anchor.history);
   await command(page, "Continue");
   await command(page, "Play continuation");
-  await command(page, "Continue");
   await command(page, "Play continuation");
   const excerpt = await saved(page, lesson.session_id);
   expect(excerpt.step.id).toBe("example");
@@ -180,8 +178,7 @@ test("reload during a demonstration restores its committed end without replaying
   const resumed = await saved(page, lesson.session_id);
   expect(resumed.revision).toBe(played.revision);
   expect(resumed.playback).toEqual([]);
-  expect(resumed.step.phase).toBe("complete");
-  await command(page, "Continue");
+  expect(resumed.step.id).toBe("develop");
   await expect(page.getByRole("heading", { name: "Develop a knight" })).toBeVisible();
 });
 
@@ -240,11 +237,10 @@ test("Still motion shows the committed demonstration without a playback phase", 
     expect(played.playback.map(frame => frame.uci)).toEqual(["e2e4", "e7e5"]);
     await expect(piece(page, "e4", "wP")).toBeVisible();
     await expect(piece(page, "e5", "bP")).toBeVisible();
-    await expect(page.getByRole("button", { name: "Continue", exact: true })).toBeEnabled();
-    await expect(page.locator(".coach-title")).toHaveText("Both sides enter the center");
+    await expect(page.locator(".coach-title")).toHaveText("Develop a knight");
     expect(await observed.evaluate(value => value.titles)).not.toContain("Follow the continuation.");
     const resumed = await saved(page, lesson.session_id);
-    expect(resumed.step.phase).toBe("complete");
+    expect(resumed.step.id).toBe("develop");
     expect(resumed.history.map(frame => frame.uci)).toEqual(["e2e4", "e7e5"]);
   } finally {
     await observed.evaluate(value => value.observer.disconnect());

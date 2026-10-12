@@ -173,11 +173,24 @@ def transition(course, chapter, previous, request):
         return state, advance(course, chapter, state)
     if step.kind == "demonstration":
         playback = play(state, step.moves)
-    else:
-        game = course.game(step.game_id)
-        playback = play(state, game.moves[step.from_ply : step.to_ply])
+        state["phase"] = "complete"
+        if continues_on_board(chapter, state):
+            # Nothing new appears once the moves have played, so carry on to the
+            # next step; Back still returns to the demonstration before it played.
+            return state, [*playback, *advance(course, chapter, state)]
+        return state, playback
+    game = course.game(step.game_id)
+    playback = play(state, game.moves[step.from_ply : step.to_ply])
     state["phase"] = "complete"
     return state, playback
+
+
+def continues_on_board(chapter, state):
+    """Whether the next step starts exactly where this one ended, so going on
+    needs no pause: a chapter's or side trip's end, or a separate example, keeps it."""
+    if state["next_step"] is None:
+        return False
+    return chapter.step(state["next_step"]).position == Position.model_validate(state["position"])
 
 
 def inspect_game(course, step, state, request):

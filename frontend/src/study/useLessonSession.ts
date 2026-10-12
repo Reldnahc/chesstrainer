@@ -19,6 +19,9 @@ export function useLessonSession(id: string) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [speech, setSpeech] = useState<LessonSpeech | null>(null);
+  // A demonstration goes straight on to the next step; its own step stays on
+  // screen while its moves play.
+  const [playingStep, setPlayingStep] = useState<LessonSession["step"] | null>(null);
   const speechEvents = useRef(0);
   // How often each clip has played this session, so its takes take turns.
   const plays = useRef(new Map<string, number>());
@@ -66,6 +69,8 @@ export function useLessonSession(id: string) {
       }));
       if (generation.current !== version) return;
       setSession(result);
+      setPlayingStep(action === "continue" && session.step.kind === "demonstration" && result.step.id !== session.step.id
+        && result.playback.length ? session.step : null);
       const clip = lessonRecording({ action, before: session, after: result });
       const played = clip ? plays.current.get(clip) ?? 0 : 0;
       if (clip) plays.current.set(clip, played + 1);
@@ -96,6 +101,7 @@ export function useLessonSession(id: string) {
   }
   return {
     session, loading, busy, error, command, reload: load, playback, speech,
+    playingStep: playback.playing ? playingStep : null,
     disabled: busy || playback.playing || !!error,
     gameNavigationDisabled: busy || !!error,
     answer: (from: string, to: string, promotion?: Promotion) => command("move", { uci: from + to + (promotion || "") }),

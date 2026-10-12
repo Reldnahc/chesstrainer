@@ -5,7 +5,9 @@ from fastapi.testclient import TestClient
 from sqlalchemy import select
 from study_lesson_fixtures import GAME, MAIN, BrowserLessonProvider, connected_course
 from trainer.api import create_app
+from trainer.contracts.study_lessons import LessonCommand
 from trainer.models import AnalysisJob, Review, SkillEvidence, SRSState
+from trainer.study_lessons.player import initial_state, transition
 
 BASE = "/api/study/lesson-sessions"
 
@@ -77,12 +79,13 @@ def test_connected_chapter_back_branch_source_game_rehearsal_and_restart(setting
         assert state["step"]["id"] == "welcome" and state["fen"] == chess.STARTING_FEN
         state = command(client, state, "continue")
         assert state["step"]["id"] == "center"
+        # A demonstration that ends where the next step starts goes straight on.
         state = command(client, state, "continue")
-        assert state["step"]["phase"] == "complete"
+        assert state["step"]["id"] == "develop" and state["step"]["phase"] == "ready"
         assert [frame["uci"] for frame in state["playback"]] == list(MAIN[:2])
         state = command(client, state, "back")
+        assert state["step"]["id"] == "center"
         assert state["step"]["phase"] == "ready" and state["fen"] == chess.STARTING_FEN
-        state = command(client, state, "continue")
         state = command(client, state, "continue")
         assert state["step"]["id"] == "develop"
         state = command(client, state, "hint")
@@ -115,7 +118,6 @@ def test_connected_chapter_back_branch_source_game_rehearsal_and_restart(setting
         state = command(client, state, "continue")
         state = command(client, state, "continue")
         assert state["fen"] == fen(MAIN)
-        state = command(client, state, "continue")
         assert state["step"]["id"] == "example"
         excerpt = state
         state = command(client, state, "open_game")
@@ -152,7 +154,7 @@ def test_connected_chapter_back_branch_source_game_rehearsal_and_restart(setting
 def test_accepted_alternative_uses_its_own_history_and_terminal_target(settings):
     with TestClient(app_with(settings)) as client:
         state = begin(client)
-        for _ in range(3):
+        for _ in range(2):
             state = command(client, state, "continue")
         state = command(client, state, "move", uci="b1c3")
         assert state["fen"] == fen((*MAIN[:2], "b1c3"))
@@ -188,3 +190,24 @@ def test_same_revision_cannot_silently_change_saved_chapter(settings):
         assert result.status_code == 409
         saved = client.get(f"{BASE}/{first['id']}").json()
         assert saved["step"] == first["step"]
+
+
+def test_demonstration_pauses_where_the_next_step_does_not_continue_on_the_board():
+    course = connected_course()
+    chapter = course.chapters[0]
+    demo = next(step for step in chapter.steps if step.kind == "demonstration")
+    state = initial_state(course, chapter)
+    state.update(
+        step_id=demo.id,
+        phase="ready",
+        position=demo.position.model_dump(mode="json"),
+        next_step=None,
+    )
+
+    def play(state):
+        request = LessonCommand(action="continue", revision=1, request_id="request-1")
+        return transition(course, chapter, state, request)
+
+    ended, playback = play(state)
+    assert ended["step_id"] == demo.id and ended["phase"] == "complete"
+    assert len(playback) == len(demo.moves)

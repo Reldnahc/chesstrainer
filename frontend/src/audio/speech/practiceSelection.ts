@@ -134,7 +134,8 @@ export function lessonRecording({action, before, after}: {
   if (action === "open_game") return after.game ? "lesson-game-opened" : null;
   if (after.game || after.status === "completed") return null;
   // One move is not a continuation, and no clip introduces a single move.
-  if (after.playback.length) return action === "continue" && after.playback.length > 1 ? "lesson-guided-playback" : null;
+  const played = before.step.kind === "demonstration" && before.step.plies ? before.step.plies : after.playback.length;
+  if (after.playback.length) return action === "continue" && played > 1 ? "lesson-guided-playback" : null;
   return after.step.kind === "rehearsal" && after.actions.includes("move")
     && ["continue", "back", "return_branch", "close_game"].includes(action) ? "lesson-rehearsal-prompt" : null;
 }
