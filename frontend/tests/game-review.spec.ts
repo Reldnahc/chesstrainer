@@ -34,6 +34,25 @@ test('opening starts once, failures allow retry, pause sticks and reopening resu
   expect(starts).toBe(3);
 });
 
+test('opening a game whose review is queued moves it to the front once', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/queued-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  game.job = {id: 'queued-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
+  let requests = 0;
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  await page.route(`**/api/games/${id}/review*`, route => {
+    if (route.request().method() === 'GET') return route.fulfill({json: {job: game.job, moves: []}});
+    requests++;
+    return route.fulfill({json: {job_id: game.job.id, status: game.job.status}});
+  });
+  await page.goto(`/games/${id}`);
+  await expect(page.getByRole('button', {name: 'Pause review', exact: true})).toBeEnabled();
+  await expect.poll(() => requests).toBe(1);
+  await page.getByRole('button', {name: 'Next move', exact: true}).click();
+  expect(requests).toBe(1);
+});
+
 test('progress merges only new reports without reloading the board or duplicating searches', async ({page}, info) => {
   const {id} = await (await page.request.post(`/__test/game-review-fixture/progress-${info.project.name}`)).json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();
