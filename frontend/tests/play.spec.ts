@@ -97,6 +97,22 @@ test("the setup page explains the measured level and starts a live game", async 
   await expect(page.locator(".review-board-meta .game-accuracy")).toHaveCount(0);
 });
 
+test("the setup waits for the game in progress so the callout does not push it down", async ({page}) => {
+  await mockPlay(page);
+  let answer: () => void = () => undefined;
+  const answered = new Promise<void>(resolve => { answer = resolve; });
+  await page.route("**/api/play/active", async route => {
+    await answered;
+    await route.fulfill({json: {game: {...base, frames: [frame0]}}});
+  });
+  await page.goto("/play");
+  await expect(page.getByRole("heading", {name: "Play Walter"})).toBeVisible();
+  await expect(page.getByRole("region", {name: "Game setup"})).toHaveCount(0);
+  answer();
+  await expect(page.getByRole("region", {name: "Game in progress"})).toBeVisible();
+  await expect(page.getByRole("region", {name: "Game setup"})).toBeVisible();
+});
+
 test("the bot answers once the move is graded while the coach finishes its line", async ({page}) => {
   await mockPlay(page);
   await page.goto("/play/play1");

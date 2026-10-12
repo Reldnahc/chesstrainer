@@ -57,7 +57,9 @@ function PlaySetup() {
   const { preferences } = useCoachPreferences();
   const coach = getCoach(preferences.coach_id);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [active, setActive] = useState<Schema["PlayState"] | null>(null);
+  // Undefined until the server says whether a game is in progress: the setup waits for
+  // that answer so the game-in-progress callout never appears above it afterwards.
+  const [active, setActive] = useState<Schema["PlayState"] | null | undefined>(undefined);
   const [level, setLevel] = useState<(typeof LEVELS)[number]["value"]>("match");
   const [opponent, setOpponent] = useState<Opponent>("human");
   const [rating, setRating] = useState(1200);
@@ -110,7 +112,9 @@ function PlaySetup() {
       .then((value) => {
         if (active) setActive(value.game);
       })
-      .catch(() => undefined);
+      .catch(() => {
+        if (active) setActive(null);
+      });
     return () => {
       active = false;
       window.clearTimeout(timer);
@@ -175,6 +179,7 @@ function PlaySetup() {
           </ActionLink>
         </section>
       )}
+      {active === undefined ? <LoadingState>Loading…</LoadingState> : <>
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
           <div className="play-field">
@@ -269,6 +274,7 @@ function PlaySetup() {
         )}
       </div>
       {!profile && !error && <LoadingState>Loading…</LoadingState>}
+      </>}
     </>
   );
 }
