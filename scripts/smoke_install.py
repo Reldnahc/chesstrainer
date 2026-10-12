@@ -13,6 +13,20 @@ import uuid
 
 import httpx
 
+# The hardening the Unraid template and compose.yaml apply, so releases prove the app
+# still works with a read-only root filesystem, no capabilities and a process cap.
+HARDENING = (
+    "--read-only",
+    "--tmpfs",
+    "/tmp:rw,nosuid,nodev,size=256m",
+    "--security-opt",
+    "no-new-privileges:true",
+    "--cap-drop",
+    "ALL",
+    "--pids-limit",
+    "1024",
+)
+
 
 def docker(*args):
     return subprocess.check_output(["docker", *args], text=True).strip()
@@ -126,7 +140,7 @@ def main():
     try:
         for mode in ("local", "accounts"):
             name = f"fieldwork-install-{mode}-{uuid.uuid4().hex[:10]}"
-            command = ["run", "-d", "--name", name, "--init", "-p", "127.0.0.1::8000"]
+            command = ["run", "-d", "--name", name, "--init", "-p", "127.0.0.1::8000", *HARDENING]
             if mode == "accounts":
                 command += ["-e", "ACCOUNTS_ENABLED=true"]
                 command += ["-e", "PUBLIC_ORIGIN=https://chess.example.test"]

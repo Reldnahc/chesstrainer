@@ -64,3 +64,21 @@ def test_unraid_template_defaults_select_local_mode():
         assert field.attrib["Description"]
         if field.attrib["Target"].startswith(("ENGINE_", "STOCKFISH_")):
             assert field.attrib["Display"] == "advanced"
+
+
+def test_shipped_container_configs_keep_the_hardening():
+    root = Path(__file__).resolve().parents[2]
+    template = ElementTree.parse(root / "unraid/fieldwork.xml").getroot()
+    extra = template.findtext("ExtraParams").split()
+    assert template.findtext("Privileged") == "false"
+    for flag in ("--read-only", "--pids-limit", "--cap-drop", "--security-opt", "--user"):
+        assert flag in extra
+    assert extra[extra.index("--cap-drop") + 1] == "ALL"
+    assert extra[extra.index("--security-opt") + 1] == "no-new-privileges:true"
+    # The only host path the container sees is its own data folder.
+    paths = [field for field in template.findall("Config") if field.attrib["Type"] == "Path"]
+    assert [field.attrib["Target"] for field in paths] == ["/data"]
+    compose = (root / "compose.yaml").read_text(encoding="utf-8")
+    for line in ("read_only: true", "pids_limit:", "no-new-privileges:true", "- ALL"):
+        assert line in compose
+    assert "docker.sock" not in compose and "privileged" not in compose

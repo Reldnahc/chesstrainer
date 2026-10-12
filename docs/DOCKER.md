@@ -24,6 +24,8 @@ minutes and outlasts the health check's start period; later starts reuse it. See
 
 ```sh
 docker run -d --name fieldwork --restart unless-stopped --init \
+  --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 \
+  --cap-drop ALL --security-opt no-new-privileges:true \
   -p 18000:8000 -v fieldwork-data:/data \
   ghcr.io/reldnahc/chesstrainer:latest
 ```
@@ -33,6 +35,11 @@ No variables or account setup are required. Everyone with access shares one loca
 workspace. Keep this mode on a trusted LAN. To restrict access to the host computer,
 use `-p 127.0.0.1:18000:8000` instead. Multiline commands use POSIX shell syntax;
 in PowerShell use one line.
+
+The extra options are optional but recommended: the app writes only to `/data` and
+`/tmp`, needs no Linux capabilities, and must never be given the Docker socket,
+privileged mode or other host folders. See [Unraid security](UNRAID.md#security)
+for why, and for keeping a public install off your LAN.
 
 The image runs as UID/GID 1000:1000. A fresh named volume inherits `/data` ownership.
 For a bind mount, make its directory writable by that user, or select another with
@@ -44,6 +51,8 @@ This example uses a fresh volume. Do not run two instances against one database.
 
 ```sh
 docker run -d --name fieldwork-shared --restart unless-stopped --init \
+  --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 \
+  --cap-drop ALL --security-opt no-new-privileges:true \
   -p 127.0.0.1:18001:8000 -v fieldwork-shared-data:/data \
   -e ACCOUNTS_ENABLED=true \
   ghcr.io/reldnahc/chesstrainer:latest

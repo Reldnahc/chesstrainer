@@ -36,9 +36,35 @@ chown 99:100 /mnt/user/appdata/fieldwork
 For manual Add Container, use `ghcr.io/reldnahc/chesstrainer:latest`, Bridge networking,
 map host port 18000 to container port 8000, and map your appdata folder to `/data`.
 In Advanced View set WebUI to `http://[IP]:[PORT:8000]` and Extra Parameters to
-`--init --user 99:100 --security-opt no-new-privileges:true --cap-drop ALL --stop-timeout 90`.
+`--init --user 99:100 --security-opt no-new-privileges:true --cap-drop ALL --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 --stop-timeout 90`.
 Keep privileged mode off. PUID/PGID environment variables alone do not change this
 image's user; the `--user` option does.
+
+## Security
+
+The template keeps a compromised app contained to its own data folder:
+
+- It runs as UID 99 (nobody), never root, with every Linux capability dropped and
+  `no-new-privileges`, so a bug in Fieldwork cannot become root in the container.
+- The root filesystem is read-only. Only `/data` and a small in-memory `/tmp` are
+  writable, so nothing can be planted in the app's code. `--pids-limit` stops a
+  runaway or hostile process from exhausting the server.
+- **App data** is the only host folder it sees. Do not add other path mappings
+  (especially `/mnt/user` or a share), never map `/var/run/docker.sock`, and keep
+  **Privileged** off. Any of these would hand the server to whoever controls the app.
+
+Docker's bridge network still lets the container open connections to your LAN,
+including the Unraid web interface and other containers' ports. Fieldwork needs
+outbound internet for Chess.com and Lichess, but nothing on your LAN. Keep a strong
+Unraid root password and don't expose other admin pages without login. A separate
+Docker bridge network only separates containers from each other; to block the LAN
+for a publicly reachable install, give Fieldwork (and its proxy) its own VLAN and
+have the router allow that VLAN only to the internet.
+
+Only account mode may be reachable from the internet. Local no-login mode trusts
+everyone who can connect; its host-name check stops DNS rebinding, not visitors
+who use your IP address. Publish accounts through an HTTPS reverse proxy, never by
+forwarding the container's port directly.
 
 ## Separate accounts behind HTTPS
 

@@ -31,6 +31,11 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
+    # Only /data (and a scratch /tmp) is writable; a process cap contains runaway forks.
+    read_only: true
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,size=256m
+    pids_limit: 1024
     # Optional NVIDIA GPU for Maia (requires the NVIDIA Container Toolkit):
     # deploy:
     #   resources:
