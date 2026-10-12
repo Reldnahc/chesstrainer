@@ -22,7 +22,8 @@ sign-ups** in the same section; the sign-in page then offers **Create an
 account**, and visitors who sign up are ordinary members, never administrators.
 While sign-ups are closed the sign-in page tells visitors to ask whoever runs the
 server, and `POST /api/auth/signup` answers 403. The switch is stored in the
-`site_settings` table; host operators can also run
+`site_settings` table with the other [stored server settings](CONFIGURATION.md#stored-server-settings);
+host operators can also run
 `python -m trainer.accounts open-signups` or `close-signups`.
 
 Signed-out visitors cannot add analysis load. Every route that runs Stockfish or
