@@ -14,7 +14,7 @@ export default function ReviewControls({
   } = exploration;
   return (
     <div
-      className="game-board-controls"
+      className="game-board-controls game-board-controls--review"
       role="group"
       aria-label="Game navigation"
     >
