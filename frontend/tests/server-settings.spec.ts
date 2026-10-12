@@ -3,8 +3,8 @@ import type {Schema} from '../src/api';
 
 const section = (page: Page) => page.getByRole('region', {name: 'Server', exact: true});
 
-function listing(slots: number, running = 4, restart_available = true): Schema['ServerSettings'] {
-  return {restart_available, groups: [
+function listing(slots: number, running = 4, restart_available = true, boot_id = 'first-boot'): Schema['ServerSettings'] {
+  return {restart_available, boot_id, groups: [
     {title: 'Engine', settings: [
       {key: 'engine_slots', label: 'Shared engine slots', help: 'Engines at once.', kind: 'integer', nullable: false, choices: null, minimum: 1, maximum: 32, default: 4, value: slots, running},
       {key: 'triage_nodes', label: 'First pass nodes', help: 'Optional node limit.', kind: 'integer', nullable: true, choices: null, minimum: 1, maximum: null, default: null, value: null, running: null},
@@ -22,7 +22,8 @@ test('server settings save to the database and restart the server', async ({page
   const bodies: unknown[] = [];
   let restarts = 0;
   await page.route('**/api/server-settings', route => {
-    if (route.request().method() === 'GET') return route.fulfill({json: listing(4)});
+    // After the restart the server reports a new boot and runs the saved value.
+    if (route.request().method() === 'GET') return route.fulfill({json: restarts ? listing(6, 6, true, 'second-boot') : listing(4)});
     bodies.push(route.request().postDataJSON());
     return route.fulfill({json: listing(6)});
   });
@@ -48,9 +49,13 @@ test('server settings save to the database and restart the server', async ({page
   await expect(section(page)).toContainText('Running with 4 until restart.');
 
   await section(page).getByRole('button', {name: 'Restart server'}).click();
+  const reloaded = page.waitForEvent('load');
   await section(page).getByRole('button', {name: 'Restart now'}).click();
   await expect(section(page).getByRole('button', {name: 'Restarting…'})).toBeDisabled();
+  await reloaded;
   expect(restarts).toBe(1);
+  await expect(section(page).getByRole('button', {name: 'Restart server'})).toBeEnabled();
+  await expect(section(page)).not.toContainText('until restart');
 });
 
 test('servers that cannot restart themselves say so, and members never see the section', async ({page}) => {

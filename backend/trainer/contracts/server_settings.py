@@ -30,6 +30,8 @@ class ServerSettings(Contract):
     groups: list[ServerSettingGroup]
     # Only a server started with python -m trainer can restart itself.
     restart_available: bool
+    # A new value after every start of the server.
+    boot_id: str
 
 
 class ServerSettingsChange(Contract):

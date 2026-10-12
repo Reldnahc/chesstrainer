@@ -67,14 +67,12 @@ export default function ServerSettings() {
       setBusy("");
       return;
     }
-    // Wait for the server to stop answering, then for it to come back.
+    // The restarted server reports a new boot id; until then requests fail or show the old one.
     const deadline = Date.now() + 120_000;
-    let stopped = false;
     while (Date.now() < deadline) {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      const up = await fetch("/api/auth/me", { cache: "no-store" }).then(response => response.ok, () => false);
-      if (!up) stopped = true;
-      else if (stopped) { window.location.reload(); return; }
+      const boot = await read(api.GET("/api/server-settings")).then(result => result.boot_id, () => null);
+      if (boot && boot !== listing?.boot_id) { window.location.reload(); return; }
     }
     setBusy("");
     setError("The server has not come back yet. Check it from the host, then refresh this page.");

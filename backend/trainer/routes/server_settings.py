@@ -1,5 +1,7 @@
 """Server settings stored in the database, and restarting to apply them."""
 
+import uuid
+
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Request
 
 from trainer import restart, site_settings
@@ -16,9 +18,12 @@ def require_administrator(request):
 
 def create_router(*, settings, sql_engine) -> APIRouter:
     router = APIRouter()
+    # Changes with every start, so the page can tell the restarted server apart.
+    boot_id = uuid.uuid4().hex
 
     def current():
         return {
+            "boot_id": boot_id,
             "groups": site_settings.listing(sql_engine, settings),
             "restart_available": restart.available(),
         }

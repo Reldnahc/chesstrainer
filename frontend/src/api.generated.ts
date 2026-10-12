@@ -4715,6 +4715,8 @@ export interface components {
         };
         /** ServerSettings */
         ServerSettings: {
+            /** Boot Id */
+            boot_id: string;
             /** Groups */
             groups: components["schemas"]["ServerSettingGroup"][];
             /** Restart Available */

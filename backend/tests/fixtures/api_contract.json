@@ -9370,6 +9370,10 @@
       "ServerSettings": {
         "additionalProperties": false,
         "properties": {
+          "boot_id": {
+            "title": "Boot Id",
+            "type": "string"
+          },
           "groups": {
             "items": {
               "$ref": "#/components/schemas/ServerSettingGroup"
@@ -9384,7 +9388,8 @@
         },
         "required": [
           "groups",
-          "restart_available"
+          "restart_available",
+          "boot_id"
         ],
         "title": "ServerSettings",
         "type": "object"
