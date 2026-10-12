@@ -126,7 +126,7 @@ test("puzzle feedback delays checking across repeated attempts and cancels fast-
 
 test("lesson feedback keeps its instruction and authored result in one atomic status", async ({ page }, info) => {
   let session = await lessonFixture(page, `feedback-rich-${info.project.name}`);
-  for (let i = 0; i < 3; i++) session = await lessonCommand(page, session, "continue");
+  for (let i = 0; i < 2; i++) session = await lessonCommand(page, session, "continue");
   expect(session.step.id).toBe("develop");
   await page.goto(`/study/openings/sessions/${session.id}`);
   const status = page.locator(".review-coach .move-status");
@@ -147,9 +147,9 @@ test("lesson feedback keeps its instruction and authored result in one atomic st
 
 test("lesson game navigation preserves rich commentary while a command is pending", async ({ page }, info) => {
   let session = await lessonFixture(page, `feedback-game-${info.project.name}`);
-  for (let i = 0; i < 3; i++) session = await lessonCommand(page, session, "continue");
+  for (let i = 0; i < 2; i++) session = await lessonCommand(page, session, "continue");
   session = await lessonCommand(page, session, "move", "g1f3");
-  for (let i = 0; i < 5; i++) session = await lessonCommand(page, session, "continue");
+  for (let i = 0; i < 4; i++) session = await lessonCommand(page, session, "continue");
   expect(session.step.id).toBe("example");
   session = await lessonCommand(page, session, "open_game");
   expect(session.game?.ply).toBe(7);
