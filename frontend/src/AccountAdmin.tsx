@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { KeyRound, ShieldCheck, Trash2, UserCheck, UserX } from "lucide-react";
+import { DoorClosed, DoorOpen, KeyRound, ShieldCheck, Trash2, UserCheck, UserPlus, UserX } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
@@ -7,11 +7,13 @@ import Notice from "./Notice";
 import SettingsSection from "./SettingsSection";
 
 type ManagedAccount = Schema["ManagedAccount"];
-type Pending = { id: string; action: "password" | "delete" } | null;
+type Pending = { id: string; action: "password" | "delete" } | { id: "new"; action: "add" } | null;
 
-/** Administrator account management: reset passwords, disable, promote and delete accounts. */
+/** Administrator account management: add members, open sign-ups, reset passwords, disable, promote and delete accounts. */
 export default function AccountAdmin({ selfId }: { selfId: string }) {
   const [accounts, setAccounts] = useState<ManagedAccount[] | null>(null);
+  const [signupsOpen, setSignupsOpen] = useState(false);
+  const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
@@ -21,7 +23,11 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
   useEffect(() => {
     const controller = new AbortController();
     read(api.GET("/api/auth/accounts", { signal: controller.signal }))
-      .then(result => { if (!controller.signal.aborted) setAccounts(result.accounts); })
+      .then(result => {
+        if (controller.signal.aborted) return;
+        setAccounts(result.accounts);
+        setSignupsOpen(result.signups_open);
+      })
       .catch(e => { if (!controller.signal.aborted) setError((e as Error).message); });
     return () => controller.abort();
   }, [reload]);
@@ -34,6 +40,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
       await action();
       setPending(null);
       setPassword("");
+      setUsername("");
       setNotice(message);
       setReload(value => value + 1);
     } catch (e) { setError((e as Error).message); }
@@ -45,15 +52,62 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
     void act(() => read(api.POST("/api/auth/accounts/{account_id}/password", { ...path(account), body: { password } })),
       `Set a temporary password for ${account.username} and signed them out. They will choose their own when they next sign in.`);
   }
+  function addMember(event: FormEvent) {
+    event.preventDefault();
+    const name = username.trim().toLowerCase();
+    void act(() => read(api.POST("/api/auth/accounts", { body: { username: name, password } })),
+      `Added ${name}. Pass on the temporary password; they will choose their own when they first sign in.`);
+  }
   function choose(next: Pending) {
     setPending(next);
     setPassword("");
+    setUsername("");
   }
+  const adding = pending?.action === "add";
   if (!accounts) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading accounts…</LoadingState>;
   return <SettingsSection id="settings-accounts" title="Accounts"
-    description="Everyone who can sign in to this Fieldwork server. People create their own accounts; administrators manage them here.">
+    description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
     {notice && <Notice announcement="status" tone="success">{notice}</Notice>}
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <div className="settings-tool settings-tool-row">
+      <div>
+        <h3>Sign-ups</h3>
+        <p>{signupsOpen ? "Open. Anyone who can reach this server can create an account." : "Closed. Only administrators can add accounts."}</p>
+      </div>
+      <div className="button-row">
+        <Button size="compact" variant="secondary" disabled={busy}
+          onClick={() => act(() => read(api.PUT("/api/auth/signups", { body: { open: !signupsOpen } })),
+            signupsOpen ? "Sign-ups are closed." : "Sign-ups are open. Anyone who can reach this server can create an account.")}>
+          {signupsOpen ? <><DoorClosed size={16} />Close sign-ups</> : <><DoorOpen size={16} />Open sign-ups</>}
+        </Button>
+      </div>
+    </div>
+    <div className="settings-tool settings-tool-row">
+      <div>
+        <h3>Add member</h3>
+        <p>Set a temporary password and pass it on. They choose their own when they first sign in.</p>
+      </div>
+      {adding
+        ? <form className="button-row account-password-form" onSubmit={addMember}>
+          <label>
+            <span>Username</span>
+            <input autoComplete="off" minLength={3} maxLength={32} pattern="[a-zA-Z0-9_-]+" required autoFocus
+              value={username} onChange={event => setUsername(event.target.value)} />
+          </label>
+          <label>
+            <span>Temporary password</span>
+            <input type="password" autoComplete="new-password" minLength={10} maxLength={128} required
+              value={password} onChange={event => setPassword(event.target.value)} />
+          </label>
+          <Button type="submit" size="compact" variant="primary" disabled={busy}>Add member</Button>
+          <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
+        </form>
+        : <div className="button-row">
+          <Button size="compact" variant="secondary" disabled={busy} onClick={() => choose({ id: "new", action: "add" })}>
+            <UserPlus size={16} />Add member
+          </Button>
+        </div>}
+    </div>
     {accounts.map(account => {
       const self = account.id === selfId;
       const resetting = pending?.id === account.id && pending.action === "password";

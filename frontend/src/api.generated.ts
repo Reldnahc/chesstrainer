@@ -2990,11 +2990,8 @@ export interface components {
             csrf?: string | null;
             /** Enabled */
             enabled: boolean;
-            /**
-             * Signups Open
-             * @default false
-             */
-            signups_open: boolean;
+            /** Signups Open */
+            signups_open?: boolean | null;
             user: components["schemas"]["Account"] | null;
         };
         /** ImportError */

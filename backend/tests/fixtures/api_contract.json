@@ -4057,9 +4057,15 @@
             "type": "boolean"
           },
           "signups_open": {
-            "default": false,
-            "title": "Signups Open",
-            "type": "boolean"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Signups Open"
           },
           "user": {
             "anyOf": [

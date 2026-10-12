@@ -19,7 +19,8 @@ class Identity(Contract):
     user: Account | None
     csrf: str | None = None
     # Whether the sign-in page offers account creation; administrators decide.
-    signups_open: bool = False
+    # Only identity reads in account mode report it.
+    signups_open: bool | None = None
 
 
 class AccountProfile(Contract):
