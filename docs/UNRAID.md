@@ -15,7 +15,7 @@ Local use requires no external database, reverse proxy, Cloudflare or Compose.
    Copy it to `/boot/config/plugins/dockerMan/templates-user/my-fieldwork.xml`.
    Do not overwrite an existing customized template.
 2. Open **Docker → Add Container**, select **fieldwork**, and choose **Web port**
-   (default 18000) and **App data**. Leave **Public origin** blank for local use.
+   (default 18000) and **App data**. Leave **Account support** false for local use.
 3. Apply, then enable **Autostart** in the Docker list.
 4. Click the container icon → **WebUI**. It opens your LAN address and selected port.
    There is no login. Everyone who can reach it shares one local workspace.
@@ -44,10 +44,9 @@ image's user; the `--user` option does.
 
 1. Configure your HTTPS proxy to forward to `http://UNRAID-IP:18000` (or your chosen
    host port), preserving the public Host header. The container serves HTTP.
-2. Set **Public origin** to the exact browser address, such as `https://chess.example.com`,
-   without a path. Keep **Account support** and **Secure session cookies** true.
-3. Change **WebUI** in Advanced View to that same HTTPS address. This shortcut is
-   separate and cannot automatically follow the environment variable.
+2. Set **Account support** to true. Keep **Secure session cookies** true. Leave
+   **Public origin** (advanced) blank unless your proxy rewrites the Host header.
+3. Optionally change **WebUI** in Advanced View to your HTTPS address.
 4. Apply and open the HTTPS address. Users can sign up and use their account on
    multiple devices. Recent-game fetching does not run analysis.
 
@@ -60,7 +59,7 @@ docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
 
 The command prompts for a password. Signup never grants administrator privileges.
-Restart after switching modes. Clearing Public origin opens only the reserved local
+Restart after switching modes. Turning Account support off opens only the reserved local
 workspace, not named accounts; it does not merge their games. See [Accounts](ACCOUNTS.md)
 for transferring existing local history and account recovery.
 
@@ -92,9 +91,10 @@ and CPU/memory budgets. Defaults do not automatically scale with CPU pinning.
 
 | Symptom | What to check |
 | --- | --- |
+| Login screen appeared after an update | Older templates saved Account support as true, which used to need Public origin too. Set it to false for no-login mode. |
 | Container exits with a Public origin error | Use a full HTTP(S) address without credentials, path, query or fragment, or leave it blank. The startup log explains the error. |
-| HTTP account configuration rejected | Use HTTPS, explicitly set Secure session cookies false for trusted-LAN HTTP accounts, or clear Public origin for no-login mode. |
-| Login says the address does not match | Open the configured origin, including scheme and port. Update WebUI too. |
+| Sign-in says accounts need HTTPS | Use HTTPS, or set Secure session cookies false for trusted-LAN HTTP accounts. |
+| Login says the address does not match | Make the proxy preserve Host, or set Public origin to the exact browser address. With Public origin set, open that address including scheme and port. |
 | WebUI opens the wrong address | Use `http://[IP]:[PORT:8000]` for local mode or your actual HTTPS origin for accounts. |
 | Database cannot be written | Verify the `/data` mount and UID 99/GID 100 write permissions. Privileged mode is unnecessary. |
 | Proxy returns 502 | Check container health and the upstream host port. A proxy container's loopback is not the Unraid host. |

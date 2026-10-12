@@ -107,7 +107,7 @@ Chess.com import requires internet access on the host and no account credentials
 
 Use one backend process. For LAN access, bind SERVER_HOST to the host's home-network IPv4 address and optionally configure LAN_ACCESS_TOKEN. Open http://HOST-LAN-IP:SERVER_PORT from the same trusted network. Binding 0.0.0.0 instead listens on every IPv4 interface. The token is a shared access gate and does not add transport encryption; do not expose the app directly to the public internet.
 
-In local mode the API answers only requests whose Host is an IP address, `localhost`, a single-label name such as `nas`, or a `.local`, `.lan`, `.home`, `.home.arpa` or `.internal` name. List any other name in ALLOWED_HOSTS (comma-separated). This stops a public web page from reaching the server through DNS rebinding, which does not need port forwarding. Account mode is protected by the exact PUBLIC_ORIGIN instead.
+In local mode the API answers only requests whose Host is an IP address, `localhost`, a single-label name such as `nas`, or a `.local`, `.lan`, `.home`, `.home.arpa` or `.internal` name. List any other name in ALLOWED_HOSTS (comma-separated). This stops a public web page from reaching the server through DNS rebinding, which does not need port forwarding. Account mode instead requires each write's Origin to match the request's Host, or PUBLIC_ORIGIN when set; account cookies are bound to that host, so a rebinding page cannot use them.
 
 On Windows, run scripts/allow-lan.ps1 with -LocalAddress in administrator PowerShell. It permits TCP 8000 at that address from LocalSubnet on Private networks only; pass -Port for another port. It does not change network profiles or router forwarding. Keep the host awake, avoid isolated Wi-Fi, and update binding/firewall if DHCP changes the address.
 
@@ -133,9 +133,10 @@ The UI refreshes health on page navigation and allows retries even after a failu
 Administrator logs contain exception chains; shared health responses do not contain
 raw exception details. There are no additional container variables for this.
 
-- Accounts require both `ACCOUNTS_ENABLED=true` and a nonblank `PUBLIC_ORIGIN`.
-  Docker defaults the flag to true; blank origin still selects the shared local workspace.
-- `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
+- Accounts require `ACCOUNTS_ENABLED=true`. The default, false, selects the shared
+  local workspace, in Docker too.
+- `PUBLIC_ORIGIN` is optional. Blank accepts writes whose Origin matches the request's
+  Host; set the exact public origin only when a reverse proxy rewrites Host.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
 - `FORWARDED_ALLOW_IPS` (read by Uvicorn; default `127.0.0.1`) lists the proxy addresses
   whose `X-Forwarded-For` header is trusted. Set it to your reverse proxy's address so

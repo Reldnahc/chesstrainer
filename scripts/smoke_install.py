@@ -128,6 +128,7 @@ def main():
             name = f"fieldwork-install-{mode}-{uuid.uuid4().hex[:10]}"
             command = ["run", "-d", "--name", name, "--init", "-p", "127.0.0.1::8000"]
             if mode == "accounts":
+                command += ["-e", "ACCOUNTS_ENABLED=true"]
                 command += ["-e", "PUBLIC_ORIGIN=https://chess.example.test"]
             docker(*command, args.image)
             containers.append(name)

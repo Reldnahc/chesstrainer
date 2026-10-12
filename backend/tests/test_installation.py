@@ -37,7 +37,7 @@ def test_http_accounts_explain_cookie_configuration(settings):
     assert settings.for_runtime().accounts_enabled
     settings.public_origin = ""
     settings.session_secure = True
-    assert not settings.for_runtime().accounts_enabled
+    assert settings.for_runtime().accounts_enabled
 
 
 def test_https_origin_normalized_without_mutating_settings(settings):

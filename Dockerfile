@@ -9,7 +9,7 @@ RUN npm --prefix frontend run build
 FROM python:3.12-slim-trixie AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     SERVER_HOST=0.0.0.0 SERVER_PORT=8000 DATABASE_PATH=/data/trainer.sqlite3 \
-    STOCKFISH_PATH=/usr/games/stockfish ACCOUNTS_ENABLED=true SESSION_SECURE=true \
+    STOCKFISH_PATH=/usr/games/stockfish ACCOUNTS_ENABLED=false SESSION_SECURE=true \
     HUMAN_MODEL_PATH=/data/models/maia3-79m.pt HF_HUB_OFFLINE=1
 RUN apt-get update && apt-get install -y --no-install-recommends stockfish \
     && rm -rf /var/lib/apt/lists/* \

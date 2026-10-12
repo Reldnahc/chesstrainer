@@ -45,7 +45,7 @@ This example uses a fresh volume. Do not run two instances against one database.
 ```sh
 docker run -d --name fieldwork-shared --restart unless-stopped --init \
   -p 127.0.0.1:18001:8000 -v fieldwork-shared-data:/data \
-  -e PUBLIC_ORIGIN=https://chess.example.com \
+  -e ACCOUNTS_ENABLED=true \
   ghcr.io/reldnahc/chesstrainer:latest
 ```
 
@@ -58,21 +58,23 @@ address, or `*` on a private Docker network) so the app sees each browser's addr
 otherwise every visitor shares the proxy's address for sign-in rate limiting.
 
 Open the configured HTTPS address and create an account. Each account has private
-games and progress across devices. The image enables account support and secure
-cookies by default. Cloudflare is optional. Intentional trusted-LAN HTTP accounts
-require an HTTP Public origin and `SESSION_SECURE=false`.
+games and progress across devices. Secure cookies are on by default. Cloudflare is
+optional. Intentional trusted-LAN HTTP accounts require `SESSION_SECURE=false`.
 
-Blank or whitespace-only Public origin always selects local mode without login.
-Named accounts stay private when switching modes. Restart after changes. Source
-installations additionally require `ACCOUNTS_ENABLED=true` for accounts. See
+Writes are accepted only from the address the browser sent the request to, so the
+proxy must preserve Host. If your proxy rewrites Host (some Cloudflare Tunnel
+setups do), set `PUBLIC_ORIGIN` to the exact browser address instead.
+
+`ACCOUNTS_ENABLED=false` (the default) selects local mode without login. Named
+accounts stay private when switching modes. Restart after changes. See
 [Accounts](ACCOUNTS.md) for administrator creation and recovery.
 
 ## Settings
 
 | Variable | Image default | Meaning |
 | --- | --- | --- |
-| `PUBLIC_ORIGIN` | empty | Blank: local no-login workspace. For accounts: exact HTTP(S) browser address, including nonstandard port, with no credentials, path, query or fragment. |
-| `ACCOUNTS_ENABLED` | `true` | Enables accounts only with a nonblank Public origin. Source default is false. |
+| `ACCOUNTS_ENABLED` | `false` | `false`: one local no-login workspace. `true`: separate accounts with sign-in. |
+| `PUBLIC_ORIGIN` | empty | Optional, accounts only. Blank accepts writes from the address the browser used. Set the exact HTTP(S) browser address, including nonstandard port and no path, only when a proxy rewrites Host. |
 | `SESSION_SECURE` | `true` | HTTPS-only account cookies. Set false for intentional HTTP accounts. Unused without login. |
 | `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines and host analysis jobs. One additional worker fetches games without analysis. Worker count is independent of account count; busy requests/jobs wait. |
 | `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
@@ -109,7 +111,7 @@ controls stay in host configuration.
 
 Compose launches the same single container. Copy `compose.yaml` and run
 `docker compose up -d`. Defaults use a named volume, host port 18000, and local mode.
-Set `PUBLIC_ORIGIN` in an adjacent `.env` file for accounts, and optionally
+Set `ACCOUNTS_ENABLED=true` in an adjacent `.env` file for accounts, and optionally
 `BIND_ADDRESS=127.0.0.1` for a host-based proxy. Never commit `.env` files.
 
 `APP_PORT` sets the host port; `IMAGE_TAG` chooses a published tag. `APPDATA_PATH`

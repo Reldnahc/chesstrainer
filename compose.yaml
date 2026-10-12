@@ -9,8 +9,9 @@ services:
     volumes:
       - "${APPDATA_PATH:-fieldwork-data}:/data"
     environment:
-      ACCOUNTS_ENABLED: "true"
-      # Blank selects local single-user mode without login.
+      # false: one local workspace without login. true: club accounts with sign-in.
+      ACCOUNTS_ENABLED: "${ACCOUNTS_ENABLED:-false}"
+      # Optional. Blank accepts the address the browser used.
       PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:-}"
       SESSION_SECURE: "${SESSION_SECURE:-true}"
       # Reverse proxy address whose X-Forwarded-For is trusted for sign-in rate limits.

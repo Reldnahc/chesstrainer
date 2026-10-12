@@ -14,9 +14,9 @@ ORIGIN = {"Origin": "http://testserver"}
 PGN = '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'
 
 
-@pytest.mark.parametrize("origin", ["", "   "])
-def test_blank_origin_uses_local_workspace_without_exposing_accounts(settings, origin):
-    settings.accounts_enabled = True  # The container default must not force login.
+@pytest.mark.parametrize("origin", ["", "https://chess.example.test"])
+def test_disabled_accounts_use_local_workspace_without_exposing_accounts(settings, origin):
+    settings.accounts_enabled = False  # The container default must not force login.
     settings.public_origin = origin
     engine, local_sessions = database(settings.database_path)
     migrate(engine)
@@ -48,6 +48,40 @@ def signup(client, name):
     )
     assert response.status_code == 201, response.text
     return response.json(), client.cookies.get(COOKIE)
+
+
+def test_accounts_without_public_origin_accept_only_their_own_host(settings):
+    settings.accounts_enabled = True
+    settings.session_secure = False
+    settings.stockfish_path = "missing-no-signup-engine"
+    payload = {"username": "host-user", "password": "testing-password"}
+    with TestClient(
+        create_app(settings, workers=False), base_url="http://club.lan:18000"
+    ) as client:
+        assert client.get("/api/auth/me").json()["enabled"]
+        for origin in ("http://evil.example", "http://club.lan", None):
+            headers = {"Origin": origin} if origin else {}
+            denied = client.post("/api/auth/signup", json=payload, headers=headers)
+            assert denied.status_code == 403
+            assert "PUBLIC_ORIGIN" in denied.json()["detail"]
+        # TLS usually ends at the proxy, so the browser's https scheme still matches.
+        for origin in ("http://club.lan:18000", "https://CLUB.lan:18000"):
+            response = client.post(
+                "/api/auth/signup",
+                json=payload | {"username": f"host-{len(origin)}"},
+                headers={"Origin": origin},
+            )
+            assert response.status_code == 201, response.text
+    settings.session_secure = True
+    with TestClient(
+        create_app(settings, workers=False), base_url="http://club.lan:18000"
+    ) as client:
+        # Secure cookies would never come back over LAN HTTP, so explain instead.
+        response = client.post(
+            "/api/auth/signup", json=payload, headers={"Origin": "http://club.lan:18000"}
+        )
+        assert response.status_code == 403
+        assert "SESSION_SECURE=false" in response.json()["detail"]
 
 
 def test_sessions_isolation_csrf_and_restart(settings):

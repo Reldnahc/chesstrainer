@@ -126,20 +126,15 @@ class Settings(BaseSettings):
             if not valid:
                 raise ValueError(
                     "PUBLIC_ORIGIN must be an http:// or https:// address with no path, "
-                    "credentials, query or fragment. Leave it blank for local use without login."
+                    "credentials, query or fragment. Leave it blank to accept the address "
+                    "the browser used."
                 )
             if self.accounts_enabled and parts.scheme == "http" and self.session_secure:
                 raise ValueError(
                     "HTTP account hosting requires SESSION_SECURE=false; secure cookies cannot "
-                    "work over LAN HTTP. Prefer an HTTPS PUBLIC_ORIGIN, or leave PUBLIC_ORIGIN "
-                    "blank for local use without login."
+                    "work over LAN HTTP. Prefer an HTTPS PUBLIC_ORIGIN."
                 )
-        return self.model_copy(
-            update={
-                "public_origin": origin,
-                "accounts_enabled": self.accounts_enabled and bool(origin),
-            }
-        )
+        return self.model_copy(update={"public_origin": origin})
 
     def public(self) -> dict:
         return self.model_dump(mode="json", exclude=set(PRIVATE_SETTINGS)) | {

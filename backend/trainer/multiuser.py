@@ -3,6 +3,7 @@
 import secrets
 import threading
 import time
+from urllib.parse import urlsplit
 
 from fastapi import HTTPException, Request, Response
 from fastapi.responses import JSONResponse
@@ -46,15 +47,9 @@ def configure_accounts(app, settings):
             if not public and not user:
                 return JSONResponse({"detail": "Sign in to your account."}, status_code=401)
             if request.method not in {"GET", "HEAD", "OPTIONS"}:
-                expected = settings.public_origin.rstrip("/") or str(request.base_url).rstrip("/")
-                if request.headers.get("origin") != expected:
-                    return JSONResponse(
-                        {
-                            "detail": f"Open Fieldwork at {expected}. This address does not match "
-                            "PUBLIC_ORIGIN; the server administrator can correct that setting."
-                        },
-                        status_code=403,
-                    )
+                denied = origin_denied(request.headers.get("origin"), request)
+                if denied:
+                    return JSONResponse({"detail": denied}, status_code=403)
                 if not public and not secrets.compare_digest(
                     request.headers.get("x-csrf-token", "").encode(), csrf_token(token).encode()
                 ):
@@ -62,6 +57,44 @@ def configure_accounts(app, settings):
                         {"detail": "Refresh the page before trying again."}, status_code=403
                     )
         return await call_next(request)
+
+    def origin_denied(origin, request):
+        """Explain a write whose Origin is not this site, or return None.
+
+        PUBLIC_ORIGIN pins the address when set. Otherwise the browser's Origin must
+        name the Host it sent the request to, which a reverse proxy has to preserve;
+        the scheme is not compared because TLS usually ends at that proxy.
+        """
+        if settings.public_origin:
+            if origin == settings.public_origin:
+                return None
+            return (
+                f"Open Fieldwork at {settings.public_origin}. This address does not match "
+                "PUBLIC_ORIGIN; the server administrator can correct that setting."
+            )
+        host = request.headers.get("host", "").lower()
+        try:
+            parts = urlsplit(origin or "")
+            netloc = parts.netloc.lower()
+        except ValueError:
+            netloc = ""
+        if netloc and netloc == host:
+            # Browsers drop Secure cookies on plain HTTP except at loopback addresses,
+            # so sign-in would silently fail; PUBLIC_ORIGIN catches this at startup.
+            if (
+                settings.session_secure
+                and parts.scheme == "http"
+                and parts.hostname not in {"localhost", "127.0.0.1", "::1"}
+            ):
+                return (
+                    "Fieldwork accounts need HTTPS. For trusted-LAN HTTP, the server "
+                    "administrator can set SESSION_SECURE=false."
+                )
+            return None
+        return (
+            "This request did not come from this Fieldwork address. If a reverse proxy "
+            "changes the Host header, the server administrator can set PUBLIC_ORIGIN."
+        )
 
     def throttle(request, name):
         """Refuse when recent attempts exceed a limit; return the keys to charge afterwards.

@@ -51,10 +51,10 @@ Open `http://localhost:18000` (or your server's LAN IP). For private accounts be
 HTTPS, follow [shared hosting](docs/DOCKER.md#shared-https-hosting).
 See [account administration](docs/ACCOUNTS.md) for account recovery.
 
-Leave `PUBLIC_ORIGIN` blank for local single-user operation without login. Everyone
-who can reach that instance shares its local games and progress. For shared hosting
-with separate accounts, set `ACCOUNTS_ENABLED=true` (already the Docker image default)
-and `PUBLIC_ORIGIN=https://your-chess-hostname`. Restart after changing modes.
+By default Fieldwork runs as one local workspace without login. Everyone who can
+reach that instance shares its local games and progress. For shared hosting with
+separate accounts, set `ACCOUNTS_ENABLED=true` and restart. No domain setting is
+needed; see [shared hosting](docs/DOCKER.md#shared-https-hosting) for the proxy.
 
 ## Implemented
 

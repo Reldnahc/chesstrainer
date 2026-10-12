@@ -1,8 +1,7 @@
 # Accounts and one shared database
 
-Self-service username/password accounts require `ACCOUNTS_ENABLED=true` and a
-nonblank `PUBLIC_ORIGIN`. A blank or whitespace-only `PUBLIC_ORIGIN` selects local
-single-user mode without login, even when `ACCOUNTS_ENABLED=true` in Docker.
+Self-service username/password accounts require `ACCOUNTS_ENABLED=true`. The
+default, `false`, selects local single-user mode without login.
 Everyone who can reach that instance shares the reserved `local` workspace. Existing
 named accounts remain stored and private; clearing the origin does not merge or
 expose their games. Restart the server/container after changing modes. The optional
@@ -68,10 +67,10 @@ It changes ownership identity in place, preserving every game and review. Run th
 before first login. For a fresh installation use `create-admin YOUR_USERNAME`.
 Neither command grants privileges to the first person who registers.
 
-Configure `ACCOUNTS_ENABLED=true`, `PUBLIC_ORIGIN=https://your-chess-hostname`, and
-`SESSION_SECURE=true` behind HTTPS. The proxy must preserve the public Host header.
-For direct local HTTP development only, use `SESSION_SECURE=false` and the exact
-HTTP public origin. Account mode does not use the legacy shared LAN token.
+Configure `ACCOUNTS_ENABLED=true` and `SESSION_SECURE=true` behind HTTPS. The
+proxy must preserve the public Host header; if it cannot, set
+`PUBLIC_ORIGIN=https://your-chess-hostname`. For direct local HTTP only, use
+`SESSION_SECURE=false`; sign-in over plain HTTP otherwise explains this setting. Account mode does not use the legacy shared LAN token.
 Do not expose local single-user mode publicly. Do not switch a shared deployment
 back to single-user mode: that mode intentionally opens the original `local` account.
 
@@ -82,7 +81,8 @@ a reverse proxy, set `FORWARDED_ALLOW_IPS` to the proxy's address so each browse
 keeps its own address. Random session cookies are HttpOnly,
 SameSite=Lax and Secure by default; only token digests are stored. Sessions expire
 after 30 days, survive application restarts, and are independent across devices.
-Writes require the configured Origin and a session-bound CSRF header. Passwords
+Writes require an Origin matching the request's Host (or `PUBLIC_ORIGIN` when set)
+and a session-bound CSRF header. Passwords
 and session tokens are never returned in API responses or included in public settings.
 
 ## Administration and recovery
