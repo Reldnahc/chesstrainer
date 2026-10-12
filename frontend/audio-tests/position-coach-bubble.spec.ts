@@ -89,7 +89,7 @@ test("a long opening name wraps inside the bubble beside the Maia chip, never sq
     name: "Queen's Gambit Declined: Semi-Slav Defense, Meran Variation, Blumenfeld Variation, Rabinovich Variation"};
   await mount(page, "man-partner", game);
   await expect(bubble(page)).toHaveAttribute("data-spoken", /./);
-  await expect(movesLine(page)).toHaveText(game.frames[1].report!.opening!.name);
+  await expect(movesLine(page)).toHaveText(game.frames[1].report!.opening!.name!);
   await expect(reply(page).locator("strong")).toHaveText("Qxa1+");
   const layout = await region(page).evaluate(element => {
     const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
