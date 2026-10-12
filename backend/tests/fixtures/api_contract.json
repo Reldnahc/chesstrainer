@@ -4056,6 +4056,17 @@
             "title": "Enabled",
             "type": "boolean"
           },
+          "signups_open": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Signups Open"
+          },
           "user": {
             "anyOf": [
               {
@@ -5427,10 +5438,15 @@
             },
             "title": "Accounts",
             "type": "array"
+          },
+          "signups_open": {
+            "title": "Signups Open",
+            "type": "boolean"
           }
         },
         "required": [
-          "accounts"
+          "accounts",
+          "signups_open"
         ],
         "title": "ManagedAccounts",
         "type": "object"
@@ -5913,6 +5929,30 @@
           "to_square"
         ],
         "title": "MoveRequest",
+        "type": "object"
+      },
+      "NewAccount": {
+        "additionalProperties": false,
+        "description": "A member added by an administrator; the temporary password is replaced at first sign-in.",
+        "properties": {
+          "password": {
+            "maxLength": 128,
+            "minLength": 10,
+            "title": "Password",
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 32,
+            "minLength": 3,
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "NewAccount",
         "type": "object"
       },
       "Ok": {
@@ -9164,6 +9204,229 @@
         "title": "Score",
         "type": "object"
       },
+      "ServerSetting": {
+        "additionalProperties": false,
+        "description": "One setting stored in the database; ``value`` applies at the next restart.",
+        "properties": {
+          "choices": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Choices"
+          },
+          "default": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default"
+          },
+          "help": {
+            "title": "Help",
+            "type": "string"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "boolean",
+              "integer",
+              "number",
+              "choice"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "maximum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum"
+          },
+          "minimum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minimum"
+          },
+          "nullable": {
+            "title": "Nullable",
+            "type": "boolean"
+          },
+          "running": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Running"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "key",
+          "label",
+          "help",
+          "kind",
+          "nullable",
+          "choices",
+          "default",
+          "value",
+          "running"
+        ],
+        "title": "ServerSetting",
+        "type": "object"
+      },
+      "ServerSettingGroup": {
+        "additionalProperties": false,
+        "properties": {
+          "settings": {
+            "items": {
+              "$ref": "#/components/schemas/ServerSetting"
+            },
+            "title": "Settings",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "settings"
+        ],
+        "title": "ServerSettingGroup",
+        "type": "object"
+      },
+      "ServerSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "boot_id": {
+            "title": "Boot Id",
+            "type": "string"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/ServerSettingGroup"
+            },
+            "title": "Groups",
+            "type": "array"
+          },
+          "restart_available": {
+            "title": "Restart Available",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "groups",
+          "restart_available",
+          "boot_id"
+        ],
+        "title": "ServerSettings",
+        "type": "object"
+      },
+      "ServerSettingsChange": {
+        "additionalProperties": false,
+        "properties": {
+          "values": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Values",
+            "type": "object"
+          }
+        },
+        "required": [
+          "values"
+        ],
+        "title": "ServerSettingsChange",
+        "type": "object"
+      },
       "Shape": {
         "additionalProperties": false,
         "properties": {
@@ -9211,6 +9474,20 @@
           "examples"
         ],
         "title": "Shape",
+        "type": "object"
+      },
+      "SignupAccess": {
+        "additionalProperties": false,
+        "properties": {
+          "open": {
+            "title": "Open",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "open"
+        ],
+        "title": "SignupAccess",
         "type": "object"
       },
       "SkillPriority": {
@@ -10338,6 +10615,43 @@
           }
         },
         "summary": "List Accounts"
+      },
+      "post": {
+        "description": "Add a member with a temporary password they replace at first sign-in.",
+        "operationId": "add_account_api_auth_accounts_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ok"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Account"
       }
     },
     "/api/auth/accounts/{account_id}": {
@@ -10702,6 +11016,45 @@
           }
         },
         "summary": "Signup"
+      }
+    },
+    "/api/auth/signups": {
+      "put": {
+        "description": "Let visitors create their own accounts, or leave that to administrators.",
+        "operationId": "signup_access_api_auth_signups_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupAccess"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ok"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Signup Access"
       }
     },
     "/api/classification-runs/{run_id}": {
@@ -13487,6 +13840,78 @@
           }
         },
         "summary": "Begin Review"
+      }
+    },
+    "/api/server-settings": {
+      "get": {
+        "operationId": "get_server_settings_api_server_settings_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerSettings"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Server Settings"
+      },
+      "put": {
+        "operationId": "put_server_settings_api_server_settings_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServerSettingsChange"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerSettings"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Server Settings"
+      }
+    },
+    "/api/server/restart": {
+      "post": {
+        "operationId": "restart_server_api_server_restart_post",
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ok"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Restart Server"
       }
     },
     "/api/settings": {

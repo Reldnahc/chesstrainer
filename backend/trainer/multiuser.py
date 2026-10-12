@@ -26,8 +26,10 @@ from trainer.contracts.accounts import (
     AccountProfile,
     Identity,
     ManagedAccounts,
+    NewAccount,
     PasswordChange,
     PasswordReset,
+    SignupAccess,
 )
 from trainer.contracts.common import Ok
 
@@ -210,6 +212,7 @@ def configure_accounts(app, settings):
             "enabled": True,
             "user": accounts.public(user) if user else None,
             "csrf": csrf_token(request.cookies[COOKIE]) if user else None,
+            "signups_open": accounts.signups_open(),
         }
 
     @app.post(
@@ -219,6 +222,10 @@ def configure_accounts(app, settings):
         response_model_exclude_unset=True,
     )
     async def signup(data: Credentials, request: Request, response: Response):
+        if not await run_in_threadpool(accounts.signups_open):
+            raise HTTPException(
+                403, "Sign-ups are closed. Ask whoever runs this Fieldwork server for an account."
+            )
         user = await attempt(data, request, True)
         return signed_in(user, response)
 
@@ -253,8 +260,7 @@ def configure_accounts(app, settings):
     # Administration lives under /api/auth so local single-user mode, which has no
     # accounts to manage, leaves these routes out of its contract.
     def managed(request, account_id, *, not_self=None):
-        if not request.state.user["admin"]:
-            raise HTTPException(403, "Only an administrator can manage accounts.")
+        require_admin(request)
         user = accounts.by_id(account_id)
         if not user or user["username"] == "__local__":
             raise HTTPException(404, "Account not found.")
@@ -269,11 +275,15 @@ def configure_accounts(app, settings):
             raise HTTPException(409, str(exc).rstrip(".") + ".") from exc
         return {"ok": True}
 
-    @app.get("/api/auth/accounts", response_model=ManagedAccounts)
-    def list_accounts(request: Request):
+    def require_admin(request):
         if not request.state.user["admin"]:
             raise HTTPException(403, "Only an administrator can manage accounts.")
+
+    @app.get("/api/auth/accounts", response_model=ManagedAccounts)
+    def list_accounts(request: Request):
+        require_admin(request)
         return {
+            "signups_open": accounts.signups_open(),
             "accounts": [
                 {
                     **row,
@@ -282,8 +292,21 @@ def configure_accounts(app, settings):
                     "created": datetime.fromtimestamp(row["created"], UTC),
                 }
                 for row in accounts.listing()
-            ]
+            ],
         }
+
+    @app.post("/api/auth/accounts", status_code=201, response_model=Ok)
+    def add_account(data: NewAccount, request: Request):
+        """Add a member with a temporary password they replace at first sign-in."""
+        require_admin(request)
+        with password_lock:
+            return administer(lambda: accounts.create(data.username, data.password, temporary=True))
+
+    @app.put("/api/auth/signups", response_model=Ok)
+    def signup_access(data: SignupAccess, request: Request):
+        """Let visitors create their own accounts, or leave that to administrators."""
+        require_admin(request)
+        return administer(accounts.set_signups_open, data.open)
 
     @app.post("/api/auth/accounts/{account_id}/password", response_model=Ok)
     def reset_password(account_id: str, data: PasswordReset, request: Request):
