@@ -106,14 +106,14 @@ def test_import_filters_matches_both_sides_and_deduplicates_pgn(settings, sessio
             ROOT + "/archives": {"archives": [OLD, NEW]},
             NEW: {
                 "games": [
-                    game(),
+                    {**game(), "rated": True},
                     game(speed="blitz"),
                     game(rules="chess960"),
                     game(pgn=bad_headers),
                     game(pgn=""),
                 ]
             },
-            OLD: {"games": [game(BLACK_PGN, black=True)]},
+            OLD: {"games": [{**game(BLACK_PGN, black=True), "rated": False}]},
         },
     )
     try:
@@ -128,6 +128,11 @@ def test_import_filters_matches_both_sides_and_deduplicates_pgn(settings, sessio
                 request.rejected,
             ) == (1, 1, 2, 2)
             assert {g.learner_color for g in db.scalars(select(Game))} == {True, False}
+            # Chess.com PGNs never say; the API flag is saved, even on the earlier duplicate.
+            assert {(g.learner_color, g.rated) for g in db.scalars(select(Game))} == {
+                (True, True),
+                (False, False),
+            }
             batch = db.get(ImportBatch, db.get(AnalysisJob, job_id).import_id)
             assert PGN in batch.original_pgn and BLACK_PGN in batch.original_pgn
             assert db.scalar(select(func.count()).select_from(Game)) == 2

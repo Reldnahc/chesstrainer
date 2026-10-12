@@ -8,7 +8,17 @@ from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.classification import classify_decision
 from trainer.local_classifier import LocalClassifier
-from trainer.models import Attempt, Decision, EngineAnalysis, Review, ReviewSession, SRSState, now
+from trainer.models import (
+    Attempt,
+    Decision,
+    EngineAnalysis,
+    Exercise,
+    Game,
+    Review,
+    ReviewSession,
+    SRSState,
+    now,
+)
 
 
 def seed_classified(db, settings, key="practice"):
@@ -141,3 +151,17 @@ def test_coverage_separates_outcomes_patterns_and_pending(settings):
         }
         assert any(s["kind"] == "outcome" for s in report["skills"])
         assert any(s["kind"] == "mechanism" for s in report["skills"])
+
+
+def test_weaknesses_skip_unrated_games_but_keep_their_drills(settings):
+    settings.stockfish_path = "missing-test-engine"
+    with TestClient(create_app(settings, workers=False)) as client:
+        with client.app.state.sessions() as db:
+            seed_classified(db, settings)
+            decision = db.scalar(select(Decision))
+            db.get(Game, decision.game_id).rated = False
+            db.commit()
+            exercises = db.scalar(select(func.count()).select_from(Exercise))
+        assert client.get("/api/weaknesses").json()["skills"] == []
+        with client.app.state.sessions() as db:
+            assert db.scalar(select(func.count()).select_from(Exercise)) == exercises > 0

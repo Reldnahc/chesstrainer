@@ -89,6 +89,17 @@ def played_at(game):
         return None
 
 
+def rated_from_headers(headers):
+    """Lichess names rated games in the Event header ("Rated Blitz game", "Casual ...").
+    Chess.com and most other PGNs say nothing, so the answer is unknown (None)."""
+    event = headers.get("Event", "").strip().casefold()
+    if event.startswith("rated"):
+        return True
+    if event.startswith("casual"):
+        return False
+    return None
+
+
 def import_games(
     db,
     filename: str,
@@ -102,6 +113,7 @@ def import_games(
     max_new_games: int | None = None,
     retain_original: bool = True,
     completed_times: dict[str, datetime] | None = None,
+    rated: dict[str, bool] | None = None,
 ):
     if batch is None:
         batch = ImportBatch(filename=filename, original_pgn=pgn)
@@ -148,6 +160,7 @@ def import_games(
                 played_on=parsed.headers.get("Date"),
                 played_at=played_at(parsed),
                 move_count=sum(1 for _ in parsed.mainline_moves()),
+                rated=rated_from_headers(parsed.headers),
             )
             db.add(game)
             db.flush()
@@ -157,6 +170,9 @@ def import_games(
             linked.add(game.id)
         if completed_times and key in completed_times:
             game.played_at = completed_times[key]
+        # Provider metadata is authoritative and also fills in games saved before it was kept.
+        if rated and key in rated:
+            game.rated = rated[key]
     if not linked and not errors:
         errors.append({"game": 0, "error": "No games found in this PGN"})
     job = None

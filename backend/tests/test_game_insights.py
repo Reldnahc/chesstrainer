@@ -230,3 +230,24 @@ def test_empty_library(settings):
         assert data["games"] == 0
         assert data["records"]["best_win"] is None
         assert data["momentum"]["conversion"]["winning_games"] == 0
+
+
+def test_unrated_games_stay_out_of_insights(settings):
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            for event, moves in (
+                ("Rated Blitz game", "1. e4 e5 2. Qh5 Nc6 3. Bc4 Nf6 4. Qxf7# 1-0"),
+                ("Casual Blitz game", "1. f3 e5 2. g4 Qh4# 0-1"),
+                ("Live Chess", "1. d4 d5 1/2-1/2"),
+            ):
+                pgn = (
+                    f'[Event "{event}"]\n[White "Student"]\n[Black "Rival"]\n'
+                    f'[Result "{moves.split()[-1]}"]\n\n{moves}'
+                )
+                import_games(db, "rated.pgn", pgn, ["Student"], None, queue_analysis=False)
+            saved = {game.pgn.split('"')[1]: game.rated for game in db.scalars(select(Game))}
+        assert saved == {"Rated Blitz game": True, "Casual Blitz game": False, "Live Chess": None}
+        data = client.get("/api/insights").json()
+        # The casual loss is skipped; the game with no rated information still counts.
+        assert (data["games"], data["wins"], data["draws"], data["losses"]) == (2, 1, 1, 0)

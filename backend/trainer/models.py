@@ -7,6 +7,7 @@ from sqlalchemy import (
     ForeignKey,
     Text,
     UniqueConstraint,
+    or_,
 )
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -84,7 +85,15 @@ class Game(Owned, Base):
     # Mainline half-moves, saved at import so the library never replays PGNs. Older
     # rows are filled in the first time they are listed.
     move_count: Mapped[int | None]
+    # True/False when the source says whether the game was rated; None when it does
+    # not (most hand-made PGNs). Stats skip only games known to be unrated.
+    rated: Mapped[bool | None]
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+    @classmethod
+    def counts_in_stats(cls):
+        # Unknown (None) still counts: hand-made PGNs and older Chess.com imports.
+        return or_(cls.rated.is_(None), cls.rated.is_(True))
 
 
 class ImportGame(Owned, Base):

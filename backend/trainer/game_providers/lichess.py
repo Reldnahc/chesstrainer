@@ -226,6 +226,7 @@ class LichessClient:
                 if terminal and game.get("variant") == "standard"
                 else "unsupported",
                 "speed": game.get("speed"),
+                "rated": game.get("rated"),
                 "completed_at": completed / 1000,
                 **names,
             }

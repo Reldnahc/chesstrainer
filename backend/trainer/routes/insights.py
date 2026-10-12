@@ -28,6 +28,7 @@ def create_router():
                 select(Game, AnalysisJob.status, GameReview.rating)
                 .outerjoin(GameReview, GameReview.game_id == Game.id)
                 .outerjoin(AnalysisJob, AnalysisJob.id == GameReview.job_id)
+                .where(Game.counts_in_stats())
             ).all()
             completed = [game.id for game, status, _ in rows if status == "completed"]
             saved = load_accuracy_scores(db, completed)

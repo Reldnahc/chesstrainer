@@ -5,18 +5,20 @@ from collections import defaultdict
 from sqlalchemy import select
 
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS
-from trainer.models import Decision, Exercise, Review, ReviewSession, SkillEvidence, now
+from trainer.models import Decision, Exercise, Game, Review, ReviewSession, SkillEvidence, now
 from trainer.practice import focus_queue
 from trainer.scheduling import utc
 from trainer.taxonomy import SKILLS
 
 
-def active_groups(db, *, skills=None, exclude_game_id=None):
+def active_groups(db, *, skills=None, exclude_game_id=None, stats_only=False):
     query = select(SkillEvidence, Decision).join(Decision).where(SkillEvidence.active.is_(True))
     if skills is not None:
         query = query.where(SkillEvidence.skill_id.in_(skills))
     if exclude_game_id is not None:
         query = query.where(Decision.game_id != exclude_game_id)
+    if stats_only:
+        query = query.join(Game, Game.id == Decision.game_id).where(Game.counts_in_stats())
     rows = db.execute(query.order_by(Decision.game_id, Decision.ply, SkillEvidence.id)).all()
     grouped = defaultdict(list)
     for evidence, decision in rows:
@@ -36,7 +38,8 @@ def recurrence(pairs, minimum):
 
 
 def priorities(db, settings):
-    grouped = active_groups(db)
+    # Weakness rankings are stats, so casual games do not count; their drills remain.
+    grouped = active_groups(db, stats_only=True)
     result = []
     for skill, pairs in grouped.items():
         # At most one severity contribution per game: correlated blunders are not independent.
