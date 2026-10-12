@@ -2,8 +2,8 @@
 // --space-* scale in src/foundation.css (or a semantic token built from it).
 // 0 and 1px (border compensation) are allowed; so are %, auto and em/rem.
 // See docs/UI_COMPONENTS.md#spacing.
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { sourceFiles } from "./source-files.mjs";
 
 const PROPERTY = /(?:^|[{;\s])((?:margin|padding)(?:-(?:top|right|bottom|left|block|inline)(?:-(?:start|end))?)?|gap|row-gap|column-gap|--[\w-]*(?:padding|margin|gap)[\w-]*)\s*:\s*([^;}]*)/g;
 const RAW = /(^|[\s(,])-?(\d*\.?\d+)px\b/g;
@@ -20,7 +20,7 @@ export function violations(css) {
   return found;
 }
 
-const files = execFileSync("git", ["ls-files", "*.css"], { encoding: "utf8" }).split("\n").filter(Boolean);
+const files = sourceFiles(/\.css$/);
 let count = 0;
 for (const file of files) {
   for (const { line, property, value } of violations(readFileSync(file, "utf8"))) {

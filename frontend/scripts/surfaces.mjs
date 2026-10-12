@@ -6,8 +6,8 @@
 //    fill or rounded corners) must be listed in surfaces.json "surfaces" with its kind.
 //    "section" surfaces must also be flattened: another rule in the same file
 //    (normally the phone media query) must set border: 0 for that selector.
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { sourceFiles } from "./source-files.mjs";
 
 const manifest = JSON.parse(readFileSync(new URL("./surfaces.json", import.meta.url), "utf8"));
 const KINDS = new Set(["control", "swatch", "status", "overlay", "board", "navigation", "section"]);
@@ -54,7 +54,7 @@ const listed = new Map(Object.entries(manifest.surfaces).flatMap(([file, entries
 for (const [key, kind] of listed) if (!KINDS.has(kind)) problems.push(`surfaces.json: ${key} has unknown kind "${kind}"`);
 
 const seen = new Set();
-const files = execFileSync("git", ["ls-files", "*.css"], { encoding: "utf8" }).split("\n").filter(APPLICATION);
+const files = sourceFiles(/\.css$/).filter(APPLICATION);
 for (const file of files) {
   const all = rules(readFileSync(file, "utf8"));
   for (const current of all) {
@@ -77,7 +77,7 @@ for (const file of files) {
 }
 for (const key of listed.keys()) if (!seen.has(key)) problems.push(`surfaces.json: ${key} no longer draws a surface; remove it.`);
 
-const sources = execFileSync("git", ["ls-files", "src/*.tsx", "src/**/*.tsx"], { encoding: "utf8" }).split("\n").filter(Boolean);
+const sources = sourceFiles(/\.tsx$/, "src");
 for (const file of sources) {
   if (readFileSync(file, "utf8").includes("panel--card") && !manifest.cards[file]) {
     problems.push(`${file}: uses .panel--card but is not listed in scripts/surfaces.json "cards". Phones show flat sections unless a card earns its surface.`);
