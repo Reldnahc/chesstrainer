@@ -58,7 +58,13 @@ Create an administrator from the Unraid terminal when needed:
 docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
 
-The command prompts for a password. Signup never grants administrator privileges.
+The command prompts for a password. Signup never grants administrator privileges;
+to make an account that already signed up an administrator, promote it instead:
+
+```sh
+docker exec fieldwork python -m trainer.accounts promote YOUR_USERNAME
+```
+
 Restart after switching modes. Turning Account support off opens only the reserved local
 workspace, not named accounts; it does not merge their games. See [Accounts](ACCOUNTS.md)
 for transferring existing local history and account recovery.
@@ -108,6 +114,7 @@ published full Git SHA to pin a build. Back up before schema upgrades.
 
 ```sh
 docker logs --tail=100 fieldwork
+docker exec fieldwork python -m trainer.accounts promote FRIEND
 docker exec -it fieldwork python -m trainer.accounts reset-password FRIEND
 docker exec fieldwork python -m trainer.accounts disable FRIEND
 docker exec fieldwork python scripts/backup.py export /data/backup.zip

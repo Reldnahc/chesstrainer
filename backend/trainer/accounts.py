@@ -124,7 +124,8 @@ class Accounts:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "action", choices=["create-admin", "reset-password", "disable", "enable", "claim-local"]
+        "action",
+        choices=["create-admin", "promote", "reset-password", "disable", "enable", "claim-local"],
     )
     parser.add_argument("username")
     args = parser.parse_args()
@@ -154,6 +155,14 @@ def main():
                     )
             else:
                 accounts.create(args.username, password, admin=True)
+        elif args.action == "promote":
+            if not user:
+                raise ValueError("Account not found")
+            if user["admin"]:
+                raise ValueError("Account is already an administrator")
+            # Requests re-read the account row, so existing sessions gain admin at once.
+            with accounts.connect() as db:
+                db.execute("UPDATE users SET admin=1 WHERE id=?", (user["id"],))
         else:
             if not user:
                 raise ValueError("Account not found")

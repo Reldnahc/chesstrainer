@@ -270,3 +270,31 @@ def test_failed_sign_ins_count_against_limits_but_successful_ones_do_not(setting
         for index in range(6):
             assert login("wrong-password-1").status_code == 401, index
         assert login("testing-password").status_code == 429
+
+
+def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch, capsys):
+    from trainer import accounts as accounts_module
+
+    engine, _ = database(settings.database_path)
+    migrate(engine)
+    engine.dispose()
+    accounts = Accounts(settings.database_path)
+    friend = accounts.create("friend", "correct horse battery")
+    token = accounts.issue(friend["id"])
+    monkeypatch.setattr(accounts_module, "Settings", lambda: settings)
+
+    def run(*argv):
+        monkeypatch.setattr("sys.argv", ["trainer.accounts", *argv])
+        with pytest.raises(SystemExit) as exit_info:
+            accounts_module.main()
+            raise SystemExit(0)
+        return exit_info.value.code
+
+    assert run("promote", "Friend") == 0
+    assert "promote completed" in capsys.readouterr().out
+    # The open session is kept and sees the new privilege on its next request.
+    assert accounts.resolve(token)["admin"] == 1
+    assert run("promote", "friend") == 1
+    assert "already an administrator" in capsys.readouterr().err
+    assert run("promote", "nobody") == 1
+    assert "Account not found" in capsys.readouterr().err

@@ -66,7 +66,9 @@ python -m trainer.accounts claim-local YOUR_USERNAME
 The command prompts for a password twice and makes that account the administrator.
 It changes ownership identity in place, preserving every game and review. Run this
 before first login. For a fresh installation use `create-admin YOUR_USERNAME`.
-Neither command grants privileges to the first person who registers.
+Neither command grants privileges to the first person who registers. To make an
+account that already signed up an administrator, use `promote USERNAME` (see
+[Administration and recovery](#administration-and-recovery)).
 
 Configure `ACCOUNTS_ENABLED=true` and `SESSION_SECURE=true` behind HTTPS. The
 proxy must preserve the public Host header; if it cannot, set
@@ -91,12 +93,16 @@ and session tokens are never returned in API responses or included in public set
 Host commands (passwords are entered interactively, never in command arguments):
 
 ```
+python -m trainer.accounts promote USERNAME
 python -m trainer.accounts reset-password USERNAME
 python -m trainer.accounts disable USERNAME
 python -m trainer.accounts enable USERNAME
 ```
 
-These revoke existing sessions. Disabling prevents further requests; stop/restart
+`promote` makes an existing account an administrator; it is the only way to grant
+administrator privileges to an account created through signup. It fails if the
+account does not exist or is already an administrator, and its open sessions gain
+the privilege on their next request. The other commands revoke existing sessions. Disabling prevents further requests; stop/restart
 the service if you also need to interrupt that account's already-running analysis.
 Enabling requeues analysis that was interrupted while the account was disabled.
 There is no email delivery dependency or web admin dashboard in this version.
