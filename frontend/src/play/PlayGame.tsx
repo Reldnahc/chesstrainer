@@ -15,6 +15,8 @@ import PositionCoach from "../gameReview/PositionCoach";
 import ReviewMoves from "../gameReview/ReviewMoves";
 import { gamesPath, pagePaths, playSetupPath } from "../navigation";
 import { usePlaySession, type PlaySession } from "./usePlaySession";
+import { useCoachPreferences } from "../coach/CoachProvider";
+import { getCoach } from "../coach/registry";
 
 // Opening practice speaks in text only: one placeholder line per moment, shared by
 // every coach until lines are written and recorded for it.
@@ -63,9 +65,8 @@ function practicePrompt(session: PlaySession, bot: string) {
   return null;
 }
 
-function resultLine(state: NonNullable<ReturnType<typeof usePlaySession>["state"]>) {
+function resultLine(state: NonNullable<ReturnType<typeof usePlaySession>["state"]>, bot: string) {
   const learnerWon = state.result === (state.learner_color === "white" ? "1-0" : "0-1");
-  const bot = state.coach_name;
   switch (state.termination) {
     case "checkmate":
       return learnerWon ? `Checkmate. You beat ${bot}.` : `Checkmate. ${bot} won this one.`;
@@ -85,6 +86,10 @@ function resultLine(state: NonNullable<ReturnType<typeof usePlaySession>["state"
 export default function PlayGame({ id }: { id: string }) {
   const session = usePlaySession(id);
   const { state, game, frame, report, ply, latest } = session;
+  // The board shows the selected coach's portrait and voice, so the game is
+  // named for that coach too, even when it was started with another one.
+  const { preferences } = useCoachPreferences();
+  const bot = getCoach(preferences.coach_id).name;
   const [orientation, setOrientation] = useState<"white" | "black" | null>(null);
   // "Show book": arrows for the book moves where the learner is deciding.
   const [showBook, setShowBook] = useState(false);
@@ -92,8 +97,8 @@ export default function PlayGame({ id }: { id: string }) {
   const bookKey = `${state?.frames.length}:${state?.practice?.status}`;
   useEffect(() => setShowBook(false), [bookKey]);
   useEffect(() => {
-    if (state) document.title = `Playing ${state.coach_name} · Fieldwork`;
-  }, [state?.coach_name]);
+    if (state) document.title = `Playing ${bot} · Fieldwork`;
+  }, [!!state, bot]);
   if (!state || !game)
     return (
       <>
@@ -111,12 +116,11 @@ export default function PlayGame({ id }: { id: string }) {
   const coach = session.coach;
   const coachHeld = coach.ply !== ply;
   // A practice question replaces the coach's comment, and its voice, until answered.
-  const prompt = session.browsing ? null : practicePrompt(session, state.coach_name);
+  const prompt = session.browsing ? null : practicePrompt(session, bot);
   const actor = coach.ply > 0 && coach.frame?.san ? (coach.frame.turn === "white" ? "Black" : "White") : null;
-  const bot = state.coach_name;
   const name = (color: "white" | "black") => {
     const rating = color === "white" ? state.white_rating : state.black_rating;
-    return `${state[color]} (${rating})`;
+    return `${color === state.learner_color ? state[color] : `${bot} (bot)`} (${rating})`;
   };
   const statusFor = (color: "white" | "black") => {
     if (finished) return state.result ?? "";
@@ -137,7 +141,7 @@ export default function PlayGame({ id }: { id: string }) {
             Open {bot}'s review <ArrowRight size={16} aria-hidden="true" />
           </ActionLink>
         ) : <ActionLink variant="secondary" size="compact" href={playSetupPath(state.id)}>New game</ActionLink>}>
-          {resultLine(state)}
+          {resultLine(state, bot)}
         </Notice>
       )}
       <ReviewWorkspace

@@ -189,7 +189,7 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
     {!loading && !connected ? <ActionLink variant="secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</ActionLink> : button}
     {(error || Object.values(statuses).find(value => value.error)?.error) && <Notice announcement="alert" tone="error" appearance="inline" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</Notice>}
   </div>;
-  return <section aria-label="Connected game accounts">
+  return <section className="game-connections" aria-label="Connected game accounts">
     <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks for new games every minute and analyzes each one automatically, newest first. Older imported games are analyzed after your recent ones. Checks pause after a week without visiting.</p>{connected && button}</div>
     {connected && <AnalysisQueueStatus />}
     {loading && providers.length === 0 && <p role="status" className="small">Loading game connections…</p>}

@@ -21,21 +21,25 @@ function IdleCard({ preview, gesture, index }: {
   const signature = gesture.startsWith("signature-") && description;
   return (
     <article className="studio-idle-card" data-gesture={gesture}>
-      <span className="studio-size-label">
-        IDLE {String(index + 1).padStart(2, "0")}
-      </span>
-      <CoachCharacter
-        coach={preview.coach}
-        family={preview.family}
-        reaction={preview.reaction}
-        motion={preview.motion}
-        previewIdle={gesture}
-        replay={replay}
-        idle={false}
-        label={`${expressionInfo[preview.reaction.state].label}: ${label}`}
-      />
-      <h3>{label}</h3>
-      {signature && <p id={descriptionId} className="studio-idle-description">{description}</p>}
+      <div className="studio-idle-stage">
+        <span className="studio-size-label">
+          IDLE {String(index + 1).padStart(2, "0")}
+        </span>
+        <CoachCharacter
+          coach={preview.coach}
+          family={preview.family}
+          reaction={preview.reaction}
+          motion={preview.motion}
+          previewIdle={gesture}
+          replay={replay}
+          idle={false}
+          label={`${expressionInfo[preview.reaction.state].label}: ${label}`}
+        />
+      </div>
+      <div className="studio-idle-copy">
+        <h3>{label}</h3>
+        {signature && <p id={descriptionId} className="studio-idle-description">{description}</p>}
+      </div>
       <button
         aria-label={`Replay idle ${index + 1}: ${label}`}
         aria-describedby={signature ? descriptionId : undefined}
@@ -124,17 +128,19 @@ export function CastComparison({ preview, selected }: {
                   </select>
                 </label>
               )}
-              <CoachCharacter
-                coach={coach}
-                reaction={preview.reaction}
-                motion={preview.motion}
-                replay={replay}
-                idle={natural}
-                idleSeed={preview.idleSeed}
-                idleReset={preview.idleReset}
-                label={`${coach.name}: ${expressionInfo[preview.reaction.state].label}`}
-              />
-              <p>{expressionInfo[preview.reaction.state].label}</p>
+              <div className="studio-comparison-stage">
+                <CoachCharacter
+                  coach={coach}
+                  reaction={preview.reaction}
+                  motion={preview.motion}
+                  replay={replay}
+                  idle={natural}
+                  idleSeed={preview.idleSeed}
+                  idleReset={preview.idleReset}
+                  label={`${coach.name}: ${expressionInfo[preview.reaction.state].label}`}
+                />
+                <p>{expressionInfo[preview.reaction.state].label}</p>
+              </div>
             </article>
           );
         })}

@@ -66,7 +66,7 @@ not React components.
 | --- | --- | --- |
 | Internal destination links | [Link](../frontend/src/Link.tsx), [navigation](../frontend/src/navigation.ts) | Normal anchors, modifier/new-tab clicks, history and scroll restoration. Do not implement another click-to-navigate wrapper. |
 | URL section navigation | [SectionNavigation](../frontend/src/SectionNavigation.tsx), [section-navigation.css](../frontend/src/section-navigation.css) | Settings, Lessons (Fundamentals / Openings / Catalogue / My studies), Puzzle sources and Insights (Overview / Weaknesses) share the framed tray. The `compact` density is a second level inside a section (Weakness categories: Tactical patterns / Material & mate) and keeps the 44px targets with a narrower tray and selected style. Callers supply destinations, selected ID and accessible name; account/course/category filtering remains caller-owned. Weakness categories use bookmarkable query routes and reuse loaded evidence across category changes. |
-| Local single choice | [ChoiceGroup](../frontend/src/ChoiceGroup.tsx), [choice-group.css](../frontend/src/choice-group.css) | PGN source, puzzle difficulty, puzzle goal, Play setup and Studio filters share rectangular pressed buttons. Controlled value/options/callback; an option can be disabled (Play's engine cannot match a human level); no route or tab semantics. Caller owns input clearing and filtering. |
+| Local single choice | [ChoiceGroup](../frontend/src/ChoiceGroup.tsx), [choice-group.css](../frontend/src/choice-group.css) | PGN source, puzzle difficulty, puzzle goal, Play setup and Studio filters share rectangular pressed buttons. Controlled value/options/callback; an option can be disabled (Play's engine cannot match a human level); no route or tab semantics. Caller owns input clearing and filtering. `phone="select"` shows the same choice as a native select on phones (Insights' Speed and Period filters), so long option sets stay on one line; the phone breakpoint comes from the shared [usePhone](../frontend/src/usePhone.ts) hook. |
 | Commands and button-styled destinations | [Button / IconButton](../frontend/src/Button.tsx), [ActionLink](../frontend/src/ActionLink.tsx), [action-controls.css](../frontend/src/action-controls.css) | Ordinary/compact sizing, primary/secondary/quiet variants, square labelled icons and 44px phone targets. Button defaults to type=button; forms must request submit. ActionLink retains Link semantics. Native disabled and aria-disabled stay independent. Containers own width/placement. |
 | Return from exploration | [ReturnButton](../frontend/src/ReturnButton.tsx) | Canonical purple action and return icon for game variations and lesson branches/full games. Caller supplies label, disabled state and command; long labels can wrap on narrow phones. |
 | Paged destinations | [Pagination](../frontend/src/Pagination.tsx) | Catalogue Previous/range/Next layout for Games and opening catalogue. Callers supply counts and destination URLs; unavailable directions are disabled buttons. |
@@ -112,11 +112,112 @@ not React components.
 | Lesson editor | [LessonEditor](../frontend/src/study/LessonEditor.tsx) | Administrator-only course editing at `/settings/courses/editor`, reached from the admin-only Settings → Courses section ([CourseSettings](../frontend/src/study/CourseSettings.tsx), which reuses SettingsSection and the settings-tool rows). Composes ReviewWorkspace (board left, scrolling form right), Board for recording moves with server-supplied legal moves, ChoiceGroup for side, section, board view and chapter choices, native details/select/inputs for fields, and Notice for the live check. It edits the course file directly, so fields it does not show are kept. The step list's selectable rows are local to the editor because no other screen lists editable steps. |
 | Source attribution | [SourceLine](../frontend/src/SourceLine.tsx), [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Shared text, optional license/revision and valid absolute HTTP(S) source/license links. Optional licenseUrl links the existing license label separately from View source. LessonAttribution resolves Repository license at render time without changing saved course fingerprints. Lesson sources remain multiple records; puzzle provenance remains completion-only. The audio studio uses SourceLine for recording credits; source-line.css is shared-safe. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. It accepts any navigator with the exploration fields it reads, so the live game shares the notation and quality tabs. |
-| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
+| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. foundation.css also owns the [spacing scale](#spacing) and the `.stack` / `.cluster` layout primitives. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
 
 Quick mute belongs to each page's board-controls group rather than trailing it,
 so it never wraps onto its own row or keeps a different size from its neighbours.
 The cold SRS toolbar contains only that mute control; it is not an empty row to hide.
+
+## Spacing
+
+Every margin, padding and gap in every stylesheet (application, studios and lab)
+uses the spacing scale defined in [foundation.css](../frontend/src/foundation.css).
+Owner decision, October 11, 2026: one scale and container-owned spacing across
+the whole site, enforced by a check.
+
+- **Scale.** `--space-0-5` (2px), `--space-1` (4px), `--space-1-5` (6px),
+  `--space-2` (8px), `--space-3` (12px), `--space-4` (16px), `--space-5` (20px),
+  `--space-6` (24px), `--space-8` (32px), `--space-10` (40px), `--space-12` (48px),
+  `--space-16` (64px), `--space-20` (80px). The number is the multiple of 4px.
+  2px and 6px exist only for tight controls. There is no 10px, 14px or 18px step:
+  pick the neighbouring step that reads right.
+- **Semantic tokens.** `--page-gap` spaces a page's top-level blocks (24px desktop,
+  16px phone) and `--panel-padding` pads `.panel` (24px desktop, 20px phone, 16px
+  in phone workspaces). Change the rhythm there, not in each page.
+- **Containers own spacing.** Elements carry no outer margins. foundation.css
+  resets headings, paragraphs, lists, `dl`/`dd`, `figure`, `blockquote` and `pre`
+  to zero margin (as Tailwind's preflight does), and components such as notices,
+  load states and pagination have none. The container sets the space between its
+  children with `gap`:
+  - `main.workspace-page` is a column spaced by `--page-gap`.
+  - `.panel` is a column with a 16px gap; a panel can set `--panel-gap` for a
+    different rhythm, or its own `display` when it lays out differently. A bare
+    action inside a panel keeps its natural width. Dialogs keep the browser's
+    open/closed display.
+  - An open `details` spaces its contents below the summary.
+  - The shared `.stack` (column, 16px, `--tight` 8px, `--loose` 24px) and
+    `.cluster` (wrapping row, 8px) primitives cover other common cases.
+
+  When a heading and its description sit beside other content, group them in a
+  wrapper with its own smaller gap rather than giving either a margin.
+- **Exceptions.** `auto` margins for alignment, negative margins that bleed into
+  padding, and `margin-inline` on small icons or swatches inside running text.
+  A fieldset `legend` sits outside the fieldset's layout, so it pads itself. The
+  phone review workspace flattens the board and sidebar with `display: contents`
+  to reorder them; gap cannot vary per item there, so review-presentation.css
+  spaces those items through the layout's own selectors.
+- **Check.** `node scripts/spacing-scale.mjs` (part of `npm run test:styles` and
+  `npm run build`) rejects any raw px value above 1px in margin, padding, gap or a
+  spacing custom property. `0`, `1px`, `%`, `auto` and em/rem remain allowed.
+  Positioning (`top`, `left`, `inset`), sizes and artwork geometry are not spacing
+  and are not checked.
+
+## Type
+
+Owner decision, October 12, 2026: text sizes follow one scale, like spacing.
+[foundation.css](../frontend/src/foundation.css) defines it.
+
+- **Scale.** `--text-2xs` (10px), `--text-xs` (11px), `--text-sm` (12px),
+  `--text-md` (13px), `--text-base` (14px), `--text-lg` (16px), `--text-xl`
+  (18px), `--text-2xl` (20px), `--text-3xl` (24px), `--text-4xl` (28px),
+  `--text-5xl` (36px), `--text-6xl` (48px). The small steps are dense on purpose:
+  the board, notation and mono labels use them.
+- **Roles.** Components prefer a role over a raw step, so one change reaches every
+  use: `--text-heading-1` (h1), `--text-heading-2` (h2), `--text-heading-3` (h3),
+  `--text-body` (paragraphs), `--text-control` (buttons, summaries),
+  `--text-caption` (`.small`, labels, code), `--text-label` (mono eyebrows) and
+  `--text-input` (fields).
+- **Phones.** Roles step down in one place rather than per component: h1 drops to
+  28px on phones, workspaces use 18px section headings and 13px body text, and
+  fields use 16px so phones do not zoom in on focus.
+- **Check.** `node scripts/type-scale.mjs` (part of `npm run test:styles` and
+  `npm run build`) rejects px, rem or pt sizes in `font-size` or the `font`
+  shorthand. `em`, `%`, container units and keywords stay allowed for sizes that
+  follow their container, and `clamp()`/`max()` may combine them with tokens.
+
+## Surfaces
+
+Owner decision, October 11, 2026: phones (760px and narrower) show a flattened
+interface. Cards still have a job, so they do not all go away, but each one must
+earn its surface. Desktop keeps its cards.
+
+1. **Sections are flat on phones.** A page's content blocks (settings sections,
+   Home blocks, study and puzzle panels, the catalogue, Insights panels, the Play
+   form, lesson pages, import jobs, the games library) drop their background,
+   border, rounded corners and inner side padding. A divider and the page gap
+   separate neighbouring sections. base.css does this for every `.panel`; other
+   section surfaces flatten in their own phone media query.
+2. **A card must earn its surface.** On phones only these stay cards:
+   - **Tap targets:** something you tap as one whole thing, such as course cards
+     and the resume ("continue") rows.
+   - **Status that must stand out:** notices, the coach's speech bubble and the
+     game-in-progress callout.
+   - **Overlays:** dialogs, popovers and promotion.
+3. **No card inside a card.** Nested boxes (provider connections inside Import
+   games, chapter rows, study rows, weakness cards) become divided rows.
+4. **Controls are not cards.** Buttons, inputs, choice groups, section tabs, badges
+   and board chrome keep their own surfaces at every width.
+
+A panel opts into a phone card with `.panel--card`. **Check:** `node
+scripts/surfaces.mjs` (part of `npm run test:styles` and `npm run build`) fails
+when a file uses `.panel--card` without being listed under `cards` in
+[surfaces.json](../frontend/scripts/surfaces.json) with its reason, or when an
+application stylesheet draws a card-like surface (a full border with a fill or
+rounded corners) that is not listed under `surfaces` with its kind (`control`,
+`swatch`, `status`, `overlay`, `board`, `navigation` or `section`). A `section`
+surface must also have a rule in the same file that sets `border: 0` for it,
+normally in the phone media query. Adding to either list is a design decision:
+explain why the surface earns its card.
 
 ## Audit baseline and coverage
 

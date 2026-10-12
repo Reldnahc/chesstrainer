@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: var(--space-1-5);
   min-width: 0;
 }
 .move-playback-counter {
   flex: none;
-  font: 11px var(--mono);
+  font: var(--text-xs) var(--mono);
   font-variant-numeric: tabular-nums;
   text-align: center;
   white-space: nowrap;

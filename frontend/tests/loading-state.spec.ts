@@ -231,7 +231,9 @@ test("shared states keep announcements separate from supplied headings and actio
   await expect(link).toBeFocused();
   const compact = (await page.getByTestId("compact").boundingBox())!;
   const panel = (await page.getByTestId("panel").boundingBox())!;
-  expect(panel.height).toBeGreaterThan(compact.height);
+  // Phones flatten panels (docs/UI_COMPONENTS.md#surfaces), so only wider screens add panel padding.
+  if (info.project.name === "desktop") expect(panel.height).toBeGreaterThan(compact.height);
+  else expect(panel.height).toBeGreaterThanOrEqual(compact.height);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   for (const control of [retry, disabled, link]) {
     await expect(control).toBeInViewport({ ratio: 1 });

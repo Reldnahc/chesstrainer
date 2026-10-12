@@ -183,176 +183,194 @@ export default function CoachStudio() {
       <p className="studio-dev-notice">
         Development studio · No account or engine connection
       </p>
-      <header className="studio-heading">
-        <div>
-          <p className="eyebrow">FIELDWORK · CHARACTER STUDIES</p>
-          <h1>
-            Meet your next coach.
-            <br />
-            <span>A little more personality.</span>
-          </h1>
-        </div>
-        <p>
-          {selectableCoaches.length} coaches to explore, with {expressions.length}{" "}
-          expressions and character-specific idle performances.
-          <br />
-          Compare the acting, replay a moment, then see how it reads beside the
-          board.
-        </p>
-      </header>
-      <CoachPicker selected={selected.id} onSelect={selectCoach} />
-      <div className="studio-view-choice">
-        <ChoiceGroup label="Studio view" value={view} onChange={(value) => {
-          setPlaying(false);
-          setIdlePreview("");
-          setView(value);
-        }} options={[{ value: "acting", label: "Acting" }, { value: "speech", label: "Mouth shapes" }]} />
-      </div>
-      <section
-        className="studio-controls"
-        aria-label="Animation preview controls"
-      >
-        <label>
-          Expression
-          <select
-            value={expression}
-            onChange={(event) => select(event.target.value as CoachExpression)}
-          >
-            {expressions.map((state) => (
-              <option value={state} key={state}>
-                {expressionInfo[state].label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <MotionSelect id="studio-motion" label="Motion intensity" layout="stacked"
-          value={motion} onChange={value => { setMotion(value); setReduced(false); }} />
-        {view === "acting" && <>
-        <button
-          onClick={() => {
-            setPlaying(false);
-            setIdlePreview("");
-            setReplay((value) => value + 1);
-            setReactionReplay((value) => value + 1);
-            revealPerformance();
-          }}
-        >
-          <RotateCcw size={15} /> Replay reaction
-        </button>
-        <button
-          className={playing ? "primary" : "secondary"}
-          onClick={() => setPlaying((value) => !value)}
-        >
-          <Play size={15} /> {playing ? "Stop sequence" : "Play a sequence"}
-        </button>
-        </>}
-        <label className="studio-reduced">
-          <input
-            type="checkbox"
-            checked={reduced || deviceStill}
-            disabled={deviceStill}
-            onChange={(event) => setReduced(event.target.checked)}
-          />{" "}
-          Reduced motion
-        </label>
-      </section>
-      {(reduced || deviceStill) && (
-        <p className="studio-motion-notice" role="status">
-          {deviceStill
-            ? "Your device requests reduced motion."
-            : "Reduced-motion preview is on."}{" "}
-          Expressions stay visible; motion is paused.
-        </p>
-      )}
-      {view === "speech" ? (
-        <SpeechInspector coach={selected} expression={expression} />
-      ) : <>
-      <div className="studio-moment">
-        <div>
-          <span className="studio-counter">
-            {String(expressions.indexOf(expression) + 1).padStart(2, "0")} /{" "}
-            {expressions.length}
-          </span>
-          <h2>{expressionInfo[expression].label}</h2>
-        </div>
-        <p>{expressionIntent(coach, expression)}</p>
-      </div>
-      <ConceptComparison preview={preview} onFamily={selectFamily}
-        onPerformance={diagnostic ? observePerformance : undefined} />
-      <IdlePlayback
-        natural={naturalIdle}
-        onNatural={(value) => {
-          setNaturalIdle(value);
-          if (value) revealPerformance();
-        }}
-        diagnostic={diagnostic}
-        onDiagnostic={(value) => { setSnapshot(null); setDiagnostic(value); }}
-        seed={seed}
-        onSeed={setSeed}
-        appliedSeed={idleSeed}
-        onRestart={() => {
-          setIdlePreview("");
-          setIdleSeed(Number(seed));
-          setIdleReset((value) => value + 1);
-          revealPerformance();
-        }}
-        snapshot={snapshot?.identity === `${coach.id}:${family}` && snapshot.expression === expression ? snapshot : null}
-      />
-      <section className="studio-idle-bar" aria-label="Idle previews">
-        <div>
-          <h2>The quieter moments</h2>
+      <div className="studio-main">
+        <header className="studio-heading">
+          <div>
+            <p className="eyebrow">FIELDWORK · CHARACTER STUDIES</p>
+            <h1>
+              Meet your next coach.
+              <br />
+              <span>A little more personality.</span>
+            </h1>
+          </div>
           <p>
-            {idles.length} gestures for {selected.name} · {expressionInfo[expression].label}.
-            Idle previews never replay the reaction.
+            {selectableCoaches.length} coaches to explore, with {expressions.length}{" "}
+            expressions and character-specific idle performances.
+            <br />
+            Compare the acting, replay a moment, then see how it reads beside the
+            board.
           </p>
+        </header>
+        <div className="studio-workbench" data-view={view}>
+          <div className="studio-setup">
+            <CoachPicker selected={selected.id} onSelect={selectCoach} />
+            <div className="studio-toolbar">
+              <ChoiceGroup label="Studio view" value={view} onChange={(value) => {
+                setPlaying(false);
+                setIdlePreview("");
+                setView(value);
+              }} options={[{ value: "acting", label: "Acting" }, { value: "speech", label: "Mouth shapes" }]} />
+              <div>
+                <section
+                  className="studio-controls"
+                  aria-label="Animation preview controls"
+                >
+                  <label>
+                    Expression
+                    <select
+                      value={expression}
+                      onChange={(event) => select(event.target.value as CoachExpression)}
+                    >
+                      {expressions.map((state) => (
+                        <option value={state} key={state}>
+                          {expressionInfo[state].label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <MotionSelect id="studio-motion" label="Motion intensity" layout="stacked"
+                    value={motion} onChange={value => { setMotion(value); setReduced(false); }} />
+                  {view === "acting" && <>
+                  <button
+                    onClick={() => {
+                      setPlaying(false);
+                      setIdlePreview("");
+                      setReplay((value) => value + 1);
+                      setReactionReplay((value) => value + 1);
+                      revealPerformance();
+                    }}
+                  >
+                    <RotateCcw size={15} /> Replay reaction
+                  </button>
+                  <button
+                    className={playing ? "primary" : "secondary"}
+                    onClick={() => setPlaying((value) => !value)}
+                  >
+                    <Play size={15} /> {playing ? "Stop sequence" : "Play a sequence"}
+                  </button>
+                  </>}
+                  <label className="studio-reduced">
+                    <input
+                      type="checkbox"
+                      checked={reduced || deviceStill}
+                      disabled={deviceStill}
+                      onChange={(event) => setReduced(event.target.checked)}
+                    />{" "}
+                    Reduced motion
+                  </label>
+                </section>
+                {(reduced || deviceStill) && (
+                  <p className="studio-motion-notice" role="status">
+                    {deviceStill
+                      ? "Your device requests reduced motion."
+                      : "Reduced-motion preview is on."}{" "}
+                    Expressions stay visible; motion is paused.
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+          {view === "speech" ? (
+            <SpeechInspector coach={selected} expression={expression} />
+          ) : (
+            <div className="studio-stage">
+              <div className="studio-stage-main">
+                <div className="studio-moment">
+                  <div>
+                    <span className="studio-counter">
+                      {String(expressions.indexOf(expression) + 1).padStart(2, "0")} /{" "}
+                      {expressions.length}
+                    </span>
+                    <h2>{expressionInfo[expression].label}</h2>
+                  </div>
+                  <p>{expressionIntent(coach, expression)}</p>
+                </div>
+                <ConceptComparison preview={preview} onFamily={selectFamily}
+                  onPerformance={diagnostic ? observePerformance : undefined} />
+                <IdlePlayback
+                  natural={naturalIdle}
+                  onNatural={(value) => {
+                    setNaturalIdle(value);
+                    if (value) revealPerformance();
+                  }}
+                  diagnostic={diagnostic}
+                  onDiagnostic={(value) => { setSnapshot(null); setDiagnostic(value); }}
+                  seed={seed}
+                  onSeed={setSeed}
+                  appliedSeed={idleSeed}
+                  onRestart={() => {
+                    setIdlePreview("");
+                    setIdleSeed(Number(seed));
+                    setIdleReset((value) => value + 1);
+                    revealPerformance();
+                  }}
+                  snapshot={snapshot?.identity === `${coach.id}:${family}` && snapshot.expression === expression ? snapshot : null}
+                />
+              </div>
+              <div className="studio-idles">
+                <section className="studio-idle-bar" aria-label="Idle previews">
+                  <div>
+                    <h2>The quieter moments</h2>
+                    <p>
+                      {idles.length} gestures for {selected.name} · {expressionInfo[expression].label}.
+                      Idle previews never replay the reaction.
+                    </p>
+                  </div>
+                  <label className="sr-only" htmlFor="idle-variant">
+                    Idle gesture
+                  </label>
+                  <select
+                    id="idle-variant"
+                    value={chosenIdle}
+                    onChange={(event) => setIdleVariant(event.target.value as CoachMicro)}
+                  >
+                    {idles.map((idle) => (
+                      <option key={idle} value={idle}>
+                        {idlePresentation(coach, family, expression, idle).label}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    disabled={effectiveMotion === "still"}
+                    onClick={() => {
+                      setPlaying(false);
+                      setIdlePreview(chosenIdle);
+                      setReplay((value) => value + 1);
+                      revealPerformance();
+                    }}
+                  >
+                    Preview idle
+                  </button>
+                </section>
+                <IdleVariants preview={preview} />
+              </div>
+            </div>
+          )}
         </div>
-        <label className="sr-only" htmlFor="idle-variant">
-          Idle gesture
-        </label>
-        <select
-          id="idle-variant"
-          value={chosenIdle}
-          onChange={(event) => setIdleVariant(event.target.value as CoachMicro)}
-        >
-          {idles.map((idle) => (
-            <option key={idle} value={idle}>
-              {idlePresentation(coach, family, expression, idle).label}
-            </option>
-          ))}
-        </select>
-        <button
-          disabled={effectiveMotion === "still"}
-          onClick={() => {
-            setPlaying(false);
-            setIdlePreview(chosenIdle);
-            setReplay((value) => value + 1);
-            revealPerformance();
-          }}
-        >
-          Preview idle
-        </button>
-      </section>
-      <IdleVariants preview={preview} />
-      <BoardSizePreview preview={preview} />
-      <CastComparison preview={preview} selected={selected.id} />
-      <ExpressionCollection
-        preview={preview}
-        onFamily={selectFamily}
-        onSelect={select}
-      />
-      <aside className="studio-note">
-        <Sparkles size={20} />
-        <p>
-          <strong>
-            {selected.name}: {selected.expressions.length} expressions,{" "}
-            {availableIdles(coach, family).length} idle performances.
-          </strong>{" "}
-          {selected.description} All of these coaches are available in Settings for
-          game review and practice. Preview controls never change your account
-          preferences.
-        </p>
-      </aside>
-      </>}
+        {view === "acting" && <>
+          <BoardSizePreview preview={preview} />
+          <CastComparison preview={preview} selected={selected.id} />
+          <ExpressionCollection
+            preview={preview}
+            onFamily={selectFamily}
+            onSelect={select}
+          />
+        </>}
+      </div>
+      {view === "acting" && (
+        <aside className="studio-note">
+          <Sparkles size={20} />
+          <p>
+            <strong>
+              {selected.name}: {selected.expressions.length} expressions,{" "}
+              {availableIdles(coach, family).length} idle performances.
+            </strong>{" "}
+            {selected.description} All of these coaches are available in Settings for
+            game review and practice. Preview controls never change your account
+            preferences.
+          </p>
+        </aside>
+      )}
     </div>
   );
 }

@@ -60,7 +60,7 @@ export default function IntelligenceLab() {
       <div className="lab-overview"><div><Board fen={game.frames[ply].fen} orientation={game.orientation} disabled /><p className="small">{source} · {game.white} / {game.black}</p></div>
         <section aria-label="Rendered coach line"><h2>{coachId === "neutral" ? "Neutral coach" : getCoach(coachId).name}</h2><DialogueText className="lab-utterance" utterance={utterance!} announce={false} />
           <p>{inspection.intent.purpose} · {inspection.intent.expression} · priority {inspection.intent.priority}</p>
-          <code>{utterance!.id}</code><p>Deterministic seed: <code>{inspection.intent.id}</code></p>
+          <div><code>{utterance!.id}</code><p>Deterministic seed: <code>{inspection.intent.id}</code></p></div>
           <p className="small lab-pipeline">{pipeline.map((step, index) => <span key={step}>
             {index > 0 && <ArrowRight size={12} aria-label="then" role="img" />}{step}</span>)}</p>
         </section></div>

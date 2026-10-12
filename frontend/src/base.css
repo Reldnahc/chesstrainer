@@ -1,7 +1,7 @@
 /* Application shell and page-level layout; development tools own their shell. */
 :root {
   --page-width: 80%;
-  --page-inline-padding: 20px;
+  --page-inline-padding: var(--space-5);
 }
 .skip-link {
   opacity: 0;
@@ -11,7 +11,7 @@
   left: 16px;
   background: var(--accent);
   color: #141517;
-  padding: 12px;
+  padding: var(--space-3);
   z-index: 100;
 }
 .skip-link:focus-visible {
@@ -30,15 +30,15 @@
   padding: 0 var(--page-inline-padding);
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: var(--space-12);
 }
 .brand {
   display: flex;
-  gap: 11px;
+  gap: var(--space-3);
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
-  font-size: 23px;
+  font-size: var(--text-3xl);
   line-height: 1;
   letter-spacing: -0.8px;
   font-weight: 600;
@@ -46,17 +46,20 @@
 .brand img {
   display: block;
 }
+.brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
 .brand-sub {
-  display: block;
-  font-size: 10px;
+  font-size: var(--text-2xs);
   letter-spacing: 0.35px;
   font-weight: 400;
   color: var(--muted);
-  margin-top: 7px;
 }
 .app-header nav {
   display: flex;
-  gap: 5px;
+  gap: var(--space-1-5);
   align-self: stretch;
   align-items: center;
   flex: 1;
@@ -66,8 +69,8 @@
   border: 0;
   background: transparent;
   color: var(--muted);
-  padding: 12px 14px;
-  font-size: 13px;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-md);
 }
 .nav-item:hover {
   background: #25272c;
@@ -92,66 +95,81 @@
 main {
   width: min(100%, max(var(--page-width), var(--review-min-width, 0px)));
   margin: auto;
-  padding: 38px var(--page-inline-padding) 56px;
+  padding: var(--space-10) var(--page-inline-padding) var(--space-16);
   min-height: calc(100vh - 149px);
+}
+/* A page's top-level blocks (title, notices, panels) are spaced by the page,
+   not by their own margins. Board workspaces keep their own layout. */
+main.workspace-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-gap);
+}
+main.workspace-page > * {
+  margin-block: 0;
 }
 .page-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  margin-bottom: 30px;
+  gap: var(--space-6);
 }
-.page-title h1 {
-  margin: 0;
+.page-title > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
-.page-title .eyebrow {
-  margin-block: 0 8px;
+/* A panel stacks its contents. Panels with their own layout set their own
+   display (zero specificity here), a dialog keeps the browser's open/closed
+   display, and a bare action keeps its natural width instead of stretching. */
+:where(.panel:not(dialog)) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--panel-gap, var(--space-4));
 }
 .panel {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 28px;
+  padding: var(--panel-padding);
+}
+.panel > :is(.action-control, .button-link, button) {
+  align-self: flex-start;
 }
 .two-column {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 28px;
+  gap: var(--space-8);
 }
 .form-panel {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-.form-panel h2 {
-  margin-bottom: 0;
+  gap: var(--space-5);
 }
 .section-heading {
-  font: 11px var(--mono);
+  font: var(--text-xs) var(--mono);
   color: var(--muted);
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 18px;
 }
 .row-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
 }
 .row-between > strong {
-  font-size: 14px;
+  font-size: var(--text-base);
   font-weight: 500;
   overflow-wrap: anywhere;
 }
 .badge {
-  font: 9px var(--mono);
+  font: var(--text-2xs) var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.7px;
   border: 1px solid #505761;
   border-radius: 4px;
-  padding: 5px 7px;
+  padding: var(--space-1-5) var(--space-2);
   white-space: nowrap;
 }
 .badge.completed {
@@ -174,7 +192,6 @@ progress {
   width: 100%;
   height: 4px;
   accent-color: var(--accent);
-  margin: 20px 0 12px;
   border: 0;
   border-radius: 4px;
   overflow: hidden;
@@ -188,41 +205,39 @@ progress::-webkit-progress-value {
 .button-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
+  gap: var(--space-2);
 }
 footer {
   width: var(--page-width);
   margin: auto;
-  padding: 22px var(--page-inline-padding);
+  padding: var(--space-6) var(--page-inline-padding);
   border-top: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
-  gap: 16px;
-  font: 10px var(--mono);
+  gap: var(--space-4);
+  font: var(--text-2xs) var(--mono);
   color: var(--muted);
 }
 footer > span:last-child {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 .footer-divider {
-  margin: 0 9px;
+  padding-inline: var(--space-2);
   color: #555b65;
 }
 .connection {
   max-width: 450px;
-  margin: 30px auto;
+  margin-inline: auto;
 }
 .connection h1 {
-  font-size: 28px;
-  margin-top: 20px;
+  font-size: var(--text-4xl);
 }
 .connection form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-5);
 }
 .workspace-page .two-column {
   align-items: start;
@@ -250,18 +265,18 @@ footer > span:last-child {
 }
 @media (max-width: 1100px) {
   .header-inner {
-    gap: 24px;
+    gap: var(--space-6);
   }
   .nav-item {
-    padding: 12px 10px;
+    padding: var(--space-3) var(--space-3);
   }
   main {
-    padding-block: 32px 40px;
+    padding-block: var(--space-8) var(--space-10);
   }
 }
 @media (max-width: 900px) {
   .header-inner {
-    gap: 16px;
+    gap: var(--space-4);
   }
   .brand-wordmark {
     display: none;
@@ -269,37 +284,37 @@ footer > span:last-child {
 }
 @media (max-width: 760px) {
   :root {
-    --page-inline-padding: 12px;
+    --page-inline-padding: var(--space-3);
   }
   .header-inner {
-    padding: 17px 18px 0;
-    gap: 16px;
+    padding: var(--space-4) var(--space-5) 0;
+    gap: var(--space-4);
     flex-wrap: wrap;
   }
   .two-column {
     grid-template-columns: minmax(0, 1fr);
-    gap: 22px;
+    gap: var(--space-6);
   }
   .brand {
-    font-size: 21px;
+    font-size: var(--text-2xl);
   }
   .brand-sub {
-    font-size: 9px;
+    font-size: var(--text-2xs);
   }
   .app-header nav {
     order: 2;
     width: 100%;
     flex: 0 0 100%;
     justify-content: space-between;
-    gap: 2px;
+    gap: var(--space-0-5);
   }
   .nav-item {
     flex: 1;
     flex-direction: column;
-    gap: 7px;
-    padding: 12px 2px;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-0-5);
     border-radius: 5px 5px 0 0;
-    font-size: 10px;
+    font-size: var(--text-2xs);
     min-width: 0;
   }
   .nav-item.active::after {
@@ -308,38 +323,33 @@ footer > span:last-child {
     right: 0;
   }
   main {
-    padding-block: 26px 36px;
+    padding-block: var(--space-6) var(--space-10);
   }
   .page-title {
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: var(--space-3);
     align-items: flex-start;
   }
   .eyebrow {
-    font-size: 9px;
-    margin-bottom: 10px;
-  }
-  .panel {
-    padding: 22px;
+    font-size: var(--text-2xs);
   }
   footer {
     flex-wrap: wrap;
-    font-size: 9px;
-    gap: 12px;
+    font-size: var(--text-2xs);
+    gap: var(--space-3);
   }
   .app-header .header-inner {
     min-height: 0;
-    padding: 0 8px;
+    padding: 0 var(--space-2);
   }
   .app-header .brand,
   .app-footer {
     display: none;
   }
   .app-header .nav-item {
-    gap: 4px;
-    padding: 7px 2px;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-0-5);
     min-height: 52px;
-    font-size: 10px;
+    font-size: var(--text-2xs);
   }
   /* The header scrolls away with the page so phones keep their vertical space. */
   .app-header {
@@ -347,50 +357,53 @@ footer > span:last-child {
   }
   main.workspace-page {
     min-height: 0;
-    padding-block: 14px max(20px, env(safe-area-inset-bottom));
-  }
-  .workspace-page .page-title {
-    margin-bottom: 16px;
+    padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
   }
   .workspace-page .page-title h1 {
-    font-size: 22px;
-    margin: 0;
+    font-size: var(--text-3xl);
     letter-spacing: -0.5px;
   }
   .workspace-page .page-title .eyebrow {
     display: none;
   }
-  .workspace-page .panel {
-    padding: 16px;
+  .workspace-page {
+    --panel-padding: var(--space-4);
   }
-  .workspace-page h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
+  /* Phones flatten sections: a panel keeps its surface only when it opts in
+     with .panel--card (docs/UI_COMPONENTS.md#surfaces). Dialogs float, so
+     they keep theirs. A divider separates neighbouring flat sections. */
+  .panel:not(dialog):not(.panel--card) {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+  .panel:not(dialog):not(.panel--card) + .panel:not(dialog):not(.panel--card) {
+    padding-top: var(--page-gap);
+    border-top: 1px solid var(--line);
+  }
+  /* Phone workspaces use smaller section headings and body text. */
+  .workspace-page {
+    --text-heading-2: var(--text-xl);
+    --text-body: var(--text-md);
   }
   .workspace-page p {
-    font-size: 13px;
     line-height: 1.5;
   }
   .workspace-page button:not(.action-control) {
     min-height: 44px;
   }
   .workspace-page .form-panel {
-    gap: 14px;
-  }
-  .workspace-page .form-panel h2 {
-    margin-bottom: 0;
+    gap: var(--space-4);
   }
   .workspace-page .two-column {
-    gap: 18px;
+    gap: var(--space-5);
   }
   .workspace-page label {
-    gap: 6px;
+    gap: var(--space-1-5);
   }
   .workspace-page .form-panel > .primary,
   .workspace-page .form-panel > .action-control--primary {
     width: 100%;
-  }
-  .workspace-page .section-heading {
-    margin-bottom: 10px;
   }
 }

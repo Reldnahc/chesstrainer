@@ -94,7 +94,7 @@ function GameRecallPanel({
   return (
     <div
       ref={practicePanel}
-      className="practice-panel"
+      className={!explaining && !position ? "practice-panel practice-panel--start" : "practice-panel"}
       style={explaining ? { minHeight: explanationMinHeight } : undefined}
     >
       {explaining && position ? (
@@ -110,28 +110,32 @@ function GameRecallPanel({
       ) : !position ? (
         <>
           <span className="section-number">GET STARTED</span>
-          <h2>
-            {focusSkill
-              ? "Practice complete."
-              : done
-                ? "You’re caught up."
-                : "Build your study queue."}
-          </h2>
-          <p>
-            {focusSkill
-              ? "Your practice is saved separately. Review schedules and retirement progress are unchanged."
-              : done
-                ? "Your next reviews are scheduled. Come back when they’re due, or add more study material."
-                : "Choose opening lines to remember, or import games to practice decisions from your own play."}
-          </p>
-          {!focusSkill && <ActionLink variant="primary" href={studyPaths.openings}>Study openings <ArrowRight size={17} /></ActionLink>}
-          <ActionLink
-            variant={focusSkill ? "primary" : "secondary"}
-            href={focusSkill ? studyPaths.due : pagePaths.Settings}
-          >
-            {focusSkill ? "Return to mixed review" : "Import games"}{" "}
-            <ArrowRight size={17} />
-          </ActionLink>
+          <div className="practice-intro">
+            <h2>
+              {focusSkill
+                ? "Practice complete."
+                : done
+                  ? "You’re caught up."
+                  : "Build your study queue."}
+            </h2>
+            <p>
+              {focusSkill
+                ? "Your practice is saved separately. Review schedules and retirement progress are unchanged."
+                : done
+                  ? "Your next reviews are scheduled. Come back when they’re due, or add more study material."
+                  : "Choose opening lines to remember, or import games to practice decisions from your own play."}
+            </p>
+          </div>
+          <div className="practice-actions">
+            {!focusSkill && <ActionLink variant="primary" href={studyPaths.openings}>Study openings <ArrowRight size={17} /></ActionLink>}
+            <ActionLink
+              variant={focusSkill ? "primary" : "secondary"}
+              href={focusSkill ? studyPaths.due : pagePaths.Settings}
+            >
+              {focusSkill ? "Return to mixed review" : "Import games"}{" "}
+              <ArrowRight size={17} />
+            </ActionLink>
+          </div>
           <div className="aside-note">
             <ShieldCheck size={19} />
             <p>

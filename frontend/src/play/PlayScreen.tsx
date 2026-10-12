@@ -1,4 +1,4 @@
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -16,6 +16,7 @@ import { useCoachPreferences } from "../coach/CoachProvider";
 import { getCoach } from "../coach/registry";
 import { navigate, playGamePath } from "../navigation";
 import PlayGame from "./PlayGame";
+import usePhone from "../usePhone";
 
 type Profile = Schema["PlayProfile"];
 type Opponent = Schema["PlayRequest"]["opponent"];
@@ -51,18 +52,6 @@ export default function PlayScreen({ gameId }: { gameId: string | null }) {
 }
 
 // Phones use the shared ReviewCoach layout; desktop keeps the large portrait.
-const PHONE = "(max-width: 760px)";
-function usePhone() {
-  return useSyncExternalStore(
-    (change) => {
-      const query = window.matchMedia(PHONE);
-      query.addEventListener("change", change);
-      return () => query.removeEventListener("change", change);
-    },
-    () => window.matchMedia(PHONE).matches,
-  );
-}
-
 function PlaySetup() {
   const phone = usePhone();
   const { preferences } = useCoachPreferences();
@@ -178,8 +167,8 @@ function PlaySetup() {
       <PageTitle eyebrow="YOUR MOVE" title={`Play ${coach.name}`} />
       {error && <Notice announcement="alert" tone="error">{error}</Notice>}
       {active && (
-        <section className="panel play-resume" aria-label="Game in progress">
-          <span>You have a game in progress against {active.coach_name}.</span>
+        <section className="panel panel--card play-resume" aria-label="Game in progress">
+          <span>You have a game in progress against {coach.name}.</span>
           <ActionLink variant="secondary" href={playGamePath(active.id)}>
             Continue the game <ArrowRight size={16} aria-hidden="true" />
           </ActionLink>
@@ -191,7 +180,9 @@ function PlaySetup() {
             <span>Opening</span>
             <ChoiceGroup label="Opening" value={mode} onChange={setMode}
               options={MODES.map(option => ({ ...option, disabled: option.value === "practice" && !courses.length }))} />
-            <div className="play-swap">
+            {/* Only the shown description takes room: the course picker is much taller
+                than the one-line description, and reserving it left a gap under that line. */}
+            <div>
               <p className="small muted" hidden={mode !== "free"}>
                 {coach.name} chooses its own opening moves.
               </p>

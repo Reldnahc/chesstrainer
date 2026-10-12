@@ -1,8 +1,22 @@
+.speech-inspector,
+.speech-inspector-held,
+.speech-inspector-intro {
+  display: flex;
+  flex-direction: column;
+}
+.speech-inspector {
+  gap: var(--space-8);
+}
+.speech-inspector-held {
+  gap: var(--space-5);
+}
+.speech-inspector-intro {
+  gap: var(--space-4);
+}
 .speech-inspector-note {
   color: var(--studio-muted);
-  font-size: 13px;
+  font-size: var(--text-md);
   line-height: 1.6;
-  margin: 0 0 20px;
   max-width: 700px;
 }
 .speech-inspector-grid {
@@ -10,16 +24,18 @@
   --speech-preview-width: 92.8px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: var(--space-3);
 }
 .speech-inspector-grid[data-size="large"] {
   --speech-preview-height: 232px;
   --speech-preview-width: 185.6px;
 }
 .speech-shape {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
   min-width: 0;
-  margin: 0;
-  padding: 20px 16px 16px;
+  padding: var(--space-5) var(--space-4) var(--space-4);
   border: 1px solid #424b40;
   border-radius: 12px;
   background: #1c211e;
@@ -36,26 +52,24 @@
 }
 .speech-shape figcaption {
   display: grid;
-  gap: 5px;
-  margin-top: 12px;
+  gap: var(--space-1-5);
   text-align: center;
 }
 .speech-shape strong {
-  font-size: 16px;
+  font-size: var(--text-lg);
   color: var(--studio-paper);
 }
 .speech-shape figcaption > span {
-  font: 12px var(--mono);
+  font: var(--text-sm) var(--mono);
   color: #bdcda9;
 }
 .speech-shape small {
   color: var(--studio-muted);
-  font-size: 12px;
+  font-size: var(--text-sm);
   line-height: 1.5;
 }
 .speech-authored-reference {
   max-width: 760px;
-  margin-top: 28px;
 }
 .speech-authored-reference .coach-message > p {
   margin: 0;
@@ -63,13 +77,13 @@
 @media (max-width: 760px) {
   .speech-inspector-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    gap: var(--space-2);
   }
   .speech-inspector-grid[data-size="large"] {
     grid-template-columns: 1fr;
   }
   .speech-shape {
-    padding-inline: 10px;
+    padding-inline: var(--space-3);
   }
   .speech-shape small {
     min-height: 36px;

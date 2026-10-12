@@ -1,10 +1,7 @@
-.settings-content {
-  margin-top: 24px;
-}
 .settings-content,
 .settings-import {
   display: grid;
-  gap: 20px;
+  gap: var(--space-5);
   min-width: 0;
 }
 .settings-section {
@@ -16,82 +13,76 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: var(--space-4);
+}
+/* The text block (heading and description) stacks; actions keep their own row. */
+.settings-section-heading > div:first-child,
+.settings-tool > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.settings-tool > div:first-child {
+  gap: var(--space-1-5);
 }
 .settings-section-heading h2 {
-  margin: 0;
-  font-size: 20px;
+  font-size: var(--text-2xl);
 }
 .settings-section-heading p {
-  margin: 8px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--text-base);
 }
 .settings-tool {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding-block: 20px;
+  gap: var(--space-6);
+  padding-top: var(--space-4);
   border-top: 1px solid var(--line);
 }
 .settings-tool h3 {
-  margin: 0 0 6px;
-  font-size: 16px;
+  font-size: var(--text-lg);
 }
 .settings-tool p {
-  margin: 0;
   max-width: 64ch;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--text-base);
 }
 .settings-tool button {
   flex: 0 0 220px;
 }
 .settings-tool-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
   border-top: 1px solid var(--line);
-  padding-top: 16px;
-  font-size: 14px;
-}
-.settings-tool-status p {
-  margin: 0 0 8px;
-}
-.settings-tool-status p:empty {
-  margin: 0;
+  padding-top: var(--space-4);
+  font-size: var(--text-base);
 }
 .settings-section .settings-source {
-  margin: 0;
-  font-size: 14px;
+  font-size: var(--text-base);
   color: var(--muted);
 }
 .settings-source a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   white-space: nowrap;
 }
-.settings-source a svg {
-  margin-left: 4px;
-  vertical-align: -1px;
-}
 @media (max-width: 760px) {
-  .settings-content {
-    margin-top: 16px;
-  }
   .settings-content,
   .settings-import {
-    gap: 16px;
+    gap: var(--space-4);
   }
   .settings-section-heading {
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .workspace-page .settings-section-heading h2 {
-    margin: 0;
+    gap: var(--space-3);
   }
   .settings-tool {
     align-items: stretch;
     flex-direction: column;
-    gap: 12px;
-    padding-block: 16px;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
   }
   .settings-tool button {
     flex: auto;

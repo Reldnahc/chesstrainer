@@ -29,7 +29,7 @@ test("shared resume rows keep real puzzle, lesson and course-line destinations",
   const puzzleLink = page.locator(`a[href="${puzzlePath}"]`);
   await expect(puzzleLink).toHaveAccessibleName("Unfinished puzzle Your position is saved");
   const sharedAppearance = await appearance(puzzleLink);
-  expect(sharedAppearance).toMatchObject({ padding: "14px", gap: "16px", radius: "5px", arrowWidth: 18, arrowHeight: 18 });
+  expect(sharedAppearance).toMatchObject({ padding: "16px", gap: "16px", radius: "5px", arrowWidth: 18, arrowHeight: 18 });
   await puzzleLink.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(puzzlePath);

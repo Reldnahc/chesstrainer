@@ -3,15 +3,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-3);
   min-height: 24px;
-  font-size: 13px;
+  font-size: var(--text-md);
   overflow-wrap: anywhere;
 }
 .game-player-identity {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-3);
   min-width: 0;
 }
 .game-player-name {
@@ -23,17 +23,17 @@
   display: inline-flex;
   flex: none;
   align-items: baseline;
-  gap: 5px;
+  gap: var(--space-1-5);
   white-space: nowrap;
 }
 .game-accuracy > span:first-child {
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--text-2xs);
 }
 .game-accuracy > b {
   width: 5ch;
   color: var(--accent);
-  font: 12px var(--mono);
+  font: var(--text-sm) var(--mono);
   text-align: right;
 }
 .game-player-status {
@@ -42,7 +42,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
   text-align: right;
 }
@@ -69,16 +69,16 @@
   text-align: center;
   background: #30343a;
   color: #fff;
-  padding: 3px 2px;
+  padding: var(--space-1) var(--space-0-5);
   border-radius: 3px;
-  font-size: 10px;
+  font-size: var(--text-2xs);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 .game-board-controls {
   display: grid;
   grid-template-columns: minmax(max-content, 1fr) minmax(0, max-content) minmax(max-content, 1fr);
-  gap: 6px;
+  gap: var(--space-1-5);
   align-items: center;
 }
 .game-library-link {
@@ -119,33 +119,33 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: var(--space-2);
   flex-shrink: 0;
-  padding: 0 10px;
+  padding: 0 var(--space-3);
   background: var(--surface);
   border-bottom: 1px solid var(--line);
 }
 .game-move-heading button {
-  font-size: 11px;
-  padding: 4px 6px;
+  font-size: var(--text-xs);
+  padding: var(--space-1) var(--space-1-5);
   min-height: 28px;
   background: transparent;
   border-color: transparent;
-  gap: 3px;
+  gap: var(--space-1);
 }
 .game-move-heading button[hidden] {
   display: none;
 }
 .game-review-tabs {
   display: flex;
-  gap: 4px;
+  gap: var(--space-1);
 }
 .game-review-tabs button {
   min-height: 38px;
   border: 0;
   border-bottom: 2px solid transparent;
   border-radius: 0;
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--muted);
 }
 .game-review-tabs button[aria-selected="true"] {
@@ -162,8 +162,8 @@
 .game-move-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  padding: 3px;
-  gap: 0 3px;
+  padding: var(--space-1);
+  gap: 0 var(--space-1);
 }
 .game-move-list button {
   justify-content: flex-start;
@@ -171,8 +171,8 @@
   min-height: 29px;
   border-color: transparent;
   border-radius: 3px;
-  padding: 3px 8px;
-  font: 12px var(--mono);
+  padding: var(--space-1) var(--space-2);
+  font: var(--text-sm) var(--mono);
   background: transparent;
 }
 .game-move-list button:nth-child(4n + 3),
@@ -189,47 +189,50 @@
 .game-move-number {
   color: var(--muted);
   min-width: 25px;
-  font-size: 10px;
+  font-size: var(--text-2xs);
 }
 .game-move-symbol {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-left: auto;
-  font-size: 13px;
+  font-size: var(--text-md);
   font-weight: 650;
 }
 .game-variations {
   border-top: 1px solid var(--line);
-  padding: 0 8px;
+  padding: 0 var(--space-2);
 }
 .game-variation-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 3px;
-  padding-bottom: 8px;
+  gap: var(--space-1);
+  padding-bottom: var(--space-2);
 }
 .game-variation-row > span {
-  font: 10px var(--mono);
+  font: var(--text-2xs) var(--mono);
   color: var(--muted);
-  margin-right: 5px;
+  padding-right: var(--space-1-5);
 }
 .game-variation-row button {
-  font: 11px var(--mono);
+  font: var(--text-xs) var(--mono);
   min-height: 29px;
-  padding: 3px 6px;
+  padding: var(--space-1) var(--space-1-5);
 }
 .game-variation-row button[aria-pressed="true"] {
   border-color: var(--accent);
 }
 .game-variation-row .move-badge {
-  font-size: 10px;
+  font-size: var(--text-2xs);
 }
 .game-graph {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
   flex-shrink: 0;
   min-width: 0;
-  padding: 6px 10px 2px;
+  padding: var(--space-1-5) var(--space-3);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -238,16 +241,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: var(--space-2);
   height: 36px;
 }
 .game-graph-heading > div:first-child {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: var(--space-1);
 }
 .game-graph-heading strong {
-  font-size: 13px;
+  font-size: var(--text-md);
 }
 .game-graph-heading > div:first-child > span svg {
   margin-left: 1px;
@@ -255,16 +258,16 @@
 }
 .game-graph-heading > div:first-child > span,
 .game-graph-verdict {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 .game-graph-reading {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 .game-graph-reading .evaluation-score {
-  font-size: 14px;
+  font-size: var(--text-base);
   min-height: 27px;
 }
 .game-graph .game-evaluation-plot {
@@ -299,7 +302,7 @@
 .game-graph-tick {
   fill: #b9c0c7;
   font:
-    11px "IBM Plex Sans",
+    var(--text-xs) "IBM Plex Sans",
     sans-serif;
 }
 .game-graph-cursor {
@@ -324,8 +327,7 @@
   fill: var(--accent);
 }
 .game-graph p {
-  font-size: 11px;
-  margin: 2px 0 4px;
+  font-size: var(--text-xs);
 }
 .game-quality-panel {
   /* Scale the comparison within its tab, without growing the board or sidebar. */
@@ -335,41 +337,42 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: clamp(4px, 2cqh, 16px) clamp(18px, 3cqw, 24px);
+  padding: clamp(var(--space-1), 2cqh, var(--space-4)) clamp(var(--space-5), 3cqw, var(--space-6));
 }
 .game-summary caption {
   caption-side: bottom;
-  padding-top: clamp(4px, 1.5cqh, 10px);
+  padding-top: clamp(var(--space-1), 1.5cqh, var(--space-3));
   text-align: center;
   color: var(--muted);
-  font-size: max(11px, .7em);
+  font-size: max(var(--text-xs), .7em);
 }
 .game-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   flex-shrink: 0;
-  padding: 8px 10px;
+  padding: var(--space-2) var(--space-3);
   border-bottom: 1px solid var(--line);
 }
 .game-progress p {
-  font-size: 12px;
-  margin: 8px 0;
+  font-size: var(--text-sm);
 }
 .game-progress .row-between {
-  gap: 8px;
-  font-size: 11px;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 .game-progress progress {
   width: 100%;
   height: 5px;
   accent-color: #a9c6b5;
-  margin: 5px 0;
 }
 .game-summary table {
   flex: 1;
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: clamp(12px, min(4cqw, 4.5cqh), 20px);
+  font-size: clamp(var(--text-sm), min(4cqw, 4.5cqh), var(--text-2xl));
   font-variant-numeric: tabular-nums;
 }
 .game-summary thead {
@@ -380,7 +383,7 @@
 }
 .game-summary thead th {
   width: 30%;
-  padding-block: clamp(1px, .6cqh, 4px);
+  padding-block: clamp(1px, .6cqh, var(--space-1));
 }
 .game-summary thead .game-summary-label {
   width: 40%;
@@ -389,10 +392,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  margin-bottom: clamp(2px, .8cqh, 5px);
+  gap: var(--space-1-5);
+  padding-bottom: clamp(var(--space-0-5), .8cqh, var(--space-1-5));
   color: var(--muted);
-  font-size: max(10px, .7em);
+  font-size: max(var(--text-2xs), .7em);
   font-weight: 400;
 }
 .game-summary-side i {
@@ -413,7 +416,7 @@
 }
 .game-summary th,
 .game-summary td {
-  padding: 0 4px;
+  padding: 0 var(--space-1);
   line-height: 1.25;
   text-align: center;
 }
@@ -446,7 +449,7 @@
   line-height: 1;
 }
 .game-summary .game-summary-accuracy > * {
-  padding-block: clamp(2px, 1cqh, 8px);
+  padding-block: clamp(var(--space-0-5), 1cqh, var(--space-2));
   border-bottom: 1px solid var(--line);
 }
 .game-summary-accuracy th {
@@ -471,25 +474,28 @@
   .game-board-controls {
     display: flex;
     flex-wrap: nowrap;
-    gap: 2px;
+    gap: var(--space-0-5);
   }
-  .game-board-actions { flex: 0 0 auto; gap: 2px; }
-  .game-board-actions > .action-control { padding: 5px 6px; font-size: 11px; }
+  .game-board-actions { flex: 0 0 auto; gap: var(--space-0-5); }
+  .game-board-actions > .action-control { padding: var(--space-1-5) var(--space-1-5); font-size: var(--text-xs); }
   .game-library-link.action-control {
     flex: 0 0 auto;
-    padding: 5px 6px;
-    gap: 4px;
-    font-size: 11px;
+    padding: var(--space-1-5) var(--space-1-5);
+    gap: var(--space-1);
+    font-size: var(--text-xs);
   }
   .game-board-controls > .move-playback-controls {
     flex: 1 1 auto;
     min-width: 0;
-    gap: 2px;
+    gap: var(--space-0-5);
   }
   .game-notation {
     flex: none;
     height: 344px;
-    margin-bottom: 12px;
+  }
+  /* The phone review column spaces the notation from what follows it. */
+  .review-workspace-layout .game-notation {
+    margin-bottom: var(--space-3);
   }
   .game-move-heading button,
   .game-move-list button,

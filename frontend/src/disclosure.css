@@ -7,11 +7,8 @@
   display: list-item;
   list-style-position: inside;
   min-height: 44px;
-  padding: 10px 0;
+  padding: var(--space-3) 0;
   color: #d1d6df;
-  font-size: 13px;
+  font-size: var(--text-md);
   cursor: pointer;
-}
-.disclosure[open] > summary {
-  margin-bottom: 12px;
 }

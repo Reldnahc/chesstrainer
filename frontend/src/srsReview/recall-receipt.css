@@ -1,9 +1,9 @@
 .review-schedule {
   min-height: 38px;
-  padding: 8px 0;
+  padding: var(--space-2) 0;
 }
 .review-schedule .review-due {
-  font-size: 12px;
+  font-size: var(--text-sm);
   margin: 0;
 }
 .review-schedule time {
@@ -11,7 +11,7 @@
 }
 @media (max-width: 760px) {
   .review-session .review-schedule .review-due {
-    font-size: 11px;
+    font-size: var(--text-xs);
     line-height: 1.4;
   }
 }

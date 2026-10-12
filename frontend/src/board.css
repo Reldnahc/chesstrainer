@@ -35,7 +35,7 @@
   height: 30px;
   display: grid;
   place-items: center;
-  font: bold 16px var(--mono);
+  font: bold var(--text-lg) var(--mono);
   box-shadow: 0 2px 5px #0008;
   animation: rating-appear 0.22s ease-out;
 }
@@ -84,7 +84,7 @@
   color: inherit;
   background: var(--surface);
   border: 1px solid #757d89;
-  padding: 20px;
+  padding: var(--space-5);
   border-radius: 8px;
   box-shadow: 0 12px 50px #0008;
   z-index: 10;
@@ -108,15 +108,15 @@
   .promotion {
     --promotion-inline-inset: 0.03;
     --promotion-block-inset: 0.2;
-    padding: 16px;
+    padding: var(--space-4);
   }
   .promotion button {
-    padding: 8px;
+    padding: var(--space-2);
     min-height: 44px;
   }
   .board-quality {
     width: 25px;
     height: 25px;
-    font-size: 13px;
+    font-size: var(--text-md);
   }
 }
