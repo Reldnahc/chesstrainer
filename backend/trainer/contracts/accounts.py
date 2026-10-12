@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from pydantic import Field
+
 from trainer.contracts.common import Contract
 
 
@@ -19,6 +21,28 @@ class Identity(Contract):
 
 class AccountProfile(Contract):
     user: Account
+
+
+class ManagedAccount(Contract):
+    """One row of the administrator's account list; never carries credentials."""
+
+    id: str
+    username: str
+    admin: bool
+    disabled: bool
+    created: datetime
+
+
+class ManagedAccounts(Contract):
+    accounts: list[ManagedAccount]
+
+
+class PasswordReset(Contract):
+    password: str = Field(min_length=10, max_length=128)
+
+
+class AccountAccess(Contract):
+    disabled: bool
 
 
 class SyncStatus(Contract):

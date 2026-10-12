@@ -298,3 +298,108 @@ def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch,
     assert "already an administrator" in capsys.readouterr().err
     assert run("promote", "nobody") == 1
     assert "Account not found" in capsys.readouterr().err
+
+
+def test_administrators_manage_other_accounts_from_settings(settings):
+    settings.accounts_enabled = True
+    settings.public_origin = ORIGIN["Origin"]
+    settings.session_secure = False
+    settings.stockfish_path = "missing-no-signup-engine"
+    app = create_app(settings, workers=False)
+    accounts = Accounts(settings.database_path)
+    with TestClient(app) as client:
+        admin = accounts.create("keeper", "testing-password", admin=True)
+        friend, _ = signup(client, "friend")
+        friend_id = friend["user"]["id"]
+        headers = ORIGIN | {"X-CSRF-Token": friend["csrf"]}
+        assert (
+            client.post(
+                "/api/imports",
+                files={"file": ("test.pgn", PGN)},
+                data={"side": "white"},
+                headers=headers,
+            ).status_code
+            == 200
+        )
+        assert client.get("/api/auth/accounts").status_code == 403
+        assert (
+            client.delete("/api/auth/accounts/" + admin["id"], headers=headers).status_code == 403
+        )
+
+        def sign_in(name, password="testing-password"):
+            response = client.post(
+                "/api/auth/login", json={"username": name, "password": password}, headers=ORIGIN
+            )
+            return response.status_code, ORIGIN | {"X-CSRF-Token": response.json().get("csrf", "")}
+
+        status, headers = sign_in("keeper")
+        assert status == 200
+        listed = client.get("/api/auth/accounts").json()["accounts"]
+        assert [(row["username"], row["admin"], row["disabled"]) for row in listed] == [
+            ("keeper", True, False),
+            ("friend", False, False),
+        ]
+        assert set(listed[0]) == {"id", "username", "admin", "disabled", "created"}
+        # Administrators cannot lock themselves out or remove their own account.
+        own = "/api/auth/accounts/" + admin["id"]
+        assert client.delete(own, headers=headers).status_code == 409
+        assert (
+            client.post(own + "/access", json={"disabled": True}, headers=headers).status_code
+            == 409
+        )
+        assert client.delete("/api/auth/accounts/missing", headers=headers).status_code == 404
+
+        target = "/api/auth/accounts/" + friend_id
+        assert (
+            client.post(
+                target + "/password", json={"password": "short"}, headers=headers
+            ).status_code
+            == 422
+        )
+        assert (
+            client.post(
+                target + "/password", json={"password": "a-new-password"}, headers=headers
+            ).status_code
+            == 200
+        )
+        assert (
+            client.post(target + "/access", json={"disabled": True}, headers=headers).status_code
+            == 200
+        )
+        assert sign_in("friend", "a-new-password")[0] == 401
+        _, headers = sign_in("keeper")
+        assert (
+            client.post(target + "/access", json={"disabled": False}, headers=headers).status_code
+            == 200
+        )
+        assert sign_in("friend", "testing-password")[0] == 401
+        assert sign_in("friend", "a-new-password")[0] == 200
+        _, headers = sign_in("keeper")
+        assert client.post(target + "/admin", headers=headers).status_code == 200
+        repeat = client.post(target + "/admin", headers=headers)
+        assert repeat.status_code == 409
+        assert repeat.json()["detail"] == "Account is already an administrator."
+
+        with accounts.connect() as db:
+            db.execute("UPDATE analysis_jobs SET status='running' WHERE user_id=?", (friend_id,))
+        assert "analysis running" in client.delete(target, headers=headers).json()["detail"]
+        with accounts.connect() as db:
+            db.execute("UPDATE analysis_jobs SET status='queued' WHERE user_id=?", (friend_id,))
+        deleted = client.delete(target, headers=headers)
+        assert deleted.status_code == 200, deleted.text
+        assert [row["username"] for row in client.get("/api/auth/accounts").json()["accounts"]] == [
+            "keeper"
+        ]
+        with accounts.connect() as db:
+            tables = [
+                row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            ]
+            owned = 0
+            for table in tables:
+                columns = {column[1] for column in db.execute(f'PRAGMA table_info("{table}")')}
+                if "user_id" in columns:
+                    owned += db.execute(
+                        f'SELECT count(*) FROM "{table}" WHERE user_id=?', (friend_id,)
+                    ).fetchone()[0]
+        assert owned == 0
+        assert sign_in("friend", "a-new-password")[0] == 401
