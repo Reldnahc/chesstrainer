@@ -154,7 +154,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
           <p>{generation.puzzles} {generation.puzzles === 1 ? "puzzle comes" : "puzzles come"} from {generation.searched_games} of your {generation.analyzed_games} analyzed games. Each one is a moment where you had a single clear winning line, checked by Stockfish and played from your side.</p>
           <p className="small muted">Last search {generation.last_searched_at?.slice(0, 10)}: {generation.candidates} candidate positions checked, {generation.kept} kept, {generation.candidates - generation.kept} set aside as ambiguous or one-move.{generation.automatic ? " Newly analyzed games are searched when their analysis finishes." : ""}</p>
         </> : generation.analyzed_games === 0
-          ? <p>No analyzed games yet. Import games with analysis, or open a game and choose Find training mistakes, then search them here.</p>
+          ? <p>No analyzed games yet. Imported games are analyzed automatically; once some finish, search them here.</p>
           : generation.searched_games === 0
             ? <p>Your {generation.analyzed_games} analyzed {generation.analyzed_games === 1 ? "game has" : "games have"} not been searched yet. A search keeps only moments with a single clear winning line of two or more moves, checked by Stockfish.</p>
             : <p>No puzzles yet from the {generation.searched_games} analyzed {generation.searched_games === 1 ? "game" : "games"} searched so far: {generation.candidates} candidate {generation.candidates === 1 ? "position" : "positions"} checked, none with a single clear winning line of two or more moves.</p>}
