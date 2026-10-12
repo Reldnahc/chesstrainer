@@ -180,3 +180,13 @@ def test_walking_into_an_absolute_pin_counts_as_making_it():
     assert review_cues(evidence)["pins"] == [
         {"startSquare": "b4", "endSquare": "e1", "kind": "pin", "pinned": "d2"}
     ]
+
+
+def test_sliding_along_a_held_pin_does_not_redraw_it():
+    # The pinned rook steps along the file, then the pinning rook does.
+    pinned = line("4k3/4r3/8/8/8/8/8/4RK2 b - - 0 1", ["e7e6"])
+    pinner = line("4k3/4r3/8/8/8/8/8/4RK2 w - - 0 1", ["e1e2"])
+    assert review_cues(pinned)["pins"] == review_cues(pinner)["pins"] == []
+    # The king stepping onto a new line behind its own piece is a new pin.
+    king = line("3k4/4r3/8/8/8/8/8/4RK2 b - - 0 1", ["d8e8"])
+    assert review_cues(king)["pins"] == [{"startSquare": "e1", "endSquare": "e8", "kind": "pin", "pinned": "e7"}]

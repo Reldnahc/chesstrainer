@@ -29,7 +29,12 @@ def pins(board):
 
 
 def new_pins(before, after):
-    """Pins the move just made, never ones carried over from earlier moves."""
+    """Pins the move just made, never ones carried over from earlier moves.
+
+    A pin is the same pin while the piece behind stays put on the same line
+    (chess.ray is the whole line), so the pinning or pinned piece sliding along
+    that line does not redraw it."""
+    held = {(rear, chess.ray(source, rear)) for source, _, rear in pins(before)}
     return [
         {
             "startSquare": chess.square_name(source),
@@ -37,7 +42,8 @@ def new_pins(before, after):
             "kind": "pin",
             "pinned": chess.square_name(pinned),
         }
-        for source, pinned, rear in sorted(pins(after) - pins(before))
+        for source, pinned, rear in sorted(pins(after))
+        if (rear, chess.ray(source, rear)) not in held
     ]
 
 
