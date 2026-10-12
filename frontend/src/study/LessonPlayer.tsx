@@ -96,7 +96,6 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
           {action("back", "Back", false, <ChevronLeft size={16} />)}
           {action("continue", (step.kind === "demonstration" || step.kind === "game_excerpt") && step.phase === "ready" ? step.plies === 1 ? "Play the move" : "Play continuation" : finished ? "Review chapter" : "Continue", true, <ArrowRight size={16} />)}
           {action("enter_branch", "Explore alternative", true, <Play size={16} />)}
-          {action("return_branch", "Main line")}
           {action("show_move", "Show move")}
           {action("hint", "Hint", false, <Lightbulb size={16} />)}
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}
@@ -108,6 +107,9 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
       <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
       <h2>{session.branch?.title || session.game?.title || session.chapter_title}</h2>
       <p className="small">{finished ? "Completed" : step.kind === "rehearsal" ? "Independent rehearsal" : "Guided learning"}{session.assisted ? " · Help used" : ""}</p>
+      {/* The way back from a side trip sits with its title, so the coach's
+          row never needs more than three buttons. */}
+      {session.branch && !session.game && <div className="button-row">{action("return_branch", "Main line")}</div>}
       {session.game && <LessonAttribution attributions={session.game.attributions} />}
       {finished && <ActionLink variant="primary" href={lessonCoursePath(session.course_id, session.course_revision, session.course_topic)}>Choose a chapter <ArrowRight size={16} /></ActionLink>}
     </section>
