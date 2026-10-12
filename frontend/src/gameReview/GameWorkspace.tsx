@@ -291,7 +291,7 @@ export default function GameWorkspace({
           onScrubEnd={exploration.finishScrubbing}
         />
       </ReviewWorkspace>
-      {exporting && <GameExportDialog id={id} fen={displayed.fen} onClose={() => setExporting(false)} />}
+      {exporting && <GameExportDialog id={id} fen={displayed.fen} orientation={orientation} onClose={() => setExporting(false)} />}
     </div>
   );
 }

@@ -49,3 +49,18 @@ test('game lists have no export button; it lives on the review page', async ({pa
     await expect(page.getByRole('button', {name: /^Export/})).toHaveCount(0);
   }
 });
+
+test('copy still works on the plain-HTTP LAN page, where the Clipboard API is missing', async ({page}, info) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', {value: undefined}));
+  const {id} = await (await page.request.post(`/__test/clock-review-fixture/copy-${info.project.name}`)).json();
+  await page.goto(`/games/${id}?ply=2`);
+  await page.getByRole('button', {name: 'Export game'}).click();
+  const dialog = page.getByRole('dialog', {name: 'Export game'});
+  const copy = dialog.getByRole('button', {name: 'Copy FEN'});
+  await copy.click();
+  await expect(copy).toHaveText('Copied');
+  await expect(dialog.getByRole('alert')).toHaveCount(0);
+  // The scratch field is gone and focus is back on the button.
+  await expect(dialog.locator('textarea')).toHaveCount(1);
+  await expect(copy).toBeFocused();
+});

@@ -10,7 +10,8 @@ import "./game-export.css";
 type Exported = Schema["GameExport"];
 
 function fileName(game: Exported, extension: string) {
-  const name = `${game.white} vs ${game.black}`.replace(/[^\w .-]+/g, "").trim() || "game";
+  // Keep letters in any script ("Müller"); drop characters file systems reject.
+  const name = `${game.white} vs ${game.black}`.replace(/[^\p{L}\p{N} ._-]+/gu, "").trim() || "game";
   return `${name}.${extension}`;
 }
 
@@ -21,7 +22,22 @@ function save(blob: Blob, name: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-function CopyButton({ text, label }: { text: string; label: string }) {
+/** The Clipboard API exists only on secure pages; the LAN server is plain HTTP. */
+async function copy(text: string, from: HTMLElement) {
+  if (navigator.clipboard) return navigator.clipboard.writeText(text);
+  // Outside the modal everything is inert, so the scratch field lives inside it.
+  const field = Object.assign(document.createElement("textarea"), { value: text, readOnly: true });
+  field.style.position = "fixed";
+  field.style.opacity = "0";
+  (from.closest("dialog") ?? document.body).append(field);
+  field.select();
+  const copied = document.execCommand("copy");
+  field.remove();
+  from.focus();
+  if (!copied) throw new Error("Copying is blocked here; select the text instead.");
+}
+
+function CopyButton({ text, label, onError }: { text: string; label: string; onError: (message: string) => void }) {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (!copied) return;
@@ -29,7 +45,8 @@ function CopyButton({ text, label }: { text: string; label: string }) {
     return () => clearTimeout(timer);
   }, [copied]);
   return (
-    <Button size="compact" aria-label={label} onClick={() => navigator.clipboard.writeText(text).then(() => setCopied(true))}>
+    <Button size="compact" aria-label={label} onClick={(event) => copy(text, event.currentTarget).then(() => setCopied(true),
+      (e) => onError(e instanceof Error ? e.message : "Copying failed."))}>
       {copied ? <Check size={15} /> : <Copy size={15} />}
       {copied ? "Copied" : "Copy"}
     </Button>
@@ -37,10 +54,12 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 }
 
 /** PGN, FEN and an animated GIF of one game. */
-export default function GameExportDialog({ id, fen, onClose }: {
+export default function GameExportDialog({ id, fen, orientation, onClose }: {
   id: string;
   /** The position on the board. */
   fen: string;
+  /** The side the board is shown from; the GIF uses the same. */
+  orientation: "white" | "black";
   onClose: () => void;
 }) {
   const dialog = useModalDialog(onClose);
@@ -64,7 +83,7 @@ export default function GameExportDialog({ id, fen, onClose }: {
     try {
       // The encoder and piece renderer load only when someone asks for a GIF.
       const { gameGif } = await import("./gameGif");
-      const blob = await gameGif(game.positions, game.orientation, (done, total) => setProgress({ done, total }));
+      const blob = await gameGif(game.positions, orientation, (done, total) => setProgress({ done, total }));
       setGif({ blob, url: URL.createObjectURL(blob) });
     } catch (e) {
       setError(e instanceof Error ? e.message : "The GIF could not be made.");
@@ -86,7 +105,7 @@ export default function GameExportDialog({ id, fen, onClose }: {
           <div className="row-between">
             <h3 id={`${ids}-pgn`}>PGN</h3>
             <div className="cluster">
-              <CopyButton text={game.pgn} label="Copy PGN" />
+              <CopyButton text={game.pgn} label="Copy PGN" onError={setError} />
               <Button size="compact" onClick={() => save(new Blob([game.pgn], { type: "application/x-chess-pgn" }), fileName(game, "pgn"))}>
                 <Download size={15} />Download
               </Button>
@@ -97,13 +116,13 @@ export default function GameExportDialog({ id, fen, onClose }: {
         <section className="game-export-section" aria-labelledby={`${ids}-fen`}>
           <div className="row-between">
             <h3 id={`${ids}-fen`}>FEN <span className="muted">Position on the board</span></h3>
-            <CopyButton text={fen} label="Copy FEN" />
+            <CopyButton text={fen} label="Copy FEN" onError={setError} />
           </div>
           <input readOnly value={fen} aria-labelledby={`${ids}-fen`} spellCheck={false} />
         </section>
         <section className="game-export-section" aria-labelledby={`${ids}-gif`}>
           <div className="row-between">
-            <h3 id={`${ids}-gif`}>GIF <span className="muted">Whole game, one move a second</span></h3>
+            <h3 id={`${ids}-gif`}>GIF <span className="muted">Whole game from this side, one move a second</span></h3>
             {gif ? (
               <Button size="compact" variant="primary" onClick={() => save(gif.blob, fileName(game, "gif"))}>
                 <Download size={15} />Download
