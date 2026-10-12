@@ -1427,9 +1427,32 @@ export interface paths {
         post?: never;
         /**
          * Delete Course
-         * @description Remove a club course file. A built-in course it replaced comes back.
+         * @description Remove a club course file, or hide a built-in course for this install.
+         *
+         *     Deleting a club file that replaced a built-in course brings the built-in
+         *     back. Members' progress stays in the database either way.
          */
         delete: operations["delete_course_api_study_course_files__course_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/course-files/{course_id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Restore Course
+         * @description Bring back a deleted built-in course.
+         */
+        post: operations["restore_course_api_study_course_files__course_id__restore_post"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -2143,6 +2166,11 @@ export interface components {
         CourseFileDeleted: {
             /** Built In Restored */
             built_in_restored: boolean;
+            /**
+             * Hidden
+             * @default false
+             */
+            hidden: boolean;
             /** Id */
             id: string;
         };
@@ -2590,6 +2618,11 @@ export interface components {
             played_on: string | null;
             /** Rating */
             rating: number;
+            /**
+             * Read Only
+             * @default false
+             */
+            read_only: boolean;
             /** Result */
             result: string;
             /**
@@ -2826,6 +2859,13 @@ export interface components {
             engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
+        };
+        /** HiddenCourse */
+        HiddenCourse: {
+            /** Id */
+            id: string;
+            /** Title */
+            title: string;
         };
         /** HistoricalWeakness */
         HistoricalWeakness: {
@@ -3238,6 +3278,8 @@ export interface components {
             can_manage: boolean;
             /** Courses */
             courses: components["schemas"]["LessonCourseSummary"][];
+            /** Hidden Built Ins */
+            hidden_built_ins?: components["schemas"]["HiddenCourse"][];
             /** Problems */
             problems?: components["schemas"]["CourseFileProblem"][];
             /** Resume */
@@ -7561,6 +7603,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["CourseFileDeleted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restore_course_api_study_course_files__course_id__restore_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HiddenCourse"];
                 };
             };
             /** @description Validation Error */

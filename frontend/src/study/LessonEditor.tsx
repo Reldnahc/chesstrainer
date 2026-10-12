@@ -337,11 +337,9 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   return <ReviewWorkspace
     boardLabel="Lesson editor board"
     heading={<div className="lesson-editor-heading">
+      <ActionLink size="compact" variant="quiet" href={courseSettingsPath}><ArrowLeft size={16} />Courses</ActionLink>
       <h1>{current.title || "Untitled course"}</h1>
-      <div className="button-row">
-        <ActionLink size="compact" variant="quiet" href={courseSettingsPath}><ArrowLeft size={16} />Courses</ActionLink>
-        <Button size="compact" variant="primary" disabled={saving} onClick={save}><Save size={16} />{saving ? "Saving…" : dirty ? "Save course" : "Saved"}</Button>
-      </div>
+      <Button size="compact" variant="primary" disabled={saving} onClick={save}><Save size={16} />{saving ? "Saving…" : dirty ? "Save course" : "Saved"}</Button>
     </div>}
     aboveBoard={<div className="review-position-status"><TurnIndicator color={turn === "Black" ? "black" : "white"}>{recording ? `Recording · ${turn} to move` : `${turn} to move`}</TurnIndicator><span>{showEnd ? "WHERE THIS STEP ENDS" : "WHERE THIS STEP STARTS"}</span></div>}
     belowBoard={<div className="review-board-hint">{recording ? recordingLabel : board ? (board.position ? `Moves so far: ${board.position}` : "Starting position") : checking ? "Checking…" : "This step has no board until the problem above is fixed."}</div>}

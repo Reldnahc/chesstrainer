@@ -97,6 +97,22 @@ test("the setup page explains the measured level and starts a live game", async 
   await expect(page.locator(".review-board-meta .game-accuracy")).toHaveCount(0);
 });
 
+test("the setup waits for the game in progress so the callout does not push it down", async ({page}) => {
+  await mockPlay(page);
+  let answer: () => void = () => undefined;
+  const answered = new Promise<void>(resolve => { answer = resolve; });
+  await page.route("**/api/play/active", async route => {
+    await answered;
+    await route.fulfill({json: {game: {...base, frames: [frame0]}}});
+  });
+  await page.goto("/play");
+  await expect(page.getByRole("heading", {name: "Play Walter"})).toBeVisible();
+  await expect(page.getByRole("region", {name: "Game setup"})).toHaveCount(0);
+  answer();
+  await expect(page.getByRole("region", {name: "Game in progress"})).toBeVisible();
+  await expect(page.getByRole("region", {name: "Game setup"})).toBeVisible();
+});
+
 test("the bot answers once the move is graded while the coach finishes its line", async ({page}) => {
   await mockPlay(page);
   await page.goto("/play/play1");
@@ -193,7 +209,15 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   });
 
   await page.goto("/play");
+  // Choosing practice enables the course picker in place: the rows below it do not move.
+  await expect(page.getByLabel("Walter says")).toBeVisible();
+  await expect(page.getByLabel("Course to practice")).toBeDisabled();
+  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
+    document.querySelector('[aria-label="Opponent"]')!.getBoundingClientRect().top + window.scrollY]);
+  const before = await layout();
   await page.getByRole("button", {name: "Practice an opening"}).click();
+  await expect(page.getByLabel("Course to practice")).toBeEnabled();
+  expect(await layout()).toEqual(before);
   // The course decides the side: the Dragon is Black's, so White cannot be chosen.
   await expect(page.getByRole("button", {name: "Black", exact: true})).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("button", {name: "White", exact: true})).toBeDisabled();

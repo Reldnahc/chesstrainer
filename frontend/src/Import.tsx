@@ -18,6 +18,7 @@ import ChoiceGroup from "./ChoiceGroup";
 import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
 import { useInterfaceMotion } from "./MotionProvider";
+import { LoadingState } from "./LoadState";
 
 type PgnMode = "file" | "text";
 const isActive = (job: Job) => ["queued", "running"].includes(job.status);
@@ -241,7 +242,8 @@ export default function ImportSettings({
               {source !== "pgn" ? (
                 selectedProvider
                   ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
-                  : <p role="status">{loadingProviders ? "Loading game providers…" : "That game provider is unavailable. Choose an import action above."}</p>
+                  : loadingProviders ? <LoadingState>Loading game providers…</LoadingState>
+                    : <p role="status">That game provider is unavailable. Choose an import action above.</p>
               ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
                 <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
                 <div className="import-options">

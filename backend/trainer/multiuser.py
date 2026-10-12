@@ -1,5 +1,6 @@
 """Cookie authentication and account-bound services sharing one database."""
 
+import re
 import secrets
 import sqlite3
 import threading
@@ -30,6 +31,16 @@ from trainer.contracts.accounts import (
 )
 from trainer.contracts.common import Ok
 
+# Anyone holding a game's link may read its review and step through variations.
+# Each route still resolves the game itself and refuses what it does not allow.
+SHARED_REVIEW = re.compile(r"/api/games/[^/]+(/review)?")
+
+
+def shared_review(method, path):
+    if method in {"GET", "HEAD"}:
+        return bool(SHARED_REVIEW.fullmatch(path))
+    return method == "POST" and bool(re.fullmatch(r"/api/games/[^/]+/position", path))
+
 
 class Credentials(BaseModel):
     username: str = Field(min_length=3, max_length=32)
@@ -53,7 +64,7 @@ def configure_accounts(app, settings):
             user = await run_in_threadpool(accounts.resolve, token) if token else None
             request.state.user = user
             public = path in {"/api/auth/me", "/api/auth/login", "/api/auth/signup"}
-            if not public and not user:
+            if not public and not user and not shared_review(request.method, path):
                 return JSONResponse({"detail": "Sign in to your account."}, status_code=401)
             if (
                 user
@@ -68,8 +79,12 @@ def configure_accounts(app, settings):
                 denied = origin_denied(request.headers.get("origin"), request)
                 if denied:
                     return JSONResponse({"detail": denied}, status_code=403)
-                if not public and not secrets.compare_digest(
-                    request.headers.get("x-csrf-token", "").encode(), csrf_token(token).encode()
+                if (
+                    user
+                    and not public
+                    and not secrets.compare_digest(
+                        request.headers.get("x-csrf-token", "").encode(), csrf_token(token).encode()
+                    )
                 ):
                     return JSONResponse(
                         {"detail": "Refresh the page before trying again."}, status_code=403

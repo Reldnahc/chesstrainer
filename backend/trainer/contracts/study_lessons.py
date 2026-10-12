@@ -102,6 +102,11 @@ class CourseFileProblem(Contract):
     message: str
 
 
+class HiddenCourse(Contract):
+    id: str
+    title: str
+
+
 class LessonLibrary(Contract):
     courses: list[LessonCourseSummary]
     resume: list[LessonResume]
@@ -109,6 +114,8 @@ class LessonLibrary(Contract):
     can_manage: bool = False
     # Club course files that could not be loaded; listed for administrators only.
     problems: list[CourseFileProblem] = Field(default_factory=list)
+    # Built-in courses an administrator deleted; listed for administrators to restore.
+    hidden_built_ins: list[HiddenCourse] = Field(default_factory=list)
 
 
 class CourseFileStep(Contract):
@@ -152,6 +159,8 @@ class CourseFileDeleted(Contract):
     id: str
     # True when deleting the club file brought back the built-in course it replaced.
     built_in_restored: bool
+    # True when the course was built in, so deleting it hid it for this install.
+    hidden: bool = False
 
 
 class CourseFileSaved(Contract):

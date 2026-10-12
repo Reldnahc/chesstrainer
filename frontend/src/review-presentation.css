@@ -72,6 +72,9 @@ main:has(.review-workspace-layout) {
   container-type: inline-size;
 }
 .review-workspace-heading {
+  /* Never shrink inside the scrolling sidebar: taller controls (the lesson
+     editor's Save) would otherwise spill above its top edge and be clipped. */
+  flex: none;
   display: flex;
   align-items: center;
   gap: var(--space-1) var(--space-4);

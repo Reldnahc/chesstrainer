@@ -5,6 +5,7 @@ import {
   Focus,
   House,
   LockKeyhole,
+  LogIn,
   Settings2,
   ShieldCheck,
   Swords,
@@ -30,7 +31,7 @@ import ActionLink from "./ActionLink";
 import Notice from "./Notice";
 import WelcomeBack from "./WelcomeBack";
 import appMark from "./assets/fieldwork.svg";
-import { useAccount } from "./AccountGate";
+import { useAccount, useGuestSignIn } from "./AccountGate";
 import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
 import { useAudioPreferences } from "./audio/AudioProvider";
@@ -44,6 +45,9 @@ const tabs = [
 ] as const;
 export default function App() {
   const account = useAccount();
+  // A signed-out visitor sees only the shared game review they were linked to.
+  const guestSignIn = useGuestSignIn();
+  const guest = !!guestSignIn;
   const { retry: reloadCoachPreferences } = useCoachPreferences();
   const { retry: reloadMotionPreferences } = useMotionPreferences();
   const { retry: reloadAudioPreferences } = useAudioPreferences();
@@ -60,6 +64,7 @@ export default function App() {
     [],
   );
   useEffect(() => {
+    if (guest) return;
     let active = true;
     const connect = () => setConnection(true);
     window.addEventListener("connection-required", connect);
@@ -74,7 +79,7 @@ export default function App() {
       active = false;
       window.removeEventListener("connection-required", connect);
     };
-  }, [refresh, fail, tab]);
+  }, [refresh, fail, tab, guest]);
   useEffect(() => {
     setError("");
     setEvidenceId(null);
@@ -89,7 +94,7 @@ export default function App() {
         Skip to content
       </a>
       <header className="app-header">
-        <div className="header-inner">
+        <div className={guest ? "header-inner header-inner--guest" : "header-inner"}>
           <Link
             className="brand"
             href={pagePaths.Home}
@@ -100,7 +105,12 @@ export default function App() {
               fieldwork<span className="brand-sub">Chess training</span>
             </span>
           </Link>
-          <nav aria-label="Main navigation">
+          {guestSignIn ? (
+            <Button className="guest-sign-in" onClick={guestSignIn}>
+              <LogIn size={17} strokeWidth={1.7} />
+              Sign in
+            </Button>
+          ) : <nav aria-label="Main navigation">
             {tabs.map(([name, Icon]) => (
               <Link
                 key={name}
@@ -116,7 +126,7 @@ export default function App() {
                 <span>{name}</span>
               </Link>
             ))}
-          </nav>
+          </nav>}
         </div>
       </header>
       <main
@@ -139,7 +149,7 @@ export default function App() {
             {error}
           </Notice>
         )}
-        {!connection && <WelcomeBack />}
+        {!connection && !guestSignIn && <WelcomeBack />}
         {connection ? (
           <section className="panel connection">
             <LockKeyhole />
@@ -234,8 +244,10 @@ export default function App() {
         </span>
         <span>
           <ShieldCheck size={14} />{" "}
-          {account
-            ? "Games & practice are private to your account"
+          {guestSignIn
+            ? "A game review shared by its owner"
+            : account
+            ? "Your library & practice are private to your account"
             : "Games & practice stay on this computer"}
         </span>
       </footer>

@@ -236,6 +236,9 @@ def test_backup_round_trip_has_no_secrets(settings, sessions, tmp_path):
     settings.lan_access_token = SecretStr("PRIVATE-TOKEN")
     with sessions() as db:
         manual_exercise(db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white")
+    courses = settings.database_path.parent / "courses"
+    courses.mkdir()
+    (courses / "hidden-built-ins.ledger").write_text('["vienna-gambit"]\n', encoding="utf-8")
     archive = backup.export_backup(tmp_path / "backup.zip", settings)
     import zipfile
 
@@ -248,6 +251,11 @@ def test_backup_round_trip_has_no_secrets(settings, sessions, tmp_path):
 
     with sqlite3.connect(destination) as db:
         assert db.execute("SELECT COUNT(*) FROM exercises").fetchone()[0] == 1
+    # Deleted built-in courses stay deleted after a restore.
+    restored_courses = [path for path in tmp_path.glob("*courses") if path != courses]
+    assert [
+        (path / "hidden-built-ins.ledger").read_text(encoding="utf-8") for path in restored_courses
+    ] == ['["vienna-gambit"]\n']
     with pytest.raises(ValueError):
         backup.restore_backup(archive, destination)
 

@@ -11,7 +11,11 @@ type LoadStateProps = {
 function LoadState({ children, presentation = "compact", heading, actions, unavailable }: LoadStateProps & { unavailable?: boolean }) {
   return <section className={`load-state load-state--${presentation}${presentation === "panel" ? " panel" : ""}`}>
     {heading}
-    <p className="load-state-message" role={unavailable ? "alert" : "status"} aria-atomic="true">{children}</p>
+    <p className="load-state-message" role={unavailable ? "alert" : "status"} aria-atomic="true">
+      {/* Four board squares lighting in turn; decorative, the message is the announcement. */}
+      {!unavailable && <span className="load-state-indicator" aria-hidden="true"><span /><span /><span /><span /></span>}
+      <span>{children}</span>
+    </p>
     {actions && <div className="load-state-actions">{actions}</div>}
   </section>;
 }

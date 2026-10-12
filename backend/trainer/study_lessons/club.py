@@ -1,8 +1,9 @@
 """A club's own course files, kept beside its database so they survive updates.
 
 A club course with the same id as a built-in course replaces it in Study.
-Deleting the club file brings the built-in course back. Members who started an
-earlier revision keep their own snapshot either way.
+Deleting the club file brings the built-in course back. Deleting a built-in
+course hides it for this install until an administrator restores it. Members'
+progress is never deleted, so a course that comes back keeps it.
 """
 
 import json
@@ -21,6 +22,9 @@ SAFE_ID = re.compile(r"^[a-z0-9][a-z0-9-]{0,99}$")
 # is keyed by revision, so a revision must never be reused for different content,
 # even after its file was replaced or deleted. Not *.json, so it is never a course.
 LEDGER = "revisions.ledger"
+# Built-in course ids an administrator deleted, as a sorted JSON list. The app
+# image cannot change, so this file, beside the club's courses, records them.
+HIDDEN = "hidden-built-ins.ledger"
 
 
 class CourseConflict(Exception):
@@ -170,6 +174,26 @@ class ClubCourses:
             self._stamp = None
             return True
 
+    def hidden(self):
+        """Built-in course ids deleted for this install."""
+        try:
+            value = json.loads((self.folder / HIDDEN).read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return set()
+        return (
+            {item for item in value if isinstance(item, str)} if isinstance(value, list) else set()
+        )
+
+    def set_hidden(self, course_id, hidden):
+        with self.lock:
+            ids = self.hidden()
+            if (course_id in ids) == hidden:
+                return False
+            ids = ids | {course_id} if hidden else ids - {course_id}
+            self.folder.mkdir(parents=True, exist_ok=True)
+            write_atomically(self.folder / HIDDEN, json.dumps(sorted(ids), indent=1) + "\n")
+            return True
+
 
 def write_atomically(path, text):
     temporary = path.with_name(path.name + ".saving")
@@ -195,7 +219,7 @@ class InstalledCourses:
 
     def courses(self, db):
         club = self.club.entries()
-        replaced = {course.id for _, course, _ in club}
+        replaced = {course.id for _, course, _ in club} | self.club.hidden()
         bundled.set_club_topics({course.id: topic for _, course, topic in club})
         return tuple(
             bundled.ordered(
@@ -212,6 +236,15 @@ class InstalledCourses:
 
     def built_in_ids(self):
         return {course.id for course in bundled.BundledCourses().courses(None)}
+
+    def hidden_built_ins(self):
+        """Deleted built-in courses an administrator can restore, in Study order."""
+        hidden = self.club.hidden()
+        return [
+            {"id": course.id, "title": course.title}
+            for course in bundled.ordered(bundled.BundledCourses().courses(None))
+            if course.id in hidden
+        ]
 
     def source(self, course_id, revision=None):
         """``club`` only for the revision the club file holds; older revisions are not it."""

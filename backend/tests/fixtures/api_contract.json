@@ -1402,6 +1402,11 @@
             "title": "Built In Restored",
             "type": "boolean"
           },
+          "hidden": {
+            "default": false,
+            "title": "Hidden",
+            "type": "boolean"
+          },
           "id": {
             "title": "Id",
             "type": "string"
@@ -2770,6 +2775,11 @@
             "title": "Rating",
             "type": "integer"
           },
+          "read_only": {
+            "default": false,
+            "title": "Read Only",
+            "type": "boolean"
+          },
           "result": {
             "title": "Result",
             "type": "string"
@@ -3722,6 +3732,25 @@
           "database"
         ],
         "title": "Health",
+        "type": "object"
+      },
+      "HiddenCourse": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ],
+        "title": "HiddenCourse",
         "type": "object"
       },
       "HistoricalWeakness": {
@@ -4980,6 +5009,13 @@
               "$ref": "#/components/schemas/LessonCourseSummary"
             },
             "title": "Courses",
+            "type": "array"
+          },
+          "hidden_built_ins": {
+            "items": {
+              "$ref": "#/components/schemas/HiddenCourse"
+            },
+            "title": "Hidden Built Ins",
             "type": "array"
           },
           "problems": {
@@ -13628,7 +13664,7 @@
     },
     "/api/study/course-files/{course_id}": {
       "delete": {
-        "description": "Remove a club course file. A built-in course it replaced comes back.",
+        "description": "Remove a club course file, or hide a built-in course for this install.\n\nDeleting a club file that replaced a built-in course brings the built-in\nback. Members' progress stays in the database either way.",
         "operationId": "delete_course_api_study_course_files__course_id__delete",
         "parameters": [
           {
@@ -13664,6 +13700,46 @@
           }
         },
         "summary": "Delete Course"
+      }
+    },
+    "/api/study/course-files/{course_id}/restore": {
+      "post": {
+        "description": "Bring back a deleted built-in course.",
+        "operationId": "restore_course_api_study_course_files__course_id__restore_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "title": "Course Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HiddenCourse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Restore Course"
       }
     },
     "/api/study/courses": {

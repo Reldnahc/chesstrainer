@@ -21,6 +21,17 @@ export default function ReviewProgress({
   // The session keeps polling background refinement; interruptions still expose recovery.
   if (!game.job?.error && (game.job?.status === "completed" || (refining && running)))
     return null;
+  // A shared game shows where its owner's review stands, without owner controls.
+  if (game.read_only)
+    return (
+      <section className="game-progress" aria-label="Review progress">
+        <p role="status">
+          {running && game.job
+            ? `Review in progress: ${refining ? `${game.job.refinement_completed}/${game.job.refinement_total} positions investigated` : `${game.job.completed}/${game.job.total} moves reviewed`}`
+            : "This game's review isn't finished yet."}
+        </p>
+      </section>
+    );
   return (
     <section className="game-progress" aria-label="Review progress">
       {game.job?.status !== "completed" && (

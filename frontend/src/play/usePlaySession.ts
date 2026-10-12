@@ -396,6 +396,7 @@ export function usePlaySession(id: string) {
       white: state.white,
       black: state.black,
       played_on: null,
+      read_only: false,
       result: state.result ?? "*",
       orientation: state.learner_color,
       rating: state.learner_rating,

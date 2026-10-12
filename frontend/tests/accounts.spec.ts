@@ -83,6 +83,13 @@ test('account signup, engine-free sync, second-device login and private library'
     const device = await second.newPage();
     await captureAudio(device);
     await device.goto(`${gameHref}?ply=3`);
+    // Signed out, the link opens the review read-only, with sign-in in place of navigation.
+    await expect(device.locator('.game-player-name', {hasText: 'FixtureOpponent'})).toBeVisible();
+    await expect(device.getByRole('navigation', {name: 'Main navigation'})).toHaveCount(0);
+    await expect(device.getByRole('button', {name: /review$/})).toHaveCount(0);
+    expect(await device.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await device.screenshot({path: `test-results/shared-game-guest-${info.project.name}.png`, fullPage: true});
+    await device.getByRole('button', {name: 'Sign in', exact: true}).click();
     await device.getByLabel('Username', {exact: true}).fill(username);
     await device.getByLabel('Password', {exact: true}).fill('test-only-password');
     await device.getByRole('button', {name: 'Sign in', exact: true}).click();
@@ -166,10 +173,11 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveCount(0);
     await device.getByRole('link', {name: 'Update games', exact: true}).click();
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue('');
+    // Another account can open the shared link read-only, but never gains the game.
     await device.goto(`${gameHref}?ply=3`);
-    await expect(device.getByRole('alert')).toContainText('Game not found');
-    await expect(device.locator('.game-player-name')).toHaveCount(0);
-    await device.getByRole('link', {name: 'All games', exact: true}).click();
+    await expect(device.locator('.game-player-name', {hasText: username})).toBeVisible();
+    await expect(device.getByRole('button', {name: /review$/})).toHaveCount(0);
+    await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
   } finally { await second.close(); }
 });
