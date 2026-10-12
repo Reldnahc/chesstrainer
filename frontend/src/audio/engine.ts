@@ -74,6 +74,10 @@ const FADE_SECONDS = .012;
 // Linear segments approximating the raised-cosine speech release.
 const RELEASE_STEPS = 16;
 const SEEN_LIMIT = 512;
+// Decoded speech costs about 190 KB per second at 48 kHz, and one long review
+// plays hundreds of distinct lines. An unbounded cache let mobile browsers
+// discard and reload the tab.
+const DECODED_ASSET_BUDGET = 48 * 1024 * 1024;
 
 /** One context, bounded voices, and no playback backlog after suppression or cancellation. */
 export class AudioEngine {
@@ -82,6 +86,8 @@ export class AudioEngine {
   private readonly speechObserver?: AudioEngineOptions["onSpeechPlayback"];
   private readonly unsubscribeVisibility: () => void;
   private readonly assets = new Map<string, Promise<AudioBuffer>>();
+  private readonly assetBytes = new Map<string, number>();
+  private decodedBytes = 0;
   private readonly speechEnvelopes = new WeakMap<AudioBuffer, SpeechEnvelope>();
   private readonly speechReleases = new WeakMap<AudioBuffer, SpeechRelease | null>();
   private readonly assetAbort = new AbortController();
@@ -251,6 +257,8 @@ export class AudioEngine {
     this.unsubscribeVisibility();
     this.assetAbort.abort();
     this.assets.clear();
+    this.assetBytes.clear();
+    this.decodedBytes = 0;
     this.seen.clear();
     try { void this.context?.close().catch(() => {}); } catch { /* Already closed. */ }
   }
@@ -334,15 +342,41 @@ export class AudioEngine {
 
   private async decode(url: string): Promise<AudioBuffer> {
     const cached = this.assets.get(url);
-    if (cached) return cached;
+    if (cached) {
+      // Map order is recency order for eviction.
+      this.assets.delete(url);
+      this.assets.set(url, cached);
+      return cached;
+    }
     const context = this.context!;
     const pending = this.driver.loadAsset(url, this.assetAbort.signal)
-      .then(bytes => context.decodeAudioData(bytes)).catch(error => {
+      .then(bytes => context.decodeAudioData(bytes))
+      .then(buffer => {
+        if (this.assets.get(url) === pending) this.remember(url, buffer);
+        return buffer;
+      }).catch(error => {
         if (this.assets.get(url) === pending) this.assets.delete(url);
         throw error;
       });
     this.assets.set(url, pending);
     return pending;
+  }
+
+  /** Keep decoded PCM within budget by forgetting the least recently used buffers. */
+  private remember(url: string, buffer: AudioBuffer): void {
+    const size = Number.isFinite(buffer?.length) && Number.isFinite(buffer?.numberOfChannels)
+      ? buffer.length * buffer.numberOfChannels * Float32Array.BYTES_PER_ELEMENT : 0;
+    this.assetBytes.set(url, size);
+    this.decodedBytes += size;
+    for (const key of [...this.assets.keys()]) {
+      if (this.decodedBytes <= DECODED_ASSET_BUDGET) break;
+      const bytes = this.assetBytes.get(key);
+      // Pending loads have no size yet, and the newest buffer always stays.
+      if (key === url || bytes === undefined) continue;
+      this.assets.delete(key);
+      this.assetBytes.delete(key);
+      this.decodedBytes -= bytes;
+    }
   }
 
   /** Join whole recordings into one buffer so one playback, Stop and envelope cover them all. */
