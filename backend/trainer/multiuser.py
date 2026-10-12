@@ -276,7 +276,7 @@ def configure_accounts(app, settings):
         user = managed(
             request,
             account_id,
-            not_self="Change your own password in Settings → Account.",
+            not_self="Change your own password in Settings, under Account.",
         )
         # Shares the sign-in slot so hashing stays memory-bounded.
         with password_lock:

@@ -43,7 +43,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
   function resetPassword(event: FormEvent, account: ManagedAccount) {
     event.preventDefault();
     void act(() => read(api.POST("/api/auth/accounts/{account_id}/password", { ...path(account), body: { password } })),
-      `Set a new password for ${account.username} and signed them out everywhere.`);
+      `Set a temporary password for ${account.username} and signed them out. They will choose their own when they next sign in.`);
   }
   function choose(next: Pending) {
     setPending(next);
@@ -66,11 +66,11 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
         {resetting
           ? <form className="button-row account-password-form" onSubmit={event => resetPassword(event, account)}>
             <label>
-              <span>New password for {account.username}</span>
+              <span>Temporary password for {account.username}</span>
               <input type="password" autoComplete="new-password" minLength={10} maxLength={128} required autoFocus
                 value={password} onChange={event => setPassword(event.target.value)} />
             </label>
-            <Button type="submit" size="compact" variant="primary" disabled={busy}>Set password</Button>
+            <Button type="submit" size="compact" variant="primary" disabled={busy}>Set temporary password</Button>
             <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
           </form>
           : deleting
@@ -100,6 +100,6 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
             </div>}
       </div>;
     })}
-    <p className="small muted">Deleting an account removes its games, reviews and training history for good. Disable it instead to keep them. Change your own password with the command-line tools.</p>
+    <p className="small muted">Deleting an account removes its games, reviews and training history for good. Disable it instead to keep them. Change your own password above.</p>
   </SettingsSection>;
 }
