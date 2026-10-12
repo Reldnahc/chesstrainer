@@ -100,7 +100,8 @@ test('a pin is drawn in red on the move that makes it, not on later moves that k
   expect(Number(await stem.evaluate(element => getComputedStyle(element).opacity))).toBeCloseTo(0.65 * 0x8c / 255, 2);
   await page.locator('.board-shell').screenshot({path: `test-results/pin-arrow-board-${info.project.name}.png`});
   await page.screenshot({path: `test-results/pin-arrow-${info.project.name}.png`, fullPage: true});
-  await page.getByRole('button', {name: /^4\.\.\. h6/}).click();
+  // The evaluation graph can mark the same move, so look in the move list.
+  await page.locator('.game-move-list').getByRole('button', {name: /^4\.\.\. h6/}).click();
   await expect(page).toHaveURL(/ply=8/);
   await expect(page.locator('.board-shell marker').first()).toBeAttached({timeout: 60_000});
   await expect(pin).toHaveCount(0);
