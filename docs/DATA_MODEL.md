@@ -27,8 +27,10 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 
 There are 38 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
 
-`human_analyses` stores account-owned provider-neutral requests and complete policy
-facts, unique by owner and versioned cache key. `game_review_moves.human_analysis_id`
+`human_analyses` stores provider-neutral requests and complete policy facts, unique
+by versioned cache key. Like `engine_analyses` it is shared between accounts: the
+key depends only on the game and provider, so members who import the same game
+reuse one prediction. `game_review_moves.human_analysis_id`
 references that evidence independently of Stockfish analysis IDs. Model weights
 remain reproducible files outside SQLite. Native inference holds no database
 transaction. See [HUMAN_MODELS.md](HUMAN_MODELS.md) for identity and interpretation.

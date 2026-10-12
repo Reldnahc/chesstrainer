@@ -1,4 +1,4 @@
-"""Private evidence, honest probabilities, domain conditioning, and durable reuse."""
+"""Shared evidence, honest probabilities, domain conditioning, and durable reuse."""
 
 import io
 from concurrent.futures import ThreadPoolExecutor
@@ -95,39 +95,57 @@ def test_cache_restart_key_inputs_and_worker_count(settings, sessions):
     assert all(row["status"] == "available" for row in variants)
 
 
-def test_account_private_cache_and_same_account_concurrent_dedup(settings, sessions):
+def test_cache_is_shared_between_accounts_and_concurrent_requests(settings, sessions):
     owner = Accounts(settings.database_path).create("second-owner", "testing-password")
-    private = account_sessions(sessions.kw["bind"], owner["id"])
+    other_account = account_sessions(sessions.kw["bind"], owner["id"])
     provider = PolicyProvider(settings)
     service = HumanModels(settings, provider)
     with ThreadPoolExecutor(max_workers=4) as pool:
         local = list(pool.map(lambda _: evidence(service, sessions), range(4)))
-    other = evidence(service, private)
-    assert len(provider.calls) == 2
-    assert len({r["evidence_id"] for r in local}) == 1
-    assert other["evidence_id"] != local[0]["evidence_id"]
-    for factory, hidden in [(sessions, other["evidence_id"]), (private, local[0]["evidence_id"])]:
+    # A clubmate reviewing the same game reuses the prediction.
+    other = evidence(service, other_account)
+    assert len(provider.calls) == 1
+    assert {r["evidence_id"] for r in [*local, other]} == {other["evidence_id"]}
+    for factory in (sessions, other_account):
         with factory() as db:
-            assert db.get(HumanAnalysis, hidden) is None
-            assert db.scalar(select(func.count()).select_from(HumanAnalysis)) == 1
-            row = db.scalar(select(HumanAnalysis))
-            row.user_id = "someone-else"
-            with pytest.raises(ValueError, match="ownership"):
-                db.flush()
-            db.rollback()
-    with sessions() as db:
-        game = Game(
-            fingerprint="human-fk-fixture", white="A", black="B", learner_color=True, pgn="*"
-        )
-        db.add(game)
-        db.flush()
-        db.add(
-            GameReviewMove(
-                game_id=game.id, ply=1, report={}, human_analysis_id=other["evidence_id"]
+            assert db.get(HumanAnalysis, other["evidence_id"]) is not None
+            game = Game(
+                fingerprint="human-fk-fixture", white="A", black="B", learner_color=True, pgn="*"
             )
-        )
-        with pytest.raises(ValueError, match="not in this account"):
+            db.add(game)
             db.flush()
+            db.add(
+                GameReviewMove(
+                    game_id=game.id, ply=1, report={}, human_analysis_id=other["evidence_id"]
+                )
+            )
+            db.commit()
+
+
+def test_policy_reuses_a_row_saved_while_predicting(settings, sessions):
+    provider = PolicyProvider(settings)
+    service = HumanModels(settings, provider)
+    predict = provider.predict
+    request = request_for(parsed(), chess.Board(), 1000)
+
+    def racing(*args):
+        policy = predict(*args)
+        with sessions() as db:
+            db.add(
+                HumanAnalysis(
+                    id="saved-first",
+                    cache_key=service.cache_key(request),
+                    request=request.model_dump(mode="json"),
+                    policy=policy.model_dump(mode="json"),
+                )
+            )
+            db.commit()
+        return policy
+
+    provider.predict = racing
+    assert evidence(service, sessions)["evidence_id"] == "saved-first"
+    with sessions() as db:
+        assert db.scalar(select(func.count()).select_from(HumanAnalysis)) == 1
 
 
 def test_rank_only_is_not_fake_probability_and_failure_never_persists(settings, sessions):
@@ -211,3 +229,55 @@ def test_prefetch_batches_uncached_positions_and_evidence_reads_them(settings, s
     # Already cached positions are not sent again.
     service.prefetch(sessions, game, boards, 1000)
     assert provider.batches == [3]
+
+
+def test_migration_merges_account_copies_and_downgrade_splits_them(settings):
+    from alembic import command
+    from alembic.config import Config
+    from trainer.db import database, migrate
+
+    engine, _ = database(settings.database_path)
+    config = Config("alembic.ini")
+    with engine.begin() as connection:
+        config.attributes["connection"] = connection
+        command.upgrade(config, "e2a4c6b8d0f1")
+    other = Accounts(settings.database_path).create("clubmate", "testing-password")["id"]
+    with engine.begin() as connection:
+        sql = connection.exec_driver_sql
+        for user, row, game, made in [
+            ("local", "old", "g1", "2026-01-01"),
+            (other, "new", "g2", "2026-02-01"),
+        ]:
+            sql(
+                "INSERT INTO human_analyses (id, user_id, cache_key, request, policy, created_at)"
+                f" VALUES ('{row}', '{user}', 'same', '{{}}', '{{}}', '{made}')"
+            )
+            sql(
+                "INSERT INTO games (id, user_id, fingerprint, white, black, learner_color, pgn,"
+                f" created_at) VALUES ('{game}', '{user}', '{game}', 'A', 'B', 1, '*', '{made}')"
+            )
+            sql(
+                "INSERT INTO game_review_moves (game_id, ply, user_id, report, human_analysis_id)"
+                f" VALUES ('{game}', 1, '{user}', '{{}}', '{row}')"
+            )
+    migrate(engine)
+    with engine.connect() as connection:
+        sql = connection.exec_driver_sql
+        assert sql("SELECT id FROM human_analyses").fetchall() == [("old",)]
+        assert {r[0] for r in sql("SELECT human_analysis_id FROM game_review_moves")} == {"old"}
+    with engine.connect() as connection:
+        # Like migrate(), rebuild tables with foreign keys off on this connection.
+        connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
+        connection.commit()
+        config.attributes["connection"] = connection
+        command.downgrade(config, "e2a4c6b8d0f1")
+        connection.commit()
+        connection.exec_driver_sql("PRAGMA foreign_keys=ON")
+    with engine.connect() as connection:
+        sql = connection.exec_driver_sql
+        rows = dict(sql("SELECT user_id, id FROM human_analyses").fetchall())
+        assert set(rows) == {"local", other} and "old" in rows.values()
+        links = dict(sql("SELECT user_id, human_analysis_id FROM game_review_moves").fetchall())
+        assert links == rows
+        assert sql("PRAGMA foreign_key_check").fetchone() is None
+    engine.dispose()

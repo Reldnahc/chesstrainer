@@ -68,7 +68,7 @@ Authenticated `GET /api/human-model` reports disabled, not configured, unchecked
 ready or unavailable separately from Stockfish health. It performs no download,
 hashing, inference or Torch import. Completed game reviews can acquire missing or
 outdated human evidence on reopening without rerunning their Stockfish baseline.
-Account-owned cached evidence remains readable if the model is later unavailable.
+Cached evidence remains readable if the model is later unavailable.
 
 Optional CUDA requires a compatible Torch 2.8.0 CUDA runtime, host GPU support and
 `HUMAN_MODEL_DEVICE=cuda`. The image ships only the CPU Torch build. In Docker,
@@ -97,7 +97,10 @@ complete legal-move softmax, with original history tokenization and color
 mirroring. It does not read Maia's WDL/cp outputs. Strict tensor-only checkpoint
 loading, code hashes, model hashes and typed policies are checked before use.
 
-The account-owned `human_analyses` table stores full policy facts and requests.
+The shared `human_analyses` table stores full policy facts and requests. It has
+no owner, like the Stockfish cache: when two members import the same game, the
+second review reuses the first one's predictions. `scripts/clear_games.py` keeps
+rows another account's review still references.
 Cache identity covers full root/history/final position, mover, both actual PGN
 ratings or explicit fallbacks, source/time-control domain, provider, model and
 checkpoint revision, adapter revision, device, precision, Torch version, thread

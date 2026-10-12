@@ -204,13 +204,17 @@ class ReviewRefinement(Owned, Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class HumanAnalysis(Owned, Base):
-    """Account-owned human move facts, never engine scores or character prose."""
+class HumanAnalysis(Base):
+    """Shared human move facts, never engine scores or character prose.
+
+    Like engine analyses, a request depends only on the game (its moves and PGN
+    ratings, or the review rating as a fallback), so members who import the same
+    game reuse one prediction.
+    """
 
     __tablename__ = "human_analyses"
-    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    cache_key: Mapped[str] = mapped_column(index=True)
+    cache_key: Mapped[str] = mapped_column(unique=True)
     request: Mapped[dict] = mapped_column(JSON)
     policy: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)

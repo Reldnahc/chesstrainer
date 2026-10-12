@@ -2,7 +2,7 @@
 
 Never pass an administrative session into a request or a job. A bound session
 filters reads, bulk updates and deletes, stamps inserts, and validates private
-foreign keys before flush. Engine analyses and the skill taxonomy are shared.
+foreign keys before flush. Engine and Maia analyses and the skill taxonomy are shared.
 """
 
 from sqlalchemy import event, inspect
@@ -29,10 +29,13 @@ def scope_statements(state):
     if not state.is_orm_statement:
         raise ValueError("Raw SQL is not allowed in account sessions")
     if state.is_insert:
-        # Native engine cache upserts are the only Core inserts used by the app.
-        from trainer.models import EngineAnalysis
+        # Shared Stockfish and Maia cache upserts are the only Core inserts the app uses.
+        from trainer.models import EngineAnalysis, HumanAnalysis
 
-        if state.statement.table.name != EngineAnalysis.__tablename__:
+        if state.statement.table.name not in {
+            EngineAnalysis.__tablename__,
+            HumanAnalysis.__tablename__,
+        }:
             raise ValueError("Private inserts must pass through ownership validation")
     if state.is_update:
         for key in state.statement._values or {}:

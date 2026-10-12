@@ -18,8 +18,9 @@ separate bar above navigation. Local mode has no account section.
 All accounts, sessions, games, jobs, reviews and training history live in the
 existing `DATABASE_PATH` SQLite file. Private tables have an indexed `user_id`.
 Game fingerprints and exercise/classification identities deduplicate per account.
-The immutable Stockfish position cache and skill taxonomy are shared internally.
-No API exposes arbitrary engine-cache rows.
+The immutable Stockfish position cache, the Maia prediction cache and the skill
+taxonomy are shared internally, so members who import the same game reuse one
+analysis. No API exposes arbitrary engine- or Maia-cache rows.
 
 Audio choices are saved in the same account-owned `user_preferences` row as coach
 and motion choices, including for the reserved local user. `/api/preferences/audio`
