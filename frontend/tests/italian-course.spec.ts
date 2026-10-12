@@ -366,9 +366,17 @@ test("full-game seeking keeps the coach and controls steady while serializing re
   }
 });
 
-test("the Two Knights, development and central-break chapters show distinct sourced game passages with exact returns from full-game playback", async ({ page }, info) => {
-  const games = new Set<string>();
-  for (const chapterId of ["central-break", "finish-development", "two-knights"]) {
+// Each chapter plays a different sourced game. One test per chapter keeps each within
+// the per-test budget on a slow runner and lets the three run in parallel; the titles
+// below are three different games.
+const sourcedGames: Record<string, string> = {
+  "central-break": "Steinitz–von Bardeleben · Hastings 1895 · 1–0",
+  "finish-development": "Mason–Lasker · Hastings 1895 · ½–½",
+  "two-knights": "Pollock–Schiffers · Hastings 1895 · 0–1",
+};
+
+for (const [chapterId, gameTitle] of Object.entries(sourcedGames)) {
+  test(`the ${chapterId} chapter shows its sourced game passage with an exact return from full-game playback`, async ({ page }, info) => {
     let session = await start(page, chapterId);
     // Walk authored guidance to its real game passage; no fixture curriculum.
     for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
@@ -382,7 +390,7 @@ test("the Two Knights, development and central-break chapters show distinct sour
     await expect(page.locator(".coach-message")).toContainText(excerpt.step.text);
     const opened = await command(page, "Explore full game");
     expect(opened.game?.attributions.length).toBeGreaterThan(0);
-    games.add(opened.game!.title);
+    expect(opened.game!.title).toBe(gameTitle);
     await expect(page.locator(".lesson-attributions")).toContainText(opened.game!.attributions[0].text);
     const beginning = await command(page, "From the beginning");
     expect(beginning.game?.ply).toBe(0);
@@ -395,9 +403,8 @@ test("the Two Knights, development and central-break chapters show distinct sour
     expect(returned.fen).toBe(excerpt.fen);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `test-results/italian-${chapterId}-${info.project.name}.png`, fullPage: true });
-  }
-  expect(games.size).toBe(3);
-});
+  });
+}
 
 
 const continuationChapters: {
