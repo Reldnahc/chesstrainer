@@ -5,7 +5,7 @@ from time import monotonic
 
 import chess
 from sqlalchemy import select
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.dialects.sqlite import insert
 
 from trainer.cancellation import throttled
 from trainer.chess_core import digest
@@ -13,7 +13,21 @@ from trainer.human_models.context import request_for
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable, MaiaProvider
 from trainer.human_models.types import HumanEvidence, HumanPolicy
-from trainer.models import HumanAnalysis
+from trainer.models import HumanAnalysis, uid
+
+
+def save(key, request, policy):
+    """Insert a shared cache row unless another account or process saved it first."""
+    return (
+        insert(HumanAnalysis)
+        .values(
+            id=uid(),
+            cache_key=key,
+            request=request.model_dump(mode="json"),
+            policy=policy.model_dump(mode="json"),
+        )
+        .on_conflict_do_nothing(index_elements=["cache_key"])
+    )
 
 
 class HumanModels:
@@ -93,19 +107,10 @@ class HumanModels:
             return
         self._failed = False
         with sessions() as db:
+            # Another review of the same game may have saved some of these first.
             for (key, request), policy in zip(missing, policies, strict=True):
-                db.add(
-                    HumanAnalysis(
-                        cache_key=key,
-                        request=request.model_dump(mode="json"),
-                        policy=policy.model_dump(mode="json"),
-                    )
-                )
-            try:
-                db.commit()
-            except IntegrityError:
-                # Another job saved some of these first; per-move reads find them.
-                db.rollback()
+                db.execute(save(key, request, policy))
+            db.commit()
 
     def policy(self, sessions, request, cancelled=lambda: False):
         """The complete legal-move policy for one request, cached for every account.
@@ -147,21 +152,14 @@ class HumanModels:
                     raise HumanCancelled("cancelled")
                 if not saved:
                     with sessions() as db:
-                        saved = HumanAnalysis(
-                            cache_key=key,
-                            request=request.model_dump(mode="json"),
-                            policy=policy.model_dump(mode="json"),
+                        # A batch prefetch or another process may have saved it first.
+                        db.execute(save(key, request, policy))
+                        db.commit()
+                        evidence_id = db.scalar(
+                            select(HumanAnalysis.id).where(HumanAnalysis.cache_key == key)
                         )
-                        db.add(saved)
-                        try:
-                            db.commit()
-                            evidence_id = saved.id
-                        except IntegrityError:
-                            # A batch prefetch or another process saved it first.
-                            db.rollback()
-                            evidence_id = db.scalar(
-                                select(HumanAnalysis.id).where(HumanAnalysis.cache_key == key)
-                            )
+                    if evidence_id is None:
+                        raise HumanUnavailable("cache_busy")
             finally:
                 lock.release()
             return policy, evidence_id
