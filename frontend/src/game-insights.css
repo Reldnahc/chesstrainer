@@ -184,8 +184,10 @@
   .insights { gap: var(--space-6); }
   .insight-summary { padding: var(--space-5) var(--space-4); gap: var(--space-5); }
   .insight-panel { padding: var(--space-5) var(--space-4); gap: var(--space-4); }
-  .insight-filter > span { min-width: 0; width: 100%; }
-  .insight-filter .choice-group button { min-height: 44px; }
+  /* Phones show each filter as a dropdown; the filters share one row. */
+  .insight-toolbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: var(--space-3); }
+  .insight-filter { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: var(--space-1-5); }
+  .insight-filter > span { min-width: 0; }
   .insight-headlines li { font-size: 14px; }
   .insight-heatmap-row { grid-template-columns: 56px repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
   .insight-heat { height: 32px; font-size: 11px; }

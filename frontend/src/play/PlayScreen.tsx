@@ -1,4 +1,4 @@
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -16,6 +16,7 @@ import { useCoachPreferences } from "../coach/CoachProvider";
 import { getCoach } from "../coach/registry";
 import { navigate, playGamePath } from "../navigation";
 import PlayGame from "./PlayGame";
+import usePhone from "../usePhone";
 
 type Profile = Schema["PlayProfile"];
 type Opponent = Schema["PlayRequest"]["opponent"];
@@ -51,18 +52,6 @@ export default function PlayScreen({ gameId }: { gameId: string | null }) {
 }
 
 // Phones use the shared ReviewCoach layout; desktop keeps the large portrait.
-const PHONE = "(max-width: 760px)";
-function usePhone() {
-  return useSyncExternalStore(
-    (change) => {
-      const query = window.matchMedia(PHONE);
-      query.addEventListener("change", change);
-      return () => query.removeEventListener("change", change);
-    },
-    () => window.matchMedia(PHONE).matches,
-  );
-}
-
 function PlaySetup() {
   const phone = usePhone();
   const { preferences } = useCoachPreferences();

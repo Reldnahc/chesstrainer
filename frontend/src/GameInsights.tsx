@@ -471,10 +471,10 @@ export default function GameInsights() {
   return <div className="insights">
     <div className="insight-toolbar">
       {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
-        <ChoiceGroup label="Speed" value={speed} onChange={setSpeed}
+        <ChoiceGroup label="Speed" value={speed} onChange={setSpeed} phone="select"
           options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
       <div className="insight-filter"><span id="insight-period">Period</span>
-        <ChoiceGroup label="Period" value={days} onChange={setDays} options={periods} /></div>
+        <ChoiceGroup label="Period" value={days} onChange={setDays} options={periods} phone="select" /></div>
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
       <ActionLink href={pagePaths.Settings}>Import games in Settings</ActionLink>}>

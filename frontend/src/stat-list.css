@@ -3,3 +3,8 @@
 .stat-list dt { color: var(--muted); font-size: 12px; }
 .stat-list dd { font: 20px var(--mono); }
 .stat-list--featured dd { font-size: 40px; line-height: 1.2; }
+/* Phones keep featured counts in a two-column grid at a size that fits a record. */
+@media (max-width: 760px) {
+  .stat-list--featured { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+  .stat-list--featured dd { font-size: 24px; white-space: nowrap; }
+}
