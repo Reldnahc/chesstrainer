@@ -70,16 +70,16 @@ Exact dependency versions and compatibility results are recorded after installat
 ## 008 - Initial course scope (superseded by 018)
 Courses use deterministic priority/order and controlled titles. LLM supplies validated example classifications/explanations. Stage completion is user-marked and exercises enroll immediately in FSRS. These boundaries preserve a usable offline practice loop while richer lesson sequencing remains explicit future work.
 
-## 009 ? Reproducible dependencies and source deployment (accepted)
+## 009 — Reproducible dependencies and source deployment (accepted)
 Tested FSRS 6.3.2 is pinned; Python dependencies are locked in requirements.lock and frontend packages in package-lock.json. Production runs from a source checkout so Alembic and built assets remain available. Native Stockfish is separately installed, never bundled in source.
 
-## 010 ? Compatible unknown-answer grading (accepted)
+## 010 — Compatible unknown-answer grading (accepted)
 A precomputed set cannot cover all legal moves. Unknown moves are searched with the exercise's saved limits/resources and same binary identity. Changed engine versions cause an actionable unavailable response, never a fabricated wrong answer. Existing accepted moves remain usable.
 
-## 011 ? Versioned classification evidence (initial limitation)
+## 011 — Versioned classification evidence (initial limitation)
 Existing evidence links retain the original audit so archived course support stays traceable. A changed model can add new skill links; automatic reconciliation/removal of prior labels is not yet implemented. Default same-version retries are idempotent.
 
-## 012 ? Backup and configuration
+## 012 — Backup and configuration
 The database never stores credentials. Online SQLite snapshots include WAL state; restore validates integrity and requires a new destination. Safe .env settings are included as reference JSON, with API key/LAN token values excluded. Settings UI is read-only for the initial release.
 
 ## 017 - Training interface redesign

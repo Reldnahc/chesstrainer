@@ -79,11 +79,12 @@ accounts stay private when switching modes. Restart after changes. See
 | `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines and host analysis jobs. One additional worker fetches games without analysis. Worker count is independent of account count; busy requests/jobs wait. |
 | `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
 | `STOCKFISH_HASH_MB` | `64` | RAM in MB per engine for temporary search-position tables, not disk storage. |
-| `STOCKFISH_WORKERS` | `1` | Concurrent games per training import, or moves within a game review (1–4). Reviews are also capped by `ENGINE_SLOTS`; account mode obeys the shared host-wide pool. |
+| `STOCKFISH_WORKERS` | `1` | Concurrent games per training import, or moves within a game review (1–16). Reviews are also capped by `ENGINE_SLOTS`; account mode obeys the shared host-wide pool. |
 | `HUMAN_MODEL_ENABLED` | `true` | Permits human-policy inference when the explicitly installed checkpoint exists. Missing weights keep review Stockfish-only, with no download. |
 | `HUMAN_MODEL_WORKERS` / `HUMAN_MODEL_THREADS` | `1` / `2` | Host-wide resident Maia workers and CPU threads per worker. Model RAM multiplies with workers; independent of Stockfish slots. |
 | `REVIEW_REFINEMENT_POSITIONS` / `REVIEW_REFINEMENT_QUERIES` | `8` / `4` | Maximum positions and additional questions per position after the unchanged full-game baseline. Zero positions disables this extra work. |
 | `DATABASE_PATH` | `/data/trainer.sqlite3` | Persistent SQLite file; normally keep unchanged. |
+| `COURSES_PATH` | empty | The club's Study course files. Blank uses `/data/courses`, beside the database; normally keep unchanged. |
 | `STOCKFISH_PATH` | `/usr/games/stockfish` | Bundled engine binary; normally keep unchanged. |
 | `SERVER_HOST` | `0.0.0.0` | Bind inside the container; Docker's published address controls host exposure. |
 | `SERVER_PORT` | `8000` | Internal container port; the image health check follows it. Normally change the published host port instead. |
@@ -96,9 +97,10 @@ In account mode, slots times threads bounds native search threads; slots times h
 MB estimates search-table RAM, plus app/engine overhead. Local mode uses separate
 interactive engines and job workers: `ENGINE_SLOTS` is not a global local-mode limit.
 CPU pinning determines where work can run; these settings determine how much work is
-scheduled. Defaults do not auto-scale with pinning. Signup and recent-game fetching
-run no analysis. Opening an individual game starts or resumes its review. For faster
-reviews on a host with available CPUs, raise `STOCKFISH_WORKERS` (up to 4) while
+scheduled. Defaults do not auto-scale with pinning. Signup runs no analysis. Every
+saved game is analyzed in the background, newest first; opening a game moves its
+review to the front. For faster
+reviews on a host with available CPUs, raise `STOCKFISH_WORKERS` (up to 16) while
 budgeting engine slots, threads and memory together. Use only one app instance/Uvicorn
 worker per database.
 
@@ -133,7 +135,7 @@ the container with the same volume/settings after pulling an update, or use
 `docker compose pull` then `docker compose up -d`. Back up before schema upgrades.
 Removing a container preserves named volumes unless you explicitly delete them.
 Read logs with `docker logs fieldwork`. Invalid configuration produces an explanatory
-startup error; origin mismatch responses identify the configured address to open.
+startup error; with `PUBLIC_ORIGIN` set, origin mismatch responses identify that address to open.
 See [Unraid troubleshooting](UNRAID.md#settings-and-troubleshooting).
 
 Build from source with `docker build -t fieldwork:local .`. The image contains its

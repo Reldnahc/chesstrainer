@@ -69,7 +69,8 @@ or select **Next mistake**. **Show why** overlays arrows and tactical square
 highlights on the current board without moving pieces, changing the selected
 move, requesting more analysis, or creating a variation. **Hide why** or Escape
 clears those cues. Outside Show why, the opponent's strongest reply to the
-selected move is drawn as one faded blue arrow. The action row and best alternative sit below the speech bubble.
+selected move is drawn as one faded blue arrow, and the same reply appears as
+**Reply** under **Best** beside the coach portrait. The action row sits below the speech bubble.
 The compact coach shows the move and rating together, with a prominent signed
 evaluation in the opposite corner. Scores always use White's perspective, even
 in a variation or after flipping the board: positive favors White, negative favors
@@ -84,11 +85,11 @@ it; the variations list keeps both lines while this game remains open. A promine
 purple **Return to game** button beside **Show why** in the coach's action row
 restores the original branch point without adding another row above the controls.
 Game review and SRS share the same action sizing: buttons grow with the row up to
-half its width, allowing for the gap, with a 44px minimum height. A single action
+half its width, allowing for the gap, with a 40px height at every width. A single action
 keeps that half-width when Return to game appears beside it. The best move sits
 directly beneath the coach portrait, with its notation kept on one line even in
-compact panels. Human insight information keeps a separate compact line below
-the actions, so neither readout can squeeze the buttons.
+compact panels. The human insight sits inside the coach bubble, so neither
+readout can squeeze the buttons.
 Stepping backward to that point also exits the variation. In a variation the `<<`
 control is **Start of variation**: it exits to the original-game position where the
 variation began. On the original game it is **Start of game**, selecting the initial
@@ -159,8 +160,10 @@ Objective labels and evaluations remain independent of this estimate.
 Best-move markers use a centered SVG star
 on the board, in coaching, and in notation.
 On phones the coach appears directly below the
-board controls, with full-size touch targets and normal page scrolling. Mobile
-navigation buttons share the available row width. The move counter reserves space
+board controls, with normal page scrolling. The board controls put **Flip board**
+first and the mute button last, either side of the move buttons; on phones all six
+share the available row width. The move list and evaluation graph lose their card
+border on phones, with a divider above the graph. The move counter reserves space
 for three-digit steps and totals, keeping the controls still as those numbers grow.
 
 ## Analysis and persistence

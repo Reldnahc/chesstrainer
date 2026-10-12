@@ -149,9 +149,10 @@ dedicated audio suite; audio-only changes do not require the coach artwork matri
 
 ## Recorded coach voices
 
-Walter (`classic`) and Rivet (`robot`) each have a **195-recording bank**: 185
-non-lesson meanings, the game-review opener and the nine generic lesson prompts,
-using their owner-selected Older teacher and Retro speech terminal voices.
+All thirty coaches have a registered **610-recording bank**, one recording for
+each meaning in `meanings.json` (`banks/registry.json`). Walter (`classic`) and
+Rivet (`robot`) were the first, using their owner-selected Older teacher and Retro
+speech terminal voices.
 The earlier Walter wording revision replaced 81 passages and retained 100 recordings. It removed repetitive
 “continuation” language while preserving actual, possible, missed and
 opponent-opportunity meanings. The revised passages used **7,524 input characters**
@@ -161,8 +162,8 @@ sentence fragments are stitched together.
 
 **Settings → Sound → Coach voice** offers **Automatic** (the default), **On
 request**, and **Off**. Automatic narration follows fresh supported interactions;
-On request uses the coach's **Listen** control. Other selected coaches remain
-text-only until their own approved bank is available. Voice shares the existing
+On request uses the coach's **Listen** control. A coach without a registered
+bank stays text-only. Voice shares the existing
 master sound switch, volume, device mute, account persistence and browser
 activation policy. It is independent of coach/interface motion preferences;
 Still keeps the portrait still without muting audio.
@@ -186,9 +187,10 @@ additions, hints, game annotations and edits still do not require voice assets.
 
 The [Walter manifest](../frontend/src/audio/speech/bank/manifest.json) and
 [Rivet manifest](../frontend/src/audio/speech/banks/rivet/manifest.json) identify
-all recordings and their local paths. Each covers 96 game-review meanings, 68
-additional practice/explanation meanings, 10 opening-recall/preview meanings,
-eight puzzle states and three finite review statuses. Four audited transient or
+all recordings and their local paths, as do the other coaches' `banks/<voice>/manifest.json`.
+Each now covers 397 game-review meanings, 170 practice/explanation meanings,
+13 opening-recall/preview meanings, 11 puzzle states, 12 lesson prompts and
+seven operational lines (273 of the 610 are piece-named variants). Four audited transient or
 defensive states deliberately remain silent: thinking, checking, loading an
 explanation and no-renderable-claim. Shared meanings reuse recordings; the
 [full inventory](../frontend/src/audio/speech/walter-full-dialogue-inventory.json)
@@ -196,9 +198,10 @@ retains trigger definitions, aliases and the original script audit. The active
 manifest is the current script source; the
 [wording revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
 records the exact old/new text and the reason for each change.
-The shared `meanings.json` catalogue adds eleven Book variants, the game-review
-opener and nine lesson prompts to 174 of the original 181 meanings, for **195
-meanings**. `banks/pilot-additions.json` holds Walter's and Rivet's opening,
+The shared `meanings.json` catalogue first added eleven Book variants, the game-review
+opener and nine lesson prompts to 174 of the original 181 meanings, for 195
+meanings; later batches, recorded under each bank's `recordings/<voice>-*-v1/`
+folders, bring it to **610 meanings**. `banks/pilot-additions.json` holds Walter's and Rivet's opening,
 opener and lesson scripts. Until 2026-10-02 the catalogue also had the seven
 standalone human-model readings and 246 objective/Maia combinations (448 in all,
 with `banks/maia-combinations.json`); those 253 meanings, their scripts, clips,
@@ -262,7 +265,7 @@ Detailed source/phoneme archives remain authoring evidence; `bank/tracks.json` i
 Walter's compact runtime projection, and `banks/rivet/tracks.json` is Rivet's.
 Each coach's tracks are fetched as plain JSON the first time that coach speaks,
 never bundled into the initial application or compiled as JavaScript (the 30
-tracks files are about 35 MB, which nearly filled Node's default memory limit
+tracks files are about 42 MB, which nearly filled Node's default memory limit
 when the build parsed them as modules). The application bundles only each bank
 manifest's `id`, `text` and `audioPath` (`?runtime`, `speechManifests` in
 `frontend/vite.shared.ts`); provenance and alignment paths stay in the source
@@ -308,7 +311,7 @@ artwork, animation and dialogue workflow.
   complete phone coverage prove artifact consistency, not pleasing delivery or
   perceptually correct lip sync.
 
-The current 185 non-lesson recordings are a coverage snapshot, not a per-coach
+The current 598 non-lesson recordings are a coverage snapshot, not a per-coach
 quota. A new bank should cover the current reachable non-lesson meanings
 intentionally; do not invent meanings to reach a number. Missing meanings can remain safely silent
 during development, but a partially registered bank is not a completed coach.
@@ -378,7 +381,7 @@ document without a prior gesture stays silent, and the first navigation replaces
 the greeting with that move's own line. The greeting is the mainline start's own
 line, so returning there shows and speaks it again like any other position. While
 the greeting is the active line, the bubble shows its text. It is written and recorded for all 30 coaches.
-Choosing a coach in **Settings → Your coach** plays that coach's
+Choosing a coach in **Settings → Coach & animations → Your coach** plays that coach's
 `coach-introduction` clip once the choice is saved, through the same scoped
 speech control (any voice mode except Off, honouring mute and volume), with the
 selected portrait's mouth following it. Loading or reloading Settings never plays

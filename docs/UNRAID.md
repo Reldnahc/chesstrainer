@@ -48,7 +48,7 @@ image's user; the `--user` option does.
    **Public origin** (advanced) blank unless your proxy rewrites the Host header.
 3. Optionally change **WebUI** in Advanced View to your HTTPS address.
 4. Apply and open the HTTPS address. Users can sign up and use their account on
-   multiple devices. Recent-game fetching does not run analysis.
+   multiple devices. Each account's saved games are analyzed in the background.
 
 Cloudflare Access is optional and independent of the app login. If used, apply its
 policy before exposing the proxy. Do not expose local no-login mode publicly.

@@ -305,7 +305,9 @@ start at `2026-10-v1`.
 Black decisions and rehearsal use Black orientation
 and automatically play White’s intervening replies. Each course is a readable
 JSON file in the [course file format](COURSE_FILES.md); the seven built-in files
-are in `backend/trainer/study_lessons/courses`. They are cached as immutable
+are in `backend/trainer/study_lessons/courses`, and a club's own files in its
+[courses folder](COURSE_FILES.md#club-courses) add courses or replace a built-in
+one with the same `id`. They are cached as immutable
 source data and returned as independent copies. Existing saved sessions,
 enrolled lines and their earlier revisions retain their own snapshots.
 
@@ -518,8 +520,9 @@ regeneration command for engine upgrades.
 ### Other deferred study work
 
 Additional opening courses, arbitrary opening PGN/Lichess Study imports, repertoire
-tree editing, favorite-position lines, external source synchronization, graphical
-course authoring and broader practice modes require separate product work. Existing
+tree editing, favorite-position lines, external source synchronization and broader
+practice modes require separate product work. Administrators can already write
+and edit course files in the [lesson editor](COURSE_FILES.md#lesson-editor). Existing
 catalogue browsing and the Italian pilot are not authorization to generate a large
 course collection. Preserve the shared board/coach and the distinct source,
 scheduling and historical-snapshot authorities when extending these features.

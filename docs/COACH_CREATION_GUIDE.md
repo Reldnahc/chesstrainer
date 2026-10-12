@@ -131,11 +131,12 @@ second evidence-to-English generator in the character or audio code.
 
 Walter's `characters/storyteller.ts` and Rivet's `characters/robot.ts` are current
 examples. Their `tacticalWording: "witness"` and `openingWording: "sequence"`
-options are deliberate opt-ins. Another character needs its own complete authored
-forms through `characters/scopedTactics.ts` / `scopedTacticalWording.ts` and the
-opening-sequence contract before enabling those options. Enabling a flag alone
-does not supply distinctive prose. Most other existing coaches still use the
-earlier wording; do not copy that merely because it compiles.
+options are deliberate opt-ins; every current coach now enables both. A new
+character needs its own complete authored forms through
+`characters/scopedTactics.ts` / `scopedTacticalWording.ts` and
+`characters/openingSequence.ts` before enabling those options. Enabling a flag
+alone does not supply distinctive prose; do not copy another coach's forms merely
+because they compile.
 
 Preserve required slots and qualifications in mandatory factual fragments.
 Positional alternatives remain hypothetical. A mover's abandoned defender is not
@@ -170,12 +171,14 @@ and intentional silence before counting clips. Maia readings are never spoken or
 shown as coach dialogue, so the catalogue has no `human-*` or objective/Maia
 combination meanings (253 were retired on 2026-10-02 and the last five on
 2026-10-04), and the three per-move clock observations were retired on
-2026-10-03. The catalogue has 233 meanings: 171 original meanings, 11 varied
-opening meanings, 32 grade takes, seven forced-mate meanings (mate in one
-allowed, and a move that starts, keeps, slows, finishes next move, hastens or
-holds out against a forced mate; added 2026-10-05), the game-review opener, the
-picker introduction, the Play greeting (`game-start`) and nine lesson prompts. It also lists 268 piece
-variants of 60 of those meanings, which name the piece a generic line calls "a
+2026-10-03. The catalogue has 337 meanings, among them 11 varied opening
+meanings, the grade takes, seven forced-mate meanings (mate in one allowed, and
+a move that starts, keeps, slows, finishes next move, hastens or holds out
+against a forced mate; added 2026-10-05), 79 alternative takes (`takeOf`), 20
+colour-specific positional lines (`colourOf`), the game-review opener, the picker
+introduction, the Play greeting (`game-start`), the Play invitation
+(`play-invitation`) and the lesson prompts. It also lists 273 piece
+variants of 61 of those meanings, which name the piece a generic line calls "a
 piece" (see the [speech README](../frontend/src/audio/speech/README.md)); the
 generic line stays as their fallback. That is today's measured
 coverage, not a required

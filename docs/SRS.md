@@ -41,7 +41,8 @@ columns, metadata/control slots, header placement, sidebar and responsive sizing
 The board has the same size and position at the same viewport in both modes;
 there is no separate SRS width limit or sizing calculation. The evaluation gutter
 stays empty in SRS so a cold exercise cannot reveal a score. The title is beside
-the board on desktop and above it on phones, using the same header slot as Games.
+the board on desktop and above it on phones, in the workspace's optional heading slot;
+game review leaves that slot empty.
 Browser regression checks compare the actual board, heading and coach geometry
 between both modes at three desktop and two phone sizes.
 
@@ -71,7 +72,7 @@ clamping a phone's scroll position. No additional analysis is requested for thes
 visual effects.
 
 Training badges say Accepted, Retry or Revealed, based on the existing response;
-they do not infer the full-game eight-label classification or an FSRS rating.
+they do not infer the full-game nine-label classification or an FSRS rating.
 Destination badges and highlights appear only after confirmed feedback, on the
 corresponding attempted, accepted or revealed move. The opponent's automatic
 reply does not inherit the learner's Retry badge. Source, answers, scores and

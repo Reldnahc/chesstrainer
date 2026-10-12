@@ -1,7 +1,8 @@
 # Positional evidence
 
 `position-facts-1` derives immediate, legal board changes for played and best
-candidates. `move-events-2` exposes them as `positional` events. These are facts
+candidates. Move events (since `move-events-2`; currently `move-events-4`)
+expose them as `positional` events. These are facts
 about the position, **not explanations inferred from an evaluation drop**.
 Stockfish remains responsible for whether either candidate is good. The event
 records `value_judgment: not_inferred`, side, before/after values, squares, line

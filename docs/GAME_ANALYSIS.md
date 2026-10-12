@@ -24,7 +24,7 @@ completed, failed or cancelled job.
 
 | Level | Value | Source |
 | --- | --- | --- |
-| Requested | 0 | The learner chose **Start game review**; also every non-game job. |
+| Requested | 0 | The learner opened the game, which starts or resumes its review; also every non-game job. |
 | Fresh | 10 | Found by the poller. |
 | Backfill | 20 | **Import older games**, a PGN upload, or a saved game that never had a job. |
 

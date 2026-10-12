@@ -1,13 +1,14 @@
 # Data model
 
-SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at c7e2a9f4b1d3. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
+SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at b3d5f7a9c1e2. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
 
 ## Current and archival relationships
 
 | Tables | Role |
 |---|---|
-| users, auth_sessions, user_preferences | Account credentials/session digests, recent-game sync and persisted coach/motion preferences |
-| game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts and unique fingerprints |
+| users, auth_sessions, user_preferences | Account credentials/session digests, administrator and password-change-required flags, presence for polling, and persisted coach/motion/audio preferences |
+| provider_connections | Account-owned provider usernames and the poller's change markers (`poll_state`) |
+| game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts, unique fingerprints and the nullable `rated` flag (statistics skip only games known to be unrated) |
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
 | chesscom_imports, chesscom_archives | Query/filter settings, download diagnostics and per-job archive checkpoints |
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
@@ -25,7 +26,7 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
 | repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
 
-There are 38 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 51 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
 
 `human_analyses` stores provider-neutral requests and complete policy facts, unique
 by versioned cache key. Like `engine_analyses` it is shared between accounts: the
@@ -50,6 +51,17 @@ Backups contain a consistent SQLite snapshot, format manifest and safe settings.
 Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules. The interface refactor adds no migration or schema change. [VERIFICATION.md](VERIFICATION.md) records current copy-preservation checks.
 
 ## Migration history
+
+### Play, rated games, shared Maia cache and password resets
+
+Revision `a1c3e5f7b9d1` adds `play_games` and `play_profiles`; `d4e6f8a0b2c4`
+adds the nullable `play_games.practice` for opening practice. `0dc741d4af1f`
+relabels games-v1 own-game puzzles in place and turns lines longer than nine
+plies into `too_long` abstentions. `e2a4c6b8d0f1` adds nullable `games.rated`,
+backfilled from the PGN Event header; Chess.com games stay unknown until a
+re-import. `1c26d1ef1233` drops `human_analyses.user_id`, merging duplicate
+predictions into the oldest row and repointing `game_review_moves`.
+`b3d5f7a9c1e2` adds `users.password_change_required` for administrator resets.
 
 ### Puzzles from your games: c7e2a9f4b1d3
 

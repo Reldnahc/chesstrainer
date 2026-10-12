@@ -23,32 +23,35 @@ React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ own
 
 Shared hosting uses one database with explicit `user_id` ownership across private
 tables. Account-bound ORM sessions enforce reads and writes for both HTTP routes
-and background workers. The shared engine cache and skill taxonomy are global;
+and background workers. The shared engine cache, human-move (Maia) cache and skill taxonomy are global;
 account credentials and revocable device sessions live in that same SQLite file.
 See [ACCOUNTS.md](ACCOUNTS.md) for migration and recovery.
 
 Recent-game sync uses a separate fetch-only worker lane. It remembers the account's
-provider usernames, checks at most once a minute while Games or Settings' Games &
-imports section is visible,
-and fetches up to 50 completed games from the current and previous month. Repeated
+provider usernames; the server's poller checks saved connections every
+`SYNC_INTERVAL_SECONDS` and syncs only those that changed, reading the newest
+`SYNC_GAMES` completed games regardless of month. Repeated
 checks reuse a checkpoint rather than accumulating duplicate raw PGNs or gradually
 backfilling older games. Game ordering uses provider completion time, with
-PGN UTC date/time as the upload fallback. Sync never invokes the analysis pipeline.
-Whole-game review and training analysis are separately requested from the game.
+PGN UTC date/time as the upload fallback. Sync itself runs no engine; every newly
+saved game then queues its own analysis job. See
+[Automatic game analysis](GAME_ANALYSIS.md).
 
 | Module | Responsibility |
 |---|---|
 | backend/trainer/api.py | One application and router graph, shared resources, database maintenance and lifespan |
-| multiuser.py | Cookie authentication, account/profile endpoints and request authentication; no child applications |
+| multiuser.py | Cookie authentication, account/profile endpoints, administrator account management and request authentication; no child applications |
+| accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`) |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
 | jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
-| human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
+| human_models/ | Versioned human-policy contracts, domain provenance, a durable cache shared across accounts like the engine cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
 | routes/workspace.py | Health, effective settings, account-owned coach/interface preferences and statistics |
 | preferences.py | Validated coach, motion and audio choices in one owned user_preferences row; field-specific writes preserve independent choices and missing/unsupported choices have safe read defaults |
-| routes/imports.py | Bounded PGN upload and Chess.com import requests |
+| routes/imports.py | Bounded PGN upload and provider import requests |
+| routes/sync.py | Provider connections, on-demand Update games checks and the welcome-back notice |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
 | puzzles/ / routes/puzzles.py | Versioned provider definitions, hash-pinned local Lichess-layout packs (bundled starter pack plus optional installed pack), preference-aware selection, private session snapshots and atomic multi-move practice; no engine, network or scheduler dependency |
@@ -84,12 +87,13 @@ lock, while other accounts have independent locks.
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
 | Home.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
-| study/ | Study landing, opening catalogue/enrollment, lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state |
+| study/ | Study landing, opening catalogue/enrollment, lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. `CourseSettings.tsx` and `LessonEditor.tsx` are the administrator course tools under Settings → Courses |
+| play/ | Play setup and live games against the coach's bot (`PlayScreen.tsx`, `PlayGame.tsx`, `usePlaySession.ts`), reusing the game review presentation |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
 | GameReview.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
-| GameInsights.tsx | Insights → Overview panels over `/api/insights`; shared section navigation, choices, statistics and load states |
+| Weaknesses.tsx / GameInsights.tsx | Insights page: shared section navigation (Overview / Weaknesses, with weakness categories as subsections); GameInsights renders the Overview panels over `/api/insights` with shared choices, statistics and load states |
 | ReviewCoach.tsx | Common portrait with optional caption, speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
 | gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
 | gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |
@@ -97,6 +101,7 @@ lock, while other accounts have independent locks.
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
 | Settings.tsx / SettingsSection.tsx | URL-addressable Settings sections, shared section layout, account/preferences and classification job controls |
+| AccountAdmin.tsx / ChangePasswordForm.tsx | Administrator account list under Settings → Account, and password changes (including the forced change after an administrator reset) |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
 | useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
@@ -113,7 +118,7 @@ lock, while other accounts have independent locks.
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
 | api.ts / api.generated.ts | Same-origin typed OpenAPI client, authentication/error handling and generated request/response contracts |
 
-Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
+Existing Board, MoveStatus, ReviewExplanation, ProviderImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
 `styles.css` is the application stylesheet entry point. `foundation.css` owns
 shared fonts, tokens, element defaults and common form/surface utilities;
@@ -152,7 +157,7 @@ sharing cancellation ownership. `audio_voice` persists Off, On request or
 Automatic alongside existing preferences. Unsupported coaches, missing legacy
 facts and lessons remain silent; written feedback remains authoritative.
 
-Home, Study (including Openings/Puzzles), Games, Insights and Settings use `PageTitle`:
+Home, Study (including Openings/Puzzles), Play, Games, Insights and Settings use `PageTitle`:
 a required eyebrow above the title on desktop, hidden on phones, with optional
 page actions and no subtitle. Compact board-workspace headings remain separate.
 
@@ -165,11 +170,12 @@ graph, including CSS imports, so a page stylesheet cannot silently become a
 studio dependency. The same boundary manifest drives CI's application-style
 exclusions; shared foundations and unknown styles retain broad coverage.
 
-`ReviewCoach` owns one action row: 44px minimum-height buttons share the available
-width with an 8px gap, capped at half the row per button. A single action retains
+`ReviewCoach` owns one action row: 40px minimum-height buttons at every width share
+the available width with an 8px gap, capped at half the row per button. A single action retains
 that same half-width, so adding a second action does not resize it. Callers provide
-buttons directly; game review's best move uses the `portraitCaption` slot beneath
-the character, while human insight uses the separate `context` slot. The portrait
+buttons directly; game review's best move and the opponent's strongest reply use
+the `portraitCaption` slot beneath the character, while human insight uses the
+bubble footer's `insight` slot beside the optional `detail` line. The portrait
 caption does not change bubble or action geometry and is absent in cold SRS.
 SRS and game styles must not override shared action dimensions.
 
@@ -185,8 +191,9 @@ retains its board-and-sidebar layout.
 Game review does not add a temporary exploration-hint row while analysis is
 pending, so receiving the best move cannot collapse a row above the mobile board.
 Game review has no library link in its board controls; the header's Games tab
-returns to the library, keeping the page the game was opened from. On mobile the
-move, flip and mute buttons share one row; all buttons retain their 44px height.
+returns to the library, keeping the page the game was opened from. Flip starts the
+board-controls row and mute ends it, either side of the move controls; on mobile
+they share one row and all buttons retain their 44px height.
 
 The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
 review experiences. Artwork-specific poses, styles and finite CSS animations stay
@@ -208,9 +215,11 @@ the `interface_motion` column in that same row. Both providers share the saved
 preference lifecycle and reset when the account boundary unmounts. The root CSS
 motion attribute is also removed on unmount; login screens use the device default.
 
-Navigation is Home, Study, Games, Insights, Settings. A small History API router
-renders `/` (Home), `/study`, its Due/openings/puzzles subpages and saved session/source
-links, `/games`, `/games/:id`, `/weaknesses` and `/settings`. Screen/game links
+Navigation is Home, Study, Play, Games, Insights, Settings. A small History API router
+renders `/` (Home), `/study`, its Due/openings/skills/puzzles subpages and saved session/source
+links, `/play`, `/play/:id`, `/games`, `/games/:id`, `/insights`, `/settings` and the
+administrator lesson editor at `/settings/courses/editor`. Old `/weaknesses` and
+`/games/insights` links replace their entry with the matching Insights section. Screen/game links
 push history entries; `popstate` restores the destination. Old `/review` and root exercise/focus/session
 bookmarks resolve to `/study/due`. Removed `?unit=` links discard the archived
 unit/exercise identity and retain the Study destination without starting a lesson. Opening recalls pin their
@@ -219,23 +228,23 @@ paths show a recoverable not-found screen.
 Legacy `/import` URLs replace their history entry with `/settings`. Settings owns
 the saved provider connections, filtered imports, PGN uploads and import activity.
 Settings opens on Games & imports; `?section=coach`, `?section=sound`,
-`?section=account` (hosted accounts only), and `?section=advanced` keep preferences
-and maintenance separate. Sound has its own tab for playback preferences.
+`?section=account` (hosted accounts only; administrators also manage accounts there),
+`?section=courses` (administrators, or the single user of a local install) and
+`?section=advanced` keep preferences and maintenance separate. Sound has its own tab for playback preferences.
 These links participate in browser Back/Forward and survive reload. Shared
 `SettingsSection` and application-only `settings.css` own section spacing.
 Connections fetch recent games; optional older-history forms use the remembered
 username unless the user has edited their draft. `?import=chesscom|lichess|pgn`
 opens the corresponding form, including when navigating within Settings.
-PGN file/text inputs are mutually exclusive; engine analysis remains opt-in and
-the submit label reflects that choice. Activity expands active jobs and keeps
+PGN file/text inputs are mutually exclusive; imports offer no analysis choice,
+because every saved game is analyzed automatically. Activity expands active jobs and keeps
 completed/failed history compact and inspectable. Advanced training tools link
 directly to activity. Coach & animations puts the two independent motion controls
 above the existing six-column desktop coach picker; saving and errors remain
 local to each preference control.
 Games keeps only a compact Update games control using the same sync component and
-polling behavior; without a connection it links to Settings. Sync still fetches
-games without starting engine analysis.
-Insights opens on its Overview; its pattern/outcome sections (formerly Weaknesses) show the supported lists directly;
+polling behavior; without a connection it links to Settings.
+Insights opens on its Overview; its Weaknesses section (formerly a separate page) shows the Tactical patterns and Material & mate categories as subsections of the same section navigation, with the supported lists directly;
 introductory copy and the classification-coverage summary are not shown there.
 
 The coach studio is a separate development process (`npm run dev:coach`, port

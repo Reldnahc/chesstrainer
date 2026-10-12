@@ -2,7 +2,7 @@
 
 Run `npm run dev:intelligence` from `frontend`, then visit
 `http://127.0.0.1:5175`. This is a separate loopback-only Vite process, like the
-animation studio on 5174. It has no API proxy, account session, database connection,
+coach studio (`npm run dev:coach`) on 5174. It has no API proxy, account session, database connection,
 engine or model. The production entry point does not import it; `/intelligence-lab`
 is not a product route. It is not packaged into production JavaScript.
 

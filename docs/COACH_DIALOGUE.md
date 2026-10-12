@@ -192,7 +192,7 @@ See [COACH_PERSONALITIES.md](COACH_PERSONALITIES.md) for the writing standards,
 blind comparison and automatic corpus checks. Rare supported facts can still use
 the complete neutral fallback; character wording never replaces chess evidence.
 
-Walter and Rivet's on-screen tactical wording opt into `tacticalWording: "witness"`.
+All thirty coaches' on-screen tactical wording opts into `tacticalWording: "witness"`.
 `eventClaims` attaches derived timing/effect metadata while retaining the original
 claim codes, slots and source references. Only a sole matching line witness at
 root ply 1 or the opponent's immediate reply at ply 2 supports direct timing;
@@ -203,8 +203,8 @@ facts do not imply that the move created a previously absent pin or fork.
 `tacticalTemplates` selects one of 29 scoped presentation keys and typed slots
 containing moves, motif names, targets and capture nouns. It does not construct
 English setup or detail sentences. `scopedTacticalWording` supplies the neutral
-required-slot contract and assembles static authored templates. Walter and Rivet
-each author complete mandatory scope and effect sentences in
+required-slot contract and assembles static authored templates. Each coach
+authors complete mandatory scope and effect sentences in
 `characters/scopedTactics`; personality is not limited to an optional preface
 around one shared factual sentence. Actual root effects can be factual; opponent
 replies and unplayed alternatives remain prospective.
@@ -213,8 +213,7 @@ positive finite-line material delta is a possible gain dependent on follow-up,
 not proof of a forced gain or a material lead. Character templates cannot discard
 the required moves, replies or targets, or hide them only in optional cues.
 All scoped tactical forms put the scope before its effects. Opponent facts use
-the same scope without personal praise. The other 28 characters keep their
-existing wording until their separate writing passes.
+the same scope without personal praise.
 Capture effects use their own witnessed ply: a root capture already happened
 even when the motif's reference frame describes the board before that capture.
 
@@ -227,12 +226,12 @@ is still passed through verbatim rather than edited by guessing at its meaning.
 Derived human-insight intents retain both the actual parent identity and its
 separate wording seed, so this opt-in does not reshuffle other voices' Maia text.
 
-Walter and Rivet also opt into `openingWording: "sequence"`. An optional
+Every coach also opts into `openingWording: "sequence"`. An optional
 `Claim.opening` comes from `openingPresentation`, while the original `book` or
 `book_sound` code, opening-name slot, evidence, priority and source IDs remain
 unchanged. `bookRecordingId` exposes the same 11 semantic variant IDs to written
 and recorded dialogue: `book-opening-entry-1` through `-3`, and
-`book-opening-follow-1` through `-8`. Each pilot voice authors its own complete
+`book-opening-follow-1` through `-8`. Each voice authors its own complete
 sentence for each ID. These are recognition statements, never inferred quality,
 strategic plans or claims about a player's opening knowledge.
 
@@ -280,11 +279,10 @@ feedback available; it never triggers synthesis or weaker evidence validation.
 
 Walter (`classic`, `storyteller.ts`) and Rivet (`robot`, `robot.ts`) are the current
 production references for this complete path. Both use the scoped tactical and
-opening-sequence contracts described above and have registered non-lesson voice
-banks. Other characters retain safe written fallback and their existing authored
-forms; a cast audition or saved provider voice does not mean a complete bank is
-installed. Use the live coach and voice registries rather than assuming the two
-pilot coaches are the entire cast or hard-coding their current recording count.
+opening-sequence contracts described above, as every coach now does, and all
+thirty coaches have registered voice banks. A cast audition or saved provider
+voice alone does not mean a complete bank is installed. Use the live coach and
+voice registries rather than hard-coding the current recording count.
 
 A recorded passage teaches the supported idea without reciting arbitrary SAN,
 square names, player names, opening names or evaluation numbers. The game review

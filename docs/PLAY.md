@@ -191,13 +191,13 @@ coach written for a game against that coach that has not begun. It plays once,
 before the first move, for either color (when the learner has Black the bot's
 first move waits for it like any other reply); returning to the start of a game
 already under way stays quiet, and the review greeting `game-review-opened` is no
-longer used in Play. Until a coach's clip is recorded, the bubble shows its
-script line.
+longer used in Play. All 30 coaches' clips are recorded; a line without a clip
+would show its script line.
 
 Before any game, the setup page shows `play-invitation` in a bubble above the
 coach's portrait: one line per coach asking for a game. It claims nothing about
-strength, opponent type or color, since the learner has not chosen them yet. The
-bubble shows the script line; once recorded, the clip plays as the page opens.
+strength, opponent type or color, since the learner has not chosen them yet. All
+30 clips are recorded; the clip plays once as the page opens.
 
 These moments have no catalogue entry yet, so they currently show plain page text
 or stay silent:
