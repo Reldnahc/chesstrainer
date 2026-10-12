@@ -27,7 +27,11 @@ export interface paths {
         /** List Accounts */
         get: operations["list_accounts_api_auth_accounts_get"];
         put?: never;
-        post?: never;
+        /**
+         * Add Account
+         * @description Add a member with a temporary password they replace at first sign-in.
+         */
+        post: operations["add_account_api_auth_accounts_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -221,6 +225,26 @@ export interface paths {
         put?: never;
         /** Signup */
         post: operations["signup_api_auth_signup_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/signups": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Signup Access
+         * @description Let visitors create their own accounts, or leave that to administrators.
+         */
+        put: operations["signup_access_api_auth_signups_put"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -2966,6 +2990,11 @@ export interface components {
             csrf?: string | null;
             /** Enabled */
             enabled: boolean;
+            /**
+             * Signups Open
+             * @default false
+             */
+            signups_open: boolean;
             user: components["schemas"]["Account"] | null;
         };
         /** ImportError */
@@ -3422,6 +3451,8 @@ export interface components {
         ManagedAccounts: {
             /** Accounts */
             accounts: components["schemas"]["ManagedAccount"][];
+            /** Signups Open */
+            signups_open: boolean;
         };
         /** ManualRequest */
         ManualRequest: {
@@ -3569,6 +3600,16 @@ export interface components {
             promotion?: ("q" | "r" | "b" | "n") | null;
             /** To Square */
             to_square: string;
+        };
+        /**
+         * NewAccount
+         * @description A member added by an administrator; the temporary password is replaced at first sign-in.
+         */
+        NewAccount: {
+            /** Password */
+            password: string;
+            /** Username */
+            username: string;
         };
         /** Ok */
         Ok: {
@@ -4620,6 +4661,11 @@ export interface components {
             /** Wins */
             wins: number;
         };
+        /** SignupAccess */
+        SignupAccess: {
+            /** Open */
+            open: boolean;
+        };
         /** SkillPriority */
         SkillPriority: {
             /** Cue */
@@ -5048,6 +5094,39 @@ export interface operations {
             };
         };
     };
+    add_account_api_auth_accounts_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NewAccount"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Ok"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     delete_account_api_auth_accounts__account_id__delete: {
         parameters: {
             query?: never;
@@ -5346,6 +5425,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Identity"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    signup_access_api_auth_signups_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SignupAccess"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Ok"];
                 };
             };
             /** @description Validation Error */

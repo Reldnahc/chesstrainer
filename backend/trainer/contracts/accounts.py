@@ -18,6 +18,8 @@ class Identity(Contract):
     enabled: bool
     user: Account | None
     csrf: str | None = None
+    # Whether the sign-in page offers account creation; administrators decide.
+    signups_open: bool = False
 
 
 class AccountProfile(Contract):
@@ -36,6 +38,18 @@ class ManagedAccount(Contract):
 
 class ManagedAccounts(Contract):
     accounts: list[ManagedAccount]
+    signups_open: bool
+
+
+class NewAccount(Contract):
+    """A member added by an administrator; the temporary password is replaced at first sign-in."""
+
+    username: str = Field(min_length=3, max_length=32)
+    password: str = Field(min_length=10, max_length=128)
+
+
+class SignupAccess(Contract):
+    open: bool
 
 
 class PasswordReset(Contract):

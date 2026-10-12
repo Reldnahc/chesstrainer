@@ -69,19 +69,34 @@ class Accounts:
         finally:
             db.close()
 
-    def create(self, name, password, *, admin=False):
+    def create(self, name, password, *, admin=False, temporary=False):
+        """Add an account; a ``temporary`` password must be replaced at first sign-in."""
         name = username(name)
         encoded = password_hash(password)
         identity = secrets.token_hex(16)
         with self.connect() as db:
             try:
                 db.execute(
-                    "INSERT INTO users(id,username,password,admin,created,disabled,chesscom_username,onboarding_completed) VALUES(?,?,?,?,?,0,'',0)",
-                    (identity, name, encoded, int(admin), time.time()),
+                    "INSERT INTO users(id,username,password,admin,created,disabled,chesscom_username,onboarding_completed,password_change_required) VALUES(?,?,?,?,?,0,'',0,?)",
+                    (identity, name, encoded, int(admin), time.time(), int(temporary)),
                 )
             except sqlite3.IntegrityError as exc:
                 raise ValueError("That username is unavailable.") from exc
         return self.by_name(name)
+
+    def signups_open(self):
+        """Whether visitors may create their own accounts; closed unless an administrator opens it."""
+        with self.connect() as db:
+            row = db.execute("SELECT signups_open FROM site_settings WHERE id=1").fetchone()
+            return bool(row and row[0])
+
+    def set_signups_open(self, value):
+        with self.connect() as db:
+            db.execute(
+                "INSERT INTO site_settings(id, signups_open) VALUES(1, ?) "
+                "ON CONFLICT(id) DO UPDATE SET signups_open=excluded.signups_open",
+                (int(value),),
+            )
 
     def by_name(self, name):
         with self.connect() as db:
@@ -213,10 +228,22 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "action",
-        choices=["create-admin", "promote", "reset-password", "disable", "enable", "claim-local"],
+        choices=[
+            "create-admin",
+            "promote",
+            "reset-password",
+            "disable",
+            "enable",
+            "claim-local",
+            "open-signups",
+            "close-signups",
+        ],
     )
-    parser.add_argument("username")
+    parser.add_argument("username", nargs="?")
     args = parser.parse_args()
+    signups = args.action in {"open-signups", "close-signups"}
+    if not signups and not args.username:
+        parser.error(f"{args.action} needs a username")
     from trainer.db import database, migrate
 
     settings = Settings()
@@ -224,6 +251,10 @@ def main():
     migrate(engine)
     engine.dispose()
     accounts = Accounts(settings.database_path)
+    if signups:
+        accounts.set_signups_open(args.action == "open-signups")
+        print("Sign-ups are " + ("open" if args.action == "open-signups" else "closed"))
+        return
     try:
         user = accounts.by_name(username(args.username))
         if user and user["username"] == "__local__":

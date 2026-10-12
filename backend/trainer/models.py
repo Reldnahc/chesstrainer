@@ -48,6 +48,14 @@ class AuthSession(Base):
     expires: Mapped[float]
 
 
+class SiteSettings(Base):
+    """One row of server-wide settings, changed by administrators."""
+
+    __tablename__ = "site_settings"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    signups_open: Mapped[bool] = mapped_column(default=False, server_default="0")
+
+
 class Owned:
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), default="local", index=True)
 

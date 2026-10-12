@@ -4056,6 +4056,11 @@
             "title": "Enabled",
             "type": "boolean"
           },
+          "signups_open": {
+            "default": false,
+            "title": "Signups Open",
+            "type": "boolean"
+          },
           "user": {
             "anyOf": [
               {
@@ -5427,10 +5432,15 @@
             },
             "title": "Accounts",
             "type": "array"
+          },
+          "signups_open": {
+            "title": "Signups Open",
+            "type": "boolean"
           }
         },
         "required": [
-          "accounts"
+          "accounts",
+          "signups_open"
         ],
         "title": "ManagedAccounts",
         "type": "object"
@@ -5913,6 +5923,30 @@
           "to_square"
         ],
         "title": "MoveRequest",
+        "type": "object"
+      },
+      "NewAccount": {
+        "additionalProperties": false,
+        "description": "A member added by an administrator; the temporary password is replaced at first sign-in.",
+        "properties": {
+          "password": {
+            "maxLength": 128,
+            "minLength": 10,
+            "title": "Password",
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 32,
+            "minLength": 3,
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "NewAccount",
         "type": "object"
       },
       "Ok": {
@@ -9213,6 +9247,20 @@
         "title": "Shape",
         "type": "object"
       },
+      "SignupAccess": {
+        "additionalProperties": false,
+        "properties": {
+          "open": {
+            "title": "Open",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "open"
+        ],
+        "title": "SignupAccess",
+        "type": "object"
+      },
       "SkillPriority": {
         "additionalProperties": false,
         "properties": {
@@ -10338,6 +10386,43 @@
           }
         },
         "summary": "List Accounts"
+      },
+      "post": {
+        "description": "Add a member with a temporary password they replace at first sign-in.",
+        "operationId": "add_account_api_auth_accounts_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ok"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Account"
       }
     },
     "/api/auth/accounts/{account_id}": {
@@ -10702,6 +10787,45 @@
           }
         },
         "summary": "Signup"
+      }
+    },
+    "/api/auth/signups": {
+      "put": {
+        "description": "Let visitors create their own accounts, or leave that to administrators.",
+        "operationId": "signup_access_api_auth_signups_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupAccess"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ok"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Signup Access"
       }
     },
     "/api/classification-runs/{run_id}": {
