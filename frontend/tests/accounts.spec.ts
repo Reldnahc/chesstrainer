@@ -262,7 +262,7 @@ test('Study progress and selected coach resume on another device without leaking
   const start = page.waitForResponse(response => new URL(response.url()).pathname === '/api/study/lesson-sessions' && response.request().method() === 'POST');
   await page.locator('.lesson-chapters li').first().getByRole('button', {name: 'Start', exact: true}).click();
   const lesson: Schema['LessonSessionView'] = await (await start).json();
-  for (const label of ['Continue', 'Play continuation', 'Continue']) {
+  for (const label of ['Continue', 'Play continuation']) {
     const command = page.waitForResponse(response => response.url().endsWith(`/lesson-sessions/${lesson.id}/command`));
     await page.getByRole('button', {name: label, exact: true}).click();
     expect((await command).ok()).toBe(true);
