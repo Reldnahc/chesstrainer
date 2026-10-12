@@ -54,6 +54,7 @@ def view(session, playback=()):
             "text": text,
             "phase": state["phase"],
             "annotations": annotations,
+            "plies": played_plies(step),
         },
         actions=actions,
         feedback=state["feedback"],
@@ -63,3 +64,11 @@ def view(session, playback=()):
         assisted=state["assisted"],
         failed=state["failed"],
     ).model_dump(mode="json")
+
+
+def played_plies(step):
+    if step.kind == "demonstration":
+        return len(step.moves)
+    if step.kind == "game_excerpt":
+        return step.to_ply - step.from_ply
+    return None

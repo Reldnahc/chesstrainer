@@ -184,6 +184,9 @@ class LessonStepView(Contract):
     text: str
     phase: Literal["ready", "complete"]
     annotations: LessonAnnotations
+    # How many moves a demonstration or game excerpt plays, so a single move is
+    # not introduced as a continuation.
+    plies: int | None = None
 
 
 class LessonFeedback(Contract):

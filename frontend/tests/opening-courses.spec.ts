@@ -314,7 +314,7 @@ for (const content of courses) {
         } else {
           session = await command(page,
             ["demonstration", "game_excerpt"].includes(session.step.kind) && session.step.phase === "ready"
-              ? "Play continuation" : "Continue");
+              ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue");
         }
       }
       expect(decisions).toBe(content.moves.length);

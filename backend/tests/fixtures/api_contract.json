@@ -5315,6 +5315,17 @@
             "title": "Phase",
             "type": "string"
           },
+          "plies": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plies"
+          },
           "text": {
             "title": "Text",
             "type": "string"
