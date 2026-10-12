@@ -130,7 +130,9 @@ test('Back restores the saved scroll instead of repeating activity and import-fo
   await page.getByRole('link', {name: 'View import & analysis activity', exact: true}).click();
   await expect(page).toHaveURL('/settings#settings-activity');
   await expect(page.getByRole('region', {name: 'Import & analysis activity', exact: true})).toBeInViewport();
-  await page.evaluate(() => scrollTo(0, 0));
+  // Scroll as a reader does: the deep link keeps following its section while content
+  // loads, and only the reader's own wheel, touch or key input stops it.
+  await page.mouse.wheel(0, -10000);
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   await sections(page).getByRole('link', {name: 'Coach & animations', exact: true}).click();
   await expect(page).toHaveURL('/settings?section=coach');
