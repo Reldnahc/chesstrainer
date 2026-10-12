@@ -2572,6 +2572,8 @@ export interface components {
             black: string;
             /** Black Rating */
             black_rating: number | null;
+            /** Clock Start */
+            clock_start?: number | null;
             context?: components["schemas"]["GameContext"] | null;
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
@@ -2604,6 +2606,8 @@ export interface components {
         GameFrame: {
             /** Actor */
             actor: ("white" | "black") | null;
+            /** Clock */
+            clock?: number | null;
             /** Fen */
             fen: string;
             /** Legal Moves */

@@ -41,12 +41,26 @@ export function AccuracyReadout({
     </output>
   );
 }
+/** Remaining time as the clock face shows it: h:mm:ss, m:ss, or tenths
+ * under ten seconds when the PGN records them. */
+export function clockText(seconds: number) {
+  if (seconds < 10 && !Number.isInteger(seconds))
+    return `0:0${(Math.floor(seconds * 10) / 10).toFixed(1)}`;
+  const whole = Math.floor(seconds);
+  const hours = Math.floor(whole / 3600);
+  const minutes = Math.floor((whole % 3600) / 60);
+  const rest = String(whole % 60).padStart(2, "0");
+  return hours ? `${hours}:${String(minutes).padStart(2, "0")}:${rest}` : `${minutes}:${rest}`;
+}
+
 export function PlayerRow({
   name,
   color,
   accuracy,
   complete,
   status,
+  clock,
+  running,
 }: {
   name: string;
   color: "white" | "black";
@@ -54,6 +68,10 @@ export function PlayerRow({
   accuracy?: Accuracy | null;
   complete: boolean;
   status: string;
+  /** Remaining seconds at the selected position; omitted when the game has no clocks. */
+  clock?: number | null;
+  /** This side is to move, so its clock is the one running. */
+  running?: boolean;
 }) {
   return (
     <div className="game-player">
@@ -72,6 +90,15 @@ export function PlayerRow({
       <span className="game-player-status" title={status}>
         {status}
       </span>
+      {clock != null && (
+        <time
+          className="game-player-clock"
+          data-running={running || undefined}
+          aria-label={`${color === "white" ? "White" : "Black"} clock ${clockText(clock)}`}
+        >
+          {clockText(clock)}
+        </time>
+      )}
     </div>
   );
 }

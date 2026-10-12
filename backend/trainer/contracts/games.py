@@ -128,6 +128,8 @@ class GameFrame(GamePosition):
     number: int
     actor: Color | None
     report: GameReviewReport | None
+    # The mover's remaining seconds from the PGN's [%clk] annotation, when present.
+    clock: float | None = None
 
 
 class ReviewJob(Contract):
@@ -155,6 +157,8 @@ class GameDetail(Contract):
     rating: int
     white_rating: int | None
     black_rating: int | None
+    # Each side's starting time from the TimeControl header, when the PGN has one.
+    clock_start: float | None = None
     frames: list[GameFrame]
     job: ReviewJob | None
     accuracy: GameAccuracy | None

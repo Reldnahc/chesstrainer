@@ -258,6 +258,23 @@ def create_app():
             import_games(db, "review-fixture.pgn", pgn, [white], None, queue_analysis=False)
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
+    @app.post("/__test/clock-review-fixture/{key}")
+    def clock_review_fixture(key: str):
+        from sqlalchemy import select
+        from trainer.imports import import_games
+        from trainer.models import Game
+
+        with app.state.sessions() as db:
+            white = f"Clock-{key}"
+            pgn = (
+                f'[White "{white}"]\n[Black "ClockFixture"]\n[TimeControl "180+2"]\n\n'
+                "1. e4 {[%clk 0:03:01]} e5 {[%clk 0:02:59.1]} 2. Nf3 {[%clk 0:02:55]} "
+                "Nc6 {[%clk 0:02:50]} 3. Bc4 {[%clk 0:02:51]} Nd4 {[%clk 0:00:08.4]} "
+                "4. Nxe5 {[%clk 0:02:41]} Qg5 {[%clk 0:00:05.2]} *"
+            )
+            import_games(db, "clock-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            return {"id": db.scalar(select(Game.id).where(Game.white == white))}
+
     @app.post("/__test/book-review-fixture/{key}")
     def book_review_fixture(key: str):
         from sqlalchemy import select

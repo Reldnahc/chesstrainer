@@ -66,6 +66,10 @@ test('completed reviews stay move-by-move without a game story or critical-momen
     }
   }
   await page.locator('.review-coach').screenshot({path: `test-results/coach-moves-line-${info.project.name}.png`});
+  // The strongest reply is drawn as one faded arrow until Show why takes over the board.
+  const replyArrow = page.locator('.board-shell marker[id$="-d8-h4"]');
+  await expect(replyArrow).toHaveCount(1);
+  await expect(page.locator('.board-shell marker')).toHaveCount(1);
   // "Show why" keeps the written explanation, so the moves line steps aside.
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
   await expect(spoken).not.toHaveAttribute('data-spoken', /./);
@@ -75,6 +79,31 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await page.reload();
   await expect(move).toHaveAttribute('aria-current', 'step');
   await expect(page.getByRole('region', {name: 'Game summary'})).toHaveCount(0);
+});
+
+test("player bars show each side's PGN clock at the selected move", async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/clock-review-fixture/${info.project.name}`)).json();
+  await page.goto(`/games/${id}?ply=0`);
+  const white = page.getByLabel(/^White clock /), black = page.getByLabel(/^Black clock /);
+  // Before any move both sides show the TimeControl's starting time; White's clock runs.
+  await expect(white).toHaveText('3:00');
+  await expect(black).toHaveText('3:00');
+  await expect(white).toHaveAttribute('data-running', 'true');
+  await expect(black).not.toHaveAttribute('data-running', /./);
+  await page.goto(`/games/${id}?ply=4`);
+  await expect(white).toHaveText('2:55');
+  await expect(black).toHaveText('2:50');
+  await page.goto(`/games/${id}?ply=6`);
+  await expect(black).toHaveText('0:08.4');
+  await expect(white).toHaveText('2:51');
+  await expect(black).not.toHaveAttribute('data-running', /./);
+  await expect(white).toHaveAttribute('data-running', 'true');
+  // The bottom bar belongs to the learner (White here), so its clock sits below the board.
+  const board = (await page.locator('.board-shell').boundingBox())!;
+  expect((await white.boundingBox())!.y).toBeGreaterThan(board.y + board.height - 1);
+  expect((await black.boundingBox())!.y).toBeLessThan(board.y);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({path: `test-results/player-clocks-${info.project.name}.png`, fullPage: true});
 });
 
 test('a paused partial review keeps its resume control', async ({page}, info) => {

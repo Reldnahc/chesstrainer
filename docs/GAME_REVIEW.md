@@ -41,6 +41,11 @@ so refreshing or returning from another screen restores that position. The heade
 **Games** tab opens the library, retaining its page when the game was opened from
 a later page; the board controls carry no separate library link. The sidebar starts directly with the coach;
 player names remain beside the board without a repeated matchup/date heading.
+When the PGN records `[%clk]` annotations, each player bar shows that side's
+remaining time at the selected move, starting from the TimeControl header's
+initial time; the side to move has the highlighted (running) clock. A variation
+keeps the clocks from where it left the game. Games without clock annotations
+show no clocks.
 Normal arrow keys move through the game; Alt+Left/Right remain browser shortcuts.
 
 Open **Games** and choose an imported game. Its review starts automatically; an
@@ -63,7 +68,8 @@ The coach and timeline fill as analysis finishes. Select a move, use the arrow k
 or select **Next mistake**. **Show why** overlays arrows and tactical square
 highlights on the current board without moving pieces, changing the selected
 move, requesting more analysis, or creating a variation. **Hide why** or Escape
-clears those cues. The action row and best alternative sit below the speech bubble.
+clears those cues. Outside Show why, the opponent's strongest reply to the
+selected move is drawn as one faded blue arrow. The action row and best alternative sit below the speech bubble.
 The compact coach shows the move and rating together, with a prominent signed
 evaluation in the opposite corner. Scores always use White's perspective, even
 in a variation or after flipping the board: positive favors White, negative favors
