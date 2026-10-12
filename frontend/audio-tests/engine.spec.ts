@@ -642,6 +642,31 @@ test("cancelled recordings cannot start after a pending fetch or decode and rest
   }
 });
 
+test("decoded recordings stay within the memory budget by forgetting the least recently played", async () => {
+  const f = fixture();
+  // 20 MB of mono PCM each: two fit the 48 MB budget, a third evicts one.
+  const length = 5 * 1024 * 1024;
+  f.context.decode = async () => {
+    const samples = new Float32Array(length);
+    return {sampleRate: 48000, length, duration: length / 48000, numberOfChannels: 1, getChannelData: () => samples} as unknown as AudioBuffer;
+  };
+  await f.engine.unlock();
+  let line = 0;
+  const say = async (url: string) => { f.engine.playRecordedSpeech(recording(`line-${++line}`, {url})); await flush(); await flush(); };
+  await say("/a.wav");
+  await say("/b.wav");
+  await say("/a.wav");
+  await say("/c.wav");
+  expect(f.context.decodes).toBe(3);
+  await say("/a.wav");
+  await say("/c.wav");
+  expect(f.context.decodes).toBe(3);
+  await say("/b.wav");
+  expect(f.context.decodes).toBe(4);
+  expect(f.loads).toEqual(["/a.wav", "/b.wav", "/c.wav", "/b.wav"]);
+  f.engine.dispose();
+});
+
 test("recording URL loads are shared while pending and cached across scopes and effect playback", async () => {
   const f = fixture();
   const fetched = deferred<ArrayBuffer>();

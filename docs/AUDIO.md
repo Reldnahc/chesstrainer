@@ -80,8 +80,9 @@ before an attempt or reveal permits feedback.
 - `catalog.ts` owns cue categories, priorities, approved production choices,
   palette metadata, per-cue asset availability and asset URLs. Engine and studio
   validate cue/palette pairs against it; each cue has one approved asset.
-- `engine.ts` owns a lazily created Web Audio context, decoded asset cache, master
-  gain, separate effects/speech buses, bounded playback, short cancellation fades,
+- `engine.ts` owns a lazily created Web Audio context, decoded asset cache
+  (least recently played first out, capped at 48 MB of PCM so long reviews do
+  not get the tab reloaded by a mobile browser), master gain, separate effects/speech buses, bounded playback, short cancellation fades,
   duplicate suppression, visibility and disposal. Suppressed requests are dropped.
   Speech eases each line's final sound out (`speech/release.ts`): provider
   voices often stop their last sound abruptly, heard as an ending thump, and a
