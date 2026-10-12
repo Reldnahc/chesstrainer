@@ -45,7 +45,7 @@ function gameWithReports(count = 12, orientation: "white" | "black" = "white"): 
     frames.push({fen, turn, uci, san, actor, number: Math.ceil(ply / 2), legal_moves: [], result: null, termination: null, report});
   }
   return {id: "opening-sequence", frames, orientation, white: "White", black: "Black", white_rating: null, black_rating: null,
-    played_on: null, rating: 1000, result: "*", accuracy: null, job: null, review_revision: 1,
+    played_on: null, rating: 1000, result: "*", accuracy: null, job: null, review_revision: 1, read_only: false,
     context: {version: "game-context-1", input_digest: "context-generation", complete: true, total_plies: count, missing_plies: [],
       relationships: [], turning_points: [], biggest_swing_ply: null, limitations: [],
       nodes: frames.slice(1).map((frame, index) => ({ply: index + 1, actor: frame.actor!,
