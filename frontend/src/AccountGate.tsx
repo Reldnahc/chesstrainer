@@ -197,6 +197,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           <p className="eyebrow">FIELDWORK</p>
           <h1>Choose a new password</h1>
           <p>Your host reset your password. Enter the temporary password they gave you, then choose your own.</p>
+          {error && <Notice announcement="alert" tone="error">{error}</Notice>}
           <ChangePasswordForm currentLabel="Temporary password" submitLabel="Save and continue"
             onChanged={user => setIdentity(current => current ? { ...current, user } : current)} />
           <Button disabled={busy} onClick={() => logout()}>Sign out</Button>

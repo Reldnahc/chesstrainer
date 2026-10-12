@@ -298,6 +298,9 @@ def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch,
     assert "already an administrator" in capsys.readouterr().err
     assert run("promote", "nobody") == 1
     assert "Account not found" in capsys.readouterr().err
+    # The unclaimed local workspace is not an account the CLI can change.
+    assert run("promote", "__local__") == 1
+    assert "Account not found" in capsys.readouterr().err
 
 
 def test_administrators_manage_other_accounts_from_settings(settings):
@@ -457,3 +460,24 @@ def test_members_change_their_own_password_and_keep_this_device(settings):
         cleared = change("temporary-pass", "my-own-password")
         assert not cleared.json()["user"]["password_change_required"]
         assert client.get("/api/games").status_code == 200
+
+
+def test_a_disabled_account_with_interrupted_analysis_can_still_be_deleted(settings):
+    from sqlalchemy.orm import Session
+    from trainer.job_queue import JobQueue
+
+    engine, _ = database(settings.database_path)
+    migrate(engine)
+    accounts = Accounts(settings.database_path)
+    friend = accounts.create("friend", "testing-password")
+    with Session(engine) as db:
+        db.add(AnalysisJob(user_id=friend["id"], kind="training", status="running"))
+        db.commit()
+    accounts.set_disabled(friend, True)
+    with pytest.raises(ValueError, match="analysis running"):
+        accounts.delete(accounts.by_id(friend["id"]))
+    # A restart interrupted that job; recovery requeues it even for a disabled owner.
+    JobQueue(engine).recover()
+    accounts.delete(accounts.by_id(friend["id"]))
+    assert accounts.by_id(friend["id"]) is None
+    engine.dispose()

@@ -168,6 +168,11 @@ class Accounts:
         if user["id"] == "local":
             raise ValueError("The original workspace account cannot be deleted; disable it instead")
         with self.connect() as db:
+            # Take the write lock before checking, so no job is claimed meanwhile.
+            # Owned rows reference each other, so check foreign keys once at commit;
+            # the pragma lasts only for an open transaction.
+            db.execute("BEGIN IMMEDIATE")
+            db.execute("PRAGMA defer_foreign_keys=ON")
             running = db.execute(
                 "SELECT 1 FROM analysis_jobs WHERE user_id=? AND status='running'", (user["id"],)
             ).fetchone()
@@ -176,10 +181,6 @@ class Accounts:
                     "This account has analysis running. Disable it, wait for the analysis "
                     "to stop, then delete it"
                 )
-            # Owned rows reference each other, so check foreign keys once at commit.
-            # The pragma lasts only for an open transaction.
-            db.execute("BEGIN")
-            db.execute("PRAGMA defer_foreign_keys=ON")
             tables = [
                 row[0]
                 for row in db.execute(
@@ -225,6 +226,9 @@ def main():
     accounts = Accounts(settings.database_path)
     try:
         user = accounts.by_name(username(args.username))
+        if user and user["username"] == "__local__":
+            # The unclaimed workspace is not an account; claim-local assigns it.
+            user = None
         if args.action in {"create-admin", "claim-local"}:
             if user:
                 raise ValueError("Account already exists")
