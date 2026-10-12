@@ -270,7 +270,8 @@ test("full-game seeking keeps the coach and controls steady while serializing re
     await expect(previous).toBeDisabled();
     await expect(beginning).toBeDisabled();
     await page.clock.install();
-    await page.clock.pauseAt(new Date());
+    // Pause just ahead of the browser clock, which can already be past the runner's now.
+    await page.clock.pauseAt(new Date(Date.now() + 1000));
     const first = await command(page, "Next game move");
     expect(first.game?.ply).toBe(1);
     const avatar = page.locator(".coach-avatar");
