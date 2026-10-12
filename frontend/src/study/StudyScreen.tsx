@@ -104,7 +104,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   const generation = puzzles?.generation ?? null;
   const gamesCount = generation?.puzzles ?? 0;
   return <>
-    <PageTitle eyebrow="YOUR NEXT MOVE" title={mode === "home" ? "Study" : mode === "openings" ? "Lessons" : "Puzzles"} />
+    <PageTitle title={mode === "home" ? "Study" : mode === "openings" ? "Lessons" : "Puzzles"} />
     <div className="study-page">
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     {mode === "home" && <div className="study-options">

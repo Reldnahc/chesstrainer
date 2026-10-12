@@ -102,7 +102,7 @@ main {
   padding: var(--space-10) var(--page-inline-padding) var(--space-16);
   min-height: calc(100vh - 149px);
 }
-/* A page's top-level blocks (title, notices, panels) are spaced by the page,
+/* A page's top-level blocks (notices, panels) are spaced by the page,
    not by their own margins. Board workspaces keep their own layout. */
 main.workspace-page {
   display: flex;
@@ -111,17 +111,6 @@ main.workspace-page {
 }
 main.workspace-page > * {
   margin-block: 0;
-}
-.page-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-6);
-}
-.page-title > div:first-child {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
 }
 /* A panel stacks its contents. Panels with their own layout set their own
    display (zero specificity here), a dialog keeps the browser's open/closed
@@ -329,10 +318,6 @@ footer > span:last-child {
   main {
     padding-block: var(--space-6) var(--space-10);
   }
-  .page-title {
-    gap: var(--space-3);
-    align-items: flex-start;
-  }
   .eyebrow {
     font-size: var(--text-2xs);
   }
@@ -369,13 +354,6 @@ footer > span:last-child {
   main.workspace-page {
     min-height: 0;
     padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
-  }
-  .workspace-page .page-title h1 {
-    font-size: var(--text-3xl);
-    letter-spacing: -0.5px;
-  }
-  .workspace-page .page-title .eyebrow {
-    display: none;
   }
   .workspace-page {
     --panel-padding: var(--space-4);

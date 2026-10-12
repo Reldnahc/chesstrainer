@@ -1,20 +1,5 @@
-import type { ReactNode } from "react";
-export default function PageTitle({
-  eyebrow,
-  title,
-  children,
-}: {
-  eyebrow: string;
-  title: string;
-  children?: ReactNode;
-}) {
-  return (
-    <div className="page-title">
-      <div>
-        <div className="eyebrow">{eyebrow}</div>
-        <h1>{title}</h1>
-      </div>
-      {children}
-    </div>
-  );
+// Pages show no visible header; the navigation already names the page.
+// The heading stays for screen readers and in-page heading navigation.
+export default function PageTitle({ title }: { title: string }) {
+  return <h1 className="sr-only">{title}</h1>;
 }
