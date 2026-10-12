@@ -96,7 +96,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
           {action("back", "Back", false, <ChevronLeft size={16} />)}
           {action("continue", (step.kind === "demonstration" || step.kind === "game_excerpt") && step.phase === "ready" ? step.plies === 1 ? "Play the move" : "Play continuation" : finished ? "Review chapter" : "Continue", true, <ArrowRight size={16} />)}
           {action("enter_branch", "Explore alternative", true, <Play size={16} />)}
-          {action("return_branch", "Return to main line")}
+          {action("return_branch", "Main line")}
           {action("show_move", "Show move")}
           {action("hint", "Hint", false, <Lightbulb size={16} />)}
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}

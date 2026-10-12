@@ -137,9 +137,9 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   expect(branch.branch).not.toBeNull();
   expect(branch.actions).not.toContain("continue");
   await page.reload();
-  await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Main line", exact: true })).toBeVisible();
   expect((await saved(page, session.id)).history).toEqual(branch.history);
-  const returned = await command(page, "Return to main line");
+  const returned = await command(page, "Main line");
   expect(returned.history).toEqual(anchor.history);
   expect(returned.fen).toBe(anchor.fen);
   const skipped = await command(page, "Continue");
@@ -473,9 +473,9 @@ for (const content of continuationChapters) {
         expect(branchAnchor).not.toBeNull();
         const terminal = session;
         await page.reload();
-        await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
+        await expect(page.getByRole("button", { name: "Main line", exact: true })).toBeVisible();
         expect((await saved(page, session.id)).history).toEqual(terminal.history);
-        session = await command(page, "Return to main line");
+        session = await command(page, "Main line");
         expect(session.history).toEqual(branchAnchor!.history);
         expect(session.fen).toBe(branchAnchor!.fen);
         expect(session.step.id).toBe(branchAnchor!.step.id);
