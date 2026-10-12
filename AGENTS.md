@@ -7,7 +7,7 @@ The project owner requires commits throughout development.
 - Before ending an implementation turn, commit the completed work unless the user explicitly requests otherwise. Preserve unrelated existing changes and keep them out of your commit unless the user authorizes including them.
 - Push when the user requests it; committing locally and publishing to the remote are separate actions.
 - While working, validate with only the focused tests that cover the change (`python scripts/test_affected.py`); never run the full suite or a CI run for a small change.
-- Before every push to origin, run the full suite locally first; this machine is faster than CI and catches failures before they cost a CI run. Run `python scripts/test_affected.py --full`; it also runs the API contract, migration and voice-bank checks alongside the suites. See [Testing](docs/TESTING.md#before-pushing).
+- Run the full local suite (`python scripts/test_affected.py --full`) only when the project owner explicitly says to. Otherwise, when asked to push, push straight away and let CI be the full test run. See [Testing](docs/TESTING.md#full-local-run).
 - Keep secrets, private PGNs, databases, backups, generated analysis reports, native binaries, and dependency folders out of commits. Update living documentation when behavior or architecture changes.
 
 ## Frontend component reuse

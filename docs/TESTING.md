@@ -314,11 +314,12 @@ migration and voice-bank checks run beside everything else; the migration check
 upgrades a throwaway database, never `data/trainer.sqlite3`. `--dry-run` prints the selection only, `--base` changes the
 comparison and `--project desktop` limits the browser viewports.
 
-### Before pushing
+### Full local run
 
 While working on a change, run only `python scripts/test_affected.py` (or a
-narrower focused test). Before every push to origin, run the full suite locally:
-it finishes faster than CI and catches failures before they spend a CI run.
+narrower focused test). Run the full suite locally only when the project owner
+explicitly asks for it; otherwise pushes go straight to CI, which is the full
+test run.
 
 ```sh
 python scripts/test_affected.py --full
