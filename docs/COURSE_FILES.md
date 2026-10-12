@@ -146,7 +146,8 @@ restored database (or `<name>-courses` when that folder is already in use; point
   course file*.
 - **Administrators** (and the single user of a local install without accounts)
   can import, edit and delete courses in Settings → Courses. The first administrator is created with
-  `python -m trainer.accounts create-admin YOUR_USERNAME` (see [Accounts](ACCOUNTS.md)).
+  `python -m trainer.accounts create-admin YOUR_USERNAME`; an account that already
+  signed up becomes one with `python -m trainer.accounts promote USERNAME` (see [Accounts](ACCOUNTS.md)).
 - A file dropped into the folder by hand appears on the next visit to Lessons.
   A file that cannot be loaded is listed, with its problem, to administrators
   only; members never see a broken course.

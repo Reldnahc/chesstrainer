@@ -49,7 +49,10 @@ docker run -d --name fieldwork --restart unless-stopped --init -p 18000:8000 -v 
 
 Open `http://localhost:18000` (or your server's LAN IP). For private accounts behind
 HTTPS, follow [shared hosting](docs/DOCKER.md#shared-https-hosting).
-See [account administration](docs/ACCOUNTS.md) for account recovery.
+See [account administration](docs/ACCOUNTS.md) for account recovery. To make an
+existing account an administrator, run `python -m trainer.accounts promote USERNAME`
+(in Docker: `docker exec fieldwork python -m trainer.accounts promote USERNAME`).
+Administrators can then manage other accounts in Settings → Account.
 
 By default Fieldwork runs as one local workspace without login. Everyone who can
 reach that instance shares its local games and progress. For shared hosting with
