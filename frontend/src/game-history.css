@@ -256,14 +256,17 @@
 /* A summary list for constrained surfaces. The library keeps its comparison columns. */
 .game-library--compact { border: 0; border-radius: 0; overflow: visible; }
 .game-library--compact .game-library-list > li { background: transparent; }
+/* Inside a panel the rows bleed into its side padding, so the dividers and the
+   hover highlight span the card while the text stays aligned with the heading. */
+.panel .game-library--compact { --history-bleed: var(--panel-padding); }
+.game-library--compact .game-library-list { margin-inline: calc(-1 * var(--history-bleed, 0px)); }
 .game-library--compact .game-library-list > li:first-child { border-top: 0; }
 .game-library--compact .game-library-item {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: var(--space-2);
-  padding: var(--space-4) 0;
-  border-radius: 4px;
+  padding: var(--space-4) var(--history-bleed, 0px);
 }
 .game-library--compact .game-library-list > li:first-child .game-library-item { padding-top: 0; }
 .game-library--compact .game-library-list > li:last-child .game-library-item { padding-bottom: 0; }
@@ -309,4 +312,6 @@
   .game-library-item {
     padding-inline: 0;
   }
+  /* Phone panels are flat with no side padding, so there is nothing to bleed into. */
+  .panel .game-library--compact { --history-bleed: 0px; }
 }
