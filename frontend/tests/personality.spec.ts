@@ -50,10 +50,10 @@ test("saved coach selection changes reviewed wording without new searches or alt
   await page.goto(`/games/${id}?ply=3`);
   const line = page.locator(".coach-message [data-utterance]");
   await expect(line).toContainText(/\bforce(?:d)? (?:check)?mate\b/i, {timeout: 60_000});
-  // The bubble shows the coach's spoken line; the exact reply stays on its moves line.
-  const moves = page.locator(".coach-moves-line");
-  await expect(moves).toContainText("Black");
-  await expect(moves).toContainText("Qh4#");
+  // The bubble shows the coach's spoken line; the exact reply sits under Best.
+  const reply = page.locator(".coach-best-reply");
+  await expect(reply).toHaveAttribute("title", /^Black’s strongest reply: /);
+  await expect(reply.locator("strong")).toHaveText("Qh4#");
   await expect(page.locator(".game-summary caption")).toContainText("Complete game", {timeout: 60_000});
   const text = await line.innerText(), intentId = await line.getAttribute("data-intent");
   const before = await (await page.request.get(`/api/games/${id}`)).json();
@@ -92,7 +92,7 @@ test("saved coach selection changes reviewed wording without new searches or alt
     await expect(line).toHaveAttribute("data-spoken", /^allowed-mate/);
     await expect(line).not.toHaveText(text);
     await expect(line).toHaveAttribute("data-intent", intentId!);
-    await expect(moves).toHaveText("Black’s strongest reply: Qh4#, forced mate");
+    await expect(reply.locator("strong")).toHaveText("Qh4#");
     const after = await (await page.request.get(`/api/games/${id}`)).json();
     expect(after.frames).toEqual(before.frames);
     expect(after.context).toEqual(before.context);

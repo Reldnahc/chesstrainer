@@ -3,13 +3,14 @@ import walterBank from '../src/audio/speech/bank/manifest.json' with {type: 'jso
 
 const walter = (id: string) => id.split('+').map(part => walterBank.recordings.find(row => row.id === part)!.text).join(' ');
 
-/** The moves line sits outside the scrolling message, inside the bubble, fully visible. */
-async function movesLineLayout(page: Page) {
+/** The strongest reply sits under Best in the portrait column, beside the bubble, fully visible. */
+async function replyLayout(page: Page) {
   return page.locator('.review-coach').evaluate(element => {
     const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
-    const speech = box('.coach-speech'), message = box('.coach-message'), moves = box('.coach-moves-line');
-    return {below: moves.top >= message.bottom - 0.5, inside: moves.left >= speech.left && moves.right <= speech.right + 0.5
-      && moves.bottom <= speech.bottom + 0.5, visible: moves.height > 0};
+    const portrait = box('.coach-portrait'), best = box('.coach-portrait-caption > .coach-best-move:first-child');
+    const reply = box('.coach-best-reply'), actions = box('.coach-actions');
+    return {below: reply.top >= best.bottom - 0.5, inside: reply.left >= portrait.left - 0.5 && reply.right <= portrait.right + 0.5
+      && reply.bottom <= actions.bottom + 0.5, visible: reply.height > 0};
   });
 }
 
@@ -38,11 +39,14 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   const line = walter((await spoken.getAttribute('data-spoken'))!);
   await expect.poll(() => spoken.evaluate(element => element.firstChild?.textContent)).toBe(line);
   await expect(spoken.locator('.sr-only')).toHaveText(/strongest reply: Qh4#, forced mate\.$/);
+  // The footer keeps only an opening name (none here); the reply sits under Best.
   const moves = page.locator('.coach-moves-line');
-  await expect(moves).toHaveText('Black’s strongest reply: Qh4#, forced mate');
-  await expect(moves.locator('strong')).toHaveText('Qh4#');
+  await expect(moves).toHaveCount(0);
+  const reply = page.locator('.coach-best-reply');
+  await expect(reply.locator('strong')).toHaveText('Qh4#');
+  await expect(reply).toHaveAttribute('title', 'Black’s strongest reply: Qh4#');
   await page.evaluate(() => document.fonts.ready);
-  await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+  await expect.poll(() => replyLayout(page)).toEqual({below: true, inside: true, visible: true});
   if (info.project.name === 'desktop') {
     for (const size of [{width: 1366, height: 768}, {width: 1366, height: 900}]) {
       await page.setViewportSize(size);
@@ -56,7 +60,7 @@ test('completed reviews stay move-by-move without a game story or critical-momen
         board = await page.locator('.board-shell').boundingBox();
         return JSON.stringify(board) === JSON.stringify(previous);
       }).toBe(true);
-      await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+      await expect.poll(() => replyLayout(page)).toEqual({below: true, inside: true, visible: true});
       // The fixed bubble scrolls long lines; the board beside it never moves.
       await page.getByRole('button', {name: 'Previous move', exact: true}).click();
       expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
@@ -65,15 +69,15 @@ test('completed reviews stay move-by-move without a game story or critical-momen
       expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
     }
   }
-  await page.locator('.review-coach').screenshot({path: `test-results/coach-moves-line-${info.project.name}.png`});
+  await page.locator('.review-coach').screenshot({path: `test-results/coach-reply-${info.project.name}.png`});
   // The strongest reply is drawn as one faded arrow until Show why takes over the board.
   const replyArrow = page.locator('.board-shell marker[id$="-d8-h4"]');
   await expect(replyArrow).toHaveCount(1);
   await expect(page.locator('.board-shell marker')).toHaveCount(1);
-  // "Show why" keeps the written explanation, so the moves line steps aside.
+  // "Show why" keeps the written explanation and its arrows; the reply stays under Best.
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
   await expect(spoken).not.toHaveAttribute('data-spoken', /./);
-  await expect(moves).toHaveCount(0);
+  await expect(reply.locator('strong')).toHaveText('Qh4#');
   await page.getByRole('button', {name: 'Hide why', exact: true}).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.reload();

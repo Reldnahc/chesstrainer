@@ -141,6 +141,9 @@ export default function PositionCoach({
     ? {...utterance, id: `${utterance.id}:greeting`, text: spoken, speechText: spoken}
     : {...utterance, text: written, speechText: spoken};
   const moves = spoken && !openerId ? movesLineFacts({report, frame, intent}) : null;
+  // The strongest reply sits under Best beside the portrait, so the bubble's
+  // footer keeps only the opening name and the Maia insight.
+  const reply = movesLineFacts({report, frame, intent})?.reply;
   // A game can load before saved voice preferences, and opening a finished
   // review restarts its session, which begins a new analysis epoch and so a new
   // speech scope. Holding the greeting until both settle keeps it a fresh event
@@ -187,11 +190,21 @@ export default function PositionCoach({
       }
       evaluation={<EvaluationScore score={score} />}
       portraitCaption={
-        bestMove && (
-          <span className="coach-best-move" title={`Best move: ${bestMove}`}>
-            <span>Best</span>
-            <strong>{bestMove}</strong>
-          </span>
+        (bestMove || reply) && (
+          <>
+            {bestMove && (
+              <span className="coach-best-move" title={`Best move: ${bestMove}`}>
+                <span>Best</span>
+                <strong>{bestMove}</strong>
+              </span>
+            )}
+            {reply && (
+              <span className="coach-best-move coach-best-reply" title={`${reply.side}’s strongest reply: ${reply.san}`}>
+                <span>Reply</span>
+                <strong>{reply.san}</strong>
+              </span>
+            )}
+          </>
         )
       }
       actions={
@@ -219,7 +232,7 @@ export default function PositionCoach({
           {extraAction}
         </>
       }
-      detail={moves && <CoachMovesLine facts={moves} />}
+      detail={moves?.opening && <CoachMovesLine facts={{opening: moves.opening}} />}
       insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} presentation={insight} report={report} />}
     >
       <DialogueText utterance={displayed} recordingId={spokenSource} announcedDetail={moves && movesLineText(moves)} />

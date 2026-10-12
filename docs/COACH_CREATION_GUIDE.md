@@ -161,7 +161,7 @@ recording communicates the supported idea without those position-specific
 details, so one recording can truthfully serve many positions. It is not verbatim
 TTS of every rendered sentence. The bubble shows the spoken line itself (the
 recording, or the coach's `scripts.json` line before it is recorded), with game
-review's moves line beneath it for the exact reply and opening, so review each
+review's opening line beneath it and the exact reply under Best, so review each
 script as on-screen text in the real bubble as well as for delivery.
 
 Start from `audio/speech/meanings.json` and the production selectors
