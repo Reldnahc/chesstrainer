@@ -99,7 +99,7 @@ test('review modes share board and coach sizing with only useful mobile controls
       return range.getClientRects().length === 1 && text.left >= bounds.left && text.right <= bounds.right;
     })).toBe(true);
     expect(game.actions.buttonWidth).toBeCloseTo((game.actions.width - 8) / 2, 1);
-    expect(game.actions.buttonHeight).toBeGreaterThanOrEqual(44);
+    expect(game.actions.buttonHeight).toBe(40);
     await expect(page.locator('.review-workspace-heading')).toHaveCount(0);
     const navigation = page.getByRole('group', {name: 'Game navigation'});
     // The header's Games tab returns to the library; the board controls have no link.

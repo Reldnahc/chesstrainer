@@ -263,7 +263,9 @@
   display: flex;
   align-items: stretch;
   gap: var(--coach-action-gap);
-  min-height: 44px;
+  /* Owner decision, 2026-10-12: the coach's actions are 40px tall, a little
+     under the 44px phone target, so they cost the review column less height. */
+  min-height: 40px;
   min-width: 0;
 }
 .coach-actions > button,
@@ -409,6 +411,9 @@
   color: var(--move-color);
 }
 @media (max-width: 760px) {
+  .coach-actions > .action-control.action-control--compact {
+    min-height: 40px;
+  }
   .review-coach {
     --coach-height: 156px;
     --coach-avatar-width: 52.5px;
