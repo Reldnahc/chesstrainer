@@ -8,7 +8,7 @@
 .play-field > span:first-child { font-weight: 600; }
 .play-strength { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; max-width: 780px; }
 .play-strength input[type="range"] { width: 100%; accent-color: var(--accent); }
-.play-strength output { font-variant-numeric: tabular-nums; font-weight: 650; font-size: 18px; min-width: 3.5ch; text-align: right; }
+.play-strength output { font-variant-numeric: tabular-nums; font-weight: 650; font-size: var(--text-xl); min-width: 3.5ch; text-align: right; }
 /* Hidden alternatives still size the shared cell. */
 .play-swap { display: grid; }
 .play-swap > * { grid-area: 1 / 1; align-self: start; }
@@ -19,7 +19,7 @@
 .play-practice select { width: min(100%, 520px); }
 .play-practice-prompt { display: grid; gap: var(--space-1); }
 .play-level { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: baseline; }
-.play-level strong { font-size: 28px; font-weight: 650; }
+.play-level strong { font-size: var(--text-4xl); font-weight: 650; }
 /* A panel stacks by default; this callout is a row of text and its action. */
 .play-resume { display: flex; flex-direction: row; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; }
 .play-result { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; }
@@ -56,8 +56,8 @@
 /* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
 @media (min-width: 761px) {
   .play-setup-speech { padding: var(--space-4) var(--space-5); }
-  .play-setup-speech .coach-label { font-size: 15px; }
-  .play-setup-speech .coach-message p { font-size: 16px; }
+  .play-setup-speech .coach-label { font-size: var(--text-lg); }
+  .play-setup-speech .coach-message p { font-size: var(--text-lg); }
 }
 /* Phones reuse ReviewCoach, but this bubble holds one short line and nothing
    changes under it, so it fits its text instead of the review's fixed height. */

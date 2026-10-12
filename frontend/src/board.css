@@ -35,7 +35,7 @@
   height: 30px;
   display: grid;
   place-items: center;
-  font: bold 16px var(--mono);
+  font: bold var(--text-lg) var(--mono);
   box-shadow: 0 2px 5px #0008;
   animation: rating-appear 0.22s ease-out;
 }
@@ -117,6 +117,6 @@
   .board-quality {
     width: 25px;
     height: 25px;
-    font-size: 13px;
+    font-size: var(--text-md);
   }
 }

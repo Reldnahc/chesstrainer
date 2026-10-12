@@ -38,7 +38,7 @@
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
-  font-size: 23px;
+  font-size: var(--text-3xl);
   line-height: 1;
   letter-spacing: -0.8px;
   font-weight: 600;
@@ -52,7 +52,7 @@
   gap: var(--space-2);
 }
 .brand-sub {
-  font-size: 10px;
+  font-size: var(--text-2xs);
   letter-spacing: 0.35px;
   font-weight: 400;
   color: var(--muted);
@@ -70,7 +70,7 @@
   background: transparent;
   color: var(--muted);
   padding: var(--space-3) var(--space-4);
-  font-size: 13px;
+  font-size: var(--text-md);
 }
 .nav-item:hover {
   background: #25272c;
@@ -147,7 +147,7 @@ main.workspace-page > * {
   gap: var(--space-5);
 }
 .section-heading {
-  font: 11px var(--mono);
+  font: var(--text-xs) var(--mono);
   color: var(--muted);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -159,12 +159,12 @@ main.workspace-page > * {
   gap: var(--space-3);
 }
 .row-between > strong {
-  font-size: 14px;
+  font-size: var(--text-base);
   font-weight: 500;
   overflow-wrap: anywhere;
 }
 .badge {
-  font: 9px var(--mono);
+  font: var(--text-2xs) var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.7px;
   border: 1px solid #505761;
@@ -215,7 +215,7 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: var(--space-4);
-  font: 10px var(--mono);
+  font: var(--text-2xs) var(--mono);
   color: var(--muted);
 }
 footer > span:last-child {
@@ -232,7 +232,7 @@ footer > span:last-child {
   margin-inline: auto;
 }
 .connection h1 {
-  font-size: 28px;
+  font-size: var(--text-4xl);
 }
 .connection form {
   display: flex;
@@ -296,10 +296,10 @@ footer > span:last-child {
     gap: var(--space-6);
   }
   .brand {
-    font-size: 21px;
+    font-size: var(--text-2xl);
   }
   .brand-sub {
-    font-size: 9px;
+    font-size: var(--text-2xs);
   }
   .app-header nav {
     order: 2;
@@ -314,7 +314,7 @@ footer > span:last-child {
     gap: var(--space-2);
     padding: var(--space-3) var(--space-0-5);
     border-radius: 5px 5px 0 0;
-    font-size: 10px;
+    font-size: var(--text-2xs);
     min-width: 0;
   }
   .nav-item.active::after {
@@ -330,11 +330,11 @@ footer > span:last-child {
     align-items: flex-start;
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: var(--text-2xs);
   }
   footer {
     flex-wrap: wrap;
-    font-size: 9px;
+    font-size: var(--text-2xs);
     gap: var(--space-3);
   }
   .app-header .header-inner {
@@ -349,7 +349,7 @@ footer > span:last-child {
     gap: var(--space-1);
     padding: var(--space-2) var(--space-0-5);
     min-height: 52px;
-    font-size: 10px;
+    font-size: var(--text-2xs);
   }
   /* The header scrolls away with the page so phones keep their vertical space. */
   .app-header {
@@ -360,7 +360,7 @@ footer > span:last-child {
     padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
   }
   .workspace-page .page-title h1 {
-    font-size: 22px;
+    font-size: var(--text-3xl);
     letter-spacing: -0.5px;
   }
   .workspace-page .page-title .eyebrow {
@@ -382,11 +382,12 @@ footer > span:last-child {
     padding-top: var(--page-gap);
     border-top: 1px solid var(--line);
   }
-  .workspace-page h2 {
-    font-size: 18px;
+  /* Phone workspaces use smaller section headings and body text. */
+  .workspace-page {
+    --text-heading-2: var(--text-xl);
+    --text-body: var(--text-md);
   }
   .workspace-page p {
-    font-size: 13px;
     line-height: 1.5;
   }
   .workspace-page button:not(.action-control) {

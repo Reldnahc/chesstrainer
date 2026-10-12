@@ -162,6 +162,29 @@ the whole site, enforced by a check.
   Positioning (`top`, `left`, `inset`), sizes and artwork geometry are not spacing
   and are not checked.
 
+## Type
+
+Owner decision, October 12, 2026: text sizes follow one scale, like spacing.
+[foundation.css](../frontend/src/foundation.css) defines it.
+
+- **Scale.** `--text-2xs` (10px), `--text-xs` (11px), `--text-sm` (12px),
+  `--text-md` (13px), `--text-base` (14px), `--text-lg` (16px), `--text-xl`
+  (18px), `--text-2xl` (20px), `--text-3xl` (24px), `--text-4xl` (28px),
+  `--text-5xl` (36px), `--text-6xl` (48px). The small steps are dense on purpose:
+  the board, notation and mono labels use them.
+- **Roles.** Components prefer a role over a raw step, so one change reaches every
+  use: `--text-heading-1` (h1), `--text-heading-2` (h2), `--text-heading-3` (h3),
+  `--text-body` (paragraphs), `--text-control` (buttons, summaries),
+  `--text-caption` (`.small`, labels, code), `--text-label` (mono eyebrows) and
+  `--text-input` (fields).
+- **Phones.** Roles step down in one place rather than per component: h1 drops to
+  28px on phones, workspaces use 18px section headings and 13px body text, and
+  fields use 16px so phones do not zoom in on focus.
+- **Check.** `node scripts/type-scale.mjs` (part of `npm run test:styles` and
+  `npm run build`) rejects px, rem or pt sizes in `font-size` or the `font`
+  shorthand. `em`, `%`, container units and keywords stay allowed for sizes that
+  follow their container, and `clamp()`/`max()` may combine them with tokens.
+
 ## Surfaces
 
 Owner decision, October 11, 2026: phones (760px and narrower) show a flattened

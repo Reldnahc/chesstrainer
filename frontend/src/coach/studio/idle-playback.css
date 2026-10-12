@@ -21,7 +21,7 @@
   align-items: center;
   gap: var(--space-2);
   margin: 0;
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: #c8d1c4;
 }
 .studio-toggle input {
@@ -37,7 +37,7 @@
   align-items: end;
   flex-wrap: wrap;
   gap: var(--space-3) var(--space-4);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--studio-muted);
 }
 .studio-seed-controls label {
@@ -55,14 +55,14 @@
 }
 .studio-seed-controls button {
   min-height: 36px;
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .studio-seed-controls > span { align-self: center; }
 .studio-motion-diagnostics {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: #c0ccbc;
   overflow-wrap: anywhere;
 }
@@ -71,7 +71,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-3);
 }
-.studio-motion-source { color: var(--studio-muted); font-size: 10px; }
+.studio-motion-source { color: var(--studio-muted); font-size: var(--text-2xs); }
 .studio-motion-summary > div { display: flex; flex-direction: column; gap: var(--space-1); }
 .studio-motion-summary dt { color: var(--studio-muted); }
 .studio-motion-summary dd { font-family: var(--mono); }
@@ -99,7 +99,7 @@
 .studio-motion-details[open] { display: flex; flex-direction: column; gap: var(--space-5); }
 .studio-motion-details > .studio-motion-details-body { display: flex; flex-direction: column; gap: var(--space-3); margin-top: 0; }
 .studio-motion-tables > div { display: flex; flex-direction: column; gap: var(--space-2); }
-.studio-motion-tables h3 { font-size: 12px; }
+.studio-motion-tables h3 { font-size: var(--text-sm); }
 .studio-motion-tables dl > div {
   display: flex;
   justify-content: space-between;
@@ -108,11 +108,11 @@
   padding: var(--space-1) 0;
 }
 .studio-motion-tables dd { color: var(--studio-muted); text-align: right; }
-.studio-motion-caption { font-size: 10px; color: var(--studio-muted); }
+.studio-motion-caption { font-size: var(--text-2xs); color: var(--studio-muted); }
 .studio-motion-issues { padding-left: var(--space-5); color: #efc3a1; }
 .studio-idle-card .studio-idle-description {
   max-width: 30ch;
-  font-size: 11px;
+  font-size: var(--text-xs);
   line-height: 1.45;
   text-align: center;
   color: var(--studio-muted);

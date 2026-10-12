@@ -2,10 +2,10 @@
 .audio-setting-check { display: flex; flex-direction: row; align-items: center; gap: var(--space-3); min-height: 44px; cursor: pointer; }
 .audio-setting-check input { flex: 0 0 20px; width: 20px; height: 20px; min-height: 20px; padding: 0; margin: 0; accent-color: var(--accent); }
 .audio-setting-check > span { display: flex; flex-direction: column; gap: var(--space-1); }
-.audio-setting-check small { color: var(--muted); font-size: 12px; }
+.audio-setting-check small { color: var(--muted); font-size: var(--text-sm); }
 .audio-setting-categories { display: grid; gap: var(--space-4); margin: 0; padding: 0; border: 0; }
 /* A legend sits outside the fieldset's grid, so it pads itself. */
-.audio-setting-categories legend { padding: 0 0 var(--space-3); font-size: 12px; color: var(--muted); }
+.audio-setting-categories legend { padding: 0 0 var(--space-3); font-size: var(--text-sm); color: var(--muted); }
 .audio-setting-categories:disabled { opacity: .6; }
 .audio-setting-volume { display: grid; gap: var(--space-2); }
 .audio-setting-volume label { display: flex; flex-direction: row; justify-content: space-between; }

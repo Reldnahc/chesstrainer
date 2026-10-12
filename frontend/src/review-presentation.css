@@ -24,7 +24,7 @@ main:has(.review-workspace-layout) {
   height: var(--review-meta-height);
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .review-board-meta > * {
   min-width: 0;
@@ -75,12 +75,12 @@ main:has(.review-workspace-layout) {
   gap: var(--space-1) var(--space-4);
   min-height: 28px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 .review-workspace-heading h1 {
   flex: 1;
   min-width: 0;
-  font-size: 15px;
+  font-size: var(--text-lg);
   letter-spacing: -0.3px;
   margin: 0;
   overflow: hidden;
@@ -107,14 +107,14 @@ main:has(.review-workspace-layout) {
   gap: var(--space-2);
 }
 .review-position-status > span:last-child {
-  font: 9px var(--mono);
+  font: var(--text-2xs) var(--mono);
   color: var(--muted);
 }
 .review-board-hint {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 @media (min-width: 761px) {
@@ -149,7 +149,7 @@ main:has(.review-workspace-layout) {
     margin-bottom: var(--space-2);
   }
   .review-workspace-heading h1 {
-    font-size: 14px;
+    font-size: var(--text-base);
   }
   .review-board-row {
     grid-template-columns: calc(var(--review-gutter) - 5px) minmax(0, 1fr);

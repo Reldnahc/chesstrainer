@@ -42,7 +42,7 @@
 }
 .studio-dev-notice {
   color: #b7c5b9;
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .studio-heading {
   display: flex;
@@ -58,10 +58,10 @@
 .studio-heading .eyebrow {
   color: #b8c99f;
   letter-spacing: 2px;
-  font-size: 10px;
+  font-size: var(--text-2xs);
 }
 .studio-heading h1 {
-  font-size: clamp(30px, 3.2vw, 50px);
+  font-size: clamp(var(--text-4xl), 3.2vw, var(--text-6xl));
   line-height: 1.08;
   letter-spacing: -1.6px;
   color: var(--studio-paper);
@@ -71,7 +71,7 @@
 }
 .studio-heading > p {
   color: var(--studio-muted);
-  font-size: 14px;
+  font-size: var(--text-base);
   line-height: 1.7;
   max-width: 365px;
   padding-bottom: var(--space-0-5);
@@ -123,19 +123,19 @@
 }
 .studio-cast strong {
   display: block;
-  font-size: 14px;
+  font-size: var(--text-base);
   color: #ede6d8;
 }
 .studio-cast small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-2xs);
   color: #a9b5a3;
 }
 .studio-controls > label,
 .studio-section-title label {
   display: grid;
   gap: var(--space-1-5);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: #b5c3b6;
   margin: 0;
 }
@@ -151,7 +151,7 @@
 .studio-controls button {
   min-height: 42px;
   gap: var(--space-2);
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 /* As tall as the buttons, so the checkbox centres on them. */
 .studio-controls .studio-reduced {
@@ -161,7 +161,7 @@
   gap: var(--space-2);
   min-height: 42px;
   margin-left: auto;
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .studio-reduced input {
   width: 16px;
@@ -173,7 +173,7 @@
 }
 .studio-motion-notice {
   color: #d5c69f;
-  font-size: 12px;
+  font-size: var(--text-sm);
   padding: 0 var(--space-1);
 }
 .studio-moment {
@@ -188,17 +188,17 @@
   gap: var(--space-4);
 }
 .studio-counter {
-  font: 10px var(--mono);
+  font: var(--text-2xs) var(--mono);
   color: #98ab99;
   letter-spacing: 1px;
 }
 .studio-moment h2 {
-  font-size: 22px;
+  font-size: var(--text-3xl);
   color: var(--studio-paper);
   letter-spacing: -0.5px;
 }
 .studio-moment p {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--studio-muted);
 }
 .studio-concepts {
@@ -235,11 +235,11 @@
   gap: var(--space-2);
   min-height: 22px;
   color: #bcccb6;
-  font: 9px var(--mono);
+  font: var(--text-2xs) var(--mono);
   letter-spacing: 1px;
 }
 .studio-current {
-  font: 10px var(--sans);
+  font: var(--text-2xs) var(--sans);
   letter-spacing: 0;
   border: 1px solid #63715b;
   border-radius: 20px;
@@ -291,13 +291,13 @@
   gap: var(--space-2);
 }
 .studio-concept-copy h3 {
-  font-size: 21px;
+  font-size: var(--text-2xl);
   letter-spacing: -0.4px;
   color: #ede6d8;
 }
 .studio-concept-copy p {
   min-height: 44px;
-  font-size: 13px;
+  font-size: var(--text-md);
   line-height: 1.6;
   color: #c0c3b9;
 }
@@ -306,7 +306,7 @@
   padding-top: var(--space-3);
   border-top: 1px solid #ffffff13;
   min-height: 46px;
-  font-size: 10px;
+  font-size: var(--text-2xs);
   color: #a5b39f;
   line-height: 1.6;
 }
@@ -316,7 +316,7 @@
   justify-content: space-between;
   padding-inline: 0;
   color: #cbd9bd;
-  font-size: 11px;
+  font-size: var(--text-xs);
   margin-top: auto;
 }
 .studio-concept > button[aria-pressed="true"] {
@@ -360,16 +360,16 @@
   gap: var(--space-1-5);
 }
 .studio-idle-bar h2 {
-  font-size: 14px;
+  font-size: var(--text-base);
 }
 .studio-idle-bar p {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--studio-muted);
 }
 .studio-idle-bar button {
   white-space: nowrap;
   min-height: 42px;
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .studio-idle-grid,
 .studio-comparison-grid {
@@ -421,12 +421,12 @@
   margin: 0;
 }
 .studio-idle-card h3 {
-  font-size: 13px;
+  font-size: var(--text-md);
   text-align: center;
 }
 .studio-idle-card button {
   min-height: 42px;
-  font-size: 12px;
+  font-size: var(--text-sm);
   width: 100%;
   margin-top: auto;
 }
@@ -434,7 +434,7 @@
   display: grid;
   gap: var(--space-1-5);
   width: 100%;
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--studio-muted);
 }
 .studio-comparison-card select {
@@ -446,10 +446,10 @@
   display: flex;
   align-items: center;
   min-height: 64px;
-  font-size: 13px;
+  font-size: var(--text-md);
 }
 .studio-comparison-stage > p:last-child {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--studio-muted);
 }
 .studio-section-title {
@@ -471,16 +471,16 @@
   gap: var(--space-2);
 }
 .studio-section-title .eyebrow {
-  font-size: 9px;
+  font-size: var(--text-2xs);
   letter-spacing: 1.7px;
   color: #a4b69b;
 }
 .studio-section-title h2 {
-  font-size: 25px;
+  font-size: var(--text-3xl);
   letter-spacing: -0.6px;
 }
 .studio-section-title > p {
-  font-size: 12px;
+  font-size: var(--text-sm);
   line-height: 1.6;
   color: var(--studio-muted);
 }
@@ -500,7 +500,7 @@
   background: #151a17;
 }
 .studio-size-label {
-  font: 9px var(--mono);
+  font: var(--text-2xs) var(--mono);
   color: #a8b0a1;
   letter-spacing: 1px;
 }
@@ -530,7 +530,7 @@
   grid-column: 1 / -1;
 }
 .studio-context-compact .coach-label {
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .studio-context-compact .coach-speech {
   padding: var(--space-3);
@@ -569,12 +569,12 @@
   gap: var(--space-1-5);
 }
 .studio-expression-copy > span {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: #ede6d8;
 }
 .studio-expression small {
   min-height: 36px;
-  font-size: 10px;
+  font-size: var(--text-2xs);
   line-height: 1.4;
   color: #adb6a7;
   max-width: 155px;
@@ -594,7 +594,7 @@
   top: var(--space-0-5);
 }
 .studio-note p {
-  font-size: 12px;
+  font-size: var(--text-sm);
   line-height: 1.7;
   max-width: 820px;
 }
@@ -636,7 +636,7 @@
     padding: var(--space-2);
   }
   .studio-cast strong {
-    font-size: 12px;
+    font-size: var(--text-sm);
   }
   .studio-heading {
     align-items: start;
@@ -644,10 +644,10 @@
     gap: var(--space-4);
   }
   .studio-heading h1 {
-    font-size: 38px;
+    font-size: var(--text-5xl);
   }
   .studio-heading > p {
-    font-size: 13px;
+    font-size: var(--text-md);
   }
   .studio-controls {
     display: grid;
@@ -705,17 +705,17 @@
     align-self: center;
   }
   .studio-concept-copy h3 {
-    font-size: 19px;
+    font-size: var(--text-2xl);
   }
   .studio-concept-copy p {
-    font-size: 12px;
+    font-size: var(--text-sm);
     min-height: 0;
   }
   .studio-concept-copy {
     gap: var(--space-2);
   }
   .studio-concept-copy > span {
-    font-size: 9px;
+    font-size: var(--text-2xs);
     padding-top: var(--space-2);
   }
   .studio-concept > button {
@@ -760,7 +760,7 @@
     height: 87.5px;
   }
   .studio-expression-copy > span {
-    font-size: 11px;
+    font-size: var(--text-xs);
   }
   .studio-expression small {
     display: none;

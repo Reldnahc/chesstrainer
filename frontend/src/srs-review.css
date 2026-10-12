@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  font: 10px var(--mono);
+  font: var(--text-2xs) var(--mono);
   letter-spacing: 1px;
   color: var(--muted);
 }
@@ -31,7 +31,7 @@
   gap: var(--space-3);
 }
 .practice-panel h2 {
-  font-size: 29px;
+  font-size: var(--text-4xl);
   letter-spacing: -0.8px;
 }
 .practice-actions > .button-link {
@@ -55,7 +55,7 @@
   top: var(--space-1);
 }
 .aside-note p {
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .answer-feedback {
   display: flex;
@@ -70,24 +70,24 @@
   flex-shrink: 0;
 }
 .answer-feedback strong {
-  font: 22px var(--mono);
+  font: var(--text-3xl) var(--mono);
   color: #fff;
 }
 .answer-feedback span {
   display: block;
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: #bbc4d1;
   line-height: 1.6;
 }
 .review-move {
-  font: 20px var(--mono);
+  font: var(--text-2xl) var(--mono);
   color: var(--accent);
 }
 .review-details {
   border-top: 1px solid var(--line);
 }
 .review-details p {
-  font-size: 13px;
+  font-size: var(--text-md);
 }
 .review-details .answer-feedback {
   padding: var(--space-3);
@@ -98,18 +98,18 @@
   gap: var(--space-3);
 }
 .explanation-move-caption {
-  font: 12px var(--mono);
+  font: var(--text-sm) var(--mono);
 }
 .explanation-caption {
-  font-size: 13px;
+  font-size: var(--text-md);
   min-height: 3.3em;
 }
 .review-explanation details {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--muted);
 }
 .review-explanation details p {
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 .review-explanation {
   display: flex;
@@ -125,7 +125,7 @@
   container-type: inline-size;
 }
 .opening-recall-names {
-  font-size: 12px;
+  font-size: var(--text-sm);
   line-height: 1.4;
 }
 .opening-recall-names svg {
@@ -143,14 +143,14 @@
 }
 .opening-recall-answers h3,
 .opening-recall-line h4 {
-  font-size: 13px;
+  font-size: var(--text-md);
 }
 .opening-recall-line {
   padding-block: var(--space-3);
   border-top: 1px solid var(--line);
 }
 .opening-recall-line p {
-  font: 12px/1.8 var(--mono);
+  font: var(--text-sm)/1.8 var(--mono);
   overflow-wrap: anywhere;
 }
 .review-explanation .explanation-caption {
@@ -160,7 +160,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 .pattern-legend span {
   border-left: 3px solid;
@@ -200,7 +200,7 @@
     padding: var(--space-6);
   }
   .practice-panel h2 {
-    font-size: 25px;
+    font-size: var(--text-3xl);
   }
 }
 @media (max-width: 760px) {
@@ -208,9 +208,9 @@
     padding: var(--space-6);
   }
   .practice-panel h2 {
-    font-size: 25px;
+    font-size: var(--text-3xl);
   }
   .review-session .review-move {
-    font-size: 17px;
+    font-size: var(--text-xl);
   }
 }
