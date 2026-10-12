@@ -41,7 +41,8 @@ saved game then queues its own analysis job. See
 |---|---|
 | backend/trainer/api.py | One application and router graph, shared resources, database maintenance and lifespan |
 | multiuser.py | Cookie authentication, account/profile endpoints, administrator account management and request authentication; no child applications |
-| accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`) |
+| accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`, `open-signups`, `close-signups`) |
+| site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
 | jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback |

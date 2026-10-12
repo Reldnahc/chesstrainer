@@ -151,6 +151,10 @@ def main():
                 if mode == "accounts":
                     assert client.get("/api/games").status_code == 401
                     payload = {"username": "install-test", "password": uuid.uuid4().hex}
+                    public = {"Origin": "https://chess.example.test"}
+                    closed = client.post("/api/auth/signup", json=payload, headers=public)
+                    assert closed.status_code == 403 and "Sign-ups are closed" in closed.text
+                    docker("exec", name, "python", "-m", "trainer.accounts", "open-signups")
                     bad = client.post("/api/auth/signup", json=payload, headers={"Origin": address})
                     assert bad.status_code == 403 and "PUBLIC_ORIGIN" in bad.text
                     signup = client.post(

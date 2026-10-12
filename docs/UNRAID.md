@@ -47,18 +47,20 @@ image's user; the `--user` option does.
 2. Set **Account support** to true. Keep **Secure session cookies** true. Leave
    **Public origin** (advanced) blank unless your proxy rewrites the Host header.
 3. Optionally change **WebUI** in Advanced View to your HTTPS address.
-4. Apply and open the HTTPS address. Users can sign up and use their account on
-   multiple devices. Each account's saved games are analyzed in the background.
+4. Apply, create an administrator (below), and open the HTTPS address. Sign-ups
+   start closed: add members in Settings → Account with a temporary password, or
+   open sign-ups there. Each account's saved games are analyzed in the background.
 
 Cloudflare Access is optional and independent of the app login. If used, apply its
 policy before exposing the proxy. Do not expose local no-login mode publicly.
-Create an administrator from the Unraid terminal when needed:
+Without Access, only people you add (or anyone, once you open sign-ups) can get
+an account. Create an administrator from the Unraid terminal:
 
 ```sh
 docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
 
-The command prompts for a password. Signup never grants administrator privileges;
+The command prompts for a password. Sign-ups never grant administrator privileges;
 to make an account that already signed up an administrator, promote it instead:
 
 ```sh
