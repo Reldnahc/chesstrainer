@@ -39,6 +39,38 @@ test('loading game connections preserves the Update games control and library ge
   }
 });
 
+test('background syncs refresh the game list in place, once per finished check', async ({page}, info) => {
+  expect((await page.request.post(`/__test/game-review-fixture/sync-refresh-${info.project.name}`)).ok()).toBe(true);
+  const sync = (job_id: string, status: string, imported: number) =>
+    ({provider: 'chesscom', username: 'walter', job_id, status, checked_at: `2026-10-11T00:00:0${job_id}+00:00`, imported, error: null});
+  let current = sync('1', 'completed', 0);
+  await page.route('**/api/providers/*/sync', route => new URL(route.request().url()).pathname.includes('/chesscom/')
+    ? route.fulfill({json: current})
+    : route.fulfill({json: {provider: 'lichess', username: '', job_id: null, status: 'not_started', checked_at: null, imported: 0, error: null}}));
+  let listReads = 0;
+  page.on('request', request => { if (new URL(request.url()).pathname === '/api/games') listReads++; });
+  await page.clock.install();
+  await page.goto('/games');
+  const library = page.getByRole('region', {name: 'Game history', exact: true});
+  await expect(library).toBeVisible();
+  await page.evaluate(() => {
+    const seen = window as unknown as {blanked: boolean};
+    seen.blanked = false;
+    new MutationObserver(() => { if (document.body.textContent?.includes('Loading your games')) seen.blanked = true; })
+      .observe(document.body, {childList: true, subtree: true, characterData: true});
+  });
+  // The first status is only a baseline, and a running check changes nothing yet.
+  current = sync('2', 'running', 0);
+  await page.clock.runFor(15000);
+  await expect(page.getByRole('button', {name: 'Updating…'})).toBeVisible();
+  expect(listReads).toBe(1);
+  current = sync('2', 'completed', 1);
+  await page.clock.runFor(15000);
+  await expect.poll(() => listReads).toBe(2);
+  await expect(library).toBeVisible();
+  expect(await page.evaluate(() => (window as unknown as {blanked: boolean}).blanked)).toBe(false);
+});
+
 test('Lichess import uses shared filters, fetch-only jobs and deduplication', async ({page}, info) => {
   const username = `lichess-import-${info.project.name}`;
   await page.goto('/settings');

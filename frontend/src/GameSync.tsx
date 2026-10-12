@@ -97,9 +97,11 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
     if (generation.current !== token) return;
     setStatuses(previous => ({ ...previous, [value.provider]: value }));
     statusCallback.current?.(value);
+    const previous = versions.current[value.provider];
     const version = `${value.job_id}:${value.checked_at}:${value.imported}:${value.status}`;
-    if (version !== versions.current[value.provider] && value.job_id) callback.current?.();
     versions.current[value.provider] = version;
+    // The first status is the baseline; after it, only a finished check can change the library.
+    if (previous !== undefined && version !== previous && value.job_id && !running(value)) callback.current?.();
   }
   async function check(items: Provider[], token: number, refresh: boolean, explicit = false) {
     if (inFlight.current === token) {

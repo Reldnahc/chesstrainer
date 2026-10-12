@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api, read } from "./api";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
@@ -25,11 +25,16 @@ export default function GamesScreen({
   const [revision, setRevision] = useState(0);
   const [error, setError] = useState(""),
     [loading, setLoading] = useState(true);
+  // A background sync refreshes the list in place instead of blanking it.
+  const background = useRef(false);
   useEffect(() => {
     if (selected) return;
     let active = true;
-    setLoading(true);
-    setError("");
+    if (!background.current) {
+      setLoading(true);
+      setError("");
+    }
+    background.current = false;
     read(api.GET("/api/games", { params: { query: { offset } } }))
       .then((data) => {
         if (active) {
@@ -62,7 +67,10 @@ export default function GamesScreen({
         eyebrow="EVERY MOVE HAS A STORY"
         title="Your games"
       >
-        <GameSync compact onChanged={() => setRevision((value) => value + 1)} />
+        <GameSync compact onChanged={() => {
+          background.current = true;
+          setRevision((value) => value + 1);
+        }} />
       </PageTitle>
       {error && (
         <Notice announcement="alert" tone="error">
