@@ -11,7 +11,7 @@ from contextlib import closing
 from pathlib import Path
 
 from trainer.config import Settings
-from trainer.study_lessons.club import LEDGER, SAFE_ID, courses_folder
+from trainer.study_lessons.club import HIDDEN, LEDGER, SAFE_ID, courses_folder
 
 SIDECARS = ("-wal", "-shm", "-journal")
 
@@ -45,10 +45,11 @@ def export_backup(destination: Path, settings: Settings):
         def write_archive(path):
             with zipfile.ZipFile(path, "x", compression=zipfile.ZIP_DEFLATED) as archive:
                 archive.write(snapshot, "trainer.sqlite3")
-                # The club's own Study course files and their revision ledger.
+                # The club's own Study course files, their revision ledger and
+                # the built-in courses an administrator deleted.
                 folder = courses_folder(settings)
                 if folder.is_dir():
-                    for item in sorted(folder.glob("*.json")) + [folder / LEDGER]:
+                    for item in sorted(folder.glob("*.json")) + [folder / LEDGER, folder / HIDDEN]:
                         if item.is_file():
                             archive.write(item, f"courses/{item.name}")
                 archive.writestr(
@@ -122,7 +123,7 @@ def restore_courses(archive, destination: Path):
         for name in archive.namelist()
         if name.startswith("courses/")
         and (
-            name == f"courses/{LEDGER}"
+            name in (f"courses/{LEDGER}", f"courses/{HIDDEN}")
             or (name.endswith(".json") and SAFE_ID.match(name.removeprefix("courses/")[:-5]))
         )
     ]

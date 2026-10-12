@@ -64,7 +64,61 @@ def test_local_install_imports_exports_replaces_and_deletes(settings):
         assert courses["vienna-gambit"]["source"] == "club"
         assert client.delete(f"{FILES}/vienna-gambit").json()["built_in_restored"]
         assert listed(client)["vienna-gambit"]["title"].startswith("Vienna Gambit")
+        assert client.delete(f"{FILES}/sample").json() == {
+            "id": "sample",
+            "built_in_restored": False,
+            "hidden": False,
+        }
+        assert client.delete(f"{FILES}/sample").status_code == 404
+
+
+def test_deleting_a_built_in_course_hides_it_until_restored(settings):
+    with app_client(settings) as client:
+        view = client.get(f"{LIBRARY}/vienna-gambit").json()
+        started = client.post(
+            "/api/study/lesson-sessions",
+            json={
+                "course_id": "vienna-gambit",
+                "course_revision": view["revision"],
+                "chapter_id": view["chapters"][0]["id"],
+                "request_id": "start-1",
+            },
+        )
+        assert started.status_code == 200
+        assert [row["course_id"] for row in client.get(LIBRARY).json()["resume"]] == [
+            "vienna-gambit"
+        ]
+
+        assert client.delete(f"{FILES}/vienna-gambit").json() == {
+            "id": "vienna-gambit",
+            "built_in_restored": False,
+            "hidden": True,
+        }
+        hidden = settings.database_path.parent / "courses" / "hidden-built-ins.ledger"
+        assert json.loads(hidden.read_text(encoding="utf-8")) == ["vienna-gambit"]
+        library = client.get(LIBRARY).json()
+        assert "vienna-gambit" not in listed(client)
+        # The learner's session is kept but leaves Lessons with its course.
+        assert library["resume"] == []
+        assert library["hidden_built_ins"] == [{"id": "vienna-gambit", "title": view["title"]}]
         assert client.delete(f"{FILES}/vienna-gambit").status_code == 404
+
+        # A club course with the hidden id still shows; deleting it keeps the built-in hidden.
+        vienna = client.get(f"{LIBRARY}/vienna-gambit/file").json()
+        vienna["title"] = "Our Vienna"
+        assert save(client, vienna).status_code == 200
+        assert listed(client)["vienna-gambit"]["title"] == "Our Vienna"
+        assert not client.delete(f"{FILES}/vienna-gambit").json()["built_in_restored"]
+        assert "vienna-gambit" not in listed(client)
+
+        restored = client.post(f"{FILES}/vienna-gambit/restore")
+        assert restored.json() == {"id": "vienna-gambit", "title": view["title"]}
+        library = client.get(LIBRARY).json()
+        assert listed(client)["vienna-gambit"]["source"] == "built_in"
+        assert library["hidden_built_ins"] == []
+        assert [row["course_id"] for row in library["resume"]] == ["vienna-gambit"]
+        assert client.post(f"{FILES}/vienna-gambit/restore").status_code == 404
+        assert client.delete(f"{FILES}/no-such-course").status_code == 404
 
 
 def test_bad_files_are_refused_or_reported(settings):
@@ -103,6 +157,9 @@ def test_only_administrators_change_courses(settings):
         assert client.get(f"{LIBRARY}/vienna-gambit/file").status_code == 200
         assert save(client, sample(), headers).status_code == 403
         assert client.delete(f"{FILES}/sample", headers=headers).status_code == 403
+        assert client.delete(f"{FILES}/vienna-gambit", headers=headers).status_code == 403
+        assert client.post(f"{FILES}/vienna-gambit/restore", headers=headers).status_code == 403
+        assert "hidden_built_ins" not in library or library["hidden_built_ins"] == []
 
         admin = client.post(
             "/api/auth/login",

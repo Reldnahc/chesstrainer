@@ -42,8 +42,13 @@ export async function readChosenFile(file: File): Promise<CourseFile> {
   return data as CourseFile;
 }
 
-export async function deleteCourseFile(courseId: string) {
-  await api.DELETE("/api/study/course-files/{course_id}", { params: { path: { course_id: courseId } } });
+/** Delete a club course file, or hide a built-in course for this install. */
+export function deleteCourseFile(courseId: string): Promise<Schema["CourseFileDeleted"]> {
+  return read(api.DELETE("/api/study/course-files/{course_id}", { params: { path: { course_id: courseId } } }));
+}
+
+export function restoreBuiltInCourse(courseId: string): Promise<Schema["HiddenCourse"]> {
+  return read(api.POST("/api/study/course-files/{course_id}/restore", { params: { path: { course_id: courseId } } }));
 }
 
 export function savedMessage(saved: Schema["CourseFileSaved"], verb = "Saved") {

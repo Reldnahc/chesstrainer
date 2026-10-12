@@ -117,7 +117,8 @@ board, as [Study](STUDY.md#reviewing-authored-course-quality) describes.
 Administrators manage courses in **Settings → Courses**, which only they see:
 *New course*, *Import course file*, and *Edit*, *Download* or *Delete* for each
 course. Lessons itself stays free of these tools. Editing a built-in course
-saves a club copy that replaces it.
+saves a club copy that replaces it. *Delete* asks once more (*Delete for
+everyone* or *Keep it*) before it acts; see [Deleting courses](#deleting-courses).
 
 - The board on the left shows where the selected step starts (or ends). The
   form on the right edits the course details, chapters, steps and the lines to
@@ -138,7 +139,7 @@ A club's own courses live in a `courses` folder beside the database
 (`/data/courses` in the Docker image), or in `COURSES_PATH` when it is set.
 That folder is on the same volume as the database, so club courses survive
 updates. `scripts/backup.py export` includes the course files with the
-database snapshot, and `restore` puts them in a `courses` folder beside the
+database snapshot (with the list of deleted built-in courses), and `restore` puts them in a `courses` folder beside the
 restored database (or `<name>-courses` when that folder is already in use; point
 `COURSES_PATH` at it).
 
@@ -152,7 +153,8 @@ restored database (or `<name>-courses` when that folder is already in use; point
   A file that cannot be loaded is listed, with its problem, to administrators
   only; members never see a broken course.
 - A club course with the same `id` as a built-in course replaces it. Deleting
-  the club file brings the built-in course back.
+  the club file brings the built-in course back (unless that built-in course was
+  itself deleted).
 - Saving or importing a course under a revision that was ever used for different
   content (a built-in revision, or an earlier save, even one since deleted) gives
   it a new revision (today's date). Members who started the earlier revision keep
@@ -160,3 +162,22 @@ restored database (or `<name>-courses` when that folder is already in use; point
   `revisions.ledger` remembers every saved revision for this.
 - The editor refuses to save a new course over an existing id, and refuses to
   save over a course someone else saved after the editor opened it.
+
+## Deleting courses
+
+Administrators delete any course from Settings → Courses:
+
+- **A club course** loses its file in the courses folder. If it replaced a
+  built-in course, the built-in course comes back.
+- **A built-in course** ships inside the app, so it cannot be removed. Deleting
+  it hides it for this install instead: its id goes into
+  `hidden-built-ins.ledger` in the courses folder (`/data/courses` in Docker), so
+  it stays hidden after updates and is part of backups. It then appears under
+  *Deleted built-in courses* in Settings → Courses, where *Restore* brings it
+  back. A club course that uses a hidden built-in id still shows, because it is
+  the club's own file.
+
+Deleting a course never deletes members' progress. Their saved lesson sessions
+and completed chapters stay in the database, and the course and its *Continue*
+rows leave Lessons. When the course comes back (restored, or a club file with
+the same id is imported again), members find their progress where they left it.

@@ -14,6 +14,7 @@ from trainer.contracts.study_lessons import (
     CourseFileSaved,
     EditorPosition,
     EditorPositionRequest,
+    HiddenCourse,
     LessonCommand,
     LessonCourseView,
     LessonLibrary,
@@ -73,7 +74,8 @@ def create_router(*, providers, installed=None):
         with workspace.mutation_lock, workspace.sessions() as db:
             result = queries.library(db, providers, source)
         problems = installed.club.problems() if installed and manager else []
-        return {**result, "can_manage": manager, "problems": problems}
+        hidden = installed.hidden_built_ins() if installed and manager else []
+        return {**result, "can_manage": manager, "problems": problems, "hidden_built_ins": hidden}
 
     @router.get("/api/study/courses/{course_id}", response_model=LessonCourseView)
     def course(
@@ -212,12 +214,35 @@ def create_router(*, providers, installed=None):
 
     @router.delete("/api/study/course-files/{course_id}", response_model=CourseFileDeleted)
     def delete_course(request: Request, course_id: str):
-        """Remove a club course file. A built-in course it replaced comes back."""
+        """Remove a club course file, or hide a built-in course for this install.
+
+        Deleting a club file that replaced a built-in course brings the built-in
+        back. Members' progress stays in the database either way.
+        """
         require_manager(request)
         folder = club()
-        if not folder.delete(course_id):
-            raise HTTPException(404, "No club course file has that id.")
-        return {"id": course_id, "built_in_restored": course_id in installed.built_in_ids()}
+        built_in = course_id in installed.built_in_ids()
+        if folder.delete(course_id):
+            return {
+                "id": course_id,
+                "built_in_restored": built_in and course_id not in folder.hidden(),
+            }
+        if built_in and folder.set_hidden(course_id, True):
+            return {"id": course_id, "built_in_restored": False, "hidden": True}
+        raise HTTPException(404, "No course has that id.")
+
+    @router.post("/api/study/course-files/{course_id}/restore", response_model=HiddenCourse)
+    def restore_course(request: Request, course_id: str):
+        """Bring back a deleted built-in course."""
+        require_manager(request)
+        folder = club()
+        course = next(
+            (item for item in installed.hidden_built_ins() if item["id"] == course_id), None
+        )
+        if course is None:
+            raise HTTPException(404, "No deleted built-in course has that id.")
+        folder.set_hidden(course_id, False)
+        return course
 
     @router.post("/api/study/lesson-sessions", response_model=LessonSessionView)
     def start(workspace: CurrentWorkspace, data: LessonStart):
