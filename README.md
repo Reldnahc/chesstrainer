@@ -2,9 +2,12 @@
 
 A private chess trainer built around decisions in your own games. Import Chess.com or Lichess history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Study brings scheduled recall, guided opening lessons and separate puzzle practice together. See [Study](docs/STUDY.md) for content availability and the distinct learning modes.
 
-Start with **Study → Openings** for Italian Game courses for White and Black or a
-King’s Gambit course for White, or browse the opening catalogue and choose lines
-to remember. Lessons and line rehearsal save their own progress; only scheduled
+Start with **Study → Openings** for Italian Game, King’s Gambit and Vienna Gambit
+courses for White or Italian Game and Sicilian Dragon courses for Black, or browse
+the opening catalogue and choose lines to remember. **Study → Skills** teaches
+basic skills and tactical patterns. Administrators can add or edit club courses
+in **Settings → Courses**; see [course files](docs/COURSE_FILES.md). Lessons and
+line rehearsal save their own progress; only scheduled
 **Due** attempts advance FSRS. **Study → Puzzles** practices a bundled, offline
 selection of 972 engine-verified CC0 Lichess puzzles by difficulty and theme, with a retry mode
 for puzzles you revealed or failed; a larger installed pack is optional.
@@ -19,10 +22,9 @@ The shared [audio system](docs/AUDIO.md) adds board sounds and practice feedback
 Move ratings have no sounds. Adjust it in **Settings → Sound** or quickly
 mute the current device from a board. The separate development sound studio
 (`npm --prefix frontend run dev:audio`, port 5176) previews the nine approved
-sounds individually and in context. Walter and Rivet each include 195 prerecorded
-teaching summaries with automatic lip sync, available automatically or on request.
-They ship with the app and need no API key or paid service. Other coaches and
-lessons remain text only. The [voice studio](frontend/src/audio/speech/README.md)
+sounds individually and in context. All 30 coaches have prerecorded voice banks
+for supported teaching lines, with automatic lip sync, available automatically or
+on request. They ship with the app and need no API key or paid service. The [voice studio](frontend/src/audio/speech/README.md)
 compares their complete recordings for the same supported meanings.
 
 Game review now connects supported tactics, immediate positional changes, human
@@ -72,10 +74,10 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 - Compact game history shows player ratings/colors, results, accuracy, time control, move count and date. Browsing uses saved data without running analysis; each row opens its review.
 - Full-game review in **Games**: saved analysis and Lichess accuracy for both players, nine move labels including **Book**, an evaluation timeline, an illustrated tactical coach, and playable branching variations. A bundled Lichess opening catalogue recognizes book moves locally, including named unsound lines, in saved games and branches. Accuracy appears beside players and in the move-quality breakdown; it uses every saved evaluation with no Elo adjustment or additional engine searches. Pause/resume preserves completed analysis; game review never changes scheduled practice. See [Game review](docs/GAME_REVIEW.md) for scoring and evidence limits.
 - FSRS scheduling, one failed recall per session, continued retries and permanent retirement above a configurable interval threshold (100 days by default).
-- Same-origin LAN operation, optional shared access token, or self-service accounts with private data and persistent device sessions. CLI backup/restore covers the single database.
-- Remembered Chess.com and Lichess usernames and automatic recent-game fetching without engine analysis. Start full review or training analysis explicitly from a saved game.
+- Same-origin LAN operation, optional shared access token, or self-service accounts with private data and persistent device sessions. CLI backup/restore covers the single database and the club's course files.
+- Remembered Chess.com and Lichess usernames with automatic polling for new games. Every saved game is analyzed in the background, newest first; opening a game moves its review to the front.
 
-Navigation is **Home, Study, Games, Weaknesses, Settings**. **Home** brings together scheduled recalls, recent games, saved lessons and supported practice priorities without starting analysis or a practice session. **Study → Due** contains scheduled recalls; old Review bookmarks remain usable. The initial cold game-recall board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Study also hosts multi-move puzzle practice from a bundled CC0 Lichess starter pack, chosen by difficulty band and theme with a separate retry mode. Puzzle practice has its own saved progress and never changes FSRS or weaknesses. The historical course/Repertoire system and manual-position entry forms remain archived; see [Product](docs/PRODUCT.md#removed-and-archived).
+Navigation is **Home, Study, Play, Games, Insights, Settings**. **Home** brings together scheduled recalls, recent games, saved lessons and supported practice priorities without starting analysis or a practice session. **Study → Due** contains scheduled recalls; old Review bookmarks remain usable. The initial cold game-recall board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. **Play** starts a game against your selected coach. **Insights** summarizes your rated games and ranks supported weaknesses; Chess.com games saved before the rated flag existed count as rated until a re-import (see [Insights](docs/INSIGHTS.md)). Study also hosts multi-move puzzle practice from a bundled CC0 Lichess starter pack, chosen by difficulty band and theme with a separate retry mode. Puzzle practice has its own saved progress and never changes FSRS or weaknesses. The historical course/Repertoire system and manual-position entry forms remain archived; see [Product](docs/PRODUCT.md#removed-and-archived).
 
 Pages and individual games have their own URLs, with browser Back/Forward,
 bookmarks and new-tab links. Refreshing a game review preserves the selected
@@ -119,7 +121,7 @@ cd ..
 python -m trainer
 ```
 
-**Settings > Source code on GitHub** links to the public repository, which is the source offer for the vendored AGPL code. Push deployed changes there before serving them to other people.
+**Settings > Advanced > Source code on GitHub** links to the public repository, which is the source offer for the vendored AGPL code. Push deployed changes there before serving them to other people.
 
 Open **http://127.0.0.1:8000**. Startup applies Alembic migrations, seeds skills and checks Stockfish. Missing Stockfish produces an actionable status. Saved answers and saved-evidence classification remain usable; new analysis and unlisted engine answers require the executable. Data defaults to `data/trainer.sqlite3`.
 
@@ -129,11 +131,11 @@ Explicit migration commands are `alembic upgrade head` and `alembic check`. Run 
 
 New accounts get a short, one-time welcome: optional Chess.com/Lichess usernames, then import instructions. Without connected usernames, it explains PGN files instead. Existing accounts and local-only installs skip onboarding.
 
-1. Open Settings → Import games and choose Chess.com or Lichess and enter your username. Defaults fetch up to 100 **new** rapid games from the current and preceding two calendar months. Change time class, range or limit as needed, then click **Fetch games**. Enable the optional analysis checkbox to also create training exercises. No login or API key is needed. Alternatively choose **PGN file**, identify your username(s), and explicitly assign a side only when it is yours in every game.
+1. Open **Settings → Games & imports** and save your Chess.com or Lichess username; Fieldwork then checks for new games every minute. For older games choose **Import older games**. Defaults fetch up to 100 **new** rapid games from the current and preceding two calendar months. Change time control, range or limit as needed, then click **Import games**. Every imported game is analyzed in the background. No login or API key is needed. Alternatively choose **Import PGN**, identify your username(s), and explicitly assign a side only when it is yours in every game.
 2. Watch progress; invalid or ambiguous games are reported separately. Completed work survives interruptions. Retry an older cancelled job separately; a new import only queues new games.
 3. Open Study → Due. Meaningful errors become practice; small engine preferences usually do not. Try a move, inspect the saved counter/playback when useful, and continue to the next position.
-4. Open Weaknesses to inspect supported recurring patterns and their evidence. Choose a skill for focused practice; those attempts do not change your scheduled recalls. Unclassified mistakes remain available in Review.
-5. Use **Settings > Classify saved games** to classify existing analyses locally, or **Deepen unclear positions** for optional bounded Stockfish evidence. No model setup is needed.
+4. Open **Insights → Weaknesses** to inspect supported recurring patterns and their evidence. Choose a skill for focused practice; those attempts do not change your scheduled recalls. Unclassified mistakes remain available in Study → Due.
+5. Use **Settings > Advanced > Classify saved games** to classify existing analyses locally, or **Deepen unclear positions** for optional bounded Stockfish evidence. No model setup is needed.
 
 ## Local network
 
@@ -201,7 +203,7 @@ python scripts/backup.py export data/backups/practice.zip
 python scripts/backup.py restore data/backups/practice.zip --destination data/restored.sqlite3
 ```
 
-Export uses SQLite's online backup API, including committed WAL state. Restore validates integrity/foreign keys and only writes to a **new** path; it also refuses a path that still has `-wal`/`-shm` sidecar files from an interrupted server, because SQLite would replay them over the restored data. Stop the server, set DATABASE_PATH to the restored file and restart. Safe settings are included for reference; reapply them manually. API keys and LAN token values are excluded. Backups themselves contain private games.
+Export uses SQLite's online backup API, including committed WAL state. Restore validates integrity/foreign keys and only writes to a **new** path; it also refuses a path that still has `-wal`/`-shm` sidecar files from an interrupted server, because SQLite would replay them over the restored data. Stop the server, set DATABASE_PATH to the restored file and restart. The archive also holds the club's course files; restore puts them in a `courses` folder beside the new database (or `<name>-courses` when that folder is in use). Settings are included for reference; reapply them manually. The LAN token value is excluded. Backups themselves contain private games.
 
 To reimport a library from scratch, stop the server and run `python scripts/clear_games.py` for a dry run, then `--yes` to back up into `data/backups` (or `--backup-dir`) and delete. It removes games, imports and their jobs, engine and review findings, mistakes, game-based review cards with their history and the archived game-built course; `--user NAME` limits it to one account. Accounts, preferences, saved provider usernames, Study lesson progress, puzzles and opening studies stay, and shared engine cache rows still used elsewhere are kept.
 

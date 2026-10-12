@@ -93,9 +93,19 @@ export function useGameReviewSession(id: string) {
     openedReview.current = true;
     if (!game.job || ["failed", "cancelled", "completed"].includes(game.job.status))
       void start();
-    else setReviewStarting(false);
+    else {
+      setReviewStarting(false);
+      // Opening a queued game moves its review to the front of the background queue.
+      if (game.job.status === "queued")
+        void api
+          .POST("/api/games/{game_id}/review", {
+            params: { path: { game_id: id } },
+            body: { refine: false },
+          })
+          .catch(() => undefined);
+    }
     // Only opening triggers auto-start. A pause/failure while open must stick.
-  }, [game, start]);
+  }, [game, id, start]);
 
   useEffect(() => {
     if (game) document.title = `${game.white} vs ${game.black} · Fieldwork`;

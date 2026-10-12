@@ -6,7 +6,7 @@ Save each site's username on its connection card. Every `SYNC_INTERVAL_SECONDS` 
 
 ## Provider boundary
 
-`backend/trainer/game_providers/base.py` defines the request, normalized checkpoint batch, errors and `GameProviderClient` protocol. Providers own HTTP transport, provider-specific filters and normalization. They yield newest-first batches with stable keys and records containing PGN, variant, speed, completion timestamp and player names. The shared `ingest.py` owns learner validation, PGN parsing, deduplication, progress, atomic checkpoints, cancellation and selection limits. Python-chess remains authoritative for PGN legality/history; importing provider data never substitutes remote evaluations for Stockfish.
+`backend/trainer/game_providers/base.py` defines the request, normalized checkpoint batch, errors and `GameProviderClient` protocol. Providers own HTTP transport, provider-specific filters and normalization. They yield newest-first batches with stable keys and records containing PGN, variant, speed, completion timestamp, player names and, when the site says, whether the game was rated. The rated flag is saved on the game (a later import of an already saved game fills it in) and keeps unrated games out of [Insights](INSIGHTS.md). The shared `ingest.py` owns learner validation, PGN parsing, deduplication, progress, atomic checkpoints, cancellation and selection limits. Python-chess remains authoritative for PGN legality/history; importing provider data never substitutes remote evaluations for Stockfish.
 
 To add a provider:
 

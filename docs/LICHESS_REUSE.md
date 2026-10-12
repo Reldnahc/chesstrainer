@@ -53,7 +53,7 @@ Classifier version `4.0-lichess-8d9faff6` invalidates previous classification ca
 
 Missing pre-position context explicitly skips upstream hanging-piece recognition; no null setup move or invented score is supplied. The existing native capture evidence remains available. A quiet gap excludes unrelated later motifs from a decision's explanation. The reviewed safeguard against teaching pawn cleanup after a free queen capture as defender removal remains at the application attribution boundary.
 
-Integration tests demonstrate pin exploitation newly recognized by upstream for both colors, and double check visible in a line without asserting a mistake when the engine comparison supplies no meaningful loss. Existing classifier, explanation and wrong-label regression contracts continue to apply unchanged. Saved games are not automatically reclassified on startup; use Settings > Classify saved games after deploying the version.
+Integration tests demonstrate pin exploitation newly recognized by upstream for both colors, and double check visible in a line without asserting a mistake when the engine comparison supplies no meaningful loss. Existing classifier, explanation and wrong-label regression contracts continue to apply unchanged. Saved games are not automatically reclassified on startup; use Settings > Advanced > Classify saved games after deploying the version.
 
 ## Frozen comparison after integration
 
@@ -88,4 +88,4 @@ Original Fieldwork licensing is unchanged. NOTICE.md explains the combined GPL/A
 
 Final application verification: 280 backend/native/API tests passed; 39 Playwright tests passed with one intentional phone-only desktop skip; migration preservation, repository Ruff and production build passed. See VERIFICATION.md for deployment status and the mobile control regression caught and fixed during testing.
 
-Deployment verified: LAN backend restarted with classifier 4.0-lichess-8d9faff6 and Stockfish 18 healthy. Seven game/answer/review/scheduling tables match their pre-restart fingerprints. Existing labels remain until Settings > Classify saved games reprocesses the saved evidence.
+Deployment verified: LAN backend restarted with classifier 4.0-lichess-8d9faff6 and Stockfish 18 healthy. Seven game/answer/review/scheduling tables match their pre-restart fingerprints. Existing labels remain until Settings > Advanced > Classify saved games reprocesses the saved evidence.

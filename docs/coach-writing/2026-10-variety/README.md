@@ -4,6 +4,12 @@ Owner-requested writing batch, October 5, 2026. These are proposed additions,
 not active scripts, recordings or a runtime catalogue. Recording requires the
 owner's explicit instruction. Existing lines and clips must remain byte-identical.
 
+**Later status:** all 99 slots were since imported with
+`scripts/coach_line_slots.py` and recorded. They are now production meanings in
+`frontend/src/audio/speech/meanings.json` and every bank manifest, and
+`planned-meanings.json` lists no slots awaiting recording. The text below
+describes the batch as written.
+
 All 2,970 lines have completed independent editorial review and a dedicated
 meaning-by-meaning, side-by-side comparison across the full cast. See the
 [acceptance and recording estimate](REVIEW.md). This is writing approval only;

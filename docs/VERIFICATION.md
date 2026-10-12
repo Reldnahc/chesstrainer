@@ -3,6 +3,9 @@
 The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
+Each dated section records commands, scripts and test files as they existed on
+that date. Some have since been removed (for example the cast-audition tooling
+and `scripts/source_archive.py`), so take current commands from TESTING.md.
 
 ## Dragon and Vienna course review — October 8, 2026
 

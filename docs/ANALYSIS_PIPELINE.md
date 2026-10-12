@@ -1,6 +1,6 @@
 # Analysis pipeline
 
-Chess.com is an optional upstream source. A background job fetches validated public archive URLs serially, filters completed standard games by time class/range/limit, and passes the original PGNs to the importer below. Each archive commits with a checkpoint, preserving partial imports on cancellation or failure. Username is checked in API metadata and PGN headers. After downloading, the same job analyzes linked learner games. See [CHESSCOM_IMPORT.md](CHESSCOM_IMPORT.md).
+Chess.com is an optional upstream source. A background job fetches validated public archive URLs serially, filters completed standard games by time class/range/limit, and passes the original PGNs to the importer below. Each archive commits with a checkpoint, preserving partial imports on cancellation or failure. Username is checked in API metadata and PGN headers. After downloading, each newly saved game gets its own background review job ([Automatic game analysis](GAME_ANALYSIS.md)). See [CHESSCOM_IMPORT.md](CHESSCOM_IMPORT.md).
 
 ## Import
 Python-chess parses each UTF-8 PGN. Original uploads remain in game_imports; games retain normalized mainlines and learner color; import_games preserves repeated-upload provenance. Names must match exactly one player (case-insensitively), or the importer explicitly assigns the whole batch's side. Ambiguous/invalid games are reported and skipped without discarding subsequent valid games. Only standard chess is supported.
@@ -26,7 +26,7 @@ decisions, practice exercises and Weaknesses evidence exist once the review
 finishes ([Automatic game analysis](GAME_ANALYSIS.md)). Those decisions are marked
 deep and run no triage. The only extra search is a restricted played-move search
 when the played move was the review's second candidate, at the review's limits.
-Unreviewed games (for example **Find training mistakes**) still triage as above.
+A training-only job for an unreviewed game (`POST /api/games/{game_id}/train`, which has no button in the app) still triages as above.
 The review's progress counters describe only the review. Bounded [refinement](REVIEW_REFINEMENT.md) adds investigation to selected
 positions without replacing or reducing that baseline.
 

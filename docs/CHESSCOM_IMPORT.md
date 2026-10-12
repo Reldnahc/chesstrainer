@@ -1,6 +1,6 @@
 # Chess.com username import
 
-Open **Settings → Import games → Chess.com username** and enter a player username. Defaults: rapid, last 3 calendar months (including the current UTC month), latest 100 unsaved matching games. Select blitz/bullet/daily/all, a longer range or all available history, and a maximum of 1–1000 new games. Rated and unrated completed standard-chess games are included. Chess variants and ongoing games are excluded. No Chess.com login, API key or subscription integration is required.
+Open **Settings → Games & imports**, choose **Import older games** on the Chess.com card and enter a player username. Defaults: rapid, last 3 calendar months (including the current UTC month), latest 100 unsaved matching games. Select blitz/bullet/daily/all, a longer range or all available history, and a maximum of 1–1000 new games. Rated and unrated completed standard-chess games are included; each game keeps Chess.com's `rated` flag, and re-importing a saved game fills that flag in, since games imported before it existed have none. Unrated games stay out of [Insights](INSIGHTS.md). Chess variants and ongoing games are excluded. No Chess.com login, API key or subscription integration is required.
 
 ## Provider and authority
 
@@ -11,7 +11,7 @@ Use the [official read-only Published Data API](https://www.chess.com/news/view/
 
 The backend reads monthly JSON for its PGNs, completion times, rules and time-class metadata. Archives are searched newest first, and games are sorted by end time within each month. The supplied username is matched in provider player metadata and independently in parsed PGN headers. No side is silently inferred when those headers are ambiguous. Python-chess, Stockfish, policy and FSRS retain their existing authorities; provider accuracy scores are unused.
 
-Chess.com may serve cached data; newly completed games need not appear immediately. The feature retrieves public completed history; it does not provide real-time synchronization or gameplay.
+Chess.com may serve cached data; newly completed games need not appear immediately. The feature retrieves public completed history; it does not provide real-time synchronization or gameplay. Automatic polling of saved connections is described in [Game provider imports](GAME_PROVIDERS.md).
 
 ## Local API and persistence
 
@@ -25,11 +25,11 @@ It returns HTTP 202 with a queued job ID. Identical active requests reuse the sa
 
 Optional **From date / To date** fields accept ISO dates, for example `start_date="2026-01-10"` and `end_date="2026-02-15"`. Setting either date overrides `months`; leaving one blank creates an open-ended range. Both endpoints include the entire day, based on the game's completion timestamp in UTC (not its start date). The backend prunes unrelated monthly archives, then filters individual games within the remaining archives. Reversed dates are rejected before queuing. Mode and maximum-game limits still apply. Clear both dates to restore the rolling lookback window.
 
-The normal job worker downloads first, then analyzes only games introduced by this import. `/api/jobs` includes a `chesscom` progress object: archives checked/available, fetched/imported/duplicate/filtered/rejected counts, fetch-completed flag and up to 50 diagnostic examples. Analysis counters start after downloading. `games_fetched` counts PGNs examined by the importer, including duplicates/rejections; it can exceed the new-game limit. Filtering counts cover checked archive entries, not an account-wide total.
+The normal job worker downloads first, then queues a background review for each game introduced by this import ([Automatic game analysis](GAME_ANALYSIS.md)). `/api/jobs` includes a `chesscom` progress object: archives checked/available, fetched/imported/duplicate/filtered/rejected counts, fetch-completed flag and up to 50 diagnostic examples. Each new game's review then runs as its own `game_review` job. `games_fetched` counts PGNs examined by the importer, including duplicates/rejections; it can exceed the new-game limit. Filtering counts cover checked archive entries, not an account-wide total.
 
 `chesscom_imports` stores query/progress fields relationally, keyed to `analysis_jobs`. `chesscom_archives` stores completed archive URLs/checkpoints. Original matching monthly PGNs accumulate in the linked `game_imports` row (the raw batch can include entries beyond the new-game limit). Processed games retain fingerprints/provenance links; `import_games.is_new` separates newly inserted games from duplicate provenance. Each archive import and its checkpoint commit atomically. On failure, cancellation or restart, saved games remain; retry skips completed archives. Once fetching finishes, an engine retry requires no provider requests. Start a fresh import to refresh a previously checked month after new games appear.
 
-Chess.com supplies monthly archives, so a fresh import still downloads archive data containing old games. It does not rerun Stockfish or classify those duplicate games. There is no per-game delta endpoint or conditional archive HTTP cache in this implementation. A duplicate-only import completes without new analysis work. New PGN-file imports follow the same new-game analysis policy; a duplicate-only PGN upload creates no analysis job. To finish older cancelled/failed work, retry its original job separately.
+Chess.com supplies monthly archives, so a fresh import still downloads archive data containing old games. It does not rerun Stockfish or classify those duplicate games. There is no per-game delta endpoint, and manual imports use no conditional archive HTTP cache (only the poller's change check sends an `ETag`). A duplicate-only import completes without new analysis work. New PGN-file imports follow the same new-game analysis policy; a duplicate-only PGN upload creates no analysis job. To finish older cancelled/failed work, retry its original job separately.
 
 ## Classification cancellation and reuse
 
@@ -49,7 +49,7 @@ No matching archives/games produces a completed import with zero games and an ex
 
 ## Privacy and configuration
 
-Only the requested username, archive paths and configured User-Agent go to Chess.com, from the host. No credentials, existing local games or database contents are transmitted. The browser remembers the last successfully queued username in local storage. Games, classification and learning data remain local. Model connectivity has been removed.
+Only the requested username, archive paths and configured User-Agent go to Chess.com, from the host. No credentials, existing local games or database contents are transmitted. The import form starts from the Chess.com connection's saved username. Games, classification and learning data remain local. Model connectivity has been removed.
 
 `CHESSCOM_TIMEOUT_SECONDS=20`, `CHESSCOM_MAX_RESPONSE_BYTES=25000000` (decompressed bytes per HTTP response), and `CHESSCOM_USER_AGENT` are centralized host settings. Default User-Agent identifies Fieldwork; users may append contact information. Runtime HTTPX is explicitly declared and pinned in the existing dependency lock.
 

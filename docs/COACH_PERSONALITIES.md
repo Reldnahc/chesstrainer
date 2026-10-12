@@ -283,7 +283,8 @@ deliberately teach the reusable idea while the board/text provide the specifics.
 Do not force their transcripts to match, and do not independently invent chess
 reasoning for speech. The active bank manifest is the shipped spoken script;
 changing a personality template does not rerecord it. Both paths must preserve
-the same scope and character. Lessons do not receive recorded narration.
+the same scope and character. Lessons receive only the generic `lessons` prompts
+in `meanings.json`, not recorded course narration.
 
 The [Rivet editorial ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
 records 197 replacements among 257 reviewed additions, with 60 additions retained.

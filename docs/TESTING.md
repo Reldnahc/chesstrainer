@@ -17,10 +17,10 @@ the real data path and unchanged recall scheduling.
 
 Settings regressions in `settings.spec.ts` exercise section/deep-link navigation,
 Back/Forward/reload and scroll restoration, exclusive PGN file/text payloads,
-analysis opt-in, remembered usernames versus edited drafts, late connection polls,
+imports that offer no analysis choice, remembered usernames versus edited drafts, late connection polls,
 disposed activity requests, and bounded job history on desktop/mobile. Run with
-`providers.spec.ts` and `health.spec.ts` for real fixture imports, native opt-in
-training analysis and unavailable-engine feedback. Account and preference suites
+`providers.spec.ts` and `health.spec.ts` for real fixture imports, native analysis
+queued for each fetched game and unavailable-engine feedback. Account and preference suites
 cover hosted section visibility, cross-device settings and save/retry behavior.
 
 Study lesson coverage: `test_study_lessons.py` checks authored content and session
@@ -278,7 +278,7 @@ missing results and unexpectedly skipped jobs. If branch protection is enabled,
 require **CI**, rather than individual conditional matrix jobs. New PR updates
 cancel obsolete runs. Failed browser jobs retain traces/screenshots for seven
 days; frontend build artifacts expire after one day. Backend logs include the
-20 slowest tests, and browser logs show individual case durations. Bounded job
+10 slowest tests, and browser logs show individual case durations. Bounded job
 timeouts prevent a stuck runner from consuming hours; timing out still fails CI.
 
 Automatic `main` releases compare against the most recent successful ancestor
@@ -432,6 +432,9 @@ including delayed Maia results, the silent Maia popup and cancellation.
 
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
+It then runs the CSS design-system checks `frontend/scripts/spacing-scale.mjs`,
+`scripts/surfaces.mjs` and `scripts/type-scale.mjs` (see the spacing, surface and
+type rules in [UI_COMPONENTS.md](UI_COMPONENTS.md#spacing)).
 It also rejects direct or lazy application imports of either studio and verifies
 the real application graph. Production Walter recordings remain permitted. These
 checks inspect runtime dependencies; the corresponding-source download can still
@@ -560,7 +563,7 @@ Synthetic legal positions and fabricated engine scores test detector and API con
 
 ## Browser coverage
 
-Desktop and phone-emulated Chromium cover all **five** navigation destinations (Home, Study, Games, Insights, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
+Desktop and phone-emulated Chromium cover all **six** navigation destinations (Home, Study, Play, Games, Insights, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
 
 Review journeys cover taps, drag/drop, legal dots/capture rings, promotion, failure/counter preview, Try again, Reveal move, solve/reload and saved scheduling. The phone-only test checks 390x700, 375x600 and 360x640 layouts; its desktop instance is intentionally skipped.
 
@@ -686,6 +689,6 @@ chess claims. Native review/human smoke verifies the combined production path.
 `test_game_providers.py`, `test_chesscom.py`, `test_game_sync.py` and
 `test_hosted_runtime.py` exercise adapter normalization, stream bounds, checkpoints,
 rate-limit cooldown, account isolation, upgrade migration and the engine-free fetch
-lane. `frontend/tests/providers.spec.ts` covers Lichess/manual imports, opt-in native
-training, multi-provider refresh and delayed username hydration on desktop/mobile.
+lane. `frontend/tests/providers.spec.ts` covers Lichess/manual imports, native
+analysis queued for each fetched game, multi-provider refresh and delayed username hydration on desktop/mobile.
 Provider HTTP responses are injected; no test needs a real player's credentials.

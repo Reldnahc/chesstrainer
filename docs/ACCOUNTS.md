@@ -3,7 +3,7 @@
 Self-service username/password accounts require `ACCOUNTS_ENABLED=true`. The
 default, `false`, selects local single-user mode without login.
 Everyone who can reach that instance shares the reserved `local` workspace. Existing
-named accounts remain stored and private; clearing the origin does not merge or
+named accounts remain stored and private; switching to local mode does not merge or
 expose their games. Restart the server/container after changing modes. The optional
 legacy `LAN_ACCESS_TOKEN` still applies in local mode if explicitly configured.
 
@@ -113,8 +113,8 @@ python -m trainer.accounts disable USERNAME
 python -m trainer.accounts enable USERNAME
 ```
 
-`promote` makes an existing account an administrator; it is the only way to grant
-administrator privileges to an account created through signup. It fails if the
+`promote` makes an existing account an administrator from the host; an existing
+administrator can instead use **Make administrator** in Settings → Account. It fails if the
 account does not exist or is already an administrator, and its open sessions gain
 the privilege on their next request. The other commands revoke existing sessions. `reset-password` sets a permanent
 password (host recovery), unlike the temporary one an administrator sets in Settings. Disabling prevents further requests; stop/restart
@@ -144,7 +144,7 @@ Chess.com's published API is cached; a check does not guarantee immediate
 availability after a game.
 
 Manual imports fetch older games; there is no analysis choice. Their games join
-the same queue behind games the poller found. Opening a game and choosing **Start game
-review** moves its job to the front. **Find training mistakes** still queues
-training alone for one game. Interactive exploration still analyzes the position
+the same queue behind games the poller found. Opening a game whose review has not started,
+failed or was paused starts it at the front of the queue. The
+`/api/games/{game_id}/train` endpoint still queues training alone for one game. Interactive exploration still analyzes the position
 you visit. The HTTP import APIs ignore the former `analyze` field.

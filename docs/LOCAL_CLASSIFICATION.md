@@ -22,7 +22,7 @@ Fieldwork uses python-chess, local Stockfish and deterministic Python rules. The
 
 ## Outcomes, patterns and practice cues
 
-Rules separate three things: an observable material/mate outcome, a supported tactical mechanism, and a short practice cue. An outcome does not imply that a specific mechanism was recognized. Weaknesses and Settings show current coverage separately for outcomes and patterns. Counts overlap and are not accuracy percentages.
+Rules separate three things: an observable material/mate outcome, a supported tactical mechanism, and a short practice cue. An outcome does not imply that a specific mechanism was recognized. The weaknesses and settings APIs report current coverage separately for outcomes and patterns; the UI no longer shows a coverage summary. Counts overlap and are not accuracy percentages.
 
 | Finding | Required witness |
 |---|---|
@@ -54,9 +54,9 @@ Findings retain rule/version, actor, direction, analysis ID, plies, UCI moves, a
 
 ## Saved work and optional enrichment
 
-New meaningful decisions classify automatically. **Settings > Classify saved games** reuses saved engine evidence without starting Stockfish. Results, including abstentions, are cached by evidence, rules, parameters and taxonomy. Failed work preserves active labels; successful abstention replaces earlier labels. Rejected identical results stay rejected. Historical runs remain auditable.
+New meaningful decisions classify automatically. **Settings > Advanced > Classify saved games** reuses saved engine evidence without starting Stockfish. Results, including abstentions, are cached by evidence, rules, parameters and taxonomy. Failed work preserves active labels; successful abstention replaces earlier labels. Rejected identical results stay rejected. Historical runs remain auditable.
 
-**Settings > Deepen unclear positions** optionally queues extra local Stockfish work. Default budget: 40 positions, at most six searches per position, each capped at 2 seconds / depth 22 (first reached bound). Two searches refresh best/actual root comparisons; remaining queries extend unfinished saved tails or test specific legal defenses. Concrete pending defensive questions take priority, followed by unknown outcomes and unclear mechanisms, with severity/recency ordering. The selected task list persists, so a cancelled/restarted job cannot silently expand its budget. Later jobs skip identical completed probes and can process another batch. Progress and cancel/retry are in Import.
+**Settings > Advanced > Deepen unclear positions** optionally queues extra local Stockfish work. Default budget: 40 positions, at most six searches per position, each capped at 2 seconds / depth 22 (first reached bound). Two searches refresh best/actual root comparisons; remaining queries extend unfinished saved tails or test specific legal defenses. Concrete pending defensive questions take priority, followed by unknown outcomes and unclear mechanisms, with severity/recency ordering. The selected task list persists, so a cancelled/restarted job cannot silently expand its budget. Later jobs skip identical completed probes and can process another batch. Progress and cancel/retry are in Settings > Games & imports.
 
 Each completed probe links separate immutable best/actual EngineAnalysis records through classification_analyses. Original Decision analysis IDs, ExerciseAnswer grades, policies and SRS states never change. Reclassification prefers the latest supplemental pair, including if it reduces confidence or coverage. More engine time does not guarantee a new label. The engine cache includes binary identity, settings, root moves and limits; both searches use the actual game history.
 
@@ -64,7 +64,7 @@ Additional classification_probes rows link each tail/defense to its supplement, 
 
 ## Using findings
 
-Weaknesses separates tactical patterns from material/mate outcomes, shows distinct positions and independent games, provides cues, and lets the learner browse every supporting decision. **Practice N positions** starts up to 12 distinct active positions, rotating through different games where possible. Practice has its own session provenance, raw attempts/first-response time and completion timestamp. It never updates FSRS, retirement, scheduled recall counts or due dates. Reloading the app returns to mixed Review; choosing the skill again starts a new batch and can resume an unfinished practice attempt.
+Insights > Weaknesses separates tactical patterns from material/mate outcomes, shows distinct positions and independent games, provides cues, and lets the learner browse every supporting decision. **Practice N positions** starts up to 12 distinct active positions, rotating through different games where possible. Practice has its own session provenance, raw attempts/first-response time and completion timestamp. It never updates FSRS, retirement, scheduled recall counts or due dates. Reloading the app returns to mixed Review; choosing the skill again starts a new batch and can resume an unfinished practice attempt.
 
 Show why runs the shared motif detectors on the exact answer's saved continuation. It can display raw upstream motif observations even when that line lacks a settled material endpoint; those annotations do not create weakness evidence or alter grading. Pattern buttons jump to the witness frame and highlight attacker, target/king and defender/blocker squares. Cues appear after answering. Supplemental classification branches and the preceding source-game context do not replace the evidence used to grade or explain an arbitrary review answer, so an enriched classification may have more detail than that answer's playback. Source-context and defensive-query evidence remains available in the classification audit.
 

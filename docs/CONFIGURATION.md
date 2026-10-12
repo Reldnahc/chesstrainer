@@ -15,6 +15,7 @@ status is returned.
 |---|---|
 | SERVER_HOST / SERVER_PORT | 127.0.0.1 / 8000 |
 | DATABASE_PATH | data/trainer.sqlite3 |
+| COURSES_PATH | unset; the club's Study course files live in a `courses` folder beside the database (`/data/courses` in Docker). See [course files](COURSE_FILES.md#club-courses) |
 | STOCKFISH_PATH | stockfish |
 | STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..16 (reviews also cap at ENGINE_SLOTS) |
 | SYNC_INTERVAL_SECONDS | 60; seconds from the start of one server polling round (change checks, then syncs for changed connections) to the next, 0 disables polling. A longer round starts the next one immediately. |
@@ -46,7 +47,7 @@ status is returned.
 | CLASSIFICATION_PROBE_DEPTH / CLASSIFICATION_PROBE_TIME | 22 / 2 seconds (depth 1..40, time greater than 0 and at most 10) |
 | CLASSIFICATION_PROBE_QUERIES | 6 (2..12) |
 | LAN_ACCESS_TOKEN | empty, optional shared bearer token |
-| ALLOWED_HOSTS | empty; extra host names the local-mode API answers to. IP addresses, localhost, single-label names and `.local`/`.lan`/`.home`/`.home.arpa`/`.internal` names are always accepted |
+| ALLOWED_HOSTS | empty; extra host names the local-mode API answers to. IP addresses, localhost, SERVER_HOST, single-label names and `.local`/`.localhost`/`.lan`/`.home`/`.home.arpa`/`.internal` names are always accepted |
 | MAX_IMPORT_BYTES | 10000000 |
 | CHESSCOM_TIMEOUT_SECONDS | 20 seconds per provider request |
 | CHESSCOM_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per response |
@@ -107,7 +108,7 @@ Chess.com import requires internet access on the host and no account credentials
 
 Use one backend process. For LAN access, bind SERVER_HOST to the host's home-network IPv4 address and optionally configure LAN_ACCESS_TOKEN. Open http://HOST-LAN-IP:SERVER_PORT from the same trusted network. Binding 0.0.0.0 instead listens on every IPv4 interface. The token is a shared access gate and does not add transport encryption; do not expose the app directly to the public internet.
 
-In local mode the API answers only requests whose Host is an IP address, `localhost`, a single-label name such as `nas`, or a `.local`, `.lan`, `.home`, `.home.arpa` or `.internal` name. List any other name in ALLOWED_HOSTS (comma-separated). This stops a public web page from reaching the server through DNS rebinding, which does not need port forwarding. Account mode instead requires each write's Origin to match the request's Host, or PUBLIC_ORIGIN when set; account cookies are bound to that host, so a rebinding page cannot use them.
+In local mode the API answers only requests whose Host is an IP address, `localhost`, a single-label name such as `nas`, SERVER_HOST, or a `.local`, `.localhost`, `.lan`, `.home`, `.home.arpa` or `.internal` name. List any other name in ALLOWED_HOSTS (comma-separated). This stops a public web page from reaching the server through DNS rebinding, which does not need port forwarding. Account mode instead requires each write's Origin to match the request's Host, or PUBLIC_ORIGIN when set; account cookies are bound to that host, so a rebinding page cannot use them.
 
 On Windows, run scripts/allow-lan.ps1 with -LocalAddress in administrator PowerShell. It permits TCP 8000 at that address from LocalSubnet on Private networks only; pass -Port for another port. It does not change network profiles or router forwarding. Keep the host awake, avoid isolated Wi-Fi, and update binding/firewall if DHCP changes the address.
 
