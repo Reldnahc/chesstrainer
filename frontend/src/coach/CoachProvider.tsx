@@ -1,7 +1,8 @@
-import { createContext, useCallback, useContext, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { api, read } from "../api";
 import { useSavedPreferences, type SavedPreferences } from "../useSavedPreferences";
 import type { CoachPreferences } from "./model";
+import { getCoach } from "./registry";
 
 type CoachChange = Partial<CoachPreferences>;
 type CoachField = keyof CoachPreferences;
@@ -13,6 +14,15 @@ type CoachState = SavedPreferences<CoachPreferences, CoachChange> & {
 };
 
 const defaults: CoachPreferences = { coach_id: "classic", motion: "system" };
+// This device remembers the last loaded coach, so a refresh shows that coach
+// while the saved preference loads instead of flashing the default.
+const cacheKey = "fieldwork:coach-id";
+function cachedDefaults(): CoachPreferences {
+  try {
+    const id = localStorage.getItem(cacheKey);
+    return id ? { ...defaults, coach_id: getCoach(id).id as CoachPreferences["coach_id"] } : defaults;
+  } catch { return defaults; }
+}
 const load = (signal: AbortSignal) => read(api.GET("/api/preferences/coach", {signal}));
 // Coach and coach motion share one saved record but are separate controls,
 // so each change writes only its own field.
@@ -26,7 +36,13 @@ function without(change: CoachChange, field: CoachField): CoachChange {
 }
 
 export function CoachProvider({ children }: { children: ReactNode }) {
-  const state = useSavedPreferences({defaults, load, write});
+  const [initial] = useState(cachedDefaults);
+  const state = useSavedPreferences({defaults: initial, load, write});
+  const coachId = state.ready ? state.preferences.coach_id : null;
+  useEffect(() => {
+    if (!coachId) return;
+    try { localStorage.setItem(cacheKey, coachId); } catch { /* Refreshes fall back to the default coach. */ }
+  }, [coachId]);
   const {save, retry} = state;
   const [pending, setPending] = useState<CoachChange>({});
   const [failed, setFailed] = useState<CoachField | null>(null);
