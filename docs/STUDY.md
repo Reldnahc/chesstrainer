@@ -248,6 +248,12 @@ their continuation to finish. Annotations belong to the displayed position and
 are suppressed during intermediate animation frames.
 New lesson feedback or steps reset the explanation's scroll position without
 remounting the coach or moving keyboard focus.
+A demonstration whose next step starts exactly where it ends goes straight on
+to that step once its moves are committed, so the learner does not press
+Continue with nothing new to read; its own title and text stay on screen while
+the moves play, and Back returns to the demonstration before it played. A
+demonstration that ends a chapter or side trip, or leads to a separate example,
+still waits for Continue.
 A demonstration or game excerpt that plays one move offers *Play the move*
 rather than *Play continuation*; while it plays, the coach is titled “Watch the
 move.”, keeps the step's own text and plays no guided-playback clip. Each step

@@ -125,10 +125,9 @@ test("lesson demonstrations and accepted decisions sound only their live transit
   await page.goto(lesson.path);
   await command(page, "Continue");
   await command(page, "Play continuation");
-  await expect(page.getByRole("heading", { name: "Both sides enter the center", exact: true })).toBeVisible();
-  await expectCues(page, ["move", "move"]);
-  await command(page, "Continue");
+  // The demonstration goes straight on to the decision it leads to.
   await expect(page.getByRole("heading", { name: "Develop a knight", exact: true })).toBeVisible();
+  await expectCues(page, ["move", "move"]);
   await page.request.put("/api/preferences/motion", { data: { motion: "still" } });
   await page.reload();
   await expect(page.getByRole("heading", { name: "Develop a knight", exact: true })).toBeVisible();
@@ -166,9 +165,7 @@ test("lesson game rewind is neutral even when its destination is a castle", asyn
   };
   await seed("continue");
   await seed("continue");
-  await seed("continue");
   await seed("move", { uci: "g1f3" });
-  await seed("continue");
   await seed("continue");
   await seed("continue");
   await seed("continue");

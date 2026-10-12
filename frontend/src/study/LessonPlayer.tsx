@@ -37,13 +37,14 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   if (!session) return <UnavailableState presentation="panel" heading={<h1>Lesson unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.openings}>All lessons</ActionLink></>}>{error}</UnavailableState>;
   const has = (action: LessonAction) => session.actions.includes(action);
   const finished = session.status === "completed";
-  const { step, feedback } = session;
+  const { feedback } = session;
+  const step = state.playingStep ?? session.step;
   const frame = playback.frame;
   const fen = playback.fen || session.fen;
   const guidedPlayback = playback.playing && !session.game;
   // A single move is not a continuation: the coach names it as one move and
   // keeps the step's own text rather than announcing a sequence.
-  const singleMove = guidedPlayback && session.playback.length === 1;
+  const singleMove = guidedPlayback && (state.playingStep?.plies ?? session.playback.length) === 1;
   const expression: CoachExpression = error ? "uncertain" : session.game ? "explaining" : busy ? "thinking"
     : playback.playing ? "explaining"
     : feedback?.kind === "incorrect" ? "encouraging"
