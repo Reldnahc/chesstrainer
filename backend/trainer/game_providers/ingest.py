@@ -51,7 +51,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                 remaining = limit - used
             games = batch.games
             selected, filtered, rejected, errors = [], 0, 0, []
-            completed_times = {}
+            completed_times, rated = {}, {}
 
             # Monthly API order is oldest first; do not depend on it being perfectly sorted.
             def end_time(game):
@@ -102,9 +102,10 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                             color = identify_learner(parsed, [username], None)
                         except ValueError:
                             continue
-                        completed_times[fingerprint(parsed, color)] = datetime.fromtimestamp(
-                            end_time(game), timezone.utc
-                        )
+                        key = fingerprint(parsed, color)
+                        completed_times[key] = datetime.fromtimestamp(end_time(game), timezone.utc)
+                        if isinstance(game.get("rated"), bool):
+                            rated[key] = game["rated"]
             check_cancel(cancelled)
             # Import and archive checkpoint commit together; restart cannot double-count a month.
             with import_lock, sessions() as db:
@@ -124,6 +125,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                         max_new_games=remaining,
                         retain_original=not sync,
                         completed_times=completed_times,
+                        rated=rated,
                     )
                     processed = result["processed"]
                     request.games_imported += result["imported"]

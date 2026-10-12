@@ -15,6 +15,13 @@ never starts Stockfish. Filters choose a speed (from the speeds present) and a
 period (all time, 30, 90 or 365 days); weekday and time of day use the viewer's
 UTC offset.
 
+Unrated games stay out of every Insights number, including the Weaknesses
+rankings; they remain in the library, reviews, puzzles and drills. `games.rated`
+comes from the Chess.com and Lichess APIs on import (a re-import fills it in for
+games already saved) or from a Lichess-style `Event` header ("Rated ..." or
+"Casual ...") in a PGN. Games whose source does not say, including Chess.com games
+saved before the flag existed, count as rated until a re-import supplies it.
+
 ## Data each section uses
 
 PGN-only sections use every selected game: results by weekday and time of day,

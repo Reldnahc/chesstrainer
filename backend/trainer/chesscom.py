@@ -216,6 +216,7 @@ class ChessComClient:
                         "pgn": game.get("pgn"),
                         "variant": game.get("rules"),
                         "speed": game.get("time_class"),
+                        "rated": game.get("rated"),
                         "completed_at": game.get("end_time"),
                         **{
                             color: game.get(color, {}).get("username", "")

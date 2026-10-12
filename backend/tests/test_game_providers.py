@@ -88,6 +88,15 @@ def test_lichess_shared_ingest_preserves_pgn_and_deduplicates(settings, sessions
         assert db.get(ProviderImport, again).duplicates == 1
 
 
+def test_provider_rated_flag_is_saved_and_fills_in_existing_games(settings, sessions):
+    run(source(sessions), sessions, settings, client(settings, [record()]))
+    with sessions() as db:
+        assert db.scalar(select(Game)).rated is None
+    run(source(sessions), sessions, settings, client(settings, [record(rated=False)]))
+    with sessions() as db:
+        assert db.scalar(select(Game)).rated is False
+
+
 def test_lichess_resume_preserves_completed_records(settings, sessions):
     job = source(sessions)
     with pytest.raises(ProviderError, match="invalid"):
