@@ -98,7 +98,11 @@ def library(db, providers, source=lambda course_id, revision=None: "built_in"):
             StudyLessonSession.chapter_title,
             StudyLessonSession.updated_at,
         )
-        .where(StudyLessonSession.status == "active")
+        .where(
+            StudyLessonSession.status == "active",
+            # A deleted course leaves Lessons; its sessions stay for when it returns.
+            StudyLessonSession.course_id.in_({course["id"] for course in courses}),
+        )
         .order_by(StudyLessonSession.updated_at.desc())
         .limit(20)
     )
