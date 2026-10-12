@@ -93,7 +93,7 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
   const courses = library.courses.filter(item => item.topic === topic);
   return <>
     {!!resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{resume.map(session => <ResumeLink key={session.id} href={lessonSessionPath(session.id, topic)} description={session.chapter_title}>{session.course_title}</ResumeLink>)}</div></section>}
-    {courses.length ? <div className="lesson-course-grid">{courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision, topic)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}{item.source === "club" ? " · Club course" : ""}<ArrowRight size={16} /></span></Link>)}</div>
+    {courses.length ? <div className="lesson-course-grid">{courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel panel--card lesson-course-card" href={lessonCoursePath(item.id, item.revision, topic)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}{item.source === "club" ? " · Club course" : ""}<ArrowRight size={16} /></span></Link>)}</div>
       : <EmptyState title={text.empty} icon={<BookOpen />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>{text.emptyText}</EmptyState>}
   </>;
 }

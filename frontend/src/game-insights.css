@@ -190,6 +190,13 @@
   .insight-heatmap-row { grid-template-columns: 56px repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
   .insight-heat { height: 32px; font-size: 11px; }
   .insight-pair { grid-template-columns: minmax(0, 1fr); }
+  /* Flat phone sections: panels split across pairs and columns are divided like
+     siblings. :is(*, .panel) outranks the base panel flattening rule. */
+  .insights .insight-group > :not(h2) + :is(*, .panel),
+  .insights .insight-pair > * + :is(*, .panel) {
+    padding-top: var(--page-gap);
+    border-top: 1px solid var(--line);
+  }
   .insight-shapes li { grid-template-columns: 44px minmax(0, 1fr) auto; }
   .insight-shape-icon { width: 44px; }
   .insight-shape-link { min-height: 44px; display: inline-flex; align-items: center; }

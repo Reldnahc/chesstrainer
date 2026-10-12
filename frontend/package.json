@@ -17,7 +17,7 @@
     "api:generate": "node scripts/api-types.mjs",
     "api:check": "node scripts/api-types.mjs --check",
     "test:types": "tsc --project tsconfig.contracts.json && tsc --project tsconfig.browser-tests.json",
-    "test:styles": "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs",
+    "test:styles": "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs && node scripts/surfaces.mjs",
     "test:symbols": "node scripts/text-symbols.mjs"
   },
   "dependencies": {

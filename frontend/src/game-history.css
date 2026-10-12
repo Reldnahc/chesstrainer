@@ -294,3 +294,19 @@
   .game-library--compact .history-player strong { font-size: 14px; }
   .history-recent-details { gap: var(--space-1-5) var(--space-2); }
 }
+/* Flat on phones: the library is divided rows, not a boxed, striped table. */
+@media (max-width: 760px) {
+  .game-library {
+    border: 0;
+    border-radius: 0;
+  }
+  .game-library-heading,
+  .game-library-list > li,
+  .game-library-list > li:nth-child(odd) {
+    background: transparent;
+  }
+  .game-library-heading,
+  .game-library-item {
+    padding-inline: 0;
+  }
+}

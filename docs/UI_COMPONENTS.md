@@ -162,6 +162,40 @@ the whole site, enforced by a check.
   Positioning (`top`, `left`, `inset`), sizes and artwork geometry are not spacing
   and are not checked.
 
+## Surfaces
+
+Owner decision, October 11, 2026: phones (760px and narrower) show a flattened
+interface. Cards still have a job, so they do not all go away, but each one must
+earn its surface. Desktop keeps its cards.
+
+1. **Sections are flat on phones.** A page's content blocks (settings sections,
+   Home blocks, study and puzzle panels, the catalogue, Insights panels, the Play
+   form, lesson pages, import jobs, the games library) drop their background,
+   border, rounded corners and inner side padding. A divider and the page gap
+   separate neighbouring sections. base.css does this for every `.panel`; other
+   section surfaces flatten in their own phone media query.
+2. **A card must earn its surface.** On phones only these stay cards:
+   - **Tap targets:** something you tap as one whole thing, such as course cards
+     and the resume ("continue") rows.
+   - **Status that must stand out:** notices, the coach's speech bubble and the
+     game-in-progress callout.
+   - **Overlays:** dialogs, popovers and promotion.
+3. **No card inside a card.** Nested boxes (provider connections inside Import
+   games, chapter rows, study rows, weakness cards) become divided rows.
+4. **Controls are not cards.** Buttons, inputs, choice groups, section tabs, badges
+   and board chrome keep their own surfaces at every width.
+
+A panel opts into a phone card with `.panel--card`. **Check:** `node
+scripts/surfaces.mjs` (part of `npm run test:styles` and `npm run build`) fails
+when a file uses `.panel--card` without being listed under `cards` in
+[surfaces.json](../frontend/scripts/surfaces.json) with its reason, or when an
+application stylesheet draws a card-like surface (a full border with a fill or
+rounded corners) that is not listed under `surfaces` with its kind (`control`,
+`swatch`, `status`, `overlay`, `board`, `navigation` or `section`). A `section`
+surface must also have a rule in the same file that sets `border: 0` for it,
+normally in the phone media query. Adding to either list is a design decision:
+explain why the surface earns its card.
+
 ## Audit baseline and coverage
 
 Source audit on **September 29, 2026**, against **4635738**. All **99 TSX files**
