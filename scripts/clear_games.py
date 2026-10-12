@@ -72,8 +72,9 @@ STEPS = (
     ("chesscom_imports", "job_id IN (SELECT id FROM temp.clear_jobs)"),
     ("analysis_jobs", "id IN (SELECT id FROM temp.clear_jobs)"),
     ("game_imports", "id IN (SELECT id FROM temp.clear_imports)"),
-    ("human_analyses", "{owner}"),
-    # The engine cache is shared between accounts; drop only rows nothing else points at.
+    # The Maia and engine caches are shared between accounts; drop only rows nothing
+    # else points at.
+    ("human_analyses", "id IN (SELECT id FROM temp.clear_human)"),
     ("engine_analyses", "id IN (SELECT id FROM temp.clear_engine)"),
 )
 
@@ -133,6 +134,11 @@ def _collect(db, owner):
     db.execute(
         f"CREATE TEMP TABLE clear_engine AS SELECT id FROM engine_analyses"
         f" WHERE id NOT IN ({still_used})"
+    )
+    db.execute(
+        "CREATE TEMP TABLE clear_human AS SELECT id FROM human_analyses WHERE id NOT IN"
+        " (SELECT human_analysis_id FROM game_review_moves WHERE human_analysis_id IS NOT NULL"
+        " AND game_id NOT IN (SELECT id FROM temp.clear_games))"
     )
 
 

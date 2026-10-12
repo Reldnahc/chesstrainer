@@ -4,10 +4,20 @@ from pathlib import Path
 
 import chess
 from sqlalchemy import select
+from trainer.accounts import Accounts
 from trainer.chess_core import Candidate, Score
 from trainer.exercises import exercise_from_decision, manual_exercise
 from trainer.imports import import_games
-from trainer.models import Decision, EngineAnalysis, ExerciseAnswer, Game, UserPreferences
+from trainer.models import (
+    Decision,
+    EngineAnalysis,
+    ExerciseAnswer,
+    Game,
+    GameReviewMove,
+    HumanAnalysis,
+    UserPreferences,
+)
+from trainer.ownership import account_sessions
 from trainer.scheduling import FSRSScheduler
 
 PGN = '[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
@@ -107,3 +117,26 @@ def test_clear_games_removes_game_data_and_keeps_everything_else(settings, sessi
         assert db.execute("PRAGMA foreign_key_check").fetchone() is None
         assert db.execute("SELECT source FROM exercises").fetchone() == ("manual",)
         assert db.execute("SELECT coach_id FROM user_preferences").fetchone() == ("frog",)
+
+
+def test_clear_games_keeps_maia_rows_another_account_still_uses(settings, sessions):
+    owner = Accounts(settings.database_path).create("clubmate", "testing-password")
+    clubmate = account_sessions(sessions.kw["bind"], owner["id"])
+    with sessions() as db:
+        shared = HumanAnalysis(cache_key="shared", request={}, policy={})
+        unused = HumanAnalysis(cache_key="unused", request={}, policy={})
+        db.add_all([shared, unused])
+        db.commit()
+        shared_id = shared.id
+    for factory in (sessions, clubmate):
+        with factory() as db:
+            import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+            game_id = db.scalar(select(Game.id))
+            db.add(GameReviewMove(game_id=game_id, ply=1, report={}, human_analysis_id=shared_id))
+            db.commit()
+
+    removed = _script().clear_games(settings.database_path, "clubmate", apply=True)
+    assert removed["games"] == 1 and removed["human_analyses"] == 1
+    with sqlite3.connect(settings.database_path) as db:
+        assert db.execute("SELECT cache_key FROM human_analyses").fetchall() == [("shared",)]
+        assert db.execute("PRAGMA foreign_key_check").fetchone() is None

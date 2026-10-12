@@ -1,4 +1,4 @@
-"""Account-scoped evidence and durable cache around a host-shared human provider."""
+"""Account-scoped evidence over a shared durable cache and host-shared human provider."""
 
 import threading
 from time import monotonic
@@ -108,7 +108,7 @@ class HumanModels:
                 db.rollback()
 
     def policy(self, sessions, request, cancelled=lambda: False):
-        """The complete legal-move policy for one request, cached per account.
+        """The complete legal-move policy for one request, cached for every account.
 
         Returns the policy and its saved evidence id. Raises HumanUnavailable or
         HumanCancelled; evidence() maps those onto the saved status vocabulary.
@@ -116,8 +116,7 @@ class HumanModels:
         if not self.settings.human_model_enabled:
             raise HumanUnavailable("disabled")
         key = self.cache_key(request)
-        owner = sessions.kw["info"]["user_id"]
-        lock = self._locks[int(digest([owner, key])[:4], 16) % len(self._locks)]
+        lock = self._locks[int(key[:4], 16) % len(self._locks)]
         deadline = monotonic() + self.settings.human_model_timeout
         waiting = throttled(cancelled)
         try:
@@ -154,8 +153,15 @@ class HumanModels:
                             policy=policy.model_dump(mode="json"),
                         )
                         db.add(saved)
-                        db.commit()
-                        evidence_id = saved.id
+                        try:
+                            db.commit()
+                            evidence_id = saved.id
+                        except IntegrityError:
+                            # A batch prefetch or another process saved it first.
+                            db.rollback()
+                            evidence_id = db.scalar(
+                                select(HumanAnalysis.id).where(HumanAnalysis.cache_key == key)
+                            )
             finally:
                 lock.release()
             return policy, evidence_id
