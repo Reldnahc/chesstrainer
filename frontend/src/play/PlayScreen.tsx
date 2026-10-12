@@ -168,7 +168,7 @@ function PlaySetup() {
       {error && <Notice announcement="alert" tone="error">{error}</Notice>}
       {active && (
         <section className="panel panel--card play-resume" aria-label="Game in progress">
-          <span>You have a game in progress against {active.coach_name}.</span>
+          <span>You have a game in progress against {coach.name}.</span>
           <ActionLink variant="secondary" href={playGamePath(active.id)}>
             Continue the game <ArrowRight size={16} aria-hidden="true" />
           </ActionLink>
