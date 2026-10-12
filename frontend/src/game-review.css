@@ -36,6 +36,20 @@
   font: var(--text-sm) var(--mono);
   text-align: right;
 }
+.game-player-clock {
+  flex: none;
+  padding: var(--space-0-5) var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: 600 var(--text-sm) var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.game-player-clock[data-running] {
+  color: inherit;
+  border-color: var(--muted);
+  background: var(--raised);
+}
 .game-player-status {
   flex: 0 1 auto;
   max-width: 38%;
@@ -85,7 +99,14 @@
   justify-self: start;
   white-space: nowrap;
 }
-/* A live game's Resign and Offer draw share the library link's start slot. */
+/* The start slot holds Play's New game link, a live game's Resign and Offer
+   draw, or game review's Flip; playback keeps the centre column. */
+.game-board-flip {
+  justify-self: start;
+}
+.game-board-controls > .move-playback-controls {
+  grid-column: 2;
+}
 .game-board-actions {
   justify-self: start;
   display: flex;
@@ -489,9 +510,28 @@
     min-width: 0;
     gap: var(--space-0-5);
   }
+  /* Review has no start-slot link, so its six buttons share the full row
+     equally: each group grows in proportion to the buttons it holds. */
+  .game-board-controls--review > .move-playback-controls { flex: 4 1 auto; }
+  .game-board-controls--review > .game-board-tools { flex: 1 1 auto; }
+  .game-board-controls.game-board-controls--review .action-control.action-control--icon {
+    flex: 1 1 auto;
+  }
+  /* The move list and evaluation graph are page sections below the board,
+     not board chrome, so phones show them flat (docs/UI_COMPONENTS.md#surfaces):
+     no border or rounded corners, and a divider above the graph. */
   .game-notation {
     flex: none;
     height: 344px;
+    border: 0;
+    border-radius: 0;
+  }
+  .game-graph {
+    padding: var(--space-4) 0 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
   }
   /* The phone review column spaces the notation from what follows it. */
   .review-workspace-layout .game-notation {

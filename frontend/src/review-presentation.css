@@ -137,6 +137,9 @@ main:has(.review-workspace-layout) {
     --review-gutter: 27px;
     --review-meta-height: 27px;
     --review-controls-height: 44px;
+    /* One gap above the top player bar (after the coach's actions) and below the
+       bottom player bar (before the move controls), so the board sits evenly. */
+    --review-board-gap: var(--space-1);
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -158,7 +161,7 @@ main:has(.review-workspace-layout) {
     gap: var(--space-1-5);
   }
   .review-board-toolbar {
-    padding: var(--space-1) 0 var(--space-1-5);
+    padding: var(--review-board-gap) 0 var(--space-1-5);
   }
   /* Desktop reserves matching board chrome across review modes. On phones,
      an unused toolbar should not separate the board from the coach. */
@@ -183,6 +186,6 @@ main:has(.review-workspace-layout) {
   }
   .review-workspace-layout .review-coach {
     order: -1;
-    margin: 0 0 var(--space-3);
+    margin: 0 0 var(--review-board-gap);
   }
 }

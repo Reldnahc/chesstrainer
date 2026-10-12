@@ -318,13 +318,17 @@ text shows instead.
   ID used for playback (a recorded coach's exact clip, including the greeting) or,
   for a line written but not yet recorded, the coach's script line for that meaning. No meaning
   (pending, no report, legacy prose) keeps the written text.
-  Show why keeps the written detailed explanation. While the spoken line shows,
-  a moves line beneath it carries the concrete facts from report/position data
-  only: the opening name (`report.opening`), `<Side>’s strongest reply: <SAN>` (the engine's reply, never a claim about the move actually played) for a
-  non-terminal position with an `immediate_reply`, and ", forced mate" only when an
-  `allowed_mate` claim proves it. It wraps beside the Maia chip, outside the
-  scrolling message; like any long line, a joined spoken line scrolls inside the
-  fixed-height bubble (owner decision, 2026-10-03).
+  Show why keeps the written detailed explanation. The concrete facts come from
+  report/position data only. The engine's strongest reply (`immediate_reply`, never
+  a claim about the move actually played) sits under **Best** in the portrait
+  caption as **Reply <SAN>** for a non-terminal position, and the board draws it
+  as a faded blue arrow. While the spoken line shows, a moves line beneath it
+  carries the opening name (`report.opening`), wrapping beside the Maia chip
+  outside the scrolling message. The screen-reader text still announces
+  `<Side>’s strongest reply: <SAN>` and ", forced mate" only when an `allowed_mate`
+  claim proves it. Like any long line, a joined spoken line scrolls inside the
+  fixed-height bubble (owner decisions, 2026-10-03 and 2026-10-12: the reply moved
+  under Best because the footer wrapped on phones).
 - **Practice:** puzzles, opening recall, the opening line preview and Due's
   generic states (cold, retry prompt, fallback completion) show the spoken line
   for their selected recording. Lessons replace only the coach's own sentences

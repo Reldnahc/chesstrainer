@@ -99,15 +99,13 @@ test('review modes share board and coach sizing with only useful mobile controls
       return range.getClientRects().length === 1 && text.left >= bounds.left && text.right <= bounds.right;
     })).toBe(true);
     expect(game.actions.buttonWidth).toBeCloseTo((game.actions.width - 8) / 2, 1);
-    expect(game.actions.buttonHeight).toBeGreaterThanOrEqual(44);
+    expect(game.actions.buttonHeight).toBe(40);
     await expect(page.locator('.review-workspace-heading')).toHaveCount(0);
     const navigation = page.getByRole('group', {name: 'Game navigation'});
-    const allGames = navigation.getByRole('link', {name: 'All games', exact: true});
-    await expect(allGames).toHaveAttribute('href', '/games');
-    const link = await geometry(allGames);
-    expect(link.top).toBeGreaterThanOrEqual(game.board.y + game.board.height);
-    expect((await allGames.boundingBox())!.x).toBe((await navigation.boundingBox())!.x);
-    expect(await allGames.evaluate(element => getComputedStyle(element).borderTopWidth)).toBe('1px');
+    // The header's Games tab returns to the library; the board controls have no link.
+    await expect(navigation.getByRole('link')).toHaveCount(0);
+    await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: 'Games', exact: true})).toHaveAttribute('href', '/games');
+    expect((await geometry(navigation)).top).toBeGreaterThanOrEqual(game.board.y + game.board.height);
     if (size.width <= 760) {
       const controls = await navigation.evaluate(element => [...element.children].map(child => {
         const {left, right, top, height} = child.getBoundingClientRect();
@@ -121,7 +119,6 @@ test('review modes share board and coach sizing with only useful mobile controls
           expect(control.height).toBe(44);
         }
       }
-      expect(await allGames.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
     }
     if (size.width > 760) {
       expect(game.coach.y).toBe((await page.locator('.review-sidebar').boundingBox())!.y);
@@ -166,7 +163,10 @@ test('review modes share board and coach sizing with only useful mobile controls
       const board = await geometry(page.locator('.board-shell'));
       const meta = await geometry(page.locator('.review-board-meta').first());
       expect(actions.top - coach.top - coach.height).toBeCloseTo(8, 1);
-      expect(meta.top - actions.top - actions.height).toBeCloseTo(12, 1);
+      // The same 4px gap sits above the top player bar and below the bottom one.
+      const lastMeta = await geometry(page.locator('.review-board-meta').last());
+      expect(meta.top - actions.top - actions.height).toBeCloseTo(4, 1);
+      expect((await geometry(mute)).top - lastMeta.top - lastMeta.height).toBeCloseTo(4, 1);
       expect(board.top).toBeGreaterThan(actions.top + actions.height);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

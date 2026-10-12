@@ -1,6 +1,7 @@
 """Game library, resumable whole-game review and legal variation analysis."""
 
 import io
+import math
 from datetime import timezone
 
 import chess
@@ -31,6 +32,7 @@ from trainer.models import (
     ImportGame,
     ReviewRefinement,
 )
+from trainer.review_intelligence.clocks import control as clock_control
 from trainer.review_intelligence.context import move_contexts
 from trainer.review_intelligence.history import cross_game_context
 from trainer.review_intelligence.presentation import present_game
@@ -172,19 +174,22 @@ def create_router(*, settings, engine_factory):
                     "report": None,
                 }
             ]
-            for ply, move in enumerate(parsed.mainline_moves(), 1):
+            for ply, node in enumerate(parsed.mainline(), 1):
+                move = node.move
                 san, number, actor = board.san(move), board.fullmove_number, board.turn
                 board.push(move)
-                frames.append(
-                    position(board)
-                    | {
-                        "san": san,
-                        "uci": move.uci(),
-                        "number": number,
-                        "actor": "white" if actor else "black",
-                        "report": reports.get(ply),
-                    }
-                )
+                frame = position(board) | {
+                    "san": san,
+                    "uci": move.uci(),
+                    "number": number,
+                    "actor": "white" if actor else "black",
+                    "report": reports.get(ply),
+                }
+                remaining = node.clock()
+                if remaining is not None and math.isfinite(remaining) and remaining >= 0:
+                    frame["clock"] = remaining
+                frames.append(frame)
+            _, clock_start, _ = clock_control(parsed.headers.get("TimeControl"))
             return {
                 "id": game.id,
                 "context": context,
@@ -197,6 +202,7 @@ def create_router(*, settings, engine_factory):
                 "rating": rating,
                 "white_rating": pgn_rating(parsed, True),
                 "black_rating": pgn_rating(parsed, False),
+                **({"clock_start": clock_start} if clock_start is not None else {}),
                 "frames": frames,
                 "review_revision": max(revisions.values(), default=0),
                 "job": job_progress(job, len(saved), len(frames) - 1, review),

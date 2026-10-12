@@ -119,6 +119,24 @@ export default function GameWorkspace({
     return `${game[color]}${elo ? ` (${elo})` : ""}`;
   };
   const displayed = frame || (branchPosition?.value ?? game.frames[cursor.ply]);
+  // Clocks follow the original game; a variation keeps the clocks where it began.
+  const clocked = game.frames.some((item) => item.clock != null);
+  const clockAt = (color: "white" | "black") => {
+    if (!clocked) return undefined;
+    for (let ply = root; ply > 0; ply--) {
+      const item = game.frames[ply];
+      if (item?.actor === color && item.clock != null) return item.clock;
+    }
+    return game.clock_start ?? null;
+  };
+  const toMove = frame?.turn || displayed.turn;
+  // The opponent's strongest answer to the move just played, faded so it reads
+  // as a suggestion beside the move's own highlight. Show why replaces it.
+  const reply = report?.immediate_reply?.uci;
+  const replyArrow =
+    reply && frame && report.actual.san === frame.san && !frame.termination
+      ? [{ startSquare: reply.slice(0, 2), endSquare: reply.slice(2, 4), color: "#4f9cff8c" }]
+      : [];
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
@@ -136,6 +154,8 @@ export default function GameWorkspace({
             accuracy={game.accuracy}
             complete={game.job?.status === "completed"}
             status={branch ? "Exploring a variation" : "Original game"}
+            clock={clockAt(orientation === "white" ? "black" : "white")}
+            running={!branch && !frame?.termination && toMove !== orientation}
           />
         }
         belowBoard={
@@ -147,8 +167,10 @@ export default function GameWorkspace({
             status={
               frame?.termination
                 ? `${frame.result} · ${frame.termination}`
-                : `${frame?.turn || displayed.turn} to move`
+                : `${toMove} to move`
             }
+            clock={clockAt(orientation)}
+            running={!branch && !frame?.termination && toMove === orientation}
           />
         }
         evaluation={
@@ -193,11 +215,11 @@ export default function GameWorkspace({
                           ? "#ffb17be6"
                           : "#ff7187db",
                   }))
-                : []
+                : replyArrow
             }
           />
         }
-        boardControls={<ReviewControls exploration={exploration} libraryHref={libraryHref} />}
+        boardControls={<ReviewControls exploration={exploration} />}
       >
         <PositionCoach
           positionKey={`${id}:${analysisEpoch}:${key}`}

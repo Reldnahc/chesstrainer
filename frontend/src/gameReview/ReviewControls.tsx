@@ -1,5 +1,4 @@
-import { ArrowLeft, FlipVertical2 } from "lucide-react";
-import ActionLink from "../ActionLink";
+import { FlipVertical2 } from "lucide-react";
 import { IconButton } from "../Button";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
@@ -7,24 +6,22 @@ import type { GameExploration } from "./useGameExploration";
 
 export default function ReviewControls({
   exploration,
-  libraryHref,
 }: {
   exploration: GameExploration;
-  libraryHref: string;
 }) {
   const {
     branch, cursor, current, maximum, navigate, step, selectStep, flip,
   } = exploration;
   return (
     <div
-      className="game-board-controls"
+      className="game-board-controls game-board-controls--review"
       role="group"
       aria-label="Game navigation"
     >
-      <ActionLink size="compact" className="game-library-link" href={libraryHref}>
-        <ArrowLeft size={16} />
-        All games
-      </ActionLink>
+      {/* Flip balances mute: one tool either side of the move controls. */}
+      <IconButton className="game-board-flip" aria-label="Flip board" onClick={flip}>
+        <FlipVertical2 size={17} />
+      </IconButton>
       <MovePlaybackControls label="Game move playback" current={current} maximum={maximum}
         first={branch
           ? { "aria-label": "Start of variation", title: "Game position where this variation began", onClick: () => navigate(branch.root) }
@@ -33,9 +30,6 @@ export default function ReviewControls({
         next={{ "aria-label": "Next move", disabled: current === maximum, onClick: () => step(1) }}
         last={{ "aria-label": "Last move", disabled: current === maximum, onClick: () => selectStep(maximum) }} />
       <div className="game-board-tools">
-        <IconButton aria-label="Flip board" onClick={flip}>
-          <FlipVertical2 size={17} />
-        </IconButton>
         <AudioMuteButton />
       </div>
     </div>

@@ -42,6 +42,32 @@
   color: #e0e8e2;
   font: 600 var(--text-sm)/1.3 var(--mono);
 }
+/* Best and the opponent's reply stack under the portrait. The reply takes the
+   board arrow's blue so the two read as one fact. */
+.coach-portrait-caption:has(> .coach-best-reply) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+}
+.coach-best-reply strong {
+  color: #9cc7ff;
+}
+/* A wide portrait (desktop's full-height avatar) leaves too little room below
+   it for two stacked pairs, so each pair shares one line instead. */
+.coach-portrait:has(.coach-best-reply) {
+  container-type: inline-size;
+}
+@container (min-width: 80px) {
+  .coach-portrait-caption:has(> .coach-best-reply) {
+    gap: var(--space-0-5);
+  }
+  .coach-portrait-caption:has(> .coach-best-reply) > .coach-best-move {
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: var(--space-1);
+  }
+}
 .coach-speech {
   grid-column: 2;
   grid-row: 1;
@@ -237,7 +263,9 @@
   display: flex;
   align-items: stretch;
   gap: var(--coach-action-gap);
-  min-height: 44px;
+  /* Owner decision, 2026-10-12: the coach's actions are 40px tall, a little
+     under the 44px phone target, so they cost the review column less height. */
+  min-height: 40px;
   min-width: 0;
 }
 .coach-actions > button,
@@ -383,6 +411,9 @@
   color: var(--move-color);
 }
 @media (max-width: 760px) {
+  .coach-actions > .action-control.action-control--compact {
+    min-height: 40px;
+  }
   .review-coach {
     --coach-height: 156px;
     --coach-avatar-width: 52.5px;

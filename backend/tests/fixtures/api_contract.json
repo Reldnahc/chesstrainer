@@ -2695,6 +2695,17 @@
             ],
             "title": "Black Rating"
           },
+          "clock_start": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clock Start"
+          },
           "context": {
             "anyOf": [
               {
@@ -2818,6 +2829,17 @@
               }
             ],
             "title": "Actor"
+          },
+          "clock": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clock"
           },
           "fen": {
             "title": "Fen",

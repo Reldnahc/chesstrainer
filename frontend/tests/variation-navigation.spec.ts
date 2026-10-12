@@ -66,7 +66,7 @@ test("variation return is a prominent coach action and restores the original pos
     };
   });
   expect(layout.top).toBeGreaterThanOrEqual(layout.speechBottom);
-  expect(layout.height).toBeGreaterThanOrEqual(44);
+  expect(layout.height).toBe(40);
   expect(layout.top).toBeCloseTo(layout.whyTop, 1);
   expect(layout.height).toBe(layout.whyHeight);
   expect(layout.whyWidth).toBeCloseTo(originalWhy.width, 1);
