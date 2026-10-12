@@ -90,9 +90,14 @@ and session tokens are never returned in API responses or included in public set
 
 ## Administration and recovery
 
+Everyone can change their own password in **Settings → Account → Password** by
+entering the current one; their other devices are signed out and this one stays.
+
 Administrators manage other accounts in **Settings → Account**, below their own
 sign-in controls: reset a password, disable or enable, make administrator, or
-delete. Members never see this section and the `/api/auth/accounts` endpoints
+delete. A reset sets a temporary password and signs that account out; the
+administrator passes it on, and at the next sign-in the account must choose its
+own password before anything else works. Members never see this section and the `/api/auth/accounts` endpoints
 refuse them. An administrator cannot reset, disable or delete their own account
 there. Deleting asks for confirmation, removes every row the account owns (games,
 reviews, jobs, training and Study history) and keeps shared engine analysis; it
@@ -111,7 +116,8 @@ python -m trainer.accounts enable USERNAME
 `promote` makes an existing account an administrator; it is the only way to grant
 administrator privileges to an account created through signup. It fails if the
 account does not exist or is already an administrator, and its open sessions gain
-the privilege on their next request. The other commands revoke existing sessions. Disabling prevents further requests; stop/restart
+the privilege on their next request. The other commands revoke existing sessions. `reset-password` sets a permanent
+password (host recovery), unlike the temporary one an administrator sets in Settings. Disabling prevents further requests; stop/restart
 the service if you also need to interrupt that account's already-running analysis.
 Enabling requeues analysis that was interrupted while the account was disabled.
 There is no email delivery dependency in this version.
