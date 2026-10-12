@@ -71,6 +71,9 @@ test("the setup page explains the measured level and starts a live game", async 
   await expect(page.getByText("Measured from 60 of your own decisions across 100 imported games, where you were rated 723.")).toBeVisible();
   // Switching opponent keeps the form's height and the rows below it in place. Positions
   // are in the page, not the viewport: clicking a choice may scroll it into view on phones.
+  // The invitation loads after the page; until it does the coach is a bare portrait of a
+  // different height, so measure once it is in place.
+  await expect(page.getByLabel("Walter says")).toBeVisible();
   const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
     document.querySelector('[aria-label="Your color"]')!.getBoundingClientRect().top + window.scrollY]);
   const before = await layout();
