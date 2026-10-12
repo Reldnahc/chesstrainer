@@ -5,7 +5,7 @@ Current direction: game review, local mistake classification and structured Stud
 | Area | Implemented | Missing / limits |
 |---|---|---|
 | Chess authority | python-chess, native Stockfish, separate practical acceptance policy, explicit mate/perspective types | No tablebases or synthetic positions |
-| Accounts | Self-service signup, persistent device sessions, account ownership in one SQLite database, password changes in Settings, an administrator account list in Settings → Account (temporary password resets), host `promote` and password recovery commands | No email recovery |
+| Accounts | Administrator-added members (sign-ups closed by default, with a switch to open them), persistent device sessions, account ownership in one SQLite database, password changes in Settings, an administrator account list in Settings → Account (temporary password resets), host `promote` and password recovery commands | No email recovery |
 | Game import | Multi-PGN, learner matching, provenance, deduplication, partial errors | Standard chess only |
 | Chess.com and Lichess | Username, mode/date filters, lookback, new-game limit and resumable checkpoints; saved connections polled for new games, which are reviewed automatically | Completed public games only; cached upstream data; no exact clock/increment filter |
 | Analysis | Triage/deep passes, MultiPV, actual move at same root, deterministic facts, compatible persistent cache | Bounded engine limits can miss tactics; subtle positional causes often unexplained |

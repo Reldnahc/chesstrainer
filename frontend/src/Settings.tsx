@@ -15,6 +15,7 @@ import { ExternalLink } from "lucide-react";
 import { navigate, type SettingsTab } from "./navigation";
 import CourseSettings from "./study/CourseSettings";
 import AccountAdmin from "./AccountAdmin";
+import ServerSettings from "./ServerSettings";
 
 const sections: { id: SettingsTab; label: string }[] = [
   { id: "imports", label: "Games & imports" },
@@ -91,6 +92,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
               <Link href="/settings#settings-activity">View import & analysis activity</Link>
             </div>
           </SettingsSection>
+          <ServerSettings />
           <SettingsSection id="settings-source" title="Source code">
             <p className="settings-source">Fieldwork is open source (GPL/AGPL). <a href="https://github.com/Reldnahc/chesstrainer" target="_blank" rel="noopener noreferrer">Source code on GitHub<ExternalLink size={12} aria-hidden="true" /></a></p>
           </SettingsSection>
