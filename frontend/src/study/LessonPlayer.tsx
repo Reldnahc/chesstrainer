@@ -76,7 +76,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     const props = { ...(name === "close_game" ? gameButtonState() : { disabled }), onClick: () => state.command(name) };
     if (name === "back") return <IconButton key={name} size="compact" variant="secondary" aria-label={label} title={label} {...props}>{icon}</IconButton>;
     return name === "return_branch" || name === "close_game"
-      ? <ReturnButton key={name} {...props}>{label}</ReturnButton>
+      ? <ReturnButton key={name} className={name === "return_branch" ? "lesson-branch-return" : undefined} {...props}>{label}</ReturnButton>
       : <Button key={name} size="compact" variant={primary ? "primary" : "secondary"} {...props}>{icon}{label}</Button>;
   };
   return <ReviewWorkspace
