@@ -218,7 +218,7 @@ rounded corners) that is not listed under `surfaces` with its kind (`control`,
 surface must also have a rule in the same file that sets `border: 0` for it,
 normally in the phone media query. Adding to either list is a design decision:
 explain why the surface earns its card. `board` covers only the board and the chrome
-attached to it (the board itself, evaluation bar, player clocks); panels below
+attached to it (the board itself and the evaluation bar; player clocks have no border and only fill while running); panels below
 the board, such as game review's move list and evaluation graph, are `section`s
 and flatten on phones like any other page section.
 

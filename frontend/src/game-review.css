@@ -39,7 +39,6 @@
 .game-player-clock {
   flex: none;
   padding: var(--space-0-5) var(--space-2);
-  border: 1px solid var(--line);
   border-radius: 4px;
   font: 600 var(--text-sm) var(--mono);
   font-variant-numeric: tabular-nums;
@@ -47,7 +46,6 @@
 }
 .game-player-clock[data-running] {
   color: inherit;
-  border-color: var(--muted);
   background: var(--raised);
 }
 .game-player-status {
