@@ -2,9 +2,29 @@
 
 Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment variables override root .env; defaults apply last. Relative paths resolve from the server working directory. Run from the repository root. Invalid recognized values fail startup with field-specific errors.
 
-Host configuration is changed in the environment, followed by a backend restart.
-Settings in the browser edits account preferences, including Chess.com and Lichess usernames,
-coach and motion; it is not a container configuration editor. Existing exercise
+### Stored server settings
+
+Most settings below live in the database (`site_settings`), not the environment.
+Administrators, or the single user of a local install, change them in **Settings
+→ Advanced → Server** and apply them with **Restart server**. Only the settings the
+server needs before it opens the database, or that guard who can reach it, stay
+environment variables: `SERVER_HOST`, `SERVER_PORT`, `DATABASE_PATH`,
+`COURSES_PATH`, `ACCOUNTS_ENABLED`, `SESSION_SECURE`, `PUBLIC_ORIGIN`,
+`LAN_ACCESS_TOKEN`, `ALLOWED_HOSTS`, `STOCKFISH_PATH`, `HUMAN_MODEL_PATH`,
+`HUMAN_MODEL_DEVICE` (the container entrypoint reads it), `PUZZLE_PACK_PATH` and
+`CHESSCOM_USER_AGENT` (`ENV_ONLY` in `trainer/site_settings.py`).
+
+Any other variable still works as a starting value: on each start, a stored
+setting the table does not have yet is filled in from the environment, and from
+then on the table wins, so changing that variable later has no effect. A saved
+value that no longer validates is ignored with a warning and the default applies.
+The restart button works when `python -m trainer` runs the server (as Docker
+does): it stops Uvicorn gracefully and starts it again in the same process. A
+server started with `uvicorn` directly says to restart it from the host. Tests and
+tools that pass their own `Settings` to `create_app` skip the stored values.
+
+Settings in the browser also edits account preferences, including Chess.com and
+Lichess usernames, coach and motion. Existing exercise
 policies and engine evidence keep their saved configuration. The optional LAN
 token is a SecretStr excluded from public serialization; only its configured
 status is returned.

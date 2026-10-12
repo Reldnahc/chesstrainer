@@ -88,11 +88,13 @@ forwarding the container's port directly.
 2. Keep **Secure session cookies** true. Leave **Public origin** (advanced) blank
    unless your proxy rewrites the Host header.
 3. Optionally change **WebUI** in Advanced View to your HTTPS address.
-4. Apply and open the HTTPS address. Each account's saved games are analyzed in the
-   background, and accounts work across devices.
+4. Apply and open the HTTPS address with the administrator you created. Sign-ups
+   start closed: add members in Settings → Account with a temporary password, or
+   open sign-ups there. Each account's saved games are analyzed in the background.
 
 Cloudflare Access is optional and independent of the app login. If used, apply its
-policy before exposing the proxy. Signup never grants administrator privileges;
+policy before exposing the proxy. Without Access, only people you add (or anyone,
+once you open sign-ups) can get an account. Sign-ups never grant administrator privileges;
 to make an account that already signed up an administrator, promote it instead:
 
 ```sh
