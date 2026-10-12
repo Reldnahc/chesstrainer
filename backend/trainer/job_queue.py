@@ -22,10 +22,14 @@ class JobQueue:
         )
 
     def recover(self):
+        # Nothing runs before startup, so every running row is stale, disabled owners'
+        # included: a stale row would otherwise block deleting that account. Claiming
+        # still skips disabled owners.
+        owner = AnalysisJob.user_id == self.user_id if self.user_id is not None else True
         with self.sessions() as db:
             db.execute(
                 update(AnalysisJob)
-                .where(AnalysisJob.user_id.in_(self.owners()), AnalysisJob.status == "running")
+                .where(owner, AnalysisJob.status == "running")
                 .values(status="queued")
             )
             db.commit()

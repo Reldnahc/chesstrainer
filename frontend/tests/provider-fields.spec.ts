@@ -47,7 +47,7 @@ test('provider fields share valid username rules while imports require a name an
 test('onboarding keeps provider usernames optional and disables both fields during its save', async ({page}) => {
   const identity: Schema['Identity'] = {enabled: true, user: {
     id: 'provider-field-account', username: 'FieldFixture', admin: false,
-    chesscom_username: '', onboarding_completed: false,
+    chesscom_username: '', onboarding_completed: false, password_change_required: false,
   }};
   await page.route('**/api/auth/me', route => route.fulfill({json: identity}));
   let release!: () => void;

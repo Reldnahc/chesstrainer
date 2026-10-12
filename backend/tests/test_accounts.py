@@ -270,3 +270,214 @@ def test_failed_sign_ins_count_against_limits_but_successful_ones_do_not(setting
         for index in range(6):
             assert login("wrong-password-1").status_code == 401, index
         assert login("testing-password").status_code == 429
+
+
+def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch, capsys):
+    from trainer import accounts as accounts_module
+
+    engine, _ = database(settings.database_path)
+    migrate(engine)
+    engine.dispose()
+    accounts = Accounts(settings.database_path)
+    friend = accounts.create("friend", "correct horse battery")
+    token = accounts.issue(friend["id"])
+    monkeypatch.setattr(accounts_module, "Settings", lambda: settings)
+
+    def run(*argv):
+        monkeypatch.setattr("sys.argv", ["trainer.accounts", *argv])
+        with pytest.raises(SystemExit) as exit_info:
+            accounts_module.main()
+            raise SystemExit(0)
+        return exit_info.value.code
+
+    assert run("promote", "Friend") == 0
+    assert "promote completed" in capsys.readouterr().out
+    # The open session is kept and sees the new privilege on its next request.
+    assert accounts.resolve(token)["admin"] == 1
+    assert run("promote", "friend") == 1
+    assert "already an administrator" in capsys.readouterr().err
+    assert run("promote", "nobody") == 1
+    assert "Account not found" in capsys.readouterr().err
+    # The unclaimed local workspace is not an account the CLI can change.
+    assert run("promote", "__local__") == 1
+    assert "Account not found" in capsys.readouterr().err
+
+
+def test_administrators_manage_other_accounts_from_settings(settings):
+    settings.accounts_enabled = True
+    settings.public_origin = ORIGIN["Origin"]
+    settings.session_secure = False
+    settings.stockfish_path = "missing-no-signup-engine"
+    app = create_app(settings, workers=False)
+    accounts = Accounts(settings.database_path)
+    with TestClient(app) as client:
+        admin = accounts.create("keeper", "testing-password", admin=True)
+        friend, _ = signup(client, "friend")
+        friend_id = friend["user"]["id"]
+        headers = ORIGIN | {"X-CSRF-Token": friend["csrf"]}
+        assert (
+            client.post(
+                "/api/imports",
+                files={"file": ("test.pgn", PGN)},
+                data={"side": "white"},
+                headers=headers,
+            ).status_code
+            == 200
+        )
+        assert client.get("/api/auth/accounts").status_code == 403
+        assert (
+            client.delete("/api/auth/accounts/" + admin["id"], headers=headers).status_code == 403
+        )
+
+        def sign_in(name, password="testing-password"):
+            response = client.post(
+                "/api/auth/login", json={"username": name, "password": password}, headers=ORIGIN
+            )
+            return response.status_code, ORIGIN | {"X-CSRF-Token": response.json().get("csrf", "")}
+
+        status, headers = sign_in("keeper")
+        assert status == 200
+        listed = client.get("/api/auth/accounts").json()["accounts"]
+        assert [(row["username"], row["admin"], row["disabled"]) for row in listed] == [
+            ("keeper", True, False),
+            ("friend", False, False),
+        ]
+        assert set(listed[0]) == {"id", "username", "admin", "disabled", "created"}
+        # Administrators cannot lock themselves out or remove their own account.
+        own = "/api/auth/accounts/" + admin["id"]
+        assert client.delete(own, headers=headers).status_code == 409
+        assert (
+            client.post(own + "/access", json={"disabled": True}, headers=headers).status_code
+            == 409
+        )
+        assert client.delete("/api/auth/accounts/missing", headers=headers).status_code == 404
+
+        target = "/api/auth/accounts/" + friend_id
+        assert (
+            client.post(
+                target + "/password", json={"password": "short"}, headers=headers
+            ).status_code
+            == 422
+        )
+        assert (
+            client.post(
+                target + "/password", json={"password": "a-new-password"}, headers=headers
+            ).status_code
+            == 200
+        )
+        assert (
+            client.post(target + "/access", json={"disabled": True}, headers=headers).status_code
+            == 200
+        )
+        assert sign_in("friend", "a-new-password")[0] == 401
+        _, headers = sign_in("keeper")
+        assert (
+            client.post(target + "/access", json={"disabled": False}, headers=headers).status_code
+            == 200
+        )
+        assert sign_in("friend", "testing-password")[0] == 401
+        assert sign_in("friend", "a-new-password")[0] == 200
+        # The administrator's password is temporary: only choosing a new one is allowed.
+        assert client.get("/api/auth/me").json()["user"]["password_change_required"]
+        blocked = client.get("/api/games")
+        assert blocked.status_code == 403
+        assert blocked.json()["detail"] == "Choose a new password to continue."
+        _, headers = sign_in("keeper")
+        assert client.post(target + "/admin", headers=headers).status_code == 200
+        repeat = client.post(target + "/admin", headers=headers)
+        assert repeat.status_code == 409
+        assert repeat.json()["detail"] == "Account is already an administrator."
+
+        with accounts.connect() as db:
+            db.execute("UPDATE analysis_jobs SET status='running' WHERE user_id=?", (friend_id,))
+        assert "analysis running" in client.delete(target, headers=headers).json()["detail"]
+        with accounts.connect() as db:
+            db.execute("UPDATE analysis_jobs SET status='queued' WHERE user_id=?", (friend_id,))
+        deleted = client.delete(target, headers=headers)
+        assert deleted.status_code == 200, deleted.text
+        assert [row["username"] for row in client.get("/api/auth/accounts").json()["accounts"]] == [
+            "keeper"
+        ]
+        with accounts.connect() as db:
+            tables = [
+                row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            ]
+            owned = 0
+            for table in tables:
+                columns = {column[1] for column in db.execute(f'PRAGMA table_info("{table}")')}
+                if "user_id" in columns:
+                    owned += db.execute(
+                        f'SELECT count(*) FROM "{table}" WHERE user_id=?', (friend_id,)
+                    ).fetchone()[0]
+        assert owned == 0
+        assert sign_in("friend", "a-new-password")[0] == 401
+
+
+def test_members_change_their_own_password_and_keep_this_device(settings):
+    settings.accounts_enabled = True
+    settings.public_origin = ORIGIN["Origin"]
+    settings.session_secure = False
+    settings.stockfish_path = "missing-no-signup-engine"
+    app = create_app(settings, workers=False)
+    accounts = Accounts(settings.database_path)
+    with TestClient(app) as client:
+        member, _ = signup(client, "member")
+        other_device = accounts.issue(member["user"]["id"])
+        headers = ORIGIN | {"X-CSRF-Token": member["csrf"]}
+
+        def change(current, new):
+            return client.post(
+                "/api/auth/password",
+                json={"current_password": current, "new_password": new},
+                headers=headers,
+            )
+
+        assert change("wrong-password", "another-password").status_code == 403
+        assert change("testing-password", "testing-password").status_code == 422
+        assert change("testing-password", "short").status_code == 422
+        changed = change("testing-password", "another-password")
+        assert changed.status_code == 200, changed.text
+        assert changed.json()["user"]["username"] == "member"
+        assert client.get("/api/games").status_code == 200
+        assert accounts.resolve(other_device) is None
+        relogin = client.post(
+            "/api/auth/login",
+            json={"username": "member", "password": "another-password"},
+            headers=ORIGIN,
+        )
+        assert relogin.status_code == 200
+
+        # After an administrator's reset, choosing a new password lifts the block.
+        accounts.set_password(accounts.by_name("member"), "temporary-pass", temporary=True)
+        login = client.post(
+            "/api/auth/login",
+            json={"username": "member", "password": "temporary-pass"},
+            headers=ORIGIN,
+        ).json()
+        assert login["user"]["password_change_required"]
+        headers = ORIGIN | {"X-CSRF-Token": login["csrf"]}
+        assert client.get("/api/games").status_code == 403
+        cleared = change("temporary-pass", "my-own-password")
+        assert not cleared.json()["user"]["password_change_required"]
+        assert client.get("/api/games").status_code == 200
+
+
+def test_a_disabled_account_with_interrupted_analysis_can_still_be_deleted(settings):
+    from sqlalchemy.orm import Session
+    from trainer.job_queue import JobQueue
+
+    engine, _ = database(settings.database_path)
+    migrate(engine)
+    accounts = Accounts(settings.database_path)
+    friend = accounts.create("friend", "testing-password")
+    with Session(engine) as db:
+        db.add(AnalysisJob(user_id=friend["id"], kind="training", status="running"))
+        db.commit()
+    accounts.set_disabled(friend, True)
+    with pytest.raises(ValueError, match="analysis running"):
+        accounts.delete(accounts.by_id(friend["id"]))
+    # A restart interrupted that job; recovery requeues it even for a disabled owner.
+    JobQueue(engine).recover()
+    accounts.delete(accounts.by_id(friend["id"]))
+    assert accounts.by_id(friend["id"]) is None
+    engine.dispose()

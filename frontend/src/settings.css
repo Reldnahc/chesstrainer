@@ -51,6 +51,23 @@
 .settings-tool button {
   flex: 0 0 220px;
 }
+/* A row whose commands are a wrapping group of compact actions (courses, accounts). */
+.settings-tool-row .button-row {
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.settings-tool-row .button-row .action-control {
+  flex: none;
+}
+.account-password-form {
+  align-items: flex-end;
+}
+.account-password-form label {
+  display: grid;
+  gap: var(--space-1-5);
+  font-size: var(--text-base);
+}
 .settings-tool-status {
   display: flex;
   flex-direction: column;
@@ -86,5 +103,11 @@
   }
   .settings-tool button {
     flex: auto;
+  }
+  .settings-tool-row .button-row {
+    justify-content: flex-start;
+  }
+  .account-password-form label {
+    flex: 1 1 100%;
   }
 }

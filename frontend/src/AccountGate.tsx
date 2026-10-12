@@ -9,6 +9,7 @@ import {
 import { api, read, setAccountSession, type Schema } from "./api";
 
 import Onboarding from "./Onboarding";
+import ChangePasswordForm from "./ChangePasswordForm";
 import SettingsSection from "./SettingsSection";
 import Notice from "./Notice";
 
@@ -27,7 +28,7 @@ export function AccountSettings() {
   const session = useContext(AccountContext);
   if (!session) return null;
   const { user, logout, busy, error } = session;
-  return (
+  return (<>
     <SettingsSection id="account-settings" title="Account" className="account-settings">
       <p>
         Signed in as <strong>{user.username}</strong>
@@ -49,6 +50,17 @@ export function AccountSettings() {
           {error}
         </Notice>
       )}
+    </SettingsSection>
+    <PasswordSettings />
+  </>);
+}
+
+function PasswordSettings() {
+  const [changed, setChanged] = useState(false);
+  return (
+    <SettingsSection id="password-settings" title="Password" description="Change the password you sign in with.">
+      {changed && <Notice announcement="status" tone="success">Password changed. Your other devices are signed out.</Notice>}
+      <ChangePasswordForm onChanged={() => setChanged(true)} />
     </SettingsSection>
   );
 }
@@ -175,6 +187,20 @@ export default function AccountGate({ children }: { children: ReactNode }) {
               ? "Already have an account? Sign in"
               : "New here? Create an account"}
           </Button>
+        </section>
+      </main>
+    );
+  if (identity.user.password_change_required)
+    return (
+      <main className="account-entry">
+        <section className="panel">
+          <p className="eyebrow">FIELDWORK</p>
+          <h1>Choose a new password</h1>
+          <p>Your host reset your password. Enter the temporary password they gave you, then choose your own.</p>
+          {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+          <ChangePasswordForm currentLabel="Temporary password" submitLabel="Save and continue"
+            onChanged={user => setIdentity(current => current ? { ...current, user } : current)} />
+          <Button disabled={busy} onClick={() => logout()}>Sign out</Button>
         </section>
       </main>
     );

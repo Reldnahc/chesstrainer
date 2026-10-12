@@ -33,6 +33,8 @@ class User(Base):
     disabled: Mapped[bool] = mapped_column(default=False)
     chesscom_username: Mapped[str] = mapped_column(default="")
     onboarding_completed: Mapped[bool] = mapped_column(default=False, server_default="0")
+    # Set by an administrator's reset; the account must choose its own password next.
+    password_change_required: Mapped[bool] = mapped_column(default=False, server_default="0")
     created: Mapped[float]
     # Polling pauses after a week without requests; see trainer.presence.
     last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))

@@ -1,8 +1,10 @@
 """Cookie authentication and account-bound services sharing one database."""
 
 import secrets
+import sqlite3
 import threading
 import time
+from datetime import UTC, datetime
 from urllib.parse import urlsplit
 
 from fastapi import HTTPException, Request, Response
@@ -18,7 +20,14 @@ from trainer.accounts import (
     password_hash,
     password_matches,
 )
-from trainer.contracts.accounts import AccountProfile, Identity
+from trainer.contracts.accounts import (
+    AccountAccess,
+    AccountProfile,
+    Identity,
+    ManagedAccounts,
+    PasswordChange,
+    PasswordReset,
+)
 from trainer.contracts.common import Ok
 
 
@@ -46,6 +55,15 @@ def configure_accounts(app, settings):
             public = path in {"/api/auth/me", "/api/auth/login", "/api/auth/signup"}
             if not public and not user:
                 return JSONResponse({"detail": "Sign in to your account."}, status_code=401)
+            if (
+                user
+                and user["password_change_required"]
+                and not public
+                and path not in {"/api/auth/password", "/api/auth/logout"}
+            ):
+                return JSONResponse(
+                    {"detail": "Choose a new password to continue."}, status_code=403
+                )
             if request.method not in {"GET", "HEAD", "OPTIONS"}:
                 denied = origin_denied(request.headers.get("origin"), request)
                 if denied:
@@ -216,3 +234,79 @@ def configure_accounts(app, settings):
             db.execute("DELETE FROM auth_sessions WHERE user_id=?", (request.state.user["id"],))
         response.delete_cookie(COOKIE, path="/")
         return {"ok": True}
+
+    # Administration lives under /api/auth so local single-user mode, which has no
+    # accounts to manage, leaves these routes out of its contract.
+    def managed(request, account_id, *, not_self=None):
+        if not request.state.user["admin"]:
+            raise HTTPException(403, "Only an administrator can manage accounts.")
+        user = accounts.by_id(account_id)
+        if not user or user["username"] == "__local__":
+            raise HTTPException(404, "Account not found.")
+        if not_self and user["id"] == request.state.user["id"]:
+            raise HTTPException(409, not_self)
+        return user
+
+    def administer(action, *args):
+        try:
+            action(*args)
+        except (ValueError, sqlite3.IntegrityError) as exc:
+            raise HTTPException(409, str(exc).rstrip(".") + ".") from exc
+        return {"ok": True}
+
+    @app.get("/api/auth/accounts", response_model=ManagedAccounts)
+    def list_accounts(request: Request):
+        if not request.state.user["admin"]:
+            raise HTTPException(403, "Only an administrator can manage accounts.")
+        return {
+            "accounts": [
+                {
+                    **row,
+                    "admin": bool(row["admin"]),
+                    "disabled": bool(row["disabled"]),
+                    "created": datetime.fromtimestamp(row["created"], UTC),
+                }
+                for row in accounts.listing()
+            ]
+        }
+
+    @app.post("/api/auth/accounts/{account_id}/password", response_model=Ok)
+    def reset_password(account_id: str, data: PasswordReset, request: Request):
+        """Set a new password and sign that account out everywhere."""
+        user = managed(
+            request,
+            account_id,
+            not_self="Change your own password in Settings, under Account.",
+        )
+        # Shares the sign-in slot so hashing stays memory-bounded.
+        with password_lock:
+            return administer(lambda: accounts.set_password(user, data.password, temporary=True))
+
+    @app.post("/api/auth/accounts/{account_id}/admin", response_model=Ok)
+    def promote_account(account_id: str, request: Request):
+        return administer(accounts.promote, managed(request, account_id))
+
+    @app.post("/api/auth/accounts/{account_id}/access", response_model=Ok)
+    def account_access(account_id: str, data: AccountAccess, request: Request):
+        user = managed(request, account_id, not_self="You cannot disable your own account.")
+        return administer(accounts.set_disabled, user, data.disabled)
+
+    @app.delete("/api/auth/accounts/{account_id}", response_model=Ok)
+    def delete_account(account_id: str, request: Request):
+        user = managed(request, account_id, not_self="You cannot delete your own account.")
+        return administer(accounts.delete, user)
+
+    @app.post("/api/auth/password", response_model=AccountProfile)
+    def change_password(data: PasswordChange, request: Request):
+        """Choose a new password; other devices are signed out, this one stays."""
+        user = request.state.user
+        keys = throttle(request, user["username"])
+        with password_lock:
+            valid = password_matches(data.current_password, user["password"])
+            charge(keys, not valid)
+            if not valid:
+                raise HTTPException(403, "Your current password is incorrect.")
+            if data.new_password == data.current_password:
+                raise HTTPException(422, "Choose a password different from your current one.")
+            accounts.set_password(user, data.new_password, keep_session=request.cookies[COOKIE])
+        return {"user": accounts.public(accounts.by_id(user["id"]))}
