@@ -13,12 +13,15 @@ export default function ReviewMoves({
   exploration,
   getAnalysis,
   progress,
+  actions,
 }: {
   game: Game;
   /** Game review passes its exploration; a live game passes its own cursor and navigation. */
   exploration: Pick<GameExploration, "cursor" | "branch" | "branches" | "navigate" | "selectBranch">;
   getAnalysis: (root: number, path: string[]) => Analysis | undefined;
   progress: ReactNode;
+  /** Whole-game commands beside Next mistake, shown on both tabs. */
+  actions?: ReactNode;
 }) {
   const [tab, setTab] = useState<"moves" | "quality">("moves");
   const id = useId();
@@ -68,6 +71,7 @@ export default function ReviewMoves({
             </button>
           ))}
         </div>
+        <span className="game-move-actions">
         <button
           hidden={tab !== "moves"}
           onClick={() => {
@@ -85,6 +89,8 @@ export default function ReviewMoves({
         >
           Next mistake <ChevronRight size={14} />
         </button>
+        {actions}
+        </span>
       </div>
       {progress}
       <div

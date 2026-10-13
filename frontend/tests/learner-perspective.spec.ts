@@ -47,7 +47,7 @@ for (const game of games) {
       expect(rendered.trace.variants.find(v => v.code === "book_sound")?.source).toBe("neutral-1");
       expect(gameIntent({...input, report: {...report, intelligence: null}, expression: reaction.state}).expression).toBe("book");
       expect(gameIntent({...input, explaining: true, expression: "explaining",
-        report: {...report, board_cues: {caption: "Opening explanation", fen: frame.fen, arrows: [], roles: {}}}}).expression).toBe("explaining");
+        report: {...report, board_cues: {caption: "Opening explanation", fen: frame.fen, arrows: [], pins: [], roles: {}}}}).expression).toBe("explaining");
       const checkFrame = {...frame, san: "Bb5+"};
       const checkReaction = gameReaction({key: input.key, frame: checkFrame, report, learner,
         explaining: false, pending: false, error: false});

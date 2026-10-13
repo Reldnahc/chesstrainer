@@ -46,17 +46,18 @@ Ordinary review never downloads weights, and Stockfish remains the evaluation
 authority when the human model is present or absent.
 
 ```sh
-docker run -d --name fieldwork --restart unless-stopped --init -p 18000:8000 -v fieldwork-data:/data ghcr.io/reldnahc/chesstrainer:latest
+docker run -d --name fieldwork --restart unless-stopped --init -p 18000:8000 -v fieldwork-data:/data -e SESSION_SECURE=false ghcr.io/reldnahc/chesstrainer:latest
+docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
 
-Open `http://localhost:18000` (or your server's LAN IP). For private accounts behind
-HTTPS, follow [shared hosting](docs/DOCKER.md#shared-https-hosting).
+Open `http://localhost:18000` (or your server's LAN IP) and sign in. The container
+always requires sign-in; see [Docker installation](docs/DOCKER.md) for the recommended
+hardening options and [shared hosting](docs/DOCKER.md#shared-https-hosting) for HTTPS.
 See [account administration](docs/ACCOUNTS.md) for account recovery.
 
-By default Fieldwork runs as one local workspace without login. Everyone who can
-reach that instance shares its local games and progress. For shared hosting with
-separate accounts, set `ACCOUNTS_ENABLED=true` and restart. No domain setting is
-needed; see [shared hosting](docs/DOCKER.md#shared-https-hosting) for the proxy.
+Run from source, Fieldwork defaults to one local workspace without login, for
+development and single-computer use. Everyone who can reach that instance shares its
+games and progress. Set `ACCOUNTS_ENABLED=true` for separate accounts.
 
 ## Implemented
 

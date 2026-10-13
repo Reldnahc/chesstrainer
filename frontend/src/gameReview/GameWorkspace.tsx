@@ -1,4 +1,5 @@
-import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
@@ -12,6 +13,7 @@ import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
 import ReviewMoves from "./ReviewMoves";
 import ReviewProgress from "./ReviewProgress";
+import GameExportDialog from "../gameExport/GameExportDialog";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
@@ -42,6 +44,7 @@ export default function GameWorkspace({
     analysisEpoch,
   } = session;
   const exploration = useGameExploration(id, initialPly, game, setError);
+  const [exporting, setExporting] = useState(false);
   const {
     cursor,
     branch,
@@ -141,6 +144,11 @@ export default function GameWorkspace({
     reply && frame && report.actual.san === frame.san && !frame.termination
       ? [{ startSquare: reply.slice(0, 2), endSquare: reply.slice(2, 4), color: "#4f9cff8c" }]
       : [];
+  // Pins the move just made, from the pinning piece through the pinned piece to
+  // the one behind it. A pin kept from an earlier move is not drawn again.
+  const pinArrows = (cues?.pins ?? []).map((pin) => ({
+    startSquare: pin.startSquare, endSquare: pin.endSquare, color: "#ff71878c",
+  }));
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
@@ -210,16 +218,20 @@ export default function GameWorkspace({
             roles={explaining ? cues!.roles : undefined}
             arrows={
               explaining
-                ? cues!.arrows.map((a) => ({
-                    ...a,
-                    color:
-                      a.kind === "move"
-                        ? "#b8d69be6"
-                        : a.kind === "reply"
-                          ? "#ffb17be6"
-                          : "#ff7187db",
-                  }))
-                : replyArrow
+                ? [
+                    ...cues!.arrows.map((a) => ({
+                      ...a,
+                      color:
+                        a.kind === "move"
+                          ? "#b8d69be6"
+                          : a.kind === "reply"
+                            ? "#ffb17be6"
+                            : "#ff7187db",
+                    })),
+                    ...pinArrows.filter((pin) => !cues!.arrows.some((a) =>
+                      a.startSquare === pin.startSquare && a.endSquare === pin.endSquare)),
+                  ]
+                : [...replyArrow, ...pinArrows]
             }
           />
         }
@@ -252,6 +264,12 @@ export default function GameWorkspace({
           game={game}
           exploration={exploration}
           getAnalysis={analysis.get}
+          actions={
+            <button className="game-export-button" aria-label="Export game" title="Export PGN, FEN or GIF"
+              onClick={() => setExporting(true)}>
+              <Share size={14} />
+            </button>
+          }
           progress={
             <ReviewProgress
               game={game}
@@ -273,6 +291,7 @@ export default function GameWorkspace({
           onScrubEnd={exploration.finishScrubbing}
         />
       </ReviewWorkspace>
+      {exporting && <GameExportDialog id={id} fen={displayed.fen} orientation={orientation} onClose={() => setExporting(false)} />}
     </div>
   );
 }

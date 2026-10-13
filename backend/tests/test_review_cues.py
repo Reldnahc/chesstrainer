@@ -155,3 +155,50 @@ def test_absent_or_illegal_reply_never_authorizes_generic_reply_recording():
     illegal = review_cues(evidence, mistake=True)
     assert illegal["caption_kind"] is None
     assert illegal["caption_reply_uci"] is None
+
+
+def test_pin_arrow_appears_on_the_move_that_makes_the_pin():
+    # Bg5 pins the f6 knight to the queen on d8.
+    board = chess.Board()
+    for san in ["d4", "d5", "c4", "e6", "Nc3", "Nf6"]:
+        board.push_san(san)
+    cues = review_cues(line(board.fen(), ["c1g5", "f8e7"]))
+    assert cues["pins"] == [{"startSquare": "g5", "endSquare": "d8", "kind": "pin", "pinned": "f6"}]
+    assert BoardCues.model_validate(cues).pins[0].pinned == "f6"
+
+
+def test_pin_kept_from_an_earlier_move_is_not_drawn_again():
+    board = chess.Board()
+    for san in ["d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5"]:
+        board.push_san(san)
+    assert review_cues(line(board.fen(), ["h7h6", "g5h4"]))["pins"] == []
+
+
+def test_walking_into_an_absolute_pin_counts_as_making_it():
+    # Nd2 blocks the b4 bishop's check and is pinned to the king by that move.
+    evidence = line("4k3/8/8/8/1b6/8/8/1N2K3 w - - 0 1", ["b1d2"])
+    assert review_cues(evidence)["pins"] == [
+        {"startSquare": "b4", "endSquare": "e1", "kind": "pin", "pinned": "d2"}
+    ]
+
+
+def test_sliding_along_a_held_pin_does_not_redraw_it():
+    # The pinned rook steps along the file, then the pinning rook does.
+    pinned = line("4k3/4r3/8/8/8/8/8/4RK2 b - - 0 1", ["e7e6"])
+    pinner = line("4k3/4r3/8/8/8/8/8/4RK2 w - - 0 1", ["e1e2"])
+    assert review_cues(pinned)["pins"] == review_cues(pinner)["pins"] == []
+    # The king stepping onto a new line behind its own piece is a new pin.
+    king = line("3k4/4r3/8/8/8/8/8/4RK2 b - - 0 1", ["d8e8"])
+    assert review_cues(king)["pins"] == [{"startSquare": "e1", "endSquare": "e8", "kind": "pin", "pinned": "e7"}]
+
+
+
+def test_only_piece_pins_to_the_king_or_something_worth_more_get_an_arrow():
+    # Bb5 pins the d7 pawn to the king: a pawn, so no arrow.
+    assert review_cues(line("4k3/3p4/8/8/8/8/4B3/4K3 w - - 0 1", ["e2b5"]))["pins"] == []
+    # Qa1 lines the c3 knight up with the e5 rook, which is worth less than the queen.
+    assert review_cues(line("7K/8/8/4r3/8/2n5/8/1Q5k w - - 0 1", ["b1a1"]))["pins"] == []
+    # Re2 pins the e5 knight to the queen, which is worth more than the rook.
+    assert review_cues(line("4q2k/8/8/4n3/8/8/R7/K7 w - - 0 1", ["a2e2"]))["pins"] == [
+        {"startSquare": "e2", "endSquare": "e8", "kind": "pin", "pinned": "e5"}
+    ]

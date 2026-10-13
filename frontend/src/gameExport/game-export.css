@@ -1,0 +1,58 @@
+.game-export-dialog {
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  margin: auto;
+  color: #eceef1;
+}
+.game-export-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.game-export-dialog::backdrop {
+  background: #07090bd9;
+}
+.game-export-dialog h2 {
+  font-size: var(--text-xl);
+}
+.game-export-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.game-export-section h3 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+}
+.game-export-section h3 .muted {
+  font-size: var(--text-caption);
+  font-weight: 400;
+}
+.game-export-section textarea,
+.game-export-section input {
+  width: 100%;
+  font: var(--text-sm) var(--mono);
+  resize: vertical;
+}
+.game-export-preview {
+  width: min(100%, 320px);
+  align-self: center;
+}
+@media (max-width: 760px) {
+  .game-export-dialog {
+    max-width: none;
+    max-height: 100dvh;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    padding: max(var(--space-3), env(safe-area-inset-top)) var(--space-3)
+      max(var(--space-4), env(safe-area-inset-bottom));
+  }
+  .game-export-section textarea,
+  .game-export-section input {
+    font-size: var(--text-input);
+  }
+}

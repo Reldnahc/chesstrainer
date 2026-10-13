@@ -7,18 +7,30 @@ explicitly acquire the pinned weights; see [HUMAN_MODELS.md](HUMAN_MODELS.md) fo
 measured memory/image costs and offline operation.
 
 Fieldwork is **one container** with the app, Stockfish and one SQLite database.
-Local use requires no external database, reverse proxy, Cloudflare or Compose.
+It needs no external database, Cloudflare or Compose. Everyone signs in with their
+own account; the container refuses to start in no-login mode.
 
 ## Install
 
 1. Download [fieldwork.xml](../unraid/fieldwork.xml) from the revision you are installing.
    Copy it to `/boot/config/plugins/dockerMan/templates-user/my-fieldwork.xml`.
    Do not overwrite an existing customized template.
-2. Open **Docker → Add Container**, select **fieldwork**, and choose **Web port**
-   (default 18000) and **App data**. Leave **Account support** false for local use.
-3. Apply, then enable **Autostart** in the Docker list.
-4. Click the container icon → **WebUI**. It opens your LAN address and selected port.
-   There is no login. Everyone who can reach it shares one local workspace.
+2. Keep it off your LAN (recommended): copy [isolate-lan.sh](../unraid/isolate-lan.sh)
+   to the server and run `bash isolate-lan.sh` in the Unraid terminal. Add it to the
+   **User Scripts** plugin set to **At Startup of Array**, because firewall rules
+   are lost on reboot. See [Security](#security).
+3. Open **Docker → Add Container**, select **fieldwork**, and choose **Web port**
+   (default 18000) and **App data**. If you ran the script, set **Network Type** to
+   `fieldwork`. For sign-in over plain `http://` on your LAN, set **Secure session
+   cookies** (advanced) to false; keep it true behind HTTPS.
+4. Apply, then enable **Autostart** in the Docker list.
+5. Create your administrator in the Unraid terminal. The command prompts for a password:
+
+   ```sh
+   docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
+   ```
+
+6. Click the container icon → **WebUI** and sign in.
 
 Every setting has a description. Engine tuning is under advanced settings.
 This is a repository-supplied template, not a Community Applications listing.
@@ -33,43 +45,66 @@ mkdir -p /mnt/user/appdata/fieldwork
 chown 99:100 /mnt/user/appdata/fieldwork
 ```
 
-For manual Add Container, use `ghcr.io/reldnahc/chesstrainer:latest`, Bridge networking,
-map host port 18000 to container port 8000, and map your appdata folder to `/data`.
+For manual Add Container, use `ghcr.io/reldnahc/chesstrainer:latest`, the `fieldwork`
+network (or Bridge), map host port 18000 to container port 8000, and map your appdata
+folder to `/data`.
 In Advanced View set WebUI to `http://[IP]:[PORT:8000]` and Extra Parameters to
-`--init --user 99:100 --security-opt no-new-privileges:true --cap-drop ALL --stop-timeout 90`.
+`--init --user 99:100 --security-opt no-new-privileges:true --cap-drop ALL --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 --stop-timeout 90`.
 Keep privileged mode off. PUID/PGID environment variables alone do not change this
 image's user; the `--user` option does.
 
-## Separate accounts behind HTTPS
+## Security
+
+The template keeps a compromised app contained to its own data folder:
+
+- It runs as UID 99 (nobody), never root, with every Linux capability dropped and
+  `no-new-privileges`, so a bug in Fieldwork cannot become root in the container.
+- The root filesystem is read-only. Only `/data` and a small in-memory `/tmp` are
+  writable, so nothing can be planted in the app's code. `--pids-limit` stops a
+  runaway or hostile process from exhausting the server.
+- **App data** is the only host folder it sees. Do not add other path mappings
+  (especially `/mnt/user` or a share), never map `/var/run/docker.sock`, and keep
+  **Privileged** off. Any of these would hand the server to whoever controls the app.
+- Everyone must sign in. The no-login workspace would let anyone who reaches the
+  port use the app, so it runs only from source, for development.
+
+On the default Bridge network the container can open connections to your LAN,
+including the Unraid web interface, SSH, SMB shares and other containers. Fieldwork
+needs the internet (Chess.com, Lichess, model downloads) but nothing on your LAN.
+[isolate-lan.sh](../unraid/isolate-lan.sh) creates the `fieldwork` network and
+firewall rules that drop every new connection from it to the server and to private
+addresses (except DNS to the server's own resolvers). Visitors and your reverse
+proxy can still connect in, because replies are not new connections. Run
+`bash isolate-lan.sh remove` to delete the rules. Keep a strong Unraid root password
+either way.
+
+Publish Fieldwork to the internet only through an HTTPS reverse proxy, never by
+forwarding the container's port directly.
+
+## Behind an HTTPS proxy
 
 1. Configure your HTTPS proxy to forward to `http://UNRAID-IP:18000` (or your chosen
    host port), preserving the public Host header. The container serves HTTP.
-2. Set **Account support** to true. Keep **Secure session cookies** true. Leave
-   **Public origin** (advanced) blank unless your proxy rewrites the Host header.
+2. Keep **Secure session cookies** true. Leave **Public origin** (advanced) blank
+   unless your proxy rewrites the Host header.
 3. Optionally change **WebUI** in Advanced View to your HTTPS address.
-4. Apply, create an administrator (below), and open the HTTPS address. Sign-ups
+4. Apply and open the HTTPS address with the administrator you created. Sign-ups
    start closed: add members in Settings → Account with a temporary password, or
    open sign-ups there. Each account's saved games are analyzed in the background.
 
 Cloudflare Access is optional and independent of the app login. If used, apply its
-policy before exposing the proxy. Do not expose local no-login mode publicly.
-Without Access, only people you add (or anyone, once you open sign-ups) can get
-an account. Create an administrator from the Unraid terminal:
-
-```sh
-docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
-```
-
-The command prompts for a password. Sign-ups never grant administrator privileges;
+policy before exposing the proxy. Without Access, only people you add (or anyone,
+once you open sign-ups) can get an account. Sign-ups never grant administrator privileges;
 to make an account that already signed up an administrator, promote it instead:
 
 ```sh
 docker exec fieldwork python -m trainer.accounts promote YOUR_USERNAME
 ```
 
-Restart after switching modes. Turning Account support off opens only the reserved local
-workspace, not named accounts; it does not merge their games. See [Accounts](ACCOUNTS.md)
-for transferring existing local history and account recovery.
+An install that used the old no-login default stops at startup after updating, with
+a log message saying so. Set **Account support** to true, create an administrator,
+and move the old workspace's games to an account with `claim-local`; see
+[Accounts](ACCOUNTS.md#enable-and-migrate) for that and for account recovery.
 
 ## Optional GPU for Maia
 
@@ -99,13 +134,14 @@ and CPU/memory budgets. Defaults do not automatically scale with CPU pinning.
 
 | Symptom | What to check |
 | --- | --- |
-| Login screen appeared after an update | Older templates saved Account support as true, which used to need Public origin too. Set it to false for no-login mode. |
+| Container stops right after an update | The log says the container requires `ACCOUNTS_ENABLED=true`: set Account support to true and follow the no-login migration above. |
 | Container exits with a Public origin error | Use a full HTTP(S) address without credentials, path, query or fragment, or leave it blank. The startup log explains the error. |
-| Sign-in says accounts need HTTPS | Use HTTPS, or set Secure session cookies false for trusted-LAN HTTP accounts. |
+| Sign-in says accounts need HTTPS | Use HTTPS, or set Secure session cookies false for sign-in over plain HTTP on your LAN. |
 | Login says the address does not match | Make the proxy preserve Host, or set Public origin to the exact browser address. With Public origin set, open that address including scheme and port. |
-| WebUI opens the wrong address | Use `http://[IP]:[PORT:8000]` for local mode or your actual HTTPS origin for accounts. |
+| WebUI opens the wrong address | Use `http://[IP]:[PORT:8000]` on your LAN or your actual HTTPS origin behind a proxy. |
 | Database cannot be written | Verify the `/data` mount and UID 99/GID 100 write permissions. Privileged mode is unnecessary. |
-| Proxy returns 502 | Check container health and the upstream host port. A proxy container's loopback is not the Unraid host. |
+| Proxy returns 502 | Check container health and the upstream host port. A proxy container's loopback is not the Unraid host. Forward to the Unraid IP and host port, not the container's own address. |
+| Imports fail after isolating the network | Check the container can resolve names; rerun `isolate-lan.sh` after changing the server's DNS servers. |
 | Human insights unavailable with `cuda` | Confirm `--runtime=nvidia` in Extra Parameters, the GPU UUID in NVIDIA visible devices, and that the first-start download finished in the log. Set the device back to `cpu` to rule out the GPU. |
 
 ## Updates and backups

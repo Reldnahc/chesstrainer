@@ -2,6 +2,59 @@
 
 import chess
 
+from trainer.chess_core import VALUES
+from trainer.tactical_geometry import relative_pinners
+
+SLIDERS = {chess.BISHOP, chess.ROOK, chess.QUEEN}
+
+
+def pins(board):
+    """Pins worth an arrow, as (pinning piece, pinned piece, piece behind): a
+    piece (never a pawn) pinned to its king, or to something worth more than
+    the pinning piece. On real games pawn and lesser pins put an arrow on about
+    one move in six; this keeps it near one in twenty (owner decision,
+    2026-10-12)."""
+    found = set()
+    for square, piece in board.piece_map().items():
+        if piece.piece_type in {chess.KING, chess.PAWN}:
+            continue
+        if board.is_pinned(piece.color, square):
+            king = board.king(piece.color)
+            for source in board.pin(piece.color, square):
+                pinner = board.piece_at(source)
+                if (
+                    pinner
+                    and pinner.color != piece.color
+                    and pinner.piece_type in SLIDERS
+                    and square in chess.SquareSet(chess.between(source, king))
+                ):
+                    found.add((source, square, king))
+        found.update(
+            (slider, square, rear)
+            for slider, rear in relative_pinners(board, square)
+            if VALUES[board.piece_type_at(rear)] > VALUES[board.piece_type_at(slider)]
+        )
+    return found
+
+
+def new_pins(before, after):
+    """Pins the move just made, never ones carried over from earlier moves.
+
+    A pin is the same pin while the piece behind stays put on the same line
+    (chess.ray is the whole line), so the pinning or pinned piece sliding along
+    that line does not redraw it."""
+    held = {(rear, chess.ray(source, rear)) for source, _, rear in pins(before)}
+    return [
+        {
+            "startSquare": chess.square_name(source),
+            "endSquare": chess.square_name(rear),
+            "kind": "pin",
+            "pinned": chess.square_name(pinned),
+        }
+        for source, pinned, rear in sorted(pins(after))
+        if (rear, chess.ray(source, rear)) not in held
+    ]
+
 
 def review_cues(line, *, mistake=False):
     frames = line["frames"]
@@ -94,6 +147,7 @@ def review_cues(line, *, mistake=False):
     return {
         "fen": current.fen(),
         "arrows": arrows,
+        "pins": new_pins(chess.Board(frames[0]["fen"]), current),
         "roles": roles,
         "caption": caption,
         "caption_kind": "legal_reply" if reply_only else None,

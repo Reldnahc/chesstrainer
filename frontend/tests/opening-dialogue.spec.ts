@@ -40,7 +40,7 @@ function gameWithReports(count = 12, orientation: "white" | "black" = "white"): 
     const actual = {uci, san, score, depth: 18, pv: [uci]};
     const report: Report = {label: "Book", engine_label: "Best", opening: {version: catalogueVersion, name: "Named line", eco: "A00"},
       actual, best: actual, reason: "", coach: "", white_score: score, depth: 18, engine_version: "fixture",
-      board_cues: {fen, arrows: [], roles: {}, caption: ""},
+      board_cues: {fen, arrows: [], pins: [], roles: {}, caption: ""},
       intelligence: {version: "move-events-4", input_digest: `generation-${ply}`, ply, events: [], clock: null, limitations: []}};
     frames.push({fen, turn, uci, san, actor, number: Math.ceil(ply / 2), legal_moves: [], result: null, termination: null, report});
   }

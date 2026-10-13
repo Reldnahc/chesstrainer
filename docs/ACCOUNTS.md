@@ -109,7 +109,8 @@ Configure `ACCOUNTS_ENABLED=true` and `SESSION_SECURE=true` behind HTTPS. The
 proxy must preserve the public Host header; if it cannot, set
 `PUBLIC_ORIGIN=https://your-chess-hostname`. For direct local HTTP only, use
 `SESSION_SECURE=false`; sign-in over plain HTTP otherwise explains this setting. Account mode does not use the legacy shared LAN token.
-Do not expose local single-user mode publicly. Do not switch a shared deployment
+The container image always runs account mode and refuses to start in single-user mode;
+that mode runs only from source. Do not expose it publicly. Do not switch a shared deployment
 back to single-user mode: that mode intentionally opens the original `local` account.
 
 Passwords use salted scrypt (N=131072, r=8, p=1). Hashing is memory-bounded by a

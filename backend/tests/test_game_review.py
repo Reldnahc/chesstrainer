@@ -559,3 +559,16 @@ def test_a_played_move_searched_above_the_reported_best_is_promoted():
     assert classify(promoted, 1000)[0] == "Best"
     # A tie keeps the reported best: Best still requires the top move.
     assert promote_stronger_played(quality(790, 790)) == quality(790, 790)
+
+
+def test_export_returns_saved_pgn_and_every_mainline_position(settings):
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        game = seed(app)
+        data = client.get(f"/api/games/{game}/export").json()
+        detail = client.get(f"/api/games/{game}").json()
+    assert data["pgn"].endswith("\n") and "[White" in data["pgn"]
+    assert [p["fen"] for p in data["positions"]] == [f["fen"] for f in detail["frames"]]
+    assert data["positions"][0]["uci"] is None
+    assert [p["uci"] for p in data["positions"][1:]] == [f["uci"] for f in detail["frames"][1:]]
+    assert data["orientation"] == detail["orientation"]

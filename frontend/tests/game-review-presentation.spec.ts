@@ -85,6 +85,28 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await expect(page.getByRole('region', {name: 'Game summary'})).toHaveCount(0);
 });
 
+test('a pin is drawn in red on the move that makes it, not on later moves that keep it', async ({page}, info) => {
+  test.setTimeout(90_000);
+  const {id} = await (await page.request.post(`/__test/pin-review-fixture/${info.project.name}`)).json();
+  await page.goto(`/games/${id}?ply=7`);
+  // The arrow runs from the pinning bishop through the knight to the queen behind it.
+  const pin = page.locator('.board-shell marker[id$="-g5-d8"]');
+  await expect(pin).toHaveCount(1, {timeout: 60_000});
+  // A faded arrow fades as one shape: an opaque stem and head under one opacity,
+  // so the stem never shows darker where it runs under the head.
+  const stem = page.locator('.board-shell path[marker-end$="-g5-d8)"]');
+  await expect(stem).toHaveAttribute('stroke', '#ff7187');
+  await expect(page.locator('.board-shell marker[id$="-g5-d8"] polygon')).toHaveAttribute('fill', '#ff7187');
+  expect(Number(await stem.evaluate(element => getComputedStyle(element).opacity))).toBeCloseTo(0.65 * 0x8c / 255, 2);
+  await page.locator('.board-shell').screenshot({path: `test-results/pin-arrow-board-${info.project.name}.png`});
+  await page.screenshot({path: `test-results/pin-arrow-${info.project.name}.png`, fullPage: true});
+  // The evaluation graph can mark the same move, so look in the move list.
+  await page.locator('.game-move-list').getByRole('button', {name: /^4\.\.\. h6/}).click();
+  await expect(page).toHaveURL(/ply=8/);
+  await expect(page.locator('.board-shell marker').first()).toBeAttached({timeout: 60_000});
+  await expect(pin).toHaveCount(0);
+});
+
 test("player bars show each side's PGN clock at the selected move", async ({page}, info) => {
   const {id} = await (await page.request.post(`/__test/clock-review-fixture/${info.project.name}`)).json();
   await page.goto(`/games/${id}?ply=0`);
