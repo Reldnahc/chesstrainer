@@ -125,6 +125,19 @@ def test_accounts_without_public_origin_accept_only_their_own_host(settings):
             else:
                 assert response.status_code == 403
                 assert "SESSION_SECURE=false" in response.json()["detail"]
+    # A proxy that rewrites Host to the LAN address still serves an https page.
+    with TestClient(
+        create_app(settings, workers=False),
+        base_url="http://192.168.1.243:18000",
+        client=("192.168.1.2", 50000),
+    ) as client:
+        response = client.post(
+            "/api/auth/signup",
+            json=payload | {"username": "behind-proxy"},
+            headers={"Origin": "https://chess.example.test"},
+        )
+        assert response.status_code == 201, response.text
+        assert "secure" in response.headers["set-cookie"].lower()
 
 
 def test_sessions_isolation_csrf_and_restart(settings):

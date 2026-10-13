@@ -44,9 +44,12 @@ def lan_http(request):
     """Plain HTTP between private addresses: the server's LAN address, from a LAN device.
 
     A public host name or a visitor from outside the network never qualifies, so
-    those still get Secure cookies and need HTTPS.
+    those still get Secure cookies and need HTTPS. Neither does a browser on an
+    https page, such as behind a proxy that rewrites Host to the LAN address.
     """
     if request.url.scheme != "http":
+        return False
+    if urlsplit(request.headers.get("origin") or "http:").scheme != "http":
         return False
     hostname = (request.url.hostname or "").rstrip(".").lower()
     client = request.client.host if request.client else ""
