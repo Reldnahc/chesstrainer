@@ -20,6 +20,9 @@ PRIVATE_SETTINGS = frozenset(
         "chesscom_user_agent",
     }
 )
+# The published image creates this file. Containers are for hosting, so they always
+# require sign-in; the no-login workspace is for running from source.
+CONTAINER_MARKER = Path("/etc/fieldwork-container")
 
 
 class Settings(BaseSettings):
@@ -106,6 +109,13 @@ class Settings(BaseSettings):
 
     def for_runtime(self):
         """Validate installation settings, including callers that mutate Settings."""
+        if not self.accounts_enabled and CONTAINER_MARKER.exists():
+            raise ValueError(
+                "The Fieldwork container requires ACCOUNTS_ENABLED=true. The no-login "
+                "workspace lets anyone who can reach it use the app, so it only runs from "
+                "source. Set ACCOUNTS_ENABLED=true, then create an administrator with: "
+                "python -m trainer.accounts create-admin NAME"
+            )
         origin = self.public_origin.strip().rstrip("/")
         if origin:
             try:

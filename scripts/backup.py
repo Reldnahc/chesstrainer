@@ -36,7 +36,8 @@ def export_backup(destination: Path, settings: Settings):
     if destination.exists():
         raise ValueError("Backup destination exists; choose a new filename")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory() as directory:
+    # Beside the destination: the container's /tmp is a small in-memory filesystem.
+    with tempfile.TemporaryDirectory(dir=destination.parent) as directory:
         snapshot = Path(directory) / "trainer.sqlite3"
         with closing(sqlite3.connect(f"{source.as_uri()}?mode=ro", uri=True)) as original:
             with closing(sqlite3.connect(snapshot)) as backup:
@@ -95,7 +96,8 @@ def restore_backup(archive_path: Path, destination: Path):
         if info.file_size > 5_000_000_000:
             raise ValueError("Backup database exceeds the 5 GB restore limit")
         # Read only the expected named entry; never extract arbitrary archive paths.
-        with tempfile.TemporaryDirectory() as directory:
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=destination.parent) as directory:
             temporary = Path(directory) / "check.sqlite3"
             with archive.open(info) as source, temporary.open("wb") as output:
                 shutil.copyfileobj(source, output)
@@ -105,7 +107,6 @@ def restore_backup(archive_path: Path, destination: Path):
                 if check.execute("PRAGMA foreign_key_check").fetchone() is not None:
                     raise ValueError("Backup contains invalid foreign-key references")
                 check.execute("SELECT version_num FROM alembic_version").fetchone()
-            destination.parent.mkdir(parents=True, exist_ok=True)
 
             def write_database(path):
                 with temporary.open("rb") as source, path.open("xb") as output:
