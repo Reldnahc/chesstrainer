@@ -5,6 +5,7 @@ import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
+import useArrivals from "./useArrivals";
 import SettingsSection from "./SettingsSection";
 
 type ManagedAccount = Schema["ManagedAccount"];
@@ -65,6 +66,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
     setUsername("");
   }
   const adding = pending?.action === "add";
+  const arrived = useArrivals(accounts?.map(account => account.id) ?? [], !!accounts);
   if (!accounts) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading accounts…</LoadingState>;
   return <SettingsSection id="settings-accounts" title="Accounts"
     description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
@@ -113,7 +115,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
       const self = account.id === selfId;
       const resetting = pending?.id === account.id && pending.action === "password";
       const deleting = pending?.id === account.id && pending.action === "delete";
-      return <div className="settings-tool settings-tool-row" key={account.id}>
+      return <div className="settings-tool settings-tool-row" key={account.id} data-arrived={arrived(account.id)}>
         <div>
           <h3>{account.username}{self && " (you)"}</h3>
           <p>{account.admin ? "Administrator" : "Member"}{account.disabled && " · Disabled"} · Joined {new Date(account.created).toLocaleDateString()}</p>

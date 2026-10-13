@@ -18,6 +18,7 @@ import ChoiceGroup from "./ChoiceGroup";
 import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
+import useArrivals from "./useArrivals";
 import { useInterfaceMotion } from "./MotionProvider";
 import { LoadingState } from "./LoadState";
 
@@ -144,6 +145,7 @@ export default function ImportSettings({
   const [names, setNames] = useState("");
   const [side, setSide] = useState<NonNullable<Schema["Body_upload_pgn_api_imports_post"]["side"]>>("auto");
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [jobsLoaded, setJobsLoaded] = useState(false);
   const [result, setResult] = useState<PgnImportResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
@@ -160,6 +162,7 @@ export default function ImportSettings({
       if (mounted.current && generation.current === token) {
         jobsFailed.current = false;
         setJobs(value);
+        setJobsLoaded(true);
       }
     } catch (error) {
       // One banner per outage: the next successful poll clears the way for another.
@@ -211,6 +214,8 @@ export default function ImportSettings({
   const finishedJobs = activity.filter(job => !isActive(job));
   const hiddenHistoryCount = Math.max(0, finishedJobs.length - recentHistoryLimit);
   const visibleHistory = showHistory ? finishedJobs : finishedJobs.slice(0, recentHistoryLimit);
+  const arrivedActive = useArrivals(activeJobs.map(job => job.id), jobsLoaded);
+  const arrivedHistory = useArrivals(visibleHistory.map(job => job.id), jobsLoaded);
 
   return <div className="settings-import">
     <SettingsSection id="settings-imports" title="Import games">
@@ -278,8 +283,8 @@ export default function ImportSettings({
     </SettingsSection>
     <SettingsSection id="settings-activity" title="Import & analysis activity" className="import-activity">
       {activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}
-      {activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}
-      {visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}
+      {activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} arrived={arrivedActive(job.id)} />)}
+      {visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact arrived={arrivedHistory(job.id)} />)}
       {hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
         {showHistory ? "Show recent activity" : `Show older activity (${hiddenHistoryCount})`}
       </Button>}

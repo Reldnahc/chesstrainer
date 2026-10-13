@@ -6,6 +6,7 @@ import Button from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
 import Reveal from "../Reveal";
+import useArrivals from "../useArrivals";
 import SettingsSection from "../SettingsSection";
 import { courseEditorPath } from "../navigation";
 import { deleteCourseFile, downloadCourseFile, readChosenFile, restoreBuiltInCourse, saveCourseFile, savedMessage } from "./courseFiles";
@@ -63,6 +64,8 @@ export default function CourseSettings() {
       return `Restored “${course.title}”.`;
     });
   }
+  const arrivedCourse = useArrivals(library?.courses.map(course => course.id) ?? [], !!library);
+  const arrivedHidden = useArrivals((library?.hidden_built_ins ?? []).map(course => course.id), !!library);
   if (!library) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading courses…</LoadingState>;
   return <SettingsSection id="settings-courses" className="course-settings" title="Courses"
     description="Write Study lessons for your members, or import a course file. Members see every course here in Lessons."
@@ -74,7 +77,7 @@ export default function CourseSettings() {
     <Reveal>{notice && <Notice announcement="status" tone="success">{notice}</Notice>}</Reveal>
     <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     {(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}
-    {library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id}>
+    {library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id} data-arrived={arrivedCourse(course.id)}>
       <div>
         <h3>{course.title}</h3>
         <p>{course.source === "club" ? "Club course" : "Built-in course"} · {course.topic === "skills" ? "Fundamentals" : "Openings"} · {course.chapter_count} {course.chapter_count === 1 ? "chapter" : "chapters"} · revision {course.revision}</p>
@@ -93,7 +96,7 @@ export default function CourseSettings() {
     </div>)}
     {(library.hidden_built_ins ?? []).length > 0 && <>
       <h3 className="course-settings-group">Deleted built-in courses</h3>
-      {(library.hidden_built_ins ?? []).map(course => <div className="settings-tool settings-tool-row" key={course.id}>
+      {(library.hidden_built_ins ?? []).map(course => <div className="settings-tool settings-tool-row" key={course.id} data-arrived={arrivedHidden(course.id)}>
         <div>
           <h3>{course.title}</h3>
           <p>Built-in course · hidden from members</p>

@@ -39,12 +39,6 @@
   }
 }
 
-/* Notices, newly arrived list rows and swapped-in editors grow into place. */
-.notice:not(.reveal *),
-.reveal-grow,
-[data-arrived] {
-  animation: reveal-in var(--motion-base) var(--ease-enter);
-}
 /* Loaded content, swapped sections and tab panels fade in where they replace
    something else, rather than snapping. */
 .panel,
@@ -52,6 +46,13 @@
 .reveal-fade,
 [role="tabpanel"]:not([hidden]) {
   animation: content-in var(--motion-base) var(--ease-enter);
+}
+
+/* Notices, newly arrived list rows and swapped-in editors grow into place. */
+.notice:not(.reveal *),
+.reveal-grow,
+[data-arrived] {
+  animation: reveal-in var(--motion-base) var(--ease-enter);
 }
 
 /* Native disclosures open and close to their content height. */

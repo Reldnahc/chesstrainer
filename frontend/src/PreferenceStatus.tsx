@@ -19,6 +19,9 @@ export default function PreferenceStatus({
   const text = state === "saving" ? "Saving…" : state === "loading" ? "Loading…" : state === "saved" ? "Saved" : idleText;
   return <div className={`preference-status preference-status--${placement} ${className}`.trim()}
     role="status" aria-atomic="true" data-state={state}>
-    {state === "error" ? <>{error}{" "}<Button size="compact" variant="quiet" onClick={retry}>{retryLabel}</Button></> : text}
+    {/* Each state's text fades in rather than snapping over the last one. */}
+    <span key={state} className="reveal-fade">
+      {state === "error" ? <>{error}{" "}<Button size="compact" variant="quiet" onClick={retry}>{retryLabel}</Button></> : text}
+    </span>
   </div>;
 }

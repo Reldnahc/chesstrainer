@@ -212,8 +212,10 @@ export function ImportJob({
   reload,
   fail,
   compact = false,
+  arrived,
 }: {
   job: Job;
+  arrived?: true;
   reload: () => void;
   fail: (e: unknown) => void;
   compact?: boolean;
@@ -384,7 +386,7 @@ export function ImportJob({
       </div>
     </>;
   return (
-    <article className={`job${compact ? " job-history" : " panel"}`}>
+    <article className={`job${compact ? " job-history" : " panel"}`} data-arrived={arrived}>
       {compact ? <details className="disclosure">
         <summary className="job-summary">
           <span className="job-summary-content">

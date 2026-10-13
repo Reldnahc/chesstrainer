@@ -8,7 +8,7 @@ export default function RecallReceipt({ message, nextDue }: {
   nextDue?: string | null;
 }) {
   return <div className="review-schedule">
-    {message && <p className="review-due" role="status">
+    {message && <p className="review-due reveal-fade" role="status">
       {message}
       {nextDue && <> Next review: <time dateTime={nextDue} title={new Date(nextDue).toLocaleString()}>
         {relativeDue(nextDue, Date.now())}
