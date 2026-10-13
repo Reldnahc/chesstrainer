@@ -329,6 +329,56 @@ def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch,
     assert "Account not found" in capsys.readouterr().err
 
 
+def test_account_commands_explain_a_busy_database_and_a_missing_terminal(
+    settings, monkeypatch, capsys
+):
+    import io
+    import sqlite3
+
+    from alembic import command
+    from alembic.config import Config
+    from trainer import accounts as accounts_module
+    from trainer import db as db_module
+
+    # A server mid-upgrade holds the write lock on a database behind the code.
+    engine, _ = database(settings.database_path)
+    config = Config("alembic.ini")
+    with engine.begin() as connection:
+        config.attributes["connection"] = connection
+        command.upgrade(config, "e2a4c6b8d0f1")
+    engine.dispose()
+    monkeypatch.setattr(accounts_module, "Settings", lambda: settings)
+    monkeypatch.setattr(db_module, "database", lambda path: database(path, timeout=0.1))
+
+    def run(*argv):
+        monkeypatch.setattr("sys.argv", ["trainer.accounts", *argv])
+        with pytest.raises(SystemExit) as exit_info:
+            accounts_module.main()
+            raise SystemExit(0)
+        return exit_info.value.code
+
+    server = sqlite3.connect(settings.database_path, isolation_level=None)
+    server.execute("BEGIN IMMEDIATE")
+    try:
+        assert run("promote", "friend") == 1
+        err = capsys.readouterr().err
+        assert "Upgrading the database first" in err and "still upgrading" in err
+    finally:
+        server.execute("ROLLBACK")
+        server.close()
+    # Once upgraded, the commands no longer touch the schema.
+    assert run("promote", "nobody") == 1
+    assert "Account not found" in capsys.readouterr().err
+    engine, _ = database(settings.database_path)
+    assert db_module.migrations_pending(engine) is False
+    engine.dispose()
+    # Without -it, a password prompt fails at once instead of waiting forever.
+    Accounts(settings.database_path).create("friend", "correct horse battery")
+    monkeypatch.setattr("sys.stdin", io.StringIO(""))
+    assert run("reset-password", "friend") == 1
+    assert "docker exec -it" in capsys.readouterr().err
+
+
 def test_administrators_manage_other_accounts_from_settings(settings):
     settings.accounts_enabled = True
     settings.public_origin = ORIGIN["Origin"]
