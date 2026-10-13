@@ -58,14 +58,16 @@ function PlaySetup() {
   const coach = getCoach(preferences.coach_id);
   const [profile, setProfile] = useState<Profile | null>(null);
   // Undefined until the server says whether a game is in progress. The setup waits for
-  // that answer and the measured level, so neither moves it after it appears.
+  // that answer, the practice courses and the measured level, so none of them moves it
+  // after it appears.
   const [active, setActive] = useState<Schema["PlayState"] | null | undefined>(undefined);
   const [level, setLevel] = useState<(typeof LEVELS)[number]["value"]>("match");
   const [opponent, setOpponent] = useState<Opponent>("human");
   const [rating, setRating] = useState(1200);
   const [color, setColor] = useState<Color>("random");
   const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("free");
-  const [courses, setCourses] = useState<PracticeCourse[]>([]);
+  const [loadedCourses, setCourses] = useState<PracticeCourse[] | undefined>(undefined);
+  const courses = loadedCourses ?? [];
   const [courseId, setCourseId] = useState("");
   const [error, setError] = useState("");
   const [starting, setStarting] = useState(false);
@@ -93,7 +95,9 @@ function PlaySetup() {
         setCourses(value.courses);
         setCourseId((current) => current || value.courses[0]?.id || "");
       })
-      .catch(() => undefined);
+      .catch(() => {
+        if (active) setCourses([]);
+      });
     // "New game" after a game starts from that game's settings.
     const from = new URLSearchParams(window.location.search).get("from");
     if (from)
@@ -179,7 +183,7 @@ function PlaySetup() {
           </ActionLink>
         </section>
       )}
-      {active === undefined || (!profile && !error) ? <LoadingState>Loading…</LoadingState> : (
+      {active === undefined || loadedCourses === undefined || (!profile && !error) ? <LoadingState>Loading…</LoadingState> : (
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
           <div className="play-field">
