@@ -78,17 +78,17 @@ export default function CourseSettings() {
       <div>
         <h3>{course.title}</h3>
         <p>{course.source === "club" ? "Club course" : "Built-in course"} · {course.topic === "skills" ? "Fundamentals" : "Openings"} · {course.chapter_count} {course.chapter_count === 1 ? "chapter" : "chapters"} · revision {course.revision}</p>
-        {confirming === course.id && <p className="small">{course.source === "club"
+        <Reveal>{confirming === course.id && <p className="small">{course.source === "club"
           ? "Delete this course file? Members stop seeing it; their progress is kept. A built-in course it replaced comes back."
-          : "Delete this built-in course? Members stop seeing it; their progress is kept and returns if you restore it."}</p>}
+          : "Delete this built-in course? Members stop seeing it; their progress is kept and returns if you restore it."}</p>}</Reveal>
       </div>
       <div className="button-row">
         <ActionLink size="compact" variant="secondary" href={courseEditorPath(course.id)}><Pencil size={16} />Edit</ActionLink>
         <Button size="compact" variant="quiet" disabled={busy} onClick={() => act(() => downloadCourseFile(course.id, course.revision))}><Download size={16} />Download</Button>
         {confirming === course.id
-          ? <><Button size="compact" variant="secondary" disabled={busy} onClick={() => remove(course)}><Trash2 size={16} />Delete for everyone</Button>
-            <Button size="compact" variant="quiet" onClick={() => setConfirming(null)}>Keep it</Button></>
-          : <Button size="compact" variant="quiet" disabled={busy} onClick={() => setConfirming(course.id)}><Trash2 size={16} />Delete</Button>}
+          ? <><Button className="reveal-fade" key="confirm" size="compact" variant="secondary" disabled={busy} onClick={() => remove(course)}><Trash2 size={16} />Delete for everyone</Button>
+            <Button className="reveal-fade" size="compact" variant="quiet" onClick={() => setConfirming(null)}>Keep it</Button></>
+          : <Button className="reveal-fade" key="delete" size="compact" variant="quiet" disabled={busy} onClick={() => setConfirming(course.id)}><Trash2 size={16} />Delete</Button>}
       </div>
     </div>)}
     {(library.hidden_built_ins ?? []).length > 0 && <>

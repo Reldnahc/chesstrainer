@@ -121,10 +121,10 @@ export default function ServerSettings() {
       {listing.restart_available && <div className="button-row">
         {busy === "confirm"
           ? <>
-            <Button size="compact" variant="primary" onClick={() => void restart()}><RotateCw size={16} />Restart now</Button>
-            <Button size="compact" variant="quiet" onClick={() => setBusy("")}>Cancel</Button>
+            <Button className="reveal-fade" key="confirm" size="compact" variant="primary" onClick={() => void restart()}><RotateCw size={16} />Restart now</Button>
+            <Button className="reveal-fade" size="compact" variant="quiet" onClick={() => setBusy("")}>Cancel</Button>
           </>
-          : <Button size="compact" variant="secondary" disabled={!!busy} onClick={() => setBusy("confirm")}>
+          : <Button className="reveal-fade" key="restart" size="compact" variant="secondary" disabled={!!busy} onClick={() => setBusy("confirm")}>
             <RotateCw size={16} />{busy === "restart" ? "Restarting…" : "Restart server"}
           </Button>}
       </div>}
@@ -136,7 +136,7 @@ export default function ServerSettings() {
       </details>)}
       <div className="button-row">
         <Button type="submit" variant="primary" disabled={!changed || !!busy}>{busy === "save" ? "Saving…" : "Save settings"}</Button>
-        {changed && <Button variant="quiet" disabled={!!busy} onClick={() => setDraft({})}>Discard changes</Button>}
+        {changed && <Button className="reveal-fade" variant="quiet" disabled={!!busy} onClick={() => setDraft({})}>Discard changes</Button>}
       </div>
     </form>
   </SettingsSection>;

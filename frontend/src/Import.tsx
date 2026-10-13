@@ -53,12 +53,12 @@ function PgnInput({
       { value: "file", label: "Choose a file" },
       { value: "text", label: "Paste PGN text" },
     ]} />
-    {mode === "file" ? <label className="upload-zone">
+    {mode === "file" ? <label className="upload-zone reveal-fade" key="file">
       <FileUp size={25} />
       <strong>{file?.name || "Choose a PGN file"}</strong>
       <span>One game or a collection · UTF-8</span>
       <input aria-label="PGN file" type="file" accept=".pgn,text/plain" onChange={event => setFile(event.target.files?.[0] || null)} />
-    </label> : <label>
+    </label> : <label className="reveal-fade" key="text">
       PGN
       <textarea value={text} onChange={event => setText(event.target.value)} rows={7}
         placeholder={'[White "Your username"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'} />

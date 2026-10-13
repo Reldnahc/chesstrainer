@@ -169,6 +169,7 @@ export function ProviderImportForm({
         </p>
         {(startDate || endDate) && (
           <Button
+            className="reveal-fade"
             type="button"
             variant="quiet"
             onClick={() => {

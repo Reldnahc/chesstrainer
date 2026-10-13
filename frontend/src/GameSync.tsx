@@ -29,7 +29,7 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
       setName(name.trim());
     }
   }
-  const form = <form className="sync-form" onSubmit={submit}>
+  const form = <form className="sync-form reveal-fade" onSubmit={submit}>
     <ProviderUsernameField providerName={provider.name} label="Username" accessibleLabel={`Remembered ${provider.name} username`}
       disabled={!status || busy} value={name} onChange={value => { edited.current = true; setName(value); }} placeholder={`Your ${provider.name} username`} />
     <Button type="submit" disabled={!status || busy}>Save username</Button>
@@ -37,8 +37,8 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
   return <section className="panel game-sync" aria-label={`Recent ${provider.name} games`}>
     <h3>{provider.name}</h3>
     {status?.username ? <>
-      <strong className="connection-username">{status.username}</strong>
-      <details className="disclosure">
+      <strong className="connection-username reveal-fade">{status.username}</strong>
+      <details className="disclosure reveal-fade">
         <summary>Change {provider.name} connection</summary>
         {form}
         <p className="small">Clear the username to disconnect.</p>

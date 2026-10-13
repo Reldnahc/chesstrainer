@@ -39,8 +39,9 @@
   }
 }
 
-/* Notices and newly arrived list rows grow into place. */
+/* Notices, newly arrived list rows and swapped-in editors grow into place. */
 .notice:not(.reveal *),
+.reveal-grow,
 [data-arrived] {
   animation: reveal-in var(--motion-base) var(--ease-enter);
 }

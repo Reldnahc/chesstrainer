@@ -89,7 +89,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
         <p>Set a temporary password and pass it on. They choose their own when they first sign in.</p>
       </div>
       {adding
-        ? <form className="button-row account-password-form" onSubmit={addMember}>
+        ? <form className="button-row account-password-form reveal-grow" onSubmit={addMember}>
           <label>
             <span>Username</span>
             <input autoComplete="off" minLength={3} maxLength={32} pattern="[a-zA-Z0-9_-]+" required autoFocus
@@ -103,7 +103,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
           <Button type="submit" size="compact" variant="primary" disabled={busy}>Add member</Button>
           <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
         </form>
-        : <div className="button-row">
+        : <div className="button-row reveal-fade">
           <Button size="compact" variant="secondary" disabled={busy} onClick={() => choose({ id: "new", action: "add" })}>
             <UserPlus size={16} />Add member
           </Button>
@@ -119,7 +119,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
           <p>{account.admin ? "Administrator" : "Member"}{account.disabled && " · Disabled"} · Joined {new Date(account.created).toLocaleDateString()}</p>
         </div>
         {resetting
-          ? <form className="button-row account-password-form" onSubmit={event => resetPassword(event, account)}>
+          ? <form className="button-row account-password-form reveal-grow" onSubmit={event => resetPassword(event, account)}>
             <label>
               <span>Temporary password for {account.username}</span>
               <input type="password" autoComplete="new-password" minLength={10} maxLength={128} required autoFocus
@@ -129,14 +129,14 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
             <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
           </form>
           : deleting
-            ? <div className="button-row">
+            ? <div className="button-row reveal-fade" key="delete">
               <Button size="compact" variant="secondary" disabled={busy}
                 onClick={() => act(() => read(api.DELETE("/api/auth/accounts/{account_id}", path(account))), `Deleted ${account.username} and their games.`)}>
                 <Trash2 size={16} />Delete account and games
               </Button>
               <Button size="compact" variant="quiet" onClick={() => choose(null)}>Keep it</Button>
             </div>
-            : !self && <div className="button-row">
+            : !self && <div className="button-row reveal-fade" key="actions">
               <Button size="compact" variant="secondary" disabled={busy} onClick={() => choose({ id: account.id, action: "password" })}>
                 <KeyRound size={16} />Reset password
               </Button>
