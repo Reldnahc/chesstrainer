@@ -317,6 +317,14 @@
             "title": "Fen",
             "type": "string"
           },
+          "pins": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/PinArrow"
+            },
+            "title": "Pins",
+            "type": "array"
+          },
           "roles": {
             "additionalProperties": {
               "items": {
@@ -2241,6 +2249,32 @@
         "title": "EvidenceReference",
         "type": "object"
       },
+      "ExportPosition": {
+        "additionalProperties": false,
+        "properties": {
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "uci": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uci"
+          }
+        },
+        "required": [
+          "fen",
+          "uci"
+        ],
+        "title": "ExportPosition",
+        "type": "object"
+      },
       "Finding": {
         "additionalProperties": false,
         "properties": {
@@ -2820,6 +2854,53 @@
           "accuracy"
         ],
         "title": "GameDetail",
+        "type": "object"
+      },
+      "GameExport": {
+        "additionalProperties": false,
+        "description": "What the export dialog needs: the saved PGN and every mainline position.",
+        "properties": {
+          "black": {
+            "title": "Black",
+            "type": "string"
+          },
+          "orientation": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Orientation",
+            "type": "string"
+          },
+          "pgn": {
+            "title": "Pgn",
+            "type": "string"
+          },
+          "positions": {
+            "items": {
+              "$ref": "#/components/schemas/ExportPosition"
+            },
+            "title": "Positions",
+            "type": "array"
+          },
+          "result": {
+            "title": "Result",
+            "type": "string"
+          },
+          "white": {
+            "title": "White",
+            "type": "string"
+          }
+        },
+        "required": [
+          "white",
+          "black",
+          "result",
+          "orientation",
+          "pgn",
+          "positions"
+        ],
+        "title": "GameExport",
         "type": "object"
       },
       "GameFrame": {
@@ -6699,6 +6780,37 @@
           "blunders_per_100"
         ],
         "title": "PhaseRate",
+        "type": "object"
+      },
+      "PinArrow": {
+        "additionalProperties": false,
+        "description": "A pin the move just made: from the pinning piece to the piece behind.",
+        "properties": {
+          "endSquare": {
+            "title": "Endsquare",
+            "type": "string"
+          },
+          "kind": {
+            "const": "pin",
+            "title": "Kind",
+            "type": "string"
+          },
+          "pinned": {
+            "title": "Pinned",
+            "type": "string"
+          },
+          "startSquare": {
+            "title": "Startsquare",
+            "type": "string"
+          }
+        },
+        "required": [
+          "startSquare",
+          "endSquare",
+          "kind",
+          "pinned"
+        ],
+        "title": "PinArrow",
         "type": "object"
       },
       "PlayDeviation": {
@@ -11427,6 +11539,45 @@
           }
         },
         "summary": "Analyze Variation"
+      }
+    },
+    "/api/games/{game_id}/export": {
+      "get": {
+        "operationId": "game_export_api_games__game_id__export_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "game_id",
+            "required": true,
+            "schema": {
+              "title": "Game Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameExport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Game Export"
       }
     },
     "/api/games/{game_id}/position": {

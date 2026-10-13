@@ -16,6 +16,26 @@ import useModalDialog from "./useModalDialog";
 
 type PromotionChoice = { from: string; to: string; choices: Promotion[] };
 
+// react-chessboard's default arrow opacity.
+const ARROW_OPACITY = 0.65;
+
+/** A colour's own transparency would fade the stem and the head separately, so
+ * the stem shows darker where it runs under the head. Draw the arrow in the
+ * opaque colour and fade the whole arrow at once instead. */
+function arrowFades(boardId: string, arrows: Arrow[]) {
+  const rules: string[] = [];
+  const opaque = arrows.map((arrow, index) => {
+    const match = /^#([0-9a-f]{6})([0-9a-f]{2})$/i.exec(arrow.color);
+    if (!match) return arrow;
+    const opacity = (ARROW_OPACITY * Number.parseInt(match[2], 16)) / 255;
+    // The library draws the given arrows first, in order, and names each head after its index.
+    rules.push(`.board-shell path[marker-end="url(#${boardId}-arrowhead-${index}-${arrow.startSquare}-${arrow.endSquare})"]`
+      + `{opacity:${opacity.toFixed(3)}}`);
+    return { ...arrow, color: `#${match[1]}` };
+  });
+  return { opaque, style: rules.join("") };
+}
+
 function PromotionDialog({ board, promotion, onChoose, onClose }: {
   board: RefObject<HTMLDivElement | null>;
   promotion: PromotionChoice;
@@ -97,6 +117,7 @@ export default function Board({
   const motion = useInterfaceMotion();
   const board = useRef<HTMLDivElement>(null);
   const boardId = "board-" + useId().replace(/[^a-zA-Z0-9_-]/g, "");
+  const fades = arrowFades(boardId, arrows ?? []);
   const [selected, setSelected] = useState<string | null>(null);
   const [promotion, setPromotion] = useState<PromotionChoice | null>(null);
   const promotionTimer = useRef<number | undefined>(undefined);
@@ -147,12 +168,13 @@ export default function Board({
   }
   return (
     <div ref={board} tabIndex={-1} className="board-shell" data-feedback={feedback}>
+      {fades.style && <style>{fades.style}</style>}
       <Chessboard
         options={{
           id: boardId,
           position: fen,
           boardOrientation: orientation,
-          arrows,
+          arrows: fades.opaque,
           allowDragging: interactive,
           animationDurationInMs: MOVE_DURATION_MS,
           showAnimations: motion === "natural",

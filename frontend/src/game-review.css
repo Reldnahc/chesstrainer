@@ -38,17 +38,12 @@
 }
 .game-player-clock {
   flex: none;
-  padding: var(--space-0-5) var(--space-2);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  font: 600 var(--text-sm) var(--mono);
+  font: 600 var(--text-base) var(--mono);
   font-variant-numeric: tabular-nums;
   color: var(--muted);
 }
 .game-player-clock[data-running] {
   color: inherit;
-  border-color: var(--muted);
-  background: var(--raised);
 }
 .game-player-status {
   flex: 0 1 auto;
@@ -153,6 +148,15 @@
   background: transparent;
   border-color: transparent;
   gap: var(--space-1);
+}
+.game-move-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.game-move-heading .game-export-button {
+  min-width: 28px;
+  justify-content: center;
 }
 .game-move-heading button[hidden] {
   display: none;
