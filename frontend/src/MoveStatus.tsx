@@ -1,5 +1,6 @@
 import {useEffect, useState, type ReactNode} from 'react';
 import {RotateCcw} from 'lucide-react';
+import {Swap} from './Reveal';
 import './move-status.css';
 
 type MoveStatusProps = {
@@ -21,9 +22,9 @@ export default function MoveStatus({busy = false, failed = false, text, children
   }, [busy]);
   const checking = busy && waiting;
   return <div role="status" aria-live="polite" aria-atomic="true" className={`move-status${children != null ? ' move-status-rich' : ''}${failed && !checking ? ' retry' : ''}`}>
-    {/* Each new message fades in over the reserved area instead of snapping. */}
-    <span key={checking ? 'checking' : children != null ? 'rich' : `${failed}:${text ?? ''}`} className="move-status-text reveal-fade">
+    {/* Each new message crossfades over the reserved area instead of snapping. */}
+    <Swap><span key={checking ? 'checking' : children != null ? 'rich' : `${failed}:${text ?? ''}`} className="move-status-text">
       {checking ? 'Checking your move...' : children ?? (failed ? <><RotateCcw size={15} aria-hidden="true"/><span>{text || 'Mistake. Try again.'}</span></> : text || 'Tap a piece, then its destination.')}
-    </span>
+    </span></Swap>
   </div>;
 }

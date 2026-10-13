@@ -167,9 +167,8 @@ export function ProviderImportForm({
           Dates replace Look back and include the whole day in UTC. Leave either
           blank for an open-ended range.
         </p>
-        {(startDate || endDate) && (
+        <Reveal>{(startDate || endDate) && (
           <Button
-            className="reveal-fade"
             type="button"
             variant="quiet"
             onClick={() => {
@@ -179,7 +178,7 @@ export function ProviderImportForm({
           >
             Clear dates
           </Button>
-        )}
+        )}</Reveal>
       </details>
       <div className="import-form-actions">
         <ImportSubmitButton busy={busy} busyLabel="Queuing import…"
@@ -212,10 +211,8 @@ export function ImportJob({
   reload,
   fail,
   compact = false,
-  arrived,
 }: {
   job: Job;
-  arrived?: true;
   reload: () => void;
   fail: (e: unknown) => void;
   compact?: boolean;
@@ -386,7 +383,7 @@ export function ImportJob({
       </div>
     </>;
   return (
-    <article className={`job${compact ? " job-history" : " panel"}`} data-arrived={arrived}>
+    <article className={`job${compact ? " job-history" : " panel"}`}>
       {compact ? <details className="disclosure">
         <summary className="job-summary">
           <span className="job-summary-content">

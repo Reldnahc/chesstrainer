@@ -3,7 +3,7 @@ import { RotateCw } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import Button from "./Button";
 import Notice from "./Notice";
-import Reveal from "./Reveal";
+import Reveal, { Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
 
 type Listing = Schema["ServerSettings"];
@@ -118,16 +118,16 @@ export default function ServerSettings() {
             ? `${pending.length} saved ${pending.length === 1 ? "change applies" : "changes apply"} after a restart. Analysis in progress stops and resumes afterwards.`
             : "Analysis in progress stops and resumes afterwards."}</p>
       </div>
-      {listing.restart_available && <div className="button-row">
+      {listing.restart_available && <Swap className="settings-tool-actions">
         {busy === "confirm"
-          ? <>
-            <Button className="reveal-fade" key="confirm" size="compact" variant="primary" onClick={() => void restart()}><RotateCw size={16} />Restart now</Button>
-            <Button className="reveal-fade" size="compact" variant="quiet" onClick={() => setBusy("")}>Cancel</Button>
-          </>
-          : <Button className="reveal-fade" key="restart" size="compact" variant="secondary" disabled={!!busy} onClick={() => setBusy("confirm")}>
+          ? <div className="button-row" key="confirm">
+            <Button size="compact" variant="primary" onClick={() => void restart()}><RotateCw size={16} />Restart now</Button>
+            <Button size="compact" variant="quiet" onClick={() => setBusy("")}>Cancel</Button>
+          </div>
+          : <div className="button-row" key="restart"><Button size="compact" variant="secondary" disabled={!!busy} onClick={() => setBusy("confirm")}>
             <RotateCw size={16} />{busy === "restart" ? "Restarting…" : "Restart server"}
-          </Button>}
-      </div>}
+          </Button></div>}
+      </Swap>}
     </div>
     <form className="server-settings" onSubmit={save}>
       {listing.groups.map(group => <details className="disclosure" key={group.title}>
@@ -136,7 +136,7 @@ export default function ServerSettings() {
       </details>)}
       <div className="button-row">
         <Button type="submit" variant="primary" disabled={!changed || !!busy}>{busy === "save" ? "Saving…" : "Save settings"}</Button>
-        {changed && <Button className="reveal-fade" variant="quiet" disabled={!!busy} onClick={() => setDraft({})}>Discard changes</Button>}
+        <Reveal axis="inline">{changed && <Button variant="quiet" disabled={!!busy} onClick={() => setDraft({})}>Discard changes</Button>}</Reveal>
       </div>
     </form>
   </SettingsSection>;

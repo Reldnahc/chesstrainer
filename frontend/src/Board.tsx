@@ -9,6 +9,7 @@ import {
   type RefObject,
 } from "react";
 import type { LegalMove, Promotion } from "./api";
+import DialogPresence from "./DialogPresence";
 import MoveSymbol from "./MoveSymbol";
 import { MOVE_DURATION_MS } from "./reviewMotion";
 import { useInterfaceMotion } from "./MotionProvider";
@@ -249,7 +250,7 @@ export default function Board({
           },
         }}
       />
-      {promotion && (
+      <DialogPresence>{promotion && (
         <PromotionDialog
           board={board}
           promotion={promotion}
@@ -259,7 +260,7 @@ export default function Board({
           }}
           onClose={() => setPromotion(null)}
         />
-      )}
+      )}</DialogPresence>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import ActionLink from "./ActionLink";
 import { pagePaths } from "./navigation";
 import ProviderUsernameField from "./ProviderUsernameField";
 import Notice from "./Notice";
-import Reveal from "./Reveal";
+import Reveal, { Swap } from "./Reveal";
 import { LoadingState } from "./LoadState";
 
 type Sync = Schema["SyncStatus"];
@@ -29,21 +29,21 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
       setName(name.trim());
     }
   }
-  const form = <form className="sync-form reveal-fade" onSubmit={submit}>
+  const form = <form className="sync-form" onSubmit={submit}>
     <ProviderUsernameField providerName={provider.name} label="Username" accessibleLabel={`Remembered ${provider.name} username`}
       disabled={!status || busy} value={name} onChange={value => { edited.current = true; setName(value); }} placeholder={`Your ${provider.name} username`} />
     <Button type="submit" disabled={!status || busy}>Save username</Button>
   </form>;
   return <section className="panel game-sync" aria-label={`Recent ${provider.name} games`}>
     <h3>{provider.name}</h3>
-    {status?.username ? <>
-      <strong className="connection-username reveal-fade">{status.username}</strong>
-      <details className="disclosure reveal-fade">
+    <Swap>{status?.username ? <div className="stack stack--tight" key="connected">
+      <strong className="connection-username">{status.username}</strong>
+      <details className="disclosure">
         <summary>Change {provider.name} connection</summary>
         {form}
         <p className="small">Clear the username to disconnect.</p>
       </details>
-    </> : form}
+    </div> : <div key="form">{form}</div>}</Swap>
     <Reveal>{status?.username && <Notice announcement="status" appearance="inline">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}` : "Ready to check for new games"}</Notice>}</Reveal>
     <Reveal>{status?.error && <Notice announcement="alert" tone="error">{status.error}</Notice>}</Reveal>
     {onImportOlderGames && <div className="connection-actions"><Button variant="secondary" onClick={() => onImportOlderGames(provider.id)}>Import older games</Button></div>}

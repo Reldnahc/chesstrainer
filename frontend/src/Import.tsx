@@ -17,8 +17,7 @@ import EmptyState from "./EmptyState";
 import ChoiceGroup from "./ChoiceGroup";
 import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
-import Reveal from "./Reveal";
-import useArrivals from "./useArrivals";
+import Reveal, { RevealList, Swap } from "./Reveal";
 import { useInterfaceMotion } from "./MotionProvider";
 import { LoadingState } from "./LoadState";
 
@@ -54,16 +53,16 @@ function PgnInput({
       { value: "file", label: "Choose a file" },
       { value: "text", label: "Paste PGN text" },
     ]} />
-    {mode === "file" ? <label className="upload-zone reveal-fade" key="file">
+    <Swap>{mode === "file" ? <label className="upload-zone" key="file">
       <FileUp size={25} />
       <strong>{file?.name || "Choose a PGN file"}</strong>
       <span>One game or a collection · UTF-8</span>
       <input aria-label="PGN file" type="file" accept=".pgn,text/plain" onChange={event => setFile(event.target.files?.[0] || null)} />
-    </label> : <label className="reveal-fade" key="text">
+    </label> : <label key="text">
       PGN
       <textarea value={text} onChange={event => setText(event.target.value)} rows={7}
         placeholder={'[White "Your username"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'} />
-    </label>}
+    </label>}</Swap>
   </>;
 }
 
@@ -214,8 +213,6 @@ export default function ImportSettings({
   const finishedJobs = activity.filter(job => !isActive(job));
   const hiddenHistoryCount = Math.max(0, finishedJobs.length - recentHistoryLimit);
   const visibleHistory = showHistory ? finishedJobs : finishedJobs.slice(0, recentHistoryLimit);
-  const arrivedActive = useArrivals(activeJobs.map(job => job.id), jobsLoaded);
-  const arrivedHistory = useArrivals(visibleHistory.map(job => job.id), jobsLoaded);
 
   return <div className="settings-import">
     <SettingsSection id="settings-imports" title="Import games">
@@ -282,12 +279,12 @@ export default function ImportSettings({
       </div>
     </SettingsSection>
     <SettingsSection id="settings-activity" title="Import & analysis activity" className="import-activity">
-      {activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}
-      {activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} arrived={arrivedActive(job.id)} />)}
-      {visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact arrived={arrivedHistory(job.id)} />)}
-      {hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
+      <Reveal>{jobsLoaded && activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}</Reveal>
+      <RevealList settled={jobsLoaded}>{activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}</RevealList>
+      <RevealList settled={jobsLoaded}>{visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}</RevealList>
+      <Reveal>{hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
         {showHistory ? "Show recent activity" : `Show older activity (${hiddenHistoryCount})`}
-      </Button>}
+      </Button>}</Reveal>
     </SettingsSection>
   </div>;
 }

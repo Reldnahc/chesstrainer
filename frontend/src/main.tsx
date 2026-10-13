@@ -5,7 +5,10 @@ import AccountGate from "./AccountGate";
 import { CoachProvider } from "./coach/CoachProvider";
 import { MotionProvider } from "./MotionProvider";
 import { AudioProvider } from "./audio/AudioProvider";
+import { installDisclosureMotion } from "./disclosureMotion";
 import "./styles.css";
+
+installDisclosureMotion();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

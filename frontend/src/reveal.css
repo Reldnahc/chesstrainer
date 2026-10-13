@@ -1,90 +1,84 @@
-/* Interface entrances and exits: content grows or fades in instead of popping in.
-   Everything here uses the motion scale and stops under the Still policy in
-   interface-motion.css. See docs/UI_COMPONENTS.md#motion. */
-:root { interpolate-size: allow-keywords; }
+/* Interface entrances and exits: content grows, narrows or fades instead of
+   popping in or out, the same way in every browser. Everything here uses the
+   motion scale and stops under the Still policy in interface-motion.css.
+   See docs/UI_COMPONENTS.md#motion. */
 
-/* Reveal: a conditional block grows open, and collapses before it unmounts. */
+/* Reveal, RevealList and Swap items: a one-track grid animates between 0fr and
+   1fr, and a closed item's negative margin gives back its container's gap. */
 .reveal {
   display: grid;
   grid-template-rows: 1fr;
   min-width: 0;
   opacity: 1;
-  transition: grid-template-rows var(--motion-base) var(--ease-standard), opacity var(--motion-base) var(--ease-standard);
+  transition:
+    grid-template-rows var(--motion-base) var(--ease-standard),
+    opacity var(--motion-base) var(--ease-standard),
+    margin-block-start var(--motion-base) var(--ease-standard);
 }
-.reveal[data-open="false"] { grid-template-rows: 0fr; opacity: 0; }
-@starting-style {
-  .reveal[data-open="true"] { grid-template-rows: 0fr; opacity: 0; }
+.reveal[data-open="false"] {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-block-start: calc(-1 * var(--reveal-gap, 0px));
+}
+.reveal[data-axis="inline"] {
+  grid-template-rows: none;
+  grid-template-columns: 1fr;
+  transition:
+    grid-template-columns var(--motion-base) var(--ease-standard),
+    opacity var(--motion-base) var(--ease-standard);
+}
+.reveal[data-axis="inline"][data-open="false"] {
+  grid-template-columns: 0fr;
+  margin-block-start: 0;
 }
 .reveal-clip { min-width: 0; min-height: 0; overflow: clip; overflow-clip-margin: var(--space-1); }
+.reveal[data-axis="inline"] > .reveal-clip { white-space: nowrap; }
+/* A swap stacks the leaving and arriving items in one cell, so its size morphs. */
+.reveal-swap { display: grid; min-width: 0; }
+.reveal-swap > .reveal { grid-area: 1 / 1; align-self: start; }
+/* The size morphs over the whole swap, but the old content fades out in the
+   first half and the new fades in during the second, so text never overlaps. */
+.reveal-swap > .reveal[data-open="false"] {
+  transition-duration: var(--motion-base), calc(var(--motion-base) / 2), var(--motion-base);
+}
+.reveal-swap > .reveal[data-open="true"] {
+  transition-duration: var(--motion-base), calc(var(--motion-base) / 2), var(--motion-base);
+  transition-delay: 0s, calc(var(--motion-base) / 2), 0s;
+}
 
-/* Entrances for content that mounts on its own. Browsers that cannot animate to an
-   automatic height fade it in instead of snapping its height halfway through. */
+/* Loaded content, sections, tab panels and standing notices fade in where they
+   replace something else, rather than snapping. */
 @keyframes content-in {
   from { opacity: 0; }
 }
-@keyframes reveal-in {
-  from { opacity: 0; }
-}
-@supports (interpolate-size: allow-keywords) {
-  @keyframes reveal-in {
-    from {
-      opacity: 0;
-      block-size: 0;
-      min-block-size: 0;
-      padding-block: 0;
-      border-block-width: 0;
-      overflow: clip;
-    }
-    99% { overflow: clip; }
-  }
-}
-
-/* Loaded content, swapped sections and tab panels fade in where they replace
-   something else, rather than snapping. */
 .panel,
 .load-state,
-.reveal-fade,
+.notice:not(.reveal *),
 [role="tabpanel"]:not([hidden]) {
   animation: content-in var(--motion-base) var(--ease-enter);
 }
 
-/* Notices, newly arrived list rows and swapped-in editors grow into place. */
-.notice:not(.reveal *),
-.reveal-grow,
-[data-arrived] {
-  animation: reveal-in var(--motion-base) var(--ease-enter);
-}
+/* Disclosures: disclosureMotion.ts animates their height both ways. */
+details[data-animating] { overflow: clip; }
 
-/* Native disclosures open and close to their content height. */
-details::details-content {
-  block-size: 0;
-  opacity: 0;
-  overflow-y: clip;
-  transition:
-    block-size var(--motion-base) var(--ease-standard),
-    opacity var(--motion-base) var(--ease-standard),
-    content-visibility var(--motion-base) allow-discrete;
-}
-details[open]::details-content { block-size: auto; opacity: 1; }
-
-/* Modal dialogs and the promotion picker rise in over a fading backdrop. */
+/* Modal dialogs rise in over a fading backdrop and sink out the same way
+   (DialogPresence keeps them mounted while data-closing plays). */
 @keyframes dialog-in {
   from { opacity: 0; scale: 0.97; }
 }
+@keyframes dialog-out {
+  to { opacity: 0; scale: 0.97; }
+}
+@keyframes backdrop-out {
+  to { opacity: 0; }
+}
 dialog[open] { animation: dialog-in var(--motion-base) var(--ease-enter); }
 dialog[open]::backdrop { animation: content-in var(--motion-base) var(--ease-enter); }
+dialog[open][data-closing] { animation: dialog-out var(--motion-base) var(--ease-standard) forwards; }
+dialog[open][data-closing]::backdrop { animation: backdrop-out var(--motion-base) var(--ease-standard) forwards; }
 
-/* Native popovers fade both ways; overlay keeps them in the top layer while closing. */
-[popover] {
-  opacity: 0;
-  scale: 0.97;
-  transition:
-    opacity var(--motion-fast) var(--ease-standard),
-    scale var(--motion-fast) var(--ease-standard),
-    overlay var(--motion-fast) allow-discrete,
-    display var(--motion-fast) allow-discrete;
-}
-[popover]:popover-open { opacity: 1; scale: 1; }
-@starting-style {
-  [popover]:popover-open { opacity: 0; scale: 0.97; }
-}
+/* Popovers fade in when shown; popoverMotion.ts fades a copy out when one hides. */
+[popover]:popover-open { animation: dialog-in var(--motion-fast) var(--ease-enter); }
+[popover]:popover-open::backdrop { animation: content-in var(--motion-fast) var(--ease-enter); }
+[popover].popover-leaving:popover-open { animation: dialog-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
+[popover].popover-leaving:popover-open::backdrop { animation: backdrop-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }

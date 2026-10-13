@@ -1,34 +1,155 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  Children, Fragment, isValidElement, useLayoutEffect, useReducer, useRef,
+  type Key, type ReactElement, type ReactNode,
+} from "react";
 import { useInterfaceMotion } from "./MotionProvider";
+
+/*
+ * Content that appears or disappears grows (or narrows) open and closed instead
+ * of popping, the same way in every browser: each item sits in a one-track grid
+ * whose track animates between 0fr and 1fr. Leaving items stay mounted and inert
+ * with their last content until their transition ends. See
+ * docs/UI_COMPONENTS.md#motion.
+ */
+
+type Phase = "entering" | "open" | "closing";
+type Entry = { key: Key; node: ReactElement; phase: Phase };
 
 const present = (children: ReactNode) =>
   children !== null && children !== undefined && children !== false && children !== "";
 
-/**
- * Grows a conditional block open and collapses it closed instead of letting it
- * pop in or out: `<Reveal>{error && <Notice …/>}</Reveal>`. While closing, the
- * last content stays mounted and inert until its transition ends.
- */
-export default function Reveal({ children, className }: { children: ReactNode; className?: string }) {
+/** Merges the current keyed children with items still closing, in a stable order. */
+function usePresence(children: ReactNode, { animateFirst, settled = true }: { animateFirst: boolean; settled?: boolean }) {
   const motion = useInterfaceMotion();
-  const open = present(children);
-  const last = useRef<ReactNode>(null);
-  if (open) last.current = children;
-  const [mounted, setMounted] = useState(open);
-  if (open && !mounted) setMounted(true);
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (open || !mounted) return;
-    // Reading the animations flushes the closed style, so the transition exists here.
-    const running = motion === "still" ? [] : ref.current?.getAnimations() ?? [];
-    let active = true;
-    const finish = () => { if (active) { last.current = null; setMounted(false); } };
-    if (!running.length) finish();
-    else Promise.all(running.map(animation => animation.finished)).then(finish, () => {});
-    return () => { active = false; };
-  }, [open, mounted, motion]);
-  if (!mounted) return null;
-  return <div ref={ref} className={["reveal", className].filter(Boolean).join(" ")} data-open={open} inert={!open}>
-    <div className="reveal-clip">{open ? children : last.current}</div>
+  const [, refresh] = useReducer((value: number) => value + 1, 0);
+  const entries = useRef<Entry[]>([]);
+  const arrivals = useRef(animateFirst);
+  const elements = useRef(new Map<Key, HTMLDivElement>());
+  const current = Children.toArray(children).filter(isValidElement) as ReactElement[];
+  const index = new Map<Key, number>(current.map((node, position) => [node.key!, position]));
+  const previous = new Map(entries.current.map(entry => [entry.key, entry]));
+  const animate = motion !== "still";
+  const make = (node: ReactElement): Entry => {
+    const before = previous.get(node.key!);
+    const phase = !before ? (arrivals.current && animate ? "entering" : "open")
+      : before.phase === "closing" ? "open" : before.phase;
+    return { key: node.key!, node, phase };
+  };
+  const merged: Entry[] = [];
+  let next = 0;
+  for (const entry of entries.current) {
+    const position = index.get(entry.key);
+    if (position === undefined) {
+      if (animate) merged.push({ ...entry, phase: "closing" });
+      continue;
+    }
+    while (next <= position) merged.push(make(current[next++]));
+  }
+  while (next < current.length) merged.push(make(current[next++]));
+  entries.current = merged;
+  if (settled) arrivals.current = true;
+
+  useLayoutEffect(() => {
+    let opened = false;
+    const waits: (() => void)[] = [];
+    for (const entry of entries.current) {
+      const element = elements.current.get(entry.key);
+      if (!element) continue;
+      if (entry.phase !== "open") collapseGap(element);
+      else delete element.dataset.leaving;
+      if (entry.phase === "entering") {
+        // Commit the closed style first so the open style transitions from it.
+        void element.offsetHeight;
+        entry.phase = "open";
+        opened = true;
+      } else if (entry.phase === "closing" && !element.dataset.leaving) {
+        element.dataset.leaving = "true";
+        const running = element.getAnimations();
+        const done = () => {
+          const latest = entries.current.find(item => item.key === entry.key);
+          if (latest?.phase !== "closing") return;
+          entries.current = entries.current.filter(item => item !== latest);
+          refresh();
+        };
+        if (!running.length) waits.push(done);
+        else Promise.all(running.map(animation => animation.finished)).then(done, () => {});
+      }
+    }
+    for (const wait of waits) wait();
+    if (opened) refresh();
+  });
+
+  const ref = (key: Key) => (element: HTMLDivElement | null) => {
+    if (element) elements.current.set(key, element);
+    else elements.current.delete(key);
+  };
+  return entries.current.map(entry => ({ ...entry, ref: ref(entry.key) }));
+}
+
+/**
+ * A closed item still occupies its container's gap; a matching negative margin
+ * lets that space close with it. Lone children have no gap to remove.
+ */
+function collapseGap(element: HTMLElement) {
+  const parent = element.parentElement;
+  let gap = 0;
+  if (parent && parent.childElementCount > 1) {
+    const style = getComputedStyle(parent);
+    gap = parseFloat(style.display.includes("flex") && style.flexDirection.startsWith("row") ? style.columnGap : style.rowGap) || 0;
+  }
+  const value = `${gap}px`;
+  if (element.style.getPropertyValue("--reveal-gap") !== value) element.style.setProperty("--reveal-gap", value);
+}
+
+function Item({ entry, className, axis }: {
+  entry: ReturnType<typeof usePresence>[number];
+  className?: string;
+  axis?: "block" | "inline";
+}) {
+  const open = entry.phase === "open";
+  return <div ref={entry.ref} className={["reveal", className].filter(Boolean).join(" ")}
+    data-open={open} data-axis={axis} inert={entry.phase === "closing" || undefined}
+    aria-hidden={entry.phase === "closing" || undefined}>
+    <div className="reveal-clip">{entry.node}</div>
+  </div>;
+}
+
+/** `<Reveal>{error && <Notice …/>}</Reveal>`: one conditional block grows in and collapses out. */
+export default function Reveal({ children, className, axis }: {
+  children: ReactNode;
+  className?: string;
+  /** `inline` grows from zero width, for a control appearing in a row. */
+  axis?: "block" | "inline";
+}) {
+  const entries = usePresence(present(children) ? <Fragment key="reveal">{children}</Fragment> : null, { animateFirst: true });
+  return <>{entries.map(entry => <Item key={entry.key} entry={entry} className={className} axis={axis} />)}</>;
+}
+
+/**
+ * Keyed rows that grow in when added and collapse when removed. Rows present
+ * when the list first settles (its data has loaded) appear with the page.
+ */
+export function RevealList({ children, settled = true, className }: {
+  children: ReactNode;
+  settled?: boolean;
+  className?: string;
+}) {
+  const entries = usePresence(children, { animateFirst: false, settled });
+  return <>{entries.map(entry => <Item key={entry.key} entry={entry} className={className} />)}</>;
+}
+
+/**
+ * Swaps one keyed child for another in the same place: the old one closes while
+ * the new one opens over it, so the size morphs and the content crossfades.
+ * `inline` animates width for swaps inside a row of controls.
+ */
+export function Swap({ children, axis = "block", className }: {
+  children: ReactNode;
+  axis?: "block" | "inline";
+  className?: string;
+}) {
+  const entries = usePresence(children, { animateFirst: false });
+  return <div className={["reveal-swap", className].filter(Boolean).join(" ")}>
+    {entries.map(entry => <Item key={entry.key} entry={entry} axis={axis} />)}
   </div>;
 }

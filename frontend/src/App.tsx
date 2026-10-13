@@ -18,6 +18,7 @@ import SettingsScreen from "./Settings";
 import InsightsScreen from "./Weaknesses";
 import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
+import DialogPresence from "./DialogPresence";
 import { gamesPath, pagePaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
 import LessonEditor from "./study/LessonEditor";
@@ -252,13 +253,13 @@ export default function App() {
             : "Games & practice stay on this computer"}
         </span>
       </footer>
-      {evidenceId && (
+      <DialogPresence>{evidenceId && (
         <EvidenceDialog
           id={evidenceId}
           onClose={() => setEvidenceId(null)}
           fail={fail}
         />
-      )}
+      )}</DialogPresence>
     </>
   );
 }

@@ -15,6 +15,7 @@ import ReviewControls from "./ReviewControls";
 import ReviewMoves from "./ReviewMoves";
 import ReviewProgress from "./ReviewProgress";
 import GameExportDialog from "../gameExport/GameExportDialog";
+import DialogPresence from "../DialogPresence";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
@@ -292,7 +293,7 @@ export default function GameWorkspace({
           onScrubEnd={exploration.finishScrubbing}
         />
       </ReviewWorkspace>
-      {exporting && <GameExportDialog id={id} fen={displayed.fen} orientation={orientation} onClose={() => setExporting(false)} />}
+      <DialogPresence>{exporting && <GameExportDialog id={id} fen={displayed.fen} orientation={orientation} onClose={() => setExporting(false)} />}</DialogPresence>
     </div>
   );
 }

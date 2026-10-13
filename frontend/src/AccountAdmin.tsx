@@ -4,8 +4,7 @@ import { api, read, type Schema } from "./api";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
 import Notice from "./Notice";
-import Reveal from "./Reveal";
-import useArrivals from "./useArrivals";
+import Reveal, { RevealList, Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
 
 type ManagedAccount = Schema["ManagedAccount"];
@@ -66,7 +65,6 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
     setUsername("");
   }
   const adding = pending?.action === "add";
-  const arrived = useArrivals(accounts?.map(account => account.id) ?? [], !!accounts);
   if (!accounts) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading accounts…</LoadingState>;
   return <SettingsSection id="settings-accounts" title="Accounts"
     description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
@@ -90,8 +88,8 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
         <h3>Add member</h3>
         <p>Set a temporary password and pass it on. They choose their own when they first sign in.</p>
       </div>
-      {adding
-        ? <form className="button-row account-password-form reveal-grow" onSubmit={addMember}>
+      <Swap className="settings-tool-actions">{adding
+        ? <form className="button-row account-password-form" key="form" onSubmit={addMember}>
           <label>
             <span>Username</span>
             <input autoComplete="off" minLength={3} maxLength={32} pattern="[a-zA-Z0-9_-]+" required autoFocus
@@ -105,23 +103,23 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
           <Button type="submit" size="compact" variant="primary" disabled={busy}>Add member</Button>
           <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
         </form>
-        : <div className="button-row reveal-fade">
+        : <div className="button-row" key="actions">
           <Button size="compact" variant="secondary" disabled={busy} onClick={() => choose({ id: "new", action: "add" })}>
             <UserPlus size={16} />Add member
           </Button>
-        </div>}
+        </div>}</Swap>
     </div>
-    {accounts.map(account => {
+    <RevealList>{accounts.map(account => {
       const self = account.id === selfId;
       const resetting = pending?.id === account.id && pending.action === "password";
       const deleting = pending?.id === account.id && pending.action === "delete";
-      return <div className="settings-tool settings-tool-row" key={account.id} data-arrived={arrived(account.id)}>
+      return <div className="settings-tool settings-tool-row" key={account.id}>
         <div>
           <h3>{account.username}{self && " (you)"}</h3>
           <p>{account.admin ? "Administrator" : "Member"}{account.disabled && " · Disabled"} · Joined {new Date(account.created).toLocaleDateString()}</p>
         </div>
-        {resetting
-          ? <form className="button-row account-password-form reveal-grow" onSubmit={event => resetPassword(event, account)}>
+        <Swap className="settings-tool-actions">{resetting
+          ? <form className="button-row account-password-form" key="password" onSubmit={event => resetPassword(event, account)}>
             <label>
               <span>Temporary password for {account.username}</span>
               <input type="password" autoComplete="new-password" minLength={10} maxLength={128} required autoFocus
@@ -131,14 +129,14 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
             <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
           </form>
           : deleting
-            ? <div className="button-row reveal-fade" key="delete">
+            ? <div className="button-row" key="delete">
               <Button size="compact" variant="secondary" disabled={busy}
                 onClick={() => act(() => read(api.DELETE("/api/auth/accounts/{account_id}", path(account))), `Deleted ${account.username} and their games.`)}>
                 <Trash2 size={16} />Delete account and games
               </Button>
               <Button size="compact" variant="quiet" onClick={() => choose(null)}>Keep it</Button>
             </div>
-            : !self && <div className="button-row reveal-fade" key="actions">
+            : !self && <div className="button-row" key="actions">
               <Button size="compact" variant="secondary" disabled={busy} onClick={() => choose({ id: account.id, action: "password" })}>
                 <KeyRound size={16} />Reset password
               </Button>
@@ -154,9 +152,9 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
               <Button size="compact" variant="quiet" disabled={busy} onClick={() => choose({ id: account.id, action: "delete" })}>
                 <Trash2 size={16} />Delete
               </Button>
-            </div>}
+            </div>}</Swap>
       </div>;
-    })}
+    })}</RevealList>
     <p className="small muted">Deleting an account removes its games, reviews and training history for good. Disable it instead to keep them. Change your own password above.</p>
   </SettingsSection>;
 }

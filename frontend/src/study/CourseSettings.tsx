@@ -5,8 +5,7 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
-import Reveal from "../Reveal";
-import useArrivals from "../useArrivals";
+import Reveal, { RevealList, Swap } from "../Reveal";
 import SettingsSection from "../SettingsSection";
 import { courseEditorPath } from "../navigation";
 import { deleteCourseFile, downloadCourseFile, readChosenFile, restoreBuiltInCourse, saveCourseFile, savedMessage } from "./courseFiles";
@@ -64,8 +63,6 @@ export default function CourseSettings() {
       return `Restored “${course.title}”.`;
     });
   }
-  const arrivedCourse = useArrivals(library?.courses.map(course => course.id) ?? [], !!library);
-  const arrivedHidden = useArrivals((library?.hidden_built_ins ?? []).map(course => course.id), !!library);
   if (!library) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading courses…</LoadingState>;
   return <SettingsSection id="settings-courses" className="course-settings" title="Courses"
     description="Write Study lessons for your members, or import a course file. Members see every course here in Lessons."
@@ -76,8 +73,8 @@ export default function CourseSettings() {
     </div>}>
     <Reveal>{notice && <Notice announcement="status" tone="success">{notice}</Notice>}</Reveal>
     <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
-    {(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}
-    {library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id} data-arrived={arrivedCourse(course.id)}>
+    <RevealList>{(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}</RevealList>
+    <RevealList>{library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id}>
       <div>
         <h3>{course.title}</h3>
         <p>{course.source === "club" ? "Club course" : "Built-in course"} · {course.topic === "skills" ? "Fundamentals" : "Openings"} · {course.chapter_count} {course.chapter_count === 1 ? "chapter" : "chapters"} · revision {course.revision}</p>
@@ -88,15 +85,15 @@ export default function CourseSettings() {
       <div className="button-row">
         <ActionLink size="compact" variant="secondary" href={courseEditorPath(course.id)}><Pencil size={16} />Edit</ActionLink>
         <Button size="compact" variant="quiet" disabled={busy} onClick={() => act(() => downloadCourseFile(course.id, course.revision))}><Download size={16} />Download</Button>
-        {confirming === course.id
-          ? <><Button className="reveal-fade" key="confirm" size="compact" variant="secondary" disabled={busy} onClick={() => remove(course)}><Trash2 size={16} />Delete for everyone</Button>
-            <Button className="reveal-fade" size="compact" variant="quiet" onClick={() => setConfirming(null)}>Keep it</Button></>
-          : <Button className="reveal-fade" key="delete" size="compact" variant="quiet" disabled={busy} onClick={() => setConfirming(course.id)}><Trash2 size={16} />Delete</Button>}
+        <Swap axis="inline">{confirming === course.id
+          ? <div className="button-row" key="confirm"><Button size="compact" variant="secondary" disabled={busy} onClick={() => remove(course)}><Trash2 size={16} />Delete for everyone</Button>
+            <Button size="compact" variant="quiet" onClick={() => setConfirming(null)}>Keep it</Button></div>
+          : <div className="button-row" key="delete"><Button size="compact" variant="quiet" disabled={busy} onClick={() => setConfirming(course.id)}><Trash2 size={16} />Delete</Button></div>}</Swap>
       </div>
-    </div>)}
-    {(library.hidden_built_ins ?? []).length > 0 && <>
+    </div>)}</RevealList>
+    <Reveal>{(library.hidden_built_ins ?? []).length > 0 && <div className="stack">
       <h3 className="course-settings-group">Deleted built-in courses</h3>
-      {(library.hidden_built_ins ?? []).map(course => <div className="settings-tool settings-tool-row" key={course.id} data-arrived={arrivedHidden(course.id)}>
+      <RevealList>{(library.hidden_built_ins ?? []).map(course => <div className="settings-tool settings-tool-row" key={course.id}>
         <div>
           <h3>{course.title}</h3>
           <p>Built-in course · hidden from members</p>
@@ -104,8 +101,8 @@ export default function CourseSettings() {
         <div className="button-row">
           <Button size="compact" variant="secondary" disabled={busy} onClick={() => restore(course)}><RotateCcw size={16} />Restore</Button>
         </div>
-      </div>)}
-    </>}
+      </div>)}</RevealList>
+    </div>}</Reveal>
     <p className="small muted">Editing a built-in course saves a club copy that replaces it; deleting that copy brings the built-in course back. Deleting a built-in course hides it until you restore it. Members who started a course keep the version they began, and deleting a course never deletes their progress.</p>
   </SettingsSection>;
 }

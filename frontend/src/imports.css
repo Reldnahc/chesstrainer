@@ -42,7 +42,7 @@
 .job { padding: var(--space-6); --panel-gap: var(--space-2); }
 .job-details { display: flex; flex-direction: column; gap: var(--space-2); }
 .import-activity .job { padding: 0 0 var(--space-4); border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; }
-.import-activity .job:last-of-type { border-bottom: 0; padding-bottom: 0; }
+.import-activity > .reveal:nth-last-child(1 of .reveal:has(> .reveal-clip > .job)) .job { border-bottom: 0; padding-bottom: 0; }
 .job .row-between { gap: var(--space-3); }
 .job .row-between strong { overflow-wrap: anywhere; min-width: 0; }
 .job .badge { flex-shrink: 0; }

@@ -103,7 +103,7 @@ not React components.
 | Recorded coach voice | [useCoachSpeech](../frontend/src/audio/speech/useCoachSpeech.tsx), [CoachSpeechButton](../frontend/src/audio/speech/CoachSpeechButton.tsx) | Supply supported recording IDs and fresh action identity. ReviewCoach owns the shared voice control beside its evaluation; explicit secondary explanations reuse CoachSpeechButton. Keep cold prompts manual, lessons silent and replay cancellation scoped. Mouth animation observes the existing speech clock, never a separate page timer. |
 | Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
 | Pending/unavailable content | [LoadingState / UnavailableState](../frontend/src/LoadState.tsx) | Compact/panel states with message-only announcements and separate caller-supplied headings/actions. LoadingState leads its message with a small animated board (four squares lighting clockwise, decorative and hidden from assistive technology) that rests as a checkerboard when interface motion is off; UnavailableState has no indicator. Plain `role="status"` loading paragraphs (Games, game connections, import providers) use it too; the coach bubble's continuation line and preference save status keep their own text, and onboarding keeps a plain line because AccountGate puts it in the studios' bundles, which must not load application styles. Requests, recovery commands and link destinations remain with each screen. |
-| Content entrances and exits | [Reveal](../frontend/src/Reveal.tsx), [useArrivals](../frontend/src/useArrivals.ts), [reveal.css](../frontend/src/reveal.css) | `<Reveal>{condition && <Block />}</Reveal>` grows a conditional block open and collapses it, keeping the last content mounted and inert until it closes; every conditional Notice uses it. reveal.css also grows in other notices, `.reveal-grow` editors and `data-arrived` rows, fades in panels, loaders, tab panels and `.reveal-fade` swaps, opens disclosures to their height, and fades dialogs and popovers. useArrivals marks rows added after a list's first load so that load still arrives at once. Application-only; see [Motion](#motion). |
+| Content entrances and exits | [Reveal / RevealList / Swap](../frontend/src/Reveal.tsx), [DialogPresence](../frontend/src/DialogPresence.tsx), [disclosureMotion](../frontend/src/disclosureMotion.ts), [usePopoverExit](../frontend/src/usePopoverExit.ts), [reveal.css](../frontend/src/reveal.css) | `<Reveal>{condition && <Block />}</Reveal>` grows a block in and collapses it out (every conditional Notice uses it); `RevealList` does the same for keyed rows added or removed after the list settles; `Swap` crossfades one keyed child into another while the size morphs (Settings tabs, inline editors, confirms, status text). Leaving content stays mounted and inert until its transition ends. DialogPresence plays a modal's close before unmounting it, disclosureMotion animates every `<details>` both ways, and usePopoverExit fades a hidden popover out. All use grid tracks or WAAPI, so every browser behaves the same. Application-only; see [Motion](#motion). |
 | Empty content | [EmptyState](../frontend/src/EmptyState.tsx) | Lessons/Puzzles presentation for full sections, with compact activity/search variants. Callers supply titles, descriptions, icons and recovery actions. |
 | Notices | [Notice](../frontend/src/Notice.tsx), [notice.css](../frontend/src/notice.css) | Explicit alert/status/passive policy, tone, panel/inline presentation and separate actions. Historical import errors remain passive; persistent live regions can stay mounted empty without blank spacing. Shared-safe presentation also serves studio availability and playback feedback without importing application layout. [WelcomeBack](../frontend/src/WelcomeBack.tsx) and the Settings analysis-queue line use it too; the welcome-back import link sits in the body so narrow screens keep the text full width. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
@@ -204,14 +204,16 @@ and type. [foundation.css](../frontend/src/foundation.css) defines it.
 - **Hover feedback.** Every hover that changes a background, border, colour or fill
   fades over `--motion-fast`. Base buttons and button links already do; other
   hoverable rows, cards, tabs and graph nodes name the properties they change.
-- **Nothing pops in.** Content that appears or disappears after the page is shown
-  grows, fades or slides instead (owner decision, October 13, 2026). Wrap a
-  conditional block in `Reveal` so it also collapses out; mark a swapped element
-  `.reveal-fade` (with a `key` when React would otherwise reuse it) or
-  `.reveal-grow`; give rows added to a loaded list `data-arrived` from
-  `useArrivals`. Notices, panels, loaders, tab panels, disclosures, dialogs and
-  popovers already animate through [reveal.css](../frontend/src/reveal.css).
-  Height animations to `auto` need `interpolate-size`; other browsers fade.
+- **Nothing pops in or out.** Content that appears, disappears or is replaced
+  after the page is shown animates both ways, identically in every browser
+  (owner decisions, October 13, 2026). Wrap a conditional block in `Reveal`,
+  keyed rows in `RevealList` (pass `settled` once the data has loaded so the first
+  load arrives with its page), and a keyed replacement in `Swap` (`axis="inline"`
+  inside a row of controls). Wrap a conditional modal in `DialogPresence` and give
+  a native popover `usePopoverExit`. Disclosures animate through
+  disclosureMotion; panels, loaders and tab panels fade in through
+  [reveal.css](../frontend/src/reveal.css). Do not rely on browser-specific
+  features such as `interpolate-size` or `::details-content`.
 - **Reduced motion.** [interface-motion.css](../frontend/src/interface-motion.css)
   applies the Still preference and, before preferences load, the device setting to
   every interface element. Components do not write their own reduced-motion
