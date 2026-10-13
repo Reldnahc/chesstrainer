@@ -22,8 +22,8 @@ own account; the container refuses to start in no-login mode.
    are lost on reboot. See [Security](#security).
 3. Open **Docker → Add Container**, select **fieldwork**, and choose **Web port**
    (default 18000) and **App data**. If you ran the script, set **Network Type** to
-   `fieldwork`. For sign-in over plain `http://` on your LAN, set **Secure session
-   cookies** (advanced) to false; keep it true behind HTTPS.
+   `fieldwork`. Keep **Secure session cookies** (advanced) true: sign-in over plain
+   `http://` already works at the server's LAN address from devices on your LAN.
 4. Apply, then enable **Autostart** in the Docker list.
 5. Create your administrator in the Unraid terminal. The command prompts for a password:
 
@@ -143,7 +143,7 @@ memory budgets. Defaults do not automatically scale with CPU pinning.
 | --- | --- |
 | Container stops right after an update | The log says the container requires `ACCOUNTS_ENABLED=true`: set Account support to true and follow the no-login migration above. |
 | Container exits with a Public origin error | Use a full HTTP(S) address without credentials, path, query or fragment, or leave it blank. The startup log explains the error. |
-| Sign-in says accounts need HTTPS | Use HTTPS, or set Secure session cookies false for sign-in over plain HTTP on your LAN. |
+| Sign-in says accounts need HTTPS | Open the server by its LAN address (IP or local name) from a device on your network, or use HTTPS. Public names and outside visitors always need HTTPS. |
 | Login says the address does not match | Make the proxy preserve Host, or set Public origin to the exact browser address. With Public origin set, open that address including scheme and port. |
 | WebUI opens the wrong address | Use `http://[IP]:[PORT:8000]` on your LAN or your actual HTTPS origin behind a proxy. |
 | Database cannot be written | Verify the `/data` mount and UID 99/GID 100 write permissions. Privileged mode is unnecessary. |
