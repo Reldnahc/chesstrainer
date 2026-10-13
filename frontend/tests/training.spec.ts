@@ -352,7 +352,8 @@ test('wrong-answer feedback stays steady while checking and retrying', async ({p
 
 test('fast wrong answers never flash a loading message', async ({page}) => {
   await page.clock.install();
-  await page.clock.pauseAt(new Date());
+  // A moment ahead: the page clock may already be past the runner's "now".
+  await page.clock.pauseAt(Date.now() + 1_000);
   const response = await page.request.post('/api/exercises/manual', {data: {
     fen: '2k5/8/8/8/8/8/4P3/4K3 w - - 0 1', moves: ['e2e4'],
   }});

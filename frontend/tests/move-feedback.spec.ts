@@ -80,7 +80,8 @@ test("puzzle feedback delays checking across repeated attempts and cancels fast-
   await expect(status).toHaveAttribute("aria-live", "polite");
   await expect(page.getByRole("region", { name: "Puzzle solution" })).toHaveCount(0);
   await page.clock.install();
-  await page.clock.pauseAt(new Date());
+  // A moment ahead: the page clock may already be past the runner's "now".
+  await page.clock.pauseAt(Date.now() + 1_000);
   const observed = await status.evaluateHandle(element => {
     const texts: string[] = [];
     const observer = new MutationObserver(() => { texts.push(element.textContent || ""); });

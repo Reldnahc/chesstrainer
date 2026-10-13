@@ -29,7 +29,8 @@ test("puzzle continuation stays hidden when cold and disables inspection through
   await expect(moves).toHaveCount(0);
   await expect(page.getByRole("region", { name: "Puzzle solution", exact: true })).toHaveCount(0);
   await page.clock.install();
-  await page.clock.pauseAt(new Date());
+  // A moment ahead: the page clock may already be past the runner's "now".
+  await page.clock.pauseAt(Date.now() + 1_000);
   const revealed = page.waitForResponse(response => response.url().endsWith(`/puzzle-sessions/${id}/reveal`));
   await page.getByRole("button", { name: "Reveal solution", exact: true }).click();
   const session: Schema["PuzzleSessionView"] = await (await revealed).json();

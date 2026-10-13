@@ -209,7 +209,8 @@ test("full-game controls interrupt Mason-Lasker playback without waiting for its
   await page.reload();
   await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
   await page.clock.install();
-  await page.clock.pauseAt(new Date());
+  // A moment ahead: the page clock may already be past the runner's "now".
+  await page.clock.pauseAt(Date.now() + 1_000);
 
   // Freeze both the piece animation and the lesson dwell: controls must not wait
   // for either timer before committing another navigation command.
