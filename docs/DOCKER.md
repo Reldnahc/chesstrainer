@@ -147,6 +147,9 @@ and browser tests, and the Docker installation smoke test must all pass before
 the publishing job can log in to GHCR or push an image. Other branch pushes and
 pull requests run the same checks without publishing. Only the publishing job
 receives package-write permission.
+Every third-party action is pinned to a full commit hash, with its version in a
+comment, so a moved tag cannot change what the release job runs; Dependabot
+proposes updates weekly (`.github/dependabot.yml`).
 
 `latest` tracks validated builds; a published full Git SHA pins a build. Recreate
 the container with the same volume/settings after pulling an update, or use

@@ -1,0 +1,14 @@
+# Actions are pinned to full commit hashes so a moved tag cannot change what CI runs.
+# Dependabot proposes each new release as a reviewable hash bump.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directories:
+      - /
+      - /.github/actions/python-env
+      - /.github/actions/stockfish
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ["*"]
