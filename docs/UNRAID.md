@@ -1,9 +1,10 @@
 # Install Fieldwork on Unraid
 
 Optional human-move evidence uses the existing container and app-data mount. The
-advanced template fields describe its model path, worker/thread budget and
-timeout. Run `python -m trainer.human_models.setup` in the container Console to
-explicitly acquire the pinned weights; see [HUMAN_MODELS.md](HUMAN_MODELS.md) for
+advanced template fields set its model path and device; its on/off switch,
+worker/thread budget and timeout are in Settings → Advanced → Server. Run
+`python -m trainer.human_models.setup` in the container Console to explicitly
+acquire the pinned weights; see [HUMAN_MODELS.md](HUMAN_MODELS.md) for
 measured memory/image costs and offline operation.
 
 Fieldwork is **one container** with the app, Stockfish and one SQLite database.
@@ -32,7 +33,12 @@ own account; the container refuses to start in no-login mode.
 
 6. Click the container icon → **WebUI** and sign in.
 
-Every setting has a description. Engine tuning is under advanced settings.
+Every setting has a description. Engine slots, threads, hash and workers, the
+human-model switch, threads, workers and timeout, and review refinement are not
+template fields: after signing in as an administrator, set them in **Settings →
+Advanced → Server** and apply them with **Restart server**. Templates saved before
+this change may still list them; an old value seeds the setting only the first
+time, so you can delete those fields.
 This is a repository-supplied template, not a Community Applications listing.
 It follows Unraid's [official example](https://github.com/unraid/unraid-community-apps-starter/blob/main/templates/example-app.xml)
 and [documented template location](https://docs.unraid.net/community-applications/).
@@ -129,8 +135,9 @@ devices recomputes saved human-move evidence the next time each game is reviewed
 
 ## Settings and troubleshooting
 
-The [Docker settings reference](DOCKER.md#settings) explains each variable, defaults
-and CPU/memory budgets. Defaults do not automatically scale with CPU pinning.
+The [Docker settings reference](DOCKER.md#settings) explains each variable, and
+Settings → Advanced → Server holds the engine and review limits with their CPU and
+memory budgets. Defaults do not automatically scale with CPU pinning.
 
 | Symptom | What to check |
 | --- | --- |
