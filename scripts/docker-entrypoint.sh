@@ -8,19 +8,20 @@ if [ "${HUMAN_MODEL_DEVICE:-cpu}" = "cuda" ]; then
     target=/data/runtime/torch-2.8.0-cu128
     if [ ! -f "$target/.complete" ]; then
         echo "Maia GPU: downloading CUDA PyTorch 2.8.0 (about 3 GB, first GPU start only)"
-        rm -rf "$target.partial"
-        mkdir -p /data/runtime
+        rm -rf "$target.partial" /data/runtime/tmp
+        mkdir -p /data/runtime/tmp
         # Keep shared dependencies at the image's locked versions.
         grep -v '^torch==' /app/requirements-human-cpu.lock > /tmp/torch-cuda-constraints.txt
         cat /app/requirements.lock >> /tmp/torch-cuda-constraints.txt
-        pip install --no-cache-dir --disable-pip-version-check --quiet \
+        # The gigabytes of wheels unpack beside the target, not in the small /tmp.
+        TMPDIR=/data/runtime/tmp pip install --no-cache-dir --disable-pip-version-check --quiet \
             --target "$target.partial" \
             --constraint /tmp/torch-cuda-constraints.txt \
             --index-url https://download.pytorch.org/whl/cu128 \
             --extra-index-url https://pypi.org/simple \
             torch==2.8.0
         touch "$target.partial/.complete"
-        rm -rf "$target"
+        rm -rf "$target" /data/runtime/tmp
         mv "$target.partial" "$target"
     fi
     export PYTHONPATH="$target${PYTHONPATH:+:$PYTHONPATH}"

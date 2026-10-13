@@ -20,19 +20,29 @@ and set `HUMAN_MODEL_DEVICE=cuda`. The first start then downloads CUDA PyTorch
 minutes and outlasts the health check's start period; later starts reuse it. See
 [HUMAN_MODELS.md](HUMAN_MODELS.md).
 
-## Local use without login
+## Run on your network
 
 ```sh
 docker run -d --name fieldwork --restart unless-stopped --init \
-  -p 18000:8000 -v fieldwork-data:/data \
+  --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 \
+  --cap-drop ALL --security-opt no-new-privileges:true \
+  -p 18000:8000 -v fieldwork-data:/data -e SESSION_SECURE=false \
   ghcr.io/reldnahc/chesstrainer:latest
+docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
 
-Open `http://localhost:18000` or `http://HOST-LAN-IP:18000` on another device.
-No variables or account setup are required. Everyone with access shares one local
-workspace. Keep this mode on a trusted LAN. To restrict access to the host computer,
-use `-p 127.0.0.1:18000:8000` instead. Multiline commands use POSIX shell syntax;
-in PowerShell use one line.
+Open `http://HOST-LAN-IP:18000` and sign in. The container always requires sign-in:
+it refuses to start with `ACCOUNTS_ENABLED=false`, because the no-login workspace
+lets anyone who can reach it use the app. That mode runs only from source, for
+development. `SESSION_SECURE=false` lets sign-in work over plain HTTP on a trusted
+LAN; anything reachable from the internet belongs behind HTTPS (below). To restrict
+access to the host computer, use `-p 127.0.0.1:18000:8000` instead. Multiline
+commands use POSIX shell syntax; in PowerShell use one line.
+
+The extra options are optional but recommended: the app writes only to `/data` and
+`/tmp`, needs no Linux capabilities, and must never be given the Docker socket,
+privileged mode or other host folders. See [Unraid security](UNRAID.md#security)
+for why, and for keeping a public install off your LAN.
 
 The image runs as UID/GID 1000:1000. A fresh named volume inherits `/data` ownership.
 For a bind mount, make its directory writable by that user, or select another with
@@ -44,8 +54,9 @@ This example uses a fresh volume. Do not run two instances against one database.
 
 ```sh
 docker run -d --name fieldwork-shared --restart unless-stopped --init \
+  --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 \
+  --cap-drop ALL --security-opt no-new-privileges:true \
   -p 127.0.0.1:18001:8000 -v fieldwork-shared-data:/data \
-  -e ACCOUNTS_ENABLED=true \
   ghcr.io/reldnahc/chesstrainer:latest
 ```
 
@@ -65,9 +76,10 @@ Writes are accepted only from the address the browser sent the request to, so th
 proxy must preserve Host. If your proxy rewrites Host (some Cloudflare Tunnel
 setups do), set `PUBLIC_ORIGIN` to the exact browser address instead.
 
-`ACCOUNTS_ENABLED=false` (the default) selects local mode without login. Named
-accounts stay private when switching modes. Restart after changes. See
-[Accounts](ACCOUNTS.md) for administrator creation and recovery.
+An install that used the old no-login default stops at startup after updating. Set
+`ACCOUNTS_ENABLED=true` (or remove the variable), create an administrator, and move
+the old workspace's games to an account with `claim-local`. See
+[Accounts](ACCOUNTS.md#enable-and-migrate) for that and for recovery.
 
 ## Settings
 
@@ -80,9 +92,9 @@ variables below for those settings only seed the first value. See
 
 | Variable | Image default | Meaning |
 | --- | --- | --- |
-| `ACCOUNTS_ENABLED` | `false` | `false`: one local no-login workspace. `true`: separate accounts with sign-in. |
-| `PUBLIC_ORIGIN` | empty | Optional, accounts only. Blank accepts writes from the address the browser used. Set the exact HTTP(S) browser address, including nonstandard port and no path, only when a proxy rewrites Host. |
-| `SESSION_SECURE` | `true` | HTTPS-only account cookies. Set false for intentional HTTP accounts. Unused without login. |
+| `ACCOUNTS_ENABLED` | `true` | Must stay `true` in the container; the no-login workspace runs only from source. |
+| `PUBLIC_ORIGIN` | empty | Optional. Blank accepts writes from the address the browser used. Set the exact HTTP(S) browser address, including nonstandard port and no path, only when a proxy rewrites Host. |
+| `SESSION_SECURE` | `true` | HTTPS-only account cookies. Set false to sign in over plain HTTP on a trusted LAN. |
 | `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines and host analysis jobs. One additional worker fetches games without analysis. Worker count is independent of account count; busy requests/jobs wait. |
 | `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
 | `STOCKFISH_HASH_MB` | `64` | RAM in MB per engine for temporary search-position tables, not disk storage. |
@@ -97,12 +109,11 @@ variables below for those settings only seed the first value. See
 | `SERVER_PORT` | `8000` | Internal container port; the image health check follows it. Normally change the published host port instead. |
 | `FORWARDED_ALLOW_IPS` | `127.0.0.1` | Proxy addresses trusted for `X-Forwarded-For`. Set to your reverse proxy so sign-in limits apply per visitor. |
 | `CHESSCOM_USER_AGENT` | Fieldwork identification | Optional identification for public Chess.com API calls; no Chess.com password needed. |
-| `LAN_ACCESS_TOKEN` | empty | Optional shared token for local mode; unused in account mode. |
-| `ALLOWED_HOSTS` | empty | Local mode: extra host names the API answers to. LAN IP addresses, localhost, short names and `.local`/`.lan` names need no entry. |
+| `LAN_ACCESS_TOKEN` | empty | Source installs only: optional shared token for the no-login workspace. |
+| `ALLOWED_HOSTS` | empty | Source installs only: extra host names the API answers to. LAN IP addresses, localhost, short names and `.local`/`.lan` names need no entry. |
 
 In account mode, slots times threads bounds native search threads; slots times hash
-MB estimates search-table RAM, plus app/engine overhead. Local mode uses separate
-interactive engines and job workers: `ENGINE_SLOTS` is not a global local-mode limit.
+MB estimates search-table RAM, plus app/engine overhead.
 CPU pinning determines where work can run; these settings determine how much work is
 scheduled. Defaults do not auto-scale with pinning. Signup runs no analysis. Every
 saved game is analyzed in the background, newest first; opening a game moves its
@@ -119,9 +130,9 @@ controls stay in host configuration.
 ## Optional Compose
 
 Compose launches the same single container. Copy `compose.yaml` and run
-`docker compose up -d`. Defaults use a named volume, host port 18000, and local mode.
-Set `ACCOUNTS_ENABLED=true` in an adjacent `.env` file for accounts, and optionally
-`BIND_ADDRESS=127.0.0.1` for a host-based proxy. Never commit `.env` files.
+`docker compose up -d`. Defaults use a named volume, host port 18000 and accounts with
+sign-in. In an adjacent `.env` file, set `SESSION_SECURE=false` for plain-HTTP LAN use
+or `BIND_ADDRESS=127.0.0.1` for a host-based proxy. Never commit `.env` files.
 
 `APP_PORT` sets the host port; `IMAGE_TAG` chooses a published tag. `APPDATA_PATH`
 can replace the named volume with an absolute bind path, writable by `PUID:PGID`
@@ -150,8 +161,9 @@ corresponding source download and license notices. Stockfish is installed from D
 its license is at `/usr/share/doc/stockfish/copyright` in the image.
 
 Maintainers can run `python scripts/smoke_install.py --image fieldwork:local` after
-building. It creates disposable containers and anonymous volumes, checks fresh
-local and account installs, restart persistence and Stockfish, then cleans them up.
+building. It creates disposable containers and anonymous volumes, checks that no-login
+mode refuses to start, a fresh account install, restart persistence and Stockfish under
+the read-only hardening, then cleans them up.
 The account check simulates a TLS-terminating proxy through HTTP headers and verifies
 secure-cookie flags; it does not provision or test a real TLS certificate. CI runs
 this check on builds as well.

@@ -9,8 +9,8 @@ services:
     volumes:
       - "${APPDATA_PATH:-fieldwork-data}:/data"
     environment:
-      # false: one local workspace without login. true: club accounts with sign-in.
-      ACCOUNTS_ENABLED: "${ACCOUNTS_ENABLED:-false}"
+      # The container always requires sign-in; no-login mode runs only from source.
+      ACCOUNTS_ENABLED: "true"
       # Optional. Blank accepts the address the browser used.
       PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:-}"
       SESSION_SECURE: "${SESSION_SECURE:-true}"
@@ -31,6 +31,11 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
+    # Only /data (and a scratch /tmp) is writable; a process cap contains runaway forks.
+    read_only: true
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,size=256m
+    pids_limit: 1024
     # Optional NVIDIA GPU for Maia (requires the NVIDIA Container Toolkit):
     # deploy:
     #   resources:
