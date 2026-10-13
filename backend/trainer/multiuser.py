@@ -1,5 +1,6 @@
 """Cookie authentication and account-bound services sharing one database."""
 
+import ipaddress
 import re
 import secrets
 import sqlite3
@@ -36,6 +37,28 @@ from trainer.contracts.common import Ok
 # Anyone holding a game's link may read its review and step through variations.
 # Each route still resolves the game itself and refuses what it does not allow.
 SHARED_REVIEW = re.compile(r"/api/games/[^/]+(/review)?")
+LAN_SUFFIXES = (".local", ".localhost", ".lan", ".home", ".home.arpa", ".internal")
+
+
+def lan_http(request):
+    """Plain HTTP between private addresses: the server's LAN address, from a LAN device.
+
+    A public host name or a visitor from outside the network never qualifies, so
+    those still get Secure cookies and need HTTPS.
+    """
+    if request.url.scheme != "http":
+        return False
+    hostname = (request.url.hostname or "").rstrip(".").lower()
+    client = request.client.host if request.client else ""
+    try:
+        if not ipaddress.ip_address(client).is_private:
+            return False
+    except ValueError:
+        return False
+    try:
+        return ipaddress.ip_address(hostname).is_private
+    except ValueError:
+        return hostname == "localhost" or "." not in hostname or hostname.endswith(LAN_SUFFIXES)
 
 
 def shared_review(method, path):
@@ -96,17 +119,13 @@ def configure_accounts(app, settings):
     def origin_denied(origin, request):
         """Explain a write whose Origin is not this site, or return None.
 
-        PUBLIC_ORIGIN pins the address when set. Otherwise the browser's Origin must
-        name the Host it sent the request to, which a reverse proxy has to preserve;
-        the scheme is not compared because TLS usually ends at that proxy.
+        The browser's Origin must name the Host it sent the request to, which a
+        reverse proxy has to preserve; the scheme is not compared because TLS usually
+        ends at that proxy. PUBLIC_ORIGIN is accepted as well, for a proxy that
+        rewrites Host, without locking out the server's own LAN address.
         """
-        if settings.public_origin:
-            if origin == settings.public_origin:
-                return None
-            return (
-                f"Open Fieldwork at {settings.public_origin}. This address does not match "
-                "PUBLIC_ORIGIN; the server administrator can correct that setting."
-            )
+        if settings.public_origin and origin == settings.public_origin:
+            return None
         host = request.headers.get("host", "").lower()
         try:
             parts = urlsplit(origin or "")
@@ -114,18 +133,20 @@ def configure_accounts(app, settings):
         except ValueError:
             netloc = ""
         if netloc and netloc == host:
-            # Browsers drop Secure cookies on plain HTTP except at loopback addresses,
-            # so sign-in would silently fail; PUBLIC_ORIGIN catches this at startup.
-            if (
-                settings.session_secure
-                and parts.scheme == "http"
-                and parts.hostname not in {"localhost", "127.0.0.1", "::1"}
-            ):
+            # Browsers drop Secure cookies on plain HTTP, so sign-in would silently
+            # fail anywhere but the LAN, where lan_http() issues an ordinary cookie.
+            if settings.session_secure and parts.scheme == "http" and not lan_http(request):
                 return (
-                    "Fieldwork accounts need HTTPS. For trusted-LAN HTTP, the server "
-                    "administrator can set SESSION_SECURE=false."
+                    "Fieldwork accounts need HTTPS here. Plain HTTP works only at the "
+                    "server's LAN address from your own network; for other HTTP, the "
+                    "server administrator can set SESSION_SECURE=false."
                 )
             return None
+        if settings.public_origin:
+            return (
+                "This request did not come from this Fieldwork address. "
+                f"Open Fieldwork at {settings.public_origin} or by its own address."
+            )
         return (
             "This request did not come from this Fieldwork address. If a reverse proxy "
             "changes the Host header, the server administrator can set PUBLIC_ORIGIN."
@@ -186,14 +207,19 @@ def configure_accounts(app, settings):
         finally:
             password_lock.release()
 
-    def signed_in(user, response):
+    def secure(request):
+        # Over plain HTTP on the LAN a Secure cookie would never come back, so the
+        # server's own LAN address signs in without HTTPS; everywhere else needs it.
+        return settings.session_secure and not lan_http(request)
+
+    def signed_in(user, request, response):
         token = accounts.issue(user["id"])
         response.set_cookie(
             COOKIE,
             token,
             max_age=SESSION_SECONDS,
             httponly=True,
-            secure=settings.session_secure,
+            secure=secure(request),
             samesite="lax",
             path="/",
         )
@@ -227,18 +253,18 @@ def configure_accounts(app, settings):
                 403, "Sign-ups are closed. Ask whoever runs this Fieldwork server for an account."
             )
         user = await attempt(data, request, True)
-        return signed_in(user, response)
+        return signed_in(user, request, response)
 
     @app.post("/api/auth/login", response_model=Identity, response_model_exclude_unset=True)
     async def login(data: Credentials, request: Request, response: Response):
         user = await attempt(data, request, False)
-        return signed_in(user, response)
+        return signed_in(user, request, response)
 
     @app.post("/api/auth/logout", response_model=Ok, response_model_exclude_unset=True)
     def logout(request: Request, response: Response):
         accounts.revoke(request.cookies.get(COOKIE, ""))
         response.delete_cookie(
-            COOKIE, path="/", secure=settings.session_secure, httponly=True, samesite="lax"
+            COOKIE, path="/", secure=secure(request), httponly=True, samesite="lax"
         )
         return {"ok": True}
 

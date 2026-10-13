@@ -158,8 +158,10 @@ raw exception details. There are no additional container variables for this.
   local workspace when running from source. The container image defaults to true and
   refuses to start with false.
 - `PUBLIC_ORIGIN` is optional. Blank accepts writes whose Origin matches the request's
-  Host; set the exact public origin only when a reverse proxy rewrites Host.
-- `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
+  Host; set the exact public origin only when a reverse proxy rewrites Host. The
+  request's own Host is still accepted, so the LAN address keeps working.
+- `SESSION_SECURE=true` protects account cookies. Plain HTTP sign-in works without it when you open the server by a LAN address (a private IP, a single-label name or a `.lan`/`.local`-style name) from a device on that network; public names and outside visitors always get Secure cookies. Disable only for
+  local HTTP development.
 - `FORWARDED_ALLOW_IPS` (read by Uvicorn; default `127.0.0.1`) lists the proxy addresses
   whose `X-Forwarded-For` header is trusted. Set it to your reverse proxy's address so
   sign-in rate limits apply per browser instead of to everyone behind the proxy.
