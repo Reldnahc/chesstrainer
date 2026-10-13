@@ -433,8 +433,9 @@ including delayed Maia results, the silent Maia popup and cancellation.
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It then runs the CSS design-system checks `frontend/scripts/spacing-scale.mjs`,
-`scripts/surfaces.mjs` and `scripts/type-scale.mjs` (see the spacing, surface and
-type rules in [UI_COMPONENTS.md](UI_COMPONENTS.md#spacing)).
+`scripts/surfaces.mjs`, `scripts/type-scale.mjs` and `scripts/motion-scale.mjs`
+(see the spacing, surface, type and motion rules in
+[UI_COMPONENTS.md](UI_COMPONENTS.md#spacing)).
 It also rejects direct or lazy application imports of either studio and verifies
 the real application graph. Production Walter recordings remain permitted. These
 checks inspect runtime dependencies; the corresponding-source download can still

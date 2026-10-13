@@ -99,6 +99,7 @@
   margin-inline: calc(-1 * var(--space-2));
   border-radius: 5px;
   text-decoration: none;
+  transition: background var(--motion-fast) var(--ease-standard);
 }
 .insight-games a:hover { background: var(--raised); }
 .insight-game-name { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: var(--text-base); }

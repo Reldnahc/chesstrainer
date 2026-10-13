@@ -114,7 +114,7 @@ not React components.
 | Lesson editor | [LessonEditor](../frontend/src/study/LessonEditor.tsx) | Administrator-only course editing at `/settings/courses/editor`, reached from the admin-only Settings → Courses section ([CourseSettings](../frontend/src/study/CourseSettings.tsx), which reuses SettingsSection and the settings-tool rows). Composes ReviewWorkspace (board left, scrolling form right), Board for recording moves with server-supplied legal moves, ChoiceGroup for side, section, board view and chapter choices, native details/select/inputs for fields, and Notice for the live check. Its heading is one row: the quiet *Courses* back link, the title (which shortens) and Save, so Save always fits. It edits the course file directly, so fields it does not show are kept. The step list's selectable rows are local to the editor because no other screen lists editable steps. |
 | Source attribution | [SourceLine](../frontend/src/SourceLine.tsx), [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Shared text, optional license/revision and valid absolute HTTP(S) source/license links. Optional licenseUrl links the existing license label separately from View source. LessonAttribution resolves Repository license at render time without changing saved course fingerprints. Lesson sources remain multiple records; puzzle provenance remains completion-only. The audio studio uses SourceLine for recording credits; source-line.css is shared-safe. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. An optional `actions` slot holds whole-game commands beside Next mistake on both tabs (game review's Export). It is not yet an exported generic tabs component. It accepts any navigator with the exploration fields it reads, so the live game shares the notation and quality tabs. |
-| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. foundation.css also owns the [spacing scale](#spacing), the [type scale](#type) and the `.stack` / `.cluster` layout primitives. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
+| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. foundation.css also owns the [spacing scale](#spacing), the [type scale](#type), the [motion scale](#motion) and the `.stack` / `.cluster` layout primitives. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
 
 Quick mute belongs to each page's board-controls group rather than trailing it,
 so it never wraps onto its own row or keeps a different size from its neighbours.
@@ -186,6 +186,38 @@ Owner decision, October 12, 2026: text sizes follow one scale, like spacing.
   `npm run build`) rejects px, rem or pt sizes in `font-size` or the `font`
   shorthand. `em`, `%`, container units and keywords stay allowed for sizes that
   follow their container, and `clamp()`/`max()` may combine them with tokens.
+
+## Motion
+
+Owner decision, October 13, 2026: interface motion follows one scale, like spacing
+and type. [foundation.css](../frontend/src/foundation.css) defines it.
+
+- **Durations.** `--motion-fast` (150ms) for hover, press and colour feedback,
+  `--motion-base` (250ms) for small value changes and things appearing (the
+  evaluation bar, the move-rating badge), `--motion-slow` (450ms) for layout that
+  opens or closes (import forms), and `--motion-loop` (1200ms) for one cycle of an
+  indeterminate loader. Staggered delays are fractions of a token, such as
+  `calc(var(--motion-loop) / 4)`.
+- **Curves.** `--ease-standard` (ease-in-out) for anything that moves both ways or
+  loops, and `--ease-enter` (ease-out) for things arriving.
+- **Hover feedback.** Every hover that changes a background, border, colour or fill
+  fades over `--motion-fast`. Base buttons and button links already do; other
+  hoverable rows, cards, tabs and graph nodes name the properties they change.
+- **Reduced motion.** [interface-motion.css](../frontend/src/interface-motion.css)
+  applies the Still preference and, before preferences load, the device setting to
+  every interface element. Components do not write their own reduced-motion
+  queries; a component only adds a resting frame for Still when stopping its
+  animation would leave it looking wrong (the loading board).
+- **Coaches are exempt.** Coach portraits, rigs, idles, reactions and speech keep
+  their own hand-tuned timing and their own motion choice; the coach picker and
+  studio chrome are interface and follow the scale.
+- **Game tempo is not interface motion.** Piece movement (`reviewMotion.ts`),
+  lesson autoplay, the Play reply pause and GIF export pacing stay with their
+  features.
+- **Check.** `node scripts/motion-scale.mjs` (part of `npm run test:styles` and
+  `npm run build`) rejects raw times (other than 0) and raw easing keywords or
+  functions in `transition` and `animation` properties, `transition: all`, and
+  `prefers-reduced-motion` outside the global policy and the loading board.
 
 ## Surfaces
 
