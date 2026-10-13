@@ -79,7 +79,7 @@ def test_unraid_template_defaults_select_accounts():
         assert field.attrib["Description"]
 
 
-def test_shipped_container_configs_leave_stored_settings_to_the_app():
+def test_shipped_configs_leave_stored_settings_to_the_app():
     # Settings → Advanced → Server owns these; an environment value would only seed them.
     root = Path(__file__).resolve().parents[2]
     template = ElementTree.parse(root / "unraid/fieldwork.xml").getroot()
@@ -89,6 +89,8 @@ def test_shipped_container_configs_leave_stored_settings_to_the_app():
         for field in template.findall("Config")
         if field.attrib["Type"] == "Variable"
     } | {name.lower() for name in re.findall(r"^ {6}([A-Z][A-Z0-9_]*):", compose, re.MULTILINE)}
+    example = (root / ".env.example").read_text(encoding="utf-8")
+    shipped |= {name.lower() for name in re.findall(r"^#? ?([A-Z][A-Z0-9_]*)=", example, re.M)}
     assert shipped & set(Settings.model_fields) <= site_settings.ENV_ONLY
 
 

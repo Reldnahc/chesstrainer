@@ -109,10 +109,9 @@ Copy `.env.example` to `.env` and set the native engine path:
 ```dotenv
 STOCKFISH_PATH=C:/tools/stockfish/stockfish-windows-x86-64-avx2.exe
 # Linux/macOS example: /usr/local/bin/stockfish
-CLASSIFICATION_WORKERS=2
 ```
 
-Classification runs locally after analysis; the vendored Lichess code makes no network requests. Restart after editing host configuration. Browser Settings contains account preferences and training actions; container settings remain in the environment.
+Classification runs locally after analysis; the vendored Lichess code makes no network requests. Restart after editing `.env`. Engine, review, sync and classification settings are stored in the database: change them in Settings → Advanced → Server. Browser Settings also contains account preferences and training actions.
 
 ```sh
 cd frontend
