@@ -105,6 +105,7 @@ def test_empty_library_and_archived_paths_stay_distinct(settings):
             "resume": [],
             "can_manage": True,
             "problems": [],
+            "hidden_built_ins": [],
         }
         assert client.get("/api/course").status_code == 410
         assert client.get("/api/study/courses/no-course").status_code == 404

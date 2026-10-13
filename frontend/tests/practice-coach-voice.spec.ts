@@ -35,7 +35,11 @@ async function opening(page: Page, key: string) {
 // A fresh document cannot autoplay. Open the puzzle in-app after a real gesture,
 // as from the puzzle list or Next puzzle.
 async function openInApp(page: Page, path: string) {
+  // Wait for the page and its audio preferences, as a user clicking in it would.
+  const preferences = page.waitForResponse(response => response.url().endsWith("/api/preferences/audio"));
   await page.goto("/study/puzzles");
+  await preferences;
+  await expect(page.getByRole("heading", {level: 1})).toBeAttached();
   await page.locator("main").click({position: {x: 1, y: 1}});
   await page.evaluate(href => {
     history.pushState(null, "", href);
