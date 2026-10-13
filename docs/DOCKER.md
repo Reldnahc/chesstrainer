@@ -26,7 +26,7 @@ minutes and outlasts the health check's start period; later starts reuse it. See
 docker run -d --name fieldwork --restart unless-stopped --init \
   --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 \
   --cap-drop ALL --security-opt no-new-privileges:true \
-  -p 18000:8000 -v fieldwork-data:/data -e SESSION_SECURE=false \
+  -p 18000:8000 -v fieldwork-data:/data \
   ghcr.io/reldnahc/chesstrainer:latest
 docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
@@ -34,8 +34,8 @@ docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 Open `http://HOST-LAN-IP:18000` and sign in. The container always requires sign-in:
 it refuses to start with `ACCOUNTS_ENABLED=false`, because the no-login workspace
 lets anyone who can reach it use the app. That mode runs only from source, for
-development. `SESSION_SECURE=false` lets sign-in work over plain HTTP on a trusted
-LAN; anything reachable from the internet belongs behind HTTPS (below). To restrict
+development. Plain HTTP sign-in works at the LAN address from devices on that
+network; anything reachable from the internet belongs behind HTTPS (below). To restrict
 access to the host computer, use `-p 127.0.0.1:18000:8000` instead. Multiline
 commands use POSIX shell syntax; in PowerShell use one line.
 
@@ -70,11 +70,11 @@ otherwise every visitor shares the proxy's address for sign-in rate limiting.
 
 Open the configured HTTPS address and create an account. Each account has private
 games and progress across devices. Secure cookies are on by default. Cloudflare is
-optional. Intentional trusted-LAN HTTP accounts require `SESSION_SECURE=false`.
+optional. The LAN address keeps working over plain HTTP for devices on your network.
 
 Writes are accepted only from the address the browser sent the request to, so the
 proxy must preserve Host. If your proxy rewrites Host (some Cloudflare Tunnel
-setups do), set `PUBLIC_ORIGIN` to the exact browser address instead.
+setups do), set `PUBLIC_ORIGIN` to the exact browser address; the LAN address keeps working too.
 
 An install that used the old no-login default stops at startup after updating. Set
 `ACCOUNTS_ENABLED=true` (or remove the variable), create an administrator, and move
@@ -94,7 +94,7 @@ variables below for those settings only seed the first value. See
 | --- | --- | --- |
 | `ACCOUNTS_ENABLED` | `true` | Must stay `true` in the container; the no-login workspace runs only from source. |
 | `PUBLIC_ORIGIN` | empty | Optional. Blank accepts writes from the address the browser used. Set the exact HTTP(S) browser address, including nonstandard port and no path, only when a proxy rewrites Host. |
-| `SESSION_SECURE` | `true` | HTTPS-only account cookies. Set false to sign in over plain HTTP on a trusted LAN. |
+| `SESSION_SECURE` | `true` | HTTPS-only account cookies, except plain HTTP at a LAN address from a LAN device. Set false only for local development. |
 | `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines and host analysis jobs. One additional worker fetches games without analysis. Worker count is independent of account count; busy requests/jobs wait. |
 | `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
 | `STOCKFISH_HASH_MB` | `64` | RAM in MB per engine for temporary search-position tables, not disk storage. |
@@ -131,8 +131,7 @@ controls stay in host configuration.
 
 Compose launches the same single container. Copy `compose.yaml` and run
 `docker compose up -d`. Defaults use a named volume, host port 18000 and accounts with
-sign-in. In an adjacent `.env` file, set `SESSION_SECURE=false` for plain-HTTP LAN use
-or `BIND_ADDRESS=127.0.0.1` for a host-based proxy. Never commit `.env` files.
+sign-in. In an adjacent `.env` file, set `BIND_ADDRESS=127.0.0.1` for a host-based proxy. Never commit `.env` files.
 
 `APP_PORT` sets the host port; `IMAGE_TAG` chooses a published tag. `APPDATA_PATH`
 can replace the named volume with an absolute bind path, writable by `PUID:PGID`

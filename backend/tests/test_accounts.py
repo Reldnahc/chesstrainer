@@ -84,6 +84,47 @@ def test_accounts_without_public_origin_accept_only_their_own_host(settings):
         )
         assert response.status_code == 403
         assert "SESSION_SECURE=false" in response.json()["detail"]
+    # PUBLIC_ORIGIN adds the proxy address without locking out the server's own address.
+    settings.session_secure = False
+    settings.public_origin = "https://chess.example.test"
+    with TestClient(
+        create_app(settings, workers=False), base_url="http://club.lan:18000"
+    ) as client:
+        for origin in ("https://chess.example.test", "http://club.lan:18000"):
+            response = client.post(
+                "/api/auth/signup",
+                json=payload | {"username": f"pinned-{len(origin)}"},
+                headers={"Origin": origin},
+            )
+            assert response.status_code == 201, response.text
+        denied = client.post(
+            "/api/auth/signup", json=payload, headers={"Origin": "http://evil.example"}
+        )
+        assert denied.status_code == 403
+        assert "https://chess.example.test" in denied.json()["detail"]
+    # With secure cookies on, plain HTTP works only between LAN addresses.
+    settings.session_secure = True
+    for base, peer, allowed in (
+        ("http://192.168.1.243:18000", "192.168.1.20", True),
+        ("http://club.lan:18000", "10.0.0.7", True),
+        ("http://192.168.1.243:18000", "8.8.8.8", False),
+        ("http://chess.example.test", "192.168.1.20", False),
+    ):
+        with TestClient(
+            create_app(settings, workers=False), base_url=base, client=(peer, 50000)
+        ) as client:
+            response = client.post(
+                "/api/auth/signup",
+                json=payload | {"username": f"lan-{peer.replace('.', '-')}-{len(base)}"},
+                headers={"Origin": base},
+            )
+            if allowed:
+                assert response.status_code == 201, response.text
+                cookie = response.headers["set-cookie"].lower()
+                assert "httponly" in cookie and "secure" not in cookie
+            else:
+                assert response.status_code == 403
+                assert "SESSION_SECURE=false" in response.json()["detail"]
 
 
 def test_sessions_isolation_csrf_and_restart(settings):

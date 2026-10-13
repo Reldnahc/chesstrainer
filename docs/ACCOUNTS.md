@@ -107,8 +107,9 @@ account that already signed up an administrator, use `promote USERNAME` (see
 
 Configure `ACCOUNTS_ENABLED=true` and `SESSION_SECURE=true` behind HTTPS. The
 proxy must preserve the public Host header; if it cannot, set
-`PUBLIC_ORIGIN=https://your-chess-hostname`. For direct local HTTP only, use
-`SESSION_SECURE=false`; sign-in over plain HTTP otherwise explains this setting. Account mode does not use the legacy shared LAN token.
+`PUBLIC_ORIGIN=https://your-chess-hostname`; the server's own LAN address keeps
+working alongside it. Without HTTPS, sign-in still works when you open the server by a LAN address (a private IP, a single-label name or a `.lan`/`.local`-style name) from a device on that network; public names and outside visitors always get Secure cookies. `SESSION_SECURE=false` drops Secure cookies everywhere,
+for local HTTP development only. Account mode does not use the legacy shared LAN token.
 The container image always runs account mode and refuses to start in single-user mode;
 that mode runs only from source. Do not expose it publicly. Do not switch a shared deployment
 back to single-user mode: that mode intentionally opens the original `local` account.

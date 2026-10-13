@@ -46,7 +46,7 @@ Ordinary review never downloads weights, and Stockfish remains the evaluation
 authority when the human model is present or absent.
 
 ```sh
-docker run -d --name fieldwork --restart unless-stopped --init -p 18000:8000 -v fieldwork-data:/data -e SESSION_SECURE=false ghcr.io/reldnahc/chesstrainer:latest
+docker run -d --name fieldwork --restart unless-stopped --init -p 18000:8000 -v fieldwork-data:/data ghcr.io/reldnahc/chesstrainer:latest
 docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
 
