@@ -158,6 +158,14 @@ the privilege on their next request. The other commands revoke existing sessions
 password (host recovery), unlike the temporary one an administrator sets in Settings. Disabling prevents further requests; stop/restart
 the service if you also need to interrupt that account's already-running analysis.
 Enabling requeues analysis that was interrupted while the account was disabled.
+
+After an update the server upgrades the database when it starts and serves the
+site only once that is done. A command run meanwhile stops with "The database is
+busy"; run it again once the site loads. A command upgrades the database itself
+only when no server has (a first setup, or a stopped server), and says so first.
+`create-admin`, `claim-local` and `reset-password` ask for a password, so they need a
+terminal: in Docker, run them with `docker exec -it`; without one they stop at once.
+
 There is no email delivery dependency in this version.
 The existing SQLite backup/restore tool includes all accounts and their data in
 one snapshot. Treat backups as private: they include password hashes and sessions.
