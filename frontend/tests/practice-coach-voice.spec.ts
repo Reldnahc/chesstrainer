@@ -36,7 +36,7 @@ async function opening(page: Page, key: string) {
 // as from the puzzle list or Next puzzle.
 async function openInApp(page: Page, path: string) {
   await page.goto("/study/puzzles");
-  await page.getByRole("heading", {level: 1}).first().click();
+  await page.locator("main").click({position: {x: 1, y: 1}});
   await page.evaluate(href => {
     history.pushState(null, "", href);
     dispatchEvent(new PopStateEvent("popstate"));

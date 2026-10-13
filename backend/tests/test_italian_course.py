@@ -184,6 +184,7 @@ def test_default_library_ships_reviewed_courses_and_explicit_empty_override_work
             "resume": [],
             "can_manage": True,
             "problems": [],
+            "hidden_built_ins": [],
         }
 
 

@@ -190,7 +190,7 @@ test("a fresh review greets, the first move replaces it and returning to the sta
   // A fresh document cannot autoplay. Open the review in-app after a real gesture,
   // as from the game library.
   await page.goto("/");
-  await page.getByRole("heading", {level: 1}).first().click();
+  await page.locator("main").click({position: {x: 1, y: 1}});
   await page.evaluate(href => {
     history.pushState(null, "", href);
     dispatchEvent(new PopStateEvent("popstate"));

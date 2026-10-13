@@ -241,9 +241,15 @@ def test_migration_merges_account_copies_and_downgrade_splits_them(settings):
     with engine.begin() as connection:
         config.attributes["connection"] = connection
         command.upgrade(config, "e2a4c6b8d0f1")
-    other = Accounts(settings.database_path).create("clubmate", "testing-password")["id"]
+    # Accounts.create writes today's users columns, so add the second account as
+    # that revision's schema stores it.
+    other = "clubmate"
     with engine.begin() as connection:
         sql = connection.exec_driver_sql
+        sql(
+            "INSERT INTO users (id, username, password, admin, disabled, chesscom_username, created)"
+            f" VALUES ('{other}', '{other}', 'unused', 0, 0, '', 0)"
+        )
         for user, row, game, made in [
             ("local", "old", "g1", "2026-01-01"),
             (other, "new", "g2", "2026-02-01"),

@@ -532,7 +532,8 @@ test('compact workspace keeps navigation reachable and settings focused on user 
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
     if (testInfo.project.name === 'mobile') {
       expect((await page.locator('header').boundingBox())!.height).toBeLessThanOrEqual(60);
-      await expect(page.locator('main h1')).toHaveCSS('font-size', '24px');
+      // Pages show no visible title; the navigation names the page (docs/UI_COMPONENTS.md).
+      await expect(page.locator('main h1')).toHaveClass('sr-only');
       // The phone header scrolls away with a long page (docs/PRODUCT.md) and is back at the top.
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
       await page.evaluate(() => window.scrollTo(0, 0));
