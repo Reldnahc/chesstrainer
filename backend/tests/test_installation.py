@@ -57,7 +57,9 @@ def test_container_refuses_no_login_mode(settings, monkeypatch, tmp_path):
         settings.model_copy(update={"accounts_enabled": False}).for_runtime()
     assert settings.model_copy(update={"accounts_enabled": True}).for_runtime().accounts_enabled
     marker.unlink()
-    assert not settings.model_copy(update={"accounts_enabled": False}).for_runtime().accounts_enabled
+    assert (
+        not settings.model_copy(update={"accounts_enabled": False}).for_runtime().accounts_enabled
+    )
 
 
 def test_unraid_template_defaults_select_accounts():

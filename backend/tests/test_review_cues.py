@@ -189,8 +189,9 @@ def test_sliding_along_a_held_pin_does_not_redraw_it():
     assert review_cues(pinned)["pins"] == review_cues(pinner)["pins"] == []
     # The king stepping onto a new line behind its own piece is a new pin.
     king = line("3k4/4r3/8/8/8/8/8/4RK2 b - - 0 1", ["d8e8"])
-    assert review_cues(king)["pins"] == [{"startSquare": "e1", "endSquare": "e8", "kind": "pin", "pinned": "e7"}]
-
+    assert review_cues(king)["pins"] == [
+        {"startSquare": "e1", "endSquare": "e8", "kind": "pin", "pinned": "e7"}
+    ]
 
 
 def test_only_piece_pins_to_the_king_or_something_worth_more_get_an_arrow():
