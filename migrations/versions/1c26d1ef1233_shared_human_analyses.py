@@ -31,12 +31,26 @@ def upgrade():
             merged[row_id] = keep[key]
         else:
             keep[key] = row_id
-    for duplicate, kept in merged.items():
+    # game_review_moves.human_analysis_id has no index, so repoint every duplicate
+    # in one pass over the table; one UPDATE per duplicate scanned it each time and
+    # held large databases (and the server start) for a very long time.
+    bind.exec_driver_sql(
+        "CREATE TABLE human_analysis_merge (duplicate VARCHAR PRIMARY KEY, kept VARCHAR NOT NULL)"
+    )
+    if merged:
         bind.exec_driver_sql(
-            "UPDATE game_review_moves SET human_analysis_id = ? WHERE human_analysis_id = ?",
-            (kept, duplicate),
+            "INSERT INTO human_analysis_merge (duplicate, kept) VALUES (?, ?)",
+            list(merged.items()),
         )
-        bind.exec_driver_sql("DELETE FROM human_analyses WHERE id = ?", (duplicate,))
+    bind.exec_driver_sql(
+        "UPDATE game_review_moves SET human_analysis_id = (SELECT kept FROM human_analysis_merge"
+        " WHERE duplicate = game_review_moves.human_analysis_id)"
+        " WHERE human_analysis_id IN (SELECT duplicate FROM human_analysis_merge)"
+    )
+    bind.exec_driver_sql(
+        "DELETE FROM human_analyses WHERE id IN (SELECT duplicate FROM human_analysis_merge)"
+    )
+    bind.exec_driver_sql("DROP TABLE human_analysis_merge")
     op.create_table(
         "human_analyses_shared",
         sa.Column("id", sa.String(), primary_key=True),
