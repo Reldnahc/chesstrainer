@@ -17,6 +17,7 @@ import EmptyState from "./EmptyState";
 import ChoiceGroup from "./ChoiceGroup";
 import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 import { useInterfaceMotion } from "./MotionProvider";
 import { LoadingState } from "./LoadState";
 
@@ -238,7 +239,7 @@ export default function ImportSettings({
                 <h3 id="import-form-title">{source === "pgn" ? "Import PGN" : selectedProvider ? `Import from ${selectedProvider.name}` : "Import games"}</h3>
                 <IconButton variant="quiet" aria-label="Close import form" title="Close import form" onClick={closeForm}><X size={18} aria-hidden="true" /></IconButton>
               </div>
-              {health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}
+              <Reveal>{health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}</Reveal>
               {source !== "pgn" ? (
                 selectedProvider
                   ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
@@ -265,10 +266,10 @@ export default function ImportSettings({
                   <ImportSubmitButton busy={busy} busyLabel="Importing…"
                     disabled={pgnMode === "file" ? !file : !text.trim()} />
                 </div>
-                {result && <Notice announcement="status">
+                <Reveal>{result && <Notice announcement="status">
                   <p>{result.imported} imported · {result.duplicates} duplicate(s).</p>
                   {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
-                </Notice>}
+                </Notice>}</Reveal>
               </form>}
             </div></div>}
           </div>

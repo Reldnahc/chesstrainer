@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { api, read, type Schema } from "./api";
 import Button from "./Button";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 
 /** Choose a new password: Settings (Account), and after an administrator's reset. */
 export default function ChangePasswordForm({ currentLabel = "Current password", submitLabel = "Change password", onChanged }: {
@@ -32,7 +33,7 @@ export default function ChangePasswordForm({ currentLabel = "Current password", 
     finally { setBusy(false); }
   }
   return <form className="password-form" onSubmit={submit}>
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     <label>
       {currentLabel}
       <input type="password" autoComplete="current-password" maxLength={128} required value={current} onChange={event => setCurrent(event.target.value)} />

@@ -7,6 +7,7 @@ import { positionScore, scoreText, strength } from "../evaluation";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import { LoadingState, UnavailableState } from "../LoadState";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
@@ -152,11 +153,11 @@ export default function GameWorkspace({
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
-      {error && (
+      <Reveal>{error && (
         <Notice announcement="alert" tone="error" actions={<Button onClick={dismissError}>Dismiss</Button>}>
           {error}
         </Notice>
-      )}
+      )}</Reveal>
       <ReviewWorkspace
         boardLabel="Game board and navigation"
         aboveBoard={

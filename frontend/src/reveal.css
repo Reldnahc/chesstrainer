@@ -1,0 +1,88 @@
+/* Interface entrances and exits: content grows or fades in instead of popping in.
+   Everything here uses the motion scale and stops under the Still policy in
+   interface-motion.css. See docs/UI_COMPONENTS.md#motion. */
+:root { interpolate-size: allow-keywords; }
+
+/* Reveal: a conditional block grows open, and collapses before it unmounts. */
+.reveal {
+  display: grid;
+  grid-template-rows: 1fr;
+  min-width: 0;
+  opacity: 1;
+  transition: grid-template-rows var(--motion-base) var(--ease-standard), opacity var(--motion-base) var(--ease-standard);
+}
+.reveal[data-open="false"] { grid-template-rows: 0fr; opacity: 0; }
+@starting-style {
+  .reveal[data-open="true"] { grid-template-rows: 0fr; opacity: 0; }
+}
+.reveal-clip { min-width: 0; min-height: 0; overflow: clip; overflow-clip-margin: var(--space-1); }
+
+/* Entrances for content that mounts on its own. Browsers that cannot animate to an
+   automatic height fade it in instead of snapping its height halfway through. */
+@keyframes content-in {
+  from { opacity: 0; }
+}
+@keyframes reveal-in {
+  from { opacity: 0; }
+}
+@supports (interpolate-size: allow-keywords) {
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      block-size: 0;
+      min-block-size: 0;
+      padding-block: 0;
+      border-block-width: 0;
+      overflow: clip;
+    }
+    99% { overflow: clip; }
+  }
+}
+
+/* Notices and newly arrived list rows grow into place. */
+.notice:not(.reveal *),
+[data-arrived] {
+  animation: reveal-in var(--motion-base) var(--ease-enter);
+}
+/* Loaded content, swapped sections and tab panels fade in where they replace
+   something else, rather than snapping. */
+.panel,
+.load-state,
+.reveal-fade,
+[role="tabpanel"]:not([hidden]) {
+  animation: content-in var(--motion-base) var(--ease-enter);
+}
+
+/* Native disclosures open and close to their content height. */
+details::details-content {
+  block-size: 0;
+  opacity: 0;
+  overflow-y: clip;
+  transition:
+    block-size var(--motion-base) var(--ease-standard),
+    opacity var(--motion-base) var(--ease-standard),
+    content-visibility var(--motion-base) allow-discrete;
+}
+details[open]::details-content { block-size: auto; opacity: 1; }
+
+/* Modal dialogs and the promotion picker rise in over a fading backdrop. */
+@keyframes dialog-in {
+  from { opacity: 0; scale: 0.97; }
+}
+dialog[open] { animation: dialog-in var(--motion-base) var(--ease-enter); }
+dialog[open]::backdrop { animation: content-in var(--motion-base) var(--ease-enter); }
+
+/* Native popovers fade both ways; overlay keeps them in the top layer while closing. */
+[popover] {
+  opacity: 0;
+  scale: 0.97;
+  transition:
+    opacity var(--motion-fast) var(--ease-standard),
+    scale var(--motion-fast) var(--ease-standard),
+    overlay var(--motion-fast) allow-discrete,
+    display var(--motion-fast) allow-discrete;
+}
+[popover]:popover-open { opacity: 1; scale: 1; }
+@starting-style {
+  [popover]:popover-open { opacity: 0; scale: 0.97; }
+}

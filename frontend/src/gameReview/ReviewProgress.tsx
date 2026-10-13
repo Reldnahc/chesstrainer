@@ -1,5 +1,6 @@
 import Button from "../Button";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import type { Game } from "./types";
 
 export default function ReviewProgress({
@@ -78,7 +79,7 @@ export default function ReviewProgress({
           )}
         </>
       )}
-      {game.job?.error && <Notice announcement="alert" tone="error" appearance="inline" className="small">{game.job.error}</Notice>}
+      <Reveal>{game.job?.error && <Notice announcement="alert" tone="error" appearance="inline" className="small">{game.job.error}</Notice>}</Reveal>
     </section>
   );
 }

@@ -5,6 +5,7 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ChoiceGroup from "../ChoiceGroup";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
 import CoachAvatar from "../coach/CoachAvatar";
@@ -174,7 +175,7 @@ function PlaySetup() {
   return (
     <>
       <PageTitle title={`Play ${coach.name}`} />
-      {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+      <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
       {active && (
         <section className="panel panel--card play-resume" aria-label="Game in progress">
           <span>You have a game in progress against {coach.name}.</span>

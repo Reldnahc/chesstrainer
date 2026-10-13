@@ -4,6 +4,7 @@ import { api, read, type Schema } from "./api";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 import SettingsSection from "./SettingsSection";
 
 type ManagedAccount = Schema["ManagedAccount"];
@@ -67,8 +68,8 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
   if (!accounts) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading accounts…</LoadingState>;
   return <SettingsSection id="settings-accounts" title="Accounts"
     description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
-    {notice && <Notice announcement="status" tone="success">{notice}</Notice>}
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <Reveal>{notice && <Notice announcement="status" tone="success">{notice}</Notice>}</Reveal>
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Sign-ups</h3>

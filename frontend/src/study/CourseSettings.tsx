@@ -5,6 +5,7 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import SettingsSection from "../SettingsSection";
 import { courseEditorPath } from "../navigation";
 import { deleteCourseFile, downloadCourseFile, readChosenFile, restoreBuiltInCourse, saveCourseFile, savedMessage } from "./courseFiles";
@@ -70,8 +71,8 @@ export default function CourseSettings() {
       <Button variant="secondary" disabled={busy} onClick={() => chooser.current?.click()}><Upload size={16} />{busy ? "Working…" : "Import course file"}</Button>
       <input ref={chooser} hidden type="file" accept=".json,application/json" aria-label="Course file" onChange={event => importChosen(event.target.files?.[0])} />
     </div>}>
-    {notice && <Notice announcement="status" tone="success">{notice}</Notice>}
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <Reveal>{notice && <Notice announcement="status" tone="success">{notice}</Notice>}</Reveal>
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     {(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}
     {library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id}>
       <div>

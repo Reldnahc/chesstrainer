@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 import { useEffect, useState } from "react";
 import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
@@ -88,7 +89,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
               </Button>
             </div>
             <div className="settings-tool-status">
-              <Notice announcement="status" appearance="inline">{message}</Notice>
+              <Notice announcement="status" appearance="inline"><Reveal>{message}</Reveal></Notice>
               <Link href="/settings#settings-activity">View import & analysis activity</Link>
             </div>
           </SettingsSection>

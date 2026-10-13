@@ -13,6 +13,7 @@ import Onboarding from "./Onboarding";
 import ChangePasswordForm from "./ChangePasswordForm";
 import SettingsSection from "./SettingsSection";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 
 export type Account = Schema["Account"];
 type Identity = Schema["Identity"];
@@ -50,11 +51,11 @@ export function AccountSettings() {
           Sign out all devices
         </Button>
       </div>
-      {error && (
+      <Reveal>{error && (
         <Notice announcement="alert" tone="error">
           {error}
         </Notice>
-      )}
+      )}</Reveal>
     </SettingsSection>
     <PasswordSettings />
   </>);
@@ -64,7 +65,7 @@ function PasswordSettings() {
   const [changed, setChanged] = useState(false);
   return (
     <SettingsSection id="password-settings" title="Password" description="Change the password you sign in with.">
-      {changed && <Notice announcement="status" tone="success">Password changed. Your other devices are signed out.</Notice>}
+      <Reveal>{changed && <Notice announcement="status" tone="success">Password changed. Your other devices are signed out.</Notice>}</Reveal>
       <ChangePasswordForm onChanged={() => setChanged(true)} />
     </SettingsSection>
   );
@@ -127,12 +128,12 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     return (
       <main className="workspace-page">
         <p role="status">Connecting to Fieldwork…</p>
-        {error && (
+        <Reveal>{error && (
           <Notice announcement="alert" tone="error" appearance="inline"
             actions={<Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>}>
             {error}
           </Notice>
-        )}
+        )}</Reveal>
       </main>
     );
   if (!identity.enabled) return <>{children}</>;
@@ -152,11 +153,11 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           <p className="eyebrow">FIELDWORK</p>
           <h1>{creating ? "Create your account" : "Welcome back"}</h1>
           <p>Your games and training progress, on every device.</p>
-          {error && (
+          <Reveal>{error && (
             <Notice announcement="alert" tone="error">
               {error}
             </Notice>
-          )}
+          )}</Reveal>
           <form onSubmit={submit}>
             <label>
               Username
@@ -222,7 +223,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           <p className="eyebrow">FIELDWORK</p>
           <h1>Choose a new password</h1>
           <p>Your host gave you a temporary password. Enter it, then choose your own.</p>
-          {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+          <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
           <ChangePasswordForm currentLabel="Temporary password" submitLabel="Save and continue"
             onChanged={user => setIdentity(current => current ? { ...current, user } : current)} />
           <Button disabled={busy} onClick={() => logout()}>Sign out</Button>
