@@ -8,6 +8,7 @@ import json
 import re
 import secrets
 import sqlite3
+import sys
 import time
 from contextlib import contextmanager
 from pathlib import Path
@@ -16,6 +17,10 @@ from trainer.config import Settings
 
 COOKIE = "fieldwork_session"
 SESSION_SECONDS = 30 * 24 * 3600
+BUSY = (
+    "The database is busy. If Fieldwork was just started or updated, it is still "
+    "upgrading the database: wait until the site loads, then run this again."
+)
 
 
 def username(value):
@@ -225,6 +230,18 @@ class Accounts:
         }
 
 
+def new_password():
+    # Without a terminal (docker exec without -it), getpass waits for input nobody can type.
+    if not sys.stdin.isatty():
+        raise ValueError(
+            "This command asks for a password. Run it from a terminal; in Docker, use docker exec -it"
+        )
+    password = getpass.getpass("New password: ")
+    if password != getpass.getpass("Confirm password: "):
+        raise ValueError("Passwords do not match")
+    return password
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -245,12 +262,24 @@ def main():
     signups = args.action in {"open-signups", "close-signups"}
     if not signups and not args.username:
         parser.error(f"{args.action} needs a username")
-    from trainer.db import database, migrate
+    from sqlalchemy.exc import OperationalError
+
+    from trainer.db import database, migrate, migrations_pending
 
     settings = Settings()
     engine, _ = database(settings.database_path)
-    migrate(engine)
-    engine.dispose()
+    try:
+        # The server upgrades the database when it starts, so this only runs on a
+        # database no server has reached yet: a first setup, or a stopped server.
+        if migrations_pending(engine):
+            print("Upgrading the database first...", file=sys.stderr, flush=True)
+            migrate(engine)
+    except OperationalError as exc:
+        if "locked" not in str(exc):
+            raise
+        parser.exit(1, f"Account error: {BUSY}\n")
+    finally:
+        engine.dispose()
     accounts = Accounts(settings.database_path)
     if signups:
         accounts.set_signups_open(args.action == "open-signups")
@@ -264,9 +293,7 @@ def main():
         if args.action in {"create-admin", "claim-local"}:
             if user:
                 raise ValueError("Account already exists")
-            password = getpass.getpass("New password: ")
-            if password != getpass.getpass("Confirm password: "):
-                raise ValueError("Passwords do not match")
+            password = new_password()
             if args.action == "claim-local":
                 with accounts.connect() as db:
                     row = db.execute("SELECT username FROM users WHERE id='local'").fetchone()
@@ -284,15 +311,12 @@ def main():
             if args.action == "promote":
                 accounts.promote(user)
             elif args.action == "reset-password":
-                password = getpass.getpass("New password: ")
-                if password != getpass.getpass("Confirm password: "):
-                    raise ValueError("Passwords do not match")
-                accounts.set_password(user, password)
+                accounts.set_password(user, new_password())
             else:
                 accounts.set_disabled(user, args.action == "disable")
         print(f"{args.action} completed for {args.username}")
     except (ValueError, sqlite3.Error) as exc:
-        parser.exit(1, f"Account error: {exc}\n")
+        parser.exit(1, f"Account error: {BUSY if 'locked' in str(exc) else exc}\n")
 
 
 if __name__ == "__main__":
