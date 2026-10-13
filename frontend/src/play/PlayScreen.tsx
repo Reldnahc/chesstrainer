@@ -169,7 +169,7 @@ function PlaySetup() {
           : "The human move model is not available, so the bot uses a provisional level.";
   return (
     <>
-      <PageTitle eyebrow="YOUR MOVE" title={`Play ${coach.name}`} />
+      <PageTitle title={`Play ${coach.name}`} />
       {error && <Notice announcement="alert" tone="error">{error}</Notice>}
       {active && (
         <section className="panel panel--card play-resume" aria-label="Game in progress">

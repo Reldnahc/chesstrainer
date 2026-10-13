@@ -115,7 +115,7 @@ lock, while other accounts have independent locks.
 | coach/studies/ / coach/cast/ / coach/studio/ | Shared registered character artwork, cast-specific SVG rigs and a separate development-only expression/idle comparison entry |
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
-| PageTitle.tsx | Shared title display |
+| PageTitle.tsx | Visually hidden page heading |
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
 | api.ts / api.generated.ts | Same-origin typed OpenAPI client, authentication/error handling and generated request/response contracts |
 
@@ -158,9 +158,10 @@ sharing cancellation ownership. `audio_voice` persists Off, On request or
 Automatic alongside existing preferences. Unsupported coaches, missing legacy
 facts and lessons remain silent; written feedback remains authoritative.
 
-Home, Study (including Openings/Puzzles), Play, Games, Insights and Settings use `PageTitle`:
-a required eyebrow above the title on desktop, hidden on phones, with optional
-page actions and no subtitle. Compact board-workspace headings remain separate.
+Home, Study (including Openings/Puzzles), Play, Games, Insights and Settings show
+no visible page header; the navigation names the page. `PageTitle` renders only a
+visually hidden `h1` for screen readers. Page actions such as Games' Update games
+control are ordinary page content. Compact board-workspace headings remain separate.
 
 Development entrypoints declare their own styles instead of importing the
 application stylesheet. The coach studio uses the foundation, coach presentation,

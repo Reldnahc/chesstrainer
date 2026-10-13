@@ -60,7 +60,7 @@ export default function HomeScreen() {
   const openings = useHomeQuery(loadOpenings);
 
   return <>
-    <PageTitle eyebrow="YOUR NEXT MOVE" title="Home" />
+    <PageTitle title="Home" />
     <div className="home-dashboard">
       <section className="panel home-due" aria-labelledby="home-due-title">
         <div className="home-section-heading"><h2 id="home-due-title"><Clock3 size={20} aria-hidden="true" />Due now</h2>

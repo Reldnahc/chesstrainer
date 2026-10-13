@@ -60,7 +60,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
   }
   return (
     <>
-      <PageTitle eyebrow="YOUR WORKSPACE" title="Settings" />
+      <PageTitle title="Settings" />
       <SectionNavigation label="Settings sections" current={active}
         items={sections.filter(item => (item.id !== "account" || account) && (item.id !== "courses" || canManage)).map(item => ({
           ...item, href: item.id === "imports" ? "/settings" : `/settings?section=${item.id}`,

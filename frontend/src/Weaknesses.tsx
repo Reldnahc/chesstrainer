@@ -72,7 +72,7 @@ export default function InsightsScreen({ onEvidence, category }: {
   const countLabel = category === "patterns" ? "pattern" : "outcome";
 
   return <>
-    <PageTitle eyebrow="WHAT YOUR GAMES SAY" title="Insights" />
+    <PageTitle title="Insights" />
     <SectionNavigation label="Insight sections" current={overview ? "overview" : "weaknesses"} items={[
       { id: "overview", label: "Overview", href: insightsPaths.overview },
       { id: "weaknesses", label: "Weaknesses", href: insightsPaths.patterns },

@@ -64,15 +64,11 @@ export default function GamesScreen({
     );
   return (
     <>
-      <PageTitle
-        eyebrow="EVERY MOVE HAS A STORY"
-        title="Your games"
-      >
-        <GameSync compact onChanged={() => {
-          background.current = true;
-          setRevision((value) => value + 1);
-        }} />
-      </PageTitle>
+      <PageTitle title="Your games" />
+      <GameSync compact onChanged={() => {
+        background.current = true;
+        setRevision((value) => value + 1);
+      }} />
       {error && (
         <Notice announcement="alert" tone="error">
           {error}
