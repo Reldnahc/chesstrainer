@@ -174,8 +174,17 @@ def main():
             closed = client.post("/api/auth/signup", json=payload, headers=public)
             assert closed.status_code == 403 and "Sign-ups are closed" in closed.text
             docker("exec", name, "python", "-m", "trainer.accounts", "open-signups")
-            bad = client.post("/api/auth/signup", json=payload, headers={"Origin": address})
-            assert bad.status_code == 403 and "PUBLIC_ORIGIN" in bad.text
+            foreign = {"Origin": "https://elsewhere.example"}
+            bad = client.post("/api/auth/signup", json=payload, headers=foreign)
+            assert bad.status_code == 403 and "https://chess.example.test" in bad.text
+            # The server's own LAN address still signs in over HTTP, without Secure.
+            lan = client.post(
+                "/api/auth/signup",
+                json=payload | {"username": "install-lan"},
+                headers={"Origin": address},
+            )
+            assert lan.status_code == 201, lan.text
+            assert "secure" not in lan.headers["set-cookie"].lower()
             signup = client.post(
                 "/api/auth/signup",
                 json=payload,
