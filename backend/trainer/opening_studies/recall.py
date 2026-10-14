@@ -6,8 +6,14 @@ from sqlalchemy import select, update
 
 from trainer.chess_core import legal_move, valid_board
 from trainer.errors import InvalidInput
+from trainer.explanation_types import (
+    NO_SOLUTION,
+    SOLVE_FIRST,
+    MoveExplanation,
+    attempt_for,
+    replay_line,
+)
 from trainer.models import (
-    Attempt,
     ExerciseAnswer,
     OpeningCard,
     OpeningRecallSnapshot,
@@ -180,23 +186,15 @@ def feedback(db, exercise, session, snapshot):
 
 
 def explain(db, session, snapshot, attempt_id, solution):
-    from trainer.explanations import MoveExplanation, replay_line
-
     if solution:
         if not session.completed:
-            raise InvalidInput("Solve the position or reveal before opening the solution")
+            raise InvalidInput(SOLVE_FIRST)
         selected, accepted = answer(snapshot, primary=True), True
         if selected is None:
-            raise InvalidInput("No saved opening solution")
+            raise InvalidInput(NO_SOLUTION)
         uci, selected_attempt = selected.uci, None
     else:
-        selected_attempt = (
-            db.get(Attempt, attempt_id or session.last_attempt_id)
-            if (attempt_id or session.last_attempt_id)
-            else None
-        )
-        if selected_attempt is None or selected_attempt.session_id != session.id:
-            raise InvalidInput("Submit a move in this review before asking for its explanation")
+        selected_attempt = attempt_for(db, session, attempt_id)
         uci = selected_attempt.uci
         accepted = selected_attempt.grade in {"correct", "acceptable"}
     board = valid_board(snapshot.fen)

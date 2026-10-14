@@ -8,6 +8,7 @@ from trainer.chess_core import digest, position_key, valid_board
 from trainer.continuations import ContinuationEnd
 from trainer.diagnosis_types import Finding, Outcome
 from trainer.errors import EvidenceIntegrityError, NotFound
+from trainer.imports import decision_board
 from trainer.models import (
     ClassificationAnalysis,
     ClassificationProbe,
@@ -55,7 +56,6 @@ class Classification(BaseModel):
 
 
 def verified_payload(db, decision):
-    from trainer.imports import decision_board
 
     previous = None
     if decision.ply > 1:

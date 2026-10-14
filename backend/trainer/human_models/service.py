@@ -9,6 +9,7 @@ from sqlalchemy.dialects.sqlite import insert
 
 from trainer.cancellation import throttled
 from trainer.chess_core import digest
+from trainer.game_library import pgn_rating
 from trainer.human_models.context import request_for
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable, MaiaProvider
@@ -57,7 +58,6 @@ class HumanModels:
     def needs_refresh(self, evidence, parsed, actor, fallback):
         if not self.can_attempt():
             return False
-        from trainer.game_library import pgn_rating
 
         if (evidence or {}).get("status") == "unavailable" and not self.retries_saved_failures():
             return False

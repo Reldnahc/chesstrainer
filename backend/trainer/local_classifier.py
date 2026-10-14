@@ -4,6 +4,7 @@ Rules describe observable consequences, not a learner's thought process. A PV
 is one engine continuation, not proof that every reply is forced.
 """
 
+from trainer.classification import Classification
 from trainer.classification_stages import (
     abstention_reasons,
     attach_provenance,
@@ -44,7 +45,6 @@ class LocalClassifier:
         self.parameters = classifier_parameters(settings)
 
     def classify(self, evidence):
-        from trainer.classification import Classification
 
         best, actual, loss = read_lines(evidence, self.parameters)
         found = mate_findings(best, actual, loss)

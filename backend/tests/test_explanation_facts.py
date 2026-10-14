@@ -12,7 +12,7 @@ from test_patterns_v2 import CASES
 from test_patterns_v3 import CAUSE_ACTUAL, CAUSE_BEST, CAUSE_FEN, COMBINATIONS
 from trainer.api import create_app
 from trainer.diagnosis_types import CUES, Finding
-from trainer.explanations import Frame, replay_line
+from trainer.explanation_types import Frame, replay_line
 from trainer.local_classifier import LocalClassifier
 from trainer.models import EngineAnalysis, ExerciseAnswer, SRSState, now
 from trainer.tactical_patterns import recognized_patterns

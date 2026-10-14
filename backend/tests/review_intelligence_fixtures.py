@@ -2,7 +2,7 @@
 
 import chess
 from trainer.chess_core import Candidate, evaluation_loss
-from trainer.explanations import replay_line
+from trainer.explanation_types import replay_line
 
 
 def move_report(board=None, played="e2e4", best=None, before=0, after=0, second=-20, pv=None):

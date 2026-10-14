@@ -1,6 +1,6 @@
 import chess
 from trainer.contracts.games import BoardCues
-from trainer.explanations import replay_line
+from trainer.explanation_types import replay_line
 from trainer.review_cues import review_cues
 
 

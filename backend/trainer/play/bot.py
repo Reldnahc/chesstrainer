@@ -101,7 +101,7 @@ def _choice(board, uci, source, best, samples):
     )
 
 
-def engine_move(engine, board: chess.Board, rating: int, rng) -> BotChoice:
+def engine_move(engine, board: chess.Board, rating: int) -> BotChoice:
     uci = engine.play_limited(board, rating, ENGINE_MOVE_SECONDS)
     move = chess.Move.from_uci(uci)
     return BotChoice(

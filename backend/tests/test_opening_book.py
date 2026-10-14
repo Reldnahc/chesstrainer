@@ -8,7 +8,7 @@ from importlib.resources import files
 import chess
 import pytest
 from trainer._vendor import lichess_openings
-from trainer.explanations import replay_line
+from trainer.explanation_types import replay_line
 from trainer.game_accuracy import review_accuracy
 from trainer.game_review import public_report
 from trainer.opening_book import VERSION, book_move

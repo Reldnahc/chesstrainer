@@ -15,7 +15,7 @@ from trainer.chess_core import (
 from trainer.classification_stages import REVIEW_RULES, line_findings
 from trainer.continuations import replay, settled_delta
 from trainer.errors import InvalidInput
-from trainer.explanations import replay_line
+from trainer.explanation_types import replay_line
 from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
 from trainer.review_intelligence.difficulty import assess_difficulty
@@ -36,7 +36,6 @@ from trainer.review_scores import (
 )
 
 VERSION = "game-review-1"
-LABELS = ("Brilliant", "Great", "Best", "Good", "Book", "Inaccuracy", "Mistake", "Miss", "Blunder")
 
 
 def parsed_game(game):

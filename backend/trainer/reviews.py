@@ -5,7 +5,8 @@ from sqlalchemy import and_, func, or_, select
 
 from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
 from trainer.errors import Gone, InvalidInput, NotFound
-from trainer.explanations import explain_review, replay_line
+from trainer.explanation_types import replay_line
+from trainer.explanations import explain_review
 from trainer.imports import decision_board
 from trainer.models import (
     Attempt,

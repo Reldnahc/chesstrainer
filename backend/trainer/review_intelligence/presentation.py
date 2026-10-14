@@ -8,6 +8,7 @@ from trainer.game_library import DEFAULT_RATING, mover_rating
 from trainer.game_review import public_report
 from trainer.review_intelligence.context import move_contexts
 from trainer.review_intelligence.game_context import game_context
+from trainer.review_reports import load_game_reports
 
 
 def present_game(parsed, saved, rating, *, completed=False):
@@ -43,7 +44,6 @@ PRESENTED_KEPT = 64
 
 def presented_review(db, game, parsed, review, *, completed):
     """The game's saved reports and their presentation, rendered once per review revision."""
-    from trainer.review_reports import load_game_reports
 
     rating = review.rating if review else DEFAULT_RATING
     key = (game.id, review.revision if review else 0, rating, completed)

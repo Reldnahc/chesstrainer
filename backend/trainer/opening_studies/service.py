@@ -8,6 +8,7 @@ from trainer.contracts.study_lessons import LessonStart
 from trainer.errors import Conflict, InvalidInput, NotFound
 from trainer.models import OpeningCard, OpeningStudy, OpeningStudyMove, SRSState
 from trainer.opening_studies import projection, sources
+from trainer.reviews import queue
 from trainer.study_lessons.content import CourseDefinition
 from trainer.study_lessons.providers import CourseProviders
 from trainer.study_lessons.sessions import start_session
@@ -76,8 +77,6 @@ def enroll_line(db, providers, request, scheduler):
 
 
 def due_ids(db):
-    from trainer.reviews import queue
-
     opening_ids = set(db.scalars(select(OpeningCard.exercise_id)))
     return {item["exercise_id"] for item in queue(db, limit=None)} & opening_ids
 

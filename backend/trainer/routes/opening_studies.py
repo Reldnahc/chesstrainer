@@ -31,8 +31,7 @@ def create_router(*, providers, scheduler):
 
     @router.get("/api/openings/catalog/{key}", response_model=OpeningLineView)
     def detail(workspace: CurrentWorkspace, key: str):
-        with workspace.sessions() as db:
-            return catalogue.detail(db, key)
+        return sources.catalogue_detail(key)
 
     @router.get("/api/openings/course-lines/{course_id}/{line_id}", response_model=OpeningLineView)
     def course_line(workspace: CurrentWorkspace, course_id: str, line_id: str, revision: str):

@@ -22,6 +22,7 @@ from trainer.chess_core import legal_move, valid_board
 from trainer.contracts.common import Contract
 from trainer.contracts.puzzles import PuzzleProvenance
 from trainer.puzzles.definitions import PuzzleDefinition
+from trainer.puzzles.game_provider import GamePuzzleProvider
 
 MANIFEST = "manifest.json"
 REQUIRED_COLUMNS = frozenset({"PuzzleId", "FEN", "Moves"})
@@ -193,7 +194,6 @@ def production_providers(settings) -> tuple:
 
     A configured installed pack is verified at startup.
     """
-    from trainer.puzzles.game_provider import GamePuzzleProvider
 
     providers = []
     if settings.puzzle_starter_pack:

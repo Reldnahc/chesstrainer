@@ -8,6 +8,8 @@ from alembic.script import ScriptDirectory
 from sqlalchemy import create_engine, event
 from sqlalchemy.pool import NullPool, QueuePool
 
+from trainer.ownership import account_sessions
+
 
 def database(path: Path, timeout=30, *, pooled=True):
     """``timeout`` is how many seconds a statement waits for another writer.
@@ -37,8 +39,6 @@ def database(path: Path, timeout=30, *, pooled=True):
         cursor.execute("PRAGMA journal_mode=WAL")
         cursor.execute(f"PRAGMA busy_timeout={int(timeout * 1000)}")
         cursor.close()
-
-    from trainer.ownership import account_sessions
 
     # Single-user mode and offline tools work in the reserved local account.
     return engine, account_sessions(engine, "local")

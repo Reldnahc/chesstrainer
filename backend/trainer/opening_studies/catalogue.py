@@ -83,9 +83,3 @@ def search(db, q="", eco="", offset=0, limit=40):
             for line in matches[offset : offset + limit]
         ],
     )
-
-
-def detail(db, key):
-    from trainer.opening_studies.sources import line_view
-
-    return line_view(get(key))

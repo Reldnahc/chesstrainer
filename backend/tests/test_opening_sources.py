@@ -44,7 +44,7 @@ def test_catalogue_search_pagination_and_detail_count_actual_decisions():
     )
     for row in result.items:
         assert "italian" in row.name.casefold() and row.eco.startswith("C5")
-        detail = catalogue.detail(None, row.source_key)
+        detail = sources.catalogue_detail(row.source_key)
         assert row.white_positions + row.black_positions == row.plies
         assert len(detail.frames) == row.plies
         assert detail.white_positions == row.white_positions

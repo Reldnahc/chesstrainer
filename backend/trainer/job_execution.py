@@ -12,7 +12,9 @@ from trainer.game_providers.ingest import fetch_import
 from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, Game, GameReview, ImportGame, ProviderImport
 from trainer.pipeline import JobPipeline
+from trainer.play.level import run_level_fit
 from trainer.puzzles import generation
+from trainer.review_jobs import run_review
 
 log = logging.getLogger(__name__)
 
@@ -79,7 +81,6 @@ class JobExecution:
             db.commit()
 
     def run_review(self, job_id, kind, engine):
-        from trainer.review_jobs import run_review
 
         run_review(self, job_id, engine)
         if not self.cancelled(job_id):
@@ -108,7 +109,6 @@ class JobExecution:
             self.finish(job_id, queue_games)
 
     def run_level_fit(self, job_id, kind, engine):
-        from trainer.play.level import run_level_fit
 
         run_level_fit(self, job_id)
         self.finish(job_id)

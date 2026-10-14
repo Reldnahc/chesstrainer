@@ -1,3 +1,5 @@
+from trainer.models import Skill
+
 TAXONOMY_VERSION = "3"
 GROUPS = {
     "Tactical awareness": "hanging_piece opponent_threat_recognition fork pin skewer discovered_attack double_attack overloaded_defender removing_defender back_rank mating_pattern missed_tactical_capture",
@@ -19,8 +21,6 @@ SKILLS = {
 
 
 def seed_skills(db):
-    from trainer.models import Skill
-
     for key, data in SKILLS.items():
         if db.get(Skill, key) is None:
             db.add(Skill(id=key, **data))

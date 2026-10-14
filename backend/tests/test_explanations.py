@@ -4,7 +4,7 @@ from explanation_fixtures import seed_review
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 from trainer.api import create_app
-from trainer.explanations import replay_line
+from trainer.explanation_types import replay_line
 from trainer.models import Attempt, EngineAnalysis, ExerciseAnswer, Review, ReviewSession, SRSState
 
 

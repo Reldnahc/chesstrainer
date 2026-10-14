@@ -141,7 +141,7 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
             assert db.get(AnalysisJob, "bob-first") is None
         fetched.set()
 
-    monkeypatch.setattr("trainer.review_jobs.run_review", review)
+    monkeypatch.setattr("trainer.job_execution.run_review", review)
     monkeypatch.setattr("trainer.job_execution.fetch_import", fetch)
     app = create_app(
         settings,
@@ -268,7 +268,7 @@ def test_requests_and_jobs_share_engine_budget_without_sharing_account_data(
         finally:
             engine.close()
 
-    monkeypatch.setattr("trainer.review_jobs.run_review", review)
+    monkeypatch.setattr("trainer.job_execution.run_review", review)
     app = create_app(settings, engine_factory=Engine)
     with TestClient(app) as client, ThreadPoolExecutor(max_workers=2) as requests:
         try:
@@ -309,7 +309,7 @@ def test_shutdown_drains_jobs_and_restart_resumes_without_login(settings, sessio
         started.set()
         assert execution.runner.stop_event.wait(8)
 
-    monkeypatch.setattr("trainer.review_jobs.run_review", interrupted)
+    monkeypatch.setattr("trainer.job_execution.run_review", interrupted)
     app = create_app(settings, engine_factory=forbidden_engine)
     with TestClient(app):
         assert started.wait(8)
@@ -325,7 +325,7 @@ def test_shutdown_drains_jobs_and_restart_resumes_without_login(settings, sessio
             assert db.info["user_id"] == owner
         finished.set()
 
-    monkeypatch.setattr("trainer.review_jobs.run_review", resumed)
+    monkeypatch.setattr("trainer.job_execution.run_review", resumed)
     with TestClient(create_app(settings, engine_factory=forbidden_engine)):
         assert finished.wait(8)
 

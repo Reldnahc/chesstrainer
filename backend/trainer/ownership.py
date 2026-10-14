@@ -9,7 +9,7 @@ from sqlalchemy import event, inspect
 from sqlalchemy.orm import Session, sessionmaker, with_loader_criteria
 
 from trainer.errors import NotFound
-from trainer.models import AuthSession, Base, Owned, User
+from trainer.models import AuthSession, Base, EngineAnalysis, HumanAnalysis, Owned, User
 
 
 class AccountSession(Session):
@@ -36,7 +36,6 @@ def scope_statements(state):
         raise ValueError("Raw SQL is not allowed in account sessions")
     if state.is_insert:
         # Shared Stockfish and Maia cache upserts are the only Core inserts the app uses.
-        from trainer.models import EngineAnalysis, HumanAnalysis
 
         if state.statement.table.name not in {
             EngineAnalysis.__tablename__,

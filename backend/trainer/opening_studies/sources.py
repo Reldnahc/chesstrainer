@@ -58,3 +58,8 @@ def resolve_line(db, providers, request):
     if request.source_key != course_key(request.course_id, request.line_id):
         raise InvalidInput("Course line identity does not match its source key")
     return course_line(db, providers, request.course_id, request.source_version, request.line_id)
+
+
+def catalogue_detail(key):
+    """A catalogue line with its board frames, for the opening browser."""
+    return line_view(catalogue.get(key))

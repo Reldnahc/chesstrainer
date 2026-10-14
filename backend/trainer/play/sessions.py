@@ -236,7 +236,7 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
             request = bot_policy_request(play, board)
             return book_move(human_models, sessions, request, board, book_moves, rng)
     if play.opponent_kind == "engine":
-        return engine_move(engine, board, play.opponent_rating, rng)
+        return engine_move(engine, board, play.opponent_rating)
     request = bot_policy_request(play, board)
     try:
         policy, _ = human_models.policy(sessions, request)
@@ -245,7 +245,7 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
     if policy is None:
         # Without the human model the bot still answers, at the engine's weakest
         # human-like setting, and says so through the reply's source.
-        choice = engine_move(engine, board, max(ENGINE_ELO[0], play.opponent_rating), rng)
+        choice = engine_move(engine, board, max(ENGINE_ELO[0], play.opponent_rating))
         choice.source = "fallback"
         return choice
     return human_move(engine, board, policy, play.opponent_rating, rng)

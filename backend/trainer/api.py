@@ -35,8 +35,6 @@ from trainer.routes import (
     sync,
     workspace,
 )
-from trainer.routes.compatibility import ManualRequest as ManualRequest
-from trainer.routes.review import MoveRequest as MoveRequest
 from trainer.scheduling import FSRSScheduler
 from trainer.study_lessons.club import ClubCourses, InstalledCourses, courses_folder
 from trainer.study_lessons.providers import CourseProviders

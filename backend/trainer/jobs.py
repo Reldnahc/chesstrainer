@@ -5,6 +5,7 @@ import threading
 import time
 
 from trainer.engine import Stockfish
+from trainer.game_providers import client_factories
 from trainer.game_providers.gateway import ProviderGateway
 from trainer.game_sync import poll as poll_connections
 from trainer.job_execution import JobExecution
@@ -37,7 +38,6 @@ class JobRunner:
             self.workspaces.sql_engine,
             user_id=None if settings.accounts_enabled else sessions.kw["info"]["user_id"],
         )
-        from trainer.game_providers import client_factories
 
         self.providers = ProviderGateway(settings, client_factories() | (provider_factories or {}))
 

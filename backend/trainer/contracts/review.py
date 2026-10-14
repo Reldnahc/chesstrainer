@@ -5,7 +5,7 @@ from pydantic import JsonValue
 from trainer.chess_core import Candidate
 from trainer.contracts.common import Color, Contract, LegalMove
 from trainer.contracts.opening_studies import OpeningContinuation, OpeningRecallContext
-from trainer.explanations import Frame, SummaryKind
+from trainer.explanation_types import Frame, SummaryKind
 
 
 class PracticeQueueItem(Contract):
