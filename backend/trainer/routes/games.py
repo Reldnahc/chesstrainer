@@ -124,7 +124,7 @@ def create_router(*, settings):
                 select(Game, AnalysisJob.status)
                 .outerjoin(GameReview, GameReview.game_id == Game.id)
                 .outerjoin(AnalysisJob, AnalysisJob.id == GameReview.job_id)
-                .order_by(Game.played_at.desc(), Game.created_at.desc(), Game.id)
+                .order_by(Game.played_at.desc(), Game.created_at.desc(), Game.id.desc())
                 .offset(offset)
                 .limit(limit)
             ).all()

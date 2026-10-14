@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from trainer import site_settings
 from trainer.config import Settings
 from trainer.contracts.accounts import Identity
-from trainer.db import database, migrate
+from trainer.db import database, migrate, optimize
 from trainer.engine import EngineUnavailable, Stockfish
 from trainer.engine_health import EngineHealth
 from trainer.engine_pool import EnginePool
@@ -95,6 +95,7 @@ def create_app(
     async def lifespan(app):
         try:
             migrate(sql_engine)
+            optimize(sql_engine, opening=True)
             # Startup maintenance runs once for the database. Administrative
             # sessions never reach HTTP handlers or job execution.
             maintenance = sessionmaker(sql_engine) if settings.accounts_enabled else sessions
@@ -115,6 +116,7 @@ def create_app(
             engine.close()
             if pool:
                 pool.close()
+            optimize(sql_engine)
             sql_engine.dispose()
 
     app = FastAPI(title="Fieldwork accounts" if pool else "Local Chess Trainer", lifespan=lifespan)

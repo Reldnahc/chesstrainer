@@ -108,6 +108,19 @@ def migration_connection(engine):
             raise ValueError("Migration produced an invalid foreign-key reference")
 
 
+def optimize(engine, *, opening=False):
+    """Refresh the query planner's statistics, as SQLite recommends.
+
+    At startup every table is checked (``0x10002``), within an analysis limit so a
+    large library costs milliseconds; at shutdown only tables this process
+    queried are. Without statistics SQLite tends to pick each account table's
+    user_id index and sort or scan the rest.
+    """
+    with engine.connect() as connection:
+        connection.exec_driver_sql("PRAGMA analysis_limit = 400")
+        connection.exec_driver_sql("PRAGMA optimize = 0x10002" if opening else "PRAGMA optimize")
+
+
 def migrate(engine):
     """Bring the schema to head; returns whether anything was applied.
 

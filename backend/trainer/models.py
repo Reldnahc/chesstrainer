@@ -5,6 +5,7 @@ from sqlalchemy import (
     JSON,
     DateTime,
     ForeignKey,
+    Index,
     Text,
     TypeDecorator,
     UniqueConstraint,
@@ -110,7 +111,13 @@ class ImportBatch(Owned, Base):
 
 class Game(Owned, Base):
     __tablename__ = "games"
-    __table_args__ = (UniqueConstraint("user_id", "fingerprint"),)
+    # The library lists an account's games newest first; the unique constraint
+    # already leads with user_id, so the column needs no index of its own.
+    __table_args__ = (
+        UniqueConstraint("user_id", "fingerprint"),
+        Index("ix_games_user_id_played_at", "user_id", "played_at", "created_at", "id"),
+    )
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     fingerprint: Mapped[str]
     white: Mapped[str]
@@ -136,17 +143,24 @@ class Game(Owned, Base):
 class ImportGame(Owned, Base):
     __tablename__ = "import_games"
     import_id: Mapped[str] = mapped_column(ForeignKey("game_imports.id"), primary_key=True)
-    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True, index=True)
     # Preserve duplicate provenance without scheduling the game in another import job.
     is_new: Mapped[bool] = mapped_column(default=True, server_default="1")
 
 
 class AnalysisJob(Owned, Base):
     __tablename__ = "analysis_jobs"
+    # An account's jobs by status (running cards, the train check), and the
+    # workers' claim of the next queued job of a kind.
+    __table_args__ = (
+        Index("ix_analysis_jobs_user_id_status", "user_id", "status"),
+        Index("ix_analysis_jobs_claim", "status", "kind", "priority", "created_at"),
+    )
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     kind: Mapped[str]  # trainer.job_lifecycle.JobKind
-    import_id: Mapped[str | None] = mapped_column(ForeignKey("game_imports.id"))
-    status: Mapped[str] = mapped_column(default="queued", index=True)  # JobStatus
+    import_id: Mapped[str | None] = mapped_column(ForeignKey("game_imports.id"), index=True)
+    status: Mapped[str] = mapped_column(default="queued")  # JobStatus
     games_total: Mapped[int] = mapped_column(default=0)
     games_processed: Mapped[int] = mapped_column(default=0)
     positions_triaged: Mapped[int] = mapped_column(default=0)
@@ -262,7 +276,9 @@ class GameReviewMove(Owned, Base):
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
     ply: Mapped[int] = mapped_column(primary_key=True)
     report: Mapped[dict] = mapped_column(JSON)
-    human_analysis_id: Mapped[str | None] = mapped_column(ForeignKey("human_analyses.id"))
+    human_analysis_id: Mapped[str | None] = mapped_column(
+        ForeignKey("human_analyses.id"), index=True
+    )
     refinement_id: Mapped[str | None] = mapped_column(ForeignKey("review_refinements.id"))
     revision: Mapped[int] = mapped_column(default=0, server_default="0")
 
@@ -291,7 +307,7 @@ class PlayGame(Owned, Base):
     status: Mapped[str] = mapped_column(default="active", index=True)
     result: Mapped[str | None]
     termination: Mapped[str | None]
-    saved_game_id: Mapped[str | None] = mapped_column(ForeignKey("games.id"))
+    saved_game_id: Mapped[str | None] = mapped_column(ForeignKey("games.id"), index=True)
     losing_streak: Mapped[int] = mapped_column(default=0, server_default="0")
     draw_declined: Mapped[bool] = mapped_column(default=False, server_default="0")
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
@@ -506,7 +522,7 @@ class Exercise(Owned, Base):
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     identity: Mapped[str]
     source: Mapped[str]
-    decision_id: Mapped[str | None] = mapped_column(ForeignKey("decisions.id"))
+    decision_id: Mapped[str | None] = mapped_column(ForeignKey("decisions.id"), index=True)
     repertoire_id: Mapped[str | None] = mapped_column(ForeignKey("repertoires.id"))
     fen: Mapped[str]
     orientation: Mapped[str]
@@ -564,7 +580,7 @@ class ReviewSession(Owned, Base):
 class Attempt(Owned, Base):
     __tablename__ = "exercise_attempts"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"))
+    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"), index=True)
     uci: Mapped[str]
     grade: Mapped[str]
     elapsed_ms: Mapped[int]
