@@ -177,12 +177,14 @@ def test_rejects_incoherent_authored_courses(problem):
         CourseDefinition.model_validate(record)
 
 
-def test_provider_revalidates_content_and_rejects_duplicate_revisions(sessions):
+def test_providers_validate_raw_records_and_reject_duplicate_revisions(sessions):
+    # A built definition already replayed its lines when it was constructed, as the
+    # puzzle providers assume; only raw records are validated here.
     source = tiny()
     with sessions() as db:
         with pytest.raises(ValueError, match="Duplicate"):
             list(CourseProviders((Provider((source, source)),)).courses(db))
-        bad = source.model_copy(update={"learner_color": "black"})
+        bad = {**source.model_dump(mode="json"), "learner_color": "black"}
         with pytest.raises(ValidationError):
             list(CourseProviders((Provider((bad,)),)).courses(db))
 
@@ -233,6 +235,7 @@ def test_stale_database_revision_cannot_update_progress(sessions):
         held = stale.get(StudyLessonSession, initial["id"])
         command(
             first,
+            providers,
             initial["id"],
             LessonCommand(request_id="one", revision=0, action="move", uci="e2e4"),
         )
@@ -240,6 +243,7 @@ def test_stale_database_revision_cannot_update_progress(sessions):
         with pytest.raises(DomainError) as raised:
             command(
                 stale,
+                providers,
                 initial["id"],
                 LessonCommand(request_id="two", revision=0, action="show_move"),
             )

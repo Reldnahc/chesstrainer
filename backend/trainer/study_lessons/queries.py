@@ -7,7 +7,6 @@ from sqlalchemy import select
 
 from trainer.errors import Conflict, NotFound
 from trainer.models import StudyLessonProgress, StudyLessonSession
-from trainer.study_lessons.bundled import course_topic
 from trainer.study_lessons.content import CourseDefinition
 
 
@@ -67,7 +66,7 @@ def completions(db):
     )
 
 
-def library(db, providers, source=lambda course_id, revision=None: "built_in"):
+def library(db, providers):
     completed = completions(db)
     courses = []
     for candidate in providers.courses(db):
@@ -84,8 +83,8 @@ def library(db, providers, source=lambda course_id, revision=None: "built_in"):
                     (course.id, course.revision, chapter.id) in completed
                     for chapter in course.chapters
                 ),
-                "topic": course_topic(course.id),
-                "source": source(course.id, course.revision),
+                "topic": providers.topic(course.id),
+                "source": providers.source(course.id, course.revision),
             }
         )
     resume = db.execute(
@@ -111,7 +110,7 @@ def library(db, providers, source=lambda course_id, revision=None: "built_in"):
         "resume": [
             {
                 **row._mapping,
-                "course_topic": course_topic(row.course_id),
+                "course_topic": providers.topic(row.course_id),
                 "updated_at": row.updated_at.isoformat(),
             }
             for row in resume
@@ -119,9 +118,7 @@ def library(db, providers, source=lambda course_id, revision=None: "built_in"):
     }
 
 
-def course_view(
-    db, providers, course_id, revision=None, source=lambda course_id, revision=None: "built_in"
-):
+def course_view(db, providers, course_id, revision=None):
     course = course_for(db, providers, course_id, revision)
     completed = completions(db)
     return {
@@ -130,8 +127,8 @@ def course_view(
         "title": course.title,
         "description": course.description,
         "learner_color": course.learner_color,
-        "topic": course_topic(course.id),
-        "source": source(course.id, course.revision),
+        "topic": providers.topic(course.id),
+        "source": providers.source(course.id, course.revision),
         "chapters": [
             {
                 "id": chapter.id,

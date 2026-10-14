@@ -268,7 +268,9 @@ courses, with the same `courses/:id?revision=…` and `sessions/:id` routes unde
 it, and is the Lessons section's Fundamentals tab; the Openings tab lists only
 opening courses. The backend reports each
 course's topic (`opening` or `skills`) from the `topic` field of its course
-file, outside course content, so the topic never changes a content hash. Every other course, including opening-study practice sessions, is
+file, outside course content, so the topic never changes a content hash. The course
+providers own that metadata (`CourseProviders.topic` and `.source`), so a lesson opened
+right after a restart shows the same topic as the library. Every other course, including opening-study practice sessions, is
 an opening course. A course page and the lesson player follow the course's own
 topic for their back links, so an older `/study/openings` link to a skills course
 still opens and returns to Fundamentals.

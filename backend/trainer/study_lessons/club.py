@@ -86,7 +86,7 @@ class ClubCourses:
 
     def problems(self):
         self.refresh()
-        return list(self._problems)
+        return [*self._problems, *self.ledger_problems()]
 
     def ids(self):
         return {course.id for _, course, _ in self.entries()}
@@ -99,11 +99,34 @@ class ClubCourses:
     def path_for(self, course_id):
         return next((path for path, course, _ in self.entries() if course.id == course_id), None)
 
-    def _ledger(self):
+    def _read(self, name, kind, empty):
+        """A ledger's saved value; only a missing file means empty.
+
+        Any other failure raises, so a ledger that cannot be read is never
+        overwritten by a save that started from nothing.
+        """
+        path = self.folder / name
         try:
-            return json.loads((self.folder / LEDGER).read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            return {}
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            return empty
+        except (OSError, ValueError) as exc:
+            raise CourseFileError(f"{name} cannot be read ({exc}); fix or restore it") from exc
+        if not isinstance(value, kind):
+            raise CourseFileError(f"{name} is not a JSON {kind.__name__}; fix or restore it")
+        return value
+
+    def _ledger(self):
+        return self._read(LEDGER, dict, {})
+
+    def ledger_problems(self):
+        problems = []
+        for name, kind, empty in ((LEDGER, dict, {}), (HIDDEN, list, [])):
+            try:
+                self._read(name, kind, empty)
+            except CourseFileError as exc:
+                problems.append({"file": name, "message": str(exc)})
+        return problems
 
     def known_fingerprints(self, course_id):
         """Every fingerprint each revision of this id has had: built-in, installed or saved."""
@@ -174,19 +197,23 @@ class ClubCourses:
             self._stamp = None
             return True
 
-    def hidden(self):
-        """Built-in course ids deleted for this install."""
+    def hidden(self, *, strict=False):
+        """Built-in course ids deleted for this install.
+
+        Reading Study shows every built-in course when the list cannot be read
+        (``problems()`` names it); ``strict`` raises instead, before a change.
+        """
         try:
-            value = json.loads((self.folder / HIDDEN).read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+            value = self._read(HIDDEN, list, [])
+        except CourseFileError:
+            if strict:
+                raise
             return set()
-        return (
-            {item for item in value if isinstance(item, str)} if isinstance(value, list) else set()
-        )
+        return {item for item in value if isinstance(item, str)}
 
     def set_hidden(self, course_id, hidden):
         with self.lock:
-            ids = self.hidden()
+            ids = self.hidden(strict=True)
             if (course_id in ids) == hidden:
                 return False
             ids = ids | {course_id} if hidden else ids - {course_id}
@@ -216,23 +243,41 @@ class InstalledCourses:
 
     def __init__(self, club):
         self.club = club
+        self.lock = threading.Lock()
+        self._key = None
+        self._courses = ()
+        # A deleted club course keeps its last topic, so its saved lessons stay in
+        # the same Study section while this server runs.
+        self._club_topics = {}
 
     def courses(self, db):
+        """Built-in and club courses, rebuilt only when the club folder or hidden list changes."""
         club = self.club.entries()
-        replaced = {course.id for _, course, _ in club} | self.club.hidden()
-        bundled.set_club_topics({course.id: topic for _, course, topic in club})
-        return tuple(
-            bundled.ordered(
-                [
-                    *(
-                        course
-                        for course in bundled.BundledCourses().courses(db)
-                        if course.id not in replaced
-                    ),
-                    *(course.model_copy(deep=True) for _, course, _ in club),
-                ]
-            )
-        )
+        hidden = frozenset(self.club.hidden())
+        with self.lock:
+            if self._key is None or self._key[0] is not club or self._key[1] != hidden:
+                replaced = {course.id for _, course, _ in club} | hidden
+                self._club_topics |= {course.id: topic for _, course, topic in club}
+                self._courses = tuple(
+                    bundled.ordered(
+                        [
+                            *(
+                                course
+                                for course in bundled.BundledCourses().courses(db)
+                                if course.id not in replaced
+                            ),
+                            *(course for _, course, _ in club),
+                        ]
+                    )
+                )
+                self._key = (club, hidden)
+            return self._courses
+
+    def topic(self, course_id):
+        for _, course, topic in self.club.entries():
+            if course.id == course_id:
+                return topic
+        return self._club_topics.get(course_id) or bundled.BundledCourses().topic(course_id)
 
     def built_in_ids(self):
         return {course.id for course in bundled.BundledCourses().courses(None)}

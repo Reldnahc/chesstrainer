@@ -22,6 +22,7 @@ from trainer.play.book import (
     book_for,
     book_moves,
     bot_moved,
+    cached_book,
     carried_on,
     deviation_verdict,
     judged,
@@ -76,6 +77,9 @@ def create_router(
         if not play.practice:
             return None
         practice = play.practice
+        book = cached_book(practice["course_id"], practice["revision"])
+        if book is not None:
+            return book
         installed = [course for course in courses.courses(db) if course.id == practice["course_id"]]
         course = next(
             (course for course in installed if course.revision == practice["revision"]),

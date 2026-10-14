@@ -7,6 +7,8 @@ among the book moves the way a player at the chosen rating would; once the learn
 leaves it, or the book ends, the game carries on as an ordinary game.
 """
 
+import threading
+from collections import OrderedDict
 from dataclasses import dataclass
 
 import chess
@@ -62,14 +64,32 @@ def practice_courses(courses) -> list[dict]:
     ]
 
 
-_books: dict[tuple[str, str], Book] = {}
+# Books by (course id, revision). Each admin edit makes a new revision, so only
+# the most recently used few are kept.
+_books: OrderedDict[tuple[str, str], Book] = OrderedDict()
+_books_lock = threading.Lock()
+BOOKS_KEPT = 32
+
+
+def cached_book(course_id, revision) -> Book | None:
+    """The book already built for this exact revision, without listing any course."""
+    with _books_lock:
+        book = _books.get((course_id, revision))
+        if book is not None:
+            _books.move_to_end((course_id, revision))
+        return book
 
 
 def book_for(course) -> Book:
     key = (course.id, course.revision)
-    if key not in _books:
-        _books[key] = _build(course)
-    return _books[key]
+    book = cached_book(*key)
+    if book is None:
+        book = _build(course)
+        with _books_lock:
+            _books[key] = book
+            while len(_books) > BOOKS_KEPT:
+                _books.popitem(last=False)
+    return book
 
 
 def _build(course) -> Book:

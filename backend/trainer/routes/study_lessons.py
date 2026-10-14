@@ -22,7 +22,6 @@ from trainer.contracts.study_lessons import (
     LessonStart,
 )
 from trainer.study_lessons import course_files, presentation, queries, sessions
-from trainer.study_lessons.bundled import course_topic
 from trainer.study_lessons.club import CourseConflict
 from trainer.study_lessons.course_files import CourseFileError
 from trainer.workspaces import CurrentWorkspace
@@ -61,7 +60,6 @@ async def read_course_json(request):
 
 def create_router(*, providers, installed=None):
     router = APIRouter()
-    source = installed.source if installed else (lambda course_id, revision=None: "built_in")
 
     def club():
         if installed is None:
@@ -72,7 +70,7 @@ def create_router(*, providers, installed=None):
     def library(workspace: CurrentWorkspace, request: Request):
         manager = can_manage(request)
         with workspace.mutation_lock, workspace.sessions() as db:
-            result = queries.library(db, providers, source)
+            result = queries.library(db, providers)
         problems = installed.club.problems() if installed and manager else []
         hidden = installed.hidden_built_ins() if installed and manager else []
         return {**result, "can_manage": manager, "problems": problems, "hidden_built_ins": hidden}
@@ -85,7 +83,7 @@ def create_router(*, providers, installed=None):
         revision: str | None = None,
     ):
         with workspace.mutation_lock, workspace.sessions() as db:
-            view = queries.course_view(db, providers, course_id, revision, source)
+            view = queries.course_view(db, providers, course_id, revision)
         return {**view, "can_manage": can_manage(request)}
 
     @router.get(
@@ -115,7 +113,7 @@ def create_router(*, providers, installed=None):
         with workspace.mutation_lock, workspace.sessions() as db:
             course = queries.course_for(db, providers, course_id, revision)
         text = json.dumps(
-            course_files.dump(course, course_topic(course.id)), indent=2, ensure_ascii=False
+            course_files.dump(course, providers.topic(course.id)), indent=2, ensure_ascii=False
         )
         return Response(
             text + "\n",
@@ -252,13 +250,14 @@ def create_router(*, providers, installed=None):
     @router.get("/api/study/lesson-sessions/{session_id}", response_model=LessonSessionView)
     def get_session(workspace: CurrentWorkspace, session_id: str):
         with workspace.mutation_lock, workspace.sessions() as db:
-            return presentation.view(sessions.require_session(db, session_id))
+            session = sessions.require_session(db, session_id)
+            return presentation.view(session, providers.topic(session.course_id))
 
     @router.post(
         "/api/study/lesson-sessions/{session_id}/command", response_model=LessonSessionView
     )
     def command(workspace: CurrentWorkspace, session_id: str, data: LessonCommand):
         with workspace.mutation_lock, workspace.sessions() as db:
-            return sessions.command(db, session_id, data)
+            return sessions.command(db, providers, session_id, data)
 
     return router

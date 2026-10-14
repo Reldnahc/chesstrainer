@@ -47,7 +47,7 @@ def start_session(db, providers, request):
     if previous:
         if (previous.course_id, previous.course_revision, previous.chapter_id) != identity:
             raise Conflict("Request ID already used for another lesson")
-        return view(previous)
+        return view(previous, providers.topic(previous.course_id))
     course = course_for(db, providers, request.course_id, request.course_revision, for_start=True)
     try:
         chapter = course.chapter(request.chapter_id)
@@ -71,12 +71,12 @@ def start_session(db, providers, request):
     start = chapter.step(chapter.entry_step).position
     current = Position.model_validate(session.state["position"])
     playback = current.frames()[len(start.moves) :]
-    result = view(session, playback)
+    result = view(session, providers.topic(course.id), playback)
     db.commit()
     return result
 
 
-def command(db, session_id, request):
+def command(db, providers, session_id, request):
     session = require_session(db, session_id)
     payload = request.model_dump(mode="json")
     previous = db.scalar(
@@ -120,7 +120,7 @@ def command(db, session_id, request):
             session.completed_at = now()
         if progress.completed_at is None:
             progress.completed_at = now()
-    result = view(session, playback)
+    result = view(session, providers.topic(session.course_id), playback)
     db.add(
         StudyLessonCommand(
             session_id=session.id, request_id=request.request_id, request=payload, response=result

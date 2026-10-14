@@ -268,3 +268,36 @@ def test_empty_eco_round_trips_and_steps_report_their_starting_fen(settings):
         assert check["error"] is None
         assert check["steps"]["start/intro"]["initial_fen"] == fen
         assert check["steps"]["start/intro"]["end_position"] == "e4"
+
+
+def test_an_unreadable_revision_ledger_is_reported_and_never_overwritten(settings):
+    folder = settings.database_path.parent / "courses"
+    with app_client(settings) as client:
+        assert save(client, sample()).status_code == 200
+        ledger = folder / "revisions.ledger"
+        ledger.write_text("{not json", encoding="utf-8")
+        library = client.get(LIBRARY).json()
+        assert any(problem["file"] == "revisions.ledger" for problem in library["problems"])
+        changed = sample()
+        changed["title"] = "Changed"
+        refused = save(client, changed)
+        assert refused.status_code == 422 and "revisions.ledger" in refused.json()["detail"]
+        assert ledger.read_text(encoding="utf-8") == "{not json"
+
+
+def test_a_club_course_keeps_its_topic_after_a_restart_before_any_listing(settings):
+    with app_client(settings) as client:
+        assert save(client, {**sample(), "topic": "skills"}).status_code == 200
+        started = client.post(
+            "/api/study/lesson-sessions",
+            json={
+                "request_id": "topic",
+                "course_id": "sample",
+                "course_revision": "1",
+                "chapter_id": sample()["chapters"][0]["id"],
+            },
+        ).json()
+    # A restarted server answers the session before anything lists the courses.
+    with app_client(settings) as client:
+        session = client.get(f"/api/study/lesson-sessions/{started['id']}").json()
+        assert session["course_topic"] == "skills"

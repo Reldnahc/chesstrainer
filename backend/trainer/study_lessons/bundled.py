@@ -18,25 +18,6 @@ ORDER = (
     "tactics-foundations",
 )
 
-# Each course file names its Study section. The topic is presentation only and
-# stays outside course content, so it never changes a content hash.
-_topics = {}
-_built_in_topics = {}
-
-
-def course_topic(course_id):
-    _courses()
-    return _topics.get(course_id, "opening")
-
-
-def set_club_topics(club):
-    """Publish the topics for the current club files in one assignment, so a reader
-    never sees a half-updated map. A deleted club course keeps its last topic, so its
-    saved lessons stay in the same Study section."""
-    global _topics
-    _courses()
-    _topics = {**_topics, **_built_in_topics, **club}
-
 
 def read_course_file(path):
     """``(course, topic)`` for one JSON course file; problems name the file."""
@@ -56,20 +37,24 @@ def ordered(courses):
 
 
 @cache
-def _courses():
-    loaded = []
-    for path in sorted(BUILT_IN.glob("*.json")):
-        course, topic = read_course_file(path)
-        _topics[course.id] = _built_in_topics[course.id] = topic
-        loaded.append(course)
-    return tuple(ordered(loaded))
+def _built_in():
+    """``(course, topic)`` for every built-in file in Study order, validated once per process.
+
+    Course definitions are shared read-only values: build a changed course with
+    ``model_copy(update=...)``, never by assigning to one.
+    """
+    loaded = [read_course_file(path) for path in sorted(BUILT_IN.glob("*.json"))]
+    courses = {course.id: (course, topic) for course, topic in loaded}
+    return tuple(courses[course.id] for course in ordered(course for course, _ in loaded))
 
 
 class BundledCourses:
     def courses(self, db):
-        # Return independent objects so a consumer cannot mutate the cached source.
-        return tuple(course.model_copy(deep=True) for course in _courses())
+        return tuple(course for course, _ in _built_in())
 
+    def topic(self, course_id):
+        """Each course file names its Study section; presentation only, outside the content hash."""
+        return next((topic for course, topic in _built_in() if course.id == course_id), None)
 
-def bundled_providers():
-    return (BundledCourses(),)
+    def source(self, course_id, revision=None):
+        return "built_in"

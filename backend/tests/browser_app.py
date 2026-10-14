@@ -13,7 +13,7 @@ from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
 from trainer.config import Settings
 from trainer.game_providers.lichess import LichessClient
-from trainer.study_lessons.bundled import bundled_providers
+from trainer.study_lessons.bundled import BundledCourses
 from trainer.workspaces import CurrentWorkspace
 
 # Test servers run as they do on CI, whatever a developer's .env tunes for real use:
@@ -107,7 +107,7 @@ def create_app():
         chesscom_factory=factory,
         provider_factories={"lichess": lichess_factory},
         puzzle_providers=(puzzle_provider, game_puzzle_provider),
-        lesson_providers=(*bundled_providers(), lesson_provider),
+        lesson_providers=(BundledCourses(), lesson_provider),
     )
     startup = app.router.lifespan_context
 
