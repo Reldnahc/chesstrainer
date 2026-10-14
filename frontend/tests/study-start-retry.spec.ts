@@ -69,7 +69,7 @@ async function loseFirstStart(page: Page, path: string) {
 
 async function retryStart(page: Page, button: Locator, attempts: Attempt[]) {
   await button.click();
-  await expect(page.getByRole("alert")).toContainText("Failed to fetch");
+  await expect(page.getByRole("alert")).toContainText("can't be reached");
   await expect(button).toBeEnabled();
   await button.click();
   await expect(page).toHaveURL(new RegExp(`/sessions/${attempts[0].sessionId}$`));
