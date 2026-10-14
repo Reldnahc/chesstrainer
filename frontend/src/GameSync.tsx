@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
@@ -201,6 +202,6 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
     {connected && <AnalysisQueueStatus />}
     {loading && providers.length === 0 && <LoadingState>Loading game connections…</LoadingState>}
     <div className="provider-connections">{providers.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>
-    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
+    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
   </section>;
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Banner from "../Banner";
 import { ArrowRight, FlipVertical2 } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -6,8 +7,6 @@ import EvaluationGraph from "../EvaluationGraph";
 import ActionLink from "../ActionLink";
 import Button, { IconButton } from "../Button";
 import MovePlaybackControls from "../MovePlaybackControls";
-import Notice from "../Notice";
-import Reveal from "../Reveal";
 import { LoadingState, UnavailableState } from "../LoadState";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import { positionScore, scoreText, strength } from "../evaluation";
@@ -135,20 +134,16 @@ export default function PlayGame({ id }: { id: string }) {
   };
   return (
     <div className="game-workspace">
-      <Reveal>{session.error && (
-        <Notice announcement="alert" tone="error" actions={<Button onClick={session.dismissError}>Dismiss</Button>}>
-          {session.error}
-        </Notice>
-      )}</Reveal>
-      <Reveal>{finished && (
-        <Notice announcement="status" tone="success" actions={state.saved_game_id ? (
+      {session.error && <Banner tone="error" onDismiss={session.dismissError}>{session.error}</Banner>}
+      {finished && (
+        <Banner tone="success" action={state.saved_game_id ? (
           <ActionLink variant="primary" size="compact" href={gamesPath(1, state.saved_game_id)}>
             Open {bot}'s review <ArrowRight size={16} aria-hidden="true" />
           </ActionLink>
         ) : <ActionLink variant="secondary" size="compact" href={playSetupPath(state.id)}>New game</ActionLink>}>
           {resultLine(state, bot)}
-        </Notice>
-      )}</Reveal>
+        </Banner>
+      )}
       <ReviewWorkspace
         boardLabel="Game board and controls"
         aboveBoard={

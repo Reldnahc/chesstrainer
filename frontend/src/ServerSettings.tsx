@@ -1,8 +1,8 @@
 import { useEffect, useState, type FormEvent } from "react";
+import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import Button from "./Button";
-import Notice from "./Notice";
 import Reveal, { Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
 
@@ -107,8 +107,8 @@ export default function ServerSettings() {
   }
   return <SettingsSection id="settings-server" title="Server"
     description="Engine, analysis and sync settings for everyone on this server. Saved changes apply when the server restarts.">
-    <Reveal>{notice && <Notice announcement="status" tone="success">{notice}</Notice>}</Reveal>
-    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
+    {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
+    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Restart server</h3>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ChoiceGroup from "../ChoiceGroup";
 import Notice from "../Notice";
-import Reveal from "../Reveal";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
 import CoachAvatar from "../coach/CoachAvatar";
@@ -175,13 +175,14 @@ function PlaySetup() {
   return (
     <>
       <PageTitle title={`Play ${coach.name}`} />
-      <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
+      {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
       {active && (
-        <section className="panel panel--card play-resume" aria-label="Game in progress">
-          <span>You have a game in progress against {coach.name}.</span>
-          <ActionLink variant="secondary" href={playGamePath(active.id)}>
+        <section aria-label="Game in progress">
+          <Notice announcement="passive" actions={<ActionLink variant="secondary" size="compact" href={playGamePath(active.id)}>
             Continue the game <ArrowRight size={16} aria-hidden="true" />
-          </ActionLink>
+          </ActionLink>}>
+            You have a game in progress against {coach.name}.
+          </Notice>
         </section>
       )}
       {active === undefined || loadedCourses === undefined || (!profile && !error) ? <LoadingState>Loading…</LoadingState> : (

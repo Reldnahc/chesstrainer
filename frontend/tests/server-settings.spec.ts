@@ -43,7 +43,7 @@ test('server settings save to the database and restart the server', async ({page
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({path: `test-results/settings-server-${info.project.name}.png`, fullPage: true});
   await section(page).getByRole('button', {name: 'Save settings'}).click();
-  await expect(section(page).getByRole('status')).toHaveText('Saved. Restart the server to apply the changes.');
+  await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('status')).toHaveText('Saved. Restart the server to apply the changes.');
   expect(bodies).toEqual([{values: {engine_slots: 6, triage_nodes: 5000, human_model_enabled: false, acceptance_mode: 'best_only'}}]);
   await expect(section(page)).toContainText('1 saved change applies after a restart.');
   await expect(section(page)).toContainText('Running with 4 until restart.');

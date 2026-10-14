@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
@@ -117,7 +118,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
       reaction={{ state: "explaining", key: `${line.line.source_key}:${color}:${!!selectedStudy?.active}` }}
       actions={<><Button size="compact" variant="primary" disabled={busy || !positions || !!selectedStudy?.active} onClick={enroll}>{selectedStudy?.active ? "Added to study" : selectedStudy ? "Resume recalls" : "Add to study"}<ArrowRight size={16} /></Button>{selectedStudy && <Button size="compact" variant="secondary" disabled={busy} onClick={practice}><Play size={16} />Practice line</Button>}</>}
     ><p>{spoken ?? (selectedStudy?.active ? "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone." : "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies.")}</p></ReviewCoach>
-    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
+    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
     <section className="panel opening-preview-details">
       <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{side === "white" ? line.white_positions : line.black_positions} decisions</small></label>)}</fieldset>
       <h2>The selected continuation</h2>

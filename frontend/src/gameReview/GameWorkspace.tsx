@@ -1,13 +1,11 @@
 import { useState } from "react";
+import Banner from "../Banner";
 import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
 import { positionScore, scoreText, strength } from "../evaluation";
 import ActionLink from "../ActionLink";
-import Button from "../Button";
-import Notice from "../Notice";
-import Reveal from "../Reveal";
 import { LoadingState, UnavailableState } from "../LoadState";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
@@ -154,11 +152,7 @@ export default function GameWorkspace({
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
-      <Reveal>{error && (
-        <Notice announcement="alert" tone="error" actions={<Button onClick={dismissError}>Dismiss</Button>}>
-          {error}
-        </Notice>
-      )}</Reveal>
+      {error && <Banner tone="error" onDismiss={dismissError}>{error}</Banner>}
       <ReviewWorkspace
         boardLabel="Game board and navigation"
         aboveBoard={

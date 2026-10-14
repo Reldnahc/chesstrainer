@@ -9,7 +9,6 @@ import {
   Settings2,
   ShieldCheck,
   Swords,
-  X,
 } from "lucide-react";
 import { api, read, type Health } from "./api";
 import ReviewScreen from "./Review";
@@ -27,10 +26,9 @@ import PuzzlePlayer from "./study/PuzzlePlayer";
 import LessonPlayer from "./study/LessonPlayer";
 import OpeningLinePreview from "./study/OpeningLinePreview";
 import Link from "./Link";
-import Button, { IconButton } from "./Button";
+import Button from "./Button";
 import ActionLink from "./ActionLink";
-import Notice from "./Notice";
-import Reveal from "./Reveal";
+import Banner, { BannerOutlet } from "./Banner";
 import WelcomeBack from "./WelcomeBack";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount, useGuestSignIn } from "./AccountGate";
@@ -140,17 +138,8 @@ export default function App() {
             : "workspace-page"
         }
       >
-        <Reveal>{error && (
-          <Notice announcement="alert" tone="error" actions={<IconButton
-              variant="quiet"
-              aria-label="Dismiss error"
-              onClick={() => setError("")}
-            >
-              <X size={18} />
-            </IconButton>}>
-            {error}
-          </Notice>
-        )}</Reveal>
+        <BannerOutlet />
+        {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
         {!connection && !guestSignIn && <WelcomeBack />}
         {connection ? (
           <section className="panel connection">

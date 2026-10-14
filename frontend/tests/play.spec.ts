@@ -179,8 +179,11 @@ test("a finished game offers its saved review", async ({page}) => {
     frames: [frame0, frame1, frame2],
   }}));
   await page.goto("/play/play1");
-  await expect(page.getByText("You resigned. Walter takes the game.")).toBeVisible();
-  await expect(page.getByRole("link", {name: "Open Walter's review"})).toHaveAttribute("href", "/games/saved9");
+  // The result is the page banner; it stays while the game is shown, with no close button.
+  const banner = page.getByRole("region", {name: "Notifications"}).getByRole("status");
+  await expect(banner).toContainText("You resigned. Walter takes the game.");
+  await expect(banner.getByRole("link", {name: "Open Walter's review"})).toHaveAttribute("href", "/games/saved9");
+  await expect(banner.getByRole("button", {name: "Dismiss"})).toHaveCount(0);
   await expect(page.getByRole("button", {name: "Resign"})).toHaveCount(0);
 });
 

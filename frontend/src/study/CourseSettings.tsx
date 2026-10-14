@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Banner from "../Banner";
 import { Download, Pencil, Plus, RotateCcw, Trash2, Upload } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -71,8 +72,8 @@ export default function CourseSettings() {
       <Button variant="secondary" disabled={busy} onClick={() => chooser.current?.click()}><Upload size={16} />{busy ? "Working…" : "Import course file"}</Button>
       <input ref={chooser} hidden type="file" accept=".json,application/json" aria-label="Course file" onChange={event => importChosen(event.target.files?.[0])} />
     </div>}>
-    <Reveal>{notice && <Notice announcement="status" tone="success">{notice}</Notice>}</Reveal>
-    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
+    {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
+    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
     <RevealList>{(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}</RevealList>
     <RevealList>{library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id}>
       <div>
