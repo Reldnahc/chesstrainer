@@ -24,8 +24,14 @@ from trainer.contracts.games import (
 )
 from trainer.game_accuracy import review_accuracy
 from trainer.game_analysis import DEFAULT_RATING, request_review
-from trainer.game_library import pgn_rating, time_control_label
-from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
+from trainer.game_library import mover_rating, pgn_rating, time_control_label
+from trainer.game_review import (
+    branch_board,
+    parsed_game,
+    position,
+    public_report,
+    review_move,
+)
 from trainer.job_lifecycle import JobStatus
 from trainer.models import (
     AnalysisJob,
@@ -107,7 +113,7 @@ def game_view(request: Request, game_id: str):
 ViewedGame = Annotated[GameView, Depends(game_view)]
 
 
-def create_router(*, settings, engine_factory):
+def create_router(*, settings):
     router = APIRouter()
 
     def require_game(db, game_id):
@@ -401,42 +407,32 @@ def create_router(*, settings, engine_factory):
             parsed = parsed_game(game)
             review = db.get(GameReview, game_id)
             rating = review.rating if review else DEFAULT_RATING
+        # The account's interactive engine, as Play uses: warm in single-user mode,
+        # a pooled slot with accounts. One variation search at a time per account.
         with workspace.variation_lock:
-            engine = engine_factory(settings, workspace.sessions)
-            try:
-                if not board.move_stack:
-                    if board.is_game_over():
-                        return {"report": None, "score": None, "best_move": None}
-                    result = engine.analyze(board, deep=True, multipv=2)
-                    best = result.candidates[0]
-                    score = Score.model_validate(best["score"])
-                    return {
-                        "report": None,
-                        "best_move": best["san"],
-                        "score": (score if board.turn else score.negate()).model_dump(),
-                    }
-                move = board.pop()
-                fallback = rating
-                rating = pgn_rating(parsed, board.turn) or fallback
-                previous_score = None
-                if board.move_stack:
-                    previous = board.copy(stack=True)
-                    previous.pop()
-                    result = engine.analyze(previous, deep=True, multipv=2)
-                    previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
-                report = analyze_move(engine, board, move, previous_score)
-            finally:
-                engine.close()
-            report["human"] = workspace.human_models.evidence(
+            engine = workspace.engine
+            if not board.move_stack:
+                if board.is_game_over():
+                    return {"report": None, "score": None, "best_move": None}
+                result = engine.analyze(board, deep=True, multipv=2)
+                best = result.candidates[0]
+                score = Score.model_validate(best["score"])
+                return {
+                    "report": None,
+                    "best_move": best["san"],
+                    "score": (score if board.turn else score.negate()).model_dump(),
+                }
+            report = review_move(
+                engine,
+                workspace.human_models,
                 workspace.sessions,
                 parsed,
                 board,
-                move.uci(),
-                report["best"]["uci"],
-                fallback,
+                fallback_rating=rating,
             )
+            mover = not board.turn  # The side that made the analysed move.
             context = move_contexts(parsed).get(data.ply) if not data.moves else None
-            report = public_report(report, rating, context=context)
+            report = public_report(report, mover_rating(parsed, mover, rating), context=context)
             return {"report": report, "score": report["white_score"], "best_move": None}
 
     return router

@@ -39,6 +39,10 @@ def binary_sha256(path):
     return cached
 
 
+# Stockfish's UCI_Elo range for strength-limited play.
+ENGINE_ELO = (1320, 3190)
+
+
 class EngineUnavailable(RuntimeError):
     pass
 
@@ -109,7 +113,10 @@ class Stockfish:
             self.start()
             try:
                 self.process.configure(
-                    {"UCI_LimitStrength": True, "UCI_Elo": max(1320, min(3190, int(elo)))}
+                    {
+                        "UCI_LimitStrength": True,
+                        "UCI_Elo": max(ENGINE_ELO[0], min(ENGINE_ELO[1], int(elo))),
+                    }
                 )
                 result = self.process.play(board, chess.engine.Limit(time=time), game=object())
             except (chess.engine.EngineError, TimeoutError) as exc:

@@ -36,8 +36,9 @@ def parsed_game(game):
     return chess.pgn.read_game(io.StringIO(game.pgn))
 
 
-def position(board):
-    outcome = board.outcome()
+def position(board, *, claim_draw=False):
+    """A frame's board facts; ``claim_draw`` ends it on a claimable draw, as Play does."""
+    outcome = board.outcome(claim_draw=claim_draw)
     return {
         "fen": board.fen(),
         "turn": "white" if board.turn else "black",
@@ -266,6 +267,69 @@ def promote_stronger_played(report):
         "loss_cp": 0,
         "opportunity_missed": False,
     }
+
+
+# Keys public_report derives from a saved engine report. Saved reports keep only
+# engine facts, so a later rule change reaches every saved review and Play game.
+PRESENTATION_KEYS = frozenset(
+    {
+        "immediate_reply",
+        "immediate_recapture",
+        "practical",
+        "intelligence",
+        "label",
+        "engine_label",
+        "opening",
+        "reason",
+        "coach",
+        "board_cues",
+    }
+)
+
+
+def engine_facts(report):
+    """A saved report without derived presentation, as older Play rows stored it."""
+    return {key: value for key, value in report.items() if key not in PRESENTATION_KEYS}
+
+
+def link_previous_scores(reports: dict) -> dict:
+    """Each report's previous score from the report before it, when that one is saved.
+
+    Great and recovery comparisons then use the same generation as the scores shown,
+    the one rule for saved reviews and Play.
+    """
+    linked = {}
+    for ply in sorted(reports):
+        report = reports[ply]
+        before = reports.get(ply - 1)
+        if before is not None:
+            previous = Score.model_validate(before["best"]["score"]).negate()
+            report = report | {"previous_score": previous.model_dump()}
+        linked[ply] = report
+    return linked
+
+
+def review_move(
+    engine, human_models, sessions, parsed, board, *, fallback_rating, previous_score=None
+):
+    """One move's saved review evidence: the engine report with its Maia evidence.
+
+    ``board`` stands after the move. Variation analysis and Play build a single
+    move's report here, then render it with ``public_report``. Without a saved
+    ``previous_score`` the position before the move is searched for it.
+    """
+    board = board.copy(stack=True)
+    move = board.pop()
+    if previous_score is None and board.move_stack:
+        previous = board.copy(stack=True)
+        previous.pop()
+        result = engine.analyze(previous, deep=True, multipv=2)
+        previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
+    report = analyze_move(engine, board, move, previous_score)
+    report["human"] = human_models.evidence(
+        sessions, parsed, board, move.uci(), report["best"]["uci"], fallback_rating
+    )
+    return report
 
 
 def public_report(report, rating, *, context=None):

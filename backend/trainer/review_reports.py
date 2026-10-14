@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from sqlalchemy import and_, case, select
 
-from trainer.chess_core import Score
+from trainer.game_review import link_previous_scores
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import GameReview, GameReviewMove, HumanAnalysis, ReviewRefinement
@@ -67,14 +67,7 @@ def load_game_reports(db, game_id):
         .where(GameReviewMove.game_id == game_id)
         .order_by(GameReviewMove.ply)
     ).all()
-    reports = {}
-    previous = None
-    for row, task in rows:
-        report = effective_report(db, row, task)
-        # Great/recovery comparisons must use the same generation as displayed scores.
-        report["previous_score"] = previous.model_dump() if previous else None
-        previous = Score.model_validate(report["best"]["score"]).negate()
-        reports[row.ply] = report
+    reports = link_previous_scores({row.ply: effective_report(db, row, task) for row, task in rows})
     return reports, {row.ply: row.revision for row, _ in rows}
 
 

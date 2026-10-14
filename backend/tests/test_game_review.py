@@ -7,7 +7,12 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.chess_core import Score
-from trainer.game_review import analyze_move, classify, promote_stronger_played
+from trainer.game_review import (
+    analyze_move,
+    classify,
+    link_previous_scores,
+    promote_stronger_played,
+)
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, Decision, Game, GameReviewMove, Review
 
@@ -446,11 +451,14 @@ def test_parallel_review_preserves_order_history_and_engine_budget(settings, mon
             assert job.positions_triaged == 4
             rows = db.scalars(select(GameReviewMove).order_by(GameReviewMove.ply)).all()
             assert [row.ply for row in rows] == [1, 2, 3, 4]
-            assert rows[0].report["previous_score"] is None
-            for row in rows[1:]:
-                assert row.report["previous_score"] == {
+            # Previous scores are linked when reports are read, in game order.
+            reports = link_previous_scores({row.ply: row.report for row in rows})
+            assert "previous_score" not in rows[0].report
+            assert reports[1].get("previous_score") is None
+            for ply in (2, 3, 4):
+                assert reports[ply]["previous_score"] == {
                     "kind": "cp",
-                    "value": -(row.ply - 1) * 100,
+                    "value": -(ply - 1) * 100,
                     "mate_given": False,
                 }
         assert finished[:2] == [2, 1]

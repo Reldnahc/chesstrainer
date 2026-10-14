@@ -254,8 +254,11 @@ class PlayGame(Owned, Base):
     learner_rating: Mapped[int]
     commentary: Mapped[str]
     moves: Mapped[list] = mapped_column(JSON, default=list)
-    # Public move reports keyed by ply, produced on request or live during play.
+    # Engine facts for each move keyed by ply, produced on request or live during
+    # play; rendered with the current review rules whenever the game is read.
     reports: Mapped[dict] = mapped_column(JSON, default=dict)
+    # The bot's latest reply {ply, san, uci, source}, repeated to a retried request.
+    last_reply: Mapped[dict | None] = mapped_column(JSON)
     # Opening practice: the course whose repertoire is the bot's book, and where the
     # game stands against it. None for an ordinary game.
     practice: Mapped[dict | None] = mapped_column(JSON)

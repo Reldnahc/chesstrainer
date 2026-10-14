@@ -141,3 +141,69 @@ def test_the_bot_moves_first_as_white_and_an_abandoned_game_is_not_saved(setting
         assert second["id"] != first["id"]
         assert client.get(f"/api/play/{first['id']}").json()["termination"] == "abandoned"
         assert client.get("/api/games").json()["total"] == 0
+
+
+def test_the_bot_thinks_outside_the_account_lock_and_its_reply_source_is_kept(
+    settings, monkeypatch
+):
+    import threading
+
+    from trainer.play.bot import BotChoice
+
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False, start_engine=False)
+    lock_free = []
+
+    def book_reply(engine, human_models, sessions, play, board, book=None):
+        # Another request for the account can take its lock while the bot thinks.
+        probe = threading.Thread(
+            target=lambda: lock_free.append(
+                app.state.workspaces.local_lock.acquire(blocking=False)
+                and (app.state.workspaces.local_lock.release() or True)
+            )
+        )
+        probe.start()
+        probe.join()
+        return BotChoice(uci="e7e5", san="e5", source="book", best_score=None)
+
+    monkeypatch.setattr("trainer.routes.play.choose_reply", book_reply)
+    with TestClient(app) as client:
+        started = client.post(
+            "/api/play",
+            json={"coach_id": "dragon", "coach_name": "Ember", "color": "white", "rating": 1000},
+        ).json()
+        client.post(f"/api/play/{started['id']}/move", json={"ply": 0, "uci": "e2e4"})
+        reply = client.post(f"/api/play/{started['id']}/reply").json()["reply"]
+        assert reply == {"ply": 2, "san": "e5", "uci": "e7e5", "source": "book"}
+        assert lock_free == [True]
+        # A repeated request repeats the move and where it came from.
+        again = client.post(f"/api/play/{started['id']}/reply").json()["reply"]
+        assert again == reply
+
+
+def test_play_reports_are_saved_as_engine_facts_and_rendered_on_read(settings):
+    from review_intelligence_fixtures import move_report
+    from trainer.game_review import PRESENTATION_KEYS
+
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            play = PlayGame(
+                coach_id="dragon",
+                coach_name="Ember",
+                learner_color=True,
+                opponent_kind="human",
+                opponent_rating=1000,
+                learner_rating=1000,
+                commentary="live",
+                moves=["e2e4"],
+                # An older row saved the rendered report, with wording that is stale now.
+                reports={"1": move_report() | {"label": "Stale", "coach": "Old wording."}},
+            )
+            db.add(play)
+            db.commit()
+            play_id = play.id
+        report = client.get(f"/api/play/{play_id}").json()["frames"][1]["report"]
+        assert report["label"] == "Book" and report["coach"] != "Old wording."
+        assert PRESENTATION_KEYS <= set(report)

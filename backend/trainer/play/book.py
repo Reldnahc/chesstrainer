@@ -14,6 +14,7 @@ from dataclasses import dataclass
 import chess
 
 from trainer.chess_core import Score, evaluation_loss
+from trainer.contracts.play import HUMAN_RATINGS
 from trainer.human_models.runtime import HumanUnavailable
 from trainer.play.bot import BotChoice, bot_request
 
@@ -22,8 +23,8 @@ from trainer.play.bot import BotChoice, bot_request
 MINIMUM_SHARE = 0.1
 # An off-book move this close to the book move by Stockfish is still fine.
 FINE_LOSS_CP = 30
-# Human-like play stops improving above this rating, so the policy is capped there.
-POLICY_RATING_CAP = 2500
+# Human-like play stops improving above the top human rating, so the policy is capped there.
+POLICY_RATING_CAP = HUMAN_RATINGS[1]
 
 
 def position_key(board: chess.Board) -> str:

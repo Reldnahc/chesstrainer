@@ -348,8 +348,9 @@ every 250 ms.
 
 Full-game review jobs instead parallelize independent move evidence, with at most
 `min(STOCKFISH_WORKERS, ENGINE_SLOTS)` outstanding moves. The coordinator commits
-their reports and progress together in game order, supplying the preceding score
-for Great labels. It reuses saved reports and drains active work on cancellation.
+their reports and progress together in game order. The preceding score for Great
+labels is linked when reports are read (`game_review.link_previous_scores`), so it
+always comes from the same generation as the scores shown; Play uses the same rule. It reuses saved reports and drains active work on cancellation.
 This uses the existing account engine pool and does not change search/cache policy.
 The UI starts/resumes once per game opening and receives incremental display reports
 from `GET /api/games/:id/review?after=N`; the cursor advances only through reports

@@ -9,6 +9,7 @@ from alembic.config import Config
 from sqlalchemy import select, text
 from trainer.accounts import Accounts
 from trainer.db import database, migrate
+from trainer.errors import NotFound
 from trainer.models import Game, GameReview, GameReviewMove, ReviewRefinement, uid
 from trainer.ownership import account_sessions
 from trainer.review_reports import effective_report
@@ -31,11 +32,11 @@ def test_private_task_queries_and_references_cannot_cross_accounts(settings, ses
         db.add(own)
         db.flush()
         db.add(GameReviewMove(game_id=own.id, ply=1, report={}, refinement_id=task.id))
-        with pytest.raises(ValueError, match="not in this account"):
+        with pytest.raises(NotFound, match="not in this account"):
             db.flush()
     with sessions() as db:
         db.add(ReviewRefinement(game_id=game.id, ply=1, task_key="stolen", triggers=[], config={}))
-        with pytest.raises(ValueError, match="not in this account"):
+        with pytest.raises(NotFound, match="not in this account"):
             db.flush()
 
 

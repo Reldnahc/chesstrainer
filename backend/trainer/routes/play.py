@@ -2,7 +2,6 @@
 
 import random
 
-import chess
 from fastapi import APIRouter, HTTPException
 from sqlalchemy import select
 
@@ -19,10 +18,7 @@ from trainer.contracts.play import (
 )
 from trainer.models import PlayGame, User
 from trainer.play.book import (
-    book_for,
     book_moves,
-    bot_moved,
-    cached_book,
     carried_on,
     deviation_verdict,
     judged,
@@ -30,21 +26,27 @@ from trainer.play.book import (
     learner_moved,
     practice_courses,
     practice_lines,
-    replayed,
     start_practice,
     taken_back,
 )
 from trainer.play.level import LevelFits
 from trainer.play.sessions import (
     analyze_ply,
+    apply_reply,
     board_for,
     board_outcome,
     bot_to_move,
     choose_reply,
     finish,
+    last_reply,
     learner_is_white,
+    off_book,
+    practice_book,
     result_for,
+    rewind,
     state,
+    truncate,
+    waiting_on_learner,
 )
 from trainer.study_lessons.providers import CourseProviders
 from trainer.workspaces import CurrentWorkspace
@@ -72,49 +74,8 @@ def create_router(
             select(PlayGame).where(PlayGame.status == "active").order_by(PlayGame.created_at.desc())
         )
 
-    def practice_book(db, play):
-        """The game's book, from the course revision it started with when still installed."""
-        if not play.practice:
-            return None
-        practice = play.practice
-        book = cached_book(practice["course_id"], practice["revision"])
-        if book is not None:
-            return book
-        installed = [course for course in courses.courses(db) if course.id == practice["course_id"]]
-        course = next(
-            (course for course in installed if course.revision == practice["revision"]),
-            installed[-1] if installed else None,
-        )
-        return book_for(course) if course else None
-
-    def off_book(play):
-        """Off book, the bot does not answer until the learner goes back or carries on."""
-        return bool(play.practice) and play.practice["status"] == "deviation"
-
-    def waiting_on_learner(play):
-        """Off book, or at the end of the line, the bot waits for the learner's choice."""
-        return bool(play.practice) and play.practice["status"] in {"deviation", "book_end"}
-
-    def rewind(db, play, ply):
-        """Back to an earlier position on the learner's turn, to play another move there.
-
-        The moves after it, and their reports, are gone. A practice game picks up its
-        book where it stood; at the end of the line, the new move means playing on.
-        """
-        play.moves = play.moves[:ply]
-        play.reports = {key: value for key, value in play.reports.items() if int(key) <= ply}
-        if not play.practice:
-            return
-        book = practice_book(db, play)
-        if book is not None:
-            play.practice = replayed(play.practice, book, learner_is_white(play), play.moves)
-        if play.practice["status"] == "book_end":
-            play.practice = kept_playing(play.practice)
-        elif play.practice["status"] == "deviation":
-            play.practice = carried_on(play.practice)
-
     def compute_reply(workspace, play, book):
-        """Engine and model work runs between transactions, never inside one."""
+        """Engine and model work runs outside the account lock and any transaction."""
         board = board_for(play)
         if not bot_to_move(play, board):
             return None
@@ -130,37 +91,6 @@ def create_router(
             return deviation_verdict(
                 workspace.engine, before, deviation["uci"], book_moves(play.practice)
             )
-
-    def apply_reply(db, play, choice, name, book):
-        """The bot answers, and the game ends here when the board says so. It never resigns."""
-        if choice is None or play.status != "active":
-            return None
-        play.moves = [*play.moves, choice.uci]
-        board = board_for(play)
-        if play.practice and book is not None:
-            play.practice = bot_moved(play.practice, book, board)
-        outcome = board_outcome(board)
-        if outcome:
-            finish(db, play, *result_for(outcome), name)
-        return {
-            "ply": len(play.moves),
-            "san": choice.san,
-            "uci": choice.uci,
-            "source": choice.source,
-        }
-
-    def last_reply(play):
-        """A repeated reply request after the bot has moved returns that same move."""
-        if not play.moves:
-            return None
-        board = board_for(play, len(play.moves) - 1)
-        move = chess.Move.from_uci(play.moves[-1])
-        return {
-            "ply": len(play.moves),
-            "san": board.san(move),
-            "uci": move.uci(),
-            "source": "human",
-        }
 
     @router.get("/api/play/profile", response_model=PlayProfile)
     def level_profile(workspace: CurrentWorkspace):
@@ -234,7 +164,7 @@ def create_router(
                 if data.rewind and data.ply < len(play.moves):
                     if board_for(play, data.ply).turn != learner_is_white(play):
                         raise HTTPException(409, "It is not your move there.")
-                    rewind(db, play, data.ply)
+                    rewind(db, courses, play, data.ply)
                 if data.ply != len(play.moves):
                     raise HTTPException(409, "The board has moved on; refresh the game.")
                 board = board_for(play)
@@ -244,7 +174,7 @@ def create_router(
                     raise HTTPException(409, "Choose to keep playing or go again first.")
                 move = legal_move(board, data.uci)
                 if play.practice:
-                    book = practice_book(db, play)
+                    book = practice_book(db, courses, play)
                     if book is not None:
                         play.practice = learner_moved(play.practice, book, board, move)
                 play.moves = [*play.moves, move.uci()]
@@ -261,44 +191,45 @@ def create_router(
         "/api/play/{play_id}/reply", response_model=PlayState, response_model_exclude_unset=True
     )
     def bot_reply(workspace: CurrentWorkspace, play_id: str):
-        with workspace.mutation_lock:
-            with workspace.sessions() as db:
-                play = require_play(db, play_id)
-                name = learner_name(db, workspace)
-                if waiting_on_learner(play):
-                    if not off_book(play) or play.practice["deviation"]["verdict"] is not None:
-                        return state(play, name)
-                elif not bot_to_move(play, board_for(play)):
-                    return state(play, name, last_reply(play) if play.status == "active" else None)
-                book = practice_book(db, play)
-                # A rewind while the engine works makes its answer stale.
-                moves = list(play.moves)
-            if off_book(play):
-                # Off book the bot waits; the reply request reports how the move compares.
-                verdict = judge_deviation(workspace, play)
-                with workspace.sessions() as db:
-                    play = require_play(db, play_id)
-                    if (
-                        play.moves == moves
-                        and off_book(play)
-                        and play.practice["deviation"]["verdict"] is None
-                    ):
-                        before = board_for(play, play.practice["deviation"]["ply"] - 1)
-                        play.practice = judged(play.practice, before, verdict)
-                        db.commit()
+        # Read under the lock, think outside it, then re-check and write under it,
+        # so the account's other requests and its background review never wait on
+        # the bot, and a rewind while it thinks is noticed.
+        with workspace.mutation_lock, workspace.sessions() as db:
+            play = require_play(db, play_id)
+            name = learner_name(db, workspace)
+            if waiting_on_learner(play):
+                if not off_book(play) or play.practice["deviation"]["verdict"] is not None:
                     return state(play, name)
-            choice = compute_reply(workspace, play, book)
-            with workspace.sessions() as db:
+            elif not bot_to_move(play, board_for(play)):
+                return state(play, name, last_reply(play) if play.status == "active" else None)
+            book = practice_book(db, courses, play)
+            moves = list(play.moves)
+        if off_book(play):
+            # Off book the bot waits; the reply request reports how the move compares.
+            verdict = judge_deviation(workspace, play)
+            with workspace.mutation_lock, workspace.sessions() as db:
                 play = require_play(db, play_id)
-                if play.moves[: len(moves)] != moves:
-                    raise HTTPException(409, "The game went back while the bot was thinking.")
-                reply = (
-                    apply_reply(db, play, choice, name, book)
-                    if bot_to_move(play, board_for(play)) and not waiting_on_learner(play)
-                    else last_reply(play)
-                )
-                db.commit()
-                return state(play, name, reply)
+                if (
+                    play.moves == moves
+                    and off_book(play)
+                    and play.practice["deviation"]["verdict"] is None
+                ):
+                    before = board_for(play, play.practice["deviation"]["ply"] - 1)
+                    play.practice = judged(play.practice, before, verdict)
+                    db.commit()
+                return state(play, name)
+        choice = compute_reply(workspace, play, book)
+        with workspace.mutation_lock, workspace.sessions() as db:
+            play = require_play(db, play_id)
+            if play.moves[: len(moves)] != moves:
+                raise HTTPException(409, "The game went back while the bot was thinking.")
+            reply = (
+                apply_reply(db, play, choice, name, book)
+                if bot_to_move(play, board_for(play)) and not waiting_on_learner(play)
+                else last_reply(play)
+            )
+            db.commit()
+            return state(play, name, reply)
 
     @router.post(
         "/api/play/{play_id}/analyze",
@@ -309,24 +240,30 @@ def create_router(
         with workspace.sessions() as db:
             play = require_play(db, play_id)
             name = learner_name(db, workspace)
-            saved = play.reports.get(str(data.ply))
             analysed = play.moves[: data.ply]
-        if saved:
-            return {"report": saved, "score": saved["white_score"], "best_move": None}
-        if data.ply > len(play.moves):
+            saved = str(data.ply) in play.reports
+        if data.ply > len(analysed) or data.ply < 1:
             raise HTTPException(409, "That move has not been played yet.")
-        with workspace.variation_lock:
-            report = analyze_ply(
-                workspace.engine, workspace.human_models, workspace.sessions, play, data.ply, name
-            )
-        with workspace.mutation_lock, workspace.sessions() as db:
-            play = require_play(db, play_id)
-            # A take-back can replace the move while it is analysed; keep only a
-            # report that still describes the game.
-            if play.moves[: data.ply] != analysed:
-                raise HTTPException(409, "That move was taken back.")
-            play.reports = {**play.reports, str(data.ply): report}
-            db.commit()
+        if not saved:
+            with workspace.variation_lock:
+                report = analyze_ply(
+                    workspace.engine,
+                    workspace.human_models,
+                    workspace.sessions,
+                    play,
+                    data.ply,
+                    name,
+                )
+            with workspace.mutation_lock, workspace.sessions() as db:
+                play = require_play(db, play_id)
+                # A take-back can replace the move while it is analysed; keep only a
+                # report that still describes the game.
+                if play.moves[: data.ply] != analysed:
+                    raise HTTPException(409, "That move was taken back.")
+                play.reports = {**play.reports, str(data.ply): report}
+                db.commit()
+        frame = state(play, name)["frames"][data.ply]
+        report = frame["report"]
         return {"report": report, "score": report["white_score"], "best_move": None}
 
     def require_practice(db, play_id, status):
@@ -348,9 +285,7 @@ def create_router(
         with workspace.mutation_lock, workspace.sessions() as db:
             play = require_deviation(db, play_id)
             name = learner_name(db, workspace)
-            ply = play.practice["deviation"]["ply"]
-            play.moves = play.moves[: ply - 1]
-            play.reports = {key: value for key, value in play.reports.items() if int(key) < ply}
+            truncate(play, play.practice["deviation"]["ply"] - 1)
             play.practice = taken_back(play.practice)
             db.commit()
             return state(play, name)

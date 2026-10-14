@@ -7,7 +7,6 @@ from queue import Queue
 from sqlalchemy import select
 
 from trainer import game_review
-from trainer.chess_core import Score
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.review_refinement import run_refinement
 from trainer.review_reports import touch_report
@@ -95,7 +94,6 @@ def run_baseline(runner, job_id, engine_override=None):
         board = parsed.board()
         pending = deque()
         next_ply = 1
-        previous = None
 
         def fill():
             nonlocal next_ply
@@ -126,7 +124,6 @@ def run_baseline(runner, job_id, engine_override=None):
                 break
             with runner.import_lock, runner.sessions() as db:
                 if future:
-                    report["previous_score"] = previous.model_dump() if previous else None
                     row = db.get(GameReviewMove, (game.id, ply))
                     if row is None:
                         row = GameReviewMove(game_id=game.id, ply=ply)
@@ -138,7 +135,6 @@ def run_baseline(runner, job_id, engine_override=None):
                 job.positions_triaged = ply
                 job.games_processed = int(ply == len(moves))
                 db.commit()
-            previous = Score.model_validate(report["best"]["score"]).negate()
             fill()
     finally:
         executor.shutdown(wait=True, cancel_futures=True)

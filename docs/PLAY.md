@@ -192,9 +192,17 @@ one abandoned without saving it.
 | `POST /api/play/{id}/carry-on` | Opening practice: keep it and play on as an ordinary game |
 | `POST /api/play/{id}/keep-playing` | Opening practice: the line is over; play on as an ordinary game |
 
-Engine and model work runs between database transactions, serialized per
-account by the existing variation lock, on the account's warm engine (the shared
-local engine, or a pooled process in account mode).
+Engine and model work runs between database transactions and outside the
+account's mutation lock, serialized per account by the variation lock, on the
+account's interactive engine (the shared local engine, or a pooled process in
+account mode); game review's variation analysis uses the same engine. A reply
+re-checks the game under the lock before saving, so a rewind while the bot thinks
+answers 409. The game saves each move's engine facts only (`game_review.review_move`,
+the same single-move builder variation analysis uses) and renders them with the
+current review rules whenever it is read, as the game review does; older rows that
+saved rendered reports are stripped back to their facts. The bot's latest reply and
+its source are saved, so a repeated reply request returns both. The game's state
+machine (rewind, reply, book lookup, take-back) lives in `play/sessions.py`.
 
 ## Spoken meanings the game still needs
 
