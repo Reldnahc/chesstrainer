@@ -46,9 +46,11 @@ remaining time at the selected move, starting from the TimeControl header's
 initial time; the side to move has the highlighted (running) clock. A variation
 keeps the clocks from where it left the game. Games without clock annotations
 show no clocks.
-Normal arrow keys move through the game and Home/End jump to its start and last
-move (a variation's start inside one), like the playback buttons; Alt+Left/Right
-remain browser shortcuts.
+Normal arrow keys move through the game, as do A/D; Up/Down and Home/End jump to
+its start and last move (a variation's start inside one), like the playback
+buttons, and X flips the board, as on Chess.com. Alt+Left/Right remain browser
+shortcuts. Right-click marks a square (Shift green, Ctrl yellow, Alt blue) and
+right-drag draws an arrow; a left click on the board clears them.
 
 Open **Games** and choose an imported game. Its review starts automatically; an
 unfinished review resumes when reopened, and a completed review reuses saved
