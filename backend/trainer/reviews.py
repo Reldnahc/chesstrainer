@@ -427,10 +427,7 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     db.flush()
     session.last_attempt_id = attempt.id
     if session.response_ms is None:
-        # A session opened before the migration may already have raw attempts.
-        session.response_ms = db.scalar(
-            select(func.min(Attempt.elapsed_ms)).where(Attempt.session_id == session.id)
-        )
+        session.response_ms = elapsed  # The first answer's time.
     if grade in {"failure", "inaccuracy"}:
         session.failed = True
         record_once(db, session, scheduler, settings, elapsed)
@@ -520,10 +517,7 @@ def reveal(db, session_id, scheduler, settings):
         session.failed = True
         elapsed = max(0, int((now() - session.started_at).total_seconds() * 1000))
         if session.response_ms is None:
-            first_response = db.scalar(
-                select(func.min(Attempt.elapsed_ms)).where(Attempt.session_id == session.id)
-            )
-            session.response_ms = first_response if first_response is not None else elapsed
+            session.response_ms = elapsed
         review = record_once(db, session, scheduler, settings, elapsed)
         if review is not None:
             review.revealed = True

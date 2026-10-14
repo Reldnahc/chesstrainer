@@ -197,3 +197,50 @@ def test_timestamps_with_an_offset_are_rewritten_and_read_back_in_utc(tmp_path):
         db.commit()
         db.expire_all()
         assert db.get(User, "u1").last_seen_at == noon
+
+
+def test_values_requests_used_to_fill_in_are_backfilled(tmp_path):
+    engine, _ = database(tmp_path / "backfill.sqlite3")
+    upgrade_to(engine, "f6c0e2a4b8d7")
+    with engine.begin() as connection:
+        fill(connection, "users", id="u1", username="u1")
+        fill(
+            connection,
+            "games",
+            id="g1",
+            user_id="u1",
+            fingerprint="g1",
+            pgn="1. f3 e5 2. g4 Qh4# 0-1",
+        )
+        fill(connection, "games", id="g2", user_id="u1", fingerprint="g2", pgn="", move_count=None)
+        fill(connection, "exercises", id="x1", user_id="u1", identity="x1")
+        for session, response in (("s1", None), ("s2", None), ("s3", 900)):
+            fill(
+                connection,
+                "review_sessions",
+                id=session,
+                user_id="u1",
+                exercise_id="x1",
+                response_ms=response,
+            )
+        for attempt, session, elapsed in (
+            ("a1", "s1", 4000),
+            ("a2", "s1", 2500),
+            ("a3", "s3", 100),
+        ):
+            fill(
+                connection,
+                "exercise_attempts",
+                id=attempt,
+                user_id="u1",
+                session_id=session,
+                elapsed_ms=elapsed,
+            )
+    upgrade_to(engine, "head")
+    with engine.connect() as connection:
+        games = dict(connection.exec_driver_sql("SELECT id, move_count FROM games").fetchall())
+        sessions = dict(
+            connection.exec_driver_sql("SELECT id, response_ms FROM review_sessions").fetchall()
+        )
+    assert games == {"g1": 4, "g2": 0}
+    assert sessions == {"s1": 2500, "s2": None, "s3": 900}

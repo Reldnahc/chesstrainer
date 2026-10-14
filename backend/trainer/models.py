@@ -1,6 +1,8 @@
+import io
 import uuid
 from datetime import date, datetime, timezone
 
+import chess.pgn
 from sqlalchemy import (
     JSON,
     DateTime,
@@ -17,6 +19,12 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 def now() -> datetime:
     return datetime.now(timezone.utc)
+
+
+def mainline_plies(context):
+    """Default for Game.move_count: the half-moves in the row's PGN mainline."""
+    game = chess.pgn.read_game(io.StringIO(context.get_current_parameters()["pgn"]))
+    return 0 if game is None else sum(1 for _ in game.mainline_moves())
 
 
 class UTCDateTime(TypeDecorator):
@@ -126,9 +134,8 @@ class Game(Owned, Base):
     pgn: Mapped[str] = mapped_column(Text)
     played_on: Mapped[str | None]
     played_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
-    # Mainline half-moves, saved at import so the library never replays PGNs. Older
-    # rows are filled in the first time they are listed.
-    move_count: Mapped[int | None]
+    # Mainline half-moves, saved at insert so the library never replays PGNs.
+    move_count: Mapped[int] = mapped_column(default=mainline_plies)
     # True/False when the source says whether the game was rated; None when it does
     # not (most hand-made PGNs). Stats skip only games known to be unrated.
     rated: Mapped[bool | None]

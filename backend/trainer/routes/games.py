@@ -7,7 +7,7 @@ from typing import Annotated
 import chess
 import chess.pgn
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from sqlalchemy import func, select, update
+from sqlalchemy import func, select
 
 from trainer import job_lifecycle
 from trainer.authz import shared_links
@@ -131,13 +131,10 @@ def create_router(*, settings):
             completed_ids = [game.id for game, status in rows if status == JobStatus.COMPLETED]
             saved = load_accuracy_scores(db, completed_ids)
             items = []
-            backfill = {}
             for game, status in rows:
                 # Headers are enough for the library; replaying moves is the slow part.
                 headers = chess.pgn.read_headers(io.StringIO(game.pgn)) or chess.pgn.Headers()
                 plies = game.move_count
-                if plies is None:
-                    plies = backfill[game.id] = sum(1 for _ in parsed_game(game).mainline_moves())
                 time_control = headers.get("TimeControl")
                 items.append(
                     {
@@ -165,15 +162,6 @@ def create_router(*, settings):
                     }
                 )
             total = db.scalar(select(func.count()).select_from(Game))
-            if backfill:
-                # Rows imported before move counts were saved: one short write per page.
-                # The lock is taken before anything is written. Writing first (an
-                # autoflushed row) and then waiting for the lock deadlocks with a
-                # background job that holds the lock while waiting to write.
-                with workspace.mutation_lock:
-                    for game_id, plies in backfill.items():
-                        db.execute(update(Game).where(Game.id == game_id).values(move_count=plies))
-                    db.commit()
             return {"items": items, "total": total}
 
     @router.get("/api/games/{game_id}/export", response_model=GameExport)
