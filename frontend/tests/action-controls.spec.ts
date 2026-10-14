@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { expectModifierClickLeftToBrowser } from "./modifierClick";
 
 test("primary and secondary destination actions share geometry and preserve keyboard navigation", async ({ page }) => {
   await page.goto("/study");
@@ -87,16 +88,9 @@ test("shared command buttons remain commands and import forms still submit", asy
   await expect(page.getByLabel("PGN", { exact: true })).toHaveCount(0);
 });
 
-test("action links retain desktop modifier clicks", async ({ page, context }, info) => {
+test("action links retain desktop modifier clicks", async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "Modifier click is a desktop interaction.");
   await page.goto("/study");
-  const opened = context.waitForEvent("page");
-  await page.getByRole("link", { name: "Open lessons", exact: true }).click({ modifiers: ["ControlOrMeta"] });
-  const other = await opened;
-  try {
-    await expect(other).toHaveURL("/study/openings");
-    await expect(page).toHaveURL("/study");
-  } finally {
-    await other.close();
-  }
+  await expectModifierClickLeftToBrowser(page, page.getByRole("link", { name: "Open lessons", exact: true }), "/study/openings");
+  await expect(page).toHaveURL("/study");
 });

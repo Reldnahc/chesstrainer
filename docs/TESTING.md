@@ -571,6 +571,8 @@ Regression checks preserve header/title/board/control geometry through loading, 
 
 Focused practice checks witness frames/square roles and unchanged recall counts. Chess.com tests submit dates, download mocked archives, run real analysis, repeat imports without analysis duplication, and show provider failures.
 
+Modifier clicks (Ctrl/Cmd on a link) are checked with `expectModifierClickLeftToBrowser` in frontend/tests/modifierClick.ts. It checks the link's address, that the app doesn't cancel the click and that the page stays put, then cancels the browser's tab. The tests don't wait for the new tab. Chromium sometimes commits a modifier-click tab's page before Playwright starts listening to it, so Playwright never reports the tab and the tab never loads its data. This hit about 1 in 50 clicks on GitHub runners, reproduced on October 14, 2026.
+
 Browser fixtures create manual exercises through the retained low-level API and inject puzzle/lesson sources through test providers. There is no Repertoire/manual-entry screen; authored Study lessons have connected browser journeys. Test-only fixtures are in backend/tests/browser_app.py and are absent from production. Screenshots contain fixture or bundled course data, not the user's games. Mobile emulation is not physical-phone LAN verification.
 
 ## Manual native smoke flow
