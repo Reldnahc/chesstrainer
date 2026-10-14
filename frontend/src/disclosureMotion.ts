@@ -3,23 +3,9 @@
 // browser: opening sets `open` and grows from the summary; closing shrinks to the
 // summary and only then clears `open`. See docs/UI_COMPONENTS.md#motion.
 
+import { duration, easing, motionAllowed } from "./motionTiming";
+
 const running = new WeakMap<HTMLDetailsElement, Animation>();
-
-function motionAllowed() {
-  const choice = document.documentElement.dataset.interfaceMotion;
-  if (choice) return choice === "natural";
-  return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-function token(name: string) {
-  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-}
-
-// The build may rewrite 250ms as .25s, so read either unit.
-function milliseconds(time: string) {
-  const value = parseFloat(time) || 0;
-  return /\d\s*s$/.test(time) && !time.endsWith("ms") ? value * 1000 : value;
-}
 
 function closedHeight(details: HTMLDetailsElement, summary: HTMLElement) {
   const style = getComputedStyle(details);
@@ -34,10 +20,9 @@ function toggle(details: HTMLDetailsElement, summary: HTMLElement) {
   details.open = true;
   const end = opening ? details.getBoundingClientRect().height : closedHeight(details, summary);
   details.dataset.animating = opening ? "opening" : "closing";
-  const duration = milliseconds(token("--motion-base"));
   const animation = details.animate(
     [{ height: `${start}px` }, { height: `${end}px` }],
-    { duration, easing: token("--ease-standard") || "ease-in-out" },
+    { duration: duration("--motion-base"), easing: easing("--ease-standard") },
   );
   running.set(details, animation);
   animation.onfinish = () => {

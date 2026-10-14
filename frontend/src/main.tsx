@@ -6,9 +6,11 @@ import { CoachProvider } from "./coach/CoachProvider";
 import { MotionProvider } from "./MotionProvider";
 import { AudioProvider } from "./audio/AudioProvider";
 import { installDisclosureMotion } from "./disclosureMotion";
+import { installLoadHandoff } from "./loadHandoff";
 import "./styles.css";
 
 installDisclosureMotion();
+installLoadHandoff(document.getElementById("root")!);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
