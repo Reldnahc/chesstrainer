@@ -8,7 +8,7 @@ game and reviewed there with no play-specific code.
 
 This document records the design decisions, the measurements behind them, the
 HTTP surface and the spoken meanings the feature still needs. It builds on
-[Game review](GAME_REVIEW.md), [Human move evidence](HUMAN_MODELS.md) and
+[Game review](GAME_REVIEW.md), [Human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence) and
 [Evidence-led coach dialogue](COACH_DIALOGUE.md).
 
 ## Strength levels

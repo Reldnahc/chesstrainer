@@ -94,7 +94,7 @@ Weaknesses separates outcomes from supported tactical mechanisms, displays disti
 
 Selection rotates through source games. Within a game it favors more recorded lapses, then recent evidence. Different decisions with the same legal-position key appear once per batch. The batch lives in the browser; reopening a skill may deliberately repeat practice while resuming an unfinished attempt.
 
-First-failure/reveal history, raw first-response time and completion time are persisted separately from ordinary reviews. Focused practice shares grading and playback with Review but never changes FSRS. See [SRS.md](SRS.md).
+First-failure/reveal history, raw first-response time and completion time are persisted separately from ordinary reviews. Focused practice shares grading and playback with Review but never changes FSRS. See [spaced repetition](STUDY.md#spaced-repetition).
 
 ### Archived compatibility
 

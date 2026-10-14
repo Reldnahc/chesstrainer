@@ -62,7 +62,7 @@ There is no LLM runtime, SDK, model service or model API-key requirement. Histor
 
 ## Local operation
 
-Data lives in one SQLite database on the host. PGN analysis and training work offline once dependencies and Stockfish are installed. Shared hosting supports self-service accounts with private games and training history, persistent device sessions, and remembered Chess.com and Lichess usernames. Recent-game sync contacts the public Chess.com and Lichess APIs and queues each new game's review in the background. Docker packages the app and native Stockfish for Unraid behind an existing reverse proxy and optional Cloudflare Access. LAN clients can also use the original single-user mode. There is no cloud database or telemetry. See [Accounts](ACCOUNTS.md) and [Unraid](UNRAID.md).
+Data lives in one SQLite database on the host. PGN analysis and training work offline once dependencies and Stockfish are installed. Shared hosting supports self-service accounts with private games and training history, persistent device sessions, and remembered Chess.com and Lichess usernames. Recent-game sync contacts the public Chess.com and Lichess APIs and queues each new game's review in the background. Docker packages the app and native Stockfish for Unraid behind an existing reverse proxy and optional Cloudflare Access. LAN clients can also use the original single-user mode. There is no cloud database or telemetry. See [Accounts](ADMINISTRATION.md) and [Unraid](INSTALL.md#unraid).
 
 See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for detector scope.
 

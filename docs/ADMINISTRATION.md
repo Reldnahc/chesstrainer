@@ -1,8 +1,204 @@
-# Configuration
+# Accounts and configuration
+
+Username/password accounts require `ACCOUNTS_ENABLED=true`. The
+default, `false`, selects local single-user mode without login.
+Everyone who can reach that instance shares the reserved `local` workspace. Existing
+named accounts remain stored and private; switching to local mode does not merge or
+expose their games. Restart the server/container after changing modes. The optional
+legacy `LAN_ACCESS_TOKEN` still applies in local mode if explicitly configured.
+
+Cloudflare
+Access and the existing reverse proxy remain independent outer access controls.
+The app authenticates its own users; it does not trust Cloudflare email headers.
+
+### Who can create an account
+
+Sign-ups start closed, including on upgraded servers, so finding the address is not enough to get an account. Administrators
+add members in **Settings → Account → Add member** with a username and a
+temporary password, which the member replaces at first sign-in (the same forced
+change as a password reset). A club that wants self-service can use **Open
+sign-ups** in the same section; the sign-in page then offers **Create an
+account**, and visitors who sign up are ordinary members, never administrators.
+While sign-ups are closed the sign-in page tells visitors to ask whoever runs the
+server, and `POST /api/auth/signup` answers 403. The switch is stored in the
+`site_settings` table with the other [stored server settings](#stored-server-settings);
+host operators can also run
+`python -m trainer.accounts open-signups` or `close-signups`.
+
+Signed-out visitors cannot add analysis load. Every route that runs Stockfish or
+Maia needs a signed-in account; a shared game link only reads the saved review
+and lists legal moves (see [Shared game links](#shared-game-links)). Members share
+the host's `ENGINE_SLOTS`, with one analysis job per account at a time.
+
+Find the signed-in username, **Sign out**, and **Sign out all devices** in
+**Settings → Account** on desktop and mobile. Account controls do not occupy a
+separate bar above navigation. Local mode has no account section.
+
+All accounts, sessions, games, jobs, reviews and training history live in the
+`DATABASE_PATH` SQLite file. Private tables have an indexed `user_id`.
+Game fingerprints and exercise/classification identities deduplicate per account.
+The immutable Stockfish position cache, the Maia prediction cache and the skill
+taxonomy are shared internally, so members who import the same game reuse one
+analysis. No API exposes arbitrary engine- or Maia-cache rows.
+
+Audio choices are saved in the same account-owned `user_preferences` row as coach
+and motion choices, including for the reserved local user. `/api/preferences/audio`
+reads and replaces the sound settings without changing either of those independent
+preferences. Defaults enable sound at 35% volume, with board and practice sounds
+enabled and game-review feedback sounds disabled. Accounts without saved audio choices
+get these defaults; saving them on one device applies to later account loads.
+
+Request services and background workers receive an `AccountSession` factory bound
+to one explicit user. ORM read/update/delete criteria apply to all private models,
+including aggregates and guessed IDs. Flush validation assigns ownership and
+rejects cross-account references. Raw SQL and private bulk inserts are prohibited
+in these sessions. The account service alone uses administrative SQL for credentials
+and sessions. Startup maintenance and the host job queue also use administrative
+sessions, limited to reconciliation and scheduling metadata respectively; they
+never pass those sessions into request handlers or domain job execution. New
+private models must inherit `Owned`; tests must cover their API.
+
+### Shared game links
+
+A game review's address (`/games/<id>`) works for anyone who has it. Signed-out
+visitors see that review alone, with a Sign in button in place of navigation, and
+can step through moves but not try their own. Signed-in viewers from another account
+can also explore variations, analyzed as their own account. Viewers read the game
+through sessions bound to its owner (`game_view` in `routes/games.py`); the only
+cross-account lookup is which account owns the ID. The owner's other games stay
+private: viewers get `read_only: true` and no cross-game history, cannot start,
+pause or refine the review, and never see the game in their own library. Only
+`GET /api/games/<id>`, `GET /api/games/<id>/review` and
+`POST /api/games/<id>/position` accept signed-out requests. Local single-user mode
+never opens another account's games.
+
+One host-wide engine pool limits native processes through `ENGINE_SLOTS` (default
+4); each process uses `STOCKFISH_THREADS` and `STOCKFISH_HASH_MB`. One application
+serves every account. There are exactly `ENGINE_SLOTS` host analysis coordinators
+and one fetch-only coordinator, independent of account count. An account can run
+one analysis job at a time; different accounts share the bounded workers. Native
+processes are created lazily when analysis is requested, not on signup.
+
+Requests and jobs create short-lived account scopes instead of retaining an app or
+threads per user. Per-account locks are released when active requests/jobs finish.
+Startup resumes eligible saved jobs even before their owners log in. Shutdown
+drains active work and closes the pooled engines. Use one Uvicorn worker per
+database/service instance.
+
+## Enable and migrate
+
+Back up the existing database with `scripts/backup.py` and stop the server before
+switching modes. Migrations retain existing data under reserved account `local`,
+which cannot log in or be claimed through signup. Assign it explicitly:
+
+```
+python -m trainer.accounts claim-local YOUR_USERNAME
+```
+
+The command prompts for a password twice and makes that account the administrator.
+It changes ownership identity in place, preserving every game and review. Run this
+before first login. For a fresh installation use `create-admin YOUR_USERNAME`.
+Neither command grants privileges to the first person who registers, and sign-ups
+stay closed until an administrator opens them. To make an
+account that already signed up an administrator, use `promote USERNAME` (see
+[Administration and recovery](#administration-and-recovery)).
+
+Configure `ACCOUNTS_ENABLED=true` and `SESSION_SECURE=true` behind HTTPS. The
+proxy must preserve the public Host header; if it cannot, set
+`PUBLIC_ORIGIN=https://your-chess-hostname`; the server's own LAN address keeps
+working alongside it. Without HTTPS, sign-in still works when you open the server by a LAN address (a private IP, a single-label name or a `.lan`/`.local`-style name) from a device on that network; public names and outside visitors always get Secure cookies. `SESSION_SECURE=false` drops Secure cookies everywhere,
+for local HTTP development only. Account mode does not use the legacy shared LAN token.
+The container image always runs account mode and refuses to start in single-user mode;
+that mode runs only from source. Do not expose it publicly. Do not switch a shared deployment
+back to single-user mode: that mode intentionally opens the original `local` account.
+
+Passwords use salted scrypt (N=131072, r=8, p=1). Hashing is memory-bounded by a
+single authentication slot and rate-limited: failed attempts are counted per source
+address and per username, and every attempt counts toward a host-wide limit. Behind
+a reverse proxy, set `FORWARDED_ALLOW_IPS` to the proxy's address so each browser
+keeps its own address. Random session cookies are HttpOnly,
+SameSite=Lax and Secure by default; only token digests are stored. Sessions expire
+after 30 days, survive application restarts, and are independent across devices.
+Writes require an Origin matching the request's Host (or `PUBLIC_ORIGIN` when set)
+and a session-bound CSRF header. Passwords
+and session tokens are never returned in API responses or included in public settings.
+
+## Administration and recovery
+
+Everyone can change their own password in **Settings → Account → Password** by
+entering the current one; their other devices are signed out and this one stays.
+
+Administrators manage other accounts in **Settings → Account**, below their own
+sign-in controls: open or close sign-ups, add a member, reset a password, disable or enable, make administrator, or
+delete. A reset sets a temporary password and signs that account out; the
+administrator passes it on, and at the next sign-in the account must choose its
+own password before anything else works. Members never see this section and the `/api/auth/accounts` endpoints
+refuse them. An administrator cannot reset, disable or delete their own account
+there. Deleting asks for confirmation, removes every row the account owns (games,
+reviews, jobs, training and Study history) and keeps shared engine analysis; it
+waits while that account has analysis running, so disable the account first and
+retry once the analysis stops. Disable instead to keep the account's history.
+
+Host commands (passwords are entered interactively, never in command arguments):
+
+```
+python -m trainer.accounts promote USERNAME
+python -m trainer.accounts reset-password USERNAME
+python -m trainer.accounts disable USERNAME
+python -m trainer.accounts enable USERNAME
+python -m trainer.accounts open-signups
+python -m trainer.accounts close-signups
+```
+
+`promote` makes an existing account an administrator from the host; an existing
+administrator can instead use **Make administrator** in Settings → Account. It fails if the
+account does not exist or is already an administrator, and its open sessions gain
+the privilege on their next request. The other commands revoke existing sessions. `reset-password` sets a permanent
+password (host recovery), unlike the temporary one an administrator sets in Settings. Disabling prevents further requests; stop/restart
+the service if you also need to interrupt that account's already-running analysis.
+Enabling requeues analysis that was interrupted while the account was disabled.
+
+After an update the server upgrades the database when it starts and serves the
+site only once that is done. A command run meanwhile stops with "The database is
+busy"; run it again once the site loads. A command upgrades the database itself
+only when no server has (a first setup, or a stopped server), and says so first.
+`create-admin`, `claim-local` and `reset-password` ask for a password, so they need a
+terminal: in Docker, run them with `docker exec -it`; without one they stop at once.
+
+There is no email delivery.
+The SQLite backup/restore tool includes all accounts and their data in
+one snapshot. Treat backups as private: they include password hashes and sessions.
+Once accounts exist, schema downgrade is refused; restore a pre-upgrade snapshot instead.
+
+## Recent games
+
+Save a Chess.com or Lichess username in Settings. The connection is stored on the
+account, not in that browser. The server polls every saved connection on its own
+(see [Automatic game analysis](GAME_ANALYSIS.md)); open pages only read sync and
+queue status every 15 seconds. Games' compact **Update games** control requests an
+immediate check, at most once per minute per connection. Multiple devices share
+the same checkpoint/cooldown. A failed provider request leaves saved games
+available and displays an error.
+
+Each sync reads the 10 newest completed standard-chess games across all time
+controls, whatever month they were played in, and only runs when the provider
+reports a change. Accounts with no visits for 7 days stop being polled and see a
+welcome-back notice on return. Every new game queues its own
+analysis job. The Games library sorts by play time, with unknown dates last.
+Chess.com's published API is cached; a check does not guarantee immediate
+availability after a game.
+
+Manual imports fetch older games; there is no analysis choice. Their games join
+the same queue behind games the poller found. Opening a game whose review has not started,
+failed or was paused starts it at the front of the queue. The
+`/api/games/{game_id}/train` endpoint queues training alone for one game. Interactive exploration analyzes the position
+you visit. The HTTP import APIs ignore a legacy `analyze` field.
+
+## Configuration
 
 Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment variables override root .env; defaults apply last. Relative paths resolve from the server working directory. Run from the repository root. Invalid recognized values fail startup with field-specific errors.
 
-### Stored server settings
+#### Stored server settings
 
 Most settings below live in the database (`site_settings`), not the environment.
 Administrators, or the single user of a local install, change them in **Settings
@@ -29,7 +225,7 @@ policies and engine evidence keep their saved configuration. The optional LAN
 token is a SecretStr excluded from public serialization; only its configured
 status is returned.
 
-## Active settings
+### Active settings
 
 | Variable | Default / bounds where useful |
 |---|---|
@@ -84,7 +280,7 @@ status is returned.
 
 See [.env.example](../.env.example) for a copyable starting point.
 
-## Engine and grading
+### Engine and grading
 
 Search stops at the first reached depth/time/node bound. STOCKFISH_WORKERS controls parallel games within one import; each owns a native process. STOCKFISH_THREADS and hash memory apply per process. Interactive grading has a separate engine in addition to background workers. Four workers with one thread permit four simultaneous background searches plus interactive grading; concurrency does not change per-position limits.
 
@@ -100,10 +296,10 @@ For unlisted answers, the saved analysis limits/resources and binary identity ar
 
 Policy and target-rating effects are documented in [analysis pipeline](GAME_ANALYSIS.md#analysis-pipeline) and [weakness priorities](INSIGHTS.md#weakness-priorities-and-archived-curriculum). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
 
-## Local classification
+### Local classification
 
 Human move evidence is separate from rule classification and Stockfish. See
-[HUMAN_MODELS.md](HUMAN_MODELS.md) for explicit setup, resource measurements,
+[human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence) for explicit setup, resource measurements,
 offline use, cache identity and conservative interpretation of rating domains.
 
 CLASSIFICATION_WORKERS limits local rule tasks; it starts no model requests or additional engines. Each bounded pool admits at most twice its worker count. Worker count alone does not invalidate results.
@@ -116,15 +312,15 @@ The task list, classifier parameters, engine binary and search limits participat
 
 No model key is read. Old OPENAI_* and LLM_* values are ignored, unused and never serialized. Local classification is available even without Stockfish when compatible saved evidence exists.
 
-## Scheduling and imports
+### Scheduling and imports
 
-A saved FSRS interval strictly greater than RETIRE_AFTER_DAYS permanently retires an exercise. Startup reconciles existing qualifying states. Changing the threshold never reactivates retired cards. SLOW_ANSWER_SECONDS affects automatic Hard versus Good; raw timing remains stored independently. See [SRS.md](SRS.md).
+A saved FSRS interval strictly greater than RETIRE_AFTER_DAYS permanently retires an exercise. Startup reconciles existing qualifying states. Changing the threshold never reactivates retired cards. SLOW_ANSWER_SECONDS affects automatic Hard versus Good; raw timing remains stored independently. See [spaced repetition](STUDY.md#spaced-repetition).
 
 Chess.com username, time class, calendar-month lookback or explicit dates, and new-game limit are selected per import and saved in SQLite. Defaults are rapid / 3 months / 100 new games. Date bounds include whole UTC completion days and override lookback. Duplicates and rejected games do not consume the new-game limit; repeated imports can backfill older unsaved games in the selected range. Retry old cancelled jobs separately.
 
-Chess.com import requires internet access on the host and no account credentials. User-Agent may include contact details; never put secrets there. See [Chess.com transport](GAME_PROVIDERS.md#chesscom-transport).
+Chess.com import requires internet access on the host and no account credentials. User-Agent may include contact details; never put secrets there. See [Chess.com transport](GAME_ANALYSIS.md#chesscom-transport).
 
-## Local and LAN operation
+### Local and LAN operation
 
 Use one backend process. For LAN access, bind SERVER_HOST to the host's home-network IPv4 address and optionally configure LAN_ACCESS_TOKEN. Open http://HOST-LAN-IP:SERVER_PORT from the same trusted network. Binding 0.0.0.0 instead listens on every IPv4 interface. The token is a shared access gate and does not add transport encryption; do not expose the app directly to the public internet.
 
@@ -134,13 +330,13 @@ On Windows, run scripts/allow-lan.ps1 with -LocalAddress in administrator PowerS
 
 The Vite development proxy specifically targets 127.0.0.1:8000. Override SERVER_HOST and SERVER_PORT in the development backend terminal as shown in [README.md](../README.md#development-and-tests); a backend bound only to its LAN address will not answer that proxy.
 
-## Archived settings
+### Archived settings
 
 `COURSE_MAX_UNITS`, `LESSON_MAX_POSITIONS` and `LESSON_CHECK_PASS_FRACTION` are
 ignored; old `.env` entries can be deleted. See
 [archived compatibility](INSIGHTS.md#archived-compatibility).
 
-## Shared hosting
+### Shared hosting
 
 `/api/health` and `/api/settings` distinguish an unchecked engine from a working
 or unavailable one through `engine_status`. Availability is `null` until checked,
@@ -168,10 +364,10 @@ raw exception details. There are no additional container variables for this.
   app instance or workers; the host worker count stays fixed as accounts grow.
 - `DATABASE_PATH` names one SQLite file containing accounts and all chess data.
 
-See [ACCOUNTS.md](ACCOUNTS.md) before enabling accounts for existing data and
-[UNRAID.md](UNRAID.md) for container storage, permissions and proxy configuration.
+See [ADMINISTRATION.md](ADMINISTRATION.md) before enabling accounts for existing data and
+[Unraid](INSTALL.md#unraid) for container storage, permissions and proxy configuration.
 
-## Full-game review refinement
+### Full-game review refinement
 
 Optional extra investigation follows the deep baseline. Defaults are
 `REVIEW_REFINEMENT_POSITIONS=8`, `REVIEW_REFINEMENT_QUERIES=4`,

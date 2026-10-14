@@ -5,7 +5,7 @@
 The live coach catalogue owns selectable identities. This bible defines teaching
 temperament and language, not the complete technical creation process. Start with
 [Create a Fieldwork coach](COACH_CREATION_GUIDE.md) for that process, and use
-[character writing](COACH_PERSONALITIES.md) and [audio](AUDIO.md#recorded-coach-voices)
+[character writing](COACH_DIALOGUE.md#character-writing) and [audio](AUDIO.md#recorded-coach-voices)
 for the current Walter/Rivet written and spoken quality standard.
 
 Every coach has a personalized display name while keeping the existing archetype

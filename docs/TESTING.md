@@ -92,7 +92,7 @@ Stockfish checks use the existing `stockfish` marker. Benchmark artifacts are
 ignored private development output, not repository fixtures.
 
 Opt-in Maia tests and benchmark commands are documented in
-[HUMAN_MODELS.md](HUMAN_MODELS.md#verification). Native `maia` tests require the pinned
+[human move evidence](REVIEW_INTELLIGENCE.md#human-model-verification). Native `maia` tests require the pinned
 optional runtime plus `MAIA_CHECKPOINT_DIR`; ordinary tests verify missing/corrupt
 files, source pinning and complete-history inputs without importing Torch.
 
@@ -100,7 +100,7 @@ Production human-evidence contracts, ownership/cache invalidation, real process
 deadlines, cancellation and Stockfish-only/refresh behavior are covered by
 `test_human_evidence.py`, `test_human_runtime.py` and `test_human_review.py`.
 The native production worker test requires the 79M checkpoint; it does not use
-the feasibility adapter. See [HUMAN_MODELS.md](HUMAN_MODELS.md) for setup.
+the feasibility adapter. See [human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence) for setup.
 
 ## Native whole-game intelligence verification
 
@@ -603,7 +603,7 @@ Passing tests establish implementation contracts, not population classifier accu
 
 ### Offline Lichess benchmark
 
-Use [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) for local CSV/compression setup, theme semantics and sampling commands. This developer tool tests the production line detector without a database, engine, server, model or network. It adds no application puzzle feature. Its [results](LICHESS_BENCHMARK.md#results) are a separate measurement from passing synthetic tests.
+Use [Lichess benchmark](LOCAL_CLASSIFICATION.md#lichess-positive-theme-benchmark) for local CSV/compression setup, theme semantics and sampling commands. This developer tool tests the production line detector without a database, engine, server, model or network. It adds no application puzzle feature. Its [results](LOCAL_CLASSIFICATION.md#results) are a separate measurement from passing synthetic tests.
 
 ```sh
 python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lichess_benchmark.py

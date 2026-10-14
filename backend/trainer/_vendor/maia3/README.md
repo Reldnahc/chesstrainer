@@ -9,4 +9,4 @@ UCI sampling, its compatibility centipawn score, its human WDL and model downloa
 helpers are not vendored or used. Original source hashes and checkpoint provenance
 are in `trainer/human_models/manifest.json`. The supported weight preset is 79M;
 weights are explicitly acquired into the installation's persistent data directory.
-See `docs/HUMAN_MODELS.md` for terms, benchmarks and domain limits.
+See `docs/REVIEW_INTELLIGENCE.md#human-move-evidence` for terms, benchmarks and domain limits.

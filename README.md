@@ -29,17 +29,17 @@ compares their complete recordings for the same supported meanings.
 
 Game review now connects supported tactics, immediate positional changes, human
 difficulty, clocks, earlier moments and relevant saved weaknesses into factual
-move-by-move coaching. Every selectable coach has its own [writing voice](docs/COACH_PERSONALITIES.md).
+move-by-move coaching. Every selectable coach has its own [writing voice](docs/COACH_DIALOGUE.md#character-writing).
 Changing characters rephrases the same evidence without rerunning analysis.
 The separate [developer intelligence lab](docs/REVIEW_INTELLIGENCE.md#review-intelligence-laboratory) can trace a
 sentence back to that evidence and compare the cast; it is not a production page.
 
 Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. The application can run locally or be self-hosted for friends with private accounts in one SQLite database.
 
-Install with [Docker](docs/DOCKER.md) or the [Unraid template](docs/UNRAID.md).
+Install with [Docker](docs/INSTALL.md) or the [Unraid template](docs/INSTALL.md#unraid).
 One container includes Stockfish and its database; no source checkout is needed.
 
-Optional [Maia human move evidence](docs/HUMAN_MODELS.md) uses an isolated local
+Optional [Maia human move evidence](docs/REVIEW_INTELLIGENCE.md#human-move-evidence) uses an isolated local
 CPU worker alongside Stockfish. Docker includes the runtime; acquire the pinned
 model explicitly with `docker exec fieldwork python -m trainer.human_models.setup`.
 Ordinary review never downloads weights, and Stockfish remains the evaluation
@@ -51,9 +51,9 @@ docker exec -it fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 ```
 
 Open `http://localhost:18000` (or your server's LAN IP) and sign in. The container
-always requires sign-in; see [Docker installation](docs/DOCKER.md) for the recommended
-hardening options and [shared hosting](docs/DOCKER.md#shared-https-hosting) for HTTPS.
-See [account administration](docs/ACCOUNTS.md) for account recovery.
+always requires sign-in; see [Docker installation](docs/INSTALL.md) for the recommended
+hardening options and [shared hosting](docs/INSTALL.md#shared-https-hosting) for HTTPS.
+See [account administration](docs/ADMINISTRATION.md) for account recovery.
 
 Run from source, Fieldwork defaults to one local workspace without login, for
 development and single-computer use. Everyone who can reach that instance shares its
@@ -194,7 +194,7 @@ Build before running tests that use frontend/dist; do not rebuild it during back
 
 [TESTING.md](docs/TESTING.md) includes isolated migration/schema-drift checks and platform-specific commands.
 
-Developer-only [Lichess benchmark tooling](docs/LICHESS_BENCHMARK.md) streams a local puzzle dataset to measure positive-theme agreement with the shared tactical detector. It does not add puzzle training to the app or infer precision from missing tags. Its [results](docs/LICHESS_BENCHMARK.md#results) compare the earlier detector, raw upstream recognition and current admission; agreement with related upstream labels is not independent precision.
+Developer-only [Lichess benchmark tooling](docs/LOCAL_CLASSIFICATION.md#lichess-positive-theme-benchmark) streams a local puzzle dataset to measure positive-theme agreement with the shared tactical detector. It does not add puzzle training to the app or infer precision from missing tags. Its [results](docs/LOCAL_CLASSIFICATION.md#results) compare the earlier detector, raw upstream recognition and current admission; agreement with related upstream labels is not independent precision.
 
 ## Backup and privacy
 
@@ -209,16 +209,16 @@ To reimport a library from scratch, stop the server and run `python scripts/clea
 
 Games, analysis, classification, explanations, exercises and review history stay on the host. There is no OpenAI SDK, model connection or outbound pedagogy payload. Legacy model audit records are retained locally for historical reference/export. No telemetry, remote fonts or external board assets are used. IBM Plex fonts are bundled locally; their license notices are in [docs/licenses](docs/licenses).
 
-Username imports contact the selected site's public API from the backend, sending the requested username and filters. It downloads completed games and never sends moves, credentials, your database or existing local games to either provider. Archive data may be delayed by provider caching. Repeat imports deduplicate against both previous downloads and PGN uploads. See [game provider imports](docs/GAME_PROVIDERS.md) and [Chess.com transport details](docs/GAME_PROVIDERS.md#chesscom-transport).
+Username imports contact the selected site's public API from the backend, sending the requested username and filters. It downloads completed games and never sends moves, credentials, your database or existing local games to either provider. Archive data may be delayed by provider caching. Repeat imports deduplicate against both previous downloads and PGN uploads. See [game provider imports](docs/GAME_ANALYSIS.md#game-provider-imports) and [Chess.com transport details](docs/GAME_ANALYSIS.md#chesscom-transport).
 
 ## Documentation
 
 - **Product:** [product and feature status](docs/PRODUCT.md)
-- **Features:** [Study](docs/STUDY.md), [course files](docs/COURSE_FILES.md) and [course sources](docs/COURSE_SOURCES.md), [spaced repetition](docs/SRS.md), [Play](docs/PLAY.md), [game review](docs/GAME_REVIEW.md), [Insights and weaknesses](docs/INSIGHTS.md)
-- **Analysis:** [game imports](docs/GAME_PROVIDERS.md), [automatic analysis and the pipeline](docs/GAME_ANALYSIS.md), [local classification](docs/LOCAL_CLASSIFICATION.md), [review intelligence](docs/REVIEW_INTELLIGENCE.md), [human move evidence](docs/HUMAN_MODELS.md), [Lichess benchmark](docs/LICHESS_BENCHMARK.md)
-- **Coaches and sound:** [coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [dialogue](docs/COACH_DIALOGUE.md), [character writing](docs/COACH_PERSONALITIES.md), [audio](docs/AUDIO.md)
-- **Running it:** [Docker](docs/DOCKER.md), [Unraid](docs/UNRAID.md), [accounts](docs/ACCOUNTS.md), [configuration](docs/CONFIGURATION.md)
-- **Development:** [architecture](docs/ARCHITECTURE.md), [data model](docs/DATA_MODEL.md), [UI components](docs/UI_COMPONENTS.md), [testing](docs/TESTING.md)
+- **Features:** [Study](docs/STUDY.md), [course files](docs/COURSE_FILES.md) and [course sources](docs/COURSE_SOURCES.md), [spaced repetition](docs/STUDY.md#spaced-repetition), [Play](docs/PLAY.md), [game review](docs/GAME_REVIEW.md), [Insights and weaknesses](docs/INSIGHTS.md)
+- **Analysis:** [game imports](docs/GAME_ANALYSIS.md#game-provider-imports), [automatic analysis and the pipeline](docs/GAME_ANALYSIS.md), [local classification](docs/LOCAL_CLASSIFICATION.md), [review intelligence](docs/REVIEW_INTELLIGENCE.md), [human move evidence](docs/REVIEW_INTELLIGENCE.md#human-move-evidence), [Lichess benchmark](docs/LOCAL_CLASSIFICATION.md#lichess-positive-theme-benchmark)
+- **Coaches and sound:** [coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [dialogue](docs/COACH_DIALOGUE.md), [character writing](docs/COACH_DIALOGUE.md#character-writing), [audio](docs/AUDIO.md)
+- **Running it:** [Docker](docs/INSTALL.md), [Unraid](docs/INSTALL.md#unraid), [accounts](docs/ADMINISTRATION.md), [configuration](docs/ADMINISTRATION.md#configuration)
+- **Development:** [architecture](docs/ARCHITECTURE.md), [data model](docs/ARCHITECTURE.md#data-model), [UI components](docs/UI_COMPONENTS.md), [testing](docs/TESTING.md)
 
 Earlier implementation journals and verification records remain in Git history.
 

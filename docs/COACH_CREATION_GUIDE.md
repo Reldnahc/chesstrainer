@@ -18,7 +18,7 @@ spoken-writing bar.
 | Who is this character, and how should they teach? | [Cast bible](COACH_CAST_BIBLE.md) |
 | How do artwork, reactions, idle behavior, mouths and settings work? | [Animated coach](COACH.md) |
 | Which chess facts may dialogue communicate? | [Evidence-led dialogue](COACH_DIALOGUE.md) |
-| How do I author and assess a distinct writing voice? | [Character writing](COACH_PERSONALITIES.md) |
+| How do I author and assess a distinct writing voice? | [Character writing](COACH_DIALOGUE.md#character-writing) |
 | How are recordings selected, played, cancelled and attributed? | [Audio](AUDIO.md#recorded-coach-voices) |
 | How were voices cast and locked? | [Cast voice locks](AUDIO.md#cast-voice-locks) |
 | How do I build and verify a complete recorded bank? | [Bank authoring](../frontend/src/audio/speech/bank/README.md) |
@@ -118,7 +118,7 @@ belong to shared lifecycle code. Still must retain an expressive static face.
 
 ## 3. Write the character before recording
 
-Use [Character writing](COACH_PERSONALITIES.md) and [the dialogue contract](COACH_DIALOGUE.md).
+Use [Character writing](COACH_DIALOGUE.md#character-writing) and [the dialogue contract](COACH_DIALOGUE.md).
 Register a `CoachPersonality` with its bible, communication behavior, factual
 templates, claim/length budget and delivery metadata in the character's catalogue
 entry. Reuse the shared intent/projection/composition pipeline. Do not implement a

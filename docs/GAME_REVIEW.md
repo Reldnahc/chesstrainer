@@ -1,6 +1,6 @@
 # Full-game review
 
-Full-game and variation reports can carry [human move evidence](HUMAN_MODELS.md)
+Full-game and variation reports can carry [human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence)
 independently of their Stockfish findings. Opening an already reviewed game checks
 for missing/outdated human evidence when the model is ready; compatible baseline
 reports are reused. Progress polling publishes refreshed rows in game order and
