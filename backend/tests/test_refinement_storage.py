@@ -111,3 +111,57 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
     with sql.connect() as connection:
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     sql.dispose()
+
+
+@pytest.mark.parametrize(
+    "adopted,status,baseline_ids,refined",
+    [
+        (True, "completed", ["base", "played"], True),
+        (False, "completed", ["base", "played"], True),
+        (True, "budget_limited", ["base", "played"], True),
+        (True, "completed", ["other", "played"], True),
+        (True, "completed", ["base", "played"], False),
+    ],
+)
+def test_the_game_page_and_library_accuracy_agree_on_the_adopted_report(
+    sessions, adopted, status, baseline_ids, refined
+):
+    # effective_report (Python) and load_accuracy_scores (SQL) state one rule twice.
+    from trainer.review_reports import load_accuracy_scores
+
+    def score(value):
+        return {"kind": "cp", "value": value, "mate_given": False}
+
+    baseline = {
+        "before_analysis_id": "base",
+        "played_analysis_id": "played",
+        "depth": 16,
+        "white_score": score(10),
+        "best": {"score": score(20)},
+    }
+    better = baseline | {"depth": 22, "white_score": score(-40), "best": {"score": score(60)}}
+    with sessions() as db:
+        game = Game(fingerprint="agree", white="A", black="B", learner_color=True, pgn="*")
+        db.add(game)
+        db.flush()
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="agree",
+            triggers=[],
+            adopted=adopted,
+            status=status,
+            report=better if refined else None,
+            config={"baseline_ids": baseline_ids},
+        )
+        db.add(task)
+        db.flush()
+        row = GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id)
+        db.add(row)
+        db.commit()
+        page = effective_report(db, row, task)
+        library = load_accuracy_scores(db, [game.id])[game.id][1]
+        assert library == {
+            "white_score": page["white_score"],
+            "best": {"score": page["best"]["score"]},
+        }

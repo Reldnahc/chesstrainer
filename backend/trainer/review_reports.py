@@ -2,7 +2,7 @@
 
 from collections import defaultdict
 
-from sqlalchemy import and_, case, select
+from sqlalchemy import and_, case, func, select
 
 from trainer.game_review import link_previous_scores
 from trainer.human_models.evidence import policy_summary
@@ -86,7 +86,8 @@ def load_accuracy_scores(db, game_ids):
         == base["before_analysis_id"].as_string(),
         ReviewRefinement.config["baseline_ids"][1].as_string()
         == base["played_analysis_id"].as_string(),
-        refined.is_not(None),
+        # A JSON null is stored as text, so test for an object, as the Python rule does.
+        func.json_type(refined) == "object",
     )
     rows = db.execute(
         select(

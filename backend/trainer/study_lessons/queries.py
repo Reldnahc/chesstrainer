@@ -7,6 +7,7 @@ from sqlalchemy import select
 
 from trainer.errors import Conflict, NotFound
 from trainer.models import StudyLessonProgress, StudyLessonSession
+from trainer.session_commands import RESUME_LIMIT
 from trainer.study_lessons.content import CourseDefinition
 
 
@@ -103,7 +104,7 @@ def library(db, providers):
             StudyLessonSession.course_id.in_({course["id"] for course in courses}),
         )
         .order_by(StudyLessonSession.updated_at.desc())
-        .limit(20)
+        .limit(RESUME_LIMIT)
     )
     return {
         "courses": courses,
