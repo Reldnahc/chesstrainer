@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from pathlib import Path
 
 from alembic import command
@@ -42,19 +43,50 @@ def migrations_pending(engine):
         return MigrationContext.configure(connection).get_current_revision() != head
 
 
-def migrate(engine):
-    config = _config()
+@contextmanager
+def migration_connection(engine):
+    """One all-or-nothing transaction for schema changes, foreign keys checked at the end.
+
+    pysqlite opens a transaction only before INSERT/UPDATE/DELETE, so DDL that runs
+    first would commit on its own and survive a failed revision, leaving the schema
+    half-applied for the next start to trip over. This connection hands transaction
+    control to SQLite (``BEGIN IMMEDIATE`` ... ``COMMIT``), so a failure anywhere,
+    including the final foreign-key check, rolls every statement back.
+
+    SQLite batch migrations rebuild referenced tables, so foreign keys are off on
+    this connection (SQLite ignores that pragma inside a transaction) and the
+    complete graph is validated before committing. Both the application and the
+    ``alembic`` command line migrate through here.
+    """
     with engine.connect() as connection:
-        # SQLite batch migrations rebuild referenced tables. Disable FK checks only
-        # on this migration connection, then validate the resulting complete graph.
         connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
         connection.commit()
+        driver = connection.connection.driver_connection
+        legacy = driver.isolation_level
+        driver.isolation_level = None
         try:
             with connection.begin():
-                config.attributes["connection"] = connection
-                command.upgrade(config, "head")
+                connection.exec_driver_sql("BEGIN IMMEDIATE")
+                yield connection
                 if connection.exec_driver_sql("PRAGMA foreign_key_check").first():
                     raise ValueError("Migration produced an invalid foreign-key reference")
         finally:
+            driver.isolation_level = legacy
             connection.exec_driver_sql("PRAGMA foreign_keys=ON")
             connection.commit()
+
+
+def migrate(engine):
+    """Bring the schema to head; returns whether anything was applied.
+
+    A database that is already current is left untouched, so starting the server
+    or running a tool costs one version read rather than an upgrade and a full
+    foreign-key scan.
+    """
+    if not migrations_pending(engine):
+        return False
+    config = _config()
+    with migration_connection(engine) as connection:
+        config.attributes["connection"] = connection
+        command.upgrade(config, "head")
+    return True
