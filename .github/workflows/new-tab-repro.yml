@@ -1,0 +1,57 @@
+name: new-tab-repro
+
+# Repro branch only: runs the desktop application suite and the ctrl-click
+# specs on GitHub runners, recording what stalls a modifier-click new tab.
+on:
+  push:
+    branches: [claude/project-thread-8evokv]
+
+permissions:
+  contents: read
+
+jobs:
+  repro:
+    name: New-tab repro (${{ matrix.copy }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        copy: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: ./.github/actions/stockfish
+      - uses: ./.github/actions/python-env
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
+      - run: npx playwright install --with-deps chromium --only-shell
+        working-directory: frontend
+      - name: Modifier-click specs left to the browser, repeated
+        continue-on-error: true
+        env:
+          STOCKFISH_PATH: /usr/games/stockfish
+          NEW_TAB_LOG: ${{ github.workspace }}/new-tab-diagnosis.log
+        run: npx playwright test tests/action-controls.spec.ts tests/navigation.spec.ts tests/resume-links.spec.ts --project desktop --repeat-each=60 -g "modifier clicks|second tab|resume rows" --reporter=line
+        working-directory: frontend
+      - name: Diagnosis
+        if: always()
+        run: cat new-tab-diagnosis.log 2>/dev/null || echo "no stalls recorded"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: new-tab-repro-${{ matrix.copy }}
+          path: |
+            new-tab-diagnosis.log
+            frontend/test-results
+          if-no-files-found: ignore
+          retention-days: 3
