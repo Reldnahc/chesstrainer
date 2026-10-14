@@ -213,12 +213,14 @@ Username imports contact the selected site's public API from the backend, sendin
 
 ## Documentation
 
-- [Product](docs/PRODUCT.md), [feature status and remaining work](docs/PRODUCT.md#feature-status) and [Study](docs/STUDY.md)
-- [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/GAME_ANALYSIS.md#analysis-pipeline) and [data model](docs/DATA_MODEL.md)
-- [Local classification](docs/LOCAL_CLASSIFICATION.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/INSIGHTS.md#weakness-priorities-and-archived-curriculum)
-- [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [game provider imports](docs/GAME_PROVIDERS.md)
-- [Coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast personality bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [character writing](docs/COACH_PERSONALITIES.md) and [audio](docs/AUDIO.md)
-- [Testing procedure](docs/TESTING.md) and [decisions](docs/DECISIONS.md); earlier implementation and verification records remain in Git history.
+- **Product:** [product and feature status](docs/PRODUCT.md), [decisions](docs/DECISIONS.md)
+- **Features:** [Study](docs/STUDY.md), [course files](docs/COURSE_FILES.md) and [course sources](docs/COURSE_SOURCES.md), [spaced repetition](docs/SRS.md), [Play](docs/PLAY.md), [game review](docs/GAME_REVIEW.md), [Insights and weaknesses](docs/INSIGHTS.md)
+- **Analysis:** [game imports](docs/GAME_PROVIDERS.md), [automatic analysis and the pipeline](docs/GAME_ANALYSIS.md), [local classification](docs/LOCAL_CLASSIFICATION.md), [review intelligence](docs/REVIEW_INTELLIGENCE.md), [human move evidence](docs/HUMAN_MODELS.md), [Lichess benchmark](docs/LICHESS_BENCHMARK.md)
+- **Coaches and sound:** [coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [dialogue](docs/COACH_DIALOGUE.md), [character writing](docs/COACH_PERSONALITIES.md), [audio](docs/AUDIO.md)
+- **Running it:** [Docker](docs/DOCKER.md), [Unraid](docs/UNRAID.md), [accounts](docs/ACCOUNTS.md), [configuration](docs/CONFIGURATION.md)
+- **Development:** [architecture](docs/ARCHITECTURE.md), [data model](docs/DATA_MODEL.md), [UI components](docs/UI_COMPONENTS.md), [testing](docs/TESTING.md)
+
+Earlier implementation journals and verification records remain in Git history.
 
 ## Forking and licensing
 
