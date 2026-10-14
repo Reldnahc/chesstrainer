@@ -212,7 +212,13 @@ and type. [foundation.css](../frontend/src/foundation.css) defines it.
   inside a row of controls). Wrap a conditional modal in `DialogPresence` and give
   a native popover `usePopoverExit`. Disclosures animate through
   disclosureMotion; panels, loaders and tab panels fade in through
-  [reveal.css](../frontend/src/reveal.css). Do not rely on browser-specific
+  [reveal.css](../frontend/src/reveal.css). When a LoadingState or
+  UnavailableState is replaced by its content,
+  [loadHandoff](../frontend/src/loadHandoff.ts) fades the loader out and then the
+  content in, so screens need no wiring of their own. The layout settles at once
+  because screens scroll and measure right after they load.
+  MotionProvider remembers the last motion choice on the device, so the first
+  page can animate before the account preference arrives. Do not rely on browser-specific
   features such as `interpolate-size` or `::details-content`.
 - **Reduced motion.** [interface-motion.css](../frontend/src/interface-motion.css)
   applies the Still preference and, before preferences load, the device setting to
