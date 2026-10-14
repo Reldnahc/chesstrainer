@@ -142,7 +142,10 @@ the whole site, enforced by a check.
   to zero margin (as Tailwind's preflight does), and components such as notices,
   load states and pagination have none. The container sets the space between its
   children with `gap`:
-  - `main.workspace-page` is a column spaced by `--page-gap`.
+  - `main.workspace-page` is a column spaced by `--page-gap`, and its top padding is
+    the same `--page-gap`: with no visible page header, the first block sits as far
+    below the navigation as the blocks sit from each other. Board pages
+    (`main.review-page`) keep their own spacing.
   - `.panel` is a column with a 16px gap; a panel can set `--panel-gap` for a
     different rhythm, or its own `display` when it lays out differently. A bare
     action inside a panel keeps its natural width. Dialogs keep the browser's
