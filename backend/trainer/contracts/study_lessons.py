@@ -4,7 +4,7 @@ from typing import Annotated, Literal
 
 from pydantic import Field, model_validator
 
-from trainer.contracts.common import Color, Contract, LegalMove
+from trainer.contracts.common import Color, Contract, LegalMove, SquareMove, UciMove
 from trainer.contracts.puzzles import PuzzleFrame
 
 LessonKind = Literal[
@@ -134,10 +134,7 @@ class CourseFileCheck(Contract):
     steps: dict[str, CourseFileStep]
 
 
-class EditorMove(Contract):
-    from_square: str = Field(pattern="^[a-h][1-8]$")
-    to_square: str = Field(pattern="^[a-h][1-8]$")
-    promotion: Literal["q", "r", "b", "n"] | None = None
+EditorMove = SquareMove
 
 
 class EditorPositionRequest(Contract):
@@ -182,7 +179,7 @@ class LessonCommand(Contract):
     request_id: str = Field(min_length=1, max_length=100)
     revision: int = Field(ge=0)
     action: LessonAction
-    uci: str | None = Field(default=None, pattern="^[a-h][1-8][a-h][1-8][qrbn]?$")
+    uci: UciMove | None = None
     ply: int | None = Field(default=None, ge=0)
 
 

@@ -1,10 +1,8 @@
 """Cold review, focused practice and exact-answer playback endpoints."""
 
-from typing import Literal
-
 from fastapi import APIRouter
-from pydantic import BaseModel, Field
 
+from trainer.contracts.common import SquareMove
 from trainer.contracts.opening_studies import ReviewCount
 from trainer.contracts.review import (
     ColdPosition,
@@ -24,12 +22,6 @@ from trainer.reviews import (
     submit_move,
 )
 from trainer.workspaces import CurrentWorkspace
-
-
-class MoveRequest(BaseModel):
-    from_square: str = Field(pattern="^[a-h][1-8]$")
-    to_square: str = Field(pattern="^[a-h][1-8]$")
-    promotion: Literal["q", "r", "b", "n"] | None = None
 
 
 def create_router(*, settings, scheduler) -> APIRouter:
@@ -81,8 +73,8 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model=ReviewFeedback,
         response_model_exclude_unset=True,
     )
-    def move(workspace: CurrentWorkspace, session_id: str, data: MoveRequest):
-        uci = data.from_square + data.to_square + (data.promotion or "")
+    def move(workspace: CurrentWorkspace, session_id: str, data: SquareMove):
+        uci = data.uci
         # Grading an unseen answer is a deep search: it runs before the account lock
         # is taken, so the account's other work never waits on it.
         with workspace.sessions() as db:

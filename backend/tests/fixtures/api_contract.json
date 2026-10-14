@@ -1509,28 +1509,6 @@
         "title": "CreatedId",
         "type": "object"
       },
-      "Credentials": {
-        "properties": {
-          "password": {
-            "maxLength": 128,
-            "minLength": 10,
-            "title": "Password",
-            "type": "string"
-          },
-          "username": {
-            "maxLength": 32,
-            "minLength": 3,
-            "title": "Username",
-            "type": "string"
-          }
-        },
-        "required": [
-          "username",
-          "password"
-        ],
-        "title": "Credentials",
-        "type": "object"
-      },
       "CrossGameContext": {
         "additionalProperties": false,
         "properties": {
@@ -1783,44 +1761,6 @@
         "title": "Domain",
         "type": "object"
       },
-      "EditorMove": {
-        "additionalProperties": false,
-        "properties": {
-          "from_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "From Square",
-            "type": "string"
-          },
-          "promotion": {
-            "anyOf": [
-              {
-                "enum": [
-                  "q",
-                  "r",
-                  "b",
-                  "n"
-                ],
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Promotion"
-          },
-          "to_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "To Square",
-            "type": "string"
-          }
-        },
-        "required": [
-          "from_square",
-          "to_square"
-        ],
-        "title": "EditorMove",
-        "type": "object"
-      },
       "EditorPosition": {
         "additionalProperties": false,
         "properties": {
@@ -1886,7 +1826,7 @@
           "move": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/EditorMove"
+                "$ref": "#/components/schemas/SquareMove"
               },
               {
                 "type": "null"
@@ -5488,6 +5428,8 @@
         "type": "object"
       },
       "ManualRequest": {
+        "additionalProperties": false,
+        "description": "A hand-made exercise: a position and the moves that answer it.",
         "properties": {
           "explanation": {
             "default": "",
@@ -5502,6 +5444,7 @@
           },
           "moves": {
             "items": {
+              "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
               "type": "string"
             },
             "maxItems": 100,
@@ -5928,43 +5871,6 @@
           "by_phase"
         ],
         "title": "MoveRates",
-        "type": "object"
-      },
-      "MoveRequest": {
-        "properties": {
-          "from_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "From Square",
-            "type": "string"
-          },
-          "promotion": {
-            "anyOf": [
-              {
-                "enum": [
-                  "q",
-                  "r",
-                  "b",
-                  "n"
-                ],
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Promotion"
-          },
-          "to_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "To Square",
-            "type": "string"
-          }
-        },
-        "required": [
-          "from_square",
-          "to_square"
-        ],
-        "title": "MoveRequest",
         "type": "object"
       },
       "NewAccount": {
@@ -6844,8 +6750,7 @@
             "type": "boolean"
           },
           "uci": {
-            "maxLength": 5,
-            "minLength": 4,
+            "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
             "title": "Uci",
             "type": "string"
           }
@@ -9111,6 +9016,7 @@
         "type": "object"
       },
       "ReviewRequest": {
+        "additionalProperties": false,
         "properties": {
           "rating": {
             "anyOf": [
@@ -9679,6 +9585,44 @@
         "title": "SkillPriority",
         "type": "object"
       },
+      "SquareMove": {
+        "additionalProperties": false,
+        "properties": {
+          "from_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "From Square",
+            "type": "string"
+          },
+          "promotion": {
+            "anyOf": [
+              {
+                "enum": [
+                  "q",
+                  "r",
+                  "b",
+                  "n"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promotion"
+          },
+          "to_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "To Square",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_square",
+          "to_square"
+        ],
+        "title": "SquareMove",
+        "type": "object"
+      },
       "Stats": {
         "additionalProperties": false,
         "properties": {
@@ -10122,9 +10066,11 @@
         "type": "object"
       },
       "VariationRequest": {
+        "additionalProperties": false,
         "properties": {
           "moves": {
             "items": {
+              "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
               "type": "string"
             },
             "maxItems": 128,
@@ -10897,7 +10843,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Credentials"
+                "$ref": "#/components/schemas/NewAccount"
               }
             }
           },
@@ -11046,7 +10992,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Credentials"
+                "$ref": "#/components/schemas/NewAccount"
               }
             }
           },
@@ -13738,7 +13684,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MoveRequest"
+                "$ref": "#/components/schemas/SquareMove"
               }
             }
           },

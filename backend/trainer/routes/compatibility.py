@@ -1,23 +1,13 @@
 """Archived product routes and retained low-level/manual audit contracts."""
 
-from typing import Literal
-
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, Field
 
 from trainer.contracts.classification import TeachingAudit
 from trainer.contracts.common import ApiError, CreatedId, Rejected
+from trainer.contracts.review import ManualRequest
 from trainer.exercises import manual_exercise
 from trainer.models import TeachingRun
 from trainer.workspaces import CurrentWorkspace
-
-
-class ManualRequest(BaseModel):
-    fen: str = Field(max_length=200)
-    moves: list[str] = Field(min_length=1, max_length=100)
-    orientation: Literal["white", "black"] = "white"
-    explanation: str = Field(default="", max_length=5000)
-    tags: list[str] = Field(default_factory=list, max_length=20)
 
 
 def create_router(*, scheduler) -> APIRouter:

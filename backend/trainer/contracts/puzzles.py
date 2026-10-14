@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import Field
 
-from trainer.contracts.common import Color, Contract, LegalMove
+from trainer.contracts.common import Color, Contract, LegalMove, UciMove
 
 PuzzleSource = Literal["generic", "games"]
 PuzzleMode = Literal["new", "retry"]
@@ -39,7 +39,7 @@ class PuzzleCommand(Contract):
 
 
 class PuzzleMove(PuzzleCommand):
-    uci: str = Field(pattern="^[a-h][1-8][a-h][1-8][qrbn]?$")
+    uci: UciMove
     elapsed_ms: int = Field(default=0, ge=0, le=86_400_000)
 
 

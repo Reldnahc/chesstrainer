@@ -2235,13 +2235,6 @@ export interface components {
             /** Id */
             id: string;
         };
-        /** Credentials */
-        Credentials: {
-            /** Password */
-            password: string;
-            /** Username */
-            username: string;
-        };
         /** CrossGameContext */
         CrossGameContext: {
             /** Input Digest */
@@ -2326,15 +2319,6 @@ export interface components {
             /** Time Control */
             time_control: string | null;
         };
-        /** EditorMove */
-        EditorMove: {
-            /** From Square */
-            from_square: string;
-            /** Promotion */
-            promotion?: ("q" | "r" | "b" | "n") | null;
-            /** To Square */
-            to_square: string;
-        };
         /** EditorPosition */
         EditorPosition: {
             /** Fen */
@@ -2355,7 +2339,7 @@ export interface components {
         EditorPositionRequest: {
             /** Fen */
             fen?: string | null;
-            move?: components["schemas"]["EditorMove"] | null;
+            move?: components["schemas"]["SquareMove"] | null;
             /**
              * Moves
              * @default
@@ -3468,7 +3452,10 @@ export interface components {
             /** Signups Open */
             signups_open: boolean;
         };
-        /** ManualRequest */
+        /**
+         * ManualRequest
+         * @description A hand-made exercise: a position and the moves that answer it.
+         */
         ManualRequest: {
             /**
              * Explanation
@@ -3605,15 +3592,6 @@ export interface components {
             by_phase: components["schemas"]["PhaseRate"][];
             /** Reviewed Games */
             reviewed_games: number;
-        };
-        /** MoveRequest */
-        MoveRequest: {
-            /** From Square */
-            from_square: string;
-            /** Promotion */
-            promotion?: ("q" | "r" | "b" | "n") | null;
-            /** To Square */
-            to_square: string;
         };
         /**
          * NewAccount
@@ -4803,6 +4781,15 @@ export interface components {
             /** Unique Positions */
             unique_positions: number;
         };
+        /** SquareMove */
+        SquareMove: {
+            /** From Square */
+            from_square: string;
+            /** Promotion */
+            promotion?: ("q" | "r" | "b" | "n") | null;
+            /** To Square */
+            to_square: string;
+        };
         /** Stats */
         Stats: {
             /** Exercises */
@@ -5356,7 +5343,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["Credentials"];
+                "application/json": components["schemas"]["NewAccount"];
             };
         };
         responses: {
@@ -5502,7 +5489,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["Credentials"];
+                "application/json": components["schemas"]["NewAccount"];
             };
         };
         responses: {
@@ -7527,7 +7514,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["MoveRequest"];
+                "application/json": components["schemas"]["SquareMove"];
             };
         };
         responses: {

@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import Field, model_validator
 
-from trainer.contracts.common import Color, Contract
+from trainer.contracts.common import Color, Contract, UciMove
 from trainer.contracts.games import GameFrame
 from trainer.contracts.preferences import CoachId
 
@@ -39,7 +39,7 @@ class PlayRequest(Contract):
 
 class PlayMoveRequest(Contract):
     ply: int = Field(ge=0, le=1024)
-    uci: str = Field(min_length=4, max_length=5)
+    uci: UciMove
     # A move from an earlier position on the learner's turn: the game goes back
     # there and this move replaces everything after it.
     rewind: bool = False

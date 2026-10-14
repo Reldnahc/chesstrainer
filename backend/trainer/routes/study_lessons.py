@@ -190,7 +190,7 @@ def create_router(*, providers, installed=None):
             board.push(move)
         san = None
         if data.move:
-            uci = data.move.from_square + data.move.to_square + (data.move.promotion or "")
+            uci = data.move.uci
             move = chess.Move.from_uci(uci)
             if move not in board.legal_moves:
                 raise HTTPException(422, "That move is not legal here")

@@ -1,7 +1,9 @@
 from typing import Literal
 
+from pydantic import Field
+
 from trainer.chess_core import Candidate, Score
-from trainer.contracts.common import Color, Contract, LegalMove
+from trainer.contracts.common import Color, Contract, LegalMove, UciMove
 from trainer.diagnosis_types import Finding
 from trainer.explanation_types import Frame
 from trainer.human_models.types import HumanEvidence
@@ -205,6 +207,16 @@ class ReviewProgress(Contract):
     job: ReviewJob | None
     moves: list[ReviewedMove]
     accuracy: GameAccuracy | None
+
+
+class ReviewRequest(Contract):
+    rating: int | None = Field(default=None, ge=400, le=3000)
+    refine: bool = False
+
+
+class VariationRequest(Contract):
+    ply: int = Field(default=0, ge=0)
+    moves: list[UciMove] = Field(default_factory=list, max_length=128)
 
 
 class GameAnalysis(Contract):

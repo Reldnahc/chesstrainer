@@ -8,7 +8,6 @@ from typing import Annotated
 import chess
 import chess.pgn
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from pydantic import BaseModel, Field
 from sqlalchemy import func, select, update
 
 from trainer import job_lifecycle
@@ -22,6 +21,8 @@ from trainer.contracts.games import (
     GameHistory,
     GamePosition,
     ReviewProgress,
+    ReviewRequest,
+    VariationRequest,
 )
 from trainer.game_accuracy import review_accuracy
 from trainer.game_analysis import DEFAULT_RATING, request_review
@@ -45,16 +46,6 @@ from trainer.review_intelligence.history import cross_game_context
 from trainer.review_intelligence.presentation import presented_review
 from trainer.review_reports import load_accuracy_scores
 from trainer.workspaces import CurrentWorkspace
-
-
-class ReviewRequest(BaseModel):
-    rating: int | None = Field(default=None, ge=400, le=3000)
-    refine: bool = False
-
-
-class VariationRequest(BaseModel):
-    ply: int = Field(default=0, ge=0)
-    moves: list[str] = Field(default_factory=list, max_length=128)
 
 
 def job_progress(job, completed, total, review=None):

@@ -10,7 +10,6 @@ from urllib.parse import urlsplit
 
 from fastapi import HTTPException, Request, Response
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, Field
 from starlette.concurrency import run_in_threadpool
 
 from trainer.accounts import (
@@ -59,11 +58,6 @@ def lan_http(request):
         return ipaddress.ip_address(hostname).is_private
     except ValueError:
         return hostname == "localhost" or "." not in hostname or hostname.endswith(LAN_SUFFIXES)
-
-
-class Credentials(BaseModel):
-    username: str = Field(min_length=3, max_length=32)
-    password: str = Field(min_length=10, max_length=128)
 
 
 def configure_accounts(app, settings):
@@ -247,7 +241,7 @@ def configure_accounts(app, settings):
         response_model=Identity,
         response_model_exclude_unset=True,
     )
-    async def signup(data: Credentials, request: Request, response: Response):
+    async def signup(data: NewAccount, request: Request, response: Response):
         if not await run_in_threadpool(accounts.signups_open):
             raise HTTPException(
                 403, "Sign-ups are closed. Ask whoever runs this Fieldwork server for an account."
@@ -256,7 +250,7 @@ def configure_accounts(app, settings):
         return signed_in(user, request, response)
 
     @app.post("/api/auth/login", response_model=Identity, response_model_exclude_unset=True)
-    async def login(data: Credentials, request: Request, response: Response):
+    async def login(data: NewAccount, request: Request, response: Response):
         user = await attempt(data, request, False)
         return signed_in(user, request, response)
 
