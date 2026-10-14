@@ -55,6 +55,24 @@ class Classification(BaseModel):
         return list(dict.fromkeys(value))
 
 
+def probe_record(kind, root_analysis_id, at_ply, query_key, analysis):
+    """One engine probe as the classifier reads it, from its saved engine analysis.
+
+    The same record is built when a probe is planned and when its evidence is
+    reloaded, so a classification sees identical evidence either way.
+    """
+    return {
+        "kind": kind,
+        "root_analysis_id": root_analysis_id,
+        "at_ply": at_ply,
+        "query_key": query_key,
+        "analysis_id": analysis.id,
+        "fen": analysis.fen,
+        "config": analysis.config,
+        "candidate": analysis.candidates[0],
+    }
+
+
 def verified_payload(db, decision):
 
     previous = None
@@ -88,18 +106,14 @@ def verified_payload(db, decision):
                 ClassificationProbe.id,
             )
         ):
-            analysis = db.get(EngineAnalysis, probe.analysis_id)
             probes.append(
-                {
-                    "kind": probe.kind,
-                    "root_analysis_id": probe.root_analysis_id,
-                    "at_ply": probe.at_ply,
-                    "query_key": probe.query_key,
-                    "analysis_id": analysis.id,
-                    "fen": analysis.fen,
-                    "config": analysis.config,
-                    "candidate": analysis.candidates[0],
-                }
+                probe_record(
+                    probe.kind,
+                    probe.root_analysis_id,
+                    probe.at_ply,
+                    probe.query_key,
+                    db.get(EngineAnalysis, probe.analysis_id),
+                )
             )
     return {
         "decision_id": decision.id,

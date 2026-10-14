@@ -10,7 +10,7 @@ from trainer.chess_core import digest, legal_move
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
 from trainer.game_review import analyze_move
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
-from trainer.review_intelligence.refinement_plan import VERSION, plan_key, selection
+from trainer.review_intelligence.refinement_plan import BROAD_TRIGGERS, VERSION, plan_key, selection
 from trainer.review_intelligence.refinement_search import (
     QueryBudgetReached,
     RefinementEngine,
@@ -39,16 +39,7 @@ def prepare(runner, game_id):
             original = db.get(EngineAnalysis, report["before_analysis_id"])
             if original is None:
                 continue
-            broad = bool(
-                set(triggers)
-                & {
-                    "narrow_resource",
-                    "critical_alternative",
-                    "human_disagreement",
-                    "verify_sacrifice",
-                    "verify_opportunity",
-                }
-            )
+            broad = bool(set(triggers) & BROAD_TRIGGERS)
             config = dict(
                 version=VERSION,
                 engine_version=original.engine_version,

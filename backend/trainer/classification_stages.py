@@ -7,7 +7,7 @@ import chess
 from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, valid_board
 from trainer.continuations import ContinuationEnd, continuation_end, extended_line
 from trainer.defensive_probes import hypotheses, verify_defense
-from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome
+from trainer.diagnosis_types import OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome, make_finding
 from trainer.errors import EvidenceIntegrityError
 from trainer.move_causes import move_causes
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
@@ -23,19 +23,19 @@ class EvidenceLine:
     endpoint: ContinuationEnd
 
     def finding(self, skill, plies, squares, explanation, *, mate=False):
+        # The actor is the side the outcome favours: the learner for a missed
+        # opportunity, the opponent for a tactic the learner allowed.
         learner = self.boards[0].turn
-        actor = learner if self.direction == "missed_opportunity" else not learner
-        return Finding(
-            skill_id=skill,
-            cue=CUES.get(skill, ""),
-            frame_ply=plies[0],
+        return make_finding(
+            self.boards,
+            skill,
+            plies,
+            actor=learner if self.direction == "missed_opportunity" else not learner,
             rule_id=f"{skill}:{RULE_VERSION}",
             direction=self.direction,
-            actor="white" if actor else "black",
             analysis_id=self.analysis_id,
-            plies=plies,
+            frame_ply=plies[0],
             squares=sorted(set(squares)),
-            moves=[self.boards[p].peek().uci() for p in plies],
             explanation=explanation,
             verification="engine_mate" if mate else "verified_line",
         )

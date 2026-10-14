@@ -6,7 +6,7 @@ from contextlib import nullcontext
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, digest
-from trainer.classification import verified_payload
+from trainer.classification import probe_record, verified_payload
 from trainer.continuations import continuation_end, extended_line
 from trainer.defensive_probes import hypotheses
 from trainer.diagnosis_types import OUTCOME_SKILLS
@@ -162,18 +162,9 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             continue
         tail = engine.analyze(boards[-1], multipv=1, classification_probe=True)
         queries += 1
-        probes.append(
-            {
-                "kind": "tail",
-                "root_analysis_id": root.id,
-                "at_ply": len(candidate.pv),
-                "query_key": digest({"kind": "tail", "root": root.id, "at_ply": len(candidate.pv)}),
-                "analysis_id": tail.id,
-                "fen": tail.fen,
-                "config": tail.config,
-                "candidate": tail.candidates[0],
-            }
-        )
+        at_ply = len(candidate.pv)
+        key = digest({"kind": "tail", "root": root.id, "at_ply": at_ply})
+        probes.append(probe_record("tail", root.id, at_ply, key, tail))
         if cancelled():
             return False
     for root, first, direction in (
@@ -206,18 +197,7 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
                 classification_probe=True,
             )
             queries += 1
-            probes.append(
-                {
-                    "kind": request.kind,
-                    "root_analysis_id": root.id,
-                    "at_ply": request.at_ply,
-                    "query_key": request.key,
-                    "analysis_id": test.id,
-                    "fen": test.fen,
-                    "config": test.config,
-                    "candidate": test.candidates[0],
-                }
-            )
+            probes.append(probe_record(request.kind, root.id, request.at_ply, request.key, test))
             if cancelled():
                 return False
     # Both immutable engine records commit before the optional classification link.

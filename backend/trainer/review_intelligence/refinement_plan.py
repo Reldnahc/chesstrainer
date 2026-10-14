@@ -7,6 +7,19 @@ from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, NEAR_BEST_CP
 VERSION = "refinement-1"
 
 
+# Triggers whose question is which alternative is best, so refinement searches
+# several candidate moves rather than two.
+BROAD_TRIGGERS = frozenset(
+    {
+        "narrow_resource",
+        "critical_alternative",
+        "human_disagreement",
+        "verify_sacrifice",
+        "verify_opportunity",
+    }
+)
+
+
 def settings_key(settings):
     return {
         key: getattr(settings, key)
@@ -29,7 +42,7 @@ def nominate(report):
         Score.model_validate(report["actual"]["score"]),
     )
     practical = assess_difficulty(report)
-    triggers = []
+    triggers = []  # (priority, trigger); BROAD_TRIGGERS also widen the search.
     if loss.allows_mate or loss.mate_lost:
         triggers.append((1000, "mate_transition"))
     if (loss.cp or 0) >= 150:

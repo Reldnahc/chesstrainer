@@ -1,7 +1,7 @@
 """Lichess recognition plus application-specific evidence admission and rich witnesses."""
 
 from trainer._vendor.lichess_puzzler import COMMIT
-from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
+from trainer.diagnosis_types import RULE_VERSION, make_finding
 from trainer.lichess_patterns import THEME_SKILLS, recognize
 from trainer.tactical_geometry import (
     TACTIC_PLIES,
@@ -46,21 +46,21 @@ def recognized_patterns(
         skill = THEME_SKILLS[item.theme]
         if item.theme == "hangingPiece" and direction == "allowed_opponent_tactic":
             skill = "hanging_piece"
+        # The actor is the upstream puzzle's solver.
         found.append(
-            Finding(
-                skill_id=skill,
+            make_finding(
+                boards,
+                skill,
+                item.plies,
+                actor=actor,
                 rule_id=f"lichess:{item.rule}:{COMMIT[:8]}:{RULE_VERSION}",
                 direction=direction,
-                actor="white" if actor else "black",
                 analysis_id=analysis_id,
-                plies=item.plies,
-                moves=[boards[p].peek().uci() for p in item.plies],
                 frame_ply=item.frame_ply,
                 squares=sorted({s for squares in item.roles.values() for s in squares}),
                 roles=item.roles,
                 explanation=item.explanation,
                 mechanism=RECOGNIZED_MECHANISMS[item.rule],
-                cue=CUES[skill],
                 cue_key=skill,
                 verification="verified_line",
             )

@@ -4,7 +4,7 @@ import chess
 
 from trainer.chess_core import VALUES
 from trainer.config import Settings
-from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
+from trainer.diagnosis_types import RULE_VERSION, make_finding
 
 # The default bound on one tactical episode, in plies.
 TACTIC_PLIES = Settings.model_fields["classification_tactic_plies"].default
@@ -143,20 +143,19 @@ def defender_capture_is_worthwhile(victim, defender, attacker, recaptured):
 
 
 def witness(boards, analysis_id, direction, skill, plies, roles, text, frame=None, **extra):
-    actor = boards[plies[0] - 1].turn
-    return Finding(
-        skill_id=skill,
+    # The actor is whoever makes the first witnessed move.
+    return make_finding(
+        boards,
+        skill,
+        plies,
+        actor=boards[plies[0] - 1].turn,
         rule_id=f"{skill}:{RULE_VERSION}",
         direction=direction,
-        actor="white" if actor else "black",
         analysis_id=analysis_id,
-        plies=plies,
-        moves=[boards[p].peek().uci() for p in plies],
         squares=sorted({sq for values in roles.values() for sq in values}),
         roles=roles,
         frame_ply=frame if frame is not None else plies[0],
         explanation=text,
-        cue=CUES[skill],
         cue_key=skill,
         verification="verified_line",
         **extra,
