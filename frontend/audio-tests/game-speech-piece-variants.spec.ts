@@ -220,6 +220,11 @@ test("a coach plays its piece variant once recorded, and its generic line until 
       recorded: recorded.text, fallback: fallback?.id, fallbackText: fallback?.text, preferred: preferred?.id,
       pair: pair?.id, pairParts: pair?.parts?.length, missing: bank.coachRecording("man-partner", "a-unrecorded|b-unrecorded"),
       spoken: spoken.spokenText("man-partner", "allowed-mate-unrecorded|allowed-mate"),
+      // The bubble finds the square by the recorded variant, not by the alternative chain it was asked for.
+      squared: spoken.spokenText("man-partner", "tactic-pin-played-knight|tactic-pin-played", new Map([["tactic-pin-played-knight", "f6"]])),
+      squaredPair: spoken.spokenText("man-partner", "tactic-pin-played-knight|tactic-pin-played+reply-check", new Map([["tactic-pin-played-knight", "f6"]])),
+      pinned: bank.coachRecording("man-partner", "tactic-pin-played-knight")!.text,
+      check: bank.coachRecording("man-partner", "reply-check")!.text,
     };
   }, root);
   expect(result.fallback).toBe("allowed-mate");
@@ -229,4 +234,7 @@ test("a coach plays its piece variant once recorded, and its generic line until 
   expect(result.pairParts).toBe(2);
   expect(result.missing).toBeNull();
   expect(result.spoken).toBe(result.recorded);
+  expect(result.pinned).toMatch(/\bknight\b/);
+  expect(result.squared).toBe(result.pinned.replace(/\bknight\b/, "knight on f6"));
+  expect(result.squaredPair).toBe(`${result.squared} ${result.check}`);
 });

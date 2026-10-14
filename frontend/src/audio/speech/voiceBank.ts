@@ -1,7 +1,7 @@
 import registry from './banks/registry.json' with { type: 'json' };
 import type { SpeechMouthTrack } from '../../coach/speechMouth';
 import { recordingAssets as assets } from './recordingAssets';
-import { ALTERNATIVE_SEPARATOR, SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR } from './sequence';
+import { ALTERNATIVE_SEPARATOR, SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR, resolveSentences } from './sequence';
 
 type BankManifest = {
   coachId: string; voiceId: string;
@@ -77,8 +77,7 @@ export function hasCoachVoice(coachId: string): boolean { return banks.has(coach
 export function recordedId(coachId: string, id: string | null | undefined): string | null {
   const recordings = banks.get(coachId)?.recordings;
   if (!id || !recordings) return null;
-  const parts = id.split(SEQUENCE_SEPARATOR).map(part => part.split(ALTERNATIVE_SEPARATOR).find(item => recordings.has(item)));
-  return parts.every((part): part is string => !!part) ? parts.join(SEQUENCE_SEPARATOR) : null;
+  return resolveSentences(id, item => recordings.has(item))?.join(SEQUENCE_SEPARATOR) ?? null;
 }
 
 /** Unknown coaches or meanings stay silent; a different character is never a fallback. */
