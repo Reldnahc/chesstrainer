@@ -132,6 +132,11 @@ test('Back restores the saved scroll instead of repeating activity and import-fo
   await expect(page.getByRole('region', {name: 'Import & analysis activity', exact: true})).toBeInViewport();
   // Scroll as a reader does: the deep link keeps following its section while content
   // loads, and only the reader's own wheel, touch or key input stops it.
+  // Let sections finish growing in first: Chrome's scroll anchoring adds any growth
+  // above the reader to an animated wheel scroll, which then stops short of the top.
+  await page.evaluate(() => Promise.all(document.getAnimations()
+    .filter(animation => Number.isFinite(animation.effect?.getComputedTiming().endTime))
+    .map(animation => animation.finished.catch(() => undefined))));
   await page.mouse.wheel(0, -10000);
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   await sections(page).getByRole('link', {name: 'Coach & animations', exact: true}).click();
