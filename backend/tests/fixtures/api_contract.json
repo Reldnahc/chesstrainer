@@ -589,72 +589,6 @@
         "title": "ChessComImportProgress",
         "type": "object"
       },
-      "ChessComRequest": {
-        "properties": {
-          "end_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Date"
-          },
-          "max_games": {
-            "default": 100,
-            "maximum": 1000.0,
-            "minimum": 1.0,
-            "title": "Max Games",
-            "type": "integer"
-          },
-          "months": {
-            "default": 3,
-            "maximum": 120.0,
-            "minimum": 0.0,
-            "title": "Months",
-            "type": "integer"
-          },
-          "start_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Start Date"
-          },
-          "time_class": {
-            "default": "rapid",
-            "enum": [
-              "rapid",
-              "blitz",
-              "bullet",
-              "daily",
-              "all"
-            ],
-            "title": "Time Class",
-            "type": "string"
-          },
-          "username": {
-            "maxLength": 50,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z0-9_-]+$",
-            "title": "Username",
-            "type": "string"
-          }
-        },
-        "required": [
-          "username"
-        ],
-        "title": "ChessComRequest",
-        "type": "object"
-      },
       "ClassificationAudit": {
         "additionalProperties": false,
         "properties": {
@@ -11830,44 +11764,6 @@
         "summary": "Upload Pgn"
       }
     },
-    "/api/imports/chesscom": {
-      "post": {
-        "operationId": "import_chesscom_api_imports_chesscom_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChessComRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JobStarted"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Import Chesscom"
-      }
-    },
     "/api/imports/provider/{provider}": {
       "post": {
         "operationId": "import_provider_api_imports_provider__provider__post",
@@ -14558,40 +14454,6 @@
           }
         },
         "summary": "Command"
-      }
-    },
-    "/api/sync": {
-      "get": {
-        "operationId": "get_sync_api_sync_get",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SyncStatus"
-                }
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Get Sync"
-      },
-      "post": {
-        "operationId": "begin_sync_api_sync_post",
-        "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SyncStatus"
-                }
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Begin Sync"
       }
     },
     "/api/teaching-runs/{run_id}": {

@@ -10,9 +10,9 @@ import httpx
 from trainer.game_providers.base import (
     ProviderBatch,
     ProviderError,
-    ProviderRateLimited,
     check_cancel,
 )
+from trainer.game_providers.http import provider_client, rate_limited
 
 GROUP_SIZE = 50
 
@@ -22,11 +22,11 @@ class LichessClient:
 
     def __init__(self, settings, *, transport=None):
         self.settings = settings
-        self.client = httpx.Client(
+        self.client = provider_client(
+            settings,
             timeout=settings.lichess_timeout_seconds,
-            follow_redirects=False,
+            accept="application/x-ndjson",
             transport=transport,
-            headers={"Accept": "application/x-ndjson", "User-Agent": "FieldworkChessTrainer/0.1"},
         )
 
     def close(self):
@@ -50,8 +50,8 @@ class LichessClient:
                 headers={"Content-Type": "text/plain", "Accept": "application/json"},
             )
             if response.status_code == 429:
-                raise ProviderRateLimited(
-                    "Lichess is rate limiting requests. Wait at least a minute."
+                raise rate_limited(
+                    response, "Lichess is rate limiting requests. Wait at least a minute."
                 )
             if response.status_code != 200:
                 raise ProviderError(f"Lichess returned HTTP {response.status_code}. Retry later.")
@@ -127,8 +127,10 @@ class LichessClient:
                 "GET", f"https://lichess.org/api/games/user/{request.username}", params=params
             ) as response:
                 if response.status_code == 429:
-                    raise ProviderRateLimited(
-                        "Lichess is rate limiting requests. Wait at least a minute before retrying; saved games are retained."
+                    raise rate_limited(
+                        response,
+                        "Lichess is rate limiting requests. Wait at least a minute before "
+                        "retrying; saved games are retained.",
                     )
                 if response.status_code == 404:
                     raise ProviderError(

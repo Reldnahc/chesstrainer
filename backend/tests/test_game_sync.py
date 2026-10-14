@@ -5,8 +5,8 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from test_accounts import ORIGIN, signup
 from trainer.api import create_app
-from trainer.chesscom import ChessComClient
 from trainer.game_analysis import FRESH, REQUESTED
+from trainer.game_providers.chesscom import ChessComClient
 from trainer.models import AnalysisJob, ChessComImport, EngineAnalysis, Game, ImportBatch
 
 
@@ -48,7 +48,10 @@ def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_eng
         raise AssertionError("Signup and sync must never instantiate Stockfish")
 
     app = create_app(
-        settings, workers=False, engine_factory=forbidden_engine, chesscom_factory=client_factory
+        settings,
+        workers=False,
+        engine_factory=forbidden_engine,
+        provider_factories={"chesscom": client_factory},
     )
     with TestClient(app) as client:
         identity, _ = signup(client, "alice")
@@ -58,8 +61,11 @@ def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_eng
         )
         assert saved.status_code == 200, saved.text
         assert saved.json()["username"] == "learner"
-        job = client.post("/api/sync", headers=headers).json()
-        assert client.post("/api/sync", headers=headers).json()["job_id"] == job["job_id"]
+        job = client.post("/api/providers/chesscom/sync", headers=headers).json()
+        assert (
+            client.post("/api/providers/chesscom/sync", headers=headers).json()["job_id"]
+            == job["job_id"]
+        )
         sessions = app.state.workspaces.sessions(identity["user"]["id"])
         with sessions() as db:
             db.get(ChessComImport, job["job_id"]).max_games = 2
@@ -79,7 +85,7 @@ def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_eng
             assert '[Round "0"]' in db.get(Game, result["items"][0]["id"]).pgn
             db.get(AnalysisJob, job["job_id"]).created_at = current - timedelta(minutes=2)
             db.commit()
-        client.post("/api/sync", headers=headers)
+        client.post("/api/providers/chesscom/sync", headers=headers)
         with sessions() as db:
             db.get(ChessComImport, job["job_id"]).max_games = 2
             db.commit()
@@ -107,10 +113,10 @@ def test_uploads_and_imports_fetch_then_queue_backfill_analysis(settings):
         assert response.json()["imported"] == 1
         # The old analyze flag is ignored: imports fetch, then every game is analyzed.
         fetched = client.post(
-            "/api/imports/chesscom", json={"username": "learner", "analyze": False}
+            "/api/imports/provider/chesscom", json={"username": "learner", "analyze": False}
         )
         analyzed = client.post(
-            "/api/imports/chesscom", json={"username": "learner", "analyze": True}
+            "/api/imports/provider/chesscom", json={"username": "learner", "analyze": True}
         )
         assert fetched.json()["job_id"] == analyzed.json()["job_id"]
         jobs = client.get("/api/jobs").json()

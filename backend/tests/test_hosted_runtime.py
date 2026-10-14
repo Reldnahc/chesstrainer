@@ -146,7 +146,7 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
     app = create_app(
         settings,
         engine_factory=forbidden_engine,
-        chesscom_factory=lambda _: SimpleNamespace(close=lambda: None),
+        provider_factories={"chesscom": lambda _: SimpleNamespace(close=lambda: None)},
     )
     with TestClient(app) as client:
         try:

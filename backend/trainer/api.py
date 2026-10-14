@@ -6,7 +6,6 @@ from fastapi import FastAPI
 from sqlalchemy.orm import sessionmaker
 
 from trainer import site_settings
-from trainer.chesscom import ChessComClient
 from trainer.config import Settings
 from trainer.contracts.accounts import Identity
 from trainer.db import database, migrate
@@ -52,7 +51,6 @@ def create_app(
     classifier=None,
     workers=True,
     engine_factory=Stockfish,
-    chesscom_factory=ChessComClient,
     start_engine=True,
     human_provider=None,
     provider_factories=None,
@@ -91,7 +89,6 @@ def create_app(
         scheduler,
         classifier,
         engine_factory,
-        chesscom_factory=chesscom_factory,
         provider_factories=provider_factories,
         workspaces=workspaces,
     )

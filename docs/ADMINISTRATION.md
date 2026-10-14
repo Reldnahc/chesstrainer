@@ -219,7 +219,8 @@ environment variables: `SERVER_HOST`, `SERVER_PORT`, `DATABASE_PATH`,
 `COURSES_PATH`, `ACCOUNTS_ENABLED`, `SESSION_SECURE`, `PUBLIC_ORIGIN`,
 `LAN_ACCESS_TOKEN`, `ALLOWED_HOSTS`, `STOCKFISH_PATH`, `HUMAN_MODEL_PATH`,
 `HUMAN_MODEL_DEVICE` (the container entrypoint reads it), `PUZZLE_PACK_PATH` and
-`CHESSCOM_USER_AGENT` (`ENV_ONLY` in `trainer/site_settings.py`).
+`PROVIDER_USER_AGENT` (formerly `CHESSCOM_USER_AGENT`, which still works). Each
+setting is marked env-only where `trainer/config.py` declares it.
 
 Any other variable still works as a starting value: on each start, a stored
 setting the table does not have yet is filled in from the environment, and from
@@ -287,7 +288,7 @@ status is returned.
 | LICHESS_TIMEOUT_SECONDS (formerly PROVIDER_TIMEOUT_SECONDS) | 20 seconds per Lichess network read |
 | LICHESS_MAX_RESPONSE_BYTES (formerly PROVIDER_MAX_RESPONSE_BYTES) | 25000000 decompressed bytes per Lichess export |
 | LICHESS_MAX_SCAN_GAMES (formerly PROVIDER_MAX_SCAN_GAMES) | 10000 records per Lichess export; narrow date range when reached |
-| CHESSCOM_USER_AGENT | FieldworkChessTrainer/0.1 (local personal chess training) |
+| PROVIDER_USER_AGENT (formerly CHESSCOM_USER_AGENT) | FieldworkChessTrainer/0.1 (local personal chess training); sent to Chess.com and Lichess |
 
 See [.env.example](../.env.example) for a copyable starting point.
 

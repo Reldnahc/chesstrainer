@@ -1,14 +1,13 @@
 """One job's execution, with its owner's resources captured before any work starts."""
 
 import logging
-import time
 
 from sqlalchemy import select
 
 from trainer import job_lifecycle
 from trainer.engine import EngineUnavailable
 from trainer.game_analysis import BACKFILL, FRESH, queue_imported
-from trainer.game_providers.base import ImportCancelled, ProviderError, ProviderRateLimited
+from trainer.game_providers.base import ImportCancelled, ProviderError
 from trainer.game_providers.ingest import fetch_import
 from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, Game, GameReview, ImportGame, ProviderImport
@@ -26,7 +25,6 @@ class JobExecution:
         self.scheduler, self.classifier = runner.scheduler, runner.classifier
         self.engine_factory = runner.engine_factory
         self.mutation_lock = workspace.mutation_lock
-        self.provider_lock = runner.provider_lock
         self.pipeline = None
 
     def cancelled(self, job_id):
@@ -89,29 +87,18 @@ class JobExecution:
         self.finish(job_id)
 
     def run_fetch(self, job_id, kind, engine):
-        # Serialize all provider traffic even when multiple analysis workers run.
-        with self.provider_lock:
-            with self.sessions() as db:
-                provider = db.get(ProviderImport, job_id).provider
-            if time.monotonic() < self.runner.provider_retry_at.get(provider, 0):
-                raise ProviderError(
-                    "This provider is rate limiting requests. Wait at least a minute before retrying; saved games are retained."
-                )
-            client = self.runner.provider_factories[provider](self.settings)
-            try:
-                fetch_import(
-                    job_id,
-                    self.sessions,
-                    self.settings,
-                    client,
-                    lambda: self.cancelled(job_id),
-                    self.mutation_lock,
-                )
-            except ProviderRateLimited as exc:
-                self.runner.provider_retry_at[provider] = time.monotonic() + exc.retry_after
-                raise
-            finally:
-                client.close()
+        with self.sessions() as db:
+            provider = db.get(ProviderImport, job_id).provider
+        # One provider request at a time on the host, through the shared cooldown.
+        with self.runner.providers.client(provider) as client:
+            fetch_import(
+                job_id,
+                self.sessions,
+                self.settings,
+                client,
+                lambda: self.cancelled(job_id),
+                self.mutation_lock,
+            )
 
         def queue_games(db, job):
             # Poller finds are fresh; manual imports of older games backfill.

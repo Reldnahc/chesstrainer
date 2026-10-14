@@ -114,7 +114,10 @@ def import_games(
     retain_original: bool = True,
     completed_times: dict[str, datetime] | None = None,
     rated: dict[str, bool] | None = None,
+    games=None,
 ):
+    """Save the games in ``pgn``; ``games`` is ``parse_games(pgn)`` when the caller
+    already has it, so a provider import does not parse every game twice."""
     if batch is None:
         batch = ImportBatch(filename=filename, original_pgn=pgn)
         db.add(batch)
@@ -123,7 +126,7 @@ def import_games(
         batch.original_pgn += ("\n\n" if batch.original_pgn else "") + pgn
     errors, imported, duplicates, processed = [], 0, 0, 0
     linked = set(db.scalars(select(ImportGame.game_id).where(ImportGame.import_id == batch.id)))
-    for index, parsed, error in parse_games(pgn):
+    for index, parsed, error in games if games is not None else parse_games(pgn):
         if max_new_games is not None and imported >= max_new_games:
             break
         processed += 1

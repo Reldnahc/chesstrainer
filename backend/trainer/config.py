@@ -92,8 +92,11 @@ class Settings(BaseSettings):
     max_import_bytes: int = Field(default=10_000_000, ge=1000, le=100_000_000)
     chesscom_timeout_seconds: float = Field(default=20, gt=0, le=60)
     chesscom_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
-    chesscom_user_agent: str = env_only(
-        "FieldworkChessTrainer/0.1 (local personal chess training)", private=True
+    # Sent to Chess.com and Lichess. CHESSCOM_USER_AGENT, its former name, still works.
+    provider_user_agent: str = env_only(
+        "FieldworkChessTrainer/0.1 (local personal chess training)",
+        private=True,
+        validation_alias=AliasChoices("provider_user_agent", "chesscom_user_agent"),
     )
     # Lichess limits. The older PROVIDER_* environment names still work.
     lichess_timeout_seconds: float = Field(

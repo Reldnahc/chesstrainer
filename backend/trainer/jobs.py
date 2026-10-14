@@ -4,8 +4,8 @@ import logging
 import threading
 import time
 
-from trainer.chesscom import ChessComClient
 from trainer.engine import Stockfish
+from trainer.game_providers.gateway import ProviderGateway
 from trainer.game_sync import poll as poll_connections
 from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
@@ -26,13 +26,12 @@ class JobRunner:
         classifier=None,
         engine_factory=Stockfish,
         *,
-        chesscom_factory=ChessComClient,
         provider_factories=None,
         workspaces=None,
     ):
         self.settings, self.scheduler = settings, scheduler
         self.classifier = classifier if classifier is not None else LocalClassifier(settings)
-        self.engine_factory, self.chesscom_factory = engine_factory, chesscom_factory
+        self.engine_factory = engine_factory
         self.workspaces = workspaces or Workspaces(sessions.kw["bind"], settings, engine_factory)
         self.queue = JobQueue(
             self.workspaces.sql_engine,
@@ -40,11 +39,7 @@ class JobRunner:
         )
         from trainer.game_providers import client_factories
 
-        self.provider_factories = (
-            client_factories() | {"chesscom": chesscom_factory} | (provider_factories or {})
-        )
-        self.provider_retry_at = {}
-        self.provider_lock = threading.Lock()  # One active provider request per host.
+        self.providers = ProviderGateway(settings, client_factories() | (provider_factories or {}))
 
         self.stop_event = threading.Event()
         self.threads = []

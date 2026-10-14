@@ -1,13 +1,12 @@
 """Connected accounts are polled by the server; new games queue their own analysis."""
 
 import logging
-import time
 from datetime import datetime, timezone
 
 from sqlalchemy import delete, select
 
 from trainer import job_lifecycle
-from trainer.game_providers.base import ProviderRateLimited
+from trainer.game_providers.gateway import ProviderCoolingDown
 from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, ProviderCheckpoint, ProviderConnection, ProviderImport, now
 
@@ -117,19 +116,13 @@ def poll(runner, owners):
 
 
 def detect(runner, provider, users):
-    if time.monotonic() < runner.provider_retry_at.get(provider, 0):
-        return {}
+    """What changed for each player; nothing while the provider cools down."""
     states = {name: owned[0][1] for name, owned in users.items()}
-    with runner.provider_lock:
-        client = runner.provider_factories[provider](runner.settings)
-        try:
-            results = client.changed(list(users), states)
-        except ProviderRateLimited as exc:
-            runner.provider_retry_at[provider] = time.monotonic() + exc.retry_after
-            raise
-        finally:
-            client.close()
-    return results
+    try:
+        with runner.providers.client(provider) as client:
+            return client.changed(list(users), states)
+    except ProviderCoolingDown:
+        return {}
 
 
 def record(runner, owner, provider, state, changed):

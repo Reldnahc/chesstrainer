@@ -1,4 +1,4 @@
-"""PGN uploads and filtered Chess.com import requests."""
+"""PGN uploads and filtered provider import requests."""
 
 from pathlib import Path
 from typing import Literal
@@ -7,7 +7,6 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from sqlalchemy import select
 from starlette.concurrency import run_in_threadpool
 
-from trainer.chesscom import ChessComRequest
 from trainer.contracts.common import JobStarted
 from trainer.contracts.jobs import PgnImportResult
 from trainer.game_analysis import BACKFILL, queue_imported
@@ -59,15 +58,6 @@ def create_router(*, settings) -> APIRouter:
                 return result
 
         return await run_in_threadpool(run_import)
-
-    @router.post(
-        "/api/imports/chesscom",
-        status_code=202,
-        response_model=JobStarted,
-        response_model_exclude_unset=True,
-    )
-    def import_chesscom(workspace: CurrentWorkspace, data: ChessComRequest):
-        return queue_provider(workspace, data, "chesscom")
 
     @router.post(
         "/api/imports/provider/{provider}",

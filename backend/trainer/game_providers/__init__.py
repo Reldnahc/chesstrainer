@@ -34,7 +34,7 @@ def get_provider(provider):
 
 
 def client_factories():
-    from trainer.chesscom import ChessComClient
+    from trainer.game_providers.chesscom import ChessComClient
     from trainer.game_providers.lichess import LichessClient
 
     return {"chesscom": ChessComClient, "lichess": LichessClient}

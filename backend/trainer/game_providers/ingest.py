@@ -95,8 +95,9 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                 ):
                     filtered += 1
                     continue
-                selected.append(game["pgn"])
-                for _, parsed, error in parse_games(game["pgn"]):
+                entries = list(parse_games(game["pgn"]))
+                selected.append((game["pgn"], entries))
+                for _, parsed, error in entries:
                     if parsed is not None and not error:
                         try:
                             color = identify_learner(parsed, [username], None)
@@ -113,10 +114,13 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                 job = db.get(AnalysisJob, job_id)
                 processed = 0
                 if selected:
+                    chosen = selected[:remaining] if sync else selected
+                    # Each PGN was parsed once above; the importer reuses those games.
+                    games = [entry[1:] for _, entries in chosen for entry in entries]
                     result = import_games(
                         db,
                         f"{provider.name}/{username}",
-                        "\n\n".join(selected[:remaining] if sync else selected),
+                        "\n\n".join(pgn for pgn, _ in chosen),
                         [username],
                         None,
                         batch=db.get(ImportBatch, job.import_id),
@@ -125,6 +129,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                         retain_original=not sync,
                         completed_times=completed_times,
                         rated=rated,
+                        games=[(index, *entry) for index, entry in enumerate(games, 1)],
                     )
                     processed = result["processed"]
                     request.games_imported += result["imported"]

@@ -103,7 +103,7 @@ still works, but only seeds a setting the database does not have yet. See
 | `SERVER_HOST` | `0.0.0.0` | Bind inside the container; Docker's published address controls host exposure. |
 | `SERVER_PORT` | `8000` | Internal container port; the image health check follows it. Normally change the published host port instead. |
 | `FORWARDED_ALLOW_IPS` | `127.0.0.1` | Proxy addresses trusted for `X-Forwarded-For`. Set to your reverse proxy so sign-in limits apply per visitor. |
-| `CHESSCOM_USER_AGENT` | Fieldwork identification | Optional identification for public Chess.com API calls; no Chess.com password needed. |
+| `PROVIDER_USER_AGENT` | Fieldwork identification | Optional identification for public Chess.com and Lichess API calls (`CHESSCOM_USER_AGENT` still works); no password needed. |
 | `LAN_ACCESS_TOKEN` | empty | Source installs only: optional shared token for the no-login workspace. |
 | `ALLOWED_HOSTS` | empty | Source installs only: extra host names the API answers to. LAN IP addresses, localhost, short names and `.local`/`.lan` names need no entry. |
 

@@ -10,8 +10,8 @@ from puzzle_fixtures import BrowserGamePuzzleProvider, BrowserPuzzleProvider
 from study_lesson_fixtures import BrowserLessonProvider
 from trainer.accounts import Accounts
 from trainer.api import create_app as production_app
-from trainer.chesscom import ChessComClient
 from trainer.config import Settings
+from trainer.game_providers.chesscom import ChessComClient
 from trainer.game_providers.lichess import LichessClient
 from trainer.study_lessons.bundled import BundledCourses
 from trainer.workspaces import CurrentWorkspace
@@ -104,8 +104,7 @@ def create_app():
     lesson_provider = BrowserLessonProvider()
     app = production_app(
         ci_settings(),
-        chesscom_factory=factory,
-        provider_factories={"lichess": lichess_factory},
+        provider_factories={"chesscom": factory, "lichess": lichess_factory},
         puzzle_providers=(puzzle_provider, game_puzzle_provider),
         lesson_providers=(BundledCourses(), lesson_provider),
     )

@@ -541,23 +541,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/imports/chesscom": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Import Chesscom */
-        post: operations["import_chesscom_api_imports_chesscom_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/imports/provider/{provider}": {
         parameters: {
             query?: never;
@@ -1622,24 +1605,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/sync": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Sync */
-        get: operations["get_sync_api_sync_get"];
-        put?: never;
-        /** Begin Sync */
-        post: operations["begin_sync_api_sync_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/teaching-runs/{run_id}": {
         parameters: {
             query?: never;
@@ -1953,31 +1918,6 @@ export interface components {
             time_class: string;
             /** User Id */
             user_id: string;
-            /** Username */
-            username: string;
-        };
-        /** ChessComRequest */
-        ChessComRequest: {
-            /** End Date */
-            end_date?: string | null;
-            /**
-             * Max Games
-             * @default 100
-             */
-            max_games: number;
-            /**
-             * Months
-             * @default 3
-             */
-            months: number;
-            /** Start Date */
-            start_date?: string | null;
-            /**
-             * Time Class
-             * @default rapid
-             * @enum {string}
-             */
-            time_class: "rapid" | "blitz" | "bullet" | "daily" | "all";
             /** Username */
             username: string;
         };
@@ -6131,39 +6071,6 @@ export interface operations {
             };
         };
     };
-    import_chesscom_api_imports_chesscom_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChessComRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["JobStarted"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     import_provider_api_imports_provider__provider__post: {
         parameters: {
             query?: never;
@@ -8167,46 +8074,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_sync_api_sync_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SyncStatus"];
-                };
-            };
-        };
-    };
-    begin_sync_api_sync_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SyncStatus"];
                 };
             };
         };
