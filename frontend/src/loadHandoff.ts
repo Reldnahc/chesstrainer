@@ -13,6 +13,17 @@ function fadeOut(loader: Element, at: DOMRect) {
   copy.removeAttribute("id");
   copy.setAttribute("aria-hidden", "true");
   copy.querySelectorAll("[role]").forEach(element => element.removeAttribute("role"));
+  // A decorative copy carries no text of its own (the words are drawn by CSS), so
+  // the page's text, find-in-page and anything reading it never see a loader
+  // that has already gone, even while the fade lingers.
+  const walker = document.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
+  const texts: Text[] = [];
+  while (walker.nextNode()) texts.push(walker.currentNode as Text);
+  for (const text of texts) {
+    const drawn = document.createElement("span");
+    drawn.dataset.ghostText = text.data;
+    text.replaceWith(drawn);
+  }
   Object.assign(copy.style, {
     position: "fixed", top: `${at.top}px`, left: `${at.left}px`, width: `${at.width}px`,
     margin: "0", pointerEvents: "none", zIndex: "1", animation: "none",
