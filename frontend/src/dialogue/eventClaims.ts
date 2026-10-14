@@ -1,12 +1,12 @@
 import type { Schema } from "../api";
-import {claim, type Claim} from "./model";
+import {claim, type Claim, type ClaimCode} from "./model";
+import {words} from "./tacticalVocabulary";
 
 type Event = Schema["ReviewEvent"];
 export const object = (value: unknown): Record<string, unknown> =>
   value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {};
 export const strings = (value: unknown): string[] => Array.isArray(value) ? value.filter((x): x is string => typeof x === "string") : [];
-export const words = (value: unknown) => typeof value === "string"
-  ? value === "missed_tactical_capture" ? "undefended capture" : value.replaceAll("_", " ") : "";
+export {words};
 const join = (items: string[]) => items.length === 2 ? `${items[0]} and ${items[1]}` : items.join(", ");
 
 export function positionalClaim(event: Event, move: string, best: string): Claim | null {
@@ -15,7 +15,7 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
   const alternative = f.line === "best";
   const lead = `${alternative ? best : move} `;
   const priority = alternative ? 61 : 66;
-  const make = (code: string, slots: Claim["slots"]): Claim => ({
+  const make = (code: ClaimCode, slots: Claim["slots"]): Claim => ({
     ...claim(code, slots, priority, event.evidence, [event.id]),
     position: {line: alternative ? "alternative" : "actual", move: alternative ? best : move},
   });
@@ -44,7 +44,7 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
 export function tacticalClaim(event: Event, move: string, best: string, opponent: string): Claim | null {
   const f = event.facts, role = f.role;
   if (role === "caused") return causalClaim(event, move);
-  if (!["played", "allowed", "missed"].includes(String(role))) return null;
+  if (role !== "played" && role !== "allowed" && role !== "missed") return null;
   let detail = "";
   const roles = object(f.roles), pieces = object(f.pieces);
   const targets = strings(roles.targets).map(square => ({square, color: object(pieces[square]).color, piece: object(pieces[square]).piece}))
@@ -97,7 +97,7 @@ function causalClaim(event: Event, move: string): Claim | null {
   if (f.opportunity_actor !== opponent.toLowerCase() || !reply?.san || !reply.capture) return null;
   const side = event.actor === "white" ? "White" : "Black";
   const slots = {move, side, opponent, reply: String(reply.san)};
-  const make = (code: string, detail: Claim["slots"]) => claim(code, {...slots, ...detail}, 95, event.evidence, [event.id]);
+  const make = (code: ClaimCode, detail: Claim["slots"]) => claim(code, {...slots, ...detail}, 95, event.evidence, [event.id]);
   if (f.motif === "avoiding_bad_trades") {
     const moved = object(pieces[strings(roles.moved_piece)[0]]);
     return moved.color === event.actor && moved.piece && first?.capture

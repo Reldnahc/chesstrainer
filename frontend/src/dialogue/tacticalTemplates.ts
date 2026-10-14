@@ -1,4 +1,5 @@
 import type {Claim} from "./model";
+import {scopedMotifNames} from "./tacticalVocabulary";
 
 export const tacticalScopes = ["played_immediate", "played_possible", "allowed_immediate", "allowed_possible",
   "missed_immediate", "missed_possible"] as const;
@@ -11,11 +12,6 @@ export type ScopedTacticalSlots = {
 };
 
 const join = (items: string[]) => items.length === 2 ? items.join(" and ") : items.join(", ");
-const motifNames: Record<string, string> = {
-  "hanging piece": "loose piece", "undefended capture": "capture of a loose piece",
-  "removing defender": "removal of a defender", "promotion awareness": "promotion",
-  "back rank": "back-rank mate", "trapped piece": "trapped piece",
-};
 const noun = (value: unknown): string | undefined => typeof value === "string" && value.trim() ? value : undefined;
 
 /** Select a meaning, not a sentence. Original claim slots and evidence stay intact. */
@@ -26,7 +22,7 @@ export function tacticalPresentation(item: Claim): {code: TacticalPresentationKe
   const {tactic} = item;
   const motif = noun(item.slots.motif);
   const slots: ScopedTacticalSlots = {
-    motif: motif ? motifNames[motif] ?? motif : undefined,
+    motif: motif ? scopedMotifNames[motif] ?? motif : undefined,
     move: noun(item.slots.move), best: noun(item.slots.best), opponent: noun(item.slots.opponent),
     ...(tactic.action ? {action: noun(tactic.action)} : {}),
   };

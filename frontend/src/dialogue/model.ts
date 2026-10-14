@@ -9,6 +9,28 @@ export const dialoguePurposes = [
   "repeated_motif", "variation",
 ] as const;
 export type DialoguePurpose = typeof dialoguePurposes[number];
+/** Every fact a claim can state. Each has a neutral template (templates.ts). */
+export const claimCodes = [
+  "allowed_mate", "forced_mate_started", "forced_mate_continued", "forced_mate_slower", "forced_mate_next",
+  "forced_mate_hastened", "forced_mate_held", "missed_mate", "tactic_played", "tactic_allowed", "tactic_missed",
+  "cause_abandoned_defender", "cause_opponent_threat_recognition", "cause_avoiding_bad_trades", "sacrifice",
+  "only_move", "decisive_resource", "reply_capture", "reply_check", "alternative", "loss", "best", "good",
+  "uncertain_reason", "human_natural_error", "human_rare", "difficult_defense", "human_challenging",
+  "human_defense_found", "human_natural_best", "human_natural_strong", "book", "book_sound", "departure",
+  "recovery", "punishment", "missed_punishment", "repeated", "support_restored", "erosion", "conversion",
+  "history", "development", "rook_file", "passed", "passer_advance", "isolated", "support", "unsupported",
+  "flights", "castle", "bishops", "doubled", "mate_win", "mate_loss", "draw", "cold", "thinking",
+  "unavailable", "practice_error", "retry", "recovered", "accepted", "explanation", "explanation_summary",
+  "variation", "compatibility",
+] as const;
+export type ClaimCode = typeof claimCodes[number];
+const knownClaimCodes: ReadonlySet<string> = new Set(claimCodes);
+export const isClaimCode = (code: string): code is ClaimCode => knownClaimCodes.has(code);
+/** The stages of a forced mate the review reports, each with its own claim. */
+export const forcedMateStages = ["started", "continued", "slower", "next", "hastened", "held"] as const;
+export type ForcedMateStage = typeof forcedMateStages[number];
+export const isForcedMateStage = (value: unknown): value is ForcedMateStage =>
+  (forcedMateStages as readonly unknown[]).includes(value);
 export type EvidenceRef = Schema["EvidenceReference"];
 export type TacticalPresentation = {
   timing: "immediate" | "possible";
@@ -18,7 +40,7 @@ export type TacticalPresentation = {
     {kind: "capture"; san: string; piece: string; ply: number} | {kind: "none"};
 };
 export type Claim = {
-  code: string;
+  code: ClaimCode;
   slots: Record<string, string | number>;
   evidence: EvidenceRef[];
   priority: number;
@@ -117,7 +139,7 @@ export function makeIntent(key: string, purpose: DialoguePurpose, mode: Dialogue
     autoSpeakSuitable: mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose)};
 }
 
-export function claim(code: string, slots: Claim["slots"] = {}, priority = 40,
+export function claim(code: ClaimCode, slots: Claim["slots"] = {}, priority = 40,
   evidence: EvidenceRef[] = [], sourceIds: string[] = []): Claim {
   return {code, slots, priority, evidence, sourceIds};
 }

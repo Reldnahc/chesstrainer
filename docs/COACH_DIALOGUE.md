@@ -190,6 +190,14 @@ The full selectable cast now has curated claim wording and character bibles.
 See [Character writing](#character-writing) for the writing standards,
 blind comparison and automatic corpus checks. Rare supported facts can still use
 the complete neutral fallback; character wording never replaces chess evidence.
+Claim codes are a closed list (`claimCodes`/`ClaimCode` in `dialogue/model.ts`),
+and `neutralTemplates` must have an entry for every code, so a new code without
+neutral wording fails to compile rather than rendering as nothing.
+`uncertain_reason` and `variation` have neutral templates but no producer yet.
+Motif and explanation-mechanism vocabulary (spoken words, scoped motif names,
+recorded tactic/cue/cause meanings and piece subjects) lives in one table,
+`dialogue/tacticalVocabulary.ts`; move grades, poor-move checks and their
+articles live in `moveQuality.ts`.
 
 All thirty coaches' on-screen tactical wording opts into `tacticalWording: "witness"`.
 `eventClaims` attaches derived timing/effect metadata while retaining the original

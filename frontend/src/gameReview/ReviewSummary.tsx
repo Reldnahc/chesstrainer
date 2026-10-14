@@ -1,18 +1,8 @@
 import MoveBadge from "../MoveBadge";
 import { AccuracyReadout } from "./Players";
 import type { Game } from "./types";
+import { MOVE_LABELS } from "../moveQuality";
 
-const labels = [
-  "Brilliant",
-  "Great",
-  "Best",
-  "Good",
-  "Book",
-  "Inaccuracy",
-  "Mistake",
-  "Miss",
-  "Blunder",
-];
 
 function PlayerHeading({ name, color }: { name: string; color: "white" | "black" }) {
   const side = color === "white" ? "White" : "Black";
@@ -25,7 +15,7 @@ function PlayerHeading({ name, color }: { name: string; color: "white" | "black"
 }
 
 export default function ReviewSummary({ game }: { game: Game }) {
-  const summary = labels.map((label) => ({
+  const summary = MOVE_LABELS.map((label) => ({
     label,
     white: game.frames.filter(
       (f) => f.actor === "white" && f.report?.label === label,

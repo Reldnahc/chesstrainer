@@ -2,6 +2,7 @@ import { ArrowDown, ArrowUp } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import EvaluationScore from "./EvaluationScore";
 import { positionScore, scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
+import { MOVE_LABELS } from "./moveQuality";
 
 type Frame = {
   number: number; actor: "white" | "black" | null; san: string;
@@ -9,7 +10,8 @@ type Frame = {
   report: { label: string; white_score: Score } | null;
 };
 type Point = { ply: number; score: Score };
-const marked = new Set(["Brilliant", "Great", "Best", "Inaccuracy", "Mistake", "Miss", "Blunder"]);
+// Every grade except the unremarkable Good and Book gets a marker.
+const marked: ReadonlySet<string> = new Set(MOVE_LABELS.filter(label => label !== "Good" && label !== "Book"));
 
 export default function EvaluationGraph({ frames, initialScore, selected, onSelect, onScrubStart, onScrubSelect, onScrubEnd }: {
   frames: Frame[]; initialScore?: Score | null; selected: number; onSelect: (ply: number) => void;

@@ -122,6 +122,12 @@ export async function coachMouthTrack(coachId: string, id: string): Promise<Spee
   return sequenceTrack(tracks, recording.id);
 }
 
+/** Start loading a coach's mouth timing early; a failure is retried on the next request. */
+export function prefetchCoachMouthTracks(coachId: string): void {
+  const bank = banks.get(coachId);
+  if (bank && !loadedTracks.has(coachId)) loadTracks(coachId, bank.tracksUrl).catch(() => {});
+}
+
 export function loadedCoachMouthTrack(coachId: string, id: string | undefined): SpeechMouthTrack | undefined {
   const tracks = loadedTracks.get(coachId), recorded = recordedId(coachId, id);
   return recorded && tracks ? sequenceTrack(tracks, recorded) : undefined;
@@ -131,4 +137,3 @@ export function loadedCoachMouthTrack(coachId: string, id: string | undefined): 
 // the same registry functions for every registered voice.
 export const walterRecording = (id: string | null | undefined) => coachRecording('classic', id);
 export const walterMouthTrack = (id: string) => coachMouthTrack('classic', id);
-export const loadedWalterMouthTrack = (id: string | undefined) => loadedCoachMouthTrack('classic', id);

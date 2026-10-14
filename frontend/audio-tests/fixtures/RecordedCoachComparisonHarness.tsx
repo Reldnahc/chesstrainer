@@ -54,10 +54,7 @@ export function mountRecordedCoachComparison(options: ComparisonHarnessOptions =
       <RecordedCoachComparison player={current} catalog={catalog} />
       <Button onClick={() => void current.playSpeech({url: "/__recorded-comparison-fixture/other/preview.opus",
         voiceId: "another-preview", voiceName: "Another preview", scriptId: "other", recordingId: "other",
-        coachName: "Other coach", utterance: {version: "coach-utterance-1", id: "other", intentId: "other", coachId: "robot",
-          text: "Another preview.", speechText: "Another preview.", expression: "explaining", intensity: .4,
-          priority: 50, interruptible: true, autoSpeakSuitable: false,
-          trace: {renderer: "test-fixture", variants: [], decisions: []}}})}>Play another preview</Button>
+        coachName: "Other coach", utterance: {id: "other", coachId: "robot", priority: 50, interruptible: true}})}>Play another preview</Button>
     </main>;
   }
   const container = document.createElement("div");

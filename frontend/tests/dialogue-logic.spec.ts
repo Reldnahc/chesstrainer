@@ -4,7 +4,7 @@ import {practiceIntent, explanationIntent} from "../src/dialogue/practiceIntent"
 import {renderDialogue, renderNeutral} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {neutralTemplates} from "../src/dialogue/templates";
-import {claim, makeIntent, stableKey} from "../src/dialogue/model";
+import {claim, makeIntent, stableKey, type ClaimCode} from "../src/dialogue/model";
 import {positionalClaim} from "../src/dialogue/eventClaims";
 import type {Game, Position, Report} from "../src/gameReview/types";
 import type {ColdPosition, ExplanationFrame, Schema} from "../src/api";
@@ -79,7 +79,7 @@ test("every positional claim carries branch scope that personality wording canno
       expect(validOutput.trace.variants[0].source).toBe("branch-safety-test");
     }
   }
-  const unsupported = {...positionalClaims("best")[0], code: "future_feature"};
+  const unsupported = {...positionalClaims("best")[0], code: "future_feature" as ClaimCode};
   const fallback = renderNeutral(makeIntent("unknown", "mistake", "game", "mistake", [unsupported]));
   expect(fallback.trace.variants).toEqual([]);
 });
@@ -194,7 +194,7 @@ test("deterministic variants survive reordering and leave evidence untouched", (
   expect(JSON.stringify(input)).toBe(saved);
   expect(stableKey({a: 1, b: 2})).toBe(stableKey({b: 2, a: 1}));
   expect(first.text.length).toBeLessThanOrEqual(290);
-  const broken = renderNeutral(makeIntent("bad", "uncertain", "game", "uncertain", [claim("missing"), claim("reply_capture")]));
+  const broken = renderNeutral(makeIntent("bad", "uncertain", "game", "uncertain", [claim("missing" as ClaimCode), claim("reply_capture")]));
   expect(broken.text).not.toContain("{");
   expect(broken.text).toContain("don't have a clear explanation");
 });

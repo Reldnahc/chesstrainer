@@ -150,6 +150,12 @@ test("practice protects cold answers, distinguishes recovery and never judges a 
 });
 
 test("future coaches can omit reactions and even have cyclic fallbacks safely", () => {
+  // Authored idle lists confined to expressions this fixture does not draw.
+  const animation: CoachDefinition["animation"] = {
+    ...classicPerformance,
+    defaultIdle: ["blink", "glance", "breathe"],
+    idleGestures: { good: ["blink", "nod", "breathe"], blunder: ["blink", "sigh", "glasses"], winning: ["tail"] },
+  };
   const coach: CoachDefinition = {
     id: "test-only",
     name: "Test fixture",
@@ -159,7 +165,7 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
     defaultFamily: "test",
     families: [{ id: "test", name: "Test", description: "", character: "" }],
     capabilities: { reactions: false, idle: false },
-    animation: classicPerformance,
+    animation,
     expressions: ["neutral", "good"],
     fallbacks: {
       brilliant: "great",
@@ -181,7 +187,7 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
       {
         ...coach.families[0],
         animation: {
-          ...classicPerformance,
+          ...animation,
           defaultIdle: ["ears", "head-tilt"] as const,
           idleGestures: {},
         },
@@ -192,7 +198,7 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
   expect(resolveAnimation(variant, "removed")).toBe(
     variant.families[0].animation,
   );
-  expect(resolveAnimation(coach)).toBe(classicPerformance);
+  expect(resolveAnimation(coach)).toBe(animation);
   expect(new Set(availableIdles(coach)).size).toBe(
     availableIdles(coach).length,
   );

@@ -14,6 +14,10 @@ const scope = {
   move(san, eventId, options) { window.gameAudioEvents.push({kind: "move", san, eventId, options}); },
   play(cue, eventId, options) { window.gameAudioEvents.push({kind: "play", cue, eventId, options}); },
   cancel() { window.gameAudioEvents.push({kind: "cancel"}); },
+  // The navigation rules, written in terms of the two recorded cues as AudioProvider does.
+  advance(forward, san, eventId) { if (forward) scope.move(san, eventId); else scope.play("move", eventId); },
+  step(from, to, san, eventId) { scope.advance(to === from + 1, san, eventId); },
+  moveOr(san, eventId, options) { if (san) scope.move(san, eventId, options); else scope.play("move", eventId, options); },
 };
 export function useAudioScope() { return scope; }
 `;

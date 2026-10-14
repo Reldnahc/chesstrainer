@@ -29,6 +29,8 @@ export type AudioDriver = {
 export type AudioEngineOptions = {
   onEvent?: (event: AudioEvent) => void;
   onSpeechPlayback?: (playback: SpeechPlayback | null) => void;
+  /** Diagnostics only: an unexpected exception that playback already absorbed. */
+  onError?: (error: unknown) => void;
   driver?: Partial<AudioDriver>;
 };
 
@@ -84,6 +86,7 @@ export class AudioEngine {
   private readonly driver: AudioDriver;
   private readonly observer?: AudioEngineOptions["onEvent"];
   private readonly speechObserver?: AudioEngineOptions["onSpeechPlayback"];
+  private readonly errorObserver?: AudioEngineOptions["onError"];
   private readonly unsubscribeVisibility: () => void;
   private readonly assets = new Map<string, Promise<AudioBuffer>>();
   private readonly assetBytes = new Map<string, number>();
@@ -111,6 +114,7 @@ export class AudioEngine {
     this.driver = {...browserDriver, ...options.driver};
     this.observer = options.onEvent;
     this.speechObserver = options.onSpeechPlayback;
+    this.errorObserver = options.onError;
     this.unsubscribeVisibility = this.driver.subscribeVisibility(() => {
       if (this.driver.visible()) return;
       this.unlocked = false;
@@ -198,7 +202,7 @@ export class AudioEngine {
       const delay = Number.isFinite(request.delayMs) ? Math.max(0, Math.min(15000, request.delayMs!)) : 0;
       if (delay) ticket.timer = this.driver.setTimer(begin, delay);
       else begin();
-    } catch { /* Unsupported browser audio must never interrupt interaction. */ }
+    } catch (error) { this.report(error); } // Unsupported browser audio must never interrupt interaction.
   }
 
   /** Reserved bus: caller owns manual/auto-speak suitability; provider supplies the existing utterance's audio. */
@@ -211,7 +215,7 @@ export class AudioEngine {
       ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id, recordingId: clip.recordingId};
       if (ticket.interruptCurrent && !this.validSpeechBuffer(clip.buffer)) { this.fail(ticket); return; }
       if (this.current(ticket) && this.activate(ticket)) this.start(ticket, clip.buffer);
-    } catch { /* Provider audio must not affect the visual utterance or app state. */ }
+    } catch (error) { this.report(error); } // Provider audio must not affect the visual utterance or app state.
   }
 
   /** Decode a bundled recording on the same context and cancellable speech bus as prepared clips. */
@@ -239,7 +243,7 @@ export class AudioEngine {
       const delay = Number.isFinite(clip.delayMs) ? Math.max(0, Math.min(15000, clip.delayMs!)) : 0;
       if (delay) ticket.timer = this.driver.setTimer(begin, delay);
       else begin();
-    } catch { /* Optional recordings must not affect the visual utterance or app state. */ }
+    } catch (error) { this.report(error); } // Optional recordings must not affect the visual utterance or app state.
   }
 
   cancel(scope: string): void {
@@ -512,6 +516,10 @@ export class AudioEngine {
 
   private suspend(): void {
     try { void this.context?.suspend().catch(() => {}); } catch { /* Unsupported or closed. */ }
+  }
+
+  private report(error: unknown): void {
+    try { this.errorObserver?.(error); } catch { /* Diagnostics cannot affect playback. */ }
   }
 
   private emit(event: AudioEvent): void {

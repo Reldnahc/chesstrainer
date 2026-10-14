@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
+import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
 import { lessonRecording } from "../audio/speech/practiceSelection";
@@ -83,11 +84,11 @@ export function useLessonSession(id: string) {
         audio.play("move", `${eventId}:board`);
       }
       if (session.status !== "completed" && result.status === "completed" && action !== "show_move") {
-        audio.play("complete", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("complete", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (action === "move" && result.feedback?.kind === "correct") {
-        audio.play("correct", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("correct", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (action === "move" && result.feedback?.kind === "incorrect") {
-        audio.play("retry", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
     } catch (e) {
       // A command may have committed despite a lost response. Reconcile first.

@@ -9,6 +9,7 @@ import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
 import type { Game, Position, Report } from "./types";
 import { gameReaction } from "../coach/reactions";
+import { labelArticle } from "../moveQuality";
 import { gameIntent } from "../dialogue/gameIntent";
 import { useDialogue } from "../dialogue/useDialogue";
 import {humanInsightIntent} from "../dialogue/humanClaims";
@@ -151,6 +152,7 @@ export default function PositionCoach({
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
     automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId, ready: !speechPending,
     manualRecordingIds: [grade ?? primaryId, explaining ? null : grade ?? speech.recordingId].filter((id): id is string => !!id)});
+  const article = labelArticle(report?.label);
   if (prompt)
     return (
       <ReviewCoach reaction={{...reaction, state: utterance.expression}} voice={voice}
@@ -168,13 +170,7 @@ export default function PositionCoach({
             <span className="coach-rated-move">
               <span className="sr-only">{actor} · </span>
               {frame?.san || "Move"} is{" "}
-              {["Mistake", "Miss", "Blunder", "Inaccuracy"].includes(
-                report.label,
-              )
-                ? report.label === "Inaccuracy"
-                  ? "an "
-                  : "a "
-                : ""}
+              {article && `${article} `}
               <span className="coach-quality-name">{report.label}</span>
             </span>
           </MoveBadge>

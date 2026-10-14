@@ -1,10 +1,10 @@
-import {claim, makeIntent, type DialoguePurpose} from "../src/dialogue/model";
+import {claim, makeIntent, type ClaimCode, type DialoguePurpose} from "../src/dialogue/model";
 import type {CoachExpression} from "../src/coach/model";
 
 // Synthetic writing exercises, clearly labeled in the laboratory. They do not
 // enter reviews, chess evidence, training data, or the production bundle.
-type Example = {purpose: DialoguePurpose; expression: CoachExpression; code: string; slots?: Record<string, string | number>; label?: string;
-  supporting?: {code: string; slots?: Record<string, string | number>; priority: number}[]};
+type Example = {purpose: DialoguePurpose; expression: CoachExpression; code: ClaimCode; slots?: Record<string, string | number>; label?: string;
+  supporting?: {code: ClaimCode; slots?: Record<string, string | number>; priority: number}[]};
 export const writingExamples: Example[] = [
   {purpose: "neutral", expression: "neutral", code: "cold"},
   {purpose: "thinking", expression: "thinking", code: "thinking"},

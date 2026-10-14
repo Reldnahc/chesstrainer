@@ -1,17 +1,17 @@
 import type {ExplanationFrame, MoveExplanation, PatternFinding, Schema} from "../../api";
 import {object, strings} from "../../dialogue/eventClaims";
-import catalogue from "./meanings.json" with {type: "json"};
+import {findingSubjects, tacticSubjects} from "../../dialogue/tacticalVocabulary";
+import {meanings} from "./meaningCatalog";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR} from "./sequence";
 
 type Side = "white" | "black";
 type Event = Schema["ReviewEvent"];
-type Meaning = {id: string; variantOf?: string; pieces?: string[]};
 
 // A piece variant names the one piece its meaning is about ("the pinned knight")
 // instead of a generic "piece". The catalogue lists every piece that can occur.
 const variants = new Map<string, Map<string, string>>();
 const named = new Map<string, readonly string[]>();
-for (const meaning of catalogue.meanings as Meaning[]) {
+for (const meaning of meanings) {
   if (!meaning.variantOf || !meaning.pieces) continue;
   named.set(meaning.id, meaning.pieces);
   const set = variants.get(meaning.variantOf) ?? new Map<string, string>();
@@ -129,13 +129,6 @@ function subject(kind: string, roles: Record<string, unknown>, actor: Side, at: 
   }
 }
 
-const tacticSubjects: Record<string, string> = {
-  fork: "fork", pin: "pin", skewer: "skewer", discovered_attack: "discovered_attack",
-  missed_tactical_capture: "capture", hanging_piece: "capture", removing_defender: "defender",
-  deflection: "defender", back_rank: "back_rank", abandoned_defender: "own_target",
-  opponent_threat_recognition: "own_target", avoiding_bad_trades: "moved",
-};
-
 /** The subject piece of a game-review tactic, from its witness roles and pieces. */
 export function tacticPieces(event: Event): NamedPieces | null {
   const f = event.facts, kind = tacticSubjects[String(f.motif)], pieces = object(f.pieces);
@@ -147,16 +140,6 @@ export function tacticPieces(event: Event): NamedPieces | null {
 
 /** Subjects that stand on their square before the tactic: its targets and defenders. */
 const standing = new Set(["pin", "pin_target", "pinned", "skewer", "capture", "defender", "own_target"]);
-
-const findingSubjects: Record<string, string> = {
-  fork_recognized: "fork", fork_collected: "fork", pin_prevents_capture: "pinned", pin_restricts_escape: "pinned",
-  pin_collected: "pin_target", skewer_collected: "skewer", king_skewer_collected: "capture",
-  defender_captured: "defender", sole_defender_captured: "defender", deflection: "defender",
-  deflection_collected: "capture", discovered_capture: "slider", discovered_check: "slider",
-  double_check: "double_check", double_attack_collected: "second", undefended_capture: "capture",
-  undefended_capture_gain: "capture", back_rank_mate: "back_rank", abandoned_defender: "own_target",
-  unfavorable_exchange: "moved", relative_pin_released: "relative_pin",
-};
 
 /** The subject piece of an explanation finding, read from the board its roles describe. */
 export function findingPieces(data: MoveExplanation, finding: PatternFinding): NamedPieces | null {

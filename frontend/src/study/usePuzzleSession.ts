@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
+import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
 
@@ -86,15 +87,14 @@ export function usePuzzleSession(id: string) {
       playback.play(result.playback);
       const eventId = `revision:${result.revision}`;
       if (uci && !result.playback.length) {
-        if (result.feedback?.submitted_san) audio.move(result.feedback.submitted_san, `${eventId}:board`);
-        else audio.play("move", `${eventId}:board`);
+        audio.moveOr(result.feedback?.submitted_san, `${eventId}:board`);
       }
       if (uci && result.status === "solved") {
-        audio.play("complete", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("complete", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (uci && result.feedback?.grade === "correct") {
-        audio.play("correct", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("correct", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (uci && result.feedback?.grade === "incorrect") {
-        audio.play("retry", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
       started.current = performance.now();
     } catch (e) {

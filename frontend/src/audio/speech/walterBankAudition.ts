@@ -1,7 +1,6 @@
 import manifest from "./bank/manifest.json" with { type: "json" };
 import type { CoachExpression } from "../../coach/model";
 
-export type WalterCollection = { id: string; label: string; description: string; voiceIds: readonly string[]; scriptIds: readonly string[] };
 export type WalterScript = {
   id: string;
   label: string;
@@ -30,11 +29,3 @@ export const walterBankScripts: readonly WalterScript[] = manifest.recordings.ma
   spokenText: record.text,
   reaction: "explaining",
 }));
-
-export const walterBankCollection: WalterCollection = {
-  id: "walter-bank",
-  label: "Complete voice bank",
-  description: `${walterBankScripts.length} recorded summaries in Walter’s selected voice, with automatic lip sync. Lessons remain text only. Choose an example to listen.`,
-  voiceIds: ["walter"],
-  scriptIds: walterBankScripts.map(script => script.id),
-};

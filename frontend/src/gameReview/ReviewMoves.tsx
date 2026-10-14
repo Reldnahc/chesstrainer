@@ -1,12 +1,12 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { moveNumber } from "../fen";
 import { ChevronRight } from "lucide-react";
 import MoveSymbol from "../MoveSymbol";
 import MoveBadge from "../MoveBadge";
 import ReviewSummary from "./ReviewSummary";
 import type { Analysis, Game } from "./types";
 import type { GameExploration } from "./useGameExploration";
-
-const bad = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
+import { isPoorMove } from "../moveQuality";
 
 export default function ReviewMoves({
   game,
@@ -73,18 +73,19 @@ export default function ReviewMoves({
         </div>
         <span className="game-move-actions">
         <button
+          className="game-move-command"
           hidden={tab !== "moves"}
           onClick={() => {
             const next = game.frames.findIndex(
-              (f, i) => i > cursor.ply && f.report && bad.has(f.report.label),
+              (f, i) => i > cursor.ply && f.report && isPoorMove(f.report.label),
             );
             const first = game.frames.findIndex(
-              (f) => f.report && bad.has(f.report.label),
+              (f) => f.report && isPoorMove(f.report.label),
             );
             if (next >= 0 || first >= 0) navigate(next >= 0 ? next : first);
           }}
           disabled={
-            !game.frames.some((f) => f.report && bad.has(f.report.label))
+            !game.frames.some((f) => f.report && isPoorMove(f.report.label))
           }
         >
           Next mistake <ChevronRight size={14} />
@@ -118,8 +119,7 @@ export default function ReviewMoves({
                 aria-label={`${f.number}${f.actor === "white" ? "." : "..."} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}
               >
                 <span className="game-move-number">
-                  {f.number}
-                  {f.actor === "white" ? "." : "…"}
+                  {moveNumber(f.number, f.actor === "white" ? "white" : "black")}
                 </span>
                 <strong>{f.san}</strong>
                 {f.report && (

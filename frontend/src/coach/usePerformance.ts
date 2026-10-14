@@ -43,7 +43,9 @@ export function usePerformance({
   const [phase, setPhase] = useState<"reaction" | "rest">("rest");
   const [frame, setFrame] = useState<{ owner: string; value: IdleFrame } | null>(null);
   const [take, setTake] = useState(0);
+  // Effects decide freshness from the ref; render reads the committed copy.
   const played = useRef(0);
+  const [playedTake, setPlayedTake] = useState(0);
   const diagnosticObserver = useRef(onPerformance);
   const observing = Boolean(onPerformance);
   useEffect(() => { diagnosticObserver.current = onPerformance; }, [onPerformance]);
@@ -99,7 +101,10 @@ export function usePerformance({
     setFrame(null);
     coordinator.suspend(performance.now());
     const fresh = current && played.current !== take;
-    if (running) played.current = take;
+    if (running) {
+      played.current = take;
+      setPlayedTake(take);
+    }
     setPhase(
       running && fresh && reactionsEnabled && !idlePreview
         ? "reaction"
@@ -157,7 +162,7 @@ export function usePerformance({
   // The face is already meaningful during the dwell. Only a fresh entrance may
   // hold its authored eye squeeze; paused/seen entrances settle without replay.
   const face: "entrance" | "settled" = animated && reactionsEnabled && !idlePreview
-    && (!current || played.current !== take || phase === "reaction") ? "entrance" : "settled";
+    && (!current || playedTake !== take || phase === "reaction") ? "entrance" : "settled";
   useEffect(() => {
     if (!observing) return;
     const value = frame?.owner === owner ? frame.value : null;

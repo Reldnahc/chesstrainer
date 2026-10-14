@@ -4,7 +4,14 @@ import type {
   CoachIdlePool,
   CoachId,
   CoachMotionProfile,
+  ReactionTiming,
 } from "./model";
+
+/** Reaction holds shared by every coach except Walter's classic timing. */
+export const reactionTiming: ReactionTiming = {
+  defaultReactionMs: 1400,
+  reactionMs: { brilliant: 1700, blunder: 1850, winning: 1700, losing: 1500 },
+};
 
 type Pools = Record<CoachExpression, CoachIdlePool>;
 
@@ -283,7 +290,7 @@ const sharedRestingChoices: CoachIdlePool = [
 
 export function coachPerformance(
   coachId: string,
-  base: CoachDefinition["animation"],
+  base: ReactionTiming,
 ): CoachDefinition["animation"] {
   const direction: MotionDirection = (
     motionDirections as Partial<Record<string, MotionDirection>>

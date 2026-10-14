@@ -9,6 +9,8 @@ import {
 } from "../api";
 import { clearExerciseLink, clearReviewSessionLink, rememberReviewSession } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
+import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
+import { useLatest } from "../useLatest";
 
 /** Owns grading and queues. Focused practice never changes the SRS queue policy. */
 export function useReviewSession({
@@ -43,8 +45,7 @@ export function useReviewSession({
   const generation = useRef(0);
   const responseSequence = useRef(0);
   const audio = useAudioScope(`review:${requestedSession || requested || focusSkill || "queue"}`);
-  const sound = useRef(audio);
-  sound.current = audio;
+  const sound = useLatest(audio);
 
   const refreshDue = useCallback(async (version: number) => {
     try {
@@ -177,10 +178,9 @@ export function useReviewSession({
       if (version !== generation.current) return;
       const eventId = result.attempt_id || `response:${++responseSequence.current}`;
       const san = result.submitted_san || result.attempt_frame?.san;
-      if (san) audio.move(san, `${eventId}:board`);
-      else audio.play("move", `${eventId}:board`);
+      audio.moveOr(san, `${eventId}:board`);
       if (result.grade !== "revealed") {
-        audio.play(result.completed ? "correct" : "retry", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play(result.completed ? "correct" : "retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
       setFeedback(result);
       setFeedbackEventId(eventId);
@@ -216,8 +216,7 @@ export function useReviewSession({
       if (version !== generation.current) return;
       const eventId = `reveal:${++responseSequence.current}`;
       const san = result.reveal_frame?.san || result.submitted_san;
-      if (san) audio.move(san, `${eventId}:board`);
-      else audio.play("move", `${eventId}:board`);
+      audio.moveOr(san, `${eventId}:board`);
       setFeedback(result);
       setFeedbackEventId(eventId);
       recordCompletion(position.exercise_id, !result.non_scheduling_reason);

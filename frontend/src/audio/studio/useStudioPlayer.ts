@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AudioEngine, type AudioEvent } from "../engine";
 import { cueCatalog, paletteCatalog } from "../catalog";
-import type { RecordedSpeechClip, SoundCue, SoundPalette, SpeechPlayback } from "../model";
-import type { CoachUtterance } from "../../dialogue/model";
+import type { RecordedSpeechClip, SoundCue, SoundPalette, SpeechPlayback, SpeechUtterance } from "../model";
 import type { AuditionScenario } from "./scenarios";
 
 export type StudioSpeechPlayback = {
@@ -19,7 +18,7 @@ export type StudioSpeechRequest = {
   voiceName: string;
   scriptId: string;
   coachName: string;
-  utterance: CoachUtterance;
+  utterance: SpeechUtterance;
   recordingId?: string;
 };
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";

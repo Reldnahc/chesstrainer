@@ -2,9 +2,10 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
 import { useOptionalCoachPreferences } from '../../coach/CoachProvider';
 import type { SpeechMouthTrack } from '../../coach/speechMouth';
 import type { CoachUtterance } from '../../dialogue/model';
+import { useLatest } from '../../useLatest';
 import { useOptionalAudioPreferences, useCurrentSpeechPlayback, useScopedSpeech } from '../AudioProvider';
-import type { SpeechPlayback } from '../model';
-import { coachRecording, coachMouthTrack, loadedCoachMouthTrack, hasCoachVoice, recordedId } from './voiceBank';
+import type { SpeechPlayback, SpeechUtterance } from '../model';
+import { coachRecording, coachMouthTrack, loadedCoachMouthTrack, hasCoachVoice, prefetchCoachMouthTracks, recordedId } from './voiceBank';
 import { SEQUENCE_GAP_SECONDS } from './sequence';
 import CoachSpeechButton from './CoachSpeechButton';
 
@@ -30,23 +31,18 @@ type SpeechSelection = {
   automaticEventId?: string | null;
   ready?: boolean;
   manualRecordingIds?: readonly string[];
-  onManualRequest?: () => void;
 };
 
-function recordedUtterance(coachId: string, id: string, text: string, source?: CoachUtterance): CoachUtterance {
-  if (source) return { ...source, speechText: text };
-  return { version: 'coach-utterance-1', id: `recording:${id}`, intentId: `recording:${id}`,
-    coachId, text, speechText: text, expression: 'explaining', intensity: .25,
-    priority: 55, interruptible: true, autoSpeakSuitable: false,
-    trace: { renderer: 'recorded-semantic-feedback-1', variants: [], decisions: [] } };
-}
+// A recording without a visible utterance still needs a playback identity and priority.
+const recordedUtterance = (coachId: string, id: string, source?: CoachUtterance): SpeechUtterance =>
+  source ?? { id: `recording:${id}`, coachId, priority: 55, interruptible: true };
 
 // A selection may list alternatives ("variant|generic"); playback names the one recorded.
 const concrete = (coachId: string, id: string | null | undefined) => id ? recordedId(coachId, id) ?? id : id;
 
 /** Callers supply supported meaning and fresh user-action identity, never prose matching. */
 export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, automaticEventId,
-  ready = true, manualRecordingIds: manual = [], onManualRequest }: SpeechSelection): CoachSpeechPresentation {
+  ready = true, manualRecordingIds: manual = [] }: SpeechSelection): CoachSpeechPresentation {
   const coach = useOptionalCoachPreferences();
   const audio = useOptionalAudioPreferences();
   const observedPlayback = useCurrentSpeechPlayback();
@@ -64,8 +60,7 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
   const sequence = useRef(0);
   const seen = useRef(automaticEventId);
   const pending = useRef<string | null>(null);
-  const live = useRef({ eligible, ready, allowed, recordingId, utterance, scopeKey, coachId, automaticEventId, onManualRequest, mode });
-  live.current = { eligible, ready, allowed, recordingId, utterance, scopeKey, coachId, automaticEventId, onManualRequest, mode };
+  const live = useLatest({ eligible, ready, allowed, recordingId, utterance, scopeKey, coachId, automaticEventId, mode });
   const request = useRef<{id: string; automatic: boolean; scopeKey: string; coachId: string; eventId: typeof automaticEventId} | null>(null);
   const [active, setActive] = useState<{ id: string; eventId: string; track?: SpeechMouthTrack }>();
   const cancelCurrent = useCallback(() => { generation.current++; request.current = null; cancel(); setActive(undefined); }, [cancel]);
@@ -77,7 +72,6 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
     if (request.current?.automatic) cancelCurrent();
   }, [cancelCurrent]);
   const stop = useCallback(() => {
-    live.current.onManualRequest?.();
     seen.current = live.current.automaticEventId;
     pending.current = null;
     cancelCurrent();
@@ -95,7 +89,8 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
   useLayoutEffect(() => {
     if (request.current && !isSupported(request.current)) cancelCurrent();
   });
-  useLayoutEffect(() => () => { generation.current++; request.current = null; cancel(); }, [cancel]);
+  // A new speech scope (another position) retires the line that was playing, and with it its portrait state.
+  useLayoutEffect(() => () => { generation.current++; request.current = null; cancel(); setActive(undefined); }, [cancel]);
   useEffect(() => {
     const visibility = () => { if (document.hidden) { pending.current = null; stop(); } };
     document.addEventListener('visibilitychange', visibility);
@@ -104,7 +99,6 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
 
   const perform = useCallback(async (requestedId?: string, automatic = false) => {
     if (!automatic) {
-      live.current.onManualRequest?.();
       seen.current = live.current.automaticEventId;
       pending.current = null;
     }
@@ -122,21 +116,22 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
     // promise that might speak unexpectedly after a later unrelated gesture.
     if (!automatic) await unlock();
     if (!stillCurrent()) return;
-    try {
-      const track = await coachMouthTrack(current.coachId, id);
-      if (!stillCurrent()) return;
-      const eventId = `voice:${++sequence.current}:${id}`;
-      setActive({ id, eventId, track });
-      submit({ url: recording.url, recordingId: id, eventId, interruptCurrent: !automatic,
-        ...(recording.parts ? { sequence: { urls: recording.parts.map(part => part.url), gapSeconds: SEQUENCE_GAP_SECONDS } } : {}),
-        utterance: recordedUtterance(current.coachId, id, recording.text, current.utterance) });
-    } catch {
-      // A missing local asset cannot compromise written feedback. A later
-      // explicit press can retry; never fall back to remotely synthesized audio.
-      if (stillCurrent()) setActive(undefined);
-    }
+    const eventId = `voice:${++sequence.current}:${id}`;
+    const track = loadedCoachMouthTrack(current.coachId, id);
+    setActive({ id, eventId, track });
+    submit({ url: recording.url, recordingId: id, eventId, interruptCurrent: !automatic,
+      ...(recording.parts ? { sequence: { urls: recording.parts.map(part => part.url), gapSeconds: SEQUENCE_GAP_SECONDS } } : {}),
+      utterance: recordedUtterance(current.coachId, id, current.utterance) });
+    if (track) return;
+    // Mouth timing is optional: the portrait follows the voice's energy until it
+    // arrives, and a failed load never silences the line.
+    coachMouthTrack(current.coachId, id).then(loaded => {
+      if (loaded && stillCurrent()) setActive(value => value?.eventId === eventId ? { ...value, track: loaded } : value);
+    }, () => {});
   }, [cancel, submit, unlock, isSupported]);
   const play = useCallback((id?: string) => perform(id), [perform]);
+  // Fetch the selected coach's mouth timing before the first line needs it.
+  useEffect(() => { if (eligible) prefetchCoachMouthTracks(coachId); }, [eligible, coachId]);
 
   // Hydration, coach changes and refinement are not fresh narration events.
   // A genuine navigation can wait for its matching report, but is consumed once.

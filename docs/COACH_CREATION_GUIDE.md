@@ -89,7 +89,9 @@ The essential order is:
    `coach/model.ts`. The current roster supports all 20 semantic states; fallback
    support is not a reason to leave major emotions indistinguishable.
 4. Add the acting profile, real available rig channels and signature timelines to
-   `motionVocabulary.ts`, `idleRig.ts` and `idleSignatures/`. Current repertoire
+   `motionVocabulary.ts`, `idleRig.ts` and `idleSignatures/`. Each table is keyed
+   by every coach ID, so the build fails until the new coach is in all three;
+   catalogs author only reaction timing, never idle lists. Current repertoire
    checks require at least eight compatible choices across three groups per
    expression and two authored signatures per coach. Declare only parts the SVG has.
 5. Regenerate the API contract and frontend types using the existing tools. Adding

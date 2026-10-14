@@ -1,7 +1,7 @@
 import { gesture, track } from "../idleModel";
 import { attentive, positive, type SignatureCollection } from "./types";
 
-export const scifiSignatures: SignatureCollection = {
+export const scifiSignatures = {
   alien: [
     {
       ...gesture("signature-a", "detail", [
@@ -65,4 +65,4 @@ export const scifiSignatures: SignatureCollection = {
       expressions: positive,
     },
   ],
-};
+} satisfies SignatureCollection;

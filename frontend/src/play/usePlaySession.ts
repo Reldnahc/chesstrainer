@@ -6,7 +6,7 @@ import usePageShortcuts from "../usePageShortcuts";
 import { useDeadline } from "../useDeadline";
 import type { Game, Report } from "../gameReview/types";
 import { useAnalysisRequests } from "../gameReview/useAnalysisRequests";
-import type { SpeechNavigation } from "../gameReview/useGameExploration";
+import { speechNavigationFor, type SpeechNavigation } from "../gameReview/useGameExploration";
 
 export type PlayState = Schema["PlayState"];
 type Reply = NonNullable<PlayState["reply"]>;
@@ -99,7 +99,7 @@ export function usePlaySession(id: string) {
       const interrupt = options?.interrupt ?? true;
       if (interrupt) audio.cancel();
       audio.move(san, `${eventId}:board`);
-      const navigation = { key: `${ply}:`, eventId: `${id}:${eventId}`, awaitAnalysis: true };
+      const navigation = speechNavigationFor(id, `${ply}:`, eventId, true);
       setSpeechNavigations((current) =>
         interrupt ? { [navigation.key]: navigation } : { ...current, [navigation.key]: navigation },
       );
@@ -322,7 +322,7 @@ export function usePlaySession(id: string) {
         const eventId = ++events.current;
         audio.cancel();
         audio.step(ply, next, state.frames[next]?.san, `${eventId}:board`);
-        const navigation = { key: `${next}:`, eventId: `${id}:${eventId}`, awaitAnalysis: false };
+        const navigation = speechNavigationFor(id, `${next}:`, eventId, false);
         setSpeechNavigations({ [navigation.key]: navigation });
       }
     },
@@ -341,7 +341,7 @@ export function usePlaySession(id: string) {
     if (origin === null || origin === target) return;
     const eventId = ++events.current;
     audio.play("move", `${eventId}:board`);
-    const navigation = { key: `${target}:`, eventId: `${id}:${eventId}`, awaitAnalysis: false };
+    const navigation = speechNavigationFor(id, `${target}:`, eventId, false);
     setSpeechNavigations({ [navigation.key]: navigation });
   };
 

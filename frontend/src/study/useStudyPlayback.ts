@@ -3,6 +3,7 @@ import type { Schema } from "../api";
 import type { useAudioScope } from "../audio/AudioProvider";
 import { useInterfaceMotion } from "../MotionProvider";
 import { COUNTER_REPLY_DELAY_MS } from "../reviewMotion";
+import { useLatest } from "../useLatest";
 
 type Frame = Schema["PuzzleFrame"];
 
@@ -16,10 +17,8 @@ export function useStudyPlayback(
   const [frames, setFrames] = useState<Frame[]>([]);
   const [index, setIndex] = useState(0);
   const [inspection, setInspection] = useState<{ fen: string; frame: Frame | null } | null>(null);
-  const finish = useRef(onFinish);
-  finish.current = onFinish;
-  const sound = useRef(audio);
-  sound.current = audio;
+  const finish = useLatest(onFinish);
+  const sound = useLatest(audio);
   const playbackId = useRef(0);
   const motion = useInterfaceMotion();
   const playing = motion === "natural" && frames.length > 0;
@@ -69,8 +68,7 @@ export function useStudyPlayback(
       const displayedFen = inspection?.fen || settledFen;
       if (selected.after_fen !== displayedFen) {
         const eventId = `inspect:${++playbackId.current}`;
-        if (selected.before_fen === displayedFen) sound.current?.move(selected.san, eventId);
-        else sound.current?.play("move", eventId);
+        sound.current?.advance(selected.before_fen === displayedFen, selected.san, eventId);
       }
       setInspection({ fen: selected.after_fen, frame: selected });
     },

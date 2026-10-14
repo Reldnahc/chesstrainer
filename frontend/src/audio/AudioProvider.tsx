@@ -1,8 +1,9 @@
 import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { api, read } from "../api";
 import { useAccount } from "../accountContext";
+import { useLatest } from "../useLatest";
 import { useSavedPreferences, type SavedPreferences } from "../useSavedPreferences";
-import { AudioEngine } from "./engine";
+import { AudioEngine, type AudioEngineOptions } from "./engine";
 import { cueForMove, defaultAudioPreferences, type AudioPreferences, type RecordedSpeechClip, type SoundCue, type SoundRequest, type SpeechPlayback } from "./model";
 
 const load = (signal: AbortSignal) => read(api.GET("/api/preferences/audio", {signal}));
@@ -21,6 +22,12 @@ const AudioContext = createContext<Controls | null>(null);
 const PreferencesContext = createContext<PreferencesContext | null>(null);
 const SpeechContext = createContext<SpeechPlayback | null>(null);
 
+// Audio stays enhancement-only, but development should still see why a sound failed.
+const diagnostics: Pick<AudioEngineOptions, "onEvent" | "onError"> = import.meta.env.DEV ? {
+  onEvent: event => { if (event.type === "error") console.warn("Audio playback failed", event); },
+  onError: error => console.warn("Audio engine error", error),
+} : {};
+
 function readMute(key: string) {
   try { return localStorage.getItem(key) === "true"; } catch { return false; }
 }
@@ -33,8 +40,7 @@ export function AudioProvider({children}: {children: ReactNode}) {
   const [muted, setMute] = useState(() => readMute(muteKey));
   const [speech, setSpeech] = useState<SpeechPlayback | null>(null);
   const engine = useRef<AudioEngine | null>(null);
-  const current = useRef({state, muted});
-  current.current = {state, muted};
+  const current = useLatest({state, muted});
   const controls = useMemo<Controls>(() => ({
     play: request => engine.current?.play(request),
     speak: clip => engine.current?.playRecordedSpeech(clip),
@@ -45,7 +51,7 @@ export function AudioProvider({children}: {children: ReactNode}) {
   useEffect(() => {
     // Construct inside the effect: StrictMode's discarded render cannot retain
     // document listeners or a second audio context.
-    const instance = new AudioEngine({onSpeechPlayback: setSpeech});
+    const instance = new AudioEngine({...diagnostics, onSpeechPlayback: setSpeech});
     engine.current = instance;
     instance.setPreferences(current.current.state.preferences);
     instance.setMuted(current.current.muted);
@@ -119,27 +125,34 @@ function useScopeOwner(key: string) {
 /** An explicit action owns its sounds. Mounting or hydrating a board is silent. */
 export function useAudioScope(key: string) {
   const {controls, scope, live, owner} = useScopeOwner(key);
-  return useMemo(() => ({
-    play(cue: SoundCue, eventId: string, options?: {delayMs?: number}) {
-      if (live.current !== owner) return;
-      controls?.play({cue, eventId, scope, ...options});
-    },
-    move(san: string | null | undefined, eventId: string, options?: {delayMs?: number}) {
-      const cue = cueForMove(san);
-      if (cue && live.current === owner) controls?.play({cue, eventId, scope, ...options});
-    },
-    /** The move's own cue, or a plain move when there is no SAN to read. */
-    moveOr(san: string | null | undefined, eventId: string, options?: {delayMs?: number}) {
-      if (live.current === owner) controls?.play({cue: cueForMove(san) ?? "move", eventId, scope, ...options});
-    },
+  return useMemo(() => {
     /** Board navigation: one step forward plays that move's cue; any other jump plays a plain move. */
-    step(from: number, to: number, san: string | null | undefined, eventId: string) {
-      const cue = to === from + 1 ? cueForMove(san) : "move";
+    const advance = (forward: boolean, san: string | null | undefined, eventId: string) => {
+      const cue = forward ? cueForMove(san) : "move";
       if (cue && live.current === owner) controls?.play({cue, eventId, scope});
-    },
-    cancel: () => { if (live.current === owner) controls?.cancel(scope); },
-    unlock: async () => { await controls?.unlock(); },
-  }), [controls, scope, live, owner]);
+    };
+    return {
+      play(cue: SoundCue, eventId: string, options?: {delayMs?: number}) {
+        if (live.current !== owner) return;
+        controls?.play({cue, eventId, scope, ...options});
+      },
+      move(san: string | null | undefined, eventId: string, options?: {delayMs?: number}) {
+        const cue = cueForMove(san);
+        if (cue && live.current === owner) controls?.play({cue, eventId, scope, ...options});
+      },
+      /** The move's own cue, or a plain move when there is no SAN to read. */
+      moveOr(san: string | null | undefined, eventId: string, options?: {delayMs?: number}) {
+        if (live.current === owner) controls?.play({cue: cueForMove(san) ?? "move", eventId, scope, ...options});
+      },
+      /** Board navigation from one index to another. */
+      step: (from: number, to: number, san: string | null | undefined, eventId: string) =>
+        advance(to === from + 1, san, eventId),
+      /** The same rule when the caller already knows whether the change was one step forward. */
+      advance,
+      cancel: () => { if (live.current === owner) controls?.cancel(scope); },
+      unlock: async () => { await controls?.unlock(); },
+    };
+  }, [controls, scope, live, owner]);
 }
 
 /** The caller chooses supported narration; this hook only owns cancellable playback. */

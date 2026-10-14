@@ -198,7 +198,7 @@ test("the generic strong-move fallback does not claim literal Best for Brilliant
 });
 
 test("Walter keeps searched-alternative limits and the cold SRS gate", () => {
-  for (const code of ["only_move", "decisive_resource", "sacrifice"]) {
+  for (const code of ["only_move", "decisive_resource", "sacrifice"] as const) {
     expect(render(claim(code)).text).toContain("checked");
     expect(render(claim(code)).text).not.toMatch(/difficult|hard to find/);
   }

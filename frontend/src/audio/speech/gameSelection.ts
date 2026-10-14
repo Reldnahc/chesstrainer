@@ -3,12 +3,14 @@ import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
 import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
-import {type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
+import {isForcedMateStage, type Claim, type ClaimCode, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
+import {causeMotifs, recordedTacticMotifs} from "../../dialogue/tacticalVocabulary";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
+import {isPoorMove, type MoveLabel} from "../../moveQuality";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {capturedPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants, type NamedPieces} from "./pieceVariants";
 import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
-import catalogue from "./meanings.json" with {type: "json"};
+import {meanings} from "./meaningCatalog";
 import registry from "./banks/registry.json" with {type: "json"};
 
 export type GameSpeechContext = {
@@ -50,6 +52,7 @@ function same(a: unknown, b: unknown): boolean {
 const evidenced = (item: Claim) => item.evidence.length > 0 && item.evidence.every(ref => nonempty(ref.id) && nonempty(ref.field));
 const searchEvidence = (item: Claim) => evidenced(item) && item.evidence.some(ref => ref.source === "stockfish");
 
+// Keys are claim codes; validation above has already chosen which may read here.
 const simpleIds: Readonly<Record<string, string>> = {
   allowed_mate: "allowed-mate", missed_mate: "missed-mate", sacrifice: "sound-sacrifice",
   only_move: "only-playable-move", decisive_resource: "only-advantage-resource",
@@ -59,12 +62,8 @@ const simpleIds: Readonly<Record<string, string>> = {
   departure: "opening-departure", punishment: "chance-taken", missed_punishment: "chance-missed",
   repeated: "repeated-issue", support_restored: "support-restored", erosion: "gradual-erosion",
   conversion: "advantage-converted", history: "saved-history-recurrence",
-};
+} satisfies Partial<Record<ClaimCode, string>>;
 const followOnly = new Set(["history", "repeated"]);
-const tacticalMotifs = new Set(["fork", "pin", "skewer", "removing_defender", "back_rank", "promotion_awareness",
-  "discovered_attack", "double_attack", "deflection"]);
-const forcedMateStages = new Set(["started", "continued", "slower", "next", "hastened", "held"]);
-const causes = new Set(["abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"]);
 
 function eventFor(item: Claim, report: Report): Event | undefined {
   if (item.sourceIds.length !== 1) return;
@@ -76,7 +75,7 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   const f = event.facts, role = f.role, motif = String(f.motif);
   if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item)) return null;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
-  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.label);
+  const poor = isPoorMove(report.label);
   if ((role === "played" && poor) || (["allowed", "caused", "missed"].includes(String(role)) && !poor)) return null;
   const source = role === "missed" ? "best" : "actual";
   if (!item.evidence.some(ref => ref.source === "stockfish" && ref.field.startsWith(`${source}_line/findings/`))
@@ -86,7 +85,7 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
     || !same(f.witness.map(frame => object(frame).ply), f.plies)
     || !["verified_line", "engine_mate", "engine_defense"].includes(String(f.verification))) return null;
   if (role === "caused") {
-    if (!causes.has(motif) || item.code !== `cause_${motif}` || event.actor !== mover
+    if (!causeMotifs.has(motif) || item.code !== `cause_${motif}` || event.actor !== mover
       || f.opportunity_actor !== opposite(mover) || f.frame_ply !== 0 || !same(f.plies, [1, 2])) return null;
     const witness = f.witness.map(object), first = witness.find(frame => frame.ply === 1), reply = witness.find(frame => frame.ply === 2);
     if (!nonempty(reply?.capture) || reply?.san !== item.slots.reply || first?.san !== report.actual.san) return null;
@@ -103,7 +102,7 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   const opening = object(f.witness[0]), expectedPly = role === "allowed" ? 2 : 1;
   if (motif !== "back_rank" && (f.plies[0] !== expectedPly || opening.ply !== expectedPly
     || (role !== "allowed" && opening.san !== report[role === "missed" ? "best" : "actual"].san))) return null;
-  if (tacticalMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
+  if (recordedTacticMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
   return null;
@@ -236,7 +235,7 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
       return item.code === "allowed_mate" && event.facts.mate_in === 1 ? ["allowed-mate-next", "allowed-mate"].join(ALTERNATIVE_SEPARATOR) : simpleIds[item.code];
     }
     if (item.code.startsWith("forced_mate_")) return event.kind === "forced_mate" && event.confidence === "searched"
-      && searchEvidence(item) && forcedMateStages.has(String(event.facts.stage)) && item.code === `forced_mate_${event.facts.stage}`
+      && searchEvidence(item) && isForcedMateStage(event.facts.stage) && item.code === `forced_mate_${event.facts.stage}`
       ? `forced-mate-${event.facts.stage}` : null;
     if (item.code === "sacrifice") return event.kind === "sacrifice" && event.confidence === "searched"
       && item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search") ? simpleIds[item.code] : null;
@@ -381,12 +380,11 @@ function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null 
 
 /** Takes every grade has; imported extra takes (grade-best-5, ...) join their grade. */
 export const GRADE_TAKES = 4;
-const catalogueIds = (catalogue.meanings as {id: string}[]).map(item => item.id);
-const gradePools: Readonly<Record<string, string>> = {
+const catalogueIds = meanings.map(item => item.id);
+const gradePools: Readonly<Partial<Record<string, string>>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
-};
-const correctionGrades = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
+} satisfies Partial<Record<MoveLabel, string>>;
 // The generic readings a grade take stands in for. Anything else (a capture,
 // check, tactic, mate, opening or relationship) is specific and keeps its clip.
 const plainCorrection = new Set(["evaluation-loss", "stronger-alternative",
@@ -413,7 +411,7 @@ function gradeTake(context: GameSpeechContext, recordingId: string | null): stri
   // A reviewed move whose sentences have no clip at all still speaks its grade. A
   // legacy report without move intelligence keeps showing its own written coaching.
   if (!label || !gradePools[label] || (recordingId
-    ? !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
+    ? !(isPoorMove(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
   // Takes a coach has not recorded yet sit out, so every turn plays a take.
   const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
   const ids = recorded.length ? recorded : all;
