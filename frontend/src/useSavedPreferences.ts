@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { errorMessage } from "./api";
 import { useAccount, useGuest } from "./accountContext";
 import { useLatest } from "./useLatest";
 
@@ -86,7 +87,7 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
       })
       .catch((error) => {
         if (!controller.signal.aborted && version === generation.current)
-          setError(error.message);
+          setError(errorMessage(error));
       });
     return () => {
       generation.current++;
@@ -113,7 +114,7 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
         }
       } catch (error) {
         result = version === generation.current ? "failed" : "superseded";
-        if (result === "failed") setError((error as Error).message);
+        if (result === "failed") setError(errorMessage(error));
       }
       waiters.forEach(waiter => waiter.resolve(result));
     }

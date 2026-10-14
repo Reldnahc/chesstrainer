@@ -1,4 +1,5 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
+import Reveal from "./Reveal";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import EvaluationScore from "./EvaluationScore";
 import { positionScore, scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
@@ -145,6 +146,6 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
       })}
       {selected === 0 && current && <circle className="game-graph-start" cx={x(0)} cy={y(current)} r={12} pointerEvents="none" aria-hidden="true"/>}
     </svg>
-    {!reviewed.length && <p>The timeline fills as your game is reviewed.</p>}
+    <Reveal>{!reviewed.length && <p>The timeline fills as your game is reviewed.</p>}</Reveal>
   </section>;
 }

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, read, type Promotion, type Schema } from "../api";
+import { errorMessage, api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
 import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
@@ -47,7 +47,7 @@ export function useLessonSession(id: string) {
         params: { path: { session_id: id } }, signal: controller.signal,
       }));
       if (generation.current === version) setSession(result);
-    } catch (e) { if (generation.current === version) setError((e as Error).message); }
+    } catch (e) { if (generation.current === version) setError(errorMessage(e)); }
     finally {
       if (generation.current === version) { locked.current = false; setLoading(false); setBusy(false); }
     }
@@ -93,7 +93,7 @@ export function useLessonSession(id: string) {
     } catch (e) {
       // A command may have committed despite a lost response. Reconcile first.
       if (generation.current === version) {
-        setError((e as Error).message);
+        setError(errorMessage(e));
         setSpeech({ eventId: `lesson:${++speechEvents.current}:error`, recordingId: "lesson-error" });
       }
     } finally {

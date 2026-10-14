@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { api, read } from "../api";
+import { errorMessage, api, read } from "../api";
 import { rememberGamePly } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
 import { useLatest } from "../useLatest";
@@ -117,7 +117,7 @@ export function useGameExploration(
         if (!active || !mounted.current || activeKey.current !== key) return;
         if (pendingNavigation.current?.eventId === requestAction) pendingNavigation.current = null;
         setSpeechNavigation(value => value?.eventId === `${id}:${requestAction}` ? null : value);
-        fail(e.message);
+        fail(errorMessage(e));
       });
     return () => {
       active = false;
@@ -243,7 +243,7 @@ export function useGameExploration(
       };
     } catch (e) {
       if (mounted.current && activeKey.current === requestKey && actionVersion.current === eventId)
-        fail((e as Error).message);
+        fail(errorMessage(e));
     } finally {
       if (mounted.current) setMoving(false);
     }

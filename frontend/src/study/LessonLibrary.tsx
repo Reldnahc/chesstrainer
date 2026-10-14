@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, BookOpen, Check, Download } from "lucide-react";
-import { api, read, type Schema } from "../api";
+import { errorMessage, api, read, type Schema } from "../api";
 import Link from "../Link";
 import ResumeLink from "../ResumeLink";
 import EmptyState from "../EmptyState";
@@ -59,11 +59,11 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
     if (courseId) {
       read(api.GET("/api/study/courses/{course_id}", { params: { path: { course_id: courseId }, query: { revision: revision || undefined } }, signal: controller.signal }))
         .then(result => { if (!controller.signal.aborted) setCourse(result); })
-        .catch(e => { if (!controller.signal.aborted) setError(e.message); });
+        .catch(e => { if (!controller.signal.aborted) setError(errorMessage(e)); });
     } else {
       read(api.GET("/api/study/courses", { signal: controller.signal }))
         .then(result => { if (!controller.signal.aborted) setLibrary(result); })
-        .catch(e => { if (!controller.signal.aborted) setError(e.message); });
+        .catch(e => { if (!controller.signal.aborted) setError(errorMessage(e)); });
     }
     return () => controller.abort();
   }, [courseId, revision]);
@@ -72,7 +72,7 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
     setDownloading(true);
     setError("");
     try { await downloadCourseFile(course.id, course.revision); }
-    catch (e) { setError((e as Error).message); }
+    catch (e) { setError(errorMessage(e)); }
     finally { setDownloading(false); }
   }
   function begin(chapterId: string) {

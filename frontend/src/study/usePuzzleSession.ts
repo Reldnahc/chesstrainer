@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, read, type Promotion, type Schema } from "../api";
+import { errorMessage, api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
 import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
@@ -47,7 +47,7 @@ export function usePuzzleSession(id: string) {
         setFeedbackEventId(`open:${id}:${result.revision}`);
       started.current = performance.now();
     } catch (e) {
-      if (version === generation.current) setError((e as Error).message);
+      if (version === generation.current) setError(errorMessage(e));
     } finally {
       if (version === generation.current) {
         locked.current = false;
@@ -100,7 +100,7 @@ export function usePuzzleSession(id: string) {
     } catch (e) {
       // A lost response may already be committed, or another tab may have moved.
       // Block another write until reload reconciles the server revision.
-      if (version === generation.current) setError((e as Error).message);
+      if (version === generation.current) setError(errorMessage(e));
     } finally {
       if (version === generation.current) { locked.current = false; setBusy(false); }
     }

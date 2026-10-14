@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Reveal from "../Reveal";
 import Button from "../Button";
 import PreferenceStatus from "../PreferenceStatus";
 import SettingsSection from "../SettingsSection";
@@ -76,7 +77,7 @@ export default function AudioSettings() {
             sound.cancel();
             sound.play(preferences.board ? "move" : "correct", `preview:${++sequence.current}`);
           }}>Test sound</Button>
-        {muted && <Button variant="quiet" onClick={() => setMuted(false)}>Unmute this device</Button>}
+        <Reveal axis="inline">{muted && <Button variant="quiet" onClick={() => setMuted(false)}>Unmute this device</Button>}</Reveal>
       </div>
       <PreferenceStatus ready={ready} saving={saving} error={error} saved={saved} retry={retry}
         retryLabel="Reload sound preferences" idleText={muted ? "Muted on this device" : undefined} />

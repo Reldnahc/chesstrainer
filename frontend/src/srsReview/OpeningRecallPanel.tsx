@@ -1,4 +1,5 @@
 import { ArrowRight, BookOpen } from "lucide-react";
+import Reveal from "../Reveal";
 import ReviewCoach from "../ReviewCoach";
 import Button from "../Button";
 import MoveStatus from "../MoveStatus";
@@ -65,13 +66,13 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
       <MoveStatus busy={busy} failed={failed && !completed} text={message} />
     </ReviewCoach>
     <RecallReceipt {...receipt} />
-    {completed && <section className="opening-recall-answers" aria-label="Studied continuations">
+    <Reveal>{completed && <section className="opening-recall-answers" aria-label="Studied continuations">
       <h3>Studied {feedback.answers?.length === 1 ? "move" : "moves"}</h3>
       <p className="review-move">{feedback.answers?.map(answer => answer.san).join(" · ")}</p>
       {feedback.continuations?.map((line, index) => <div className="opening-recall-line" key={`${line.study_id}:${index}`}>
         <h4>{line.name}</h4>
         <p>{line.moves.map(frame => numberedSan(frame.before_fen, frame.san)).join(" ")}</p>
       </div>)}
-    </section>}
+    </section>}</Reveal>
   </div>;
 }

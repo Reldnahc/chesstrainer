@@ -72,3 +72,14 @@ test("embedded activity and search emptiness remain compact inside their existin
   await page.getByRole("link", { name: "Browse catalogue", exact: true }).click();
   await expect(page).toHaveURL("/study/openings/catalogue");
 });
+
+test("a Due queue that fails to load offers Try again instead of the study-queue start", async ({ page }) => {
+  let failures = 0;
+  await page.route("**/api/review/queue**", route => failures++ ? route.fallback() : route.fulfill({ status: 503, json: { detail: "Queue unavailable." } }));
+  await page.goto("/study/due");
+  await expect(page.getByRole("alert")).toContainText("Couldn’t load your practice.");
+  await expect(page.getByRole("heading", { name: "Build your study queue." })).toHaveCount(0);
+  await page.getByRole("button", { name: "Try again", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Build your study queue." })).toBeVisible();
+  expect(failures).toBe(2);
+});

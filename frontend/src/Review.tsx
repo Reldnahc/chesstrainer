@@ -109,7 +109,9 @@ export default function ReviewScreen({
               <div className="review-board-hint">
                 {position
                   ? "Select a piece to see legal moves. Tap a destination or drag."
-                  : "Import a game to turn real decisions into useful practice."}
+                  : session.loadError
+                    ? "Your practice couldn’t be loaded."
+                    : "Import a game to turn real decisions into useful practice."}
               </div>
             }
             board={

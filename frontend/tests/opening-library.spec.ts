@@ -19,7 +19,8 @@ async function enroll(page: Page): Promise<Schema["OpeningStudyView"]> {
   expect(response.ok()).toBe(true);
   const value: Schema["OpeningStudyView"] = await response.json();
   created.get(page)!.push(value.id);
-  await expect(page.locator(".opening-preview-details").getByRole("status")).toContainText("Study saved.");
+  // The confirmation is a page banner.
+  await expect(page.getByRole("region", { name: "Notifications" })).toContainText("Study saved.");
   return value;
 }
 

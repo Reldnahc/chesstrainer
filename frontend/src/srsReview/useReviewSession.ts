@@ -11,6 +11,8 @@ import { clearExerciseLink, clearReviewSessionLink, rememberReviewSession } from
 import { useAudioScope } from "../audio/AudioProvider";
 import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { useLatest } from "../useLatest";
+import { errorMessage } from "../api";
+import { PHONE_QUERY } from "../mediaQuery";
 
 /** Owns grading and queues. Focused practice never changes the SRS queue policy. */
 export function useReviewSession({
@@ -46,6 +48,10 @@ export function useReviewSession({
   const responseSequence = useRef(0);
   const audio = useAudioScope(`review:${requestedSession || requested || focusSkill || "queue"}`);
   const sound = useLatest(audio);
+  // A queue or card that failed to load is the panel's own state, with Try again,
+  // never "Build your study queue".
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const lastLoad = useRef<[string | null | undefined, string | null | undefined, string | null | undefined]>([null, null, null]);
 
   const refreshDue = useCallback(async (version: number) => {
     try {
@@ -60,6 +66,8 @@ export function useReviewSession({
   const load = useCallback(
     async (id?: string | null, previous?: string | null, resumeSession?: string | null) => {
       const version = ++generation.current;
+      lastLoad.current = [id, previous, resumeSession];
+      setLoadError(null);
       sound.current.cancel();
       setLoading(true);
       setBusy(false);
@@ -71,7 +79,7 @@ export function useReviewSession({
       setSubmittedMove(null);
       setHadFailure(false);
       setGradingError(null);
-      if (window.matchMedia("(max-width: 760px)").matches)
+      if (window.matchMedia(PHONE_QUERY).matches)
         window.scrollTo({ top: 0, behavior: "instant" });
       try {
         if (focusSkill && !practiceBatch.current) {
@@ -124,12 +132,12 @@ export function useReviewSession({
           if (!focusSkill) await refreshDue(version);
         }
       } catch (e) {
-        if (version === generation.current) fail(e);
+        if (version === generation.current) setLoadError(errorMessage(e));
       } finally {
         if (version === generation.current) setLoading(false);
       }
     },
-    [focusSkill, fail, refreshDue],
+    [focusSkill, refreshDue],
   );
 
   // Announce the opener only after the card has rendered, so the speech
@@ -194,7 +202,7 @@ export function useReviewSession({
       if (!focusSkill) await refreshDue(version);
     } catch (e) {
       if (version === generation.current) {
-        setGradingError((e as Error).message);
+        setGradingError(errorMessage(e));
         fail(e);
       }
     } finally {
@@ -223,7 +231,7 @@ export function useReviewSession({
       if (!focusSkill) await refreshDue(version);
     } catch (e) {
       if (version === generation.current) {
-        setGradingError((e as Error).message);
+        setGradingError(errorMessage(e));
         fail(e);
       }
     } finally {
@@ -242,6 +250,8 @@ export function useReviewSession({
     submittedMove,
     hadFailure,
     gradingError,
+    loadError,
+    retryLoad: () => load(...lastLoad.current),
     done,
     answer,
     show,

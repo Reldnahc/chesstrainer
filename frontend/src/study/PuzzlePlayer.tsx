@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { errorMessage } from "../api";
+import MovePlaybackControls from "../MovePlaybackControls";
 import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
@@ -59,7 +61,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
       if (controller.signal.aborted) return;
       if (result) navigate(puzzleSessionPath(result.id));
       else navigate(studyPaths.puzzles);
-    } catch (e) { if (!controller.signal.aborted) setNextError((e as Error).message); }
+    } catch (e) { if (!controller.signal.aborted) setNextError(errorMessage(e)); }
     finally { if (!controller.signal.aborted) { setOpeningNext(false); nextRequest.current = null; } }
   }
   if (loading) return <LoadingState presentation="panel">Loading your puzzle…</LoadingState>;
@@ -88,6 +90,11 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     : correct ? "That move matches the puzzle. Find your next move."
     : "Take your time and calculate before moving.");
   const displayedFen = state.fen || session.fen;
+  // A completed puzzle's solution steps like the opening preview's continuation.
+  const solution = session.completion?.solution ?? [];
+  const selectedMove = solution.findIndex(move => frame === move);
+  const solutionAt = selectedMove >= 0 ? selectedMove + 1 : displayedFen === solution[0]?.before_fen ? 0 : solution.length;
+  const seekSolution = (target: number) => target <= 0 ? state.inspectStart() : state.inspect(solution[target - 1]);
   const playbackTurn = frame
     ? playbackMover(frame.before_fen, session.orientation)
     : "Solution start";
@@ -96,7 +103,11 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     boardLabel="Puzzle position"
     aboveBoard={<div className="review-position-status"><TurnIndicator color={session.orientation}>{playing ? playbackTurn : complete ? "Solution review" : `${session.orientation === "white" ? "White" : "Black"} to move`}</TurnIndicator><span>{session.history.length} MOVES PLAYED</span></div>}
     belowBoard={<div className="review-board-hint">{playing ? "The saved position will be ready after playback." : complete ? "Select a solution move to inspect it." : "Select a piece to see legal moves. Tap a destination or drag."}</div>}
-    boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</ActionLink><AudioMuteButton /></div>}
+    boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</ActionLink>
+      {session.completion && <MovePlaybackControls label="Solution playback" current={solutionAt} maximum={solution.length}
+        previous={{ "aria-label": "Previous solution move", disabled: playing || solutionAt === 0, onClick: () => seekSolution(solutionAt - 1) }}
+        next={{ "aria-label": "Next solution move", disabled: playing || solutionAt === solution.length, onClick: () => seekSolution(solutionAt + 1) }} />}
+      <AudioMuteButton /></div>}
     board={<Board fen={displayedFen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={state.disabled} onMove={state.answer} feedback={incorrect ? "retry" : undefined} highlights={moveSquares(frame?.uci)} />}
   >
     <ReviewCoach title={<h2>{title}</h2>} voice={voice}
@@ -110,9 +121,9 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     {nextError && <Banner tone="error" onDismiss={() => setNextError("")}>{nextError}</Banner>}
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
       <h2>{session.completion.themes.length ? session.completion.themes.map(puzzleThemeLabel).join(" · ") : "The continuation"}</h2>
-      <ContinuationMoves label="Solution moves" moves={session.completion.solution} disabled={playing}
-        selectedIndex={session.completion.solution.findIndex(move => frame === move)}
-        startSelected={displayedFen === session.completion.solution[0]?.before_fen}
+      <ContinuationMoves label="Solution moves" moves={solution} disabled={playing}
+        selectedIndex={selectedMove}
+        startSelected={solutionAt === 0}
         onStart={state.inspectStart} onSelect={index => state.inspect(session.completion!.solution[index])} />
       {session.completion.rating != null && <p className="small">Puzzle rating: {session.completion.rating}</p>}
       {session.source === "games" && session.completion.provenance.game_id ? <>

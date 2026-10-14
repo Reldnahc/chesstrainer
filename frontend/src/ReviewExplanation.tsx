@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
+import { errorMessage, api, read, type ExplanationFrame, type MoveExplanation } from "./api";
 import { useAudioScope } from "./audio/AudioProvider";
 import ReviewCoach from "./ReviewCoach";
 import Notice from "./Notice";
@@ -80,7 +80,7 @@ export default function ReviewExplanation({
         }
       })
       .catch((e) => {
-        if (current) setError(e.message);
+        if (current) setError(errorMessage(e));
       });
     return () => {
       current = false;

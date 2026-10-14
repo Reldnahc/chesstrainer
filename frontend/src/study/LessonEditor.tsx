@@ -2,7 +2,7 @@ import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "rea
 import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowDown, ArrowLeft, ArrowUp, Circle, Plus, Save, Square, Trash2 } from "lucide-react";
-import { api, read, type LegalMove, type Promotion, type Schema } from "../api";
+import { errorMessage, api, read, type LegalMove, type Promotion, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Board from "../Board";
 import Button from "../Button";
@@ -144,7 +144,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     const controller = new AbortController();
     fetchCourseFile(courseId, revision || undefined, controller.signal)
       .then(file => { if (!controller.signal.aborted) { setCourse(file as Course); setBase((file as Course).revision); } })
-      .catch(e => { if (!controller.signal.aborted) setLoadError((e as Error).message); });
+      .catch(e => { if (!controller.signal.aborted) setLoadError(errorMessage(e)); });
     return () => controller.abort();
   }, [courseId, revision]);
 
@@ -159,7 +159,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
         .catch(e => {
           if (controller.signal.aborted) return;
           // Keep the last good check, so the board stays while the server is unreachable.
-          setCheckError((e as Error).message);
+          setCheckError(errorMessage(e));
           setChecking(false);
         });
     }, 350);
@@ -291,7 +291,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       // Another step was selected, or recording stopped, while the server answered.
       if (recordingRequest.current !== request) return;
       setRecording({ field, fen, moves: "", legal: result.legal_moves, turnFen: result.fen });
-    } catch (e) { if (recordingRequest.current === request) setError((e as Error).message); }
+    } catch (e) { if (recordingRequest.current === request) setError(errorMessage(e)); }
   }
   async function recordMove(from: string, to: string, promotion?: Promotion) {
     const recording = recordingRef.current;
@@ -315,7 +315,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
         if (reply) { setRecording(null); return; }
       }
       setRecording(next);
-    } catch (e) { setError((e as Error).message); }
+    } catch (e) { setError(errorMessage(e)); }
     finally { setPending(false); }
   }
   function startRecording(field: Recording["field"]) {
@@ -340,7 +340,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       setNotice(savedMessage(result));
       // A reload opens what was saved, including a new course after its first save.
       replaceAddress(courseEditorPath(result.id, result.revision));
-    } catch (e) { setError((e as Error).message); }
+    } catch (e) { setError(errorMessage(e)); }
     finally { setSaving(false); }
   }
 

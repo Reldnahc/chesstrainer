@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { api, read } from "./api";
+import { errorMessage, api, read } from "./api";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
@@ -45,7 +45,7 @@ export default function GamesScreen({
         }
       })
       .catch((e) => {
-        if (active) setError(e.message);
+        if (active) setError(errorMessage(e));
       })
       .finally(() => {
         if (active) setLoading(false);

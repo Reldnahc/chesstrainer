@@ -1,4 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { plural, shortDate } from "./format";
+import { OutcomeBadge } from "./GameHistory";
 import { ChartColumn } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import ChoiceGroup from "./ChoiceGroup";
@@ -49,7 +51,6 @@ const endgameLabels = { rook: "Rook endings", queen: "Queen endings", minor: "Mi
 const clockLabels = { over_half: "Over half left", quarter: "25–50% left", tenth: "10–25% left", under_tenth: "Under 10% left" } as const;
 
 const percent = (part: number, whole: number) => whole ? Math.round(100 * part / whole) : 0;
-const plural = (count: number, word: string, many = `${word}s`) => `${count} ${count === 1 ? word : many}`;
 const pawns = (cp: number | null | undefined) => cp == null ? "— pawns" : pawnsText(cp);
 const fixed = (value: number | null | undefined, digits = 0, suffix = "") => value == null ? "—" : `${value.toFixed(digits)}${suffix}`;
 const recordText = ({ wins, draws, losses }: { wins: number; draws: number; losses: number }) => `${wins}W ${draws}D ${losses}L`;
@@ -57,12 +58,6 @@ const moveOf = (ply: number) => Math.ceil(ply / 2);
 
 const gameHref = (game: InsightGame) => gameReviewPath(game.id, { ply: game.ply });
 
-function shortDate(value: string | null) {
-  if (!value || !/^\d{4}\.\d{2}\.\d{2}$/.test(value)) return null;
-  const date = new Date(`${value.replaceAll(".", "-")}T12:00:00Z`);
-  return Number.isFinite(date.getTime())
-    ? date.toLocaleDateString(undefined, { month: "short", day: "numeric", timeZone: "UTC" }) : null;
-}
 
 function Panel({ id, title, meta, wide, children }: {
   id: string; title: string; meta?: ReactNode; wide?: boolean; children: ReactNode;
@@ -121,11 +116,9 @@ function GameLinks({ label, games, slip }: { label: string; games: InsightGame[]
     <ul>
       {games.map(game => <li key={game.id}>
         <Link href={gameHref(game)}>
-          <span className={`history-outcome outcome-${game.result === "unfinished" ? "unknown" : game.result}`}>
-            {{ win: "Won", draw: "Draw", loss: "Lost", unfinished: "—" }[game.result]}
-          </span>
+          <OutcomeBadge outcome={game.result === "unfinished" ? "unknown" : game.result} />
           <span className="insight-game-name">vs {game.opponent}{game.opponent_rating ? ` (${game.opponent_rating})` : ""}</span>
-          <span className="small muted">{[shortDate(game.played_on), slip && game.ply ? `move ${moveOf(game.ply)}` : null].filter(Boolean).join(" · ")}</span>
+          <span className="small muted">{[shortDate(game.played_on, { year: false }), slip && game.ply ? `move ${moveOf(game.ply)}` : null].filter(Boolean).join(" · ")}</span>
         </Link>
       </li>)}
     </ul>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePageTitle } from "../PageTitle";
-import { api, read } from "../api";
+import { errorMessage, api, read } from "../api";
 import type { Game } from "./types";
 
 /** Owns the original game and its persisted review job, never variation state. */
@@ -38,7 +38,7 @@ export function useGameReviewSession(id: string) {
   useEffect(() => {
     mounted.current = true;
     void load().catch((e) => {
-      if (mounted.current) setError(e.message);
+      if (mounted.current) setError(errorMessage(e));
     });
     return () => {
       mounted.current = false;
@@ -63,7 +63,7 @@ export function useGameReviewSession(id: string) {
       setAnalysisEpoch((value) => value + 1);
       await load();
     } catch (e) {
-      if (mounted.current) setError((e as Error).message);
+      if (mounted.current) setError(errorMessage(e));
     } finally {
       if (mounted.current) {
         setBusy(false);
@@ -83,7 +83,7 @@ export function useGameReviewSession(id: string) {
       );
       if (mounted.current) await load();
     } catch (e) {
-      if (mounted.current) setError((e as Error).message);
+      if (mounted.current) setError(errorMessage(e));
     } finally {
       if (mounted.current) setBusy(false);
     }
@@ -159,7 +159,7 @@ export function useGameReviewSession(id: string) {
             : current,
         );
       } catch (e) {
-        if (active) setError((e as Error).message);
+        if (active) setError(errorMessage(e));
       } finally {
         if (active) timer = window.setTimeout(update, 750);
       }

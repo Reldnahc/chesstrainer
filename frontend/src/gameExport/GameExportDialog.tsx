@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Check, Copy, Download, X } from "lucide-react";
-import { api, read, type Schema } from "../api";
+import { errorMessage, api, read, type Schema } from "../api";
 import Button, { IconButton } from "../Button";
 import { download } from "../download";
 import Notice from "../Notice";
@@ -67,7 +67,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
     let active = true;
     read(api.GET("/api/games/{game_id}/export", { params: { path: { game_id: id } } }))
       .then((value) => { if (active) setGame(value); })
-      .catch((e) => { if (active) setError(e.message); });
+      .catch((e) => { if (active) setError(errorMessage(e)); });
     return () => { active = false; };
   }, [id]);
   useEffect(() => () => { if (gif) URL.revokeObjectURL(gif.url); }, [gif]);
