@@ -376,7 +376,7 @@ expression/animation tests in `frontend/studio-tests`. It needs no backend, logi
 database or Stockfish. Production browser tests verify that Settings still offers
 coach selection but no expression viewer, and that `/coach-studio` is not an app
 route. CI runs the application, account and standalone studio suites separately.
-The independent [intelligence laboratory](INTELLIGENCE_LAB.md) runs on port 5175;
+The independent [intelligence laboratory](REVIEW_INTELLIGENCE.md#review-intelligence-laboratory) runs on port 5175;
 its suite verifies evidence inspection, production-renderer parity and isolation.
 The standalone audio studio runs `npm run dev:audio` on port 5176 and its
 `frontend/audio-tests` suite uses `playwright.audio.config.ts`, without an API
@@ -676,7 +676,7 @@ immutable baseline facts, native cancellation without partial cache writes,
 shared-slot cancellation, resume, optional failure, revision polling,
 account-private references and legacy migration. Game browser tests exercise
 earlier-ply revisions and stable board geometry at desktop/mobile widths. Native
-benchmarks and their limitations are documented in [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).
+benchmarks and their limitations are documented in [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation).
 
 Semantic review coverage: `test_review_events.py` and `test_review_clocks.py`
 exercise each event family, positive/negative evidence, deterministic identities,

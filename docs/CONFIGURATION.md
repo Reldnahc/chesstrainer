@@ -180,6 +180,6 @@ Optional extra investigation follows the unchanged deep baseline. Defaults are
 `REVIEW_REFINEMENT_POSITIONS=8`, `REVIEW_REFINEMENT_QUERIES=4`,
 `REVIEW_REFINEMENT_DEPTH=22`, `REVIEW_REFINEMENT_TIME=2`, and
 `REVIEW_REFINEMENT_MULTIPV=4`. Set positions to zero to disable extra work.
-See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for bounds, time/depth floors,
+See [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation) for bounds, time/depth floors,
 CPU budgets, cancellation, resume and measured quality examples. All five
 settings have descriptions in the advanced Unraid template.

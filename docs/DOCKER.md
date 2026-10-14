@@ -119,7 +119,7 @@ budgeting engine slots, threads and memory together. Use only one app instance/U
 worker per database.
 
 See [human-model setup/resources](HUMAN_MODELS.md) and
-[targeted review budgets](REVIEW_REFINEMENT.md) for advanced limits, cache identity
+[targeted review budgets](REVIEW_INTELLIGENCE.md#targeted-review-investigation) for advanced limits, cache identity
 and cancellation. Ordinary users choose their coach in Settings; administrators set
 these limits in Settings → Advanced → Server.
 

@@ -118,7 +118,7 @@ Each selectable character also has a curated writing voice and character bible.
 The shared dialogue layer selects supported facts before the chosen personality
 phrases them; switching coaches never changes grades, evidence or engine work.
 See [character writing](COACH_PERSONALITIES.md) and the separate
-[intelligence laboratory](INTELLIGENCE_LAB.md) for blind comparisons, all-purpose
+[intelligence laboratory](REVIEW_INTELLIGENCE.md#review-intelligence-laboratory) for blind comparisons, all-purpose
 writing exercises and exact sentence traces. Review scheduling feedback remains
 consistent outside the character dialogue, including relearning after a miss.
 

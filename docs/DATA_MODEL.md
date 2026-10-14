@@ -146,7 +146,7 @@ Review intelligence refinement adds account-owned `review_refinements`, finite
 `game_reviews.refinement_plan`, review/row revisions and an optional adopted-task
 reference on `game_review_moves`. Migration `55de0b7b8ff2` preserves all baseline
 reports and IDs. The baseline JSON is never overwritten by investigation output.
-See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for effective-generation rules.
+See [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation) for effective-generation rules.
 
 New imported canonical game PGNs retain mainline comments, including actual clock
 annotations; variations remain excluded. Existing canonical games are preserved

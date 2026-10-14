@@ -405,18 +405,18 @@ Full-game scheduling lives in `review_jobs`; `review_refinement` runs a finite
 optional pass after the unchanged deep baseline. `review_intelligence/refinement_*`
 own nominations and bounded questions; `review_reports` resolves compatible
 saved evidence for presentation. The existing native cache and shared engine
-pool remain the compute authority. See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).
+pool remain the compute authority. See [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation).
 
 `review_intelligence/events`, `event_facts`, `context` and `clocks` derive typed,
 traceable semantic events from saved chess facts and PGN annotations. No character
-prose enters this layer. [REVIEW_EVENTS.md](REVIEW_EVENTS.md) specifies gates and
+prose enters this layer. [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context) specifies gates and
 clock abstention; `review_scores` shares Stockfish-only alternative comparisons.
 ## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for
 quiet moves using existing python-chess legality and pin-aware tactical geometry.
 It does not infer strategic causes from centipawn loss. See
-[POSITIONAL_EVIDENCE.md](POSITIONAL_EVIDENCE.md) for supported definitions and
+[positional evidence](REVIEW_INTELLIGENCE.md#positional-evidence) for supported definitions and
 abstention rules; played and alternative lines remain distinct.
 
 ## Context and communication
@@ -425,8 +425,8 @@ The detail and progress endpoints share `review_intelligence/presentation.py`.
 Compatible saved reports become versioned move events, mainline nodes/relationships,
 owned cross-game references. Links require matching PGN/FEN/move
 provenance; gaps and inconsistent adjacent searches cause abstention. These are
-structured facts, never conversational memory. See [game context](GAME_CONTEXT.md),
-[history](CROSS_GAME_CONTEXT.md).
+structured facts, never conversational memory. See [game context](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships),
+[history](REVIEW_INTELLIGENCE.md#cross-game-context).
 
 The client builds a `DialogueIntent` before selecting a personality. `CoachUtterance`
 retains exact rendered claims, claim/template provenance and delivery metadata.

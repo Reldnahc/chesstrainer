@@ -31,7 +31,7 @@ Game review now connects supported tactics, immediate positional changes, human
 difficulty, clocks, earlier moments and relevant saved weaknesses into factual
 move-by-move coaching. Every selectable coach has its own [writing voice](docs/COACH_PERSONALITIES.md).
 Changing characters rephrases the same evidence without rerunning analysis.
-The separate [developer intelligence lab](docs/INTELLIGENCE_LAB.md) can trace a
+The separate [developer intelligence lab](docs/REVIEW_INTELLIGENCE.md#review-intelligence-laboratory) can trace a
 sentence back to that evidence and compare the cast; it is not a production page.
 
 Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. The application can run locally or be self-hosted for friends with private accounts in one SQLite database.

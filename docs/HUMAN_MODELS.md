@@ -140,7 +140,7 @@ are explicitly identified. Even a related-domain result is **uncalibrated**.
 Policy probabilities are model outputs, never measured percentages of comparable
 players. Coach selection is absent from request/cache/evidence identity.
 Cold SRS schemas exclude human hints. The next layer derives
-[practical difficulty and naturalness](PRACTICAL_DIFFICULTY.md) from these facts;
+[practical difficulty and naturalness](REVIEW_INTELLIGENCE.md#practical-difficulty-and-human-naturalness) from these facts;
 it still changes neither objective grades nor personality dialogue.
 
 ## Verification

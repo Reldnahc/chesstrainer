@@ -10,8 +10,8 @@ Game review complements cold practice. It reviews both colors and arbitrary lega
 variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
 The existing training policy is unchanged.
 
-Completed reviews also derive supported [game relationships](GAME_CONTEXT.md),
-[owned history](CROSS_GAME_CONTEXT.md) for individual move explanations.
+Completed reviews also derive supported [game relationships](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships),
+[owned history](REVIEW_INTELLIGENCE.md#cross-game-context) for individual move explanations.
 The coach can connect a recovery to an
 earlier error or identify a repeated supported motif; incomplete or inconsistent
 evidence causes abstention. Human difficulty is a model-informed description,
@@ -339,21 +339,21 @@ After every baseline move is saved, a bounded optional investigation phase uses
 the same grading/evidence rules with deeper and selectively wider Stockfish
 searches. Baseline facts remain immutable; effective reports, accuracy and
 incremental revisions use compatible adopted evidence. See
-[REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for selection, budgets and provenance.
+[targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation) for selection, budgets and provenance.
 
 Review/variation responses include versioned semantic `intelligence`: objective
 transitions, critical resources, sacrifice/tactic witnesses, honest human-policy
 contrasts and valid mainline clock/opening observations. These facts feed the
 [shared dialogue layer](COACH_DIALOGUE.md) without changing badges based on human or clock data;
 the dialogue layer does not turn clock observations into coach lines.
-See [REVIEW_EVENTS.md](REVIEW_EVENTS.md). A good restricted-root alternative now
+See [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context). A good restricted-root alternative now
 also disproves an only-good-move Great claim; all comparisons remain Stockfish facts.
 ## Structured game context
 
 Reviewed games now expose versioned relationships between supported moments,
 including missed punishment, recovery, repeated motifs, sustained advantages and
 gradual erosion. They use the same effective evidence generation as move reports
-and accuracy. See [GAME_CONTEXT.md](GAME_CONTEXT.md) for gates and caveats.
+and accuracy. See [game context](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships) for gates and caveats.
 
 Review stays move-by-move. There is no game story, critical-moment summary or
 ranked takeaway surface. Completion leaves the selected position and coach alone;

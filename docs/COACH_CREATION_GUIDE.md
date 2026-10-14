@@ -27,7 +27,7 @@ as limits or assuming every character already meets the same spoken-writing bar.
 | How were voices cast and locked? | [Cast voice locks](AUDIO.md#cast-voice-locks) |
 | How do I build and verify a complete recorded bank? | [Bank authoring](../frontend/src/audio/speech/bank/README.md) |
 | What produces mouth timing, and what must be installed locally? | [Alignment tooling](../frontend/src/audio/speech/alignment/README.md) |
-| How do I inspect the actual sentence/evidence chain? | [Intelligence laboratory](INTELLIGENCE_LAB.md) |
+| How do I inspect the actual sentence/evidence chain? | [Intelligence laboratory](REVIEW_INTELLIGENCE.md#review-intelligence-laboratory) |
 | Which components and verification workflows should I reuse? | [UI component bible](UI_COMPONENTS.md), [testing](TESTING.md) |
 
 ## Quality bar: use Walter and Rivet as references
