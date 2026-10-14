@@ -41,8 +41,8 @@ from trainer.models import (
 from trainer.review_intelligence.clocks import control as clock_control
 from trainer.review_intelligence.context import move_contexts
 from trainer.review_intelligence.history import cross_game_context
-from trainer.review_intelligence.presentation import present_game
-from trainer.review_reports import load_accuracy_scores, load_game_reports
+from trainer.review_intelligence.presentation import presented_review
+from trainer.review_reports import load_accuracy_scores
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -217,11 +217,11 @@ def create_router(*, settings):
             board = parsed.board()
             review = db.get(GameReview, game_id)
             job = db.get(AnalysisJob, review.job_id) if review else None
-            rating = review.rating if review else DEFAULT_RATING
-            saved, revisions = load_game_reports(db, game_id)
-            reports, context = present_game(
-                parsed, saved, rating, completed=bool(job and job.status == JobStatus.COMPLETED)
+            presented = presented_review(
+                db, game, parsed, review, completed=bool(job and job.status == JobStatus.COMPLETED)
             )
+            saved, revisions = presented.saved, presented.revisions
+            reports, context = presented.reports, presented.context
             frames = [
                 position(board)
                 | {
@@ -263,7 +263,7 @@ def create_router(*, settings):
                 "played_on": game.played_on,
                 "result": parsed.headers.get("Result", "*"),
                 "orientation": "white" if game.learner_color else "black",
-                "rating": rating,
+                "rating": review.rating if review else DEFAULT_RATING,
                 "white_rating": pgn_rating(parsed, True),
                 "black_rating": pgn_rating(parsed, False),
                 **({"clock_start": clock_start} if clock_start is not None else {}),
@@ -297,18 +297,15 @@ def create_router(*, settings):
             job = db.get(AnalysisJob, review.job_id)
             parsed = parsed_game(game)
             total = sum(1 for _ in parsed.mainline_moves())
-            saved, revisions = load_game_reports(db, game_id)
+            completed = bool(job and job.status == JobStatus.COMPLETED)
+            presented = presented_review(db, game, parsed, review, completed=completed)
+            saved, revisions = presented.saved, presented.revisions
+            reports, context = presented.reports, presented.context
             if after_revision is not None:
                 plies = [ply for ply in saved if revisions[ply] > after_revision]
             else:
                 ceiling = job.positions_triaged if job.status in job_lifecycle.ACTIVE else total
                 plies = [ply for ply in saved if after < ply <= ceiling]
-            reports, context = present_game(
-                parsed,
-                saved,
-                review.rating,
-                completed=bool(job and job.status == JobStatus.COMPLETED),
-            )
             moves = []
             for ply in plies:
                 report = reports[ply]

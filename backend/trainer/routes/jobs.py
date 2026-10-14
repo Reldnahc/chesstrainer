@@ -21,10 +21,11 @@ def create_router(*, runner) -> APIRouter:
     @router.get("/api/jobs", response_model=list[Job], response_model_exclude_unset=True)
     def jobs(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
-            # Per-game analysis has its own summary below; it would crowd out imports here.
+            # Per-game analysis has its own summary below and the level fit shows in Play;
+            # either would crowd out imports here.
             rows = db.scalars(
                 select(AnalysisJob)
-                .where(AnalysisJob.kind != JobKind.GAME_REVIEW)
+                .where(AnalysisJob.kind.not_in([JobKind.GAME_REVIEW, JobKind.LEVEL_FIT]))
                 .order_by(AnalysisJob.created_at.desc())
                 .limit(50)
             ).all()

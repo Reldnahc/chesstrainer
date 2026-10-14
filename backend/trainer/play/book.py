@@ -16,7 +16,7 @@ import chess
 from trainer.chess_core import Score, evaluation_loss
 from trainer.contracts.play import HUMAN_RATINGS
 from trainer.human_models.runtime import HumanUnavailable
-from trainer.play.bot import BotChoice, bot_request
+from trainer.play.bot import BotChoice
 
 # Every book move keeps at least this share of the choice, so rarer lines still
 # come up in practice instead of the most popular reply every time.
@@ -123,15 +123,15 @@ def book_weights(book_moves, policy) -> dict[str, float]:
     return {uci: max(share / total, MINIMUM_SHARE) for uci, share in shares.items()}
 
 
-def book_move(human_models, sessions, play, board: chess.Board, book_moves, rng) -> BotChoice:
-    """No engine work: book replies are ready as soon as the learner's move is saved."""
+def book_move(human_models, sessions, request, board: chess.Board, book_moves, rng) -> BotChoice:
+    """No engine work: book replies are ready as soon as the learner's move is saved.
+
+    ``request`` is the bot's Maia request for this position (``bot_policy_request``).
+    """
     policy = None
     if len(book_moves) > 1 and human_models is not None:
-        rating = min(play.opponent_rating, POLICY_RATING_CAP)
         try:
-            policy, _ = human_models.policy(
-                sessions, bot_request(board, rating, play.learner_rating)
-            )
+            policy, _ = human_models.policy(sessions, request)
         except HumanUnavailable:
             policy = None
     weights = book_weights(book_moves, policy)

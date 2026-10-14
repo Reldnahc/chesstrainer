@@ -405,6 +405,9 @@ valid evaluation. Missing, extra, or invalid reports do not produce partial scor
 Like the upstream game calculation, games where both sides have not moved receive
 no score. The final incremental response includes accuracy even when its move list
 is empty. Only completion requires loading all saved evaluations during polling.
+The game's presentation (every rendered report and the game context) is built once
+per review revision and reused by later polls and the game page until a report is
+saved, adopted or refreshed (`presentation.presented_review`).
 
 Already-completed reviews get scores when reopened, including when Stockfish is
 unavailable. Ratings, branch exploration and board orientation cannot modify the

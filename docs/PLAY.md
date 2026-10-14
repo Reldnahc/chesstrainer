@@ -110,8 +110,9 @@ decisions from the library (fixed seed, plies 8 to 70), asks the human model for
 the policy at each rating on a 800 to 2200 grid with both sides set equal, and
 keeps the rating with the highest mean log-probability of the moves actually
 played. The result, its sample size and the median platform rating are stored in
-`play_profiles` and refreshed in the background whenever the library's game count
-changes. Without the model, or before the fit finishes, games use 1200. The fit is
+`play_profiles` and refreshed whenever the library's game count changes, by a
+`level_fit` job of the account (queued first, cancellable, drained on shutdown, and
+kept out of the import activity list). Without the model, or before the fit finishes, games use 1200. The fit is
 a conditioning value with its evidence shown beside it, not a rating claim.
 
 ## Commentary
@@ -178,7 +179,7 @@ one abandoned without saving it.
 
 | Method and path | Purpose |
 |---|---|
-| `GET /api/play/profile` | The level fit, starting or refreshing it in the background when stale |
+| `GET /api/play/profile` | The level fit, queueing its job when stale |
 | `POST /api/play/profile/refresh` | Recompute the fit |
 | `GET /api/play/active` | The account's game in progress, if any |
 | `POST /api/play` | Start a game: coach, color, opponent kind, rating and optionally a course to practice |

@@ -11,8 +11,7 @@ from dataclasses import dataclass
 
 import chess
 
-from trainer.chess_core import Score, digest, engine_context, evaluation_loss
-from trainer.human_models.types import Conditioning, Domain, HumanRequest
+from trainer.chess_core import Score, digest, evaluation_loss
 
 VERSION = "coach-bot-1"
 # From each rating upward the bot refuses moves that allow a forced mate, then
@@ -31,28 +30,6 @@ class BotChoice:
     # The engine's view of the position before the move, from the bot's side.
     best_score: Score | None
     samples: int = 0
-
-
-def bot_request(board: chess.Board, rating: int, opponent_rating: int) -> HumanRequest:
-    """Condition the policy on the bot's rating against the learner's fitted one."""
-    return HumanRequest(
-        history=engine_context(board),
-        mover="white" if board.turn else "black",
-        conditioning=Conditioning(
-            self_rating=rating,
-            opponent_rating=opponent_rating,
-            self_source="pgn",
-            opponent_source="pgn",
-        ),
-        domain=Domain(
-            platform="unknown",
-            time_control=None,
-            time_class=None,
-            alignment="unknown",
-            history_from_start=board.root().fen() == chess.STARTING_FEN,
-            reasons=["live_game_against_bot"],
-        ),
-    )
 
 
 def seeded(game_id: str, ply: int) -> random.Random:

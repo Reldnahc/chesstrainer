@@ -207,3 +207,46 @@ def test_play_reports_are_saved_as_engine_facts_and_rendered_on_read(settings):
         report = client.get(f"/api/play/{play_id}").json()["frames"][1]["report"]
         assert report["label"] == "Book" and report["coach"] != "Old wording."
         assert PRESENTATION_KEYS <= set(report)
+
+
+def test_the_bots_maia_request_is_the_commentarys_so_one_answer_serves_both():
+    from trainer.human_models.context import request_for
+    from trainer.play.sessions import bot_policy_request, parsed_for
+
+    play = PlayGame(
+        id="shared",
+        learner_color=True,
+        opponent_kind="human",
+        opponent_rating=1400,
+        learner_rating=1100,
+        coach_name="Ember",
+        moves=["e2e4"],
+    )
+    board = chess.Board()
+    board.push_uci("e2e4")
+    after = board.copy()
+    after.push_uci("e7e5")
+    # The live commentary asks about the bot's move from the position before it.
+    commentary = request_for(parsed_for(play, "Learner", after), board, play.learner_rating)
+    assert bot_policy_request(play, board) == commentary
+    assert commentary.conditioning.self_rating == 1400
+    assert commentary.conditioning.opponent_rating == 1100
+
+
+def test_the_level_fit_runs_as_a_cancellable_job_of_the_account(settings):
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
+    with TestClient(app) as client:
+        seed(app)
+        assert client.get("/api/play/profile").json()["status"] == "computing"
+        # A second read while it waits queues nothing more.
+        client.get("/api/play/profile")
+        with app.state.sessions() as db:
+            jobs = db.scalars(select(AnalysisJob).where(AnalysisJob.kind == "level_fit")).all()
+            assert [job.status for job in jobs] == ["queued"]
+        assert all(job["kind"] != "level_fit" for job in client.get("/api/jobs").json())
+        app.state.runner.run_job(jobs[0].id)
+        profile = client.get("/api/play/profile").json()
+        assert profile["status"] in {"ready", "no_games"} and profile["games"] == 1
+        with app.state.sessions() as db:
+            assert db.get(AnalysisJob, jobs[0].id).status == "completed"

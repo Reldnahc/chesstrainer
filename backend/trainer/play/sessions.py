@@ -19,10 +19,12 @@ from trainer.game_review import (
     public_report,
     review_move,
 )
+from trainer.human_models.context import request_for
 from trainer.human_models.runtime import HumanUnavailable
 from trainer.imports import import_games
 from trainer.models import ImportGame, PlayGame, now
 from trainer.play.book import (
+    POLICY_RATING_CAP,
     book_for,
     book_move,
     bot_moved,
@@ -32,7 +34,7 @@ from trainer.play.book import (
     practice_view,
     replayed,
 )
-from trainer.play.bot import bot_request, engine_move, human_move, seeded
+from trainer.play.bot import engine_move, human_move, seeded
 from trainer.review_intelligence.context import move_contexts
 
 
@@ -212,15 +214,30 @@ def result_for(outcome) -> tuple[str, str]:
     return outcome.result(), outcome.termination.name.replace("_", " ").lower()
 
 
+def bot_policy_request(play: PlayGame, board: chess.Board):
+    """The bot's Maia request: the bot's rating against the learner's fitted one.
+
+    It is built from the game's own PGN exactly as the live commentary's request is,
+    so the bot's move and the commentary on it share one Maia answer. Book choices
+    cap the bot's rating where the human policy stops improving.
+    """
+    parsed = parsed_for(play, "", board)
+    rating = min(play.opponent_rating, POLICY_RATING_CAP)
+    if rating == play.opponent_rating:
+        return request_for(parsed, board, play.learner_rating)
+    return request_for(parsed, board, None, ratings=(rating, play.learner_rating))
+
+
 def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Board, book=None):
     rng = seeded(play.id, len(play.moves))
     if book is not None and play.practice and play.practice["status"] == "book":
         book_moves = book.book_moves(board)
         if book_moves:
-            return book_move(human_models, sessions, play, board, book_moves, rng)
+            request = bot_policy_request(play, board)
+            return book_move(human_models, sessions, request, board, book_moves, rng)
     if play.opponent_kind == "engine":
         return engine_move(engine, board, play.opponent_rating, rng)
-    request = bot_request(board, play.opponent_rating, play.learner_rating)
+    request = bot_policy_request(play, board)
     try:
         policy, _ = human_models.policy(sessions, request)
     except HumanUnavailable:

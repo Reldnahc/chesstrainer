@@ -21,6 +21,7 @@ class JobKind(StrEnum):
     SYNC = "sync"  # The poller's fetch of new provider games.
     CHESSCOM_FETCH = "chesscom_fetch"  # A manual Chess.com import.
     PROVIDER_FETCH = "provider_fetch"  # A manual import from another provider.
+    LEVEL_FIT = "level_fit"  # Measure the learner's level for Play from their games.
     # Whole-import analysis from before per-game reviews. Nothing creates it now;
     # rows saved by older versions still run to completion.
     ANALYSIS = "analysis"

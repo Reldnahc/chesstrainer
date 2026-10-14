@@ -46,6 +46,7 @@ class JobExecution:
                 JobKind.ENRICHMENT: self.run_games,
                 JobKind.PUZZLE_GENERATION: self.run_games,
                 JobKind.ANALYSIS: self.run_games,
+                JobKind.LEVEL_FIT: self.run_level_fit,
             }
             if kind not in handlers:
                 raise ValueError(f"Unknown job kind {kind!r}")
@@ -118,6 +119,12 @@ class JobExecution:
 
         with self.mutation_lock:
             self.finish(job_id, queue_games)
+
+    def run_level_fit(self, job_id, kind, engine):
+        from trainer.play.level import run_level_fit
+
+        run_level_fit(self, job_id)
+        self.finish(job_id)
 
     def run_games(self, job_id, kind, engine):
         with self.sessions() as db:
