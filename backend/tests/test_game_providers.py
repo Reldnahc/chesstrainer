@@ -144,7 +144,7 @@ def test_lichess_errors_do_not_follow_redirects_or_retry_rate_limits(settings, s
 
 
 def test_lichess_bounds_and_cancellation(settings, sessions):
-    settings.provider_max_response_bytes = 1000
+    settings.lichess_max_response_bytes = 1000
     with pytest.raises(ProviderError, match="response limit"):
         run(source(sessions), sessions, settings, client(settings, [record()] * 10))
     remote = client(settings, [record()])

@@ -170,7 +170,7 @@ Uses [Lichess's public game export API](https://lichess.org/api#tag/Games/operat
 
 A completed game is checkpointed atomically as it is saved. Retry reopens the bounded export and skips saved checkpoint IDs; it never assumes a moving page offset is stable. Streams close when the requested limit is reached, on cancellation, or on error. Saved games survive a failed/cancelled request. A 429 produces a retryable error instructing the user to wait at least a minute; a shared one-minute cooldown also prevents later queued jobs from immediately contacting Lichess again.
 
-All provider traffic shares one host lock. Lichess limits default to `PROVIDER_TIMEOUT_SECONDS=20` per network read, `PROVIDER_MAX_RESPONSE_BYTES=25000000`, `PROVIDER_MAX_SCAN_GAMES=10000`, one megabyte per record and ten minutes per export. Narrow the date range if a cap is reached. Cancellation during a blocked read completes when that bounded read returns. Chess.com uses its own `CHESSCOM_*` transport settings.
+All provider traffic shares one host lock. Lichess limits default to `LICHESS_TIMEOUT_SECONDS=20` per network read, `LICHESS_MAX_RESPONSE_BYTES=25000000`, `LICHESS_MAX_SCAN_GAMES=10000` (the older `PROVIDER_*` names still work), one megabyte per record and ten minutes per export. Narrow the date range if a cap is reached. Cancellation during a blocked read completes when that bounded read returns. Chess.com uses its own `CHESSCOM_*` transport settings.
 
 Automated tests inject provider responses and make no live provider requests. This verifies Fieldwork's transport contract and integration, not the external services' uptime.
 

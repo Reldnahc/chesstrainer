@@ -16,31 +16,15 @@ import annotated_types
 from pydantic import ValidationError, create_model
 from sqlalchemy import text
 
+from trainer import config
 from trainer.config import Settings
 from trainer.db import database, migrate
 from trainer.errors import InvalidInput
 
 log = logging.getLogger(__name__)
 
-ENV_ONLY = frozenset(
-    {
-        "server_host",
-        "server_port",
-        "database_path",
-        "courses_path",
-        "accounts_enabled",
-        "session_secure",
-        "public_origin",
-        "lan_access_token",
-        "allowed_hosts",
-        "stockfish_path",
-        "human_model_path",
-        # The container entrypoint reads it to fetch CUDA PyTorch before Python starts.
-        "human_model_device",
-        "puzzle_pack_path",
-        "chesscom_user_agent",
-    }
-)
+# Marked on each setting in trainer.config; everything else is stored here.
+ENV_ONLY = config.ENV_ONLY
 
 # Group, then (setting, label, help) in the order Settings → Advanced shows them.
 GROUPS = (
@@ -194,13 +178,17 @@ GROUPS = (
                 "Chess.com response limit (bytes)",
                 "Largest Chess.com response read.",
             ),
-            ("provider_timeout_seconds", "Provider timeout (s)", "Longest wait for Lichess."),
+            ("lichess_timeout_seconds", "Lichess timeout (s)", "Longest wait for Lichess."),
             (
-                "provider_max_response_bytes",
+                "lichess_max_response_bytes",
                 "Provider response limit (bytes)",
                 "Largest Lichess response read.",
             ),
-            ("provider_max_scan_games", "Games scanned", "Most games read during a manual import."),
+            (
+                "lichess_max_scan_games",
+                "Games scanned",
+                "Most Lichess games read during a manual import.",
+            ),
         ),
     ),
 )
@@ -303,7 +291,8 @@ def describe(name, value, running):
         if isinstance(constraint, annotated_types.Ge):
             limits["minimum"] = constraint.ge
         elif isinstance(constraint, annotated_types.Gt):
-            limits["minimum"] = constraint.gt
+            # Strictly greater: the bound itself is not a valid value.
+            limits["exclusive_minimum"] = constraint.gt
         elif isinstance(constraint, annotated_types.Le):
             limits["maximum"] = constraint.le
     return {

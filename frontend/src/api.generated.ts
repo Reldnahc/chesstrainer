@@ -4746,6 +4746,8 @@ export interface components {
             choices: string[] | null;
             /** Default */
             default: boolean | number | string | null;
+            /** Exclusive Minimum */
+            exclusive_minimum?: number | null;
             /** Help */
             help: string;
             /** Key */
@@ -5120,6 +5122,12 @@ export interface components {
             human_model_workers: number;
             /** Lan Token Configured */
             lan_token_configured: boolean;
+            /** Lichess Max Response Bytes */
+            lichess_max_response_bytes: number;
+            /** Lichess Max Scan Games */
+            lichess_max_scan_games: number;
+            /** Lichess Timeout Seconds */
+            lichess_timeout_seconds: number;
             /** Max Import Bytes */
             max_import_bytes: number;
             /** Min Independent Games */
@@ -5130,12 +5138,6 @@ export interface components {
             multipv: number;
             /** Practical Tolerance Cp */
             practical_tolerance_cp: number;
-            /** Provider Max Response Bytes */
-            provider_max_response_bytes: number;
-            /** Provider Max Scan Games */
-            provider_max_scan_games: number;
-            /** Provider Timeout Seconds */
-            provider_timeout_seconds: number;
             /** Puzzle Generation */
             puzzle_generation: boolean;
             /** Puzzle Generation Depth */
@@ -5146,8 +5148,6 @@ export interface components {
             puzzle_generation_max_plies: number;
             /** Puzzle Generation Time */
             puzzle_generation_time: number;
-            /** Puzzle Pack Path */
-            puzzle_pack_path: string | null;
             /** Puzzle Starter Pack */
             puzzle_starter_pack: boolean;
             /** Retire After Days */

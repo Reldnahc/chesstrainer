@@ -15,6 +15,7 @@ class ServerSetting(Contract):
     nullable: bool
     choices: list[str] | None
     minimum: float | None = None
+    exclusive_minimum: float | None = None
     maximum: float | None = None
     default: SettingValue
     value: SettingValue

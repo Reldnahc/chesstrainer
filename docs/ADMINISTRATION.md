@@ -274,9 +274,9 @@ status is returned.
 | PUZZLE_GENERATION_DEPTH / PUZZLE_GENERATION_TIME | 18 / 4 seconds per search (depth 1..40, time greater than 0 and at most 30) |
 | PUZZLE_GENERATION_MAX_PLIES | 9 (3..9) most solution plies (five learner moves); longer lines abstain |
 | PUZZLE_GENERATION_GAMES | 40 (1..500) unsearched games per backfill job queued from the Puzzles page |
-| PROVIDER_TIMEOUT_SECONDS | 20 seconds per Lichess network read |
-| PROVIDER_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per Lichess export |
-| PROVIDER_MAX_SCAN_GAMES | 10000 records per Lichess export; narrow date range when reached |
+| LICHESS_TIMEOUT_SECONDS (formerly PROVIDER_TIMEOUT_SECONDS) | 20 seconds per Lichess network read |
+| LICHESS_MAX_RESPONSE_BYTES (formerly PROVIDER_MAX_RESPONSE_BYTES) | 25000000 decompressed bytes per Lichess export |
+| LICHESS_MAX_SCAN_GAMES (formerly PROVIDER_MAX_SCAN_GAMES) | 10000 records per Lichess export; narrow date range when reached |
 | CHESSCOM_USER_AGENT | FieldworkChessTrainer/0.1 (local personal chess training) |
 
 See [.env.example](../.env.example) for a copyable starting point.

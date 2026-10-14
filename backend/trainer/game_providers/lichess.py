@@ -23,7 +23,7 @@ class LichessClient:
     def __init__(self, settings, *, transport=None):
         self.settings = settings
         self.client = httpx.Client(
-            timeout=settings.provider_timeout_seconds,
+            timeout=settings.lichess_timeout_seconds,
             follow_redirects=False,
             transport=transport,
             headers={"Accept": "application/x-ndjson", "User-Agent": "FieldworkChessTrainer/0.1"},
@@ -147,7 +147,7 @@ class LichessClient:
                             "Lichess export exceeded ten minutes. Narrow the date range; saved games are retained."
                         )
                     received += len(chunk)
-                    if received > self.settings.provider_max_response_bytes:
+                    if received > self.settings.lichess_max_response_bytes:
                         raise ProviderError(
                             "Lichess export reached the host response limit. Narrow the date range; saved games are retained."
                         )
@@ -158,7 +158,7 @@ class LichessClient:
                         if not line.strip():
                             continue
                         scanned += 1
-                        if scanned > self.settings.provider_max_scan_games:
+                        if scanned > self.settings.lichess_max_scan_games:
                             raise ProviderError(
                                 "Lichess export reached the host scan limit. Narrow the date range; saved games are retained."
                             )
@@ -170,7 +170,7 @@ class LichessClient:
                     if len(pending) > 1_000_000:
                         raise ProviderError("Lichess returned an oversized game record.")
                 if pending.strip():
-                    if scanned >= self.settings.provider_max_scan_games:
+                    if scanned >= self.settings.lichess_max_scan_games:
                         raise ProviderError(
                             "Lichess export reached the host scan limit. Narrow the date range."
                         )

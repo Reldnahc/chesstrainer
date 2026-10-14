@@ -9368,6 +9368,17 @@
             ],
             "title": "Default"
           },
+          "exclusive_minimum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exclusive Minimum"
+          },
           "help": {
             "title": "Help",
             "type": "string"
@@ -10462,6 +10473,18 @@
             "title": "Lan Token Configured",
             "type": "boolean"
           },
+          "lichess_max_response_bytes": {
+            "title": "Lichess Max Response Bytes",
+            "type": "integer"
+          },
+          "lichess_max_scan_games": {
+            "title": "Lichess Max Scan Games",
+            "type": "integer"
+          },
+          "lichess_timeout_seconds": {
+            "title": "Lichess Timeout Seconds",
+            "type": "number"
+          },
           "max_import_bytes": {
             "title": "Max Import Bytes",
             "type": "integer"
@@ -10482,18 +10505,6 @@
             "title": "Practical Tolerance Cp",
             "type": "integer"
           },
-          "provider_max_response_bytes": {
-            "title": "Provider Max Response Bytes",
-            "type": "integer"
-          },
-          "provider_max_scan_games": {
-            "title": "Provider Max Scan Games",
-            "type": "integer"
-          },
-          "provider_timeout_seconds": {
-            "title": "Provider Timeout Seconds",
-            "type": "number"
-          },
           "puzzle_generation": {
             "title": "Puzzle Generation",
             "type": "boolean"
@@ -10513,17 +10524,6 @@
           "puzzle_generation_time": {
             "title": "Puzzle Generation Time",
             "type": "number"
-          },
-          "puzzle_pack_path": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Puzzle Pack Path"
           },
           "puzzle_starter_pack": {
             "title": "Puzzle Starter Pack",
@@ -10627,10 +10627,25 @@
           "engine_error",
           "engine_version",
           "classification_available",
+          "lan_token_configured",
+          "coverage",
+          "classification_provider",
+          "classification_version",
+          "classification_runs",
+          "classification_failed",
+          "classification_rejected",
+          "classification_abstained",
           "server_port",
           "accounts_enabled",
           "session_secure",
           "engine_slots",
+          "stockfish_threads",
+          "stockfish_hash_mb",
+          "stockfish_workers",
+          "sync_interval_seconds",
+          "sync_games",
+          "sync_lichess_batch",
+          "sync_away_days",
           "human_model_enabled",
           "human_model_device",
           "human_model_threads",
@@ -10641,13 +10656,6 @@
           "review_refinement_depth",
           "review_refinement_time",
           "review_refinement_multipv",
-          "stockfish_threads",
-          "stockfish_hash_mb",
-          "stockfish_workers",
-          "sync_interval_seconds",
-          "sync_games",
-          "sync_lichess_batch",
-          "sync_away_days",
           "triage_depth",
           "triage_time",
           "triage_nodes",
@@ -10677,24 +10685,15 @@
           "max_import_bytes",
           "chesscom_timeout_seconds",
           "chesscom_max_response_bytes",
-          "provider_timeout_seconds",
-          "provider_max_response_bytes",
-          "provider_max_scan_games",
+          "lichess_timeout_seconds",
+          "lichess_max_response_bytes",
+          "lichess_max_scan_games",
           "puzzle_starter_pack",
-          "puzzle_pack_path",
           "puzzle_generation",
           "puzzle_generation_depth",
           "puzzle_generation_time",
           "puzzle_generation_max_plies",
-          "puzzle_generation_games",
-          "lan_token_configured",
-          "coverage",
-          "classification_provider",
-          "classification_version",
-          "classification_runs",
-          "classification_failed",
-          "classification_rejected",
-          "classification_abstained"
+          "puzzle_generation_games"
         ],
         "title": "WorkspaceSettings",
         "type": "object"
