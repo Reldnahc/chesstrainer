@@ -2,6 +2,7 @@
 
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.review_intelligence.difficulty import assess_difficulty
+from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, NEAR_BEST_CP
 
 VERSION = "refinement-1"
 
@@ -40,7 +41,7 @@ def nominate(report):
     if (
         not (loss.mate_lost or loss.allows_mate)
         and not (best.kind == "mate" and best.value == 1)
-        and (loss.cp or 0) <= 20
+        and (loss.cp or 0) <= NEAR_BEST_CP
         and report.get("second_score") is not None
     ):
         gap = evaluation_loss(best, Score.model_validate(report["second_score"]))
@@ -48,11 +49,9 @@ def nominate(report):
             triggers.append((740, "critical_alternative"))
     if practical.best_naturalness == "unusual":
         triggers.append((700, "human_disagreement"))
-    if (loss.cp or 0) >= 100 and not report["actual_line"]["findings"]:
+    if (loss.cp or 0) >= MISTAKE_CP and not report["actual_line"]["findings"]:
         triggers.append((680, "unexplained_concession"))
-    if loss.cp is not None and any(
-        abs(loss.cp - boundary) <= 10 for boundary in (50, 100, 200, 300)
-    ):
+    if loss.cp is not None and any(abs(loss.cp - boundary) <= 10 for boundary in GRADE_BOUNDARIES):
         triggers.append((500, "grade_boundary"))
     if report.get("opportunity_missed"):
         triggers.append((720, "verify_opportunity"))

@@ -12,10 +12,10 @@ from trainer.chess_core import (
     legal_move,
     legal_move_options,
 )
+from trainer.classification_stages import REVIEW_RULES, line_findings
 from trainer.continuations import replay, settled_delta
 from trainer.errors import InvalidInput
 from trainer.explanations import replay_line
-from trainer.move_causes import move_causes
 from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
 from trainer.review_intelligence.difficulty import assess_difficulty
@@ -25,8 +25,15 @@ from trainer.review_sacrifices import (
     is_sacrifice_offer,
     supported_sacrifice,
 )
-from trainer.review_scores import score_order, strongest_alternative
-from trainer.tactical_patterns import detect_patterns, recognized_patterns
+from trainer.review_scores import (
+    INACCURACY_CP,
+    MISTAKE_CP,
+    NEAR_BEST_CP,
+    blunder_cp,
+    is_poor,
+    score_order,
+    strongest_alternative,
+)
 
 VERSION = "game-review-1"
 LABELS = ("Brilliant", "Great", "Best", "Good", "Book", "Inaccuracy", "Mistake", "Miss", "Blunder")
@@ -60,8 +67,7 @@ def blunder_kind(best, actual, rating):
         return "mate"
     # An ordinary pawn loss gets gentler wording at low Elo; decisive losses do not.
     decisive = numeric(best) >= -50 and numeric(actual) <= -200
-    blunder_cp = 300 if rating < 1200 else 200
-    return "severe" if decisive or (loss.cp or 0) >= blunder_cp else None
+    return "severe" if decisive or (loss.cp or 0) >= blunder_cp(rating) else None
 
 
 def classify(report, rating):
@@ -84,17 +90,17 @@ def classify(report, rating):
         return "Good", "This keeps a forced checkmate, but a faster mate was available."
     # A missed tactic is a Miss only when it costs as much as a Mistake;
     # a smaller gap keeps the ordinary centipawn grade.
-    missed = report["opportunity_missed"] and cp >= 100
+    missed = report["opportunity_missed"] and cp >= MISTAKE_CP
     if loss.mate_lost or missed:
         return "Miss", "A concrete tactical opportunity was available and went unused."
-    if cp >= 100:
+    if cp >= MISTAKE_CP:
         return "Mistake", "This move makes a meaningful avoidable concession."
-    if cp >= 50:
+    if cp >= INACCURACY_CP:
         return "Inaccuracy", "There was a stronger way to keep your position intact."
     if report["sacrifice"] and report["legal_count"] > 1:
         return "Brilliant", "You found a sound piece sacrifice with a verified tactical idea."
     # Great is best/near-best AND critical; a sole legal reply is never an achievement.
-    if cp <= 20 and report["legal_count"] > 1:
+    if cp <= NEAR_BEST_CP and report["legal_count"] > 1:
         second = strongest_alternative(report)
         only_good = (
             second is not None
@@ -130,33 +136,19 @@ def classify(report, rating):
 
 def line_evidence(board, candidate, analysis_id, first, previous=None):
     boards = replay(board, candidate)
-    delta, end = settled_delta(boards, board.turn, max_plies=32)
-    direction = "missed_opportunity" if first == 1 else "allowed_opponent_tactic"
+    delta, end = settled_delta(boards, board.turn, max_plies=REVIEW_RULES.settle_plies)
     gain = delta if first == 1 else -delta if delta is not None else None
     mate = candidate.score.kind == "mate" and candidate.score.outcome() == (1 if first == 1 else -1)
-    findings = detect_patterns(
+    findings = line_findings(
         boards,
         first,
-        end,
         analysis_id,
-        direction,
+        REVIEW_RULES,
+        end=end,
         material_supported=gain is not None and gain > 0,
         mate_supported=mate,
+        previous=previous,
     )
-    detailed = {f.skill_id for f in findings}
-    findings.extend(
-        f
-        for f in recognized_patterns(
-            boards,
-            first,
-            min(16, len(boards) - 1),
-            analysis_id,
-            direction,
-        )
-        if f.skill_id not in detailed
-    )
-    if first == 2 and gain is not None and gain > 0:
-        findings = move_causes(boards, analysis_id, previous) + findings
     # Prefer an actual causal mechanism over a generic capture annotation.
     preferred = {"opponent_threat_recognition", "abandoned_defender", "pin", "fork", "skewer"}
     findings.sort(key=lambda f: f.skill_id not in preferred)
@@ -178,7 +170,7 @@ def analyze_move(engine, board, move, previous_score=None):
         played = engine.analyze(board, deep=True, root_moves=[move.uci()], multipv=1)
         actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
     loss = evaluation_loss(best.score, actual.score)
-    poor = loss.mate_lost or loss.allows_mate or (loss.cp or 0) >= 50
+    poor = is_poor(loss)
     previous = None
     if board.move_stack:
         earlier = board.copy(stack=True)

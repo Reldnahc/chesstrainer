@@ -11,6 +11,7 @@ from trainer.review_intelligence.events_types import (
 )
 from trainer.review_intelligence.positional import VERSION as POSITION_VERSION
 from trainer.review_intelligence.positional import positional_events
+from trainer.review_scores import is_poor
 
 VERSION = "move-events-4"
 
@@ -190,11 +191,7 @@ def describe_move(report, practical, context=None):
                     "tempo": clock.tempo,
                     "before_seconds": clock.before_seconds,
                     "elapsed_seconds": clock.elapsed_seconds,
-                    "accompanied_error": (
-                        loss.mate_lost or loss.allows_mate or (loss.cp or 0) >= 50
-                    )
-                    if objective_refs
-                    else None,
+                    "accompanied_error": is_poor(loss) if objective_refs else None,
                     "causation": "not_inferred",
                 },
                 [pgn, ref("rule", "clock-1", "bands_and_tempo"), *objective_refs],

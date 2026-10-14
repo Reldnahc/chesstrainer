@@ -3,7 +3,7 @@
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.human_models.types import HumanEvidence
 from trainer.review_intelligence.types import DifficultyComponents, PracticalAssessment
-from trainer.review_scores import strongest_alternative
+from trainer.review_scores import is_near_best, is_poor, strongest_alternative
 
 VERSION = "practical-2"
 # Coarse gates inspected on the fixed 12-position × 4-rating probe (see docs).
@@ -190,8 +190,7 @@ def assess_difficulty(report):
             base["best_find_difficulty"] = (
                 "difficult" if nature == "unusual" and corroborated else "challenging"
             )
-        poor = loss.allows_mate or loss.mate_lost or (loss.cp or 0) >= 50
-        strong = not (loss.allows_mate or loss.mate_lost) and (loss.cp or 0) <= 20
+        poor, strong = is_poor(loss), is_near_best(loss)
         if poor and base["played_naturalness"] == "preferred":
             interpretations.append("natural_error")
         if strong and base["played_naturalness"] == "unusual":

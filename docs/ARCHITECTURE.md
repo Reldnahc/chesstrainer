@@ -424,7 +424,13 @@ pool remain the compute authority. See [targeted review investigation](REVIEW_IN
 `review_intelligence/events`, `event_facts`, `context` and `clocks` derive typed,
 traceable semantic events from saved chess facts and PGN annotations. No character
 prose enters this layer. [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context) specifies gates and
-clock abstention; `review_scores` shares Stockfish-only alternative comparisons.
+clock abstention; `review_scores` shares Stockfish-only alternative comparisons and
+owns the grade boundaries (`NEAR_BEST_CP`, `INACCURACY_CP`, `MISTAKE_CP`, the Blunder
+thresholds, `GRADE_BOUNDARIES`) and predicates (`is_poor`, `is_near_best`,
+`is_mistake`) every other module reads. Every reading of a saved line into tactical
+findings and move causes goes through `classification_stages.line_findings`, with
+the classifier's, review's and SRS explanation's differing horizons named as
+`LineRules` beside it.
 ## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for

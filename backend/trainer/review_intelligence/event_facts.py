@@ -3,6 +3,7 @@
 import chess
 
 from trainer.chess_core import Score, evaluation_loss
+from trainer.review_scores import MISTAKE_CP, is_near_best, is_poor
 
 MOVER_CAUSES = {"abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"}
 
@@ -49,7 +50,7 @@ def objective_events(report, practical, emit, evidence, ref):
     best = Score.model_validate(report["best"]["score"])
     actual = Score.model_validate(report["actual"]["score"])
     loss = evaluation_loss(best, actual)
-    near = not (loss.allows_mate or loss.mate_lost) and (loss.cp or 0) <= 20
+    near = is_near_best(loss)
     if loss.allows_mate or loss.mate_lost:
         emit(
             "mate",
@@ -78,7 +79,7 @@ def objective_events(report, practical, emit, evidence, ref):
             },
             evidence,
         )
-    if (loss.cp or 0) >= 100 or advantage(best) != advantage(actual):
+    if (loss.cp or 0) >= MISTAKE_CP or advantage(best) != advantage(actual):
         emit(
             "evaluation_change",
             "searched",
@@ -134,7 +135,7 @@ def tactical_events(report, emit, ref, fen, actor):
         Score.model_validate(report["best"]["score"]),
         Score.model_validate(report["actual"]["score"]),
     )
-    poor = loss.allows_mate or loss.mate_lost or (loss.cp or 0) >= 50
+    poor = is_poor(loss)
     opponent = "black" if actor == "white" else "white"
     for source in ("actual", "best"):
         if source == "best" and report["best"]["uci"] == report["actual"]["uci"]:

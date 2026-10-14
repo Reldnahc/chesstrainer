@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, Score, legal_move, material, position_key, valid_board
+from trainer.classification_stages import EXPLANATION_RULES, line_findings
 from trainer.continuations import replay, settled_delta
 from trainer.diagnosis_types import Finding
 from trainer.errors import EvidenceIntegrityError, InvalidInput, NotFound
@@ -20,8 +21,6 @@ from trainer.models import (
     Game,
     ReviewSession,
 )
-from trainer.move_causes import move_causes
-from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 SummaryKind = Literal[
     "mate_for_mover",
@@ -263,36 +262,25 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
     # the source game would be wrong for a different move made during review.
     boards = replay(board, candidate)
     first = 1 if accepted else 2
-    direction = "missed_opportunity" if accepted else "allowed_opponent_tactic"
-    delta, end = settled_delta(boards, board.turn, max_plies=16)
+    delta, end = settled_delta(boards, board.turn, max_plies=EXPLANATION_RULES.settle_plies)
     gain = delta if accepted else -delta if delta is not None else None
     mate_supported = candidate.score.kind == "mate" and candidate.score.outcome() == (
         1 if accepted else -1
     )
     findings = []
     if len(boards) > first:
-        findings = detect_patterns(
+        # A check/fork/pin can be visible even when this finite PV has no settled
+        # material endpoint; the rules add it as a factual playback annotation,
+        # never an additional grading event or automatically a weakness label.
+        findings = line_findings(
             boards,
             first,
-            min(len(boards) - 1, 16) if mate_supported else end,
             analysis.id,
-            direction,
+            EXPLANATION_RULES,
+            end=end,
             material_supported=gain is not None and gain >= 1,
             mate_supported=mate_supported,
         )
-        # A check/fork/pin can be visible even when this finite PV has no
-        # settled material endpoint. It remains a factual playback annotation,
-        # never an additional grading event or automatically a weakness label.
-        detailed_skills = {finding.skill_id for finding in findings}
-        findings.extend(
-            finding
-            for finding in recognized_patterns(
-                boards, first, min(len(boards) - 1, 16), analysis.id, direction
-            )
-            if finding.skill_id not in detailed_skills
-        )
-        if not accepted and gain is not None and gain >= 1:
-            findings.extend(move_causes(boards, analysis.id))
     return MoveExplanation(
         attempt_id=selected_attempt.id if selected_attempt else None,
         authority="stockfish",

@@ -16,6 +16,7 @@ from trainer.review_intelligence.game_types import (
     GameRelationship,
     TurningPoint,
 )
+from trainer.review_scores import is_mistake
 
 VERSION = "game-context-1"
 
@@ -111,7 +112,7 @@ def game_context(parsed, reports, *, completed=False):
     for node in nodes:
         drop = loss(node)
         mate = drop.allows_mate or drop.mate_lost
-        if mate or (drop.cp or 0) >= 100:
+        if is_mistake(drop):
             turning.append(
                 TurningPoint(
                     ply=node.ply,

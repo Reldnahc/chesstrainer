@@ -21,6 +21,7 @@ from trainer.game_library import mover_rating, pgn_rating
 from trainer.game_review import blunder_kind
 from trainer.opening_book import book_move
 from trainer.review_intelligence.clocks import clock_facts, control
+from trainer.review_scores import MISTAKE_CP
 
 VERSION = "insights-1"
 SPEEDS = ("bullet", "blitz", "rapid", "classical", "daily")
@@ -28,7 +29,6 @@ SPEEDS = ("bullet", "blitz", "rapid", "classical", "daily")
 # size of swing that makes an ordinary move a Blunder for most ratings.
 DECISIVE_CP = 300
 LEAD_CP = 150
-MISTAKE_CP = 100
 SESSION_GAP = timedelta(minutes=90)
 MOVE_BUCKETS = ((1, 5), (6, 10), (11, 15), (16, 20), (21, 30), (31, None))
 SLIP_BUCKETS = ((1, 10), (11, 20), (21, 30), (31, 40), (41, None))

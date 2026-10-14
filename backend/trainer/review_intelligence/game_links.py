@@ -1,6 +1,7 @@
 """Relationships require contiguous actual play, never adjacent rows across gaps."""
 
 from trainer.chess_core import evaluation_loss
+from trainer.review_scores import is_mistake, is_poor
 
 
 def loss(node):
@@ -17,12 +18,12 @@ def playable(score):
 
 def good(node):
     drop = loss(node)
-    return not (drop.allows_mate or drop.mate_lost) and (drop.cp or 0) < 50
+    return not is_poor(drop)
 
 
 def mistake(node):
     drop = loss(node)
-    return drop.allows_mate or drop.mate_lost or (drop.cp or 0) >= 100
+    return is_mistake(drop)
 
 
 def consistent(left, right):
