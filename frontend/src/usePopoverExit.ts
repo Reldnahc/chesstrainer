@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { ghostCopy } from "./ghost";
 import { useInterfaceMotion } from "./MotionProvider";
 
 /**
@@ -14,9 +15,7 @@ export default function usePopoverExit<T extends HTMLElement>() {
     if (!popover || motion === "still") return;
     const leave = (event: Event) => {
       if ((event as ToggleEvent).newState !== "closed") return;
-      const copy = popover.cloneNode(true) as HTMLElement;
-      copy.removeAttribute("id");
-      copy.setAttribute("aria-hidden", "true");
+      const copy = ghostCopy(popover);
       copy.inert = true;
       copy.popover = "manual";
       copy.classList.add("popover-leaving");

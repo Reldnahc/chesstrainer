@@ -1,12 +1,27 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { ghostCopy } from "./ghost";
 import { useInterfaceMotion } from "./MotionProvider";
 
 /**
  * `<DialogPresence>{open && <SomeDialog …/>}</DialogPresence>`: when the owner
- * dismisses a modal, it stays mounted and inert while its closing animation plays
- * (`dialog[data-closing]` in reveal.css), then unmounts so useModalDialog closes
- * it and restores focus. Without that stylesheet or with motion off it closes at once.
+ * dismisses a modal, it closes and unmounts at once (useModalDialog restores
+ * focus and the page is usable again), while a decorative copy of it plays the
+ * closing animation (`dialog[data-closing]` in reveal.css) in the top layer and
+ * removes itself. The copy holds no live controls or text.
  */
+function leave(dialog: HTMLDialogElement) {
+  const copy = ghostCopy(dialog);
+  copy.dataset.closing = "true";
+  copy.inert = true;
+  copy.popover = "manual";
+  document.body.append(copy);
+  copy.showPopover();
+  const running = copy.getAnimations();
+  const remove = () => copy.remove();
+  if (!running.length) remove();
+  else Promise.all(running.map(animation => animation.finished)).then(remove, remove);
+}
+
 export default function DialogPresence({ children }: { children: ReactNode }) {
   const motion = useInterfaceMotion();
   const open = children !== null && children !== undefined && children !== false;
@@ -16,21 +31,11 @@ export default function DialogPresence({ children }: { children: ReactNode }) {
   if (open && !mounted) setMounted(true);
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
+    if (open || !mounted) return;
     const dialog = ref.current?.querySelector("dialog");
-    if (open) {
-      if (dialog) { delete dialog.dataset.closing; dialog.inert = false; }
-      return;
-    }
-    if (!mounted) return;
-    const finish = () => { last.current = null; setMounted(false); };
-    if (motion === "still" || !dialog?.open) return finish();
-    dialog.dataset.closing = "true";
-    dialog.inert = true;
-    const running = dialog.getAnimations();
-    if (!running.length) return finish();
-    let active = true;
-    Promise.all(running.map(animation => animation.finished)).then(() => { if (active) finish(); }, () => {});
-    return () => { active = false; };
+    if (motion !== "still" && dialog?.open) leave(dialog);
+    last.current = null;
+    setMounted(false);
   }, [open, mounted, motion]);
   if (!mounted) return null;
   // The wrapper never boxes: the dialog renders in the top layer.

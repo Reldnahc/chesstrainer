@@ -4,26 +4,13 @@
 // and in every browser, without each screen wiring up its own transition. Layout
 // settles at once: screens scroll and measure right after loading, so the content
 // does not grow in. See docs/UI_COMPONENTS.md#motion.
+import { ghostCopy } from "./ghost";
 import { duration, easing, motionAllowed } from "./motionTiming";
 
 const LOADER = ".load-state";
 /** The loader stays visible a moment longer as a fading copy over the new content. */
 function fadeOut(loader: Element, at: DOMRect) {
-  const copy = loader.cloneNode(true) as HTMLElement;
-  copy.removeAttribute("id");
-  copy.setAttribute("aria-hidden", "true");
-  copy.querySelectorAll("[role]").forEach(element => element.removeAttribute("role"));
-  // A decorative copy carries no text of its own (the words are drawn by CSS), so
-  // the page's text, find-in-page and anything reading it never see a loader
-  // that has already gone, even while the fade lingers.
-  const walker = document.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
-  const texts: Text[] = [];
-  while (walker.nextNode()) texts.push(walker.currentNode as Text);
-  for (const text of texts) {
-    const drawn = document.createElement("span");
-    drawn.dataset.ghostText = text.data;
-    text.replaceWith(drawn);
-  }
+  const copy = ghostCopy(loader as HTMLElement);
   Object.assign(copy.style, {
     position: "fixed", top: `${at.top}px`, left: `${at.left}px`, width: `${at.width}px`,
     margin: "0", pointerEvents: "none", zIndex: "1", animation: "none",
