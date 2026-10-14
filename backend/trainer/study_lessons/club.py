@@ -131,7 +131,7 @@ class ClubCourses:
     def known_fingerprints(self, course_id):
         """Every fingerprint each revision of this id has had: built-in, installed or saved."""
         known = {revision: {value} for revision, value in self._ledger().get(course_id, {}).items()}
-        for course in bundled.BundledCourses().courses(None):
+        for course in bundled.built_in_courses():
             if course.id == course_id:
                 known.setdefault(course.revision, set()).add(fingerprint(course))
         for _, course, _ in self.entries():
@@ -156,11 +156,7 @@ class ClubCourses:
             )
         with self.lock:
             installed = self.revision(course.id) or next(
-                (
-                    item.revision
-                    for item in bundled.BundledCourses().courses(None)
-                    if item.id == course.id
-                ),
+                (item.revision for item in bundled.built_in_courses() if item.id == course.id),
                 None,
             )
             if create and installed is not None:
@@ -251,7 +247,11 @@ class InstalledCourses:
         self._club_topics = {}
 
     def courses(self, db):
-        """Built-in and club courses, rebuilt only when the club folder or hidden list changes."""
+        """Built-in and club courses, as copies a consumer may change freely."""
+        return tuple(course.model_copy(deep=True) for course in self._installed())
+
+    def _installed(self):
+        """The cached originals, rebuilt only when the club folder or hidden list changes."""
         club = self.club.entries()
         hidden = frozenset(self.club.hidden())
         with self.lock:
@@ -263,7 +263,7 @@ class InstalledCourses:
                         [
                             *(
                                 course
-                                for course in bundled.BundledCourses().courses(db)
+                                for course in bundled.built_in_courses()
                                 if course.id not in replaced
                             ),
                             *(course for _, course, _ in club),
@@ -273,6 +273,17 @@ class InstalledCourses:
                 self._key = (club, hidden)
             return self._courses
 
+    def find(self, db, course_id, revision=None):
+        """One installed course, copied, without copying the rest."""
+        return next(
+            (
+                course.model_copy(deep=True)
+                for course in self._installed()
+                if course.id == course_id and revision in (None, course.revision)
+            ),
+            None,
+        )
+
     def topic(self, course_id):
         for _, course, topic in self.club.entries():
             if course.id == course_id:
@@ -280,14 +291,14 @@ class InstalledCourses:
         return self._club_topics.get(course_id) or bundled.BundledCourses().topic(course_id)
 
     def built_in_ids(self):
-        return {course.id for course in bundled.BundledCourses().courses(None)}
+        return {course.id for course in bundled.built_in_courses()}
 
     def hidden_built_ins(self):
         """Deleted built-in courses an administrator can restore, in Study order."""
         hidden = self.club.hidden()
         return [
             {"id": course.id, "title": course.title}
-            for course in bundled.ordered(bundled.BundledCourses().courses(None))
+            for course in bundled.ordered(bundled.built_in_courses())
             if course.id in hidden
         ]
 

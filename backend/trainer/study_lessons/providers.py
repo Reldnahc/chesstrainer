@@ -36,14 +36,25 @@ class CourseProviders:
                 yield course
 
     def get(self, db, course_id, revision=None):
-        course = next(
-            (
-                item
-                for item in self.courses(db)
-                if item.id == course_id and (revision is None or item.revision == revision)
-            ),
-            None,
-        )
+        if all(hasattr(provider, "find") for provider in self.providers):
+            # Each provider copies only the course asked for.
+            course = next(
+                (
+                    found
+                    for provider in self.providers
+                    if (found := provider.find(db, course_id, revision)) is not None
+                ),
+                None,
+            )
+        else:
+            course = next(
+                (
+                    item
+                    for item in self.courses(db)
+                    if item.id == course_id and (revision is None or item.revision == revision)
+                ),
+                None,
+            )
         if course is None:
             raise NotFound("Course revision not installed")
         return course

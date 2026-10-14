@@ -40,17 +40,33 @@ def ordered(courses):
 def _built_in():
     """``(course, topic)`` for every built-in file in Study order, validated once per process.
 
-    Course definitions are shared read-only values: build a changed course with
-    ``model_copy(update=...)``, never by assigning to one.
+    These are the cached originals: read them here, and hand consumers copies.
     """
     loaded = [read_course_file(path) for path in sorted(BUILT_IN.glob("*.json"))]
     courses = {course.id: (course, topic) for course, topic in loaded}
     return tuple(courses[course.id] for course in ordered(course for course, _ in loaded))
 
 
+def built_in_courses():
+    """The cached built-in courses for read-only use inside the course providers."""
+    return tuple(course for course, _ in _built_in())
+
+
 class BundledCourses:
     def courses(self, db):
-        return tuple(course for course, _ in _built_in())
+        # Independent copies, so a consumer cannot change the cached source.
+        return tuple(course.model_copy(deep=True) for course in built_in_courses())
+
+    def find(self, db, course_id, revision=None):
+        """One course, copied, without copying the rest."""
+        return next(
+            (
+                course.model_copy(deep=True)
+                for course in built_in_courses()
+                if course.id == course_id and revision in (None, course.revision)
+            ),
+            None,
+        )
 
     def topic(self, course_id):
         """Each course file names its Study section; presentation only, outside the content hash."""
