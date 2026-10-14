@@ -177,7 +177,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   const response = await queued;
   expect(response.status()).toBe(202);
   expect(response.request().postDataJSON()).toEqual({username, time_class: 'rapid', months: 6, max_games: 25, start_date: startDate, end_date: endDate});
-  await expect(page.locator('.import-form').getByRole('status')).toContainText('Import queued');
+  await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('status')).toContainText('Import queued');
   const job = page.locator('.job').filter({hasText: username}).first();
   await expect(job.locator('.badge')).toHaveText('completed', {timeout: 30000});
   await expect(job).toContainText('1 imported');
