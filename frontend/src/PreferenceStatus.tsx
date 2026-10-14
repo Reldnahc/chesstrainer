@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { Swap } from "./Reveal";
 import "./preference-status.css";
 
 export default function PreferenceStatus({
@@ -19,6 +20,9 @@ export default function PreferenceStatus({
   const text = state === "saving" ? "Saving…" : state === "loading" ? "Loading…" : state === "saved" ? "Saved" : idleText;
   return <div className={`preference-status preference-status--${placement} ${className}`.trim()}
     role="status" aria-atomic="true" data-state={state}>
-    {state === "error" ? <>{error}{" "}<Button size="compact" variant="quiet" onClick={retry}>{retryLabel}</Button></> : text}
+    {/* Each state's text crossfades with the last one rather than snapping. */}
+    <Swap><span key={state}>
+      {state === "error" ? <>{error}{" "}<Button size="compact" variant="quiet" onClick={retry}>{retryLabel}</Button></> : text}
+    </span></Swap>
   </div>;
 }

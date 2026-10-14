@@ -71,6 +71,15 @@
   --text-caption: var(--text-sm);
   --text-label: var(--text-2xs);
   --text-input: var(--text-base);
+  /* Motion scale: every interface transition and animation times itself with
+     these (scripts/motion-scale.mjs rejects raw times and easings; coach
+     portraits keep their own timing; see docs/UI_COMPONENTS.md#motion). */
+  --motion-fast: 150ms;
+  --motion-base: 250ms;
+  --motion-slow: 450ms;
+  --motion-loop: 1200ms;
+  --ease-standard: ease-in-out;
+  --ease-enter: ease-out;
   /* Semantic spacing: the rhythm between a page's blocks and inside its panels. */
   --page-gap: var(--space-6);
   --panel-padding: var(--space-6);
@@ -145,9 +154,9 @@ button,
   font-weight: 500;
   cursor: pointer;
   transition:
-    background 0.15s,
-    border-color 0.15s,
-    color 0.15s;
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
   text-decoration: none;
 }
 button:hover,

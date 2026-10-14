@@ -5,6 +5,7 @@ import { api, read } from "./api";
 import { IconButton } from "./Button";
 import { pagePaths } from "./navigation";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 
 // Polling pauses after a week away; on return the learner may need older games.
 export default function WelcomeBack() {
@@ -16,13 +17,12 @@ export default function WelcomeBack() {
       .catch(() => undefined);
     return () => { active = false; };
   }, []);
-  if (!awaySince) return null;
   async function dismiss() {
     setAwaySince(null);
     await read(api.POST("/api/welcome-back/dismiss")).catch(() => undefined);
   }
-  const since = new Date(awaySince).toLocaleDateString(undefined, { month: "long", day: "numeric" });
-  return (
+  const since = awaySince && new Date(awaySince).toLocaleDateString(undefined, { month: "long", day: "numeric" });
+  return <Reveal>{since && (
     <Notice
       announcement="status"
       className="welcome-back"
@@ -34,5 +34,5 @@ export default function WelcomeBack() {
         If any games are missing, import older games.</p>
       <p><ActionLink variant="secondary" size="compact" href={pagePaths.Settings} onClick={() => void dismiss()}>Import older games</ActionLink></p>
     </Notice>
-  );
+  )}</Reveal>;
 }

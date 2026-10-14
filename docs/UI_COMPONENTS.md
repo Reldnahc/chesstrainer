@@ -103,6 +103,7 @@ not React components.
 | Recorded coach voice | [useCoachSpeech](../frontend/src/audio/speech/useCoachSpeech.tsx), [CoachSpeechButton](../frontend/src/audio/speech/CoachSpeechButton.tsx) | Supply supported recording IDs and fresh action identity. ReviewCoach owns the shared voice control beside its evaluation; explicit secondary explanations reuse CoachSpeechButton. Keep cold prompts manual, lessons silent and replay cancellation scoped. Mouth animation observes the existing speech clock, never a separate page timer. |
 | Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
 | Pending/unavailable content | [LoadingState / UnavailableState](../frontend/src/LoadState.tsx) | Compact/panel states with message-only announcements and separate caller-supplied headings/actions. LoadingState leads its message with a small animated board (four squares lighting clockwise, decorative and hidden from assistive technology) that rests as a checkerboard when interface motion is off; UnavailableState has no indicator. Plain `role="status"` loading paragraphs (Games, game connections, import providers) use it too; the coach bubble's continuation line and preference save status keep their own text, and onboarding keeps a plain line because AccountGate puts it in the studios' bundles, which must not load application styles. Requests, recovery commands and link destinations remain with each screen. |
+| Content entrances and exits | [Reveal / RevealList / Swap](../frontend/src/Reveal.tsx), [DialogPresence](../frontend/src/DialogPresence.tsx), [disclosureMotion](../frontend/src/disclosureMotion.ts), [usePopoverExit](../frontend/src/usePopoverExit.ts), [reveal.css](../frontend/src/reveal.css) | `<Reveal>{condition && <Block />}</Reveal>` grows a block in and collapses it out (every conditional Notice uses it); `RevealList` does the same for keyed rows added or removed after the list settles; `Swap` crossfades one keyed child into another while the size morphs (Settings tabs, inline editors, confirms, status text). Leaving content stays mounted and inert until its transition ends. DialogPresence plays a modal's close before unmounting it, disclosureMotion animates every `<details>` both ways, and usePopoverExit fades a hidden popover out. All use grid tracks or WAAPI, so every browser behaves the same. Application-only; see [Motion](#motion). |
 | Empty content | [EmptyState](../frontend/src/EmptyState.tsx) | Lessons/Puzzles presentation for full sections, with compact activity/search variants. Callers supply titles, descriptions, icons and recovery actions. |
 | Notices | [Notice](../frontend/src/Notice.tsx), [notice.css](../frontend/src/notice.css) | Explicit alert/status/passive policy, tone, panel/inline presentation and separate actions. Historical import errors remain passive; persistent live regions can stay mounted empty without blank spacing. Shared-safe presentation also serves studio availability and playback feedback without importing application layout. [WelcomeBack](../frontend/src/WelcomeBack.tsx) and the Settings analysis-queue line use it too; the welcome-back import link sits in the body so narrow screens keep the text full width. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
@@ -114,7 +115,7 @@ not React components.
 | Lesson editor | [LessonEditor](../frontend/src/study/LessonEditor.tsx) | Administrator-only course editing at `/settings/courses/editor`, reached from the admin-only Settings → Courses section ([CourseSettings](../frontend/src/study/CourseSettings.tsx), which reuses SettingsSection and the settings-tool rows). Composes ReviewWorkspace (board left, scrolling form right), Board for recording moves with server-supplied legal moves, ChoiceGroup for side, section, board view and chapter choices, native details/select/inputs for fields, and Notice for the live check. Its heading is one row: the quiet *Courses* back link, the title (which shortens) and Save, so Save always fits. It edits the course file directly, so fields it does not show are kept. The step list's selectable rows are local to the editor because no other screen lists editable steps. |
 | Source attribution | [SourceLine](../frontend/src/SourceLine.tsx), [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Shared text, optional license/revision and valid absolute HTTP(S) source/license links. Optional licenseUrl links the existing license label separately from View source. LessonAttribution resolves Repository license at render time without changing saved course fingerprints. Lesson sources remain multiple records; puzzle provenance remains completion-only. The audio studio uses SourceLine for recording credits; source-line.css is shared-safe. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. An optional `actions` slot holds whole-game commands beside Next mistake on both tabs (game review's Export). It is not yet an exported generic tabs component. It accepts any navigator with the exploration fields it reads, so the live game shares the notation and quality tabs. |
-| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. foundation.css also owns the [spacing scale](#spacing), the [type scale](#type) and the `.stack` / `.cluster` layout primitives. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
+| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. foundation.css also owns the [spacing scale](#spacing), the [type scale](#type), the [motion scale](#motion) and the `.stack` / `.cluster` layout primitives. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
 
 Quick mute belongs to each page's board-controls group rather than trailing it,
 so it never wraps onto its own row or keeps a different size from its neighbours.
@@ -186,6 +187,48 @@ Owner decision, October 12, 2026: text sizes follow one scale, like spacing.
   `npm run build`) rejects px, rem or pt sizes in `font-size` or the `font`
   shorthand. `em`, `%`, container units and keywords stay allowed for sizes that
   follow their container, and `clamp()`/`max()` may combine them with tokens.
+
+## Motion
+
+Owner decision, October 13, 2026: interface motion follows one scale, like spacing
+and type. [foundation.css](../frontend/src/foundation.css) defines it.
+
+- **Durations.** `--motion-fast` (150ms) for hover, press and colour feedback,
+  `--motion-base` (250ms) for small value changes and things appearing (the
+  evaluation bar, the move-rating badge), `--motion-slow` (450ms) for layout that
+  opens or closes (import forms), and `--motion-loop` (1200ms) for one cycle of an
+  indeterminate loader. Staggered delays are fractions of a token, such as
+  `calc(var(--motion-loop) / 4)`.
+- **Curves.** `--ease-standard` (ease-in-out) for anything that moves both ways or
+  loops, and `--ease-enter` (ease-out) for things arriving.
+- **Hover feedback.** Every hover that changes a background, border, colour or fill
+  fades over `--motion-fast`. Base buttons and button links already do; other
+  hoverable rows, cards, tabs and graph nodes name the properties they change.
+- **Nothing pops in or out.** Content that appears, disappears or is replaced
+  after the page is shown animates both ways, identically in every browser
+  (owner decisions, October 13, 2026). Wrap a conditional block in `Reveal`,
+  keyed rows in `RevealList` (pass `settled` once the data has loaded so the first
+  load arrives with its page), and a keyed replacement in `Swap` (`axis="inline"`
+  inside a row of controls). Wrap a conditional modal in `DialogPresence` and give
+  a native popover `usePopoverExit`. Disclosures animate through
+  disclosureMotion; panels, loaders and tab panels fade in through
+  [reveal.css](../frontend/src/reveal.css). Do not rely on browser-specific
+  features such as `interpolate-size` or `::details-content`.
+- **Reduced motion.** [interface-motion.css](../frontend/src/interface-motion.css)
+  applies the Still preference and, before preferences load, the device setting to
+  every interface element. Components do not write their own reduced-motion
+  queries; a component only adds a resting frame for Still when stopping its
+  animation would leave it looking wrong (the loading board).
+- **Coaches are exempt.** Coach portraits, rigs, idles, reactions and speech keep
+  their own hand-tuned timing and their own motion choice; the coach picker and
+  studio chrome are interface and follow the scale.
+- **Game tempo is not interface motion.** Piece movement (`reviewMotion.ts`),
+  lesson autoplay, the Play reply pause and GIF export pacing stay with their
+  features.
+- **Check.** `node scripts/motion-scale.mjs` (part of `npm run test:styles` and
+  `npm run build`) rejects raw times (other than 0) and raw easing keywords or
+  functions in `transition` and `animation` properties, `transition: all`, and
+  `prefers-reduced-motion` outside the global policy and the loading board.
 
 ## Surfaces
 

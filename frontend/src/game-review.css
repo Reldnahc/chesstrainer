@@ -67,7 +67,7 @@
   width: 100%;
   background: #dddeda;
   border-radius: 2px;
-  transition: height 0.25s;
+  transition: height var(--motion-base) var(--ease-standard);
 }
 .game-eval-bar > span {
   position: absolute;
@@ -336,6 +336,7 @@
 }
 .game-graph-node {
   fill: transparent;
+  transition: fill var(--motion-fast) var(--ease-standard);
 }
 .game-graph-node[data-marked="true"] {
   fill: var(--move-color);
@@ -371,6 +372,7 @@
   color: var(--muted);
   font-size: max(var(--text-xs), .7em);
 }
+.game-progress-reveal { flex-shrink: 0; }
 .game-progress {
   display: flex;
   flex-direction: column;

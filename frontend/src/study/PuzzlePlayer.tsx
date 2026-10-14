@@ -12,6 +12,7 @@ import ReviewCoach from "../ReviewCoach";
 import MoveBadge from "../MoveBadge";
 import MoveStatus from "../MoveStatus";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import SourceLine from "../SourceLine";
 import type { CoachExpression } from "../coach/model";
 import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
@@ -103,7 +104,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
         : complete ? <><Button size="compact" variant="primary" disabled={playing || openingNext} onClick={next}>Next puzzle <ArrowRight size={16} /></Button><Button size="compact" disabled={playing || openingNext} onClick={state.replay}><Play size={15} />{state.motion === "still" ? "View solution" : "Replay solution"}</Button></>
         : <>{incorrect && <Button size="compact" variant="primary" disabled={busy} onClick={state.retry}>Try again</Button>}<Button size="compact" variant="secondary" disabled={busy || playing} onClick={state.reveal}>Reveal solution</Button></>}</>}
     ><MoveStatus busy={busy} failed={incorrect && !error} text={message} /></ReviewCoach>
-    {(error || nextError) && <Notice announcement="alert" tone="error">{error || nextError}</Notice>}
+    <Reveal>{(error || nextError) && <Notice announcement="alert" tone="error">{error || nextError}</Notice>}</Reveal>
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
       <h2>{session.completion.themes.length ? session.completion.themes.map(puzzleThemeLabel).join(" · ") : "The continuation"}</h2>
       <ContinuationMoves label="Solution moves" moves={session.completion.solution} disabled={playing}

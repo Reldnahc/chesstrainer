@@ -1,22 +1,30 @@
 import Button from "../Button";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import type { Game } from "./types";
 
-export default function ReviewProgress({
-  game,
-  running,
-  busy,
-  reviewStarting,
-  start,
-  cancel,
-}: {
+type ReviewProgressProps = {
   game: Game;
   running: boolean;
   busy: boolean;
   reviewStarting: boolean;
   start: () => Promise<void>;
   cancel: () => Promise<void>;
-}) {
+};
+
+/** The progress section collapses away once the review finishes, rather than vanishing. */
+export default function ReviewProgress(props: ReviewProgressProps) {
+  return <Reveal className="game-progress-reveal">{progressSection(props)}</Reveal>;
+}
+
+function progressSection({
+  game,
+  running,
+  busy,
+  reviewStarting,
+  start,
+  cancel,
+}: ReviewProgressProps) {
   const refining = game.job?.phase === "refinement";
   // The session keeps polling background refinement; interruptions still expose recovery.
   if (!game.job?.error && (game.job?.status === "completed" || (refining && running)))
@@ -78,7 +86,7 @@ export default function ReviewProgress({
           )}
         </>
       )}
-      {game.job?.error && <Notice announcement="alert" tone="error" appearance="inline" className="small">{game.job.error}</Notice>}
+      <Reveal>{game.job?.error && <Notice announcement="alert" tone="error" appearance="inline" className="small">{game.job.error}</Notice>}</Reveal>
     </section>
   );
 }

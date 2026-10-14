@@ -3,6 +3,7 @@ import { Check, Copy, Download, X } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Button, { IconButton } from "../Button";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import { LoadingState } from "../LoadState";
 import useModalDialog from "../useModalDialog";
 import "./game-export.css";
@@ -99,7 +100,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
           <X />
         </IconButton>
       </div>
-      {error && <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>}
+      <Reveal>{error && <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>}</Reveal>
       {!game ? (!error && <LoadingState>Preparing the game…</LoadingState>) : <>
         <section className="game-export-section" aria-labelledby={`${ids}-pgn`}>
           <div className="row-between">

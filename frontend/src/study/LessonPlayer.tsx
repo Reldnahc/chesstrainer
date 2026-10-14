@@ -11,6 +11,7 @@ import ReturnButton from "../ReturnButton";
 import ReviewCoach from "../ReviewCoach";
 import MoveStatus from "../MoveStatus";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import type { CoachExpression } from "../coach/model";
 import { lessonCoursePath, studyPaths } from "../navigation";
@@ -105,7 +106,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
         </>}
       </>}</>}
     ><MoveStatus><p>{status}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedbackText}</p>}</MoveStatus></ReviewCoach>
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     <section className="panel lesson-context" aria-label="Lesson progress">
       <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
       <h2>{session.branch?.title || session.game?.title || session.chapter_title}</h2>

@@ -12,7 +12,8 @@
 /* Hidden alternatives still size the shared cell. */
 .play-swap { display: grid; }
 .play-swap > * { grid-area: 1 / 1; align-self: start; }
-.play-swap > [hidden] { visibility: hidden; }
+.play-swap > * { transition: opacity var(--motion-fast) var(--ease-standard), visibility var(--motion-fast) var(--ease-standard); }
+.play-swap > [hidden] { visibility: hidden; opacity: 0; }
 .play-swap > p[hidden] { display: block; }
 .play-course { width: min(100%, 520px); }
 .play-practice-prompt { display: grid; gap: var(--space-1); }

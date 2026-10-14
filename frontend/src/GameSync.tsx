@@ -5,6 +5,7 @@ import ActionLink from "./ActionLink";
 import { pagePaths } from "./navigation";
 import ProviderUsernameField from "./ProviderUsernameField";
 import Notice from "./Notice";
+import Reveal, { Swap } from "./Reveal";
 import { LoadingState } from "./LoadState";
 
 type Sync = Schema["SyncStatus"];
@@ -35,16 +36,16 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
   </form>;
   return <section className="panel game-sync" aria-label={`Recent ${provider.name} games`}>
     <h3>{provider.name}</h3>
-    {status?.username ? <>
+    <Swap>{status?.username ? <div className="stack stack--tight" key="connected">
       <strong className="connection-username">{status.username}</strong>
       <details className="disclosure">
         <summary>Change {provider.name} connection</summary>
         {form}
         <p className="small">Clear the username to disconnect.</p>
       </details>
-    </> : form}
-    {status?.username && <Notice announcement="status" appearance="inline">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}` : "Ready to check for new games"}</Notice>}
-    {status?.error && <Notice announcement="alert" tone="error">{status.error}</Notice>}
+    </div> : <div key="form">{form}</div>}</Swap>
+    <Reveal>{status?.username && <Notice announcement="status" appearance="inline">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}` : "Ready to check for new games"}</Notice>}</Reveal>
+    <Reveal>{status?.error && <Notice announcement="alert" tone="error">{status.error}</Notice>}</Reveal>
     {onImportOlderGames && <div className="connection-actions"><Button variant="secondary" onClick={() => onImportOlderGames(provider.id)}>Import older games</Button></div>}
   </section>;
 }
@@ -190,13 +191,13 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
   const button = <Button variant="secondary" disabled={loading || busy || checking} onClick={refresh}>{busy || checking ? "Updating…" : "Update games"}</Button>;
   if (compact) return <div className="game-sync-compact">
     {!loading && !connected ? <ActionLink variant="secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</ActionLink> : button}
-    {(error || Object.values(statuses).find(value => value.error)?.error) && <Notice announcement="alert" tone="error" appearance="inline" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</Notice>}
+    <Reveal>{(error || Object.values(statuses).find(value => value.error)?.error) && <Notice announcement="alert" tone="error" appearance="inline" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</Notice>}</Reveal>
   </div>;
   return <section className="game-connections" aria-label="Connected game accounts">
     <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks for new games every minute and analyzes each one automatically, newest first. Older imported games are analyzed after your recent ones. Checks pause after a week without visiting.</p>{connected && button}</div>
     {connected && <AnalysisQueueStatus />}
     {loading && providers.length === 0 && <LoadingState>Loading game connections…</LoadingState>}
     <div className="provider-connections">{providers.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
   </section>;
 }

@@ -1,0 +1,84 @@
+/* Interface entrances and exits: content grows, narrows or fades instead of
+   popping in or out, the same way in every browser. Everything here uses the
+   motion scale and stops under the Still policy in interface-motion.css.
+   See docs/UI_COMPONENTS.md#motion. */
+
+/* Reveal, RevealList and Swap items: a one-track grid animates between 0fr and
+   1fr, and a closed item's negative margin gives back its container's gap. */
+.reveal {
+  display: grid;
+  grid-template-rows: 1fr;
+  min-width: 0;
+  opacity: 1;
+  transition:
+    grid-template-rows var(--motion-base) var(--ease-standard),
+    opacity var(--motion-base) var(--ease-standard),
+    margin-block-start var(--motion-base) var(--ease-standard);
+}
+.reveal[data-open="false"] {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-block-start: calc(-1 * var(--reveal-gap, 0px));
+}
+.reveal[data-axis="inline"] {
+  grid-template-rows: none;
+  grid-template-columns: 1fr;
+  transition:
+    grid-template-columns var(--motion-base) var(--ease-standard),
+    opacity var(--motion-base) var(--ease-standard);
+}
+.reveal[data-axis="inline"][data-open="false"] {
+  grid-template-columns: 0fr;
+  margin-block-start: 0;
+}
+.reveal-clip { min-width: 0; min-height: 0; overflow: clip; overflow-clip-margin: var(--space-1); }
+.reveal[data-axis="inline"] > .reveal-clip { white-space: nowrap; }
+/* A swap stacks the leaving and arriving items in one cell, so its size morphs. */
+.reveal-swap { display: grid; min-width: 0; }
+.reveal-swap > .reveal { grid-area: 1 / 1; align-self: start; }
+/* The size morphs over the whole swap, but the old content fades out in the
+   first half and the new fades in during the second, so text never overlaps. */
+.reveal-swap > .reveal[data-open="false"] {
+  transition-duration: var(--motion-base), calc(var(--motion-base) / 2), var(--motion-base);
+}
+.reveal-swap > .reveal[data-open="true"] {
+  transition-duration: var(--motion-base), calc(var(--motion-base) / 2), var(--motion-base);
+  transition-delay: 0s, calc(var(--motion-base) / 2), 0s;
+}
+
+/* Loaded content, sections, tab panels and standing notices fade in where they
+   replace something else, rather than snapping. */
+@keyframes content-in {
+  from { opacity: 0; }
+}
+.panel,
+.load-state,
+.notice:not(.reveal *),
+[role="tabpanel"]:not([hidden]) {
+  animation: content-in var(--motion-base) var(--ease-enter);
+}
+
+/* Disclosures: disclosureMotion.ts animates their height both ways. */
+details[data-animating] { overflow: clip; }
+
+/* Modal dialogs rise in over a fading backdrop and sink out the same way
+   (DialogPresence keeps them mounted while data-closing plays). */
+@keyframes dialog-in {
+  from { opacity: 0; scale: 0.97; }
+}
+@keyframes dialog-out {
+  to { opacity: 0; scale: 0.97; }
+}
+@keyframes backdrop-out {
+  to { opacity: 0; }
+}
+dialog[open] { animation: dialog-in var(--motion-base) var(--ease-enter); }
+dialog[open]::backdrop { animation: content-in var(--motion-base) var(--ease-enter); }
+dialog[open][data-closing] { animation: dialog-out var(--motion-base) var(--ease-standard) forwards; }
+dialog[open][data-closing]::backdrop { animation: backdrop-out var(--motion-base) var(--ease-standard) forwards; }
+
+/* Popovers fade in when shown; popoverMotion.ts fades a copy out when one hides. */
+[popover]:popover-open { animation: dialog-in var(--motion-fast) var(--ease-enter); }
+[popover]:popover-open::backdrop { animation: content-in var(--motion-fast) var(--ease-enter); }
+[popover].popover-leaving:popover-open { animation: dialog-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
+[popover].popover-leaving:popover-open::backdrop { animation: backdrop-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }

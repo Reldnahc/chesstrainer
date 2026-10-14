@@ -3,6 +3,7 @@ import MoveBadge from "../MoveBadge";
 import ReviewCoach from "../ReviewCoach";
 import Button from "../Button";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import ReturnButton from "../ReturnButton";
 import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
@@ -236,7 +237,7 @@ export default function PositionCoach({
       insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} presentation={insight} report={report} />}
     >
       <DialogueText utterance={displayed} recordingId={spokenSource} announcedDetail={moves && movesLineText(moves)} />
-      {errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}
+      <Reveal>{errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}</Reveal>
     </ReviewCoach>
   );
 }

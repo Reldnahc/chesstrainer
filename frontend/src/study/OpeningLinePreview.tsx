@@ -13,6 +13,7 @@ import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import ReviewCoach from "../ReviewCoach";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import SourceLine from "../SourceLine";
 import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
@@ -116,14 +117,14 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
       reaction={{ state: "explaining", key: `${line.line.source_key}:${color}:${!!selectedStudy?.active}` }}
       actions={<><Button size="compact" variant="primary" disabled={busy || !positions || !!selectedStudy?.active} onClick={enroll}>{selectedStudy?.active ? "Added to study" : selectedStudy ? "Resume recalls" : "Add to study"}<ArrowRight size={16} /></Button>{selectedStudy && <Button size="compact" variant="secondary" disabled={busy} onClick={practice}><Play size={16} />Practice line</Button>}</>}
     ><p>{spoken ?? (selectedStudy?.active ? "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone." : "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies.")}</p></ReviewCoach>
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     <section className="panel opening-preview-details">
       <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{side === "white" ? line.white_positions : line.black_positions} decisions</small></label>)}</fieldset>
       <h2>The selected continuation</h2>
       <ContinuationMoves label="Opening continuation" moves={line.frames} numbered selectedIndex={ply - 1} startSelected={!ply}
         onStart={() => seek(0)} onSelect={index => seek(index + 1)} />
       <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall decisions. This line does not cover every opponent response.</p>
-      {saved && <Notice announcement="status" tone="success" appearance="inline" className="small">Study saved. Eligible positions are now included in Due.</Notice>}
+      <Reveal>{saved && <Notice announcement="status" tone="success" appearance="inline" className="small">Study saved. Eligible positions are now included in Due.</Notice>}</Reveal>
       <div className="button-row"><ActionLink variant="secondary" href={`${studyPaths.openings}/studies`}>My studies</ActionLink>{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</div>
       <SourceLine className="opening-source" text={line.line.source === "lichess_catalogue" ? "Lichess opening catalogue" : "Authored course repertoire line"}
         license={line.line.source === "lichess_catalogue" ? "CC0" : undefined} revision={line.line.source_version} />

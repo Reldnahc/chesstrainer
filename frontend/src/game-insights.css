@@ -72,6 +72,13 @@
 .insight-bar-label { overflow-wrap: anywhere; line-height: 1.35; }
 .insight-bar-track { height: 8px; border-radius: 4px; background: #2a2d32; overflow: hidden; }
 .insight-bar-fill { display: block; height: 100%; border-radius: 0 4px 4px 0; background: var(--accent); }
+/* Bars grow from the axis when they appear and slide when a filter changes their value. */
+@keyframes insight-bar-grow { from { width: 0; } }
+.insight-bar-fill,
+.insight-score-fill {
+  animation: insight-bar-grow var(--motion-slow) var(--ease-enter);
+  transition: width var(--motion-slow) var(--ease-standard);
+}
 .insight-bar-value { font: var(--text-md) var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
 
 /* Win/draw/loss split reuses the history outcome hues. */
@@ -99,6 +106,7 @@
   margin-inline: calc(-1 * var(--space-2));
   border-radius: 5px;
   text-decoration: none;
+  transition: background var(--motion-fast) var(--ease-standard);
 }
 .insight-games a:hover { background: var(--raised); }
 .insight-game-name { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: var(--text-base); }

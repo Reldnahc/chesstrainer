@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Reveal from "../Reveal";
 import { relativeDue } from "./relativeDue";
 import "./recall-receipt.css";
 
@@ -8,11 +9,11 @@ export default function RecallReceipt({ message, nextDue }: {
   nextDue?: string | null;
 }) {
   return <div className="review-schedule">
-    {message && <p className="review-due" role="status">
+    <Reveal>{message && <p className="review-due" role="status">
       {message}
       {nextDue && <> Next review: <time dateTime={nextDue} title={new Date(nextDue).toLocaleString()}>
         {relativeDue(nextDue, Date.now())}
       </time>.</>}
-    </p>}
+    </p>}</Reveal>
   </div>;
 }

@@ -7,6 +7,7 @@ import { positionScore, scoreText, strength } from "../evaluation";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import { LoadingState, UnavailableState } from "../LoadState";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
@@ -14,6 +15,7 @@ import ReviewControls from "./ReviewControls";
 import ReviewMoves from "./ReviewMoves";
 import ReviewProgress from "./ReviewProgress";
 import GameExportDialog from "../gameExport/GameExportDialog";
+import DialogPresence from "../DialogPresence";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
@@ -152,11 +154,11 @@ export default function GameWorkspace({
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
-      {error && (
+      <Reveal>{error && (
         <Notice announcement="alert" tone="error" actions={<Button onClick={dismissError}>Dismiss</Button>}>
           {error}
         </Notice>
-      )}
+      )}</Reveal>
       <ReviewWorkspace
         boardLabel="Game board and navigation"
         aboveBoard={
@@ -291,7 +293,7 @@ export default function GameWorkspace({
           onScrubEnd={exploration.finishScrubbing}
         />
       </ReviewWorkspace>
-      {exporting && <GameExportDialog id={id} fen={displayed.fen} orientation={orientation} onClose={() => setExporting(false)} />}
+      <DialogPresence>{exporting && <GameExportDialog id={id} fen={displayed.fen} orientation={orientation} onClose={() => setExporting(false)} />}</DialogPresence>
     </div>
   );
 }

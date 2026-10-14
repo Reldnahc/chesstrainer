@@ -7,6 +7,7 @@ import Button from "../Button";
 import ChoiceGroup from "../ChoiceGroup";
 import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import TurnIndicator from "../TurnIndicator";
 import { courseSettingsPath, lessonCoursePath, setLeaveGuard, type LessonTopic } from "../navigation";
@@ -349,11 +350,11 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     </div>}
     board={<Board fen={fen ?? START_FEN} orientation={current.side} legalMoves={recording?.legal ?? []} disabled={!recording || pending} onMove={recordMove} highlights={step.squares ?? []} arrows={arrows} />}
   >
-    {checking && !check ? <Notice announcement="status">Checking the course…</Notice>
+    <Reveal>{checking && !check ? <Notice announcement="status">Checking the course…</Notice>
       : check?.error ? <Notice announcement="status" tone="error">{check.error}</Notice>
-      : check && <Notice announcement="status" tone="success">The course loads without problems.</Notice>}
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
-    {notice && <Notice announcement="status" tone="success" actions={saved && <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink>}>{notice}</Notice>}
+      : check && <Notice announcement="status" tone="success">The course loads without problems.</Notice>}</Reveal>
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
+    <Reveal>{notice && <Notice announcement="status" tone="success" actions={saved && <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink>}>{notice}</Notice>}</Reveal>
 
     <details className="disclosure lesson-editor-section" open={!courseId}>
       <summary>Course details</summary>

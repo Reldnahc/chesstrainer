@@ -7,6 +7,7 @@ import ActionLink from "../ActionLink";
 import Button, { IconButton } from "../Button";
 import MovePlaybackControls from "../MovePlaybackControls";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import { LoadingState, UnavailableState } from "../LoadState";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import { positionScore, scoreText, strength } from "../evaluation";
@@ -130,12 +131,12 @@ export default function PlayGame({ id }: { id: string }) {
   };
   return (
     <div className="game-workspace">
-      {session.error && (
+      <Reveal>{session.error && (
         <Notice announcement="alert" tone="error" actions={<Button onClick={session.dismissError}>Dismiss</Button>}>
           {session.error}
         </Notice>
-      )}
-      {finished && (
+      )}</Reveal>
+      <Reveal>{finished && (
         <Notice announcement="status" tone="success" actions={state.saved_game_id ? (
           <ActionLink variant="primary" size="compact" href={gamesPath(1, state.saved_game_id)}>
             Open {bot}'s review <ArrowRight size={16} aria-hidden="true" />
@@ -143,7 +144,7 @@ export default function PlayGame({ id }: { id: string }) {
         ) : <ActionLink variant="secondary" size="compact" href={playSetupPath(state.id)}>New game</ActionLink>}>
           {resultLine(state, bot)}
         </Notice>
-      )}
+      )}</Reveal>
       <ReviewWorkspace
         boardLabel="Game board and controls"
         aboveBoard={

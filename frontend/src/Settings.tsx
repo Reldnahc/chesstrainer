@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Notice from "./Notice";
+import Reveal, { Swap } from "./Reveal";
 import { useEffect, useState } from "react";
 import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
@@ -65,7 +66,8 @@ export default function SettingsScreen({ health, fail, section, importSource, re
         items={sections.filter(item => (item.id !== "account" || account) && (item.id !== "courses" || canManage)).map(item => ({
           ...item, href: item.id === "imports" ? "/settings" : `/settings?section=${item.id}`,
         }))} />
-      <div className="settings-content">
+      {/* Sections crossfade, and the page height follows, when the tab changes. */}
+      <Swap><div className="settings-content" key={active}>
         {active === "imports" && <ImportSettings health={health} fail={fail} importSource={importSource} restoringScroll={restoringScroll}
           onImportSourceChange={source => navigate(source ? `/settings?import=${encodeURIComponent(source)}` : "/settings")} />}
         {active === "coach" && <><MotionSettings /><CoachSettings /></>}
@@ -88,7 +90,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
               </Button>
             </div>
             <div className="settings-tool-status">
-              <Notice announcement="status" appearance="inline">{message}</Notice>
+              <Notice announcement="status" appearance="inline"><Reveal>{message}</Reveal></Notice>
               <Link href="/settings#settings-activity">View import & analysis activity</Link>
             </div>
           </SettingsSection>
@@ -97,7 +99,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
             <p className="settings-source">Fieldwork is open source (GPL/AGPL). <a href="https://github.com/Reldnahc/chesstrainer" target="_blank" rel="noopener noreferrer">Source code on GitHub<ExternalLink size={12} aria-hidden="true" /></a></p>
           </SettingsSection>
         </>}
-      </div>
+      </div></Swap>
     </>
   );
 }

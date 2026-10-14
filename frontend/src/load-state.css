@@ -23,11 +23,11 @@
   border-radius: 1.5px;
   background: var(--accent);
   opacity: 0.25;
-  animation: load-state-square 1.2s ease-in-out infinite;
+  animation: load-state-square var(--motion-loop) var(--ease-standard) infinite;
 }
-.load-state-indicator > span:nth-child(2) { animation-delay: 0.3s; }
-.load-state-indicator > span:nth-child(4) { animation-delay: 0.6s; }
-.load-state-indicator > span:nth-child(3) { animation-delay: 0.9s; }
+.load-state-indicator > span:nth-child(2) { animation-delay: calc(var(--motion-loop) / 4); }
+.load-state-indicator > span:nth-child(4) { animation-delay: calc(var(--motion-loop) / 2); }
+.load-state-indicator > span:nth-child(3) { animation-delay: calc(var(--motion-loop) * 3 / 4); }
 @keyframes load-state-square {
   0%, 50%, 100% { opacity: 0.25; }
   15% { opacity: 1; }

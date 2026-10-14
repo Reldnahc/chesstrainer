@@ -4,6 +4,7 @@ import { api, read, type Job, type Schema } from "./api";
 import ProviderUsernameField from "./ProviderUsernameField";
 import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 
 
 export function ProviderImportForm({
@@ -166,7 +167,7 @@ export function ProviderImportForm({
           Dates replace Look back and include the whole day in UTC. Leave either
           blank for an open-ended range.
         </p>
-        {(startDate || endDate) && (
+        <Reveal>{(startDate || endDate) && (
           <Button
             type="button"
             variant="quiet"
@@ -177,17 +178,17 @@ export function ProviderImportForm({
           >
             Clear dates
           </Button>
-        )}
+        )}</Reveal>
       </details>
       <div className="import-form-actions">
         <ImportSubmitButton busy={busy} busyLabel="Queuing import…"
           disabled={loadingUsername || !username.trim()} />
       </div>
-      {message && (
+      <Reveal>{message && (
         <Notice announcement="status">
           {message}
         </Notice>
-      )}
+      )}</Reveal>
       <details className="disclosure import-extra">
         <summary>How imports work</summary>
         <p className="small">
@@ -351,7 +352,7 @@ export function ImportJob({
           </p>
         </>
       )}
-      {job.error && <Notice announcement="passive" tone="error" appearance="inline">{job.error}</Notice>}
+      <Reveal>{job.error && <Notice announcement="passive" tone="error" appearance="inline">{job.error}</Notice>}</Reveal>
       {job.activity && (
         <p className="small">
           Parallel work: {job.activity.games.active} game workers ·{" "}

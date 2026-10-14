@@ -6,6 +6,7 @@ import GameHistory, { type HistoryItem } from "./GameHistory";
 import ActionLink from "./ActionLink";
 import Pagination from "./Pagination";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 import EmptyState from "./EmptyState";
 import { gamesPath, pagePaths } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
@@ -69,11 +70,11 @@ export default function GamesScreen({
         background.current = true;
         setRevision((value) => value + 1);
       }} />
-      {error && (
+      <Reveal>{error && (
         <Notice announcement="alert" tone="error">
           {error}
         </Notice>
-      )}
+      )}</Reveal>
       {loading ? (
         <LoadingState>Loading your games…</LoadingState>
       ) : !items.length ? (

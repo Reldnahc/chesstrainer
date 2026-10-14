@@ -18,6 +18,7 @@ import SettingsScreen from "./Settings";
 import InsightsScreen from "./Weaknesses";
 import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
+import DialogPresence from "./DialogPresence";
 import { gamesPath, pagePaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
 import LessonEditor from "./study/LessonEditor";
@@ -29,6 +30,7 @@ import Link from "./Link";
 import Button, { IconButton } from "./Button";
 import ActionLink from "./ActionLink";
 import Notice from "./Notice";
+import Reveal from "./Reveal";
 import WelcomeBack from "./WelcomeBack";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount, useGuestSignIn } from "./AccountGate";
@@ -138,7 +140,7 @@ export default function App() {
             : "workspace-page"
         }
       >
-        {error && (
+        <Reveal>{error && (
           <Notice announcement="alert" tone="error" actions={<IconButton
               variant="quiet"
               aria-label="Dismiss error"
@@ -148,7 +150,7 @@ export default function App() {
             </IconButton>}>
             {error}
           </Notice>
-        )}
+        )}</Reveal>
         {!connection && !guestSignIn && <WelcomeBack />}
         {connection ? (
           <section className="panel connection">
@@ -251,13 +253,13 @@ export default function App() {
             : "Games & practice stay on this computer"}
         </span>
       </footer>
-      {evidenceId && (
+      <DialogPresence>{evidenceId && (
         <EvidenceDialog
           id={evidenceId}
           onClose={() => setEvidenceId(null)}
           fail={fail}
         />
-      )}
+      )}</DialogPresence>
     </>
   );
 }

@@ -5,6 +5,7 @@ import Link from "../Link";
 import Button from "../Button";
 import Pagination from "../Pagination";
 import Notice from "../Notice";
+import Reveal from "../Reveal";
 import EmptyState from "../EmptyState";
 import { navigate, openingCataloguePath } from "../navigation";
 
@@ -35,7 +36,7 @@ export default function OpeningCatalogue({ query, eco, offset }: { query: string
       <label>ECO<input value={code} onChange={event => setCode(event.target.value)} placeholder="C50" maxLength={3} /></label>
       <Button variant="primary" type="submit"><Search size={16} />Search</Button>
     </form>
-    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
+    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     {!catalogue && !error && <p role="status">Loading opening lines…</p>}
     {catalogue && <>
       <p className="small muted">{catalogue.total} matching {catalogue.total === 1 ? "line" : "lines"}</p>
