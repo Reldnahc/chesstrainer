@@ -53,6 +53,9 @@ test('background syncs refresh the game list in place, once per finished check',
   await page.goto('/games');
   const library = page.getByRole('region', {name: 'Game history', exact: true});
   await expect(library).toBeVisible();
+  // The first pass must finish before the status changes: otherwise the running
+  // check becomes the baseline, or the next tick is dropped while it is in flight.
+  await expect(page.getByRole('button', {name: 'Update games', exact: true})).toBeEnabled();
   await page.evaluate(() => {
     const seen = window as unknown as {blanked: boolean};
     seen.blanked = false;
