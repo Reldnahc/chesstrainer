@@ -403,7 +403,7 @@ def test_enqueue_is_immediate_validated_and_deduplicates_active_jobs(settings):
             == 422
         )
         job = client.get("/api/jobs").json()[0]
-        assert job["status"] == "queued" and job["chesscom"]["username"] == "learner"
+        assert job["status"] == "queued" and job["provider_import"]["username"] == "learner"
         assert client.post(f"/api/jobs/{job_id}/cancel").json()["status"] == "cancelled"
         bounded = {"username": "learner", "start_date": "2026-02-10", "end_date": "2026-02-11"}
         dated_id = client.post("/api/imports/provider/chesscom", json=bounded).json()["job_id"]
@@ -444,7 +444,7 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
                 break
             time.sleep(0.1)
         assert job["status"] == "completed", job
-        assert job["chesscom"]["games_imported"] == 1
+        assert job["provider_import"]["games_imported"] == 1
         # The fetched game then runs its own review + training analysis job.
         while time.monotonic() < deadline:
             queue = client.get("/api/analysis/queue").json()

@@ -466,129 +466,6 @@
         "title": "Candidate",
         "type": "object"
       },
-      "ChessComImportProgress": {
-        "additionalProperties": false,
-        "properties": {
-          "archives_processed": {
-            "title": "Archives Processed",
-            "type": "integer"
-          },
-          "archives_total": {
-            "title": "Archives Total",
-            "type": "integer"
-          },
-          "duplicates": {
-            "title": "Duplicates",
-            "type": "integer"
-          },
-          "end_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Date"
-          },
-          "errors": {
-            "items": {
-              "$ref": "#/components/schemas/ImportError"
-            },
-            "title": "Errors",
-            "type": "array"
-          },
-          "fetch_completed": {
-            "title": "Fetch Completed",
-            "type": "boolean"
-          },
-          "filtered": {
-            "title": "Filtered",
-            "type": "integer"
-          },
-          "games_fetched": {
-            "title": "Games Fetched",
-            "type": "integer"
-          },
-          "games_imported": {
-            "title": "Games Imported",
-            "type": "integer"
-          },
-          "job_id": {
-            "title": "Job Id",
-            "type": "string"
-          },
-          "max_games": {
-            "title": "Max Games",
-            "type": "integer"
-          },
-          "months": {
-            "title": "Months",
-            "type": "integer"
-          },
-          "provider": {
-            "default": "chesscom",
-            "title": "Provider",
-            "type": "string"
-          },
-          "provider_name": {
-            "default": "Chess.com",
-            "title": "Provider Name",
-            "type": "string"
-          },
-          "rejected": {
-            "title": "Rejected",
-            "type": "integer"
-          },
-          "start_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Start Date"
-          },
-          "time_class": {
-            "title": "Time Class",
-            "type": "string"
-          },
-          "user_id": {
-            "title": "User Id",
-            "type": "string"
-          },
-          "username": {
-            "title": "Username",
-            "type": "string"
-          }
-        },
-        "required": [
-          "job_id",
-          "user_id",
-          "username",
-          "time_class",
-          "months",
-          "max_games",
-          "start_date",
-          "end_date",
-          "archives_total",
-          "archives_processed",
-          "games_fetched",
-          "games_imported",
-          "duplicates",
-          "filtered",
-          "rejected",
-          "errors",
-          "fetch_completed"
-        ],
-        "title": "ChessComImportProgress",
-        "type": "object"
-      },
       "ClassificationAudit": {
         "additionalProperties": false,
         "properties": {
@@ -4306,16 +4183,6 @@
             "title": "Cancel Requested",
             "type": "boolean"
           },
-          "chesscom": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ChessComImportProgress"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "classifications_completed": {
             "title": "Classifications Completed",
             "type": "integer"
@@ -4394,7 +4261,7 @@
           "provider_import": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/ChessComImportProgress"
+                "$ref": "#/components/schemas/ProviderImportProgress"
               },
               {
                 "type": "null"
@@ -4439,7 +4306,7 @@
           "created_at",
           "probe_total",
           "activity",
-          "chesscom"
+          "provider_import"
         ],
         "title": "Job",
         "type": "object"
@@ -7400,6 +7267,129 @@
           "username"
         ],
         "title": "ProviderConnectionRequest",
+        "type": "object"
+      },
+      "ProviderImportProgress": {
+        "additionalProperties": false,
+        "properties": {
+          "archives_processed": {
+            "title": "Archives Processed",
+            "type": "integer"
+          },
+          "archives_total": {
+            "title": "Archives Total",
+            "type": "integer"
+          },
+          "duplicates": {
+            "title": "Duplicates",
+            "type": "integer"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/ImportError"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "fetch_completed": {
+            "title": "Fetch Completed",
+            "type": "boolean"
+          },
+          "filtered": {
+            "title": "Filtered",
+            "type": "integer"
+          },
+          "games_fetched": {
+            "title": "Games Fetched",
+            "type": "integer"
+          },
+          "games_imported": {
+            "title": "Games Imported",
+            "type": "integer"
+          },
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "max_games": {
+            "title": "Max Games",
+            "type": "integer"
+          },
+          "months": {
+            "title": "Months",
+            "type": "integer"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_name": {
+            "title": "Provider Name",
+            "type": "string"
+          },
+          "rejected": {
+            "title": "Rejected",
+            "type": "integer"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "time_class": {
+            "title": "Time Class",
+            "type": "string"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "provider_name",
+          "job_id",
+          "user_id",
+          "username",
+          "time_class",
+          "months",
+          "max_games",
+          "start_date",
+          "end_date",
+          "archives_total",
+          "archives_processed",
+          "games_fetched",
+          "games_imported",
+          "duplicates",
+          "filtered",
+          "rejected",
+          "errors",
+          "fetch_completed"
+        ],
+        "title": "ProviderImportProgress",
         "type": "object"
       },
       "ProviderImportRequest": {

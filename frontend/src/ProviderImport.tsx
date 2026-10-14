@@ -214,7 +214,7 @@ export function ImportJob({
   fail: (e: unknown) => void;
   compact?: boolean;
 }) {
-  const source = job.provider_import || job.chesscom;
+  const source = job.provider_import;
   const mounted = useRef(false);
   useEffect(() => {
     mounted.current = true;

@@ -194,7 +194,7 @@ def test_generic_api_connections_and_fetch_jobs_never_start_engine(settings):
         app.state.runner.run_job(job)
         saved = api.get("/api/jobs").json()[0]
         assert saved["status"] == "completed" and saved["positions_triaged"] == 0
-        assert saved["provider_import"]["provider"] == "lichess" and saved["chesscom"] is None
+        assert saved["provider_import"]["provider"] == "lichess"
         sync = api.post("/api/providers/lichess/sync").json()
         assert sync["provider"] == "lichess"
         assert api.post("/api/providers/lichess/sync").json()["job_id"] == sync["job_id"]

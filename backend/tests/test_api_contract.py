@@ -120,3 +120,26 @@ def test_router_resources_and_access_controls_belong_to_each_app(settings, tmp_p
         )
         assert left.get("/api/stats").json() == {"exercises": 1, "reviews": 0}
         assert right.get("/api/stats").json() == {"exercises": 0, "reviews": 0}
+
+
+def test_row_responses_read_only_the_fields_their_contract_declares(settings, sessions):
+    from lesson_fixtures import seed_lesson
+    from sqlalchemy import select
+    from trainer.contracts.classification import ClassificationAudit
+    from trainer.contracts.common import from_row
+    from trainer.models import ClassificationRun
+
+    with sessions() as db:
+        seed_lesson(db, settings, count=1)
+        run = db.scalar(select(ClassificationRun))
+        run.internal_note = "a column the contract has not adopted"
+        fields = from_row(ClassificationAudit, run)
+        assert "internal_note" not in fields
+        assert ClassificationAudit.model_validate(fields).id == run.id
+        db.commit()
+        run_id = run.id
+    settings.stockfish_path = "missing-contract-test-engine"
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        response = client.get(f"/api/classification-runs/{run_id}")
+        assert response.status_code == 200, response.text
+        assert response.json()["decision_id"]

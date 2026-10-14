@@ -5,7 +5,7 @@ from sqlalchemy import func, select
 
 from trainer.classification import reject_run
 from trainer.contracts.classification import ClassificationAudit, Evidence, Weaknesses
-from trainer.contracts.common import JobCreated, Rejected
+from trainer.contracts.common import JobCreated, Rejected, from_row
 from trainer.coverage import coverage
 from trainer.job_lifecycle import JobKind, ensure_job
 from trainer.models import ClassificationRun, Decision, EngineAnalysis, SkillEvidence
@@ -110,7 +110,7 @@ def create_router(*, settings, classifier) -> APIRouter:
             run = db.get(ClassificationRun, run_id)
             if run is None:
                 raise HTTPException(404, "Classification run not found")
-            return {c.name: getattr(run, c.name) for c in ClassificationRun.__table__.columns}
+            return from_row(ClassificationAudit, run)
 
     @router.post(
         "/api/classification-runs/{run_id}/reject",

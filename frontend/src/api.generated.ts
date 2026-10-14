@@ -1874,53 +1874,6 @@ export interface components {
             /** Uci */
             uci: string;
         };
-        /** ChessComImportProgress */
-        ChessComImportProgress: {
-            /** Archives Processed */
-            archives_processed: number;
-            /** Archives Total */
-            archives_total: number;
-            /** Duplicates */
-            duplicates: number;
-            /** End Date */
-            end_date: string | null;
-            /** Errors */
-            errors: components["schemas"]["ImportError"][];
-            /** Fetch Completed */
-            fetch_completed: boolean;
-            /** Filtered */
-            filtered: number;
-            /** Games Fetched */
-            games_fetched: number;
-            /** Games Imported */
-            games_imported: number;
-            /** Job Id */
-            job_id: string;
-            /** Max Games */
-            max_games: number;
-            /** Months */
-            months: number;
-            /**
-             * Provider
-             * @default chesscom
-             */
-            provider: string;
-            /**
-             * Provider Name
-             * @default Chess.com
-             */
-            provider_name: string;
-            /** Rejected */
-            rejected: number;
-            /** Start Date */
-            start_date: string | null;
-            /** Time Class */
-            time_class: string;
-            /** User Id */
-            user_id: string;
-            /** Username */
-            username: string;
-        };
         /** ClassificationAudit */
         ClassificationAudit: {
             /** Attempts */
@@ -3059,7 +3012,6 @@ export interface components {
             activity: components["schemas"]["JobActivity"] | null;
             /** Cancel Requested */
             cancel_requested: boolean;
-            chesscom: components["schemas"]["ChessComImportProgress"] | null;
             /** Classifications Completed */
             classifications_completed: number;
             /**
@@ -3092,7 +3044,7 @@ export interface components {
             priority: number;
             /** Probe Total */
             probe_total: number | null;
-            provider_import?: components["schemas"]["ChessComImportProgress"] | null;
+            provider_import: components["schemas"]["ProviderImportProgress"] | null;
             /**
              * Puzzles Found
              * @default 0
@@ -4112,6 +4064,47 @@ export interface components {
         };
         /** ProviderConnectionRequest */
         ProviderConnectionRequest: {
+            /** Username */
+            username: string;
+        };
+        /** ProviderImportProgress */
+        ProviderImportProgress: {
+            /** Archives Processed */
+            archives_processed: number;
+            /** Archives Total */
+            archives_total: number;
+            /** Duplicates */
+            duplicates: number;
+            /** End Date */
+            end_date: string | null;
+            /** Errors */
+            errors: components["schemas"]["ImportError"][];
+            /** Fetch Completed */
+            fetch_completed: boolean;
+            /** Filtered */
+            filtered: number;
+            /** Games Fetched */
+            games_fetched: number;
+            /** Games Imported */
+            games_imported: number;
+            /** Job Id */
+            job_id: string;
+            /** Max Games */
+            max_games: number;
+            /** Months */
+            months: number;
+            /** Provider */
+            provider: string;
+            /** Provider Name */
+            provider_name: string;
+            /** Rejected */
+            rejected: number;
+            /** Start Date */
+            start_date: string | null;
+            /** Time Class */
+            time_class: string;
+            /** User Id */
+            user_id: string;
             /** Username */
             username: string;
         };

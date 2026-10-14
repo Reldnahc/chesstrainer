@@ -17,9 +17,9 @@ class PgnImportResult(Contract):
     errors: list[ImportError]
 
 
-class ChessComImportProgress(Contract):
-    provider: str = "chesscom"
-    provider_name: str = "Chess.com"
+class ProviderImportProgress(Contract):
+    provider: str
+    provider_name: str
     job_id: str
     user_id: str
     username: str
@@ -68,8 +68,7 @@ class Job(Contract):
     priority: int = 0
     probe_total: int | None
     activity: JobActivity | None
-    chesscom: ChessComImportProgress | None
-    provider_import: ChessComImportProgress | None = None
+    provider_import: ProviderImportProgress | None
 
 
 class AnalysisQueueGame(Contract):

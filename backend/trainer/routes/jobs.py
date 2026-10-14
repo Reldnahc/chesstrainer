@@ -4,8 +4,8 @@ from fastapi import APIRouter
 from sqlalchemy import func, select
 
 from trainer import job_lifecycle
-from trainer.contracts.common import JobStatus
-from trainer.contracts.jobs import AnalysisQueue, Job
+from trainer.contracts.common import JobStatus, from_row
+from trainer.contracts.jobs import AnalysisQueue, Job, ProviderImportProgress
 from trainer.errors import Gone, NotFound
 from trainer.game_analysis import BACKFILL, FRESH, REQUESTED
 from trainer.game_providers import get_provider
@@ -29,39 +29,36 @@ def create_router(*, runner) -> APIRouter:
                 .order_by(AnalysisJob.created_at.desc())
                 .limit(50)
             ).all()
+            ids = [row.id for row in rows]
             sources = {
                 source.job_id: source
                 for source in db.scalars(
-                    select(ProviderImport).where(
-                        ProviderImport.job_id.in_([row.id for row in rows])
-                    )
+                    select(ProviderImport).where(ProviderImport.job_id.in_(ids))
                 )
             }
+            probes = dict(
+                db.execute(
+                    select(ClassificationTask.job_id, func.count())
+                    .where(ClassificationTask.job_id.in_(ids))
+                    .group_by(ClassificationTask.job_id)
+                ).all()
+            )
+
+            def provider_import(source):
+                return from_row(
+                    ProviderImportProgress,
+                    source,
+                    provider_name=get_provider(source.provider).name,
+                )
+
             return [
-                {c.name: getattr(row, c.name) for c in AnalysisJob.__table__.columns}
-                | {
-                    "probe_total": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationTask)
-                        .where(ClassificationTask.job_id == row.id)
-                    )
-                    if row.kind == JobKind.ENRICHMENT
-                    else None,
-                    "activity": runner.activity(row.id),
-                    "provider_import": {
-                        c.name: getattr(sources[row.id], c.name)
-                        for c in ProviderImport.__table__.columns
-                    }
-                    | {"provider_name": get_provider(sources[row.id].provider).name}
-                    if row.id in sources
-                    else None,
-                    "chesscom": {
-                        c.name: getattr(sources[row.id], c.name)
-                        for c in ProviderImport.__table__.columns
-                    }
-                    if row.id in sources and sources[row.id].provider == "chesscom"
-                    else None,
-                }
+                from_row(
+                    Job,
+                    row,
+                    probe_total=probes.get(row.id, 0) if row.kind == JobKind.ENRICHMENT else None,
+                    activity=runner.activity(row.id),
+                    provider_import=provider_import(sources[row.id]) if row.id in sources else None,
+                )
                 for row in rows
             ]
 
