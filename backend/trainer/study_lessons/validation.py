@@ -3,7 +3,6 @@
 from trainer.study_lessons.content import (
     Branch,
     Decision,
-    Demonstration,
     Explanation,
     GameExcerpt,
     Rehearsal,
@@ -13,6 +12,35 @@ from trainer.study_lessons.content import (
 def unique(items, label):
     if len({item.id for item in items}) != len(items):
         raise ValueError(f"Duplicate {label} ID")
+
+
+def step_start(course, step):
+    """Where a rehearsal or game excerpt begins: its line, or its game at ``from_ply``."""
+    if step.kind == "rehearsal":
+        return course.line(step.line_id).position
+    if step.kind == "game_excerpt":
+        game = course.game(step.game_id)
+        return game.position.after(game.moves[: step.from_ply])
+    return step.position
+
+
+def step_result(course, step, choice=None):
+    """Where a step leaves the board: after its moves, or after ``choice`` and its reply.
+
+    The validator and the course-file writer both read positions through this,
+    so a course always saves to a file that loads back to the same positions.
+    """
+    if step.kind == "demonstration":
+        return step.position.after(step.moves)
+    if step.kind == "decision":
+        return step.position if choice is None else step.position.after((choice.uci, *choice.reply))
+    if step.kind == "rehearsal":
+        line = course.line(step.line_id)
+        return line.position.after(line.moves)
+    if step.kind == "game_excerpt":
+        game = course.game(step.game_id)
+        return game.position.after(game.moves[: step.to_ply])
+    return step.position
 
 
 def validate_course(course):
@@ -51,9 +79,7 @@ def validate_chapter(course, chapter):
 
     for step in chapter.steps:
         result = step.position
-        if isinstance(step, Demonstration):
-            result = result.after(step.moves)
-        elif isinstance(step, Decision):
+        if isinstance(step, Decision):
             if result.board().turn != (course.learner_color == "white"):
                 raise ValueError("Lesson decisions must belong to the learner")
             if step.next_step is not None:
@@ -61,7 +87,7 @@ def validate_chapter(course, chapter):
             if len({choice.uci for choice in step.choices}) != len(step.choices):
                 raise ValueError("Duplicate decision answer")
             for choice in step.choices:
-                connect(step, choice.next_step, result.after((choice.uci, *choice.reply)))
+                connect(step, choice.next_step, step_result(course, step, choice))
             continue
         elif isinstance(step, Branch):
             connect(step, step.branch_start, result, branch=True)
@@ -72,9 +98,8 @@ def validate_chapter(course, chapter):
                 raise ValueError("Unknown excerpt game") from exc
             if not step.from_ply < step.to_ply <= len(game.moves):
                 raise ValueError("Invalid game excerpt bounds")
-            if result != game.position.after(game.moves[: step.from_ply]):
+            if result != step_start(course, step):
                 raise ValueError("Excerpt position must retain its source game history")
-            result = game.position.after(game.moves[: step.to_ply])
         elif isinstance(step, Rehearsal):
             try:
                 line = course.line(step.line_id)
@@ -90,8 +115,7 @@ def validate_chapter(course, chapter):
                 for ply in range(len(line.moves))
             ):
                 raise ValueError("Rehearsal must include a learner decision")
-            result = result.after(line.moves)
-        connect(step, step.next_step, result)
+        connect(step, step.next_step, step_result(course, step))
 
     visited, pending = set(), set()
 
