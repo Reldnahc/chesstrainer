@@ -10,7 +10,7 @@ from queue import Empty, Full, Queue
 from time import monotonic
 from typing import Protocol
 
-from trainer.cancellation import throttled
+from trainer.cancellation import WaitCancelled, WaitTimedOut, taking, wait_until
 from trainer.human_models.preset import provenance
 from trainer.human_models.types import HumanPolicy, HumanReadiness, ModelProvenance
 
@@ -202,20 +202,24 @@ class MaiaProvider:
         if self.provenance.inference.get("torch") == "unavailable":
             raise HumanUnavailable("runtime_unavailable")
         deadline = monotonic() + self.settings.human_model_timeout
-        waiting = throttled(cancelled)
-        while True:
-            if waiting() or self._closed.is_set():
-                raise HumanCancelled("cancelled")
-            if monotonic() >= deadline:
-                raise HumanUnavailable("busy")
+        take = taking(self.available)
+
+        def attempt(timeout):
             with self._guard:
                 if monotonic() < self._retry_after:
                     raise HumanUnavailable("cooldown")
-            try:
-                worker = self.available.get(timeout=0.05)
-                break
-            except Empty:
-                continue
+            return take(timeout)
+
+        try:
+            worker = wait_until(
+                attempt,
+                lambda: self._closed.is_set() or cancelled(),
+                deadline=deadline,
+            )
+        except WaitCancelled as exc:
+            raise HumanCancelled("cancelled") from exc
+        except WaitTimedOut as exc:
+            raise HumanUnavailable("busy") from exc
         with self._guard:
             cooling = monotonic() < self._retry_after
         if cooling:
@@ -250,6 +254,7 @@ class MaiaProvider:
                 self._state = "ready"
             return result
         except Exception as exc:
+            # A failed worker is discarded, not reused; the slot starts a new one.
             if worker is not None:
                 worker.close()
                 with self._guard:

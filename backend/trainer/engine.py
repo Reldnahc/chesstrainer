@@ -8,19 +8,19 @@ from pathlib import Path
 import chess
 import chess.engine
 from sqlalchemy import select
-from sqlalchemy.dialects.sqlite import insert
 
+from trainer.cancellation import StripedLocks
 from trainer.chess_core import Candidate, Score, digest, engine_context, legal_move
 from trainer.config import Settings
 from trainer.engine_search import cancellable_search, search_lock
-from trainer.models import EngineAnalysis, uid
+from trainer.models import EngineAnalysis, keep_shared
 from trainer.search_limits import EngineCancelled, SearchLimits
 
 log = logging.getLogger(__name__)
 
 # Bounded shared stripes prevent concurrent searches for an identical cache key.
 # They contain no engine state and also cover the interactive engine.
-_CACHE_LOCKS = tuple(threading.Lock() for _ in range(1024))
+_CACHE_LOCKS = StripedLocks(1024)
 _BINARY_HASHES: dict[tuple[str, int, int], str] = {}
 _BINARY_HASH_LOCK = threading.Lock()
 
@@ -183,7 +183,7 @@ class Stockfish:
             key = digest(
                 {"context": engine_context(board), "engine": self.version, "config": config}
             )
-            with search_lock(_CACHE_LOCKS[int(key[:3], 16) % len(_CACHE_LOCKS)], cancelled):
+            with search_lock(_CACHE_LOCKS.for_key(key), cancelled):
                 with self.sessions() as db:
                     cached = db.scalar(
                         select(EngineAnalysis).where(EngineAnalysis.cache_key == key)
@@ -246,16 +246,14 @@ class Stockfish:
                     ) from exc
                 with self.sessions() as db:
                     db.execute(
-                        insert(EngineAnalysis)
-                        .values(
-                            id=uid(),
-                            cache_key=key,
+                        keep_shared(
+                            EngineAnalysis,
+                            key,
                             fen=board.fen(),
                             engine_version=self.version,
                             config=config,
                             candidates=[c.model_dump() for c in candidates],
                         )
-                        .on_conflict_do_nothing(index_elements=["cache_key"])
                     )
                     db.commit()
                     return db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))

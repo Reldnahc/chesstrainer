@@ -1,8 +1,8 @@
 """A host-wide native engine budget shared by every account and job."""
 
-from queue import Empty, Queue
+from queue import Queue
 
-from trainer.cancellation import throttled
+from trainer.cancellation import WaitCancelled, taking, wait_until
 from trainer.search_limits import EngineCancelled
 
 
@@ -24,15 +24,10 @@ class EnginePool:
                 self.settings = settings
 
             def run(self, method, *args, **kwargs):
-                cancelled = throttled(kwargs.get("cancelled"))
-                while True:
-                    if cancelled and cancelled():
-                        raise EngineCancelled()
-                    try:
-                        engine = pool.available.get(timeout=0.05)
-                        break
-                    except Empty:
-                        continue
+                try:
+                    engine = wait_until(taking(pool.available), kwargs.get("cancelled"))
+                except WaitCancelled as exc:
+                    raise EngineCancelled() from exc
                 try:
                     if engine is None:
                         engine = pool.factory(settings, sessions)
@@ -43,6 +38,9 @@ class EnginePool:
                     self.binary_hash = getattr(engine, "binary_hash", "")
                     return result
                 finally:
+                    # A failed engine goes back too: Stockfish closes its process on an
+                    # error and starts a fresh one on the next call. (A failed Maia
+                    # worker is discarded instead; see human_models.runtime.)
                     pool.available.put(engine)
 
             def start(self, cancelled=None):

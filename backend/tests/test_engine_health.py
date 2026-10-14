@@ -144,3 +144,20 @@ def test_json_formatter_preserves_stack_info_without_exception():
     result = json.loads(JSONFormatter().format(record))
     assert result["stack"] == "saved stack"
     assert "exception" not in result
+
+
+def test_the_bots_strength_limited_moves_report_engine_health():
+    from trainer.engine import EngineUnavailable
+    from trainer.engine_health import EngineHealth
+
+    class Broken:
+        version = "x"
+
+        def play_limited(self, *args, **kwargs):
+            raise EngineUnavailable("gone")
+
+    health = EngineHealth()
+    engine = health.observe(lambda settings, sessions: Broken())(None, None)
+    with pytest.raises(EngineUnavailable):
+        engine.play_limited(None, 1500, 0.1)
+    assert health.snapshot()["engine_status"] == "unavailable"

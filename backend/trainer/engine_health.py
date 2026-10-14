@@ -90,6 +90,9 @@ class ObservedEngine:
     def analyze(self, *args, **kwargs):
         return self._run("analyze", *args, **kwargs)
 
+    def play_limited(self, *args, **kwargs):
+        return self._run("play_limited", *args, **kwargs)
+
     def close(self):
         # Normal idle/shutdown cleanup does not mean that the executable failed.
         self._engine.close()

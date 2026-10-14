@@ -9,6 +9,7 @@ from sqlalchemy import (
     UniqueConstraint,
     or_,
 )
+from sqlalchemy.dialects.sqlite import insert as sqlite_insert
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -729,3 +730,16 @@ class OpeningContentChange(Owned, Base):
     reason: Mapped[str]
     details: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+def keep_shared(model, key, **values):
+    """Insert one shared cache row (engine or Maia) unless any account saved it first.
+
+    Execute it, then read the row back by ``cache_key``: concurrent jobs and
+    accounts never duplicate a shared row, and every one gets the saved id.
+    """
+    return (
+        sqlite_insert(model)
+        .values(id=uid(), cache_key=key, **values)
+        .on_conflict_do_nothing(index_elements=["cache_key"])
+    )
