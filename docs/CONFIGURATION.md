@@ -98,7 +98,7 @@ Missing Stockfish produces an actionable status without preventing UI startup. N
 
 For unlisted answers, the saved analysis limits/resources and binary identity are required. An incompatible executable produces an unavailable response without a recall failure. Rebuilding old exercises under a new engine is a future operation.
 
-Policy and target-rating effects are documented in [ANALYSIS_PIPELINE.md](ANALYSIS_PIPELINE.md) and [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
+Policy and target-rating effects are documented in [analysis pipeline](GAME_ANALYSIS.md#analysis-pipeline) and [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
 
 ## Local classification
 
@@ -122,7 +122,7 @@ A saved FSRS interval strictly greater than RETIRE_AFTER_DAYS permanently retire
 
 Chess.com username, time class, calendar-month lookback or explicit dates, and new-game limit are selected per import and saved in SQLite. Defaults are rapid / 3 months / 100 new games. Date bounds include whole UTC completion days and override lookback. Duplicates and rejected games do not consume the new-game limit; repeated imports can backfill older unsaved games in the selected range. Retry old cancelled jobs separately.
 
-Chess.com import requires internet access on the host and no account credentials. User-Agent may include contact details; never put secrets there. See [CHESSCOM_IMPORT.md](CHESSCOM_IMPORT.md).
+Chess.com import requires internet access on the host and no account credentials. User-Agent may include contact details; never put secrets there. See [Chess.com transport](GAME_PROVIDERS.md#chesscom-transport).
 
 ## Local and LAN operation
 

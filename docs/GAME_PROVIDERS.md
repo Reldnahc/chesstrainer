@@ -42,3 +42,62 @@ idempotent and changes only the current account. Existing users are grandfathere
 as complete during migration. Local-only installations have no onboarding gate.
 Reloading an unfinished flow restores saved usernames; completed users bypass it
 on every device. Connections remain editable later in Settings.
+
+## Chess.com transport
+
+Open **Settings → Games & imports**, choose **Import older games** on the Chess.com card and enter a player username. Defaults: rapid, last 3 calendar months (including the current UTC month), latest 100 unsaved matching games. Select blitz/bullet/daily/all, a longer range or all available history, and a maximum of 1–1000 new games. Rated and unrated completed standard-chess games are included; each game keeps Chess.com's `rated` flag, and re-importing a saved game fills that flag in, since games imported before it existed have none. Unrated games stay out of [Insights](INSIGHTS.md). Chess variants and ongoing games are excluded. No Chess.com login, API key or subscription integration is required.
+
+### Provider and authority
+
+Use the [official read-only Published Data API](https://www.chess.com/news/view/published-data-api):
+
+* `GET https://api.chess.com/pub/player/{username}/games/archives`
+* `GET https://api.chess.com/pub/player/{username}/games/{YYYY}/{MM}`
+
+The backend reads monthly JSON for its PGNs, completion times, rules and time-class metadata. Archives are searched newest first, and games are sorted by end time within each month. The supplied username is matched in provider player metadata and independently in parsed PGN headers. No side is silently inferred when those headers are ambiguous. Python-chess, Stockfish, policy and FSRS retain their existing authorities; provider accuracy scores are unused.
+
+Chess.com may serve cached data; newly completed games need not appear immediately. The feature retrieves public completed history; it does not provide real-time synchronization or gameplay.
+
+### Local API and persistence
+
+`POST /api/imports/chesscom` accepts:
+
+```json
+{"username":"your_username","time_class":"rapid","months":3,"max_games":100,"start_date":null,"end_date":null}
+```
+
+It returns HTTP 202 with a queued job ID. Identical active requests reuse the same job; submitting after completion refreshes provider data and deduplicates saved games. `months=0` selects all available history. `max_games` now counts newly inserted games: duplicates and invalid PGNs do not consume it. The scan continues within the chosen range until that many new games are found or matching archives are exhausted. This can backfill older games never saved locally; use From date if you want only recently played games.
+
+Optional **From date / To date** fields accept ISO dates, for example `start_date="2026-01-10"` and `end_date="2026-02-15"`. Setting either date overrides `months`; leaving one blank creates an open-ended range. Both endpoints include the entire day, based on the game's completion timestamp in UTC (not its start date). The backend prunes unrelated monthly archives, then filters individual games within the remaining archives. Reversed dates are rejected before queuing. Mode and maximum-game limits still apply. Clear both dates to restore the rolling lookback window.
+
+The normal job worker downloads first, then queues a background review for each game introduced by this import ([Automatic game analysis](GAME_ANALYSIS.md)). `/api/jobs` includes a `chesscom` progress object: archives checked/available, fetched/imported/duplicate/filtered/rejected counts, fetch-completed flag and up to 50 diagnostic examples. Each new game's review then runs as its own `game_review` job. `games_fetched` counts PGNs examined by the importer, including duplicates/rejections; it can exceed the new-game limit. Filtering counts cover checked archive entries, not an account-wide total.
+
+`chesscom_imports` stores query/progress fields relationally, keyed to `analysis_jobs`. `chesscom_archives` stores completed archive URLs/checkpoints. Original matching monthly PGNs accumulate in the linked `game_imports` row (the raw batch can include entries beyond the new-game limit). Processed games retain fingerprints/provenance links; `import_games.is_new` separates newly inserted games from duplicate provenance. Each archive import and its checkpoint commit atomically. On failure, cancellation or restart, saved games remain; retry skips completed archives. Once fetching finishes, an engine retry requires no provider requests. Start a fresh import to refresh a previously checked month after new games appear.
+
+Chess.com supplies monthly archives, so a fresh import still downloads archive data containing old games. It does not rerun Stockfish or classify those duplicate games. There is no per-game delta endpoint, and manual imports use no conditional archive HTTP cache (only the poller's change check sends an `ETag`). A duplicate-only import completes without new analysis work. New PGN-file imports follow the same new-game analysis policy; a duplicate-only PGN upload creates no analysis job. To finish older cancelled/failed work, retry its original job separately.
+
+### Classification cancellation and reuse
+
+Each completed local classification commits independently. Cancel stops new tasks and allows already-started engine/rule work to save. Retry the job from Import to finish its original scope, or use **Settings > Classify saved games** to scan saved meaningful decisions.
+
+Classified and abstained responses are reused when saved evidence, rule version, parameters and taxonomy match. Missing or failed classifications are computed locally; an identical rejected result is not automatically revived. Worker-count changes do not invalidate results. A hard process failure before a transaction commits can require recomputing that unfinished unit. Retry progress may recount saved positions without repeating compatible engine/rule work.
+
+Classification-only jobs launch no background engines and never call a model. Optional **Deepen unclear positions** is a separate, capped native Stockfish job with persisted tasks and cached searches; see [analysis pipeline](GAME_ANALYSIS.md#optional-evidence-enrichment).
+
+PGN uploads and provider imports share one mutation lock to prevent concurrent duplicate insertion. All Chess.com traffic is serial within the one application process, even with multiple engine workers. The feature does not add external workers or an account system.
+
+### Failure behavior
+
+Bounded 20-second request timeouts, up to three attempts on transport errors / 429 / selected 5xx responses, and cancellable backoff. Respect Retry-After; waits greater than 10 seconds end with an actionable retry-later message instead of retrying early. There is no infinite retry loop. 404/410, 403, redirects, malformed JSON and oversized responses have explicit messages. Usernames and archive URL paths are validated; arbitrary provider URLs/redirects are never followed.
+
+No matching archives/games produces a completed import with zero games and an explanatory UI message. An engine failure preserves fetched PGNs for retry. Bad or mismatched PGNs are reported individually. Existing parsed decisions and engine caches prevent repeated analysis of already saved games.
+
+### Privacy and configuration
+
+Only the requested username, archive paths and configured User-Agent go to Chess.com, from the host. No credentials, existing local games or database contents are transmitted. The import form starts from the Chess.com connection's saved username. Games, classification and learning data remain local. Model connectivity has been removed.
+
+`CHESSCOM_TIMEOUT_SECONDS=20`, `CHESSCOM_MAX_RESPONSE_BYTES=25000000` (decompressed bytes per HTTP response), and `CHESSCOM_USER_AGENT` are centralized host settings. Default User-Agent identifies Fieldwork; users may append contact information. Runtime HTTPX is explicitly declared and pinned in the existing dependency lock.
+
+### Verification
+
+Deterministic MockTransport tests cover filters, both learner sides, username/URL validation, latest-game limits, cross-source duplicates, checkpoint resume/cancellation, provider errors/rate limits and a real Stockfish worker-to-review flow without OpenAI. Browser tests inject this provider boundary in a test-only app while using the actual application API, SQLite, production frontend and native engine. Normal automated tests never call Chess.com.

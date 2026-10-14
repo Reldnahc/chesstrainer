@@ -209,12 +209,12 @@ To reimport a library from scratch, stop the server and run `python scripts/clea
 
 Games, analysis, classification, explanations, exercises and review history stay on the host. There is no OpenAI SDK, model connection or outbound pedagogy payload. Legacy model audit records are retained locally for historical reference/export. No telemetry, remote fonts or external board assets are used. IBM Plex fonts are bundled locally; their license notices are in [docs/licenses](docs/licenses).
 
-Username imports contact the selected site's public API from the backend, sending the requested username and filters. It downloads completed games and never sends moves, credentials, your database or existing local games to either provider. Archive data may be delayed by provider caching. Repeat imports deduplicate against both previous downloads and PGN uploads. See [game provider imports](docs/GAME_PROVIDERS.md) and [Chess.com transport details](docs/CHESSCOM_IMPORT.md).
+Username imports contact the selected site's public API from the backend, sending the requested username and filters. It downloads completed games and never sends moves, credentials, your database or existing local games to either provider. Archive data may be delayed by provider caching. Repeat imports deduplicate against both previous downloads and PGN uploads. See [game provider imports](docs/GAME_PROVIDERS.md) and [Chess.com transport details](docs/GAME_PROVIDERS.md#chesscom-transport).
 
 ## Documentation
 
 - [Product](docs/PRODUCT.md), [feature status and remaining work](docs/FEATURE_STATUS.md) and [Study](docs/STUDY.md)
-- [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/ANALYSIS_PIPELINE.md) and [data model](docs/DATA_MODEL.md)
+- [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/GAME_ANALYSIS.md#analysis-pipeline) and [data model](docs/DATA_MODEL.md)
 - [Local classification](docs/LOCAL_CLASSIFICATION.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
 - [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [game provider imports](docs/GAME_PROVIDERS.md)
 - [Coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast personality bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [character writing](docs/COACH_PERSONALITIES.md) and [audio](docs/AUDIO.md)
