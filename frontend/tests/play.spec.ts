@@ -46,7 +46,7 @@ async function mockPlay(page: Page) {
   await page.route("**/api/play/play1", route => route.fulfill({json: state()}));
   await page.route("**/api/play/play1/move", async route => {
     const body = route.request().postDataJSON() as {ply: number; uci: string};
-    expect(body).toEqual({ply: 0, uci: "e2e4"});
+    expect(body).toEqual({ply: 0, uci: "e2e4", rewind: false});
     moves = ["e2e4"];
     await route.fulfill({json: state()});
   });
@@ -133,6 +133,44 @@ test("the bot answers once the move is graded while the coach finishes its line"
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".coach-quality-name")).toHaveText("Best");
   await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("1 / 2");
+});
+
+test("playing a move from an earlier position replaces the rest of the game", async ({page}) => {
+  const AFTER_D4 = "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1";
+  const start = {...frame0, ...position(START, "white", [{from_square: "e2", to_square: "e4"}, {from_square: "d2", to_square: "d4"}])};
+  const d4 = {...position(AFTER_D4, "black", []), san: "d4", uci: "d2d4", number: 1, actor: "white", report: null};
+  let frames = [start, frame1, frame2];
+  await mockPlay(page);
+  const bodies: unknown[] = [];
+  await page.route("**/api/play/play1", route => route.fulfill({json: {...base, frames}}));
+  await page.route("**/api/play/play1/move", async route => {
+    bodies.push(route.request().postDataJSON());
+    frames = [start, d4];
+    await route.fulfill({json: {...base, frames}});
+  });
+  // The bot is slow to answer, so the rewound game is seen before its reply.
+  await page.route("**/api/play/play1/reply", () => undefined);
+  await page.route("**/api/play/play1/analyze", async route => {
+    const {ply} = route.request().postDataJSON() as {ply: number};
+    const value = ply === 1 ? report(frames[1].san, frames[1].uci!, "Best", 30) : report("e5", "e7e5", "Good", 20);
+    await route.fulfill({json: {report: value, score: value.white_score, best_move: null}});
+  });
+  await page.goto("/play/play1");
+  await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("2 / 2");
+  // Back on a position where it was the learner's move, the board takes a move.
+  await page.getByRole("button", {name: "Start of game"}).click();
+  await expect(page.getByText("Moving replaces the rest")).toBeVisible();
+  // One move back is the bot's turn: nothing to play there.
+  await page.getByRole("button", {name: "Next move"}).click();
+  await expect(page.getByText("Moving replaces the rest")).toHaveCount(0);
+  await page.getByRole("button", {name: "Previous move"}).click();
+  await page.locator('[data-square="d2"]').first().click();
+  await page.locator('[data-square="d4"]').first().click();
+  await expect(page.locator(".game-move-list")).toContainText("d4");
+  await expect(page.locator(".game-move-list")).not.toContainText("e5");
+  expect(bodies).toEqual([{ply: 0, uci: "d2d4", rewind: true}]);
+  await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("1 / 1");
+  await expect(page.getByText("Walter is thinking…")).toBeVisible();
 });
 
 test("a finished game offers its saved review", async ({page}) => {

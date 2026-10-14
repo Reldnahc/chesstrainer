@@ -3988,6 +3988,11 @@ export interface components {
         PlayMoveRequest: {
             /** Ply */
             ply: number;
+            /**
+             * Rewind
+             * @default false
+             */
+            rewind: boolean;
             /** Uci */
             uci: string;
         };

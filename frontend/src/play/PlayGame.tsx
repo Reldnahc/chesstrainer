@@ -109,6 +109,8 @@ export default function PlayGame({ id }: { id: string }) {
     );
   const shownOrientation = orientation ?? state.learner_color;
   const finished = state.status === "finished";
+  // The latest position on the learner's turn, or an earlier one to play from again.
+  const playable = (session.learnerToMove && !session.browsing) || session.canRewind;
   const score = positionScore(report?.white_score, frame);
   const cues = report?.board_cues?.fen === frame?.fen ? (report?.board_cues ?? null) : null;
   const explaining = session.explaining && !!cues;
@@ -125,8 +127,10 @@ export default function PlayGame({ id }: { id: string }) {
   };
   const statusFor = (color: "white" | "black") => {
     if (finished) return state.result ?? "";
-    if (color === state.learner_color)
+    if (color === state.learner_color) {
+      if (session.canRewind) return "Moving replaces the rest";
       return session.learnerToMove ? (session.browsing ? "Your move · browsing" : "Your move") : "";
+    }
     return session.waitingForBot ? `${bot} is thinking…` : "";
   };
   return (
@@ -179,8 +183,8 @@ export default function PlayGame({ id }: { id: string }) {
           <Board
             fen={frame?.fen ?? game.frames[0].fen}
             orientation={shownOrientation}
-            legalMoves={session.learnerToMove && !session.browsing ? (frame?.legal_moves ?? []) : []}
-            disabled={!session.learnerToMove || session.browsing || session.moving}
+            legalMoves={playable ? (frame?.legal_moves ?? []) : []}
+            disabled={!playable || session.moving}
             onMove={session.play}
             highlights={currentUci ? [currentUci.slice(0, 2), currentUci.slice(2, 4)] : []}
             quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label } : undefined}
