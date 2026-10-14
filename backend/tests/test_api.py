@@ -97,6 +97,16 @@ def test_token_and_origin(settings):
         )
 
 
+def test_origin_is_compared_without_case_and_a_malformed_one_is_refused(settings):
+    settings.stockfish_path = "missing-stockfish-test"
+    with TestClient(create_app(settings, workers=False)) as client:
+        same = {"host": "nas.local", "origin": "http://NAS.local"}
+        assert client.post("/api/course/rebuild", headers=same).status_code != 403
+        for origin in ("http://[::1", "http://nas.local:99999999999"):
+            malformed = {"host": "nas.local", "origin": origin}
+            assert client.post("/api/course/rebuild", headers=malformed).status_code == 403
+
+
 def test_local_mode_answers_lan_hosts_only(settings):
     settings.stockfish_path = "missing-stockfish-test"
     settings.allowed_hosts = "Chess.Example.net, nas-two"

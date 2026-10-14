@@ -12,8 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from trainer.config import Settings
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
 from trainer.errors import DomainError
-
-PRIVATE_SUFFIXES = (".local", ".localhost", ".lan", ".home", ".home.arpa", ".internal")
+from trainer.lan import lan_hostname, same_origin
 
 
 def host_allowed(host: str, settings: Settings) -> bool:
@@ -38,12 +37,7 @@ def host_allowed(host: str, settings: Settings) -> bool:
         pass
     allowed = {name.strip().lower() for name in settings.allowed_hosts.split(",") if name.strip()}
     allowed.add(settings.server_host.strip().lower())
-    return (
-        hostname in allowed
-        or hostname == "localhost"
-        or "." not in hostname
-        or hostname.endswith(PRIVATE_SUFFIXES)
-    )
+    return hostname in allowed or lan_hostname(hostname)
 
 
 def configure_http(app: FastAPI, settings: Settings):
@@ -71,7 +65,7 @@ def configure_http(app: FastAPI, settings: Settings):
                 )
             origin = request.headers.get("origin")
             if request.method not in {"GET", "HEAD", "OPTIONS"} and origin:
-                if urlsplit(origin).netloc != request.headers.get("host"):
+                if not same_origin(origin, request.headers.get("host")):
                     return JSONResponse(
                         {"detail": "Cross-origin writes are disabled."}, status_code=403
                     )

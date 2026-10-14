@@ -6,7 +6,6 @@ import sqlite3
 import threading
 import time
 from datetime import UTC, datetime
-from urllib.parse import urlsplit
 
 from fastapi import HTTPException, Request, Response
 from fastapi.responses import JSONResponse
@@ -32,8 +31,7 @@ from trainer.contracts.accounts import (
     SignupAccess,
 )
 from trainer.contracts.common import Ok
-
-LAN_SUFFIXES = (".local", ".localhost", ".lan", ".home", ".home.arpa", ".internal")
+from trainer.lan import lan_hostname, origin_parts, same_origin
 
 
 def lan_http(request):
@@ -45,7 +43,8 @@ def lan_http(request):
     """
     if request.url.scheme != "http":
         return False
-    if urlsplit(request.headers.get("origin") or "http:").scheme != "http":
+    origin = request.headers.get("origin")
+    if origin and getattr(origin_parts(origin), "scheme", None) != "http":
         return False
     hostname = (request.url.hostname or "").rstrip(".").lower()
     client = request.client.host if request.client else ""
@@ -57,7 +56,7 @@ def lan_http(request):
     try:
         return ipaddress.ip_address(hostname).is_private
     except ValueError:
-        return hostname == "localhost" or "." not in hostname or hostname.endswith(LAN_SUFFIXES)
+        return lan_hostname(hostname)
 
 
 def configure_accounts(app, settings):
@@ -114,13 +113,8 @@ def configure_accounts(app, settings):
         """
         if settings.public_origin and origin == settings.public_origin:
             return None
-        host = request.headers.get("host", "").lower()
-        try:
-            parts = urlsplit(origin or "")
-            netloc = parts.netloc.lower()
-        except ValueError:
-            netloc = ""
-        if netloc and netloc == host:
+        if same_origin(origin, request.headers.get("host")):
+            parts = origin_parts(origin)
             # Browsers drop Secure cookies on plain HTTP, so sign-in would silently
             # fail anywhere but the LAN, where lan_http() issues an ordinary cookie.
             if settings.session_secure and parts.scheme == "http" and not lan_http(request):
