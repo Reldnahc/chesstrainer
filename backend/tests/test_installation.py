@@ -1,9 +1,11 @@
 """Installer settings fail clearly before opening a database or starting engines."""
 
+import re
 from pathlib import Path
 from xml.etree import ElementTree
 
 import pytest
+from trainer import site_settings
 from trainer.api import create_app
 from trainer.config import Settings
 
@@ -75,8 +77,21 @@ def test_unraid_template_defaults_select_accounts():
     assert template.findtext("WebUI") == "http://[IP]:[PORT:8000]"
     for field in template.findall("Config"):
         assert field.attrib["Description"]
-        if field.attrib["Target"].startswith(("ENGINE_", "STOCKFISH_")):
-            assert field.attrib["Display"] == "advanced"
+
+
+def test_shipped_configs_leave_stored_settings_to_the_app():
+    # Settings → Advanced → Server owns these; an environment value would only seed them.
+    root = Path(__file__).resolve().parents[2]
+    template = ElementTree.parse(root / "unraid/fieldwork.xml").getroot()
+    compose = (root / "compose.yaml").read_text(encoding="utf-8")
+    shipped = {
+        field.attrib["Target"].lower()
+        for field in template.findall("Config")
+        if field.attrib["Type"] == "Variable"
+    } | {name.lower() for name in re.findall(r"^ {6}([A-Z][A-Z0-9_]*):", compose, re.MULTILINE)}
+    example = (root / ".env.example").read_text(encoding="utf-8")
+    shipped |= {name.lower() for name in re.findall(r"^#? ?([A-Z][A-Z0-9_]*)=", example, re.M)}
+    assert shipped & set(Settings.model_fields) <= site_settings.ENV_ONLY
 
 
 def test_shipped_container_configs_keep_the_hardening():

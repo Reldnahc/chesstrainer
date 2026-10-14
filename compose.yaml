@@ -18,10 +18,6 @@ services:
       FORWARDED_ALLOW_IPS: "${FORWARDED_ALLOW_IPS:-127.0.0.1}"
       DATABASE_PATH: /data/trainer.sqlite3
       STOCKFISH_PATH: /usr/games/stockfish
-      ENGINE_SLOTS: "${ENGINE_SLOTS:-4}"
-      STOCKFISH_THREADS: "${STOCKFISH_THREADS:-1}"
-      STOCKFISH_HASH_MB: "${STOCKFISH_HASH_MB:-64}"
-      STOCKFISH_WORKERS: "${STOCKFISH_WORKERS:-1}"
       # cpu needs nothing extra. cuda downloads CUDA PyTorch (about 3 GB) into
       # /data once on first start and needs the GPU reservation below.
       HUMAN_MODEL_DEVICE: "${HUMAN_MODEL_DEVICE:-cpu}"

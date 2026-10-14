@@ -84,10 +84,12 @@ the old workspace's games to an account with `claim-local`. See
 ## Settings
 
 Only the settings that must exist before the database opens, or that guard
-access, are container variables after the first start. Engine, Maia, sync,
-review, puzzle and import tuning is stored in the database and edited in
-Settings → Advanced → Server, which can also restart the container's server; the
-variables below for those settings only seed the first value. See
+access, are container variables. Engine slots, threads, hash and workers, the
+human-model switch, threads, workers and timeout, review refinement, and sync,
+puzzle and import tuning are stored in the database and set in **Settings →
+Advanced → Server**, which can also restart the container's server. The Unraid
+template and `compose.yaml` no longer ship them; a matching environment variable
+still works, but only seeds a setting the database does not have yet. See
 [stored server settings](CONFIGURATION.md#stored-server-settings).
 
 | Variable | Image default | Meaning |
@@ -95,13 +97,6 @@ variables below for those settings only seed the first value. See
 | `ACCOUNTS_ENABLED` | `true` | Must stay `true` in the container; the no-login workspace runs only from source. |
 | `PUBLIC_ORIGIN` | empty | Optional. Blank accepts writes from the address the browser used. Set the exact HTTP(S) browser address, including nonstandard port and no path, only when a proxy rewrites Host. |
 | `SESSION_SECURE` | `true` | HTTPS-only account cookies, except plain HTTP at a LAN address from a LAN device. Set false only for local development. |
-| `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines and host analysis jobs. One additional worker fetches games without analysis. Worker count is independent of account count; busy requests/jobs wait. |
-| `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
-| `STOCKFISH_HASH_MB` | `64` | RAM in MB per engine for temporary search-position tables, not disk storage. |
-| `STOCKFISH_WORKERS` | `1` | Concurrent games per training import, or moves within a game review (1–16). Reviews are also capped by `ENGINE_SLOTS`; account mode obeys the shared host-wide pool. |
-| `HUMAN_MODEL_ENABLED` | `true` | Permits human-policy inference when the explicitly installed checkpoint exists. Missing weights keep review Stockfish-only, with no download. |
-| `HUMAN_MODEL_WORKERS` / `HUMAN_MODEL_THREADS` | `1` / `2` | Host-wide resident Maia workers and CPU threads per worker. Model RAM multiplies with workers; independent of Stockfish slots. |
-| `REVIEW_REFINEMENT_POSITIONS` / `REVIEW_REFINEMENT_QUERIES` | `8` / `4` | Maximum positions and additional questions per position after the unchanged full-game baseline. Zero positions disables this extra work. |
 | `DATABASE_PATH` | `/data/trainer.sqlite3` | Persistent SQLite file; normally keep unchanged. |
 | `COURSES_PATH` | empty | The club's Study course files. Blank uses `/data/courses`, beside the database; normally keep unchanged. |
 | `STOCKFISH_PATH` | `/usr/games/stockfish` | Bundled engine binary; normally keep unchanged. |
@@ -112,20 +107,21 @@ variables below for those settings only seed the first value. See
 | `LAN_ACCESS_TOKEN` | empty | Source installs only: optional shared token for the no-login workspace. |
 | `ALLOWED_HOSTS` | empty | Source installs only: extra host names the API answers to. LAN IP addresses, localhost, short names and `.local`/`.lan` names need no entry. |
 
-In account mode, slots times threads bounds native search threads; slots times hash
-MB estimates search-table RAM, plus app/engine overhead.
+In Settings → Advanced → Server, shared engine slots times threads per engine
+bounds native search threads in account mode; slots times hash per engine estimates
+search-table RAM, plus app/engine overhead.
 CPU pinning determines where work can run; these settings determine how much work is
 scheduled. Defaults do not auto-scale with pinning. Signup runs no analysis. Every
 saved game is analyzed in the background, newest first; opening a game moves its
 review to the front. For faster
-reviews on a host with available CPUs, raise `STOCKFISH_WORKERS` (up to 16) while
+reviews on a host with available CPUs, raise the engine workers there (up to 16) while
 budgeting engine slots, threads and memory together. Use only one app instance/Uvicorn
 worker per database.
 
 See [human-model setup/resources](HUMAN_MODELS.md) and
 [targeted review budgets](REVIEW_REFINEMENT.md) for advanced limits, cache identity
-and cancellation. Ordinary users choose their coach in Settings; infrastructure
-controls stay in host configuration.
+and cancellation. Ordinary users choose their coach in Settings; administrators set
+these limits in Settings → Advanced → Server.
 
 ## Optional Compose
 
