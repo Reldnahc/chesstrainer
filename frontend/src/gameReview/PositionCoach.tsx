@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import MoveBadge from "../MoveBadge";
 import ReviewCoach from "../ReviewCoach";
 import Button from "../Button";
@@ -42,7 +42,6 @@ export default function PositionCoach({
   speechPending = false,
   speechEventId,
   speechOpening = false,
-  onVoicePlaying,
   live,
   prompt,
   extraAction,
@@ -66,8 +65,6 @@ export default function PositionCoach({
   speechPending?: boolean;
   speechEventId?: string;
   speechOpening?: boolean;
-  /** A live game waits for the coach's line to finish before the bot answers. */
-  onVoicePlaying?: (playing: boolean) => void;
   /** A game against the coach: "new" before its first move, then "underway". */
   live?: "new" | "underway";
   /** A question the page puts to the learner in the coach's bubble, with its answers. */
@@ -149,13 +146,11 @@ export default function PositionCoach({
   // review restarts its session, which begins a new analysis epoch and so a new
   // speech scope. Holding the greeting until both settle keeps it a fresh event
   // rather than consumed hydration or a line cancelled by the scope change.
-  const preferencesReady = !!useOptionalCoachPreferences()?.ready && !!useOptionalAudioPreferences()?.ready;
+  const coachPreferences = useOptionalCoachPreferences(), audioPreferences = useOptionalAudioPreferences();
+  const preferencesReady = !!coachPreferences?.ready && !!audioPreferences?.ready;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
     automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId, ready: !speechPending,
     manualRecordingIds: [grade ?? primaryId, explaining ? null : grade ?? speech.recordingId].filter((id): id is string => !!id)});
-  useEffect(() => {
-    onVoicePlaying?.(voice.playing);
-  }, [voice.playing, onVoicePlaying]);
   if (prompt)
     return (
       <ReviewCoach reaction={{...reaction, state: utterance.expression}} voice={voice}

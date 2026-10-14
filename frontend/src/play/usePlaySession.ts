@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { api, read, type Schema } from "../api";
+import { api, errorMessage, read, type Schema } from "../api";
 import { navigate as openPage, playGamePath } from "../navigation";
-import { useAudioScope } from "../audio/AudioProvider";
+import { useAudioScope, useCurrentSpeechPlayback } from "../audio/AudioProvider";
 import usePageShortcuts from "../usePageShortcuts";
-import type { Analysis, Game, Report } from "../gameReview/types";
+import { useDeadline } from "../useDeadline";
+import type { Game, Report } from "../gameReview/types";
+import { useAnalysisRequests } from "../gameReview/useAnalysisRequests";
 import type { SpeechNavigation } from "../gameReview/useGameExploration";
 
 export type PlayState = Schema["PlayState"];
@@ -18,6 +20,10 @@ const REPORT_TIMEOUT_MS = 20000;
 // it keeps the line on screen this long after the grade before following the board.
 const COACH_HOLD_MS = 2500;
 
+// The learner's latest move: when it was played, whether its line has been heard,
+// and when the coach panel, holding on it, first had its grade to show.
+type Turn = { movedAt: number; voiced: boolean; gradedAt: number | null };
+
 /**
  * A live game against the coach's bot. The server owns the moves; this hook owns
  * which position is shown, when the bot's reply is revealed, and the review
@@ -25,35 +31,34 @@ const COACH_HOLD_MS = 2500;
  */
 export function usePlaySession(id: string) {
   const audio = useAudioScope(`play:${id}`);
+  // Play's only speech is the coach's, so any line playing is the one the panel waits on.
+  const voicePlaying = !!useCurrentSpeechPlayback();
   const [state, setState] = useState<PlayState | null>(null);
   const [error, setError] = useState("");
   const [moving, setMoving] = useState(false);
+  const [busy, setBusy] = useState(false);
   const [shown, setShown] = useState(0);
   const [cursor, setCursor] = useState<number | null>(null);
-  const [reports, setReports] = useState<Record<number, Report>>({});
-  const [analysisError, setAnalysisError] = useState<string | null>(null);
+  // Review reports by ply; a saved frame's report is known without a request.
+  const analyses = useAnalysisRequests<Report | null>(id);
+  const { request: requestReport, seed, discard } = analyses;
   const [explanationKey, setExplanationKey] = useState<string | null>(null);
   // Automatic speech per position: the reply adds its own without retiring the
   // learner's move's, so a line still waiting for its report is not lost.
   const [speechNavigations, setSpeechNavigations] = useState<Record<string, SpeechNavigation>>({});
   // The learner's ply the coach panel stays on while the board shows the reply.
   const [held, setHeld] = useState<number | null>(null);
+  const [turn, setTurn] = useState<Turn>({ movedAt: 0, voiced: false, gradedAt: null });
   // The bot's answer, fetched as soon as the learner's move is saved but shown later.
   const [pending, setPending] = useState<{ reply: Reply; at: number; learnerPly: number } | null>(null);
   const [replyError, setReplyError] = useState<string | null>(null);
-  const [voicePlaying, setVoicePlaying] = useState(false);
-  // Whether the learner's move's line has started, and when its grade arrived.
-  const voiceSeen = useRef(false);
-  const reportAt = useRef<number | null>(null);
-  const heldAt = useRef(0);
-  const [tick, setTick] = useState(0);
+  const [replyAttempt, setReplyAttempt] = useState(0);
   const mounted = useRef(false);
   const events = useRef(0);
-  const analysisQueue = useRef<Promise<unknown>>(Promise.resolve());
-  const requested = useRef(new Set<number>());
+  const commandRunning = useRef(false);
   const replyRequested = useRef<number | null>(null);
-  // A take-back or rewind retires analysis and replies in flight for the moves it removed.
-  const epoch = useRef(0);
+  // A reply in flight stops answering the game after a command, a take-back or a rewind.
+  const replyGeneration = useRef(0);
 
   useEffect(() => {
     mounted.current = true;
@@ -62,16 +67,13 @@ export function usePlaySession(id: string) {
     };
   }, []);
 
+  const report = (ply: number) => analyses.get(String(ply)) ?? null;
+  const graded = (ply: number) => !!report(ply) || !!analyses.failure(String(ply));
+
   const accept = useCallback((next: PlayState) => {
     setState(next);
-    setReports((saved) => {
-      const merged = { ...saved };
-      next.frames.forEach((frame, ply) => {
-        if (frame.report) merged[ply] = frame.report as Report;
-      });
-      return merged;
-    });
-  }, []);
+    seed(next.frames.flatMap((frame, ply) => (frame.report ? [[String(ply), frame.report as Report] as const] : [])));
+  }, [seed]);
 
   useEffect(() => {
     let active = true;
@@ -83,7 +85,7 @@ export function usePlaySession(id: string) {
         setCursor(null);
       })
       .catch((e) => {
-        if (active && mounted.current) setError(e.message);
+        if (active && mounted.current) setError(errorMessage(e));
       });
     return () => {
       active = false;
@@ -107,34 +109,19 @@ export function usePlaySession(id: string) {
 
   const requestAnalysis = useCallback(
     (ply: number) => {
-      if (ply < 1 || requested.current.has(ply)) return analysisQueue.current;
-      requested.current.add(ply);
-      const started = epoch.current;
-      const run = async () => {
-        if (started !== epoch.current) return;
-        try {
-          const result: Analysis = await read(
-            api.POST("/api/play/{play_id}/analyze", {
-              params: { path: { play_id: id } },
-              body: { ply },
-            }),
-          );
-          if (!mounted.current || started !== epoch.current) return;
-          if (result.report) setReports((saved) => ({ ...saved, [ply]: result.report as Report }));
-          setAnalysisError(null);
-        } catch (e) {
-          if (started !== epoch.current) return;
-          requested.current.delete(ply);
-          if (mounted.current) setAnalysisError((e as Error).message);
-        }
-      };
-      analysisQueue.current = analysisQueue.current.then(run, run);
-      return analysisQueue.current;
+      if (ply < 1) return;
+      void requestReport(String(ply), async () => {
+        const result = await read(
+          api.POST("/api/play/{play_id}/analyze", { params: { path: { play_id: id } }, body: { ply } }),
+        );
+        return (result.report as Report | null) ?? null;
+      });
     },
-    [id],
+    [requestReport, id],
   );
 
-  // Commentary is always live: every move is graded as it lands, in order.
+  // Commentary is always live: every move is graded as it lands, in order. Known
+  // and in-flight reports are not asked for again.
   useEffect(() => {
     if (!state) return;
     for (let ply = 1; ply <= shown; ply++) requestAnalysis(ply);
@@ -154,18 +141,11 @@ export function usePlaySession(id: string) {
     if (!state || !botToMove || replyRequested.current === shown) return;
     replyRequested.current = shown;
     const learnerPly = shown;
-    const started = epoch.current;
+    const started = replyGeneration.current;
     read(api.POST("/api/play/{play_id}/reply", { params: { path: { play_id: id } } }))
       .then((next) => {
-        if (!mounted.current || started !== epoch.current) return;
-        setState((current) => (current ? { ...next, frames: next.frames } : next));
-        setReports((saved) => {
-          const merged = { ...saved };
-          next.frames.forEach((frame, ply) => {
-            if (frame.report) merged[ply] = frame.report as Report;
-          });
-          return merged;
-        });
+        if (!mounted.current || started !== replyGeneration.current) return;
+        accept(next);
         if (next.reply && next.reply.ply > learnerPly) {
           setPending({ reply: next.reply, at: Date.now(), learnerPly });
         }
@@ -173,22 +153,19 @@ export function usePlaySession(id: string) {
         setReplyError(null);
       })
       .catch((e) => {
-        if (started !== epoch.current) return;
+        if (started !== replyGeneration.current) return;
+        // Asking again is safe: a repeated request returns the move already chosen.
         replyRequested.current = null;
-        if (mounted.current) setReplyError((e as Error).message);
+        if (mounted.current) setReplyError(errorMessage(e));
       });
-  }, [state, botToMove, shown, id]);
+  }, [state, botToMove, shown, id, accept, replyAttempt]);
 
   // Reveal the reply once the learner's move is graded. A book reply needs no grade.
+  const reportOverdue = useDeadline(pending ? pending.at + REPORT_TIMEOUT_MS : null);
+  const revealReady = !!pending && (pending.learnerPly === 0 || pending.reply.source === "book"
+    || !!report(pending.learnerPly) || !!analyses.failure(String(pending.learnerPly)) || reportOverdue);
   useEffect(() => {
-    if (!pending) return;
-    const now = Date.now();
-    const ready = pending.learnerPly === 0 || pending.reply.source === "book" || !!reports[pending.learnerPly]
-      || !!analysisError || now - pending.at > REPORT_TIMEOUT_MS;
-    if (!ready) {
-      const timer = window.setTimeout(() => setTick((value) => value + 1), 500);
-      return () => window.clearTimeout(timer);
-    }
+    if (!pending || !revealReady) return;
     const timer = window.setTimeout(() => {
       if (!mounted.current) return;
       const { reply, learnerPly } = pending;
@@ -199,35 +176,41 @@ export function usePlaySession(id: string) {
       announce(reply.ply, reply.san, { interrupt: false });
     }, REPLY_PAUSE_MS);
     return () => window.clearTimeout(timer);
-  }, [pending, reports, analysisError, tick, announce]);
+  }, [pending, revealReady, announce]);
 
-  // The coach panel follows the board once the learner's line has been said.
+  // The coach panel follows the board once the learner's line has been said: when
+  // its voice ends, or, with no voice, a while after the grade is on screen.
+  const heldGraded = held !== null && graded(held);
   useEffect(() => {
-    if (held === null) return;
-    const now = Date.now();
-    const graded = !!reports[held] || !!analysisError;
-    if (graded && reportAt.current === null) reportAt.current = now;
-    const said = voiceSeen.current
-      ? !voicePlaying
-      : graded && now - (reportAt.current ?? now) >= COACH_HOLD_MS;
-    if (said || now - heldAt.current > REPORT_TIMEOUT_MS) {
-      setHeld(null);
-      return;
-    }
-    if (voicePlaying) return;
-    const timer = window.setTimeout(() => setTick((value) => value + 1), 250);
-    return () => window.clearTimeout(timer);
-  }, [held, reports, analysisError, voicePlaying, tick]);
+    if (voicePlaying) setTurn((current) => (current.voiced ? current : { ...current, voiced: true }));
+  }, [voicePlaying]);
+  useEffect(() => {
+    if (heldGraded) setTurn((current) => (current.gradedAt === null ? { ...current, gradedAt: Date.now() } : current));
+  }, [heldGraded]);
+  const holdShown = useDeadline(held !== null && !turn.voiced && turn.gradedAt !== null ? turn.gradedAt + COACH_HOLD_MS : null);
+  const holdOverdue = useDeadline(held !== null ? turn.movedAt + REPORT_TIMEOUT_MS : null);
+  const said = turn.voiced ? !voicePlaying : holdShown;
+  useEffect(() => {
+    if (held !== null && (said || holdOverdue)) setHeld(null);
+  }, [held, said, holdOverdue]);
 
-  const onVoicePlaying = useCallback((playing: boolean) => {
-    if (playing) voiceSeen.current = true;
-    setVoicePlaying(playing);
-  }, []);
+  // Drop everything known about the moves after this ply: they are no longer played.
+  function forget(kept: number) {
+    replyGeneration.current += 1;
+    replyRequested.current = null;
+    discard((key) => Number(key) <= kept);
+    audio.cancel();
+    setPending(null);
+    setHeld(null);
+    setSpeechNavigations({});
+    setReplyError(null);
+    setExplanationKey(null);
+  }
 
   // A move on the latest position plays on; on an earlier one it rewinds the game
   // there, and the new move replaces everything after it.
   async function play(from: string, to: string, promotion?: string) {
-    if (!state || moving || state.status !== "active") return;
+    if (!state || moving || busy || state.status !== "active") return;
     const rewind = canRewind;
     if (!rewind && (pending || !learnerToMove || browsing)) return;
     const at = rewind ? ply : state.frames.length - 1;
@@ -243,9 +226,7 @@ export function usePlaySession(id: string) {
       );
       if (!mounted.current) return;
       if (rewind) forget(at);
-      voiceSeen.current = false;
-      reportAt.current = null;
-      heldAt.current = Date.now();
+      setTurn({ movedAt: Date.now(), voiced: false, gradedAt: null });
       setHeld(null);
       accept(next);
       setExplanationKey(null);
@@ -253,115 +234,78 @@ export function usePlaySession(id: string) {
       setCursor(null);
       announce(at + 1, next.frames[at + 1]?.san);
     } catch (e) {
-      if (mounted.current) setError((e as Error).message);
+      if (mounted.current) setError(errorMessage(e));
     } finally {
       if (mounted.current) setMoving(false);
     }
   }
 
-  // Drop everything known about the moves after this ply: they are no longer played.
-  function forget(kept: number) {
-    epoch.current += 1;
-    for (const ply of [...requested.current]) if (ply > kept) requested.current.delete(ply);
+  // One command at a time. A reply still in flight answered the game as it was
+  // before the command, so it is retired; the game asks again if it still needs one.
+  async function command(send: () => Promise<PlayState>, apply: (next: PlayState) => void) {
+    if (commandRunning.current) return;
+    commandRunning.current = true;
+    setBusy(true);
+    setError("");
+    replyGeneration.current += 1;
     replyRequested.current = null;
-    audio.cancel();
-    setPending(null);
-    setHeld(null);
-    setSpeechNavigations({});
-    setReports((saved) => Object.fromEntries(Object.entries(saved).filter(([ply]) => Number(ply) <= kept)));
-    setAnalysisError(null);
-    setReplyError(null);
-    setExplanationKey(null);
+    try {
+      const next = await send();
+      if (mounted.current) apply(next);
+    } catch (e) {
+      if (!mounted.current) return;
+      setError(errorMessage(e));
+      setReplyAttempt((value) => value + 1);
+    } finally {
+      commandRunning.current = false;
+      if (mounted.current) setBusy(false);
+    }
   }
+  const path = { params: { path: { play_id: id } } };
 
   // Opening practice: answer the off-book prompt.
-  async function takeBack() {
+  const takeBack = () => {
     if (!state || !deviation) return;
-    setError("");
-    try {
-      const next = await read(
-        api.POST("/api/play/{play_id}/takeback", { params: { path: { play_id: id } } }),
-      );
-      if (!mounted.current) return;
+    void command(() => read(api.POST("/api/play/{play_id}/takeback", path)), (next) => {
       const kept = next.frames.length - 1;
       forget(kept);
       accept(next);
       setShown(kept);
       setCursor(null);
-    } catch (e) {
-      if (mounted.current) setError((e as Error).message);
-    }
-  }
-
-  async function carryOn() {
+    });
+  };
+  // The usual bot answers the move the learner kept.
+  const carryOn = () => {
     if (!state || !deviation) return;
-    setError("");
-    try {
-      const next = await read(
-        api.POST("/api/play/{play_id}/carry-on", { params: { path: { play_id: id } } }),
-      );
-      if (!mounted.current) return;
-      // The usual bot answers the move the learner kept.
-      replyRequested.current = null;
-      accept(next);
-    } catch (e) {
-      if (mounted.current) setError((e as Error).message);
-    }
-  }
-
-  async function keepPlaying() {
+    void command(() => read(api.POST("/api/play/{play_id}/carry-on", path)), accept);
+  };
+  const keepPlaying = () => {
     if (!state || !lineOver) return;
-    setError("");
-    try {
-      const next = await read(
-        api.POST("/api/play/{play_id}/keep-playing", { params: { path: { play_id: id } } }),
-      );
-      if (!mounted.current) return;
-      replyRequested.current = null;
-      accept(next);
-    } catch (e) {
-      if (mounted.current) setError((e as Error).message);
-    }
-  }
-
+    void command(() => read(api.POST("/api/play/{play_id}/keep-playing", path)), accept);
+  };
   // A fresh practice game with the same course, coach and strength.
-  async function goAgain() {
-    if (!state?.practice) return;
-    setError("");
-    try {
-      const next = await read(
-        api.POST("/api/play", {
-          body: {
-            coach_id: state.coach_id as Schema["PlayRequest"]["coach_id"],
-            coach_name: state.coach_name,
-            color: state.learner_color,
-            opponent: state.opponent,
-            rating: state.rating,
-            course_id: state.practice.course_id,
-          },
-        }),
-      );
-      openPage(playGamePath(next.id));
-    } catch (e) {
-      if (mounted.current) setError((e as Error).message);
-    }
-  }
-
-  async function resign() {
+  const goAgain = () => {
+    const practice = state?.practice;
+    if (!state || !practice) return;
+    void command(() => read(api.POST("/api/play", {
+      body: {
+        coach_id: state.coach_id as Schema["PlayRequest"]["coach_id"],
+        coach_name: state.coach_name,
+        color: state.learner_color,
+        opponent: state.opponent,
+        rating: state.rating,
+        course_id: practice.course_id,
+      },
+    })), (next) => openPage(playGamePath(next.id)));
+  };
+  const resign = () => {
     if (!state || state.status !== "active") return;
-    setError("");
-    try {
-      const next = await read(
-        api.POST("/api/play/{play_id}/resign", { params: { path: { play_id: id } } }),
-      );
-      if (!mounted.current) return;
+    void command(() => read(api.POST("/api/play/{play_id}/resign", path)), (next) => {
       setPending(null);
       accept(next);
       setShown(next.frames.length - 1);
-    } catch (e) {
-      if (mounted.current) setError((e as Error).message);
-    }
-  }
+    });
+  };
 
   // The latest position the learner may see: a fetched reply stays hidden until revealed.
   const latest = state ? Math.min(shown, state.frames.length - 1) : 0;
@@ -377,8 +321,7 @@ export function usePlaySession(id: string) {
       if (!options?.silent) {
         const eventId = ++events.current;
         audio.cancel();
-        if (next === ply + 1) audio.move(state.frames[next]?.san, `${eventId}:board`);
-        else audio.play("move", `${eventId}:board`);
+        audio.step(ply, next, state.frames[next]?.san, `${eventId}:board`);
         const navigation = { key: `${next}:`, eventId: `${id}:${eventId}`, awaitAnalysis: false };
         setSpeechNavigations({ [navigation.key]: navigation });
       }
@@ -386,10 +329,27 @@ export function usePlaySession(id: string) {
     [state, latest, ply, audio, id],
   );
 
+  // Scrubbing the graph moves silently; letting go on another move speaks it once, as review does.
+  const scrubOrigin = useRef<number | null>(null);
+  const beginScrubbing = () => {
+    audio.cancel();
+    scrubOrigin.current = ply;
+  };
+  const finishScrubbing = (target: number) => {
+    const origin = scrubOrigin.current;
+    scrubOrigin.current = null;
+    if (origin === null || origin === target) return;
+    const eventId = ++events.current;
+    audio.play("move", `${eventId}:board`);
+    const navigation = { key: `${target}:`, eventId: `${id}:${eventId}`, awaitAnalysis: false };
+    setSpeechNavigations({ [navigation.key]: navigation });
+  };
+
   // MovePlaybackControls binds the arrow keys; the page owns Escape.
   usePageShortcuts({ Escape: () => setExplanationKey(null) });
 
   // The review's own components read a Game; a live game is one with no saved review.
+  const { get: reportAt, revision } = analyses;
   const game: Game | null = useMemo(() => {
     if (!state) return null;
     return {
@@ -403,14 +363,15 @@ export function usePlaySession(id: string) {
       rating: state.learner_rating,
       white_rating: state.white_rating,
       black_rating: state.black_rating,
-      frames: state.frames.slice(0, latest + 1).map((frame, index) => ({ ...frame, report: reports[index] ?? null })),
+      frames: state.frames.slice(0, latest + 1).map((frame, index) => ({ ...frame, report: reportAt(String(index)) ?? null })),
       job: null,
       accuracy: null,
       context: null,
       history: null,
       review_revision: 0,
     };
-  }, [state, latest, reports]);
+    // reportAt reads the cache; revision changes whenever a report is added or dropped.
+  }, [state, latest, reportAt, revision]);
 
   const waitingForBot =
     !!state && state.status === "active" && !choosing && state.frames[latest]?.turn !== state.learner_color;
@@ -422,15 +383,20 @@ export function usePlaySession(id: string) {
     !!state && state.status === "active" && browsing && state.frames[ply]?.turn === state.learner_color;
   // The coach panel's position: the board's, or the learner's move while its line plays.
   const coachPly = held !== null && cursor === null && held < latest ? held : ply;
+  const coachFailure = coachPly > 0 ? analyses.failure(String(coachPly)) : null;
   return {
     state,
     game,
     error: error || replyError || "",
+    /** The bot's reply failed; asking again is safe. */
+    replyFailed: !error && !!replyError,
     dismissError: () => {
       setError("");
       setReplyError(null);
     },
     moving,
+    /** A command (take back, play on, keep playing, go again, resign) is being sent. */
+    busy,
     ply,
     latest,
     browsing,
@@ -438,17 +404,20 @@ export function usePlaySession(id: string) {
     waitingForBot,
     learnerToMove,
     frame: game?.frames[ply] ?? null,
-    report: reports[ply] ?? null,
+    report: report(ply),
     coach: {
       ply: coachPly,
       frame: game?.frames[coachPly] ?? null,
-      report: reports[coachPly] ?? null,
+      report: report(coachPly),
       speechNavigation: speechNavigations[`${coachPly}:`] ?? null,
     },
-    analysisError,
+    /** The coach's position failed to analyse; Retry asks for that position again. */
+    analysisError: coachFailure,
     explaining: explanationKey === `${ply}:`,
     toggleExplanation: () => setExplanationKey((value) => (value === `${ply}:` ? null : `${ply}:`)),
     navigate,
+    beginScrubbing,
+    finishScrubbing,
     play,
     resign,
     practice: state?.practice ?? null,
@@ -458,13 +427,15 @@ export function usePlaySession(id: string) {
     goAgain,
     takeBack,
     carryOn,
-    retryAnalysis: () => requestAnalysis(ply),
+    retryAnalysis: () => {
+      analyses.clearFailure(String(coachPly));
+      requestAnalysis(coachPly);
+    },
     retryReply: () => {
       replyRequested.current = null;
       setReplyError(null);
-      setTick((value) => value + 1);
+      setReplyAttempt((value) => value + 1);
     },
-    onVoicePlaying,
   };
 }
 

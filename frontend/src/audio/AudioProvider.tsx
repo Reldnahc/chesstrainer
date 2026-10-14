@@ -128,6 +128,15 @@ export function useAudioScope(key: string) {
       const cue = cueForMove(san);
       if (cue && live.current === owner) controls?.play({cue, eventId, scope, ...options});
     },
+    /** The move's own cue, or a plain move when there is no SAN to read. */
+    moveOr(san: string | null | undefined, eventId: string, options?: {delayMs?: number}) {
+      if (live.current === owner) controls?.play({cue: cueForMove(san) ?? "move", eventId, scope, ...options});
+    },
+    /** Board navigation: one step forward plays that move's cue; any other jump plays a plain move. */
+    step(from: number, to: number, san: string | null | undefined, eventId: string) {
+      const cue = to === from + 1 ? cueForMove(san) : "move";
+      if (cue && live.current === owner) controls?.play({cue, eventId, scope});
+    },
     cancel: () => { if (live.current === owner) controls?.cancel(scope); },
     unlock: async () => { await controls?.unlock(); },
   }), [controls, scope, live, owner]);
