@@ -13,6 +13,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Board from "/src/Board.tsx";
 import EvidenceDialog from "/src/EvidenceDialog.tsx";
+import MovePlaybackControls from "/src/MovePlaybackControls.tsx";
 import { useGameExploration } from "/src/gameReview/useGameExploration.ts";
 import "/src/foundation.css";
 import "/src/base.css";
@@ -55,6 +56,12 @@ function Fixture() {
     <button onClick={() => exploration.toggleExplanation()}>Toggle explanation</button>
     <button onClick={() => setEvidence(true)}>Open evidence</button>
     <output data-testid="ply">{exploration.current}</output>
+    {/* The game page's arrow, Home and End keys come from its playback controls. */}
+    <MovePlaybackControls label="Game move playback" current={exploration.current} maximum={exploration.maximum}
+      first={{"aria-label": "Start of game", onClick: () => exploration.navigate(0)}}
+      previous={{"aria-label": "Previous move", onClick: () => exploration.step(-1)}}
+      next={{"aria-label": "Next move", onClick: () => exploration.step(1)}}
+      last={{"aria-label": "Last move", onClick: () => exploration.selectStep(exploration.maximum)}} />
     <output data-testid="explanation">{exploration.explanationKey ? "open" : "closed"}</output>
     <output data-testid="moves">{moves.join(",")}</output>
     <output data-testid="error">{error}</output>

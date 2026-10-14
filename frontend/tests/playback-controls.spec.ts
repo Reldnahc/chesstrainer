@@ -61,6 +61,11 @@ test("shared move playback preserves counter geometry and fits the complete game
   await expect(toolbar.getByRole("button", { name: "Previous move", exact: true })).toBeDisabled();
   await toolbar.getByRole("button", { name: "Last move", exact: true }).click();
   await expect(gameControls.locator(".move-playback-counter")).toHaveText("4 / 4");
+  // The page keys mirror the playback buttons: arrows step, Home and End jump.
+  for (const [key, shown] of [["Home", "0 / 4"], ["ArrowRight", "1 / 4"], ["ArrowRight", "2 / 4"], ["ArrowLeft", "1 / 4"], ["End", "4 / 4"]]) {
+    await page.keyboard.press(key);
+    await expect(gameControls.locator(".move-playback-counter")).toHaveText(shown);
+  }
 
   await page.setViewportSize(info.project.use.viewport!);
   const response = await page.request.get("/api/openings/catalog?q=Italian%20Game&limit=50");
@@ -83,5 +88,12 @@ test("shared move playback preserves counter geometry and fits the complete game
   await expect(counter).toHaveText(`10 / ${line!.plies}`);
   expect(await geometry(openingControls)).toEqual(before);
   await openingControls.getByRole("button", { name: "Previous line move", exact: true }).click();
+  await expect(counter).toHaveText(`9 / ${line!.plies}`);
+  await page.keyboard.press("ArrowRight");
+  await expect(counter).toHaveText(`10 / ${line!.plies}`);
+  await page.keyboard.press("ArrowLeft");
+  await expect(counter).toHaveText(`9 / ${line!.plies}`);
+  // The opening preview shows no first/last buttons, so Home and End stay the page's.
+  await page.keyboard.press("Home");
   await expect(counter).toHaveText(`9 / ${line!.plies}`);
 });

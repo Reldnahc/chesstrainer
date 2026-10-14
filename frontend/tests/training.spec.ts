@@ -433,6 +433,11 @@ test('review explanations replay the submitted move and return without another r
   await page.screenshot({path:`test-results/review-explanation-${testInfo.project.name}.png`});
   await dialog.getByRole('button', {name: 'Previous move', exact: true}).click();
   await expect(dialog.locator('.explanation-caption')).toContainText('White plays Kf1');
+  // The continuation's arrow keys step like its buttons while it is open.
+  await page.keyboard.press('ArrowRight');
+  await expect(dialog.locator('.explanation-caption')).toContainText("capturing White's rook");
+  await page.keyboard.press('ArrowLeft');
+  await expect(dialog.locator('.explanation-caption')).toContainText('White plays Kf1');
   await dialog.getByRole('button', {name: 'Back to attempt'}).click();
   await expect(dialog).toHaveCount(0);
   await expect(board.locator('[data-square="g1"] [data-piece="wK"]')).toBeVisible();

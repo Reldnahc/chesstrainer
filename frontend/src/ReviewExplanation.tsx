@@ -6,6 +6,7 @@ import ReviewCoach from "./ReviewCoach";
 import Notice from "./Notice";
 import Button from "./Button";
 import MovePlaybackControls from "./MovePlaybackControls";
+import usePageShortcuts from "./usePageShortcuts";
 import { explanationIntent } from "./dialogue/practiceIntent";
 import { claim, makeIntent } from "./dialogue/model";
 import { useDialogue } from "./dialogue/useDialogue";
@@ -55,15 +56,8 @@ export default function ReviewExplanation({
   }
   useEffect(() => {
     back.current?.focus({ preventScroll: true });
-    const escape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        onClose();
-      }
-    };
-    window.addEventListener("keydown", escape);
-    return () => window.removeEventListener("keydown", escape);
   }, [onClose]);
+  usePageShortcuts({ Escape: onClose });
   useEffect(() => {
     let current = true;
     read(

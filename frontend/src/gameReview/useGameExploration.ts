@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, read } from "../api";
 import { rememberGamePly } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
+import usePageShortcuts from "../usePageShortcuts";
 import type { Branch, Cursor, Game, Position } from "./types";
 
 export type SpeechNavigation = {
@@ -182,31 +183,8 @@ export function useGameExploration(
     if (explanationKey) setExplanationKey(null);
     else returnToGame();
   }
-  const keyboard = useRef({ step, escape });
-  keyboard.current = { step, escape };
-  useEffect(() => {
-    const keydown = (event: KeyboardEvent) => {
-      if (event.altKey || event.ctrlKey || event.metaKey) return;
-      // Modal choices and native popovers own Escape and focus navigation.
-      if (document.querySelector(":modal, :popover-open")) return;
-      if (
-        (event.target as HTMLElement).closest(
-          "input,select,textarea,[contenteditable=true]",
-        )
-      )
-        return;
-      if (event.key === "Escape") {
-        event.preventDefault();
-        keyboard.current.escape();
-      }
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-        event.preventDefault();
-        keyboard.current.step(event.key === "ArrowLeft" ? -1 : 1);
-      }
-    };
-    window.addEventListener("keydown", keydown);
-    return () => window.removeEventListener("keydown", keydown);
-  }, []);
+  // MovePlaybackControls binds the arrow keys; the page owns Escape.
+  usePageShortcuts({ Escape: escape });
 
   function addBranch(moves: string[], sans: string[]) {
     const existing = branches.find(
