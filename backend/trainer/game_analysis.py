@@ -13,11 +13,14 @@ from trainer.models import (
     GameReviewMove,
     ImportGame,
     ReviewRefinement,
+    uid,
 )
 
 # Lower runs sooner. A game the learner opens beats games the poller found,
 # which beat older games brought in by a manual or PGN import.
 REQUESTED, FRESH, BACKFILL = 0, 10, 20
+# Game ids per IN list, under SQLite's bound-parameter limit.
+CHUNK = 500
 
 
 def queue_games(db, game_ids, priority):
@@ -26,24 +29,28 @@ def queue_games(db, game_ids, priority):
     Completed, running, failed and cancelled jobs are left alone; the learner
     can retry those from the game. Returns how many jobs were created.
     """
-    created = 0
-    for game_id in game_ids:
-        review = db.get(GameReview, game_id)
-        if review is None:
-            _new_review(db, game_id, priority, DEFAULT_RATING)
-            created += 1
-            continue
-        job = db.get(AnalysisJob, review.job_id)
+    game_ids = list(dict.fromkeys(game_ids))
+    jobs = {}
+    for start in range(0, len(game_ids), CHUNK):
+        jobs.update(
+            db.execute(
+                select(GameReview.game_id, AnalysisJob)
+                .join(AnalysisJob, AnalysisJob.id == GameReview.job_id)
+                .where(GameReview.game_id.in_(game_ids[start : start + CHUNK]))
+            ).all()
+        )
+    for job in jobs.values():
         if job.status == JobStatus.QUEUED and job.priority > priority:
             job.priority = priority
-    return created
+    missing = [game_id for game_id in game_ids if game_id not in jobs]
+    for game_id in missing:
+        _new_review(db, game_id, priority, DEFAULT_RATING)
+    return len(missing)
 
 
 def _new_review(db, game_id, priority, rating):
-    job = AnalysisJob(kind=JobKind.GAME_REVIEW, games_total=1, priority=priority)
-    db.add(job)
-    db.flush()
-    db.add(GameReview(game_id=game_id, job_id=job.id, rating=rating))
+    job = AnalysisJob(id=uid(), kind=JobKind.GAME_REVIEW, games_total=1, priority=priority)
+    db.add_all([job, GameReview(game_id=game_id, job_id=job.id, rating=rating)])
     return job
 
 

@@ -25,13 +25,19 @@ def retire_if_ready(state, settings, retired_at=None):
 
 def retire_existing(db, settings, *, enabled_accounts_only=False):
     count = 0
-    query = select(SRSState).where(SRSState.retired_at.is_(None), SRSState.reviews > 0)
+    # Opening cards under a retirement guard keep their schedule.
+    query = (
+        select(SRSState)
+        .outerjoin(OpeningCard, OpeningCard.exercise_id == SRSState.exercise_id)
+        .where(
+            SRSState.retired_at.is_(None),
+            SRSState.reviews > 0,
+            OpeningCard.retirement_guard_revision.is_(None),
+        )
+    )
     if enabled_accounts_only:
         query = query.join(User, User.id == SRSState.user_id).where(User.disabled.is_(False))
     for state in db.scalars(query):
-        opening = db.get(OpeningCard, state.exercise_id)
-        if opening is not None and opening.retirement_guard_revision is not None:
-            continue
         count += retire_if_ready(state, settings)
     db.commit()
     return count

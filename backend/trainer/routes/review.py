@@ -14,6 +14,7 @@ from trainer.explanations import MoveExplanation, explain_review
 from trainer.practice import focus_queue
 from trainer.reviews import (
     answer_search,
+    due_count,
     queue,
     resume_review,
     reveal,
@@ -37,7 +38,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
     @router.get("/api/review/count", response_model=ReviewCount)
     def review_count(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
-            return {"due": len(queue(db, limit=None))}
+            return {"due": due_count(db)}
 
     @router.get(
         "/api/practice/queue",

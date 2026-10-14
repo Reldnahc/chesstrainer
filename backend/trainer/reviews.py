@@ -71,6 +71,43 @@ def explanation_brief(db, session_id, attempt_id=None, solution=False, include_r
         return {}
 
 
+def _active_reviews(columns):
+    """Unfinished review sessions whose card can still be resumed."""
+    return _with_current_opening_authority(
+        select(*columns)
+        .join(ReviewSession, ReviewSession.exercise_id == SRSState.exercise_id)
+        .join(Exercise, Exercise.id == ReviewSession.exercise_id)
+    ).where(
+        Exercise.source != "repertoire",
+        SRSState.eligible.is_(True),
+        SRSState.retired_at.is_(None),
+        ReviewSession.completed.is_(False),
+        ReviewSession.lesson_item_id.is_(None),
+        ReviewSession.mode == "review",
+    )
+
+
+def _due_cards(columns):
+    return (
+        select(*columns)
+        .select_from(SRSState)
+        .join(Exercise, Exercise.id == SRSState.exercise_id)
+        .where(
+            Exercise.source != "repertoire",
+            SRSState.due <= now(),
+            SRSState.eligible.is_(True),
+            SRSState.retired_at.is_(None),
+        )
+    )
+
+
+def due_count(db):
+    """How many cards the queue holds, counted in SQL rather than loaded."""
+    active = set(db.scalars(_active_reviews([SRSState.exercise_id])))
+    due = db.scalar(_due_cards([func.count()]).where(SRSState.exercise_id.not_in(active)))
+    return len(active) + due
+
+
 def queue(db, last_id=None, limit=30):
     if last_id is None:
         last_id = db.scalar(
@@ -81,34 +118,13 @@ def queue(db, last_id=None, limit=30):
             .limit(1)
         )
     active_states = db.scalars(
-        _with_current_opening_authority(
-            select(SRSState)
-            .join(ReviewSession, ReviewSession.exercise_id == SRSState.exercise_id)
-            .join(Exercise, Exercise.id == ReviewSession.exercise_id)
-        )
-        .where(
-            Exercise.source != "repertoire",
-            SRSState.eligible.is_(True),
-            SRSState.retired_at.is_(None),
-            ReviewSession.completed.is_(False),
-            ReviewSession.lesson_item_id.is_(None),
-            ReviewSession.mode == "review",
-        )
-        .order_by(ReviewSession.started_at.desc())
+        _active_reviews([SRSState]).order_by(ReviewSession.started_at.desc())
     ).all()
     # Stale snapshots are retained for resuming saved attempts, but must not add
     # work to every queue read. Filter their authority in SQL before loading rows.
     active_by_id = {state.exercise_id: state for state in active_states}
     states = db.scalars(
-        select(SRSState)
-        .join(Exercise, Exercise.id == SRSState.exercise_id)
-        .where(
-            Exercise.source != "repertoire",
-            SRSState.due <= now(),
-            SRSState.eligible.is_(True),
-            SRSState.retired_at.is_(None),
-        )
-        .order_by((SRSState.reviews == 0), SRSState.due, SRSState.exercise_id)
+        _due_cards([SRSState]).order_by((SRSState.reviews == 0), SRSState.due, SRSState.exercise_id)
     ).all()
     # A failed first attempt already moved the due date. Reload must still resume
     # its unfinished session, rather than abandoning the learner's opportunity to retry.
