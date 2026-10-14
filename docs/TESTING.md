@@ -91,8 +91,8 @@ tests run with ordinary pytest without Torch or a Maia checkpoint; native
 Stockfish checks use the existing `stockfish` marker. Benchmark artifacts are
 ignored private development output, not repository fixtures.
 
-Opt-in Maia feasibility tests and CPU/CUDA benchmark commands are documented in
-[MAIA_FEASIBILITY.md](MAIA_FEASIBILITY.md). Native `maia` tests require the pinned
+Opt-in Maia tests and benchmark commands are documented in
+[HUMAN_MODELS.md](HUMAN_MODELS.md#verification). Native `maia` tests require the pinned
 optional runtime plus `MAIA_CHECKPOINT_DIR`; ordinary tests verify missing/corrupt
 files, source pinning and complete-history inputs without importing Torch.
 

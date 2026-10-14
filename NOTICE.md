@@ -26,7 +26,7 @@ policy-only inference, process isolation and integrity/contract validation. Neur
 weights are not committed or bundled in the image. Explicit setup uses
 the 79M card's explicit AGPLv3 declaration; smaller cards need weight-term
 clarification. Exact hashes, source links and measured installation implications
-are recorded in [MAIA_FEASIBILITY.md](docs/MAIA_FEASIBILITY.md).
+are recorded in [Human move evidence](docs/HUMAN_MODELS.md#pinned-upstream-and-terms).
 
 The optional CPU inference runtime uses PyTorch 2.8.0+cpu and NumPy 2.2.6,
 distributed under their upstream BSD-style terms. Their wheels retain their

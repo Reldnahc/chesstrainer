@@ -94,7 +94,7 @@ and mate types only. Human evidence does not influence the existing grading code
 
 Generate the input artifacts using the baseline/feasibility commands in
 [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md) and
-[MAIA_FEASIBILITY.md](MAIA_FEASIBILITY.md), then:
+[HUMAN_MODELS.md](HUMAN_MODELS.md#verification), then:
 
 ```sh
 python scripts/benchmark_difficulty.py --stockfish-report data/review-benchmark/baseline-1.json --human-report data/maia-benchmark/79m-isolated.json --output data/review-benchmark/difficulty-NEW.json

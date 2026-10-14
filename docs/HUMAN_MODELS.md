@@ -3,8 +3,8 @@
 Fieldwork can run a pinned Maia-3 **79M** policy model alongside Stockfish. It
 describes human-like choices; it does not evaluate chess truth or assign grades.
 The supported checkpoint has an explicit AGPLv3 declaration. Smaller research
-models remain unsupported until their weight licensing is clarified. See
-[measured feasibility and selection](MAIA_FEASIBILITY.md).
+models remain unsupported until their weight licensing is clarified; see
+[Pinned upstream and terms](#pinned-upstream-and-terms).
 
 ## Explicit setup
 
@@ -86,6 +86,31 @@ Stockfish searches. Device and
 runtime identity invalidate inference caches. CPU is fully supported; there is
 no automatic GPU requirement or silent CPU/GPU switch.
 
+## Pinned upstream and terms
+
+Inference code is [CSSLab/maia3, commit 1e13597](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2),
+AGPL-3.0. Model revisions, filenames, byte counts and SHA-256 digests are in
+`backend/trainer/human_models/manifest.json`. The
+[79M model card](https://huggingface.co/UofTCSSLab/Maia3-79M/blob/a107d6ceb7b298cb04ae1da4edffe2939858b894/README.md)
+explicitly declares AGPLv3. The 5M and 23M cards label only the *paper* CC BY 4.0,
+which must not be assigned to the weights, and
+[upstream issue 12](https://github.com/CSSLab/maia3/issues/12) asking for
+clarification had no answer when checked. So 79M is the only supported preset;
+do not publish the smaller weights or the separately hosted ONNX file, whose
+conversion provenance is unresolved in the same issue.
+
+The [paper](https://arxiv.org/html/2605.19091v1#S4.SS1) trained on Lichess blitz,
+dropping moves once a clock fell below 30 seconds, and reports 57.1% move-matching
+accuracy for 79M on its own evaluation set. That is a published aggregate, not
+Fieldwork calibration.
+
+Fieldwork uses a narrow pinned policy adapter in a worker rather than Maia's UCI
+engine (rank-only, no move probabilities) or upstream `score_moves` (which pulls
+Torch and global thread settings into the calling process). The adapter matched
+UCI top-20 ranks and upstream policy values within 1e-7 across all three sizes,
+both colors and four conditioning pairs. That establishes fidelity, not
+population calibration.
+
 ## Evidence and ownership
 
 `HumanModels` is the host service; its provider-neutral versioned contracts live
@@ -127,3 +152,16 @@ Stockfish-only fallback. Native opt-in tests use `MAIA_CHECKPOINT_DIR` (the fold
 containing `maia3-79m.pt`), and optionally `MAIA_TEST_DEVICE=cuda`. They exercise
 the production worker with special moves and full history. No test downloads
 weights implicitly. See [TESTING.md](TESTING.md).
+
+The research benchmark compares methods and model sizes. It never acquires models:
+download the official checkpoints at the manifest revisions, verify their hashes
+and set `HF_HUB_OFFLINE=1`, then:
+
+```sh
+python scripts/benchmark_maia.py --model 79m --checkpoints data/maia-benchmark/models --method isolated --output data/maia-benchmark/79m-isolated.json
+MAIA_CHECKPOINT_DIR=data/maia-benchmark/models python -m pytest -q backend/tests/test_maia_feasibility.py
+```
+
+Methods are `uci`, `direct`, `policy` and `isolated`; sizes are `5m`, `23m` and
+`79m`. `MAIA_TEST_MODEL=79m` selects the supported preset for native tests, and
+`--device cuda --method policy` measures a GPU in a matching CUDA environment.
