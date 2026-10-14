@@ -179,8 +179,12 @@ test("a finished game offers its saved review", async ({page}) => {
     frames: [frame0, frame1, frame2],
   }}));
   await page.goto("/play/play1");
-  await expect(page.getByText("You resigned. Walter takes the game.")).toBeVisible();
-  await expect(page.getByRole("link", {name: "Open Walter's review"})).toHaveAttribute("href", "/games/saved9");
+  // The result is a toast: it floats over the page and stays until closed.
+  const toast = page.getByRole("region", {name: "Notifications"}).getByRole("status");
+  await expect(toast).toContainText("You resigned. Walter takes the game.");
+  await expect(toast.getByRole("link", {name: "Open Walter's review"})).toHaveAttribute("href", "/games/saved9");
+  await toast.getByRole("button", {name: "Dismiss"}).click();
+  await expect(page.getByText("You resigned. Walter takes the game.")).toHaveCount(0);
   await expect(page.getByRole("button", {name: "Resign"})).toHaveCount(0);
 });
 

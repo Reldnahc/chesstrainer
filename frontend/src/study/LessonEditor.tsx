@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
+import Toast from "../Toast";
 import { ArrowDown, ArrowLeft, ArrowUp, Circle, Plus, Save, Square, Trash2 } from "lucide-react";
 import { api, read, type LegalMove, type Promotion, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -353,8 +354,8 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     <Reveal>{checking && !check ? <Notice announcement="status">Checking the course…</Notice>
       : check?.error ? <Notice announcement="status" tone="error">{check.error}</Notice>
       : check && <Notice announcement="status" tone="success">The course loads without problems.</Notice>}</Reveal>
-    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
-    <Reveal>{notice && <Notice announcement="status" tone="success" actions={saved && <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink>}>{notice}</Notice>}</Reveal>
+    {error && <Toast tone="error" onDismiss={() => setError("")}>{error}</Toast>}
+    {notice && <Toast tone="success" onDismiss={() => setNotice("")} action={saved ? <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink> : undefined}>{notice}</Toast>}
 
     <details className="disclosure lesson-editor-section" open={!courseId}>
       <summary>Course details</summary>

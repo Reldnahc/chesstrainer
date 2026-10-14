@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Toast from "./Toast";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Job, type Schema } from "./api";
 import ProviderUsernameField from "./ProviderUsernameField";
@@ -184,11 +185,7 @@ export function ProviderImportForm({
         <ImportSubmitButton busy={busy} busyLabel="Queuing import…"
           disabled={loadingUsername || !username.trim()} />
       </div>
-      <Reveal>{message && (
-        <Notice announcement="status">
-          {message}
-        </Notice>
-      )}</Reveal>
+      {message && <Toast onDismiss={() => setMessage("")}>{message}</Toast>}
       <details className="disclosure import-extra">
         <summary>How imports work</summary>
         <p className="small">

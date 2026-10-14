@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import Toast from "../Toast";
 import { ArrowRight, Clock3, GraduationCap, Puzzle, RotateCcw, Search } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ResumeLink from "../ResumeLink";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
-import Notice from "../Notice";
-import Reveal from "../Reveal";
 import StatList from "../StatList";
 import PageTitle from "../PageTitle";
 import EmptyState from "../EmptyState";
@@ -107,7 +106,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   return <>
     <PageTitle title={mode === "home" ? "Study" : mode === "openings" ? "Lessons" : "Puzzles"} />
     <div className="study-page">
-    <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
+    {error && <Toast tone="error" onDismiss={() => setError("")}>{error}</Toast>}
     {mode === "home" && <div className="study-options">
       <section className="panel study-option study-due">
         <Clock3 aria-hidden="true" size={22} />
@@ -147,7 +146,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         { id: "generic", label: "Collection", href: `${studyPaths.puzzles}/generic` },
         { id: "games", label: gamesCount ? `From your games (${gamesCount})` : "From your games", href: `${studyPaths.puzzles}/games` },
       ]} />
-      <Reveal>{notice && <Notice announcement="status">{notice}</Notice>}</Reveal>
+      {notice && <Toast onDismiss={() => setNotice("")}>{notice}</Toast>}
       {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <ResumeLink href={puzzleSessionPath(session.id)} key={session.id} description={session.failed ? "Continue after a retry" : "Your position is saved"}>Unfinished puzzle</ResumeLink>)}</div></section>}
       {source === "games" && generation && <section className="panel puzzle-games">
         <h2>Puzzles mined from your games</h2>

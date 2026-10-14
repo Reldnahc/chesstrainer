@@ -5,6 +5,7 @@ import AccountGate from "./AccountGate";
 import { CoachProvider } from "./coach/CoachProvider";
 import { MotionProvider } from "./MotionProvider";
 import { AudioProvider } from "./audio/AudioProvider";
+import { ToastProvider } from "./Toast";
 import { installDisclosureMotion } from "./disclosureMotion";
 import { installLoadHandoff } from "./loadHandoff";
 import "./styles.css";
@@ -18,7 +19,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <AudioProvider>
       <MotionProvider>
         <CoachProvider>
-          <App />
+          <ToastProvider>
+            <App />
+          </ToastProvider>
         </CoachProvider>
       </MotionProvider>
       </AudioProvider>

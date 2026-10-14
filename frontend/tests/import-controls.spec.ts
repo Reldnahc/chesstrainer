@@ -77,7 +77,7 @@ test('provider import keeps date and time filters while showing its queue busy a
     expect(requests[0]).toEqual({username: 'Mixed_Name-7', time_class: 'blitz',
       months: 6, max_games: 25, start_date: '2026-08-01', end_date: '2026-08-31'});
     release();
-    await expect(page.locator('.import-form').getByRole('status')).toContainText('Import queued for Mixed_Name-7');
+    await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('status')).toContainText('Import queued for Mixed_Name-7');
     await expect(page.getByRole('button', {name: 'Import games', exact: true})).toBeEnabled();
     await expect(page.getByLabel('Time control', {exact: true})).toHaveValue('blitz');
     await expect(page.getByLabel('Look back', {exact: true})).toHaveValue('6');

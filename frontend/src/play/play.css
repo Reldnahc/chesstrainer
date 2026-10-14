@@ -19,9 +19,6 @@
 .play-practice-prompt { display: grid; gap: var(--space-1); }
 .play-level { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: baseline; }
 .play-level strong { font-size: var(--text-4xl); font-weight: 650; }
-/* A panel stacks by default; this callout is a row of text and its action. */
-.play-resume { display: flex; flex-direction: row; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; }
-.play-result { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; }
 @media (max-width: 760px) {
   .play-setup { grid-template-columns: 1fr; }
   .play-setup-coach { order: -1; width: 100%; }

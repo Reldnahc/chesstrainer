@@ -57,7 +57,7 @@ test('administrators reset, disable, promote and delete other accounts', async (
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({path: `test-results/settings-accounts-password-${info.project.name}.png`, fullPage: true});
   await row(page, 'friend').getByRole('button', {name: 'Set temporary password'}).click();
-  await expect(section(page).getByRole('status')).toHaveText('Set a temporary password for friend and signed them out. They will choose their own when they next sign in.');
+  await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('status')).toHaveText('Set a temporary password for friend and signed them out. They will choose their own when they next sign in.');
   await expect(field).toHaveCount(0);
 
   await row(page, 'friend').getByRole('button', {name: 'Disable'}).click();
@@ -76,7 +76,7 @@ test('administrators reset, disable, promote and delete other accounts', async (
   await expect(row(page, 'cousin').getByRole('button', {name: 'Delete', exact: true})).toBeVisible();
   await row(page, 'cousin').getByRole('button', {name: 'Delete', exact: true}).click();
   await row(page, 'cousin').getByRole('button', {name: 'Delete account and games'}).click();
-  await expect(section(page).getByRole('status')).toHaveText('Deleted cousin and their games.');
+  await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('status')).toHaveText('Deleted cousin and their games.');
   await expect(section(page).getByRole('heading', {level: 3})).toHaveText(['Sign-ups', 'Add member', 'keeper (you)', 'friend']);
   expect(calls).toEqual([
     'POST friend-id password {"password":"a-new-password"}',
@@ -115,7 +115,7 @@ test('administrators add members and open sign-ups', async ({page}, info) => {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({path: `test-results/settings-accounts-add-${info.project.name}.png`, fullPage: true});
   await row(page, 'Add member').getByRole('button', {name: 'Add member'}).click();
-  await expect(section(page).getByRole('status')).toHaveText('Added friend. Pass on the temporary password; they will choose their own when they first sign in.');
+  await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('status')).toHaveText('Added friend. Pass on the temporary password; they will choose their own when they first sign in.');
   await expect(row(page, 'Add member').getByLabel('Username')).toHaveCount(0);
   await expect(row(page, 'friend')).toContainText('Member');
 

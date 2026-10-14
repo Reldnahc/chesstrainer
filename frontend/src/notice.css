@@ -19,6 +19,12 @@
   flex-shrink: 0;
   max-width: 100%;
 }
+/* A panel or toast with actions centres its text on them, so a one-line
+   message and its button share one row instead of the text riding high. */
+.notice--panel,
+.notice--toast {
+  align-items: center;
+}
 .notice--panel {
   padding: var(--space-4) var(--space-4);
   background: #262d36;
@@ -38,6 +44,49 @@
 .notice[data-tone="success"] {
   color: #c6d7ef;
 }
+/* Toasts float over the page, so they carry a shadow and a tone stripe. The
+   message and close button share the first row; actions follow on the same
+   row when the toast is wide enough and wrap under the message when not. */
+.notice--toast {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "content actions dismiss";
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  min-height: 52px;
+  background: #262d36;
+  border: 1px solid #424f61;
+  border-left: 4px solid #7f9cc4;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px #0008;
+  font-size: var(--text-md);
+  line-height: 1.45;
+  color: #dbe5f2;
+}
+.notice--toast > .notice-content { grid-area: content; }
+.notice--toast > .notice-actions { grid-area: actions; }
+.notice--toast > .notice-dismiss { grid-area: dismiss; }
+@container toast-region (max-width: 520px) {
+  .notice--toast {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "content dismiss" "actions actions";
+    row-gap: var(--space-1);
+  }
+  .notice--toast > .notice-actions:empty { display: none; }
+  .notice--toast > .notice-actions { padding-bottom: var(--space-1); }
+}
+.notice--toast[data-tone="success"] {
+  border-left-color: #8fc79a;
+}
+.notice--toast[data-tone="error"] {
+  background: #342329;
+  border-color: #74505a;
+  border-left-color: #ff8993;
+  color: #ffd3d8;
+}
+.notice-dismiss { align-self: start; }
+.notice--toast > .notice-dismiss { align-self: center; }
 /* Keep empty live regions mounted without leaving a blank notice or hiding
  * them from assistive technology before their text changes. Taking them out
  * of flow also keeps the container's gap from reserving space for them. */
@@ -51,4 +100,12 @@
     padding: var(--space-3) var(--space-3);
     font-size: var(--text-sm);
   }
+  .notice--toast {
+    padding-left: var(--space-3);
+    font-size: var(--text-sm);
+  }
+  /* Toast commands stay compact on phones: the toast floats over the page,
+     so every row of height it saves is page the learner can still see. */
+  .notice--toast .action-control.action-control--compact { min-height: 36px; }
+  .notice--toast .action-control--icon.action-control--compact { width: 36px; height: 36px; }
 }

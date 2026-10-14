@@ -70,10 +70,12 @@ test("current application errors remain alerts and their shared action dismisses
   });
   await page.goto("/settings");
   const notice = page.getByRole("alert").filter({ hasText: "Import activity could not be loaded." });
-  await expect(notice).toHaveClass(/notice--panel/);
+  // A short-lived error is a toast in the app's one region, floating over the page.
+  await expect(notice).toHaveClass(/notice--toast/);
+  await expect(page.getByRole("region", { name: "Notifications" })).toContainText("Import activity could not be loaded.");
   await expect(notice).toHaveAttribute("data-tone", "error");
   await expect(notice).toHaveAttribute("aria-atomic", "true");
-  const dismiss = notice.getByRole("button", { name: "Dismiss error", exact: true });
+  const dismiss = notice.getByRole("button", { name: "Dismiss", exact: true });
   await expect(dismiss).toBeVisible();
   await dismiss.focus();
   await page.keyboard.press("Enter");
