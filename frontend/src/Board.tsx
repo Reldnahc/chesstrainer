@@ -136,7 +136,10 @@ export default function Board({
   const [selected, setSelected] = useState<string | null>(null);
   const [promotion, setPromotion] = useState<PromotionChoice | null>(null);
   const [marks, setMarks] = useState<Record<string, MarkColor>>({});
-  const rightClick = useRef<Modifiers>({ altKey: false, shiftKey: false, ctrlKey: false, metaKey: false });
+  // The square where the right button went down. A mark needs the release on
+  // that same square; Linux and macOS open the context menu on the press, so
+  // marking from contextmenu would mark the start square of every drawn arrow.
+  const rightPress = useRef<string | null>(null);
   // Drawn marks belong to a position, as the library's drawn arrows do.
   useEffect(() => setMarks({}), [fen]);
   const promotionTimer = useRef<number | undefined>(undefined);
@@ -187,9 +190,6 @@ export default function Board({
   }
   return (
     <div ref={board} tabIndex={-1} className="board-shell" data-feedback={feedback}
-      onContextMenuCapture={({ altKey, shiftKey, ctrlKey, metaKey }) => {
-        rightClick.current = { altKey, shiftKey, ctrlKey, metaKey };
-      }}
       onContextMenu={(event) => event.preventDefault()}>
       {fades.style && <style>{fades.style}</style>}
       <Chessboard
@@ -266,12 +266,16 @@ export default function Board({
             else setSelected(null);
             return false;
           },
-          onSquareMouseDown: (_, event) => {
+          onSquareMouseDown: ({ square }, event) => {
             if (event.button === 0) setMarks((current) => (Object.keys(current).length ? {} : current));
+            if (event.button === 2) rightPress.current = square;
           },
-          // Not called when the right button finished drawing an arrow.
-          onSquareRightClick: ({ square }) => {
-            const color = markColor(rightClick.current);
+          onSquareMouseUp: ({ square }, event) => {
+            if (event.button !== 2) return;
+            const pressed = rightPress.current;
+            rightPress.current = null;
+            if (pressed !== square) return;
+            const color = markColor(event);
             setMarks(({ [square]: previous, ...rest }) => (previous === color ? rest : { ...rest, [square]: color }));
           },
           onSquareClick: ({ square }) => {
