@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
 import EmptyState from "./EmptyState";
-import { gamesPath, pagePaths } from "./navigation";
+import { gamesPath } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
 import { LoadingState } from "./LoadState";
 
@@ -63,13 +63,13 @@ export default function GamesScreen({
         libraryHref={gamesPath(page)}
       />
     );
+  const refreshed = () => {
+    background.current = true;
+    setRevision((value) => value + 1);
+  };
   return (
     <>
       <PageTitle title="Your games" />
-      <GameSync compact onChanged={() => {
-        background.current = true;
-        setRevision((value) => value + 1);
-      }} />
       <Reveal>{error && (
         <Notice announcement="alert" tone="error">
           {error}
@@ -86,14 +86,15 @@ export default function GamesScreen({
               Back to your games
             </ActionLink>
           ) : (
-              <ActionLink href={pagePaths.Settings}>
-                Import games in Settings
-              </ActionLink>
+            <GameSync compact setupLabel="Import games in Settings" onChanged={refreshed} />
           )}>
           {page === 1 && <>Import a PGN or your Chess.com games to review both sides with your local coach.</>}
         </EmptyState>
       ) : (
-        <GameHistory items={items} page={page} />
+        <GameHistory items={items} page={page} toolbar={<>
+          <p className="game-library-count"><strong>{total.toLocaleString()}</strong> {total === 1 ? "game" : "games"}</p>
+          <GameSync compact onChanged={refreshed} />
+        </>} />
       )}
       {total > 30 && items.length > 0 && (
         <Pagination label="Games pages" start={offset + 1} end={Math.min(offset + 30, total)} total={total}

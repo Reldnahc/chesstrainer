@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Schema } from "./api";
 import { ChevronRight, Clock3 } from "lucide-react";
 import Link from "./Link";
@@ -91,14 +92,18 @@ export default function GameHistory({
   items,
   page,
   presentation = "library",
+  toolbar,
 }: {
   items: HistoryItem[];
   page: number;
   presentation?: "library" | "compact";
+  /** Library only: the list's own header row, such as a count and Update games. */
+  toolbar?: ReactNode;
 }) {
   const compact = presentation === "compact";
   return (
     <section className={`game-library${compact ? " game-library--compact" : ""}`} aria-label="Game history">
+      {!compact && toolbar && <div className="game-library-toolbar">{toolbar}</div>}
       {!compact && <div className="game-library-heading" aria-hidden="true">
         <span className="history-time">Time</span>
         <span className="history-players">Players</span>
