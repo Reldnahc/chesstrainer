@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import func, select, update
 
 from trainer import job_lifecycle
+from trainer.authz import shared_links
 from trainer.chess_core import Score
 from trainer.contracts.common import JobStarted
 from trainer.contracts.games import (
@@ -207,8 +208,11 @@ def create_router(*, settings):
                 "positions": positions,
             }
 
-    @router.get(
-        "/api/games/{game_id}", response_model=GameDetail, response_model_exclude_unset=True
+    @shared_links.route(
+        router.get,
+        "/api/games/{game_id}",
+        response_model=GameDetail,
+        response_model_exclude_unset=True,
     )
     def game_detail(view: ViewedGame, game_id: str):
         with view.sessions() as db:
@@ -278,7 +282,8 @@ def create_router(*, settings):
                 ),
             }
 
-    @router.get(
+    @shared_links.route(
+        router.get,
         "/api/games/{game_id}/review",
         response_model=ReviewProgress,
         response_model_exclude_unset=True,
@@ -373,7 +378,8 @@ def create_router(*, settings):
             db.commit()
             return {"job_id": job.id, "status": job.status}
 
-    @router.post(
+    @shared_links.route(
+        router.post,
         "/api/games/{game_id}/position",
         response_model=GamePosition,
         response_model_exclude_unset=True,

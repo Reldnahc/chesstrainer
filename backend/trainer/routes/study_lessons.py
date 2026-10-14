@@ -7,6 +7,7 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import Response
 
+from trainer.authz import administrator, is_administrator
 from trainer.chess_core import legal_move_options
 from trainer.contracts.study_lessons import (
     CourseFileCheck,
@@ -29,17 +30,8 @@ from trainer.workspaces import CurrentWorkspace
 MAX_COURSE_FILE_BYTES = 5_000_000
 
 
-def can_manage(request):
-    """Local single-user installs manage their own courses; with accounts, admins do."""
-    if not request.app.state.settings.accounts_enabled:
-        return True
-    user = getattr(request.state, "user", None)
-    return bool(user and user.get("admin"))
-
-
-def require_manager(request):
-    if not can_manage(request):
-        raise HTTPException(403, "Only an administrator can change courses.")
+# Local single-user installs manage their own courses; with accounts, admins do.
+course_admin = administrator("Only an administrator can change courses.")
 
 
 async def read_course_json(request):
@@ -68,7 +60,7 @@ def create_router(*, providers, installed=None):
 
     @router.get("/api/study/courses", response_model=LessonLibrary)
     def library(workspace: CurrentWorkspace, request: Request):
-        manager = can_manage(request)
+        manager = is_administrator(request)
         with workspace.sessions() as db:
             result = queries.library(db, providers)
         problems = installed.club.problems() if installed and manager else []
@@ -84,7 +76,7 @@ def create_router(*, providers, installed=None):
     ):
         with workspace.sessions() as db:
             view = queries.course_view(db, providers, course_id, revision)
-        return {**view, "can_manage": can_manage(request)}
+        return {**view, "can_manage": is_administrator(request)}
 
     @router.get(
         "/api/study/courses/{course_id}/file",
@@ -123,6 +115,7 @@ def create_router(*, providers, installed=None):
 
     @router.post(
         "/api/study/course-files",
+        dependencies=[course_admin],
         response_model=CourseFileSaved,
         openapi_extra={
             "requestBody": {
@@ -139,7 +132,6 @@ def create_router(*, providers, installed=None):
         The editor sends ``create`` for a new course and ``base_revision`` for the
         revision it opened, so a save never silently replaces another course.
         """
-        require_manager(request)
         data = await read_course_json(request)
         folder = club()
         try:
@@ -159,6 +151,7 @@ def create_router(*, providers, installed=None):
 
     @router.post(
         "/api/study/course-files/check",
+        dependencies=[course_admin],
         response_model=CourseFileCheck,
         openapi_extra={
             "requestBody": {
@@ -171,14 +164,16 @@ def create_router(*, providers, installed=None):
     )
     async def check_course(request: Request):
         """The lesson editor's live check: the first problem and each step's board."""
-        require_manager(request)
         data = await read_course_json(request)
         return await run_in_threadpool(course_files.check, data)
 
-    @router.post("/api/study/course-files/position", response_model=EditorPosition)
+    @router.post(
+        "/api/study/course-files/position",
+        response_model=EditorPosition,
+        dependencies=[course_admin],
+    )
     def editor_position(request: Request, data: EditorPositionRequest):
         """Play recorded editor moves; legality stays on the server."""
-        require_manager(request)
         try:
             board = chess.Board(data.fen or chess.STARTING_FEN)
             if not board.is_valid():
@@ -210,14 +205,17 @@ def create_router(*, providers, installed=None):
             "legal_moves": legal_move_options(board),
         }
 
-    @router.delete("/api/study/course-files/{course_id}", response_model=CourseFileDeleted)
+    @router.delete(
+        "/api/study/course-files/{course_id}",
+        response_model=CourseFileDeleted,
+        dependencies=[course_admin],
+    )
     def delete_course(request: Request, course_id: str):
         """Remove a club course file, or hide a built-in course for this install.
 
         Deleting a club file that replaced a built-in course brings the built-in
         back. Members' progress stays in the database either way.
         """
-        require_manager(request)
         folder = club()
         built_in = course_id in installed.built_in_ids()
         if folder.delete(course_id):
@@ -229,10 +227,13 @@ def create_router(*, providers, installed=None):
             return {"id": course_id, "built_in_restored": False, "hidden": True}
         raise HTTPException(404, "No course has that id.")
 
-    @router.post("/api/study/course-files/{course_id}/restore", response_model=HiddenCourse)
+    @router.post(
+        "/api/study/course-files/{course_id}/restore",
+        response_model=HiddenCourse,
+        dependencies=[course_admin],
+    )
     def restore_course(request: Request, course_id: str):
         """Bring back a deleted built-in course."""
-        require_manager(request)
         folder = club()
         course = next(
             (item for item in installed.hidden_built_ins() if item["id"] == course_id), None

@@ -71,8 +71,14 @@ cross-account lookup is which account owns the ID. The owner's other games stay
 private: viewers get `read_only: true` and no cross-game history, cannot start,
 pause or refine the review, and never see the game in their own library. Only
 `GET /api/games/<id>`, `GET /api/games/<id>/review` and
-`POST /api/games/<id>/position` accept signed-out requests. Local single-user mode
-never opens another account's games.
+`POST /api/games/<id>/position` accept signed-out requests; each is declared with
+`authz.shared_links.route` beside its route, which is the list the sign-in check
+reads. `GET /api/games/<id>/export` reads shared games for signed-in viewers but
+still needs a sign-in. Local single-user mode never opens another account's games.
+
+Administrator-only endpoints (account administration, course files, server
+settings) declare `dependencies=[authz.administrator(...)]`, so a handler cannot
+forget the check; in local single-user mode the one user is the administrator.
 
 One host-wide engine pool limits native processes through `ENGINE_SLOTS` (default
 4); each process uses `STOCKFISH_THREADS` and `STOCKFISH_HASH_MB`. One application

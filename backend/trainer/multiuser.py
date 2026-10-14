@@ -1,7 +1,6 @@
 """Cookie authentication and account-bound services sharing one database."""
 
 import ipaddress
-import re
 import secrets
 import sqlite3
 import threading
@@ -22,6 +21,7 @@ from trainer.accounts import (
     password_hash,
     password_matches,
 )
+from trainer.authz import administrator, shared_links
 from trainer.contracts.accounts import (
     AccountAccess,
     AccountProfile,
@@ -34,9 +34,6 @@ from trainer.contracts.accounts import (
 )
 from trainer.contracts.common import Ok
 
-# Anyone holding a game's link may read its review and step through variations.
-# Each route still resolves the game itself and refuses what it does not allow.
-SHARED_REVIEW = re.compile(r"/api/games/[^/]+(/review)?")
 LAN_SUFFIXES = (".local", ".localhost", ".lan", ".home", ".home.arpa", ".internal")
 
 
@@ -64,12 +61,6 @@ def lan_http(request):
         return hostname == "localhost" or "." not in hostname or hostname.endswith(LAN_SUFFIXES)
 
 
-def shared_review(method, path):
-    if method in {"GET", "HEAD"}:
-        return bool(SHARED_REVIEW.fullmatch(path))
-    return method == "POST" and bool(re.fullmatch(r"/api/games/[^/]+/position", path))
-
-
 class Credentials(BaseModel):
     username: str = Field(min_length=3, max_length=32)
     password: str = Field(min_length=10, max_length=128)
@@ -92,7 +83,7 @@ def configure_accounts(app, settings):
             user = await run_in_threadpool(accounts.resolve, token) if token else None
             request.state.user = user
             public = path in {"/api/auth/me", "/api/auth/login", "/api/auth/signup"}
-            if not public and not user and not shared_review(request.method, path):
+            if not public and not user and not shared_links.opens(request.method, path):
                 return JSONResponse({"detail": "Sign in to your account."}, status_code=401)
             if (
                 user
@@ -289,7 +280,6 @@ def configure_accounts(app, settings):
     # Administration lives under /api/auth so local single-user mode, which has no
     # accounts to manage, leaves these routes out of its contract.
     def managed(request, account_id, *, not_self=None):
-        require_admin(request)
         user = accounts.by_id(account_id)
         if not user or user["username"] == "__local__":
             raise HTTPException(404, "Account not found.")
@@ -304,13 +294,10 @@ def configure_accounts(app, settings):
             raise HTTPException(409, str(exc).rstrip(".") + ".") from exc
         return {"ok": True}
 
-    def require_admin(request):
-        if not request.state.user["admin"]:
-            raise HTTPException(403, "Only an administrator can manage accounts.")
+    admin = administrator("Only an administrator can manage accounts.")
 
-    @app.get("/api/auth/accounts", response_model=ManagedAccounts)
+    @app.get("/api/auth/accounts", response_model=ManagedAccounts, dependencies=[admin])
     def list_accounts(request: Request):
-        require_admin(request)
         return {
             "signups_open": accounts.signups_open(),
             "accounts": [
@@ -324,20 +311,18 @@ def configure_accounts(app, settings):
             ],
         }
 
-    @app.post("/api/auth/accounts", status_code=201, response_model=Ok)
+    @app.post("/api/auth/accounts", status_code=201, response_model=Ok, dependencies=[admin])
     def add_account(data: NewAccount, request: Request):
         """Add a member with a temporary password they replace at first sign-in."""
-        require_admin(request)
         with password_lock:
             return administer(lambda: accounts.create(data.username, data.password, temporary=True))
 
-    @app.put("/api/auth/signups", response_model=Ok)
+    @app.put("/api/auth/signups", response_model=Ok, dependencies=[admin])
     def signup_access(data: SignupAccess, request: Request):
         """Let visitors create their own accounts, or leave that to administrators."""
-        require_admin(request)
         return administer(accounts.set_signups_open, data.open)
 
-    @app.post("/api/auth/accounts/{account_id}/password", response_model=Ok)
+    @app.post("/api/auth/accounts/{account_id}/password", response_model=Ok, dependencies=[admin])
     def reset_password(account_id: str, data: PasswordReset, request: Request):
         """Set a new password and sign that account out everywhere."""
         user = managed(
@@ -349,16 +334,16 @@ def configure_accounts(app, settings):
         with password_lock:
             return administer(lambda: accounts.set_password(user, data.password, temporary=True))
 
-    @app.post("/api/auth/accounts/{account_id}/admin", response_model=Ok)
+    @app.post("/api/auth/accounts/{account_id}/admin", response_model=Ok, dependencies=[admin])
     def promote_account(account_id: str, request: Request):
         return administer(accounts.promote, managed(request, account_id))
 
-    @app.post("/api/auth/accounts/{account_id}/access", response_model=Ok)
+    @app.post("/api/auth/accounts/{account_id}/access", response_model=Ok, dependencies=[admin])
     def account_access(account_id: str, data: AccountAccess, request: Request):
         user = managed(request, account_id, not_self="You cannot disable your own account.")
         return administer(accounts.set_disabled, user, data.disabled)
 
-    @app.delete("/api/auth/accounts/{account_id}", response_model=Ok)
+    @app.delete("/api/auth/accounts/{account_id}", response_model=Ok, dependencies=[admin])
     def delete_account(account_id: str, request: Request):
         user = managed(request, account_id, not_self="You cannot delete your own account.")
         return administer(accounts.delete, user)
