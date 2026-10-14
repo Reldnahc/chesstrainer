@@ -54,8 +54,12 @@ including aggregates and guessed IDs. Flush validation assigns ownership and
 rejects cross-account references. Raw SQL, private bulk inserts, bulk updates or
 deletes by primary key, `ordered_values` changes to owners or references, and the
 legacy `bulk_*` session methods are all refused in these sessions. Owned models have
-no default owner: an account session stamps its own, and any other insert must name it. The account service alone uses administrative SQL for credentials
-and sessions. Startup maintenance and the host job queue also use administrative
+no default owner: an account session stamps its own, and any other insert must name it.
+The account service (`trainer.accounts.Accounts`) alone writes credentials and sign-in
+sessions, with Core statements on the mapped `users` and `auth_sessions` tables over
+the application's own engine; `trainer.site_settings` alone writes `site_settings`,
+including `signups_open`. Presence updates use the requesting account's bound
+session. Startup maintenance and the host job queue also use administrative
 sessions, limited to reconciliation and scheduling metadata respectively; they
 never pass those sessions into request handlers or domain job execution. New
 private models must inherit `Owned`; tests must cover their API.
