@@ -1,5 +1,6 @@
 import { expect, test, type Locator } from "@playwright/test";
 import type { Schema } from "../src/api";
+import { expectModifierClickLeftToBrowser } from "./modifierClick";
 
 async function appearance(link: Locator) {
   await expect(link).toBeVisible();
@@ -13,7 +14,7 @@ async function appearance(link: Locator) {
   });
 }
 
-test("shared resume rows keep real puzzle, lesson and course-line destinations", async ({ page, context }, info) => {
+test("shared resume rows keep real puzzle, lesson and course-line destinations", async ({ page }, info) => {
   const puzzleResponse = await page.request.post(`/__test/puzzle-fixture/resume-row-${info.project.name}`);
   expect(puzzleResponse.ok()).toBe(true);
   const puzzle: { session_id: string } = await puzzleResponse.json();
@@ -51,16 +52,8 @@ test("shared resume rows keep real puzzle, lesson and course-line destinations",
   await expect(lessonLink.locator("small")).toHaveText(lessonBefore.chapter_title);
   expect(await appearance(lessonLink)).toEqual(sharedAppearance);
   if (info.project.name === "desktop") {
-    const [other] = await Promise.all([
-      context.waitForEvent("page"),
-      lessonLink.click({ modifiers: ["ControlOrMeta"] }),
-    ]);
-    try {
-      await expect(other).toHaveURL(lessonPath);
-      await expect(page).toHaveURL("/study/openings");
-    } finally {
-      await other.close();
-    }
+    await expectModifierClickLeftToBrowser(page, lessonLink, lessonPath);
+    await expect(page).toHaveURL("/study/openings");
   }
   await lessonLink.click();
   await expect(page).toHaveURL(lessonPath);

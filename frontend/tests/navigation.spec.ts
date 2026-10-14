@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { expectModifierClickLeftToBrowser } from './modifierClick';
 
 test.beforeEach(async ({page}) => {
   // Navigation must work independently of Stockfish availability or analysis.
@@ -77,19 +78,13 @@ test('every screen has a bookmarkable link and clicking the active page adds no 
   await expect(page.locator('#main-content')).toBeFocused();
 });
 
-test('game links support opening a second tab without navigating the first', async ({page, context}, info) => {
+test('game links support opening a second tab without navigating the first', async ({page}, info) => {
   test.skip(info.project.name !== 'desktop', 'Modifier-click is a desktop interaction.');
   const {id} = await (await page.request.post('/__test/game-review-fixture/new-tab')).json();
   await page.goto('/games');
-  const opened = context.waitForEvent('page');
-  await page.getByRole('link', {name: /Review-new-tab vs CoachFixture/}).click({modifiers: ['ControlOrMeta']});
-  const other = await opened;
-  try {
-    await expect(other).toHaveURL(`/games/${id}`);
-    await expect(other.locator('.game-player-name', {hasText: 'Review-new-tab'})).toBeVisible();
-    await expect(page).toHaveURL('/games');
-    await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
-  } finally { await other.close(); }
+  await expectModifierClickLeftToBrowser(page, page.getByRole('link', {name: /Review-new-tab vs CoachFixture/}), `/games/${id}`);
+  await expect(page).toHaveURL('/games');
+  await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
 });
 
 test('returning to the library restores its page and scroll after the list loads', async ({page}, info) => {
