@@ -109,12 +109,13 @@ lock, while other accounts have independent locks.
 | AccountSettings.tsx / AccountAdmin.tsx / ChangePasswordForm.tsx / accountFields.tsx | Settings → Account for members, the administrator account list, password changes (including the forced change after an administrator reset), and the shared username and new-password rules |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
-| useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
+| useSavedPreferences.ts | Shared account-bound preference load/save lifecycle: one serialized write queue (latest choice per field wins, results saved/superseded/failed), failure recovery, stale-response guards and an optional per-account device cache (`fieldwork.<name>:<account id or "local">`) |
 | audio/AudioProvider.tsx / AudioSettings.tsx | Existing account preference lifecycle, device-local mute, trusted browser activation and stable scoped sound controls |
 | audio/engine.ts / model.ts / catalog.ts | Semantic sound playback, local asset cache, cancellation/priority, independent speech bus and metadata; no grading, rules, TTS or coach-text generation |
 | MotionProvider.tsx / MotionSettings.tsx / motion.ts / MotionSelect.tsx | Saved piece/interface motion, common device-default override rules and shared motion selector |
 | coach/model.ts / registry.ts / motionVocabulary.ts / usePerformance.ts | Coach definitions, explicit display groups, compatibility fallbacks, expression-specific idle pools, event dwell and one-shot reactions |
-| useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits, boards and controls |
+| mediaQuery.ts / useReducedMotion.ts / usePhone.ts | One event-driven store per media query (subscribed once at module level, resynchronized when the first consumer mounts), shared by the device motion preference and the phone breakpoint (`PHONE_QUERY`) |
+| fen.ts | FEN reading for labels only: `START_FEN`, `sideToMove`, `numberedSan`/`moveNumber` and the playback "Your move / Opponent reply" label; UCI squares come from boardCues.ts |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
 | coach/studies/ / coach/cast/ / coach/studio/ | Shared registered character artwork, cast-specific SVG rigs and a separate development-only expression/idle comparison entry |
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |

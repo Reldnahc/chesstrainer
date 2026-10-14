@@ -49,7 +49,7 @@ export default function CourseSettings() {
       return `Restored “${course.title}”.`;
     });
   }
-  return <QueryResult query={query} label="courses" presentation="panel">{library => <SettingsSection id="settings-courses" className="course-settings" title="Courses"
+  return <QueryResult query={query} label="courses" presentation="panel">{library => <SettingsSection id="settings-courses" className="course-settings" title="Courses" stackActions
     description="Write Study lessons for your members, or import a course file. Members see every course here in Lessons."
     actions={<div className="button-row">
       <ActionLink variant="primary" href={courseEditorPath()}><Plus size={16} />New course</ActionLink>

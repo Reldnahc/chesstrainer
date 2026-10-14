@@ -1,7 +1,7 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
 /* Containers own the spacing between their children; children carry no outer margins. */
-.intelligence-lab {display: flex; flex-direction: column; gap: var(--space-6); max-width: 1500px; margin: auto; padding: var(--space-8); width: 100%; min-height: calc(100vh - 149px);}
+.intelligence-lab {display: flex; flex-direction: column; gap: var(--space-6); max-width: 1500px; margin: auto; padding: var(--space-8); width: 100%;}
 .intelligence-lab h1 {font-size: clamp(var(--text-4xl), 4vw, var(--text-5xl));}
 .intelligence-lab > header {display: flex; flex-direction: column; gap: var(--space-3);}
 /* An open disclosure stacks its summary and contents; closed, it is just the summary. */

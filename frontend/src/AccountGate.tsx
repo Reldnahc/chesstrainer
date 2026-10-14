@@ -112,12 +112,12 @@ export default function AccountGate({ children }: { children: ReactNode }) {
                 : <input type="password" autoComplete="current-password" maxLength={PASSWORD_RULES.maxLength} required
                   value={password} onChange={(e) => setPassword(e.target.value)} />}
             </label>
-            {creating && (
+            <Reveal>{creating && (
               <p className="small">
                 Use at least {PASSWORD_RULES.minLength} characters. Your host can reset a forgotten
                 password.
               </p>
-            )}
+            )}</Reveal>
             <Button type="submit" variant="primary" disabled={busy}>
               {busy ? "Please wait…" : creating ? "Create account" : "Sign in"}
             </Button>

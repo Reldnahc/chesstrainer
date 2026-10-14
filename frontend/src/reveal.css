@@ -87,4 +87,11 @@ dialog[open][data-closing]::backdrop { animation: backdrop-out var(--motion-base
 [popover]:popover-open::backdrop { animation: content-in var(--motion-fast) var(--ease-enter); }
 [popover].popover-leaving:popover-open { animation: dialog-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
 [popover].popover-leaving:popover-open::backdrop { animation: backdrop-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
+/* A leaving copy (ghost.ts marks it data-ghost) only fades away: its cloned
+   panels must not replay their own entrances while it does. */
+[data-ghost] *,
+[data-ghost] *::before,
+[data-ghost] *::after {
+  animation: none;
+}
 }

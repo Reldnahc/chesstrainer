@@ -136,6 +136,15 @@
   font-size: inherit;
   letter-spacing: 0;
 }
+/* fit="content": one short line that never changes (Play setup on phones) fits its
+   text instead of the review's fixed height. */
+.review-coach--fit-content .coach-speech {
+  height: auto;
+}
+.review-coach--fit-content .coach-message {
+  min-height: 0;
+  overflow: visible;
+}
 .coach-title > .review-move {
   flex: none;
 }
@@ -156,7 +165,7 @@
   font-size: var(--text-base);
 }
 .coach-rated-move {
-  color: #eceef1;
+  color: var(--text);
   line-height: 1.25;
   white-space: normal;
   overflow-wrap: anywhere;
@@ -237,6 +246,9 @@
   font-weight: 700;
 }
 .coach-message {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
   flex: 1;
   /* The footer may wrap, but never squeezes the message below two lines. */
   min-height: 41px;
@@ -247,11 +259,6 @@
 .coach-message:focus-visible {
   outline: 1px solid #9bb6a5;
   outline-offset: 2px;
-}
-.coach-message {
-  display: grid;
-  align-content: start;
-  gap: var(--space-2);
 }
 .coach-message p {
   color: #e0e8e2;
@@ -279,7 +286,7 @@
 /* A square icon command (such as Back) keeps its own width beside labelled actions. */
 .coach-actions > .action-control.action-control--icon {
   flex: none;
-  width: 44px;
+  width: var(--touch-target);
   height: auto;
 }
 .coach-actions button[aria-pressed="true"] {
@@ -333,7 +340,7 @@
   margin: auto;
   border: 1px solid #63786c;
   border-radius: 12px;
-  background: #242d28;
+  background: var(--coach-bubble-background);
   color: #e0e8e2;
   box-shadow: 0 12px 48px #0009;
   font-size: var(--text-base);
@@ -360,7 +367,7 @@
   flex-wrap: wrap;
   gap: var(--space-1-5) var(--space-3);
   padding-top: var(--space-3);
-  border-top: 1px solid #47554d;
+  border-top: 1px solid var(--coach-bubble-border);
   font-size: var(--text-sm);
   color: #b8c9bf;
 }
@@ -418,6 +425,13 @@
   --move-color: #ff8993;
   color: var(--move-color);
 }
+/* The narrow coach (156px tall, small portrait above the actions) on phones, and
+   in any column 440px or narrower, which includes the desktop review sidebar.
+   CSS cannot share one block between a media and a container condition, so the
+   two blocks below hold the same narrow layout; change them together. Only
+   phones also shrink the title and the score badge: the desktop sidebar keeps
+   desktop text. The coach studio's compact preview is such a column, so it shows
+   this same layout. */
 @media (max-width: 760px) {
   .coach-actions > .action-control.action-control--compact {
     min-height: 40px;

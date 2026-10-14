@@ -268,8 +268,8 @@ export default function ImportSettings({
         ? <UnavailableState actions={<Button variant="secondary" onClick={reload}>Try again</Button>}>Couldn’t load import activity.</UnavailableState>
         : <LoadingState>Loading import activity…</LoadingState>)}
       <Reveal>{jobsLoaded && activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}</Reveal>
-      <RevealList settled={jobsLoaded}>{activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}</RevealList>
-      <RevealList settled={jobsLoaded}>{visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}</RevealList>
+      <RevealList settled={jobsLoaded} className="import-job-row">{activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}</RevealList>
+      <RevealList settled={jobsLoaded} className="import-job-row">{visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}</RevealList>
       <Reveal>{hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
         {showHistory ? "Show recent activity" : `Show older activity (${hiddenHistoryCount})`}
       </Button>}</Reveal>

@@ -99,7 +99,7 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
       {setting.value !== setting.running && ` Running with ${show(setting.running)} until restart.`}
     </small>;
     if (setting.kind === "boolean")
-      return <label className="server-setting-check" key={setting.key}>
+      return <label className="check-row server-setting-check" key={setting.key}>
         <input type="checkbox" checked={value === true} aria-describedby={`${id}-help`}
           onChange={event => edit(setting, event.target.checked)} />
         <span>{setting.label}{help}</span>

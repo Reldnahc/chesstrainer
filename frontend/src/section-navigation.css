@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: var(--touch-target);
   padding: var(--space-3) var(--space-5);
   border-radius: 5px;
   color: var(--muted);
@@ -29,7 +29,7 @@
 }
 .section-navigation a:hover {
   background: #292c31;
-  color: #eceef1;
+  color: var(--text);
 }
 .section-navigation a[aria-current="page"] {
   background: #39302d;

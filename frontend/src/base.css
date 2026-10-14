@@ -102,6 +102,7 @@ main {
   width: min(100%, max(var(--page-width), var(--review-min-width, 0px)));
   margin: auto;
   padding: var(--space-10) var(--page-inline-padding) var(--space-16);
+  /* The page fills the window below the header and above the footer (149px together). */
   min-height: calc(100vh - 149px);
 }
 /* A page's top-level blocks (notices, panels) are spaced by the page,
@@ -134,21 +135,10 @@ main.workspace-page > * {
 .panel > :is(.action-control, .button-link, button) {
   align-self: flex-start;
 }
-.two-column {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--space-8);
-}
 .form-panel {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-}
-.section-heading {
-  font: var(--text-xs) var(--mono);
-  color: var(--muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 .row-between {
   display: flex;
@@ -205,7 +195,7 @@ progress::-webkit-progress-value {
   flex-wrap: wrap;
   gap: var(--space-2);
 }
-footer {
+.app-footer {
   width: var(--page-width);
   margin: auto;
   padding: var(--space-6) var(--page-inline-padding);
@@ -216,7 +206,7 @@ footer {
   font: var(--text-2xs) var(--mono);
   color: var(--muted);
 }
-footer > span:last-child {
+.app-footer > span:last-child {
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -237,20 +227,17 @@ footer > span:last-child {
   flex-direction: column;
   gap: var(--space-5);
 }
-.workspace-page .two-column {
-  align-items: start;
-}
 .outcome-win {
-  color: #c0dda1;
-  background: #89ad5d20;
+  color: var(--outcome-win-text);
+  background: color-mix(in srgb, var(--outcome-win) 12.5%, transparent);
 }
 .outcome-loss {
-  color: #ff9ca4;
-  background: #d35f6b20;
+  color: var(--outcome-loss-text);
+  background: color-mix(in srgb, var(--outcome-loss) 12.5%, transparent);
 }
 .outcome-draw {
-  color: #bccede;
-  background: #86a4bd20;
+  color: var(--outcome-draw-text);
+  background: color-mix(in srgb, var(--outcome-draw) 12.5%, transparent);
 }
 .outcome-unknown {
   color: var(--muted);
@@ -289,10 +276,6 @@ footer > span:last-child {
     gap: var(--space-4);
     flex-wrap: wrap;
   }
-  .two-column {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-6);
-  }
   .brand {
     font-size: var(--text-2xl);
   }
@@ -326,7 +309,7 @@ footer > span:last-child {
   .eyebrow {
     font-size: var(--text-2xs);
   }
-  footer {
+  .app-footer {
     flex-wrap: wrap;
     font-size: var(--text-2xs);
     gap: var(--space-3);
@@ -360,11 +343,9 @@ footer > span:last-child {
     min-height: 0;
     padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
   }
+  /* Phone workspaces use a tighter panel padding, smaller section headings and body text. */
   .workspace-page {
     --panel-padding: var(--space-4);
-  }
-  /* Phone workspaces use smaller section headings and body text. */
-  .workspace-page {
     --text-heading-2: var(--text-xl);
     --text-body: var(--text-md);
   }
@@ -372,18 +353,14 @@ footer > span:last-child {
     line-height: 1.5;
   }
   .workspace-page button:not(.action-control) {
-    min-height: 44px;
+    min-height: var(--touch-target);
   }
   .workspace-page .form-panel {
     gap: var(--space-4);
   }
-  .workspace-page .two-column {
-    gap: var(--space-5);
-  }
   .workspace-page label {
     gap: var(--space-1-5);
   }
-  .workspace-page .form-panel > .primary,
   .workspace-page .form-panel > .action-control--primary {
     width: 100%;
   }

@@ -1,17 +1,20 @@
 import type { ReactNode } from "react";
 
 export default function SettingsSection({
-  id, title, description, actions, className = "", children,
+  id, title, description, actions, stackActions = false, className = "", children,
 }: {
   id: string;
   title: string;
   description?: ReactNode;
   actions?: ReactNode;
+  /** Phones put the actions under the heading at full width (a row of several commands). */
+  stackActions?: boolean;
   className?: string;
   children: ReactNode;
 }) {
   return (
-    <section id={id} className={`panel settings-section ${className}`} aria-labelledby={`${id}-title`}>
+    <section id={id} className={["panel settings-section", stackActions && "settings-section--stacked-actions", className].filter(Boolean).join(" ")}
+      aria-labelledby={`${id}-title`}>
       <div className="settings-section-heading">
         <div>
           <h2 id={`${id}-title`}>{title}</h2>

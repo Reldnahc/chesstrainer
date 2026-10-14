@@ -22,7 +22,7 @@
   font-size: var(--text-sm);
 }
 .game-library-count strong {
-  color: #eceef1;
+  color: var(--text);
   font-weight: 600;
 }
 .game-library-heading,
@@ -311,7 +311,7 @@
   gap: var(--space-1-5);
 }
 .history-recent-accuracy { gap: var(--space-3); font-size: var(--text-xs); color: var(--muted); }
-.history-recent-side .history-line { min-height: 0; color: #eceef1; font: var(--text-xs) var(--mono); }
+.history-recent-side .history-line { min-height: 0; color: var(--text); font: var(--text-xs) var(--mono); }
 .history-recent-action { margin-left: auto; font-size: var(--text-sm); font-weight: 500; color: #c1d6c8; }
 @container (max-width: 400px) {
   .game-library--compact .history-player strong { font-size: var(--text-base); }

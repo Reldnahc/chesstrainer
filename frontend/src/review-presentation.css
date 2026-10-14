@@ -17,7 +17,7 @@ main.review-page:has(.review-workspace-layout) {
   --review-gutter: 35px;
   --review-meta-height: 24px;
   /* Reserve the ordinary playback controls even when this mode has none. */
-  --review-controls-height: 42px;
+  --review-controls-height: var(--control-height);
   --review-sidebar-min: 300px;
   display: grid;
   grid-template-columns:
@@ -149,7 +149,7 @@ main.review-page:has(.review-workspace-layout) {
   .review-workspace-layout {
     --review-gutter: 27px;
     --review-meta-height: 27px;
-    --review-controls-height: 44px;
+    --review-controls-height: var(--touch-target);
     /* One gap above the top player bar (after the coach's actions) and below the
        bottom player bar (before the move controls), so the board sits evenly. */
     --review-board-gap: var(--space-1);

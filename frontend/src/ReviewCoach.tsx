@@ -22,6 +22,7 @@ export default function ReviewCoach({
   speech,
   voice,
   compactLabel = false,
+  fit = "fixed",
 }: {
   title: ReactNode;
   badge?: ReactNode;
@@ -41,6 +42,9 @@ export default function ReviewCoach({
   voice?: CoachSpeechPresentation;
   /** Size the title row to its text when the mode never shows an evaluation or voice control. */
   compactLabel?: boolean;
+  /** "content": the bubble fits one short line that never changes (Play setup on
+   * phones) instead of the review's fixed height. */
+  fit?: "fixed" | "content";
 }) {
   const message = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -49,7 +53,8 @@ export default function ReviewCoach({
     if (messageResetKey !== undefined && message.current) message.current.scrollTop = 0;
   }, [messageResetKey]);
   return (
-    <section className={compactLabel ? "review-coach review-coach--compact-label" : "review-coach"} aria-label="Chess coach">
+    <section className={["review-coach", compactLabel && "review-coach--compact-label", fit === "content" && "review-coach--fit-content"].filter(Boolean).join(" ")}
+      aria-label="Chess coach">
       <div className="coach-portrait">
         {character ?? <CoachAvatar reaction={reaction} speech={voice?.speech ?? speech} speechTrack={voice?.speechTrack} />}
         {portraitCaption && (

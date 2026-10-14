@@ -7,6 +7,7 @@ import { useAudioScope } from "../audio/AudioProvider";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 import Board from "../Board";
+import { moveSquares } from "../boardCues";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ContinuationMoves from "../ContinuationMoves";
@@ -41,8 +42,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     if (!line || next === ply || next < 0 || next > line.frames.length) return;
     audio.cancel();
     const eventId = `seek:${++navigationId.current}`;
-    if (next === ply + 1) audio.move(line.frames[next - 1].san, eventId);
-    else audio.play("move", eventId);
+    audio.step(ply, next, line.frames[next - 1]?.san, eventId);
     setPly(next);
   }
   useEffect(() => {
@@ -113,7 +113,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back</ActionLink><MovePlaybackControls label="Opening line playback" current={ply} maximum={line.frames.length}
       previous={{ "aria-label": "Previous line move", disabled: !ply, onClick: () => seek(ply - 1) }}
       next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => seek(ply + 1) }} /><AudioMuteButton /></div>}
-    board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
+    board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={moveSquares(frame?.uci)} />}
   >
     <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>} voice={voice}
       reaction={{ state: "explaining", key: `${line.line.source_key}:${color}:${!!selectedStudy?.active}` }}

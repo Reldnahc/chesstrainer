@@ -1,8 +1,7 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
 .audio-settings-controls { display: grid; gap: var(--space-5); max-width: 640px; }
-.audio-setting-check { display: flex; flex-direction: row; align-items: center; gap: var(--space-3); min-height: 44px; cursor: pointer; }
-.audio-setting-check input { flex: 0 0 20px; width: 20px; height: 20px; min-height: 20px; padding: 0; margin: 0; accent-color: var(--accent); }
+.audio-setting-check { align-items: center; min-height: var(--touch-target); }
 .audio-setting-check > span { display: flex; flex-direction: column; gap: var(--space-1); }
 .audio-setting-check small { color: var(--muted); font-size: var(--text-sm); }
 .audio-setting-categories { display: grid; gap: var(--space-4); margin: 0; padding: 0; border: 0; }
@@ -15,7 +14,6 @@
 .audio-setting-volume input { width: 100%; accent-color: var(--accent); min-height: 28px; margin: 0; }
 .audio-setting-preview { flex-wrap: wrap; }
 @media (max-width: 760px) {
-  .audio-setting-check { min-height: 44px; align-items: center; }
-  .audio-setting-volume input { min-height: 44px; }
+  .audio-setting-volume input { min-height: var(--touch-target); }
 }
 }

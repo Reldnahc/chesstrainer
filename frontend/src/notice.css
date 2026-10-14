@@ -96,7 +96,7 @@
   }
   /* Banner commands stay compact on phones, like the coach's actions, so a
      banner costs the page below it as little height as possible. */
-  .notice--banner .action-control.action-control--compact { min-height: 36px; }
-  .notice--banner .action-control--icon.action-control--compact { width: 36px; height: 36px; }
+  .notice--banner .action-control.action-control--compact { min-height: var(--control-height-compact); }
+  .notice--banner .action-control--icon.action-control--compact { width: var(--control-height-compact); height: var(--control-height-compact); }
 }
 }

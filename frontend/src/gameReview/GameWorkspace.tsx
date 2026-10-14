@@ -229,7 +229,7 @@ export default function GameWorkspace({
           exploration={exploration}
           getAnalysis={analysis.get}
           actions={
-            <button className="game-export-button" aria-label="Export game" title="Export PGN, FEN or GIF"
+            <button className="game-move-command game-move-command--icon" aria-label="Export game" title="Export PGN, FEN or GIF"
               onClick={() => setExporting(true)}>
               <Share size={14} />
             </button>

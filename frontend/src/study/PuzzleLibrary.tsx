@@ -13,6 +13,7 @@ import SourceLine from "../SourceLine";
 import StatList from "../StatList";
 import { navigate, puzzleSessionPath, puzzleSourcePath, studyPaths, type PuzzleSource } from "../navigation";
 import { QueryResult, useCommand, useQuery } from "../useQuery";
+import { shortDate } from "../format";
 import { PUZZLE_BANDS, PUZZLE_GOALS, createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel, savePuzzleSelection, type PuzzleMode, type PuzzleSelection } from "./puzzleApi";
 
 type Generation = NonNullable<Schema["PuzzleLibrary"]["generation"]>;
@@ -86,11 +87,11 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
               : "Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls."}</p>
             <div className="puzzle-filters">
               {source === "games" ? <div className="puzzle-filter">
-                <span aria-hidden="true">Goal</span>
-                <ChoiceGroup label="Goal" options={PUZZLE_GOALS} value={selection.goal} onChange={(goal) => select({ goal })} />
+                <span id="puzzle-goal">Goal</span>
+                <ChoiceGroup label="Goal" labelId="puzzle-goal" options={PUZZLE_GOALS} value={selection.goal} onChange={(goal) => select({ goal })} />
               </div> : <div className="puzzle-filter">
-                <span aria-hidden="true">Difficulty</span>
-                <ChoiceGroup label="Difficulty" options={PUZZLE_BANDS} value={selection.band} onChange={(band) => select({ band })} />
+                <span id="puzzle-difficulty">Difficulty</span>
+                <ChoiceGroup label="Difficulty" labelId="puzzle-difficulty" options={PUZZLE_BANDS} value={selection.band} onChange={(band) => select({ band })} />
               </div>}
               <label className="puzzle-filter">
                 <span>Theme</span>
@@ -124,7 +125,7 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
 function GenerationSummary({ generation }: { generation: Generation }) {
   if (generation.puzzles > 0) return <>
     <p>{generation.puzzles} {generation.puzzles === 1 ? "puzzle comes" : "puzzles come"} from {generation.searched_games} of your {generation.analyzed_games} analyzed games. Each one is a moment where you had a single clear winning line, checked by Stockfish and played from your side.</p>
-    <p className="small muted">Last search {generation.last_searched_at?.slice(0, 10)}: {generation.candidates} candidate positions checked, {generation.kept} kept, {generation.candidates - generation.kept} set aside as ambiguous or one-move.{generation.automatic ? " Newly analyzed games are searched when their analysis finishes." : ""}</p>
+    <p className="small muted">Last search {shortDate(generation.last_searched_at?.slice(0, 10)) ?? "date unknown"}: {generation.candidates} candidate positions checked, {generation.kept} kept, {generation.candidates - generation.kept} set aside as ambiguous or one-move.{generation.automatic ? " Newly analyzed games are searched when their analysis finishes." : ""}</p>
   </>;
   if (generation.analyzed_games === 0)
     return <p>No analyzed games yet. Imported games are analyzed automatically; once some finish, search them here.</p>;

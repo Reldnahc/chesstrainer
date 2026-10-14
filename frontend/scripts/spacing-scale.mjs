@@ -8,15 +8,18 @@ import { sourceFiles } from "./source-files.mjs";
 const PROPERTY = /(?:^|[{;\s])((?:margin|padding)(?:-(?:top|right|bottom|left|block|inline)(?:-(?:start|end))?)?|gap|row-gap|column-gap|--[\w-]*(?:padding|margin|gap)[\w-]*)\s*:\s*([^;}]*)/g;
 const RAW = /(^|[\s(,])-?(\d*\.?\d+)px\b/g;
 
+// Whole declarations are read, so a value wrapped over several lines is checked too.
 export function violations(css) {
+  const text = css.replace(/\/\*[\s\S]*?\*\//g, match => match.replace(/[^\n]/g, " "));
+  const lineOf = index => text.slice(0, index).split("\n").length;
   const found = [];
-  css.split("\n").forEach((line, index) => {
-    for (const [, property, value] of line.matchAll(PROPERTY)) {
-      for (const [, , number] of value.matchAll(RAW)) {
-        if (Number(number) > 1) found.push({ line: index + 1, property, value: value.trim() });
-      }
+  for (const match of text.matchAll(PROPERTY)) {
+    const [, property, value] = match;
+    for (const [, , number] of value.matchAll(RAW)) {
+      if (Number(number) > 1)
+        found.push({ line: lineOf(match.index + match[0].indexOf(property)), property, value: value.replace(/\s+/g, " ").trim() });
     }
-  });
+  }
   return found;
 }
 
