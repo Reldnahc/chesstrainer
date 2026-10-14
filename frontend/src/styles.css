@@ -1,5 +1,5 @@
-/* Shared review presentation precedes the global element defaults, as before.
- * Motion preferences share one policy after the normal/responsive rules. */
+/* The application's sheets. Their order here does not decide the cascade: each
+ * sheet sits in a layer declared by layers.css (docs/ARCHITECTURE.md, "Stylesheets"). */
 @import "./review-presentation.css";
 @import "./coach-presentation.css";
 @import "./foundation.css";

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* Shared application actions; containers own placement and available width. */
 .action-control {
   display: inline-flex;
@@ -84,4 +86,5 @@
   .action-control.action-control--ordinary,
   .action-control.action-control--compact { min-height: 44px; }
   .action-control.action-control--icon { width: 44px; height: 44px; }
+}
 }

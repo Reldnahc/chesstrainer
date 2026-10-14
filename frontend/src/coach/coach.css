@@ -3,7 +3,8 @@
 @import "./idleSignatures/humans.css";
 @import "./idleSignatures/animals.css";
 @import "./idleSignatures/unusual.css";
-
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* The rig owns its motion. No reaction changes the reserved layout box. */
 .coach-avatar {
   position: relative;
@@ -20,4 +21,5 @@
 .coach-avatar[data-motion="still"] *::before {
   animation: none !important;
   transition: none !important;
+}
 }

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .choice-group {
   display: flex;
   flex-wrap: wrap;
@@ -5,6 +7,9 @@
 }
 .choice-group button {
   background: transparent;
+}
+.choice-group button:hover {
+  background: var(--control-hover);
 }
 .choice-group button[aria-pressed="true"] {
   background: var(--raised);
@@ -15,4 +20,5 @@
   .choice-group button {
     min-height: 44px;
   }
+}
 }

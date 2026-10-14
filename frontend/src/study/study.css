@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .study-page { display: flex; flex-direction: column; gap: var(--space-5); }
 .study-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
 .study-option { display: grid; grid-template-rows: subgrid; grid-row: span 5; align-items: start; justify-items: start; gap: var(--space-3); }
@@ -119,4 +121,5 @@ section.lesson-editor-section { display: grid; gap: var(--space-3); padding-top:
 /* Beside Back, Show move and Hint on a phone, Main line needs its full width for the label. */
 @media (max-width: 760px) {
   .lesson-branch-return svg { display: none; }
+}
 }

@@ -1,7 +1,8 @@
 @import "./keyframes.css";
 @import "./reactions.css";
 @import "./speech.css";
-
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 :where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
   .coach-body-motion,
 :where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
@@ -58,4 +59,5 @@
 :where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
   .coach-question {
   opacity: 0.75;
+}
 }

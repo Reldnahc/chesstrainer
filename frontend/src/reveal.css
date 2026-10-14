@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* Interface entrances and exits: content grows, narrows or fades instead of
    popping in or out, the same way in every browser. Everything here uses the
    motion scale and stops under the Still policy in interface-motion.css.
@@ -85,3 +87,4 @@ dialog[open][data-closing]::backdrop { animation: backdrop-out var(--motion-base
 [popover]:popover-open::backdrop { animation: content-in var(--motion-fast) var(--ease-enter); }
 [popover].popover-leaving:popover-open { animation: dialog-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
 [popover].popover-leaving:popover-open::backdrop { animation: backdrop-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
+}

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* One transport for standalone audio and coach-inspector players. */
 .audio-studio-transport { display: flex; align-items: center; gap: var(--space-5); padding: var(--space-3) var(--space-4); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .audio-studio-volume { display: grid; grid-template-columns: auto auto 120px; align-items: center; gap: var(--space-3); }
@@ -13,4 +15,5 @@
   .audio-studio-transport { gap: var(--space-2); padding: var(--space-2); }
   .audio-studio-volume { grid-template-columns: auto auto minmax(42px, 1fr); flex: 1; gap: var(--space-2); }
   .audio-studio-volume input { width: 100%; }
+}
 }

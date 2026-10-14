@@ -125,6 +125,33 @@ lock, while other accounts have independent locks.
 
 Existing Board, MoveStatus, ReviewExplanation, ProviderImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
+### Stylesheets
+
+Cascade layers decide which rule wins, never the order in which modules happen to
+import their sheets. `src/layers.css` holds the order,
+`foundation, shell, components, pages, surfaces, motion`, and every stylesheet
+opens with that same `@layer` statement, so whichever sheet the application, a
+development tool or a test fixture loads first fixes it. Every stylesheet wraps
+its rules in one of the layers:
+
+- `foundation`: `foundation.css` (tokens, fonts, element defaults and utilities).
+- `shell`: `base.css` (application chrome, `main`, `.panel` and phone typography).
+- `components`: every shared component's sheet, the coach artwork and the review
+  and coach presentation.
+- `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,
+  the studios' and the lab's own sheets…).
+- `surfaces`: the phone surface policy (sections flatten; see
+  [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
+  padding or border never undoes it. A page that divides flattened panels puts that
+  divider in this layer too (`game-insights.css`).
+- `motion`: `interface-motion.css`, the Still policy over everything but coaches.
+
+A component's rule therefore beats the shell's at any specificity, and a page's
+beats a component's; within one layer the usual specificity and order apply. A new
+stylesheet picks its layer and starts with the order statement; an unlayered rule
+would beat every layer and is not allowed. `scripts/css-layers.mjs` (part of
+`npm run test:styles`) checks both.
+
 `styles.css` is the application stylesheet entry point. `foundation.css` owns
 shared fonts, tokens, element defaults and common form/surface utilities;
 `base.css` owns application chrome and page-specific layout. `board.css` owns the shared
@@ -134,9 +161,8 @@ board, legal-move markers, tactical highlights, rating animation and retry effec
 SRS and game-specific panels live in `srs-review.css` and `game-review.css`.
 History, imports, account/sync forms and evidence each have their own stylesheet.
 Keep a component's normal and responsive rules together, with one block per
-breakpoint, rather than appending overrides to the entry point. Shared review
-presentation precedes the base element defaults to preserve the established
-cascade. Board dimensions and motion remain common to both review experiences.
+breakpoint, rather than appending overrides to the entry point. Board dimensions
+and motion remain common to both review experiences.
 `interface-motion.css` applies the resolved account motion choice to all interface CSS
 animations/transitions, excluding coach portrait subtrees with their independent
 choice. `Board` uses that same resolved state for native piece movement. Browser

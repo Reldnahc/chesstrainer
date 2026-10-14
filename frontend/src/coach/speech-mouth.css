@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* The authored and speaking mouths cross-fade when a line starts and ends. Visibility
    flips at the far end of each fade so a hidden layer is never painted or hit. */
 .speech-mouth-layer {
@@ -78,4 +80,5 @@
 .organic-speech-tongue-floor {
   transform: translateY(calc((var(--organic-speech-height) - 1) * 8px));
   opacity: clamp(0, calc((var(--organic-speech-height) - .4) * .65), .4);
+}
 }

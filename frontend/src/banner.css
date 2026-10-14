@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* The page's banner slot (Banner.tsx): the first block of every page, so
    short-lived messages always appear in the same place. */
 .banner-region {
@@ -26,4 +28,5 @@ main.workspace-page > .banner-region:not(:has(> .reveal[data-open="true"])) {
 }
 main.review-page > .banner-region:not(:has(> .reveal[data-open="true"])) {
   padding-bottom: 0;
+}
 }

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .weakness-content { display: flex; flex-direction: column; gap: var(--space-6); }
 .weakness-section { display: flex; flex-direction: column; gap: var(--space-5); }
 .weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
@@ -135,4 +137,5 @@ body:has(dialog[open]) {
     width: min(100%, 400px);
     margin: auto;
   }
+}
 }

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .cast-scifi .coach-eyes {
   transform-box: fill-box;
   transform-origin: center;
@@ -22,4 +24,5 @@
 
 .cast-pawn :is(.study-head, .study-head-idle, .study-head-pose) {
   transform-origin: 50px 61px;
+}
 }

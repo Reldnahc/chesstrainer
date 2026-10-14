@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .empty-state { color: var(--muted); }
 .empty-state.empty-state--section { padding-block: var(--space-12); text-align: center; align-items: center; }
 .empty-state--section > .empty-state-icon { display: inline-flex; }
@@ -20,4 +22,5 @@
 .empty-state--compact .empty-state-actions { justify-content: flex-start; }
 @media (max-width: 760px) {
   .empty-state.empty-state--section { padding-block: var(--space-4); }
+}
 }

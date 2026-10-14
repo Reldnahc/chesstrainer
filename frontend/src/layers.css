@@ -1,0 +1,8 @@
+/* The cascade order: element defaults, then the application shell, shared
+ * components, pages and tools, then the phone surface policy (sections flatten
+ * whatever a page draws) and last the interface-motion policy. Every stylesheet
+ * opens with this same statement and wraps its rules in one of these layers, so
+ * the first sheet any page, tool or test fixture loads fixes the order, and the
+ * order in which modules import their sheets never decides which rule wins.
+ * scripts/css-layers.mjs checks both; see docs/ARCHITECTURE.md, "Stylesheets". */
+@layer foundation, shell, components, pages, surfaces, motion;

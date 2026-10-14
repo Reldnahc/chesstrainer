@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .game-library {
   container-type: inline-size;
   --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 17px;
@@ -335,4 +337,5 @@
   .game-library-toolbar { padding-top: 0; }
   /* Phone panels are flat with no side padding, so there is nothing to bleed into. */
   .panel .game-library--compact { --history-bleed: 0px; }
+}
 }

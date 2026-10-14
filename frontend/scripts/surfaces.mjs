@@ -16,16 +16,27 @@ const APPLICATION = (file) => file.startsWith("src/")
 const PHONE = /@media\s*\(max-width:\s*760px\)/;
 
 export function rules(css) {
-  // Flattens one level of @media blocks into rules that remember their query.
+  // Flattens @layer and @media blocks into rules that remember their query.
   const found = [];
   const source = css.replace(/\/\*[\s\S]*?\*\//g, "");
   const walk = (text, media) => {
-    const re = /([^{}]+)\{((?:[^{}]|\{[^{}]*\})*)\}/g;
-    let m;
-    while ((m = re.exec(text))) {
-      const head = m[1].trim();
-      if (head.startsWith("@media")) walk(m[2], head);
-      else if (!head.startsWith("@")) found.push({ selector: head.replace(/\s+/g, " "), body: m[2], media });
+    let start = 0;
+    for (let index = 0; index < text.length; index++) {
+      // A statement such as @import or the layer order ends at its semicolon.
+      if (text[index] === ";") { start = index + 1; continue; }
+      if (text[index] !== "{") continue;
+      const head = text.slice(start, index).trim();
+      let depth = 1, end = index + 1;
+      for (; end < text.length && depth; end++) {
+        if (text[end] === "{") depth++;
+        else if (text[end] === "}") depth--;
+      }
+      const body = text.slice(index + 1, end - 1);
+      if (head.startsWith("@media")) walk(body, head);
+      else if (head.startsWith("@layer")) walk(body, media);
+      else if (!head.startsWith("@")) found.push({ selector: head.replace(/\s+/g, " "), body, media });
+      index = end - 1;
+      start = end;
     }
   };
   walk(source, null);

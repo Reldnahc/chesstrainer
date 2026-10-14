@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .continuation-moves {
   display: flex;
   flex-wrap: wrap;
@@ -10,4 +12,5 @@
 }
 .continuation-moves .action-control[aria-current="step"] {
   border-color: var(--accent);
+}
 }

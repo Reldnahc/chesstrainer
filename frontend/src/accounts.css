@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .account-entry {
   max-width: 460px;
   margin-inline: auto;
@@ -46,3 +48,4 @@
 .onboarding li { padding-left: var(--space-1); line-height: 1.6; }
 .onboarding-crumb { margin-inline: var(--space-0-5); vertical-align: -2px; }
 .onboarding-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+}

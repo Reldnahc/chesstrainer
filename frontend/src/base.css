@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer shell {
 /* Application shell and page-level layout; development tools own their shell. */
 :root {
   --page-width: 80%;
@@ -361,19 +363,6 @@ footer > span:last-child {
   .workspace-page {
     --panel-padding: var(--space-4);
   }
-  /* Phones flatten sections: a panel keeps its surface only when it opts in
-     with .panel--card (docs/UI_COMPONENTS.md#surfaces). Dialogs float, so
-     they keep theirs. A divider separates neighbouring flat sections. */
-  .panel:not(dialog):not(.panel--card) {
-    padding: 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-  }
-  .panel:not(dialog):not(.panel--card) + .panel:not(dialog):not(.panel--card) {
-    padding-top: var(--page-gap);
-    border-top: 1px solid var(--line);
-  }
   /* Phone workspaces use smaller section headings and body text. */
   .workspace-page {
     --text-heading-2: var(--text-xl);
@@ -398,4 +387,23 @@ footer > span:last-child {
   .workspace-page .form-panel > .action-control--primary {
     width: 100%;
   }
+}
+}
+@layer surfaces {
+/* Phones flatten sections: a panel keeps its surface only when it opts in
+   with .panel--card (docs/UI_COMPONENTS.md#surfaces). Dialogs float, so
+   they keep theirs. A divider separates neighbouring flat sections. This is a
+   policy over every page's panels, so its layer sits above components and pages. */
+@media (max-width: 760px) {
+  .panel:not(dialog):not(.panel--card) {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+  .panel:not(dialog):not(.panel--card) + .panel:not(dialog):not(.panel--card) {
+    padding-top: var(--page-gap);
+    border-top: 1px solid var(--line);
+  }
+}
 }

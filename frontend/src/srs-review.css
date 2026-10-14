@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* The panel stacks the coach, receipt and details; its empty state groups
    an introduction and actions with a looser rhythm. */
 .practice-panel {
@@ -213,4 +215,5 @@
   .review-session .review-move {
     font-size: var(--text-xl);
   }
+}
 }

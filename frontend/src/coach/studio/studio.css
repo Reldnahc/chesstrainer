@@ -1,5 +1,6 @@
 @import "./idle-playback.css";
-
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .coach-studio {
   --studio-paper: #ede6d8;
   --studio-muted: #aaa99e;
@@ -104,6 +105,10 @@
   border: 1px solid #424b40;
   border-radius: 12px;
   background: #1c211e;
+}
+.studio-cast button:hover {
+  background: var(--control-hover);
+  border-color: var(--control-hover-border);
 }
 .studio-cast button[aria-pressed="true"] {
   background: #303c2d;
@@ -765,4 +770,5 @@
   .studio-expression small {
     display: none;
   }
+}
 }

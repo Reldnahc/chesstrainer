@@ -1,5 +1,6 @@
 @import "./keyframes.css";
-
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .study-artwork {
   --study-strength: var(--study-temperament, 1);
 }
@@ -185,4 +186,5 @@
   :is(.study-spark, .study-calico, .study-corgi)
   .study-head {
   animation: study-playful-recoil 1750ms both;
+}
 }

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* Standalone audio preview layout. Shared controls retain their own styles.
    Containers own the gaps between their children. */
 .audio-studio {
@@ -83,4 +85,5 @@
   .audio-studio-sidebar { grid-template-columns: 1fr; }
   .audio-studio-panel { padding: var(--space-5); }
   .audio-studio-panel .audio-studio-scenario-description { min-height: 0; }
+}
 }

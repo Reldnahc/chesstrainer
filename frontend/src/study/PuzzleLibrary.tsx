@@ -62,7 +62,7 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
       <QueryResult query={library} label="your puzzles" presentation="panel">{(puzzles) => {
         const generation = puzzles.generation ?? null;
         const available = source ? puzzles.sources.filter((item) => item.source === source).reduce((sum, item) => sum + item.count, 0) : puzzles.available;
-        const themes = puzzles.themes
+        const themes = (puzzles.themes ?? [])
           .map((theme) => ({ id: theme.id, count: source ? theme.sources[source] ?? 0 : theme.count }))
           .filter((theme) => theme.count > 0)
           .sort((a, b) => b.count - a.count || a.id.localeCompare(b.id));

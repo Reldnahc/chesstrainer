@@ -7,7 +7,7 @@ const stages = {
   "tsc -b": "tsc -b",
   "types: contracts": "tsc --project tsconfig.contracts.json",
   "types: browser tests": "tsc --project tsconfig.browser-tests.json",
-  styles: "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs && node scripts/surfaces.mjs && node scripts/type-scale.mjs && node scripts/motion-scale.mjs",
+  styles: "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs && node scripts/surfaces.mjs && node scripts/type-scale.mjs && node scripts/motion-scale.mjs && node scripts/css-layers.mjs",
   symbols: "node scripts/text-symbols.mjs",
   "vite build": "node scripts/api-types.mjs --check && vite build",
 };

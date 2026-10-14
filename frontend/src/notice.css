@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .notice {
   display: flex;
   gap: var(--space-3);
@@ -96,4 +98,5 @@
      banner costs the page below it as little height as possible. */
   .notice--banner .action-control.action-control--compact { min-height: 36px; }
   .notice--banner .action-control--icon.action-control--compact { width: 36px; height: 36px; }
+}
 }

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* Insights > Overview: library-wide patterns. Shared panels, StatList, ChoiceGroup and outcome colours.
    Spacing rule: containers own the gaps; their children carry no outer margins. */
 .insights { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
@@ -201,9 +203,9 @@
   .insight-heat { height: 32px; font-size: var(--text-xs); }
   .insight-pair { grid-template-columns: minmax(0, 1fr); }
   /* Flat phone sections: panels split across pairs and columns are divided like
-     siblings. :is(*, .panel) outranks the base panel flattening rule. */
-  .insights .insight-group > :not(h2) + :is(*, .panel),
-  .insights .insight-pair > * + :is(*, .panel) {
+     siblings (the surfaces layer below does the same for flattened panels). */
+  .insights .insight-group > :not(h2) + *,
+  .insights .insight-pair > * + * {
     padding-top: var(--page-gap);
     border-top: 1px solid var(--line);
   }
@@ -214,4 +216,16 @@
   .insight-col-record, .insight-score { display: none; }
   .insight-side-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .insight-table tbody th { min-width: 0; }
+}
+}
+@layer surfaces {
+/* Flattened phone panels inside a pair or a group keep the divider that separates
+   neighbouring sections; the surface policy would otherwise clear it. */
+@media (max-width: 760px) {
+  .insights .insight-group > :not(h2) + section.panel,
+  .insights .insight-pair > * + section.panel {
+    padding-top: var(--page-gap);
+    border-top: 1px solid var(--line);
+  }
+}
 }
