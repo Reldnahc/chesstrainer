@@ -3,8 +3,11 @@
 import chess
 
 from trainer.chess_core import VALUES
+from trainer.config import Settings
 from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
 
+# The default bound on one tactical episode, in plies.
+TACTIC_PLIES = Settings.model_fields["classification_tactic_plies"].default
 # The pieces that pin, skewer and attack along lines.
 SLIDERS = frozenset({chess.BISHOP, chess.ROOK, chess.QUEEN})
 
@@ -45,12 +48,12 @@ def valuable_targets(board, attacker_square):
     }
 
 
-def tactical_plies(boards, first, end, max_plies=8):
+def tactical_plies(boards, first, end, tactic_plies=TACTIC_PLIES):
     """Follow checks, exchanges and collection of existing threats; stop on a quiet gap."""
     if first >= len(boards):
         return []
     result = [first]
-    for ply in range(first + 2, min(end, first + max_plies - 1) + 1, 2):
+    for ply in range(first + 2, min(end, first + tactic_plies - 1) + 1, 2):
         prior, reply, current = boards[ply - 2], boards[ply - 1], boards[ply]
         reply_move, move = reply.peek(), current.peek()
         # A capture is connected if its target was already attacked before the reply.

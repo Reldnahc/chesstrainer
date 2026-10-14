@@ -11,7 +11,28 @@ from trainer.classification_stages import (
     mate_findings,
     read_lines,
 )
+from trainer.config import Settings
 from trainer.diagnosis_types import RULE_VERSION
+
+
+def classifier_parameters(settings=None):
+    """The classifier's line limits, from the host's settings or their defaults.
+
+    The keys are saved in every classification and hashed into its cache key, so
+    they keep their names: ``max_plies`` is the continuation horizon and
+    ``tactic_plies`` the bound on one tactical episode.
+    """
+    fields = {
+        "max_plies": "classification_max_plies",
+        "extension_plies": "classification_extension_plies",
+        "tactic_plies": "classification_tactic_plies",
+        "min_loss_cp": "classification_min_loss_cp",
+        "min_material": "classification_min_material",
+    }
+    return {
+        key: getattr(settings, name) if settings else Settings.model_fields[name].default
+        for key, name in fields.items()
+    }
 
 
 class LocalClassifier:
@@ -20,13 +41,7 @@ class LocalClassifier:
     model = "local-rules"  # Retained audit column; no model is loaded.
 
     def __init__(self, settings=None):
-        self.parameters = {
-            "max_plies": settings.classification_max_plies if settings else 16,
-            "extension_plies": settings.classification_extension_plies if settings else 16,
-            "tactic_plies": settings.classification_tactic_plies if settings else 8,
-            "min_loss_cp": settings.classification_min_loss_cp if settings else 150,
-            "min_material": settings.classification_min_material if settings else 1,
-        }
+        self.parameters = classifier_parameters(settings)
 
     def classify(self, evidence):
         from trainer.classification import Classification

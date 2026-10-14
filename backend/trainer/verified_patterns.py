@@ -1,6 +1,6 @@
 """Bounded tactical episodes and ordered aggregation of concrete motif witnesses."""
 
-from trainer.tactical_geometry import tactical_plies
+from trainer.tactical_geometry import TACTIC_PLIES, tactical_plies
 from trainer.verified_motifs import (
     TacticalEvent,
     absolute_skewer,
@@ -23,7 +23,7 @@ def detect_patterns(
     *,
     material_supported,
     mate_supported,
-    max_tactic_plies=8,
+    max_tactic_plies=TACTIC_PLIES,
 ):
     from trainer.combination_patterns import combinations
 

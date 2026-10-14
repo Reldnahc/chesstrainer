@@ -14,6 +14,7 @@ from trainer.chess_core import Candidate, digest, position_key, valid_board
 from trainer.continuations import continuation_end, replay
 from trainer.errors import EvidenceIntegrityError
 from trainer.tactical_geometry import (
+    TACTIC_PLIES,
     effective_attacks,
     names,
     piece_capture_ply,
@@ -50,7 +51,7 @@ class Moment:
     ply: int
     first: int
     end: int
-    max_plies: int
+    tactic_plies: int
     analysis_id: str
     direction: str
 
@@ -136,7 +137,9 @@ def relative_pin_escape(m: Moment):
     boards, ply, move, after = m.boards, m.ply, m.move, m.after
     for target in m.targets - effective_attacks(m.before, move.from_square):
         victim = after.piece_at(target)
-        collection = piece_capture_ply(boards, target, ply, min(m.end, m.first + m.max_plies - 1))
+        collection = piece_capture_ply(
+            boards, target, ply, min(m.end, m.first + m.tactic_plies - 1)
+        )
         if collection is None or victim.piece_type == chess.KING:
             continue
         for slider, rear in relative_pinners(after, target):
@@ -252,20 +255,21 @@ def trapped_piece(m: Moment):
 RULES = (fork_capture, relative_pin_escape, pinned_recapture, trapped_piece)
 
 
-def hypotheses(boards, first, end, analysis_id, direction, max_plies=8):
-    plies = tactical_plies(boards, first, end, max_plies)
+def hypotheses(boards, first, end, analysis_id, direction, tactic_plies=TACTIC_PLIES):
+    plies = tactical_plies(boards, first, end, tactic_plies)
     found = [
         hypothesis
         for ply in plies
         for rule in RULES
         for hypothesis in rule(
-            Moment(boards, plies, ply, first, end, max_plies, analysis_id, direction)
+            Moment(boards, plies, ply, first, end, tactic_plies, analysis_id, direction)
         )
     ]
     return list({item.key: item for item in found}.values())
 
 
-def verify_defense(hypothesis, boards, root_candidate, probe, settings):
+def verify_defense(hypothesis, boards, root_candidate, probe, parameters):
+    """``parameters`` are the classifier's line limits (``classifier_parameters``)."""
     request = hypothesis
     position = boards[request.at_ply]
     if (
@@ -285,17 +289,19 @@ def verify_defense(hypothesis, boards, root_candidate, probe, settings):
     branch = replay(position, candidate)
     combined = boards[: request.at_ply + 1] + branch[1:]
     actor = not position.turn
-    endpoint = continuation_end(combined, actor, settings["max_plies"], settings["extension_plies"])
+    endpoint = continuation_end(
+        combined, actor, parameters["max_plies"], parameters["extension_plies"]
+    )
     score = candidate.score.negate()  # Probe root is the defending side to move.
     reference = root_candidate.score if boards[0].turn == actor else root_candidate.score.negate()
     corroborates = (
         endpoint.material_delta is not None
-        and endpoint.material_delta >= settings["min_material"]
+        and endpoint.material_delta >= parameters["min_material"]
         and (
             score.outcome() == 1
             or (
                 score.kind == reference.kind == "cp"
-                and score.value >= reference.value - settings["min_loss_cp"]
+                and score.value >= reference.value - parameters["min_loss_cp"]
             )
         )
     )

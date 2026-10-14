@@ -3,7 +3,11 @@
 from trainer._vendor.lichess_puzzler import COMMIT
 from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
 from trainer.lichess_patterns import THEME_SKILLS, recognize
-from trainer.tactical_geometry import defender_capture_is_worthwhile, tactical_plies
+from trainer.tactical_geometry import (
+    TACTIC_PLIES,
+    defender_capture_is_worthwhile,
+    tactical_plies,
+)
 from trainer.verified_patterns import detect_patterns as verified_patterns
 
 RECOGNIZED_MECHANISMS = {
@@ -24,7 +28,7 @@ RECOGNIZED_MECHANISMS = {
 
 
 def recognized_patterns(
-    boards, first, end, analysis_id, direction, *, max_tactic_plies=8, previous_move=None
+    boards, first, end, analysis_id, direction, *, max_tactic_plies=TACTIC_PLIES, previous_move=None
 ):
     """Recognize facts in the relevant episode without asserting a material outcome."""
     if first >= len(boards) or end < first:
@@ -99,7 +103,7 @@ def detect_patterns(
     *,
     material_supported,
     mate_supported,
-    max_tactic_plies=8,
+    max_tactic_plies=TACTIC_PLIES,
     previous_move=None,
 ):
     """Admit recognized motifs only after the caller verifies an adverse outcome.

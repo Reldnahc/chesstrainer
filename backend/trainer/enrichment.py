@@ -12,7 +12,7 @@ from trainer.defensive_probes import hypotheses
 from trainer.diagnosis_types import OUTCOME_SKILLS
 from trainer.engine import EngineUnavailable
 from trainer.imports import decision_board
-from trainer.local_classifier import LocalClassifier
+from trainer.local_classifier import LocalClassifier, classifier_parameters
 from trainer.models import (
     ClassificationAnalysis,
     ClassificationProbe,
@@ -136,7 +136,8 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
     probes = []
     queries = 2
     settings = engine.settings
-    hard_end = settings.classification_max_plies + settings.classification_extension_plies
+    limits = classifier_parameters(settings)
+    hard_end = limits["max_plies"] + limits["extension_plies"]
     roots = [before, actual]
     # Resolve a short unfinished tail directly. The original root score stays
     # attached to its root; the new analysis has its own side-to-move perspective.
@@ -149,8 +150,8 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
         endpoint = continuation_end(
             boards,
             board.turn,
-            settings.classification_max_plies,
-            settings.classification_extension_plies,
+            limits["max_plies"],
+            limits["extension_plies"],
         )
         if (
             endpoint.material_delta is not None
@@ -185,8 +186,8 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
         endpoint = continuation_end(
             boards,
             board.turn,
-            settings.classification_max_plies,
-            settings.classification_extension_plies,
+            limits["max_plies"],
+            limits["extension_plies"],
         )
         for request in hypotheses(
             boards,
@@ -194,7 +195,7 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             endpoint.end_ply,
             root.id,
             direction,
-            settings.classification_tactic_plies,
+            limits["tactic_plies"],
         ):
             if queries >= settings.classification_probe_queries:
                 break
