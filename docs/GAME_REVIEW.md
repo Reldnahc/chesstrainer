@@ -46,7 +46,9 @@ remaining time at the selected move, starting from the TimeControl header's
 initial time; the side to move has the highlighted (running) clock. A variation
 keeps the clocks from where it left the game. Games without clock annotations
 show no clocks.
-Normal arrow keys move through the game; Alt+Left/Right remain browser shortcuts.
+Normal arrow keys move through the game and Home/End jump to its start and last
+move (a variation's start inside one), like the playback buttons; Alt+Left/Right
+remain browser shortcuts.
 
 Open **Games** and choose an imported game. Its review starts automatically; an
 unfinished review resumes when reopened, and a completed review reuses saved
