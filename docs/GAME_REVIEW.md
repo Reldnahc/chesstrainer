@@ -1,6 +1,6 @@
 # Full-game review
 
-Full-game and variation reports can carry [human move evidence](HUMAN_MODELS.md)
+Full-game and variation reports can carry [human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence)
 independently of their Stockfish findings. Opening an already reviewed game checks
 for missing/outdated human evidence when the model is ready; compatible baseline
 reports are reused. Progress polling publishes refreshed rows in game order and
@@ -8,10 +8,9 @@ keeps the board usable throughout. Maia availability never changes move grades.
 
 Game review complements cold practice. It reviews both colors and arbitrary legal
 variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
-The existing training policy is unchanged.
 
-Completed reviews also derive supported [game relationships](GAME_CONTEXT.md),
-[owned history](CROSS_GAME_CONTEXT.md) for individual move explanations.
+Completed reviews also derive supported [game relationships](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships),
+[owned history](REVIEW_INTELLIGENCE.md#cross-game-context) for individual move explanations.
 The coach can connect a recovery to an
 earlier error or identify a repeated supported motif; incomplete or inconsistent
 evidence causes abstention. Human difficulty is a model-informed description,
@@ -201,7 +200,7 @@ requests. At most one move per review worker is in flight or queued. Results com
 in game order, attaching the preceding position's score before labels are exposed;
 this preserves Great-move comparisons. Pause stops adding work and saves the active
 batch before settling. Resume reuses committed moves, and failures close workers.
-Search depth, time, node limits and classification rules are unchanged. With the
+Parallelism does not change search depth, time, node limits or classification rules. With the
 default of one worker, analysis stays serial; increasing workers permits parallel
 positions, while increasing threads assigns more CPU threads to each position.
 
@@ -270,7 +269,7 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
 Saved sacrifice offers are revalidated before grading, practical assessment and
 semantic events. Unsupported legacy offers are omitted from the display report
 without modifying saved engine evidence or rerunning Stockfish. Labels are also
-computed on read, so existing reviews gain these grading corrections on reload.
+computed on read, so saved reviews pick up grading-rule changes on reload.
 
 Book takes precedence when the actual position and move appear in the bundled
 [Lichess opening catalogue](../backend/trainer/_vendor/lichess_openings/README.md).
@@ -283,7 +282,7 @@ its normal rating; a PGN opening name never makes later moves Book automatically
 
 One lazy, thread-safe, process-local index serves saved reviews, incremental
 updates and interactive variations. Recognition uses the recorded pre-move FEN
-and actual move, so older saved reviews gain Book labels without rewriting their
+and actual move, so saved reviews gain Book labels without rewriting their
 reports, running Stockfish again or migrating the database. Reports expose
 `opening` (catalogue version, optional name and ECO code) and `engine_label`;
 the primary `label` and coach text use Book. Tactical arrows retain the engine's
@@ -319,7 +318,7 @@ An observed motif is not automatically proof of inevitable material loss. Existi
 line-qualified language is retained. Unknown positional reasons get neutral feedback
 and an engine continuation rather than an invented pin, fork or strategic claim.
 There is no LLM, voice service, or rating-sensitive engine evaluation. Completed
-reviews expose [Lichess accuracy scores](GAME_ACCURACY.md) through the game APIs,
+reviews expose [Lichess accuracy scores](#game-accuracy) through the game APIs,
 calculated from saved evaluations without further engine searches.
 Each player's accuracy appears beside their name when the full review finishes.
 The same scores lead the White/Black move-quality table, above the nine rating
@@ -329,7 +328,7 @@ The readouts reserve space while reviewing and remain unchanged during variation
 Board readouts follow their players when flipped; the table keeps its White/Black
 columns. Accuracy has no Elo adjustment.
 
-Public definitions consulted during planning:
+Public reference definitions:
 [Chess.com Great/Brilliant](https://www.chess.com/article/view/how-to-play-a-brilliant-move),
 [classification](https://support.chess.com/en/articles/8572705-how-are-moves-classified-what-is-a-blunder-or-brilliant-etc).
 
@@ -339,22 +338,104 @@ After every baseline move is saved, a bounded optional investigation phase uses
 the same grading/evidence rules with deeper and selectively wider Stockfish
 searches. Baseline facts remain immutable; effective reports, accuracy and
 incremental revisions use compatible adopted evidence. See
-[REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for selection, budgets and provenance.
+[targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation) for selection, budgets and provenance.
 
 Review/variation responses include versioned semantic `intelligence`: objective
 transitions, critical resources, sacrifice/tactic witnesses, honest human-policy
 contrasts and valid mainline clock/opening observations. These facts feed the
 [shared dialogue layer](COACH_DIALOGUE.md) without changing badges based on human or clock data;
 the dialogue layer does not turn clock observations into coach lines.
-See [REVIEW_EVENTS.md](REVIEW_EVENTS.md). A good restricted-root alternative now
+See [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context). A good restricted-root alternative
 also disproves an only-good-move Great claim; all comparisons remain Stockfish facts.
 ## Structured game context
 
-Reviewed games now expose versioned relationships between supported moments,
+Reviewed games expose versioned relationships between supported moments,
 including missed punishment, recovery, repeated motifs, sustained advantages and
 gradual erosion. They use the same effective evidence generation as move reports
-and accuracy. See [GAME_CONTEXT.md](GAME_CONTEXT.md) for gates and caveats.
+and accuracy. See [game context](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships) for gates and caveats.
 
 Review stays move-by-move. There is no game story, critical-moment summary or
 ranked takeaway surface. Completion leaves the selected position and coach alone;
 move quality, accuracy and normal move navigation remain available.
+
+## Game accuracy
+
+The game detail and review progress APIs expose a versioned accuracy score for each
+player after a complete review. Fieldwork uses the published Lichess calculation;
+there is no Elo input and move-label thresholds do not affect the score. Scores are
+derived from saved reports, requiring no new Stockfish searches or database schema.
+
+### Calculation and provenance
+
+The Python port follows Lichess lila revision
+`2e653ad1e2b9fad31b4a092394019ef8fafdedb8`, with its pinned scalachess 17.8.2 and
+scalalib 11.8.8 helpers. Sources, local modifications and full AGPL/MIT licenses are
+in [the port directory](../backend/trainer/_vendor/lichess_accuracy/README.md).
+
+It converts White-perspective evaluations after successive plies into a winning-chance
+proxy and scores each change from the moving player's perspective. The aggregation
+combines a volatility-weighted mean with a harmonic mean. It preserves the upstream
+uncertainty allowance, population deviation, window alignment and bounds, centipawn
+saturation, and harmonic denominator floor. See
+[Lichess's explanation](https://lichess.org/page/accuracy) and the pinned source.
+
+Fieldwork uses Lichess's adjacent-position calculation directly. Standard games
+use the reference initial value of +15 centipawns. For a custom starting FEN, use
+the first saved report's best evaluation, normalized to White, instead of assuming
+an ordinary starting position. Move ownership follows the actual starting color.
+Typed mate outcomes saturate at the appropriate endpoint; delivered mate at zero
+is distinct from being mated at zero.
+
+The method is Lichess's, but Fieldwork supplies its own engine evaluations. Different
+search settings or engine versions can therefore produce different numbers from a
+separate review on lichess.org. These scores are not Chess.com's CAPS2 or an Elo
+estimate.
+
+### API and completeness
+
+Both `GET /api/games/{id}` and `GET /api/games/{id}/review?after={ply}` return:
+
+```json
+{"accuracy": {"version": "lichess-2e653ad1-1", "white": 84.7, "black": 91.2}}
+```
+
+The numbers above illustrate the response shape. Full precision is returned.
+`accuracy` is `null` until the job is completed and every original-game ply has a
+valid evaluation. Missing, extra, or invalid reports do not produce partial scores.
+Like the upstream game calculation, games where both sides have not moved receive
+no score. The final incremental response includes accuracy even when its move list
+is empty. Only completion requires loading all saved evaluations during polling.
+
+Already-completed reviews get scores when reopened, including when Stockfish is
+unavailable. Ratings, branch exploration and board orientation cannot modify the
+original-game scores. No aggregate is stored in a second table or database.
+
+`GET /api/games` also supplies this summary for completed games on the requested
+history page. It projects only the score fields for those games in one batched
+query and uses the same calculation as the review endpoints. It never starts
+analysis merely to fill the accuracy column.
+
+### Display
+
+Each player's name has an accuracy readout showing one decimal place, using stable
+space that does not change board size when analysis finishes. An em dash has an
+accessible explanation for incomplete or unavailable results. Accuracy belongs to
+the original game even while the player explores a variation. Flipping the board
+moves each score with its player.
+The move-quality breakdown repeats these scores at the top of its White/Black
+columns, using the same readout component and pending/unavailable explanations.
+Book labels do not exempt moves from accuracy or substitute a perfect score;
+recognized opening moves contribute their actual saved engine evaluations.
+History rows show White and Black accuracy aligned with their player names.
+Pending reviews show their review action or progress state in that column.
+
+### Verification
+
+Regression cases use the pinned upstream numerical examples and tolerances,
+including decisive mistakes, repeated small losses and Black moving first. Further
+tests cover saturation, uncertainty, the harmonic floor, both zero-mate outcomes,
+color symmetry at window-size boundaries, custom FENs and incomplete evidence.
+Native review tests verify equality between detail and incremental responses,
+rating independence, paused reviews, and reopening saved results without an engine.
+Browser checks cover completion through incremental polling, placeholders, rounding,
+stable board/readout geometry, flipping, branching and reopening on desktop/mobile.

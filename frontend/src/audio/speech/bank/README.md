@@ -12,8 +12,7 @@ defines the editorial and listening bar.
 recording settings and asset paths. Four original contrast recordings are referenced
 in place; the others live under `recordings/walter`, `recordings/walter-language-v2`
 and the versioned `recordings/walter-pilot-v1` and `recordings/walter-lessons-v1`
-collections. (The `walter-maia-v2` and `walter-pronunciation-v1` takes were all
-Maia passages and left with the 2026-10-02 Maia removal.) The shared registry also points to Rivet's sibling
+collections. The shared registry also points to Rivet's sibling
 bank under `../banks/rivet`; the same validator and runtime handle both.
 Recording sidecars retain the
 provider request and source-audio fingerprints. Production never calls a speech
@@ -26,177 +25,54 @@ the generated compact runtime projection: an object keyed by recording ID with
 `durationSeconds` and semantic `{start,end,shape}` cues. Do not edit either output
 by hand.
 
-## Walter wording revision
+## Revisions and archives
 
-`revisions/walter-language-v2.json` records the 81 reviewed script changes,
-including every original “continuation” passage. That revision left the other 100 recordings
-unchanged. The selected voice, recording settings, supported meanings and
-non-lesson scope remain the same. Five bounded `plans/walter-language-v2-*.json`
-files preserve the successful recording requests: 7,524 input characters and
-907 settled provider credits, with no retakes. All 81 replacements received
-automatic mouth timing through the existing generator.
+`revisions/walter-language-v2.json` and `revisions/walter-pilot-v1.json` are
+Walter's script-change ledgers, and Rivet's live in
+[wording-v2](../banks/rivet/revisions/wording-v2.json) and
+[wording-v3](../banks/rivet/revisions/wording-v3.json). Each records old and new
+text with an editorial reason; the active manifest and authored script files hold
+the current text. Engine comparison never promises survival in a lost position,
+and a demonstrated capture does not alone prove net material gain.
 
 The Audio Studio's **Walter wording** panel compares original/revised text,
 audio and mouth timing. Its archived v1 manifest and compact tracks live in
-`revisions/`; full original alignments are under `revisions/walter-language-v1-alignment`.
-Superseded bank MP3s and provenance moved to `../recordings/walter-language-v1`;
-the three superseded original contrasts retain their historical locations, as does the
-retired Maia contrast `human-unusual-strong`, which no longer ships.
-These archives preserve source hashes and exact generation history. They are
-excluded from the production media imports. Earlier recording plans and script
-inventories describe the original audit, not the active revision; do not overwrite
-them to match a newly recorded script.
+`revisions/`; full original alignments are under `revisions/walter-language-v1-alignment`
+and superseded MP3s and provenance under `../recordings/walter-language-v1`.
+These archives are excluded from the production media imports. Earlier recording
+plans and script inventories describe the original audit, not the active
+revision; do not overwrite them to match a newly recorded script. Superseded
+recordings of other banks stay in Git history rather than under production asset
+globs.
 
-The subsequent `revisions/walter-pilot-v1.json` records two further corrections:
-engine comparison does not promise survival in a lost position, and a demonstrated
-capture does not alone prove net material gain. The bank also adds eleven opening
-variants and fourteen whole objective/human-evidence combinations, for 206 active
-meanings shared with Rivet. `../banks/pilot-additions.json` holds both characters'
-authored scripts for those additions.
+`../banks/pilot-additions.json` holds Walter's and Rivet's authored scripts for the
+shared additions to their base banks (opening variants, the game-review opener,
+grade takes and piece variants).
 
-A later `maia-combinations.json` extended that pilot with 232 more combined
-passages per character, for 438 non-lesson meanings: the original 181, eleven
-opening variants and 246 objective/human-evidence combinations.
+## Cast banks
 
-**Maia is no longer spoken (owner decision, 2026-10-02).** Coaches never voice a
-Maia (human-move model) reading. The Maia badge, its popup and the written bubble
-sentence are unchanged. The 253 Maia meanings (the seven standalone `human-*`
-readings and all 246 objective/Maia combinations, including the pilot's fourteen)
-were removed from `../meanings.json`, every `scripts.json`, `pilot-additions.json`
-and the five recorded banks, together with their clips, provenance and alignments;
-`maia-combinations.json` was deleted. Git history keeps them.
-
-**Clock observations retired (owner decision, 2026-10-03).** `clock-low`,
-`clock-fast` and `clock-long` were removed from the catalogue, every
-`scripts.json` and all 30 recorded banks with their clips, provenance and
-alignments.
-
-**Maia leaves the coach's dialogue (owner decision, 2026-10-04).** The five
-sole-content `human-*` readings that returned on 2026-10-03 were retired again,
-with Walter, Rivet, Winston, Button and Arjun's 25 clips. The catalogue now has
-**194 meanings**.
-
-Rivet's [wording revision](../banks/rivet/revisions/wording-v2.json) reviewed all
-257 additions, replaced 197 complete recordings and retained 60 additions plus
-all 181 original recordings. The revision restores his compact pattern-first
-voice without changing supported meanings or Walter's scripts. The active
-manifest and matching authored script files contain the current text; the
-revision ledger records old/new text and editorial reasons. Superseded Rivet
-recordings are preserved by Git history rather than left under production asset globs.
-The later [distinct-voice revision](../banks/rivet/revisions/wording-v3.json) replaced 294 more
-recordings whose wording matched Walter's or another coach's, using the same
-ledger format and workflow.
-
-## Winston and Button banks
-
-Winston (`banks/winston`, coach `capybara`, locked voice "Welsh companion") and
-Button (`banks/button`, coach `mushroom`, locked voice "Woody contralto") are
-registered production banks covering all 195 catalogue meanings. Each owns its
-full authored text in `scripts.json` instead of adding
-columns to the Walter/Rivet files; the manifest records exactly those scripts.
-`backend/tests/test_coach_bank_scripts.py` checks catalogue coverage, the
-spoken-text rules and that each registered manifest matches its scripts.
-
-Both were recorded in one pass of 44 bounded plans (22 per coach, 120,354 input
-characters) with `eleven_v4` and the Walter/Rivet settings, under
-`recordings/<voice>-v1/`. ElevenLabs history billed 14,551 credits (0.121 per character)
-during the Eleven v4 launch discount. Their scripts needed regular `-ed`/`-ing`
-inflections ("castled", "castling", "reloading"), now covered by morphology
-revision v2; earlier archives keep revision v1.
+Every other coach has a registered production bank under `banks/<voice>` built
+from its own `scripts.json`, recorded with the coach's locked voice from
+`cast-auditions/locked-voices.json`, `eleven_v4` and the shared settings. Each
+owns its full authored text instead of adding columns to the Walter/Rivet files;
+the manifest records exactly those scripts. All 30 banks cover the 195 catalogue
+meanings (185 non-lesson meanings, the game-review opener and nine lesson prompts).
+The catalogue has no Maia meanings and no clock observations.
 
 Plain clips also play on the opponent's moves, so reactions there must not
-assume the learner moved. `revisions/side-neutral-v1.json` in each bank lists the
-reworded lines, three for Button and three for Winston, with their previous text.
-They were re-recorded with the same voices and settings under
-`recordings/<voice>-v2/`, and `scripts.json` and the manifest carry the new text.
+assume the learner moved. A bank's `revisions/side-neutral-v1.json` lists lines
+reworded for that, with their previous text.
 
-## Arjun bank
+Forced alignment accepts the weak form of "have" in "would have" as recorded
+`reducedForms` evidence. Interjections the dictionary lacks go in the short
+reviewed lexicon `speech_pronunciation.LEXICON`; new inflections and compounds go
+in the morphology rules. `backend/tests/test_coach_bank_scripts.py` checks
+catalogue coverage, the spoken-text rules (including that the question-free
+personalities ask none aloud) and that each registered manifest matches its
+scripts.
 
-Arjun (`banks/arjun`, coach `man-partner`, locked voice "Chennai club mentor") is
-a registered production bank covering all 195 catalogue meanings, including the
-game-review opener and lesson prompts, from his own `scripts.json`. It was recorded
-on October 2 in 23 bounded plans (57,994 input characters) with `eleven_v4` and the
-shared settings, under `recordings/arjun-v1/`. ElevenLabs history billed
-7,024 credits for the 448 matched request IDs (before the Maia removal); one request timed out uncharged and
-was made again. His script needed one new inflection ("steadies"), covered by
-morphology revision v4's `-ies` plural rule.
-
-## Cast banks recorded October 3
-
-The remaining 25 coaches (Alfie, Bandit, Biscuit, Celeste, Ember, Felix, Femi,
-Fergus, Ingrid, Jun, Juniper, Marisol, Mateo, Monty, Orin, Percy, Pickle, Pip,
-Réka, Scout, Tala, Tamar, Waffles, Wisp and Ziggy) are registered production banks
-built from their own `scripts.json`, covering all 195 catalogue meanings, under
-`recordings/<voice>-v1/`. They were recorded on October 3 with each coach's locked
-voice from `cast-auditions/locked-voices.json`, `eleven_v4` and the shared
-settings: 250 bounded plans, 4,875 clips and 443,642 input characters. The
-recorder refused retired Maia meanings, so none were bought. The account's usage
-rose by **53,712 credits** for the run, which includes a few retakes and two
-rate-limited batches that were redone. Every manifest request ID matched the
-provider history. Alfie and Percy each have one line under `retake-2/` where the
-first take ran "would have" together; forced alignment now also accepts that weak
-form of "have" as recorded `reducedForms` evidence. The scripts needed morphology
-revision v5 for a few compounds and inflections, plus a short reviewed lexicon of
-interjections (`speech_pronunciation.LEXICON`). `backend/tests/test_coach_bank_scripts.py`
-checks catalogue coverage, the spoken-text rules (including that the
-question-free personalities ask none aloud) and that each registered manifest
-matches its scripts.
-
-### Bank status
-
-One row per coach whose scripts have been authored for a production bank.
-"Review passed" means the character review approved the scripts for
-recording; it is not the owner's recording approval. Add a row when a coach's
-scripts pass review, and record the commits once the bank is recorded and
-registered.
-
-| Coach (id) | Scripts | Review passed | Recorded | Registered |
-|---|---|---|---|---|
-| Winston (`capybara`) | Written, 195 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `32abf9c` | Yes, `12a01f7` |
-| Button (`mushroom`) | Written, 195 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `83dd5df` | Yes, `12a01f7` |
-| Wisp (`ghost`) | Written, 195 | Yes, 2026-10-02, at commit `6b2f07b` | Yes, 2026-10-03, `9fe6d54` | Yes, `9fe6d54` |
-| Pip (`slime`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `5f18e4a` | Yes, `5f18e4a` |
-| Ziggy (`alien`) | Written, 195 | Yes, 2026-10-02, at commit `a0a9881` | Yes, 2026-10-03, `f16a0e8` | Yes, `f16a0e8` |
-| Percy (`living-pawn`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `752fc87` | Yes, `752fc87` |
-| Orin (`wizard`) | Written, 195 | Yes, 2026-10-02, at commit `f9e8a4f` | Yes, 2026-10-03, `08cc04c` | Yes, `08cc04c` |
-| Felix (`cat-tuxedo`) | Written, 195 | Yes, 2026-10-02, at commit `5669e4e` | Yes, 2026-10-03, `48c9717` | Yes, `48c9717` |
-| Bandit (`raccoon`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `a18cc62` | Yes, `a18cc62` |
-| Alfie (`dog-gentle`) | Written, 195 | Yes, 2026-10-02, at commit `5b3a4af` | Yes, 2026-10-03, `642e7c4` | Yes, `642e7c4` |
-| Pickle (`cat-kitten`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `8e0c112` | Yes, `8e0c112` |
-| Ember (`dragon`) | Written, 195 | Yes, 2026-10-02, at commit `ee90487` | Yes, 2026-10-03, `1cb4ae7` | Yes, `1cb4ae7` |
-| Scout (`dog-collie`) | Written, 195 | Yes, 2026-10-02, at commit `3354f70` | Yes, 2026-10-03, `8d554a0` | Yes, `8d554a0` |
-| Juniper (`cat-black`) | Written, 195 | Yes, 2026-10-02, at commit `38d3920` | Yes, 2026-10-03, `5417767` | Yes, `5417767` |
-| Waffles (`dog-corgi`) | Written, 195 | Yes, 2026-10-02, at commit `49dd577` | Yes, 2026-10-03, `87512d8` | Yes, `87512d8` |
-| Celeste (`unicorn`) | Written, 195 | Yes, 2026-10-02, at commit `eddc967` | Yes, 2026-10-03, `38e86a8` | Yes, `38e86a8` |
-| Jun (`man-expert`) | Written, 195 | Yes, 2026-10-02, at commit `e32c28f` | Yes, 2026-10-03, `1344220` | Yes, `1344220` |
-| Fergus (`frog`) | Written, 195 | Yes, 2026-10-02, at commit `b2e5e45` | Yes, 2026-10-03, `f973435` | Yes, `f973435` |
-| Arjun (`man-partner`) | Written, 195 | Yes, 2026-10-02, at commit `91cda3c` | Yes, 2026-10-02 | Yes, 2026-10-02 |
-| Femi (`man-host`) | Written, 195 | Yes, 2026-10-02, at commit `8ef13cd` | Yes, 2026-10-03, `22ae506` | Yes, `22ae506` |
-| Marisol (`woman-analyst`) | Written, 195 | Yes, 2026-10-02, at commit `0ca83fa` | Yes, 2026-10-03, `cae6ea2` | Yes, `cae6ea2` |
-| Monty (`gorilla`) | Written, 195 | Yes, 2026-10-02, at commit `6de6a66` | Yes, 2026-10-03, `bde6d38` | Yes, `bde6d38` |
-| Ingrid (`woman-blonde`) | Written, 195 | Yes, 2026-10-02, at commit `5268032` | Yes, 2026-10-03, `3254fd1` | Yes, `3254fd1` |
-| Biscuit (`dog-puppy`) | Written, 195 | Yes, 2026-10-02, at commit `abd5405` | Yes, 2026-10-03, `ec18ba8` | Yes, `ec18ba8` |
-| Réka (`woman-spark`) | Written, 195 | Yes, 2026-10-02, at commit `bbef4b3` | Yes, 2026-10-03, `fc041fe` | Yes, `fc041fe` |
-| Mateo (`human-boy`) | Written, 195 | Yes, 2026-10-02, at commit `8907d2e` | Yes, 2026-10-03, `bf75fab` | Yes, `bf75fab` |
-| Tamar (`woman-captain`) | Written, 195 | Yes, 2026-10-02, at commit `129a272` | Yes, 2026-10-03, `8e72ed6` | Yes, `8e72ed6` |
-| Tala (`human-girl`) | Written, 195 | Yes, 2026-10-02, at commit `ed96ae2` | Yes, 2026-10-03, `c900a47` | Yes, `c900a47` |
-| Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | Yes, all 30 | Yes, all 30 |
-| Lesson prompts (`lessons` group), coaches 1–10 (Alfie to Fergus) | Written, 9 each | Yes, 2026-10-02, at commit `88b9b84` | Yes | Yes |
-| Lesson prompts (`lessons` group), coaches 11–20 (Ingrid to Pip) | Written, 9 each | Yes, 2026-10-02, at commit `899fc94` | Yes | Yes |
-| Lesson prompts (`lessons` group), coaches 21–30 (Réka to Ziggy) | Written, 9 each | Yes, 2026-10-02, at commit `b19c358` | Yes | Yes |
-
-The opener row is a cast-wide meaning added after the banks above. Walter's and
-Rivet's lines sit in `banks/pilot-additions.json`.
-
-The script counts were 438 when those reviews passed. On 2026-10-02 the 253 Maia
-rows were removed (see above), leaving 195 rows per coach (185 non-lesson
-meanings, the opener and nine lesson prompts); the remaining rows' review status is
-unchanged. All 30 coaches now have 195 recordings each.
-
-The lesson-prompt rows cover the nine generic `lessons` meanings. Each batch of
-coaches adds its own row as it lands; a coach's lesson lines stay silent until
-they are recorded. With coaches 21–30 in, all 30 coaches have their lesson lines
-written, and all of them are recorded.
+A character review approving scripts for recording is not the owner's recording
+approval.
 
 ## Adding or revising a production bank
 

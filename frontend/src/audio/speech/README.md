@@ -1,26 +1,24 @@
-# Recorded coach speech and authoring history
+# Recorded coach speech
 
-Walter (`classic`) and Rivet (`robot`) each have a **195-recording voice bank**
-(185 non-lesson meanings, the game-review opener and nine generic lesson prompts), using their owner-selected **Older teacher** and **Retro speech terminal**
-voices. They share a catalogue of meanings, with separately authored character
-scripts and complete recordings. Every clip has automatically generated mouth
+All 30 coaches have a recorded voice bank. Walter (`classic`) and Rivet (`robot`),
+with their **Older teacher** and **Retro speech terminal** voices, are the quality
+references; the other coaches' banks live under `banks/<coach>/`. Every bank
+shares one catalogue of meanings, with separately authored character scripts
+and complete recordings. Every clip has automatically generated mouth
 timing. See the [Walter manifest](bank/manifest.json), [Rivet manifest](banks/rivet/manifest.json),
 [offline verification instructions](bank/README.md) and
 [production playback policy](../../../../docs/AUDIO.md#recorded-coach-voices).
 
-Every recording below, including archived takes and design previews, was later
-re-encoded from the provider's MP3 to 24 kbps-class Ogg Opus with
-`scripts/encode_coach_speech.py`. The history that follows describes the
-provider files as they were recorded; each sidecar keeps that MP3's fingerprint
-as `providerAudio`, and its mouth timing was regenerated from the Opus file.
+Every recording ships as 24 kbps-class Ogg Opus, encoded from the provider's MP3
+with `scripts/encode_coach_speech.py`. Each sidecar keeps that MP3's fingerprint
+as `providerAudio`, and its mouth timing is generated from the Opus file.
 
-Settings offers Automatic, On request and Off under Sound. The other coaches
-remain text-only. Playback uses bundled local
+Settings offers Automatic, On request and Off under Sound. Playback uses bundled local
 recordings without provider access, API keys or runtime synthesis. Exact chess
 moves, squares and scores stay in writing while the voice explains the supported
 idea. Lessons speak only nine generic prompts (see below); course text stays written.
 
-**The bubble shows what the coach says (owner decision, 2026-10-03).**
+**The bubble shows what the coach says.**
 [`spokenText.ts`](spokenText.ts) resolves a coach's line for a selected meaning:
 the bank recording's text, otherwise the coach's `scripts.json` line, so text-only
 coaches show their own scripts too. Only the script coach IDs are bundled; each
@@ -36,21 +34,16 @@ and generated mouth timing switch together. Play a clip alone or following the
 approved piece-move sound. Volume, mute and Stop all use the shared audio engine.
 Changing the example/version or hiding the tab cancels playback. The visible
 character is the real registered Walter. His voice remains locked; this is a
-wording comparison, not a voice picker. The earlier voice auditions and full-bank
-selector were removed from the tree on 2026-10-03; Git history retains them.
+wording comparison, not a voice picker.
 
 **Recorded coach comparison** lets you switch between Walter and Rivet for the
 same meaning, including the eleven opening variants. These are whole recordings,
 never runtime sentence splicing.
 
-**A coach never speaks or shows a Maia reading (owner decisions, 2026-10-02 and
-2026-10-04).** Maia lives only in the badge and its popup, which holds the written
-Maia sentence. On 2026-10-02 all 253 Maia meanings (7 standalone readings and 246
-combinations) were removed from speech. On 2026-10-03 five standalone readings
-briefly returned for plies where Maia was the only content, and the clock
-observations were retired. On 2026-10-04 those five readings were retired again and
-Maia left the coach's dialogue entirely: a sound move with nothing else to say
-gets the plain best or good line, and the bubble never carries a Maia sentence.
+**A coach never speaks or shows a Maia reading.** Maia lives only in the badge and
+its popup, which holds the written Maia sentence. A sound move with nothing else to
+say gets the plain best or good line, and the bubble never carries a Maia sentence.
+New plans must contain no Maia readings; the recorder refuses them.
 Later Maia data may update the bubble, but does not start a second automatic
 response for the same navigation action. Opening Maia's popup is silent.
 
@@ -58,47 +51,24 @@ Book variety follows a verified contiguous sequence. Missing earlier evidence or
 exploring a variation uses generic recognition instead of inventing a sequence;
 revisiting a position retains its variant. Recognition never asserts move quality.
 
-The [revision record](bank/revisions/walter-language-v2.json) preserves all old/new
-scripts and reasons. It removes repeated “continuation” wording, replaces internal
-policy language and clarifies hypothetical alternatives. Spoken passages remain
-reusable idea-level explanations; exact position details remain written. Original
-media and tracks are retained for comparison outside production imports.
-The 81 replacement recordings used **7,524 input characters / 907 credits**
-(settled provider counter 12,295 to 13,202). Same voice and settings, no retakes,
-splicing, padding or manual mouth timing. The subsequent Walter/Rivet pilot adds
-the shared opening/combined meanings (the combined ones were later removed with
-all Maia speech) and tightens two Walter statements about
-engine comparisons and a demonstrated capture; see
-[that revision](bank/revisions/walter-pilot-v1.json). Other cast banks remain deferred.
+Wording revisions are recorded as ledgers: Walter's
+[language](bank/revisions/walter-language-v2.json) and
+[pilot](bank/revisions/walter-pilot-v1.json) revisions and Rivet's
+[wording](banks/rivet/revisions/wording-v2.json) and
+[distinct-voice](banks/rivet/revisions/wording-v3.json) revisions. Every changed
+passage records its previous text, revised text and reason. A revision re-records
+complete passages with the coach's locked voice, model and settings and
+automatically regenerated mouth timing: no splicing, padding or manual mouth
+timing. Superseded takes stay in Git history rather than shipping duplicate
+assets; current provenance records the exact replacement text. Original media and
+tracks kept for comparison stay outside production imports.
 
-The subsequent pronunciation correction replaces “separate”/“separately” in four
-Walter and eighteen Rivet recordings with unambiguous wording. The 22 complete
-replacement clips use the same voices, model and settings, with automatically
-regenerated mouth timing. Meanings, selection rules and the remaining 854
-recordings are unchanged. Superseded takes remain in Git history rather than
-shipping duplicate assets; current provenance records the exact replacement text.
-
-Rivet's [wording revision](banks/rivet/revisions/wording-v2.json) reviews all 257
-newer additions and replaces 197 complete recordings. The remaining 241 Rivet
-recordings and Walter's entire bank stay unchanged. The revision restores concise
-chess-event-first wording, removes repeated analysis-method commentary, and keeps
-the same supported objective/human meanings. Every changed passage records its
-previous text, revised text and editorial reason. The existing **Recorded coach
-comparison** panel auditions the current versions with their automatic mouth
-timing; no new selection or comparison tool is required.
-This revision used **29,270 input characters / 3,540 provider credits**. All 197
-saved request IDs matched the provider's history, with no retakes or duplicate
-requests. The locked voice, model and delivery settings remain unchanged.
-
-Rivet's [distinct-voice revision](banks/rivet/revisions/wording-v3.json) re-records 294 complete
-passages whose wording matched Walter's (or, for ten, Jun, Scout, Wisp or Ziggy)
-as Rivet's own labeled readouts, and says "the other side" on plain alert clips
-that can play on either side's move. The ledger records each previous text,
-revised text and reason. The other 144 Rivet recordings, Walter's bank, meanings
-and selection are unchanged; superseded takes remain in Git history.
-This revision used **35,305 input characters / 4,270 provider credits**. All 294
-saved request IDs matched the provider's history, with no retakes or duplicate
-requests. The locked voice, model and delivery settings remain unchanged.
+Spoken passages remain reusable idea-level explanations; exact position details
+remain written. Prefer chess-event-first wording without analysis-method
+commentary or internal policy language, and avoid words with ambiguous
+pronunciation (such as "separate"). Rivet's lines are his own labeled readouts,
+not Walter's wording, and say "the other side" on plain alert clips that can play
+on either side's move.
 
 To audition from a phone on the same network, start the studio with
 `npm --prefix frontend run dev:audio:lan` instead, then open
@@ -106,57 +76,17 @@ To audition from a phone on the same network, start the studio with
 PC's firewall on the private network if needed. The normal `dev:audio` command
 remains accessible only on the PC itself.
 
-## Audition history
-
-### Selected Walter: contrasting examples
-
-[walter-selected-voice.json](walter-selected-voice.json) records the saved
-**Fieldwork Walter - Older teacher** voice, `Q5CWGTzNfIve6iWvrlM7`, derived from
-the chosen `older-teacher-1` preview. Saving it preserved Custom 1 unchanged.
-[walter-contrasts-plan.json](walter-contrasts-plan.json) contains eight complete
-sentences/passages taken directly from the audited game dialogue inventory:
-only playable move, sound sacrifice, abandoned defender, forced mate allowed,
-recovery, undefended piece, missed fork and unusual strong move.
-
-The eight one-take examples total **830 input characters / 853,821 audio bytes**.
-They use Eleven v4, stability 0.5, similarity 0.75 and speed 0.95. No audio tags,
-padding, splicing or post-processing were added. Each unchanged MP3 has exact
-request and hash provenance in `recordings/walter-contrasts-v1/walter`.
-These eight were reused unchanged by the first complete bank. The wording revision
-subsequently replaced abandoned defender, allowed mate and missed fork; the five
-others remain active. The eight meanings are a subset
-of its 92 game-review meanings, not eight additional recordings. The owner
-approved their delivery and subsequently authorized completing Walter.
-
-Offline verification:
-
-```sh
-node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
-```
-
-This historical plan includes the retired Maia contrast `human-unusual-strong`, so the
-recorder now refuses it as a whole (coaches no longer speak Maia lines). Its recorded
-contrasts stay verified by the bank checks; new plans must contain no Maia readings.
-
-The [whole-app recording inventory](#whole-app-dialogue-inventory) records the
-completed non-lesson scope and the deliberately silent exclusions.
-
-### Removed design and refinement auditions
-
-The stock-voice comparison (Bill, George and Brian), the original Voice Design
-previews, the short refinement script and the Custom 1 remix, teacher, elder and
-combined older-teacher rounds led to the selected voice above. Their recordings,
-provenance manifests and plans were removed from the tree on 2026-10-03; Git
-history retains them. The saved **Fieldwork Walter - Custom 1** voice
-(`ap9rSM4hVTU6JjQ17FrC`) was created from the preferred design preview, and the
-selected Older teacher voice was derived from its combined remix. Those rounds
-used about 700 provider credits together; the stock-voice comparison used none.
-
 ## Permissions and attribution
 
+[walter-selected-voice.json](walter-selected-voice.json) records Walter's saved
+**Fieldwork Walter - Older teacher** voice, `Q5CWGTzNfIve6iWvrlM7`. It was derived
+with Voice Remix from **Fieldwork Walter - Custom 1** (`ap9rSM4hVTU6JjQ17FrC`), a
+Voice Design preview. Walter records with Eleven v4, stability 0.5, similarity 0.75
+and speed 0.95, with no audio tags, padding, splicing or post-processing.
+
 Generated using ElevenLabs on the owner's active paid Creator subscription, with
-Eleven v4 for the premade voices and selected Walter examples, Voice Design v3 for the original previews and
-Voice Remix for the refinements.
+Eleven v4 for recordings, Voice Design v3 for designed voices and Voice Remix for
+refinements.
 This is generated audio, not recordings of an
 actor hired by Fieldwork or a voice cloned by this project. Provider descriptions
 are credited as descriptions, not presented as an independent listening review.
@@ -177,7 +107,7 @@ The following provider sources were checked on September 30, 2026:
 - [Subscription expiry policy](https://help.elevenlabs.io/hc/en-us/articles/15993008593297-What-happens-to-my-content-after-my-subscription-ends):
   commercial rights for paid-period generations remain after cancellation.
 
-Keep this notice and the provenance alongside redistributed audition recordings.
+Keep this notice and the provenance alongside redistributed recordings.
 These statements do not grant rights to ElevenLabs models, another person's
 identity, or unrestricted use of its service. Recheck applicable terms when
 creating new recordings, especially when changing voice source or service tier.
@@ -212,30 +142,13 @@ measurements cannot choose Walter's personality or establish natural delivery.
 
 ## Walter dialogue inventory
 
-The original source audit traced all 64 dialogue template codes, current intent
-builders, tactic producers and Walter's actual renderer (`classic` →
-`storyteller-4`). Of 55 game/variation-emittable codes, 52 structured codes are
-covered after excluding transient and legacy prose. The
-[game inventory](walter-dialogue-inventory.json) retains each script, source,
-eligibility condition and primary/secondary designation.
+The [game inventory](walter-dialogue-inventory.json) maps the dialogue template
+codes, intent builders and tactic producers to game meanings, with each script,
+source, eligibility condition and primary/secondary designation. Its human-model
+insight meanings are retired: coaches never speak Maia readings.
 
-| Game family | Primary-capable | Secondary only | Bank recordings |
-| --- | ---: | ---: | ---: |
-| Tactical mechanisms and mover-caused errors | 31 | 2 | 33 |
-| Positional explanations | 12 | 12 | 24 |
-| Objective consequences, resources and game endings | 12 | 2 | 14 |
-| Human-model insights | 4 | 3 | 7 |
-| Opening and clock context | 5 | 0 | 5 |
-| Relationships within/between games | 7 | 2 | 9 |
-| **Total** | **71** | **21** | **92** |
-
-This table is the original audit. The seven human-model insight recordings were
-removed on 2026-10-02 when Maia speech was retired, leaving 85 game meanings.
-
-The initial 71-primary pilot was a staging proposal, not the completed product
-scope. The owner later approved the full non-lesson bank. All 92 game meanings
-are recorded, but a secondary recording does not become an automatic replacement
-for a missing primary. Game selection follows the first successfully rendered
+A secondary recording never becomes an automatic replacement for a missing
+primary. Game selection follows the first successfully rendered
 claim and preserves its source identity, required slots, actor and line scope.
 Explicit secondary listening is limited to the currently visible supported claim.
 
@@ -251,50 +164,24 @@ is not the same as an actual board checkmate. Model evidence stays an estimate.
 **Lesson narration stays written; generic lesson prompts are voiced.** Authored
 passages, step titles, hints, game notes and choice feedback stay written, because a
 growing course catalogue must not require maintaining a voice library for every
-edit. On 2026-10-02 the owner approved nine reusable prompts that never change with
-a course, in the `lessons` group of [meanings.json](meanings.json): wrong move,
+edit. Nine reusable prompts that never change with a course are voiced, in the
+`lessons` group of [meanings.json](meanings.json): wrong move,
 correct move, move revealed, follow the line, play your studied move, exploring an
 alternative, chapter complete, full game opened and lesson error. Each lesson
 command response is one event that plays at most one of them
 (`lessonRecording` in [practiceSelection.ts](practiceSelection.ts)); hints and game
 navigation stay silent. A coach's lesson prompts may be authored before they are
-recorded and stay silent until then. The earlier lesson inventory remains in Git
-history at `054cd80`, outside this bank.
+recorded and stay silent until then.
 
-The [full inventory](walter-full-dialogue-inventory.json) contains 185 audited
-meanings, with four deliberately silent transient/defensive states excluded from
-the **original 181-recording bank** (later extended to 438 shared meanings, and
-cut to 185 non-lesson meanings when the seven human-model insights and 246 Maia
-combinations were retired on 2026-10-02):
-
-| Coverage | Recordings |
-| --- | ---: |
-| Game review, variations and human insights | 92 |
-| Additional SRS feedback, explanations, findings, cues and notes | 68 |
-| Opening recall and preview | 10 |
-| Puzzle guidance | 8 |
-| Finite review statuses | 3 |
-| **Completed bank, excluding lessons** | **181** |
-
-The original scripts totaled **16,936 input characters / 2,888 words**. Eight earlier
-recordings contain 830 characters; completing the bank required **173 new
-recordings / 16,106 input characters**. These are script counts, not provider
-billing units or guaranteed durations. Retakes, other voices and auditions belong
-to their own usage records. All active entries now have media and generated mouth
-tracks; there is no remaining unrecorded subset hidden in this count.
-
-The October 1 completion batch used **1,948 ElevenLabs credits** for the 173 new
-clips. This is the sum of usage deltas on all 173 matching provider request IDs,
-not an estimate from character counts. Earlier auditions and the eight reused
-recordings are excluded. No retakes were needed in this batch.
-
-The 197 non-lesson source rows deduplicate to 185 meanings through 12 cross-surface
-reuses. Eleven game clips are reused by SRS explanations, and one practice error
-clip also serves opening recall. The four excluded entries are game thinking,
+The [full inventory](walter-full-dialogue-inventory.json) covers the non-lesson
+meanings across game review and variations, SRS feedback, explanations, findings,
+cues and notes, opening recall and preview, puzzle guidance and finite review
+statuses. Source rows reused across surfaces share one meaning: game clips are
+reused by SRS explanations, and one practice error clip also serves opening
+recall. Four transient/defensive states stay deliberately silent: game thinking,
 practice checking, explanation loading and the no-renderable-claim fallback.
-Nine bounded plans in `bank/plans/` retain the recorder's 20-request maximum.
-Existing examples are referenced from their original paths, without duplicate
-binaries or another paid generation.
+Plans in `bank/plans/` keep to the recorder's 20-request maximum, and existing
+recordings are referenced from their original paths without duplicate binaries.
 
 The bank's completeness describes the supported finite summary design. It does
 not claim to narrate arbitrary manual-exercise prose, legacy text, imported game
@@ -324,10 +211,9 @@ relationship keeps its own clip. Each mainline move counts the earlier moves wit
 the same grade and walks a per-game shuffle of the takes: every take plays once
 before any repeats, each round is reshuffled, a round never opens with the take
 that ended the last one, and replaying a move repeats its take. A coach without a
-take recorded keeps the generic reading. All 960 takes (32 per coach) are recorded
-under each bank's `recordings/<voice>-grades-v1/` with the coach's locked voice and
-settings: **65,807 input characters / 7,971 provider credits**, five requests at a
-time, every request ID matched in the provider history and no retakes.
+take recorded keeps the generic reading. Grade takes (32 per coach) live under each
+bank's `recordings/<voice>-grades-v1/`, recorded with the coach's locked voice and
+settings.
 
 A line about one particular piece also has **piece variants** that name it ("the
 pinned knight" instead of "a pinned piece"). Each is a catalogue meaning
@@ -345,11 +231,9 @@ or roles holding different pieces, names nothing. Selection then offers
 alternative the coach has recorded (or, without a bank, scripted), so the
 generic clip stays the fallback and a coach with no variant recorded is
 unchanged. All 30 coaches have every variant written (Walter's and Rivet's in
-`banks/pilot-additions.json`, the others in their `scripts.json`), reviewed and
-recorded under each bank's `recordings/<voice>-pieces-v1/` with the coach's locked
-voice and settings: **8,040 clips, 889,968 input characters / 107,675 provider
-credits**, five requests at a time, every request ID matched in the provider
-history and no retakes. The written lines keep to piece facts the generic lines
+`banks/pilot-additions.json`, the others in their `scripts.json`) and recorded under
+each bank's `recordings/<voice>-pieces-v1/` with the coach's locked voice and
+settings. The written lines keep to piece facts the generic lines
 could blur: a pawn forks two pieces, a pawn never steps aside, only a knight
 hops, a pinned knight has no legal move while a pinned pawn, bishop, rook or
 queen may still move along the pin line, and a back-rank allowed or missed line
@@ -373,8 +257,6 @@ catalogue, every script and the Walter/Rivet additions, and lists it under
 
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
 Winston and Button, so each registered bank holds all 195 catalogue meanings.
-These 40 takes used **2,262 input characters / 273 provider credits**, with every
-request ID matched in the provider history and no retakes.
 Authorized attempt/reveal feedback may
 select supported explanations; a reveal is never praised as an unassisted success.
 Restoring saved feedback does not create a new narration event. Opening acceptance

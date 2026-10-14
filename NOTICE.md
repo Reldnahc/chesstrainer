@@ -26,7 +26,7 @@ policy-only inference, process isolation and integrity/contract validation. Neur
 weights are not committed or bundled in the image. Explicit setup uses
 the 79M card's explicit AGPLv3 declaration; smaller cards need weight-term
 clarification. Exact hashes, source links and measured installation implications
-are recorded in [MAIA_FEASIBILITY.md](docs/MAIA_FEASIBILITY.md).
+are recorded in [Human move evidence](docs/REVIEW_INTELLIGENCE.md#pinned-upstream-and-terms).
 
 The optional CPU inference runtime uses PyTorch 2.8.0+cpu and NumPy 2.2.6,
 distributed under their upstream BSD-style terms. Their wheels retain their
@@ -38,7 +38,7 @@ replace their license notices with the application's GPL/AGPL notice.
 The Lichess tagger is pinned to commit
 8d9faff694ba3a8598abc5465347209af3f90a82. Local changes adapt package imports,
 remove global logging configuration and add observer calls at successful motif
-return sites. Predicate conditions are preserved. See docs/LICHESS_REUSE.md.
+return sites. Predicate conditions are preserved. See docs/LOCAL_CLASSIFICATION.md#pinned-lichess-code.
 
 The accuracy calculation in backend/trainer/_vendor/lichess_accuracy is a Python
 port of Lichess lila revision 2e653ad1e2b9fad31b4a092394019ef8fafdedb8 (AGPL-3.0),

@@ -25,7 +25,7 @@ Shared hosting uses one database with explicit `user_id` ownership across privat
 tables. Account-bound ORM sessions enforce reads and writes for both HTTP routes
 and background workers. The shared engine cache, human-move (Maia) cache and skill taxonomy are global;
 account credentials and revocable device sessions live in that same SQLite file.
-See [ACCOUNTS.md](ACCOUNTS.md) for migration and recovery.
+See [ADMINISTRATION.md](ADMINISTRATION.md) for migration and recovery.
 
 Recent-game sync uses a separate fetch-only worker lane. It remembers the account's
 provider usernames; the server's poller checks saved connections every
@@ -246,7 +246,7 @@ above the existing six-column desktop coach picker; saving and errors remain
 local to each preference control.
 Games keeps only a compact Update games control using the same sync component and
 polling behavior; without a connection it links to Settings.
-Insights opens on its Overview; its Weaknesses section (formerly a separate page) shows the Tactical patterns and Material & mate categories as subsections of the same section navigation, with the supported lists directly;
+Insights opens on its Overview; its Weaknesses section shows the Tactical patterns and Material & mate categories as subsections of the same section navigation, with the supported lists directly;
 introductory copy and the classification-coverage summary are not shown there.
 
 The coach studio is a separate development process (`npm run dev:coach`, port
@@ -264,7 +264,7 @@ history entry; restoration waits for asynchronously loaded page content and
 yields to user scrolling. Links retain native new-tab behavior and browser
 keyboard shortcuts are not intercepted by the game board.
 
-Production already serves `index.html` for frontend paths on the API origin,
+Production serves `index.html` for frontend paths on the API origin,
 including direct game URLs; `/api/` and `/assets/` retain their existing handling.
 No reverse-proxy rewrite is needed when forwarding the whole site to the app.
 The Vite development proxy targets 127.0.0.1:8000.
@@ -383,40 +383,40 @@ classification_quality.py and the read-only report script support blinded export
 
 ## Archives, privacy and deployment
 
-Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Legacy course generation and lesson progression code have been removed; active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive. The new authored Study domain and `source="opening"` recall have their own explicit contracts described above.
+Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. Historical rows, manual exercises and teaching audit/rejection access remain. Active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Tests seed explicit historical rows. The authored Study domain and `source="opening"` recall have their own explicit contracts described above.
 
-OpenAI runtime integration is removed: no model SDK or model network calls remain.
+There is no hosted AI service: no model SDK or model network calls at runtime.
 Historical classification and teaching responses stay local. Explicit Chess.com
 imports and enabled recent-game synchronization use the public Chess.com API.
 
 Supported installations include the published Docker image and a source checkout,
 both with one Python process serving the built frontend. Local mode shares one
 workspace; hosted mode uses app accounts behind an HTTPS reverse proxy. See
-[ACCOUNTS.md](ACCOUNTS.md) and [CONFIGURATION.md](CONFIGURATION.md). A standalone
+[ADMINISTRATION.md](ADMINISTRATION.md) and [configuration](ADMINISTRATION.md#configuration). A standalone
 wheel with packaged static assets is not currently supported.
 
 Review-intelligence authority boundaries and measurement rules are recorded in
 [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Human move behavior must never
 replace objective Stockfish evaluation or directly assign move-quality labels.
 
-Settings links to the public GitHub repository as the source offer. Model checkpoints, SQLite sidecars, native binaries, caches and generated browser reports stay outside Git. Docker build-context exclusions also keep local model checkpoints out of the image. See NOTICE.md and LICHESS_REUSE.md for the GPL/AGPL combination and source-offer workflow.
+Settings links to the public GitHub repository as the source offer. Model checkpoints, SQLite sidecars, native binaries, caches and generated browser reports stay outside Git. Docker build-context exclusions also keep local model checkpoints out of the image. See NOTICE.md and [Local classification](LOCAL_CLASSIFICATION.md#pinned-lichess-code) for the GPL/AGPL combination and source-offer workflow.
 
 Full-game scheduling lives in `review_jobs`; `review_refinement` runs a finite
-optional pass after the unchanged deep baseline. `review_intelligence/refinement_*`
+optional pass after the deep baseline. `review_intelligence/refinement_*`
 own nominations and bounded questions; `review_reports` resolves compatible
 saved evidence for presentation. The existing native cache and shared engine
-pool remain the compute authority. See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).
+pool remain the compute authority. See [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation).
 
 `review_intelligence/events`, `event_facts`, `context` and `clocks` derive typed,
 traceable semantic events from saved chess facts and PGN annotations. No character
-prose enters this layer. [REVIEW_EVENTS.md](REVIEW_EVENTS.md) specifies gates and
+prose enters this layer. [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context) specifies gates and
 clock abstention; `review_scores` shares Stockfish-only alternative comparisons.
 ## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for
 quiet moves using existing python-chess legality and pin-aware tactical geometry.
 It does not infer strategic causes from centipawn loss. See
-[POSITIONAL_EVIDENCE.md](POSITIONAL_EVIDENCE.md) for supported definitions and
+[positional evidence](REVIEW_INTELLIGENCE.md#positional-evidence) for supported definitions and
 abstention rules; played and alternative lines remain distinct.
 
 ## Context and communication
@@ -425,8 +425,8 @@ The detail and progress endpoints share `review_intelligence/presentation.py`.
 Compatible saved reports become versioned move events, mainline nodes/relationships,
 owned cross-game references. Links require matching PGN/FEN/move
 provenance; gaps and inconsistent adjacent searches cause abstention. These are
-structured facts, never conversational memory. See [game context](GAME_CONTEXT.md),
-[history](CROSS_GAME_CONTEXT.md).
+structured facts, never conversational memory. See [game context](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships),
+[history](REVIEW_INTELLIGENCE.md#cross-game-context).
 
 The client builds a `DialogueIntent` before selecting a personality. `CoachUtterance`
 retains exact rendered claims, claim/template provenance and delivery metadata.
@@ -437,7 +437,7 @@ provide complete recordings. Neither selection nor playback contacts a speech pr
 The existing coach catalogue owns both artwork and
 writing definitions. Character changes
 perform no native work. Cold practice gates precede all dialogue selection.
-See [dialogue](COACH_DIALOGUE.md) and [character writing](COACH_PERSONALITIES.md).
+See [dialogue](COACH_DIALOGUE.md) and [character writing](COACH_DIALOGUE.md#character-writing).
 
 React's framework code has a separately cached production chunk; all registered
 coach definitions remain synchronous. The offline intelligence lab and expression
@@ -446,4 +446,56 @@ or executable assets. Their source remains in the downloadable public source.
 
 ## Public game providers
 
-Chess.com and Lichess share one checkpointed ingestion pipeline, job lanes, and account-owned connections. Provider clients supply normalized PGNs and stable batch keys; the shared importer owns legality, learner matching, deduplication and atomic progress. Discovery drives the same Settings forms and multi-provider Games refresh. See [provider integration and extension contract](GAME_PROVIDERS.md).
+Chess.com and Lichess share one checkpointed ingestion pipeline, job lanes, and account-owned connections. Provider clients supply normalized PGNs and stable batch keys; the shared importer owns legality, learner matching, deduplication and atomic progress. Discovery drives the same Settings forms and multi-provider Games refresh. See [provider integration and extension contract](GAME_ANALYSIS.md#game-provider-imports).
+
+## Data model
+
+SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes from frozen revision 475ea36d42d5; `alembic heads` shows the current revision. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
+
+### Current and archival relationships
+
+| Tables | Role |
+|---|---|
+| users, auth_sessions, user_preferences | Account credentials/session digests, administrator and password-change-required flags, presence for polling, and persisted coach/motion/audio preferences |
+| provider_connections | Account-owned provider usernames and the poller's change markers (`poll_state`) |
+| game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts, unique fingerprints and the nullable `rated` flag (statistics skip only games known to be unrated) |
+| analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
+| chesscom_imports, chesscom_archives | Query/filter settings, download diagnostics and per-job archive checkpoints |
+| engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
+| play_games, play_profiles | Account-owned games against the coach's bot (moves, saved per-ply reports, result, the saved library game) and the measured level fit with its evidence size |
+| game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
+| decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
+| skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
+| classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
+| exercises, exercise_tags, exercise_answers | Game/manual practice and archived repertoire exercises, normalized answers/tags, policy snapshots and verification references |
+| srs_states | One serialized library card per exercise, due/review/lapse fields, eligibility and persistent retirement |
+| review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused and archived lesson attempts are separate |
+| puzzle_sessions, puzzle_attempts | Private immutable puzzle snapshots, revisioned solve progress and idempotent practice commands; independent of Review/FSRS |
+| game_puzzles, game_puzzle_searches | Account-owned puzzles mined from the learner's games, each with its engine evidence or abstention reason, and one search record per game and generator version |
+| courses, course_units, unit_evidence, course_revisions, lessons, lesson_items | Archived course snapshots, source evidence, ordered items and historical progress; no active generation/progression |
+| teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
+| repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
+
+There are 51 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+
+`human_analyses` stores provider-neutral requests and complete policy facts, unique
+by versioned cache key. Like `engine_analyses` it is shared between accounts: the
+key depends only on the game and provider, so members who import the same game
+reuse one prediction. `game_review_moves.human_analysis_id`
+references that evidence independently of Stockfish analysis IDs. Model weights
+remain reproducible files outside SQLite. Native inference holds no database
+transaction. See [human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence) for identity and interpretation.
+
+Host configuration lives in environment/.env. User settings are account-owned and
+editable in Settings. SQLite contains salted password hashes and session-token
+digests, never plaintext passwords or session tokens. Skill state is derived from
+evidence and reviews, avoiding a duplicated mastery table. See [ADMINISTRATION.md](ADMINISTRATION.md)
+for ownership filtering and private foreign-key validation.
+
+Engine exercise identity includes analysis/policy context, so identical boards with different draw histories may remain separate. Legacy repertoire helpers normalized continuations into exercise answers and merged transpositions within a repertoire by legal-play key. Those saved rows remain readable; they do not imply an active import or practice workflow. Existing manual exercises remain reviewable through the retained validated API.
+
+### Backups and compatibility
+
+Backups contain a consistent SQLite snapshot, format manifest and safe settings. Restore validates integrity/foreign keys and writes only a new file. The saved Alembic version supports later migrations. Safe settings are reference material; reapply them manually and restore secrets separately.
+
+Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules.

@@ -9,7 +9,7 @@
   <WebUI>http://[IP]:[PORT:8000]</WebUI>
   <Project>https://github.com/Reldnahc/chesstrainer</Project>
   <Support>https://github.com/Reldnahc/chesstrainer/issues</Support>
-  <ReadMe>https://github.com/Reldnahc/chesstrainer/blob/main/docs/UNRAID.md</ReadMe>
+  <ReadMe>https://github.com/Reldnahc/chesstrainer/blob/main/docs/INSTALL.md#unraid</ReadMe>
   <Overview>Chess review and practice with bundled Stockfish and one persistent database. Everyone signs in with their own account; create the first administrator from the container console. Behind a reverse proxy you can change the Advanced View WebUI shortcut to its HTTPS address. Cloudflare and Compose are optional. Engine, human-model and review settings are in the app under Settings → Advanced → Server.</Overview>
   <ExtraParams>--init --user 99:100 --security-opt no-new-privileges:true --cap-drop ALL --read-only --tmpfs /tmp:rw,nosuid,nodev,size=256m --pids-limit 1024 --stop-timeout 90</ExtraParams>
   <Config Name="Web port" Target="8000" Default="18000" Mode="tcp" Description="LAN port for the app. Open WebUI follows this mapping automatically. Proxies forward HTTP to this host port." Type="Port" Display="always" Required="true" Mask="false">18000</Config>

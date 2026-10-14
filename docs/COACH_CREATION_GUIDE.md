@@ -5,15 +5,11 @@ voiced coach. Read it before adding a character or bringing an existing characte
 up to the current Walter/Rivet standard. It connects the implementation references;
 it does not introduce another registry, renderer or recording pipeline.
 
-The references were checked against the implementation after Rivet's October 1,
-2026 wording revision, and again after the remaining nine humans received
-speaking mouths later that day. At that point the app had 30 selectable
-characters, 30 speaking rigs and two production voice banks; Winston's,
-Button's and Arjun's banks were recorded and registered on October 2, and the
-other 25 coaches' banks on October 3. Those are different
-completion states: a working mouth or an approved audition is not a finished voice bank.
-Discover current coverage from the registries rather than treating these counts
-as limits or assuming every character already meets the same spoken-writing bar.
+A speaking rig, an approved voice lock and a registered production bank are
+different completion states: a working mouth or an approved audition is not a
+finished voice bank. Discover current coverage from the registries rather than
+treating counts as limits or assuming every character already meets the same
+spoken-writing bar.
 
 ## Reference map
 
@@ -22,12 +18,12 @@ as limits or assuming every character already meets the same spoken-writing bar.
 | Who is this character, and how should they teach? | [Cast bible](COACH_CAST_BIBLE.md) |
 | How do artwork, reactions, idle behavior, mouths and settings work? | [Animated coach](COACH.md) |
 | Which chess facts may dialogue communicate? | [Evidence-led dialogue](COACH_DIALOGUE.md) |
-| How do I author and assess a distinct writing voice? | [Character writing](COACH_PERSONALITIES.md) |
+| How do I author and assess a distinct writing voice? | [Character writing](COACH_DIALOGUE.md#character-writing) |
 | How are recordings selected, played, cancelled and attributed? | [Audio](AUDIO.md#recorded-coach-voices) |
 | How were voices cast and locked? | [Cast voice locks](AUDIO.md#cast-voice-locks) |
 | How do I build and verify a complete recorded bank? | [Bank authoring](../frontend/src/audio/speech/bank/README.md) |
 | What produces mouth timing, and what must be installed locally? | [Alignment tooling](../frontend/src/audio/speech/alignment/README.md) |
-| How do I inspect the actual sentence/evidence chain? | [Intelligence laboratory](INTELLIGENCE_LAB.md) |
+| How do I inspect the actual sentence/evidence chain? | [Intelligence laboratory](REVIEW_INTELLIGENCE.md#review-intelligence-laboratory) |
 | Which components and verification workflows should I reuse? | [UI component bible](UI_COMPONENTS.md), [testing](TESTING.md) |
 
 ## Quality bar: use Walter and Rivet as references
@@ -51,8 +47,7 @@ problem and consequence with literal precision and occasional dry understatement
 
 The latest [Rivet revision ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json)
 preserves concrete before/after examples and reasons. It is an editorial example,
-not runtime input. The [verification history](VERIFICATION.md) records the checks
-actually performed for Walter and Rivet and their limits.
+not runtime input.
 
 ## 1. Define identity and scope
 
@@ -123,7 +118,7 @@ belong to shared lifecycle code. Still must retain an expressive static face.
 
 ## 3. Write the character before recording
 
-Use [Character writing](COACH_PERSONALITIES.md) and [the dialogue contract](COACH_DIALOGUE.md).
+Use [Character writing](COACH_DIALOGUE.md#character-writing) and [the dialogue contract](COACH_DIALOGUE.md).
 Register a `CoachPersonality` with its bible, communication behavior, factual
 templates, claim/length budget and delivery metadata in the character's catalogue
 entry. Reuse the shared intent/projection/composition pipeline. Do not implement a
@@ -169,12 +164,11 @@ Start from `audio/speech/meanings.json` and the production selectors
 `gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings
 and intentional silence before counting clips. Maia readings are never spoken or
 shown as coach dialogue, so the catalogue has no `human-*` or objective/Maia
-combination meanings (253 were retired on 2026-10-02 and the last five on
-2026-10-04), and the three per-move clock observations were retired on
-2026-10-03. The catalogue has 337 meanings, among them 11 varied opening
+combination meanings, and per-move clock observations are not spoken. The
+catalogue has 337 meanings, among them 11 varied opening
 meanings, the grade takes, seven forced-mate meanings (mate in one allowed, and
 a move that starts, keeps, slows, finishes next move, hastens or holds out
-against a forced mate; added 2026-10-05), 79 alternative takes (`takeOf`), 20
+against a forced mate), 79 alternative takes (`takeOf`), 20
 colour-specific positional lines (`colourOf`), the game-review opener, the picker
 introduction, the Play greeting (`game-start`), the Play invitation
 (`play-invitation`) and the lesson prompts. It also lists 273 piece
@@ -267,7 +261,7 @@ the existing [voice notices](AUDIO.md#locked-voice-and-permissions).
 Prepare reviewed plans for `scripts/record_coach_speech.mjs`: exact voice/model,
 settings, scripts and versioned output paths. Default invocation is a dry run.
 The recorder refuses retired Maia readings (`human-*`, `combo-*`, `combined-*` IDs
-or human-model wording); coaches no longer speak Maia lines.
+or human-model wording); coaches never speak Maia lines.
 Paid generation requires `--generate` and the process environment's
 `ELEVENLABS_API_KEY`; neither the app nor the container needs that secret.
 Plans are bounded to 20 voice/script pairs, 1,000 characters per script and
@@ -384,7 +378,7 @@ Before calling the coach finished:
 - Verify committed media/provenance/tracks agree, production includes only intended
   assets, and no credentials/native tools/private data entered the changes.
 - Update the cast/reference docs and record actual commands, results, usage and
-  perceptual limitations in [VERIFICATION.md](VERIFICATION.md). Never claim a
+  perceptual limitations in the commit message. Never claim a
   listening review based solely on decoding files or capturing screenshots.
 - Commit each coherent verified unit under [AGENTS.md](../AGENTS.md). Push only
   when requested. Tests passing do not replace the owner's final voice choice.

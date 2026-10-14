@@ -5,7 +5,6 @@ Audio is presentation only: it never grades a move,
 advances a session, changes the engine budget or infers a tactic from the board.
 The bundled selection is the owner's mixed recording set, listed below. The
 separate audio studio previews those same sounds in isolation and in context.
-Rejected auditions and their selection/export UI have been removed.
 
 ## Controls and defaults
 
@@ -36,13 +35,11 @@ does not replay missed events. All feedback remains understandable without sound
 | Check, correct answer, completion | Tabletop |
 | Try again | Muted tongue drum |
 
-All nine cues now have owner-approved sounds. `productionCuePalettes` is the
+All nine cues have owner-approved sounds. `productionCuePalettes` is the
 single per-cue default mapping. A null selection remains supported and suppresses
 playback before a download or timer is created. The studio uses these same
 defaults without reading or changing account preferences.
-Ratings never have sounds: their cue types, emitters, assets, settings and saved
-preference have been removed. The forward database migration drops only the
-retired `audio_review` column and preserves remaining account preferences.
+Ratings never have sounds.
 
 ## Cue policy
 
@@ -101,9 +98,7 @@ before an attempt or reveal permits feedback.
 The nine approved WAVs use **six CC0 source recordings**: chess pieces, bronze
 bell, music box, triangle, glass and steel tongue drum. They are trimmed, level
 matched and faded; castling combines two recorded hits. These are the exact
-owner-approved files, with no new DSP or oscillator tones. Unselected recordings
-and their unused recipes/credits have been removed from the current tree; earlier
-auditions remain in Git history.
+owner-approved files, with no new DSP or oscillator tones.
 
 The Freesound inputs are public HQ MP3 previews rather than original WAV downloads.
 The other inputs are the publisher's downloadable MP3s. Resaving them as WAV does
@@ -152,13 +147,7 @@ dedicated audio suite; audio-only changes do not require the coach artwork matri
 All thirty coaches have a registered **610-recording bank**, one recording for
 each meaning in `meanings.json` (`banks/registry.json`). Walter (`classic`) and
 Rivet (`robot`) were the first, using their owner-selected Older teacher and Retro
-speech terminal voices.
-The earlier Walter wording revision replaced 81 passages and retained 100 recordings. It removed repetitive
-“continuation” language while preserving actual, possible, missed and
-opponent-opportunity meanings. The revised passages used **7,524 input characters**
-and **907 provider credits**; character counts are not billing units. Voice,
-delivery settings and that revision's supported meanings were unchanged. No words or
-sentence fragments are stitched together.
+speech terminal voices. No words or sentence fragments are stitched together.
 
 **Settings → Sound → Coach voice** offers **Automatic** (the default), **On
 request**, and **Off**. Automatic narration follows fresh supported interactions;
@@ -176,8 +165,7 @@ line written but not yet recorded) replaces the written sentence whenever one ex
 or off, and game review shows the concrete reply under Best and the opening on a moves line; see
 [Bubble text is the spoken line](COACH_DIALOGUE.md#bubble-text-is-the-spoken-line). Coaches never speak or show a Maia
 (human-move model) reading: Maia lives only in the badge and its popup with the
-written Maia sentence, and no Maia recording exists or is selected (owner
-decisions, 2026-10-02 and 2026-10-04).
+written Maia sentence, and no Maia recording exists or is selected.
 Lessons voice only nine generic
 prompts (wrong, correct, revealed, follow the line, play your studied move,
 alternative, chapter complete, full game and error), one per lesson command; course
@@ -188,7 +176,7 @@ additions, hints, game annotations and edits still do not require voice assets.
 The [Walter manifest](../frontend/src/audio/speech/bank/manifest.json) and
 [Rivet manifest](../frontend/src/audio/speech/banks/rivet/manifest.json) identify
 all recordings and their local paths, as do the other coaches' `banks/<voice>/manifest.json`.
-Each now covers 397 game-review meanings, 170 practice/explanation meanings,
+Each covers 397 game-review meanings, 170 practice/explanation meanings,
 13 opening-recall/preview meanings, 11 puzzle states, 12 lesson prompts and
 seven operational lines (273 of the 610 are piece-named variants). Four audited transient or
 defensive states deliberately remain silent: thinking, checking, loading an
@@ -198,33 +186,23 @@ retains trigger definitions, aliases and the original script audit. The active
 manifest is the current script source; the
 [wording revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
 records the exact old/new text and the reason for each change.
-The shared `meanings.json` catalogue first added eleven Book variants, the game-review
-opener and nine lesson prompts to 174 of the original 181 meanings, for 195
-meanings; later batches, recorded under each bank's `recordings/<voice>-*-v1/`
-folders, bring it to **610 meanings**. `banks/pilot-additions.json` holds Walter's and Rivet's opening,
-opener and lesson scripts. Until 2026-10-02 the catalogue also had the seven
-standalone human-model readings and 246 objective/Maia combinations (448 in all,
-with `banks/maia-combinations.json`); those 253 meanings, their scripts, clips,
-provenance and alignments were removed when Maia speech was retired. Git history
-keeps them. Existing recordings are reused, not regenerated to expand the catalogue.
+Meanings added after the base banks are recorded under each bank's
+`recordings/<voice>-*-v1/` folders; `banks/pilot-additions.json` holds Walter's and
+Rivet's scripts for them. Existing recordings are reused, not regenerated to expand
+the catalogue.
 
-Rivet's [spoken editorial revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
-reviews those 257 additions and replaces 197 passages, retaining 60 additions
-and all 181 original recordings. His spoken writing follows the same character
-bible as his text: lead with the concrete chess event, use compact cause/result
-clauses when they clarify it, then (in the since-retired Maia passages) state the
-relevant human-model assessment.
-Keep occasional earned understatement, not a diagnostic catchphrase on every
+Rivet's spoken writing follows the same character bible as his text: lead with
+the concrete chess event and use compact cause/result clauses when they clarify
+it. His [editorial](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+and [distinct-voice](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json)
+ledgers record each changed passage. Keep occasional earned understatement, not a diagnostic catchphrase on every
 line. Remove repeated methodology explanations and redundant closing summaries,
 especially across consecutive Book moves. Tactical opportunities remain possible
 replies, not events already played; difficult defenses stay estimates bounded
 to the searched choices. These editorial choices do not alter recording IDs,
-evidence, selection, or Walter's scripts.
-
-The later [distinct-voice revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json) replaces 294 Rivet
-recordings whose sentences matched Walter's, or a few of Jun, Scout, Wisp and
-Ziggy, with labeled robot readouts, and says "the other side" on plain alert
-clips that can play on either side's move. IDs, evidence and selection are unchanged.
+evidence, selection, or Walter's scripts. Rivet's lines are labeled robot
+readouts, never another coach's sentences, and plain alert clips that can play on
+either side's move say "the other side".
 
 The coverage inventory follows the actual claim producers and rendering rules,
 not an unrestricted product of every move grade and model result. Allowed/missed
@@ -256,8 +234,8 @@ not reliably deliver the intended pronunciation. Choose natural wording such as
 registered-bank regression check enforces this authoring rule. Text corrections
 require a new complete recording and regenerated mouth timing; changing a
 transcript without replacing its audio is not valid.
-The [speech authoring history](../frontend/src/audio/speech/README.md) preserves
-the owner-approved voice experiments and their usage provenance.
+The [speech README](../frontend/src/audio/speech/README.md) records the voices,
+permissions and recording workflow.
 
 `scripts/prepare_coach_voice_bank.py` automatically aligns the known text and
 recording using PocketSphinx's public word/phoneme API and the shared mouth rules.
@@ -279,7 +257,7 @@ native aligner or model is required by playback. See the
 Walter and Rivet are the current end-to-end reference banks, not scripts to copy
 and relabel for another character. Use their **active manifests** and the
 **Recorded coach comparison** studio collection; earlier plans and archived
-auditions preserve history rather than the latest wording. The
+takes do not hold the latest wording. The
 [coach creation guide](COACH_CREATION_GUIDE.md) puts voice authoring in the wider
 artwork, animation and dialogue workflow.
 
@@ -418,9 +396,7 @@ Walter's voice is locked by the owner. Audio Studio's **Walter wording** section
 compares original and revised passages in that same voice, using the real portrait
 and automatic mouth timing. Choose eight representative examples or all 81 revised
 clips, then Original/Revised and Play or In context. This does not reopen voice
-casting or change account preferences. The earlier voice auditions, the
-complete-bank selector and the cast audition studio were removed from the tree on
-2026-10-03; Git history retains them.
+casting or change account preferences.
 
 The **Recorded coach comparison** panel compares Walter and Rivet for the same
 meaning, with Opening run and All lines collections. It uses the same
@@ -472,9 +448,7 @@ out of scope.
 
 `audio-tests/lip-sync.spec.ts` keeps the retained **Sound sacrifice** and
 **Allowed checkmate** comparison tracks (`speech/alignment/`): the first Rhubarb
-generator and the revised script-aligned generator for the same recordings. The
-interactive Compare lip sync panel was removed with the Walter audition on
-2026-10-03. No new recordings or paid generation were needed.
+generator and the revised script-aligned generator for the same recordings.
 
 The original Rhubarb Lip Sync 1.14.0 tracks remain unchanged. The revised generator
 uses PocketSphinx 5.1.1's public word/phoneme alignment API against the known script,
@@ -482,7 +456,7 @@ then a shared English sound-to-mouth mapping. Generated artifacts retain word an
 phone evidence as well as mouth cues. No clip-specific timing fixes or artwork
 adjustments are used.
 
-The improved method now generates the complete production bank. The
+The script-aligned method generates the complete production bank. The
 [alignment README](../frontend/src/audio/speech/alignment/README.md) documents
 reproduction, source/tool hashes, conversion details and read-only verification.
 The native tool, recognition resources and temporary WAVs stay outside Git and
@@ -495,12 +469,7 @@ Voice casting is complete. `audio/speech/cast-auditions/locked-voices.json` bind
 each cast coach's approved ElevenLabs voice (Walter's approval is
 `walter-selected-voice.json`); `scripts/prepare_coach_voice_bank.py --check`
 refuses a registered bank whose provider voice differs from its lock, and
-`scripts/record_coach_speech.mjs` records banks against those locks. The audition
-recordings, their alignment data, the cast audition studio, the casting server,
-`design_coach_voices.mjs` and `prepare_cast_voice_auditions.py` were removed from
-the tree on 2026-10-03, after casting finished; Git history retains them with
-their provenance. Casting used **9,935 ElevenLabs credits** in total, and Walter's
-completion batch used **1,948 credits** separately. Locking selects a voice design;
+`scripts/record_coach_speech.mjs` records banks against those locks. Locking selects a voice design;
 it does not record or install a dialogue bank.
 
 ### Coverage
@@ -520,5 +489,4 @@ speech and disposal. Browser tests observe actual Web Audio source starts and
 cover the production preference/session/navigation paths without production test
 globals. Studio tests exercise all approved assets, source coverage, context timing and cancellation.
 Run the affected application/account suites alongside the dedicated audio suite
-when changing integration. See [Testing](TESTING.md) and the dated
-[verification record](VERIFICATION.md) for commands and actual results.
+when changing integration. See [Testing](TESTING.md) for the commands.

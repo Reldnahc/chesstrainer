@@ -117,8 +117,8 @@ Symmetric cat/dog paws and hooves need no handedness correction.
 Each selectable character also has a curated writing voice and character bible.
 The shared dialogue layer selects supported facts before the chosen personality
 phrases them; switching coaches never changes grades, evidence or engine work.
-See [character writing](COACH_PERSONALITIES.md) and the separate
-[intelligence laboratory](INTELLIGENCE_LAB.md) for blind comparisons, all-purpose
+See [character writing](COACH_DIALOGUE.md#character-writing) and the separate
+[intelligence laboratory](REVIEW_INTELLIGENCE.md#review-intelligence-laboratory) for blind comparisons, all-purpose
 writing exercises and exact sentence traces. Review scheduling feedback remains
 consistent outside the character dialogue, including relearning after a miss.
 
@@ -246,9 +246,8 @@ tracks retain the energy-driven path. Motion, identity and cleanup rules are sha
 
 The [retained comparison tracks](AUDIO.md#automatic-lip-sync-comparison-development-only)
 for two existing Walter recordings isolate the original Rhubarb generator against
-revised script/phoneme alignment; the interactive comparison fixture was removed
-with the Walter audition. Both comparison sets are automatic and development-only. Walter's and Rivet's
-production banks use the revised generator. The preview is for judging quality,
+revised script/phoneme alignment. Both comparison sets are automatic and
+development-only. The production banks use the revised generator. The preview is for judging quality,
 not a claim of perfect phonetic alignment. Playback uses no voice API or
 recognition model. Lesson narration remains deferred.
 
@@ -265,9 +264,7 @@ applies the exact rig controls without audio or an animation loop. This explicit
 static inspection also works with Still; actual playback continues to honor the
 normal motion/visibility policy. Clearing the preview restores the authored
 expression. A rig without a speaking mouth would remain unsupported. Real
-recordings are inspected in the Audio Studio's recorded coach comparison; the
-per-creature audition panel and its casting controls were removed once casting
-finished.
+recordings are inspected in the Audio Studio's recorded coach comparison.
 
 ### Expressions and idle behavior
 
@@ -466,7 +463,7 @@ settled open eyes, connected and correctly handed limbs, several natural idle
 cycles and convincing automatic speech transitions all matter. Test reaction
 changes and interruption as well as an uninterrupted clip. A static expression
 sheet, a short audition or passing type checks alone is not a finished coach.
-The [personality requirements](COACH_PERSONALITIES.md) and
+The [personality requirements](COACH_DIALOGUE.md#character-writing) and
 [audio acceptance workflow](AUDIO.md) complete this visual quality gate.
 
 ## Validation
@@ -482,7 +479,6 @@ Failed preference loads keep controls disabled and the character still until ret
 failed saves preserve the last accepted choice. Both recovery paths are exercised
 through the actual Settings screen. Connecting with the optional LAN token retries
 preference loading automatically; a manual page reload is not required.
-Final validation results are recorded in [VERIFICATION.md](VERIFICATION.md).
 
 Use the runnable commands and environment setup in
 [TESTING.md](TESTING.md#coach-cast-and-behavior). For a new selectable character,
