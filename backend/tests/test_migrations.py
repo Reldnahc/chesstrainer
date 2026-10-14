@@ -26,10 +26,12 @@ def tables(engine):
 
 
 def fill(connection, table, **values):
-    """Insert one row, giving every required column without a default a placeholder."""
-    for _, name, kind, notnull, default, primary in connection.exec_driver_sql(
-        f'PRAGMA table_info("{table}")'
-    ):
+    """Insert one row, giving every required column without a default a placeholder.
+
+    ``connection`` is a SQLAlchemy connection or a plain sqlite3 one.
+    """
+    execute = getattr(connection, "exec_driver_sql", None) or connection.execute
+    for _, name, kind, notnull, default, primary in execute(f'PRAGMA table_info("{table}")'):
         if name in values or not (notnull or primary) or default is not None:
             continue
         kind = kind.upper()
@@ -44,9 +46,7 @@ def fill(connection, table, **values):
         )
     columns = ", ".join(f'"{name}"' for name in values)
     marks = ", ".join("?" for _ in values)
-    connection.exec_driver_sql(
-        f'INSERT INTO "{table}" ({columns}) VALUES ({marks})', tuple(values.values())
-    )
+    execute(f'INSERT INTO "{table}" ({columns}) VALUES ({marks})', tuple(values.values()))
 
 
 def test_a_failed_revision_leaves_the_schema_and_version_untouched(tmp_path, monkeypatch):

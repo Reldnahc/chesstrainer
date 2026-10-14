@@ -1,10 +1,11 @@
 """Remove imported games and everything derived from them so the library can be reimported.
 
 Takes a backup with scripts/backup.py first, then deletes games, imports and import jobs,
-engine findings, reviews, mistakes, game-based review cards and their history, and the
-archived game-built course. Settings, preferences, coach choice, saved provider usernames,
-Study lesson progress, puzzles and opening studies are kept. Stop the server first.
-Without --yes it only reports what would be removed.
+engine findings, reviews, mistakes, game-based review cards and their history, puzzles mined
+from those games, and the archived game-built course. Games played in Play stay, without the
+link to their removed library copy. Settings, preferences, coach choice, saved provider
+usernames, Study lesson progress, puzzle packs and opening studies are kept. Stop the server
+first. Without --yes it only reports what would be removed.
 """
 
 import argparse
@@ -41,6 +42,7 @@ STEPS = (
     ("srs_states", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
     ("opening_cards", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
     ("opening_content_changes", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
+    ("opening_study_moves", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
     ("exercises", "id IN (SELECT id FROM temp.clear_exercises)"),
     ("skill_evidence", "decision_id IN (SELECT id FROM temp.clear_decisions)"),
     (
@@ -54,6 +56,12 @@ STEPS = (
         " OR job_id IN (SELECT id FROM temp.clear_jobs)",
     ),
     ("classification_runs", "decision_id IN (SELECT id FROM temp.clear_decisions)"),
+    (
+        "game_puzzles",
+        "game_id IN (SELECT id FROM temp.clear_games)"
+        " OR decision_id IN (SELECT id FROM temp.clear_decisions)",
+    ),
+    ("game_puzzle_searches", "game_id IN (SELECT id FROM temp.clear_games)"),
     ("decisions", "id IN (SELECT id FROM temp.clear_decisions)"),
     ("game_review_moves", "game_id IN (SELECT id FROM temp.clear_games)"),
     (
@@ -77,6 +85,10 @@ STEPS = (
     ("human_analyses", "id IN (SELECT id FROM temp.clear_human)"),
     ("engine_analyses", "id IN (SELECT id FROM temp.clear_engine)"),
 )
+
+# References that outlive the cleared rows: (table, column, condition). They are set to
+# NULL rather than deleted, so a game played in Play keeps its moves and reports.
+UNLINKED = (("play_games", "saved_game_id", "saved_game_id IN (SELECT id FROM temp.clear_games)"),)
 
 ENGINE_REFERENCES = (
     ("decisions", "before_analysis_id"),
@@ -157,8 +169,15 @@ def clear_games(database: Path, username: str | None = None, apply: bool = False
             db.execute("PRAGMA defer_foreign_keys=ON")
             _collect(db, owner)
             removed = {}
-            for table, condition in STEPS:
-                where = condition.format(owner=owner)
+            for table, column, where in UNLINKED:
+                key = f"{table} (unlinked)"
+                if apply:
+                    sql = f"UPDATE {table} SET {column} = NULL WHERE {where}"
+                    removed[key] = db.execute(sql).rowcount
+                else:
+                    sql = f"SELECT COUNT(*) FROM {table} WHERE {where}"
+                    removed[key] = db.execute(sql).fetchone()[0]
+            for table, where in STEPS:
                 if apply:
                     removed[table] = db.execute(f"DELETE FROM {table} WHERE {where}").rowcount
                 else:
@@ -207,7 +226,7 @@ def main():
     for table, count in removed.items():
         if count:
             print(f"{table:28} {count}")
-    total = sum(removed.values())
+    total = sum(count for table, count in removed.items() if "(unlinked)" not in table)
     print(
         f"{'Removed' if args.yes else 'Would remove'} {total} rows."
         + ("" if args.yes else " Run again with --yes to back up and delete.")
