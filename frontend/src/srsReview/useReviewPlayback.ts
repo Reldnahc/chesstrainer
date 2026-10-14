@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { ExplanationFrame, Feedback } from "../api";
 import type { useAudioScope } from "../audio/AudioProvider";
 import { COUNTER_REPLY_DELAY_MS } from "../reviewMotion";
+import { useLatest } from "../useLatest";
 
 /** Presentation-only playback: never submits a move or records another recall. */
 export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<typeof useAudioScope>, feedbackEventId: string | null) {
@@ -15,8 +16,7 @@ export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<t
   const practicePanel = useRef<HTMLDivElement | null>(null);
   const previewTimer = useRef<number | undefined>(undefined);
   const focusFrame = useRef<number | undefined>(undefined);
-  const sound = useRef(audio);
-  sound.current = audio;
+  const sound = useLatest(audio);
 
   useEffect(() => {
     window.clearTimeout(previewTimer.current);

@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { ghostCopy } from "./ghost";
+import { playLeavingCopy } from "./ghost";
 import { useInterfaceMotion } from "./MotionProvider";
 
 /**
@@ -9,31 +9,22 @@ import { useInterfaceMotion } from "./MotionProvider";
  * closing animation (`dialog[data-closing]` in reveal.css) in the top layer and
  * removes itself. The copy holds no live controls or text.
  */
-function leave(dialog: HTMLDialogElement) {
-  const copy = ghostCopy(dialog);
-  copy.dataset.closing = "true";
-  copy.inert = true;
-  copy.popover = "manual";
-  document.body.append(copy);
-  copy.showPopover();
-  const running = copy.getAnimations();
-  const remove = () => copy.remove();
-  if (!running.length) remove();
-  else Promise.all(running.map(animation => animation.finished)).then(remove, remove);
-}
-
 export default function DialogPresence({ children }: { children: ReactNode }) {
   const motion = useInterfaceMotion();
   const open = children !== null && children !== undefined && children !== false;
+  // The last children shown while open, kept after commit so the closing render
+  // can still find the dialog it is about to copy.
   const last = useRef<ReactNode>(null);
-  if (open) last.current = children;
+  useLayoutEffect(() => {
+    if (open) last.current = children;
+  });
   const [mounted, setMounted] = useState(open);
   if (open && !mounted) setMounted(true);
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     if (open || !mounted) return;
     const dialog = ref.current?.querySelector("dialog");
-    if (motion !== "still" && dialog?.open) leave(dialog);
+    if (motion !== "still" && dialog?.open) playLeavingCopy(dialog, copy => { copy.dataset.closing = "true"; });
     last.current = null;
     setMounted(false);
   }, [open, mounted, motion]);

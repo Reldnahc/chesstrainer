@@ -2,16 +2,15 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { defaultPieces } from "react-chessboard";
 import { GIFEncoder, applyPalette, quantize } from "gifenc";
+import { moveSquares } from "../boardCues";
 
 export type GifPosition = { fen: string; uci: string | null };
 
 const SQUARE = 60, SIZE = SQUARE * 8;
 const MOVE_DELAY_MS = 1000, FINAL_DELAY_MS = 3000;
-// The board's move highlight (board.css .playback-highlight).
-const HIGHLIGHT = "#ff8059";
-
-function boardColour(name: string, fallback: string) {
-  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+// The board's own colours (foundation.css), so the GIF matches the page.
+function boardColour(name: string) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
 /** The board's own piece artwork, as images the canvas can draw. */
@@ -32,20 +31,19 @@ function squareAt(file: number, rank: number, white: boolean) {
 }
 
 function draw(context: CanvasRenderingContext2D, position: GifPosition, white: boolean,
-  pieces: Map<string, HTMLImageElement>, light: string, dark: string) {
+  pieces: Map<string, HTMLImageElement>, { light, dark, highlight }: Record<"light" | "dark" | "highlight", string>) {
   for (let rank = 0; rank < 8; rank++)
     for (let file = 0; file < 8; file++) {
       const { x, y } = squareAt(file, rank, white);
       context.fillStyle = (file + rank) % 2 ? light : dark;
       context.fillRect(x, y, SQUARE, SQUARE);
     }
-  if (position.uci)
-    for (const name of [position.uci.slice(0, 2), position.uci.slice(2, 4)]) {
-      const { x, y } = squareAt(name.charCodeAt(0) - 97, Number(name[1]) - 1, white);
-      context.strokeStyle = HIGHLIGHT;
-      context.lineWidth = 3;
-      context.strokeRect(x + 1.5, y + 1.5, SQUARE - 3, SQUARE - 3);
-    }
+  for (const name of moveSquares(position.uci)) {
+    const { x, y } = squareAt(name.charCodeAt(0) - 97, Number(name[1]) - 1, white);
+    context.strokeStyle = highlight;
+    context.lineWidth = 3;
+    context.strokeRect(x + 1.5, y + 1.5, SQUARE - 3, SQUARE - 3);
+  }
   position.fen.split(" ")[0].split("/").forEach((row, index) => {
     const rank = 7 - index;
     let file = 0;
@@ -61,15 +59,18 @@ function draw(context: CanvasRenderingContext2D, position: GifPosition, white: b
 
 /** Every position of the game as an animated GIF, one move a second. */
 export async function gameGif(positions: GifPosition[], orientation: "white" | "black",
-  onProgress?: (done: number, total: number) => void) {
+  onProgress?: (done: number, total: number) => void, signal?: AbortSignal) {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = SIZE;
   const context = canvas.getContext("2d", { willReadFrequently: true })!;
   const pieces = await pieceImages();
-  const light = boardColour("--board-light", "#c7cbd0"), dark = boardColour("--board-dark", "#737e8b");
+  // The move highlight is board.css's .playback-highlight colour.
+  const colours = { light: boardColour("--board-light"), dark: boardColour("--board-dark"), highlight: boardColour("--accent") };
   const gif = GIFEncoder();
   for (const [index, position] of positions.entries()) {
-    draw(context, position, orientation === "white", pieces, light, dark);
+    // Stops between frames once the dialog closes.
+    signal?.throwIfAborted();
+    draw(context, position, orientation === "white", pieces, colours);
     const rgba = context.getImageData(0, 0, SIZE, SIZE).data;
     const palette = quantize(rgba, 256);
     gif.writeFrame(applyPalette(rgba, palette), SIZE, SIZE, {

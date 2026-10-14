@@ -1,4 +1,5 @@
 import { api, read, type Schema } from "../api";
+import { download } from "../download";
 
 /** A course file in the readable format described in docs/COURSE_FILES.md. */
 export type CourseFile = Record<string, unknown>;
@@ -10,12 +11,7 @@ export async function downloadCourseFile(courseId: string, revision?: string) {
     parseAs: "blob",
   });
   if (!data) throw new Error("The server returned an empty course file.");
-  const url = URL.createObjectURL(data as Blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${courseId}.json`;
-  link.click();
-  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  download(data as Blob, `${courseId}.json`);
 }
 
 export async function fetchCourseFile(courseId: string, revision?: string, signal?: AbortSignal) {

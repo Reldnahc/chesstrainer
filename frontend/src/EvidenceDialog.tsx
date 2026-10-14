@@ -3,6 +3,8 @@ import { X } from "lucide-react";
 import { api, read, type Evidence, type Schema } from "./api";
 import Board from "./Board";
 import Button, { IconButton } from "./Button";
+import { scoreText } from "./evaluation";
+import { sideToMove } from "./fen";
 import useModalDialog from "./useModalDialog";
 import { LoadingState } from "./LoadState";
 export default function EvidenceDialog({
@@ -52,7 +54,7 @@ export default function EvidenceDialog({
         <div className="evidence-grid">
           <Board
             fen={data.fen}
-            orientation={data.fen.split(" ")[1] === "w" ? "white" : "black"}
+            orientation={sideToMove(data.fen)}
             disabled
           />
           <div>
@@ -68,11 +70,8 @@ export default function EvidenceDialog({
             {data.candidates.map((c) => (
               <div className="candidate" key={c.san}>
                 <strong>{c.san}</strong>
-                <span>
-                  {c.score.kind === "mate"
-                    ? `Mate ${c.score.value}`
-                    : (c.score.value / 100).toFixed(2)}
-                </span>
+                {/* Side-to-move scores at the audit's two decimals, with the typographic minus. */}
+                <span>{c.score.kind === "mate" ? `Mate ${c.score.value}` : scoreText(c.score)}</span>
                 <code>{c.pv.join(" ")}</code>
               </div>
             ))}

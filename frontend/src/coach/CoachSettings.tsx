@@ -28,9 +28,10 @@ export default function CoachSettings() {
     setIntroduce(null);
     voice.stop();
     setSaved(false);
-    const ok = await choice.save(value);
-    setSaved(ok);
-    if (ok && requested.current === value) setIntroduce(value);
+    const result = await choice.save(value);
+    if (result === "superseded") return;
+    setSaved(result === "saved");
+    if (result === "saved" && requested.current === value) setIntroduce(value);
   }
   const { play } = voice;
   useEffect(() => {

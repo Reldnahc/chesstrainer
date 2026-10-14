@@ -18,6 +18,8 @@ import Reveal from "../Reveal";
 import SourceLine from "../SourceLine";
 import type { CoachExpression } from "../coach/model";
 import { gameReviewPath, navigate, puzzleSessionPath, studyPaths } from "../navigation";
+import { moveSquares } from "../boardCues";
+import { playbackMover } from "../fen";
 import { createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel } from "./puzzleApi";
 import { usePuzzleSession } from "./usePuzzleSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
@@ -87,7 +89,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     : "Take your time and calculate before moving.");
   const displayedFen = state.fen || session.fen;
   const playbackTurn = frame
-    ? frame.before_fen.split(" ")[1] === (session.orientation === "white" ? "w" : "b") ? "Your move" : "Opponent reply"
+    ? playbackMover(frame.before_fen, session.orientation)
     : "Solution start";
   return <ReviewWorkspace
     heading={<div className="puzzle-player-heading"><h1>Puzzle practice</h1><span className="muted">{session.source === "games" ? "From your games · " : ""}{complete ? session.status === "revealed" ? "Revealed" : "Solved" : "In progress"}</span></div>}
@@ -95,7 +97,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     aboveBoard={<div className="review-position-status"><TurnIndicator color={session.orientation}>{playing ? playbackTurn : complete ? "Solution review" : `${session.orientation === "white" ? "White" : "Black"} to move`}</TurnIndicator><span>{session.history.length} MOVES PLAYED</span></div>}
     belowBoard={<div className="review-board-hint">{playing ? "The saved position will be ready after playback." : complete ? "Select a solution move to inspect it." : "Select a piece to see legal moves. Tap a destination or drag."}</div>}
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</ActionLink><AudioMuteButton /></div>}
-    board={<Board fen={displayedFen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={state.disabled} onMove={state.answer} feedback={incorrect ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
+    board={<Board fen={displayedFen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={state.disabled} onMove={state.answer} feedback={incorrect ? "retry" : undefined} highlights={moveSquares(frame?.uci)} />}
   >
     <ReviewCoach title={<h2>{title}</h2>} voice={voice}
       badge={complete ? <MoveBadge label={session.status === "revealed" ? "Revealed" : "Accepted"} /> : undefined}

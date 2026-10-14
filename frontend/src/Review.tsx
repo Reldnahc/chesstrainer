@@ -1,5 +1,7 @@
 import type { Promotion } from "./api";
 import Board from "./Board";
+import { moveSquares } from "./boardCues";
+import { sideName, sideToMove, START_FEN } from "./fen";
 import TurnIndicator from "./TurnIndicator";
 import { LoadingState } from "./LoadState";
 import ReviewWorkspace from "./ReviewWorkspace";
@@ -7,7 +9,6 @@ import ReviewPanel from "./srsReview/ReviewPanel";
 import { useReviewSession } from "./srsReview/useReviewSession";
 import { useReviewPlayback } from "./srsReview/useReviewPlayback";
 
-const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 export default function ReviewScreen({
   requested,
@@ -82,7 +83,7 @@ export default function ReviewScreen({
             boardLabel="Chess position"
             aboveBoard={
               <div className="review-position-status">
-                <TurnIndicator color={position?.fen.split(" ")[1] === "b" ? "black" : "white"}>
+                <TurnIndicator color={position ? sideToMove(position.fen) : "white"}>
                   {explaining
                     ? "Line playback"
                     : preview
@@ -94,9 +95,7 @@ export default function ReviewScreen({
                           ? "Answer shown"
                           : "Move played"
                         : position
-                          ? (position.fen.split(" ")[1] === "w"
-                              ? "White"
-                              : "Black") + " to move"
+                          ? `${sideName(sideToMove(position.fen))} to move`
                           : "Your next move starts here"}
                 </TurnIndicator>
                 <span>
@@ -121,7 +120,7 @@ export default function ReviewScreen({
                   previewFrame?.fen ||
                   (feedback?.completed && feedback.fen
                     ? feedback.fen
-                    : position?.fen || START)
+                    : position?.fen || START_FEN)
                 }
                 roles={explanationFrame?.roles}
                 quality={quality}
@@ -131,7 +130,7 @@ export default function ReviewScreen({
                   previewFrame?.highlights ||
                   feedback?.reveal_frame?.highlights ||
                   (feedback?.completed && moveUci
-                    ? [moveUci.slice(0, 2), moveUci.slice(2, 4)]
+                    ? moveSquares(moveUci)
                     : [])
                 }
                 orientation={position?.orientation || "white"}

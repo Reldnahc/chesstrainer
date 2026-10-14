@@ -62,7 +62,9 @@ test("preference status shares loading and saving presentation without mixing ea
     // Coach motion saves on its own field; the coach choice heading stays idle.
     await expect(coachStatus).toHaveText("Saving…");
     await expect(heading).toBeEmpty();
-    await expect(coachField).toBeDisabled();
+    // The field stays usable while it saves; its group is marked busy instead.
+    await expect(coachField).toBeEnabled();
+    await expect(page.locator(".motion-preference").filter({ has: coachField })).toHaveAttribute("aria-busy", "true");
     await expect(motionStatus).toBeEmpty();
     await expect(motionField).toBeEnabled();
     coachSave.release();
@@ -72,7 +74,8 @@ test("preference status shares loading and saving presentation without mixing ea
 
     await motionField.selectOption("still");
     await expect(motionStatus).toHaveText("Saving…");
-    await expect(motionField).toBeDisabled();
+    await expect(motionField).toBeEnabled();
+    await expect(page.locator(".motion-preference").filter({ has: motionField })).toHaveAttribute("aria-busy", "true");
     await expect(coachStatus).toHaveText("Saved");
     motionSave.release();
     await expect(motionStatus).toHaveText("Saved");

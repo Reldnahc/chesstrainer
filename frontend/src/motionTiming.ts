@@ -1,10 +1,13 @@
 // Shared by the script-driven animations (disclosures, loader hand-offs), which
 // the CSS Still policy in interface-motion.css cannot stop by itself.
 
+import { REDUCED_MOTION_QUERY } from "./mediaQuery";
+import { resolveMotion, type MotionPreference } from "./motion";
+
+/** MotionProvider's resolved choice, or the device setting before it is known. */
 export function motionAllowed() {
-  const choice = document.documentElement.dataset.interfaceMotion;
-  if (choice) return choice === "natural";
-  return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const choice = document.documentElement.dataset.interfaceMotion as MotionPreference | undefined;
+  return resolveMotion(choice ?? "system", window.matchMedia(REDUCED_MOTION_QUERY).matches) === "natural";
 }
 
 function token(name: string) {

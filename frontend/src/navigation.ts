@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useSyncExternalStore } from "react";
+import { localId } from "./localId";
 
 export const pagePaths = {
   Home: "/",
@@ -284,12 +285,6 @@ type ScrollPosition = { x: number; y: number };
 type Location = { route: Route; scroll: ScrollPosition | null };
 const scrollPositions = new Map<string, ScrollPosition>();
 
-/** A random identifier for local bookkeeping. crypto.randomUUID needs a secure
- * context, so HTTP LAN installs fall back to time and Math.random. */
-export function localId(): string {
-  return typeof crypto !== "undefined" && typeof crypto.randomUUID === "function" && window.isSecureContext
-    ? crypto.randomUUID() : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
-}
 
 const historyState = (): Record<string, unknown> => (window.history.state ?? {}) as Record<string, unknown>;
 const entryIndex = (state: unknown): number | null => {

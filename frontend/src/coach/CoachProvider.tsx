@@ -1,6 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useRef, useState, type ReactNode } from "react";
 import { api, read } from "../api";
-import { useSavedPreferences, type SavedPreferences } from "../useSavedPreferences";
+import { useSavedPreferences, type DeviceCache, type SaveResult, type SavedPreferences } from "../useSavedPreferences";
 import type { CoachPreferences } from "./model";
 import { getCoach } from "./registry";
 
@@ -10,19 +10,17 @@ type CoachState = SavedPreferences<CoachPreferences, CoachChange> & {
   /** Choices still being written, shown by their own control until the save settles. */
   pending: CoachChange;
   failed: CoachField | null;
-  saveField: <K extends CoachField>(field: K, value: CoachPreferences[K]) => Promise<boolean>;
+  saveField: <K extends CoachField>(field: K, value: CoachPreferences[K]) => Promise<SaveResult>;
 };
 
 const defaults: CoachPreferences = { coach_id: "classic", motion: "system" };
-// This device remembers the last loaded coach, so a refresh shows that coach
-// while the saved preference loads instead of flashing the default.
-const cacheKey = "fieldwork:coach-id";
-function cachedDefaults(): CoachPreferences {
-  try {
-    const id = localStorage.getItem(cacheKey);
-    return id ? { ...defaults, coach_id: getCoach(id).id as CoachPreferences["coach_id"] } : defaults;
-  } catch { return defaults; }
-}
+// This device remembers each account's last loaded coach, so a refresh shows
+// that coach while the saved preference loads instead of flashing the default.
+const deviceCache: DeviceCache<CoachPreferences> = {
+  name: "coach",
+  pick: stored => typeof stored.coach_id === "string"
+    ? { coach_id: getCoach(stored.coach_id).id as CoachPreferences["coach_id"] } : {},
+};
 const load = (signal: AbortSignal) => read(api.GET("/api/preferences/coach", {signal}));
 // Coach and coach motion share one saved record but are separate controls,
 // so each change writes only its own field.
@@ -36,30 +34,20 @@ function without(change: CoachChange, field: CoachField): CoachChange {
 }
 
 export function CoachProvider({ children }: { children: ReactNode }) {
-  const [initial] = useState(cachedDefaults);
-  const state = useSavedPreferences({defaults: initial, load, write});
-  const coachId = state.ready ? state.preferences.coach_id : null;
-  useEffect(() => {
-    if (!coachId) return;
-    try { localStorage.setItem(cacheKey, coachId); } catch { /* Refreshes fall back to the default coach. */ }
-  }, [coachId]);
+  const state = useSavedPreferences({defaults, load, write, deviceCache});
   const {save, retry} = state;
   const [pending, setPending] = useState<CoachChange>({});
   const [failed, setFailed] = useState<CoachField | null>(null);
-  const queue = useRef(Promise.resolve(true));
   const latest = useRef<Partial<Record<CoachField, number>>>({});
   const saveField = useCallback(<K extends CoachField>(field: K, value: CoachPreferences[K]) => {
     const token = (latest.current[field] ?? 0) + 1;
     latest.current[field] = token;
     setPending(current => ({...current, [field]: value}));
     setFailed(null);
-    // The shared hook allows one write at a time; queue instead of dropping a change.
-    const result = queue.current.then(() => save({[field]: value}));
-    queue.current = result;
-    return result.then(ok => {
-      if (!ok) setFailed(field);
+    return save({[field]: value}).then(result => {
+      if (result === "failed") setFailed(field);
       if (latest.current[field] === token) setPending(current => without(current, field));
-      return ok;
+      return result;
     });
   }, [save]);
   const value = {...state, pending, failed, saveField, retry: () => { setFailed(null); retry(); }};

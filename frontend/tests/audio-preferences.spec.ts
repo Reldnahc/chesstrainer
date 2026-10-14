@@ -198,7 +198,9 @@ for (const input of ['pointer', 'keyboard'] as const) {
       await expect.poll(() => writes.length).toBe(1);
       const expected = String(Math.round(writes[0].volume * 100));
       expect(Number(expected)).toBeGreaterThan(35);
-      await expect(volume).toBeDisabled();
+      // The slider stays usable (and focused) while the change saves; the controls are marked busy.
+      await expect(volume).toBeEnabled();
+      await expect(sound.locator('.audio-settings-controls')).toHaveAttribute('aria-busy', 'true');
       await expect(sound.locator('.preference-status')).toHaveAttribute('data-state', 'saving');
       await sound.getByRole('heading', {name: 'Sound', exact: true}).click();
       await expect(volume).toHaveValue(expected);

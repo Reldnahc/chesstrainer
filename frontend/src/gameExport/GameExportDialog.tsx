@@ -1,7 +1,8 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Check, Copy, Download, X } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Button, { IconButton } from "../Button";
+import { download } from "../download";
 import Notice from "../Notice";
 import Reveal from "../Reveal";
 import { LoadingState } from "../LoadState";
@@ -14,13 +15,6 @@ function fileName(game: Exported, extension: string) {
   // Keep letters in any script ("Müller"); drop characters file systems reject.
   const name = `${game.white} vs ${game.black}`.replace(/[^\p{L}\p{N} ._-]+/gu, "").trim() || "game";
   return `${name}.${extension}`;
-}
-
-function save(blob: Blob, name: string) {
-  const url = URL.createObjectURL(blob);
-  const link = Object.assign(document.createElement("a"), { href: url, download: name });
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 /** The Clipboard API exists only on secure pages; the LAN server is plain HTTP. */
@@ -77,19 +71,24 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
     return () => { active = false; };
   }, [id]);
   useEffect(() => () => { if (gif) URL.revokeObjectURL(gif.url); }, [gif]);
+  // Closing the dialog stops a GIF still being drawn.
+  const drawing = useRef<AbortController | null>(null);
+  useEffect(() => () => drawing.current?.abort(), []);
   async function makeGif() {
     if (!game || progress) return;
+    const controller = new AbortController();
+    drawing.current = controller;
     setError("");
     setProgress({ done: 0, total: game.positions.length });
     try {
       // The encoder and piece renderer load only when someone asks for a GIF.
       const { gameGif } = await import("./gameGif");
-      const blob = await gameGif(game.positions, orientation, (done, total) => setProgress({ done, total }));
-      setGif({ blob, url: URL.createObjectURL(blob) });
+      const blob = await gameGif(game.positions, orientation, (done, total) => setProgress({ done, total }), controller.signal);
+      if (!controller.signal.aborted) setGif({ blob, url: URL.createObjectURL(blob) });
     } catch (e) {
-      setError(e instanceof Error ? e.message : "The GIF could not be made.");
+      if (!controller.signal.aborted) setError(e instanceof Error ? e.message : "The GIF could not be made.");
     } finally {
-      setProgress(null);
+      if (!controller.signal.aborted) setProgress(null);
     }
   }
   return (
@@ -107,7 +106,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
             <h3 id={`${ids}-pgn`}>PGN</h3>
             <div className="cluster">
               <CopyButton text={game.pgn} label="Copy PGN" onError={setError} />
-              <Button size="compact" onClick={() => save(new Blob([game.pgn], { type: "application/x-chess-pgn" }), fileName(game, "pgn"))}>
+              <Button size="compact" onClick={() => download(new Blob([game.pgn], { type: "application/x-chess-pgn" }), fileName(game, "pgn"))}>
                 <Download size={15} />Download
               </Button>
             </div>
@@ -125,7 +124,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
           <div className="row-between">
             <h3 id={`${ids}-gif`}>GIF <span className="muted">Whole game from this side, one move a second</span></h3>
             {gif ? (
-              <Button size="compact" variant="primary" onClick={() => save(gif.blob, fileName(game, "gif"))}>
+              <Button size="compact" variant="primary" onClick={() => download(gif.blob, fileName(game, "gif"))}>
                 <Download size={15} />Download
               </Button>
             ) : (

@@ -15,44 +15,45 @@ export default function AudioSettings() {
   const {preferences, ready, saving, error, save, retry, muted, setMuted} = useAudioPreferences();
   const sound = useAudioScope("settings-preview");
   const sequence = useRef(0);
-  const writing = useRef(false);
   const [saved, setSaved] = useState(false);
+  // The latest choices, shown while they save; once nothing is saving (saved,
+  // failed or reloaded) the controls show the saved preferences again.
   const [draft, setDraft] = useState(preferences);
   const [volume, setVolume] = useState(preferences.volume);
-  useEffect(() => { setDraft(preferences); setVolume(preferences.volume); }, [preferences]);
+  useEffect(() => {
+    if (saving) return;
+    setDraft(preferences);
+    setVolume(preferences.volume);
+  }, [preferences, saving]);
   async function update(next: Partial<AudioPreferences>) {
-    if (writing.current) return;
-    writing.current = true;
     setSaved(false);
-    const value = {...preferences, ...next};
+    const value = {...draft, ...next};
     setDraft(value);
-    try {
-      const success = await save(value);
-      setSaved(success);
-      if (!success) { setDraft(preferences); setVolume(preferences.volume); }
-    } finally { writing.current = false; }
+    // The hook writes one change at a time and the latest wins, so controls stay usable.
+    const result = await save(value);
+    if (result !== "superseded") setSaved(result === "saved");
   }
-  const disabled = !ready || saving;
+  const disabled = !ready;
   return <SettingsSection id="audio-settings" title="Sound"
     description="Sound follows your account. Quick mute applies only to this device.">
-    <div className="audio-settings-controls">
-      <label className="audio-setting-check"><input type="checkbox" checked={draft.enabled} disabled={disabled}
+    <div className="audio-settings-controls" aria-busy={saving || undefined}>
+      <label className="check-row audio-setting-check"><input type="checkbox" checked={draft.enabled} disabled={disabled}
         onChange={event => void update({enabled: event.target.checked})} />Enable sound</label>
       <div className="audio-setting-volume">
         <label htmlFor="audio-volume">Volume <output htmlFor="audio-volume">{Math.round(volume * 100)}%</output></label>
         <input id="audio-volume" type="range" min="0" max="100" step="5" value={Math.round(volume * 100)}
           disabled={disabled || !draft.enabled}
           onChange={event => setVolume(Number(event.target.value) / 100)}
-          onPointerUp={event => { const next = Number(event.currentTarget.value) / 100; if (next !== preferences.volume) void update({volume: next}); }}
-          onKeyUp={event => { if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", "PageUp", "PageDown"].includes(event.key) && volume !== preferences.volume) void update({volume}); }}
-          onBlur={() => { if (!saving && volume !== preferences.volume) void update({volume}); }} />
+          onPointerUp={event => { const next = Number(event.currentTarget.value) / 100; if (next !== draft.volume) void update({volume: next}); }}
+          onKeyUp={event => { if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", "PageUp", "PageDown"].includes(event.key) && volume !== draft.volume) void update({volume}); }}
+          onBlur={() => { if (volume !== draft.volume) void update({volume}); }} />
       </div>
       <fieldset disabled={disabled || !draft.enabled} className="audio-setting-categories">
         <legend>Play sounds for</legend>
         {([
           ["board", "Board moves", "Moves, captures, castling, promotion, check and checkmate."],
           ["practice", "Practice feedback", "Accepted answers and completed practice."],
-        ] as const).map(([key, label, description]) => <label className="audio-setting-check" key={key}>
+        ] as const).map(([key, label, description]) => <label className="check-row audio-setting-check" key={key}>
           <input type="checkbox" checked={draft[key]} onChange={event => void update({[key]: event.target.checked})} />
           <span>{label}<small>{description}</small></span>
         </label>)}

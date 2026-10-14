@@ -12,7 +12,9 @@ import Notice from "../Notice";
 import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import TurnIndicator from "../TurnIndicator";
-import { courseSettingsPath, lessonCoursePath, useLeaveGuard, type LessonTopic } from "../navigation";
+import { courseEditorPath, courseSettingsPath, lessonCoursePath, replaceAddress, useLeaveGuard, type LessonTopic } from "../navigation";
+import { sideName, sideToMove, START_FEN } from "../fen";
+import { useLatest } from "../useLatest";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 // The editor edits the readable course file itself (docs/COURSE_FILES.md), so
@@ -30,7 +32,7 @@ type Step = {
   reply?: string;
   feedback?: string;
   hint?: string;
-  choices?: unknown[];
+  choices?: { move?: string; next?: string | null; [key: string]: unknown }[];
   branch?: string;
   game?: string;
   from?: number;
@@ -73,7 +75,6 @@ const KIND_FIELDS = ["show", "move", "reply", "feedback", "hint", "choices", "br
 const KIND_DEFINING = new Set(["show", "move", "rehearse", "branch", "game"]);
 const FOLLOWING = "__following__";
 const END = "__end__";
-const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 function kindOf(step: Step): Kind {
   if (step.show !== undefined) return "demonstration";
@@ -116,6 +117,9 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   const [stepIndex, setStepIndex] = useState(0);
   const [check, setCheck] = useState<Check | null>(null);
   const [checking, setChecking] = useState(false);
+  // The check request itself failed (not a problem in the course); Try again re-runs it.
+  const [checkError, setCheckError] = useState("");
+  const [checkAttempt, setCheckAttempt] = useState(0);
   const [dirty, setDirty] = useState(!courseId);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
@@ -127,9 +131,12 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   // replaces someone else's newer save or an existing course by accident.
   const [base, setBase] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
+  // The step id being typed; links to the step follow it once it is committed.
+  const [stepId, setStepId] = useState<string | null>(null);
   const edits = useRef(0);
-  const recordingRef = useRef<Recording | null>(null);
-  recordingRef.current = recording;
+  const recordingRef = useLatest(recording);
+  // Bumped when recording starts or stops, so a late answer cannot restart it.
+  const recordingRequest = useRef(0);
 
   usePageTitle("Lesson editor");
   useEffect(() => {
@@ -148,15 +155,16 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     setChecking(true);
     const timer = window.setTimeout(() => {
       read(api.POST("/api/study/course-files/check", { body: course, signal: controller.signal }))
-        .then(result => { if (!controller.signal.aborted) { setCheck(result); setChecking(false); } })
+        .then(result => { if (!controller.signal.aborted) { setCheck(result); setCheckError(""); setChecking(false); } })
         .catch(e => {
           if (controller.signal.aborted) return;
-          setCheck({ error: (e as Error).message, steps: {} });
+          // Keep the last good check, so the board stays while the server is unreachable.
+          setCheckError((e as Error).message);
           setChecking(false);
         });
     }, 350);
     return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [course]);
+  }, [course, checkAttempt]);
 
   useLeaveGuard(dirty, "Leave the lesson editor? Your unsaved changes will be lost.");
 
@@ -199,6 +207,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       for (const item of draft.steps) {
         if (item.next === previous) item.next = id;
         if (item.branch === previous) item.branch = id;
+        for (const choice of item.choices ?? []) if (choice.next === previous) choice.next = id;
       }
       if (draft.entry === previous) draft.entry = id;
       draft.steps[stepIndex].id = id;
@@ -213,11 +222,19 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       if (next === "rehearsal") draft.rehearse = current.lines?.[0]?.id ?? "";
       if (next === "game_excerpt") Object.assign(draft, { game: current.games?.[0]?.id ?? "", from: 0, to: 1 });
     });
+    stopRecording();
+  }
+  function commitStepId() {
+    if (stepId !== null && stepId !== step!.id) renameStep(stepId);
+    setStepId(null);
+  }
+  function stopRecording() {
+    recordingRequest.current += 1;
     setRecording(null);
   }
   function selectStep(index: number) {
     setStepIndex(index);
-    setRecording(null);
+    stopRecording();
     setShowEnd(false);
   }
   function selectChapter(index: number) {
@@ -265,13 +282,16 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     return read(api.POST("/api/study/course-files/position", { body: { fen, moves, move: move ? { ...move, promotion: move.promotion ?? null } : null } }));
   }
   async function record(field: Recording["field"]) {
+    const request = ++recordingRequest.current;
     setError("");
     const fen = field === "position" ? (step!.fen || START_FEN) : board?.fen;
     if (!fen) { setError("Fix the problem above first, so this step has a board to start from."); return; }
     try {
       const result = await play(fen, "");
+      // Another step was selected, or recording stopped, while the server answered.
+      if (recordingRequest.current !== request) return;
       setRecording({ field, fen, moves: "", legal: result.legal_moves, turnFen: result.fen });
-    } catch (e) { setError((e as Error).message); }
+    } catch (e) { if (recordingRequest.current === request) setError((e as Error).message); }
   }
   async function recordMove(from: string, to: string, promotion?: Promotion) {
     const recording = recordingRef.current;
@@ -318,12 +338,14 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       if (edits.current === sent) setDirty(false);
       setSaved(result);
       setNotice(savedMessage(result));
+      // A reload opens what was saved, including a new course after its first save.
+      replaceAddress(courseEditorPath(result.id, result.revision));
     } catch (e) { setError((e as Error).message); }
     finally { setSaving(false); }
   }
 
   const fen = recording ? recording.turnFen : showEnd ? board?.end_fen : board?.fen;
-  const turn = (fen ?? START_FEN).split(" ")[1] === "w" ? "White" : "Black";
+  const turn = sideToMove(fen ?? START_FEN);
   const nextValue = step.next === undefined ? FOLLOWING : step.next === null ? END : step.next;
   const arrows = (step.arrows ?? []).map(arrow => {
     const [startSquare, endSquare] = arrow.split("-");
@@ -338,10 +360,10 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
       <h1>{current.title || "Untitled course"}</h1>
       <Button size="compact" variant="primary" disabled={saving} onClick={save}><Save size={16} />{saving ? "Saving…" : dirty ? "Save course" : "Saved"}</Button>
     </div>}
-    aboveBoard={<div className="review-position-status"><TurnIndicator color={turn === "Black" ? "black" : "white"}>{recording ? `Recording · ${turn} to move` : `${turn} to move`}</TurnIndicator><span>{showEnd ? "WHERE THIS STEP ENDS" : "WHERE THIS STEP STARTS"}</span></div>}
+    aboveBoard={<div className="review-position-status"><TurnIndicator color={turn}>{recording ? `Recording · ${sideName(turn)} to move` : `${sideName(turn)} to move`}</TurnIndicator><span>{showEnd ? "WHERE THIS STEP ENDS" : "WHERE THIS STEP STARTS"}</span></div>}
     belowBoard={<div className="review-board-hint">{recording ? recordingLabel : board ? (board.position ? `Moves so far: ${board.position}` : "Starting position") : checking ? "Checking…" : "This step has no board until the problem above is fixed."}</div>}
     boardControls={<div className="lesson-board-controls">
-      {recording ? <Button size="compact" variant="secondary" onClick={() => setRecording(null)}><Square size={16} />Stop recording</Button>
+      {recording ? <Button size="compact" variant="secondary" onClick={stopRecording}><Square size={16} />Stop recording</Button>
         : <ChoiceGroup label="Board shows" value={showEnd ? "end" : "start"} onChange={value => setShowEnd(value === "end")} options={[{ value: "start", label: "Step start" }, { value: "end", label: "Step end" }]} />}
     </div>}
     board={<Board fen={fen ?? START_FEN} orientation={current.side} legalMoves={recording?.legal ?? []} disabled={!recording || pending} onMove={recordMove} highlights={step.squares ?? []} arrows={arrows} />}
@@ -349,6 +371,9 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     <Reveal>{checking && !check ? <Notice announcement="status">Checking the course…</Notice>
       : check?.error ? <Notice announcement="status" tone="error">{check.error}</Notice>
       : check && <Notice announcement="status" tone="success">The course loads without problems.</Notice>}</Reveal>
+    {checkError && <Banner tone="error" action={<Button size="compact" onClick={() => setCheckAttempt(attempt => attempt + 1)}>Try again</Button>}>
+      Couldn’t check the course: {checkError}
+    </Banner>}
     {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
     {notice && <Banner tone="success" onDismiss={() => setNotice("")} action={saved ? <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink> : undefined}>{notice}</Banner>}
 
@@ -404,7 +429,9 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
           <select value={kind} onChange={event => setKind(event.target.value as Kind)}>{KINDS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select>
         </Field>
         <Field label="Title"><input value={step.title} onChange={event => setField("title", event.target.value)} /></Field>
-        <Field label="Step id" help="Other steps link to this name."><input value={step.id} onChange={event => renameStep(event.target.value)} /></Field>
+        <Field label="Step id" help="Other steps link to this name.">
+          <input value={stepId ?? step.id} onChange={event => setStepId(event.target.value)} onBlur={commitStepId}
+            onKeyDown={event => { if (event.key === "Enter") commitStepId(); }} /></Field>
         <Field label="Text"><textarea rows={4} value={step.text ?? ""} onChange={event => setField("text", event.target.value)} /></Field>
 
         {kind === "demonstration" && <Field label="Moves to play" help="Ordinary notation, such as Nf3 Nc6."
@@ -468,7 +495,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
         <Field label="Moves" help="From the first move, ending on the learner's move."
           action={board && <Button size="compact" variant="secondary" onClick={() => change(draft => { draft.lines![index].moves = board.end_position; })}>Use the moves up to the selected step's end</Button>}>
           <input value={line.moves} onChange={event => change(draft => { draft.lines![index].moves = event.target.value; })} /></Field>
-        <label className="lesson-editor-check"><input type="checkbox" checked={!!line.repertoire} onChange={event => change(draft => { draft.lines![index].repertoire = event.target.checked || undefined; })} />Members can add it to Due</label>
+        <label className="check-row lesson-editor-check"><input type="checkbox" checked={!!line.repertoire} onChange={event => change(draft => { draft.lines![index].repertoire = event.target.checked || undefined; })} />Members can add it to Due</label>
         <Button size="compact" variant="quiet" onClick={() => change(draft => { draft.lines!.splice(index, 1); })}><Trash2 size={16} />Delete line</Button>
       </div>)}
       <Button size="compact" variant="secondary" onClick={() => change(draft => {
