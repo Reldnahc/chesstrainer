@@ -291,7 +291,9 @@ def test_analysis_continues_while_model_request_is_waiting(settings, sessions, m
             until = time.monotonic() + 5
             while time.monotonic() < until:
                 job = next(j for j in client.get("/api/jobs").json() if j["id"] == job_id)
-                if job["positions_triaged"] == 2:
+                # A position is counted just before its classification is queued.
+                pending = job["activity"]["classifications"]["pending"]
+                if job["positions_triaged"] == 2 and pending == 2:
                     break
                 time.sleep(0.05)
             assert job["positions_triaged"] == 2

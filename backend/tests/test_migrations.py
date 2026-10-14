@@ -151,3 +151,16 @@ def test_every_revision_downgrades_and_upgrades_again(tmp_path):
     assert migrate(engine) is True
     assert migrations_pending(engine) is False
     engine.dispose()
+
+
+def test_the_engine_never_runs_out_of_connections(tmp_path):
+    # Coordinators, classification workers, engine caches and requests share one
+    # engine; however many hold a connection at once, none waits for a free one.
+    engine, _ = database(tmp_path / "busy.sqlite3")
+    held = [engine.connect() for _ in range(40)]
+    try:
+        assert all(connection.exec_driver_sql("SELECT 1").scalar() == 1 for connection in held)
+    finally:
+        for connection in held:
+            connection.close()
+        engine.dispose()

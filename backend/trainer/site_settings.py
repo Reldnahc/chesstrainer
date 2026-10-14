@@ -14,12 +14,14 @@ import typing
 
 import annotated_types
 from pydantic import ValidationError, create_model
-from sqlalchemy import text
+from sqlalchemy import select
+from sqlalchemy.dialects.sqlite import insert
 
 from trainer import config
 from trainer.config import Settings
 from trainer.db import database, migrate
 from trainer.errors import InvalidInput
+from trainer.models import SiteSetting
 
 log = logging.getLogger(__name__)
 
@@ -209,10 +211,35 @@ def _validate(name, value):
     return _model(name).model_validate({"value": value}).value
 
 
+SITE_SETTINGS = SiteSetting.__table__
+
+
+def flag(sql_engine, key):
+    """A stored server-wide value outside Settings (such as signups_open), or None."""
+    with sql_engine.connect() as connection:
+        raw = connection.scalar(select(SITE_SETTINGS.c.value).where(SITE_SETTINGS.c.key == key))
+    return None if raw is None else json.loads(raw)
+
+
+def store(sql_engine, key, value):
+    """Save one server-wide value as JSON text; the one write path for site_settings."""
+    with sql_engine.begin() as connection:
+        _upsert(connection, key, value)
+
+
+def _upsert(connection, key, value):
+    statement = insert(SITE_SETTINGS).values(key=key, value=json.dumps(value))
+    connection.execute(
+        statement.on_conflict_do_update(
+            index_elements=[SITE_SETTINGS.c.key], set_={"value": statement.excluded.value}
+        )
+    )
+
+
 def stored(sql_engine):
     """Saved values that are still valid; an invalid one falls back with a warning."""
     with sql_engine.connect() as connection:
-        rows = connection.execute(text("SELECT key, value FROM site_settings")).all()
+        rows = connection.execute(select(SITE_SETTINGS.c.key, SITE_SETTINGS.c.value)).all()
     values = {}
     for key, raw in rows:
         if key not in MANAGED:
@@ -237,13 +264,7 @@ def save(sql_engine, values):
             raise InvalidInput(f"{label(key)}: {message}") from exc
     with sql_engine.begin() as connection:
         for key, value in clean.items():
-            connection.execute(
-                text(
-                    "INSERT INTO site_settings(key, value) VALUES(:key, :value) "
-                    "ON CONFLICT(key) DO UPDATE SET value=excluded.value"
-                ),
-                {"key": key, "value": json.dumps(value)},
-            )
+            _upsert(connection, key, value)
 
 
 def load(settings):

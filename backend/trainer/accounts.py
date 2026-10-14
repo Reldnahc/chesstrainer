@@ -4,18 +4,25 @@ import argparse
 import getpass
 import hashlib
 import hmac
-import json
 import re
 import secrets
-import sqlite3
 import sys
 import time
-from contextlib import contextmanager
 from pathlib import Path
 
+from sqlalchemy import delete, insert, select, update
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+
+from trainer import job_lifecycle, site_settings
 from trainer.config import Settings
+from trainer.db import database, immediate_transaction
 from trainer.errors import Conflict, DomainError, InvalidInput, NotFound
-from trainer.job_lifecycle import JobStatus
+from trainer.models import AuthSession, Base, User
+
+USERS, SESSIONS = User.__table__, AuthSession.__table__
+# The reserved workspace that single-user installs and migrated data belong to.
+LOCAL_USERNAME = "__local__"
+SIGNUPS_OPEN = "signups_open"
 
 COOKIE = "fieldwork_session"
 SESSION_SECONDS = 30 * 24 * 3600
@@ -63,99 +70,128 @@ def csrf_token(token):
 
 
 class Accounts:
-    def __init__(self, path: Path):
-        self.path = path.resolve()
+    """Credentials, sessions and account administration, on the application's database.
 
-    @contextmanager
-    def connect(self):
-        db = sqlite3.connect(self.path, timeout=30)
-        db.row_factory = sqlite3.Row
-        db.execute("PRAGMA foreign_keys=ON")
-        try:
-            with db:
-                yield db
-        finally:
-            db.close()
+    The only module that writes ``users`` and ``auth_sessions``. It uses the shared
+    SQLAlchemy engine (and its connection setup) through Core statements on the
+    mapped tables, so a schema change reaches it with the models.
+    """
+
+    def __init__(self, path: Path, engine=None):
+        self.path = Path(path).resolve()
+        # Standalone (the account CLI, tools) it opens a connection per call, as before.
+        self.engine = engine if engine is not None else database(self.path, pooled=False)[0]
+
+    def _row(self, statement):
+        with self.engine.connect() as db:
+            row = db.execute(statement).mappings().first()
+        return dict(row) if row else None
 
     def create(self, name, password, *, admin=False, temporary=False):
         """Add an account; a ``temporary`` password must be replaced at first sign-in."""
         name = username(name)
         encoded = password_hash(password)
-        identity = secrets.token_hex(16)
-        with self.connect() as db:
-            try:
+        try:
+            with self.engine.begin() as db:
                 db.execute(
-                    "INSERT INTO users(id,username,password,admin,created,disabled,chesscom_username,onboarding_completed,password_change_required) VALUES(?,?,?,?,?,0,'',0,?)",
-                    (identity, name, encoded, int(admin), time.time(), int(temporary)),
+                    insert(USERS).values(
+                        id=secrets.token_hex(16),
+                        username=name,
+                        password=encoded,
+                        admin=admin,
+                        disabled=False,
+                        chesscom_username="",
+                        onboarding_completed=False,
+                        password_change_required=temporary,
+                        created=time.time(),
+                    )
                 )
-            except sqlite3.IntegrityError as exc:
-                raise InvalidInput("That username is unavailable.") from exc
+        except IntegrityError as exc:
+            raise InvalidInput("That username is unavailable.") from exc
         return self.by_name(name)
 
     def signups_open(self):
         """Whether visitors may create their own accounts; closed unless an administrator opens it."""
-        with self.connect() as db:
-            row = db.execute("SELECT value FROM site_settings WHERE key='signups_open'").fetchone()
-            return bool(row and json.loads(row[0]))
+        return bool(site_settings.flag(self.engine, SIGNUPS_OPEN))
 
     def set_signups_open(self, value):
-        with self.connect() as db:
-            db.execute(
-                "INSERT INTO site_settings(key, value) VALUES('signups_open', ?) "
-                "ON CONFLICT(key) DO UPDATE SET value=excluded.value",
-                (json.dumps(bool(value)),),
-            )
+        site_settings.store(self.engine, SIGNUPS_OPEN, bool(value))
 
     def by_name(self, name):
-        with self.connect() as db:
-            row = db.execute(
-                "SELECT * FROM users WHERE username=?", (name.strip().lower(),)
-            ).fetchone()
-            return dict(row) if row else None
+        return self._row(select(USERS).where(USERS.c.username == name.strip().lower()))
+
+    def by_id(self, user_id):
+        return self._row(select(USERS).where(USERS.c.id == user_id))
 
     def issue(self, user_id):
         token = secrets.token_urlsafe(32)
-        with self.connect() as db:
-            db.execute("DELETE FROM auth_sessions WHERE expires < ?", (time.time(),))
+        with self.engine.begin() as db:
+            db.execute(delete(SESSIONS).where(SESSIONS.c.expires < time.time()))
             db.execute(
-                "INSERT INTO auth_sessions VALUES(?,?,?)",
-                (token_hash(token), user_id, time.time() + SESSION_SECONDS),
+                insert(SESSIONS).values(
+                    digest=token_hash(token), user_id=user_id, expires=time.time() + SESSION_SECONDS
+                )
             )
         return token
 
     def resolve(self, token):
-        with self.connect() as db:
-            row = db.execute(
-                """SELECT users.* FROM users JOIN auth_sessions ON users.id=auth_sessions.user_id
-                WHERE digest=? AND expires>? AND disabled=0""",
-                (token_hash(token), time.time()),
-            ).fetchone()
-            return dict(row) if row else None
+        return self._row(
+            select(USERS)
+            .join(SESSIONS, SESSIONS.c.user_id == USERS.c.id)
+            .where(
+                SESSIONS.c.digest == token_hash(token),
+                SESSIONS.c.expires > time.time(),
+                USERS.c.disabled.is_(False),
+            )
+        )
 
     def revoke(self, token):
-        with self.connect() as db:
-            db.execute("DELETE FROM auth_sessions WHERE digest=?", (token_hash(token),))
+        with self.engine.begin() as db:
+            db.execute(delete(SESSIONS).where(SESSIONS.c.digest == token_hash(token)))
+
+    def sign_out_everywhere(self, user_id):
+        with self.engine.begin() as db:
+            db.execute(delete(SESSIONS).where(SESSIONS.c.user_id == user_id))
+
+    def complete_onboarding(self, user_id):
+        with self.engine.begin() as db:
+            db.execute(update(USERS).where(USERS.c.id == user_id).values(onboarding_completed=True))
 
     def listing(self):
         """Every account that can sign in, oldest first; the unclaimed workspace is hidden."""
-        with self.connect() as db:
+        with self.engine.connect() as db:
             rows = db.execute(
-                "SELECT id, username, admin, disabled, created FROM users "
-                "WHERE username != '__local__' ORDER BY created, username"
-            ).fetchall()
+                select(
+                    USERS.c.id, USERS.c.username, USERS.c.admin, USERS.c.disabled, USERS.c.created
+                )
+                .where(USERS.c.username != LOCAL_USERNAME)
+                .order_by(USERS.c.created, USERS.c.username)
+            ).mappings()
             return [dict(row) for row in rows]
-
-    def by_id(self, user_id):
-        with self.connect() as db:
-            row = db.execute("SELECT * FROM users WHERE id=?", (user_id,)).fetchone()
-            return dict(row) if row else None
 
     def promote(self, user):
         if user["admin"]:
             raise InvalidInput("Account is already an administrator")
         # Requests re-read the account row, so existing sessions gain admin at once.
-        with self.connect() as db:
-            db.execute("UPDATE users SET admin=1 WHERE id=?", (user["id"],))
+        with self.engine.begin() as db:
+            db.execute(update(USERS).where(USERS.c.id == user["id"]).values(admin=True))
+
+    def claim_local(self, name, password):
+        """Give the reserved local workspace a name and password, as its administrator."""
+        with self.engine.begin() as db:
+            current = db.scalar(select(USERS.c.username).where(USERS.c.id == "local"))
+            if current != LOCAL_USERNAME:
+                raise InvalidInput("Existing local workspace has already been claimed")
+            db.execute(
+                update(USERS)
+                .where(USERS.c.id == "local")
+                .values(
+                    username=username(name),
+                    password=password_hash(password),
+                    admin=True,
+                    disabled=False,
+                )
+            )
 
     def set_password(self, user, password, *, temporary=False, keep_session=None):
         """Replace the password and sign the account out, except ``keep_session``.
@@ -164,27 +200,27 @@ class Accounts:
         next sign-in; choosing one's own password clears that requirement.
         """
         encoded = password_hash(password)
-        with self.connect() as db:
+        with self.engine.begin() as db:
             db.execute(
-                "UPDATE users SET password=?, password_change_required=? WHERE id=?",
-                (encoded, int(temporary), user["id"]),
+                update(USERS)
+                .where(USERS.c.id == user["id"])
+                .values(password=encoded, password_change_required=temporary)
             )
             db.execute(
-                "DELETE FROM auth_sessions WHERE user_id=? AND digest!=?",
-                (user["id"], token_hash(keep_session) if keep_session else ""),
+                delete(SESSIONS).where(
+                    SESSIONS.c.user_id == user["id"],
+                    SESSIONS.c.digest != (token_hash(keep_session) if keep_session else ""),
+                )
             )
 
     def set_disabled(self, user, disabled):
-        with self.connect() as db:
-            db.execute("UPDATE users SET disabled=? WHERE id=?", (int(disabled), user["id"]))
+        with self.engine.begin() as db:
+            db.execute(update(USERS).where(USERS.c.id == user["id"]).values(disabled=disabled))
             if not disabled:
                 # The scheduler skips disabled owners, so work interrupted
                 # while the account was disabled is never recovered otherwise.
-                db.execute(
-                    "UPDATE analysis_jobs SET status=? WHERE user_id=? AND status=?",
-                    (JobStatus.QUEUED, user["id"], JobStatus.RUNNING),
-                )
-            db.execute("DELETE FROM auth_sessions WHERE user_id=?", (user["id"],))
+                job_lifecycle.recover_interrupted(db, user["id"])
+            db.execute(delete(SESSIONS).where(SESSIONS.c.user_id == user["id"]))
 
     def delete(self, user):
         """Remove an account with every row it owns; shared caches stay."""
@@ -192,32 +228,18 @@ class Accounts:
             raise InvalidInput(
                 "The original workspace account cannot be deleted; disable it instead"
             )
-        with self.connect() as db:
-            # Take the write lock before checking, so no job is claimed meanwhile.
-            # Owned rows reference each other, so check foreign keys once at commit;
-            # the pragma lasts only for an open transaction.
-            db.execute("BEGIN IMMEDIATE")
-            db.execute("PRAGMA defer_foreign_keys=ON")
-            running = db.execute(
-                "SELECT 1 FROM analysis_jobs WHERE user_id=? AND status='running'", (user["id"],)
-            ).fetchone()
-            if running:
+        # Take the write lock before checking, so no job is claimed meanwhile. Owned
+        # rows reference each other, so foreign keys are checked once, at commit.
+        with immediate_transaction(self.engine, defer_foreign_keys=True) as db:
+            if job_lifecycle.has_running(db, user["id"]):
                 raise Conflict(
                     "This account has analysis running. Disable it, wait for the analysis "
                     "to stop, then delete it"
                 )
-            tables = [
-                row[0]
-                for row in db.execute(
-                    "SELECT name FROM sqlite_master WHERE type='table' "
-                    "AND name NOT LIKE 'sqlite_%' AND name != 'users'"
-                )
-            ]
-            for table in tables:
-                columns = {column[1] for column in db.execute(f'PRAGMA table_info("{table}")')}
-                if "user_id" in columns:
-                    db.execute(f'DELETE FROM "{table}" WHERE user_id=?', (user["id"],))
-            db.execute("DELETE FROM users WHERE id=?", (user["id"],))
+            for table in Base.metadata.sorted_tables:
+                if table is not USERS and "user_id" in table.c:
+                    db.execute(delete(table).where(table.c.user_id == user["id"]))
+            db.execute(delete(USERS).where(USERS.c.id == user["id"]))
 
     @staticmethod
     def public(user):
@@ -291,7 +313,7 @@ def main():
         return
     try:
         user = accounts.by_name(username(args.username))
-        if user and user["username"] == "__local__":
+        if user and user["username"] == LOCAL_USERNAME:
             # The unclaimed workspace is not an account; claim-local assigns it.
             user = None
         if args.action in {"create-admin", "claim-local"}:
@@ -299,14 +321,7 @@ def main():
                 raise InvalidInput("Account already exists")
             password = new_password()
             if args.action == "claim-local":
-                with accounts.connect() as db:
-                    row = db.execute("SELECT username FROM users WHERE id='local'").fetchone()
-                    if not row or row[0] != "__local__":
-                        raise InvalidInput("Existing local workspace has already been claimed")
-                    db.execute(
-                        "UPDATE users SET username=?, password=?, admin=1, disabled=0 WHERE id='local'",
-                        (username(args.username), password_hash(password)),
-                    )
+                accounts.claim_local(args.username, password)
             else:
                 accounts.create(args.username, password, admin=True)
         else:
@@ -319,7 +334,7 @@ def main():
             else:
                 accounts.set_disabled(user, args.action == "disable")
         print(f"{args.action} completed for {args.username}")
-    except (DomainError, ValueError, sqlite3.Error) as exc:
+    except (DomainError, ValueError, SQLAlchemyError) as exc:
         parser.exit(1, f"Account error: {BUSY if 'locked' in str(exc) else exc}\n")
 
 

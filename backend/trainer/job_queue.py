@@ -2,7 +2,7 @@
 
 import threading
 
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.orm import aliased, sessionmaker
 
 from trainer import job_lifecycle
@@ -25,13 +25,8 @@ class JobQueue:
         # Nothing runs before startup, so every running row is stale, disabled owners'
         # included: a stale row would otherwise block deleting that account. Claiming
         # still skips disabled owners.
-        owner = AnalysisJob.user_id == self.user_id if self.user_id is not None else True
         with self.sessions() as db:
-            db.execute(
-                update(AnalysisJob)
-                .where(owner, AnalysisJob.status == JobStatus.RUNNING)
-                .values(status=JobStatus.QUEUED)
-            )
+            job_lifecycle.recover_interrupted(db, self.user_id)
             db.commit()
 
     def owner(self, job_id):

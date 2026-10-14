@@ -7,7 +7,7 @@ wherever it happens.
 
 from enum import StrEnum
 
-from sqlalchemy import select
+from sqlalchemy import select, true, update
 
 from trainer.errors import Conflict
 from trainer.models import AnalysisJob
@@ -70,6 +70,26 @@ def ensure_job(db, kind, *criteria, **values):
     db.add(job)
     db.flush()
     return job, True
+
+
+def recover_interrupted(connection, user_id=None):
+    """Queue again every running job (one account's, or all): nothing runs before a start."""
+    jobs = AnalysisJob.__table__
+    owner = jobs.c.user_id == user_id if user_id is not None else true()
+    connection.execute(
+        update(jobs)
+        .where(owner, jobs.c.status == JobStatus.RUNNING)
+        .values(status=JobStatus.QUEUED)
+    )
+
+
+def has_running(connection, user_id):
+    jobs = AnalysisJob.__table__
+    return bool(
+        connection.scalar(
+            select(jobs.c.id).where(jobs.c.user_id == user_id, jobs.c.status == JobStatus.RUNNING)
+        )
+    )
 
 
 def requeue(job, *, reset_progress=False):

@@ -67,7 +67,7 @@ class Credentials(BaseModel):
 
 
 def configure_accounts(app, settings):
-    accounts = Accounts(settings.database_path)
+    accounts = Accounts(settings.database_path, app.state.workspaces.sql_engine)
     app.state.accounts = accounts
     password_lock = threading.Lock()
     attempts = {}
@@ -206,6 +206,12 @@ def configure_accounts(app, settings):
         # server's own LAN address signs in without HTTPS; everywhere else needs it.
         return settings.session_secure and not lan_http(request)
 
+    def signed_out(request, response):
+        # Cleared with the attributes it was set with, so every browser drops it.
+        response.delete_cookie(
+            COOKIE, path="/", secure=secure(request), httponly=True, samesite="lax"
+        )
+
     def signed_in(user, request, response):
         token = accounts.issue(user["id"])
         response.set_cookie(
@@ -257,24 +263,18 @@ def configure_accounts(app, settings):
     @app.post("/api/auth/logout", response_model=Ok, response_model_exclude_unset=True)
     def logout(request: Request, response: Response):
         accounts.revoke(request.cookies.get(COOKIE, ""))
-        response.delete_cookie(
-            COOKIE, path="/", secure=secure(request), httponly=True, samesite="lax"
-        )
+        signed_out(request, response)
         return {"ok": True}
 
     @app.post("/api/auth/onboarding/complete", response_model=AccountProfile)
     def complete_onboarding(request: Request):
-        with accounts.connect() as db:
-            db.execute(
-                "UPDATE users SET onboarding_completed=1 WHERE id=?", (request.state.user["id"],)
-            )
+        accounts.complete_onboarding(request.state.user["id"])
         return {"user": accounts.public(accounts.by_name(request.state.user["username"]))}
 
     @app.post("/api/auth/logout-all", response_model=Ok, response_model_exclude_unset=True)
     def logout_all(request: Request, response: Response):
-        with accounts.connect() as db:
-            db.execute("DELETE FROM auth_sessions WHERE user_id=?", (request.state.user["id"],))
-        response.delete_cookie(COOKIE, path="/")
+        accounts.sign_out_everywhere(request.state.user["id"])
+        signed_out(request, response)
         return {"ok": True}
 
     # Administration lives under /api/auth so local single-user mode, which has no

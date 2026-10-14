@@ -1,5 +1,8 @@
 """Adversarial multi-account requests and durable sessions in one database."""
 
+import sqlite3
+from contextlib import closing
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select, update
@@ -551,17 +554,17 @@ def test_administrators_manage_other_accounts_from_settings(settings):
         assert repeat.status_code == 409
         assert repeat.json()["detail"] == "Account is already an administrator."
 
-        with accounts.connect() as db:
+        with closing(sqlite3.connect(settings.database_path)) as db, db:
             db.execute("UPDATE analysis_jobs SET status='running' WHERE user_id=?", (friend_id,))
         assert "analysis running" in client.delete(target, headers=headers).json()["detail"]
-        with accounts.connect() as db:
+        with closing(sqlite3.connect(settings.database_path)) as db, db:
             db.execute("UPDATE analysis_jobs SET status='queued' WHERE user_id=?", (friend_id,))
         deleted = client.delete(target, headers=headers)
         assert deleted.status_code == 200, deleted.text
         assert [row["username"] for row in client.get("/api/auth/accounts").json()["accounts"]] == [
             "keeper"
         ]
-        with accounts.connect() as db:
+        with closing(sqlite3.connect(settings.database_path)) as db, db:
             tables = [
                 row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")
             ]

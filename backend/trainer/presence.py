@@ -5,9 +5,9 @@ import time
 from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import select, update
-from sqlalchemy.orm import Session
 
 from trainer.models import User
+from trainer.ownership import account_sessions
 
 # Requests within this window skip the database write entirely.
 TOUCH_EVERY_SECONDS = 600
@@ -32,7 +32,9 @@ def touch(sql_engine, user_id, settings):
             return
         _touched[key] = now
     current = datetime.now(timezone.utc)
-    with Session(sql_engine) as db:
+    # Bound to the account like any request's session: it can only read and
+    # write that account's own row.
+    with account_sessions(sql_engine, user_id)() as db:
         seen = utc(db.scalar(select(User.last_seen_at).where(User.id == user_id)))
         values = {"last_seen_at": current}
         if seen is not None and current - seen >= timedelta(days=settings.sync_away_days):
@@ -42,13 +44,13 @@ def touch(sql_engine, user_id, settings):
 
 
 def welcome_back(sql_engine, user_id):
-    with Session(sql_engine) as db:
+    with account_sessions(sql_engine, user_id)() as db:
         away = utc(db.scalar(select(User.away_since).where(User.id == user_id)))
     return {"away_since": away}
 
 
 def dismiss_welcome_back(sql_engine, user_id):
-    with Session(sql_engine) as db:
+    with account_sessions(sql_engine, user_id)() as db:
         db.execute(update(User).where(User.id == user_id).values(away_since=None))
         db.commit()
 
