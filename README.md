@@ -61,7 +61,7 @@ games and progress. Set `ACCOUNTS_ENABLED=true` for separate accounts.
 
 ## Implemented
 
-See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the original specification and the limits of each feature.
+See [Feature status](docs/PRODUCT.md#feature-status) for the comparison with the original specification and the limits of each feature.
 
 - Multi-game PGN import, explicit learner matching, duplicate detection and original provenance. Only newly added games enter new analysis jobs.
 - Chess.com and Lichess username imports with time-class filters, lookback or exact dates, and a new-game limit. Downloads resume from saved checkpoints.
@@ -213,9 +213,9 @@ Username imports contact the selected site's public API from the backend, sendin
 
 ## Documentation
 
-- [Product](docs/PRODUCT.md), [feature status and remaining work](docs/FEATURE_STATUS.md) and [Study](docs/STUDY.md)
+- [Product](docs/PRODUCT.md), [feature status and remaining work](docs/PRODUCT.md#feature-status) and [Study](docs/STUDY.md)
 - [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/GAME_ANALYSIS.md#analysis-pipeline) and [data model](docs/DATA_MODEL.md)
-- [Local classification](docs/LOCAL_CLASSIFICATION.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
+- [Local classification](docs/LOCAL_CLASSIFICATION.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/INSIGHTS.md#weakness-priorities-and-archived-curriculum)
 - [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [game provider imports](docs/GAME_PROVIDERS.md)
 - [Coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast personality bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [character writing](docs/COACH_PERSONALITIES.md) and [audio](docs/AUDIO.md)
 - [Testing procedure](docs/TESTING.md) and [decisions](docs/DECISIONS.md); earlier implementation and verification records remain in Git history.

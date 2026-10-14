@@ -98,7 +98,7 @@ Missing Stockfish produces an actionable status without preventing UI startup. N
 
 For unlisted answers, the saved analysis limits/resources and binary identity are required. An incompatible executable produces an unavailable response without a recall failure. Rebuilding old exercises under a new engine is a future operation.
 
-Policy and target-rating effects are documented in [analysis pipeline](GAME_ANALYSIS.md#analysis-pipeline) and [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
+Policy and target-rating effects are documented in [analysis pipeline](GAME_ANALYSIS.md#analysis-pipeline) and [weakness priorities](INSIGHTS.md#weakness-priorities-and-archived-curriculum). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
 
 ## Local classification
 
@@ -140,7 +140,7 @@ The Vite development proxy specifically targets 127.0.0.1:8000. Override SERVER_
 have been removed along with unused course generation and lesson progression.
 Old `.env` entries are ignored; they can be deleted. No active Docker/Unraid setting
 changes. Historical data, migrations and teaching audits remain available; see
-[archived compatibility](CURRICULUM_ENGINE.md#archived-compatibility). These settings
+[archived compatibility](INSIGHTS.md#archived-compatibility). These settings
 do not configure the separate authored Study lessons.
 
 ## Shared hosting

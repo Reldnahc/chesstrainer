@@ -1,6 +1,6 @@
 # Decisions
 
-Read older entries as historical decisions. Current product scope is in PRODUCT.md and FEATURE_STATUS.md; later removals supersede earlier descriptions of lessons, Repertoire and model connectivity.
+Read older entries as historical decisions. Current product scope and feature status are in [PRODUCT.md](PRODUCT.md); later removals supersede earlier descriptions of lessons, Repertoire and model connectivity.
 
 ## 2026-10-03: Insights replaces Weaknesses
 
@@ -160,7 +160,7 @@ and TESTING provides repeatable commands. Current guides must distinguish active
 review/weakness workflows, retained low-level APIs and archived/tombstoned
 lesson/repertoire behavior. Historical statements are not current setup instructions.
 
-Formatting the extracted frontend modules improves readability without adding a formatter dependency. Health/settings/import response types replace the moved untyped state; remaining legacy payload types are deferred. The frozen HTTP contract and per-app isolation tests protect the ownership change. Current weakness-priority documentation keeps the filename CURRICULUM_ENGINE.md for existing links; the older course design remains in Git history.
+Formatting the extracted frontend modules improves readability without adding a formatter dependency. Health/settings/import response types replace the moved untyped state; remaining legacy payload types are deferred. The frozen HTTP contract and per-app isolation tests protect the ownership change. Current weakness-priority documentation is in [Insights](INSIGHTS.md#weakness-priorities-and-archived-curriculum); the older course design remains in Git history.
 
 ## 2026-09-13: external positive-theme benchmark boundary
 
