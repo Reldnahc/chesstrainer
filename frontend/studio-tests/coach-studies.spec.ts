@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { expressions } from "../src/coach/model";
 
 const characters = [
@@ -24,33 +24,76 @@ const characters = [
   },
 ];
 
+type Character = (typeof characters)[number];
+
+// Each character's studies used to be one test that swept every expression and
+// then every collection: over a minute of work on a loaded CI worker, inside one
+// 60 s budget. The sweep and each collection are now separate pages that keep
+// every check and share the closing checks below.
+async function openStudies(page: Page, character: Character) {
+  const errors: string[] = [];
+  const apiRequests: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  page.on("request", (request) => {
+    if (request.url().includes("/api/")) apiRequests.push(request.url());
+  });
+  // Drive the dwell and settle timers explicitly: on a loaded CI worker a
+  // wall-clock reaction can finish before its assertion reaches the browser.
+  await page.clock.install();
+  await page.clock.pauseAt(new Date());
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto(`/?coach=${character.id}&expression=brilliant`);
+  const concepts = page.locator(".studio-concepts .coach-avatar");
+  await expect(concepts).toHaveCount(character.families.length);
+  for (const avatar of await concepts.all())
+    await expect(avatar).toHaveAttribute("data-coach", character.id);
+  await expect(
+    page.getByText("Available in Settings", { exact: true }),
+  ).toHaveCount(character.families.length);
+  return { concepts, errors, apiRequests };
+}
+
+async function closeStudies(
+  page: Page,
+  { concepts, errors, apiRequests }: Awaited<ReturnType<typeof openStudies>>,
+) {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(
+    page.getByRole("checkbox", { name: "Reduced motion" }),
+  ).toBeChecked();
+  await expect(concepts.first()).toHaveAttribute("data-motion", "still");
+  expect(
+    await page
+      .locator(".coach-avatar")
+      .evaluateAll(
+        (els) =>
+          els.flatMap((el) => el.getAnimations({ subtree: true })).length,
+      ),
+  ).toBe(0);
+  // Each eye mask must belong to its own character across all preview SVGs.
+  const ids = await page
+    .locator(".coach-avatar clipPath")
+    .evaluateAll((els) => els.map((el) => el.id));
+  expect(new Set(ids).size).toBe(ids.length);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  expect(errors).toEqual([]);
+  expect(apiRequests).toEqual([]);
+}
+
 for (const character of characters) {
   test(`${character.name} has complete retained expressive studies at review sizes`, async ({
     page,
   }, info) => {
-    const errors: string[] = [];
-    const apiRequests: string[] = [];
-    page.on("pageerror", (error) => errors.push(error.message));
-    page.on("console", (message) => {
-      if (message.type() === "error") errors.push(message.text());
-    });
-    page.on("request", (request) => {
-      if (request.url().includes("/api/")) apiRequests.push(request.url());
-    });
-    // Drive the dwell and settle timers explicitly: on a loaded CI worker a
-    // wall-clock reaction can finish before its assertion reaches the browser.
-    await page.clock.install();
-    await page.clock.pauseAt(new Date());
-    await page.emulateMedia({ reducedMotion: "no-preference" });
-    await page.goto(`/?coach=${character.id}&expression=brilliant`);
-    const concepts = page.locator(".studio-concepts .coach-avatar");
+    const studies = await openStudies(page, character);
+    const { concepts } = studies;
     const first = concepts.first();
-    await expect(concepts).toHaveCount(character.families.length);
-    for (const avatar of await concepts.all())
-      await expect(avatar).toHaveAttribute("data-coach", character.id);
-    await expect(
-      page.getByText("Available in Settings", { exact: true }),
-    ).toHaveCount(character.families.length);
     await first.scrollIntoViewIfNeeded();
     await expect(first).toBeInViewport();
     await page.clock.runFor(110);
@@ -77,8 +120,10 @@ for (const character of characters) {
         .getByRole("combobox", { name: "Expression", exact: true })
         .selectOption(expression);
       await page.clock.runFor(expression === "thinking" ? 420 : 110);
-      for (const avatar of await concepts.all())
-        await expect(avatar).toHaveAttribute("data-expression", expression);
+      // Every concept, in one retrying assertion rather than one per avatar.
+      await expect(
+        concepts.and(page.locator(`[data-expression="${expression}"]`)),
+      ).toHaveCount(character.families.length);
       expect(await geometry()).toEqual(before);
     }
     await page
@@ -94,7 +139,40 @@ for (const character of characters) {
       path: `studio-test-results/studies-${character.id}-blunder-${info.project.name}.png`,
     });
 
-    for (const family of character.families) {
+    // Idle previews play on the selected collection's concept.
+    await page
+      .getByRole("combobox", { name: "Collection", exact: true })
+      .selectOption(character.families.at(-1)!);
+    const idles = page.getByRole("combobox", {
+      name: "Idle gesture",
+      exact: true,
+    });
+    const idle = await idles.locator("option").first().getAttribute("value");
+    await idles.selectOption(idle!);
+    await page
+      .getByRole("button", { name: "Preview idle", exact: true })
+      .click();
+    const chosen = concepts.last();
+    await chosen.scrollIntoViewIfNeeded();
+    await expect(chosen).toBeInViewport();
+    await page.clock.runFor(110);
+    await expect(chosen).toHaveAttribute("data-micro", idle!);
+    await expect
+      .poll(() =>
+        chosen.evaluate((el) => el.getAnimations({ subtree: true }).length),
+      )
+      .toBeGreaterThan(0);
+    await page.clock.runFor(1200);
+    await expect(chosen).toHaveAttribute("data-micro", "");
+
+    await closeStudies(page, studies);
+  });
+
+  for (const family of character.families) {
+    test(`${character.name} ${family} collection performs both signature reactions at review sizes`, async ({
+      page,
+    }, info) => {
+      const studies = await openStudies(page, character);
       await page
         .getByRole("combobox", { name: "Collection", exact: true })
         .selectOption(family);
@@ -166,56 +244,10 @@ for (const character of characters) {
         await page.clock.runFor(2000);
         await expect(portrait).toHaveAttribute("data-phase", "rest");
       }
-    }
 
-    const idles = page.getByRole("combobox", {
-      name: "Idle gesture",
-      exact: true,
+      await closeStudies(page, studies);
     });
-    const idle = await idles.locator("option").first().getAttribute("value");
-    await idles.selectOption(idle!);
-    await page
-      .getByRole("button", { name: "Preview idle", exact: true })
-      .click();
-    const chosen = concepts.last();
-    await chosen.scrollIntoViewIfNeeded();
-    await expect(chosen).toBeInViewport();
-    await page.clock.runFor(110);
-    await expect(chosen).toHaveAttribute("data-micro", idle!);
-    await expect
-      .poll(() =>
-        chosen.evaluate((el) => el.getAnimations({ subtree: true }).length),
-      )
-      .toBeGreaterThan(0);
-    await page.clock.runFor(1200);
-    await expect(chosen).toHaveAttribute("data-micro", "");
-
-    await page.emulateMedia({ reducedMotion: "reduce" });
-    await expect(
-      page.getByRole("checkbox", { name: "Reduced motion" }),
-    ).toBeChecked();
-    await expect(first).toHaveAttribute("data-motion", "still");
-    expect(
-      await page
-        .locator(".coach-avatar")
-        .evaluateAll(
-          (els) =>
-            els.flatMap((el) => el.getAnimations({ subtree: true })).length,
-        ),
-    ).toBe(0);
-    // Each eye mask must belong to its own character across all preview SVGs.
-    const ids = await page
-      .locator(".coach-avatar clipPath")
-      .evaluateAll((els) => els.map((el) => el.id));
-    expect(new Set(ids).size).toBe(ids.length);
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    ).toBe(true);
-    expect(errors).toEqual([]);
-    expect(apiRequests).toEqual([]);
-  });
+  }
 }
 
 test("study links restore character and family; changing character resets unsupported idles and sequences", async ({
