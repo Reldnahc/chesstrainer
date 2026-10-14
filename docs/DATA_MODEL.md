@@ -1,6 +1,6 @@
 # Data model
 
-SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at b3d5f7a9c1e2. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
+SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes from frozen revision 475ea36d42d5; `alembic heads` shows the current revision. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
 
 ## Current and archival relationships
 
@@ -48,107 +48,4 @@ Engine exercise identity includes analysis/policy context, so identical boards w
 
 Backups contain a consistent SQLite snapshot, format manifest and safe settings. Restore validates integrity/foreign keys and writes only a new file. The saved Alembic version supports later migrations. Safe settings are reference material; reapply them manually and restore secrets separately.
 
-Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules. The interface refactor adds no migration or schema change.
-
-## Migration history
-
-### Play, rated games, shared Maia cache and password resets
-
-Revision `a1c3e5f7b9d1` adds `play_games` and `play_profiles`; `d4e6f8a0b2c4`
-adds the nullable `play_games.practice` for opening practice. `0dc741d4af1f`
-relabels games-v1 own-game puzzles in place and turns lines longer than nine
-plies into `too_long` abstentions. `e2a4c6b8d0f1` adds nullable `games.rated`,
-backfilled from the PGN Event header; Chess.com games stay unknown until a
-re-import. `1c26d1ef1233` drops `human_analyses.user_id`, merging duplicate
-predictions into the oldest row and repointing `game_review_moves`.
-`b3d5f7a9c1e2` adds `users.password_change_required` for administrator resets.
-
-### Puzzles from your games: c7e2a9f4b1d3
-
-Adds account-owned `game_puzzles` (source game and ply, optional decision,
-generator version, legal-play position key, kind, status, abstention reason,
-definition snapshot and engine evidence) and `game_puzzle_searches` (one row per
-game and generator version with candidate and kept counts), plus
-`analysis_jobs.puzzles_found` with a server default of zero so older job rows
-need no rebuild. Existing puzzle sessions, reviews, FSRS state and evidence are
-untouched; the migration was applied to a copy of a live database with every
-row count unchanged and a clean foreign-key check.
-
-### Opening study: 7c249ef302d6
-
-Adds account-owned `opening_studies` (immutable selected line/source/color),
-`opening_study_moves` (position contributions), `opening_cards` (current authority
-revision, last active target and retirement guard), `opening_recall_snapshots`
-(existing ReviewSession's answers/provenance), and `opening_content_changes`
-(non-recall lifecycle audit). The existing Exercise, ExerciseAnswer, ReviewSession,
-Attempt, Review and SRSState remain the recall/scheduling domain. Opening exercises
-have source `opening`; archived repertoire rows are unchanged. No schema migration
-recomputes an old schedule or creates historical recalls. See [Study](STUDY.md)
-for current versus stale attempt and content-change rules.
-
-### Authored Study lessons: 6b138de291c5
-
-Adds account-owned `study_lesson_sessions`, `study_lesson_commands` and
-`study_lesson_progress`. Sessions pin course ID/revision, chapter, immutable
-content/hash, complete player state and monotonic command revision. Commands
-retain idempotent request/response pairs. Progress has one row per account,
-course revision and chapter, with viewed/attempted steps and first completion.
-Back or replay does not overwrite first completion. These tables are separate
-from archived generated lessons and do not alter Review or FSRS records.
-
-The following notes describe how retained fields and compatibility behavior were introduced. References to creating course sequences describe historical domain behavior, not an active application workflow.
-
-Revision `1c14f367bbe8` adds Chess.com query/progress and archive checkpoint tables without modifying existing game identities. A download and its checkpoint commit together; raw selected PGNs remain in game_imports. Backup/restore automatically includes these records. The same mutation lock protects PGN uploads and Chess.com ingestion from cross-source duplicate insertion races.
-
-`chesscom_imports.start_date` and `end_date` are nullable SQL dates, representing inclusive UTC completion-date bounds. They remain queryable alongside username, time_class, months and max_games and participate in active-request deduplication.
-
-Revision `6b9d45ae2210` adds `import_games.is_new`. All imports retain duplicate provenance, but new jobs analyze only links marked true. Existing links migrate as true to preserve the scope of already-created jobs and allow interrupted work to resume; their existing decision/classification caches still prevent expensive recomputation. Future duplicate links are false. No game, evidence or SRS record is deleted by this migration.
-
-### Archived lesson progression migration: 92f71bce490a
-
-CourseUnit adds stable group_key and active membership. CourseRevision contains immutable JSON snapshots of a course update (target, groups, priority, supporting decisions and original run mappings); current core relationships remain relational.
-
-Lesson keeps ordered stage completion plus check_rounds and last_check_correct. LessonItem links an ordered stage position to an Exercise, with current-round completed/clean fields. The archived implementation appended Lesson and LessonItem rows for later sequences. ReviewSession.lesson_item_id distinguishes course practice from ordinary review; all raw Attempt rows stay linked to the session. Completed lesson attempts never create Review rows. SRSState.eligible controlled lesson withholding; migration d17b63e02a48 later released nonretired lesson-held cards.
-
-SkillEvidence.active is the current diagnosis projection. Its prior run remains in ClassificationRun; course revisions preserve prior evidence/run mappings when the projection changes. Rejected ClassificationRun responses remain auditable. TeachingRun separately stores unit/model/prompt/schema, evidence IDs, response, confidence, status/error, attempts, tokens and time.
-
-The additive migration preserves existing review rows and serialized FSRS state. It adds nullable lesson session references directly in SQLite, avoiding a destructive rebuild of the referenced review table. Backup/restore includes all new tables automatically.
-
-Migration a38d721c4f90 adds nullable `srs_states.retired_at` and `retired_interval_days`. These preserve the retirement timestamp and triggering interval independently of lesson eligibility and the original serialized FSRS card/due date. No history is deleted. Startup applies the configured retirement threshold to existing states with a saved last-review timestamp.
-
-Migration b91a0673de42 adds nullable review_sessions.last_attempt_id referencing exercise_attempts. New attempts update the link atomically with their recorded result; existing historical attempts are preserved. Old sessions without a link gain one on their next submitted move. Explanation payloads are derived from immutable engine evidence and deterministic replay (version 1), so no duplicate explanation/LLM table is needed.
-
-### Local classification migration c42d1738a9bf
-
-Native SQLite renames move llm_runs to classification_runs and skill_evidence.llm_run_id to classification_run_id, preserving IDs and foreign keys. New provider/version columns distinguish legacy_llm from local_rules. Original model, prompt, confidence and token columns remain for historical audit/export compatibility; local runs use no tokens or external model. Old classification responses and course snapshots are not deleted. Existing model evidence is made inactive before local backfill; pending paid teaching jobs are cancelled.
-
-New run responses contain typed findings with skill ID, rule ID/version, direction, actor, analysis ID, supporting plies/moves/squares, verification type, explanation and rule parameters. These immutable detail payloads are JSON; decision/skill/run relationships remain relational. The legacy confidence column holds 1 for emitted local evidence and 0 for abstention; it is an aggregation weight, not a calibrated probability. Historical teaching rows are archived and no longer generated.
-
-Classification-only backfills update runs and skill projections, never games, exercises, reviews, FSRS states, retirement or course sequences. Backups cover the renamed tables automatically. Migration was exercised on a database copy and checked for foreign-key integrity and unchanged learning-history rows before deployment.
-
-Migration d17b63e02a48 removes lesson holds: set srs_states.eligible to true only where a lesson item references the exercise and retired_at is null. No other column or historical table changes. Downgrade does not re-hide cards because new review progress may have occurred after release.
-
-Repertoire removal is read-time archival: exercises.source = repertoire is excluded from the review queue, and API writes are rejected. Repertoire rows, exercises, answers, attempts and FSRS state remain unchanged. No migration or retirement marker is applied.
-
-### Classification and practice migration e6294af71b35
-
-classification_analyses links a decision to supplemental before/actual EngineAnalysis rows, the originating job, a unique probe configuration key and timestamp. It never rewrites the Decision or ExerciseAnswer analysis IDs. classification_tasks has a composite job/decision primary key and requested probe key; this persists the capped selection across cancellation/restart. Completed probes are immutable and future jobs skip identical requests.
-
-ReviewSession adds mode (review by default), nullable focus_skill_id, first response_ms and completed_at. Old sessions get neutral defaults without rebuilding the referenced table. Focus sessions retain ordinary Attempt rows and failed/revealed/completed state but create no Review and never write SRSState. Historical rows are unchanged; absent historical timing is not fabricated.
-
-Classification response schema v2 adds outcomes, abstention reasons, witness frame_ply, square roles and practice cues. Historical responses remain readable through defaults. Relational SkillEvidence remains the current projection; outcomes and mechanism findings are distinguishable by the controlled skill sets. Backups automatically include new tables and columns.
-
-### Classification schema v3 and rule version 3.1
-
-Response schema v3 adds typed continuation endpoints, defense-check diagnostics, previous-move context on relevant findings and supporting analysis IDs on findings/outcomes. JSON stores immutable diagnostic payloads; classification_probes keeps the core supplemental engine relationships queryable. Older response schemas remain readable through default fields. Rule version is distinct from response-schema version and participates in classification/probe cache identity. Migration f83a90d16c24 adds immutable classification_probes rows linking a supplemental analysis to root and tail/defensive native results, with query kind, root-relative ply and unique query key. At its original rollout it was verified on both the copied and live database with every row of all 28 existing tables unchanged.
-
-Review intelligence refinement adds account-owned `review_refinements`, finite
-`game_reviews.refinement_plan`, review/row revisions and an optional adopted-task
-reference on `game_review_moves`. Migration `55de0b7b8ff2` preserves all baseline
-reports and IDs. The baseline JSON is never overwritten by investigation output.
-See [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation) for effective-generation rules.
-
-New imported canonical game PGNs retain mainline comments, including actual clock
-annotations; variations remain excluded. Existing canonical games are preserved
-on duplicate import. Semantic move events are derived from saved reports and PGN
-facts, carry input hashes and authority references, and need no additional table.
+Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules.

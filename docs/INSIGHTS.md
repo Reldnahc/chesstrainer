@@ -1,7 +1,6 @@
 # Game insights
 
-The Insights screen replaced Weaknesses on 2026-10-03 at the owner's request. It has
-two levels: Overview (`/insights`) and Weaknesses, whose categories sit in the
+The Insights screen has two levels: Overview (`/insights`) and Weaknesses, whose categories sit in the
 same tab bar after a divider (stacked as a second row on phones): Tactical patterns (`/insights?section=patterns`, where the Weaknesses link
 lands) and Material & mate (`/insights?section=outcomes`). Library statistics
 and practice targets stay visibly separate. Old `/weaknesses` links,
@@ -61,11 +60,10 @@ section presents a mastery score or diagnoses what the player was thinking.
 
 ## Weakness priorities and archived curriculum
 
-The active Weaknesses page organizes recurring weaknesses and focused practice.
-The legacy generated courses, lesson progression and curriculum navigation are
-retired. The separate authored [Study lessons](STUDY.md#guided-lessons) remain
-active and do not use these historical tables or settings. Earlier designs
-remain in Git history.
+The Weaknesses section organizes recurring weaknesses and focused practice.
+Legacy generated courses, lesson progression and curriculum navigation are
+retired. Authored [Study lessons](STUDY.md#guided-lessons) do not use those
+historical tables or settings.
 
 ### Evidence and classification
 
@@ -106,7 +104,7 @@ progression are not active workflows. Imports and classification do not build
 courses or withhold new cards. Legacy course/lesson product routes return HTTP
 410, and old lesson review sessions cannot accept moves or reveals.
 
-Migration d17b63e02a48 released nonretired lesson-held cards by changing eligibility only. Schedules, attempts, reviews, retirement and lesson records were preserved. Teaching-generation routes and retries return 410; historical teaching audit reads/rejections remain available. Backups include the archived records.
+Nonretired cards once held by lessons are eligible for Due (migration d17b63e02a48); their schedules, attempts, reviews and lesson records are kept. Teaching-generation routes and retries return 410; historical teaching audit reads/rejections remain available. Backups include the archived records.
 
 A future generated-curriculum redesign requires separate product work. Current
 priorities, focused practice and authored Study lessons do not re-enable legacy

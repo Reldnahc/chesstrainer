@@ -286,12 +286,11 @@ changing a personality template does not rerecord it. Both paths must preserve
 the same scope and character. Lessons receive only the generic `lessons` prompts
 in `meanings.json`, not recorded course narration.
 
-The [Rivet editorial ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
-records 197 replacements among 257 reviewed additions, with 60 additions retained.
-It explains each correction instead of making more clips the measure of quality.
-The latest [Rivet ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json) replaces 294 passages whose wording
-matched Walter's or another coach's with Rivet's own readouts.
-Compare it with [Walter's spoken revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
+The Rivet [editorial](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+and [distinct-voice](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json)
+ledgers explain each correction instead of making more clips the measure of
+quality; Rivet's lines are his own readouts, never another coach's wording.
+Compare them with [Walter's spoken revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
 and the active manifests in [Audio](AUDIO.md#bank-and-authoring). Avoid "separate"
 and "separately" in active speech: the locked voices do not pronounce them
 reliably. Recording, pronunciation, timing and listening review belong to the

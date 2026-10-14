@@ -87,14 +87,13 @@ Results stream to ignored `data/puzzle-verification/<run>/results.jsonl` with
 `--record` writes the summary, engine, depth, thresholds and failed IDs into
 `manifest.json`, and `--prune` removes failed rows and re-pins the CSV.
 
-The 2026-10-v1 starter pack was verified whole with Stockfish 18 at depth 18:
-972 of 1,000 passed. The 28 removed puzzles were not wrong but ambiguous for
-this player, which accepts only the pinned line: 27 had a second mate in one
-(for example either rook capturing, or a rook underpromotion beside the queen
-promotion), and one had an alternative within 4 cp. Lichess accepts any mate in
-one there; Fieldwork's `line-v1` definitions do not yet carry accepted
-alternatives, so those puzzles are excluded rather than mis-graded. Passing
-means engine agreement at that depth, not pedagogical value.
+The verifier rejects puzzles that are ambiguous for this player, which accepts
+only the pinned line: a second mate in one (for example either rook capturing,
+or a rook underpromotion beside the queen promotion) or an alternative within
+the margin. Lichess accepts any mate in one there; Fieldwork's `line-v1`
+definitions do not yet carry accepted alternatives, so such puzzles are pruned
+rather than mis-graded. Passing means engine agreement at the recorded depth,
+not pedagogical value.
 
 ### Puzzles from your games
 
@@ -354,17 +353,13 @@ it teaches good chess. Before publishing or revising a course:
   retain their original snapshots; a new revision must not rewrite a learner's
   old progress or scheduled answers.
 
-The September 2026 second review corrected substantive gaps in both new courses;
-their source records document the research, decisions and remaining boundaries.
-The October 2026 chess check of all three courses rechecked every taught move
-with Stockfish and the historical scores against published sources. It changed
-no moves and corrected ten explanations; each source record lists its corrections.
+Each course's [source record](COURSE_SOURCES.md) documents its research,
+decisions and remaining boundaries.
 
 #### White Italian course
 
-The original pilot's repeated Two Knights setup was condensed into the
-introduction. Revision v4 gives the Two Knights its own chapter again, because
-Black's common fourth moves there need different answers. The later chapters
+The Two Knights has its own chapter because Black's common fourth moves there
+need different answers. The later chapters
 connect development to bishop management and recapture choices, then actually
 play d4 and respond to Black's central resources. Short optional comparisons
 punish 3...Nd4, answer 3...h6 and the ...Bg4 pin, distinguish a premature break
@@ -454,13 +449,13 @@ development content through an environment switch.
 
 ## Deferred content requirements
 
-The lesson/opening/puzzle framework sprint is complete and the generic pack
-requirements below are implemented as described under [Puzzle packs](#puzzle-packs)
-and [Selection](#selection). Game-derived generation of missed mates and wins is
-implemented as described under [Puzzles from your games](#puzzles-from-your-games);
-its remaining pieces and additional courses are separate future work. The
-following requirements preserve the owner's decisions from the completed plan;
-they do not authorize implementing that work during maintenance.
+The generic pack requirements below are implemented as described under
+[Puzzle packs](#puzzle-packs) and [Selection](#selection). Game-derived
+generation of missed mates and wins is implemented as described under
+[Puzzles from your games](#puzzles-from-your-games); its remaining pieces and
+additional courses are separate future work. The following requirements record
+the owner's decisions; they do not authorize implementing that work during
+maintenance.
 
 ### Generic puzzle packs
 
@@ -510,7 +505,7 @@ Cold play must not expose future solution length or other tactical hints. Puzzle
 practice never updates FSRS, ordinary recall history or weakness evidence, and
 does not prove that training transferred into later games.
 
-Still future work, in the order the prototype measurements suggest: defensive
+Still future work, in priority order: defensive
 puzzles with their own payoff rule (hold at -100 cp or better while rivals lose
 at least 300 cp), accepted alternatives through a solution-graph format so an
 ambiguous first move need not abstain, Maia's difficulty band where human
@@ -523,6 +518,6 @@ Additional opening courses, arbitrary opening PGN/Lichess Study imports, reperto
 tree editing, favorite-position lines, external source synchronization and broader
 practice modes require separate product work. Administrators can already write
 and edit course files in the [lesson editor](COURSE_FILES.md#lesson-editor). Existing
-catalogue browsing and the Italian pilot are not authorization to generate a large
+catalogue browsing and the bundled courses are not authorization to generate a large
 course collection. Preserve the shared board/coach and the distinct source,
 scheduling and historical-snapshot authorities when extending these features.

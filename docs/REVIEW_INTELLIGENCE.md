@@ -9,12 +9,10 @@ stores coach prose. [Evidence-led coach dialogue](COACH_DIALOGUE.md) and
 Current schema and configuration live in [DATA_MODEL.md](DATA_MODEL.md) and
 [CONFIGURATION.md](CONFIGURATION.md).
 
-Review stays move-by-move. The owner retired Game Story / Critical Moments:
-there is no ranked takeaway summary, key-moment navigation, opening/result story
-prose or completion-driven coach reaction. Structured game context, diagnostic
-turning points and owned history remain available for evidence-backed move
-coaching and bounded refinement.
-
+Review is move-by-move: there is no ranked takeaway summary, key-moment
+navigation, opening/result story prose or completion-driven coach reaction.
+Structured game context, diagnostic turning points and owned history serve
+evidence-backed move coaching and bounded refinement.
 
 ## Authority and storage
 
@@ -74,9 +72,8 @@ shared-slot wait. A host with a baseline time over two seconds raises that ceili
 accordingly. Depth can finish a search early. This is a budget, not a latency
 promise. Questions are independent, so they run in parallel on
 min(STOCKFISH_WORKERS, ENGINE_SLOTS) engines, the same count the baseline pass
-uses; per-query limits, threads and hash do not change, only wall-clock time
-(about 26 s → 8 s per game on a 4-worker desktop). No new unbounded executor or
-account-specific native pool is introduced.
+uses; per-query limits, threads and hash do not change, only wall-clock time.
+There is no unbounded executor or account-specific native pool.
 
 Pause interrupts an active extra search or a wait for a slot/cache lock. Startup
 and engine teardown retain the native transport's bounded timeouts. Partial
@@ -120,7 +117,7 @@ settings and retries unavailable questions; this is also available to developmen
 tools. Completed compatible questions are reused, not forcibly rerun. Changing
 coach has no effect on this pipeline.
 
-### Measured evidence and limits
+### Benchmark and limits
 
 ```sh
 python scripts/benchmark_refinement.py --stockfish /path/to/stockfish --output data/review-benchmark/refinement.json
@@ -129,28 +126,13 @@ python scripts/benchmark_refinement.py --stockfish /path/to/stockfish --targeted
 
 The harness uses disposable databases and the production planner/search/report
 reader. Outputs are exclusive-create under ignored data storage, never source.
-Stockfish 18 on the M0 Windows host, default 16/0.8 baseline and 22/2 refinement:
-
-- The original twelve-position synthetic corpus nominated four cases: allowed
-  mate, missed mate, queen sacrifice and Bongcloud. All baseline grades survived;
-  investigations took 2.343, 3.777, 3.928 and 3.121 seconds respectively. Stored
-  baseline reports were byte-for-byte equivalent as decoded JSON. Wider/deeper
-  lines can produce different supported motifs; this is not global ground truth.
-- A targeted public Lichess probe (`C0OA7`) initially had Great / depth 16 with no
-  supported sacrifice. The investigation reached depth 20, found removal of the
-  defender, and tested `...Be3` followed by `fxe3`: Stockfish found mate in seven
-  for Black. Fieldwork's existing sacrifice rule then supported Brilliant.
-  Investigation took 2.344 seconds. This is a concrete explanatory improvement.
-- The second public control (`6JpC8`) stayed Best and was not nominated because
-  its baseline alternative gap was 77 cp, outside the critical-gap trigger.
-  Deliberately investigating it during discovery produced a different gap/grade;
-  bounded selection does **not** promise to find every such change.
-
-Those two positions were selected from twelve hard positions in the existing
-public CC0 puzzle snapshot, not a blind evaluation sample. Their provenance is
-in `scripts/review_benchmark/refinement_cases.json`. These measurements establish
-selected improvements and finite behavior, not a general accuracy percentage or
-timing guarantee. Time-limited cold searches can vary across machines/runs.
+The `--targeted` cases are hand-picked hard positions from the public CC0 puzzle
+snapshot, not a blind evaluation sample; their provenance is in
+`scripts/review_benchmark/refinement_cases.json`. Wider/deeper lines can produce
+different supported motifs, and bounded selection does **not** promise to find
+every position where deeper search would change a grade. Results show finite
+behavior on selected cases, not a general accuracy percentage or timing
+guarantee. Time-limited cold searches can vary across machines/runs.
 
 ## Semantic review events and clock context
 
@@ -178,7 +160,7 @@ the durable sources; reading semantics requires no migration or engine/model.
 | `sacrifice` | Sound offer and explicit acceptance response | Existing Fieldwork sacrifice witness and acceptance analysis ID, under 50 cp loss and no newly lost/allowed mate |
 | `tactic` | Played, allowed, caused, missed or alternative motif in a verified line | Matching line root/first move, actor, valid witness plies and exact analysis/rule IDs; never attribute an alternative's tactic to the played move |
 | `human_contrast` | Natural error, unusual strong find, unusual model best choice | Compatible saved human evidence plus objective references; carries conditioning, domain, unvalidated calibration and confidence |
-| `clock_observation` | Low time, fast play with time, long think, accompanying evaluated error | Actual clock annotations/derivable values plus grading evidence; explicitly no psychological causation. Coaches do not voice or display it (retired 2026-10-03) |
+| `clock_observation` | Low time, fast play with time, long think, accompanying evaluated error | Actual clock annotations/derivable values plus grading evidence; explicitly no psychological causation. Coaches do not voice or display it |
 | `opening_departure` | First unmatched move in the initial catalogue sequence | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
 | `check` | Giving check or answering check | Legally replayed actual move; checkmate supersedes generic check |
 | `finish` | Immediate checkmate, stalemate, insufficient material | python-chess actual transition; never inferred from a mate PV or declared PGN result |
@@ -198,8 +180,8 @@ line, original `[1, 2]` witness and frame zero, with actor validation retained.
 Material delta remains relative to the event actor, so a caused loss is negative.
 Repeated motifs and historical weakness matching treat `caused` as
 an issue for the responsible mover. Dialogue uses dedicated causal claims rather
-than saying the opponent possesses the mover's error. Version 4 regenerates these
-semantics from saved facts without rerunning Stockfish or Maia.
+than saying the opponent possesses the mover's error. These semantics regenerate
+from saved facts without rerunning Stockfish or Maia.
 
 Tactical facts retain witness moves, frame indices, square roles and optional
 prior-position context. Their `line_witness` confidence means **in this saved
@@ -216,10 +198,9 @@ whole-game context layer, not invented memory in a move-local event.
 
 ### Clock rules
 
-New game imports retain mainline comments (variations remain excluded). Earlier
-versions stripped comments from `Game.pgn`; those already saved games correctly
-have unknown clocks and are not silently reconstructed from unrelated sources.
-Duplicate imports retain the existing canonical game, as before.
+Game imports retain mainline comments (variations remain excluded). Games saved
+before comments were retained have unknown clocks and are not reconstructed from
+unrelated sources. Duplicate imports retain the existing canonical game.
 A single valid `[%clk H:MM:SS.s]` provides remaining
 time after a move; a valid `[%emt H:MM:SS.s]` provides annotated elapsed time.
 Duplicate, malformed, negative or out-of-range minute/second annotations abstain.
@@ -264,8 +245,7 @@ contract excludes intelligence, clocks, themes, alternatives and human hints.
 ## Positional evidence
 
 `position-facts-1` derives immediate, legal board changes for played and best
-candidates. Move events (since `move-events-2`; currently `move-events-4`)
-expose them as `positional` events. These are facts
+candidates. Move events (`move-events-4`) expose them as `positional` events. These are facts
 about the position, **not explanations inferred from an evaluation drop**.
 Stockfish remains responsible for whether either candidate is good. The event
 records `value_judgment: not_inferred`, side, before/after values, squares, line
@@ -284,7 +264,7 @@ Supported observations:
 | Isolated pawns | No own pawn on either adjacent file, regardless of rank. No assertion that the pawn is weak or lost. |
 | Doubled files | Two or more same-color pawns on a file. The coach names only files the move newly doubled (`added`); breaking up one doubled pair while another stays doubled is not a doubling claim. No automatic good/bad judgment. |
 | Rook files | Own pawn absent means semi-open; all pawns absent means open. No guarantee of entry squares or control. |
-| Piece support | Existing pin-aware effective-defender geometry gains/loses all support for a surviving non-pawn, non-king piece. An undefended piece is not necessarily capturable or lost. The coach mentions it only when the piece is attacked after the move (`attacked`); otherwise it is trivia (owner decision, 2026-10-04). |
+| Piece support | Existing pin-aware effective-defender geometry gains/loses all support for a surviving non-pawn, non-king piece. An undefended piece is not necessarily capturable or lost. The coach mentions it only when the piece is attacked after the move (`attacked`); otherwise it is trivia. |
 | Bishop pair | Loss of one of exactly two opposite-square-color bishops. Two same-color promoted bishops do not count. No claim that the exchange was unfavorable. |
 
 The current rules deliberately omit bad bishops, backward pawns, outposts, space
@@ -328,24 +308,23 @@ least 150 cp worse that reaches -150 cp or a losing mate. A missed forced win
 while retaining +5 is **not** a sole defensive resource. These are bounded-search
 and rule conclusions, not proof against perfect play.
 
-Version 2 also includes a separately searched played move when comparing
-alternatives. If that move is different from the engine's first choice and also
+A separately searched played move is included when comparing alternatives.
+If that move is different from the engine's first choice and also
 holds the position, it disproves an only-good-move claim even if the unrestricted
 MultiPV runner-up scored poorly. The same Stockfish-only comparison protects the
 Fieldwork Great rule. A missing runner-up is still unknown, never proof of a sole
-resource. Version 1's recorded benchmark below remains a historical measurement.
+resource.
 
 ### Conservative bands and confidence
 
-The initial fixed probe has 12 synthetic positions and four rating pairs:
+The fixed probe has 12 synthetic positions and four rating pairs:
 600/800, 1200/1400, 1800/2000 and 2400/2600. It cannot calibrate population success
-or justify five precise difficulty levels. We retain three descriptive bands.
+or justify five precise difficulty levels, so there are three descriptive bands.
 
 An exact policy is **preferred** at rank 1–3 with at least 0.10 model probability;
 **unusual** requires rank 7 or worse and below 0.03. Everything between is
-plausible. These coarse gates were chosen after inspecting the fixed probe:
-lower-quartile played probabilities were approximately 0.027, 0.047, 0.045 and
-0.036 across its rating pairs. Combining rank and mass prevents low-rank choices
+plausible. These coarse gates were set against the fixed probe's played-move
+probabilities. Combining rank and mass prevents low-rank choices
 in diffuse policies from being called dominant, and avoids treating a rank just
 outside top three as rare. This is a heuristic interpretation, **not an empirical
 finding about player success**. Thresholds/version are explicit and boundary-tested.
@@ -365,25 +344,6 @@ policy, and ratings outside the probe range lower confidence further. Neither
 confidence level licenses “X% of players at your rating.” The inspected ranges
 are role-specific: 600–2400 for the mover, 800–2600 for the opponent. Even inside
 those ranges the small synthetic probe establishes no population calibration.
-
-### Inspection results
-
-Replaying the exact M0 deep Stockfish baseline and M1 pinned 79M policies gave:
-
-| Self rating | Natural best finds | Challenging | Difficult | Unusual played moves |
-|---|---:|---:|---:|---:|
-| 600 | 8 | 3 | 1 | 3 |
-| 1200 | 10 | 2 | 0 | 2 |
-| 1800 | 10 | 2 | 0 | 1 |
-| 2400 | 10 | 2 | 0 | 1 |
-
-The queen offer is unusual at 600 (rank 7, probability 0.0202) with a verified
-sacrifice, and model-preferred at 2400 (rank 2, 0.2968). The move allowing Fool's
-Mate is preferred at 600 (rank 1, 0.2049), demonstrating **natural error**. The quiet
-retreat Nb8 in the Ruy Lopez is unusual at 600 (rank 24, 0.00305) while retaining
-nearly the same objective position; at 2400 it is rank 2 with 0.2998. Repeated-root
-history changes policy markedly. These are synthetic model probes, not real
-player data or validation that the model is calibrated on Chess.com.
 
 Deterministic interpretations include natural error, unusual strong move,
 natural near-best move, hard-to-find defensive resource, immediate mate missed
@@ -465,7 +425,7 @@ caused improvement.
 `cross-game-1` adds corroboration for a learner's supported missed/allowed tactical
 motifs and mate errors in the currently reviewed game. It reads the existing
 account-owned active `SkillEvidence`/`Decision` projection. Weaknesses and review
-history now share the same grouping and independent-game recurrence helper;
+history share the same grouping and independent-game recurrence helper;
 there is no second weakness database or competing threshold.
 
 The game being reviewed is excluded. One other game containing many related
@@ -582,13 +542,5 @@ quiet play, attack, mate/missed mate, a queen offer, exchanges, repetition and
 three source-domain contexts. These are diagnostic probes, not a calibrated human
 study or comprehensive chess-quality ground truth. In particular, matching cached
 results does not establish independent cold-search determinism. Time-bounded
-Stockfish searches can vary between fresh runs.
-
-Initial measurement: Stockfish 18, Windows 11, Python 3.12.10, 24 logical CPUs,
-one native thread and 64 MB hash per process, depth 16 / 0.8 seconds, no node cap.
-Twelve positions took 4.319 s with one worker and 1.236 s with four (search and
-evidence generation, excluding startup). Startup took 0.259 / 1.022 s; second
-cached passes took 0.231 / 0.240 s and exactly retained candidate output. Each
-configuration made 16 native searches and 20 cache hits across the two passes.
-Python peak RSS was 82.9 / 84.7 MiB; this is not total host engine memory. These
-small synthetic probes do not establish general speedups or evaluation quality.
+Stockfish searches can vary between fresh runs. These small synthetic probes do
+not establish general speedups or evaluation quality.

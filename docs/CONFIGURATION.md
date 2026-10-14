@@ -136,12 +136,9 @@ The Vite development proxy specifically targets 127.0.0.1:8000. Override SERVER_
 
 ## Archived settings
 
-`COURSE_MAX_UNITS`, `LESSON_MAX_POSITIONS` and `LESSON_CHECK_PASS_FRACTION`
-have been removed along with unused course generation and lesson progression.
-Old `.env` entries are ignored; they can be deleted. No active Docker/Unraid setting
-changes. Historical data, migrations and teaching audits remain available; see
-[archived compatibility](INSIGHTS.md#archived-compatibility). These settings
-do not configure the separate authored Study lessons.
+`COURSE_MAX_UNITS`, `LESSON_MAX_POSITIONS` and `LESSON_CHECK_PASS_FRACTION` are
+ignored; old `.env` entries can be deleted. See
+[archived compatibility](INSIGHTS.md#archived-compatibility).
 
 ## Shared hosting
 
@@ -169,17 +166,17 @@ raw exception details. There are no additional container variables for this.
   all accounts in shared mode. One additional coordinator handles fetch-only jobs.
   Each account runs at most one analysis job at a time. Idle accounts allocate no
   app instance or workers; the host worker count stays fixed as accounts grow.
-- `DATABASE_PATH` still names one SQLite file containing accounts and all chess data.
+- `DATABASE_PATH` names one SQLite file containing accounts and all chess data.
 
 See [ACCOUNTS.md](ACCOUNTS.md) before enabling accounts for existing data and
 [UNRAID.md](UNRAID.md) for container storage, permissions and proxy configuration.
 
 ## Full-game review refinement
 
-Optional extra investigation follows the unchanged deep baseline. Defaults are
+Optional extra investigation follows the deep baseline. Defaults are
 `REVIEW_REFINEMENT_POSITIONS=8`, `REVIEW_REFINEMENT_QUERIES=4`,
 `REVIEW_REFINEMENT_DEPTH=22`, `REVIEW_REFINEMENT_TIME=2`, and
 `REVIEW_REFINEMENT_MULTIPV=4`. Set positions to zero to disable extra work.
 See [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation) for bounds, time/depth floors,
-CPU budgets, cancellation, resume and measured quality examples. All five
+CPU budgets, cancellation, resume and benchmark limits. All five
 settings have descriptions in the advanced Unraid template.

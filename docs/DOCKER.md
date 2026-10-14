@@ -2,7 +2,7 @@
 
 The image includes an optional CPU human-model runtime. Weights are installed only
 by the explicit host command in [HUMAN_MODELS.md](HUMAN_MODELS.md), then cached in
-the existing `/data` mount. Stockfish-only review works before setup. No extra
+the `/data` mount. Stockfish-only review works before setup. No extra
 container, database or GPU is required.
 
 One container includes the web app and native Stockfish. Account, chess and
@@ -139,8 +139,8 @@ entrypoint variables. Engine defaults match the image.
 Main-branch pushes and manual publishing first run the reusable correctness
 workflow against the exact commit being released. Backend checks, frontend build
 and browser tests, and the Docker installation smoke test must all pass before
-the publishing job can log in to GHCR or push an image. Other branch pushes and
-pull requests run the same checks without publishing. Only the publishing job
+the publishing job can log in to GHCR or push an image. Pull requests run the same
+checks without publishing; other branch pushes start no run. Only the publishing job
 receives package-write permission.
 Every third-party action is pinned to a full commit hash, with its version in a
 comment, so a moved tag cannot change what the release job runs; Dependabot

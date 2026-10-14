@@ -246,7 +246,7 @@ above the existing six-column desktop coach picker; saving and errors remain
 local to each preference control.
 Games keeps only a compact Update games control using the same sync component and
 polling behavior; without a connection it links to Settings.
-Insights opens on its Overview; its Weaknesses section (formerly a separate page) shows the Tactical patterns and Material & mate categories as subsections of the same section navigation, with the supported lists directly;
+Insights opens on its Overview; its Weaknesses section shows the Tactical patterns and Material & mate categories as subsections of the same section navigation, with the supported lists directly;
 introductory copy and the classification-coverage summary are not shown there.
 
 The coach studio is a separate development process (`npm run dev:coach`, port
@@ -264,7 +264,7 @@ history entry; restoration waits for asynchronously loaded page content and
 yields to user scrolling. Links retain native new-tab behavior and browser
 keyboard shortcuts are not intercepted by the game board.
 
-Production already serves `index.html` for frontend paths on the API origin,
+Production serves `index.html` for frontend paths on the API origin,
 including direct game URLs; `/api/` and `/assets/` retain their existing handling.
 No reverse-proxy rewrite is needed when forwarding the whole site to the app.
 The Vite development proxy targets 127.0.0.1:8000.
@@ -383,9 +383,9 @@ classification_quality.py and the read-only report script support blinded export
 
 ## Archives, privacy and deployment
 
-Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Legacy course generation and lesson progression code have been removed; active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive. The new authored Study domain and `source="opening"` recall have their own explicit contracts described above.
+Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. Historical rows, manual exercises and teaching audit/rejection access remain. Active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Tests seed explicit historical rows. The authored Study domain and `source="opening"` recall have their own explicit contracts described above.
 
-OpenAI runtime integration is removed: no model SDK or model network calls remain.
+There is no hosted AI service: no model SDK or model network calls at runtime.
 Historical classification and teaching responses stay local. Explicit Chess.com
 imports and enabled recent-game synchronization use the public Chess.com API.
 
@@ -402,7 +402,7 @@ replace objective Stockfish evaluation or directly assign move-quality labels.
 Settings links to the public GitHub repository as the source offer. Model checkpoints, SQLite sidecars, native binaries, caches and generated browser reports stay outside Git. Docker build-context exclusions also keep local model checkpoints out of the image. See NOTICE.md and [Local classification](LOCAL_CLASSIFICATION.md#pinned-lichess-code) for the GPL/AGPL combination and source-offer workflow.
 
 Full-game scheduling lives in `review_jobs`; `review_refinement` runs a finite
-optional pass after the unchanged deep baseline. `review_intelligence/refinement_*`
+optional pass after the deep baseline. `review_intelligence/refinement_*`
 own nominations and bounded questions; `review_reports` resolves compatible
 saved evidence for presentation. The existing native cache and shared engine
 pool remain the compute authority. See [targeted review investigation](REVIEW_INTELLIGENCE.md#targeted-review-investigation).

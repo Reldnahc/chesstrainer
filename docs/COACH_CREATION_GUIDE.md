@@ -5,15 +5,11 @@ voiced coach. Read it before adding a character or bringing an existing characte
 up to the current Walter/Rivet standard. It connects the implementation references;
 it does not introduce another registry, renderer or recording pipeline.
 
-The references were checked against the implementation after Rivet's October 1,
-2026 wording revision, and again after the remaining nine humans received
-speaking mouths later that day. At that point the app had 30 selectable
-characters, 30 speaking rigs and two production voice banks; Winston's,
-Button's and Arjun's banks were recorded and registered on October 2, and the
-other 25 coaches' banks on October 3. Those are different
-completion states: a working mouth or an approved audition is not a finished voice bank.
-Discover current coverage from the registries rather than treating these counts
-as limits or assuming every character already meets the same spoken-writing bar.
+A speaking rig, an approved voice lock and a registered production bank are
+different completion states: a working mouth or an approved audition is not a
+finished voice bank. Discover current coverage from the registries rather than
+treating counts as limits or assuming every character already meets the same
+spoken-writing bar.
 
 ## Reference map
 
@@ -168,12 +164,11 @@ Start from `audio/speech/meanings.json` and the production selectors
 `gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings
 and intentional silence before counting clips. Maia readings are never spoken or
 shown as coach dialogue, so the catalogue has no `human-*` or objective/Maia
-combination meanings (253 were retired on 2026-10-02 and the last five on
-2026-10-04), and the three per-move clock observations were retired on
-2026-10-03. The catalogue has 337 meanings, among them 11 varied opening
+combination meanings, and per-move clock observations are not spoken. The
+catalogue has 337 meanings, among them 11 varied opening
 meanings, the grade takes, seven forced-mate meanings (mate in one allowed, and
 a move that starts, keeps, slows, finishes next move, hastens or holds out
-against a forced mate; added 2026-10-05), 79 alternative takes (`takeOf`), 20
+against a forced mate), 79 alternative takes (`takeOf`), 20
 colour-specific positional lines (`colourOf`), the game-review opener, the picker
 introduction, the Play greeting (`game-start`), the Play invitation
 (`play-invitation`) and the lesson prompts. It also lists 273 piece
@@ -266,7 +261,7 @@ the existing [voice notices](AUDIO.md#locked-voice-and-permissions).
 Prepare reviewed plans for `scripts/record_coach_speech.mjs`: exact voice/model,
 settings, scripts and versioned output paths. Default invocation is a dry run.
 The recorder refuses retired Maia readings (`human-*`, `combo-*`, `combined-*` IDs
-or human-model wording); coaches no longer speak Maia lines.
+or human-model wording); coaches never speak Maia lines.
 Paid generation requires `--generate` and the process environment's
 `ELEVENLABS_API_KEY`; neither the app nor the container needs that secret.
 Plans are bounded to 20 voice/script pairs, 1,000 characters per script and

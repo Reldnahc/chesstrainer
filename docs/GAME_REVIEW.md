@@ -8,7 +8,6 @@ keeps the board usable throughout. Maia availability never changes move grades.
 
 Game review complements cold practice. It reviews both colors and arbitrary legal
 variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
-The existing training policy is unchanged.
 
 Completed reviews also derive supported [game relationships](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships),
 [owned history](REVIEW_INTELLIGENCE.md#cross-game-context) for individual move explanations.
@@ -201,7 +200,7 @@ requests. At most one move per review worker is in flight or queued. Results com
 in game order, attaching the preceding position's score before labels are exposed;
 this preserves Great-move comparisons. Pause stops adding work and saves the active
 batch before settling. Resume reuses committed moves, and failures close workers.
-Search depth, time, node limits and classification rules are unchanged. With the
+Parallelism does not change search depth, time, node limits or classification rules. With the
 default of one worker, analysis stays serial; increasing workers permits parallel
 positions, while increasing threads assigns more CPU threads to each position.
 
@@ -270,7 +269,7 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
 Saved sacrifice offers are revalidated before grading, practical assessment and
 semantic events. Unsupported legacy offers are omitted from the display report
 without modifying saved engine evidence or rerunning Stockfish. Labels are also
-computed on read, so existing reviews gain these grading corrections on reload.
+computed on read, so saved reviews pick up grading-rule changes on reload.
 
 Book takes precedence when the actual position and move appear in the bundled
 [Lichess opening catalogue](../backend/trainer/_vendor/lichess_openings/README.md).
@@ -283,7 +282,7 @@ its normal rating; a PGN opening name never makes later moves Book automatically
 
 One lazy, thread-safe, process-local index serves saved reviews, incremental
 updates and interactive variations. Recognition uses the recorded pre-move FEN
-and actual move, so older saved reviews gain Book labels without rewriting their
+and actual move, so saved reviews gain Book labels without rewriting their
 reports, running Stockfish again or migrating the database. Reports expose
 `opening` (catalogue version, optional name and ECO code) and `engine_label`;
 the primary `label` and coach text use Book. Tactical arrows retain the engine's
@@ -329,7 +328,7 @@ The readouts reserve space while reviewing and remain unchanged during variation
 Board readouts follow their players when flipped; the table keeps its White/Black
 columns. Accuracy has no Elo adjustment.
 
-Public definitions consulted during planning:
+Public reference definitions:
 [Chess.com Great/Brilliant](https://www.chess.com/article/view/how-to-play-a-brilliant-move),
 [classification](https://support.chess.com/en/articles/8572705-how-are-moves-classified-what-is-a-blunder-or-brilliant-etc).
 
@@ -346,11 +345,11 @@ transitions, critical resources, sacrifice/tactic witnesses, honest human-policy
 contrasts and valid mainline clock/opening observations. These facts feed the
 [shared dialogue layer](COACH_DIALOGUE.md) without changing badges based on human or clock data;
 the dialogue layer does not turn clock observations into coach lines.
-See [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context). A good restricted-root alternative now
+See [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context). A good restricted-root alternative
 also disproves an only-good-move Great claim; all comparisons remain Stockfish facts.
 ## Structured game context
 
-Reviewed games now expose versioned relationships between supported moments,
+Reviewed games expose versioned relationships between supported moments,
 including missed punishment, recovery, repeated motifs, sustained advantages and
 gradual erosion. They use the same effective evidence generation as move reports
 and accuracy. See [game context](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships) for gates and caveats.
@@ -380,8 +379,7 @@ uncertainty allowance, population deviation, window alignment and bounds, centip
 saturation, and harmonic denominator floor. See
 [Lichess's explanation](https://lichess.org/page/accuracy) and the pinned source.
 
-The originally proposed best-versus-played candidate adaptation was superseded by
-the decision to use Lichess's adjacent-position calculation directly. Standard games
+Fieldwork uses Lichess's adjacent-position calculation directly. Standard games
 use the reference initial value of +15 centipawns. For a custom starting FEN, use
 the first saved report's best evaluation, normalized to White, instead of assuming
 an ordinary starting position. Move ownership follows the actual starting color.

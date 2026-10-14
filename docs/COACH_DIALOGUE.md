@@ -19,7 +19,7 @@ the learner's new move. A cold card ignores even a stray future preview frame.
 
 The neutral renderer favors concrete mate/tactical consequences, critical defenses
 and recoveries, then supported positional, human and history observations. Clock observations
-are not spoken or shown (owner decision, 2026-10-03).
+are not spoken or shown.
 The neutral bubble targets two whole claims within 290 characters; each character
 declares its own claim/character budget (Walter 320, Rivet 270, both two claims).
 The first supported fact and long legacy verified explanations retain their
@@ -102,8 +102,7 @@ estimates are never presented as measured player success rates. Provider naming
 falls back generically rather than calling a future provider Maia.
 
 The badge and popup are written only, and they are the only place Maia appears:
-the coach never speaks or shows a Maia reading in its line (owner decisions,
-2026-10-02 and 2026-10-04). `gameIntent` adds Maia claims only when asked with
+the coach never speaks or shows a Maia reading in its line. `gameIntent` adds Maia claims only when asked with
 `human: true`, which `PositionCoach` does just for the popup's intent; the coach's
 own intent has none, so a sound move with nothing else to say gets the plain best
 or good line. The popup renders the reading through `DialogueText` with its
@@ -254,7 +253,7 @@ prefix may make its sequence known; it is not a speech playback event.
 
 The coach follows the displayed badge: a move shown as Book is recognized
 theory, so the coach names the opening instead of correcting it, even when the
-engine grades it poorly (owner decision, 2026-10-04). The engine grade stays in
+engine grades it poorly. The engine grade stays in
 `engine_label` for accuracy, board arrows and the Maia popup. Opening metadata is excluded from the legacy wording seed for the other
 voices and never enters cold practice dialogue. No new opening recognition,
 engine work, automatic speech event or learning inference is performed here.
@@ -302,7 +301,7 @@ the same move.
 
 ### Bubble text is the spoken line
 
-Owner decision (2026-10-03, "option 1"): the speech bubble shows what the coach
+The speech bubble shows what the coach
 **says**, not the separately written template. The written utterance is still
 rendered from claims and still drives selection and validation; only the
 displayed text changes. `useSpokenText(coachId, recordingId)`
@@ -325,8 +324,8 @@ text shows instead.
   outside the scrolling message. The screen-reader text still announces
   `<Side>’s strongest reply: <SAN>` and ", forced mate" only when an `allowed_mate`
   claim proves it. Like any long line, a joined spoken line scrolls inside the
-  fixed-height bubble (owner decisions, 2026-10-03 and 2026-10-12: the reply moved
-  under Best because the footer wrapped on phones).
+  fixed-height bubble. The reply sits under Best because a footer wrapped on
+  phones.
 - **Practice:** puzzles, opening recall, the opening line preview and Due's
   generic states (cold, retry prompt, fallback completion) show the spoken line
   for their selected recording. Lessons replace only the coach's own sentences

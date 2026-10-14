@@ -246,9 +246,8 @@ tracks retain the energy-driven path. Motion, identity and cleanup rules are sha
 
 The [retained comparison tracks](AUDIO.md#automatic-lip-sync-comparison-development-only)
 for two existing Walter recordings isolate the original Rhubarb generator against
-revised script/phoneme alignment; the interactive comparison fixture was removed
-with the Walter audition. Both comparison sets are automatic and development-only. Walter's and Rivet's
-production banks use the revised generator. The preview is for judging quality,
+revised script/phoneme alignment. Both comparison sets are automatic and
+development-only. The production banks use the revised generator. The preview is for judging quality,
 not a claim of perfect phonetic alignment. Playback uses no voice API or
 recognition model. Lesson narration remains deferred.
 
@@ -265,9 +264,7 @@ applies the exact rig controls without audio or an animation loop. This explicit
 static inspection also works with Still; actual playback continues to honor the
 normal motion/visibility policy. Clearing the preview restores the authored
 expression. A rig without a speaking mouth would remain unsupported. Real
-recordings are inspected in the Audio Studio's recorded coach comparison; the
-per-creature audition panel and its casting controls were removed once casting
-finished.
+recordings are inspected in the Audio Studio's recorded coach comparison.
 
 ### Expressions and idle behavior
 

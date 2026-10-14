@@ -114,13 +114,13 @@ STOCKFISH_PATH=/path/to/stockfish HUMAN_MODEL_PATH=/path/to/maia3-79m.pt \
 
 PowerShell sets those environment variables with `$env:NAME = 'value'` before
 running Python. Use a new output directory; the command refuses to overwrite one.
-It never downloads weights. The ten original synthetic games contain 114 plies,
+It never downloads weights. The ten synthetic games contain 114 plies,
 ratings from 600 to 2600, Chess.com/Lichess/unknown domains, quiet and tactical
 play, a sound queen offer, annotated clock pressure, recovery, repeated errors,
 conversion/lost conversion, book errors and draws. Coverage tags describe
 inspection targets, not promises that every native search produces a motif.
 
-The harness exercises the actual import/job/report/variation APIs at the unchanged
+The harness exercises the actual import/job/report/variation APIs at the default
 depth-16 / 0.8-second baseline and default 8-position / 4-question refinement
 budgets. It validates native policies and context references, no SRS creation,
 all registered coach IDs preserving the exact saved facts, and restart/reopen
@@ -136,7 +136,7 @@ tests, or physical-device testing. Native scores and nominated positions can var
 across Stockfish binaries and available compute; identical model inputs remain
 deterministic within their recorded runtime identity.
 
-Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Record what was run and its results in the commit message; earlier verification records remain in Git history.
+Run the complete local suite only when the project owner asks for it (see [AGENTS.md](../AGENTS.md)). Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Record what was run and its results in the commit message.
 
 ## Study frameworks
 
@@ -166,8 +166,8 @@ production feature flag. Legacy Review links remain part of navigation coverage.
 
 ### GitHub Actions
 
-Pull requests run one change-aware `correctness` workflow. Branch pushes no
-longer start a duplicate run; open a PR or run the workflow manually for an
+Pull requests run one change-aware `correctness` workflow. Branch pushes do not
+start a run; open a PR or run the workflow manually for an
 unmerged branch. The **Run workflow** action defaults to full verification.
 With `full=false`, a manual run compares the selected branch with `origin/main`.
 
@@ -209,7 +209,7 @@ and board CSS. The selector and the build's Vite dependency guard use that same
 manifest: an accidental direct or nested CSS import into an excluded developer
 surface fails the build. New, unclassified CSS remains conservative. Shared
 foundation, coach presentation, notices and motion policy retain all browser suites;
-ordinary page CSS and the application import aggregate no longer select the
+ordinary page CSS and the application import aggregate do not select the
 coach studio or audio studio. The audio studio also excludes board CSS. Its
 dedicated `audio-tests` directory keeps audio tests out of application test
 discovery; changes to cross-surface shared controls or unclassified providers
@@ -223,8 +223,7 @@ sets the counts. Each config reads its shard from `TEST_SHARD`
 (`frontend/playwright.shared.ts`). The application and coach studio suites keep
 whole files together and assign them to shards greedily by recorded duration from
 `frontend/tests/durations.json` and `frontend/studio-tests/durations.json` (the
-full-cast file alone outweighs the rest of the studio, so an even split by test
-count left one shard three times longer than its siblings);
+full-cast file alone outweighs the rest of the studio);
 an unrecorded file is weighted by its test count, so stale entries cost balance,
 never coverage. Refresh the record after adding or reshaping heavy specs:
 
@@ -560,7 +559,7 @@ Check SQLite integrity and foreign keys on both results. For a pass with no sche
 
 The central native vertical test runs an actual background worker through HTTP: PGN import, learner analysis, LocalClassifier, persisted evidence/exercise, review and application restart. It does not require a course. Injected classifiers cover failures and concurrency separately.
 
-Synthetic legal positions and fabricated engine scores test detector and API contracts; they are not proof of objective chess quality. Real Stockfish tests separately verify UCI integration and tactical/defensive fixtures. Historical lesson tests seed archived rows explicitly and verify preservation, audit access and rejection of practice; production lesson generation and progression have been removed.
+Synthetic legal positions and fabricated engine scores test detector and API contracts; they are not proof of objective chess quality. Real Stockfish tests separately verify UCI integration and tactical/defensive fixtures. Historical lesson tests seed archived rows explicitly and verify preservation, audit access and rejection of practice.
 
 ## Browser coverage
 
@@ -610,11 +609,11 @@ Use [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) for local CSV/compression setup
 python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lichess_benchmark.py
 ```
 
-The 48 tests use tiny synthetic CSV/position fixtures, including deliberately incorrect tags for the miss path. They cover both colors, setup-versus-solver replay, special moves, detector/subtype invocation, initial versus later episodes, per-theme sample independence, reproducibility, positive denominators, corpus context and corrupt/truncated input. No full dataset is checked in or downloaded by tests. Four Zstandard tests skip with a clear reason if its optional developer dependency is absent; all other harness tests still run.
+These tests use tiny synthetic CSV/position fixtures, including deliberately incorrect tags for the miss path. They cover both colors, setup-versus-solver replay, special moves, detector/subtype invocation, initial versus later episodes, per-theme sample independence, reproducibility, positive denominators, corpus context and corrupt/truncated input. No full dataset is checked in or downloaded by tests. The Zstandard tests skip with a clear reason if its optional developer dependency is absent; all other harness tests still run.
 
-The first actual dataset run scanned 6,100,952 rows and tested 12,000 theme-puzzle incidences. Missing tags are never negatives, and the adapter's observed material gains are not native engine truth. Blinded human precision and full-classifier recall remain separate validation tasks.
+Missing tags are never negatives, and the adapter's observed material gains are not native engine truth. Blinded human precision and full-classifier recall remain separate validation tasks.
 
-Record host/tool versions, skipped tests and warnings with results. Current TestClient dependencies emit httpx/AnyIO deprecation warnings; do not hide them with blanket suppression. Manual Linux/macOS installation, physical devices and larger-import performance need separate validation.
+Record host/tool versions, skipped tests and warnings with results. Do not hide dependency deprecation warnings with blanket suppression. Manual Linux/macOS installation, physical devices and larger-import performance need separate validation.
 
 ### Pinned Lichess reuse and source availability
 

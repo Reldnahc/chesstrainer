@@ -6,9 +6,9 @@ Developer-only, offline evaluation of Fieldwork's deterministic tactical **line 
 
 The project owner is approximately 600 Elo; manual chess adjudication by the owner is not a viable validation strategy. We need an external test of whether a motif known to be present is recognized. Lichess supplies millions of tagged tactical positions, making a statement such as "Fieldwork recognized its fork motif in X% of 1,000 sampled Lichess fork puzzles" possible without relying on the owner's chess strength.
 
-The labels are external to this benchmark, but are not infallible expert annotations. Lichess generates tags automatically and refines them through player votes. Since classifier v4, Fieldwork reuses the pinned upstream motif predicates. Agreement now partly measures compatibility with a related label generator; it is not independent validation of the reused rules. The v3.1 baseline remains preserved.
+The labels are external to this benchmark, but are not infallible expert annotations. Lichess generates tags automatically and refines them through player votes. Since classifier v4, Fieldwork reuses the pinned upstream motif predicates. Agreement partly measures compatibility with a related label generator; it is not independent validation of the reused rules.
 
-Sources inspected September 13, 2026: [dataset, format and CC0 terms](https://database.lichess.org/#puzzles), [official theme definitions](https://github.com/lichess-org/lila/blob/master/translation/source/puzzleTheme.xml), [upstream tagger](https://github.com/ornicar/lichess-puzzler/blob/master/tagger/cook.py). The current exported dataset is authoritative for candidate tags; an older tagger checkout may not list every exported theme.
+Sources: [dataset, format and CC0 terms](https://database.lichess.org/#puzzles), [official theme definitions](https://github.com/lichess-org/lila/blob/master/translation/source/puzzleTheme.xml), [upstream tagger](https://github.com/ornicar/lichess-puzzler/blob/master/tagger/cook.py). The current exported dataset is authoritative for candidate tags; an older tagger checkout may not list every exported theme.
 
 ## Run it
 
@@ -134,7 +134,7 @@ Before evaluation the report is incomplete. An unexpected detector exception pre
 
 ## Interpretation and next validation layer
 
-This can establish repeatable agreement on tagged positive examples under a documented line adapter. Since upstream reuse, those labels are related to the production recognizer and cannot serve as independent proof of its precision.
+This can establish repeatable agreement on tagged positive examples under a documented line adapter. Because classification reuses the upstream predicates, those labels are related to the production recognizer and cannot serve as independent proof of its precision.
 
 It cannot establish:
 
@@ -143,7 +143,7 @@ It cannot establish:
 - Precision on real user mistakes or the psychologically correct reason a learner erred.
 - Strategic/positional diagnosis, long-term learning improvement or exact transfer from curated puzzles to arbitrary games.
 
-The next separate layer is blinded human review of stratified positive findings, primarily to estimate precision; [existing annotation tooling](LOCAL_CLASSIFICATION.md#configuration-and-evaluation) preserves reviewer provenance and uncertainty. Preserve this baseline and inspect disagreements before proposing any rule work. The harness does not modify classifier rules. The separate v4 integration reuses pinned upstream conditions without tuning them against these failures.
+The next separate layer is blinded human review of stratified positive findings, primarily to estimate precision; [existing annotation tooling](LOCAL_CLASSIFICATION.md#configuration-and-evaluation) preserves reviewer provenance and uncertainty. Preserve this baseline and inspect disagreements before proposing any rule work. The harness does not modify classifier rules. The v4 classifier reuses pinned upstream conditions without tuning them against these failures.
 
 ## Tests
 
@@ -151,9 +151,9 @@ The next separate layer is blinded human review of stratified positive findings,
 python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lichess_benchmark.py
 ```
 
-48 deterministic tests cover theme eligibility/subtypes, setup orientation, legal full replay, both colors, castling/en passant/promotion, shared-detector invocation, initial versus later episodes, seeded independent reservoirs, file fingerprints, denominator arithmetic, corpus reproducibility and malformed/unsupported/failing input.
+Deterministic tests cover theme eligibility/subtypes, setup orientation, legal full replay, both colors, castling/en passant/promotion, shared-detector invocation, initial versus later episodes, seeded independent reservoirs, file fingerprints, denominator arithmetic, corpus reproducibility and malformed/unsupported/failing input.
 
-Tiny checked-in fixtures are explicitly synthetic, including deliberately inconsistent tags for miss-path tests. They establish harness contracts, not detector accuracy. Four compression tests skip clearly when optional zstandard is absent; no dataset download, database, engine or network is needed for these tests. Full application tests and results are documented in [TESTING](TESTING.md).
+Tiny checked-in fixtures are explicitly synthetic, including deliberately inconsistent tags for miss-path tests. They establish harness contracts, not detector accuracy. Compression tests skip clearly when optional zstandard is absent; no dataset download, database, engine or network is needed for these tests. Full application tests and results are documented in [TESTING](TESTING.md).
 
 ## Frozen upstream versus application comparison
 
@@ -173,11 +173,11 @@ report.json contains per-theme counts/percentages, separate exact/approximate ma
 
 Underpromotion is a deliberately visible semantic difference: raw upstream excludes rook/bishop mating underpromotions, whereas Fieldwork's witness projection recognizes any actual nonqueen promotion that passes its admission checks. Discovered-check projection requires a single uncovered check, excluding double check. Neither mapping was widened to flatter results.
 
-The comparison adds eight deterministic tests in test_lichess_comparison.py.
+test_lichess_comparison.py covers the comparison.
 
 ## Results
 
-The baseline run (September 13, 2026) sampled 1,000 positives per eligible theme with seed 0 from the full 6,100,952-row export (input SHA256 95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9); every row reconstructed with zero skips. The frozen sample (samples.jsonl SHA256 e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0) was then replayed through the comparison above after the v4 integration. Reports stay in ignored `data/`.
+The sample is 1,000 positives per eligible theme, seed 0, from the full 6,100,952-row export (input SHA256 95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9), with no skipped rows. The v3.1 column is that baseline run; the other two replay the same frozen sample (samples.jsonl SHA256 e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0) through the comparison above. Reports stay in ignored `data/`.
 
 | Theme | v3.1 line detector | Raw upstream recognition | v4 Fieldwork admission |
 |---|---:|---:|---:|

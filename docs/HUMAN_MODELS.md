@@ -44,17 +44,13 @@ on a connected installation, transfer the verified file, and run `--verify-only`
 disables new inference. Defaults are CPU, two threads and **one resident worker
 for the entire host**, shared by all accounts. No process or Torch memory is
 allocated at application startup; first inference verifies and loads the file.
-The CPU benchmark measured roughly 0.85 GB peak process memory and 62–83 ms warm
-policy latency for 79M on the tested machines. Hardware and thread budgets matter.
-The CPU image is roughly 1.6 GB on disk versus the pre-Maia image's 403 MB;
-checkpoint storage is additional. These are measured baselines, not guarantees.
-
-Final combined validation reviewed 114 synthetic plies with native Stockfish,
-Maia and default refinement in a network-disabled CPU container. Its cgroup peak
-was 1.26 GiB including child processes and charged filesystem cache; Docker
-reported 1.6 GB disk usage / 376 MB content size. A resident worker, engine counts,
-parallel reviews and other host workloads change memory requirements. The large
-CPU dependency layer is cached separately from application/coach-writing changes.
+Expect roughly 0.85 GB peak process memory and tens of milliseconds of warm
+policy latency for 79M on CPU; hardware and thread budgets matter. The CPU image
+is roughly 1.6 GB on disk; checkpoint storage is additional. A whole container
+reviewing with Stockfish, Maia and refinement can peak around 1.3 GiB including
+child processes and filesystem cache. A resident worker, engine counts, parallel
+reviews and other host workloads change these figures; they are not guarantees.
+The large CPU dependency layer is cached separately from application changes.
 
 `HUMAN_MODEL_WORKERS` (1–4) multiplies model memory; `HUMAN_MODEL_THREADS` (1–16)
 sets threads per worker. Budget these alongside Stockfish. A bounded queue and
@@ -80,9 +76,8 @@ reuse it. CPU containers download nothing. Outside Docker, install the CUDA Torc
 wheel yourself; do not apply the CPU Torch pin to that environment.
 
 On a GPU, a game review sends all of its positions to Maia in batches of 32 before
-the Stockfish pass. On CPU the forward pass itself is the cost (batching measured
-only about 1.5x faster), so reviews keep scoring move by move alongside the
-Stockfish searches. Device and
+the Stockfish pass. On CPU the forward pass itself is the cost, so reviews score
+move by move alongside the Stockfish searches. Device and
 runtime identity invalidate inference caches. CPU is fully supported; there is
 no automatic GPU requirement or silent CPU/GPU switch.
 
@@ -106,10 +101,9 @@ Fieldwork calibration.
 
 Fieldwork uses a narrow pinned policy adapter in a worker rather than Maia's UCI
 engine (rank-only, no move probabilities) or upstream `score_moves` (which pulls
-Torch and global thread settings into the calling process). The adapter matched
-UCI top-20 ranks and upstream policy values within 1e-7 across all three sizes,
-both colors and four conditioning pairs. That establishes fidelity, not
-population calibration.
+Torch and global thread settings into the calling process). The native
+feasibility tests check the adapter against UCI top-20 ranks and upstream policy
+values (within 1e-7). That establishes fidelity, not population calibration.
 
 ## Evidence and ownership
 

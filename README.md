@@ -213,7 +213,7 @@ Username imports contact the selected site's public API from the backend, sendin
 
 ## Documentation
 
-- **Product:** [product and feature status](docs/PRODUCT.md), [decisions](docs/DECISIONS.md)
+- **Product:** [product and feature status](docs/PRODUCT.md)
 - **Features:** [Study](docs/STUDY.md), [course files](docs/COURSE_FILES.md) and [course sources](docs/COURSE_SOURCES.md), [spaced repetition](docs/SRS.md), [Play](docs/PLAY.md), [game review](docs/GAME_REVIEW.md), [Insights and weaknesses](docs/INSIGHTS.md)
 - **Analysis:** [game imports](docs/GAME_PROVIDERS.md), [automatic analysis and the pipeline](docs/GAME_ANALYSIS.md), [local classification](docs/LOCAL_CLASSIFICATION.md), [review intelligence](docs/REVIEW_INTELLIGENCE.md), [human move evidence](docs/HUMAN_MODELS.md), [Lichess benchmark](docs/LICHESS_BENCHMARK.md)
 - **Coaches and sound:** [coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [dialogue](docs/COACH_DIALOGUE.md), [character writing](docs/COACH_PERSONALITIES.md), [audio](docs/AUDIO.md)

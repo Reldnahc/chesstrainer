@@ -46,7 +46,7 @@ not offer it below 1800.
 
 ### Why not a weakened engine, and why not a blend
 
-Measured on 2026-10-03 on 240 positions from the learner's own games (his move to
+Measured on 240 positions from the learner's own games (his move to
 play, plies 8 to 70), with Stockfish at depth 13 scoring every legal move:
 
 | Setting | Mean loss (cp) | Best move | Loses 300+ cp |

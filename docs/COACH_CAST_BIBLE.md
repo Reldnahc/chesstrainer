@@ -2,9 +2,6 @@
 
 *Personality architecture · owner-authored cast direction*
 
-**Implementation status (October 1, 2026):** the cast expansion and retirements
-described below have been implemented. “Proposed,” “Existing” and “New” preserve
-the original design context; they are not outstanding work or a second registry.
 The live coach catalogue owns selectable identities. This bible defines teaching
 temperament and language, not the complete technical creation process. Start with
 [Create a Fieldwork coach](COACH_CREATION_GUIDE.md) for that process, and use
@@ -18,8 +15,6 @@ personal names replace both generic labels and the former character titles.
 **Core rule: the chess facts stay the same; the human presence changes.**
 
 **Purpose. **This is a design starting point for making every Fieldwork coach recognizable from language alone. It defines communication behavior, not chess authority. Personalities may reshape wording, rhythm, emphasis, and interpersonal style, but must never invent evidence, alter grades, or change objective chess truth.
-
-**Proposed cast cleanup. **Retire Sunny Companion, Library Tabby, and Curious Calico. Keep Alfie as the remaining golden retriever, keep Felix, and keep Juniper (the black cat). This reduces visual/personality overlap before adding the new cast.
 
 ## 1. Cast-wide personality rules
 
@@ -39,54 +34,44 @@ personal names replace both generic labels and the former character titles.
 
 **Hidden-name test: **If names and portraits are hidden, multiple samples from a coach should still form a recognizable voice.
 
-## 2. Proposed removals
-
-| Coach | Type | Reason |
-| --- | --- | --- |
-| Sunny Companion | Golden retriever | Retire this one; Biscuit covers the high-energy affectionate dog niche more distinctly. |
-| Library Tabby | Tabby cat | Retire to reduce overlap among general cozy/curious cat personalities. |
-| Curious Calico | Calico cat | Retire; the new Pickle takes the playful-curious cat niche more cleanly. |
-
-**Resulting target cast: **13 retained existing coaches + 17 new coaches = 30 total.
-
-## 3. Voice matrix
+## 2. Voice matrix
 
 **Scales: **Energy, Directness, Humor, and Jargon are 1–5. They are behavioral tendencies, not quality ratings.
 
 | Coach | Group | Archetype | E | D | H | J | Typical response shape |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Walter | Existing · Human | Warm veteran who sees a game as a sequence of turning points | 3 | 3 | 1 | 2 | Context → consequence → connection |
-| Femi | Existing · Human | Sociable post-game analyst sitting across the table | 4 | 3 | 3 | 3 | Reaction → conversational explanation → suggestion |
-| Jun | Existing · Human | Calm, disciplined technician | 2 | 5 | 0 | 4 | Fact → exact consequence → best resource |
-| Arjun | Existing · Human | Curious collaborator exploring alternatives with you | 3 | 2 | 2 | 2 | Question → idea → comparison |
-| Tamar | Existing · Human | Confident mentor who expects improvement | 4 | 5 | 2 | 3 | Verdict → reason → actionable takeaway |
-| Marisol | Existing · Human | Restrained observer who notices exactly what changed | 1 | 4 | 0 | 4 | Observation → consequence |
-| Réka | Existing · Human | Tactical enthusiast who genuinely gets excited by ideas | 5 | 4 | 3 | 2 | Reaction → tactical point → consequence |
-| Ingrid | Existing · Human | Relaxed, reassuring strong player | 3 | 3 | 2 | 2 | Reassurance → fact → next idea |
-| Felix | Existing · Cat | Sharp, dry, slightly aloof tactical killer | 2 | 5 | 3 | 3 | Consequence first → terse explanation |
-| Juniper | Existing · Black Cat | Quiet, watchful observer with a soft side | 1 | 4 | 1 | 2 | Observation → pause → conclusion |
-| Alfie | Existing · Golden Retriever | Patient teacher who explains without rushing | 2 | 3 | 1 | 3 | Principle → concrete example → takeaway |
-| Waffles | Existing · Corgi | Tiny commander with absurd confidence | 5 | 5 | 4 | 2 | Command/reaction → consequence → order |
-| Scout | Existing · Dog | Intense pattern-recognition coach who wants the task done | 4 | 5 | 1 | 4 | Pattern → task → next action |
-| Mateo | New · Human | Excitable tactics kid | 5 | 3 | 3 | 1 | Reaction → question/observation → explanation |
-| Tala | New · Human | Sharp, playful puzzle solver | 4 | 4 | 3 | 1 | Clue → discovery → consequence |
-| Biscuit | New · Dog | Eager beginner-friendly teammate | 5 | 3 | 3 | 1 | Emotional reaction → explanation → simple lesson |
-| Pickle | New · Cat | Tiny chaos detective | 4 | 2 | 4 | 1 | Curiosity → discovery → playful conclusion |
-| Ziggy | New · Sci‑Fi | Intelligent outsider studying human chess intuition | 2 | 3 | 3 | 2 | Observation → outsider perspective → explanation |
-| Celeste | New · Fantasy | Radiant optimist who appreciates elegant ideas | 4 | 3 | 2 | 1 | Reaction → elegant description → lesson |
-| Monty | New · Animal | Huge, surprisingly thoughtful heavyweight | 2 | 5 | 2 | 1 | Simple fact → simple reason → consequence |
-| Rivet | New · Sci‑Fi | Literal calculation machine with structured delivery | 2 | 5 | 3 | 4 | Pattern/Issue → cause → result |
-| Orin | New · Fantasy | Old scholar of recurring chess patterns | 2 | 3 | 2 | 3 | Principle → application → consequence |
-| Pip | New · Fantasy/Silly | Happy little blob with one-idea-at-a-time teaching | 4 | 3 | 4 | 0 | Reaction → one simple fact |
-| Ember | New · Fantasy | Proud strategist whose respect is earned | 3 | 5 | 1 | 3 | Judgment → strategic/tactical reason → consequence |
-| Wisp | New · Fantasy | Quiet watcher who notices threats already lurking | 1 | 4 | 1 | 2 | Observation → danger → consequence |
-| Bandit | New · Animal/Silly | Clever opportunist who notices anything free | 4 | 4 | 4 | 1 | Spot opportunity → explain why → exploit it |
-| Fergus | New · Animal/Silly | Absurdly calm deadpan minimalist | 1 | 5 | 4 | 1 | One blunt fact → stop |
-| Winston | New · Animal/Silly | Unshakeable calm companion | 1 | 3 | 2 | 1 | Calm acknowledgment → fact → next step |
-| Button | New · Fantasy/Silly | Odd little forest thinker | 1 | 2 | 3 | 1 | Strange observation → concrete chess fact |
-| Percy | New · Silly/Concept | Earnest little pawn who takes chess extremely seriously | 4 | 4 | 4 | 2 | Emotional reaction → practical role-based lesson |
+| Walter | Human | Warm veteran who sees a game as a sequence of turning points | 3 | 3 | 1 | 2 | Context → consequence → connection |
+| Femi | Human | Sociable post-game analyst sitting across the table | 4 | 3 | 3 | 3 | Reaction → conversational explanation → suggestion |
+| Jun | Human | Calm, disciplined technician | 2 | 5 | 0 | 4 | Fact → exact consequence → best resource |
+| Arjun | Human | Curious collaborator exploring alternatives with you | 3 | 2 | 2 | 2 | Question → idea → comparison |
+| Tamar | Human | Confident mentor who expects improvement | 4 | 5 | 2 | 3 | Verdict → reason → actionable takeaway |
+| Marisol | Human | Restrained observer who notices exactly what changed | 1 | 4 | 0 | 4 | Observation → consequence |
+| Réka | Human | Tactical enthusiast who genuinely gets excited by ideas | 5 | 4 | 3 | 2 | Reaction → tactical point → consequence |
+| Ingrid | Human | Relaxed, reassuring strong player | 3 | 3 | 2 | 2 | Reassurance → fact → next idea |
+| Felix | Cat | Sharp, dry, slightly aloof tactical killer | 2 | 5 | 3 | 3 | Consequence first → terse explanation |
+| Juniper | Black Cat | Quiet, watchful observer with a soft side | 1 | 4 | 1 | 2 | Observation → pause → conclusion |
+| Alfie | Golden Retriever | Patient teacher who explains without rushing | 2 | 3 | 1 | 3 | Principle → concrete example → takeaway |
+| Waffles | Corgi | Tiny commander with absurd confidence | 5 | 5 | 4 | 2 | Command/reaction → consequence → order |
+| Scout | Dog | Intense pattern-recognition coach who wants the task done | 4 | 5 | 1 | 4 | Pattern → task → next action |
+| Mateo | Human | Excitable tactics kid | 5 | 3 | 3 | 1 | Reaction → question/observation → explanation |
+| Tala | Human | Sharp, playful puzzle solver | 4 | 4 | 3 | 1 | Clue → discovery → consequence |
+| Biscuit | Dog | Eager beginner-friendly teammate | 5 | 3 | 3 | 1 | Emotional reaction → explanation → simple lesson |
+| Pickle | Cat | Tiny chaos detective | 4 | 2 | 4 | 1 | Curiosity → discovery → playful conclusion |
+| Ziggy | Sci‑Fi | Intelligent outsider studying human chess intuition | 2 | 3 | 3 | 2 | Observation → outsider perspective → explanation |
+| Celeste | Fantasy | Radiant optimist who appreciates elegant ideas | 4 | 3 | 2 | 1 | Reaction → elegant description → lesson |
+| Monty | Animal | Huge, surprisingly thoughtful heavyweight | 2 | 5 | 2 | 1 | Simple fact → simple reason → consequence |
+| Rivet | Sci‑Fi | Literal calculation machine with structured delivery | 2 | 5 | 3 | 4 | Pattern/Issue → cause → result |
+| Orin | Fantasy | Old scholar of recurring chess patterns | 2 | 3 | 2 | 3 | Principle → application → consequence |
+| Pip | Fantasy/Silly | Happy little blob with one-idea-at-a-time teaching | 4 | 3 | 4 | 0 | Reaction → one simple fact |
+| Ember | Fantasy | Proud strategist whose respect is earned | 3 | 5 | 1 | 3 | Judgment → strategic/tactical reason → consequence |
+| Wisp | Fantasy | Quiet watcher who notices threats already lurking | 1 | 4 | 1 | 2 | Observation → danger → consequence |
+| Bandit | Animal/Silly | Clever opportunist who notices anything free | 4 | 4 | 4 | 1 | Spot opportunity → explain why → exploit it |
+| Fergus | Animal/Silly | Absurdly calm deadpan minimalist | 1 | 5 | 4 | 1 | One blunt fact → stop |
+| Winston | Animal/Silly | Unshakeable calm companion | 1 | 3 | 2 | 1 | Calm acknowledgment → fact → next step |
+| Button | Fantasy/Silly | Odd little forest thinker | 1 | 2 | 3 | 1 | Strange observation → concrete chess fact |
+| Percy | Silly/Concept | Earnest little pawn who takes chess extremely seriously | 4 | 4 | 4 | 2 | Emotional reaction → practical role-based lesson |
 
-## 4. Character bibles
+## 3. Character bibles
 
 **Comparison fact used for every example: **Bd3 moves the rook’s only defender, allowing Black to take the rook immediately.
 
@@ -570,7 +555,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “Every piece has a job. That bishop’s job was defending the rook. Bd3 leaves the rook alone, and Black can take it.”*
 
-## 5. Suggested implementation grammar
+## 4. Suggested implementation grammar
 
 The current template-only personality layer should evolve toward a small composition grammar. The renderer still receives validated semantic claims, but each personality can choose among safe presentation structures.
 
@@ -584,47 +569,3 @@ The current template-only personality layer should evolve toward a small composi
 | Mentor-first | verdict → reason → takeaway | Tamar, Ember |
 | Calm-reset | acknowledgment → fact → next step | Ingrid, Winston |
 | Minimal | one essential fact | Fergus |
-
-## 6. Personality schema direction
-
-A stronger personality configuration should encode communication behavior in data rather than relying only on hundreds of bespoke strings. Candidate fields: opener strategy, correction strategy, praise strategy, question frequency, directness, emotional amplitude, humor level/type, metaphor allowance, jargon allowance, player-address frequency, self-reference allowance, preferred sentence length, maximum claims, and explicit prohibitions.
-
-## 7. Review checklist for the owner
-
-- Do any two coaches still feel interchangeable?
-
-- Are any personalities too gimmicky to tolerate for a full review?
-
-- Which coaches should be allowed to be more polarizing?
-
-- Should any current retained coach be retired before artwork is expanded?
-
-- Are the Mateo / Tala voices age-appropriate without feeling childish?
-
-- Are the animal coaches characters first and species jokes second?
-
-- Does Ziggy feel like the natural Maia-specialist voice without fabricating human statistics?
-
-- Are Fergus, Rivet, Waffles, Felix, and Percy distinct enough to identify blind?
-
-- Does Alfie deserve to remain as the one golden retriever?
-
-- Does the retained cat pair (Felix + Juniper) cover enough cat personality before adding Pickle?
-
-*Working draft — intended for cast review before implementation.*
-
-## Implemented idle acting — September 2026
-
-The cast's visual acting now has an independent resting repertoire, with two
-authored signatures per registered coach. These change presentation only; the
-semantic reaction and supported dialogue remain the authority for the emotion.
-Human signatures use gaze, brow, shoulder, hair and connected arm follow-through.
-Dogs and cats use sequential listening ears, paw adjustments and restrained tail
-responses. The unusual cast uses its actual anatomy: Fergus's throat, Rivet's
-lens and antenna, Ember's wings, Button's cap and Wisp's trailing silhouette.
-
-Each signature names its intended performance and eligible emotional states in
-`frontend/src/coach/idleSignatures/`. The development studio resolves those same
-definitions, including explicit individual replay. Concerned states exclude
-celebratory gestures, and prop/contact poses exclude incompatible limb motion.
-See [the shared coach architecture](COACH.md) for scheduling and extension rules.

@@ -49,7 +49,7 @@ ones not yet saved.
 All provider traffic, including change checks and syncs, is serial under the
 runner's host-wide provider lock. A 429 starts that provider's one-minute
 cooldown, during which rounds skip it. Markers live in
-`provider_connections.poll_state`. Pages no longer trigger provider requests on
+`provider_connections.poll_state`. Pages do not trigger provider requests on
 their own; **Update games** still asks for an immediate sync, at most once per
 minute per connection.
 
@@ -90,7 +90,7 @@ Every decision commits before classification. FEN, game/ply reconstruction, play
 
 ### Full-game review intelligence
 
-Game review has its own existing baseline: every move receives depth 16 / 0.8 s
+Game review has its own baseline: every move receives depth 16 / 0.8 s
 Stockfish work with two candidates and a restricted played-move search. It does
 not use the training triage pass above. The same per-game job then saves the
 learner's training decisions from the review's own baseline searches, so its
@@ -130,7 +130,7 @@ The local classification stage has a separate bounded queue so rule processing o
 
 On-demand answers reuse the exercise analysis limits/resources and require the same binary hash/version. Incompatible executables cannot silently mix scores or create recall failures. Engine adapter cache version is 2.
 
-Imports and classification backfills no longer refresh courses automatically. Backfills neither create exercises nor change enrollment/SRS. Existing courses are archived and their product routes return 410. New game imports still create ordinary review exercises from meaningful engine decisions.
+Imports and classification backfills do not refresh courses. Backfills neither create exercises nor change enrollment/SRS. Legacy courses are archived and their product routes return 410. New game imports create ordinary review exercises from meaningful engine decisions.
 
 ### Review explanations
 
@@ -138,8 +138,8 @@ Each new legal review attempt is linked by ReviewSession.last_attempt_id. The ex
 
 ### Optional evidence enrichment
 
-The v4 classifier retains the v3.1 outcome checks: inspect an initial 16 plies and extend forward by at most 16 saved plies when unfinished. They accept meaningful relative pawn/exchange outcomes. The selected endpoint must be quiet; a favorable earlier prefix cannot replace an unsettled endpoint. Absolute scores no longer suppress material loss while already ahead. Pinned Lichess predicates recognize tactical motifs; the adapter preserves move/square witnesses and retained Fieldwork collection/native extensions. A motif is not an inferred cause of every evaluation drop. See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact gates.
+The v4 classifier's outcome checks inspect an initial 16 plies and extend forward by at most 16 saved plies when unfinished. They accept meaningful relative pawn/exchange outcomes. The selected endpoint must be quiet; a favorable earlier prefix cannot replace an unsettled endpoint. Absolute scores do not suppress material loss while already ahead. Pinned Lichess predicates recognize tactical motifs; the adapter preserves move/square witnesses and retained Fieldwork collection/native extensions. A motif is not an inferred cause of every evaluation drop. See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact gates.
 
 POST /api/classifications/enrich queues at most CLASSIFICATION_PROBE_POSITIONS selected decisions (default 40). Concrete pending defensive questions rank first, then unknown outcomes and unclear mechanisms, retaining severity/recency order. A persisted classification_tasks list freezes the job budget. Existing engine workers refresh best/actual root searches, then use the remaining CLASSIFICATION_PROBE_QUERIES budget for unfinished tails and legal defensive hypotheses. Every native result is cached; supplement and query links commit together after the bounded work. Original decisions/exercise answers remain unchanged. Cancellation retains completed searches and links, retries resume the selected tasks, and later jobs skip identical completed probe keys. A changed binary or probe configuration cannot be silently stored under a previously planned key.
 
-POST /api/classifications/retry still processes saved evidence without Stockfish. Both labeled and abstained results are cached. Outcomes, witness roles/cues, previous-move context, endpoint diagnostics, defensive-query provenance and abstention reasons are stored in immutable response schema v3. API coverage counts distinct meaningful decisions rather than historical run totals. All work remains local.
+POST /api/classifications/retry processes saved evidence without Stockfish. Both labeled and abstained results are cached. Outcomes, witness roles/cues, previous-move context, endpoint diagnostics, defensive-query provenance and abstention reasons are stored in immutable response schema v3. API coverage counts distinct meaningful decisions rather than historical run totals. All work remains local.

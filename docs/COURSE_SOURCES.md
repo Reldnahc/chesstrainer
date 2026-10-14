@@ -2,7 +2,7 @@
 
 One authoring and source record for each bundled Study course: why its chapters
 are shaped as they are, which historical scores and references it relies on,
-how its claims were checked, and what each revision changed. Course content and
+and how its claims are checked. Course content and
 validation rules are in [Study](STUDY.md#guided-lessons); the file format is in
 [Course files](COURSE_FILES.md).
 
@@ -12,7 +12,7 @@ Revision `2026-10-v4` teaches a connected quiet White setup, Black's common alte
 
 ### Why these chapter boundaries
 
-Chapter count follows the learning problems, not a template. The pilot's separate Two Knights chapter repeated the same endpoint as the first chapter, so revision 2 condensed it into a move-order branch. Revision v4 brings back a Two Knights chapter for a different reason: after `3...Nf6 4.d3`, Black's common fourth moves `4...d5`, `4...h6`, `4...d6` and `4...Bb4+` each need their own answer, and only `4...Bc5` transposes to the first chapter (`4...Be7` is met by castling). The course does **not** claim every Two Knights setup transposes; sharper White alternatives such as Pollock's `4.d4` are outside this starter repertoire.
+Chapter count follows the learning problems, not a template. The Two Knights has its own chapter because after `3...Nf6 4.d3`, Black's common fourth moves `4...d5`, `4...h6`, `4...d6` and `4...Bb4+` each need their own answer, and only `4...Bc5` transposes to the first chapter (`4...Be7` is met by castling). The course does **not** claim every Two Knights setup transposes; sharper White alternatives such as Pollock's `4.d4` are outside this starter repertoire.
 
 | Chapter | Learner outcome | Scope decision |
 | --- | --- | --- |
@@ -52,18 +52,15 @@ Specific checks prevent misleading generalizations:
 - After `4...d6`, the f8-bishop can reach only e7 and only Black's king defends f7. After `5.Ng5 Be6 6.Nxe6 fxe6`, nothing defends e6.
 - The `3...h6` side trip, the Two Knights `4...h6` side trip and `3...Bc5 4.d3 Nf6 5.O-O h6 6.c3` reach the same position.
 - `...Bg4` pins the f3-knight to the queen, not the king. After `h3 Bh5 Nbd2` the d2-knight defends f3. `gxf3` after an immediate `...Bxf3` would double White's f-pawns and remove the g-pawn, which is why the lesson recaptures with the queen.
+- In Mason–Lasker each side has developed one bishop; White's c1-bishop is still at home. The Steinitz comparison names the real difference from our setup: we support e4 and castle before d4. Steinitz also prepared a c-pawn recapture, so that is not the difference.
 
-`backend/tests/test_italian_white_claims.py` checks these relationships against production step positions, including the negative cases. Native authoring analysis checked both sides' selected continuations, with deeper comparisons for the two `...d5` cases and the exchange-order decision. Current verification commands and results are recorded in verification history. Bounded engine checks support the chosen examples; they do not certify an exhaustive repertoire or every historical move as best.
+`backend/tests/test_italian_white_claims.py` checks these relationships against production step positions, including the negative cases. Bounded Stockfish checks support the chosen examples; they do not certify an exhaustive repertoire or every historical move as best.
 
-Revision `2026-09-v1` sessions and enrolled studies keep their saved snapshots. The new chapter graph and longer lines are published only under `2026-09-v2`.
+### Common replies
 
-Revision `2026-10-v3` changed wording only, after the October 2026 chess check. The Mason–Lasker note now says each side has developed one bishop; White's c1-bishop is still at home. The Steinitz comparison now names the real difference from our setup: we supported e4 and castled before d4. Steinitz also prepared a c-pawn recapture, so that was not the difference. Moves, chapters and recall lines were unchanged, and earlier sessions and enrolled studies keep their snapshots.
+Maia-3, the human-move model Fieldwork uses in game review, estimates how often 1200- and 1600-rated players choose each reply. These are model estimates, not counted games. The course covers Black's most common third moves (`3...h6`, `3...Nd4`) and fourth moves after `3...Nf6 4.d3`.
 
-### October 2026 common replies and revision v4
-
-After the chess check, Maia-3 (the human-move model Fieldwork uses in game review) estimated how often 1200- and 1600-rated players choose each reply. These are model estimates, not counted games: the Lichess opening explorer now requires a login. About three in ten of Black's third moves (`3...h6`, `3...Nd4`, `3...d6`, `3...Be7`) and most fourth moves after `3...Nf6 4.d3` other than `4...Bc5` had no lesson. Revision v4 adds the most common ones.
-
-Every taught White move, in chapters, side trips and recall lines, was checked with Stockfish 17.1 at depth 20 to 22. Each new one is the engine's first choice or within 0.3 pawns of it. Scores are pawns from White's side. Black's shown replies are the most common in Maia's estimate unless noted.
+Every taught White move, in chapters, side trips and recall lines, is Stockfish 17.1's first choice at depth 20 to 22 or within 0.3 pawns of it. Scores are pawns from White's side. Black's shown replies are the most common in Maia's estimate unless noted.
 
 | Black's reply (Maia 1200 / 1600) | Taught White moves | Stockfish | Notes in the lesson |
 |---|---|---|---|
@@ -76,7 +73,7 @@ Every taught White move, in chapters, side trips and recall lines, was checked w
 | `6...Bg4` after `6.c3` (44% / 47%) | `7.h3 Bh5 8.Nbd2` | +0.4 to +0.5 | `7...Bxf3 8.Qxf3` (+0.7; `8.gxf3` is −0.7); `8...Bxf3 9.Nxf3`; `6...O-O 7.Re1 Bg4 8.h3` (+0.3) |
 | `4...d6`, `4...h6` after `3...Bc5 4.d3`; `5...O-O`, `5...h6` after `5.O-O` | castle, then `c3` | +0.2 to +0.3 | feedback notes only |
 
-Recall lines for side trips start where their chapter's main line starts: the first chapter's from the initial position, the Two Knights lines after `3...Nf6`, the development chapter's after `5...d6` and the central chapter's after `10...Re8`. The existing `...Na5`, premature `...d5` and active `...d5` comparisons also gained recall lines.
+Recall lines for side trips start where their chapter's main line starts: the first chapter's from the initial position, the Two Knights lines after `3...Nf6`, the development chapter's after `5...d6` and the central chapter's after `10...Re8`. The `...Na5`, premature `...d5` and active `...d5` comparisons also have recall lines.
 
 ### Primary publication and reuse
 
@@ -138,14 +135,14 @@ book, not from modern instructional commentary.
 | Pollock–Lasker, 13 August 1895 | Declining b4, preserving the bishop and returning to development | [p. 115](https://archive.org/details/cu31924029919820/page/n152/mode/1up) | 23...Ne2+, White resigned; 46 plies |
 
 The first two scores reuse the existing validated transcriptions, with their own
-Black-side annotations. They do not alter the White Italian course or its saved
-revision. The [original Italian source record](#white-italian-game) records
+Black-side annotations. They do not alter the White Italian course. The
+[original Italian source record](#white-italian-game) records
 their source differences and reuse provenance. The original book's
 [Commons record](https://commons.wikimedia.org/wiki/File:The_Hastings_chess_tournament_1895._Containing_the_authorised_account_of_the_230_games_played_Aug.-Sept._1895_(IA_cu31924029919820).pdf)
 documents the public-domain status and applies Public Domain Mark 1.0.
 
 Pollock–Lasker was checked visually against printed page 115 (PDF page 153,
-zero-based scan leaf 152) in the same cached primary scan. Its complete factual
+zero-based scan leaf 152) in the same primary scan. Its complete factual
 score agrees with the [IRLchess transcription](https://www.irlchess.com/hastings1895_allfiles/games_hastings1895/g72.htm),
 used only as a secondary cross-check. No Tarrasch annotation or other source prose
 is reproduced. The score ends with the recorded check and resignation; it does
@@ -155,14 +152,16 @@ not invent a played mating continuation.
 
 - **Quiet Italian:** `1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3 Nf6 5.O-O d6
   6.c3 O-O`. The decisions teach development, mutual e-pawn support and castling.
-  The course does not imply Nf6 wins the defended e4-pawn. An optional branch
+  The course does not imply Nf6 wins the defended e4-pawn, and the feedback
+  says no central pawns have been exchanged yet rather than calling the center
+  “closed”, a term for locked pawn chains. An optional branch
   asks for `4.d3 Nf6 5.Ng5 O-O`: the rook on f8 joins the defense of f7. Side
   trips meet White's other common fourth moves: `4.O-O Nf6 5.d3 d6` and
   `4.Nc3 Nf6 5.d3 d6` keep Black's setup, `4.Ng5 Qxg5 5.d4 Qxg2` punishes
   the undefended knight, and `4.d4 Bxd4 5.Nxd4 Nxd4 6.c3 Nc6 7.Qf3 Qf6` keeps
   the won pawn while stopping `Qxf7` mate.
 - **Plan after castling:** From that familiar position, `7.Re1 a5 8.Nbd2 Be6
-  9.Bxe6 fxe6` makes the formerly demonstrated plan active: restrain b4, develop
+  9.Bxe6 fxe6` asks the learner to carry out the plan: restrain b4, develop
   the remaining bishop and restore material after White chooses to exchange.
   Black gains doubled e-pawns and a semi-open f-file; the e6-pawn supports d5/f5,
   but Nf6 still blocks Rf8. The course does not invent an immediate rook attack,
@@ -196,17 +195,17 @@ not invent a played mating continuation.
   push left e4 undefended. Lasker's `10...O-O` is noted as also good.
   The game excerpt continues through `13...d5`, connecting development to an
   actual central break while White's king is still on e1. Both ...Nf6 and ...O-O
-  are now guided decisions before they are asked again in rehearsal.
+  are guided decisions before rehearsal asks for them.
 
 The quiet Evans continuation is authored teaching material, not attributed to
 Pollock–Lasker. The central chapter branches from the source game's opening at
 White's seventh move; the game itself is never enrolled. Opening codes
 identify these selected lines; they are not grading evidence.
 
-### Instructional review sources
+### Instructional sources
 
-The September 2026 quality review compared the curriculum with the following
-primary instructional sources. These support the teaching choices and tradeoffs;
+The curriculum is checked against the following instructional sources. These
+support the teaching choices and tradeoffs;
 the lesson prose is original, and no licensed annotations or course package was
 imported.
 
@@ -216,68 +215,33 @@ imported.
 | GM Arjun Kalyan, [*Top-Level Repertoire against Italian Game*, free author preview](https://www.modern-chess.com/course/top-level-repertoire-against-italian-game/82911/) | Confirms the chosen bishop-first framework and specifically motivates ...a5 before ...Be6 to restrain White's queenside play after an exchange. It also distinguishes c3/d4 from c3/d3 and identifies other concrete branches outside this starter course. |
 | IM Jeremy Silman, [*The Art and Science of the Isolated d-Pawn*](https://www.chess.com/article/view/the-art-and-science-of-the-isolated-d-pawn) | Explains the defender's blockade/pressure/exchange ideas and the isolated pawn side's space and active-piece compensation. The exact Fieldwork endpoint has the isolated d4-pawn and knight on d5; the lesson does not promise an automatic structural win. |
 
-The initial version's main moves were retained. The review found insufficient
-explanation of what to do after castling and an Evans excerpt that stopped before
-the most useful central idea. Revision v2 addresses those teaching gaps, adds a
-short f7-defense contrast, and makes several prompts describe a purpose rather
-than supply the move name.
-
-### Chapter-size review and revision v3
+### Chapter boundaries
 
 Chapter count is an outcome of distinct learning goals, not a template to fill.
-The review retained the existing forcing sequence and gambit unit while moving
-the quiet plan from passive explanation into a separate practical unit.
 
-| Original unit | Decision | Teaching reason |
-| --- | --- | --- |
-| Quiet development | Condense to the six setup decisions and f7-defense comparison | Basic development and king safety form one coherent checkpoint. The previous post-castling demonstration introduced a second goal after that checkpoint without asking the learner to apply it. |
-| Quiet post-castling material | Expand into its own three-decision chapter | Queenside restraint, bishop exchange and its structural cost belong together. Starting rehearsal from the already learned castled position avoids repeating basic setup just to practice the new plan. |
-| Early central advance | Retain as one seven-decision chapter | The bishop check, exchange, ...d5 and recapture are one connected response. Splitting it would separate the tactical actions from the resulting isolated-pawn structure. |
-| Evans Declined | Keep one chapter; expand four guided decisions to six | Preserving the bishop and resuming development are the same defensive task. Previously ...Nf6/...O-O appeared only in a demonstration before rehearsal required them; they are now taught actively. A second chapter would mostly repeat ordinary development. |
+| Chapter | Teaching reason |
+| --- | --- |
+| Quiet development | Six setup decisions and the f7-defense comparison. Basic development and king safety form one coherent checkpoint. |
+| Plan after castling | Queenside restraint, bishop exchange and its structural cost belong together. Rehearsal starts from the already learned castled position, so basic setup is not repeated just to practice the new plan. |
+| Early central advance | The bishop check, exchange, ...d5 and recapture are one connected response. Splitting it would separate the tactical actions from the resulting isolated-pawn structure. |
+| The `7.Nc3` gambit | White's most common reply to `6...Bb4+`; its main line and two side trips hold eight decisions. |
+| Evans Declined | Preserving the bishop and resuming development are the same defensive task. A second chapter would mostly repeat ordinary development. |
 
-The current course has four chapters because those are the supported learning
-units. This does not require another opening to have four chapters. The v3
-boundary remains explicit: selected starter lines, not an exhaustive Black
+The boundary is explicit: selected starter lines, not an exhaustive Black
 repertoire or a middlegame strategy course. White's other responses to ...Be6,
 and many early Italian sidelines, are not silently claimed as covered.
 
-Existing v1/v2 lesson-session snapshots remain pinned to their saved material;
-new sessions use v3. Existing enrolled studies are not rewritten by this change.
+### Common replies
 
-### October 2026 chess check and revision v4
+Maia-3, the human-move model Fieldwork uses in game review, estimates how often
+1200- and 1600-rated players choose each reply. These are model estimates, not
+counted games.
 
-The
-October 2026 chess check
-found no taught move to change. Every taught move was within about 0.25 pawns
-of Stockfish 17.1's first choice at depth 22, except the deliberate Evans
-decline with `4...Bb6` (about 0.4).
-Revision v4 corrects two explanations:
-
-- The Steinitz–von Bardeleben note no longer says Black resigned. The 1896 book
-  prints “Resigns”, but reports from the tournament, collected by
-  [Edward Winter](https://chesshistory.com/winter/extra/steinitzvonbardeleben.html),
-  say von Bardeleben left the room without resigning and lost on time.
-- The bishop-first feedback no longer calls the center “closed”, a term for
-  locked pawn chains. It now says no central pawns have been exchanged yet.
-
-Existing v1–v3 lesson-session snapshots and enrolled studies keep their saved
-material.
-
-### October 2026 common replies and revision v5
-
-After the chess check, Maia-3 (the human-move model Fieldwork uses in game
-review) estimated how often 1200- and 1600-rated players choose each reply.
-These are model estimates, not counted games: the Lichess opening explorer now
-requires a login. About four in ten of White's fourth moves (`4.O-O`, `4.Nc3`,
-`4.Ng5` and `4.d4`) had no lesson, and about half of White's replies to
-`6...Bb4+` were `7.Nc3`, which appeared only in the historical excerpt.
-Revision v5 adds the most common ones.
-
-Every taught Black move, in chapters, side trips and recall lines, was checked
-with Stockfish 17.1 at depth 20 to 22. Each new one is the engine's first choice
-or within 0.3 pawns of it. Scores are pawns from Black's side, so positive
-scores favor Black. White's shown replies are the most common in Maia's
-estimate unless noted.
+Every taught Black move, in chapters, side trips and recall lines, is
+Stockfish 17.1's first choice at depth 20 to 22 or within 0.3 pawns of it,
+except the deliberate Evans decline with `4...Bb6` (about 0.4). Scores are pawns
+from Black's side, so positive scores favor Black. White's shown replies are the
+most common in Maia's estimate unless noted.
 
 | White's reply (Maia 1200 / 1600) | Taught Black moves | Stockfish | Notes in the lesson |
 |---|---|---|---|
@@ -294,12 +258,9 @@ estimate unless noted.
 | `9.d5`, the Møller Attack (5% / 15%) | `9...Bf6 10.dxc6 bxc6` | +0.3, then +1.0 | `10.Re1 Ne7 11.Rxe4 O-O` (+0.1; `11...d6` is +0.2) |
 | `8.b5` in the Evans (10% / 7%) | `8...axb5 9.Bxb5 Nf6 10.a6 Nxe4` | +0.6, then +1.0 | White's moves follow Pollock–Lasker, where Lasker castled instead (+0.85). `11.Qe2 Nf6` (+1.7); `11.axb7 Bxb7` (+2.5) |
 
-The `7.Nc3` gambit gets its own chapter rather than a side trip: it is White's
-most common reply to `6...Bb4+`, and its main line and two side trips hold
-eight decisions. The existing Evans `8.b5` comparison became a side trip with
-decisions; it teaches `10...Nxe4`, which Stockfish rates about 0.2 pawns above
-Lasker's `10...O-O`, and says castling is also good. The existing `5.Ng5`
-branch now asks for castling as a decision instead of only showing it.
+The Evans `8.b5` side trip teaches `10...Nxe4`, which Stockfish rates about 0.2
+pawns above Lasker's `10...O-O`, and says castling is also good. The `5.Ng5`
+branch asks for castling as a decision.
 
 Recall lines for side trips start where their chapter's main line starts: the
 quiet, central and Evans chapters' from the initial position and the `7.Nc3`
@@ -315,7 +276,7 @@ decision reply and transition, preserving exact histories and branch anchors.
 bishop exchange, historical pin, material balance, castling, retreat safety,
 source annotation plies and final recorded fork. Further checks verify the f7
 defenders, legal Rxf7 reply, the Bxe6/fxe6 structure, the actual isolated d4-pawn
-and blockade, and the supported historical d5 break. New factual tests prove b4
+and blockade, and the supported historical d5 break. Tests also prove b4
 remains legal, a bishop retreat can decline the exchange, fxe6 is the actual
 recapture, and Nf6 prevents an immediate rook attack on f2. The anchored plan
 rehearsal matches its three guided decisions exactly; Evans rehearsal contains
@@ -323,18 +284,16 @@ no new post-gambit learner move absent from its instruction. The tests also
 verify that changing Black-course annotations in one returned object cannot
 mutate the original White course.
 
-Revision v5's tests replay each new side trip's claims: what attacks and
+Side-trip tests replay each side trip's claims: what attacks and
 defends the pieces named, the pins, checks and mate threats, that each move
 recommended against White's alternatives is legal there, and the material
 count each summary states. Further tests require every side trip to have a
 recall line that ends where the trip ends and starts where its chapter starts.
 
-The shared bundled-course journey and native authoring checks cover these new
-chapters through the existing player and bounded Stockfish audit. Those searches
-are authoring checks only: opening a lesson never downloads content or starts an
-engine job, and engine preferences do not rewrite the authored answer contract.
-The curriculum verification record
-records the deeper Stockfish authoring budgets, results and limits.
+The shared bundled-course journey tests walk every chapter through the
+player. Stockfish searches are authoring checks only: opening a lesson never
+downloads content or starts an engine job, and engine preferences do not
+rewrite the authored answer contract.
 
 ## King's Gambit
 
@@ -355,41 +314,37 @@ choice of lines; their prose has not been copied into the lessons.
 | Meet the Falkbeer countergambit | From `1.e4 e5 2.f4 d5`: `3.exd5 e4 4.d3 Nf6 5.dxe4 Nxe4 6.Nf3 Bc5 7.Qe2 Bf5 8.Nc3 Qe7 9.Be3` | Remove the e4 wedge before Nf3, use the open e-file, then recognize how intervening pieces change the pin. |
 
 
-#### Chapter-boundary review
+#### Chapter boundaries
 
 The chapter count follows the positions' learning demands, not a quota:
 
-- **Modern Defense — retain, complete its plan.** The bishop check, central
-  counterattack and castling sequence form one connected development problem.
-  The old ending said to prepare c3 but never asked the learner to do it. The
-  continuation `9...Bg4 10.c3` now realizes that plan while showing Black's
-  relative pin on Nf3. It does not justify a separate chapter for one pawn move.
-- **Pawn chain — retain.** `h4`, the attacked knight, `...d5` and defending Ne5
+- **Modern Defense.** The bishop check, central counterattack and castling
+  sequence form one connected development problem. The continuation
+  `9...Bg4 10.c3` carries out the c3 support plan while showing Black's
+  relative pin on Nf3. One pawn move does not justify a separate chapter.
+- **Pawn chain.** `h4`, the attacked knight, `...d5` and defending Ne5
   before castling are successive consequences of the same position. Splitting
   at `...Bd6` would separate the threat from its answer. The optional premature
-  castling example and Rosanes contrast support that objective; they remain
-  optional illustrations, not new recall obligations.
-- **Bc5 refusal — condense.** The queen-check hazard and the prepared c3/d4
-  center belong together. The unrelated Falkbeer excursion has been removed
-  from this chapter, and two arrivals have become one. Its five guided
-  decisions now follow a single pawn structure.
-- **Falkbeer — separate and complete.** `...e4` prevents the normal immediate
-  Nf3 development, and clearing it gives Black piece activity on the open
-  e-file. The former two-decision optional branch stopped before addressing
-  that activity. The new chapter develops through Qe2, Nc3 and Be3, has its
-  own rehearsal, and shows why a changing pin requires reassessment. Recall
-  starts after `2...d5`, with the full game history preserved, rather than
-  adding repeated initial e4/f4 decisions.
+  castling example and Rosanes contrast support that objective; they are
+  optional illustrations, not recall obligations.
+- **Black's other replies.** One plan covers the common replies the other
+  chapters skip; its table is under Common replies below.
+- **Bc5 refusal.** The queen-check hazard and the prepared c3/d4 center belong
+  together; its five guided decisions follow a single pawn structure.
+- **Falkbeer.** `...e4` prevents the normal immediate Nf3 development, and
+  clearing it gives Black piece activity on the open e-file. The chapter
+  develops through Qe2, Nc3 and Be3, has its own rehearsal, and shows why a
+  changing pin requires reassessment. Recall starts after `2...d5`, with the
+  full game history preserved, rather than adding repeated initial e4/f4
+  decisions.
 
-Revision v5 adds the chapter for Black's other common replies; see
-[Common replies and revision v5](#october-2026-common-replies-and-kings-gambit-revision-v5).
-It is still a bounded foundation, not a complete repertoire. Rarer second and
+The course is a bounded foundation, not a complete repertoire. Rarer second and
 third moves, and deeper alternatives inside each chapter, are not covered.
 
-The Modern Defense uses an established bishop-check line instead of the first
-draft's `5.d4 Nxd5 6.Bc4 Nb6` script. Ian Simpson's [original Modern Defense
+The Modern Defense uses an established bishop-check line rather than
+`5.d4 Nxd5 6.Bc4 Nb6`. Ian Simpson's [original Modern Defense
 analysis](https://www.ianchessgambits.com/kings-gambit-modern-defence.html)
-discusses the stronger `...Be6` resource against that draft and the `Bb5+` setup.
+discusses Black's stronger `...Be6` resource against that line and the `Bb5+` setup.
 It also identifies the `Nbd2`/`c3` plan. Exeter Chess Club's [annotated game
 collection](https://www.exeterchessclub.org.uk/content/variations-kings-gambit)
 includes Kinlay–Nunn, London 1977, following the selected line through `9.Nbd2`.
@@ -399,15 +354,15 @@ attack or a promise of equal engine evaluation.
 
 John Shaw's [*The King's Gambit* publisher sample](https://www.newinchess.com/media/wysiwyg/product_pdf/7093.pdf)
 and Steve Giddins's [*The Most Exciting Chess Games Ever* publisher sample](https://www.newinchess.com/media/wysiwyg/product_pdf/9024.pdf),
-pp. 172–174, motivated a closer review of the pawn-chain chapter. The original
-`6.d4 d6 7.Nd3 Nxe4 8.Bxf4 Be7` script avoided Black's more challenging central
-play. The reviewed line develops `Bc4` and meets `...d5`/`...Bd6`. The move order makes
-the lesson concrete: `8.d4` defends Ne5 before `9.O-O`.
+pp. 172–174, inform the pawn-chain chapter. Its line develops `Bc4` and meets
+Black's challenging central play with `...d5`/`...Bd6`, rather than a
+`6.d4 d6 7.Nd3` line that avoids it. The move order makes the lesson concrete:
+`8.d4` defends Ne5 before `9.O-O`.
 
-We do not repeat an older claim that `6.d4` is objectively refuted. The deeper
-Stockfish audit found it close to `6.Bc4`; the revision improves the teaching
-sequence and opponent resistance rather than declaring every alternative wrong.
-The selected `9.O-O` is also a study choice; `9.Nc3` appears in the literature.
+The course does not claim `6.d4` is refuted; Stockfish rates it close to
+`6.Bc4`. The line is chosen for its teaching sequence and opponent resistance,
+not because every alternative is wrong. The selected `9.O-O` is also a study
+choice; `9.Nc3` appears in the literature.
 
 ### Short comparisons
 
@@ -441,12 +396,11 @@ informs the immediate d3 challenge and the Nf3/Qe2 coordination. Exeter's
 follows the selected development through `9.Be3`. Fieldwork's comparison then
 uses the independently checked `10...Qxe2+`, rather than importing the game's
 `10...Nxe2`. These are original teaching explanations of legal board facts,
-not copied source annotations. The historical full-game library is unchanged.
-The classical `3...e4` is a named alternative Black may choose, not a claim that
+not copied source annotations. The classical `3...e4` is a named alternative Black may choose, not a claim that
 it is stronger than transposing to the Modern Defense with `3...exf4`.
 
 Each chapter ends in independent rehearsal. Historical games and side trips
-never automatically schedule their moves for recall. Since v5, each side trip
+never automatically schedule their moves for recall. Each side trip
 that shows a common opponent reply has its own optional recall line. The two
 mistake demonstrations, premature castling and `3.fxe5?`, have none: their
 White moves are what not to play.
@@ -458,9 +412,10 @@ White moves are what not to play.
 | Rosanes–Anderssen, Breslau 1863 | [Giddins publisher sample, pp. 172–174](https://www.newinchess.com/media/wysiwyg/product_pdf/9024.pdf#page=17) | 46 plies, through `23...Re1#`, Black win | After `8...Nh5` through `13...Ng3`, plies 16–26 |
 | Morphy–Bornemann, blindfold game | [*The Blue Book of Chess* (1910), p. 183](https://www.gutenberg.org/files/16377/16377-h/16377-h.htm#Pg_183); PGN 67 | 61 plies, through `31.cxd7+`, Black resigns | After `3...d6` through `11.O-O-O`, plies 6–21 |
 
-Rosanes–Anderssen replaces the earlier Anderssen–Kipping illustration. It reaches
-the position studied in chapter two and then takes a different ninth move,
-showing why taking material does not replace developing and protecting the king.
+Rosanes–Anderssen reaches the position studied in chapter two and then takes a
+different ninth move, showing why taking material does not replace developing
+and protecting the king. The score agrees with
+[Edward Winter's](https://chesshistory.com/winter/extra/rosanesanderssen.html).
 Only the factual historical score is reused from the modern book. Its copyrighted
 annotations are not reproduced, and the book is not labeled public domain.
 Fieldwork's notes independently identify the undeveloped pieces, attack on h1,
@@ -472,49 +427,34 @@ cross-checked. Neither gives a date or venue; the lesson does not invent one.
 The annotation at ply 35 points to the later `18.cxd4`, connecting the preparation
 to its eventual use. The source records resignation after check, not checkmate.
 The [Gutenberg catalogue](https://www.gutenberg.org/ebooks/16377) identifies this
-1910 book as public domain in the United States.
+1910 book as public domain in the United States. chessgames.com lists the game
+as 32 moves, so its score may continue one move beyond `31.cxd7+`.
 
-### October 2026 chess check and revision v4
-
-The
-October 2026 chess check
-rechecked every taught move, shown reply, comparison and rehearsal line with
-Stockfish 17.1 at depth 22. No taught move is a mistake. `2.f4` itself scores
-about −0.7 for White, which is normal for this gambit, and `5.Bb5+`, `6.Bc4` and
-`7.d4` trail the engine's first choice by 0.3–0.5. Rosanes–Anderssen matches
-[Edward Winter's score](https://chesshistory.com/winter/extra/rosanesanderssen.html).
-Revision v4 corrects six explanations without changing any move:
+### Explanation details
 
 - **Bc5 refusal, `7.Nc3`:** nothing else defends e4 against the f6-knight, so
-  Nc3 is its only defender, not “another” one.
+  Nc3 is its only defender.
 - **Modern Defense, `7...Bd6`:** the bishop defends f4 but cannot reach h2;
   Black's own f4-pawn blocks it.
 - **Pawn chain, `5.Ne5`:** the rejected alternative is the Allgaier Gambit,
-  `5.Ng5 h6 6.Nxf7`, which gives the knight up on f7, not g5.
+  `5.Ng5 h6 6.Nxf7`, which gives the knight up on f7.
 - **Premature castling:** `9.Re1` pins the bishop to the king, `9...Qe7` defends
-  it and shields the king, and `10...Bxd4+` escapes with check. The summary now
-  names the Rice Gambit and its usual `10.c3`.
+  it and shields the king, and `10...Bxd4+` escapes with check.
 - **After `9.O-O`:** counting attackers suggests `Bxf4` wins a pawn, but after
   `9...O-O 10.Bxf4` Black ignores the bishop and plays `10...Qxh4` with a strong
   attack (about −2.9 for White). `Rxf4` lets the h5-knight take the rook. The
-  text now says both.
+  text says both.
 
-Morphy–Bornemann was not rechecked, because the cited Blue Book pages could not
-be opened during the check. chessgames.com lists the game as 32 moves, so its
-score may continue one move beyond `31.cxd7+`.
+### Common replies
 
-### October 2026 common replies and King's Gambit revision v5
+Maia-3, the human-move model Fieldwork uses in game review, estimates how often
+1200- and 1600-rated players choose each reply. These are model estimates, not
+counted games. `2...Nc6` alone is about a quarter of Black's replies to `2.f4`.
 
-After the chess check, Maia-3 (the human-move model Fieldwork uses in game
-review) estimated how often 1200- and 1600-rated players choose each reply.
-These are model estimates, not counted games: the Lichess opening explorer now
-requires a login. By Black's third move only about 11% (1200) and 21% (1600) of
-games were still in a line v4 taught, and `2...Nc6` alone was about a quarter
-of Black's replies to `2.f4`. Revision v5 adds the most common replies.
-
-Every taught White move, in chapters, side trips and recall lines, was checked
-with Stockfish 17.1 at depth 20 to 22. Each new one is the engine's first choice
-or within 0.2 pawns of it. Scores are pawns from White's side; the accepted
+Taught White moves are checked with Stockfish 17.1 at depth 20 to 22. `2.f4`
+itself scores about −0.7 for White, which is normal for this gambit, and
+`5.Bb5+`, `6.Bc4` and `7.d4` trail the engine's first choice by 0.3–0.5. Every
+taught move in the table below is the first choice or within 0.2 pawns of it. Scores are pawns from White's side; the accepted
 gambit is about half a pawn better for Black, so negative scores are normal.
 Black's shown replies are the most common in Maia's estimate unless noted.
 
@@ -534,9 +474,9 @@ Black's shown replies are the most common in Maia's estimate unless noted.
 
 The Fischer line keeps Stockfish's main line `4...h6` rather than the more common
 `4...Bg4`, because it shows the h4 challenge from the pawn-chain chapter; `4...Bg4`
-is a note. In the Falkbeer, the existing `3...exf4` and `9...Nxc3` comparisons
-became side trips with decisions and their own recall lines. The Modern Defense
-and Falkbeer chapters each gained their queen-recapture side trips; the bishop's
+is a note. In the Falkbeer, the `3...exf4` and `9...Nxc3` comparisons are side
+trips with decisions and their own recall lines. The Modern Defense and
+Falkbeer chapters each have a queen-recapture side trip; the bishop's
 check `5.Bb5+` in the transposition trip trails Stockfish's `5.c4` by about 0.2,
 as in the Modern Defense chapter itself.
 
@@ -551,15 +491,11 @@ The course validator checks full move histories, connected steps, branch
 anchors, source excerpts and rehearsal lines with python-chess. Focused content
 tests cover concrete attacks, pawn counts, counterexamples, Falkbeer pin changes,
 the anchored rehearsal, transposition histories and final Rosanes mating geometry.
-Native Stockfish checks evaluate the prescribed choices
-and stronger opponent resources separately from the historical illustrations.
-Player tests cover branch return, withheld rehearsal answers, historical-game
-exploration and optional enrollment. No network access or live engine analysis
-is needed to load a lesson.
-The teaching-quality review
-records the earlier source and engine audit. The
-curriculum restructuring record
-records revision 3 authoring budgets, factual checks and player validation.
+Stockfish authoring checks evaluate the prescribed choices and stronger
+opponent resources separately from the historical illustrations. Player tests
+cover branch return, withheld rehearsal answers, historical-game exploration
+and optional enrollment. No network access or live engine analysis is needed to
+load a lesson.
 
 ## Sicilian Dragon
 
@@ -611,14 +547,13 @@ move:
 
 ### Engine check
 
-Every Black move in a lesson, side trip or recall line was checked with
-Stockfish 18 at depth 20 on this PC (the cloud checks of the earlier courses
-used Stockfish 17.1). A script confirmed that every lesson move lies on one of
-the 29 checked recall lines. Each taught move is the engine's first choice or
-within 0.3 pawns of it, with one documented exception:
+Every Black move in a lesson, side trip or recall line is checked with
+Stockfish 18 at depth 20; every lesson move lies on one of the 29 recall lines.
+Each taught move is the engine's first choice or within 0.3 pawns of it, with
+one documented exception:
 
-- **`5...g6`, the Dragon move itself,** trails `5...a6` (the Najdorf) by 0.28 at
-  depth 20 and by 0.27 to 0.39 at depth 22, depending on the run. As with `2.f4`
+- **`5...g6`, the Dragon move itself,** trails `5...a6` (the Najdorf) by about
+  0.3 to 0.4 at depth 20 to 22. As with `2.f4`
   in the King's Gambit, the move that defines the opening is kept. It appears
   in the first chapter and in the `2.Nc3` and `3.Nc3` transpositions.
 
@@ -635,7 +570,7 @@ Other notable checks, scores in pawns from Black's side at the end of each line:
 | `3.c3 Nf6 4.d4 Nxe4 5.dxc5 Nxc5` | +1.0 | Black keeps the extra pawn. |
 | Smith-Morra, `7...Nf6` | +0.1 | After `8.Qe2`, `8...Be7`, `8...Bd7` and `8...a6` are about equal. |
 
-Summary advice that goes beyond the taught moves was checked too: `11.e5 Ng4`
+Summary advice that goes beyond the taught moves is checked too: `11.e5 Ng4`
 in the quiet line (`11...Nd7` is about 0.5 worse), `10.exd5 Nxd5` after
 `7.Be3 … 9...d5`, `6.exd5 exd5` after `4.Ng5 e6 5.d3 d5`, and `8.Nd5 Nxd5` in the
 third-move chapter.
@@ -710,10 +645,10 @@ purpose.
 
 ### Engine check
 
-Every White move in a lesson, side trip or recall line was checked with
-Stockfish 18 at depth 20 on this PC. A script confirmed that every lesson move
-lies on one of the 19 checked recall lines. Each taught move is the engine's
-first choice or within 0.3 pawns of it, with one documented exception:
+Every White move in a lesson, side trip or recall line is checked with
+Stockfish 18 at depth 20; every lesson move lies on one of the 19 recall lines.
+Each taught move is the engine's first choice or within 0.3 pawns of it, with
+one documented exception:
 
 - **`3.f4`, the gambit move itself,** trails `3.Nf3` by about 0.4 at depth 20
   and 22 (about −0.2 for White against +0.2). As with `2.f4` in the King's
@@ -723,7 +658,7 @@ first choice or within 0.3 pawns of it, with one documented exception:
 `3.Nf3` by about 0.1. Against `2...Nc6`, `3.f4` is about 0.8 worse than the
 best move, so the course develops first. In the `4...Qe7` side trip, `6.d4` is
 the engine's first choice, up to about 0.45 ahead of
-`6.Nf3` at depths 18 to 26 (sometimes nearly level), varying between runs.
+`6.Nf3` at depths 18 to 26 and sometimes nearly level.
 
 Scores in pawns from White's side at the end of each line:
 
@@ -789,6 +724,11 @@ two learner moves, inside the project's limit of about five learner moves per
 exercise. Chapter-end steps name the matching theme in Study's Puzzles theme
 filter; those themes exist in the bundled Lichess starter pack.
 
+The texts say that a check can be blocked or the checking piece captured, not
+that the king must move, and that a pinned piece cannot leave its line without
+exposing the piece behind it. In the pawn fork, Black ends with an extra piece
+for two pawns, one point ahead.
+
 #### Chapter boundaries
 
 - **One pattern per chapter.** Each pattern needs its own recognition cue: two
@@ -809,7 +749,8 @@ filter; those themes exist in the bundled Lichess starter pack.
   the pin and the mate.
 - **Petrov trap:** `1.e4 e5 2.Nf3 Nf6 3.Nxe5 Nxe4 4.Qe2 Nf6 5.Nc6+`. The feedback
   names 4...Qe7 as Black's correct reply; Stockfish 17.1 at depth 20 ranks it
-  first (White +0.56), ahead of 4...d6 (+1.45).
+  first (White +0.56), ahead of 4...d6 (+1.45). 3...Nxe4 is already dubious;
+  Black's usual move is 3...d6 ([Wikipedia](https://en.wikipedia.org/wiki/Petrov%27s_Defence)).
 - **Réti–Tartakower, Vienna 1910:** score and publication history from Edward
   Winter, [Réti v Tartakower](https://www.chesshistory.com/winter/extra/retitartakower.html).
   Georg Marco published the game in the *Neues Wiener Tagblatt* on 1 April 1910
@@ -826,100 +767,46 @@ The 15 composed positions have no source. Their FENs are in the course file,
 
 ### Engine verification
 
-Stockfish 17.1 (Linux x86-64 AVX2 build, 4 threads, 256 MB hash) searched every
-decision with MultiPV over all legal moves: depth 18 for the taught move, depth
-16 for the scripted reply. Mates and board claims are asserted exactly with
-python-chess in `backend/tests/test_tactics_course.py`.
-
-| Example | Taught move | Score | Next-best other move |
-|---|---|---|---|
-| Knight fork | Ne7+ | +6.30 | +2.87 |
-| Pawn fork | e5 | +1.89 | −4.40 |
-| Queen fork | Qa4+ | +5.51 | +1.37 |
-| Pinned knight | d5 | +5.43 | +3.12 |
-| Pinned queen | Bb5 | +5.68 | +2.96 |
-| Caro-Kann trap | Nd6# | mate | +0.30 |
-| Rank skewer | Ra7+ | +7.34 | +0.08 |
-| Diagonal skewer | Bd3+ | +8.32 | −0.17 |
-| File skewer | Re1+ | +6.37 | +1.39 |
-| Petrov trap | Nc6+ | +4.92 | +2.69 |
-| Discovered check | Bxh7+ | +6.65 | +4.39 |
-| Réti–Tartakower | Bg5+ | mate in 2 | −4.87 |
-| Captured guard | Bxf6 | +8.10 | +5.25 |
-| Chased guard | e5 | +4.58 | +1.22 |
-| Only defender | Bxc6 | +4.54 | +0.83 |
-| Open back rank | Re8# | mate | mate in 4 |
-| Guarded back rank | Rxe8+ | mate in 2 | +1.62 |
-| Queen sacrifice | Qxc8+ | mate in 2 | −0.14 |
+Every decision is checked with Stockfish 17.1, MultiPV over all legal moves.
+Mates and board claims are asserted exactly with python-chess in
+`backend/tests/test_tactics_course.py`.
 
 Every taught move, including each follow-up capture, is Stockfish's first choice
 or within about 20 centipawns of it. The two near-ties are a pinned knight that cannot
 escape (after `d5 Ke7`, h4 and dxe6 score the same) and a second queen win
 (Rb5+ beside Bxh7 in the diagonal skewer). A decision accepts only the taught
 move; another winning move gets the player's standard "different continuation"
-message.
+message. Prompts rule out a second answer where one exists: the double-check
+prompt asks for the square where the bishop also guards e7, because Ba5+ is a
+double check too (and loses); the Caro-Kann prompt asks for checkmate, because
+Nxf6+ also checks; the Petrov prompt asks for a knight move that attacks the
+queen where the king cannot take it, because Ng6+ also attacks something
+valuable.
 
 Every scripted reply is within 40 centipawns of Stockfish's best defense, is
 mated just as quickly, or is named below with its gap:
 
 - **Pinned knight:** the reply is Stockfish's ...Ke7, which defends the knight
-  but keeps the pin. An earlier draft used ...Kf8, ranked 13th of 18.
+  but keeps the pin.
 - **Only defender:** ...bxc6 is the natural recapture (−5.25); ...Bf6, which
   saves the bishop (−4.86), is better. The feedback names it and says the knight
   is still won.
 - **Réti–Tartakower:** ...Kc7 and ...Ke8 are both mated next move; the feedback
   gives the other mate.
-- **Pawn fork:** ...Nd7 scored within 35 centipawns of the best reply in both
-  runs.
+- **Pawn fork:** ...Nd7 is within about 35 centipawns of the best reply.
 - **Rank skewer:** every king move loses the rook and the game; Stockfish
   prefers ...Kc6 to the scripted ...Kd6, which loses faster.
 - **Chased guard:** ...Rfe8 is about a pawn worse than ...g6 (+5.84 against
   +4.89 at depth 24); the feedback names ...g6 as the tougher defense.
 
-Composed positions were revised while authoring when the engine found a rival
-idea: the pawn fork's White rook moved from e1 to d1 so ...Bb4 no longer comes
-with tempo, and its reply became ...Nd7 because ...Nd5 let c4 compete with
-exd6; a first queen fork (Qd5+) failed to ...Be6 and became Qa4+; the pinned
-queen's knight moved from f6 to g6 so e5 was no longer a rival; the
-only-defender knight moved from d2 to b3 so ...Bf4 no longer gained a tempo.
+### Separate starting positions
 
-### Independent review
-
-Before merging, independent reviews rechecked every board claim with
-python-chess, every decision and reply with Stockfish 17.1 (depth 20 to 24), the
-named lines against Wikipedia and Edward Winter, and the definitions against
-Wikipedia and Lichess. Every taught move held, and these text changes followed:
-
-- **Prompts with a second answer:** the double-check prompt asks for the square
-  where the bishop also guards e7, because Ba5+ is a double check too (and
-  loses); the Caro-Kann prompt asks for checkmate, because Nxf6+ also checks; the
-  Petrov prompt asks for a knight move that attacks the queen where the king
-  cannot take it, because Ng6+ also attacks something valuable.
-- **Checks:** a check can be blocked or the checking piece captured, so the fork
-  and skewer texts no longer say that the king must move.
-- **Pins:** a piece pinned to something other than the king may legally move,
-  so the summary says a pinned piece cannot leave its line without exposing the
-  piece behind it.
-- **Pawn fork:** Black has an extra piece for two pawns, one point ahead, not
-  "a piece ahead".
-- **Petrov:** 3...Nxe4 is already dubious; Black's usual move is 3...d6
-  ([Wikipedia](https://en.wikipedia.org/wiki/Petrov%27s_Defence)).
-- **Chased guard:** the feedback names ...g6 as the tougher defense.
-- **Smaller fixes:** the f7-pawn already defended the pinned knight; the
-  skewered rook was never defended; the pinned-queen prompt names ...axb5; a
-  "line attack" is now "an attack along a rank, file or diagonal".
-
-The course had not been released, so it keeps revision `2026-10-v1` with a new
-content hash.
-
-### Framework change
-
-Tactics examples start from unrelated positions. An explanation step may now
+Tactics examples start from unrelated positions. An explanation step may
 begin a separate example from a different starting position (initial FEN): the
 board changes without move playback, and Back returns to the previous example.
 Within one starting position every transition must still continue the existing
 history, and a branch, decision or demonstration cannot change the starting
-position. The opening courses' content hashes are unchanged.
+position.
 
 ### Remaining boundaries
 
@@ -993,31 +880,13 @@ The eight composed positions have no source. Their FENs are in the course file,
 
 ### Engine verification
 
-Stockfish 17.1 (Linux x86-64 AVX2 build, 4 threads, 256 MB hash) searched every
-decision with MultiPV over all legal moves: depth 20 for the taught move, depth
-18 for the scripted reply. Board claims, mates and the stalemate are asserted
-exactly with python-chess in `backend/tests/test_fundamentals_course.py`.
-
-| Example | Taught move | Score | Next-best other move |
-|---|---|---|---|
-| Knight on d4 | cxd4 | +4.17 | +0.86 |
-| Open diagonal | Bxf8 | +3.16 | +0.53 |
-| Two attackers | Nxe5 | +1.48 | +0.34 |
-| Two attackers, recapture | Rxe5 | +1.40 | −4.14 |
-| Pinned defender | Nxe5 | +3.14 | +1.34 |
-| Loose bishop | Qxg4 | +4.61 | −0.28 |
-| Scholar's mate | Qxf7# | mate | −1.71 |
-| Early queen | Nc3 | +0.71 | +0.29 |
-| Early queen, center | d4 | +0.73 | +0.72 |
-| Early queen, development | Nf3 | +0.63 | +0.44 |
-| Knight on g4 | O-O | +0.82 | +0.94 (Bxf7+) |
-| Queen mate | Kf6 | mate in 2 | mate in 3 |
-| Rook mate | Rh1 | mate in 2 | mate in 3 |
-| Pawn race | Ke4 | +4.95 | −6.14 |
+Every decision is checked with Stockfish 17.1, MultiPV over all legal moves.
+Board claims, mates and the stalemate are asserted exactly with python-chess in
+`backend/tests/test_fundamentals_course.py`.
 
 Every taught move except O-O in the Italian castling position is Stockfish's
-first choice. There Bxf7+ scores a little higher (+0.94 against +0.82 at depth
-20, +0.88 against +0.80 at depth 26); the prompt asks for castling, and O-O is
+first choice. There Bxf7+ scores a little higher (about +0.9 against +0.8);
+the prompt asks for castling, and O-O is
 the only castling move. The other near-tie is the Scandinavian's fourth move,
 where d4 and Nf3 score within a few centipawns; the prompt asks for a pawn on a
 center square, and d4 is the only such move. A decision accepts only the taught move; another good move gets
@@ -1035,32 +904,17 @@ the only legal move, or is mated just as quickly:
 - **Pawn race:** ...b1=Q+ is mated as quickly as the other promotions.
 - **Queen and rook mates:** ...Kh7 and ...Kf8 are the only legal moves.
 
-Composed positions were revised while authoring when the engine or a duplicate
-found a problem: the first counting example gained an extra black pawn by
-mistake and was corrected; the pinned-defender position was redrawn because
-Bxc6+ and Qxd8+ matched Nxe5 on an open d-file; a castling example in the
-Scandinavian was dropped because castling scored well below Ne4; a back-rank
-mate planned for the checks-first example repeated the tactics course and was
-replaced by Scholar's mate; and a counting example with a knight pinned on e6
-repeated the tactics course's pin example and was dropped.
-
-### Independent review
-
-Before merging, independent reviews rechecked every board claim with
-python-chess, every taught move and reply with Stockfish 17.1, the endings with
-the Syzygy tables, and the terms against Wikipedia, chess.com and ChessKid
-articles. They found no false chess fact in the lesson text, and these changes
-followed:
+### Explanation details
 
 - *Material*, *develop* and the eighth rank are explained where they first
   appear. A series of captures on one square is a *trade*, because chapter 1
   uses *the exchange* for a rook against a bishop or knight.
-- **Scholar's mate:** ...g6 is safe only when the e5-pawn is defended (after
-  2.Qh5 g6?? Qxe5+ wins the h8-rook), and after ...g6, Qf3 aims at f7 again: 22
-  of Black's 32 replies then allow Qxf7#, and ...Nf6 blocks it.
+- **Scholar's mate** is called a trap, not an opening. ...g6 is safe only when
+  the e5-pawn is defended (after 2.Qh5 g6?? Qxe5+ wins the h8-rook), and after
+  ...g6, Qf3 aims at f7 again; ...Nf6 blocks it.
 - **Castling:** a rook and a pawn for a knight and a bishop is 6 points for 6, so
-  the feedback says why it is still a bad trade (Stockfish −2.86 for Black after
-  ...Nxf2 Rxf2 Bxf2+ Kxf2).
+  the feedback says why it is still a bad trade (Stockfish about −2.9 for Black
+  after ...Nxf2 Rxf2 Bxf2+ Kxf2).
 - **Stalemate:** the warning covers every move that is not a check, not only
   queen moves; from `7k/8/4Q3/6K1/8/8/8/8 w`, the king move Kg6 is stalemate.
 - **The square:** after ...b3 the king on e4 is outside the smaller square, so
@@ -1068,14 +922,10 @@ followed:
 - **Rook pawns:** the summary warns that the king-in-front method often fails
   with an a- or h-pawn. Syzygy scores `6k1/8/6K1/7P/8/8/8/8 b` as a draw and the
   same position with a g-pawn as a White win.
-- **Description:** Scholar's mate is called a trap, not an opening.
-
-The course had not been released, so it keeps revision `2026-10-v1` with a new
-content hash.
 
 ### Tablebase verification
 
-The two pawn endings and both mates were checked exactly with Syzygy endgame
+The two pawn endings and both mates are checked exactly with Syzygy endgame
 tablebases (the 3- and 4-piece WDL tables shipped in the python-chess
 repository), probed with python-chess. The app itself still uses no
 tablebases.

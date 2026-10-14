@@ -13,8 +13,7 @@ The app authenticates its own users; it does not trust Cloudflare email headers.
 
 ### Who can create an account
 
-Sign-ups start closed, on new servers and on servers upgraded from earlier
-versions, so finding the address is not enough to get an account. Administrators
+Sign-ups start closed, including on upgraded servers, so finding the address is not enough to get an account. Administrators
 add members in **Settings → Account → Add member** with a username and a
 temporary password, which the member replaces at first sign-in (the same forced
 change as a password reset). A club that wants self-service can use **Open
@@ -36,7 +35,7 @@ Find the signed-in username, **Sign out**, and **Sign out all devices** in
 separate bar above navigation. Local mode has no account section.
 
 All accounts, sessions, games, jobs, reviews and training history live in the
-existing `DATABASE_PATH` SQLite file. Private tables have an indexed `user_id`.
+`DATABASE_PATH` SQLite file. Private tables have an indexed `user_id`.
 Game fingerprints and exercise/classification identities deduplicate per account.
 The immutable Stockfish position cache, the Maia prediction cache and the skill
 taxonomy are shared internally, so members who import the same game reuse one
@@ -46,8 +45,8 @@ Audio choices are saved in the same account-owned `user_preferences` row as coac
 and motion choices, including for the reserved local user. `/api/preferences/audio`
 reads and replaces the sound settings without changing either of those independent
 preferences. Defaults enable sound at 35% volume, with board and practice sounds
-enabled and game-review feedback sounds disabled. Existing accounts receive these
-defaults when upgraded; saving them on one device applies to later account loads.
+enabled and game-review feedback sounds disabled. Accounts without saved audio choices
+get these defaults; saving them on one device applies to later account loads.
 
 Request services and background workers receive an `AccountSession` factory bound
 to one explicit user. ORM read/update/delete criteria apply to all private models,
@@ -84,8 +83,7 @@ Requests and jobs create short-lived account scopes instead of retaining an app 
 threads per user. Per-account locks are released when active requests/jobs finish.
 Startup resumes eligible saved jobs even before their owners log in. Shutdown
 drains active work and closes the pooled engines. Use one Uvicorn worker per
-database/service instance; no new deployment variables or database migration are
-required for this scheduling model.
+database/service instance.
 
 ## Enable and migrate
 
@@ -167,8 +165,8 @@ only when no server has (a first setup, or a stopped server), and says so first.
 `create-admin`, `claim-local` and `reset-password` ask for a password, so they need a
 terminal: in Docker, run them with `docker exec -it`; without one they stop at once.
 
-There is no email delivery dependency in this version.
-The existing SQLite backup/restore tool includes all accounts and their data in
+There is no email delivery.
+The SQLite backup/restore tool includes all accounts and their data in
 one snapshot. Treat backups as private: they include password hashes and sessions.
 Once accounts exist, schema downgrade is refused; restore a pre-upgrade snapshot instead.
 
@@ -193,5 +191,5 @@ availability after a game.
 Manual imports fetch older games; there is no analysis choice. Their games join
 the same queue behind games the poller found. Opening a game whose review has not started,
 failed or was paused starts it at the front of the queue. The
-`/api/games/{game_id}/train` endpoint still queues training alone for one game. Interactive exploration still analyzes the position
-you visit. The HTTP import APIs ignore the former `analyze` field.
+`/api/games/{game_id}/train` endpoint queues training alone for one game. Interactive exploration analyzes the position
+you visit. The HTTP import APIs ignore a legacy `analyze` field.
