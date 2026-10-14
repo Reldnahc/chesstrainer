@@ -1,5 +1,4 @@
-import { FlipVertical2 } from "lucide-react";
-import { IconButton } from "../Button";
+import FlipBoardButton from "../FlipBoardButton";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import type { GameExploration } from "./useGameExploration";
@@ -19,9 +18,7 @@ export default function ReviewControls({
       aria-label="Game navigation"
     >
       {/* Flip balances mute: one tool either side of the move controls. */}
-      <IconButton className="game-board-flip" aria-label="Flip board" onClick={flip}>
-        <FlipVertical2 size={17} />
-      </IconButton>
+      <FlipBoardButton className="game-board-flip" onFlip={flip} />
       <MovePlaybackControls label="Game move playback" current={current} maximum={maximum}
         first={branch
           ? { "aria-label": "Start of variation", title: "Game position where this variation began", onClick: () => navigate(branch.root) }

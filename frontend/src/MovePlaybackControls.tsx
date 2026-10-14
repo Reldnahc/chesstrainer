@@ -18,8 +18,9 @@ function shortcut(action: PlaybackAction | undefined) {
   };
 }
 
-/** Left/Right step with previous/next; Home/End reach first/last where the
- * controls show them. */
+/** Left/Right (or A/D) step with previous/next; Up/Down and Home/End reach
+ * first/last where the controls show them. Arrows, A/D and Up/Down follow
+ * Chess.com. */
 export default function MovePlaybackControls({ label, current, maximum, previous, next, first, last }: {
   label: string;
   current: number;
@@ -29,15 +30,16 @@ export default function MovePlaybackControls({ label, current, maximum, previous
   first?: PlaybackAction;
   last?: PlaybackAction;
 }) {
-  usePageShortcuts({ ArrowLeft: shortcut(previous), ArrowRight: shortcut(next), Home: shortcut(first), End: shortcut(last) });
+  const [back, forward, start, end] = [previous, next, first, last].map(shortcut);
+  usePageShortcuts({ ArrowLeft: back, a: back, ArrowRight: forward, d: forward, ArrowUp: start, Home: start, ArrowDown: end, End: end });
   const counterStyle = { "--playback-digits": Math.max(3, String(maximum).length) } as CSSProperties;
   return <div className="move-playback-controls" role="group" aria-label={label}>
-    {first && <IconButton {...first}><ChevronsLeft size={18} /></IconButton>}
-    <IconButton {...previous}><ChevronLeft size={18} /></IconButton>
+    {first && <IconButton aria-keyshortcuts="ArrowUp Home" {...first}><ChevronsLeft size={18} /></IconButton>}
+    <IconButton aria-keyshortcuts="ArrowLeft A" {...previous}><ChevronLeft size={18} /></IconButton>
     <span className="move-playback-counter" style={counterStyle}>
       <span>{current}</span> / <span>{maximum}</span>
     </span>
-    <IconButton {...next}><ChevronRight size={18} /></IconButton>
-    {last && <IconButton {...last}><ChevronsRight size={18} /></IconButton>}
+    <IconButton aria-keyshortcuts="ArrowRight D" {...next}><ChevronRight size={18} /></IconButton>
+    {last && <IconButton aria-keyshortcuts="ArrowDown End" {...last}><ChevronsRight size={18} /></IconButton>}
   </div>;
 }

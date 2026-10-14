@@ -1,4 +1,4 @@
-import { Chessboard, type Arrow, type PieceHandlerArgs } from "react-chessboard";
+import { Chessboard, defaultArrowOptions, type Arrow, type PieceHandlerArgs } from "react-chessboard";
 import {
   useCallback,
   useEffect,
@@ -16,6 +16,20 @@ import { useInterfaceMotion } from "./MotionProvider";
 import useModalDialog from "./useModalDialog";
 
 type PromotionChoice = { from: string; to: string; choices: Promotion[] };
+
+/** Chess.com's annotation colours: right-click marks a square red, Shift green,
+ * Ctrl (or Cmd) yellow and Alt blue; right-drag draws an arrow, yellow by
+ * default, Ctrl red, Shift green and Alt blue. Left-click clears both. */
+type MarkColor = "red" | "green" | "yellow" | "blue";
+type Modifiers = { altKey: boolean; shiftKey: boolean; ctrlKey: boolean; metaKey: boolean };
+const DRAWN_ARROWS = {
+  ...defaultArrowOptions,
+  colors: { default: "#ffaa00", shift: "#4caf50", ctrl: "#f44336", alt: "#2f80ed", meta: "#f44336" },
+};
+// The library resolves arrow modifiers in this order too.
+function markColor(keys: Modifiers): MarkColor {
+  return keys.altKey ? "blue" : keys.shiftKey ? "green" : keys.ctrlKey || keys.metaKey ? "yellow" : "red";
+}
 
 // react-chessboard's default arrow opacity.
 const ARROW_OPACITY = 0.65;
@@ -121,6 +135,10 @@ export default function Board({
   const fades = arrowFades(boardId, arrows ?? []);
   const [selected, setSelected] = useState<string | null>(null);
   const [promotion, setPromotion] = useState<PromotionChoice | null>(null);
+  const [marks, setMarks] = useState<Record<string, MarkColor>>({});
+  const rightClick = useRef<Modifiers>({ altKey: false, shiftKey: false, ctrlKey: false, metaKey: false });
+  // Drawn marks belong to a position, as the library's drawn arrows do.
+  useEffect(() => setMarks({}), [fen]);
   const promotionTimer = useRef<number | undefined>(undefined);
   useEffect(() => {
     setSelected(null);
@@ -168,7 +186,11 @@ export default function Board({
     } else onMove?.(from, to);
   }
   return (
-    <div ref={board} tabIndex={-1} className="board-shell" data-feedback={feedback}>
+    <div ref={board} tabIndex={-1} className="board-shell" data-feedback={feedback}
+      onContextMenuCapture={({ altKey, shiftKey, ctrlKey, metaKey }) => {
+        rightClick.current = { altKey, shiftKey, ctrlKey, metaKey };
+      }}
+      onContextMenu={(event) => event.preventDefault()}>
       {fades.style && <style>{fades.style}</style>}
       <Chessboard
         options={{
@@ -176,6 +198,7 @@ export default function Board({
           position: fen,
           boardOrientation: orientation,
           arrows: fades.opaque,
+          arrowOptions: DRAWN_ARROWS,
           allowDragging: interactive,
           animationDurationInMs: MOVE_DURATION_MS,
           showAnimations: motion === "natural",
@@ -204,6 +227,7 @@ export default function Board({
                   ? square
                   : undefined
               }
+              data-mark={marks[square]}
               className={`board-square-content${interactive && selected === square ? " selected" : ""}${highlights.includes(square) ? " playback-highlight" : ""}${Object.entries(
                 roles,
               )
@@ -241,6 +265,14 @@ export default function Board({
             if (targetSquare) choose(sourceSquare, targetSquare, true);
             else setSelected(null);
             return false;
+          },
+          onSquareMouseDown: (_, event) => {
+            if (event.button === 0) setMarks((current) => (Object.keys(current).length ? {} : current));
+          },
+          // Not called when the right button finished drawing an arrow.
+          onSquareRightClick: ({ square }) => {
+            const color = markColor(rightClick.current);
+            setMarks(({ [square]: previous, ...rest }) => (previous === color ? rest : { ...rest, [square]: color }));
           },
           onSquareClick: ({ square }) => {
             if (!interactive) return;

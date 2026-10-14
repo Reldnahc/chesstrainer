@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
-/** The application's page-level keys. Element-level keys (tabs, graph points)
- * stop propagation, so they never also reach these. */
-export type ShortcutKey = "ArrowLeft" | "ArrowRight" | "Home" | "End" | "Escape";
+/** The application's page-level keys (letters in lower case). Element-level
+ * keys (tabs, graph points) stop propagation, so they never also reach these. */
+export type ShortcutKey = "ArrowLeft" | "ArrowRight" | "ArrowUp" | "ArrowDown" | "Home" | "End" | "Escape" | "a" | "d" | "x";
 export type Shortcuts = Partial<Record<ShortcutKey, () => void>>;
 
 type Layer = { current: Shortcuts };
@@ -15,8 +15,9 @@ function keydown(event: KeyboardEvent) {
   if (event.target instanceof Element && event.target.closest("input,select,textarea,[contenteditable=true]")) return;
   // The most recently opened owner of a key handles it, so a panel opened over
   // the page (the practice continuation) takes the keys while it is open.
+  const key = (event.key.length === 1 ? event.key.toLowerCase() : event.key) as ShortcutKey;
   for (let i = layers.length - 1; i >= 0; i--) {
-    const run = layers[i].current[event.key as ShortcutKey];
+    const run = layers[i].current[key];
     if (run) {
       event.preventDefault();
       run();
