@@ -128,7 +128,7 @@ export default function PlayGame({ id }: { id: string }) {
   const statusFor = (color: "white" | "black") => {
     if (finished) return state.result ?? "";
     if (color === state.learner_color) {
-      if (session.canRewind) return "Your move here · playing replaces the rest";
+      if (session.canRewind) return "Moving replaces the rest";
       return session.learnerToMove ? (session.browsing ? "Your move · browsing" : "Your move") : "";
     }
     return session.waitingForBot ? `${bot} is thinking…` : "";

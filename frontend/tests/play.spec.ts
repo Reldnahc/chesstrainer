@@ -159,10 +159,10 @@ test("playing a move from an earlier position replaces the rest of the game", as
   await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("2 / 2");
   // Back on a position where it was the learner's move, the board takes a move.
   await page.getByRole("button", {name: "Start of game"}).click();
-  await expect(page.getByText("Your move here · playing replaces the rest")).toBeVisible();
+  await expect(page.getByText("Moving replaces the rest")).toBeVisible();
   // One move back is the bot's turn: nothing to play there.
   await page.getByRole("button", {name: "Next move"}).click();
-  await expect(page.getByText("Your move here · playing replaces the rest")).toHaveCount(0);
+  await expect(page.getByText("Moving replaces the rest")).toHaveCount(0);
   await page.getByRole("button", {name: "Previous move"}).click();
   await page.locator('[data-square="d2"]').first().click();
   await page.locator('[data-square="d4"]').first().click();

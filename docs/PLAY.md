@@ -86,7 +86,7 @@ During a game the learner can step back to any earlier position where it was the
 move and play a different move there. That move replaces the rest of the game: the
 later moves and their reports are dropped, the bot answers the new move as usual, and
 the saved game holds only the line actually finished. There is no variation tree and
-no confirmation; the player row says "Your move here · playing replaces the rest"
+no confirmation; the player row says "Moving replaces the rest"
 while the board is on such a position. Positions where the bot was to move only show
 the game. In opening practice the book is replayed through the kept moves, so the
 practice picks up where it stood; a spot the learner had already answered (off book,
