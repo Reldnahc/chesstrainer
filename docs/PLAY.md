@@ -169,8 +169,8 @@ When a game ends (checkmate, draw by rule, or the learner resigning) the moves
 are written as a PGN with the coach as the opponent and both conditioning ratings
 as the Elo headers, imported through the ordinary import path with the learner's
 side explicit, and queued for analysis like any imported game. The finished
-page shows the result as a toast linking to that review; it floats over the page
-and stays until closed. Starting a new game while one is active marks the old
+page shows the result in the page banner with a link to that review; it stays
+until closed. Starting a new game while one is active marks the old
 one abandoned without saving it.
 
 ## HTTP surface

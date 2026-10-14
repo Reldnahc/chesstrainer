@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Toast from "../Toast";
+import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -175,7 +175,7 @@ function PlaySetup() {
   return (
     <>
       <PageTitle title={`Play ${coach.name}`} />
-      {error && <Toast tone="error" onDismiss={() => setError("")}>{error}</Toast>}
+      {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
       {active && (
         <section aria-label="Game in progress">
           <Notice announcement="passive" actions={<ActionLink variant="secondary" size="compact" href={playGamePath(active.id)}>

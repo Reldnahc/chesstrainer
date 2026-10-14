@@ -1,0 +1,15 @@
+/* The page's banner slot (Banner.tsx): the first block of every page, so
+   short-lived messages always appear in the same place. */
+.banner-region {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.banner-region:empty {
+  display: none;
+}
+/* Board pages are not a gap-spaced column, so the slot spaces itself there. */
+main.review-page > .banner-region:not(:empty) {
+  padding-bottom: var(--space-3);
+}

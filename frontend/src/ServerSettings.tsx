@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import Toast from "./Toast";
+import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import Button from "./Button";
@@ -107,8 +107,8 @@ export default function ServerSettings() {
   }
   return <SettingsSection id="settings-server" title="Server"
     description="Engine, analysis and sync settings for everyone on this server. Saved changes apply when the server restarts.">
-    {notice && <Toast tone="success" onDismiss={() => setNotice("")}>{notice}</Toast>}
-    {error && <Toast tone="error" onDismiss={() => setError("")}>{error}</Toast>}
+    {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
+    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Restart server</h3>

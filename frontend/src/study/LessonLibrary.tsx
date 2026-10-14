@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Toast from "../Toast";
+import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, BookOpen, Check, Download } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
@@ -68,7 +68,7 @@ export default function LessonLibrary({ topic, courseId, revision }: { topic: Le
   const courseText = TOPIC_TEXT[course?.topic ?? topic];
   if (courseId) return <section className="panel lesson-course">
     <ActionLink variant="quiet" href={courseText.home}><ArrowLeft size={16} />{courseText.back}</ActionLink>
-    {error && (course ? <Toast tone="error" onDismiss={() => setError("")}>{error}</Toast> : <UnavailableState>{error}</UnavailableState>)}
+    {error && (course ? <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner> : <UnavailableState>{error}</UnavailableState>)}
     {course ? <>
       <header className="lesson-course-title">
         <BookOpen size={26} aria-hidden="true" />

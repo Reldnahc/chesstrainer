@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ActionLink from "./ActionLink";
 import { api, read } from "./api";
 import { pagePaths } from "./navigation";
-import Toast from "./Toast";
+import Banner from "./Banner";
 
 // Polling pauses after a week away; on return the learner may need older games.
 export default function WelcomeBack() {
@@ -20,10 +20,10 @@ export default function WelcomeBack() {
   }
   const since = awaySince && new Date(awaySince).toLocaleDateString(undefined, { month: "long", day: "numeric" });
   return since ? (
-    <Toast onDismiss={() => void dismiss()}
+    <Banner onDismiss={() => void dismiss()}
       action={<ActionLink variant="secondary" size="compact" href={pagePaths.Settings} onClick={() => void dismiss()}>Import older games</ActionLink>}>
       <p><strong>Welcome back!</strong> New-game checks were paused while you were away (since {since}) and are running again.
         If any games are missing, import older games.</p>
-    </Toast>
+    </Banner>
   ) : null;
 }

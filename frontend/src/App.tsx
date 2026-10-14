@@ -28,7 +28,7 @@ import OpeningLinePreview from "./study/OpeningLinePreview";
 import Link from "./Link";
 import Button from "./Button";
 import ActionLink from "./ActionLink";
-import Toast from "./Toast";
+import Banner, { BannerOutlet } from "./Banner";
 import WelcomeBack from "./WelcomeBack";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount, useGuestSignIn } from "./AccountGate";
@@ -138,7 +138,8 @@ export default function App() {
             : "workspace-page"
         }
       >
-        {error && <Toast tone="error" onDismiss={() => setError("")}>{error}</Toast>}
+        <BannerOutlet />
+        {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
         {!connection && !guestSignIn && <WelcomeBack />}
         {connection ? (
           <section className="panel connection">

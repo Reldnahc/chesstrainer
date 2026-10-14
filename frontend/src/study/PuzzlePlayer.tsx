@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Toast from "../Toast";
+import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
@@ -106,7 +106,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
         : <>{incorrect && <Button size="compact" variant="primary" disabled={busy} onClick={state.retry}>Try again</Button>}<Button size="compact" variant="secondary" disabled={busy || playing} onClick={state.reveal}>Reveal solution</Button></>}</>}
     ><MoveStatus busy={busy} failed={incorrect && !error} text={message} /></ReviewCoach>
     <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
-    {nextError && <Toast tone="error" onDismiss={() => setNextError("")}>{nextError}</Toast>}
+    {nextError && <Banner tone="error" onDismiss={() => setNextError("")}>{nextError}</Banner>}
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
       <h2>{session.completion.themes.length ? session.completion.themes.map(puzzleThemeLabel).join(" · ") : "The continuation"}</h2>
       <ContinuationMoves label="Solution moves" moves={session.completion.solution} disabled={playing}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Toast from "../Toast";
+import Banner from "../Banner";
 import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -152,7 +152,7 @@ export default function GameWorkspace({
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
-      {error && <Toast tone="error" onDismiss={dismissError}>{error}</Toast>}
+      {error && <Banner tone="error" onDismiss={dismissError}>{error}</Banner>}
       <ReviewWorkspace
         boardLabel="Game board and navigation"
         aboveBoard={

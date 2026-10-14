@@ -70,8 +70,8 @@ test("current application errors remain alerts and their shared action dismisses
   });
   await page.goto("/settings");
   const notice = page.getByRole("alert").filter({ hasText: "Import activity could not be loaded." });
-  // A short-lived error is a toast in the app's one region, floating over the page.
-  await expect(notice).toHaveClass(/notice--toast/);
+  // A short-lived error is a banner in the page's one banner slot.
+  await expect(notice).toHaveClass(/notice--banner/);
   await expect(page.getByRole("region", { name: "Notifications" })).toContainText("Import activity could not be loaded.");
   await expect(notice).toHaveAttribute("data-tone", "error");
   await expect(notice).toHaveAttribute("aria-atomic", "true");

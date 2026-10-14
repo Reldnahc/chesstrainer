@@ -7,7 +7,7 @@ type NoticeProps = {
   children: ReactNode;
   announcement: "alert" | "status" | "passive";
   tone?: "info" | "success" | "error";
-  appearance?: "panel" | "inline" | "toast";
+  appearance?: "panel" | "inline" | "banner";
   actions?: ReactNode;
   /** Adds a close button, kept on the message's row even when the actions wrap below. */
   onDismiss?: () => void;

@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import Toast from "./Toast";
+import Banner from "./Banner";
 import { DoorClosed, DoorOpen, KeyRound, ShieldCheck, Trash2, UserCheck, UserPlus, UserX } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import Button from "./Button";
@@ -68,8 +68,8 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
   if (!accounts) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading accounts…</LoadingState>;
   return <SettingsSection id="settings-accounts" title="Accounts"
     description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
-    {notice && <Toast tone="success" onDismiss={() => setNotice("")}>{notice}</Toast>}
-    {error && <Toast tone="error" onDismiss={() => setError("")}>{error}</Toast>}
+    {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
+    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Sign-ups</h3>
