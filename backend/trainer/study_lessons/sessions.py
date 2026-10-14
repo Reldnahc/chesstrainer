@@ -1,9 +1,9 @@
 """Account-owned lesson snapshots, progress and exactly-once player commands."""
 
-from fastapi import HTTPException
 from sqlalchemy import select, update
 from sqlalchemy.orm.attributes import set_committed_value
 
+from trainer.errors import Conflict, NotFound
 from trainer.models import StudyLessonCommand, StudyLessonProgress, StudyLessonSession, now
 from trainer.study_lessons.content import CourseDefinition, Position
 from trainer.study_lessons.player import initial_state, transition
@@ -14,7 +14,7 @@ from trainer.study_lessons.queries import course_for, fingerprint
 def require_session(db, session_id):
     session = db.get(StudyLessonSession, session_id)
     if session is None:
-        raise HTTPException(404, "Lesson session not found")
+        raise NotFound("Lesson session not found")
     return session
 
 
@@ -46,13 +46,13 @@ def start_session(db, providers, request):
     identity = (request.course_id, request.course_revision, request.chapter_id)
     if previous:
         if (previous.course_id, previous.course_revision, previous.chapter_id) != identity:
-            raise HTTPException(409, "Request ID already used for another lesson")
+            raise Conflict("Request ID already used for another lesson")
         return view(previous)
     course = course_for(db, providers, request.course_id, request.course_revision, for_start=True)
     try:
         chapter = course.chapter(request.chapter_id)
     except StopIteration as exc:
-        raise HTTPException(404, "Course chapter not found") from exc
+        raise NotFound("Course chapter not found") from exc
     session = StudyLessonSession(
         request_id=request.request_id,
         course_id=course.id,
@@ -87,10 +87,10 @@ def command(db, session_id, request):
     )
     if previous:
         if previous.request != payload:
-            raise HTTPException(409, "Request ID already used for another lesson action")
+            raise Conflict("Request ID already used for another lesson action")
         return previous.response
     if session.revision != request.revision:
-        raise HTTPException(409, "Lesson changed. Reload the session before continuing.")
+        raise Conflict("Lesson changed. Reload the session before continuing.")
     course = CourseDefinition.model_validate(session.snapshot)
     chapter = course.chapter(session.chapter_id)
     state, playback = transition(course, chapter, session.state, request)
@@ -104,7 +104,7 @@ def command(db, session_id, request):
         .execution_options(synchronize_session=False)
     )
     if changed.rowcount != 1:
-        raise HTTPException(409, "Lesson changed. Reload the session before continuing.")
+        raise Conflict("Lesson changed. Reload the session before continuing.")
     set_committed_value(session, "revision", request.revision + 1)
     progress = progress_for(db, session)
     progress.viewed_steps = sorted(set(progress.viewed_steps) | {state["step_id"]})

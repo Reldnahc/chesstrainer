@@ -67,7 +67,16 @@ def plan_probes(db, job_id, settings, engine, *, write_lock=None):
             select(ClassificationAnalysis.id).where(ClassificationAnalysis.cache_key == key)
         ):
             continue
-        result, _ = classifier.classify(verified_payload(db, decision))
+        try:
+            result, _ = classifier.classify(verified_payload(db, decision))
+        except ValueError as exc:
+            # One decision with inconsistent saved evidence must not stop planning
+            # for the rest of the account.
+            log.warning(
+                "probe_planning_skipped",
+                extra={"decision_id": decision.id, "error_type": type(exc).__name__},
+            )
+            continue
         specific = any(f.skill_id not in OUTCOME_SKILLS for f in result.findings)
         pending_defense = "defense_probe_pending" in result.abstention_reasons
         if (

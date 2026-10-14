@@ -3,9 +3,9 @@
 import hashlib
 import json
 
-from fastapi import HTTPException
 from sqlalchemy import select
 
+from trainer.errors import Conflict, NotFound
 from trainer.models import StudyLessonProgress, StudyLessonSession
 from trainer.study_lessons.bundled import course_topic
 from trainer.study_lessons.content import CourseDefinition
@@ -28,7 +28,7 @@ def course_for(db, providers, course_id, revision=None, *, for_start=False, inst
     else:
         try:
             course = providers.get(db, course_id, revision)
-        except HTTPException as exc:
+        except NotFound as exc:
             snapshot = db.scalar(saved.order_by(StudyLessonSession.started_at.desc()).limit(1))
             if snapshot is None:
                 raise exc
@@ -44,13 +44,13 @@ def course_for(db, providers, course_id, revision=None, *, for_start=False, inst
     if existing_hash and existing_hash != fingerprint(course):
         # A revision is immutable even if a provider accidentally changes its file.
         if for_start:
-            raise HTTPException(409, "Installed course changed without a new revision")
+            raise Conflict("Installed course changed without a new revision")
         snapshot = db.scalar(
             saved.where(StudyLessonSession.course_revision == course.revision).limit(1)
         )
         if snapshot is not None:
             return CourseDefinition.model_validate(snapshot)
-        raise HTTPException(409, "Installed course changed without a new revision")
+        raise Conflict("Installed course changed without a new revision")
     return course
 
 

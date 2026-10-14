@@ -6,6 +6,7 @@ from sqlalchemy import func, select, update
 from trainer.accounts import COOKIE, Accounts
 from trainer.api import create_app
 from trainer.db import database, migrate
+from trainer.errors import Conflict, NotFound
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, Game, GameReview, User
 from trainer.ownership import account_sessions
@@ -251,7 +252,7 @@ def test_database_scope_aggregates_updates_and_references(settings):
         db.add(GameReview(game_id=game_id, job_id=job_id, rating=1000))
         import pytest
 
-        with pytest.raises(ValueError, match="not in this account"):
+        with pytest.raises(NotFound, match="not in this account"):
             db.commit()
     with sa() as db:
         assert db.get(AnalysisJob, job_id).status == "queued"
@@ -721,7 +722,7 @@ def test_a_disabled_account_with_interrupted_analysis_can_still_be_deleted(setti
         db.add(AnalysisJob(user_id=friend["id"], kind="training", status="running"))
         db.commit()
     accounts.set_disabled(friend, True)
-    with pytest.raises(ValueError, match="analysis running"):
+    with pytest.raises(Conflict, match="analysis running"):
         accounts.delete(accounts.by_id(friend["id"]))
     # A restart interrupted that job; recovery requeues it even for a disabled owner.
     JobQueue(engine).recover()

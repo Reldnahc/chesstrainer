@@ -72,6 +72,15 @@ cached applications and contain no workers. Lock leases are released when the la
 request/job for that account finishes. HTTP handlers continue to delegate chess and
 scheduling behavior to existing domain functions.
 
+Domain code reports failures with `trainer.errors`: `InvalidInput` (422, also a
+`ValueError`), `NotFound` (404, including another account's items), `Conflict` (409:
+stale revisions, reused request IDs, work in progress) and `Gone` (410: archived
+features). `web.py` maps them in one place and never imports them into domain modules
+the other way round; domain packages do not raise FastAPI's `HTTPException`. Any other
+exception, including a bare `ValueError` or `EvidenceIntegrityError` from inconsistent
+saved evidence, is a server fault and answers 500. `EngineReferenceMismatch` answers 409:
+Stockfish works, but this position's saved evidence needs a different executable.
+
 The composition root performs migrations, global skill seeding and retirement
 reconciliation once, and owns worker/engine shutdown. Hosted retirement maintenance
 only visits enabled accounts, leaving disabled/local history unchanged. Administrative sessions are

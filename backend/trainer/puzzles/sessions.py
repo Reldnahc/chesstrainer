@@ -3,7 +3,6 @@
 import random
 
 import chess
-from fastapi import HTTPException
 from sqlalchemy import func, select, update
 from sqlalchemy.orm.attributes import set_committed_value
 
@@ -15,6 +14,7 @@ from trainer.contracts.puzzles import (
     PuzzleQuery,
     PuzzleSessionView,
 )
+from trainer.errors import Conflict, InvalidInput, NotFound
 from trainer.models import PuzzleAttempt, PuzzleSession, now
 from trainer.puzzles.definitions import PuzzleDefinition
 from trainer.puzzles.generation import generation_status
@@ -23,7 +23,7 @@ from trainer.puzzles.generation import generation_status
 def require_session(db, session_id):
     session = db.get(PuzzleSession, session_id)
     if session is None:
-        raise HTTPException(404, "Puzzle session not found")
+        raise NotFound("Puzzle session not found")
     return session
 
 
@@ -248,11 +248,11 @@ def start_session(db, providers, request):
     identity = (request.provider_id, request.key, request.version)
     if previous:
         if (previous.provider_id, previous.puzzle_key, previous.definition_version) != identity:
-            raise HTTPException(409, "Request ID already used for another puzzle")
+            raise Conflict("Request ID already used for another puzzle")
         return session_view(db, previous)
     definition = providers.find(db, request.provider_id, request.key, request.version)
     if definition is None:
-        raise HTTPException(404, "Puzzle definition not found")
+        raise NotFound("Puzzle definition not found")
     session = PuzzleSession(
         request_id=request.request_id,
         provider_id=request.provider_id,
@@ -278,10 +278,10 @@ def command(db, session_id, request, *, reveal=False):
     )
     if previous:
         if previous.request != payload:
-            raise HTTPException(409, "Request ID already used for another puzzle action")
+            raise Conflict("Request ID already used for another puzzle action")
         return previous.response
     if request.revision != session.revision or session.status != "active":
-        raise HTTPException(409, "Puzzle changed. Reload the session before continuing.")
+        raise Conflict("Puzzle changed. Reload the session before continuing.")
     definition = PuzzleDefinition.model_validate(session.snapshot)
     frames = definition.frames()
     step = session.current_step
@@ -292,7 +292,7 @@ def command(db, session_id, request, *, reveal=False):
         try:
             move = legal_move(board, request.uci)
         except ValueError as exc:
-            raise HTTPException(422, "Move is not legal in the current puzzle position") from exc
+            raise InvalidInput("Move is not legal in the current puzzle position") from exc
         submitted_san = board.san(move)
 
     # The account lock handles normal requests; the conditional write also guards
@@ -304,7 +304,7 @@ def command(db, session_id, request, *, reveal=False):
         .execution_options(synchronize_session=False)
     )
     if changed.rowcount != 1:
-        raise HTTPException(409, "Puzzle changed. Reload the session before continuing.")
+        raise Conflict("Puzzle changed. Reload the session before continuing.")
     set_committed_value(session, "revision", request.revision + 1)
     if reveal:
         grade = "revealed"

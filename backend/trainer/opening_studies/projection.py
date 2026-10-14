@@ -3,6 +3,7 @@
 from sqlalchemy import delete, select
 
 from trainer.chess_core import digest, legal_move, position_key, valid_board
+from trainer.errors import InvalidInput
 from trainer.exercises import enroll
 from trainer.models import (
     Exercise,
@@ -56,7 +57,7 @@ def contribute(db, study, scheduler):
             affected.add(exercise.id)
         board.push(move)
     if not affected:
-        raise ValueError("This line contains no moves for the selected color")
+        raise InvalidInput("This line contains no moves for the selected color")
     db.flush()
     return affected
 

@@ -4,13 +4,14 @@ from collections import defaultdict
 
 from sqlalchemy import select
 
+from trainer.errors import InvalidInput
 from trainer.models import Decision, Exercise, SkillEvidence, SRSState
 from trainer.taxonomy import SKILLS
 
 
 def require_focus(db, exercise, skill_id):
     if skill_id not in SKILLS or skill_id == "unclassified":
-        raise ValueError("Unknown practice skill")
+        raise InvalidInput("Unknown practice skill")
     if exercise.source != "game" or not db.scalar(
         select(SkillEvidence.id).where(
             SkillEvidence.decision_id == exercise.decision_id,
@@ -18,12 +19,12 @@ def require_focus(db, exercise, skill_id):
             SkillEvidence.active.is_(True),
         )
     ):
-        raise ValueError("This position does not have active evidence for that practice skill")
+        raise InvalidInput("This position does not have active evidence for that practice skill")
 
 
 def focus_queue(db, skill_id, limit=12):
     if skill_id not in SKILLS or skill_id == "unclassified":
-        raise ValueError("Unknown practice skill")
+        raise InvalidInput("Unknown practice skill")
     rows = db.execute(
         select(Exercise.id, Decision.position_key, Decision.game_id)
         .join(Decision, Decision.id == Exercise.decision_id)

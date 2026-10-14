@@ -5,7 +5,6 @@ from dataclasses import dataclass
 
 import chess
 import pytest
-from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from sqlalchemy import func, select
@@ -13,6 +12,7 @@ from study_lesson_fixtures import connected_course
 from trainer.accounts import COOKIE
 from trainer.api import create_app
 from trainer.contracts.study_lessons import LessonCommand, LessonStart
+from trainer.errors import DomainError, NotFound
 from trainer.models import StudyLessonCommand, StudyLessonProgress, StudyLessonSession
 from trainer.study_lessons.content import CourseDefinition
 from trainer.study_lessons.providers import CourseProviders
@@ -237,13 +237,13 @@ def test_stale_database_revision_cannot_update_progress(sessions):
             LessonCommand(request_id="one", revision=0, action="move", uci="e2e4"),
         )
         assert held.revision == 0
-        with pytest.raises(HTTPException) as raised:
+        with pytest.raises(DomainError) as raised:
             command(
                 stale,
                 initial["id"],
                 LessonCommand(request_id="two", revision=0, action="show_move"),
             )
-        assert raised.value.status_code == 409
+        assert raised.value.status == 409
     with sessions() as db:
         assert db.scalar(select(func.count()).select_from(StudyLessonCommand)) == 1
 
@@ -421,7 +421,7 @@ def test_account_isolation_and_owned_commands(settings):
                     session_id=alice["id"], request_id="foreign", request={}, response={}
                 )
             )
-            with pytest.raises(ValueError, match="Referenced item"):
+            with pytest.raises(NotFound, match="Referenced item"):
                 db.flush()
         bob = begin(client, headers=bob_headers)
         assert bob["id"] != alice["id"]

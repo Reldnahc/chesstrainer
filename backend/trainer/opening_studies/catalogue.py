@@ -7,11 +7,11 @@ from importlib.resources import files
 from threading import Lock
 
 import chess.pgn
-from fastapi import HTTPException
 
 from trainer._vendor import lichess_openings
 from trainer.chess_core import digest
 from trainer.contracts.opening_studies import OpeningCatalogue, OpeningLine, OpeningLineSummary
+from trainer.errors import NotFound
 from trainer.opening_book import VERSION
 from trainer.study_lessons.content import Position
 
@@ -55,7 +55,7 @@ def get(key, version=None):
     with _lock:
         line = _load().get(key)
     if line is None or (version is not None and version != line.source_version):
-        raise HTTPException(404, "Opening catalogue revision not installed")
+        raise NotFound("Opening catalogue revision not installed")
     return line.model_copy(deep=True)
 
 

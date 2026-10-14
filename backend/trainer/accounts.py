@@ -14,6 +14,7 @@ from contextlib import contextmanager
 from pathlib import Path
 
 from trainer.config import Settings
+from trainer.errors import Conflict, DomainError, InvalidInput, NotFound
 
 COOKIE = "fieldwork_session"
 SESSION_SECONDS = 30 * 24 * 3600
@@ -26,13 +27,13 @@ BUSY = (
 def username(value):
     value = value.strip().lower()
     if not re.fullmatch(r"[a-z0-9_-]{3,32}", value):
-        raise ValueError("Username must contain 3–32 letters, numbers, underscores or hyphens.")
+        raise InvalidInput("Username must contain 3–32 letters, numbers, underscores or hyphens.")
     return value
 
 
 def password_hash(password, salt=None):
     if not 10 <= len(password) <= 128:
-        raise ValueError("Use a password between 10 and 128 characters.")
+        raise InvalidInput("Use a password between 10 and 128 characters.")
     salt = salt or secrets.token_hex(16)
     key = hashlib.scrypt(
         password.encode(),
@@ -87,7 +88,7 @@ class Accounts:
                     (identity, name, encoded, int(admin), time.time(), int(temporary)),
                 )
             except sqlite3.IntegrityError as exc:
-                raise ValueError("That username is unavailable.") from exc
+                raise InvalidInput("That username is unavailable.") from exc
         return self.by_name(name)
 
     def signups_open(self):
@@ -150,7 +151,7 @@ class Accounts:
 
     def promote(self, user):
         if user["admin"]:
-            raise ValueError("Account is already an administrator")
+            raise InvalidInput("Account is already an administrator")
         # Requests re-read the account row, so existing sessions gain admin at once.
         with self.connect() as db:
             db.execute("UPDATE users SET admin=1 WHERE id=?", (user["id"],))
@@ -187,7 +188,9 @@ class Accounts:
     def delete(self, user):
         """Remove an account with every row it owns; shared caches stay."""
         if user["id"] == "local":
-            raise ValueError("The original workspace account cannot be deleted; disable it instead")
+            raise InvalidInput(
+                "The original workspace account cannot be deleted; disable it instead"
+            )
         with self.connect() as db:
             # Take the write lock before checking, so no job is claimed meanwhile.
             # Owned rows reference each other, so check foreign keys once at commit;
@@ -198,7 +201,7 @@ class Accounts:
                 "SELECT 1 FROM analysis_jobs WHERE user_id=? AND status='running'", (user["id"],)
             ).fetchone()
             if running:
-                raise ValueError(
+                raise Conflict(
                     "This account has analysis running. Disable it, wait for the analysis "
                     "to stop, then delete it"
                 )
@@ -233,12 +236,12 @@ class Accounts:
 def new_password():
     # Without a terminal (docker exec without -it), getpass waits for input nobody can type.
     if not sys.stdin.isatty():
-        raise ValueError(
+        raise InvalidInput(
             "This command asks for a password. Run it from a terminal; in Docker, use docker exec -it"
         )
     password = getpass.getpass("New password: ")
     if password != getpass.getpass("Confirm password: "):
-        raise ValueError("Passwords do not match")
+        raise InvalidInput("Passwords do not match")
     return password
 
 
@@ -292,13 +295,13 @@ def main():
             user = None
         if args.action in {"create-admin", "claim-local"}:
             if user:
-                raise ValueError("Account already exists")
+                raise InvalidInput("Account already exists")
             password = new_password()
             if args.action == "claim-local":
                 with accounts.connect() as db:
                     row = db.execute("SELECT username FROM users WHERE id='local'").fetchone()
                     if not row or row[0] != "__local__":
-                        raise ValueError("Existing local workspace has already been claimed")
+                        raise InvalidInput("Existing local workspace has already been claimed")
                     db.execute(
                         "UPDATE users SET username=?, password=?, admin=1, disabled=0 WHERE id='local'",
                         (username(args.username), password_hash(password)),
@@ -307,7 +310,7 @@ def main():
                 accounts.create(args.username, password, admin=True)
         else:
             if not user:
-                raise ValueError("Account not found")
+                raise NotFound("Account not found")
             if args.action == "promote":
                 accounts.promote(user)
             elif args.action == "reset-password":
@@ -315,7 +318,7 @@ def main():
             else:
                 accounts.set_disabled(user, args.action == "disable")
         print(f"{args.action} completed for {args.username}")
-    except (ValueError, sqlite3.Error) as exc:
+    except (DomainError, ValueError, sqlite3.Error) as exc:
         parser.exit(1, f"Account error: {BUSY if 'locked' in str(exc) else exc}\n")
 
 

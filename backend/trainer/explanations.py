@@ -9,6 +9,7 @@ from sqlalchemy import select
 from trainer.chess_core import Candidate, Score, legal_move, material, position_key, valid_board
 from trainer.continuations import replay, settled_delta
 from trainer.diagnosis_types import Finding
+from trainer.errors import EvidenceIntegrityError, InvalidInput, NotFound
 from trainer.imports import decision_board
 from trainer.models import (
     Attempt,
@@ -147,7 +148,7 @@ def replay_line(board, line):
 def explain_review(db, session_id, attempt_id=None, solution=False):
     session = db.get(ReviewSession, session_id)
     if session is None:
-        raise ValueError("Review session not found")
+        raise NotFound("Review session not found")
     from trainer.opening_studies import recall as opening_recall
 
     snapshot = opening_recall.get_snapshot(db, session)
@@ -156,14 +157,14 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
     exercise = db.get(Exercise, session.exercise_id)
     if solution:
         if not session.completed:
-            raise ValueError("Solve the position or use Reveal move before opening the solution")
+            raise InvalidInput("Solve the position or use Reveal move before opening the solution")
         answer = db.scalar(
             select(ExerciseAnswer).where(
                 ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
             )
         )
         if answer is None:
-            raise ValueError("No saved solution is available")
+            raise InvalidInput("No saved solution is available")
         selected_attempt = None
         uci, grade = answer.uci, answer.grade
     else:
@@ -173,7 +174,7 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
             else None
         )
         if selected_attempt is None or selected_attempt.session_id != session.id:
-            raise ValueError("Submit a move in this review before asking for its explanation")
+            raise InvalidInput("Submit a move in this review before asking for its explanation")
         uci, grade = selected_attempt.uci, selected_attempt.grade
         answer = db.get(ExerciseAnswer, (exercise.id, uci))
     board = valid_board(exercise.fen)
@@ -206,14 +207,14 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         )
     analysis = db.get(EngineAnalysis, answer.analysis_id) if answer and answer.analysis_id else None
     if analysis is None:
-        raise ValueError("No saved engine continuation is available for this move")
+        raise InvalidInput("No saved engine continuation is available for this move")
     if position_key(valid_board(analysis.fen)) != position_key(board):
-        raise ValueError("The saved analysis does not match this position")
+        raise EvidenceIntegrityError("The saved analysis does not match this position")
     candidate = next(
         (Candidate.model_validate(c) for c in analysis.candidates if c["uci"] == uci), None
     )
     if candidate is None:
-        raise ValueError("The saved analysis does not contain this move")
+        raise InvalidInput("The saved analysis does not contain this move")
     frames = replay_line(board, candidate.pv)
     learner = color_name(board.turn)
     balance_change = frames[-1].material_change

@@ -3,6 +3,7 @@ import logging
 from sqlalchemy import and_, func, or_, select
 
 from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
+from trainer.errors import Gone, InvalidInput, NotFound
 from trainer.explanations import explain_review, replay_line
 from trainer.imports import decision_board
 from trainer.models import (
@@ -121,10 +122,28 @@ def queue(db, last_id=None, limit=30):
     ]
 
 
-def start_review(db, exercise_id, *, focus_skill_id=None):
+def review_exercise(db, exercise_id):
     exercise = db.get(Exercise, exercise_id)
     if exercise is None:
-        raise ValueError("Exercise not found")
+        raise NotFound("Exercise not found")
+    if exercise.source == "repertoire":
+        raise Gone("This repertoire position is archived. Review your game mistakes instead.")
+    return exercise
+
+
+def open_session(db, session_id):
+    """The review session to act on; archived repertoire and lesson attempts are gone."""
+    session = db.get(ReviewSession, session_id)
+    if session is None:
+        raise NotFound("Review session not found")
+    review_exercise(db, session.exercise_id)
+    if session.lesson_item_id is not None:
+        raise Gone("This lesson attempt is archived. Start a position in Review.")
+    return session
+
+
+def start_review(db, exercise_id, *, focus_skill_id=None):
+    exercise = review_exercise(db, exercise_id)
     require_active_review(db, exercise_id)
     if focus_skill_id is not None:
         require_focus(db, exercise, focus_skill_id)
@@ -202,11 +221,7 @@ def review_position(db, session, *, reason="resume"):
 
 
 def resume_review(db, session_id):
-    session = db.get(ReviewSession, session_id)
-    if session is None:
-        raise ValueError("Review session not found")
-    if session.lesson_item_id is not None:
-        raise ValueError("This lesson attempt is archived. Start a position in Review.")
+    session = open_session(db, session_id)
     return review_position(db, session)
 
 
@@ -312,11 +327,7 @@ def completed_feedback(db, exercise, session):
 
 
 def submit_move(db, session_id, uci, engine, scheduler, settings):
-    session = db.get(ReviewSession, session_id)
-    if session is None:
-        raise ValueError("Review session not found")
-    if session.lesson_item_id is not None:
-        raise ValueError("This lesson attempt is archived. Start a position in Review.")
+    session = open_session(db, session_id)
     exercise = db.get(Exercise, session.exercise_id)
     if session.completed:
         return completed_feedback(db, exercise, session)
@@ -426,11 +437,7 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
 
 
 def reveal(db, session_id, scheduler, settings):
-    session = db.get(ReviewSession, session_id)
-    if session is None:
-        raise ValueError("Review session not found")
-    if session.lesson_item_id is not None:
-        raise ValueError("This lesson attempt is archived. Start a position in Review.")
+    session = open_session(db, session_id)
     exercise = db.get(Exercise, session.exercise_id)
     snapshot = opening_recall.get_snapshot(db, session)
     answer = (
@@ -443,7 +450,7 @@ def reveal(db, session_id, scheduler, settings):
         )
     )
     if answer is None:
-        raise ValueError("No saved solution is available")
+        raise InvalidInput("No saved solution is available")
     # Apply the curated/verified answer even when deeper engine evidence is unavailable.
     # Validate before recording recall so an invalid saved move cannot consume a review.
     frame = replay_line(valid_board(snapshot.fen if snapshot else exercise.fen), [answer.uci])[1]

@@ -11,6 +11,7 @@ from pydantic import BaseModel
 
 from trainer.chess_core import VALUES, Candidate, digest, position_key, valid_board
 from trainer.continuations import continuation_end, replay
+from trainer.errors import EvidenceIntegrityError
 from trainer.tactical_geometry import (
     effective_attacks,
     names,
@@ -238,10 +239,12 @@ def verify_defense(hypothesis, boards, root_candidate, probe, settings):
         or position_key(valid_board(probe["fen"])) != position_key(position)
         or sorted(probe["config"].get("root_moves") or []) != request.root_moves
     ):
-        raise ValueError("Defensive probe does not match its hypothesis or legal position")
+        raise EvidenceIntegrityError(
+            "Defensive probe does not match its hypothesis or legal position"
+        )
     candidate = Candidate.model_validate(probe["candidate"])
     if candidate.uci not in request.root_moves:
-        raise ValueError("Defensive probe contains an unrequested move")
+        raise EvidenceIntegrityError("Defensive probe contains an unrequested move")
     branch = replay(position, candidate)
     combined = boards[: request.at_ply + 1] + branch[1:]
     actor = not position.turn

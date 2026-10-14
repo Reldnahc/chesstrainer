@@ -1,6 +1,7 @@
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, digest, legal_move, position_key, valid_board
+from trainer.errors import InvalidInput
 from trainer.imports import parse_games
 from trainer.models import (
     EngineAnalysis,
@@ -65,7 +66,7 @@ def manual_exercise(db, scheduler, fen, moves, orientation, explanation="", tags
     board = valid_board(fen)
     parsed = [legal_move(board, uci) for uci in dict.fromkeys(moves)]
     if not parsed:
-        raise ValueError("At least one expected legal move is required")
+        raise InvalidInput("At least one expected legal move is required")
     identity = digest(
         {
             "source": "manual",

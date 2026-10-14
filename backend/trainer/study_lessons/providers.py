@@ -3,9 +3,9 @@
 from collections.abc import Iterable
 from typing import Protocol
 
-from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
+from trainer.errors import NotFound
 from trainer.study_lessons.content import CourseDefinition
 
 
@@ -39,5 +39,5 @@ class CourseProviders:
             None,
         )
         if course is None:
-            raise HTTPException(404, "Course revision not installed")
+            raise NotFound("Course revision not installed")
         return course

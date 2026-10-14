@@ -5,6 +5,7 @@ from types import SimpleNamespace
 from sqlalchemy import select, update
 
 from trainer.chess_core import legal_move, valid_board
+from trainer.errors import InvalidInput
 from trainer.models import (
     Attempt,
     ExerciseAnswer,
@@ -183,10 +184,10 @@ def explain(db, session, snapshot, attempt_id, solution):
 
     if solution:
         if not session.completed:
-            raise ValueError("Solve the position or reveal before opening the solution")
+            raise InvalidInput("Solve the position or reveal before opening the solution")
         selected, accepted = answer(snapshot, primary=True), True
         if selected is None:
-            raise ValueError("No saved opening solution")
+            raise InvalidInput("No saved opening solution")
         uci, selected_attempt = selected.uci, None
     else:
         selected_attempt = (
@@ -195,7 +196,7 @@ def explain(db, session, snapshot, attempt_id, solution):
             else None
         )
         if selected_attempt is None or selected_attempt.session_id != session.id:
-            raise ValueError("Submit a move in this review before asking for its explanation")
+            raise InvalidInput("Submit a move in this review before asking for its explanation")
         uci = selected_attempt.uci
         accepted = selected_attempt.grade in {"correct", "acceptable"}
     board = valid_board(snapshot.fen)

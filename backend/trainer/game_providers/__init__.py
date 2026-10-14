@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 
+from trainer.errors import InvalidInput
 from trainer.game_providers.base import ProviderError
 
 
@@ -13,7 +14,7 @@ class Provider:
 
     def validate(self, request):
         if request.time_class not in self.time_classes:
-            raise ValueError(f"Unsupported {self.name} time control.")
+            raise InvalidInput(f"Unsupported {self.name} time control.")
 
 
 PROVIDERS = {
@@ -28,7 +29,7 @@ PROVIDERS = {
 
 def get_provider(provider):
     if provider not in PROVIDERS:
-        raise ValueError("Unknown chess provider.")
+        raise InvalidInput("Unknown chess provider.")
     return PROVIDERS[provider]
 
 

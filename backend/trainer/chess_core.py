@@ -6,6 +6,8 @@ import chess
 import chess.engine
 from pydantic import BaseModel, model_validator
 
+from trainer.errors import InvalidInput
+
 VALUES = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
 
 
@@ -18,7 +20,7 @@ def digest(value: object) -> str:
 def valid_board(fen: str) -> chess.Board:
     board = chess.Board(fen)
     if not board.is_valid():
-        raise ValueError(f"Invalid chess position (python-chess status {board.status()})")
+        raise InvalidInput(f"Invalid chess position (python-chess status {board.status()})")
     return board
 
 
@@ -42,10 +44,10 @@ def legal_move(board: chess.Board, uci: str) -> chess.Move:
         # python-chess parses the UCI null move, but passing a turn is not legal chess.
         # Check before normalization, which can discard an invalid castling promotion.
         if move not in board.legal_moves:
-            raise ValueError("Null/illegal move")
+            raise InvalidInput("Null/illegal move")
         return board.parse_uci(uci)
     except ValueError as exc:
-        raise ValueError("Move is not legal in this position") from exc
+        raise InvalidInput("Move is not legal in this position") from exc
 
 
 def legal_move_options(board: chess.Board) -> list[dict]:

@@ -10,6 +10,7 @@ import chess
 from pydantic import BaseModel
 
 from trainer.chess_core import Candidate, legal_move, material, position_key, valid_board
+from trainer.errors import EvidenceIntegrityError
 
 
 class ContinuationEnd(BaseModel):
@@ -88,7 +89,9 @@ def extended_line(board, candidate, analysis_id, probes):
         if probe["at_ply"] != len(pv) or position_key(valid_board(probe["fen"])) != position_key(
             boards[-1]
         ):
-            raise ValueError("Continuation probe does not match its saved parent endpoint")
+            raise EvidenceIntegrityError(
+                "Continuation probe does not match its saved parent endpoint"
+            )
         extra = Candidate.model_validate(probe["candidate"])
         continuation = replay(boards[-1], extra)
         boards.extend(continuation[1:])

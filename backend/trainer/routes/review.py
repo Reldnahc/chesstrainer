@@ -2,7 +2,7 @@
 
 from typing import Literal
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
 from trainer.contracts.opening_studies import ReviewCount
@@ -13,7 +13,6 @@ from trainer.contracts.review import (
     ReviewQueueItem,
 )
 from trainer.explanations import MoveExplanation, explain_review
-from trainer.models import Exercise, ReviewSession
 from trainer.practice import focus_queue
 from trainer.reviews import queue, resume_review, reveal, start_review, submit_move
 from trainer.workspaces import CurrentWorkspace
@@ -49,13 +48,6 @@ def create_router(*, settings, scheduler) -> APIRouter:
         with workspace.sessions() as db:
             return focus_queue(db, skill_id)
 
-    def require_review_exercise(db, exercise_id):
-        exercise = db.get(Exercise, exercise_id)
-        if exercise is not None and exercise.source == "repertoire":
-            raise HTTPException(
-                410, "This repertoire position is archived. Review your game mistakes instead."
-            )
-
     @router.post(
         "/api/review/{exercise_id}/start",
         response_model=ColdPosition,
@@ -65,15 +57,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         workspace: CurrentWorkspace, exercise_id: str, focus_skill_id: str | None = None
     ):
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_exercise(db, exercise_id)
             return start_review(db, exercise_id, focus_skill_id=focus_skill_id)
-
-    def require_review_session(db, session_id):
-        session = db.get(ReviewSession, session_id)
-        if session is not None:
-            require_review_exercise(db, session.exercise_id)
-        if session is not None and session.lesson_item_id is not None:
-            raise HTTPException(410, "This lesson attempt is archived. Start a position in Review.")
 
     @router.get(
         "/api/review/sessions/{session_id}",
@@ -82,7 +66,6 @@ def create_router(*, settings, scheduler) -> APIRouter:
     )
     def resume(workspace: CurrentWorkspace, session_id: str):
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_session(db, session_id)
             return resume_review(db, session_id)
 
     @router.post(
@@ -92,7 +75,6 @@ def create_router(*, settings, scheduler) -> APIRouter:
     )
     def move(workspace: CurrentWorkspace, session_id: str, data: MoveRequest):
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_session(db, session_id)
             return submit_move(
                 db,
                 session_id,
@@ -109,7 +91,6 @@ def create_router(*, settings, scheduler) -> APIRouter:
     )
     def show_move(workspace: CurrentWorkspace, session_id: str):
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_session(db, session_id)
             return reveal(db, session_id, scheduler, settings)
 
     @router.get("/api/review/sessions/{session_id}/explanation", response_model=MoveExplanation)

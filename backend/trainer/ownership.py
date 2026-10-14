@@ -8,6 +8,7 @@ foreign keys before flush. Engine and Maia analyses and the skill taxonomy are s
 from sqlalchemy import event, inspect
 from sqlalchemy.orm import Session, sessionmaker, with_loader_criteria
 
+from trainer.errors import NotFound
 from trainer.models import AuthSession, Base, Owned, User
 
 
@@ -96,4 +97,4 @@ def validate_ownership(db, context, instances):
                     for item in db.new
                 )
                 if not pending and db.get(parent, value) is None:
-                    raise ValueError("Referenced item is not in this account")
+                    raise NotFound("Referenced item is not in this account")

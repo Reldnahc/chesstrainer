@@ -13,6 +13,7 @@ from trainer.chess_core import (
     legal_move_options,
 )
 from trainer.continuations import replay, settled_delta
+from trainer.errors import InvalidInput
 from trainer.explanations import replay_line
 from trainer.move_causes import move_causes
 from trainer.opening_book import book_move
@@ -316,12 +317,12 @@ def branch_board(game, ply, moves):
     parsed = parsed_game(game)
     mainline = list(parsed.mainline_moves())
     if ply > len(mainline):
-        raise ValueError("Move number is outside this game")
+        raise InvalidInput("Move number is outside this game")
     board = parsed.board()
     for move in mainline[:ply]:
         board.push(move)
     for uci in moves:
         if board.is_game_over():
-            raise ValueError("This variation has already ended")
+            raise InvalidInput("This variation has already ended")
         board.push(legal_move(board, uci))
     return board

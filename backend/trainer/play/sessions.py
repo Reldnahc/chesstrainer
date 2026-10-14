@@ -7,6 +7,7 @@ import chess.pgn
 from sqlalchemy import select
 
 from trainer.chess_core import Score
+from trainer.errors import InvalidInput
 from trainer.game_library import pgn_rating
 from trainer.game_review import analyze_move, position, public_report
 from trainer.human_models.runtime import HumanUnavailable
@@ -176,7 +177,7 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
 def analyze_ply(engine, human_models, sessions, play: PlayGame, ply: int, learner_name: str):
     """The review's own per-move report for the move at this ply, saved on the game."""
     if not 1 <= ply <= len(play.moves):
-        raise ValueError("That move has not been played")
+        raise InvalidInput("That move has not been played")
     board = board_for(play, ply)
     parsed = parsed_for(play, learner_name, board)
     move = board.pop()

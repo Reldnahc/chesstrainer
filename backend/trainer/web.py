@@ -10,7 +10,8 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from trainer.config import Settings
-from trainer.engine import EngineUnavailable
+from trainer.engine import EngineReferenceMismatch, EngineUnavailable
+from trainer.errors import DomainError
 
 PRIVATE_SUFFIXES = (".local", ".localhost", ".lan", ".home", ".home.arpa", ".internal")
 
@@ -80,13 +81,20 @@ def configure_http(app: FastAPI, settings: Settings):
         response.headers["X-Content-Type-Options"] = "nosniff"
         return response
 
-    @app.exception_handler(ValueError)
-    async def invalid_input(request, exc):
-        return JSONResponse({"detail": str(exc)}, status_code=422)
+    # Domain errors carry their status. Any other exception, including a bare
+    # ValueError, is a server fault: it is logged and answers 500.
+    @app.exception_handler(DomainError)
+    async def domain_error(request, exc):
+        return JSONResponse({"detail": str(exc)}, status_code=exc.status)
 
     @app.exception_handler(EngineUnavailable)
     async def unavailable_engine(request, exc):
         return JSONResponse({"detail": str(exc)}, status_code=503)
+
+    @app.exception_handler(EngineReferenceMismatch)
+    async def incompatible_evidence(request, exc):
+        # Stockfish works; only this position's saved evidence needs another executable.
+        return JSONResponse({"detail": str(exc)}, status_code=409)
 
 
 def serve_frontend(app: FastAPI):

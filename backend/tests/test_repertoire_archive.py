@@ -7,8 +7,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import select
 from trainer.api import create_app
 from trainer.exercises import import_repertoire
-from trainer.models import Exercise, SRSState, now
-from trainer.reviews import start_review, submit_move
+from trainer.models import Exercise, ReviewSession, SRSState, now
 from trainer.scheduling import FSRSScheduler
 
 
@@ -47,9 +46,11 @@ def test_repertoire_removal_preserves_history_and_excludes_stale_sessions(settin
                 select(Exercise).where(Exercise.repertoire_id == imported["id"])
             ).all()
             card_ids = {card.id for card in cards}
-            session = start_review(db, cards[0].id)
-            result = submit_move(db, session["session_id"], "g1f3", None, scheduler, settings)
-            assert not result["completed"]  # Saved failed recall with an unfinished retry.
+            # An unfinished recall saved before repertoires were archived.
+            stale = ReviewSession(exercise_id=cards[0].id)
+            db.add(stale)
+            db.flush()
+            session = {"session_id": stale.id}
             retired = db.get(SRSState, cards[1].id)
             retired.retired_at, retired.retired_interval_days = now(), 101
             db.commit()

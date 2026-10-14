@@ -17,7 +17,6 @@ from trainer.contracts.play import (
     PlyRequest,
     PracticeCourses,
 )
-from trainer.engine import EngineUnavailable
 from trainer.models import PlayGame, User
 from trainer.play.book import (
     book_for,
@@ -116,28 +115,17 @@ def create_router(
         if not bot_to_move(play, board):
             return None
         with workspace.variation_lock:
-            try:
-                return choose_reply(
-                    workspace.engine,
-                    workspace.human_models,
-                    workspace.sessions,
-                    play,
-                    board,
-                    book,
-                )
-            except EngineUnavailable as exc:
-                raise HTTPException(503, str(exc)) from exc
+            return choose_reply(
+                workspace.engine, workspace.human_models, workspace.sessions, play, board, book
+            )
 
     def judge_deviation(workspace, play):
         deviation = play.practice["deviation"]
         before = board_for(play, deviation["ply"] - 1)
         with workspace.variation_lock:
-            try:
-                return deviation_verdict(
-                    workspace.engine, before, deviation["uci"], book_moves(play.practice)
-                )
-            except EngineUnavailable as exc:
-                raise HTTPException(503, str(exc)) from exc
+            return deviation_verdict(
+                workspace.engine, before, deviation["uci"], book_moves(play.practice)
+            )
 
     def apply_reply(db, play, choice, name, book):
         """The bot answers, and the game ends here when the board says so. It never resigns."""
@@ -250,10 +238,7 @@ def create_router(
                     raise HTTPException(409, "It is not your move.")
                 if waiting_on_learner(play):
                     raise HTTPException(409, "Choose to keep playing or go again first.")
-                try:
-                    move = legal_move(board, data.uci)
-                except ValueError as exc:
-                    raise HTTPException(422, str(exc)) from exc
+                move = legal_move(board, data.uci)
                 if play.practice:
                     book = practice_book(db, play)
                     if book is not None:
@@ -327,17 +312,9 @@ def create_router(
         if data.ply > len(play.moves):
             raise HTTPException(409, "That move has not been played yet.")
         with workspace.variation_lock:
-            try:
-                report = analyze_ply(
-                    workspace.engine,
-                    workspace.human_models,
-                    workspace.sessions,
-                    play,
-                    data.ply,
-                    name,
-                )
-            except EngineUnavailable as exc:
-                raise HTTPException(503, str(exc)) from exc
+            report = analyze_ply(
+                workspace.engine, workspace.human_models, workspace.sessions, play, data.ply, name
+            )
         with workspace.mutation_lock, workspace.sessions() as db:
             play = require_play(db, play_id)
             # A take-back can replace the move while it is analysed; keep only a

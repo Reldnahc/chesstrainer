@@ -7,6 +7,7 @@ import chess.pgn
 from sqlalchemy import select
 
 from trainer.chess_core import digest, valid_board
+from trainer.errors import InvalidInput, NotFound
 from trainer.models import AnalysisJob, Game, ImportBatch, ImportGame
 
 log = logging.getLogger(__name__)
@@ -56,7 +57,7 @@ def identify_learner(game, usernames: list[str], side: str | None):
     white = game.headers.get("White", "").strip().casefold() in names
     black = game.headers.get("Black", "").strip().casefold() in names
     if white == black:
-        raise ValueError(
+        raise InvalidInput(
             "Learner is ambiguous: supply matching username(s) or explicitly choose a side"
         )
     return white
@@ -200,7 +201,7 @@ def decision_board(game: Game, ply: int):
         if index == ply:
             return board
         board.push(move)
-    raise ValueError("Source decision does not exist")
+    raise NotFound("Source decision does not exist")
 
 
 def learner_decisions(game: Game):

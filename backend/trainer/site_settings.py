@@ -18,6 +18,7 @@ from sqlalchemy import text
 
 from trainer.config import Settings
 from trainer.db import database, migrate
+from trainer.errors import InvalidInput
 
 log = logging.getLogger(__name__)
 
@@ -240,12 +241,12 @@ def save(sql_engine, values):
     clean = {}
     for key, value in values.items():
         if key not in MANAGED:
-            raise ValueError(f"{key} is not a server setting")
+            raise InvalidInput(f"{key} is not a server setting")
         try:
             clean[key] = _validate(key, value)
         except ValidationError as exc:
             message = exc.errors()[0]["msg"]
-            raise ValueError(f"{label(key)}: {message}") from exc
+            raise InvalidInput(f"{label(key)}: {message}") from exc
     with sql_engine.begin() as connection:
         for key, value in clean.items():
             connection.execute(

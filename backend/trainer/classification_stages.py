@@ -8,6 +8,7 @@ from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, v
 from trainer.continuations import ContinuationEnd, continuation_end, extended_line
 from trainer.defensive_probes import hypotheses, verify_defense
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome
+from trainer.errors import EvidenceIntegrityError
 from trainer.move_causes import move_causes
 from trainer.tactical_patterns import detect_patterns
 
@@ -54,11 +55,11 @@ def read_lines(evidence, parameters) -> tuple[EvidenceLine, EvidenceLine, Loss]:
         position_key(valid_board(fen)) != position_key(board)
         for fen in evidence.get("analysis_fens", [])
     ):
-        raise ValueError("Analysis belongs to a different position")
+        raise EvidenceIntegrityError("Analysis belongs to a different position")
     best = Candidate.model_validate(evidence["best_candidates"][0])
     actual = Candidate.model_validate(evidence["played_candidate"])
     if actual.uci != evidence["user_move"]["uci"]:
-        raise ValueError("Actual analysis does not match learner move")
+        raise EvidenceIntegrityError("Actual analysis does not match learner move")
     best_id, actual_id = evidence["evidence_ids"]
     probes = evidence.get("probes", [])
 

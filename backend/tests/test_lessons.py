@@ -7,6 +7,7 @@ from fastapi.testclient import TestClient
 from lesson_fixtures import seed_lesson
 from sqlalchemy import select
 from trainer.api import create_app
+from trainer.errors import Gone
 from trainer.models import (
     Course,
     CourseRevision,
@@ -59,9 +60,9 @@ def test_lesson_routes_and_old_attempts_are_archived(settings, completed):
             assert db.get(ReviewSession, session_id).completed == completed
             assert db.get(SRSState, exercise_id).card == before
             # Offline/domain callers cannot bypass the HTTP archive guard either.
-            with pytest.raises(ValueError, match="archived"):
+            with pytest.raises(Gone, match="archived"):
                 reveal(db, session_id, FSRSScheduler(settings), settings)
-            with pytest.raises(ValueError, match="archived"):
+            with pytest.raises(Gone, match="archived"):
                 submit_move(db, session_id, "e1d1", None, FSRSScheduler(settings), settings)
         # An ordinary review of the same position is a separate usable session.
         position = client.post(f"/api/review/{exercise_id}/start").json()
