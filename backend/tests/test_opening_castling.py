@@ -20,7 +20,7 @@ from trainer.models import (
     now,
 )
 from trainer.opening_studies import recall
-from trainer.scheduling import FSRSScheduler, utc
+from trainer.scheduling import FSRSScheduler
 from trainer.study_lessons.queries import fingerprint
 
 CASTLES = [
@@ -128,14 +128,14 @@ def test_legacy_alias_union_deduplicates_without_changing_retired_target(
         state.retired_at = now()
         state.retired_interval_days = 150
         db.commit()
-        before = (card.revision, utc(state.due), utc(state.retired_at))
+        before = (card.revision, state.due, state.retired_at)
         source = deepcopy(db.get(OpeningStudy, first["id"]).snapshot)
 
         course_enroll(db, settings, provider, "1", color)
 
         assert list(db.scalars(select(ExerciseAnswer.uci))) == [canonical]
         assert card.last_active_answers == [canonical]
-        assert (card.revision, utc(state.due), utc(state.retired_at)) == before
+        assert (card.revision, state.due, state.retired_at) == before
         assert state.retired_interval_days == 150
         assert card.retirement_guard_revision is None
         assert db.get(OpeningStudy, first["id"]).snapshot == source

@@ -1,7 +1,6 @@
 """Connected accounts are polled by the server; new games queue their own analysis."""
 
 import logging
-from datetime import datetime, timezone
 
 from sqlalchemy import delete, select
 
@@ -56,9 +55,7 @@ def queue_sync(db, provider, settings, *, min_age=60):
         return None
     job = latest_sync(db, provider, name)
     if job:
-        age = (
-            datetime.now(timezone.utc) - job.created_at.replace(tzinfo=timezone.utc)
-        ).total_seconds()
+        age = (now() - job.created_at).total_seconds()
         if job.status in job_lifecycle.ACTIVE or age < min_age:
             return job
         # Reuse this account's sync checkpoint instead of accumulating a job

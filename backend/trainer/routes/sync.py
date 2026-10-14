@@ -1,7 +1,5 @@
 """Connections and on-demand checks; the server also polls them on its own."""
 
-from datetime import timezone
-
 from fastapi import APIRouter, HTTPException, Request
 
 from trainer.contracts.accounts import (
@@ -33,7 +31,7 @@ def create_router():
             "username": name,
             "job_id": job.id if job else None,
             "status": job.status if job else "not_started",
-            "checked_at": job.created_at.replace(tzinfo=timezone.utc).isoformat() if job else None,
+            "checked_at": job.created_at.isoformat() if job else None,
             "imported": source.games_imported if source else 0,
             "error": job.error if job else None,
         }

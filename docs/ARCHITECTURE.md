@@ -498,7 +498,7 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
 | repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
 
-There are 51 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 51 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
 
 `human_analyses` stores provider-neutral requests and complete policy facts, unique
 by versioned cache key. Like `engine_analyses` it is shared between accounts: the

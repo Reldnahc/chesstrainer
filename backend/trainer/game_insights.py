@@ -198,7 +198,7 @@ def game_facts(game, scores=None, rating=None):
         opponent_rating=opponent_rating,
         learner_rating=learner_rating,
         learner_white=learner_white,
-        played_at=game.played_at.replace(tzinfo=timezone.utc) if game.played_at else None,
+        played_at=game.played_at,
         played_on=game.played_on,
         result=learner_result(raw_result, learner_white),
         speed=speed_of(time_control),

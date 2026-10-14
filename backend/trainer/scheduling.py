@@ -1,11 +1,6 @@
-from datetime import timezone
 from importlib.metadata import version
 
 from fsrs import Card, Rating, Scheduler
-
-
-def utc(value):
-    return value.replace(tzinfo=timezone.utc) if value.tzinfo is None else value
 
 
 def behavior_rating(failed: bool, revealed: bool, response_ms: int, slow_seconds: float):
@@ -27,6 +22,6 @@ class FSRSScheduler:
 
     def review(self, state: dict, rating, at, response_ms: int):
         card, log = self.scheduler.review_card(
-            Card.from_dict(state), rating, review_datetime=utc(at), review_duration=response_ms
+            Card.from_dict(state), rating, review_datetime=at, review_duration=response_ms
         )
         return card.to_dict(), card.due, log.to_dict()

@@ -164,3 +164,36 @@ def test_the_engine_never_runs_out_of_connections(tmp_path):
         for connection in held:
             connection.close()
         engine.dispose()
+
+
+def test_timestamps_with_an_offset_are_rewritten_and_read_back_in_utc(tmp_path):
+    from datetime import datetime, timedelta, timezone
+
+    from sqlalchemy.orm import Session
+    from trainer.models import Game, User
+
+    engine, _ = database(tmp_path / "timestamps.sqlite3")
+    upgrade_to(engine, "d2b6f8a0c3e5")
+    with engine.begin() as connection:
+        fill(connection, "users", id="u1", username="u1")
+        for game_id, played in (
+            ("offset", "2024-01-01 12:00:00+00:00"),
+            ("eastern", "2024-01-01T07:00:00-05:00"),
+            ("stored", "2024-01-01 12:00:00.000000"),
+            ("plain", "2024-01-01 12:00:00"),
+        ):
+            fill(
+                connection, "games", id=game_id, user_id="u1", fingerprint=game_id, played_at=played
+            )
+    upgrade_to(engine, "head")
+    with engine.connect() as connection:
+        raw = dict(connection.exec_driver_sql("SELECT id, played_at FROM games").fetchall())
+    assert raw["offset"] == raw["eastern"] == raw["stored"] == "2024-01-01 12:00:00.000000"
+    noon = datetime(2024, 1, 1, 12, tzinfo=timezone.utc)
+    with Session(engine) as db:
+        assert {game.played_at for game in db.query(Game)} == {noon}
+        user = db.get(User, "u1")
+        user.last_seen_at = datetime(2024, 1, 1, 7, tzinfo=timezone(-timedelta(hours=5)))
+        db.commit()
+        db.expire_all()
+        assert db.get(User, "u1").last_seen_at == noon

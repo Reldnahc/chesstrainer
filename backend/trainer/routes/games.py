@@ -2,7 +2,6 @@
 
 import io
 import math
-from datetime import timezone
 from typing import Annotated
 
 import chess
@@ -149,9 +148,7 @@ def create_router(*, settings):
                         "black_rating": pgn_rating(headers, False),
                         "learner_color": "white" if game.learner_color else "black",
                         "played_on": game.played_on,
-                        "played_at": game.played_at.replace(tzinfo=timezone.utc).isoformat()
-                        if game.played_at
-                        else None,
+                        "played_at": game.played_at.isoformat() if game.played_at else None,
                         "result": headers.get("Result", "*"),
                         "time_control": time_control,
                         "time_control_label": time_control_label(time_control),

@@ -16,10 +16,6 @@ _touched: dict[tuple[int, str], float] = {}
 _lock = threading.Lock()
 
 
-def utc(value):
-    return value if value is None or value.tzinfo else value.replace(tzinfo=timezone.utc)
-
-
 def active_cutoff(settings):
     return datetime.now(timezone.utc) - timedelta(days=settings.sync_away_days)
 
@@ -35,7 +31,7 @@ def touch(sql_engine, user_id, settings):
     # Bound to the account like any request's session: it can only read and
     # write that account's own row.
     with account_sessions(sql_engine, user_id)() as db:
-        seen = utc(db.scalar(select(User.last_seen_at).where(User.id == user_id)))
+        seen = db.scalar(select(User.last_seen_at).where(User.id == user_id))
         values = {"last_seen_at": current}
         if seen is not None and current - seen >= timedelta(days=settings.sync_away_days):
             values["away_since"] = seen
@@ -45,7 +41,7 @@ def touch(sql_engine, user_id, settings):
 
 def welcome_back(sql_engine, user_id):
     with account_sessions(sql_engine, user_id)() as db:
-        away = utc(db.scalar(select(User.away_since).where(User.id == user_id)))
+        away = db.scalar(select(User.away_since).where(User.id == user_id))
     return {"away_since": away}
 
 

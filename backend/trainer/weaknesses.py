@@ -7,7 +7,6 @@ from sqlalchemy import select
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS
 from trainer.models import Decision, Exercise, Game, Review, ReviewSession, SkillEvidence, now
 from trainer.practice import focus_queue
-from trainer.scheduling import utc
 from trainer.taxonomy import SKILLS
 
 
@@ -45,7 +44,7 @@ def priorities(db, settings):
         # At most one severity contribution per game: correlated blunders are not independent.
         per_game = defaultdict(float)
         for evidence, decision in pairs:
-            age_days = max(0, (now() - utc(decision.created_at)).days)
+            age_days = max(0, (now() - decision.created_at).days)
             severity = (
                 3
                 if decision.mate_lost or decision.allows_mate

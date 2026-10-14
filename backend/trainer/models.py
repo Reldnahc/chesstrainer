@@ -6,6 +6,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Text,
+    TypeDecorator,
     UniqueConstraint,
     or_,
 )
@@ -15,6 +16,30 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 def now() -> datetime:
     return datetime.now(timezone.utc)
+
+
+class UTCDateTime(TypeDecorator):
+    """A UTC timestamp: stored as UTC wall time, always read back timezone-aware.
+
+    SQLite keeps no offset, so plain DateTime columns came back naive (or aware,
+    for rows a migration wrote as text with an offset). Every timestamp column
+    uses this type, so comparisons and API output never mix the two.
+    """
+
+    impl = DateTime(timezone=True)
+    cache_ok = True
+
+    def process_bind_param(self, value, dialect):
+        if value is None or value.tzinfo is None:
+            return value
+        return value.astimezone(timezone.utc).replace(tzinfo=None)
+
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return None
+        if value.tzinfo is None:
+            return value.replace(tzinfo=timezone.utc)
+        return value.astimezone(timezone.utc)
 
 
 def uid() -> str:
@@ -38,8 +63,8 @@ class User(Base):
     password_change_required: Mapped[bool] = mapped_column(default=False, server_default="0")
     created: Mapped[float]
     # Polling pauses after a week without requests; see trainer.presence.
-    last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    away_since: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    last_seen_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    away_since: Mapped[datetime | None] = mapped_column(UTCDateTime())
 
 
 class AuthSession(Base):
@@ -80,7 +105,7 @@ class ImportBatch(Owned, Base):
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     filename: Mapped[str]
     original_pgn: Mapped[str] = mapped_column(Text)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class Game(Owned, Base):
@@ -93,14 +118,14 @@ class Game(Owned, Base):
     learner_color: Mapped[bool]
     pgn: Mapped[str] = mapped_column(Text)
     played_on: Mapped[str | None]
-    played_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    played_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     # Mainline half-moves, saved at import so the library never replays PGNs. Older
     # rows are filled in the first time they are listed.
     move_count: Mapped[int | None]
     # True/False when the source says whether the game was rated; None when it does
     # not (most hand-made PGNs). Stats skip only games known to be unrated.
     rated: Mapped[bool | None]
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
     @classmethod
     def counts_in_stats(cls):
@@ -131,7 +156,7 @@ class AnalysisJob(Owned, Base):
     puzzles_found: Mapped[int] = mapped_column(default=0, server_default="0")
     cancel_requested: Mapped[bool] = mapped_column(default=False)
     error: Mapped[str | None] = mapped_column(Text)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
     # Lower runs sooner; see trainer.game_analysis for the per-game levels.
     priority: Mapped[int] = mapped_column(default=0, server_default="0")
 
@@ -162,7 +187,7 @@ class ProviderCheckpoint(Owned, Base):
     job_id: Mapped[str] = mapped_column(ForeignKey("chesscom_imports.job_id"), primary_key=True)
     url: Mapped[str] = mapped_column(primary_key=True)
     games_selected: Mapped[int]
-    fetched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    fetched_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 # Stable physical tables and aliases preserve existing jobs and offline tools.
@@ -187,7 +212,7 @@ class EngineAnalysis(Base):
     engine_version: Mapped[str]
     config: Mapped[dict] = mapped_column(JSON)
     candidates: Mapped[list] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class GameReview(Owned, Base):
@@ -213,7 +238,7 @@ class ReviewRefinement(Owned, Base):
     reason: Mapped[str | None]
     report: Mapped[dict | None] = mapped_column(JSON)
     adopted: Mapped[bool] = mapped_column(default=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class HumanAnalysis(Base):
@@ -229,7 +254,7 @@ class HumanAnalysis(Base):
     cache_key: Mapped[str] = mapped_column(unique=True)
     request: Mapped[dict] = mapped_column(JSON)
     policy: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class GameReviewMove(Owned, Base):
@@ -269,8 +294,8 @@ class PlayGame(Owned, Base):
     saved_game_id: Mapped[str | None] = mapped_column(ForeignKey("games.id"))
     losing_streak: Mapped[int] = mapped_column(default=0, server_default="0")
     draw_declined: Mapped[bool] = mapped_column(default=False, server_default="0")
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
-    finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
+    finished_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
 
 
 class PlayProfile(Owned, Base):
@@ -285,7 +310,7 @@ class PlayProfile(Owned, Base):
     positions: Mapped[int] = mapped_column(default=0, server_default="0")
     games: Mapped[int] = mapped_column(default=0, server_default="0")
     configuration_key: Mapped[str] = mapped_column(default="", server_default="")
-    computed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    computed_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
 
 
 class Decision(Owned, Base):
@@ -307,7 +332,7 @@ class Decision(Owned, Base):
     meaningful: Mapped[bool] = mapped_column(default=False, index=True)
     deep: Mapped[bool] = mapped_column(default=False)
     facts: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class Skill(Base):
@@ -328,7 +353,7 @@ class ClassificationAnalysis(Owned, Base):
     job_id: Mapped[str | None] = mapped_column(ForeignKey("analysis_jobs.id"))
     before_analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
     played_analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class ClassificationProbe(Owned, Base):
@@ -345,7 +370,7 @@ class ClassificationProbe(Owned, Base):
     kind: Mapped[str]
     at_ply: Mapped[int]
     query_key: Mapped[str]
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class ClassificationTask(Owned, Base):
@@ -373,7 +398,7 @@ class ClassificationRun(Owned, Base):
     input_tokens: Mapped[int] = mapped_column(default=0)
     output_tokens: Mapped[int] = mapped_column(default=0)
     attempts: Mapped[int] = mapped_column(default=1)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class SkillEvidence(Owned, Base):
@@ -394,7 +419,7 @@ class Course(Owned, Base):
     title: Mapped[str]
     target_rating: Mapped[int]
     active: Mapped[bool] = mapped_column(default=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class CourseUnit(Owned, Base):
@@ -433,7 +458,7 @@ class CourseRevision(Owned, Base):
     course_id: Mapped[str] = mapped_column(ForeignKey("courses.id"), index=True)
     fingerprint: Mapped[str]
     snapshot: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class LessonItem(Owned, Base):
@@ -464,7 +489,7 @@ class TeachingRun(Owned, Base):
     input_tokens: Mapped[int] = mapped_column(default=0)
     output_tokens: Mapped[int] = mapped_column(default=0)
     attempts: Mapped[int] = mapped_column(default=1)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class Repertoire(Owned, Base):
@@ -487,7 +512,7 @@ class Exercise(Owned, Base):
     orientation: Mapped[str]
     explanation: Mapped[str] = mapped_column(Text, default="")
     policy: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class ExerciseTag(Owned, Base):
@@ -510,11 +535,11 @@ class SRSState(Owned, Base):
     __tablename__ = "srs_states"
     exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
     card: Mapped[dict] = mapped_column(JSON)
-    due: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
+    due: Mapped[datetime] = mapped_column(UTCDateTime(), index=True)
     reviews: Mapped[int] = mapped_column(default=0)
     lapses: Mapped[int] = mapped_column(default=0)
     eligible: Mapped[bool] = mapped_column(default=True, server_default="1")
-    retired_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    retired_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     retired_interval_days: Mapped[float | None]
 
 
@@ -527,10 +552,10 @@ class ReviewSession(Owned, Base):
     mode: Mapped[str] = mapped_column(default="review", server_default="review")
     focus_skill_id: Mapped[str | None] = mapped_column(ForeignKey("skills.id"))
     response_ms: Mapped[int | None]
-    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    completed_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
-    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    started_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
     failed: Mapped[bool] = mapped_column(default=False)
     revealed: Mapped[bool] = mapped_column(default=False)
     completed: Mapped[bool] = mapped_column(default=False)
@@ -557,7 +582,7 @@ class Review(Owned, Base):
     policy_version: Mapped[str] = mapped_column(default="1")
     scheduler_version: Mapped[str]
     scheduler_log: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class PuzzleSession(Owned, Base):
@@ -575,9 +600,9 @@ class PuzzleSession(Owned, Base):
     status: Mapped[str] = mapped_column(default="active")
     failed: Mapped[bool] = mapped_column(default=False)
     first_response_ms: Mapped[int | None]
-    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
-    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    started_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
+    updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
+    completed_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
 
 
 class PuzzleAttempt(Owned, Base):
@@ -592,7 +617,7 @@ class PuzzleAttempt(Owned, Base):
     grade: Mapped[str]
     elapsed_ms: Mapped[int]
     response: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class GamePuzzleSearch(Owned, Base):
@@ -606,7 +631,7 @@ class GamePuzzleSearch(Owned, Base):
     engine_version: Mapped[str]
     candidates: Mapped[int] = mapped_column(default=0)
     kept: Mapped[int] = mapped_column(default=0)
-    searched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    searched_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class GamePuzzle(Owned, Base):
@@ -625,7 +650,7 @@ class GamePuzzle(Owned, Base):
     reason: Mapped[str | None]
     definition: Mapped[dict | None] = mapped_column(JSON)
     evidence: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class StudyLessonSession(Owned, Base):
@@ -643,9 +668,9 @@ class StudyLessonSession(Owned, Base):
     state: Mapped[dict] = mapped_column(JSON)
     revision: Mapped[int] = mapped_column(default=0)
     status: Mapped[str] = mapped_column(default="active")
-    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
-    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    started_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
+    updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
+    completed_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
 
 
 class StudyLessonCommand(Owned, Base):
@@ -656,7 +681,7 @@ class StudyLessonCommand(Owned, Base):
     request_id: Mapped[str]
     request: Mapped[dict] = mapped_column(JSON)
     response: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class StudyLessonProgress(Owned, Base):
@@ -669,8 +694,8 @@ class StudyLessonProgress(Owned, Base):
     content_hash: Mapped[str]
     viewed_steps: Mapped[list] = mapped_column(JSON, default=list)
     attempted_steps: Mapped[list] = mapped_column(JSON, default=list)
-    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    completed_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
+    updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class OpeningStudy(Owned, Base):
@@ -687,7 +712,7 @@ class OpeningStudy(Owned, Base):
     color: Mapped[str]
     snapshot: Mapped[dict] = mapped_column(JSON)
     active: Mapped[bool] = mapped_column(default=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 class OpeningStudyMove(Owned, Base):
@@ -729,7 +754,7 @@ class OpeningContentChange(Owned, Base):
     revision: Mapped[int]
     reason: Mapped[str]
     details: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
 def keep_shared(model, key, **values):

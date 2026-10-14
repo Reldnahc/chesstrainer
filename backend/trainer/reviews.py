@@ -26,7 +26,7 @@ from trainer.opening_studies import recall as opening_recall
 from trainer.policy import MovePolicy
 from trainer.practice import require_focus
 from trainer.retirement import require_active_review, retire_if_ready
-from trainer.scheduling import behavior_rating, utc
+from trainer.scheduling import behavior_rating
 
 log = logging.getLogger(__name__)
 
@@ -119,7 +119,7 @@ def queue(db, last_id=None, limit=30):
         states.append(states.pop(0))
     # The cold queue intentionally exposes no source, skill, answer, score or explanation.
     return [
-        {"exercise_id": s.exercise_id, "due": utc(s.due).isoformat(), "new": s.reviews == 0}
+        {"exercise_id": s.exercise_id, "due": s.due.isoformat(), "new": s.reviews == 0}
         for s in states[:limit]
     ]
 
@@ -185,7 +185,7 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         else "new"
         if state.reviews == 0
         else "practice"
-        if utc(state.due) > now()
+        if state.due > now()
         else {1: "learning", 2: "review", 3: "relearning"}[state.card["state"]]
     )
     return review_position(db, existing, reason=reason)
@@ -275,7 +275,7 @@ def feedback(db, exercise, session=None):
         "retired_interval_days": state.retired_interval_days,
         "explanation": exercise.explanation,
         "answers": [{"uci": a.uci, "san": a.san, "primary": a.primary} for a in answers],
-        "next_due": None if state.retired_at else utc(state.due).isoformat(),
+        "next_due": None if state.retired_at else state.due.isoformat(),
     }
     if session and session.mode == "focus":
         result.update(practice_only=True, next_due=None)
@@ -394,7 +394,7 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     # Answers are saved in canonical form, so an API client's castling alias
     # (e1h1) is graded and stored as the same move as e1g1.
     uci = move.uci()
-    elapsed = max(0, int((now() - utc(session.started_at)).total_seconds() * 1000))
+    elapsed = max(0, int((now() - session.started_at).total_seconds() * 1000))
     answer = (
         opening_recall.answer(snapshot, uci)
         if snapshot
@@ -502,7 +502,7 @@ def reveal(db, session_id, scheduler, settings):
             require_active_review(db, exercise.id)
         session.revealed = True
         session.failed = True
-        elapsed = max(0, int((now() - utc(session.started_at)).total_seconds() * 1000))
+        elapsed = max(0, int((now() - session.started_at).total_seconds() * 1000))
         if session.response_ms is None:
             first_response = db.scalar(
                 select(func.min(Attempt.elapsed_ms)).where(Attempt.session_id == session.id)

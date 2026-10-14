@@ -492,6 +492,6 @@ def generation_status(db, *, automatic: bool) -> dict:
         "puzzles": puzzles,
         "candidates": candidates,
         "kept": kept,
-        "last_searched_at": None if last is None else str(last),
+        "last_searched_at": None if last is None else last.isoformat(),
         "job_status": job_status,
     }

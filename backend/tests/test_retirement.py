@@ -8,7 +8,6 @@ from trainer import reviews
 from trainer.api import create_app
 from trainer.models import Review, ReviewSession, SRSState
 from trainer.retirement import retire_if_ready
-from trainer.scheduling import utc
 
 
 @pytest.mark.parametrize("days,retired", [(99, False), (100, False), (100.001, True), (163, True)])
@@ -59,7 +58,7 @@ def test_api_retires_successful_recall_and_never_requeues(settings, monkeypatch)
         ]
         with app.state.sessions() as db:
             state = db.get(SRSState, exercise)
-            saved = state.card, state.reviews, utc(state.due), utc(state.retired_at)
+            saved = state.card, state.reviews, state.due, state.retired_at
             assert len(db.scalars(select(Review)).all()) == index + 1
         assert client.get("/api/review/queue").json() == []
     clock[0] += timedelta(days=1000)
@@ -70,7 +69,7 @@ def test_api_retires_successful_recall_and_never_requeues(settings, monkeypatch)
         assert client.post("/api/exercises/manual", json=payload).json()["id"] == exercise
         with restarted.state.sessions() as db:
             state = db.get(SRSState, exercise)
-            assert (state.card, state.reviews, utc(state.due), utc(state.retired_at)) == saved
+            assert (state.card, state.reviews, state.due, state.retired_at) == saved
         assert client.get("/api/review/queue").json() == []
 
 
@@ -89,7 +88,7 @@ def test_startup_retires_existing_long_interval_and_blocks_unfinished_session(se
             state.card = state.card | {"last_review": at.isoformat()}
             state.due, state.reviews = at + timedelta(days=150), 5
             db.commit()
-            saved = state.card, utc(state.due), state.reviews
+            saved = state.card, state.due, state.reviews
     restarted = create_app(settings, workers=False)
     with TestClient(restarted) as client:
         assert client.get("/api/review/queue").json() == []
@@ -104,5 +103,5 @@ def test_startup_retires_existing_long_interval_and_blocks_unfinished_session(se
         with restarted.state.sessions() as db:
             state = db.get(SRSState, exercise)
             assert state.retired_at is not None and state.retired_interval_days == 150
-            assert (state.card, utc(state.due), state.reviews) == saved
+            assert (state.card, state.due, state.reviews) == saved
             assert db.get(ReviewSession, cold["session_id"]) is not None
