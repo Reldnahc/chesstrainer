@@ -237,6 +237,35 @@ def taken_back(practice: dict) -> dict:
     return {**practice, "status": "book", "deviation": None}
 
 
+def replayed(practice: dict, book: Book, learner_white: bool, moves) -> dict:
+    """Where the practice stands after these moves, for a game rewound to them.
+
+    A spot the learner already answered (off book, or the end of the line) followed
+    by more moves was answered by playing on, so the replay plays on there too.
+    """
+    board = chess.Board()
+    state = {
+        **practice,
+        "status": "book",
+        "ended": None,
+        "deviation": None,
+        "book_moves": list(book.book_moves(board)) if learner_white else [],
+    }
+    for uci in moves:
+        if state["status"] == "deviation":
+            state = carried_on(state)
+        elif state["status"] == "book_end":
+            state = kept_playing(state)
+        move = chess.Move.from_uci(uci)
+        if board.turn == learner_white:
+            state = learner_moved(state, book, board, move)
+            board.push(move)
+        else:
+            board.push(move)
+            state = bot_moved(state, book, board)
+    return state
+
+
 def carried_on(practice: dict) -> dict:
     return _ended(practice, "carried_on")
 

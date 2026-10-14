@@ -40,6 +40,9 @@ class PlayRequest(Contract):
 class PlayMoveRequest(Contract):
     ply: int = Field(ge=0, le=1024)
     uci: str = Field(min_length=4, max_length=5)
+    # A move from an earlier position on the learner's turn: the game goes back
+    # there and this move replaces everything after it.
+    rewind: bool = False
 
 
 class PlyRequest(Contract):

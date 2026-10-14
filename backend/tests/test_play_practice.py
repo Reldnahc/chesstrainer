@@ -9,7 +9,14 @@ from human_fixtures import PolicyProvider
 from study_lesson_fixtures import connected_course
 from trainer.api import create_app
 from trainer.human_models.types import HumanMove, HumanPolicy
-from trainer.play.book import MINIMUM_SHARE, book_for, book_move, book_weights, practice_courses
+from trainer.play.book import (
+    MINIMUM_SHARE,
+    book_for,
+    book_move,
+    book_weights,
+    practice_courses,
+    replayed,
+)
 from trainer.study_lessons.content import CourseDefinition
 
 # Added to the fixture's own repertoire line, 1.e4 e5 2.Nf3 Nc6 3.Bc4.
@@ -191,6 +198,51 @@ def test_practice_follows_the_book_and_stops_the_learner_off_it(settings, stockf
         assert carried["practice"]["ended"] == "carried_on"
         assert carried["practice"]["book_moves"] == []
         assert reply()["reply"]["source"] == "human"
+
+        # Rewinding: only to the learner's turn, and only as a move played there.
+        rewound = client.post(
+            f"/api/play/{play_id}/move", json={"ply": 1, "uci": "e7e5", "rewind": True}
+        )
+        assert rewound.status_code == 409
+        for ply in (1, 3):
+            analysed = client.post(f"/api/play/{play_id}/analyze", json={"ply": ply})
+            assert analysed.status_code == 200, analysed.text
+        rewound = client.post(
+            f"/api/play/{play_id}/move", json={"ply": 2, "uci": "g1f3", "rewind": True}
+        )
+        assert rewound.status_code == 200, rewound.text
+        rewound = rewound.json()
+        # The new move replaces the rest of the game, and practice resumes in book.
+        assert [frame["uci"] for frame in rewound["frames"][1:]] == ["e2e4", "e7e5", "g1f3"]
+        assert rewound["practice"]["status"] == "book" and rewound["practice"]["ended"] is None
+        assert [frame["report"] is not None for frame in rewound["frames"]] == [
+            False,
+            True,
+            False,
+            False,
+        ]
+        assert reply()["reply"]["source"] == "book"
+
+
+def test_a_replay_picks_the_practice_up_where_the_rewound_game_stood():
+    book = book_for(practice_course())
+    practice = {
+        "course_id": "practice",
+        "revision": "1",
+        "title": "Practice",
+        "status": "ended",
+        "ended": "carried_on",
+        "deviation": None,
+        "book_moves": [],
+    }
+    assert replayed(practice, book, True, [])["book_moves"] == ["e2e4", "g1f3"]
+    in_book = replayed(practice, book, True, ["e2e4", "e7e5"])
+    assert in_book["status"] == "book" and in_book["book_moves"] == ["g1f3"]
+    off = replayed(practice, book, True, ["e2e4", "e7e5", "a2a3"])
+    assert off["status"] == "deviation" and off["deviation"]["ply"] == 3
+    # Moves after the off-book spot were played on, so the replay plays on too.
+    on = replayed(practice, book, True, ["e2e4", "e7e5", "a2a3", "a7a6"])
+    assert on["status"] == "ended" and on["ended"] == "carried_on"
 
 
 @pytest.mark.stockfish

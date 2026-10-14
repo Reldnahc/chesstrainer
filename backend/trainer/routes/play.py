@@ -30,6 +30,7 @@ from trainer.play.book import (
     learner_moved,
     practice_courses,
     practice_lines,
+    replayed,
     start_practice,
     taken_back,
 )
@@ -90,6 +91,24 @@ def create_router(
     def waiting_on_learner(play):
         """Off book, or at the end of the line, the bot waits for the learner's choice."""
         return bool(play.practice) and play.practice["status"] in {"deviation", "book_end"}
+
+    def rewind(db, play, ply):
+        """Back to an earlier position on the learner's turn, to play another move there.
+
+        The moves after it, and their reports, are gone. A practice game picks up its
+        book where it stood; at the end of the line, the new move means playing on.
+        """
+        play.moves = play.moves[:ply]
+        play.reports = {key: value for key, value in play.reports.items() if int(key) <= ply}
+        if not play.practice:
+            return
+        book = practice_book(db, play)
+        if book is not None:
+            play.practice = replayed(play.practice, book, learner_is_white(play), play.moves)
+        if play.practice["status"] == "book_end":
+            play.practice = kept_playing(play.practice)
+        elif play.practice["status"] == "deviation":
+            play.practice = carried_on(play.practice)
 
     def compute_reply(workspace, play, book):
         """Engine and model work runs between transactions, never inside one."""
@@ -220,6 +239,10 @@ def create_router(
                 name = learner_name(db, workspace)
                 if play.status != "active":
                     raise HTTPException(409, "This game has finished.")
+                if data.rewind and data.ply < len(play.moves):
+                    if board_for(play, data.ply).turn != learner_is_white(play):
+                        raise HTTPException(409, "It is not your move there.")
+                    rewind(db, play, data.ply)
                 if data.ply != len(play.moves):
                     raise HTTPException(409, "The board has moved on; refresh the game.")
                 board = board_for(play)
@@ -259,12 +282,18 @@ def create_router(
                 elif not bot_to_move(play, board_for(play)):
                     return state(play, name, last_reply(play) if play.status == "active" else None)
                 book = practice_book(db, play)
+                # A rewind while the engine works makes its answer stale.
+                moves = list(play.moves)
             if off_book(play):
                 # Off book the bot waits; the reply request reports how the move compares.
                 verdict = judge_deviation(workspace, play)
                 with workspace.sessions() as db:
                     play = require_play(db, play_id)
-                    if off_book(play) and play.practice["deviation"]["verdict"] is None:
+                    if (
+                        play.moves == moves
+                        and off_book(play)
+                        and play.practice["deviation"]["verdict"] is None
+                    ):
                         before = board_for(play, play.practice["deviation"]["ply"] - 1)
                         play.practice = judged(play.practice, before, verdict)
                         db.commit()
@@ -272,6 +301,8 @@ def create_router(
             choice = compute_reply(workspace, play, book)
             with workspace.sessions() as db:
                 play = require_play(db, play_id)
+                if play.moves[: len(moves)] != moves:
+                    raise HTTPException(409, "The game went back while the bot was thinking.")
                 reply = (
                     apply_reply(db, play, choice, name, book)
                     if bot_to_move(play, board_for(play)) and not waiting_on_learner(play)
