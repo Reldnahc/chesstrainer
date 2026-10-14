@@ -15,4 +15,4 @@ UPSTREAM.json preserves original file hashes and every original function AST has
 Tests remove observer wrappers and compare the original function hashes; parity
 tests compare all selected predicate outputs with the unwrapped source.
 Keep this source's formatting intact; project Ruff excludes this vendor directory.
-See docs/LICHESS_REUSE.md for application boundaries and combined-distribution terms.
+See docs/LOCAL_CLASSIFICATION.md#pinned-lichess-code for application boundaries and combined-distribution terms.

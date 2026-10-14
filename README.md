@@ -194,7 +194,7 @@ Build before running tests that use frontend/dist; do not rebuild it during back
 
 [TESTING.md](docs/TESTING.md) includes isolated migration/schema-drift checks and platform-specific commands.
 
-Developer-only [Lichess benchmark tooling](docs/LICHESS_BENCHMARK.md) streams a local puzzle dataset to measure positive-theme agreement with the shared tactical detector. It does not add puzzle training to the app or infer precision from missing tags. The [initial external baseline](docs/LICHESS_BENCHMARK_RESULTS.md) preserves per-theme results and limitations. [Lichess reuse](docs/LICHESS_REUSE.md) records the pinned implementation and frozen before/after comparison; agreement with related upstream labels is not independent precision.
+Developer-only [Lichess benchmark tooling](docs/LICHESS_BENCHMARK.md) streams a local puzzle dataset to measure positive-theme agreement with the shared tactical detector. It does not add puzzle training to the app or infer precision from missing tags. Its [results](docs/LICHESS_BENCHMARK.md#results) compare the earlier detector, raw upstream recognition and current admission; agreement with related upstream labels is not independent precision.
 
 ## Backup and privacy
 
@@ -215,7 +215,7 @@ Username imports contact the selected site's public API from the backend, sendin
 
 - [Product](docs/PRODUCT.md), [feature status and remaining work](docs/FEATURE_STATUS.md) and [Study](docs/STUDY.md)
 - [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/ANALYSIS_PIPELINE.md) and [data model](docs/DATA_MODEL.md)
-- [Local classification](docs/LOCAL_CLASSIFICATION.md), [assistant assessment](docs/CLASSIFICATION_ASSESSMENT.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
+- [Local classification](docs/LOCAL_CLASSIFICATION.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
 - [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [game provider imports](docs/GAME_PROVIDERS.md)
 - [Coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast personality bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [character writing](docs/COACH_PERSONALITIES.md) and [audio](docs/AUDIO.md)
 - [Testing procedure](docs/TESTING.md) and [decisions](docs/DECISIONS.md); earlier implementation and verification records remain in Git history.

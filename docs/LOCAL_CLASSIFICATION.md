@@ -2,7 +2,7 @@
 
 ## Classification v4: pinned Lichess recognition
 
-Version 4.0-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [reuse, provenance and measurements](LICHESS_REUSE.md).
+Version 4.0-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](LICHESS_BENCHMARK.md#results) for measurements.
 
 Recognition and mistake admission are separate. A pin or double check can be present in a line without a settled material outcome. Review can show that factual motif; an active weakness finding still needs Fieldwork's existing engine comparison, material/mate support and relevant episode. Earlier rich collection witnesses and independently verified native extensions remain; upstream recognition adds motifs those narrower witnesses missed.
 
@@ -14,11 +14,22 @@ Specific witnesses can span a connected tactical episode (default eight plies). 
 
 Before/after cause witnesses identify an abandoned sole unpinned defender, an immediate unfavorable capture/recapture, and a newly created attack from the opponent's previous move that remains unanswered. A preceding move that removes a relative pin can also make a capture effective: the witness verifies that the earlier capture would legally expose the more valuable piece behind it. These rules save and validate the preceding position/move. They describe observed events in the saved continuation, not the learner's intentions. Engine comparisons and material-outcome gates still apply. Taxonomy v3 adds abandoned_defender, deflection and trapped_piece; existing opponent_threat_recognition and avoiding_bad_trades now have local witnesses.
 
-In the historical v3.1 assessment, on the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Native enrichment and a blinded assistant assessment followed. See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for measured coverage, disagreements, fixes and evaluation limits.
-
 Targeted native tests now corroborate relative pins, costly legal captures of forking pieces, and a conservative trapped-piece pattern. Geometric hypotheses remain unpublished until the matching query confirms a material gain and a compatible score in the best tested defensive continuation. A useful defensive resource, uncollected target, unsettled line or unsupported original outcome causes abstention. Trapped-piece candidates require every legal move of the piece to allow an immediate legal capture; the tested best escape must actually lose the piece. Other defensive resources and broader strategic traps remain outside this detector. Audits retain pending/confirmed/rejected check reasons and the additional analysis IDs.
 
 Fieldwork uses python-chess, local Stockfish and deterministic Python rules. There is no LLM connection, model key, paid classification, or external pedagogy payload. Historical model audits remain archived locally.
+
+## Pinned Lichess code
+
+The vendored [Lichess puzzler](https://github.com/ornicar/lichess-puzzler) tagger is pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82 (August 7, 2026) and is AGPL-3.0; its license, original source hashes and local modifications are in [the vendor directory](../backend/trainer/_vendor/lichess_puzzler/README.md). The only local change adds witness observers: removing them reproduces every original function's AST hash, and `util.py`, `model.py` and the license match upstream byte for byte. [NOTICE.md](../NOTICE.md) explains the combined GPL/AGPL source offer.
+
+| Module | Role |
+|---|---|
+| `lichess_patterns.py` | Rebuilds a python-chess PGN line and calls the pinned predicates |
+| `lichess_witnesses.py` | Turns their successful return sites into real move indices, board frames and square roles |
+| `tactical_patterns.py` | Applies Fieldwork's connected-episode and outcome admission boundaries |
+| `verified_patterns.py` | Keeps the earlier detailed collection witnesses and independently verified extensions |
+
+Changing the classifier version invalidates classification cache identities while historical responses stay readable. Missing pre-position context skips upstream hanging-piece recognition rather than supplying a null setup move. Saved games are not reclassified on startup; use **Settings > Advanced > Classify saved games** after deploying a new version.
 
 ## Outcomes, patterns and practice cues
 
@@ -82,7 +93,7 @@ Freeze the report before annotation and compare afterwards with `python scripts/
 
 `python scripts/classification_report.py --annotations data/sample.csv --output data/evaluated.json` reports precision/recall separately for outcomes and mechanisms, including split metrics. Only explicitly completed annotations count. Unknown labels, duplicate decisions and changed evidence are rejected. Empty denominators stay unknown. The stratified subset is not an unweighted population accuracy estimate. Independent human labels and long-term improvement measurements are still outstanding; fixtures and coverage do not establish accuracy.
 
-The separate [Lichess benchmark](LICHESS_BENCHMARK.md) evaluates positive-theme agreement of the shared line-pattern detector on an offline external dataset. It supplies legal solver continuations and explicitly weaker visible-outcome support, not fabricated engine scores or native defensive probes. Missing Lichess tags never become negative labels. [Initial per-theme results](LICHESS_BENCHMARK_RESULTS.md) expose uneven recognition and distinguish initial-episode attribution from recognition later in a solution. After v4 reuse, agreement partly measures compatibility with a related upstream label generator, not independent validation of those rules. This complements the human precision workflow above; it does not replace it or measure full-classifier recall.
+The separate [Lichess benchmark](LICHESS_BENCHMARK.md) evaluates positive-theme agreement of the shared line-pattern detector on an offline external dataset. It supplies legal solver continuations and explicitly weaker visible-outcome support, not fabricated engine scores or native defensive probes. Missing Lichess tags never become negative labels. Its [results](LICHESS_BENCHMARK.md#results) distinguish initial-episode attribution from recognition later in a solution. After v4 reuse, agreement partly measures compatibility with a related upstream label generator, not independent validation of those rules. This complements the human precision workflow above; it does not replace it or measure full-classifier recall.
 
 Browser coverage uses isolated fixture positions for desktop and phone pattern
 playback; generated captures stay in ignored test artifacts.

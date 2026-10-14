@@ -38,7 +38,7 @@ replace their license notices with the application's GPL/AGPL notice.
 The Lichess tagger is pinned to commit
 8d9faff694ba3a8598abc5465347209af3f90a82. Local changes adapt package imports,
 remove global logging configuration and add observer calls at successful motif
-return sites. Predicate conditions are preserved. See docs/LICHESS_REUSE.md.
+return sites. Predicate conditions are preserved. See docs/LOCAL_CLASSIFICATION.md#pinned-lichess-code.
 
 The accuracy calculation in backend/trainer/_vendor/lichess_accuracy is a Python
 port of Lichess lila revision 2e653ad1e2b9fad31b4a092394019ef8fafdedb8 (AGPL-3.0),

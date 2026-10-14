@@ -65,7 +65,7 @@ See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact scope and limit
 
 The deeper-evidence job prioritizes concrete pending defensive questions, then unknown outcomes and saves supplemental analysis links separately. Completed probe keys and persisted task lists support cancellation/restart without repeating completed searches or expanding the job budget. Existing grading evidence and schedules remain unchanged.
 
-See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for coverage progression and the first blinded assistant comparison. [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) documents the developer-only external positive-label test, with [initial results](LICHESS_BENCHMARK_RESULTS.md). It is not a Lichess import/training product feature.
+[LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) documents the developer-only external positive-label test and its results. It is not a Lichess import/training product feature.
 
 ## Game-review interaction
 

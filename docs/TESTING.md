@@ -600,11 +600,11 @@ python scripts/classification_report.py --database data/trainer.sqlite3 --output
 
 The script opens SQLite read-only and runs no engines or network requests. Blinded sampling, annotation and frozen-comparison commands are documented in [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md#configuration-and-evaluation). Reports contain private evidence and belong in ignored data.
 
-Passing tests establish implementation contracts, not population classifier accuracy or long-term chess improvement. The first [assistant assessment](CLASSIFICATION_ASSESSMENT.md) preserves uncertain cases and provenance; independent human/game-separated holdout evaluation remains outstanding.
+Passing tests establish implementation contracts, not population classifier accuracy or long-term chess improvement. Independent human/game-separated holdout evaluation remains outstanding.
 
 ### Offline Lichess benchmark
 
-Use [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) for local CSV/compression setup, theme semantics and sampling commands. This developer tool tests the production line detector without a database, engine, server, model or network. It adds no application puzzle feature. [The initial external baseline](LICHESS_BENCHMARK_RESULTS.md) is a separate measurement from passing synthetic tests.
+Use [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) for local CSV/compression setup, theme semantics and sampling commands. This developer tool tests the production line detector without a database, engine, server, model or network. It adds no application puzzle feature. Its [results](LICHESS_BENCHMARK.md#results) are a separate measurement from passing synthetic tests.
 
 ```sh
 python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lichess_benchmark.py

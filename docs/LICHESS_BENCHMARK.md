@@ -134,7 +134,7 @@ Before evaluation the report is incomplete. An unexpected detector exception pre
 
 ## Interpretation and next validation layer
 
-This can establish repeatable agreement on tagged positive examples under a documented line adapter. Since upstream reuse, those labels are related to the production recognizer and cannot serve as independent proof of its precision. The [initial benchmark](LICHESS_BENCHMARK_RESULTS.md) reports 1,000 examples for each eligible theme, including weak motifs and unsettled endpoints.
+This can establish repeatable agreement on tagged positive examples under a documented line adapter. Since upstream reuse, those labels are related to the production recognizer and cannot serve as independent proof of its precision.
 
 It cannot establish:
 
@@ -173,4 +173,25 @@ report.json contains per-theme counts/percentages, separate exact/approximate ma
 
 Underpromotion is a deliberately visible semantic difference: raw upstream excludes rook/bishop mating underpromotions, whereas Fieldwork's witness projection recognizes any actual nonqueen promotion that passes its admission checks. Discovered-check projection requires a single uncovered check, excluding double check. Neither mapping was widened to flatter results.
 
-See [LICHESS_REUSE.md](LICHESS_REUSE.md) for the frozen 12,000-incidence comparison, remaining gaps and provenance. The comparison adds eight deterministic tests in test_lichess_comparison.py.
+The comparison adds eight deterministic tests in test_lichess_comparison.py.
+
+## Results
+
+The baseline run (September 13, 2026) sampled 1,000 positives per eligible theme with seed 0 from the full 6,100,952-row export (input SHA256 95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9); every row reconstructed with zero skips. The frozen sample (samples.jsonl SHA256 e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0) was then replayed through the comparison above after the v4 integration. Reports stay in ignored `data/`.
+
+| Theme | v3.1 line detector | Raw upstream recognition | v4 Fieldwork admission |
+|---|---:|---:|---:|
+| backRankMate | 99.2% | 100.0% | 100.0% |
+| capturingDefender | 63.8% | 100.0% | 78.7% |
+| deflection | 76.7% | 100.0% | 94.8% |
+| discoveredAttack | 81.4% | 100.0% | 93.8% |
+| discoveredCheck | 65.9% | 74.6% | 66.0% |
+| doubleCheck | 94.0% | 100.0% | 94.0% |
+| fork | 71.3% | 100.0% | 98.2% |
+| hangingPiece | 99.2% | 99.9% | 99.2% |
+| pin | 39.7% | 99.9% | 86.1% |
+| promotion | 97.9% | 100.0% | 98.1% |
+| skewer | 87.9% | 100.0% | 92.8% |
+| underPromotion | 97.0% | 98.1% | 98.4% |
+
+The 12,000 incidences have 999 v4 admission disagreements, against 2,260 for v3.1 and 275 for raw upstream. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.
