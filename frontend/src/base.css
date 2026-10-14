@@ -103,11 +103,14 @@ main {
   min-height: calc(100vh - 149px);
 }
 /* A page's top-level blocks (notices, panels) are spaced by the page,
-   not by their own margins. Board workspaces keep their own layout. */
+   not by their own margins. Board workspaces keep their own layout.
+   With no visible page header, the first block sits the same page gap
+   below the navigation as the blocks sit from each other. */
 main.workspace-page {
   display: flex;
   flex-direction: column;
   gap: var(--page-gap);
+  padding-top: var(--page-gap);
 }
 main.workspace-page > * {
   margin-block: 0;

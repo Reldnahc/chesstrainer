@@ -21,6 +21,12 @@ test("primary and secondary destination actions share geometry and preserve keyb
 
 test("Update games uses identical link and command sizing", async ({ page }) => {
   let connected = false;
+  // Update games sits in the library's header row, so the list needs a game.
+  await page.route("**/api/games?offset=*", route => route.fulfill({ json: { total: 1, items: [{
+    id: "action-fixture", white: "ActionFixture", black: "Opponent", white_rating: null, black_rating: null,
+    learner_color: "white", result: "1-0", status: "not_started", move_count: 20, played_on: null,
+    played_at: null, time_control: null, time_control_label: null, accuracy: null,
+  }] } }));
   await page.route("**/api/providers/*/sync", route => route.fulfill({ json: {
     provider: new URL(route.request().url()).pathname.split("/")[3],
     username: connected ? "ActionFixture" : "", status: "not_started",

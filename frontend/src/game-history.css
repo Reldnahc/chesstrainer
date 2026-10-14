@@ -5,6 +5,24 @@
   border-radius: 6px;
   overflow: hidden;
 }
+/* The library's own header row: the count on the left, its actions on the right. */
+.game-library-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.game-library-count {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.game-library-count strong {
+  color: #eceef1;
+  font-weight: 600;
+}
 .game-library-heading,
 .game-library-item {
   display: grid;
@@ -308,10 +326,13 @@
   .game-library-list > li:nth-child(odd) {
     background: transparent;
   }
+  .game-library-toolbar,
   .game-library-heading,
   .game-library-item {
     padding-inline: 0;
   }
+  /* The page already pads the top; the flat toolbar does not add more. */
+  .game-library-toolbar { padding-top: 0; }
   /* Phone panels are flat with no side padding, so there is nothing to bleed into. */
   .panel .game-library--compact { --history-bleed: 0px; }
 }

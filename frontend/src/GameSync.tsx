@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { RotateCw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
 import ActionLink from "./ActionLink";
@@ -76,8 +77,10 @@ function AnalysisQueueStatus() {
   return queue ? <Notice announcement="status" appearance="inline" className="small analysis-queue-status">{queueSummary(queue)}</Notice> : null;
 }
 
-export default function GameSync({ onChanged, compact = false, onStatusChange, onImportOlderGames }: {
+export default function GameSync({ onChanged, compact = false, setupLabel, onStatusChange, onImportOlderGames }: {
   onChanged?: () => void; compact?: boolean;
+  /** Compact only: replaces "Update games" on the link to Settings shown when no account is connected. */
+  setupLabel?: string;
   onStatusChange?: (status: Sync) => void;
   onImportOlderGames?: (provider: string) => void;
 }) {
@@ -188,9 +191,9 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
   }
   const connected = Object.values(statuses).some(value => value.username);
   const checking = Object.values(statuses).some(running);
-  const button = <Button variant="secondary" disabled={loading || busy || checking} onClick={refresh}>{busy || checking ? "Updating…" : "Update games"}</Button>;
+  const button = <Button variant="secondary" size={compact ? "compact" : undefined} disabled={loading || busy || checking} onClick={refresh}>{compact && <RotateCw size={16} aria-hidden="true" />}{busy || checking ? "Updating…" : "Update games"}</Button>;
   if (compact) return <div className="game-sync-compact">
-    {!loading && !connected ? <ActionLink variant="secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</ActionLink> : button}
+    {!loading && !connected ? <ActionLink variant="secondary" size="compact" href={pagePaths.Settings} title="Set up game imports in Settings">{setupLabel ?? <><RotateCw size={16} aria-hidden="true" />Update games</>}</ActionLink> : button}
     <Reveal>{(error || Object.values(statuses).find(value => value.error)?.error) && <Notice announcement="alert" tone="error" appearance="inline" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</Notice>}</Reveal>
   </div>;
   return <section className="game-connections" aria-label="Connected game accounts">

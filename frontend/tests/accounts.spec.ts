@@ -29,7 +29,7 @@ test('account signup, engine-free sync, second-device login and private library'
   await page.getByRole('button', {name: 'Finish for now', exact: true}).click();
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByLabel('Remembered Chess.com username')).toHaveCount(0);
-  await page.getByRole('link', {name: 'Update games', exact: true}).click();
+  await page.getByRole('link', {name: 'Import games in Settings', exact: true}).click();
   await expect(page).toHaveURL('/settings');
   await page.getByLabel('Remembered Chess.com username').fill(username);
   await page.getByRole('region', {name: 'Recent Chess.com games', exact: true}).getByRole('button', {name: 'Save username', exact: true}).click();
@@ -171,7 +171,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveCount(0);
-    await device.getByRole('link', {name: 'Update games', exact: true}).click();
+    await device.getByRole('link', {name: 'Import games in Settings', exact: true}).click();
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue('');
     // Another account can open the shared link read-only, but never gains the game.
     await device.goto(`${gameHref}?ply=3`);
