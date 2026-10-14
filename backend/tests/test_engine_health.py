@@ -146,6 +146,27 @@ def test_json_formatter_preserves_stack_info_without_exception():
     assert "exception" not in result
 
 
+def test_json_formatter_keeps_every_field_a_call_logs():
+    logger = logging.getLogger("diagnostic")
+    record = logger.makeRecord(
+        "diagnostic",
+        logging.WARNING,
+        __file__,
+        1,
+        "sync_poll_failed",
+        (),
+        None,
+        extra={"user_id": "u1", "provider": "lichess", "queries": {"tail": 2}},
+    )
+    result = json.loads(JSONFormatter().format(record))
+    assert (result["user_id"], result["provider"], result["queries"]) == (
+        "u1",
+        "lichess",
+        {"tail": 2},
+    )
+    assert "args" not in result and "msg" not in result and "levelno" not in result
+
+
 def test_the_bots_strength_limited_moves_report_engine_health():
     from trainer.engine import EngineUnavailable
     from trainer.engine_health import EngineHealth
