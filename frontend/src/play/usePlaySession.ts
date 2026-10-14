@@ -51,7 +51,7 @@ export function usePlaySession(id: string) {
   const analysisQueue = useRef<Promise<unknown>>(Promise.resolve());
   const requested = useRef(new Set<number>());
   const replyRequested = useRef<number | null>(null);
-  // A take-back retires analysis already in flight for the moves it removed.
+  // A take-back or rewind retires analysis and replies in flight for the moves it removed.
   const epoch = useRef(0);
 
   useEffect(() => {
@@ -153,9 +153,10 @@ export function usePlaySession(id: string) {
     if (!state || !botToMove || replyRequested.current === shown) return;
     replyRequested.current = shown;
     const learnerPly = shown;
+    const started = epoch.current;
     read(api.POST("/api/play/{play_id}/reply", { params: { path: { play_id: id } } }))
       .then((next) => {
-        if (!mounted.current) return;
+        if (!mounted.current || started !== epoch.current) return;
         setState((current) => (current ? { ...next, frames: next.frames } : next));
         setReports((saved) => {
           const merged = { ...saved };
@@ -171,6 +172,7 @@ export function usePlaySession(id: string) {
         setReplyError(null);
       })
       .catch((e) => {
+        if (started !== epoch.current) return;
         replyRequested.current = null;
         if (mounted.current) setReplyError((e as Error).message);
       });
@@ -221,9 +223,13 @@ export function usePlaySession(id: string) {
     setVoicePlaying(playing);
   }, []);
 
+  // A move on the latest position plays on; on an earlier one it rewinds the game
+  // there, and the new move replaces everything after it.
   async function play(from: string, to: string, promotion?: string) {
-    if (!state || moving || pending || state.status !== "active") return;
-    const ply = state.frames.length - 1;
+    if (!state || moving || state.status !== "active") return;
+    const rewind = canRewind;
+    if (!rewind && (pending || !learnerToMove || browsing)) return;
+    const at = rewind ? ply : state.frames.length - 1;
     const uci = from + to + (promotion || "");
     setMoving(true);
     setError("");
@@ -231,24 +237,40 @@ export function usePlaySession(id: string) {
       const next = await read(
         api.POST("/api/play/{play_id}/move", {
           params: { path: { play_id: id } },
-          body: { ply, uci },
+          body: { ply: at, uci, rewind },
         }),
       );
       if (!mounted.current) return;
+      if (rewind) forget(at);
       voiceSeen.current = false;
       reportAt.current = null;
       heldAt.current = Date.now();
       setHeld(null);
       accept(next);
       setExplanationKey(null);
-      setShown(ply + 1);
+      setShown(at + 1);
       setCursor(null);
-      announce(ply + 1, next.frames[ply + 1]?.san);
+      announce(at + 1, next.frames[at + 1]?.san);
     } catch (e) {
       if (mounted.current) setError((e as Error).message);
     } finally {
       if (mounted.current) setMoving(false);
     }
+  }
+
+  // Drop everything known about the moves after this ply: they are no longer played.
+  function forget(kept: number) {
+    epoch.current += 1;
+    for (const ply of [...requested.current]) if (ply > kept) requested.current.delete(ply);
+    replyRequested.current = null;
+    audio.cancel();
+    setPending(null);
+    setHeld(null);
+    setSpeechNavigations({});
+    setReports((saved) => Object.fromEntries(Object.entries(saved).filter(([ply]) => Number(ply) <= kept)));
+    setAnalysisError(null);
+    setReplyError(null);
+    setExplanationKey(null);
   }
 
   // Opening practice: answer the off-book prompt.
@@ -260,16 +282,8 @@ export function usePlaySession(id: string) {
         api.POST("/api/play/{play_id}/takeback", { params: { path: { play_id: id } } }),
       );
       if (!mounted.current) return;
-      epoch.current += 1;
       const kept = next.frames.length - 1;
-      for (const ply of [...requested.current]) if (ply > kept) requested.current.delete(ply);
-      replyRequested.current = null;
-      audio.cancel();
-      setHeld(null);
-      setSpeechNavigations({});
-      setReports((saved) => Object.fromEntries(Object.entries(saved).filter(([ply]) => Number(ply) <= kept)));
-      setAnalysisError(null);
-      setExplanationKey(null);
+      forget(kept);
       accept(next);
       setShown(kept);
       setCursor(null);
@@ -415,6 +429,10 @@ export function usePlaySession(id: string) {
     !!state && state.status === "active" && !choosing && state.frames[latest]?.turn !== state.learner_color;
   const learnerToMove =
     !!state && state.status === "active" && !choosing && !waitingForBot && !pending;
+  const browsing = ply !== latest;
+  // Looking back at a position where it was the learner's move, they may play from there.
+  const canRewind =
+    !!state && state.status === "active" && browsing && state.frames[ply]?.turn === state.learner_color;
   // The coach panel's position: the board's, or the learner's move while its line plays.
   const coachPly = held !== null && cursor === null && held < latest ? held : ply;
   return {
@@ -428,7 +446,8 @@ export function usePlaySession(id: string) {
     moving,
     ply,
     latest,
-    browsing: ply !== latest,
+    browsing,
+    canRewind,
     waitingForBot,
     learnerToMove,
     frame: game?.frames[ply] ?? null,

@@ -80,6 +80,19 @@ reply. The learner may move as soon as the reply is on the board; their move, or
 navigating the game, cuts any line still playing. Each ply gets one automatic
 playback.
 
+### Going back
+
+During a game the learner can step back to any earlier position where it was their
+move and play a different move there. That move replaces the rest of the game: the
+later moves and their reports are dropped, the bot answers the new move as usual, and
+the saved game holds only the line actually finished. There is no variation tree and
+no confirmation; the player row says "Your move here · playing replaces the rest"
+while the board is on such a position. Positions where the bot was to move only show
+the game. In opening practice the book is replayed through the kept moves, so the
+practice picks up where it stood; a spot the learner had already answered (off book,
+or the end of the line) followed by more moves counts as playing on. A bot reply or
+book verdict still being computed when the learner goes back is discarded.
+
 ### No resignation, no draw offers
 
 The coach never resigns; it plays on until the board decides. There is no draw
@@ -168,7 +181,7 @@ one abandoned without saving it.
 | `GET /api/play/active` | The account's game in progress, if any |
 | `POST /api/play` | Start a game: coach, color, opponent kind, rating and optionally a course to practice |
 | `GET /api/play/{id}` | Game state with review-shaped frames |
-| `POST /api/play/{id}/move` | Save the learner's move at an expected ply; no engine work |
+| `POST /api/play/{id}/move` | Save the learner's move at an expected ply; no engine work. With `rewind`, an earlier ply on the learner's turn: the game goes back there first |
 | `POST /api/play/{id}/reply` | The bot's answer, computed now, or repeated if it has already moved; off book in practice, the move's comparison with the book instead |
 | `POST /api/play/{id}/analyze` | The review's report for one played ply, saved on the game |
 | `POST /api/play/{id}/resign` | The learner resigns |
