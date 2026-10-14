@@ -9,7 +9,7 @@ import { LoadingState, UnavailableState } from "./LoadState";
 import PageTitle from "./PageTitle";
 import ResumeLink from "./ResumeLink";
 import StatList from "./StatList";
-import { insightsPaths, lessonCoursePath, lessonSessionPath, pagePaths, studyPaths } from "./navigation";
+import { focusedPracticePath, insightsPaths, lessonCoursePath, lessonSessionPath, pagePaths, studyPaths } from "./navigation";
 import "./home.css";
 
 const loadDue = (signal: AbortSignal) => read(api.GET("/api/review/count", { signal }));
@@ -116,7 +116,7 @@ export default function HomeScreen() {
           const skills = data.skills.filter(skill => skill.kind === "mechanism" && skill.practice_positions > 0).slice(0, 3);
           return skills.length ? <>
             <div className="study-resume-list">{skills.map(skill => <ResumeLink key={skill.skill_id}
-              href={`${studyPaths.due}?focus=${encodeURIComponent(skill.skill_id)}`}
+              href={focusedPracticePath(skill.skill_id)}
               description={<>{skill.practice_positions} {skill.practice_positions === 1 ? "position" : "positions"} · {skill.independent_games} {skill.independent_games === 1 ? "game" : "games"}{skill.provisional ? " · Early evidence" : ""}</>}>
               {skill.title}
             </ResumeLink>)}</div>

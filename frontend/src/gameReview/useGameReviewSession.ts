@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { usePageTitle } from "../PageTitle";
 import { api, read } from "../api";
 import type { Game } from "./types";
 
@@ -112,9 +113,7 @@ export function useGameReviewSession(id: string) {
     // Only opening triggers auto-start. A pause/failure while open must stick.
   }, [game, id, start]);
 
-  useEffect(() => {
-    if (game) document.title = `${game.white} vs ${game.black} · Fieldwork`;
-  }, [game?.white, game?.black]);
+  usePageTitle(game ? `${game.white} vs ${game.black}` : null);
 
   useEffect(() => {
     if (!running) return;

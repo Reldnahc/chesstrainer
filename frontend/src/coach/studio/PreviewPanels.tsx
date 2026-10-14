@@ -1,7 +1,7 @@
 import ReviewCoach from "../../ReviewCoach";
 import Button from "../../Button";
 import EvaluationScore from "../../EvaluationScore";
-import { CoachCharacter } from "../CoachAvatar";
+import { CoachCharacter } from "../CoachCharacter";
 import { ArrowRight } from "lucide-react";
 import { selectableCoaches } from "../registry";
 import {

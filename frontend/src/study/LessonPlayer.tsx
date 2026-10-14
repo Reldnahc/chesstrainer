@@ -1,4 +1,5 @@
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import { usePageTitle } from "../PageTitle";
 import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
@@ -31,9 +32,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     automaticEventId: speech?.eventId ?? null,
   });
   const spoken = useSelectedCoachSpokenText(speech?.recordingId);
-  useEffect(() => {
-    document.title = `${session?.course_title || "Opening lesson"} · Fieldwork`;
-  }, [session?.course_title]);
+  usePageTitle(session?.course_title || "Opening lesson");
   if (loading) return <LoadingState presentation="panel">Loading your lesson…</LoadingState>;
   if (!session) return <UnavailableState presentation="panel" heading={<h1>Lesson unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.openings}>All lessons</ActionLink></>}>{error}</UnavailableState>;
   const has = (action: LessonAction) => session.actions.includes(action);

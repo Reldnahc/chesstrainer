@@ -1,49 +1,34 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Banner from "../Banner";
 import { Download, Pencil, Plus, RotateCcw, Trash2, Upload } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
-import { LoadingState, UnavailableState } from "../LoadState";
 import Notice from "../Notice";
 import Reveal, { RevealList, Swap } from "../Reveal";
 import SettingsSection from "../SettingsSection";
 import { courseEditorPath } from "../navigation";
+import { QueryResult, useCommand, useQuery } from "../useQuery";
 import { deleteCourseFile, downloadCourseFile, readChosenFile, restoreBuiltInCourse, saveCourseFile, savedMessage } from "./courseFiles";
 
 /** Administrator course management: write, import, export and delete Study courses. */
 export default function CourseSettings() {
-  const [library, setLibrary] = useState<Schema["LessonLibrary"] | null>(null);
-  const [error, setError] = useState("");
+  const query = useQuery((signal) => read(api.GET("/api/study/courses", { signal })));
+  const command = useCommand();
+  const busy = !!command.busy;
   const [notice, setNotice] = useState("");
-  const [busy, setBusy] = useState(false);
   const [confirming, setConfirming] = useState<string | null>(null);
-  const [reload, setReload] = useState(0);
   const chooser = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    const controller = new AbortController();
-    read(api.GET("/api/study/courses", { signal: controller.signal }))
-      .then(result => { if (!controller.signal.aborted) setLibrary(result); })
-      .catch(e => { if (!controller.signal.aborted) setError((e as Error).message); });
-    return () => controller.abort();
-  }, [reload]);
-  async function act(action: () => Promise<string | void>) {
-    if (busy) return;
-    setBusy(true);
-    setError("");
+  function act(action: () => Promise<string | void>) {
     setNotice("");
-    try {
-      const message = await action();
-      if (message) setNotice(message);
-    } catch (e) { setError((e as Error).message); }
-    finally { setBusy(false); }
+    void command.run(true, action, message => { if (message) setNotice(message); });
   }
   function importChosen(file: File | undefined) {
     if (chooser.current) chooser.current.value = "";
     if (!file) return;
     void act(async () => {
       const saved = await saveCourseFile(await readChosenFile(file));
-      setReload(value => value + 1);
+      query.retry();
       return savedMessage(saved, "Imported");
     });
   }
@@ -51,7 +36,7 @@ export default function CourseSettings() {
     setConfirming(null);
     void act(async () => {
       const deleted = await deleteCourseFile(course.id);
-      setReload(value => value + 1);
+      query.retry();
       if (deleted.hidden) return `Deleted “${course.title}”. You can restore it under Deleted built-in courses.`;
       if (deleted.built_in_restored) return `Deleted the club copy of “${course.title}”. The built-in course is back.`;
       return `Deleted “${course.title}”.`;
@@ -60,12 +45,11 @@ export default function CourseSettings() {
   function restore(course: Schema["HiddenCourse"]) {
     void act(async () => {
       await restoreBuiltInCourse(course.id);
-      setReload(value => value + 1);
+      query.retry();
       return `Restored “${course.title}”.`;
     });
   }
-  if (!library) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading courses…</LoadingState>;
-  return <SettingsSection id="settings-courses" className="course-settings" title="Courses"
+  return <QueryResult query={query} label="courses" presentation="panel">{library => <SettingsSection id="settings-courses" className="course-settings" title="Courses"
     description="Write Study lessons for your members, or import a course file. Members see every course here in Lessons."
     actions={<div className="button-row">
       <ActionLink variant="primary" href={courseEditorPath()}><Plus size={16} />New course</ActionLink>
@@ -73,7 +57,7 @@ export default function CourseSettings() {
       <input ref={chooser} hidden type="file" accept=".json,application/json" aria-label="Course file" onChange={event => importChosen(event.target.files?.[0])} />
     </div>}>
     {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
     <RevealList>{(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}</RevealList>
     <RevealList>{library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id}>
       <div>
@@ -105,5 +89,5 @@ export default function CourseSettings() {
       </div>)}</RevealList>
     </div>}</Reveal>
     <p className="small muted">Editing a built-in course saves a club copy that replaces it; deleting that copy brings the built-in course back. Deleting a built-in course hides it until you restore it. Members who started a course keep the version they began, and deleting a course never deletes their progress.</p>
-  </SettingsSection>;
+  </SettingsSection>}</QueryResult>;
 }

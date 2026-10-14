@@ -220,7 +220,7 @@ test("same-expression navigation cancels stale tracks before its dwell and unmou
     // The studio's controls replay a reaction rather than navigating to another
     // chess move. Mount the real shared component to exercise semantic keys.
     const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const { CoachCharacter } = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const { getCoach } = await import(`${root}/src/coach/registry.ts`);
     const original = getCoach("classic");
     let artworkRenders = 0;

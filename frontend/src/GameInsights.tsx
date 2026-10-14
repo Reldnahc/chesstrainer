@@ -8,7 +8,7 @@ import ActionLink from "./ActionLink";
 import Button from "./Button";
 import Link from "./Link";
 import { LoadingState, UnavailableState } from "./LoadState";
-import { gamesPath, pagePaths } from "./navigation";
+import { gameReviewPath, gamesPath, pagePaths } from "./navigation";
 import "./game-insights.css";
 
 type Insights = Schema["Insights"];
@@ -54,10 +54,7 @@ const fixed = (value: number | null | undefined, digits = 0, suffix = "") => val
 const recordText = ({ wins, draws, losses }: { wins: number; draws: number; losses: number }) => `${wins}W ${draws}D ${losses}L`;
 const moveOf = (ply: number) => Math.ceil(ply / 2);
 
-function gameHref(game: InsightGame) {
-  const base = gamesPath(1, game.id);
-  return game.ply ? `${base}?ply=${game.ply}` : base;
-}
+const gameHref = (game: InsightGame) => gameReviewPath(game.id, { ply: game.ply });
 
 function shortDate(value: string | null) {
   if (!value || !/^\d{4}\.\d{2}\.\d{2}$/.test(value)) return null;

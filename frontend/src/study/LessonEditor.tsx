@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
+import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowDown, ArrowLeft, ArrowUp, Circle, Plus, Save, Square, Trash2 } from "lucide-react";
 import { api, read, type LegalMove, type Promotion, type Schema } from "../api";
@@ -11,7 +12,7 @@ import Notice from "../Notice";
 import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import TurnIndicator from "../TurnIndicator";
-import { courseSettingsPath, lessonCoursePath, setLeaveGuard, type LessonTopic } from "../navigation";
+import { courseSettingsPath, lessonCoursePath, useLeaveGuard, type LessonTopic } from "../navigation";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 // The editor edits the readable course file itself (docs/COURSE_FILES.md), so
@@ -130,8 +131,8 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   const recordingRef = useRef<Recording | null>(null);
   recordingRef.current = recording;
 
+  usePageTitle("Lesson editor");
   useEffect(() => {
-    document.title = "Lesson editor · Fieldwork";
     if (!courseId) return;
     const controller = new AbortController();
     fetchCourseFile(courseId, revision || undefined, controller.signal)
@@ -157,13 +158,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     return () => { window.clearTimeout(timer); controller.abort(); };
   }, [course]);
 
-  useEffect(() => {
-    if (!dirty) return;
-    const warn = (event: BeforeUnloadEvent) => event.preventDefault();
-    window.addEventListener("beforeunload", warn);
-    setLeaveGuard(() => window.confirm("Leave the lesson editor? Your unsaved changes will be lost."));
-    return () => { window.removeEventListener("beforeunload", warn); setLeaveGuard(null); };
-  }, [dirty]);
+  useLeaveGuard(dirty, "Leave the lesson editor? Your unsaved changes will be lost.");
 
   const chapter = course?.chapters[Math.min(chapterIndex, (course?.chapters.length ?? 1) - 1)];
   const step = chapter?.steps[Math.min(stepIndex, chapter.steps.length - 1)];

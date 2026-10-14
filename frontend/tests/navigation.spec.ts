@@ -150,3 +150,30 @@ test('invalid game positions and missing pages give a usable return path', async
   }
   expect(errors).toEqual([]);
 });
+
+test('the lesson editor asks before Back or Forward leaves unsaved changes', async ({page}) => {
+  await page.goto('/settings?section=courses');
+  await page.getByRole('link', {name: 'New course'}).click();
+  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+  const save = page.getByRole('button', {name: 'Save course'});
+  await expect(save).toBeVisible();
+  const prompts: string[] = [];
+  page.on('dialog', async dialog => {
+    prompts.push(dialog.message());
+    // Stay the first time, leave the second.
+    if (prompts.length === 1) await dialog.dismiss();
+    else await dialog.accept();
+  });
+  await page.evaluate(() => history.back());
+  await expect.poll(() => prompts.length).toBe(1);
+  // Refusing keeps the editor and its draft, and puts the address back.
+  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+  await expect(save).toBeVisible();
+  await page.evaluate(() => history.back());
+  await expect(page).toHaveURL(/\/settings\?section=courses$/);
+  expect(prompts).toEqual(Array(2).fill('Leave the lesson editor? Your unsaved changes will be lost.'));
+  // Forward again into the editor needs no question: nothing there is unsaved yet.
+  await page.evaluate(() => history.forward());
+  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+  expect(prompts).toHaveLength(2);
+});

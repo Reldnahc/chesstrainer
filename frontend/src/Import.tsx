@@ -4,6 +4,7 @@ import { FileUp, Layers, X } from "lucide-react";
 import {
   api,
   read,
+  errorMessage,
   multipart,
   type Health,
   type Job,
@@ -19,7 +20,10 @@ import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
 import Reveal, { RevealList, Swap } from "./Reveal";
 import { useInterfaceMotion } from "./MotionProvider";
-import { LoadingState } from "./LoadState";
+import { LoadingState, UnavailableState } from "./LoadState";
+import { useGameProviders } from "./gameProviders";
+import { usePolling } from "./usePolling";
+import { useLatest } from "./useLatest";
 
 type PgnMode = "file" | "text";
 const isActive = (job: Job) => ["queued", "running"].includes(job.status);
@@ -112,21 +116,13 @@ export default function ImportSettings({
       selectSource(null);
     }
   }, [source, closingSource, closing, motion, selectSource]);
-  const [providers, setProviders] = useState<Schema["GameProvider"][]>([]);
-  const [loadingProviders, setLoadingProviders] = useState(true);
+  const providerQuery = useGameProviders();
+  const providers = providerQuery.data ?? [];
   const [rememberedNames, setRememberedNames] = useState<Record<string, string>>({});
   const connectionChanged = useCallback((status: Schema["SyncStatus"]) => {
     setRememberedNames(previous => previous[status.provider] === status.username
       ? previous : { ...previous, [status.provider]: status.username });
   }, []);
-  useEffect(() => {
-    let active = true;
-    read(api.GET("/api/game-providers"))
-      .then(value => { if (active) setProviders(value); })
-      .catch(error => { if (active) fail(error); })
-      .finally(() => { if (active) setLoadingProviders(false); });
-    return () => { active = false; };
-  }, [fail]);
   const selectedProvider = providers.find(provider => provider.id === source);
   useEffect(() => {
     if (closing || restoringScroll || !source || (source !== "pgn" && !selectedProvider)) return;
@@ -145,53 +141,42 @@ export default function ImportSettings({
   const [side, setSide] = useState<NonNullable<Schema["Body_upload_pgn_api_imports_post"]["side"]>>("auto");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [jobsLoaded, setJobsLoaded] = useState(false);
+  const [jobsError, setJobsError] = useState("");
+  const jobsLoadedRef = useLatest(jobsLoaded);
   const [result, setResult] = useState<PgnImportResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const mounted = useRef(false);
-  const generation = useRef(0);
-  const jobsInFlight = useRef<number | null>(null);
-  const jobsFailed = useRef(false);
-  const reload = useCallback(async () => {
-    const token = generation.current;
-    if (!mounted.current || jobsInFlight.current === token) return;
-    jobsInFlight.current = token;
-    try {
-      const value = await read(api.GET("/api/jobs"));
-      if (mounted.current && generation.current === token) {
-        jobsFailed.current = false;
-        setJobs(value);
-        setJobsLoaded(true);
-      }
-    } catch (error) {
-      // One banner per outage: the next successful poll clears the way for another.
-      if (mounted.current && generation.current === token && !jobsFailed.current) {
-        jobsFailed.current = true;
-        fail(error);
-      }
-    } finally {
-      if (jobsInFlight.current === token) jobsInFlight.current = null;
-    }
-  }, [fail]);
   useEffect(() => {
     mounted.current = true;
-    generation.current++;
-    reload();
-    const timer = setInterval(() => {
-      if (document.visibilityState === "hidden") return;
-      reload();
-    }, 2000);
-    return () => {
-      mounted.current = false;
-      generation.current++;
-      clearInterval(timer);
-    };
-  }, [reload]);
+    return () => { mounted.current = false; };
+  }, []);
+  // Activity refreshes every two seconds while the tab is shown; an import, sync or
+  // job command asks for a fresh read after any read already in flight.
+  // Before activity has loaded, a failure is the section's own unavailable state;
+  // after it, an outage is one page banner, and the next good read clears the way for another.
+  const outage = useRef(false);
+  const jobsPolling = usePolling(async (signal) => {
+    try {
+      const value = await read(api.GET("/api/jobs", { signal }));
+      if (signal.aborted) return;
+      outage.current = false;
+      setJobsError("");
+      setJobs(value);
+      setJobsLoaded(true);
+    } catch (error) {
+      if (signal.aborted) throw error;
+      setJobsError(errorMessage(error));
+      if (jobsLoadedRef.current && !outage.current) fail(error);
+      outage.current = true;
+      throw error;
+    }
+  }, { intervalMs: 2000 });
+  const reload = jobsPolling.run;
   async function submit(event: FormEvent) {
     event.preventDefault();
     const input = pgnMode === "file" ? file : text.trim() ? new File([text], "pasted-games.pgn") : null;
     if (!input) return;
-    const token = generation.current;
     setBusy(true);
     setResult(null);
     try {
@@ -199,13 +184,13 @@ export default function ImportSettings({
         body: { file: input, usernames: names, side },
         bodySerializer: multipart,
       }));
-      if (!mounted.current || generation.current !== token) return;
+      if (!mounted.current) return;
       setResult(value);
       await reload();
     } catch (error) {
-      if (mounted.current && generation.current === token) fail(error);
+      if (mounted.current) fail(error);
     } finally {
-      if (mounted.current && generation.current === token) setBusy(false);
+      if (mounted.current) setBusy(false);
     }
   }
   const activity = jobs.filter(job => job.kind !== "teaching");
@@ -245,8 +230,8 @@ export default function ImportSettings({
               {source !== "pgn" ? (
                 selectedProvider
                   ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
-                  : loadingProviders ? <LoadingState>Loading game providers…</LoadingState>
-                    : <p role="status">That game provider is unavailable. Choose an import action above.</p>
+                  : !providerQuery.data && !providerQuery.error ? <LoadingState>Loading game providers…</LoadingState>
+                    : <UnavailableState>That game provider is unavailable. Choose an import action above.</UnavailableState>
               ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
                 <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
                 <div className="import-options">
@@ -279,6 +264,9 @@ export default function ImportSettings({
       </div>
     </SettingsSection>
     <SettingsSection id="settings-activity" title="Import & analysis activity" className="import-activity">
+      {!jobsLoaded && (jobsError
+        ? <UnavailableState actions={<Button variant="secondary" onClick={reload}>Try again</Button>}>Couldn’t load import activity.</UnavailableState>
+        : <LoadingState>Loading import activity…</LoadingState>)}
       <Reveal>{jobsLoaded && activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}</Reveal>
       <RevealList settled={jobsLoaded}>{activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}</RevealList>
       <RevealList settled={jobsLoaded}>{visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}</RevealList>

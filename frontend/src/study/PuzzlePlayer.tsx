@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import Board from "../Board";
@@ -16,8 +17,8 @@ import Notice from "../Notice";
 import Reveal from "../Reveal";
 import SourceLine from "../SourceLine";
 import type { CoachExpression } from "../coach/model";
-import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
-import { createPuzzleStarter, gameReviewPath, loadPuzzleSelection, puzzleThemeLabel } from "./puzzleApi";
+import { gameReviewPath, navigate, puzzleSessionPath, studyPaths } from "../navigation";
+import { createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel } from "./puzzleApi";
 import { usePuzzleSession } from "./usePuzzleSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { puzzleRecording } from "../audio/speech/practiceSelection";
@@ -42,10 +43,8 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   const [openingNext, setOpeningNext] = useState(false);
   const [startNextPuzzle] = useState(createPuzzleStarter);
   const nextRequest = useRef<AbortController | null>(null);
-  useEffect(() => {
-    document.title = "Puzzle practice · Fieldwork";
-    return () => nextRequest.current?.abort();
-  }, []);
+  usePageTitle("Puzzle practice");
+  useEffect(() => () => nextRequest.current?.abort(), []);
   async function next() {
     if (nextRequest.current && !nextRequest.current.signal.aborted) return;
     const controller = new AbortController();
@@ -117,7 +116,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
       {session.source === "games" && session.completion.provenance.game_id ? <>
         {/* The source game stays hidden until completion; the line played here used the engine's defence, not the game's. */}
         <SourceLine className="puzzle-provenance" text={`From your games · ${session.completion.provenance.attribution}`} />
-        <div className="button-row"><ActionLink variant="secondary" size="compact" href={gameReviewPath(session.completion.provenance.game_id, session.completion.provenance.source_ply)}>Open your move in the game review <ArrowRight size={16} /></ActionLink></div>
+        <div className="button-row"><ActionLink variant="secondary" size="compact" href={gameReviewPath(session.completion.provenance.game_id, { ply: session.completion.provenance.source_ply })}>Open your move in the game review <ArrowRight size={16} /></ActionLink></div>
       </> : <>
         <SourceLine className="puzzle-provenance" text={`Puzzle practice · ${session.source === "games" ? "From your games" : "Collection puzzle"}`} />
         <SourceLine className="puzzle-provenance" text={session.completion.provenance.attribution}

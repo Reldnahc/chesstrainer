@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useGuest } from "./AccountGate";
+import { useGuest } from "./accountContext";
 
 export type SavedPreferences<T, W = T> = {
   preferences: T;

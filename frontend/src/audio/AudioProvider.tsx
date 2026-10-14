@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { api, read } from "../api";
-import { useAccount } from "../AccountGate";
+import { useAccount } from "../accountContext";
 import { useSavedPreferences, type SavedPreferences } from "../useSavedPreferences";
 import { AudioEngine } from "./engine";
 import { cueForMove, defaultAudioPreferences, type AudioPreferences, type RecordedSpeechClip, type SoundCue, type SoundRequest, type SpeechPlayback } from "./model";

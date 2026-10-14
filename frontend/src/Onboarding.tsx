@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react";
 import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
-import { navigate } from "./navigation";
+import { navigate, settingsPath } from "./navigation";
 import ProviderUsernameField from "./ProviderUsernameField";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
@@ -51,7 +51,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
     setBusy(true); setError("");
     try {
       const result = await read(api.POST("/api/auth/onboarding/complete"));
-      if (openImports) navigate(`/settings?import=${encodeURIComponent(selected[0]?.id || "pgn")}`);
+      if (openImports) navigate(settingsPath("imports", { importSource: selected[0]?.id || "pgn" }));
       onComplete(result.user);
     } catch (e) { setError((e as Error).message); setBusy(false); }
   }

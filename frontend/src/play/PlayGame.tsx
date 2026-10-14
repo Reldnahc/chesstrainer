@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
 import Board from "../Board";
@@ -94,9 +95,7 @@ export default function PlayGame({ id }: { id: string }) {
   const bookMoves = state?.status === "active" ? (state.practice?.book_moves ?? []) : [];
   const bookKey = `${state?.frames.length}:${state?.practice?.status}`;
   useEffect(() => setShowBook(false), [bookKey]);
-  useEffect(() => {
-    if (state) document.title = `Playing ${bot} · Fieldwork`;
-  }, [!!state, bot]);
+  usePageTitle(state ? `Playing ${bot}` : null);
   if (!state || !game)
     return (
       <>

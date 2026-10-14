@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
@@ -17,7 +18,7 @@ import Notice from "../Notice";
 import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import SourceLine from "../SourceLine";
-import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
+import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, openingStudiesPath, studyPaths } from "../navigation";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
 
 export default function OpeningLinePreview({ catalogueKey, courseLine }: {
@@ -59,7 +60,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
       }).catch(e => { if (!pending.signal.aborted) setError(e.message); });
     return () => pending.abort();
   }, [catalogueKey, courseLine]);
-  useEffect(() => { if (line) document.title = `${line.line.name} · Fieldwork`; }, [line]);
+  usePageTitle(line?.line.name);
   const selectedStudy = line && studies.find(study => study.source === line.line.source && study.source_key === line.line.source_key && study.source_version === line.line.source_version && study.color === color);
   async function enroll() {
     if (!line || locked.current || selectedStudy?.active) return;
@@ -126,7 +127,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
         onStart={() => seek(0)} onSelect={index => seek(index + 1)} />
       <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall decisions. This line does not cover every opponent response.</p>
       <Reveal>{saved && <Notice announcement="status" tone="success" appearance="inline" className="small">Study saved. Eligible positions are now included in Due.</Notice>}</Reveal>
-      <div className="button-row"><ActionLink variant="secondary" href={`${studyPaths.openings}/studies`}>My studies</ActionLink>{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</div>
+      <div className="button-row"><ActionLink variant="secondary" href={openingStudiesPath}>My studies</ActionLink>{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</div>
       <SourceLine className="opening-source" text={line.line.source === "lichess_catalogue" ? "Lichess opening catalogue" : "Authored course repertoire line"}
         license={line.line.source === "lichess_catalogue" ? "CC0" : undefined} revision={line.line.source_version} />
     </section>

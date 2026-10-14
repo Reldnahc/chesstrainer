@@ -19,7 +19,7 @@ import DialogPresence from "../DialogPresence";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
-import { useGuest } from "../AccountGate";
+import { useGuest } from "../accountContext";
 
 export default function GameWorkspace({
   id,

@@ -27,7 +27,7 @@ for (const size of [92.8, 52.5]) {
     await openArtworkPage(page);
     const petIds = await page.evaluate(async ({ root, size }) => {
       const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-      const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
+      const { CoachCharacter } = await import(`${root}/src/coach/CoachCharacter.tsx`);
       const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
       const pets: SelectableCoach[] = selectableCoaches.filter((coach: SelectableCoach) => ['dogs', 'cats'].includes(coach.group!));
       const sheet = document.createElement('section');
@@ -133,7 +133,7 @@ async function mountPetPerformance(page: Page) {
   await openArtworkPage(page);
   await page.evaluate(async root => {
     const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const { CoachCharacter } = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
     // Opt in only these test copies so artwork verification is independent of
     // the separately reviewed rollout of registry speech capabilities.

@@ -7,7 +7,7 @@ test('Walter distinguishes rounded O and puckered oo at real portrait sizes', as
   await page.evaluate(async root => {
     const { default: React } = await import(`${root}/node_modules/.vite-audio/deps/react.js`);
     const { default: ReactDOM } = await import(`${root}/node_modules/.vite-audio/deps/react-dom_client.js`);
-    const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const { CoachCharacter } = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const { getCoach } = await import(`${root}/src/coach/registry.ts`);
     const sheet = document.createElement('section');
     sheet.id = 'mouth-rig-sheet';

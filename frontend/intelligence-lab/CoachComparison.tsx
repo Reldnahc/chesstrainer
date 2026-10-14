@@ -1,6 +1,6 @@
 import {useMemo, useState} from "react";
 import {selectableCoaches} from "../src/coach/registry";
-import {CoachCharacter} from "../src/coach/CoachAvatar";
+import {CoachCharacter} from "../src/coach/CoachCharacter";
 import {renderDialogue} from "../src/dialogue/neutral";
 import DialogueText from "../src/dialogue/DialogueText";
 import {stableKey, type DialogueIntent} from "../src/dialogue/model";

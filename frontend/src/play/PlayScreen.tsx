@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePolling } from "../usePolling";
 import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
-import { api, read, type Schema } from "../api";
+import { api, errorMessage, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ChoiceGroup from "../ChoiceGroup";
@@ -46,14 +47,14 @@ const LEVELS = [
   { value: "choose", label: "Choose a rating" },
 ] as const;
 
-export default function PlayScreen({ gameId }: { gameId: string | null }) {
+export default function PlayScreen({ gameId, from }: { gameId: string | null; from: string | null }) {
   // Keyed so "Go again" starts the new game with a fresh session.
   if (gameId) return <PlayGame key={gameId} id={gameId} />;
-  return <PlaySetup />;
+  return <PlaySetup from={from} />;
 }
 
 // Phones use the shared ReviewCoach layout; desktop keeps the large portrait.
-function PlaySetup() {
+function PlaySetup({ from }: { from: string | null }) {
   const phone = usePhone();
   const { preferences } = useCoachPreferences();
   const coach = getCoach(preferences.coach_id);
@@ -72,24 +73,23 @@ function PlaySetup() {
   const [courseId, setCourseId] = useState("");
   const [error, setError] = useState("");
   const [starting, setStarting] = useState(false);
-  useEffect(() => {
-    document.title = "Play · Fieldwork";
-  }, []);
+  // The fit runs in the background after imports; poll until it settles. A failed
+  // read is reported once and retried with a growing wait rather than given up.
+  const profileFailed = useRef(false);
+  usePolling(async (signal) => {
+    try {
+      const value = await read(api.GET("/api/play/profile", { signal }));
+      if (signal.aborted) return;
+      profileFailed.current = false;
+      setProfile(value);
+    } catch (e) {
+      if (!signal.aborted && !profileFailed.current) setError(errorMessage(e));
+      profileFailed.current = true;
+      throw e;
+    }
+  }, { intervalMs: 3000, enabled: !profile || profile.status === "computing" });
   useEffect(() => {
     let active = true;
-    let timer: number | undefined;
-    const load = () =>
-      read(api.GET("/api/play/profile"))
-        .then((value) => {
-          if (!active) return;
-          setProfile(value);
-          // The fit runs in the background after imports; poll until it settles.
-          if (value.status === "computing") timer = window.setTimeout(load, 3000);
-        })
-        .catch((e) => {
-          if (active) setError(e.message);
-        });
-    load();
     read(api.GET("/api/play/openings"))
       .then((value) => {
         if (!active) return;
@@ -100,7 +100,6 @@ function PlaySetup() {
         if (active) setCourses([]);
       });
     // "New game" after a game starts from that game's settings.
-    const from = new URLSearchParams(window.location.search).get("from");
     if (from)
       read(api.GET("/api/play/{play_id}", { params: { path: { play_id: from } } }))
         .then((previous) => {
@@ -122,9 +121,8 @@ function PlaySetup() {
       });
     return () => {
       active = false;
-      window.clearTimeout(timer);
     };
-  }, []);
+  }, [from]);
   // The coach asks for a game when the page opens: its clip plays when recorded,
   // and the bubble shows the line either way.
   // The page opening is the narration event, raised once the clip can play so
@@ -159,7 +157,7 @@ function PlaySetup() {
       );
       navigate(playGamePath(game.id));
     } catch (e) {
-      setError((e as Error).message);
+      setError(errorMessage(e));
       setStarting(false);
     }
   }
@@ -174,7 +172,7 @@ function PlaySetup() {
           : "The human move model is not available, so the bot uses a provisional level.";
   return (
     <>
-      <PageTitle title={`Play ${coach.name}`} />
+      <PageTitle title={`Play ${coach.name}`} documentTitle="Play" />
       {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
       {active && (
         <section aria-label="Game in progress">

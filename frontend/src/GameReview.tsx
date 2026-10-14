@@ -69,7 +69,7 @@ export default function GamesScreen({
   };
   return (
     <>
-      <PageTitle title="Your games" />
+      <PageTitle title="Your games" documentTitle="Games" />
       <Reveal>{error && (
         <Notice announcement="alert" tone="error">
           {error}

@@ -3,7 +3,7 @@ import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
 import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
-import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
+import {type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {capturedPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants, type NamedPieces} from "./pieceVariants";

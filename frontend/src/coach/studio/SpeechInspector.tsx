@@ -2,7 +2,7 @@ import { useState } from "react";
 import ChoiceGroup from "../../ChoiceGroup";
 import ReviewCoach from "../../ReviewCoach";
 import Notice from "../../Notice";
-import { CoachCharacter } from "../CoachAvatar";
+import { CoachCharacter } from "../CoachCharacter";
 import { expressionInfo, supportsSpeech, type CoachDefinition, type CoachExpression } from "../model";
 import type { SpeechMouthShape } from "../speechMouth";
 import "./speech-inspector.css";

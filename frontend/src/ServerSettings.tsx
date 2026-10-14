@@ -1,10 +1,11 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
-import { api, read, type Schema } from "./api";
+import { api, errorMessage, read, type Schema } from "./api";
 import Button from "./Button";
 import Reveal, { Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
+import { QueryResult, useQuery } from "./useQuery";
 
 type Listing = Schema["ServerSettings"];
 type Setting = Schema["ServerSetting"];
@@ -12,23 +13,31 @@ type Value = Setting["value"];
 
 const show = (value: Value) => value === null ? "none" : value === true ? "on" : value === false ? "off" : String(value);
 
-/** Server settings saved in the database, applied by restarting from here. Administrators only. */
+// How long a restart may take before the page stops waiting for the server.
+const RESTART_WAIT_MS = 120_000;
+
+/** Server settings saved in the database, applied by restarting from here.
+ * Settings shows it to administrators (and a local install's single user) only. */
 export default function ServerSettings() {
-  const [listing, setListing] = useState<Listing | null>(null);
+  const query = useQuery((signal) => read(api.GET("/api/server-settings", { signal })));
+  return <QueryResult query={query} label="server settings" presentation="panel">
+    {listing => <ServerSettingsForm listing={listing} onSaved={query.setData} />}
+  </QueryResult>;
+}
+
+function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (listing: Listing) => void }) {
   // Number fields keep the typed text until saving, so clearing one does not snap to 0.
   const [draft, setDraft] = useState<Record<string, Value>>({});
   const [busy, setBusy] = useState<"" | "save" | "confirm" | "restart">("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  // Leaving Settings while waiting for a restart stops the wait, so it never reloads another page.
+  const lifetime = useRef<AbortController | null>(null);
   useEffect(() => {
     const controller = new AbortController();
-    // Members get 403; the section stays hidden for them.
-    read(api.GET("/api/server-settings", { signal: controller.signal }))
-      .then(result => { if (!controller.signal.aborted) setListing(result); })
-      .catch(() => undefined);
+    lifetime.current = controller;
     return () => controller.abort();
   }, []);
-  if (!listing) return null;
   const settings = listing.groups.flatMap(group => group.settings);
   const changed = Object.keys(draft).length > 0;
   const pending = settings.filter(setting => setting.value !== setting.running);
@@ -51,29 +60,33 @@ export default function ServerSettings() {
         const number = setting?.kind === "integer" || setting?.kind === "number";
         return [key, number && typeof value === "string" ? (value === "" ? null : Number(value)) : value];
       }));
-      setListing(await read(api.PUT("/api/server-settings", { body: { values } })));
+      onSaved(await read(api.PUT("/api/server-settings", { body: { values } })));
       setDraft({});
       setNotice("Saved. Restart the server to apply the changes.");
-    } catch (e) { setError((e as Error).message); }
+    } catch (e) { setError(errorMessage(e)); }
     finally { setBusy(""); }
   }
   async function restart() {
     setBusy("restart");
     setError("");
     setNotice("");
+    const signal = lifetime.current?.signal;
     try {
       await read(api.POST("/api/server/restart"));
     } catch (e) {
-      setError((e as Error).message);
+      if (signal?.aborted) return;
+      setError(errorMessage(e));
       setBusy("");
       return;
     }
     // The restarted server reports a new boot id; until then requests fail or show the old one.
-    const deadline = Date.now() + 120_000;
+    const deadline = Date.now() + RESTART_WAIT_MS;
     while (Date.now() < deadline) {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      const boot = await read(api.GET("/api/server-settings")).then(result => result.boot_id, () => null);
-      if (boot && boot !== listing?.boot_id) { window.location.reload(); return; }
+      if (signal?.aborted) return;
+      const boot = await read(api.GET("/api/server-settings", { signal })).then(result => result.boot_id, () => null);
+      if (signal?.aborted) return;
+      if (boot && boot !== listing.boot_id) { window.location.reload(); return; }
     }
     setBusy("");
     setError("The server has not come back yet. Check it from the host, then refresh this page.");

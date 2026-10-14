@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ChoiceGroup from "../../ChoiceGroup";
-import { CoachCharacter } from "../CoachAvatar";
+import { CoachCharacter } from "../CoachCharacter";
 import {
   expressionInfo,
   expressionIntent,

@@ -21,7 +21,8 @@ test('settings sections mount only their controls and restore through Back, Forw
   const documents: string[] = [];
   page.on('request', request => { if (request.isNavigationRequest()) documents.push(request.url()); });
   await page.goto('/settings');
-  await expect(sections(page).getByRole('link')).toHaveText(['Games & imports', 'Coach & animations', 'Sound', 'Advanced']);
+  // A local install's single user manages its courses, so Courses is listed from the start.
+  await expect(sections(page).getByRole('link')).toHaveText(['Games & imports', 'Coach & animations', 'Sound', 'Courses', 'Advanced']);
   await expect(sections(page).getByRole('link', {name: 'Games & imports', exact: true})).toHaveAttribute('aria-current', 'page');
   await expect(connection(page, 'Chess.com')).toBeVisible();
   await expect(connection(page, 'Lichess')).toBeVisible();
@@ -334,13 +335,17 @@ test('leaving imports discards a late activity loading error', async ({page}) =>
   try {
     const loading = page.waitForRequest(request => new URL(request.url()).pathname === '/api/jobs');
     await page.goto('/settings');
-    await loading;
+    const request = await loading;
+    // Leaving the section aborts the read, or its late answer is ignored; either way it settles.
+    const settled = new Promise<void>(resolve => {
+      page.on('requestfailed', failed => { if (failed === request) resolve(); });
+      page.on('requestfinished', finished => { if (finished === request) resolve(); });
+    });
     await sections(page).getByRole('link', {name: 'Coach & animations', exact: true}).click();
     await expect(page).toHaveURL('/settings?section=coach');
     await expect(page.getByRole('region', {name: 'Animations', exact: true})).toBeVisible();
-    const delivered = page.waitForResponse(response => new URL(response.url()).pathname === '/api/jobs');
     release();
-    await (await delivered).finished();
+    await settled;
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     await expect(page.getByText('Activity error from the previous section', {exact: true})).toHaveCount(0);
     await expect(page.getByRole('region', {name: 'Import & analysis activity', exact: true})).toHaveCount(0);

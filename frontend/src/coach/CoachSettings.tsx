@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import SettingsSection from "../SettingsSection";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { COACH_INTRODUCTION } from "../audio/speech/voiceBank";
-import { CoachCharacter } from "./CoachAvatar";
+import { CoachCharacter } from "./CoachCharacter";
 import { useCoachPreference, useCoachPreferences } from "./CoachProvider";
 import { getCoach, selectableCoaches } from "./registry";
 import type { CoachId } from "./model";

@@ -5,7 +5,7 @@ import ChoiceGroup from "../../ChoiceGroup";
 import MotionSelect from "../../MotionSelect";
 import Notice from "../../Notice";
 import ReviewCoach from "../../ReviewCoach";
-import {CoachCharacter} from "../../coach/CoachAvatar";
+import {CoachCharacter} from "../../coach/CoachCharacter";
 import {getCoach} from "../../coach/registry";
 import type {SpeechMouthTrack} from "../../coach/speechMouth";
 import type {CoachUtterance} from "../../dialogue/model";

@@ -38,7 +38,7 @@ async function mountDiagnostics(page: Page) {
   const root = viteFsPath(path.resolve("."));
   await page.evaluate(async (root) => {
     const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const { CoachCharacter } = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const { getCoach } = await import(`${root}/src/coach/registry.ts`);
     const coach = getCoach("classic");
     const container = document.createElement("div");
