@@ -3,9 +3,7 @@
 import chess
 
 from trainer.chess_core import VALUES
-from trainer.tactical_geometry import relative_pinners
-
-SLIDERS = {chess.BISHOP, chess.ROOK, chess.QUEEN}
+from trainer.tactical_geometry import SLIDERS, relative_pinners
 
 
 def pins(board):

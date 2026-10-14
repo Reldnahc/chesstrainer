@@ -4,12 +4,13 @@ These checks ask Stockfish about a specified set of legal defensive moves. A
 positive result describes its best tested continuation at the recorded limits.
 """
 
+from dataclasses import dataclass
 from typing import Literal
 
 import chess
 from pydantic import BaseModel
 
-from trainer.chess_core import VALUES, Candidate, digest, position_key, valid_board
+from trainer.chess_core import Candidate, digest, position_key, valid_board
 from trainer.continuations import continuation_end, replay
 from trainer.errors import EvidenceIntegrityError
 from trainer.tactical_geometry import (
@@ -40,191 +41,227 @@ class DefenseHypothesis(BaseModel):
         return digest({"hypothesis_version": "1", **self.model_dump()})
 
 
+@dataclass(frozen=True)
+class Moment:
+    """One move of the episode, as every hypothesis rule reads it."""
+
+    boards: list
+    plies: list
+    ply: int
+    first: int
+    end: int
+    max_plies: int
+    analysis_id: str
+    direction: str
+
+    @property
+    def before(self):
+        return self.boards[self.ply - 1]
+
+    @property
+    def after(self):
+        return self.boards[self.ply]
+
+    @property
+    def move(self):
+        return self.after.peek()
+
+    @property
+    def actor(self):
+        return self.before.turn
+
+    @property
+    def piece(self):
+        return self.after.piece_at(self.move.to_square)
+
+    @property
+    def targets(self):
+        return valuable_targets(self.after, self.move.to_square)
+
+
+def fork_capture(m: Moment):
+    """A forking piece that can be taken: does taking it hold off the fork?"""
+    boards, plies, ply, move, piece, targets = m.boards, m.plies, m.ply, m.move, m.piece, m.targets
+    takes = sorted(
+        x.uci()
+        for x in m.after.legal_moves
+        if x.to_square == move.to_square and m.after.is_capture(x)
+    )
+    collection = None
+    for follow in [p for p in plies if p > ply]:
+        action = boards[follow].peek()
+        if boards[follow - 1].piece_at(move.to_square) != piece:
+            break
+        if action.from_square == move.to_square:
+            if action.to_square in targets and boards[follow - 1].is_capture(action):
+                collection = follow
+            break
+    if collection is None and ply + 2 in plies and takes:
+        reply, follow = boards[ply + 1].peek(), boards[ply + 2].peek()
+        if (
+            reply.uci() in takes
+            and follow.to_square == reply.to_square
+            and boards[ply + 1].is_capture(follow)
+        ):
+            collection = ply + 2
+        if collection is None and reply.uci() in takes:
+            collections = [
+                piece_capture_ply(boards, target, ply, plies[-1])
+                for target in targets
+                if m.after.piece_type_at(target) != chess.KING
+            ]
+            collection = min((p for p in collections if p is not None), default=None)
+    if (
+        takes
+        and collection is not None
+        and len(targets) >= 2
+        and piece.piece_type != chess.KING
+        and not targets <= effective_attacks(m.before, move.from_square)
+    ):
+        yield DefenseHypothesis(
+            kind="fork_capture",
+            root_analysis_id=m.analysis_id,
+            at_ply=ply,
+            root_moves=takes,
+            plies=[ply, collection],
+            target=boards[collection].peek().to_square,
+            attacker=move.to_square,
+            direction=m.direction,
+            roles={"attacker": names([move.to_square]), "targets": names(sorted(targets))},
+        )
+
+
+def relative_pin_escape(m: Moment):
+    """A new attack on a pinned piece whose every escape exposes the piece behind it."""
+    boards, ply, move, after = m.boards, m.ply, m.move, m.after
+    for target in m.targets - effective_attacks(m.before, move.from_square):
+        victim = after.piece_at(target)
+        collection = piece_capture_ply(boards, target, ply, min(m.end, m.first + m.max_plies - 1))
+        if collection is None or victim.piece_type == chess.KING:
+            continue
+        for slider, rear in relative_pinners(after, target):
+            if not all(
+                b.piece_at(target) == victim and (slider, rear) in relative_pinners(b, target)
+                for b in boards[ply:collection]
+            ):
+                continue
+            escapes = [x for x in after.legal_moves if x.from_square == target]
+            if not escapes:
+                continue
+            exposed = []
+            for escape in escapes:
+                escaped = after.copy()
+                escaped.push(escape)
+                capture_rear = chess.Move(slider, rear)
+                if capture_rear in escaped.legal_moves and escaped.is_capture(capture_rear):
+                    exposed.append(escape.uci())
+            if len(exposed) == len(escapes):
+                yield DefenseHypothesis(
+                    kind="relative_pin_escape",
+                    root_analysis_id=m.analysis_id,
+                    at_ply=ply,
+                    root_moves=sorted(exposed),
+                    plies=[ply, collection],
+                    target=target,
+                    attacker=slider,
+                    rear=rear,
+                    direction=m.direction,
+                    roles={
+                        "attacker": names([slider, move.to_square]),
+                        "target": names([target, rear]),
+                    },
+                )
+
+
+def pinned_recapture(m: Moment):
+    """A capture whose recapturing defender is pinned to a more valuable piece."""
+    before, after, move = m.before, m.after, m.move
+    if not before.is_capture(move):
+        return
+    for recapture in after.legal_moves:
+        if recapture.to_square != move.to_square or not after.is_capture(recapture):
+            continue
+        defender = before.piece_at(recapture.from_square)
+        if defender is None or defender.piece_type == chess.KING:
+            continue
+        for slider, rear in relative_pinners(before, recapture.from_square, effective=False):
+            branch = after.copy()
+            branch.push(recapture)
+            collect = chess.Move(slider, rear)
+            if collect not in branch.legal_moves or not branch.is_capture(collect):
+                continue
+            yield DefenseHypothesis(
+                kind="relative_pin",
+                root_analysis_id=m.analysis_id,
+                at_ply=m.ply,
+                root_moves=[recapture.uci()],
+                plies=[m.ply],
+                target=move.to_square,
+                attacker=slider,
+                rear=rear,
+                direction=m.direction,
+                roles={
+                    "attacker": names([slider]),
+                    "target": names([move.to_square, rear]),
+                    "pinned_defender": names([recapture.from_square]),
+                },
+            )
+
+
+def trapped_piece(m: Moment):
+    """An attacked piece with no escape square that cannot be taken."""
+    boards, ply, move, after = m.boards, m.ply, m.move, m.after
+    if ply + 2 not in m.plies or after.is_check():
+        return
+    reply, collect = boards[ply + 1].peek(), boards[ply + 2].peek()
+    target = reply.from_square if collect.to_square == reply.to_square else collect.to_square
+    victim = after.piece_at(target)
+    if (
+        victim is None
+        or victim.color == m.actor
+        or victim.piece_type in {chess.PAWN, chess.KING}
+        or target not in valuable_targets(after, move.to_square)
+        or not boards[ply + 1].is_capture(collect)
+    ):
+        return
+    escapes = [x for x in after.legal_moves if x.from_square == target]
+    if not escapes:
+        return  # Absolute pins/check evasions are not automatically trapped pieces.
+    for escape in escapes:
+        escaped = after.copy()
+        escaped.push(escape)
+        if not any(
+            x.to_square == escape.to_square and escaped.is_capture(x) for x in escaped.legal_moves
+        ):
+            return
+    yield DefenseHypothesis(
+        kind="trapped_piece",
+        root_analysis_id=m.analysis_id,
+        at_ply=ply,
+        root_moves=sorted(x.uci() for x in escapes),
+        plies=[ply, ply + 2],
+        target=target,
+        attacker=move.to_square,
+        direction=m.direction,
+        roles={"attacker": names([move.to_square]), "target": names([target])},
+    )
+
+
+# One rule per hypothesis, in this order; each reads the move on its own, so a
+# rule added here never depends on an earlier rule's early exit.
+RULES = (fork_capture, relative_pin_escape, pinned_recapture, trapped_piece)
+
+
 def hypotheses(boards, first, end, analysis_id, direction, max_plies=8):
     plies = tactical_plies(boards, first, end, max_plies)
-    found = []
-    for ply in plies:
-        before, after = boards[ply - 1], boards[ply]
-        move, actor = after.peek(), before.turn
-        piece = after.piece_at(move.to_square)
-        targets = valuable_targets(after, move.to_square)
-        takes = sorted(
-            m.uci()
-            for m in after.legal_moves
-            if m.to_square == move.to_square and after.is_capture(m)
+    found = [
+        hypothesis
+        for ply in plies
+        for rule in RULES
+        for hypothesis in rule(
+            Moment(boards, plies, ply, first, end, max_plies, analysis_id, direction)
         )
-        collection = None
-        for follow in [p for p in plies if p > ply]:
-            action = boards[follow].peek()
-            if boards[follow - 1].piece_at(move.to_square) != piece:
-                break
-            if action.from_square == move.to_square:
-                if action.to_square in targets and boards[follow - 1].is_capture(action):
-                    collection = follow
-                break
-        if collection is None and ply + 2 in plies and takes:
-            reply, follow = boards[ply + 1].peek(), boards[ply + 2].peek()
-            if (
-                reply.uci() in takes
-                and follow.to_square == reply.to_square
-                and boards[ply + 1].is_capture(follow)
-            ):
-                collection = ply + 2
-            if collection is None and reply.uci() in takes:
-                collections = [
-                    piece_capture_ply(boards, target, ply, plies[-1])
-                    for target in targets
-                    if after.piece_type_at(target) != chess.KING
-                ]
-                collection = min((p for p in collections if p is not None), default=None)
-        if (
-            takes
-            and collection is not None
-            and len(targets) >= 2
-            and piece.piece_type != chess.KING
-            and not targets <= effective_attacks(before, move.from_square)
-        ):
-            found.append(
-                DefenseHypothesis(
-                    kind="fork_capture",
-                    root_analysis_id=analysis_id,
-                    at_ply=ply,
-                    root_moves=takes,
-                    plies=[ply, collection],
-                    target=boards[collection].peek().to_square,
-                    attacker=move.to_square,
-                    direction=direction,
-                    roles={"attacker": names([move.to_square]), "targets": names(sorted(targets))},
-                )
-            )
-
-        for target in targets - effective_attacks(before, move.from_square):
-            victim = after.piece_at(target)
-            collection = piece_capture_ply(boards, target, ply, min(end, first + max_plies - 1))
-            if collection is None or victim.piece_type == chess.KING:
-                continue
-            for slider, rear in relative_pinners(after, target):
-                if not all(
-                    b.piece_at(target) == victim and (slider, rear) in relative_pinners(b, target)
-                    for b in boards[ply:collection]
-                ):
-                    continue
-                escapes = [m for m in after.legal_moves if m.from_square == target]
-                if not escapes:
-                    continue
-                exposed = []
-                for escape in escapes:
-                    escaped = after.copy()
-                    escaped.push(escape)
-                    capture_rear = chess.Move(slider, rear)
-                    if capture_rear in escaped.legal_moves and escaped.is_capture(capture_rear):
-                        exposed.append(escape.uci())
-                if len(exposed) == len(escapes):
-                    found.append(
-                        DefenseHypothesis(
-                            kind="relative_pin_escape",
-                            root_analysis_id=analysis_id,
-                            at_ply=ply,
-                            root_moves=sorted(exposed),
-                            plies=[ply, collection],
-                            target=target,
-                            attacker=slider,
-                            rear=rear,
-                            direction=direction,
-                            roles={
-                                "attacker": names([slider, move.to_square]),
-                                "target": names([target, rear]),
-                            },
-                        )
-                    )
-
-        if before.is_capture(move):
-            for recapture in after.legal_moves:
-                if recapture.to_square != move.to_square or not after.is_capture(recapture):
-                    continue
-                defender = before.piece_at(recapture.from_square)
-                if defender is None or defender.piece_type == chess.KING:
-                    continue
-                for slider in before.attackers(actor, recapture.from_square):
-                    slider_piece = before.piece_at(slider)
-                    if slider_piece.piece_type not in {chess.BISHOP, chess.ROOK, chess.QUEEN}:
-                        continue
-                    for rear, rear_piece in before.piece_map().items():
-                        if (
-                            rear_piece.color == actor
-                            or rear_piece.piece_type == chess.KING
-                            or VALUES[rear_piece.piece_type] <= VALUES[defender.piece_type]
-                        ):
-                            continue
-                        between = chess.SquareSet(chess.between(slider, rear))
-                        if recapture.from_square not in between or set(
-                            between & before.occupied
-                        ) != {recapture.from_square}:
-                            continue
-                        branch = after.copy()
-                        branch.push(recapture)
-                        collect = chess.Move(slider, rear)
-                        if collect not in branch.legal_moves or not branch.is_capture(collect):
-                            continue
-                        found.append(
-                            DefenseHypothesis(
-                                kind="relative_pin",
-                                root_analysis_id=analysis_id,
-                                at_ply=ply,
-                                root_moves=[recapture.uci()],
-                                plies=[ply],
-                                target=move.to_square,
-                                attacker=slider,
-                                rear=rear,
-                                direction=direction,
-                                roles={
-                                    "attacker": names([slider]),
-                                    "target": names([move.to_square, rear]),
-                                    "pinned_defender": names([recapture.from_square]),
-                                },
-                            )
-                        )
-
-        if ply + 2 not in plies or after.is_check():
-            continue
-        reply, collect = boards[ply + 1].peek(), boards[ply + 2].peek()
-        target = reply.from_square if collect.to_square == reply.to_square else collect.to_square
-        victim = after.piece_at(target)
-        if (
-            victim is None
-            or victim.color == actor
-            or victim.piece_type in {chess.PAWN, chess.KING}
-            or target not in valuable_targets(after, move.to_square)
-            or not boards[ply + 1].is_capture(collect)
-        ):
-            continue
-        escapes = [m for m in after.legal_moves if m.from_square == target]
-        if not escapes:
-            continue  # Absolute pins/check evasions are not automatically trapped pieces.
-        all_capturable = True
-        for escape in escapes:
-            escaped = after.copy()
-            escaped.push(escape)
-            if not any(
-                m.to_square == escape.to_square and escaped.is_capture(m)
-                for m in escaped.legal_moves
-            ):
-                all_capturable = False
-                break
-        if all_capturable:
-            found.append(
-                DefenseHypothesis(
-                    kind="trapped_piece",
-                    root_analysis_id=analysis_id,
-                    at_ply=ply,
-                    root_moves=sorted(m.uci() for m in escapes),
-                    plies=[ply, ply + 2],
-                    target=target,
-                    attacker=move.to_square,
-                    direction=direction,
-                    roles={"attacker": names([move.to_square]), "target": names([target])},
-                )
-            )
+    ]
     return list({item.key: item for item in found}.values())
 
 

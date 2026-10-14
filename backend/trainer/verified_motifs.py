@@ -10,7 +10,13 @@ import chess
 
 from trainer.chess_core import VALUES, material
 from trainer.diagnosis_types import Finding
-from trainer.tactical_geometry import names, valuable_targets, witness
+from trainer.tactical_geometry import (
+    SLIDERS,
+    defender_capture_is_worthwhile,
+    names,
+    valuable_targets,
+    witness,
+)
 
 
 @dataclass
@@ -221,7 +227,7 @@ def absolute_skewer(event: TacticalEvent) -> None:
         event.before.is_check() is False
         and event.after.is_check()
         and event.move.to_square in event.after.checkers()
-        and event.piece.piece_type in {chess.BISHOP, chess.ROOK, chess.QUEEN}
+        and event.piece.piece_type in SLIDERS
         and event.first + 2 <= event.witness_end
     ):
         # Absolute skewer: king must leave the ray; this same slider then takes
@@ -267,13 +273,14 @@ def removed_defender(event: TacticalEvent) -> None:
                 and not remaining
                 and event.move.to_square != follow.to_square
                 and capture_board.is_capture(follow)
-                and (
-                    VALUES[victim.piece_type] >= VALUES[captured.piece_type]
-                    or (
-                        event.boards[event.first].is_capture(event.boards[event.first + 1].peek())
-                        and event.boards[event.first + 1].peek().to_square == event.move.to_square
-                        and VALUES[event.piece.piece_type] >= VALUES[captured.piece_type]
+                and defender_capture_is_worthwhile(
+                    victim.piece_type,
+                    captured.piece_type,
+                    event.piece.piece_type,
+                    recaptured=event.boards[event.first].is_capture(
+                        event.boards[event.first + 1].peek()
                     )
+                    and event.boards[event.first + 1].peek().to_square == event.move.to_square,
                 )
             ):
                 event.add(

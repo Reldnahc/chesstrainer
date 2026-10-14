@@ -1,10 +1,9 @@
 """Lichess recognition plus application-specific evidence admission and rich witnesses."""
 
 from trainer._vendor.lichess_puzzler import COMMIT
-from trainer.chess_core import VALUES
 from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
 from trainer.lichess_patterns import THEME_SKILLS, recognize
-from trainer.tactical_geometry import tactical_plies
+from trainer.tactical_geometry import defender_capture_is_worthwhile, tactical_plies
 from trainer.verified_patterns import detect_patterns as verified_patterns
 
 RECOGNIZED_MECHANISMS = {
@@ -83,10 +82,11 @@ def useful_cause(finding, boards):
     if not all((defender, victim, attacker)):
         return False
     reply = boards[first + 1].peek()
-    return VALUES[victim.piece_type] >= VALUES[defender.piece_type] or (
-        boards[first].is_capture(reply)
-        and reply.to_square == take.to_square
-        and VALUES[attacker.piece_type] >= VALUES[defender.piece_type]
+    return defender_capture_is_worthwhile(
+        victim.piece_type,
+        defender.piece_type,
+        attacker.piece_type,
+        recaptured=boards[first].is_capture(reply) and reply.to_square == take.to_square,
     )
 
 

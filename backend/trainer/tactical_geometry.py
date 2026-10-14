@@ -5,6 +5,9 @@ import chess
 from trainer.chess_core import VALUES
 from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
 
+# The pieces that pin, skewer and attack along lines.
+SLIDERS = frozenset({chess.BISHOP, chess.ROOK, chess.QUEEN})
+
 
 def names(squares):
     return [chess.square_name(s) for s in squares]
@@ -94,18 +97,21 @@ def piece_capture_ply(boards, square, start, end):
     return None
 
 
-def relative_pinners(board, target):
+def relative_pinners(board, target, *, effective=True):
+    """(slider, piece behind) for each slider pinning ``target`` to a more valuable piece.
+
+    ``effective`` also requires the slider's attack on ``target`` to survive its own
+    pins; the fork-capture probe reads raw attacks instead.
+    """
     victim = board.piece_at(target)
     if victim is None or victim.piece_type == chess.KING:
         return []
     result = []
     for slider in board.attackers(not victim.color, target):
         piece = board.piece_at(slider)
-        if piece.piece_type not in {
-            chess.BISHOP,
-            chess.ROOK,
-            chess.QUEEN,
-        } or target not in effective_attacks(board, slider):
+        if piece.piece_type not in SLIDERS or (
+            effective and target not in effective_attacks(board, slider)
+        ):
             continue
         for rear, rear_piece in board.piece_map().items():
             if (
@@ -118,6 +124,19 @@ def relative_pinners(board, target):
             if target in between and set(between & board.occupied) == {target}:
                 result.append((slider, rear))
     return result
+
+
+def defender_capture_is_worthwhile(victim, defender, attacker, recaptured):
+    """Whether taking a defender (piece types) is a removing-the-defender lesson.
+
+    It is when the piece it guarded is worth at least the defender, or when the
+    taker is recaptured and was itself worth at least the defender. The detector
+    and the attribution safeguard read these pieces at different plies; that
+    difference is theirs, the value rule is this one.
+    """
+    return VALUES[victim] >= VALUES[defender] or (
+        recaptured and VALUES[attacker] >= VALUES[defender]
+    )
 
 
 def witness(boards, analysis_id, direction, skill, plies, roles, text, frame=None, **extra):
