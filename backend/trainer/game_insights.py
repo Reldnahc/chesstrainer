@@ -17,7 +17,7 @@ import chess.pgn
 from trainer._vendor.lichess_accuracy import move_accuracy, win_percent
 from trainer.chess_core import Score, evaluation_loss
 from trainer.game_accuracy import accuracy_cp
-from trainer.game_library import pgn_rating
+from trainer.game_library import mover_rating, pgn_rating
 from trainer.game_review import blunder_kind
 from trainer.opening_book import book_move
 from trainer.review_intelligence.clocks import clock_facts, control
@@ -191,7 +191,6 @@ def game_facts(game, scores=None, rating=None):
     board = parsed.board()
     total = sum(1 for _ in parsed.mainline_moves())
     reviewed = scores is not None and set(scores) == set(range(1, total + 1)) and total > 0
-    review_rating = rating or learner_rating or 1000
     previous_white = 15 if board.fen() == chess.STARTING_FEN else None
     facts = GameFacts(
         id=game.id,
@@ -247,7 +246,9 @@ def game_facts(game, scores=None, rating=None):
                     if loss.mate_lost or loss.allows_mate
                     else 0
                 )
-                row.blunder = blunder_kind(best, actual, review_rating) is not None
+                # The mover's own rating, exactly as the review's badges grade it.
+                mover = mover_rating(headers, mover_white, rating)
+                row.blunder = blunder_kind(best, actual, mover) is not None
                 row.mistake = row.blunder or (loss.cp or 0) >= MISTAKE_CP or loss.mate_lost
                 if previous_white is not None:
                     before = win_percent(previous_white if mover_white else -previous_white)

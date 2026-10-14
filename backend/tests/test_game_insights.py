@@ -117,7 +117,7 @@ def seed(db):
             f'[WhiteElo "{white_elo}"]\n[BlackElo "{black_elo}"]\n[TimeControl "{control}"]\n'
             f'[Termination "{termination}"]\n[Result "{moves.split()[-1]}"]\n\n{moves}'
         )
-        import_games(db, "insights.pgn", pgn, ["Student"], None, queue_analysis=False)
+        import_games(db, "insights.pgn", pgn, ["Student"], None)
     games = db.scalars(select(Game).order_by(Game.played_at)).all()
     for index, rows in REVIEWS.items():
         job = AnalysisJob(kind="game_review", status="completed")
@@ -245,9 +245,28 @@ def test_unrated_games_stay_out_of_insights(settings):
                     f'[Event "{event}"]\n[White "Student"]\n[Black "Rival"]\n'
                     f'[Result "{moves.split()[-1]}"]\n\n{moves}'
                 )
-                import_games(db, "rated.pgn", pgn, ["Student"], None, queue_analysis=False)
+                import_games(db, "rated.pgn", pgn, ["Student"], None)
             saved = {game.pgn.split('"')[1]: game.rated for game in db.scalars(select(Game))}
         assert saved == {"Rated Blitz game": True, "Casual Blitz game": False, "Live Chess": None}
         data = client.get("/api/insights").json()
         # The casual loss is skipped; the game with no rated information still counts.
         assert (data["games"], data["wins"], data["draws"], data["losses"]) == (2, 1, 1, 0)
+
+
+def test_blunders_use_the_movers_pgn_rating_like_the_review_badges():
+    from trainer.chess_core import Score
+    from trainer.game_insights import game_facts
+    from trainer.game_review import blunder_kind
+
+    # A 1500 learner loses 260 cp: a Blunder badge at 1200+ (200 cp), not at 1000 (300 cp).
+    pgn = '[White "Student"]\n[Black "Rival"]\n[WhiteElo "1500"]\n[BlackElo "1480"]\n\n1. e4 e5 *'
+    game = Game(id="rated", pgn=pgn, learner_color=True, white="Student", black="Rival")
+    scores = {
+        1: {"white_score": score(-180), "best": {"score": score(80)}},
+        2: {"white_score": score(-180), "best": {"score": score(180)}},
+    }
+    facts = game_facts(game, scores, rating=1000)  # The review's stored fallback rating.
+    best, actual = Score.model_validate(score(80)), Score.model_validate(score(-180))
+    assert blunder_kind(best, actual, 1500) is not None
+    assert blunder_kind(best, actual, 1000) is None
+    assert facts.plies[0].learner and facts.plies[0].blunder

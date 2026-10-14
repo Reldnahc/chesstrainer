@@ -1,6 +1,6 @@
 """One projection for detail/polling; all derived layers share the same generation."""
 
-from trainer.game_library import pgn_rating
+from trainer.game_library import mover_rating
 from trainer.game_review import public_report
 from trainer.review_intelligence.context import move_contexts
 from trainer.review_intelligence.game_context import game_context
@@ -12,7 +12,7 @@ def present_game(parsed, saved, rating, *, completed=False):
     reports = {
         ply: public_report(
             report,
-            pgn_rating(parsed, starting if ply % 2 else not starting) or rating,
+            mover_rating(parsed, starting if ply % 2 else not starting, rating),
             context=contexts[ply],
         )
         for ply, report in saved.items()

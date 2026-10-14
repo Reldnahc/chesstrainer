@@ -41,7 +41,7 @@ are a subset.
 | Game shapes | One per reviewed game, in this order: let slip, comeback, led throughout (won, reached +150, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
 | Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is higher than the volatility-weighted game accuracy and is not a substitute for it. |
 | Phases | Six or fewer pieces besides kings and pawns is an endgame; moves 1–10 with more than ten pieces are the opening; otherwise middlegame. |
-| Blunders | The game review's own Blunder rule (`blunder_kind`), with the review's rating. |
+| Blunders | The game review's own Blunder rule (`blunder_kind`) with the same rating the review's badges use (`game_library.mover_rating`): the moving player's PGN rating, else the review's stored rating. |
 | After a loss | The next game when it started within 90 minutes of the previous one. A rematch is that next game against the same opponent. |
 | Clock | `[%clk]` annotations through the shared clock facts. Time trouble is 30 s or less, or a tenth of the starting time, after a learner move. |
 | Mistakes and replies | A move losing 100 cp or more. The reply punishes it, or fails to, by keeping at least half of the evaluation swing. |

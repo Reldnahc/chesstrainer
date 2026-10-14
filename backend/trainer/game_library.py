@@ -4,6 +4,18 @@ from math import isfinite
 
 import chess.pgn
 
+# The rating a review assumes when the game records none.
+DEFAULT_RATING = 1000
+
+
+def mover_rating(parsed, color, fallback):
+    """The rating every review grade uses for ``color``'s moves: the PGN's, else ``fallback``.
+
+    Review badges, Insights and Play all grade a move against this, so a blunder
+    counts the same on every screen.
+    """
+    return pgn_rating(parsed, color) or fallback or DEFAULT_RATING
+
 
 def pgn_rating(parsed, color):
     """The actual moving player's recorded rating; an absent value is not zero.
