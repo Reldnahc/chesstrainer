@@ -2,6 +2,7 @@ import {
   Children, Fragment, isValidElement, useLayoutEffect, useReducer, useRef,
   type Key, type ReactElement, type ReactNode,
 } from "react";
+import { ghostCopy } from "./ghost";
 import { useInterfaceMotion } from "./MotionProvider";
 
 /*
@@ -13,13 +14,17 @@ import { useInterfaceMotion } from "./MotionProvider";
  */
 
 type Phase = "entering" | "open" | "closing";
-type Entry = { key: Key; node: ReactElement; phase: Phase };
+type Entry = { key: Key; node: ReactElement; phase: Phase; ghost?: HTMLElement };
 
 const present = (children: ReactNode) =>
   children !== null && children !== undefined && children !== false && children !== "";
 
 /** Merges the current keyed children with items still closing, in a stable order. */
-function usePresence(children: ReactNode, { animateFirst, settled = true }: { animateFirst: boolean; settled?: boolean }) {
+function usePresence(children: ReactNode, { animateFirst, settled = true, exit = true }: {
+  animateFirst: boolean;
+  settled?: boolean;
+  exit?: boolean;
+}) {
   const motion = useInterfaceMotion();
   const [, refresh] = useReducer((value: number) => value + 1, 0);
   const entries = useRef<Entry[]>([]);
@@ -33,14 +38,19 @@ function usePresence(children: ReactNode, { animateFirst, settled = true }: { an
     const before = previous.get(node.key!);
     const phase = !before ? (arrivals.current && animate ? "entering" : "open")
       : before.phase === "closing" ? "open" : before.phase;
-    return { key: node.key!, node, phase };
+    return { key: node.key!, node, phase, ghost: undefined };
   };
   const merged: Entry[] = [];
   let next = 0;
   for (const entry of entries.current) {
     const position = index.get(entry.key);
     if (position === undefined) {
-      if (animate) merged.push({ ...entry, phase: "closing" });
+      // Leaving content is replaced by a decorative copy, so its live components
+      // unmount now and nothing can find its controls or text while it fades.
+      if (!animate || !exit) continue;
+      const clip = elements.current.get(entry.key)?.firstElementChild;
+      const ghost = entry.ghost ?? (clip instanceof HTMLElement ? ghostCopy(clip) : undefined);
+      merged.push({ ...entry, phase: "closing", ghost });
       continue;
     }
     while (next <= position) merged.push(make(current[next++]));
@@ -110,18 +120,23 @@ function Item({ entry, className, axis }: {
   return <div ref={entry.ref} className={["reveal", className].filter(Boolean).join(" ")}
     data-open={open} data-axis={axis} inert={entry.phase === "closing" || undefined}
     aria-hidden={entry.phase === "closing" || undefined}>
-    <div className="reveal-clip">{entry.node}</div>
+    {/* Distinct keys, so content that comes back mounts fresh beside no leftover copy. */}
+    {entry.ghost
+      ? <div key="ghost" className="reveal-clip" ref={clip => { if (clip && entry.ghost && !clip.firstChild) clip.append(...entry.ghost.childNodes); }} />
+      : <div key="live" className="reveal-clip">{entry.node}</div>}
   </div>;
 }
 
 /** `<Reveal>{error && <Notice …/>}</Reveal>`: one conditional block grows in and collapses out. */
-export default function Reveal({ children, className, axis }: {
+export default function Reveal({ children, className, axis, exit = true }: {
   children: ReactNode;
   className?: string;
   /** `inline` grows from zero width, for a control appearing in a row. */
   axis?: "block" | "inline";
+  /** false removes the content at once when it goes, e.g. a live region cleared to re-announce. */
+  exit?: boolean;
 }) {
-  const entries = usePresence(present(children) ? <Fragment key="reveal">{children}</Fragment> : null, { animateFirst: true });
+  const entries = usePresence(present(children) ? <Fragment key="reveal">{children}</Fragment> : null, { animateFirst: true, exit });
   return <>{entries.map(entry => <Item key={entry.key} entry={entry} className={className} axis={axis} />)}</>;
 }
 

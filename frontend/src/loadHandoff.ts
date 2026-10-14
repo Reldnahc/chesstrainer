@@ -4,15 +4,13 @@
 // and in every browser, without each screen wiring up its own transition. Layout
 // settles at once: screens scroll and measure right after loading, so the content
 // does not grow in. See docs/UI_COMPONENTS.md#motion.
+import { ghostCopy } from "./ghost";
 import { duration, easing, motionAllowed } from "./motionTiming";
 
 const LOADER = ".load-state";
 /** The loader stays visible a moment longer as a fading copy over the new content. */
 function fadeOut(loader: Element, at: DOMRect) {
-  const copy = loader.cloneNode(true) as HTMLElement;
-  copy.removeAttribute("id");
-  copy.setAttribute("aria-hidden", "true");
-  copy.querySelectorAll("[role]").forEach(element => element.removeAttribute("role"));
+  const copy = ghostCopy(loader as HTMLElement);
   Object.assign(copy.style, {
     position: "fixed", top: `${at.top}px`, left: `${at.left}px`, width: `${at.width}px`,
     margin: "0", pointerEvents: "none", zIndex: "1", animation: "none",

@@ -90,7 +90,10 @@ export default function SettingsScreen({ health, fail, section, importSource, re
               </Button>
             </div>
             <div className="settings-tool-status">
-              <Notice announcement="status" appearance="inline"><Reveal>{message}</Reveal></Notice>
+              <Notice announcement="status" appearance="inline">
+                {/* Each request clears the region so its result is announced again; the next result grows in. */}
+                <Reveal exit={false}>{message}</Reveal>
+              </Notice>
               <Link href="/settings#settings-activity">View import & analysis activity</Link>
             </div>
           </SettingsSection>
