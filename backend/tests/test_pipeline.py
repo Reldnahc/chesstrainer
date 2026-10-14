@@ -3,6 +3,7 @@ import io
 import chess
 import chess.pgn
 import pytest
+from classifier_fixtures import FixtureClassifierBase, findings_for
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.analysis import analyze_decision
@@ -32,7 +33,7 @@ PGN = """[Event "Fixture"]
 """
 
 
-class MockClassifier:
+class MockClassifier(FixtureClassifierBase):
     model = "test-only-verified-classifier"
 
     def classify(self, evidence):
@@ -45,6 +46,7 @@ class MockClassifier:
             secondary_skills=[],
             confidence=0.9,
             explanation="The verified continuation allows a mating attack.",
+            findings=findings_for(evidence, "king_safety"),
         ), {}
 
 

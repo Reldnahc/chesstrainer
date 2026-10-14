@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import chess
 import pytest
+from classifier_fixtures import FixtureClassifierBase
 from fastapi.testclient import TestClient
 from job_fixtures import queue_import_analysis
 from sqlalchemy import func, select
@@ -74,7 +75,7 @@ def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
         return job.id
 
 
-class BlockingClassifier:
+class BlockingClassifier(FixtureClassifierBase):
     model = "concurrency-fixture"
 
     def __init__(self, workers):

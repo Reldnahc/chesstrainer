@@ -5,6 +5,7 @@ from collections import Counter, defaultdict
 from sqlalchemy import func, select
 
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS
+from trainer.local_classifier import LocalClassifier
 from trainer.models import ClassificationRun, Decision, SkillEvidence
 
 MECHANISM_SKILLS = set(CUES) - OUTCOME_SKILLS
@@ -36,7 +37,7 @@ def coverage(db):
             )
             .label("rank"),
         )
-        .where(ClassificationRun.provider == "local_rules")
+        .where(ClassificationRun.provider == LocalClassifier.provider)
         .subquery()
     )
     latest = {}

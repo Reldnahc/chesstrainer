@@ -12,6 +12,7 @@ from trainer.contracts.preferences import (
 from trainer.contracts.workspace import Health, Stats, WorkspaceSettings
 from trainer.coverage import coverage
 from trainer.human_models.types import HumanReadiness
+from trainer.local_classifier import LocalClassifier
 from trainer.models import ClassificationRun, Exercise, Review
 from trainer.preferences import (
     audio_preferences,
@@ -72,7 +73,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
         return {
             "database": "ready",
             **health.snapshot(),
-            "classification_available": classifier is not None,
+            "classification_available": True,  # Local rules always run.
         }
 
     @router.get(
@@ -84,22 +85,20 @@ def create_router(*, settings, health, classifier) -> APIRouter:
                 settings.public()
                 | health.snapshot()
                 | {
-                    "classification_available": classifier is not None,
+                    "classification_available": True,
                     "coverage": coverage(db),
-                    "classification_provider": "local_rules",
-                    "classification_version": classifier.version
-                    if hasattr(classifier, "version")
-                    else "test",
+                    "classification_provider": LocalClassifier.provider,
+                    "classification_version": classifier.version,
                     "classification_runs": db.scalar(
                         select(func.count())
                         .select_from(ClassificationRun)
-                        .where(ClassificationRun.provider == "local_rules")
+                        .where(ClassificationRun.provider == LocalClassifier.provider)
                     ),
                     "classification_failed": db.scalar(
                         select(func.count())
                         .select_from(ClassificationRun)
                         .where(
-                            ClassificationRun.provider == "local_rules",
+                            ClassificationRun.provider == LocalClassifier.provider,
                             ClassificationRun.status == "failed",
                         )
                     ),
@@ -107,7 +106,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
                         select(func.count())
                         .select_from(ClassificationRun)
                         .where(
-                            ClassificationRun.provider == "local_rules",
+                            ClassificationRun.provider == LocalClassifier.provider,
                             ClassificationRun.status == "rejected",
                         )
                     ),
@@ -115,7 +114,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
                         select(func.count())
                         .select_from(ClassificationRun)
                         .where(
-                            ClassificationRun.provider == "local_rules",
+                            ClassificationRun.provider == LocalClassifier.provider,
                             ClassificationRun.status == "completed",
                             ClassificationRun.confidence == 0,
                         )

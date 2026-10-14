@@ -55,7 +55,7 @@ def create_router(*, settings, classifier) -> APIRouter:
                         ),
                     )
                 ),
-                "classification_available": classifier is not None,
+                "classification_available": True,
             }
 
     @router.get(

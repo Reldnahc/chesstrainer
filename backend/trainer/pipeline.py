@@ -92,7 +92,7 @@ class JobPipeline:
             deep_completed=int(decision.deep),
             mistakes_identified=int(decision.meaningful),
         )
-        if decision.meaningful and self.runner.classifier:
+        if decision.meaningful:
             completion.add()
             if not self.classifications.submit(self.classify, decision.id, completion):
                 completion.finish(False)

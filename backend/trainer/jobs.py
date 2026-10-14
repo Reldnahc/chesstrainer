@@ -9,6 +9,7 @@ from trainer.engine import Stockfish
 from trainer.game_sync import poll as poll_connections
 from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
+from trainer.local_classifier import LocalClassifier
 from trainer.models import AnalysisJob, User
 from trainer.presence import active_cutoff
 from trainer.workspaces import Workspaces
@@ -29,7 +30,8 @@ class JobRunner:
         provider_factories=None,
         workspaces=None,
     ):
-        self.settings, self.scheduler, self.classifier = settings, scheduler, classifier
+        self.settings, self.scheduler = settings, scheduler
+        self.classifier = classifier if classifier is not None else LocalClassifier(settings)
         self.engine_factory, self.chesscom_factory = engine_factory, chesscom_factory
         self.workspaces = workspaces or Workspaces(sessions.kw["bind"], settings, engine_factory)
         self.queue = JobQueue(

@@ -1,3 +1,4 @@
+from classifier_fixtures import FixtureClassifierBase, findings_for
 from lesson_fixtures import seed_lesson
 from sqlalchemy import select
 from trainer.classification import Classification, classify_decision, reject_run
@@ -6,7 +7,7 @@ from trainer.weaknesses import priorities
 
 
 def test_classification_versions_reconcile_and_rejection_preserves_truth(settings, sessions):
-    class Classifier:
+    class Classifier(FixtureClassifierBase):
         model = "version-a"
         skill = "king_safety"
         confidence = 0.9
@@ -20,6 +21,7 @@ def test_classification_versions_reconcile_and_rejection_preserves_truth(setting
                 secondary_skills=[],
                 confidence=self.confidence,
                 explanation="Compare supplied evidence.",
+                findings=findings_for(evidence, self.skill),
             ), {}
 
     classifier = Classifier()

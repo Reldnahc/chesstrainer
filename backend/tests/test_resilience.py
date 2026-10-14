@@ -4,6 +4,7 @@ from pathlib import Path
 
 import chess
 import pytest
+from classifier_fixtures import FixtureClassifierBase, findings_for
 from fastapi.testclient import TestClient
 from job_fixtures import queue_import_analysis
 from pydantic import SecretStr
@@ -28,7 +29,7 @@ from trainer.taxonomy import seed_skills
 PGN = '[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
 
 
-class FixtureClassifier:
+class FixtureClassifier(FixtureClassifierBase):
     model = "test-classifier"
     calls = 0
     confidence = 0.9
@@ -45,6 +46,7 @@ class FixtureClassifier:
             secondary_skills=[],
             confidence=self.confidence,
             explanation="Verified mate threat.",
+            findings=findings_for(evidence, "king_safety"),
         ), {"input_tokens": 10, "output_tokens": 5}
 
 

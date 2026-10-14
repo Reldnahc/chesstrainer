@@ -1,6 +1,5 @@
 import logging
 from contextlib import nullcontext
-from typing import Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from sqlalchemy import select, update
@@ -53,12 +52,6 @@ class Classification(BaseModel):
         if len(value) > 10 or any(v not in SKILLS for v in value):
             raise ValueError("Invalid secondary skills")
         return list(dict.fromkeys(value))
-
-
-class Classifier(Protocol):
-    model: str
-
-    def classify(self, evidence: dict) -> tuple[Classification, dict]: ...
 
 
 def verified_payload(db, decision):
@@ -134,12 +127,10 @@ def classify_decision(db, decision, classifier, settings, *, mutation_lock=None)
     A decision whose saved evidence cannot be assembled is skipped and logged, like
     a failed classification, so one bad row never stops the rest of a job.
     """
-    if classifier is None:
-        return False
     lock = mutation_lock if mutation_lock is not None else nullcontext()
     with lock:
         # Pool callers pass an ID so waiting tasks hold no DB connection while
-        # another thread owns the short write phase, or during the classifier call.
+        # another thread owns the short write phase or runs its classification.
         if isinstance(decision, str):
             decision = db.get(Decision, decision)
         if decision is None or not decision.meaningful:
@@ -195,9 +186,9 @@ def _start_run(db, decision, classifier, payload):
     key = digest(
         {
             "payload": payload,
-            "provider": getattr(classifier, "provider", "test"),
-            "parameters": getattr(classifier, "parameters", {}),
-            "version": getattr(classifier, "version", classifier.model),
+            "provider": classifier.provider,
+            "parameters": classifier.parameters,
+            "version": classifier.version,
             "model": classifier.model,
             "prompt": PROMPT_VERSION,
             "schema": SCHEMA_VERSION,
@@ -213,8 +204,8 @@ def _start_run(db, decision, classifier, payload):
         run = ClassificationRun(
             cache_key=key,
             decision_id=decision.id,
-            provider=getattr(classifier, "provider", "test"),
-            version=getattr(classifier, "version", classifier.model),
+            provider=classifier.provider,
+            version=classifier.version,
             model=classifier.model,
             schema_version=SCHEMA_VERSION,
             prompt_version=PROMPT_VERSION,
@@ -233,8 +224,6 @@ def _validated(output, decision, classifier, payload):
     result = Classification.model_validate(output)
     if result.decision_id != decision.id:
         raise EvidenceIntegrityError("Classification references an unrelated decision")
-    if getattr(classifier, "provider", None) != "local_rules":
-        return result
     expected = position_key(valid_board(decision.fen))
     if any(position_key(valid_board(fen)) != expected for fen in payload["analysis_fens"]):
         raise EvidenceIntegrityError("Classification analysis belongs to a different position")
