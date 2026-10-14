@@ -520,5 +520,4 @@ speech and disposal. Browser tests observe actual Web Audio source starts and
 cover the production preference/session/navigation paths without production test
 globals. Studio tests exercise all approved assets, source coverage, context timing and cancellation.
 Run the affected application/account suites alongside the dedicated audio suite
-when changing integration. See [Testing](TESTING.md) and the dated
-[verification record](VERIFICATION.md) for commands and actual results.
+when changing integration. See [Testing](TESTING.md) for the commands.

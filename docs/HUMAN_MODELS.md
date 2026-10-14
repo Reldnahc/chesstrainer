@@ -55,7 +55,6 @@ was 1.26 GiB including child processes and charged filesystem cache; Docker
 reported 1.6 GB disk usage / 376 MB content size. A resident worker, engine counts,
 parallel reviews and other host workloads change memory requirements. The large
 CPU dependency layer is cached separately from application/coach-writing changes.
-See [verification scope and measurements](VERIFICATION.md).
 
 `HUMAN_MODEL_WORKERS` (1–4) multiplies model memory; `HUMAN_MODEL_THREADS` (1–16)
 sets threads per worker. Budget these alongside Stockfish. A bounded queue and

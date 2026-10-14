@@ -482,7 +482,6 @@ Failed preference loads keep controls disabled and the character still until ret
 failed saves preserve the last accepted choice. Both recovery paths are exercised
 through the actual Settings screen. Connecting with the optional LAN token retries
 preference loading automatically; a manual page reload is not required.
-Final validation results are recorded in [VERIFICATION.md](VERIFICATION.md).
 
 Use the runnable commands and environment setup in
 [TESTING.md](TESTING.md#coach-cast-and-behavior). For a new selectable character,

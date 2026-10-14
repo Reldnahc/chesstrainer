@@ -136,7 +136,7 @@ tests, or physical-device testing. Native scores and nominated positions can var
 across Stockfish binaries and available compute; identical model inputs remain
 deterministic within their recorded runtime identity.
 
-Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); earlier deployment, milestone and verification records remain in Git history.
+Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Record what was run and its results in the commit message; earlier verification records remain in Git history.
 
 ## Study frameworks
 

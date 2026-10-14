@@ -153,7 +153,7 @@ python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lic
 
 48 deterministic tests cover theme eligibility/subtypes, setup orientation, legal full replay, both colors, castling/en passant/promotion, shared-detector invocation, initial versus later episodes, seeded independent reservoirs, file fingerprints, denominator arithmetic, corpus reproducibility and malformed/unsupported/failing input.
 
-Tiny checked-in fixtures are explicitly synthetic, including deliberately inconsistent tags for miss-path tests. They establish harness contracts, not detector accuracy. Four compression tests skip clearly when optional zstandard is absent; no dataset download, database, engine or network is needed for these tests. Full application tests and results are documented in [TESTING](TESTING.md) and [VERIFICATION](VERIFICATION.md).
+Tiny checked-in fixtures are explicitly synthetic, including deliberately inconsistent tags for miss-path tests. They establish harness contracts, not detector accuracy. Four compression tests skip clearly when optional zstandard is absent; no dataset download, database, engine or network is needed for these tests. Full application tests and results are documented in [TESTING](TESTING.md).
 
 ## Frozen upstream versus application comparison
 

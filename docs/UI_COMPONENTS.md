@@ -662,6 +662,5 @@ modal and dialogue code retain coverage for their development-tool consumers.
 Unknown shared files still take the conservative path. Planner regression tests
 check that application-only classifications cannot hide shared styles.
 
-Whole-pass verification and any environment limitations are recorded in
-[VERIFICATION.md](VERIFICATION.md). No schemas, chess authority, engine policy,
+No schemas, chess authority, engine policy,
 coach selection rules or animation timing were changed by this standardization.

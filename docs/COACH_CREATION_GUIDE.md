@@ -51,8 +51,7 @@ problem and consequence with literal precision and occasional dry understatement
 
 The latest [Rivet revision ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json)
 preserves concrete before/after examples and reasons. It is an editorial example,
-not runtime input. The [verification history](VERIFICATION.md) records the checks
-actually performed for Walter and Rivet and their limits.
+not runtime input.
 
 ## 1. Define identity and scope
 
@@ -384,7 +383,7 @@ Before calling the coach finished:
 - Verify committed media/provenance/tracks agree, production includes only intended
   assets, and no credentials/native tools/private data entered the changes.
 - Update the cast/reference docs and record actual commands, results, usage and
-  perceptual limitations in [VERIFICATION.md](VERIFICATION.md). Never claim a
+  perceptual limitations in the commit message. Never claim a
   listening review based solely on decoding files or capturing screenshots.
 - Commit each coherent verified unit under [AGENTS.md](../AGENTS.md). Push only
   when requested. Tests passing do not replace the owner's final voice choice.

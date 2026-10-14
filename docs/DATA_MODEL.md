@@ -48,7 +48,7 @@ Engine exercise identity includes analysis/policy context, so identical boards w
 
 Backups contain a consistent SQLite snapshot, format manifest and safe settings. Restore validates integrity/foreign keys and writes only a new file. The saved Alembic version supports later migrations. Safe settings are reference material; reapply them manually and restore secrets separately.
 
-Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules. The interface refactor adds no migration or schema change. [VERIFICATION.md](VERIFICATION.md) records current copy-preservation checks.
+Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules. The interface refactor adds no migration or schema change.
 
 ## Migration history
 
