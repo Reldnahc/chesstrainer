@@ -43,7 +43,7 @@ def probe_key(decision, settings, engine):
     )
 
 
-def plan_probes(db, job_id, settings, engine, *, write_lock=None):
+def plan_probes(db, job_id, settings, engine, *, mutation_lock=None):
     """Select decisions worth probing; only the task rows are written under the account lock."""
     saved = db.scalars(select(ClassificationTask).where(ClassificationTask.job_id == job_id)).all()
     if saved:
@@ -91,7 +91,7 @@ def plan_probes(db, job_id, settings, engine, *, write_lock=None):
     candidates.sort(
         key=lambda item: item[:3]
     )  # Concrete defensive questions first, then missing outcomes.
-    lock = write_lock if write_lock is not None else nullcontext()
+    lock = mutation_lock if mutation_lock is not None else nullcontext()
     with lock:
         # The classification pass above ran without the lock, so this account's
         # handlers stayed responsive; re-check before the short write.
@@ -109,7 +109,7 @@ def plan_probes(db, job_id, settings, engine, *, write_lock=None):
     return tasks
 
 
-def enrich_decision(sessions, task, engine, write_lock, cancelled):
+def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
     with sessions() as db:
         cached = db.scalar(
             select(ClassificationAnalysis).where(ClassificationAnalysis.cache_key == task.cache_key)
@@ -220,7 +220,7 @@ def enrich_decision(sessions, task, engine, write_lock, cancelled):
             if cancelled():
                 return False
     # Both immutable engine records commit before the optional classification link.
-    with write_lock, sessions() as db:
+    with mutation_lock, sessions() as db:
         if not db.scalar(
             select(ClassificationAnalysis.id).where(
                 ClassificationAnalysis.cache_key == task.cache_key

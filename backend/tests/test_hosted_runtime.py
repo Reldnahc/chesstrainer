@@ -303,7 +303,7 @@ def test_shutdown_drains_jobs_and_restart_resumes_without_login(settings, sessio
     started = threading.Event()
 
     def interrupted(execution, job_id, _engine=None):
-        with execution.import_lock, execution.sessions() as db:
+        with execution.mutation_lock, execution.sessions() as db:
             db.get(AnalysisJob, job_id).positions_triaged = 3
             db.commit()
         started.set()

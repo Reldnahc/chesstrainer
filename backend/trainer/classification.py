@@ -128,7 +128,7 @@ def verified_payload(db, decision):
     }
 
 
-def classify_decision(db, decision, classifier, settings, *, write_lock=None):
+def classify_decision(db, decision, classifier, settings, *, mutation_lock=None):
     """Classify one meaningful decision and set its current labels; returns whether it did.
 
     A decision whose saved evidence cannot be assembled is skipped and logged, like
@@ -136,7 +136,7 @@ def classify_decision(db, decision, classifier, settings, *, write_lock=None):
     """
     if classifier is None:
         return False
-    lock = write_lock if write_lock is not None else nullcontext()
+    lock = mutation_lock if mutation_lock is not None else nullcontext()
     with lock:
         # Pool callers pass an ID so waiting tasks hold no DB connection while
         # another thread owns the short write phase, or during the classifier call.

@@ -42,8 +42,11 @@ class Workspace:
 class Workspaces:
     """Retain locks only while their account has an active request or job.
 
-    Leasing a lock does not acquire it. Handlers acquire it around mutations, so
-    reads and unrelated accounts remain independent of long engine searches.
+    Leasing a lock does not acquire it. The account's mutation lock is taken around
+    short writes only, before the session, by requests and background jobs alike:
+    never around engine or Maia work, and never by read-only handlers. Engine and
+    model work reads first, searches outside the lock, then re-checks and writes
+    under it. The variation lock serializes an account's interactive engine searches.
     """
 
     def __init__(
@@ -53,13 +56,15 @@ class Workspaces:
         engine_factory,
         *,
         local_engine=None,
-        local_lock=None,
+        local_mutation_lock=None,
         human_models=None,
     ):
         self.sql_engine, self.settings = sql_engine, settings
         self.engine_factory, self.local_engine = engine_factory, local_engine
         self.human_models = human_models
-        self.local_lock = local_lock if local_lock is not None else threading.RLock()
+        self.local_mutation_lock = (
+            local_mutation_lock if local_mutation_lock is not None else threading.RLock()
+        )
         self._guard = threading.Lock()
         self._locks = {}
 
@@ -73,7 +78,7 @@ class Workspaces:
         with self._guard:
             if user_id not in self._locks:
                 self._locks[user_id] = _Locks(
-                    self.local_lock if user_id == "local" else threading.RLock(),
+                    self.local_mutation_lock if user_id == "local" else threading.RLock(),
                     threading.Lock(),
                 )
             lease = self._locks[user_id]

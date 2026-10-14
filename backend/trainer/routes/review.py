@@ -14,7 +14,15 @@ from trainer.contracts.review import (
 )
 from trainer.explanations import MoveExplanation, explain_review
 from trainer.practice import focus_queue
-from trainer.reviews import queue, resume_review, reveal, start_review, submit_move
+from trainer.reviews import (
+    answer_search,
+    queue,
+    resume_review,
+    reveal,
+    search_answer,
+    start_review,
+    submit_move,
+)
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -65,7 +73,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def resume(workspace: CurrentWorkspace, session_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.sessions() as db:
             return resume_review(db, session_id)
 
     @router.post(
@@ -74,14 +82,18 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def move(workspace: CurrentWorkspace, session_id: str, data: MoveRequest):
+        uci = data.from_square + data.to_square + (data.promotion or "")
+        # Grading an unseen answer is a deep search: it runs before the account lock
+        # is taken, so the account's other work never waits on it.
+        with workspace.sessions() as db:
+            search = answer_search(db, session_id, uci)
+        graded = None
+        if search is not None:
+            with workspace.variation_lock:
+                graded = search_answer(workspace.engine, search)
         with workspace.mutation_lock, workspace.sessions() as db:
             return submit_move(
-                db,
-                session_id,
-                data.from_square + data.to_square + (data.promotion or ""),
-                workspace.engine,
-                scheduler,
-                settings,
+                db, session_id, uci, workspace.engine, scheduler, settings, graded=graded
             )
 
     @router.post(
@@ -100,7 +112,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         attempt_id: str | None = None,
         solution: bool = False,
     ):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.sessions() as db:
             return explain_review(db, session_id, attempt_id, solution)
 
     return router

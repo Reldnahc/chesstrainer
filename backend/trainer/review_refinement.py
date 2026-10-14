@@ -23,7 +23,8 @@ TERMINAL = {"completed", "budget_limited", "unavailable"}
 
 
 def prepare(runner, game_id):
-    with runner.sessions() as db:
+    # Opening the game can reset the plan, so the plan is written under the account lock.
+    with runner.mutation_lock, runner.sessions() as db:
         review = db.get(GameReview, game_id)
         baseline = {
             r.ply: r.report
@@ -129,7 +130,7 @@ def run_refinement(runner, job_id, parsed, game_id):
 
 
 def record_progress(runner, game_id, plan):
-    with runner.import_lock, runner.sessions() as db:
+    with runner.mutation_lock, runner.sessions() as db:
         statuses = db.scalars(
             select(ReviewRefinement.status).where(ReviewRefinement.id.in_(plan["tasks"]))
         )
@@ -175,7 +176,7 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
         status, reason = "unavailable", "incompatible_engine"
     except EngineUnavailable:
         status, reason = "unavailable", "engine_unavailable"
-    with runner.import_lock, runner.sessions() as db:
+    with runner.mutation_lock, runner.sessions() as db:
         current = db.get(ReviewRefinement, task_id)
         current.status, current.reason, current.report = status, reason, report
         current.adopted = adopted and status == "completed"

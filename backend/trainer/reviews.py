@@ -1,4 +1,5 @@
 import logging
+from dataclasses import dataclass
 
 from sqlalchemy import and_, func, or_, select
 
@@ -326,7 +327,59 @@ def completed_feedback(db, exercise, session):
     return result
 
 
-def submit_move(db, session_id, uci, engine, scheduler, settings):
+@dataclass(frozen=True)
+class AnswerSearch:
+    """What grading an answer the exercise has not seen needs: one restricted search."""
+
+    uci: str
+    san: str
+    board: object
+    original: object
+    policy: dict
+
+
+def answer_search(db, session_id, uci):
+    """The search a game exercise needs to grade ``uci``, or None when nothing is unseen.
+
+    Read without the account lock; the search itself then runs outside it too.
+    """
+    session = open_session(db, session_id)
+    exercise = db.get(Exercise, session.exercise_id)
+    if session.completed or exercise.source != "game" or opening_recall.get_snapshot(db, session):
+        return None
+    board = valid_board(exercise.fen)
+    move = legal_move(board, uci)
+    if db.get(ExerciseAnswer, (exercise.id, move.uci())) is not None:
+        return None
+    decision = db.get(Decision, exercise.decision_id)
+    return AnswerSearch(
+        uci=move.uci(),
+        san=board.san(move),
+        board=decision_board(db.get(Game, decision.game_id), decision.ply),
+        original=db.get(EngineAnalysis, decision.before_analysis_id),
+        policy=exercise.policy,
+    )
+
+
+def search_answer(engine, search):
+    """Grade an unseen answer at the original search's limits; returns ExerciseAnswer fields."""
+    played = engine.analyze(
+        search.board, deep=True, root_moves=[search.uci], multipv=1, reference=search.original
+    )
+    best = Candidate.model_validate(search.original.candidates[0])
+    actual = Candidate.model_validate(played.candidates[0])
+    return {
+        "uci": search.uci,
+        "san": search.san,
+        "grade": MovePolicy.model_validate(search.policy).grade(best, search.uci, actual.score),
+        "primary": False,
+        "analysis_id": played.id,
+    }
+
+
+def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None):
+    """Record one answer. ``graded`` is ``search_answer``'s result for an unseen answer,
+    searched before the account lock was taken; without it the search runs here."""
     session = open_session(db, session_id)
     exercise = db.get(Exercise, session.exercise_id)
     if session.completed:
@@ -337,6 +390,9 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
     fen = snapshot.fen if snapshot else exercise.fen
     board = valid_board(fen)
     move = legal_move(board, uci)  # Illegal attempts never count as failed recall.
+    # Answers are saved in canonical form, so an API client's castling alias
+    # (e1h1) is graded and stored as the same move as e1g1.
+    uci = move.uci()
     elapsed = max(0, int((now() - utc(session.started_at)).total_seconds() * 1000))
     answer = (
         opening_recall.answer(snapshot, uci)
@@ -344,23 +400,9 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
         else db.get(ExerciseAnswer, (exercise.id, uci))
     )
     if answer is None and exercise.source == "game":
-        decision = db.get(Decision, exercise.decision_id)
-        source_board = decision_board(db.get(Game, decision.game_id), decision.ply)
-        original = db.get(EngineAnalysis, decision.before_analysis_id)
-        played = engine.analyze(
-            source_board, deep=True, root_moves=[uci], multipv=1, reference=original
-        )
-        best = Candidate.model_validate(original.candidates[0])
-        actual = Candidate.model_validate(played.candidates[0])
-        grade = MovePolicy.model_validate(exercise.policy).grade(best, uci, actual.score)
-        answer = ExerciseAnswer(
-            exercise_id=exercise.id,
-            uci=uci,
-            san=board.san(move),
-            grade=grade,
-            primary=False,
-            analysis_id=played.id,
-        )
+        if graded is None or graded["uci"] != uci:
+            graded = search_answer(engine, answer_search(db, session_id, uci))
+        answer = ExerciseAnswer(exercise_id=exercise.id, **graded)
         db.add(answer)
     grade = answer.grade if answer else "failure"
     attempt = Attempt(session_id=session.id, uci=uci, grade=grade, elapsed_ms=elapsed)

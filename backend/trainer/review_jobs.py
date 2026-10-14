@@ -122,7 +122,7 @@ def run_baseline(runner, job_id, engine_override=None):
             report = future.result() if future else saved[ply]
             if report is None:
                 break
-            with runner.import_lock, runner.sessions() as db:
+            with runner.mutation_lock, runner.sessions() as db:
                 if future:
                     row = db.get(GameReviewMove, (game.id, ply))
                     if row is None:

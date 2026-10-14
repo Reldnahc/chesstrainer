@@ -357,7 +357,10 @@ from `GET /api/games/:id/review?after=N`; the cursor advances only through repor
 actually received. Ordinary mainline browsing uses those reports instead of starting
 duplicate searches while the job runs; manual variations remain interactive.
 
-Short writes share an account's lock; rule computation runs outside it. Progress
+Short writes share an account's lock (`mutation_lock`, the one name for it); rule
+computation, engine searches and Maia inference run outside it, and read-only
+handlers never take it. SRS grading of an unseen answer and the Play bot's reply
+search first and then re-check and write under the lock. Progress
 uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent
 searches. Local interactive grading has a separate serialized engine; hosted
 grading and variations use the same bounded native pool as background work.

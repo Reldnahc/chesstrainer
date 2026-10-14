@@ -338,14 +338,14 @@ def definition_for(game, prospect: Prospect, root, built: Built, themes) -> Puzz
     )
 
 
-def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, write_lock=None):
+def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mutation_lock=None):
     """Mine one game once per generator version.
 
     Returns the candidate and kept counts, or None when the game was already
     searched or the work was cancelled before the search record could be written
     (judged candidates are kept, so a later run resumes where this one stopped).
     """
-    lock = nullcontext() if write_lock is None else write_lock
+    lock = nullcontext() if mutation_lock is None else mutation_lock
     searched = db.scalar(
         select(GamePuzzleSearch.id).where(
             GamePuzzleSearch.game_id == game.id,

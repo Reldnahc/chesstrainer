@@ -12,7 +12,7 @@ from trainer.imports import fingerprint, identify_learner, import_games, parse_g
 from trainer.models import AnalysisJob, ImportBatch, ImportGame, ProviderCheckpoint, ProviderImport
 
 
-def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancelled, import_lock):
+def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancelled, mutation_lock):
     with sessions() as db:
         request = db.get(ProviderImport, job_id)
         job = db.get(AnalysisJob, job_id)
@@ -108,7 +108,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                             rated[key] = game["rated"]
             check_cancel(cancelled)
             # Import and archive checkpoint commit together; restart cannot double-count a month.
-            with import_lock, sessions() as db:
+            with mutation_lock, sessions() as db:
                 request = db.get(ProviderImport, job_id)
                 job = db.get(AnalysisJob, job_id)
                 processed = 0

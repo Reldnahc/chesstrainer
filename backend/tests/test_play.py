@@ -158,8 +158,8 @@ def test_the_bot_thinks_outside_the_account_lock_and_its_reply_source_is_kept(
         # Another request for the account can take its lock while the bot thinks.
         probe = threading.Thread(
             target=lambda: lock_free.append(
-                app.state.workspaces.local_lock.acquire(blocking=False)
-                and (app.state.workspaces.local_lock.release() or True)
+                app.state.workspaces.local_mutation_lock.acquire(blocking=False)
+                and (app.state.workspaces.local_mutation_lock.release() or True)
             )
         )
         probe.start()

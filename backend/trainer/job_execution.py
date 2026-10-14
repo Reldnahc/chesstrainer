@@ -25,7 +25,7 @@ class JobExecution:
         self.human_models = workspace.human_models
         self.scheduler, self.classifier = runner.scheduler, runner.classifier
         self.engine_factory = runner.engine_factory
-        self.import_lock = self.course_lock = workspace.mutation_lock
+        self.mutation_lock = workspace.mutation_lock
         self.provider_lock = runner.provider_lock
         self.pipeline = None
 
@@ -104,7 +104,7 @@ class JobExecution:
                     self.settings,
                     client,
                     lambda: self.cancelled(job_id),
-                    self.import_lock,
+                    self.mutation_lock,
                 )
             except ProviderRateLimited as exc:
                 self.runner.provider_retry_at[provider] = time.monotonic() + exc.retry_after
@@ -116,7 +116,7 @@ class JobExecution:
             # Poller finds are fresh; manual imports of older games backfill.
             queue_imported(db, job.import_id, FRESH if kind == JobKind.SYNC else BACKFILL)
 
-        with self.import_lock:
+        with self.mutation_lock:
             self.finish(job_id, queue_games)
 
     def run_games(self, job_id, kind, engine):
@@ -143,7 +143,7 @@ class JobExecution:
             self.pipeline.run_generation(game_ids)
         else:
             self.pipeline.run(game_ids, classification_only=kind == JobKind.CLASSIFICATION)
-        with self.course_lock:
+        with self.mutation_lock:
             self.finish(job_id)
         log.info("job_completed", extra={"job_id": job_id})
 

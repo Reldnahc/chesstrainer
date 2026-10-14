@@ -39,7 +39,7 @@ class JobPipeline:
         # SQL increments and a short shared write lock prevent lost progress updates.
         if not self.counters:
             return
-        with self.runner.import_lock, self.sessions() as db:
+        with self.runner.mutation_lock, self.sessions() as db:
             db.execute(
                 update(AnalysisJob)
                 .where(AnalysisJob.id == self.job_id)
@@ -73,7 +73,7 @@ class JobPipeline:
                     decision_id,
                     self.runner.classifier,
                     self.settings,
-                    write_lock=self.runner.import_lock,
+                    mutation_lock=self.runner.mutation_lock,
                 )
             self.bump(classifications_completed=int(classified))
             success = True
@@ -85,7 +85,7 @@ class JobPipeline:
 
     def process_decision(self, db, decision, completion, ensure_exercise=True):
         if decision.meaningful and ensure_exercise:
-            with self.runner.import_lock:
+            with self.runner.mutation_lock:
                 exercise_from_decision(db, decision, self.settings, self.runner.scheduler)
         self.bump(
             positions_triaged=1,
@@ -140,7 +140,7 @@ class JobPipeline:
             self.settings,
             game,
             cancelled=self.cancelled,
-            write_lock=self.runner.import_lock,
+            mutation_lock=self.runner.mutation_lock,
         )
         if result is not None:
             self.bump(puzzles_found=result["kept"])
@@ -191,7 +191,7 @@ class JobPipeline:
         if self.cancelled():
             return
         if not enrich_decision(
-            self.sessions, task, self.engine(), self.runner.import_lock, self.cancelled
+            self.sessions, task, self.engine(), self.runner.mutation_lock, self.cancelled
         ):
             return
         with self.sessions() as db:
@@ -200,7 +200,7 @@ class JobPipeline:
                 task.decision_id,
                 self.runner.classifier,
                 self.settings,
-                write_lock=self.runner.import_lock,
+                mutation_lock=self.runner.mutation_lock,
             )
         self.bump(positions_triaged=1, deep_completed=1, classifications_completed=int(classified))
 
@@ -212,7 +212,7 @@ class JobPipeline:
                     self.job_id,
                     self.settings,
                     self.engine(),
-                    write_lock=self.runner.import_lock,
+                    mutation_lock=self.runner.mutation_lock,
                 )
             for task in tasks:
                 if not self.games.submit(self.probe, task):

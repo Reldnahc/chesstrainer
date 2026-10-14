@@ -54,7 +54,7 @@ def create_router(*, providers, settings=None) -> APIRouter:
 
     @router.get("/api/puzzle-sessions/{session_id}", response_model=PuzzleSessionView)
     def get_session(workspace: CurrentWorkspace, session_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.sessions() as db:
             return sessions.session_view(db, sessions.require_session(db, session_id))
 
     @router.post("/api/puzzle-sessions/{session_id}/move", response_model=PuzzleSessionView)

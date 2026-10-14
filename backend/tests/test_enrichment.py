@@ -56,17 +56,25 @@ def test_bounded_probes_cache_resume_and_preserve_grading(settings, stockfish_pa
                     app.state.sessions,
                     tasks[0],
                     engine,
-                    app.state.runner.import_lock,
+                    app.state.workspaces.local_mutation_lock,
                     lambda: False,
                 )
             settings.classification_probe_depth -= 1
             # Cancel after the first search; it is still in the persistent engine cache.
             assert not enrich_decision(
-                app.state.sessions, tasks[0], engine, app.state.runner.import_lock, lambda: True
+                app.state.sessions,
+                tasks[0],
+                engine,
+                app.state.workspaces.local_mutation_lock,
+                lambda: True,
             )
             misses = engine.misses
             assert enrich_decision(
-                app.state.sessions, tasks[0], engine, app.state.runner.import_lock, lambda: False
+                app.state.sessions,
+                tasks[0],
+                engine,
+                app.state.workspaces.local_mutation_lock,
+                lambda: False,
             )
             assert engine.hits >= 1 and engine.misses == misses + 1
         finally:

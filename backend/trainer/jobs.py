@@ -27,19 +27,15 @@ class JobRunner:
         *,
         chesscom_factory=ChessComClient,
         provider_factories=None,
-        import_lock=None,
         workspaces=None,
     ):
         self.settings, self.scheduler, self.classifier = settings, scheduler, classifier
         self.engine_factory, self.chesscom_factory = engine_factory, chesscom_factory
-        self.workspaces = workspaces or Workspaces(
-            sessions.kw["bind"], settings, engine_factory, local_lock=import_lock
-        )
+        self.workspaces = workspaces or Workspaces(sessions.kw["bind"], settings, engine_factory)
         self.queue = JobQueue(
             self.workspaces.sql_engine,
             user_id=None if settings.accounts_enabled else sessions.kw["info"]["user_id"],
         )
-        self.import_lock = self.course_lock = self.workspaces.local_lock
         from trainer.game_providers import client_factories
 
         self.provider_factories = (

@@ -60,6 +60,8 @@ class RefinementEngine:
                 "question": "restricted_alternative" if root_moves else "root_comparison",
             }
         )
+        # No account lock: only the running refinement writes its own task's query
+        # log, and opening the game resets only tasks that are not running.
         with self.sessions() as db:
             db.get(ReviewRefinement, self.task.id).queries = list(self.queries)
             db.commit()
