@@ -144,12 +144,14 @@ export default function Reveal({ children, className, axis, exit = true }: {
  * Keyed rows that grow in when added and collapse when removed. Rows present
  * when the list first settles (its data has loaded) appear with the page.
  */
-export function RevealList({ children, settled = true, className }: {
+export function RevealList({ children, settled = true, className, exit = true }: {
   children: ReactNode;
   settled?: boolean;
   className?: string;
+  /** false removes rows at once when they go. */
+  exit?: boolean;
 }) {
-  const entries = usePresence(children, { animateFirst: false, settled });
+  const entries = usePresence(children, { animateFirst: false, settled, exit });
   return <>{entries.map(entry => <Item key={entry.key} entry={entry} className={className} />)}</>;
 }
 

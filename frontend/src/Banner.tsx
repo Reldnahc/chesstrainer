@@ -49,15 +49,28 @@ export function BannerProvider({ children }: { children: ReactNode }) {
   );
 }
 
-/** The page's banner slot: the first block of the page, above its content. */
-export function BannerOutlet() {
+/** The page's banner slot: the first block of the page, above its content.
+ * `page` names the page shown. */
+export function BannerOutlet({ page }: { page: string }) {
   const entries = useContext(BannerEntries);
   return (
     <div className="banner-region" aria-label="Notifications" role="region">
-      <RevealList>
-        {entries.map((entry) => <BannerCard key={entry.id} entry={entry} />)}
-      </RevealList>
+      <PageBanners key={page} entries={entries} />
     </div>
+  );
+}
+
+/** Banners still up from the previous page go at once when their page's
+ * components unmount, rather than collapsing above the next page while it
+ * restores its scroll position. Banners this page raises open and close. */
+function PageBanners({ entries }: { entries: Entry[] }) {
+  const [inherited] = useState(() => new Set(entries.map((entry) => entry.id)));
+  const card = (entry: Entry) => <BannerCard key={entry.id} entry={entry} />;
+  return (
+    <>
+      <RevealList exit={false}>{entries.filter((entry) => inherited.has(entry.id)).map(card)}</RevealList>
+      <RevealList>{entries.filter((entry) => !inherited.has(entry.id)).map(card)}</RevealList>
+    </>
   );
 }
 

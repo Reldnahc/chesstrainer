@@ -13,3 +13,17 @@
 main.review-page > .banner-region:not(:empty) {
   padding-bottom: var(--space-3);
 }
+/* The slot's space below closes with its last banner (and opens with its
+   first), so the page under it moves once, smoothly, instead of jumping by
+   that space when the closed banner leaves. */
+.banner-region {
+  transition:
+    margin-block-end var(--motion-base) var(--ease-standard),
+    padding-block-end var(--motion-base) var(--ease-standard);
+}
+main.workspace-page > .banner-region:not(:has(> .reveal[data-open="true"])) {
+  margin-block-end: calc(-1 * var(--page-gap));
+}
+main.review-page > .banner-region:not(:has(> .reveal[data-open="true"])) {
+  padding-bottom: 0;
+}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   BookOpen,
   ChartColumn,
@@ -53,7 +53,14 @@ export default function App() {
   const { retry: reloadAudioPreferences } = useAudioPreferences();
   const route = useRoute();
   const { tab, focusSkill, exercise } = route;
-  const [error, setError] = useState("");
+  // An error belongs to the page it happened on. It is dropped in the same render
+  // that shows the next page, so it never appears there and then collapses away.
+  const [failure, setFailure] = useState<{ route: typeof route; message: string } | null>(null);
+  const error = failure?.route === route ? failure.message : "";
+  const currentRoute = useRef(route);
+  useLayoutEffect(() => { currentRoute.current = route; }, [route]);
+  const setError = useCallback((message: string) =>
+    setFailure(message ? { route: currentRoute.current, message } : null), []);
   const [connection, setConnection] = useState(false);
   const [token, setToken] = useState("");
   const [health, setHealth] = useState<Health | null>(null);
@@ -61,7 +68,7 @@ export default function App() {
   const [refresh, setRefresh] = useState(0);
   const fail = useCallback(
     (e: unknown) => setError(e instanceof Error ? e.message : String(e)),
-    [],
+    [setError],
   );
   useEffect(() => {
     if (guest) return;
@@ -83,7 +90,7 @@ export default function App() {
   useEffect(() => {
     setError("");
     setEvidenceId(null);
-  }, [route]);
+  }, [route, setError]);
   // Set the route fallback before child effects apply a more specific title.
   useLayoutEffect(() => {
     document.title = `${route.gameId ? "Game review" : route.studyMode === "due" ? focusSkill ? "Focused practice" : "Due" : (tab ?? "Page not found")} · Fieldwork`;
@@ -138,7 +145,7 @@ export default function App() {
             : "workspace-page"
         }
       >
-        <BannerOutlet />
+        <BannerOutlet page={route.href.split("?")[0]} />
         {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
         {!connection && !guestSignIn && <WelcomeBack />}
         {connection ? (
