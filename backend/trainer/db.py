@@ -26,7 +26,8 @@ def database(path: Path, timeout=30):
 
     from trainer.ownership import account_sessions
 
-    return engine, account_sessions(engine)
+    # Single-user mode and offline tools work in the reserved local account.
+    return engine, account_sessions(engine, "local")
 
 
 def _config():

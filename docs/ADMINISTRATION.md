@@ -51,8 +51,10 @@ get these defaults; saving them on one device applies to later account loads.
 Request services and background workers receive an `AccountSession` factory bound
 to one explicit user. ORM read/update/delete criteria apply to all private models,
 including aggregates and guessed IDs. Flush validation assigns ownership and
-rejects cross-account references. Raw SQL and private bulk inserts are prohibited
-in these sessions. The account service alone uses administrative SQL for credentials
+rejects cross-account references. Raw SQL, private bulk inserts, bulk updates or
+deletes by primary key, `ordered_values` changes to owners or references, and the
+legacy `bulk_*` session methods are all refused in these sessions. Owned models have
+no default owner: an account session stamps its own, and any other insert must name it. The account service alone uses administrative SQL for credentials
 and sessions. Startup maintenance and the host job queue also use administrative
 sessions, limited to reconciliation and scheduling metadata respectively; they
 never pass those sessions into request handlers or domain job execution. New

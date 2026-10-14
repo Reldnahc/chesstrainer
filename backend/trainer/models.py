@@ -57,7 +57,8 @@ class SiteSetting(Base):
 
 
 class Owned:
-    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), default="local", index=True)
+    # No default owner: an account session stamps its own, and anything else must say.
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
 
 
 class UserPreferences(Owned, Base):

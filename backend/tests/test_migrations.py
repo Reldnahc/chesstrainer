@@ -134,3 +134,20 @@ def test_the_command_line_upgrades_real_data_like_the_app(tmp_path, monkeypatch)
             == "maia"
         )
     engine.dispose()
+
+
+def test_every_revision_downgrades_and_upgrades_again(tmp_path):
+    from alembic.script import ScriptDirectory
+
+    engine, _ = database(tmp_path / "round-trip.sqlite3")
+    migrate(engine)
+    config = _config()
+    revisions = [script.revision for script in ScriptDirectory.from_config(config).walk_revisions()]
+    for target in [*revisions[1:], "base"]:
+        with migration_connection(engine) as connection:
+            config.attributes["connection"] = connection
+            command.downgrade(config, target)
+    assert tables(engine) == {"alembic_version"} or tables(engine) == set()
+    assert migrate(engine) is True
+    assert migrations_pending(engine) is False
+    engine.dispose()

@@ -29,5 +29,6 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("game_review_moves", "human_analysis_id")
+    with op.batch_alter_table("game_review_moves") as batch:
+        batch.drop_column("human_analysis_id")
     op.drop_table("human_analyses")

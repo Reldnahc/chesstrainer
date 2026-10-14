@@ -259,6 +259,37 @@ def test_database_scope_aggregates_updates_and_references(settings):
     engine.dispose()
 
 
+def test_bulk_writes_cannot_cross_accounts(settings):
+    import pytest
+
+    engine, _ = database(settings.database_path)
+    migrate(engine)
+    accounts = Accounts(settings.database_path)
+    a = accounts.create("alice", "testing-password")
+    b = accounts.create("bobby", "testing-password")
+    sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
+    with sa() as db:
+        import_games(db, "test", PGN, [], "white")
+        game_id = db.scalar(select(Game.id))
+    with sb() as db:
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.execute(update(Game), [{"id": game_id, "white": "Changed"}])
+        with pytest.raises(ValueError, match="validated ORM writes"):
+            db.execute(
+                update(Game).where(Game.id == game_id).ordered_values((Game.user_id, b["id"]))
+            )
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.bulk_update_mappings(Game, [{"id": game_id, "white": "Changed"}])
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.bulk_insert_mappings(Game, [{"fingerprint": "x", "pgn": "", "user_id": a["id"]}])
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.bulk_save_objects([Game(fingerprint="y", pgn="")])
+    with sa() as db:
+        game = db.get(Game, game_id)
+        assert game.user_id == a["id"] and game.white != "Changed"
+    engine.dispose()
+
+
 def test_secure_cookie_and_origin(settings):
     settings.accounts_enabled = True
     settings.public_origin = "https://chess.example.test"
