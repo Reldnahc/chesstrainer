@@ -44,7 +44,7 @@ def seed_history(db):
             f'[Date "2026.09.{26 - index}"]\n[TimeControl "180+2"]\n'
             '[WhiteElo "637"]\n[BlackElo "630"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
         )
-        import_games(db, "synthetic.pgn", pgn, ["Student"], None, queue_analysis=False)
+        import_games(db, "synthetic.pgn", pgn, ["Student"], None)
     games = db.scalars(select(Game).order_by(Game.played_at.desc())).all()
     for index, game in enumerate(games[:3]):
         job = AnalysisJob(kind="game_review", status="completed" if index < 2 else "cancelled")
@@ -143,7 +143,6 @@ def test_missing_metadata_black_learner_and_odd_move_count(settings):
                 "\n1. e4 e5 2. Nf3 1/2-1/2",
                 ["Student"],
                 None,
-                queue_analysis=False,
             )
         item = client.get("/api/games").json()["items"][0]
         assert item["learner_color"] == "black"
@@ -166,7 +165,6 @@ def test_library_fills_a_missing_move_count_once(settings):
                 ),
                 ["Student"],
                 None,
-                queue_analysis=False,
             )
             game = db.scalar(select(Game))
             game.move_count = None  # Imported before move counts were saved.
@@ -193,7 +191,6 @@ def test_library_backfill_never_holds_a_write_while_waiting_for_the_lock(setting
                 "\n".join(['[White "Student"]', '[Black "Opponent"]', "", "1. e4 e5 0-1"]),
                 ["Student"],
                 None,
-                queue_analysis=False,
             )
             db.scalar(select(Game)).move_count = None
             db.commit()

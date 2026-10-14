@@ -2,12 +2,22 @@
 
 from sqlalchemy import select
 
-from trainer.models import AnalysisJob, Game, GameReview, ImportGame
+from trainer import job_lifecycle
+from trainer.game_library import DEFAULT_RATING
+from trainer.game_review import parsed_game
+from trainer.job_lifecycle import JobKind, JobStatus
+from trainer.models import (
+    AnalysisJob,
+    Game,
+    GameReview,
+    GameReviewMove,
+    ImportGame,
+    ReviewRefinement,
+)
 
 # Lower runs sooner. A game the learner opens beats games the poller found,
 # which beat older games brought in by a manual or PGN import.
 REQUESTED, FRESH, BACKFILL = 0, 10, 20
-DEFAULT_RATING = 1000
 
 
 def queue_games(db, game_ids, priority):
@@ -20,16 +30,62 @@ def queue_games(db, game_ids, priority):
     for game_id in game_ids:
         review = db.get(GameReview, game_id)
         if review is None:
-            job = AnalysisJob(kind="game_review", games_total=1, priority=priority)
-            db.add(job)
-            db.flush()
-            db.add(GameReview(game_id=game_id, job_id=job.id, rating=DEFAULT_RATING))
+            _new_review(db, game_id, priority, DEFAULT_RATING)
             created += 1
             continue
         job = db.get(AnalysisJob, review.job_id)
-        if job.status == "queued" and job.priority > priority:
+        if job.status == JobStatus.QUEUED and job.priority > priority:
             job.priority = priority
     return created
+
+
+def _new_review(db, game_id, priority, rating):
+    job = AnalysisJob(kind=JobKind.GAME_REVIEW, games_total=1, priority=priority)
+    db.add(job)
+    db.flush()
+    db.add(GameReview(game_id=game_id, job_id=job.id, rating=rating))
+    return job
+
+
+def request_review(db, game, *, rating, refine, settings, human_models):
+    """The learner opened ``game``: its review goes to the front of the queue.
+
+    A failed or cancelled review runs again, and a completed one runs again
+    when refinement or saved Maia evidence is due for a refresh.
+    """
+    review = db.get(GameReview, game.id)
+    if review is None:
+        return _new_review(db, game.id, REQUESTED, rating or DEFAULT_RATING)
+    if rating is not None:
+        review.rating = rating
+    job = db.get(AnalysisJob, review.job_id)
+    refresh = job.status == JobStatus.COMPLETED and bool(
+        settings.review_refinement_positions and (refine or review.refinement_plan is None)
+    )
+    if refine and job.status not in job_lifecycle.ACTIVE:
+        review.refinement_plan = None
+        for task in db.scalars(
+            select(ReviewRefinement).where(
+                ReviewRefinement.game_id == game.id, ReviewRefinement.status == "unavailable"
+            )
+        ):
+            task.status, task.reason = "pending", None
+    if job.status == JobStatus.COMPLETED and human_models.can_attempt():
+        parsed = parsed_game(game)
+        starting = parsed.board().turn
+        refresh = refresh or any(
+            human_models.needs_refresh(
+                row.report.get("human"),
+                parsed,
+                starting if row.ply % 2 else not starting,
+                review.rating,
+            )
+            for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
+        )
+    if job.status in job_lifecycle.RETRYABLE or refresh:
+        job_lifecycle.requeue(job, reset_progress=True)
+    job.priority = REQUESTED
+    return job
 
 
 def unanalyzed_game_ids(db, import_id=None):

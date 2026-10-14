@@ -4533,6 +4533,13 @@
             "type": "integer"
           },
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled"
+            ],
             "title": "Status",
             "type": "string"
           },
@@ -4602,6 +4609,13 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -4617,6 +4631,13 @@
         "additionalProperties": false,
         "properties": {
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -6707,17 +6728,6 @@
             "title": "Imported",
             "type": "integer"
           },
-          "job_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Job Id"
-          },
           "processed": {
             "title": "Processed",
             "type": "integer"
@@ -6728,7 +6738,6 @@
           "processed",
           "imported",
           "duplicates",
-          "job_id",
           "errors"
         ],
         "title": "PgnImportResult",
@@ -11746,45 +11755,6 @@
           }
         },
         "summary": "Begin Review"
-      }
-    },
-    "/api/games/{game_id}/train": {
-      "post": {
-        "operationId": "train_game_api_games__game_id__train_post",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "game_id",
-            "required": true,
-            "schema": {
-              "title": "Game Id",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JobStarted"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Train Game"
       }
     },
     "/api/health": {

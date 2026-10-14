@@ -88,14 +88,8 @@ def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_eng
         assert len(calls) == 4
         with sessions() as db:
             assert db.scalar(select(func.count()).select_from(AnalysisJob)) == 3
-        # A game fetched earlier remains eligible for explicit training analysis.
+        # Opening a game fetched earlier puts its analysis first.
         selected = result["items"][0]["id"]
-        training = client.post(f"/api/games/{selected}/train", headers=headers)
-        assert training.status_code == 202
-        assert training.json()["status"] == "queued"
-        assert (
-            client.post(f"/api/games/{selected}/train", headers=headers).json() == training.json()
-        )
         review = client.post(f"/api/games/{selected}/review", json={}, headers=headers)
         assert review.status_code == 200
         with sessions() as db:
@@ -110,7 +104,7 @@ def test_uploads_and_imports_fetch_then_queue_backfill_analysis(settings):
             data={"side": "white", "analyze": "false"},
         )
         assert response.status_code == 200
-        assert response.json()["job_id"] is None
+        assert response.json()["imported"] == 1
         # The old analyze flag is ignored: imports fetch, then every game is analyzed.
         fetched = client.post(
             "/api/imports/chesscom", json={"username": "learner", "analyze": False}

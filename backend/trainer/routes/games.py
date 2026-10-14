@@ -11,6 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select, update
 
+from trainer import job_lifecycle
 from trainer.chess_core import Score
 from trainer.contracts.common import JobStarted
 from trainer.contracts.games import (
@@ -22,17 +23,14 @@ from trainer.contracts.games import (
     ReviewProgress,
 )
 from trainer.game_accuracy import review_accuracy
-from trainer.game_analysis import REQUESTED
+from trainer.game_analysis import DEFAULT_RATING, request_review
 from trainer.game_library import pgn_rating, time_control_label
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
+from trainer.job_lifecycle import JobStatus
 from trainer.models import (
     AnalysisJob,
     Game,
     GameReview,
-    GameReviewMove,
-    ImportBatch,
-    ImportGame,
-    ReviewRefinement,
 )
 from trainer.review_intelligence.clocks import control as clock_control
 from trainer.review_intelligence.context import move_contexts
@@ -59,13 +57,13 @@ def job_progress(job, completed, total, review=None):
             "id": job.id,
             "status": job.status,
             "completed": min(completed, job.positions_triaged)
-            if job.status in {"queued", "running"}
+            if job.status in job_lifecycle.ACTIVE
             else completed,
             "total": total,
             "error": job.error,
             "cancel_requested": job.cancel_requested,
             "phase": "complete"
-            if job.status == "completed"
+            if job.status == JobStatus.COMPLETED
             else "refinement"
             if plan and job.positions_triaged >= total
             else "baseline",
@@ -133,7 +131,7 @@ def create_router(*, settings, engine_factory):
                 .offset(offset)
                 .limit(limit)
             ).all()
-            completed_ids = [game.id for game, status in rows if status == "completed"]
+            completed_ids = [game.id for game, status in rows if status == JobStatus.COMPLETED]
             saved = load_accuracy_scores(db, completed_ids)
             items = []
             backfill = {}
@@ -167,7 +165,7 @@ def create_router(*, settings, engine_factory):
                             starting_board=chess.Board(headers["FEN"])
                             if "FEN" in headers
                             else chess.Board(),
-                            completed=status == "completed",
+                            completed=status == JobStatus.COMPLETED,
                         ),
                     }
                 )
@@ -213,10 +211,10 @@ def create_router(*, settings, engine_factory):
             board = parsed.board()
             review = db.get(GameReview, game_id)
             job = db.get(AnalysisJob, review.job_id) if review else None
-            rating = review.rating if review else 1000
+            rating = review.rating if review else DEFAULT_RATING
             saved, revisions = load_game_reports(db, game_id)
             reports, context = present_game(
-                parsed, saved, rating, completed=bool(job and job.status == "completed")
+                parsed, saved, rating, completed=bool(job and job.status == JobStatus.COMPLETED)
             )
             frames = [
                 position(board)
@@ -270,7 +268,7 @@ def create_router(*, settings, engine_factory):
                     saved,
                     total=len(frames) - 1,
                     starting_board=parsed.board(),
-                    completed=bool(job and job.status == "completed"),
+                    completed=bool(job and job.status == JobStatus.COMPLETED),
                 ),
             }
 
@@ -297,10 +295,13 @@ def create_router(*, settings, engine_factory):
             if after_revision is not None:
                 plies = [ply for ply in saved if revisions[ply] > after_revision]
             else:
-                ceiling = job.positions_triaged if job.status in {"queued", "running"} else total
+                ceiling = job.positions_triaged if job.status in job_lifecycle.ACTIVE else total
                 plies = [ply for ply in saved if after < ply <= ceiling]
             reports, context = present_game(
-                parsed, saved, review.rating, completed=bool(job and job.status == "completed")
+                parsed,
+                saved,
+                review.rating,
+                completed=bool(job and job.status == JobStatus.COMPLETED),
             )
             moves = []
             for ply in plies:
@@ -336,7 +337,7 @@ def create_router(*, settings, engine_factory):
                     }
                 )
             accuracy = None
-            if job and job.status == "completed":
+            if job and job.status == JobStatus.COMPLETED:
                 accuracy = review_accuracy(
                     saved, total=total, starting_board=parsed.board(), completed=True
                 )
@@ -358,49 +359,14 @@ def create_router(*, settings, engine_factory):
     )
     def begin_review(workspace: CurrentWorkspace, game_id: str, data: ReviewRequest):
         with workspace.mutation_lock, workspace.sessions() as db:
-            game = require_game(db, game_id)
-            review = db.get(GameReview, game_id)
-            if review:
-                if data.rating is not None:
-                    review.rating = data.rating
-                job = db.get(AnalysisJob, review.job_id)
-                refresh = job.status == "completed" and bool(
-                    settings.review_refinement_positions
-                    and (data.refine or review.refinement_plan is None)
-                )
-                if data.refine and job.status not in {"queued", "running"}:
-                    review.refinement_plan = None
-                    for task in db.scalars(
-                        select(ReviewRefinement).where(
-                            ReviewRefinement.game_id == game_id,
-                            ReviewRefinement.status == "unavailable",
-                        )
-                    ):
-                        task.status, task.reason = "pending", None
-                if job.status == "completed" and workspace.human_models.can_attempt():
-                    parsed = parsed_game(game)
-                    starting = parsed.board().turn
-                    refresh = refresh or any(
-                        workspace.human_models.needs_refresh(
-                            row.report.get("human"),
-                            parsed,
-                            starting if row.ply % 2 else not starting,
-                            review.rating,
-                        )
-                        for row in db.scalars(
-                            select(GameReviewMove).where(GameReviewMove.game_id == game_id)
-                        )
-                    )
-                if job.status in {"failed", "cancelled"} or refresh:
-                    job.status, job.cancel_requested, job.error = "queued", False, None
-                    job.positions_triaged = 0
-                # Opening a game moves its background analysis to the front.
-                job.priority = REQUESTED
-            else:
-                job = AnalysisJob(kind="game_review", games_total=1, priority=REQUESTED)
-                db.add(job)
-                db.flush()
-                db.add(GameReview(game_id=game_id, job_id=job.id, rating=data.rating or 1000))
+            job = request_review(
+                db,
+                require_game(db, game_id),
+                rating=data.rating,
+                refine=data.refine,
+                settings=settings,
+                human_models=workspace.human_models,
+            )
             db.commit()
             return {"job_id": job.id, "status": job.status}
 
@@ -421,35 +387,6 @@ def create_router(*, settings, engine_factory):
         return position(board) | {"san": san}
 
     @router.post(
-        "/api/games/{game_id}/train",
-        status_code=202,
-        response_model=JobStarted,
-        response_model_exclude_unset=True,
-    )
-    def train_game(workspace: CurrentWorkspace, game_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
-            require_game(db, game_id)
-            active = db.scalar(
-                select(AnalysisJob)
-                .join(ImportGame, ImportGame.import_id == AnalysisJob.import_id)
-                .where(
-                    ImportGame.game_id == game_id,
-                    AnalysisJob.kind == "training",
-                    AnalysisJob.status.in_(["queued", "running"]),
-                )
-            )
-            if active:
-                return {"job_id": active.id, "status": active.status}
-            batch = ImportBatch(filename="Selected game training", original_pgn="")
-            db.add(batch)
-            db.flush()
-            db.add(ImportGame(import_id=batch.id, game_id=game_id, is_new=True))
-            job = AnalysisJob(kind="training", import_id=batch.id, games_total=1)
-            db.add(job)
-            db.commit()
-            return {"job_id": job.id, "status": job.status}
-
-    @router.post(
         "/api/games/{game_id}/analyze",
         response_model=GameAnalysis,
         response_model_exclude_unset=True,
@@ -463,7 +400,7 @@ def create_router(*, settings, engine_factory):
             board = branch_board(game, data.ply, data.moves)
             parsed = parsed_game(game)
             review = db.get(GameReview, game_id)
-            rating = review.rating if review else 1000
+            rating = review.rating if review else DEFAULT_RATING
         with workspace.variation_lock:
             engine = engine_factory(settings, workspace.sessions)
             try:

@@ -20,9 +20,9 @@ from sqlalchemy.orm import aliased
 
 from trainer.chess_core import Score, legal_move, material, position_key
 from trainer.contracts.puzzles import PuzzleProvenance
+from trainer.job_lifecycle import JobKind, active_job
 from trainer.lichess_patterns import recognize
 from trainer.models import (
-    AnalysisJob,
     Decision,
     EngineAnalysis,
     Game,
@@ -45,7 +45,6 @@ from trainer.search_limits import SearchLimits
 
 GENERATOR_VERSION = "games-v1"
 PROVIDER_ID = "your-games"
-JOB_KIND = "puzzle_generation"
 # A missed win: the learner gave up at least MIN_LOSS_CP from a position worth MIN_WIN_CP.
 MIN_LOSS_CP = 150
 MIN_WIN_CP = 150
@@ -483,12 +482,8 @@ def generation_status(db, *, automatic: bool) -> dict:
         .select_from(GamePuzzle)
         .where(GamePuzzle.status == "ready", GamePuzzle.generator_version == GENERATOR_VERSION)
     )
-    job_status = db.scalar(
-        select(AnalysisJob.status)
-        .where(AnalysisJob.kind == JOB_KIND, AnalysisJob.status.in_(["queued", "running"]))
-        .order_by(AnalysisJob.created_at.desc())
-        .limit(1)
-    )
+    active = active_job(db, JobKind.PUZZLE_GENERATION)
+    job_status = active.status if active else None
     return {
         "automatic": automatic,
         "analyzed_games": analyzed,

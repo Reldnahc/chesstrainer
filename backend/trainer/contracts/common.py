@@ -2,7 +2,10 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict
 
+from trainer.job_lifecycle import JobStatus as Status
+
 Color = Literal["white", "black"]
+JobStatusName = Literal[tuple(status.value for status in Status)]
 
 
 class Contract(BaseModel):
@@ -22,11 +25,11 @@ class JobCreated(Contract):
 
 
 class JobStarted(JobCreated):
-    status: str
+    status: JobStatusName
 
 
 class JobStatus(Contract):
-    status: str
+    status: JobStatusName
 
 
 class CreatedId(Contract):

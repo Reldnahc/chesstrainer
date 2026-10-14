@@ -179,7 +179,6 @@ def test_sessions_isolation_csrf_and_restart(settings):
             ).status_code
             == 200
         )
-        assert client.post(f"/api/games/{game}/train", headers=bob_headers).status_code == 404
         assert (
             client.post(f"/api/games/{game}/review", json={}, headers=bob_headers).status_code
             == 404
@@ -229,7 +228,6 @@ def test_sessions_isolation_csrf_and_restart(settings):
         assert client.get("/api/games").status_code == 401
         assert client.post(f"/api/games/{game}/review", json={}, headers=ORIGIN).status_code == 401
         assert client.post(f"/api/games/{game}/analyze", json={}, headers=ORIGIN).status_code == 401
-        assert client.post(f"/api/games/{game}/train", headers=ORIGIN).status_code == 401
         client.cookies.set(COOKIE, token)
         assert client.get("/api/games").json()["items"][0]["id"] == game
 
@@ -244,7 +242,10 @@ def test_database_scope_aggregates_updates_and_references(settings):
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
         game_id = db.scalar(select(Game.id))
-        job_id = db.scalar(select(AnalysisJob.id))
+        job = AnalysisJob(kind="classification")
+        db.add(job)
+        db.commit()
+        job_id = job.id
     with sb() as db:
         assert db.get(Game, game_id) is None
         assert db.scalar(select(func.count()).select_from(Game)) == 0

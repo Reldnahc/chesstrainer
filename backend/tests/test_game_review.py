@@ -107,7 +107,7 @@ def test_different_mating_moves_only_tie_for_best_when_both_are_immediate(distan
 
 def seed(app, pgn='[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'):
     with app.state.sessions() as db:
-        import_games(db, "synthetic.pgn", pgn, ["Learner"], None, queue_analysis=False)
+        import_games(db, "synthetic.pgn", pgn, ["Learner"], None)
         return db.scalar(select(Game.id))
 
 

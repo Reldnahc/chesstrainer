@@ -268,7 +268,7 @@ def create_app():
                 '[FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1"]\n\n'
                 "1. f3 e5 2. g4 Qh4# 0-1"
             )
-            import_games(db, "review-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            import_games(db, "review-fixture.pgn", pgn, [white], None)
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/clock-review-fixture/{key}")
@@ -285,7 +285,7 @@ def create_app():
                 "Nc6 {[%clk 0:02:50]} 3. Bc4 {[%clk 0:02:51]} Nd4 {[%clk 0:00:08.4]} "
                 "4. Nxe5 {[%clk 0:02:41]} Qg5 {[%clk 0:00:05.2]} *"
             )
-            import_games(db, "clock-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            import_games(db, "clock-fixture.pgn", pgn, [white], None)
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/pin-review-fixture/{key}")
@@ -298,7 +298,7 @@ def create_app():
             white = f"Pin-{key}"
             # 4. Bg5 pins the f6 knight to the queen; 4...h6 keeps that pin in place.
             pgn = f'[White "{white}"]\n[Black "PinFixture"]\n\n1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 h6 *'
-            import_games(db, "pin-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            import_games(db, "pin-fixture.pgn", pgn, [white], None)
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/book-review-fixture/{key}")
@@ -310,7 +310,7 @@ def create_app():
         with app.state.sessions() as db:
             white = f"Book-{key}"
             pgn = f'[White "{white}"]\n[Black "OpeningFixture"]\n\n1. e4 e5 2. Ke2 Nc6 0-1'
-            import_games(db, "book-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            import_games(db, "book-fixture.pgn", pgn, [white], None)
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/review-explanation-fixture/{key}")

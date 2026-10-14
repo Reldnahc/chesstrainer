@@ -8,6 +8,7 @@ from sqlalchemy import select
 
 from trainer.chess_core import digest, legal_move
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
+from trainer.game_review import analyze_move
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
 from trainer.review_intelligence.refinement_plan import VERSION, plan_key, selection
 from trainer.review_intelligence.refinement_search import (
@@ -151,8 +152,6 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
     status, reason, report = "completed", None, None
     adopted = False
     try:
-        from trainer.game_review import analyze_move
-
         bounded = RefinementEngine(engine, task, runner.sessions, lambda: runner.cancelled(job_id))
         report = analyze_move(bounded, board, move)
         reason = adoption_reason(baseline, report)

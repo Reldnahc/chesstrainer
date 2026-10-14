@@ -1,12 +1,16 @@
 """Saved job progress and cancellation/retry controls."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from sqlalchemy import func, select
 
+from trainer import job_lifecycle
 from trainer.contracts.common import JobStatus
 from trainer.contracts.jobs import AnalysisQueue, Job
+from trainer.errors import Gone, NotFound
 from trainer.game_analysis import BACKFILL, FRESH, REQUESTED
 from trainer.game_providers import get_provider
+from trainer.job_lifecycle import JobKind
+from trainer.job_lifecycle import JobStatus as JS
 from trainer.models import AnalysisJob, ClassificationTask, Game, GameReview, ProviderImport
 from trainer.workspaces import CurrentWorkspace
 
@@ -20,7 +24,7 @@ def create_router(*, runner) -> APIRouter:
             # Per-game analysis has its own summary below; it would crowd out imports here.
             rows = db.scalars(
                 select(AnalysisJob)
-                .where(AnalysisJob.kind != "game_review")
+                .where(AnalysisJob.kind != JobKind.GAME_REVIEW)
                 .order_by(AnalysisJob.created_at.desc())
                 .limit(50)
             ).all()
@@ -40,7 +44,7 @@ def create_router(*, runner) -> APIRouter:
                         .select_from(ClassificationTask)
                         .where(ClassificationTask.job_id == row.id)
                     )
-                    if row.kind == "enrichment"
+                    if row.kind == JobKind.ENRICHMENT
                     else None,
                     "activity": runner.activity(row.id),
                     "provider_import": {
@@ -67,7 +71,7 @@ def create_router(*, runner) -> APIRouter:
                 (status, priority): count
                 for status, priority, count in db.execute(
                     select(AnalysisJob.status, AnalysisJob.priority, func.count())
-                    .where(AnalysisJob.kind == "game_review")
+                    .where(AnalysisJob.kind == JobKind.GAME_REVIEW)
                     .group_by(AnalysisJob.status, AnalysisJob.priority)
                 )
             }
@@ -75,7 +79,7 @@ def create_router(*, runner) -> APIRouter:
                 select(Game)
                 .join(GameReview, GameReview.game_id == Game.id)
                 .join(AnalysisJob, AnalysisJob.id == GameReview.job_id)
-                .where(AnalysisJob.status == "running")
+                .where(AnalysisJob.status == JS.RUNNING)
             )
 
             def total(status, level=None):
@@ -94,26 +98,27 @@ def create_router(*, runner) -> APIRouter:
                 }
                 if running
                 else None,
-                "requested": total("queued", REQUESTED),
-                "fresh": total("queued", FRESH),
-                "backfill": total("queued", BACKFILL),
-                "completed": total("completed"),
-                "failed": total("failed"),
+                "requested": total(JS.QUEUED, REQUESTED),
+                "fresh": total(JS.QUEUED, FRESH),
+                "backfill": total(JS.QUEUED, BACKFILL),
+                "completed": total(JS.COMPLETED),
+                "failed": total(JS.FAILED),
             }
+
+    def require_job(db, job_id):
+        job = db.get(AnalysisJob, job_id)
+        if job is None:
+            raise NotFound("Job not found")
+        return job
 
     @router.post(
         "/api/jobs/{job_id}/cancel", response_model=JobStatus, response_model_exclude_unset=True
     )
     def cancel_job(workspace: CurrentWorkspace, job_id: str):
         with workspace.sessions() as db:
-            job = db.get(AnalysisJob, job_id)
-            if job is None:
-                raise HTTPException(404, "Job not found")
-            if job.status in {"queued", "running"}:
-                job.cancel_requested = True
-                if job.status == "queued":
-                    job.status = "cancelled"
-                db.commit()
+            job = require_job(db, job_id)
+            job_lifecycle.request_cancel(job)
+            db.commit()
             return {"status": job.status}
 
     @router.post(
@@ -121,14 +126,10 @@ def create_router(*, runner) -> APIRouter:
     )
     def retry_job(workspace: CurrentWorkspace, job_id: str):
         with workspace.sessions() as db:
-            job = db.get(AnalysisJob, job_id)
-            if job is None:
-                raise HTTPException(404, "Job not found")
-            if job.kind == "teaching":
-                raise HTTPException(410, "Model teaching generation has been removed.")
-            if job.status not in {"failed", "cancelled"}:
-                raise HTTPException(409, "Only failed or cancelled jobs can be retried")
-            job.status, job.cancel_requested, job.error = "queued", False, None
+            job = require_job(db, job_id)
+            if job.kind not in JobKind:
+                raise Gone("This kind of job has been removed.")
+            job_lifecycle.retry(job)
             db.commit()
             return {"status": job.status}
 

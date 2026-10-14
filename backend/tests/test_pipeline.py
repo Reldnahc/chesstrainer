@@ -54,7 +54,7 @@ def test_multi_import_dedupe_and_learner(sessions):
         assert result["imported"] == 1 and result["duplicates"] == 1
         assert db.scalar(select(func.count()).select_from(Game)) == 1
         ambiguous = import_games(db, "test.pgn", PGN, [], None)
-        assert ambiguous["errors"] and ambiguous["job_id"] is None
+        assert ambiguous["errors"] and not ambiguous["imported"]
         assert len(list(learner_decisions(db.scalar(select(Game))))) == 2
     parsed = chess.pgn.read_game(io.StringIO(PGN))
     with pytest.raises(ValueError):

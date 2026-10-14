@@ -4,7 +4,8 @@ The Play page starts a game against the coach the account has selected. The coac
 is the opponent and, by default, the live commentator: every move gets the same
 label, evaluation, reaction and graph point the game review produces, while the
 game is still in progress. A finished game is saved into Games like any imported
-game and reviewed there with no play-specific code.
+game and reviewed there with no play-specific code; its review job is queued at the
+front, as when a learner opens a game.
 
 This document records the design decisions, the measurements behind them, the
 HTTP surface and the spoken meanings the feature still needs. It builds on

@@ -15,6 +15,7 @@ from pathlib import Path
 
 from trainer.config import Settings
 from trainer.errors import Conflict, DomainError, InvalidInput, NotFound
+from trainer.job_lifecycle import JobStatus
 
 COOKIE = "fieldwork_session"
 SESSION_SECONDS = 30 * 24 * 3600
@@ -180,8 +181,8 @@ class Accounts:
                 # The scheduler skips disabled owners, so work interrupted
                 # while the account was disabled is never recovered otherwise.
                 db.execute(
-                    "UPDATE analysis_jobs SET status='queued' WHERE user_id=? AND status='running'",
-                    (user["id"],),
+                    "UPDATE analysis_jobs SET status=? WHERE user_id=? AND status=?",
+                    (JobStatus.QUEUED, user["id"], JobStatus.RUNNING),
                 )
             db.execute("DELETE FROM auth_sessions WHERE user_id=?", (user["id"],))
 

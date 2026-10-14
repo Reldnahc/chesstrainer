@@ -8,6 +8,7 @@ from sqlalchemy import select
 
 from trainer.chess_core import Score
 from trainer.errors import InvalidInput
+from trainer.game_analysis import REQUESTED, queue_imported
 from trainer.game_library import pgn_rating
 from trainer.game_review import analyze_move, position, public_report
 from trainer.human_models.runtime import HumanUnavailable
@@ -134,13 +135,14 @@ def finish(db, play: PlayGame, result: str, termination: str, learner_name: str)
         pgn,
         [],
         "white" if learner_is_white(play) else "black",
-        queue_analysis=True,
         commit=False,
     )
     saved = db.scalar(
         select(ImportGame.game_id).where(ImportGame.import_id == outcome["import_id"])
     )
     play.saved_game_id = saved
+    # The learner just played it, so its review goes first.
+    queue_imported(db, outcome["import_id"], REQUESTED)
     return outcome
 
 

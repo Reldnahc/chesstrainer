@@ -3,6 +3,7 @@
 import chess
 import pytest
 from fastapi.testclient import TestClient
+from job_fixtures import queue_import_analysis
 from sqlalchemy import select
 from trainer.accounts import COOKIE
 from trainer.api import create_app
@@ -26,7 +27,6 @@ from trainer.models import (
 from trainer.puzzles.game_provider import GamePuzzleProvider
 from trainer.puzzles.generation import (
     GENERATOR_VERSION,
-    JOB_KIND,
     EngineSearch,
     Line,
     build_line,
@@ -150,9 +150,7 @@ class FakeEngine:
 
 
 def seed_game(db, fen, moves, **headers):
-    result = import_games(
-        db, "fixture.pgn", pgn(fen, moves, **headers), ["me"], None, queue_analysis=False
-    )
+    result = import_games(db, "fixture.pgn", pgn(fen, moves, **headers), ["me"], None)
     assert result["imported"] == 1, result
     return db.scalar(select(Game).order_by(Game.created_at.desc(), Game.id.desc()))
 
@@ -408,9 +406,8 @@ def test_analysis_jobs_mine_new_games_and_the_backfill_job_mines_the_rest(settin
     )
     with TestClient(app) as client:
         with app.state.sessions() as db:
-            job_id = import_games(db, "f.pgn", pgn(FORK_FEN, "1. Ne4 Kd7 2. Kd2"), ["me"], None)[
-                "job_id"
-            ]
+            imported = import_games(db, "f.pgn", pgn(FORK_FEN, "1. Ne4 Kd7 2. Kd2"), ["me"], None)
+            job_id = queue_import_analysis(db, imported)
         app.state.runner.run_job(job_id)
         with app.state.sessions() as db:
             job = db.get(AnalysisJob, job_id)
@@ -431,7 +428,7 @@ def test_analysis_jobs_mine_new_games_and_the_backfill_job_mines_the_rest(settin
         app.state.runner.run_job(queued.json()["job_id"])
         with app.state.sessions() as db:
             job = db.get(AnalysisJob, queued.json()["job_id"])
-            assert job.kind == JOB_KIND and job.status == "completed"
+            assert job.kind == "puzzle_generation" and job.status == "completed"
             assert (job.games_total, job.games_processed, job.puzzles_found) == (1, 1, 1)
         puzzles = client.get("/api/puzzles").json()
         assert puzzles["available"] == 2 and puzzles["generation"]["unsearched_games"] == 0

@@ -118,9 +118,9 @@ class ImportGame(Owned, Base):
 class AnalysisJob(Owned, Base):
     __tablename__ = "analysis_jobs"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    kind: Mapped[str] = mapped_column(default="analysis")
+    kind: Mapped[str]  # trainer.job_lifecycle.JobKind
     import_id: Mapped[str | None] = mapped_column(ForeignKey("game_imports.id"))
-    status: Mapped[str] = mapped_column(default="queued", index=True)
+    status: Mapped[str] = mapped_column(default="queued", index=True)  # JobStatus
     games_total: Mapped[int] = mapped_column(default=0)
     games_processed: Mapped[int] = mapped_column(default=0)
     positions_triaged: Mapped[int] = mapped_column(default=0)

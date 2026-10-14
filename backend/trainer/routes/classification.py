@@ -7,7 +7,8 @@ from trainer.classification import reject_run
 from trainer.contracts.classification import ClassificationAudit, Evidence, Weaknesses
 from trainer.contracts.common import JobCreated, Rejected
 from trainer.coverage import coverage
-from trainer.models import AnalysisJob, ClassificationRun, Decision, EngineAnalysis, SkillEvidence
+from trainer.job_lifecycle import JobKind, ensure_job
+from trainer.models import ClassificationRun, Decision, EngineAnalysis, SkillEvidence
 from trainer.weaknesses import priorities
 from trainer.workspaces import CurrentWorkspace
 
@@ -20,16 +21,7 @@ def create_router(*, settings, classifier) -> APIRouter:
     )
     def retry_classifications(workspace: CurrentWorkspace):
         with workspace.mutation_lock, workspace.sessions() as db:
-            existing = db.scalar(
-                select(AnalysisJob).where(
-                    AnalysisJob.kind == "classification",
-                    AnalysisJob.status.in_(["queued", "running"]),
-                )
-            )
-            if existing:
-                return {"job_id": existing.id}
-            job = AnalysisJob(kind="classification")
-            db.add(job)
+            job, _ = ensure_job(db, JobKind.CLASSIFICATION)
             db.commit()
             return {"job_id": job.id}
 
@@ -41,17 +33,9 @@ def create_router(*, settings, classifier) -> APIRouter:
     )
     def enrich_classifications(workspace: CurrentWorkspace):
         with workspace.mutation_lock, workspace.sessions() as db:
-            existing = db.scalar(
-                select(AnalysisJob).where(
-                    AnalysisJob.kind == "enrichment",
-                    AnalysisJob.status.in_(["queued", "running"]),
-                )
-            )
-            if existing:
-                return {"job_id": existing.id}
-            workspace.engine.start()
-            job = AnalysisJob(kind="enrichment")
-            db.add(job)
+            job, created = ensure_job(db, JobKind.ENRICHMENT)
+            if created:
+                workspace.engine.start()  # Probes need Stockfish; fail now, not in the job.
             db.commit()
             return {"job_id": job.id}
 

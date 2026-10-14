@@ -98,7 +98,7 @@ decisions, practice exercises and Weaknesses evidence exist once the review
 finishes ([Automatic game analysis](GAME_ANALYSIS.md)). Those decisions are marked
 deep and run no triage. The only extra search is a restricted played-move search
 when the played move was the review's second candidate, at the review's limits.
-A training-only job for an unreviewed game (`POST /api/games/{game_id}/train`, which has no button in the app) still triages as above.
+A whole-import `analysis` job saved by an older version still triages as above when it runs; nothing creates them now.
 The review's progress counters describe only the review. Bounded [refinement](REVIEW_INTELLIGENCE.md#targeted-review-investigation) adds investigation to selected
 positions without replacing or reducing that baseline.
 

@@ -6,7 +6,9 @@ from datetime import datetime, timezone
 
 from sqlalchemy import delete, select
 
+from trainer import job_lifecycle
 from trainer.game_providers.base import ProviderRateLimited
+from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, ProviderCheckpoint, ProviderConnection, ProviderImport, now
 
 log = logging.getLogger(__name__)
@@ -35,7 +37,7 @@ def latest_sync(db, provider, name):
         select(AnalysisJob)
         .join(ProviderImport)
         .where(
-            AnalysisJob.kind == "sync",
+            AnalysisJob.kind == JobKind.SYNC,
             ProviderImport.username == name,
             ProviderImport.provider == provider,
         )
@@ -58,7 +60,7 @@ def queue_sync(db, provider, settings, *, min_age=60):
         age = (
             datetime.now(timezone.utc) - job.created_at.replace(tzinfo=timezone.utc)
         ).total_seconds()
-        if job.status in {"queued", "running"} or age < min_age:
+        if job.status in job_lifecycle.ACTIVE or age < min_age:
             return job
         # Reuse this account's sync checkpoint instead of accumulating a job
         # and duplicate raw PGN archive on every periodic refresh.
@@ -70,10 +72,10 @@ def queue_sync(db, provider, settings, *, min_age=60):
             setattr(source, key, 0)
         for key, value in sync_scope(settings).items():
             setattr(source, key, value)
-        job.status, job.cancel_requested, job.error = "queued", False, None
-        job.created_at = now()
+        job_lifecycle.requeue(job)
+        job.created_at = now()  # Sorts as new among queued fetches.
     else:
-        job = AnalysisJob(kind="sync")
+        job = AnalysisJob(kind=JobKind.SYNC)
         db.add(job)
         db.flush()
         db.add(

@@ -38,7 +38,7 @@ def seed_games(app, count):
         for i in range(count)
     )
     with app.state.sessions() as db:
-        import_games(db, "games.pgn", pgn, ["Learner"], None, queue_analysis=False)
+        import_games(db, "games.pgn", pgn, ["Learner"], None)
         ids = db.scalars(select(Game.id).order_by(Game.pgn)).all()
         for i, game_id in enumerate(ids):
             db.get(Game, game_id).played_at = START + timedelta(days=i)
@@ -214,7 +214,6 @@ def test_game_analysis_runs_review_and_training_in_one_job(settings, stockfish_p
                 '[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1',
                 ["Learner"],
                 None,
-                queue_analysis=False,
             )
             queue_imported(db, db.scalar(select(ImportGame.import_id)), FRESH)
             db.commit()

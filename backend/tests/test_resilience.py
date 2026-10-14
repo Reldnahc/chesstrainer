@@ -5,6 +5,7 @@ from pathlib import Path
 import chess
 import pytest
 from fastapi.testclient import TestClient
+from job_fixtures import queue_import_analysis
 from pydantic import SecretStr
 from sqlalchemy import func, select
 from trainer.api import create_app
@@ -151,6 +152,7 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
     with sessions() as db:
         seed_skills(db)
         result = import_games(db, "two.pgn", PGN + '\n\n[Round "2"]\n' + PGN, ["Learner"], None)
+        result["job_id"] = queue_import_analysis(db, result)
     calls = []
 
     class CancellingClassifier(FixtureClassifier):
@@ -214,6 +216,7 @@ def test_recover_cancel_and_partial_import(settings, sessions):
             None,
         )
         assert result["errors"] and result["imported"] == 1
+        result["job_id"] = queue_import_analysis(db, result)
         job = db.get(AnalysisJob, result["job_id"])
         job.status = "running"
         db.commit()

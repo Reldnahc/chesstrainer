@@ -120,7 +120,6 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                         [username],
                         None,
                         batch=db.get(ImportBatch, job.import_id),
-                        queue_analysis=False,
                         commit=False,
                         max_new_games=remaining,
                         retain_original=not sync,

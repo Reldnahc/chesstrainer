@@ -44,7 +44,8 @@ saved game then queues its own analysis job. See
 | accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`, `open-signups`, `close-signups`) |
 | site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
-| jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
+| job_lifecycle.py | Job kinds and statuses as enums, the fetch lane, and every state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
+| jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution dispatched by kind |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, a durable cache shared across accounts like the engine cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |

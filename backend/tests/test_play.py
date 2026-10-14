@@ -8,8 +8,9 @@ from sqlalchemy import select
 from test_game_review import seed
 from trainer.api import create_app
 from trainer.chess_core import Loss
+from trainer.game_analysis import REQUESTED
 from trainer.human_models.service import HumanModels
-from trainer.models import Game, PlayGame
+from trainer.models import AnalysisJob, Game, GameReview, PlayGame
 from trainer.play.bot import guard_violated, sample_order, seeded
 from trainer.play.level import GRID, fit_level, learner_positions
 
@@ -114,6 +115,11 @@ def test_a_game_against_the_bot_is_played_commented_and_saved(settings, stockfis
     with app.state.sessions() as db:
         play = db.get(PlayGame, started["id"])
         assert play.status == "finished" and "1" in play.reports
+        # The finished game is reviewed like any other game, first in the queue.
+        jobs = db.scalars(select(AnalysisJob)).all()
+        review = db.get(GameReview, play.saved_game_id)
+        assert [(job.kind, job.priority) for job in jobs] == [("game_review", REQUESTED)]
+        assert review.job_id == jobs[0].id
 
 
 @pytest.mark.stockfish

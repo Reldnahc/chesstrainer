@@ -279,7 +279,7 @@ def test_repeat_import_100_saved_plus_20_new_only_schedules_20(settings, session
             assert len(links) == 120  # Full provenance remains separate from job scope.
             assert sum(link.is_new for link in links) == 20
             repeated = import_games(db, "again.pgn", "\n\n".join(pgns), ["learner"], None)
-            assert repeated["duplicates"] == 120 and repeated["job_id"] is None
+            assert repeated["duplicates"] == 120 and repeated["imported"] == 0
         repeated_job = source_job(sessions)
         fetch(repeated_job, sessions, settings, client)
         with sessions() as db:

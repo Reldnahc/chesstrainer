@@ -8,7 +8,7 @@ from sqlalchemy import select
 
 from trainer.chess_core import digest, valid_board
 from trainer.errors import InvalidInput, NotFound
-from trainer.models import AnalysisJob, Game, ImportBatch, ImportGame
+from trainer.models import Game, ImportBatch, ImportGame
 
 log = logging.getLogger(__name__)
 
@@ -109,7 +109,6 @@ def import_games(
     side: str | None,
     *,
     batch: ImportBatch | None = None,
-    queue_analysis: bool = True,
     commit: bool = True,
     max_new_games: int | None = None,
     retain_original: bool = True,
@@ -176,10 +175,6 @@ def import_games(
             game.rated = rated[key]
     if not linked and not errors:
         errors.append({"game": 0, "error": "No games found in this PGN"})
-    job = None
-    if imported and queue_analysis:
-        job = AnalysisJob(import_id=batch.id, games_total=imported)
-        db.add(job)
     if commit:
         db.commit()
     else:
@@ -190,7 +185,6 @@ def import_games(
         "duplicates": duplicates,
         "processed": processed,
         "errors": errors,
-        "job_id": job.id if job else None,
     }
 
 

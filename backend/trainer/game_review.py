@@ -307,12 +307,6 @@ def public_report(report, rating, *, context=None):
     }
 
 
-def run_review(runner, job_id, engine_override=None):
-    from trainer.review_jobs import run_review as execute
-
-    return execute(runner, job_id, engine_override)
-
-
 def branch_board(game, ply, moves):
     parsed = parsed_game(game)
     mainline = list(parsed.mainline_moves())

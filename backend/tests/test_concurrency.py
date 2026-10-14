@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 import chess
 import pytest
 from fastapi.testclient import TestClient
+from job_fixtures import queue_import_analysis
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.chess_core import Candidate, Score, position_key
@@ -28,6 +29,7 @@ def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
             for i in range(games)
         )
         imported = import_games(db, "fixture.pgn", pgn, ["Learner"], None)
+        imported["job_id"] = queue_import_analysis(db, imported)
         job = db.get(AnalysisJob, imported["job_id"])
         job.kind = kind
         for game in db.scalars(select(Game)):
@@ -248,6 +250,7 @@ def test_parallel_native_import_persists_every_decision_and_classification(
             for i in range(6)
         )
         imported = import_games(db, "native.pgn", pgn, ["Learner"], None)
+        imported["job_id"] = queue_import_analysis(db, imported)
     runner = JobRunner(
         settings,
         sessions,
