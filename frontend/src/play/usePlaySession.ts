@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api, read, type Schema } from "../api";
 import { navigate as openPage, playGamePath } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
+import usePageShortcuts from "../usePageShortcuts";
 import type { Analysis, Game, Report } from "../gameReview/types";
 import type { SpeechNavigation } from "../gameReview/useGameExploration";
 
@@ -385,22 +386,8 @@ export function usePlaySession(id: string) {
     [state, latest, ply, audio, id],
   );
 
-  const keyboard = useRef(navigate);
-  keyboard.current = navigate;
-  useEffect(() => {
-    const keydown = (event: KeyboardEvent) => {
-      if (event.altKey || event.ctrlKey || event.metaKey) return;
-      if (document.querySelector(":modal, :popover-open")) return;
-      if ((event.target as HTMLElement).closest("input,select,textarea,[contenteditable=true]")) return;
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-        event.preventDefault();
-        keyboard.current(ply + (event.key === "ArrowLeft" ? -1 : 1));
-      }
-      if (event.key === "Escape") setExplanationKey(null);
-    };
-    window.addEventListener("keydown", keydown);
-    return () => window.removeEventListener("keydown", keydown);
-  }, [ply]);
+  // MovePlaybackControls binds the arrow keys; the page owns Escape.
+  usePageShortcuts({ Escape: () => setExplanationKey(null) });
 
   // The review's own components read a Game; a live game is one with no saved review.
   const game: Game | null = useMemo(() => {

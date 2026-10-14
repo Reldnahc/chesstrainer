@@ -221,6 +221,13 @@ test("full-game controls interrupt Mason-Lasker playback without waiting for its
   await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
   expect((await command(page, "Next game move")).game?.ply).toBe(2);
   expect((await command(page, "Previous game move")).game?.ply).toBe(1);
+  // The arrow keys drive the same game playback as its buttons.
+  for (const [key, ply] of [["ArrowRight", 2], ["ArrowLeft", 1]] as const) {
+    await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
+    const pending = page.waitForResponse(response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"));
+    await page.keyboard.press(key);
+    expect(((await (await pending).json()) as Schema["LessonSessionView"]).game?.ply).toBe(ply);
+  }
   let annotated = first;
   for (let ply = 2; ply <= 8; ply++) annotated = await command(page, "Next game move");
   expect(annotated.game?.note?.text).toBeTruthy();

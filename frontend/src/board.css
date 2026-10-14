@@ -52,6 +52,19 @@
   touch-action: manipulation;
   box-shadow: 0 8px 28px #0002;
 }
+/* Right-click marks, in Chess.com's colours. */
+.board-square-content[data-mark="red"] {
+  background: rgb(235 97 80 / 80%);
+}
+.board-square-content[data-mark="green"] {
+  background: rgb(172 206 89 / 80%);
+}
+.board-square-content[data-mark="yellow"] {
+  background: rgb(246 199 64 / 80%);
+}
+.board-square-content[data-mark="blue"] {
+  background: rgb(82 176 220 / 80%);
+}
 .board-square-content.selected {
   background: #e9a569;
 }

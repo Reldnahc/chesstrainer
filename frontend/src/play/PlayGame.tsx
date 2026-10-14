@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import Banner from "../Banner";
-import { ArrowRight, FlipVertical2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
 import ActionLink from "../ActionLink";
-import Button, { IconButton } from "../Button";
+import Button from "../Button";
+import FlipBoardButton from "../FlipBoardButton";
 import MovePlaybackControls from "../MovePlaybackControls";
 import { LoadingState, UnavailableState } from "../LoadState";
 import AudioMuteButton from "../audio/AudioMuteButton";
@@ -215,9 +216,7 @@ export default function PlayGame({ id }: { id: string }) {
               next={{ "aria-label": "Next move", disabled: ply === latest, onClick: () => session.navigate(ply + 1) }}
               last={{ "aria-label": "Latest move", disabled: ply === latest, onClick: () => session.navigate(latest) }} />
             <div className="game-board-tools">
-              <IconButton aria-label="Flip board" onClick={() => setOrientation(shownOrientation === "white" ? "black" : "white")}>
-                <FlipVertical2 size={17} />
-              </IconButton>
+              <FlipBoardButton onFlip={() => setOrientation(shownOrientation === "white" ? "black" : "white")} />
               <AudioMuteButton />
             </div>
           </div>
