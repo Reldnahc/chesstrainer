@@ -155,7 +155,7 @@ Keep create_app as the composition root for database sessions, shared mutation l
 Keep navigation, connection and shared errors in App. Move the existing Review, Import, Settings and evidence display into cohesive frontend modules, with shared PageTitle and exercise-link cleanup helpers. Preserve hook/state lifetimes, board identity, DOM structure and interaction timers; do not introduce a router library or new state framework.
 
 Separate current product guidance from earlier deployment/validation journals.
-Git history preserves the completed journals; VERIFICATION records current checks
+Git history preserves the completed journals and verification records,
 and TESTING provides repeatable commands. Current guides must distinguish active
 review/weakness workflows, retained low-level APIs and archived/tombstoned
 lesson/repertoire behavior. Historical statements are not current setup instructions.

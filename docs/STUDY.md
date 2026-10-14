@@ -285,13 +285,13 @@ recommendations. No course starts an engine job or downloads material at runtime
 
 | Course | Side | Chapters | Source record |
 |---|---|---|---|
-| Italian Game · A quiet White repertoire | White | Recognize the setup and punish 3...Nd4; meet the Two Knights Defense; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
-| Italian Game · A practical Black repertoire | Black | Develop and meet White's common fourth moves; choose a post-castling plan; meet c3/d4; meet the Nc3 gambit; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
-| King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; Black's other common replies; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
-| Sicilian Dragon · A fighting Black repertoire | Black | Build the Dragon against a quiet Be2; meet the Yugoslav Attack with d5; answer Bg5 with h6, Ng4 and e5; White's second-move alternatives; White's third-move alternatives | [Dragon sources](DRAGON_COURSE_SOURCES.md) |
-| Vienna Gambit · An attacking White repertoire | White | The gambit accepted; Black strikes with d5; Black declines the gambit; Black's other second moves | [Vienna sources](VIENNA_COURSE_SOURCES.md) |
-| Tactics · Six basic patterns | White | Forks; pins; skewers; discovered attacks and double check; removing a defender; back-rank checkmate | [Tactics sources](TACTICS_COURSE_SOURCES.md) |
-| Fundamentals · Six basic skills | White | Piece values; counting attackers and defenders; checks, captures and threats before every move; opening principles; checkmating a lone king; king and pawn endings | [Fundamentals sources](FUNDAMENTALS_COURSE_SOURCES.md) |
+| Italian Game · A quiet White repertoire | White | Recognize the setup and punish 3...Nd4; meet the Two Knights Defense; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](COURSE_SOURCES.md#white-italian-game) |
+| Italian Game · A practical Black repertoire | Black | Develop and meet White's common fourth moves; choose a post-castling plan; meet c3/d4; meet the Nc3 gambit; respond to the Evans Gambit | [Black Italian sources](COURSE_SOURCES.md#black-italian) |
+| King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; Black's other common replies; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](COURSE_SOURCES.md#kings-gambit) |
+| Sicilian Dragon · A fighting Black repertoire | Black | Build the Dragon against a quiet Be2; meet the Yugoslav Attack with d5; answer Bg5 with h6, Ng4 and e5; White's second-move alternatives; White's third-move alternatives | [Dragon sources](COURSE_SOURCES.md#sicilian-dragon) |
+| Vienna Gambit · An attacking White repertoire | White | The gambit accepted; Black strikes with d5; Black declines the gambit; Black's other second moves | [Vienna sources](COURSE_SOURCES.md#vienna-gambit) |
+| Tactics · Six basic patterns | White | Forks; pins; skewers; discovered attacks and double check; removing a defender; back-rank checkmate | [Tactics sources](COURSE_SOURCES.md#tactics) |
+| Fundamentals · Six basic skills | White | Piece values; counting attackers and defenders; checks, captures and threats before every move; opening principles; checkmating a lone king; king and pawn endings | [Fundamentals sources](COURSE_SOURCES.md#fundamentals) |
 
 `tactics-foundations` and `chess-fundamentals` (both revision `2026-10-v1`)
 teach patterns and basic skills rather than an opening. Their examples start
@@ -377,7 +377,7 @@ Mason–Lasker, Steinitz–von Bardeleben and Pollock–Schiffers (Hastings 1895
 complete game context. Their scores come from the public-domain original
 tournament book; Fieldwork's explanations are original. These games illustrate
 choices, not a claim that every move was best. Source differences and exact
-endpoints are recorded in [Italian course sources](ITALIAN_COURSE_SOURCES.md).
+endpoints are recorded in [Italian course sources](COURSE_SOURCES.md#white-italian-game).
 The library loads locally without downloads or engine jobs. New material must
 use a new revision rather than changing a saved course's meaning.
 
