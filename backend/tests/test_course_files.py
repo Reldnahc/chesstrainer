@@ -123,5 +123,7 @@ def test_course_line_codes_match_their_deepest_catalogued_position():
             for uci in (*line.position.moves, *line.moves):
                 board.push_uci(uci)
                 deepest = names.get(position_key(board), deepest)
-            expected = ECO_BEYOND_CATALOGUE.get((course.id, line.id)) or deepest[0]
-            assert line.eco == expected, (course.id, line.id, deepest)
+            exception = ECO_BEYOND_CATALOGUE.get((course.id, line.id))
+            # An exception the catalogue now agrees with is stale.
+            assert exception != deepest[0], (course.id, line.id)
+            assert line.eco == (exception or deepest[0]), (course.id, line.id, deepest)

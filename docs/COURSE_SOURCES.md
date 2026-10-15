@@ -77,7 +77,7 @@ Recall lines for side trips start where their chapter's main line starts: the fi
 
 ### Names and codes
 
-A recall line's ECO code is the code of the deepest classified position it reaches, as game databases classify it. The `3...h6`, `4...h6` and quiet-setup lines (development, the `...Bg4` pin, the `...Na5` and `...d5` comparisons, and the central break) play `c3` with `...Nf6`, `...Bc5` and `d3` on the board, the Giuoco Pianissimo position of `3...Bc5 4.c3 Nf6 5.d3`, so they carry C54: the [ECO list](https://en.wikipedia.org/wiki/List_of_chess_openings) gives C54 for `4.c3 Nf6`, and Lichess's [opening file](https://github.com/lichess-org/chess-openings/blob/master/c.tsv) names these positions "Italian Game: Classical Variation, Giuoco Pianissimo" (C54). Lines without `c3` keep C50.
+A recall line's ECO code is the code of the deepest classified position it reaches, as game databases classify it. The `3...h6`, `4...h6` and quiet-setup lines (development, the `...Bg4` pin, the `...Na5` and `...d5` comparisons, and the central break) play `c3` with `...Nf6`, `...Bc5` and `d3` on the board, the Giuoco Pianissimo position of `3...Bc5 4.c3 Nf6 5.d3`, so they carry C54: the [ECO list](https://en.wikipedia.org/wiki/List_of_chess_openings) gives C54 for `4.c3 Nf6`, and Lichess's [opening file](https://github.com/lichess-org/chess-openings/blob/master/c.tsv) names these positions "Italian Game: Classical Variation, Giuoco Pianissimo" (C54). The `3...Bc5` and `3...Nd4` lines without `c3` keep C50, and the other Two Knights lines keep C55.
 
 ### Primary publication and reuse
 
@@ -710,8 +710,10 @@ game databases classify it. The two `2...Nc6` lines that continue with `Nf3`
 transpose into the Italian Game with `Nc3` (`3.Bc4 Bc5 4.Nc3 Nf6` or
 `4.d3 Nf6 5.Nc3`), so they carry C50, the code both the
 [ECO list](https://en.wikipedia.org/wiki/List_of_chess_openings) and Lichess's
-opening file give those positions. The `4.d3 Bb4` line keeps C28: after `5.Nf3`
-no classified position follows the Vienna one.
+opening file give those positions. The `4.d3 Bb4` line keeps C28. Lichess files
+the `4.d3` position as C24, "Bishop's Opening: Vienna Hybrid", but the ECO list
+puts `2...Nf6 3.Bc4 Nc6` in C28, Lichess's own `4.d3 Bb4 5.Ne2` entry is C28,
+and nothing is catalogued after `5.Nf3`.
 
 ### Verification
 
