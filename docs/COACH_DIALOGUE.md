@@ -72,7 +72,11 @@ Inaccuracy; a larger loss passes the lead on or speaks its grade take.
 A forced-mate stage is told once per run of the same side's moves, and an
 erosion run only on an Inaccuracy. The chance-taken clip, some of whose takes call the
 reply exact, plays only on a move graded Best, Great or Brilliant. A recovery is written, never voiced: its takes credit
-this move, and the opponent's moves made the game playable. Takes rotate so that a side's back-to-back
+this move, and the opponent's moves made the game playable. The opening-departure
+event fires after the game's last move in our opening catalogue, which can be a
+main-line theory move, so its clip plays only for the voices whose take says our
+opening book ends there; the others (`SILENT_DEPARTURE_VOICES` in `gameSelection.ts`)
+show the written line alone. Takes rotate so that a side's back-to-back
 moves (two plies apart) differ whenever a meaning has three or more takes.
 
 Intent version 5 records the subject as learner, opponent or unknown position.
@@ -143,6 +147,19 @@ the existing reduced-motion behavior.
 Regression coverage lives in `dialogue-logic.spec.ts`, game/coach/practice browser
 suites and backend review-event tests. Developer diagnostics consume these same
 pure functions rather than implement another dialogue pipeline.
+
+### Recorded lines that would need new takes
+
+These takes are false in some positions where their meaning fires, so selection
+keeps them silent there and the written line (or the next clip or grade take)
+stands in. Re-recording them with the wording below would let them play again.
+
+- **`opening-departure`** for arjun, biscuit, ember, felix, femi, ingrid, jun,
+  marisol, mateo, monty, pip, reka, tala and ziggy. Their takes say theory, the
+  known opening, preparation or a documented line ends here, or that everything
+  after is new or fresh; the event only knows our catalogue ends. A new take
+  should say the game leaves our opening book, as Walter's does. A spec classifies
+  every voice's take by these words, so a re-recording must also update the set.
 
 ## Personality boundary
 

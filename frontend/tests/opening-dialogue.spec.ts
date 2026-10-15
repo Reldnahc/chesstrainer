@@ -22,7 +22,9 @@ import {collie} from "../src/dialogue/characters/collie";
 import {corgi} from "../src/dialogue/characters/corgi";
 import {host} from "../src/dialogue/characters/host";
 import {spark} from "../src/dialogue/characters/spark";
-import {selectGameRecording} from "../src/audio/speech/gameSelection";
+import {SILENT_DEPARTURE_VOICES, selectGameRecording} from "../src/audio/speech/gameSelection";
+import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
+import {readFileSync} from "node:fs";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
 const score = {kind: "cp" as const, value: 20, mate_given: false};
@@ -349,4 +351,40 @@ test("opening presentation changes factual identity without changing other coach
     expect(renderedOriginal).toEqual(legacy.claims[0]);
   }
   expect(selected.size).toBe(3);
+});
+
+/** A reviewed move just past the catalogue, carrying only the departure claim. */
+function departureSelection(coach: {id: string; personality: typeof storyteller}) {
+  const game = gameWithReports(6), ply = 6, frame = game.frames[ply], report = frame.report!;
+  report.opening = null;
+  report.label = "Best";
+  report.intelligence!.events = [{id: "departure", kind: "opening_departure", actor: "black", confidence: "annotation",
+    importance: 20, facts: {catalogue: catalogueVersion},
+    evidence: [{source: "pgn", id: "pgn-digest", field: "mainline/move"},
+      {source: "book", id: catalogueVersion, field: "first_unmatched_continuation"}]}];
+  const intent = gameIntent({game, ply, frame, report, key: "departure", expression: "best"});
+  const claim = intent.claims.find(item => item.code === "departure")!;
+  expect(claim).toBeTruthy();
+  const single = {...intent, claims: [claim]};
+  return selectGameRecording({game, ply, frame, report, intent: single, utterance: renderDialogue(single, coach)});
+}
+
+test("the opening-departure clip plays only for coaches whose take says our book ends", () => {
+  // Walter says the game leaves "our opening book": true where the catalogue ends.
+  expect(departureSelection({id: "classic", personality: storyteller})).toBe("opening-departure");
+  // Arjun says "the known theory runs out", false when the catalogue ends on a theory move.
+  expect(departureSelection({id: "man-partner", personality: partner})).toBeNull();
+});
+
+test("every recorded opening-departure take is classified by what it claims", () => {
+  // A take that names theory, the known opening, preparation or a documented line,
+  // or calls what follows new or fresh, claims more than our catalogue knows.
+  const claimsTheory = /theory|known opening|prep\b|documented|new\b|fresh/i;
+  for (const bank of registry.banks) {
+    const path = bank.manifestPath;
+    const manifest = JSON.parse(readFileSync(new URL(`../src/audio/speech/${path}`, import.meta.url), "utf8")) as {recordings: {id: string; text: string}[]};
+    const take = manifest.recordings.find(recording => recording.id === "opening-departure");
+    expect(take, bank.voiceId).toBeTruthy();
+    expect(SILENT_DEPARTURE_VOICES.has(bank.voiceId), `${bank.voiceId}: ${take!.text}`).toBe(claimsTheory.test(take!.text));
+  }
 });

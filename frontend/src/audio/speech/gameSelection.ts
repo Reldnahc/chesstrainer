@@ -36,6 +36,15 @@ export type GameSpeechContext = {
 };
 export type WalterGameSpeechContext = GameSpeechContext;
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
+const voiceOf = new Map(registry.banks.map(bank => [bank.coachId, bank.voiceId]));
+// The departure fires after the game's last move in our opening catalogue, which
+// can be a main-line theory move. These voices' recorded takes say theory, the
+// known opening or preparation ends there, or that everything after is new, so
+// they stay silent and the written line shows alone. Takes that say our opening
+// book ends play. See COACH_DIALOGUE.md for the takes that need re-recording.
+export const SILENT_DEPARTURE_VOICES: ReadonlySet<string> = new Set([
+  "arjun", "biscuit", "ember", "felix", "femi", "ingrid", "jun", "marisol", "mateo", "monty", "pip", "reka", "tala", "ziggy",
+]);
 type Event = Schema["ReviewEvent"];
 const opposite = (side: "white" | "black") => side === "white" ? "black" : "white";
 const nonempty = (value: unknown): value is string => typeof value === "string" && value.trim().length > 0;
@@ -254,7 +263,8 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
       && item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search") ? simpleIds[item.code] : null;
     if (["only_move", "decisive_resource"].includes(item.code)) return event.kind === "critical_resource" && event.confidence === "searched"
       && searchEvidence(item) && Number(event.facts.only_good_at_depth) > 0 ? simpleIds[item.code] : null;
-    if (item.code === "departure") return !variation && event.kind === "opening_departure" ? "opening-departure" : null;
+    if (item.code === "departure") return !variation && event.kind === "opening_departure"
+      && !SILENT_DEPARTURE_VOICES.has(voiceOf.get(utterance.coachId) ?? "") ? "opening-departure" : null;
     return null;
   }
   if (["recovery", "punishment", "missed_punishment", "repeated", "support_restored", "erosion", "conversion", "history"].includes(item.code)) {
