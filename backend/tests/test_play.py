@@ -25,6 +25,21 @@ def test_guards_tighten_with_rating_and_never_touch_small_errors():
         assert not guard_violated(rating, small)
 
 
+def test_the_guard_counts_a_thrown_away_mate_as_a_loss():
+    from trainer.chess_core import Score
+    from trainer.play.bot import guard_loss
+
+    mate = Score(kind="mate", value=2)
+    thrown = guard_loss(mate, Score(kind="cp", value=-900))
+    assert thrown.cp == 1900 and thrown.mate_lost
+    assert guard_violated(1400, thrown) and not guard_violated(1200, thrown)
+    # Still clearly winning after missing the mate: only the strictest guards object.
+    kept = guard_loss(mate, Score(kind="cp", value=700))
+    assert kept.cp == 300 and guard_violated(2200, kept) and not guard_violated(1800, kept)
+    # A slower mate gives nothing up.
+    assert not guard_violated(2500, guard_loss(mate, Score(kind="mate", value=5)))
+
+
 def test_sampling_is_seeded_and_weighted():
     probabilities = {"e2e4": 0.7, "d2d4": 0.2, "g1f3": 0.1}
     first = sample_order(probabilities, seeded("game", 4), 3)

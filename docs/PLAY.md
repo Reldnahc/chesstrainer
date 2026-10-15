@@ -34,6 +34,10 @@ rating upward (`trainer/play/bot.py`, `GUARDS`):
 | 1800 | A move that loses at least 500 cp |
 | 2200 | A move that loses at least 300 cp |
 
+Giving up a forced mate counts as a loss with the mate worth 1000 cp (the accuracy
+convention), so a mate thrown away into a −9.00 position loses 1900 cp and is
+refused from 1400.
+
 Up to five draws are checked. If every one fails, the least damaging checked
 human move is played rather than the engine's move, so the bot never switches
 character. Draws are seeded by game and ply, so a retried request plays the same
@@ -151,7 +155,8 @@ by position without move counters (`trainer/play/book.py`), so a transposition j
 the line it reaches: the Dragon's 2.Nc3 and 3.Nc3 lines meet the main Dragon. While
 the game is in that tree the bot answers from it. With one book move it plays that;
 with several it samples them by the Maia policy at the chosen rating restricted to the
-book moves, each keeping at least a 10% share so rarer lines still come up. Book
+book moves, each keeping at least a 10% share of the choice (the rest keeps the
+policy's proportions) so rarer lines still come up. Book
 replies do no engine work and are shown without waiting for the learner's grade.
 
 Nothing about the practice is shown above the board. While the learner is in book,
@@ -162,7 +167,10 @@ When the learner leaves the book, the move stays on the board and the bot waits.
 The coach's own bubble says it is not the line, with **Take back** and **Play on**
 in place of its usual actions. The reply request compares the move with the best
 book move in one restricted Stockfish search: within 0.3 pawns it is "decent, but
-not the line", otherwise it "costs something", with the loss in pawns. The question
+not the line", otherwise it "costs something", with the loss in pawns. A move that
+lets the opponent mate where the book move does not is reported as walking into a
+mate; a mate the book move had and the learner's move gives up is a loss, with the
+mate worth 1000 cp. The question
 appears even when the move is fine. Play on turns the game into an ordinary one
 against the usual bot.
 
