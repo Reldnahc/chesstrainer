@@ -32,16 +32,19 @@ def test_nominations_are_finite_prioritized_and_depend_only_on_baseline(settings
     assert selection(reports, settings) == []
 
 
-def test_shallower_inconsistent_or_different_engine_cannot_replace_baseline():
+def test_shallower_or_different_engine_cannot_replace_baseline():
     base = difficulty_report() | {"depth": 16, "engine_version": "pinned"}
     for change, reason in [
         ({"depth": 15}, "insufficient_depth"),
         ({"root_candidates": [{"depth": 15}]}, "insufficient_depth"),
         ({"engine_version": "other"}, "incompatible_engine"),
-        ({"actual": {"score": {"kind": "cp", "value": 30}}}, "inconsistent_roots"),
     ]:
         assert adoption_reason(base, base | change) == reason
     assert adoption_reason(base, base | {"depth": 22}) is None
+    # A played move the deeper search finds stronger than its best is adopted;
+    # presentation promotes it to best, as it does for baseline reports.
+    stronger = base | {"depth": 22, "actual": {"score": {"kind": "cp", "value": 30}}}
+    assert adoption_reason(base, stronger) is None
 
 
 def baseline(client, app):

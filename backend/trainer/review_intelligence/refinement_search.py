@@ -1,6 +1,6 @@
 """Resume bounded questions using the existing Stockfish cache and move analyzer."""
 
-from trainer.chess_core import Score, digest, engine_context
+from trainer.chess_core import digest, engine_context
 from trainer.engine import EngineReferenceMismatch
 from trainer.models import EngineAnalysis, ReviewRefinement
 from trainer.search_limits import EngineCancelled, SearchLimits
@@ -73,11 +73,7 @@ def adoption_reason(baseline, refined):
         return "insufficient_depth"
     if refined["engine_version"] != baseline["engine_version"]:
         return "incompatible_engine"
-    best = Score.model_validate(refined["best"]["score"])
-    actual = Score.model_validate(refined["actual"]["score"])
-
-    # Restricted roots can discover a line missed by the unrestricted search.
-    # Do not publish an internally inconsistent best/played comparison.
-    if actual.order_key() > best.order_key():
-        return "inconsistent_roots"
+    # Restricted roots can find the played move stronger than the unrestricted
+    # search's best. Presentation already promotes such a move to best (as for
+    # baseline reports), so the deeper evidence is adopted rather than rejected.
     return None
