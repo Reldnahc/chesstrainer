@@ -289,10 +289,42 @@ def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
         status="finished",
         result="1/2-1/2",
     )
+    # The eighth move repeats the start position a third time.
     frames = frames_for(play, "Learner")
     assert frames[-1]["legal_moves"] == [] and frames[-1]["result"] == "1/2-1/2"
-    # Earlier frames are not cut short by the claim rule.
-    assert frames[-2]["legal_moves"]
+    assert frames[-1]["termination"] == "threefold repetition"
+    # A repetition Black could only claim with its next move does not end the game.
+    play.moves, play.status, play.result = shuffle[:7], "active", None
+    frames = frames_for(play, "Learner")
+    assert frames[-1]["legal_moves"] and frames[-1]["result"] is None
+
+
+def test_play_ends_only_on_a_draw_that_has_happened():
+    import chess
+    from trainer.play.sessions import board_outcome
+
+    def after(fen, *sans):
+        board = chess.Board(fen)
+        for san in sans:
+            board.push_san(san)
+        return board
+
+    # A queen and rook up, White is to move one step short of a third repetition.
+    checks = ["Qh5+", "Kg8", "Qe8+", "Kh7"] * 2
+    board = after("8/p5pk/8/8/8/8/5PPP/R2Q2K1 w - - 0 1", *checks)
+    assert not board.is_repetition(3) and board_outcome(board) is None
+    board.push_san("Qh5+")
+    assert board.is_repetition(3)
+    assert board_outcome(board).termination == chess.Termination.THREEFOLD_REPETITION
+    # Half-move clock 99 can be claimed with the next move; Play waits for 100.
+    board = after("8/8/4k3/8/8/3QK3/8/8 w - - 98 120", "Qd4")
+    assert board.halfmove_clock == 99 and board_outcome(board) is None
+    board.push_san("Kf5")
+    assert board_outcome(board).termination == chess.Termination.FIFTY_MOVES
+    # Checkmate still ends the game on the hundredth half-move.
+    mate = chess.Board("7k/8/6K1/8/8/8/8/R7 w - - 99 120")
+    mate.push_san("Ra8#")
+    assert board_outcome(mate).termination == chess.Termination.CHECKMATE
 
 
 def test_review_presentation_keeps_one_entry_per_game(monkeypatch):

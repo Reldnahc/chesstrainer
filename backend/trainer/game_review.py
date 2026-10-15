@@ -1,5 +1,7 @@
 """Evidence-backed game coaching. Never writes training decisions or recall history."""
 
+import chess
+
 from trainer.chess_core import (
     Candidate,
     Score,
@@ -33,9 +35,21 @@ from trainer.review_scores import (
 VERSION = "game-review-1"
 
 
-def position(board, *, claim_draw=False):
-    """A frame's board facts; ``claim_draw`` ends it on a claimable draw, as Play does."""
-    outcome = board.outcome(claim_draw=claim_draw)
+def play_outcome(board):
+    """How a Play game ends here: the board's own outcome, or a threefold repetition
+    or fifty-move count that has actually happened. A draw the side to move could
+    only claim with its next move does not end the game."""
+    outcome = board.outcome()
+    if outcome is None and board.is_repetition(3):
+        return chess.Outcome(chess.Termination.THREEFOLD_REPETITION, None)
+    if outcome is None and board.is_fifty_moves():
+        return chess.Outcome(chess.Termination.FIFTY_MOVES, None)
+    return outcome
+
+
+def position(board, *, play_end=False):
+    """A frame's board facts; ``play_end`` ends it where Play ends a game."""
+    outcome = play_outcome(board) if play_end else board.outcome()
     return {
         "fen": board.fen(),
         "turn": "white" if board.turn else "black",
@@ -150,12 +164,12 @@ def line_evidence(board, candidate, analysis_id, first, previous=None):
     }
 
 
-def move_frames(board, moves, reports, *, claim_draw_at_end=False, extra=None):
+def move_frames(board, moves, reports, *, play_end=False, extra=None):
     """The start frame and one frame per move, as game review and Play show them.
 
     ``reports`` maps ply to its rendered report; ``extra(ply)`` adds fields such
-    as a clock. Play ends a game on a claimable draw, so it asks for its last
-    frame to claim one.
+    as a clock. Play also ends a game on a repetition or fifty-move draw that has
+    happened, so it asks for its last frame to end where the game did.
     """
     board = board.copy()
     frames = [
@@ -172,7 +186,7 @@ def move_frames(board, moves, reports, *, claim_draw_at_end=False, extra=None):
         san, number, actor = board.san(move), board.fullmove_number, board.turn
         board.push(move)
         frames.append(
-            position(board, claim_draw=claim_draw_at_end and ply == len(moves))
+            position(board, play_end=play_end and ply == len(moves))
             | {
                 "san": san,
                 "uci": move.uci(),

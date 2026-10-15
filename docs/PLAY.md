@@ -97,8 +97,10 @@ book verdict still being computed when the learner goes back is discarded.
 ### No resignation, no draw offers
 
 The coach never resigns; it plays on until the board decides. There is no draw
-offer. Threefold repetition and the fifty-move rule end the game automatically,
-and the learner can resign.
+offer. Threefold repetition and the fifty-move rule end the game automatically
+once they have happened: the third occurrence of the position, or fifty moves by
+each side without a capture or pawn move. A draw the side to move could only claim
+with its next move does not end the game. The learner can resign.
 
 ## Match my level
 

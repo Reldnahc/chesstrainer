@@ -13,6 +13,7 @@ from trainer.game_review import (
     engine_facts,
     link_previous_scores,
     move_frames,
+    play_outcome,
     public_report,
     review_move,
 )
@@ -135,8 +136,8 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
 def frames_for(play: PlayGame, learner_name: str) -> list[dict]:
     reports = rendered_reports(play, parsed_for(play, learner_name))
     moves = [chess.Move.from_uci(uci) for uci in play.moves]
-    # Play ends a game on a claimable draw, so its last frame does too.
-    return move_frames(chess.Board(), moves, reports, claim_draw_at_end=True)
+    # The last frame ends where the game did, on a repetition or fifty-move draw too.
+    return move_frames(chess.Board(), moves, reports, play_end=True)
 
 
 def state(play: PlayGame, learner_name: str, reply=None) -> dict:
@@ -189,7 +190,7 @@ def finish(db, play: PlayGame, result: str, termination: str, learner_name: str)
 
 
 def board_outcome(board: chess.Board):
-    return board.outcome(claim_draw=True)
+    return play_outcome(board)
 
 
 def result_for(outcome) -> tuple[str, str]:
