@@ -117,9 +117,11 @@ export default function PlayGame({ id }: { id: string }) {
   // The latest position on the learner's turn, or an earlier one to play from again.
   const playable = (session.learnerToMove && !session.browsing) || session.canRewind;
   // The starting position is scored from the first move's report, as in game review.
+  // A move's score is that move's search; the start's belongs to the position itself.
   const initialScore = startingScore(game.frames);
-  const scoreAt = (at: number, atReport: typeof report, atFrame: typeof frame) =>
-    positionScore(atReport?.white_score ?? (at === 0 ? initialScore : null), atFrame);
+  const scoreAt = (at: number, atReport: typeof report, atFrame: typeof frame) => atReport
+    ? positionScore(atReport.white_score, atFrame)
+    : positionScore(at === 0 ? initialScore : null, atFrame, "position");
   const score = scoreAt(ply, report, frame);
   const cues = cuesFor(report, frame);
   const explaining = session.explaining && !!cues;
