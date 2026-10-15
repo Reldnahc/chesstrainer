@@ -93,8 +93,10 @@ Results stream to ignored `data/puzzle-verification/<run>/results.jsonl` with
 The verifier rejects puzzles that are ambiguous for this player, which accepts
 only the pinned line: a second mate (for example either rook capturing, or a
 rook underpromotion beside the queen promotion, or a slower mate), an
-alternative within the margin, or one that still wins. Lichess's own generator
-also rejects any second mate and any rival that keeps comparable win chances.
+alternative within the margin, or one that still wins. A mating solution asks
+for the mate, so there only a second mate makes it ambiguous; a rival that merely
+wins does not. Lichess's own generator also rejects any second mate in its mate
+puzzles and any rival that keeps comparable win chances in the others.
 Lichess accepts any mate in one when solving; Fieldwork's `line-v1`
 definitions do not yet carry accepted alternatives, so such puzzles are pruned
 rather than mis-graded. Passing means engine agreement at the recorded depth,
@@ -116,7 +118,8 @@ root (`PUZZLE_GENERATION_DEPTH` 18, at most `PUZZLE_GENERATION_TIME` seconds per
 search, through the shared engine cache). The best move is kept only if it is
 unique by the pack verifier's rule in `puzzles/verification.py`: the second line
 is at least 100 cp worse, below +200 cp (a rival that still wins clearly would be
-a correct answer marked wrong), and not a mate of any length.
+a correct answer marked wrong), and not a mate of any length. When the best move
+is a forced mate, only a rival mate disqualifies it: the puzzle asks for the mate.
 The opponent then plays the engine's best defence, not the move played in the
 game. The line continues until the next learner move is no longer unique or the
 position is mate, and is cut after the last learner move. It needs at least two

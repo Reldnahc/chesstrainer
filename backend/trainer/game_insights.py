@@ -6,6 +6,7 @@ cover; PGN-only sections (results, dates, ratings, clocks, openings) use every
 game in the selection. Nothing is stored: the summary is recomputed per request.
 """
 
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -137,13 +138,11 @@ def termination_of(headers, board, result):
         return "stalemate"
     if board.is_insufficient_material():
         return "insufficient_material"
-    text = (headers.get("Termination") or "").lower()
-    # Chess.com's sentence names the winner; a username such as "Timeless_Tal" is
-    # not a keyword.
-    for player in (headers.get("White"), headers.get("Black")):
-        if player and player.strip() not in {"", "?", "-"}:
-            text = text.replace(player.strip().lower(), " ")
-    text = text.strip()
+    text = (headers.get("Termination") or "").lower().strip()
+    # Chess.com's sentence starts with the winner ("Timeless_Tal won on time"), and
+    # a username is not a keyword. Usernames have no spaces, so only that first
+    # word goes; Lichess's fixed words ("Time forfeit") are never touched.
+    text = re.sub(r"^\S+ won ", "won ", text)
     for needle, name in (
         ("abandon", "abandoned"),
         ("insufficient", "insufficient_material"),
@@ -626,7 +625,9 @@ def tilt(games):
     for previous, game in zip(ordered, ordered[1:]):
         if (
             not (previous.started_at and game.started_at)
-            or game.started_at - previous.started_at > SESSION_GAP
+            # Ordered by end time, so a long game started earlier can come
+            # second; only a game started after the previous one follows it.
+            or not timedelta(0) <= game.started_at - previous.started_at <= SESSION_GAP
         ):
             continue
         key = "loss" if previous.result == "loss" else "other"

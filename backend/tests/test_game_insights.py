@@ -1,6 +1,6 @@
 """Library insights come from saved PGNs and completed reviews, never new engine work."""
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import chess
 import chess.pgn
@@ -392,6 +392,15 @@ def test_termination_keywords_ignore_the_players_names():
         White="Timeless_Tal", Black="Rival", Termination="Timeless_Tal won by resignation"
     )
     assert termination_of(headers, chess.Board(), "1-0") == "resignation"
+    # A name inside a keyword ("Tim" in "time") must not hide it.
+    for white, termination, result, expected in [
+        ("Tim", "Time forfeit", "0-1", "time"),
+        ("Rival", "Tim won on time", "0-1", "time"),
+        ("Me", "Time forfeit", "1-0", "time"),
+        ("Res", "Rival won by resignation", "0-1", "resignation"),
+    ]:
+        headers = chess.pgn.Headers(White=white, Black="Tim", Termination=termination)
+        assert termination_of(headers, chess.Board(), result) == expected
 
 
 def test_lichess_normal_draws_are_checked_on_the_board():
@@ -439,3 +448,7 @@ def test_the_next_game_counts_by_start_time_for_synced_games():
     # The second game started 40 minutes after the first, but ended two hours later.
     first, second = synced("a", "10:00:00", "10:30:00"), synced("b", "10:40:00", "12:30:00")
     assert tilt([first, second])["rematches_after_loss"]["games"] == 1
+    # A daily game started a day earlier but finished later does not follow it.
+    daily = synced("c", "09:00:00", "13:00:00")
+    daily.started_at -= timedelta(days=1)
+    assert tilt([first, daily])["rematches_after_loss"]["games"] == 0

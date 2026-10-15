@@ -48,9 +48,14 @@ def rival_verdict(
     Only ``unique`` makes the step a puzzle move. ``rival_mate``: the rival mates
     too, however slowly. ``still_winning``: the rival stays at least ``winning``
     ahead. ``close``: the rival is within the margin of the solution.
+
+    A mating solution asks for the mate, so, as in Lichess's mate puzzles, only a
+    second mate makes it ambiguous; a rival that merely wins does not.
     """
     if is_mate(rival) and rival > 0:
         return "rival_mate"
+    if is_mate(solution) and solution > 0:
+        return "unique"
     if solution - rival < margin:
         return "close"
     if rival >= winning:
