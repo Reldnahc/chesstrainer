@@ -305,3 +305,137 @@ def test_play_games_keep_their_model_settings_out_of_rating_statistics():
     # The level fit's "where you were rated" median ignores the fit's own number.
     rows = learner_positions([game])
     assert rows and all(rating is None for *_, rating in rows)
+
+
+ENDGAME_FEN = "3r2k1/5ppp/2n5/8/1bB5/5N2/5PPP/3RR1K1 b - - 0 20"
+
+
+def endgame_game(white_after, best_for_mover, result="0-1"):
+    """20...Bxe1 21.Rxd8+ Nxd8 22.Nxe1 with the learner as White."""
+    pgn = (
+        f'[White "Student"]\n[Black "Rival"]\n[FEN "{ENDGAME_FEN}"]\n[SetUp "1"]\n'
+        f'[Result "{result}"]\n\n20... Bxe1 21. Rxd8+ Nxd8 22. Nxe1 {result}'
+    )
+    game = Game(id="endgame", pgn=pgn, learner_color=True, white="Student", black="Rival")
+    scores = {
+        ply: {"white_score": score(white), "best": {"score": score(best)}}
+        for ply, (white, best) in enumerate(zip(white_after, best_for_mover, strict=True), 1)
+    }
+    return game, scores
+
+
+def test_an_endgame_is_held_against_the_evaluation_where_it_began():
+    from trainer.game_insights import endgames, game_facts
+
+    # White enters the endgame at +3.50, then throws it away with the first endgame
+    # move and loses: that endgame was not held.
+    game, scores = endgame_game([350, -400, -400, -400], [-350, 350, 400, -400])
+    facts = game_facts(game, scores)
+    assert facts.reviewed and facts.endgame_entry == 2 and facts.endgame == "mixed"
+    assert {row["kind"]: row["held"] for row in endgames([facts])}["mixed"] == 0
+    # A loss from an endgame entered already lost is held.
+    game, scores = endgame_game([-350, -400, -400, -400], [350, -350, 400, -400])
+    assert {row["kind"]: row["held"] for row in endgames([game_facts(game, scores)])}["mixed"] == 1
+
+
+def test_slip_links_give_the_move_number_the_game_uses():
+    from trainer.game_insights import example, game_facts
+
+    game, scores = endgame_game([350, -400, -400, -400], [-350, 350, 400, -400])
+    facts = game_facts(game, scores)
+    assert example(facts, 2)["move"] == 21 and example(facts)["move"] is None
+
+
+@pytest.mark.parametrize(
+    "fen,kind",
+    [
+        ("6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1", "rook"),
+        ("6k1/5ppp/2n5/8/8/8/5PPP/3R2K1 w - - 0 1", "mixed"),
+        ("6k1/5ppp/2n5/8/8/5B2/5PPP/6K1 w - - 0 1", "minor"),
+        ("3q2k1/5ppp/8/8/8/8/5PPP/3Q2K1 w - - 0 1", "queen"),
+        ("3r2k1/5ppp/8/8/8/8/5PPP/3Q2K1 w - - 0 1", "mixed"),
+        ("6k1/5ppp/8/8/8/8/5PPP/6K1 w - - 0 1", "pawn"),
+    ],
+)
+def test_endgame_classes_name_only_the_pieces_on_the_board(fen, kind):
+    from trainer.game_insights import endgame_class
+
+    assert endgame_class(chess.Board(fen)) == kind
+
+
+def test_led_throughout_needs_the_lead_kept_once_reached():
+    from trainer.game_insights import kept_lead
+
+    assert kept_lead([20, 160, 90, 300])
+    # Back to level after going ahead is not keeping the lead.
+    assert not kept_lead([20, 160, -20, 300])
+    assert not kept_lead([20, 140, 120])
+
+
+@pytest.mark.parametrize(
+    "control,site,speed",
+    [
+        ("300+5", "Chess.com", "blitz"),
+        ("300+5", "Lichess", "rapid"),
+        ("600", "Chess.com", "rapid"),
+        ("120+1", "Chess.com", "bullet"),
+        ("1800", "Chess.com", "rapid"),
+        ("1/86400", "Chess.com", "daily"),
+    ],
+)
+def test_speed_follows_each_providers_own_classes(control, site, speed):
+    assert speed_of(control, site) == speed
+
+
+def test_termination_keywords_ignore_the_players_names():
+    headers = chess.pgn.Headers(
+        White="Timeless_Tal", Black="Rival", Termination="Timeless_Tal won by resignation"
+    )
+    assert termination_of(headers, chess.Board(), "1-0") == "resignation"
+
+
+def test_lichess_normal_draws_are_checked_on_the_board():
+    headers = chess.pgn.Headers(Termination="Normal")
+    board = chess.Board()
+    for san in ["Nf3", "Nf6", "Ng1", "Ng8"] * 2:
+        board.push_san(san)
+    assert termination_of(headers, board, "1/2-1/2") == "repetition"
+    fifty = chess.Board("8/8/4k3/8/8/3QK3/8/8 w - - 99 120")
+    fifty.push_san("Qd4")
+    assert termination_of(headers, fifty, "1/2-1/2") == "fifty_moves"
+    assert termination_of(headers, chess.Board(), "1/2-1/2") == "agreement"
+
+
+def test_a_mistakes_swing_is_measured_from_its_own_search():
+    from trainer.game_insights import game_facts, punishment
+
+    # Black's 1...f6 is judged from its own search (+0.20 for Black before it) to
+    # -2.00; the earlier ply's stored evaluation (+3.00 for White) is not the baseline.
+    pgn = '[White "Student"]\n[Black "Rival"]\n[Result "*"]\n\n1. e4 f6 2. d4 *'
+    game = Game(id="swing", pgn=pgn, learner_color=True, white="Student", black="Rival")
+    scores = {
+        1: {"white_score": score(300), "best": {"score": score(30)}},
+        2: {"white_score": score(200), "best": {"score": score(20)}},
+        3: {"white_score": score(150), "best": {"score": score(200)}},
+    }
+    facts = game_facts(game, scores)
+    assert facts.plies[1].mistake and facts.plies[1].before_cp == -20
+    # Swing 220 from -20 to +200; the reply keeps 170 of it, so it punishes.
+    assert punishment([facts])["punished"] == 1
+
+
+def test_the_next_game_counts_by_start_time_for_synced_games():
+    from trainer.game_insights import game_facts, tilt
+
+    def synced(id, start, end):
+        pgn = (
+            f'[White "Student"]\n[Black "Rival"]\n[UTCDate "2026.10.01"]\n[UTCTime "{start}"]\n'
+            '[Result "0-1"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
+        )
+        game = Game(id=id, pgn=pgn, learner_color=True, white="Student", black="Rival")
+        game.played_at = datetime.fromisoformat(f"2026-10-01T{end}+00:00")
+        return game_facts(game)
+
+    # The second game started 40 minutes after the first, but ended two hours later.
+    first, second = synced("a", "10:00:00", "10:30:00"), synced("b", "10:40:00", "12:30:00")
+    assert tilt([first, second])["rematches_after_loss"]["games"] == 1

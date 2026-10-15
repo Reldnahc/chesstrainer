@@ -2275,7 +2275,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "rook" | "queen" | "minor" | "pawn";
+            kind: "rook" | "queen" | "minor" | "pawn" | "mixed";
         };
         /** Ending */
         Ending: {
@@ -2920,6 +2920,8 @@ export interface components {
         InsightGame: {
             /** Id */
             id: string;
+            /** Move */
+            move: number | null;
             /** Opponent */
             opponent: string;
             /** Opponent Rating */

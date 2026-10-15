@@ -1736,7 +1736,8 @@
               "rook",
               "queen",
               "minor",
-              "pawn"
+              "pawn",
+              "mixed"
             ],
             "title": "Kind",
             "type": "string"
@@ -3963,6 +3964,17 @@
             "title": "Id",
             "type": "string"
           },
+          "move": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Move"
+          },
           "opponent": {
             "title": "Opponent",
             "type": "string"
@@ -4017,7 +4029,8 @@
           "opponent_rating",
           "result",
           "played_on",
-          "ply"
+          "ply",
+          "move"
         ],
         "title": "InsightGame",
         "type": "object"

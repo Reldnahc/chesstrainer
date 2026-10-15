@@ -36,20 +36,20 @@ ratings, so they never become a highest-rated win or a rating series point.
 
 | Section | Definition |
 | --- | --- |
-| Speed | Lichess's estimate, base + 40 × increment: under 180 s bullet, under 480 s blitz, under 1500 s rapid, else classical; `1/…` controls are daily. |
-| How games end | A mate, stalemate or insufficient material on the final board wins over the header; otherwise keywords in Chess.com's sentence or Lichess's `Termination` (`Normal` decisive games count as resignations). |
+| Speed | Each provider's own rating pool from the estimate base + 40 × increment. Chess.com: under 180 s bullet, under 600 s blitz, else rapid. Lichess and other PGNs: under 180 s bullet, under 480 s blitz, under 1500 s rapid, else classical. `1/…` controls are daily. |
+| How games end | A mate, stalemate or insufficient material on the final board wins over the header; otherwise keywords in Chess.com's sentence (with the players' names removed, so a username is never read as a keyword) or Lichess's `Termination`. `Normal` decisive games count as resignations; a `Normal` draw is a repetition when the final position has occurred three times, a fifty-move draw when the fifty-move count is reached, else agreement. |
 | Openings | The deepest named position reached in the bundled Lichess opening list, grouped by family (text before `:`) and the learner's side. Score counts a draw as half. |
 | Leaving the book | The learner's own move that first leaves the book, counted as costly when it is a Mistake-sized loss (100 cp or more) or a Blunder. |
 | Clearly winning / lost | A learner-relative evaluation of ±300 cp or a forced mate at any ply. |
 | Where the win slipped | In clearly winning games not won, the ply after which the evaluation never returned to +300. |
-| Game shapes | One per reviewed game, in this order: let slip, comeback, led throughout (won, reached +150, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
+| Game shapes | One per reviewed game, in this order: let slip, comeback, stayed ahead (won, reached +150 and never back to 0 or below after that, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
 | Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is higher than the volatility-weighted game accuracy and is not a substitute for it. |
 | Phases | Six or fewer pieces besides kings and pawns is an endgame; moves 1–10 with more than ten pieces are the opening; otherwise middlegame. |
 | Blunders | The game review's own Blunder rule (`blunder_kind`) with the same rating the review's badges use (`game_library.mover_rating`): the moving player's PGN rating, else the review's stored rating. |
-| After a loss | The next game when it started within 90 minutes of the previous one. A rematch is that next game against the same opponent. |
+| After a loss | The next game when it started within 90 minutes of the previous one's start. Start times come from the PGN's `UTCDate`/`UTCTime`, since a synced game's saved time is when it ended. A rematch is that next game against the same opponent. |
 | Clock | `[%clk]` annotations through the shared clock facts. Time trouble is 30 s or less, or a tenth of the starting time, after a learner move. |
-| Mistakes and replies | A move losing 100 cp or more. The reply punishes it, or fails to, by keeping at least half of the evaluation swing. |
-| Endgames | The class at the first endgame ply (queen, rook, minor piece or pawn); held when the result is at least as good as the evaluation then (±300 cp). |
+| Mistakes and replies | A move losing 100 cp or more. The reply punishes it, or fails to, by keeping at least half of the evaluation swing, measured from the mistake's own search (its best move's score) as its loss is. |
+| Endgames | The class at the first endgame position: queen, rook or minor-piece endings have only that kind of piece besides kings and pawns, pawn endings none, and any other combination is mixed. Held when the result is at least as good as the evaluation of that position, before its first move (±300 cp). |
 
 These are descriptions of saved evidence, not ratings of skill or mastery. No
 section presents a mastery score or diagnoses what the player was thinking.

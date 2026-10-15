@@ -37,14 +37,14 @@ const endingLabels: Record<string, string> = {
   insufficient_material: "Insufficient material", fifty_moves: "Fifty-move rule", other: "Other",
 };
 const shapeText: Record<Schema["Shape"]["shape"], [string, string]> = {
-  wire_to_wire: ["Led throughout", "Went ahead and never fell behind"],
+  wire_to_wire: ["Stayed ahead", "Won after going 1.5 up, never back to level and never 1.0 down"],
   back_and_forth: ["Back and forth", "The lead changed sides two or more times"],
   unsettled: ["Unsettled", "No clear lead, or a lead that faded without a swing"],
   slipped: ["Let slip", "Clearly winning, then not won"],
   comeback: ["Comeback", "Clearly lost, then saved"],
 };
 const phaseLabels = { opening: "Opening", middlegame: "Middlegame", endgame: "Endgame" } as const;
-const endgameLabels = { rook: "Rook endings", queen: "Queen endings", minor: "Minor-piece endings", pawn: "Pawn endings" } as const;
+const endgameLabels = { rook: "Rook endings", queen: "Queen endings", minor: "Minor-piece endings", pawn: "Pawn endings", mixed: "Mixed endings" } as const;
 const clockLabels = { over_half: "Over half left", quarter: "25–50% left", tenth: "10–25% left", under_tenth: "Under 10% left" } as const;
 
 const percent = (part: number, whole: number) => whole ? Math.round(100 * part / whole) : 0;
@@ -52,7 +52,6 @@ const plural = (count: number, word: string, many = `${word}s`) => `${count} ${c
 const pawns = (cp: number | null | undefined) => cp == null ? "—" : `${(cp / 100).toFixed(1)}`;
 const fixed = (value: number | null | undefined, digits = 0, suffix = "") => value == null ? "—" : `${value.toFixed(digits)}${suffix}`;
 const recordText = ({ wins, draws, losses }: { wins: number; draws: number; losses: number }) => `${wins}W ${draws}D ${losses}L`;
-const moveOf = (ply: number) => Math.ceil(ply / 2);
 
 function gameHref(game: InsightGame) {
   const base = gamesPath(1, game.id);
@@ -127,7 +126,7 @@ function GameLinks({ label, games, slip }: { label: string; games: InsightGame[]
             {{ win: "Won", draw: "Draw", loss: "Lost", unfinished: "—" }[game.result]}
           </span>
           <span className="insight-game-name">vs {game.opponent}{game.opponent_rating ? ` (${game.opponent_rating})` : ""}</span>
-          <span className="small muted">{[shortDate(game.played_on), slip && game.ply ? `move ${moveOf(game.ply)}` : null].filter(Boolean).join(" · ")}</span>
+          <span className="small muted">{[shortDate(game.played_on), slip && game.move ? `move ${game.move}` : null].filter(Boolean).join(" · ")}</span>
         </Link>
       </li>)}
     </ul>

@@ -14,6 +14,8 @@ class InsightGame(Contract):
     result: Outcome
     played_on: str | None
     ply: int | None
+    # The move number of ``ply`` as the game counts it (custom starts included).
+    move: int | None
 
 
 class RhythmCell(Contract):
@@ -188,7 +190,7 @@ class Punishment(Contract):
 
 
 class EndgameRecord(Contract):
-    kind: Literal["rook", "queen", "minor", "pawn"]
+    kind: Literal["rook", "queen", "minor", "pawn", "mixed"]
     games: int
     held: int
 
