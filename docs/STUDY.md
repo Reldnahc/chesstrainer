@@ -314,10 +314,10 @@ teach patterns and basic skills rather than an opening. Their examples start
 from separate positions, and they have no recall lines, so they never add
 anything to Due.
 
-The current revisions are `2026-10-v4` for `italian-foundations`, `2026-10-v5`
-for `italian-black-foundations` and `2026-10-v6` for `kings-gambit-foundations`.
-The Sicilian Dragon, `sicilian-dragon`, and the Vienna Gambit, `vienna-gambit`,
-start at `2026-10-v1`.
+The current revisions are `2026-10-v5` for `italian-foundations`, `2026-10-v6`
+for `italian-black-foundations`, `2026-10-v6` for `kings-gambit-foundations`,
+`2026-10-v1` for the Sicilian Dragon, `sicilian-dragon`, and `2026-10-v2` for
+the Vienna Gambit, `vienna-gambit`.
 Black decisions and rehearsal use Black orientation
 and automatically play White’s intervening replies. Each course is a readable
 JSON file in the [course file format](COURSE_FILES.md); the seven built-in files

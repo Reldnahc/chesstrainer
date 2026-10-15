@@ -330,13 +330,13 @@ def test_illustrative_passages_support_their_specific_board_claims():
     (
         (
             "italian-foundations",
-            "2026-10-v4",
-            "43bb521674526a868980bae699a2ea27df7051a6c725e4a0204dcbf7b48e11f7",
+            "2026-10-v5",
+            "72b5e53cdac16b55359fb244a9b3a91cb87cedbce906d2ece84da7dff458046f",
         ),
         (
             "italian-black-foundations",
-            "2026-10-v5",
-            "af8f42f95d93deb491a88e13e5b45de062872316c32fb051e9e398a5d8c0750c",
+            "2026-10-v6",
+            "2e6d40502a802967dc55b80b38c3387aaf8fa662e937113a525185fa94816e8d",
         ),
         (
             "kings-gambit-foundations",
@@ -350,8 +350,8 @@ def test_illustrative_passages_support_their_specific_board_claims():
         ),
         (
             "vienna-gambit",
-            "2026-10-v1",
-            "8c8aaa6c0dd588778458d4fb2a3ed9e17112d213aa5fec9001bb74d5c63fb62f",
+            "2026-10-v2",
+            "abeaa96dfea55858dbc277c68b1ca8969f3bdd1510553d70c909f4b16d5175c4",
         ),
     ),
 )
