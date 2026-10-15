@@ -143,3 +143,24 @@ def test_row_responses_read_only_the_fields_their_contract_declares(settings, se
         response = client.get(f"/api/classification-runs/{run_id}")
         assert response.status_code == 200, response.text
         assert response.json()["decision_id"]
+
+
+def test_evidence_shows_historical_findings_of_any_shape(settings, sessions):
+    from lesson_fixtures import seed_lesson
+    from sqlalchemy import select
+    from trainer.models import ClassificationRun, SkillEvidence
+
+    with sessions() as db:
+        seed_lesson(db, settings, count=1, skills=["fork"])
+        evidence = db.scalar(select(SkillEvidence))
+        run = db.get(ClassificationRun, evidence.classification_run_id)
+        # A run saved by an older rule version, with a finding today's model rejects.
+        run.response = run.response | {"findings": [{"skill_id": "fork", "legacy": True}]}
+        db.commit()
+        decision_id = evidence.decision_id
+    settings.stockfish_path = "missing-contract-test-engine"
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        response = client.get(f"/api/evidence/{decision_id}")
+        assert response.status_code == 200, response.text
+        (classification,) = response.json()["classifications"]
+        assert classification["findings"] == [{"skill_id": "fork", "legacy": True}]

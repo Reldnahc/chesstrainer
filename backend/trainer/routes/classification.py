@@ -79,16 +79,15 @@ def create_router(*, settings, classifier) -> APIRouter:
                         "explanation": e.explanation,
                         "confidence": e.confidence,
                         "run_id": e.classification_run_id,
-                        "provider": db.get(ClassificationRun, e.classification_run_id).provider,
+                        "provider": run.provider,
                         "findings": [
                             f
-                            for f in (
-                                db.get(ClassificationRun, e.classification_run_id).response or {}
-                            ).get("findings", [])
-                            if f["skill_id"] == e.skill_id
+                            for f in (run.response or {}).get("findings", [])
+                            if isinstance(f, dict) and f.get("skill_id") == e.skill_id
                         ],
                     }
                     for e in rows
+                    for run in [db.get(ClassificationRun, e.classification_run_id)]
                 ],
             }
 

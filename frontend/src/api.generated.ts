@@ -2372,7 +2372,9 @@ export interface components {
             /** Explanation */
             explanation: string;
             /** Findings */
-            findings: components["schemas"]["Finding"][];
+            findings: {
+                [key: string]: components["schemas"]["JsonValue"];
+            }[];
             /** Provider */
             provider: string;
             /** Run Id */
