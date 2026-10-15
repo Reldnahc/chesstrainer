@@ -80,7 +80,10 @@ features). `web.py` maps them in one place and never imports them into domain mo
 the other way round; domain packages do not raise FastAPI's `HTTPException`. Any other
 exception, including a bare `ValueError` or `EvidenceIntegrityError` from inconsistent
 saved evidence, is a server fault and answers 500. `EngineReferenceMismatch` answers 409:
-Stockfish works, but this position's saved evidence needs a different executable.
+Stockfish works, but this position's saved evidence needs a different executable. Moves
+a client sends are checked at the contract (`UciMove` and `SquareMove` in
+`contracts/common.py`): a move that starts and ends on one square, which python-chess
+cannot parse, answers 422 before any route code runs.
 
 The composition root performs migrations, global skill seeding and retirement
 reconciliation once, and owns worker/engine shutdown. Hosted retirement maintenance
