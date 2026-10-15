@@ -23,14 +23,17 @@ export type Query<T> = {
  * change, aborts when the screen leaves or a newer load starts, and only the
  * latest load may change the result. Each screen keeps its own request; only
  * the lifecycle is shared (as useSavedPreferences does for preferences).
+ * `enabled: false` holds a request the screen does not need yet (a tab not opened).
  */
-export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: DependencyList = []): Query<T> {
+export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: DependencyList = [],
+  { enabled = true }: { enabled?: boolean } = {}): Query<T> {
   const [data, setData] = useState<T>();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(true);
   const [attempt, setAttempt] = useState(0);
   const run = useEffectEvent(load);
   useEffect(() => {
+    if (!enabled) return;
     const controller = new AbortController();
     // eslint-disable-next-line react-hooks/set-state-in-effect -- a load starts here; the query is pending until it answers
     setPending(true);
@@ -50,7 +53,7 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
     return () => controller.abort();
     // The caller's deps decide when the request is a different one.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- the hook's API takes the caller's dependency list, and load is read through an effect event
-  }, [attempt, ...deps]);
+  }, [attempt, enabled, ...deps]);
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
   const dismiss = useCallback(() => setError(null), []);
   return { data, error, pending, retry, dismiss, setData: setData as Query<T>["setData"] };

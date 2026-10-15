@@ -167,7 +167,7 @@ test('loading and retry preserve the chosen category without duplicate requests'
     await categories(page).getByRole('link', {name: 'Material & mate', exact: true}).click();
     expect(requests).toBe(1);
     releaseFirst();
-    await expect(page.getByRole('alert')).toContainText('Couldn’t load your weaknesses. Please try again.');
+    await expect(page.getByRole('alert')).toContainText('Couldn’t load your weaknesses.');
     await page.getByRole('button', {name: 'Try again', exact: true}).click();
     await expect(page.getByRole('status')).toContainText(/loading/i);
     await expect.poll(() => requests).toBe(2);
@@ -230,4 +230,31 @@ test('Insights opens on the overview and keeps the old insight and weakness link
   await sections(page).getByRole('link', {name: 'Overview', exact: true}).click();
   await expect(page).toHaveURL('/insights');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('Insights shows the shared loading line while a changed filter reloads, and keeps what loaded', async ({page}) => {
+  let release!: () => void;
+  let requests = 0;
+  await page.route('**/api/insights**', async route => {
+    if (++requests === 2) await new Promise<void>(resolve => { release = resolve; });
+    await route.continue();
+  });
+  try {
+    await page.goto('/insights');
+    const period = page.getByRole('group', {name: 'Period'}).or(page.getByRole('combobox', {name: 'Period'}));
+    await expect(period).toBeVisible();
+    await expect(page.getByRole('status')).toHaveCount(0);
+    const dropdown = page.getByRole('combobox', {name: 'Period'});
+    if (await dropdown.isVisible()) await dropdown.selectOption({label: '30 days'});
+    else await page.getByRole('button', {name: '30 days', exact: true}).click();
+    await expect(page.getByRole('status')).toHaveText('Loading your insights…');
+    // The filters and the last insights stay while the new ones load.
+    await expect(period).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'No games in this selection.'})).toBeVisible();
+    release();
+    await expect(page.getByRole('status')).toHaveCount(0);
+  } finally {
+    release?.();
+    await page.unrouteAll({behavior: 'wait'});
+  }
 });

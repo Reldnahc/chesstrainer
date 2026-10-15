@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowRight, ChevronRight, Flag } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import PageTitle from "./PageTitle";
 import SectionNavigation from "./SectionNavigation";
 import StatList from "./StatList";
 import EmptyState from "./EmptyState";
-import { LoadingState, UnavailableState } from "./LoadState";
 import Button from "./Button";
+import { QueryResult, useQuery } from "./useQuery";
 import ActionLink from "./ActionLink";
 import { focusedPracticePath, insightsPaths, settingsPath, type InsightsSection } from "./navigation";
 import GameInsights from "./GameInsights";
@@ -48,28 +48,39 @@ function WeaknessCard({ skill, onEvidence }: {
   </article>;
 }
 
+function WeaknessSection({ skills, title, countLabel, empty, onEvidence }: {
+  skills: Schema["SkillPriority"][];
+  title: string;
+  countLabel: string;
+  empty: string;
+  onEvidence: (id: string) => void;
+}) {
+  return <section className="weakness-section" aria-labelledby="weakness-category-title">
+    <div className="weakness-section-heading">
+      <h2 id="weakness-category-title">{title}</h2>
+      <span className="small muted">{skills.length} {countLabel}{skills.length === 1 ? "" : "s"}</span>
+    </div>
+    {skills.length ? <>
+      <div className="weakness-list">
+        {skills.map(skill => <WeaknessCard key={skill.skill_id} skill={skill} onEvidence={onEvidence} />)}
+      </div>
+      <p className="weakness-practice-note">Focused practice uses up to 12 positions and leaves your review schedule unchanged.</p>
+    </> : <EmptyState title={empty} icon={<Flag />}>
+      No supported evidence in this category yet. Try the other category to see your available practice.
+    </EmptyState>}
+  </section>;
+}
+
 export default function InsightsScreen({ onEvidence, category }: {
   onEvidence: (id: string) => void;
   category: InsightsSection;
 }) {
-  const [data, setData] = useState<Schema["Weaknesses"] | null>(null);
-  const [error, setError] = useState(false);
-  const [attempt, setAttempt] = useState(0);
   const overview = category === "overview";
   // Weakness evidence loads on first visit to a weakness section and is reused after.
-  const wanted = !overview || data !== null || error;
-  useEffect(() => {
-    if (!wanted) return;
-    const controller = new AbortController();
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
-    setError(false);
-    read(api.GET("/api/weaknesses", { signal: controller.signal }))
-      .then(value => { if (!controller.signal.aborted) setData(value); })
-      .catch(() => { if (!controller.signal.aborted) setError(true); });
-    return () => controller.abort();
-  }, [attempt, wanted]);
+  const [opened, setOpened] = useState(!overview);
+  if (!overview && !opened) setOpened(true);
+  const query = useQuery(signal => read(api.GET("/api/weaknesses", { signal })), [], { enabled: opened });
   const kind = category === "patterns" ? "mechanism" : "outcome";
-  const skills = data?.skills.filter(skill => skill.kind === kind) ?? [];
   const title = category === "patterns" ? "Tactical patterns" : "Material & mate outcomes";
   const countLabel = category === "patterns" ? "pattern" : "outcome";
 
@@ -83,27 +94,15 @@ export default function InsightsScreen({ onEvidence, category }: {
       { id: "outcomes", label: "Material & mate", href: insightsPaths.outcomes },
     ] }} />
     <div className="weakness-content">
-      {overview ? <GameInsights /> : error ? <UnavailableState presentation="panel" actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>
-        Couldn’t load your weaknesses. Please try again.
-      </UnavailableState> : !data ? <LoadingState presentation="panel">Loading your evidence…</LoadingState>
-        : !data.skills.length ? <EmptyState title="No supported weaknesses yet." icon={<Flag />} actions={
+      {overview ? <GameInsights /> : <QueryResult query={query} label="your weaknesses" presentation="panel">
+        {data => !data.skills.length ? <EmptyState title="No supported weaknesses yet." icon={<Flag />} actions={
           <ActionLink variant="secondary" href={settingsPath("advanced")}>Training settings</ActionLink>
         }>
           Classify saved games in Settings. Your positions are still available in Due.
-        </EmptyState> : <section className="weakness-section" aria-labelledby="weakness-category-title">
-          <div className="weakness-section-heading">
-            <h2 id="weakness-category-title">{title}</h2>
-            <span className="small muted">{skills.length} {countLabel}{skills.length === 1 ? "" : "s"}</span>
-          </div>
-          {skills.length ? <>
-            <div className="weakness-list">
-              {skills.map(skill => <WeaknessCard key={skill.skill_id} skill={skill} onEvidence={onEvidence} />)}
-            </div>
-            <p className="weakness-practice-note">Focused practice uses up to 12 positions and leaves your review schedule unchanged.</p>
-          </> : <EmptyState title={category === "patterns" ? "No tactical patterns yet." : "No material or mate outcomes yet."} icon={<Flag />}>
-            No supported evidence in this category yet. Try the other category to see your available practice.
-          </EmptyState>}
-        </section>}
+        </EmptyState> : <WeaknessSection skills={data.skills.filter(skill => skill.kind === kind)} title={title}
+          countLabel={countLabel} empty={category === "patterns" ? "No tactical patterns yet." : "No material or mate outcomes yet."}
+          onEvidence={onEvidence} />}
+      </QueryResult>}
     </div>
   </>;
 }
