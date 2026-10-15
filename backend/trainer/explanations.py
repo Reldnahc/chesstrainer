@@ -1,6 +1,6 @@
 """Explain recorded moves using saved engine evidence and legal replay only."""
 
-from typing import NamedTuple
+from dataclasses import dataclass
 
 from sqlalchemy import select
 
@@ -30,7 +30,8 @@ from trainer.models import (
 from trainer.opening_studies import recall as opening_recall
 
 
-class ResolvedAnswer(NamedTuple):
+@dataclass(frozen=True)
+class ResolvedAnswer:
     """The move an explanation is about, and the saved answer that grades it."""
 
     attempt_id: int | None
@@ -39,7 +40,8 @@ class ResolvedAnswer(NamedTuple):
     answer: ExerciseAnswer | None
 
 
-class EngineSummary(NamedTuple):
+@dataclass(frozen=True)
+class EngineSummary:
     """The headline an engine-backed explanation leads with, and any note it needs."""
 
     text: str
@@ -174,6 +176,7 @@ def _engine_summary(board, move, san, score, frames, balance_change, accepted):
 
 
 def _answer_findings(boards, analysis_id, score, delta, end, accepted):
+    """Playback findings for the shown line, from the move the learner must answer for."""
     # These witnesses come from THIS answer's exact line. A classification from
     # the source game would be wrong for a different move made during review.
     first = 1 if accepted else 2

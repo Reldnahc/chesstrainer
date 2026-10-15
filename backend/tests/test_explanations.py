@@ -245,6 +245,7 @@ def test_an_answer_within_tolerance_is_accepted_not_called_good(settings):
     [
         (chess.STARTING_FEN, ["e2e4"], ("mate", 3), 0, True, "mate_for_mover", None),
         (chess.STARTING_FEN, ["e2e4"], ("mate", -3), 0, False, "mate_against_mover", None),
+        (chess.STARTING_FEN, ["e2e4"], ("mate", 2), 0, False, "mate_for_mover", None),
         (chess.STARTING_FEN, ["e2e4"], ("cp", 300), 3, True, "material_gain", None),
         (chess.STARTING_FEN, ["e2e4"], ("cp", -300), -3, False, "material_loss", None),
         (
