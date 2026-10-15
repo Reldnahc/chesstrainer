@@ -285,6 +285,17 @@ def test_an_unreadable_revision_ledger_is_reported_and_never_overwritten(setting
         assert ledger.read_text(encoding="utf-8") == "{not json"
 
 
+def test_an_unreadable_hidden_list_refuses_deletes_without_a_server_error(settings):
+    folder = settings.database_path.parent / "courses"
+    with app_client(settings) as client:
+        folder.mkdir(parents=True, exist_ok=True)
+        hidden = folder / "hidden-built-ins.ledger"
+        hidden.write_text("{not json", encoding="utf-8")
+        refused = client.delete(f"{FILES}/vienna-gambit")
+        assert refused.status_code == 422 and "hidden-built-ins.ledger" in refused.json()["detail"]
+        assert hidden.read_text(encoding="utf-8") == "{not json"
+
+
 def test_a_club_course_keeps_its_topic_after_a_restart_before_any_listing(settings):
     with app_client(settings) as client:
         assert save(client, {**sample(), "topic": "skills"}).status_code == 200

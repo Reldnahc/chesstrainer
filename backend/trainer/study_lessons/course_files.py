@@ -19,6 +19,7 @@ import chess
 from pydantic import ConfigDict, Field, ValidationError
 
 from trainer.contracts.common import Contract
+from trainer.errors import InvalidInput
 from trainer.study_lessons.content import CourseDefinition, Position
 from trainer.study_lessons.validation import step_result, step_start
 
@@ -26,8 +27,11 @@ FORMAT = "fieldwork-course-1"
 DEFAULT_FEEDBACK = "That is a move taught in this lesson."
 
 
-class CourseFileError(ValueError):
-    """A course file that cannot become a lesson; the message names the place."""
+class CourseFileError(InvalidInput):
+    """A course file that cannot become a lesson, or a course ledger that cannot be read.
+
+    The message names the place; requests answer 422 with it.
+    """
 
 
 class FileModel(Contract):
