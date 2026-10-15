@@ -35,15 +35,19 @@ from trainer.puzzles.verification import (
     MARGIN_CP,
     MATE_SCORE,
     PAYOFF_CP,
+    RIVAL_WINNING_CP,
     describe,
     is_mate,
     payoff_ok,
     rival_verdict,
     score_int,
 )
+from trainer.review_reports import saved_report
 from trainer.search_limits import SearchLimits
 
-GENERATOR_VERSION = "games-v1"
+# v2: a rival that mates or still wins makes a step ambiguous; review reports are
+# read as the review shows them (refined when adopted).
+GENERATOR_VERSION = "games-v2"
 PROVIDER_ID = "your-games"
 # A missed win: the learner gave up at least MIN_LOSS_CP from a position worth MIN_WIN_CP.
 MIN_LOSS_CP = 150
@@ -93,7 +97,7 @@ def classify_scores(best: int, played: int) -> str | None:
 
 
 def _saved_unique(best: int, second: int | None) -> bool:
-    return second is not None and rival_verdict(best, second) in {"unique", "slower_mate"}
+    return second is not None and rival_verdict(best, second) == "unique"
 
 
 def _score(payload) -> int:
@@ -135,15 +139,19 @@ def decision_prospects(db, game):
 
 
 def review_prospects(db, game, skip):
-    """Candidates from full-game review reports on plies the training pipeline never judged."""
-    rows = db.execute(
-        select(GameReviewMove.ply, GameReviewMove.report)
-        .where(GameReviewMove.game_id == game.id)
-        .order_by(GameReviewMove.ply)
+    """Candidates from full-game review reports on plies the training pipeline never judged.
+
+    The reports are read as the review shows them: refined when a deeper search was adopted.
+    """
+    rows = db.scalars(
+        select(GameReviewMove).where(GameReviewMove.game_id == game.id).order_by(GameReviewMove.ply)
     )
-    for ply, report in rows:
+    for row in rows:
+        if row.ply in skip:
+            continue
+        ply, report = row.ply, saved_report(db, row)
         frames = (report.get("actual_line") or {}).get("frames") or []
-        if ply in skip or not frames:
+        if not frames:
             continue
         if (frames[0]["fen"].split()[1] == "w") != game.learner_color:
             continue
@@ -229,7 +237,7 @@ def build_line(search, root: chess.Board, *, max_plies: int):
             if not decisions and not payoff_ok(best.score):
                 return None, f"not_winning {describe(best.score)}"
             verdict = "unique" if rival is None else rival_verdict(best.score, rival.score)
-            if verdict in {"equal_mate", "close"}:
+            if verdict != "unique":
                 if len(decisions) >= 2:
                     stop = "ambiguous"
                     break
@@ -387,7 +395,11 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
                 "engine": search.engine_version,
                 "depth": settings.puzzle_generation_depth,
                 "time": settings.puzzle_generation_time,
-                "thresholds": {"margin_cp": MARGIN_CP, "payoff_cp": PAYOFF_CP},
+                "thresholds": {
+                    "margin_cp": MARGIN_CP,
+                    "rival_winning_cp": RIVAL_WINNING_CP,
+                    "payoff_cp": PAYOFF_CP,
+                },
                 "source": prospect.source,
                 "saved_best": prospect.saved_best_san,
                 "saved_unique_first": prospect.saved_unique,
