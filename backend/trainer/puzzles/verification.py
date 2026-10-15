@@ -12,8 +12,10 @@ TOLERANCE_CP = 50
 # Every rival must score at least this much worse than the solution.
 MARGIN_CP = 100
 # A rival still this far ahead also wins, so a solver choosing it would be marked
-# wrong for a winning move; the step is not unique. Lichess's generator asks the same
-# of a rival through win chances; any rival mate is ambiguous there too.
+# wrong for a winning move; the step is not unique, whether the solution mates or
+# wins. Lichess's generator asks the same through win chances (a second move within
+# 0.7 win chances of the best, about +1.7 against a mate), and any rival mate is
+# ambiguous there too.
 RIVAL_WINNING_CP = 200
 # After the final solver move the position must be at least this far ahead, or mate.
 PAYOFF_CP = 150
@@ -49,13 +51,15 @@ def rival_verdict(
     too, however slowly. ``still_winning``: the rival stays at least ``winning``
     ahead. ``close``: the rival is within the margin of the solution.
 
-    A mating solution asks for the mate, so, as in Lichess's mate puzzles, only a
-    second mate makes it ambiguous; a rival that merely wins does not.
+    The rule is the same for a mating solution: a rival that also mates, or that
+    stays at least ``winning`` ahead, makes the step ambiguous, since a solver
+    choosing it would be marked wrong for a winning move. Lichess's generator
+    rejects a second mate outright and otherwise a rival whose win chances are
+    within 0.7 of the best move's; +2.00 against a mate is the closest centipawn
+    reading of that.
     """
     if is_mate(rival) and rival > 0:
         return "rival_mate"
-    if is_mate(solution) and solution > 0:
-        return "unique"
     if solution - rival < margin:
         return "close"
     if rival >= winning:

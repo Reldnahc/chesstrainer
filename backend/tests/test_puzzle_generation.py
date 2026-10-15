@@ -271,8 +271,11 @@ def test_rivals_are_judged_by_one_shared_rule():
     assert rival_verdict(mate(2), mate(9)) == "rival_mate"
     assert rival_verdict(300, mate(4)) == "rival_mate"
     assert rival_verdict(mate(2), -MATE_SCORE + 3) == "unique"
-    # A mate puzzle asks for the mate; a rival that only wins does not compete.
-    assert rival_verdict(mate(1), 617) == "unique"
+    # A rival that still wins clearly competes with a mate too: a solver playing
+    # it would be marked wrong for a winning move.
+    assert rival_verdict(mate(1), 617) == "still_winning"
+    assert rival_verdict(mate(1), 200) == "still_winning"
+    assert rival_verdict(mate(5), 150) == "unique"
 
 
 BACK_RANK = {
