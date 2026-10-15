@@ -26,6 +26,9 @@ from trainer.review_scores import (
     MISTAKE_CP,
     NEAR_BEST_CP,
     blunder_cp,
+    is_decisive_swing,
+    is_mistake,
+    is_only_good,
     is_poor,
     strongest_alternative,
 )
@@ -56,7 +59,7 @@ def blunder_kind(best, actual, rating):
     if loss.allows_mate:
         return "mate"
     # An ordinary pawn loss gets gentler wording at low Elo; decisive losses do not.
-    decisive = numeric(best) >= -50 and numeric(actual) <= -200
+    decisive = is_decisive_swing(best, actual)
     return "severe" if decisive or (loss.cp or 0) >= blunder_cp(rating) else None
 
 
@@ -78,6 +81,14 @@ def classify(report, rating):
         and actual.order_key() < best.order_key()
     ):
         return "Good", "This keeps a forced checkmate, but a faster mate was available."
+    # In a position lost to mate either way, being mated sooner is the only way
+    # left to give something away.
+    if (
+        best.kind == actual.kind == "mate"
+        and best.outcome() == actual.outcome() == -1
+        and actual.order_key() < best.order_key()
+    ):
+        return "Inaccuracy", "There was a stronger way to keep your position intact."
     # A missed tactic is a Miss only when it costs as much as a Mistake;
     # a smaller gap keeps the ordinary centipawn grade.
     missed = report["opportunity_missed"] and cp >= MISTAKE_CP
@@ -92,19 +103,19 @@ def classify(report, rating):
     # Great is best/near-best AND critical; a sole legal reply is never an achievement.
     if cp <= NEAR_BEST_CP and report["legal_count"] > 1:
         second = strongest_alternative(report)
-        only_good = (
-            second is not None
-            and (
-                evaluation_loss(best, second).allows_mate
-                or evaluation_loss(best, second).mate_lost
-                or (evaluation_loss(best, second).cp or 0) >= 150
-            )
-            and numeric(actual) >= -50
-        )
+        # Only when the runner-up actually loses, as the coach's only-move
+        # evidence requires; a runner-up that still wins is no reason for Great.
+        only_good = second is not None and is_only_good(best, second) and numeric(actual) >= -50
         previous = report["previous_score"]
-        capitalized = previous is not None and (
-            (-150 < numeric(Score.model_validate(previous)) < 150 and numeric(actual) >= 200)
-            or (numeric(Score.model_validate(previous)) <= -200 and numeric(actual) >= -50)
+        # Capitalizing needs an opponent error: their previous move was graded a
+        # Mistake or worse, not just a different search's score for the position.
+        capitalized = (
+            previous is not None
+            and report.get("previous_mistake") is True
+            and (
+                (-150 < numeric(Score.model_validate(previous)) < 150 and numeric(actual) >= 200)
+                or (numeric(Score.model_validate(previous)) <= -200 and numeric(actual) >= -50)
+            )
         )
         if only_good:
             return (
@@ -121,6 +132,10 @@ def classify(report, rating):
         return "Best", "This is the engine's top move."
     if immediate_mate:
         return "Best", "This gives an equally immediate checkmate."
+    # A move exactly as strong as the top move (the same mate distance, or the
+    # same score) is not merely Good.
+    if best == actual and best.outcome() != -1:
+        return "Best", "This is as strong as the engine's top move."
     return "Good", "A sound move that keeps the important opportunities intact."
 
 
@@ -341,8 +356,13 @@ def link_previous_scores(reports: dict) -> dict:
         report = reports[ply]
         before = reports.get(ply - 1)
         if before is not None:
-            previous = Score.model_validate(before["best"]["score"]).negate()
-            report = report | {"previous_score": previous.model_dump()}
+            opponent_best = Score.model_validate(before["best"]["score"])
+            report = report | {"previous_score": opponent_best.negate().model_dump()}
+            if "actual" in before:
+                # Whether the opponent's move was itself a Mistake or worse.
+                opponent_played = Score.model_validate(before["actual"]["score"])
+                loss = evaluation_loss(opponent_best, opponent_played)
+                report["previous_mistake"] = is_mistake(loss)
         linked[ply] = report
     return linked
 

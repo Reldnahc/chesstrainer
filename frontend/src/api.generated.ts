@@ -2762,6 +2762,8 @@ export interface components {
             /** Played Analysis Id */
             played_analysis_id: string;
             practical?: components["schemas"]["PracticalAssessment"] | null;
+            /** Previous Mistake */
+            previous_mistake?: boolean | null;
             previous_score: components["schemas"]["Score"] | null;
             /** Reason */
             reason: string;

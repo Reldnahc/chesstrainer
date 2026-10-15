@@ -126,6 +126,8 @@ class GameReviewReport(GameMoveReport):
     second_score: Score | None
     root_candidates: list[Candidate] | None = None
     previous_score: Score | None
+    # Whether the opponent's previous move was a Mistake or worse; None when unsaved.
+    previous_mistake: bool | None = None
     legal_count: int
     loss_cp: int | None
     sacrifice: SacrificeEvidence | None

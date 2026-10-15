@@ -55,12 +55,52 @@ def test_great_only_good_and_both_opponent_error_transitions():
     losing["actual"]["uci"] = losing["best"]["uci"]
     assert classify(losing, 1000)[0] == "Best"
     for prior, current in [(0, 250), (-250, 0)]:
-        assert (
-            classify(
-                quality(current, current, previous_score={"kind": "cp", "value": prior}), 1000
-            )[0]
-            == "Great"
+        previous = {"previous_score": {"kind": "cp", "value": prior}}
+        assert classify(quality(current, current, **previous, previous_mistake=True), 1000)[0] == (
+            "Great"
         )
+        # The same scores without an opponent error are a different search, not a gift.
+        assert classify(quality(current, current, **previous, previous_mistake=False), 1000)[0] == (
+            "Best"
+        )
+
+
+def test_great_needs_a_runner_up_that_actually_loses():
+    still_winning = quality(500, 500, second_score={"kind": "cp", "value": 300})
+    still_winning["actual"]["uci"] = still_winning["best"]["uci"]
+    assert classify(still_winning, 1500)[0] == "Best"
+    mated = quality(500, 500, second_score={"kind": "mate", "value": -3})
+    mated["actual"]["uci"] = mated["best"]["uci"]
+    assert classify(mated, 1500)[0] == "Great"
+    # A runner-up that only misses a mate while still winning is not losing.
+    mate = quality(0, 0, second_score={"kind": "cp", "value": 600})
+    mate["best"]["score"] = mate["actual"]["score"] = {"kind": "mate", "value": 3}
+    mate["actual"]["uci"] = mate["best"]["uci"]
+    assert classify(mate, 1500)[0] == "Best"
+
+
+def test_a_long_mate_against_an_equally_decisive_score_is_not_a_mate_transition():
+    kept = quality(0, 499)
+    kept["best"]["score"] = {"kind": "mate", "value": 8}
+    assert classify(kept, 1500)[0] == "Good"  # Not a Miss: the move still wins decisively.
+    short = quality(0, 499)
+    short["best"]["score"] = {"kind": "mate", "value": 2}
+    assert classify(short, 1500)[0] == "Miss"  # A short mate is found reliably.
+    lost = quality(-581, 0)
+    lost["actual"]["score"] = {"kind": "mate", "value": -6}
+    assert classify(lost, 1500)[0] == "Good"  # Already decisively lost.
+    blundered = quality(-100, 0)
+    blundered["actual"]["score"] = {"kind": "mate", "value": -6}
+    assert classify(blundered, 1500)[0] == "Blunder"
+
+
+def test_previous_scores_carry_whether_the_opponent_erred():
+    first = quality(30, -150)
+    second = quality(0, 0)
+    linked = link_previous_scores({1: first, 2: second})
+    assert linked[2]["previous_score"] == {"kind": "cp", "value": -30, "mate_given": False}
+    assert linked[2]["previous_mistake"] is True
+    assert link_previous_scores({1: quality(30, 0), 2: second})[2]["previous_mistake"] is False
 
 
 def test_a_forced_move_can_never_be_brilliant_even_with_saved_sacrifice_evidence():
@@ -74,13 +114,16 @@ def test_mate_is_not_centipawn_loss():
     report["actual"]["score"] = {"kind": "mate", "value": -2}
     assert classify(report, 400)[0] == "Blunder"
     report["best"]["score"] = {"kind": "mate", "value": -3}
-    assert classify(report, 400)[0] == "Good"  # Already lost, no new allowed mate.
+    # Already lost: being mated sooner is the only thing left to give away.
+    assert classify(report, 400)[0] == "Inaccuracy"
+    report["actual"]["score"] = {"kind": "mate", "value": -3}
+    assert classify(report, 400)[0] == "Good"
     report["best"]["score"] = {"kind": "mate", "value": 2}
     report["actual"]["score"] = {"kind": "cp", "value": 0}
     assert classify(report, 400)[0] == "Miss"
 
 
-@pytest.mark.parametrize("loss", [0, 1, 5, 10])
+@pytest.mark.parametrize("loss", [1, 5, 10])
 @pytest.mark.parametrize("rating", [400, 2500])
 def test_best_requires_the_top_move_not_a_nearby_evaluation(loss, rating):
     report = quality(20, 20 - loss)
@@ -102,12 +145,17 @@ def test_retaining_a_slower_mate_is_good_not_missed_or_exceptional(best_mate, pl
     assert classify(report, 1000)[0] == "Miss"
 
 
-@pytest.mark.parametrize("distance,expected", [(1, "Best"), (2, "Good")])
-def test_different_mating_moves_only_tie_for_best_when_both_are_immediate(distance, expected):
+@pytest.mark.parametrize("distance", [1, 2, 5])
+def test_a_different_move_that_mates_as_fast_is_best(distance):
     report = quality(second_score={"kind": "mate", "value": distance})
     report["best"]["score"] = {"kind": "mate", "value": distance}
     report["actual"]["score"] = {"kind": "mate", "value": distance}
-    assert classify(report, 1000)[0] == expected
+    assert classify(report, 1000)[0] == "Best"
+
+
+def test_an_equally_scored_different_move_is_best():
+    assert classify(quality(0, 0), 1000) == ("Best", "This is as strong as the engine's top move.")
+    assert classify(quality(10, 0), 1000)[0] == "Good"
 
 
 def seed(app, pgn='[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'):

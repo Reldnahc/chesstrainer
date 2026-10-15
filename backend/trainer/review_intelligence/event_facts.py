@@ -3,7 +3,7 @@
 import chess
 
 from trainer.chess_core import Score, evaluation_loss
-from trainer.review_scores import MISTAKE_CP, is_near_best, is_poor
+from trainer.review_scores import MISTAKE_CP, is_decisive_swing, is_near_best, is_poor
 from trainer.tactical_geometry import SLIDERS
 
 MOVER_CAUSES = {"abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"}
@@ -91,9 +91,7 @@ def objective_events(report, practical, emit, evidence, ref):
                 "loss_cp": loss.cp,
                 "lost_advantage": advantage(best) in {"advantage", "forced_win"}
                 and advantage(actual) not in {"advantage", "forced_win"},
-                "decisive": best.kind == actual.kind == "cp"
-                and best.value >= -50
-                and actual.value <= -200,
+                "decisive": is_decisive_swing(best, actual),
             },
             evidence,
         )

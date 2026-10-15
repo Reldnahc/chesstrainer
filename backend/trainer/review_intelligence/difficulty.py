@@ -7,7 +7,7 @@ from trainer.review_intelligence.types import (
     DifficultyComponents,
     PracticalAssessment,
 )
-from trainer.review_scores import is_near_best, is_poor, strongest_alternative
+from trainer.review_scores import is_near_best, is_only_good, is_poor, strongest_alternative
 
 VERSION = PRACTICAL_VERSION
 # Coarse gates inspected on the fixed 12-position × 4-rating probe (see docs).
@@ -53,11 +53,7 @@ def root_comparison(report):
         )
     # "Only good" means the runner-up actually loses, not merely that it misses
     # a forced mate while retaining a healthy advantage. Scope is saved search depth.
-    safe_best = best.outcome() == 1 or best.kind == "cp" and best.value >= -50
-    losing_second = second.outcome() == -1 or second.kind == "cp" and second.value <= -150
-    narrow = (
-        safe_best and losing_second and (gap.allows_mate or gap.mate_lost or (gap.cp or 0) >= 150)
-    )
+    narrow = is_only_good(best, second)
     return gap.cp, observed, legal_count <= max(2, len(roots)), bool(narrow)
 
 

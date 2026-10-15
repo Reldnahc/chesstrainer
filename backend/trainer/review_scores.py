@@ -1,6 +1,6 @@
 """Ordering/comparison of saved Stockfish facts, without converting mate into centipawns."""
 
-from trainer.chess_core import Score
+from trainer.chess_core import Score, evaluation_loss
 
 # Centipawns lost at each label boundary of game review's grades. Review labels,
 # events, practical difficulty, refinement, game context and Insights all read
@@ -30,6 +30,30 @@ def is_near_best(loss):
 def is_mistake(loss):
     """Mistake-sized or worse: a mate given up or allowed, or MISTAKE_CP lost."""
     return mate_changed(loss) or (loss.cp or 0) >= MISTAKE_CP
+
+
+def is_only_good(best, second):
+    """The runner-up actually loses, so the best move is the only good one.
+
+    Not merely a smaller advantage: the best move keeps the mover safe (a forced
+    win, or -0.50 or better), the runner-up is lost (-1.50 or worse, or mated), and
+    the gap is at least 1.50 or a mate. The Great badge and the coach's only-move
+    evidence both read this.
+    """
+    gap = evaluation_loss(best, second)
+    safe_best = best.outcome() == 1 or (best.kind == "cp" and best.value >= -50)
+    losing_second = second.outcome() == -1 or (second.kind == "cp" and second.value <= -150)
+    return safe_best and losing_second and (mate_changed(gap) or (gap.cp or 0) >= 150)
+
+
+def is_decisive_swing(best, actual):
+    """The mover was not losing (-0.50 or better, or winning by mate) and now is
+    (-2.00 or worse, or mated). Mates count, so the review and its events agree."""
+
+    def value(score):
+        return score.value if score.kind == "cp" else score.outcome() * 10000
+
+    return value(best) >= -50 and value(actual) <= -200
 
 
 def blunder_cp(rating):

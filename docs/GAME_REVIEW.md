@@ -225,28 +225,39 @@ rating; the review rating is a fallback when that player's rating is missing.
 It changes presentation, never evaluations or tactical facts.
 It defaults to 1000 and is stored with the review; changing it reuses engine evidence.
 
-- Best: engine top choice, or an equally immediate checkmate. A different move
-  with an equal or nearly equal centipawn score is not Best. When a played move's
+- Best: engine top choice, an equally immediate checkmate, or a different move
+  exactly as strong: the same mate distance, or the same centipawn score. A merely
+  nearly equal score is not Best. When a played move's
   restricted-root search scores it above the reported best, presentation treats it
   as the best move found (best move, best line and grade), without rewriting the
   saved report.
 - Good: less than 50 cp loss without qualifying for a higher label. Keeping a
   forced win but taking longer to mate is Good, never Best, Great, or Brilliant.
-- Inaccuracy: 50–99 cp loss.
+- Inaccuracy: 50–99 cp loss, or, in a position lost to mate either way, a move that
+  is mated sooner than the best defence.
+- A mate on one side of a comparison only is a mate transition (a Miss or an allowed
+  mate) unless it is a long mate (four moves or more) and the other side is just as
+  decisive in centipawns (+3.00 or better for a kept win, -3.00 or worse for an
+  already lost position): at the same search depth one search can see such a mate
+  and the other not. The move then counts as no loss. Insights, events and
+  difficulty read the same comparison.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
-- Blunder: newly allowed forced mate, a transition from at least -50 cp to -200 cp
-  or worse, or at least 300 cp loss below rating 1200 / 200 cp otherwise. Decisive
+- Blunder: newly allowed forced mate, a transition from at least -50 cp (or a
+  forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating
+  1200 / 200 cp otherwise. The review's events call the same transition decisive. Decisive
   pawn losses therefore remain Blunders at low ratings. Already-lost mate positions
   are not treated as newly allowed mate.
 - Miss: lost forced mate, or a concrete missed gain supported by a settled
   comparison and a tactical witness that costs at least 100 cp; a smaller gap keeps
   its ordinary label. Retaining mate in two instead of mate in one is not a
   Miss. Severe losses still take precedence as Blunder.
-- Great: at most 20 cp loss and more than one legal move, plus either the strongest
-  alternative loses at least 150 cp / drops a mate outcome while the played move
-  retains at least -50 cp; or successful exploitation of the preceding opponent
-  error (previous position between -150 and +150 becomes at least +200, or previous
-  position at most -200 becomes at least -50). Previous scores use the position
+- Great: at most 20 cp loss and more than one legal move, plus either the only
+  good move (the strongest alternative actually loses: -1.50 or worse or mated, at
+  least 150 cp / a mate outcome below the best move, while the played move retains
+  at least -50 cp; the same rule the coach's only-move evidence uses); or
+  successful exploitation of a preceding opponent error (the opponent's move was
+  itself a Mistake or worse, and the previous position between -150 and +150 becomes
+  at least +200, or previous position at most -200 becomes at least -50). Previous scores use the position
   before the opponent's move, normalized to the current mover. The same rules
   apply in variations. A sole legal move is not Great.
 - Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
