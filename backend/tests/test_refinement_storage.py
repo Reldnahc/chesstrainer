@@ -221,3 +221,83 @@ def test_training_decisions_use_the_adopted_refinement(settings, sessions):
         db.commit()
         decision = analyze_decision(db, None, settings, game, 1, board, move)
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
+
+
+def test_a_refinement_adopted_later_updates_the_decision_and_its_exercise(settings, sessions):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.exercises import exercise_from_decision
+    from trainer.models import Decision, EngineAnalysis, ExerciseAnswer, SRSState
+    from trainer.scheduling import FSRSScheduler
+
+    board = chess.Board()
+    move = chess.Move.from_uci("f2f3")
+
+    def analysis(key, scores):
+        candidates = [
+            {"uci": uci, "san": board.san(chess.Move.from_uci(uci)), "pv": [uci]}
+            | {"score": {"kind": "cp", "value": value}}
+            for uci, value in scores
+        ]
+        return EngineAnalysis(
+            cache_key=key,
+            fen=board.fen(),
+            engine_version="fixture",
+            config={},
+            candidates=candidates,
+        )
+
+    with sessions() as db:
+        game = Game(fingerprint="later", white="A", black="B", learner_color=True, pgn="1. f3 *")
+        rows = {
+            "base": analysis("base", [("e2e4", 40), ("f2f3", -260)]),
+            "base_played": analysis("base_played", [("f2f3", -260)]),
+            "deep": analysis("deep", [("d2d4", 45), ("e2e4", 40), ("f2f3", -240)]),
+            "deep_played": analysis("deep_played", [("f2f3", -240)]),
+        }
+        db.add_all([game, *rows.values()])
+        db.flush()
+        baseline = {
+            "before_analysis_id": rows["base"].id,
+            "played_analysis_id": rows["base_played"].id,
+            "depth": 16,
+        }
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
+        db.commit()
+        scheduler = FSRSScheduler(settings)
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        exercise = exercise_from_decision(db, decision, settings, scheduler)
+        assert decision.meaningful
+
+        # A refine request adopts a deeper search after training was built.
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="later",
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report=baseline
+            | {
+                "before_analysis_id": rows["deep"].id,
+                "played_analysis_id": rows["deep_played"].id,
+            },
+            config={"baseline_ids": [rows["base"].id, rows["base_played"].id]},
+        )
+        db.add(task)
+        db.flush()
+        db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
+        db.commit()
+
+        again = analyze_decision(db, None, settings, game, 1, board, move)
+        assert again.id == decision.id
+        assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
+        assert again.loss_cp == 285
+        updated = exercise_from_decision(db, again, settings, scheduler)
+        # The same exercise, keeping its schedule, with the deeper search's answers.
+        assert updated.id == exercise.id and db.get(SRSState, exercise.id) is not None
+        answers = db.scalars(
+            select(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise.id)
+        ).all()
+        assert {answer.uci for answer in answers} == {"d2d4", "e2e4", "f2f3"}
+        assert {answer.analysis_id for answer in answers} == {rows["deep"].id}

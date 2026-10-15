@@ -1,7 +1,7 @@
-from sqlalchemy import select
+from sqlalchemy import select, update
 
 from trainer.chess_core import Candidate, board_facts, evaluation_loss, position_key
-from trainer.models import Decision, EngineAnalysis, GameReviewMove
+from trainer.models import Decision, EngineAnalysis, GameReviewMove, SkillEvidence
 from trainer.policy import MovePolicy
 from trainer.review_reports import saved_report
 
@@ -13,19 +13,22 @@ def analyze_decision(db, engine, settings, game, ply, board, move):
     saved analyses are reused and Stockfish only runs for unreviewed moves.
     """
     existing = db.scalar(select(Decision).where(Decision.game_id == game.id, Decision.ply == ply))
-    if existing:
-        return existing
     reviewed = db.get(GameReviewMove, (game.id, ply))
-    if reviewed is not None:
-        # The report the review shows, so an adopted deeper search reaches training.
-        report = saved_report(db, reviewed)
+    # The report the review shows, so an adopted deeper search reaches training.
+    report = saved_report(db, reviewed) if reviewed is not None else None
+    if existing and (report is None or report["before_analysis_id"] == existing.before_analysis_id):
+        return existing
+    if report is not None:
         before, played, deep = reviewed_searches(db, engine, board, move, report)
     else:
         before, played, deep = triaged_searches(engine(), settings, board, move)
     best = Candidate.model_validate(before.candidates[0])
     actual = Candidate.model_validate(played.candidates[0])
     loss = evaluation_loss(best.score, actual.score)
-    decision = Decision(
+    meaningful = MovePolicy.from_settings(settings).meaningful(best.score, actual.score)
+    # A deeper search adopted after the decision was saved (a later refinement)
+    # replaces its searches in place, so its exercise and labels follow it.
+    decision = existing or Decision(
         game_id=game.id,
         ply=ply,
         fen=board.fen(),
@@ -33,15 +36,22 @@ def analyze_decision(db, engine, settings, game, ply, board, move):
         learner_color=board.turn,
         move_uci=move.uci(),
         move_san=board.san(move),
-        before_analysis_id=before.id,
-        played_analysis_id=played.id,
-        loss_cp=loss.cp,
-        mate_lost=loss.mate_lost,
-        allows_mate=loss.allows_mate,
-        meaningful=MovePolicy.from_settings(settings).meaningful(best.score, actual.score),
-        deep=deep,
-        facts=board_facts(board, move, actual.pv),
     )
+    decision.before_analysis_id = before.id
+    decision.played_analysis_id = played.id
+    decision.loss_cp = loss.cp
+    decision.mate_lost = loss.mate_lost
+    decision.allows_mate = loss.allows_mate
+    decision.meaningful = meaningful
+    decision.deep = deep
+    decision.facts = board_facts(board, move, actual.pv)
+    if existing and not meaningful:
+        # No longer a mistake: its labels stop counting as weakness evidence.
+        db.execute(
+            update(SkillEvidence)
+            .where(SkillEvidence.decision_id == existing.id)
+            .values(active=False)
+        )
     db.add(decision)
     db.commit()
     return decision

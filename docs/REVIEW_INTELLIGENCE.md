@@ -88,11 +88,18 @@ search profile, human configuration provenance, per-question cache references,
 completion status and the investigated report. A finite plan on `GameReview`
 records task IDs and progress. These contain no coach-specific dialogue.
 
-Completed evidence is adopted only with the same engine, at least baseline depth
-for the actual/best/root comparisons, and consistent best-versus-played ordering.
+Completed evidence is adopted only with the same engine and at least baseline
+depth for the actual/best/root comparisons. A deeper report that finds the played
+move stronger than its best is adopted too; presentation promotes the played
+move, as it does for a baseline report.
 Budget exhaustion or unavailable/incompatible engines leaves the baseline usable.
 An optional human-alternative query failure cannot discard a completed root
 comparison. Diagnostics retain why an investigation was not adopted.
+Training reads the same effective report: a decision built before a refinement
+was adopted (a later refine request) takes the deeper searches when the game's
+review runs again, keeping its id, and its exercise under the same policy takes
+the new answers and keeps its schedule. A decision that stops being a mistake
+drops its weakness labels; its exercise stays scheduled.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original

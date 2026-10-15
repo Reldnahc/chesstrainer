@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import delete, select
 
 from trainer.chess_core import Candidate, digest, legal_move, position_key, valid_board
 from trainer.errors import InvalidInput
@@ -33,16 +33,34 @@ def exercise_from_decision(db, decision, settings, scheduler):
         return exercise
     analysis = db.get(EngineAnalysis, decision.before_analysis_id)
     candidates = [Candidate.model_validate(c) for c in analysis.candidates]
-    exercise = Exercise(
-        identity=identity,
-        source="game",
-        decision_id=decision.id,
-        fen=decision.fen,
-        orientation="white" if decision.learner_color else "black",
-        explanation="Compare your choice with the verified continuation after answering.",
-        policy=policy.model_dump(),
+    # The decision's search was replaced (a deeper search adopted later): its
+    # exercise under this policy takes the new answers and keeps its schedule.
+    exercise = next(
+        (
+            row
+            for row in db.scalars(
+                select(Exercise).where(
+                    Exercise.decision_id == decision.id, Exercise.source == "game"
+                )
+            )
+            if row.policy == policy.model_dump()
+        ),
+        None,
     )
-    db.add(exercise)
+    if exercise is not None:
+        exercise.identity = identity
+        db.execute(delete(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise.id))
+    else:
+        exercise = Exercise(
+            identity=identity,
+            source="game",
+            decision_id=decision.id,
+            fen=decision.fen,
+            orientation="white" if decision.learner_color else "black",
+            explanation="Compare your choice with the verified continuation after answering.",
+            policy=policy.model_dump(),
+        )
+        db.add(exercise)
     db.flush()
     for index, candidate in enumerate(candidates):
         db.add(
