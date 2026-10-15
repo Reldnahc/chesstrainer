@@ -12,7 +12,7 @@ from trainer.human_models.types import HumanMove, HumanPolicy
 from trainer.play.book import (
     MINIMUM_SHARE,
     book_for,
-    book_move,
+    book_reply,
     book_weights,
     practice_courses,
     replayed,
@@ -96,11 +96,11 @@ def test_book_choice_follows_the_policy_with_a_floor_for_rare_lines():
 
     board = board_after("e2e4", "e7e5", "g1f3")
     picks = [
-        book_move(Models(), None, Play(), board, ("b8c6", "d7d6"), random.Random(seed)).uci
+        book_reply(Models(), None, Play(), board, ("b8c6", "d7d6"), random.Random(seed)).uci
         for seed in range(200)
     ]
     assert set(picks) == {"b8c6", "d7d6"} and picks.count("b8c6") > picks.count("d7d6")
-    choice = book_move(None, None, Play(), board, ("b8c6",), random.Random(0))
+    choice = book_reply(None, None, Play(), board, ("b8c6",), random.Random(0))
     assert choice.source == "book" and choice.san == "Nc6"
 
 

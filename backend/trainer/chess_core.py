@@ -81,6 +81,13 @@ class Score(BaseModel):
     def outcome(self) -> int:
         return (1 if self.value > 0 or self.mate_given else -1) if self.kind == "mate" else 0
 
+    def order_key(self):
+        """Sort key from the mover's side: a mate given beats any centipawns, sooner
+        is better, and a mate against is worse than any centipawns, later is better."""
+        if self.kind == "cp":
+            return 1, self.value
+        return (2, -abs(self.value)) if self.outcome() == 1 else (0, abs(self.value))
+
     def negate(self):
         if self.kind == "mate" and self.value == 0:
             return Score(kind="mate", value=0, mate_given=not self.mate_given)
@@ -120,6 +127,27 @@ def material(board: chess.Board, color: chess.Color) -> int:
     return sum(len(board.pieces(piece, color)) * value for piece, value in VALUES.items())
 
 
+# Material (pawn = 1) at or below which a position counts as an endgame.
+ENDGAME_MATERIAL = 26
+OPENING_MOVES = 10
+
+
+def game_phase(board: chess.Board) -> str:
+    if material(board, True) + material(board, False) <= ENDGAME_MATERIAL:
+        return "endgame"
+    return "opening" if board.fullmove_number <= OPENING_MOVES else "middlegame"
+
+
+def replay_moves(board: chess.Board, ucis) -> list[chess.Board]:
+    """``board`` and the board after each legal move of ``ucis``, with full history."""
+    boards = [board.copy(stack=True)]
+    for uci in ucis:
+        following = boards[-1].copy(stack=True)
+        following.push(legal_move(following, uci))
+        boards.append(following)
+    return boards
+
+
 def board_facts(board: chess.Board, move: chess.Move, pv: list[str]) -> dict:
     color = board.turn
     facts = {
@@ -142,11 +170,7 @@ def board_facts(board: chess.Board, move: chess.Move, pv: list[str]) -> dict:
             and board.is_attacked_by(not color, sq)
             and not board.is_attacked_by(color, sq)
         ],
-        "phase": "endgame"
-        if material(board, True) + material(board, False) <= 26
-        else "opening"
-        if board.fullmove_number <= 10
-        else "middlegame",
+        "phase": game_phase(board),
     }
     replay = board.copy()
     trace = []

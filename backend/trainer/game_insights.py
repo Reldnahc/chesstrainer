@@ -6,7 +6,6 @@ cover; PGN-only sections (results, dates, ratings, clocks, openings) use every
 game in the selection. Nothing is stored: the summary is recomputed per request.
 """
 
-import io
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -19,7 +18,7 @@ from trainer._vendor.lichess_accuracy import move_accuracy, win_percent
 from trainer.chess_core import Score, evaluation_loss
 from trainer.contracts.insights import Speed
 from trainer.game_accuracy import accuracy_cp
-from trainer.game_library import mover_rating, pgn_rating
+from trainer.game_library import mover_rating, parsed_game, pgn_rating
 from trainer.game_review import blunder_kind
 from trainer.models import now as current_time
 from trainer.opening_book import book_move
@@ -182,7 +181,7 @@ def opening_family(name):
 
 def game_facts(game, scores=None, rating=None):
     """Facts for one saved game. scores: {ply: {white_score, best: {score}}} when reviewed."""
-    parsed = chess.pgn.read_game(io.StringIO(game.pgn))
+    parsed = parsed_game(game)
     headers = parsed.headers
     learner_white = bool(game.learner_color)
     learner_rating = pgn_rating(headers, learner_white)

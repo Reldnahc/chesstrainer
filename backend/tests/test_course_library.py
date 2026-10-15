@@ -301,3 +301,16 @@ def test_a_club_course_keeps_its_topic_after_a_restart_before_any_listing(settin
     with app_client(settings) as client:
         session = client.get(f"/api/study/lesson-sessions/{started['id']}").json()
         assert session["course_topic"] == "skills"
+
+
+def test_lesson_fingerprint_encoding_is_pinned():
+    # Saved with lesson progress: changing the JSON encoding would orphan it.
+    from trainer.study_lessons.queries import fingerprint
+
+    class Course:
+        def model_dump(self, mode):
+            return {"id": "course", "chapters": [{"id": "one", "steps": [1, 2]}]}
+
+    assert fingerprint(Course()) == (
+        "6876bd65eb65d4ba9e9f4ab39d95ecaf5c226b8cd765cb533b9bbba4f10706c7"
+    )

@@ -26,7 +26,7 @@ from trainer.models import ImportGame, PlayGame, now
 from trainer.play.book import (
     POLICY_RATING_CAP,
     book_for,
-    book_move,
+    book_reply,
     bot_moved,
     cached_book,
     carried_on,
@@ -234,7 +234,7 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
         book_moves = book.book_moves(board)
         if book_moves:
             request = bot_policy_request(play, board)
-            return book_move(human_models, sessions, request, board, book_moves, rng)
+            return book_reply(human_models, sessions, request, board, book_moves, rng)
     if play.opponent_kind == "engine":
         return engine_move(engine, board, play.opponent_rating)
     request = bot_policy_request(play, board)

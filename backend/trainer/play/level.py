@@ -5,7 +5,6 @@ Platform ratings do not transfer to Maia's Lichess-blitz scale, so the bot's
 a PGN header. The result is a fitted conditioning value, not a rating claim.
 """
 
-import io
 import logging
 import math
 import random
@@ -18,7 +17,7 @@ from sqlalchemy import func, select
 from trainer.chess_core import digest
 from trainer.contracts.play import FALLBACK_LEARNER_RATING
 from trainer.game_analysis import REQUESTED
-from trainer.game_library import pgn_rating
+from trainer.game_library import parsed_game, pgn_rating
 from trainer.human_models.context import request_for, source_domain
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable
 from trainer.job_lifecycle import JobKind, ensure_job
@@ -36,7 +35,7 @@ def learner_positions(games, limit=POSITIONS):
     """A fixed, reproducible sample of the learner's own decisions across the library."""
     rows = []
     for game in games:
-        parsed = chess.pgn.read_game(io.StringIO(game.pgn))
+        parsed = parsed_game(game)
         if parsed is None or parsed.board().fen() != chess.STARTING_FEN:
             continue
         board = parsed.board()

@@ -7,7 +7,7 @@ from job_fixtures import queue_import_analysis
 from sqlalchemy import select
 from trainer.accounts import COOKIE
 from trainer.api import create_app
-from trainer.chess_core import position_key
+from trainer.chess_core import position_key, replay_moves
 from trainer.config import Settings
 from trainer.contracts.puzzles import PuzzleQuery
 from trainer.engine import Stockfish
@@ -33,7 +33,6 @@ from trainer.puzzles.generation import (
     classify_scores,
     generate_for_game,
     line_themes,
-    replay,
     root_board,
     unsearched_games,
 )
@@ -306,13 +305,13 @@ def test_mate_themes_need_a_line_that_ends_in_checkmate():
     root = chess.Board(BACK_RANK_FEN)
     built, _ = build_line(Scripted(BACK_RANK), root, max_plies=13)
     assert built.stop == "mate"
-    themes = line_themes(replay(root, built.solution), built, "back-rank")
+    themes = line_themes(replay_moves(root, built.solution), built, "back-rank")
     assert {"mate", "mateIn2"} <= set(themes)
 
     root = chess.Board(CAPPED_MATE_FEN)
     built, reason = build_line(Scripted(capped_mate_answers()), root, max_plies=13)
     assert reason is None and built.stop == "ambiguous" and built.payoff == mate(8)
-    boards = replay(root, built.solution)
+    boards = replay_moves(root, built.solution)
     assert not boards[-1].is_checkmate()
     themes = line_themes(boards, built, "capped")
     assert "mate" not in themes and not any(theme.startswith("mateIn") for theme in themes)

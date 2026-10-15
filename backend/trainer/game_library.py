@@ -1,8 +1,28 @@
 """Display metadata from saved PGNs; no engine or remote profile requests."""
 
+import io
 from math import isfinite
 
 import chess.pgn
+
+
+def parsed_game(game):
+    """A saved game's PGN, parsed."""
+    return chess.pgn.read_game(io.StringIO(game.pgn))
+
+
+def board_before(parsed, ply):
+    """The position before mainline move ``ply`` (1-based), with its full history.
+
+    None when the game has no move ``ply``.
+    """
+    board = parsed.board()
+    for index, move in enumerate(parsed.mainline_moves(), start=1):
+        if index == ply:
+            return board
+        board.push(move)
+    return None
+
 
 # The rating a review assumes when the game records none.
 DEFAULT_RATING = 1000

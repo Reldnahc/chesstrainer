@@ -13,7 +13,7 @@ from dataclasses import dataclass
 
 import chess
 
-from trainer.chess_core import Score, evaluation_loss
+from trainer.chess_core import Score, evaluation_loss, position_key
 from trainer.contracts.play import HUMAN_RATINGS
 from trainer.human_models.runtime import HumanUnavailable
 from trainer.play.bot import BotChoice
@@ -25,11 +25,6 @@ MINIMUM_SHARE = 0.1
 FINE_LOSS_CP = 30
 # Human-like play stops improving above the top human rating, so the policy is capped there.
 POLICY_RATING_CAP = HUMAN_RATINGS[1]
-
-
-def position_key(board: chess.Board) -> str:
-    """The position without move counters, so transpositions share a node."""
-    return board.epd()
 
 
 @dataclass(frozen=True)
@@ -123,7 +118,7 @@ def book_weights(book_moves, policy) -> dict[str, float]:
     return {uci: max(share / total, MINIMUM_SHARE) for uci, share in shares.items()}
 
 
-def book_move(human_models, sessions, request, board: chess.Board, book_moves, rng) -> BotChoice:
+def book_reply(human_models, sessions, request, board: chess.Board, book_moves, rng) -> BotChoice:
     """No engine work: book replies are ready as soon as the learner's move is saved.
 
     ``request`` is the bot's Maia request for this position (``bot_policy_request``).
@@ -154,7 +149,7 @@ def deviation_verdict(engine, board: chess.Board, played: str, book_moves) -> di
     book_scores = [(uci, scores[uci]) for uci in book_moves if uci in scores]
     if played not in scores or not book_scores:
         return {"verdict": "fine", "loss_cp": 0}
-    best_uci, best = max(book_scores, key=lambda row: _order(row[1]))
+    best_uci, best = max(book_scores, key=lambda row: row[1].order_key())
     loss = evaluation_loss(best, scores[played])
     if loss.allows_mate or loss.mate_lost:
         return {"verdict": "worse", "loss_cp": None, "compared_with": best_uci}
@@ -164,15 +159,6 @@ def deviation_verdict(engine, board: chess.Board, played: str, book_moves) -> di
         "loss_cp": cp,
         "compared_with": best_uci,
     }
-
-
-def _order(score: Score):
-    """Sort key for scores from the mover's side: mates beat any centipawns."""
-    if score.kind == "mate":
-        if score.outcome() == 1:
-            return (2, -score.value)
-        return (0, -score.value)
-    return (1, score.value)
 
 
 # Where a practice game stands against its book. The state is stored on the game as

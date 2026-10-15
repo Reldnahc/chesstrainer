@@ -9,7 +9,6 @@ with its reason, so a game is searched once per generator version and never
 when a page opens. Generation writes no exercise, recall or weakness evidence.
 """
 
-import io
 from contextlib import nullcontext
 from dataclasses import dataclass
 
@@ -18,8 +17,9 @@ import chess.pgn
 from sqlalchemy import func, select
 from sqlalchemy.orm import aliased
 
-from trainer.chess_core import Score, legal_move, material, position_key
+from trainer.chess_core import Score, game_phase, legal_move, position_key, replay_moves
 from trainer.contracts.puzzles import PuzzleProvenance
+from trainer.game_library import board_before, parsed_game
 from trainer.job_lifecycle import JobKind, active_job
 from trainer.lichess_patterns import recognize
 from trainer.models import (
@@ -50,6 +50,8 @@ MIN_LOSS_CP = 150
 MIN_WIN_CP = 150
 # Lichess length tags count solver moves; a single decision is never a puzzle here.
 LENGTH_THEMES = {2: "short", 3: "long"}
+# Lichess calls a winning line "crushing" above this many centipawns, else "advantage".
+CRUSHING_CP = 600
 
 
 @dataclass(frozen=True)
@@ -170,13 +172,10 @@ def prospects(db, game) -> list[Prospect]:
 
 def root_board(game, ply) -> chess.Board:
     """The position before the learner's move at ``ply``, with its full history."""
-    parsed = chess.pgn.read_game(io.StringIO(game.pgn))
-    board = parsed.board()
-    for index, move in enumerate(parsed.mainline_moves(), start=1):
-        if index == ply:
-            return board
-        board.push(move)
-    raise ValueError("Ply is beyond the saved game")
+    board = board_before(parsed_game(game), ply)
+    if board is None:
+        raise ValueError("Ply is beyond the saved game")
+    return board
 
 
 class EngineSearch:
@@ -280,15 +279,6 @@ def build_line(search, root: chess.Board, *, max_plies: int):
     return Built(tuple(line), decisions, payoff, stop), None
 
 
-def replay(root: chess.Board, solution) -> list[chess.Board]:
-    boards = [root.copy(stack=True)]
-    for uci in solution:
-        following = boards[-1].copy(stack=True)
-        following.push(legal_move(following, uci))
-        boards.append(following)
-    return boards
-
-
 def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
     """Lichess-style labels: tagger motifs, goal, mate distance, length and phase."""
     themes = set()
@@ -303,15 +293,9 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
         if decisions <= 5:
             themes.add(f"mateIn{decisions}")
     else:
-        themes.add("crushing" if built.payoff > 600 else "advantage")
+        themes.add("crushing" if built.payoff > CRUSHING_CP else "advantage")
     themes.add(LENGTH_THEMES.get(decisions, "veryLong"))
-    root = boards[0]
-    if material(root, True) + material(root, False) <= 26:
-        themes.add("endgame")
-    elif root.fullmove_number <= 10:
-        themes.add("opening")
-    else:
-        themes.add("middlegame")
+    themes.add(game_phase(boards[0]))
     return tuple(sorted(themes))
 
 
@@ -383,7 +367,7 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
                 built, reason = None, "duplicate_position"
         definition = None
         if built is not None:
-            boards = replay(root, built.solution)
+            boards = replay_moves(root, built.solution)
             label = prospect.decision_id or f"{game.id}:{prospect.ply}"
             definition = definition_for(
                 game, prospect, root, built, line_themes(boards, built, label)

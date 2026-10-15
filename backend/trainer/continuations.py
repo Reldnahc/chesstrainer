@@ -9,7 +9,13 @@ from typing import Literal
 import chess
 from pydantic import BaseModel
 
-from trainer.chess_core import Candidate, legal_move, material, position_key, valid_board
+from trainer.chess_core import (
+    Candidate,
+    material,
+    position_key,
+    replay_moves,
+    valid_board,
+)
 from trainer.errors import EvidenceIntegrityError
 
 
@@ -22,12 +28,7 @@ class ContinuationEnd(BaseModel):
 
 
 def replay(board: chess.Board, candidate: Candidate) -> list[chess.Board]:
-    boards = [board.copy(stack=True)]
-    for uci in candidate.pv:
-        following = boards[-1].copy(stack=True)
-        following.push(legal_move(following, uci))
-        boards.append(following)
-    return boards
+    return replay_moves(board, candidate.pv)
 
 
 def balance(board: chess.Board, color: chess.Color) -> int:

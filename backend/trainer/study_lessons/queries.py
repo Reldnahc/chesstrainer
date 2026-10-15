@@ -12,6 +12,9 @@ from trainer.study_lessons.content import CourseDefinition
 
 
 def fingerprint(course):
+    # Saved with every lesson's progress, so this exact encoding is pinned by a
+    # known-hash test: chess_core.digest uses compact separators and would
+    # invalidate every learner's progress.
     return hashlib.sha256(
         json.dumps(course.model_dump(mode="json"), sort_keys=True).encode()
     ).hexdigest()

@@ -8,6 +8,7 @@ from sqlalchemy import select
 
 from trainer.chess_core import digest, legal_move
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
+from trainer.game_library import board_before
 from trainer.game_review import analyze_move
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
 from trainer.review_intelligence.refinement_plan import BROAD_TRIGGERS, VERSION, plan_key, selection
@@ -137,9 +138,7 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
     with runner.sessions() as db:
         task = db.get(ReviewRefinement, task_id)
         baseline = db.get(GameReviewMove, (game_id, task.ply)).report
-    board = parsed.board()
-    for move in list(parsed.mainline_moves())[: task.ply - 1]:
-        board.push(move)
+    board = board_before(parsed, task.ply)
     move = legal_move(board, baseline["actual"]["uci"])
     status, reason, report = "completed", None, None
     adopted = False

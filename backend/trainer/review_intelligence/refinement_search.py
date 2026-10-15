@@ -3,7 +3,6 @@
 from trainer.chess_core import Score, digest, engine_context
 from trainer.engine import EngineReferenceMismatch
 from trainer.models import EngineAnalysis, ReviewRefinement
-from trainer.review_scores import score_order
 from trainer.search_limits import EngineCancelled, SearchLimits
 
 
@@ -79,6 +78,6 @@ def adoption_reason(baseline, refined):
 
     # Restricted roots can discover a line missed by the unrestricted search.
     # Do not publish an internally inconsistent best/played comparison.
-    if score_order(actual) > score_order(best):
+    if actual.order_key() > best.order_key():
         return "inconsistent_roots"
     return None

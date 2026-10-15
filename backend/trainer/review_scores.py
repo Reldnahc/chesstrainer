@@ -36,12 +36,6 @@ def blunder_cp(rating):
     return BLUNDER_CP_LOW_RATED if rating < BLUNDER_RATING else BLUNDER_CP
 
 
-def score_order(score):
-    if score.kind == "cp":
-        return 1, score.value
-    return (2, -abs(score.value)) if score.outcome() == 1 else (0, abs(score.value))
-
-
 def strongest_alternative(report):
     second = Score.model_validate(report["second_score"]) if report.get("second_score") else None
     if second is None:
@@ -50,6 +44,6 @@ def strongest_alternative(report):
         played = Score.model_validate(report["actual"]["score"])
         # Restricted-root analysis may reveal a good alternative absent from MultiPV.
         # It disproves an only-move claim even when the original runner-up was poor.
-        if score_order(played) > score_order(second):
+        if played.order_key() > second.order_key():
             second = played
     return second

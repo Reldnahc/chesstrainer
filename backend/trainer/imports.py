@@ -8,6 +8,7 @@ from sqlalchemy import select
 
 from trainer.chess_core import digest, valid_board
 from trainer.errors import InvalidInput, NotFound
+from trainer.game_library import board_before, parsed_game
 from trainer.models import Game, ImportBatch, ImportGame
 
 log = logging.getLogger(__name__)
@@ -194,17 +195,14 @@ def import_games(
 
 
 def decision_board(game: Game, ply: int):
-    parsed = chess.pgn.read_game(io.StringIO(game.pgn))
-    board = parsed.board()
-    for index, move in enumerate(parsed.mainline_moves(), start=1):
-        if index == ply:
-            return board
-        board.push(move)
-    raise NotFound("Source decision does not exist")
+    board = board_before(parsed_game(game), ply)
+    if board is None:
+        raise NotFound("Source decision does not exist")
+    return board
 
 
 def learner_decisions(game: Game):
-    parsed = chess.pgn.read_game(io.StringIO(game.pgn))
+    parsed = parsed_game(game)
     board = parsed.board()
     for ply, move in enumerate(parsed.mainline_moves(), start=1):
         if board.turn == game.learner_color:

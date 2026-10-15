@@ -1,10 +1,5 @@
 """Evidence-backed game coaching. Never writes training decisions or recall history."""
 
-import io
-
-import chess
-import chess.pgn
-
 from trainer.chess_core import (
     Candidate,
     Score,
@@ -16,6 +11,7 @@ from trainer.classification_stages import REVIEW_RULES, line_findings
 from trainer.continuations import replay, settled_delta
 from trainer.errors import InvalidInput
 from trainer.explanation_types import replay_line
+from trainer.game_library import parsed_game
 from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
 from trainer.review_intelligence.difficulty import assess_difficulty
@@ -31,15 +27,10 @@ from trainer.review_scores import (
     NEAR_BEST_CP,
     blunder_cp,
     is_poor,
-    score_order,
     strongest_alternative,
 )
 
 VERSION = "game-review-1"
-
-
-def parsed_game(game):
-    return chess.pgn.read_game(io.StringIO(game.pgn))
 
 
 def position(board, *, claim_draw=False):
@@ -84,7 +75,7 @@ def classify(report, rating):
     if (
         best.kind == actual.kind == "mate"
         and best.outcome() == actual.outcome() == 1
-        and score_order(actual) < score_order(best)
+        and actual.order_key() < best.order_key()
     ):
         return "Good", "This keeps a forced checkmate, but a faster mate was available."
     # A missed tactic is a Miss only when it costs as much as a Mistake;
@@ -250,7 +241,7 @@ def promote_stronger_played(report):
         return report
     best = Score.model_validate(report["best"]["score"])
     actual = Score.model_validate(report["actual"]["score"])
-    if score_order(actual) <= score_order(best):
+    if actual.order_key() <= best.order_key():
         return report
     return report | {
         "best": report["actual"],
