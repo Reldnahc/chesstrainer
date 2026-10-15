@@ -7,6 +7,8 @@ function listing(slots: number, running = 4, restart_available = true, boot_id =
   return {restart_available, boot_id, groups: [
     {title: 'Engine', settings: [
       {key: 'engine_slots', label: 'Shared engine slots', help: 'Engines at once.', kind: 'integer', nullable: false, choices: null, minimum: 1, maximum: 32, default: 4, value: slots, running},
+      {key: 'triage_time', label: 'First pass time', help: 'Seconds per position.', kind: 'number', nullable: false, choices: null, minimum: null, exclusive_minimum: 0, maximum: 30, default: 0.15, value: 0.15, running: 0.15},
+      {key: 'reply_workers', label: 'Reply workers', help: 'Workers at once.', kind: 'integer', nullable: false, choices: null, minimum: null, exclusive_minimum: 0, maximum: 8, default: 2, value: 2, running: 2},
       {key: 'triage_nodes', label: 'First pass nodes', help: 'Optional node limit.', kind: 'integer', nullable: true, choices: null, minimum: 1, maximum: null, default: null, value: null, running: null},
     ]},
     {title: 'Maia', settings: [
@@ -70,4 +72,28 @@ test('servers that cannot restart themselves say so, and members never see the s
   await page.reload();
   await expect(page.getByRole('region', {name: 'Training tools'})).toBeVisible();
   await expect(section(page)).toHaveCount(0);
+});
+
+test('a strictly positive setting is refused before saving, in the server wording', async ({page}) => {
+  const bodies: unknown[] = [];
+  await page.route('**/api/server-settings', route => {
+    if (route.request().method() === 'GET') return route.fulfill({json: listing(4)});
+    bodies.push(route.request().postDataJSON());
+    return route.fulfill({json: listing(4)});
+  });
+  await page.goto('/settings?section=advanced');
+  await section(page).getByText('Engine', {exact: true}).click();
+  // A whole-number field starts at the next whole number above the bound.
+  await expect(section(page).getByLabel('Reply workers')).toHaveAttribute('min', '1');
+  // A decimal one has no smallest value above it, so the form checks it before saving.
+  const time = section(page).getByLabel('First pass time');
+  await expect(time).not.toHaveAttribute('min');
+  await time.fill('0');
+  await section(page).getByRole('button', {name: 'Save settings'}).click();
+  await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('alert')).toHaveText('First pass time must be greater than 0.');
+  expect(bodies).toEqual([]);
+  await time.fill('0.1');
+  await section(page).getByRole('button', {name: 'Save settings'}).click();
+  await expect(page.getByRole('region', {name: 'Notifications'}).getByRole('status')).toHaveText('Saved. Restart the server to apply the changes.');
+  expect(bodies).toEqual([{values: {triage_time: 0.1}}]);
 });
