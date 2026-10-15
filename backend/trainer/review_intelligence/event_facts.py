@@ -103,9 +103,11 @@ def objective_events(report, practical, emit, evidence, ref):
             {
                 "only_good_at_depth": report["depth"],
                 "difficult": practical.best_find_difficulty == "difficult",
-                "purpose": "defense"
-                if best.kind == "cp" and best.value <= 150
-                else "decisive_resource",
+                # "Decisive" only in the app's own advantage band (+2.00 or a forced
+                # win), the band the evaluation-change events use.
+                "purpose": "decisive_resource"
+                if advantage(best) in {"advantage", "forced_win"}
+                else "defense",
             },
             evidence + [ref("rule", practical.version, practical.input_digest)],
         )

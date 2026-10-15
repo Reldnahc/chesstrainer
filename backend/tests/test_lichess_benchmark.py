@@ -122,7 +122,7 @@ def test_check_theme_subtypes_use_production_witness_roles(queen, moves, theme, 
 
 
 def test_nonchecking_double_attack_cannot_earn_double_check_agreement():
-    row = row_for("q4k2/8/2n5/8/B7/8/8/R5K1 b - - 0 1", "f8g8 a4b5 c6d4 a1a8", "doubleCheck")
+    row = row_for("q4k2/8/2r5/8/B7/8/8/R5K1 b - - 0 1", "f8g8 a4b5 c6c2 a1a8", "doubleCheck")
     result = runner.evaluate(row, BY_THEME["doubleCheck"])
     assert "double_attack" in result["detected_motifs"]
     assert result["status"] == "missed"

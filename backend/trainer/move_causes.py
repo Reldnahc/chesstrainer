@@ -172,8 +172,10 @@ def bad_trade(c: Capture, previous):
         )
 
 
-# One rule per cause, in this order; none depends on another's early exit.
-RULES = (abandoned_defender, opponent_threat, bad_trade)
+# One rule per cause, in this order, which is also the order they are told in: a
+# threat the move ignored comes before a defender it removed. None depends on
+# another's early exit.
+RULES = (opponent_threat, abandoned_defender, bad_trade)
 
 
 def move_causes(boards, analysis_id, previous=None):

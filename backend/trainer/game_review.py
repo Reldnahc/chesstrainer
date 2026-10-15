@@ -154,9 +154,18 @@ def line_evidence(board, candidate, analysis_id, first, previous=None):
         mate_supported=mate,
         previous=previous,
     )
-    # Prefer an actual causal mechanism over a generic capture annotation.
-    preferred = {"opponent_threat_recognition", "abandoned_defender", "pin", "fork", "skewer"}
-    findings.sort(key=lambda f: f.skill_id not in preferred)
+    # Prefer an actual causal mechanism over a generic capture annotation, but only
+    # one that starts with the move or its reply: an incidental pin later in the
+    # line is not the reason for this move.
+    preferred = {
+        "opponent_threat_recognition",
+        "abandoned_defender",
+        "pin",
+        "fork",
+        "skewer",
+        "double_attack",
+    }
+    findings.sort(key=lambda f: f.skill_id not in preferred or min(f.plies) > first + 1)
     return {
         "frames": [f.model_dump() for f in replay_line(board, candidate.pv[:32])],
         "findings": [f.model_dump() for f in findings],
@@ -414,7 +423,13 @@ def public_report(report, rating, *, context=None):
     practical = assess_difficulty(report)
     return report | {
         "immediate_reply": frames[2] if len(frames) > 2 else None,
-        "immediate_recapture": frames[3] if len(frames) > 3 and frames[3]["capture"] else None,
+        # Straight back: the mover's next move captures on the square the reply took on.
+        "immediate_recapture": frames[3]
+        if len(frames) > 3
+        and frames[2]["capture"]
+        and frames[3]["capture"]
+        and frames[3]["uci"][2:4] == frames[2]["uci"][2:4]
+        else None,
         "practical": practical.model_dump(mode="json"),
         "intelligence": describe_move(report, practical, context).model_dump(mode="json"),
         "label": label,

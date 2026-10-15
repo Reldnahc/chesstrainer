@@ -27,7 +27,16 @@ def effective_attacks(board, square):
 
 
 def defenders(board, square, color):
-    return {sq for sq in board.attackers(color, square) if square in effective_attacks(board, sq)}
+    """Pieces of ``color`` that could take back on ``square``.
+
+    A king counts only while no second enemy piece also covers the square: it
+    cannot recapture into a square still attacked after the first capture.
+    """
+    found = {sq for sq in board.attackers(color, square) if square in effective_attacks(board, sq)}
+    king = board.king(color)
+    if king in found and len(board.attackers(not color, square)) > 1:
+        found.discard(king)
+    return found
 
 
 def valuable_targets(board, attacker_square):
@@ -42,7 +51,9 @@ def valuable_targets(board, attacker_square):
         and target.piece_type != chess.PAWN
         and (
             target.piece_type == chess.KING
-            or VALUES[target.piece_type] >= VALUES.get(piece.piece_type, 99)
+            # As Lichess's fork rule: worth more than the attacker, or hanging. A
+            # defended piece of equal value is not something the fork wins.
+            or VALUES[target.piece_type] > VALUES.get(piece.piece_type, 99)
             or not defenders(board, sq, target.color)
         )
     }

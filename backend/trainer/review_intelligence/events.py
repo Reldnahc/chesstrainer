@@ -59,7 +59,9 @@ def describe_move(report, practical, context=None):
         return MoveIntelligence(
             input_digest=key,
             ply=ply,
-            events=sorted(events, key=lambda event: (-event.importance, event.id)),
+            # Equal importance keeps emission order (line findings in their order),
+            # never the order of content hashes, which change with rule versions.
+            events=sorted(events, key=lambda event: -event.importance),
             clock=clock,
             limitations=sorted(set(limitations)),
         )

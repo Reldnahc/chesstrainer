@@ -56,8 +56,8 @@ PATTERNS = (
     ),
     (
         "double-attack",
-        "q5k1/8/2n5/8/B7/8/8/R5K1 w - - 0 1",
-        "a4b5 c6d4 a1a8 g8f7 b5c4 f7g6",
+        "q5k1/8/2r5/8/B7/8/8/R5K1 w - - 0 1",
+        "a4b5 c6c2 a1a8 g8f7 b5c4 f7g6",
         "a1b1 g8f7 a4b3 f7g6",
         ("played", "missed"),
     ),
