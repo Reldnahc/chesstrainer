@@ -376,6 +376,10 @@ mode and belong to the job in local mode. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
+A game's session never holds a pooled database connection while Stockfish searches:
+`pipeline.ReleasingEngine` ends the session's transaction before each search when it has
+only read (pysqlite opens a SQLite transaction only before a write, so this drops no
+snapshot or lock), and keeps it when a write is pending, so a write is never split.
 Cancellation is read from the job row: task boundaries check it exactly, while loops
 waiting for a lock, a pooled process or a running native search re-check it at most
 every 250 ms.
