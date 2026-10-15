@@ -12,6 +12,7 @@ import {capturedPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tact
 import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
 import {meanings} from "./meaningCatalog";
 import registry from "./banks/registry.json" with {type: "json"};
+import {alwaysFalseTake, coachVoice, SMALL_ERROR_TAKES, TWO_TARGETS} from "./falseTakes";
 
 export type GameSpeechContext = {
   game: Game;
@@ -36,15 +37,6 @@ export type GameSpeechContext = {
 };
 export type WalterGameSpeechContext = GameSpeechContext;
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
-const voiceOf = new Map(registry.banks.map(bank => [bank.coachId, bank.voiceId]));
-// The departure fires after the game's last move in our opening catalogue, which
-// can be a main-line theory move. These voices' recorded takes say theory, the
-// known opening or preparation ends there, or that everything after is new, so
-// they stay silent and the written line shows alone. Takes that say our opening
-// book ends play. See COACH_DIALOGUE.md for the takes that need re-recording.
-export const SILENT_DEPARTURE_VOICES: ReadonlySet<string> = new Set([
-  "arjun", "biscuit", "ember", "felix", "femi", "ingrid", "jun", "marisol", "mateo", "monty", "pip", "reka", "tala", "ziggy",
-]);
 type Event = Schema["ReviewEvent"];
 const opposite = (side: "white" | "black") => side === "white" ? "black" : "white";
 const nonempty = (value: unknown): value is string => typeof value === "string" && value.trim().length > 0;
@@ -82,7 +74,7 @@ function eventFor(item: Claim, report: Report): Event | undefined {
   return matches.length === 1 && same(matches[0].evidence, item.evidence) ? matches[0] : undefined;
 }
 
-function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", report: Report): string | null {
+function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", report: Report, voice: string | null): string | null {
   const f = event.facts, role = f.role, motif = String(f.motif);
   if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item)) return null;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
@@ -118,6 +110,10 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   // Every pin take says the move makes (or allows, or missed making) the pin; a
   // line that uses a pin already on the board before the move is not that.
   if (motif === "pin" && f.pinned_before === true) return null;
+  // A double check (its witness names the king) attacks one target; takes that
+  // name two targets sit out for it.
+  if (motif === "double_attack" && Array.isArray(object(f.roles).king) && voice
+    && TWO_TARGETS[voice]?.includes(role as "played")) return null;
   if (recordedTacticMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
@@ -202,8 +198,15 @@ export function selectGameOpener({ply, variation = false, report, frame, error, 
 }
 
 /** Facts select whole recordings; prose, portrait expression and grade never select audio.
- * A Maia (human-move model) claim is shown in the bubble and its badge but never voiced. */
+ * A Maia (human-move model) claim is shown in the bubble and its badge but never voiced.
+ * A coach whose recorded take for the meaning is always false here (falseTakes.ts)
+ * selects nothing, so its written line shows and the lead passes on. */
 export function selectGameRecording(context: GameSpeechContext): string | null {
+  const id = selectMeaning(context);
+  return id && alwaysFalseTake(context.utterance.coachId, id) ? null : id;
+}
+
+function selectMeaning(context: GameSpeechContext): string | null {
   const {game, report, frame, ply, variation = false, intent, utterance, pending, error, claimIndex = 0, anyCoach = false} = context;
   if (pending || !frame || !nonempty(frame.fen) || (!anyCoach && !voicedCoaches.has(utterance.coachId))
     || utterance.intentId !== intent.id
@@ -242,7 +245,7 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
   const mover = opposite(frame.turn);
   const event = eventFor(item, report);
   if (item.code.startsWith("tactic_") || item.code.startsWith("cause_"))
-    return event ? tacticalRecording(item, event, mover, report) : null;
+    return event ? tacticalRecording(item, event, mover, report, coachVoice(utterance.coachId)) : null;
   if (item.position) return event ? positionalRecording(item, event, mover, report) : null;
   if (!evidenced(item)) return null;
   if (item.code === "book" || item.code === "book_sound") return report.opening
@@ -263,8 +266,7 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
       && item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search") ? simpleIds[item.code] : null;
     if (["only_move", "decisive_resource"].includes(item.code)) return event.kind === "critical_resource" && event.confidence === "searched"
       && searchEvidence(item) && Number(event.facts.only_good_at_depth) > 0 ? simpleIds[item.code] : null;
-    if (item.code === "departure") return !variation && event.kind === "opening_departure"
-      && !SILENT_DEPARTURE_VOICES.has(voiceOf.get(utterance.coachId) ?? "") ? "opening-departure" : null;
+    if (item.code === "departure") return !variation && event.kind === "opening_departure" ? "opening-departure" : null;
     return null;
   }
   if (["recovery", "punishment", "missed_punishment", "repeated", "support_restored", "erosion", "conversion", "history"].includes(item.code)) {
@@ -333,7 +335,8 @@ export function selectGameSpeech(context: GameSpeechContext) {
   }
   // Colour lines and extra takes join once imported; the seed keeps a replayed ply on its take.
   const seed = context.variation ? [context.frame?.fen] : [context.game.id], turn = context.variation ? 0 : context.ply;
-  const pooled = (id: string) => withColoursAndTakes(withPieceVariants(id, pieces), sides, seed, turn);
+  const unsaid = [lead, lead + 1].flatMap((index, at) => smallErrorTakes(context, at ? secondId : primaryId, index));
+  const pooled = (id: string) => withoutTakes(withColoursAndTakes(withPieceVariants(id, pieces), sides, seed, turn), unsaid);
   const mover = context.frame ? opposite(context.frame.turn) : null;
   const sacrifice = gradeId?.startsWith("grade-brilliant-") && mover
     ? context.report?.intelligence?.events.find(event => event.kind === "sacrifice" && event.actor === mover) : undefined;
@@ -346,6 +349,25 @@ export function selectGameSpeech(context: GameSpeechContext) {
   };
   if (gradeId) nameSquare(gradeId, sacrificed);
   return {recordingId, primaryId, ...(gradeId ? {gradeId} : {}), variants};
+}
+
+/** The chance-taken takes this coach may not say for this move: those calling the
+ * opponent's error small, unless it was graded Inaccuracy or Mistake. */
+function smallErrorTakes(context: GameSpeechContext, id: string | null, claimIndex: number): readonly string[] {
+  const voice = coachVoice(context.utterance.coachId), takes = voice ? SMALL_ERROR_TAKES[voice] : undefined;
+  if (!takes || id !== "chance-taken") return [];
+  const source = context.utterance.renderedClaims?.[claimIndex]?.sourceIds[0];
+  const relation = context.game.context?.relationships.find(item => item.id === source);
+  const error = relation ? context.game.frames[relation.plies[0]]?.report?.label : undefined;
+  return error === "Inaccuracy" || error === "Mistake" ? [] : takes;
+}
+
+/** Drops takes from each sentence's alternatives. The meanings gated this way have
+ * other takes, which the coach plays (or its script shows) instead. */
+function withoutTakes(chain: string, ids: readonly string[]): string {
+  if (!ids.length) return chain;
+  return chain.split(SEQUENCE_SEPARATOR).map(part =>
+    part.split(ALTERNATIVE_SEPARATOR).filter(id => !ids.includes(id)).join(ALTERNATIVE_SEPARATOR)).join(SEQUENCE_SEPARATOR);
 }
 
 /** A line's opening catchphrase: the words before its first punctuation, when

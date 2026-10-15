@@ -22,7 +22,8 @@ import {collie} from "../src/dialogue/characters/collie";
 import {corgi} from "../src/dialogue/characters/corgi";
 import {host} from "../src/dialogue/characters/host";
 import {spark} from "../src/dialogue/characters/spark";
-import {SILENT_DEPARTURE_VOICES, selectGameRecording} from "../src/audio/speech/gameSelection";
+import {selectGameRecording} from "../src/audio/speech/gameSelection";
+import {SILENT_DEPARTURE_VOICES} from "../src/audio/speech/falseTakes";
 import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
 import {readFileSync} from "node:fs";
 

@@ -164,7 +164,10 @@ script as on-screen text in the real bubble as well as for delivery.
 
 Start from `audio/speech/meanings.json` and the production selectors
 `gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings
-and intentional silence before counting clips. Maia readings are never spoken or
+and intentional silence before counting clips. A take must hold wherever its meaning fires (the opening
+departure, for example, fires where our catalogue ends, not where theory does);
+one that does not is silenced for its voice in `falseTakes.ts` and listed under
+[Recorded lines that would need new takes](COACH_DIALOGUE.md#recorded-lines-that-would-need-new-takes). Maia readings are never spoken or
 shown as coach dialogue, so the catalogue has no `human-*` or objective/Maia
 combination meanings, and per-move clock observations are not spoken. The
 catalogue has 337 meanings, among them 11 varied opening
