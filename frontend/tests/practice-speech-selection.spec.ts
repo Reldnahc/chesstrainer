@@ -7,7 +7,7 @@ import { explanationCueRecording, explanationFindingRecording, explanationFrameR
 const inventory = JSON.parse(readFileSync(new URL("../src/audio/speech/bank/manifest.json", import.meta.url), "utf8")) as {recordings: {id: string}[]};
 const bank = new Set(inventory.recordings.map(recording => recording.id));
 const frame = (overrides: Partial<ExplanationFrame> = {}): ExplanationFrame => ({
-  fen: "saved-frame", uci: "e2e4", san: "e4", annotation: "Saved move.", highlights: [], material_change: 0,
+  fen: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1", uci: "e2e4", san: "e4", annotation: "Saved move.", highlights: [], material_change: 0,
   capture: null, gives_check: false, facts_version: 1, promotion: null, castling: false, checkmate: false,
   escaped_check: false, ...overrides,
 });
