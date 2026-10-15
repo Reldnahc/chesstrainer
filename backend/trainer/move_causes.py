@@ -129,6 +129,25 @@ def opponent_threat(c: Capture, previous):
         )
 
 
+def exchange_balance(boards, square, mover):
+    """The mover's net material from the consecutive captures on ``square``.
+
+    Follows the line from its first move while each move captures on that square,
+    so a recapture by the mover counts, not only the first two captures.
+    """
+    balance = 0
+    for ply in range(1, len(boards)):
+        position, move = boards[ply - 1], boards[ply].peek()
+        if move.to_square != square or not position.is_capture(move):
+            break
+        if position.is_en_passant(move):
+            value = VALUES[chess.PAWN]
+        else:
+            value = VALUES[position.piece_at(square).piece_type]
+        balance += value if position.turn == mover else -value
+    return balance
+
+
 def bad_trade(c: Capture, previous):
     before, move, reply = c.before, c.move, c.reply
     if not before.is_capture(move) or move.promotion or reply.to_square != move.to_square:
@@ -136,7 +155,10 @@ def bad_trade(c: Capture, previous):
     captured = before.piece_at(move.to_square)
     if before.is_en_passant(move):
         captured = chess.Piece(chess.PAWN, not c.learner)
-    if captured and VALUES[c.victim.piece_type] > VALUES[captured.piece_type]:
+    # Only a net loss over the whole exchange on that square is a bad trade; a
+    # recapture later in the line can turn the first two captures into a gain.
+    net = exchange_balance(c.boards, move.to_square, c.learner)
+    if captured and net < 0:
         yield witness(
             c.boards,
             c.analysis_id,
@@ -144,7 +166,7 @@ def bad_trade(c: Capture, previous):
             "avoiding_bad_trades",
             [1, 2],
             c.common | {"moved_piece": names([move.from_square])},
-            f"{before.san(move)} takes a {chess.piece_name(captured.piece_type)}, but {c.after.san(reply)} recaptures your {chess.piece_name(c.victim.piece_type)}. This immediate exchange gives up {VALUES[c.victim.piece_type] - VALUES[captured.piece_type]} material points; the saved comparison also favors the alternative.",
+            f"{before.san(move)} takes a {chess.piece_name(captured.piece_type)}, but {c.after.san(reply)} recaptures your {chess.piece_name(c.victim.piece_type)}. This immediate exchange gives up {-net} material points; the saved comparison also favors the alternative.",
             frame=0,
             mechanism="unfavorable_exchange",
         )
