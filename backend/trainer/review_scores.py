@@ -46,6 +46,19 @@ def is_only_good(best, second):
     return safe_best and losing_second and (mate_changed(gap) or (gap.cp or 0) >= 150)
 
 
+def is_only_good_move(best, actual, second):
+    """The played move is the only good one: the runner-up actually loses, and the
+    played move itself keeps the position (a forced win, or -0.50 or better), so a
+    near-best move that is nonetheless lost is no sole resource. The Great badge and
+    the coach's only-move evidence read this one rule, with no searched runner-up
+    (``second`` None) never establishing it."""
+    return (
+        second is not None
+        and is_only_good(best, second)
+        and (actual.outcome() == 1 or (actual.kind == "cp" and actual.value >= -50))
+    )
+
+
 def is_decisive_swing(best, actual):
     """The mover was not losing (-0.50 or better, or winning by mate) and now is
     (-2.00 or worse, or mated). Mates count, so the review and its events agree."""

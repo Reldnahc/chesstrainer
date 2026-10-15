@@ -11,9 +11,9 @@ from trainer.game_analysis import REQUESTED, queue_imported
 from trainer.game_library import mover_rating
 from trainer.game_review import (
     engine_facts,
+    game_outcome,
     link_previous_scores,
     move_frames,
-    play_outcome,
     public_report,
     review_move,
 )
@@ -117,15 +117,21 @@ def parsed_for(play: PlayGame, learner_name: str, board: chess.Board | None = No
     return game
 
 
-# Rendered reports per Play game, keyed by what each rendering depends on. Only
-# the current game's plies are kept, so a take-back drops the abandoned line.
+# Rendered reports per Play game, keyed by what each rendering depends on (the
+# moves so far, the ply's book departure, the saved searches and the human
+# evidence). Only the current game's plies are kept, so a take-back drops the
+# abandoned line.
 _rendered = RecentCache(64)
 
 
-def _render_key(play, ply, report):
+def _render_key(play, ply, report, context=None):
     human = report.get("human") or {}
+    # The ply's book departure is set by the game's last book move, so later
+    # moves that transpose back into the catalogue move it: it is keyed, not frozen.
+    departure = context.opening_departure if context else None
     return (
         tuple(play.moves[:ply]),
+        tuple(sorted(departure.items())) if departure else None,
         report.get("previous_score") is not None,
         report.get("before_analysis_id"),
         report.get("played_analysis_id"),
@@ -149,7 +155,7 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
     current = {}
     output = {}
     for ply, report in saved.items():
-        key = _render_key(play, ply, report)
+        key = _render_key(play, ply, report, contexts.get(ply))
         rendered = known.get(key)
         if rendered is None:
             color = starting if ply % 2 else not starting
@@ -166,8 +172,7 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
 def frames_for(play: PlayGame, learner_name: str) -> list[dict]:
     reports = rendered_reports(play, parsed_for(play, learner_name))
     moves = [chess.Move.from_uci(uci) for uci in play.moves]
-    # The last frame ends where the game did, on a repetition or fifty-move draw too.
-    return move_frames(chess.Board(), moves, reports, play_end=True)
+    return move_frames(chess.Board(), moves, reports)
 
 
 def state(play: PlayGame, learner_name: str, reply=None) -> dict:
@@ -222,7 +227,7 @@ def finish(db, play: PlayGame, result: str, termination: str, learner_name: str)
 
 
 def board_outcome(board: chess.Board):
-    return play_outcome(board)
+    return game_outcome(board)
 
 
 def result_for(outcome) -> tuple[str, str]:

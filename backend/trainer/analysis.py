@@ -1,6 +1,6 @@
 from sqlalchemy import select, update
 
-from trainer.chess_core import Candidate, board_facts, evaluation_loss, position_key
+from trainer.chess_core import Candidate, board_facts, digest, evaluation_loss, position_key
 from trainer.models import Decision, EngineAnalysis, GameReviewMove, SkillEvidence
 from trainer.policy import MovePolicy
 from trainer.review_reports import saved_report
@@ -61,10 +61,37 @@ def reviewed_searches(db, engine, board, move, report):
     before = db.get(EngineAnalysis, report["before_analysis_id"])
     played = db.get(EngineAnalysis, report["played_analysis_id"])
     if played.candidates[0]["uci"] != move.uci():
-        # The review read a second-choice move from the root search; decisions
-        # need the played move first, so search it at the review's own limits.
-        played = engine().analyze(board, deep=True, root_moves=[move.uci()], multipv=1)
+        # The review read the played move from the root search's MultiPV, the
+        # same search (and depth) its best move came from. Decisions need the
+        # played move first, so that candidate becomes its own restricted view of
+        # the search; a new search at other limits would compare two depths.
+        played = restricted_view(db, played, move.uci()) or engine().analyze(
+            board, deep=True, root_moves=[move.uci()], multipv=1
+        )
     return before, played, True
+
+
+def restricted_view(db, analysis, uci):
+    """``analysis`` restricted to its own candidate for ``uci``, saved once as an
+    analysis of its own: the same search, limits and engine, with that move first.
+    None when the search has no line for the move."""
+    candidate = next((c for c in analysis.candidates if c["uci"] == uci), None)
+    if candidate is None:
+        return None
+    key = digest({"restricted_view": analysis.id, "root_moves": [uci]})
+    existing = db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
+    if existing is not None:
+        return existing
+    view = EngineAnalysis(
+        cache_key=key,
+        fen=analysis.fen,
+        engine_version=analysis.engine_version,
+        config=analysis.config | {"multipv": 1, "root_moves": [uci], "view_of": analysis.id},
+        candidates=[candidate],
+    )
+    db.add(view)
+    db.flush()
+    return view
 
 
 def triaged_searches(engine, settings, board, move):

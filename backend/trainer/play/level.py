@@ -20,7 +20,7 @@ from trainer.game_analysis import REQUESTED
 from trainer.game_library import parsed_game, pgn_rating
 from trainer.human_models.context import request_for, source_domain
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable
-from trainer.job_lifecycle import JobKind, ensure_job
+from trainer.job_lifecycle import JobKind, active_job, ensure_job
 from trainer.models import Game, PlayProfile, now
 from trainer.play import from_play
 
@@ -81,14 +81,20 @@ def fit_level(sessions, human_models, games, cancelled=lambda: False):
     }
 
 
-def profile_payload(row, games, human_models):
+def profile_payload(row, games, human_models, *, fitting=False):
+    """``fitting``: a fit of the account is queued or running, the only meaning of
+    "computing". The row itself never says so, so a fit that stops before saving
+    leaves the previous result readable; a row saved as "computing" by an older
+    build with no fit running is unavailable until one is queued again."""
     fallback = FALLBACK_LEARNER_RATING
     if not games:
         status = "no_games"
     elif not human_models.settings.human_model_enabled:
         status = "disabled"
-    elif row is None or row.status == "computing":
+    elif fitting or row is None:
         status = "computing"
+    elif row.status == "computing":
+        status = "unavailable"
     else:
         status = row.status
     return {
@@ -112,8 +118,13 @@ class LevelFits:
         with workspace.sessions() as db:
             games = db.scalar(select(func.count()).select_from(Game)) or 0
             row = db.get(PlayProfile, workspace.user_id)
+            fitting = active_job(db, JobKind.LEVEL_FIT) is not None
+        # A fit that stopped before saving (cancelled, or the process shut down)
+        # left the previous row in place: it is queued again here only while the
+        # profile is stale, once, since ensure_job finds the queued fit on later polls.
         stale = (
             row is None
+            or row.status == "computing"
             or row.games != games
             or row.configuration_key != human_models.configuration_key
         )
@@ -122,23 +133,19 @@ class LevelFits:
                 with workspace.mutation_lock, workspace.sessions() as db:
                     # One fit at a time per account; the job reads the games when it runs.
                     ensure_job(db, JobKind.LEVEL_FIT, priority=REQUESTED)
-                    if row is None or refresh:
-                        row = db.get(PlayProfile, workspace.user_id)
-                        if row is None:
-                            row = PlayProfile(user_id=workspace.user_id, status="computing")
-                            db.add(row)
-                        else:
-                            row.status = "computing"
                     db.commit()
-            elif row is None:
-                return profile_payload(None, games, human_models) | {"status": "unavailable"}
-        return profile_payload(row, games, human_models)
+                fitting = True
+            elif row is None or row.status == "computing":
+                return profile_payload(row, games, human_models) | {"status": "unavailable"}
+        return profile_payload(row, games, human_models, fitting=fitting)
 
 
 def run_level_fit(execution, job_id):
     """The level-fit job: measure, then save the profile under the account lock.
 
-    Cancellation (or shutdown) stops it between Maia calls; nothing is saved then.
+    Cancellation (or shutdown) stops it between Maia calls; nothing is saved then,
+    so the previous result stays readable. The job is queued again on shutdown by
+    the job runner, and on a cancellation by the next poll of a stale profile.
     """
     sessions, human_models = execution.sessions, execution.human_models
     with sessions() as db:

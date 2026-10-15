@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import pytest
 from alembic import command
 from alembic.config import Config
-from sqlalchemy import select, text
+from sqlalchemy import func, select, text
 from trainer.accounts import Accounts
 from trainer.db import database, migrate
 from trainer.errors import NotFound
@@ -221,6 +221,66 @@ def test_training_decisions_use_the_adopted_refinement(settings, sessions):
         db.commit()
         decision = analyze_decision(db, None, settings, game, 1, board, move)
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
+
+
+def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(settings, sessions):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.models import Decision, EngineAnalysis
+
+    board = chess.Board()
+    move = chess.Move.from_uci("e2e4")
+    root = EngineAnalysis(
+        cache_key="refined-root",
+        fen=board.fen(),
+        engine_version="fixture",
+        config={"depth": 22, "time": 2.0, "multipv": 2, "root_moves": None},
+        candidates=[
+            {"uci": "d2d4", "san": "d4", "pv": ["d2d4"], "score": {"kind": "cp", "value": 45}},
+            {
+                "uci": "e2e4",
+                "san": "e4",
+                "pv": ["e2e4", "e7e5"],
+                "score": {"kind": "cp", "value": 40},
+            },
+        ],
+    )
+    with sessions() as db:
+        game = Game(
+            fingerprint="same-depth", white="A", black="B", learner_color=True, pgn="1. e4 *"
+        )
+        db.add_all([game, root])
+        db.flush()
+        # The review read e4 from the root MultiPV: both ids name the root search.
+        report = {"before_analysis_id": root.id, "played_analysis_id": root.id, "depth": 22}
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=report))
+        db.commit()
+        # No engine is available: nothing may be searched again at other limits.
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        played = db.get(EngineAnalysis, decision.played_analysis_id)
+        assert (
+            played.candidates[0]["uci"] == "e2e4" and played.candidates[0]["score"]["value"] == 40
+        )
+        assert played.config["depth"] == 22 and played.config["root_moves"] == ["e2e4"]
+        assert played.config["view_of"] == root.id
+        assert decision.loss_cp == 5 and decision.deep
+        assert decision.facts["verified_line"][1]["san"] == "e5"
+        # Analysed again (the saved decision no longer matches the report's root
+        # search), the same view is reused rather than saved twice.
+        other = EngineAnalysis(
+            cache_key="other-root",
+            fen=board.fen(),
+            engine_version="fixture",
+            config=root.config,
+            candidates=root.candidates,
+        )
+        db.add(other)
+        db.flush()
+        db.get(Decision, decision.id).before_analysis_id = other.id
+        db.commit()
+        again = analyze_decision(db, None, settings, game, 1, board, move)
+        assert again.played_analysis_id == played.id
+        assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 3
 
 
 def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settings, sessions):

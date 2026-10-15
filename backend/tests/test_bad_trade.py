@@ -30,7 +30,7 @@ def test_an_exchange_that_ends_down_material_is_a_bad_trade_with_the_net_amount(
         for f in move_causes(line(fen, "Rxc4", "Qxc4", "Qe5"), "analysis")
         if f.skill_id == "avoiding_bad_trades"
     ]
-    assert "gives up 4 material points" in finding.explanation
+    assert "The whole exchange on c4 gives up 4 material points" in finding.explanation
 
 
 def test_a_recapture_that_promotes_counts_the_new_piece():

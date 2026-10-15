@@ -32,7 +32,7 @@ from trainer.review_scores import (
     blunder_cp,
     is_decisive_swing,
     is_mistake,
-    is_only_good,
+    is_only_good_move,
     is_poor,
     strongest_alternative,
 )
@@ -41,10 +41,11 @@ from trainer.search_limits import SearchLimits
 VERSION = "game-review-1"
 
 
-def play_outcome(board):
-    """How a Play game ends here: the board's own outcome, or a threefold repetition
-    or fifty-move count that has actually happened. A draw the side to move could
-    only claim with its next move does not end the game."""
+def game_outcome(board):
+    """How a game ends here: the board's own outcome, or a threefold repetition or
+    fifty-move count that has actually happened. A draw the side to move could
+    only claim with its next move does not end the game. Play ends its games by
+    this rule, and the final frame of every game review reads it."""
     outcome = board.outcome()
     if outcome is None and board.is_repetition(3):
         return chess.Outcome(chess.Termination.THREEFOLD_REPETITION, None)
@@ -53,9 +54,12 @@ def play_outcome(board):
     return outcome
 
 
-def position(board, *, play_end=False):
-    """A frame's board facts; ``play_end`` ends it where Play ends a game."""
-    outcome = play_outcome(board) if play_end else board.outcome()
+def position(board, *, final=False):
+    """A frame's board facts. The ``final`` frame of a game also ends on a
+    repetition or fifty-move draw that has happened; earlier frames and
+    variation positions end only where the board itself does, since a game may
+    have continued past an unclaimed repetition."""
+    outcome = game_outcome(board) if final else board.outcome()
     return {
         "fen": board.fen(),
         "turn": "white" if board.turn else "black",
@@ -127,10 +131,10 @@ def classify(report, rating):
         return "Brilliant", "You found a sound piece sacrifice with a verified tactical idea."
     # Great is best/near-best AND critical; a sole legal reply is never an achievement.
     if cp <= NEAR_BEST_CP and report["legal_count"] > 1:
-        second = strongest_alternative(report)
-        # Only when the runner-up actually loses, as the coach's only-move
-        # evidence requires; a runner-up that still wins is no reason for Great.
-        only_good = second is not None and is_only_good(best, second) and numeric(actual) >= -50
+        # Only when the runner-up actually loses and this move holds, the one rule
+        # the coach's only-move evidence reads; a runner-up that still wins is no
+        # reason for Great.
+        only_good = is_only_good_move(best, actual, strongest_alternative(report))
         previous = report["previous_score"]
         # Capitalizing needs an opponent error: their previous move was graded a
         # Mistake or worse, not just a different search's score for the position.
@@ -203,12 +207,13 @@ def lead_order(findings, first):
     return sorted(findings, key=lambda f: (min(f.plies) > first + 1, f.skill_id not in LEAD_SKILLS))
 
 
-def move_frames(board, moves, reports, *, play_end=False, extra=None):
+def move_frames(board, moves, reports, *, extra=None):
     """The start frame and one frame per move, as game review and Play show them.
 
     ``reports`` maps ply to its rendered report; ``extra(ply)`` adds fields such
-    as a clock. Play also ends a game on a repetition or fifty-move draw that has
-    happened, so it asks for its last frame to end where the game did.
+    as a clock. The last frame ends where the game did, on a repetition or
+    fifty-move draw that has happened too, whether the game was played here or
+    imported.
     """
     board = board.copy()
     frames = [
@@ -225,7 +230,7 @@ def move_frames(board, moves, reports, *, play_end=False, extra=None):
         san, number, actor = board.san(move), board.fullmove_number, board.turn
         board.push(move)
         frames.append(
-            position(board, play_end=play_end and ply == len(moves))
+            position(board, final=ply == len(moves))
             | {
                 "san": san,
                 "uci": move.uci(),
@@ -261,20 +266,31 @@ def root_comparison(engine, board, move, limits=None):
     return before, candidates, actual, actual_id
 
 
+def mated_beyond_horizon(best, actual):
+    """One side of the comparison is mated and the other reads only a lost
+    centipawn score: every move may be mated beyond one search's horizon."""
+    return any(
+        seen.outcome() == -1 and mate_horizon(seen, other)
+        for seen, other in ((best, actual), (actual, best))
+    )
+
+
 def analyze_move(engine, board, move, previous_score=None):
     before, candidates, actual, actual_id = root_comparison(engine, board, move)
-    if mate_horizon(actual.score.negate(), candidates[0].score.negate()):
-        # The mirror case: the played move is mated in four or more and the best
-        # defence reads only a lost centipawn score. Every defence may be mated
-        # beyond the root search's horizon; the whole comparison is searched
-        # deeper, so a move that only hastens the mate is not "allows mate".
+    if mated_beyond_horizon(candidates[0].score, actual.score):
+        # Either the played move reads mated while the best defence reads only a
+        # lost score, or the best defence reads mated while the played move's
+        # restricted search reads only a lost score. The whole comparison is
+        # searched deeper at one limit, so a move that only hastens an unavoidable
+        # mate is not "allows mate", and a faster-mated move whose search stopped
+        # short of its mate is not promoted over the best defence.
         before, candidates, actual, actual_id = root_comparison(
             engine, board, move, MATE_HORIZON_LIMITS
         )
     best = candidates[0]
-    if mate_horizon(best.score, actual.score):
-        # A move that keeps a long mate is no Miss; one that really gives it up
-        # for a big lead still is. Searching it deeper tells them apart.
+    if best.score.outcome() == 1 and mate_horizon(best.score, actual.score):
+        # A move that keeps a mate, however long, is no Miss; one that really
+        # gives it up for a big lead still is. Searching it deeper tells them apart.
         played = engine.analyze(
             board, deep=True, root_moves=[move.uci()], multipv=1, limits=MATE_HORIZON_LIMITS
         )
@@ -363,6 +379,11 @@ def promote_stronger_played(report):
     actual = Score.model_validate(report["actual"]["score"])
     if actual.order_key() <= best.order_key():
         return report
+    # A centipawn score against a best move that is mated is a horizon
+    # difference, not a stronger move: the restricted search stopped short of
+    # the mate. Saved rows from before the deeper re-search still hold such pairs.
+    if best.outcome() == -1 and actual.kind == "cp":
+        return report
     return report | {
         "best": report["actual"],
         "best_line": report["actual_line"],
@@ -411,8 +432,38 @@ PRESENTATION_KEYS = frozenset(
 
 
 def engine_facts(report):
-    """A saved report without derived presentation, as older Play rows stored it."""
-    return {key: value for key, value in report.items() if key not in PRESENTATION_KEYS}
+    """A saved report without derived presentation, as older Play rows stored it,
+    with the root search's own best move where an older rendering had already
+    swapped the played move in for it."""
+    return unpromoted({key: value for key, value in report.items() if key not in PRESENTATION_KEYS})
+
+
+def unpromoted(report):
+    """The raw comparison of a report saved after promote_stronger_played had
+    swapped its best move for the played one (Play rows from before reports were
+    saved as engine facts). analyze_move always names the root search's first
+    candidate as best, so a best move equal to the played move while the root's
+    first candidate differs is such a swap; that candidate, its line replayed from
+    the saved position, and the loss against it restore the comparison, so the
+    previous-score link and the Great rule read it as for every other row."""
+    roots = report.get("root_candidates") or []
+    best, actual = report.get("best"), report.get("actual")
+    frames = (report.get("actual_line") or {}).get("frames") or []
+    if (
+        not (roots and best and actual and frames)
+        or best["uci"] != actual["uci"]
+        or roots[0]["uci"] == actual["uci"]
+    ):
+        return report
+    root_best = Candidate.model_validate(roots[0])
+    loss = evaluation_loss(root_best.score, Score.model_validate(actual["score"]))
+    return report | {
+        "best": root_best.model_dump(),
+        "best_line": line_evidence(
+            chess.Board(frames[0]["fen"]), root_best, report["before_analysis_id"], 1
+        ),
+        "loss_cp": loss.cp,
+    }
 
 
 def link_previous_scores(reports: dict) -> dict:
