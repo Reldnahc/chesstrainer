@@ -87,14 +87,17 @@ def test_setup_pgn_never_assumes_initial_clock_and_missing_data_is_unknown():
 
 
 def test_opening_departure_is_once_and_never_invented_for_a_setup_position():
+    # The king walk leaves the Breyer and transposes back into it, which is not a
+    # departure; the game leaves the catalogue for good only with 12. a3.
     contexts = move_contexts(
         game(
-            "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O 9. h3 Nb8 10. Kh2 Kh8 11. Kg1 Kg8 *"
+            "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O 9. h3 Nb8 10. Kh2 Kh8 11. Kg1 Kg8 12. a3 *"
         )
     )
     departures = [context for context in contexts.values() if context.opening_departure]
     assert len(departures) == 1
-    assert departures[0].opening_departure["previous_book_ply"] == departures[0].ply - 1
+    assert departures[0].ply == 23
+    assert departures[0].opening_departure["previous_book_ply"] == 22
     parsed = game(
         "1. e4 *", extra=f'[SetUp "1"]\n[FEN "{chess.STARTING_FEN.replace("0 1", "0 5")}"]'
     )
