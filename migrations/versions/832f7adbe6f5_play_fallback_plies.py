@@ -8,7 +8,7 @@ game shows it and the saved PGN records the engine setting that really played.
 import sqlalchemy as sa
 from alembic import op
 
-revision = "b7d2f4a9c6e1"
+revision = "832f7adbe6f5"
 down_revision = "4ca1e88adf37"
 branch_labels = None
 depends_on = None
