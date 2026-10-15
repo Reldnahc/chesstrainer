@@ -4469,7 +4469,7 @@ export interface components {
             /** Message */
             message?: string | null;
             /** Message Kind */
-            message_kind?: ("good_move" | "practice_saved" | "relearning" | "opening_rejected" | "opening_rejected_changed" | "opening_rejected_retired") | null;
+            message_kind?: ("good_move" | "accepted" | "practice_saved" | "relearning" | "opening_rejected" | "opening_rejected_changed" | "opening_rejected_retired") | null;
             /** Next Due */
             next_due?: string | null;
             /** Non Scheduling Reason */

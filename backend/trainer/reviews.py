@@ -473,11 +473,17 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
         if session.mode == "focus"
         else "Solved. This recall stays marked for relearning."
         if session.failed
+        # Within the practice tolerance is not the same as a good move: game
+        # review can grade the same move an Inaccuracy.
+        else "Accepted: within your practice tolerance."
+        if grade == "acceptable"
         else "Good move.",
         "message_kind": "practice_saved"
         if session.mode == "focus"
         else "relearning"
         if session.failed
+        else "accepted"
+        if grade == "acceptable"
         else "good_move",
         **feedback(db, exercise, session),
     }

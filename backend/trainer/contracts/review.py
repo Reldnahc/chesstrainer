@@ -54,6 +54,7 @@ class ReviewFeedback(Contract):
     message_kind: (
         Literal[
             "good_move",
+            "accepted",
             "practice_saved",
             "relearning",
             "opening_rejected",
