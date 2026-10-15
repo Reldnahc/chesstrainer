@@ -186,7 +186,12 @@ def test_clear_games_keeps_engine_rows_a_kept_play_report_mentions(settings, ses
             played_analysis_id=played,
         )
 
-    removed = _script().clear_games(settings.database_path, apply=True)
+    clear = _script().clear_games
+    preview = clear(settings.database_path)
+    with sqlite3.connect(settings.database_path) as db:
+        assert db.execute("SELECT COUNT(*) FROM engine_analyses").fetchone() == (2,)
+    removed = clear(settings.database_path, apply=True)
+    assert removed == preview
     assert removed["decisions"] == 1 and removed["engine_analyses"] == 1
     with sqlite3.connect(settings.database_path) as db:
         assert db.execute("SELECT id FROM engine_analyses").fetchall() == [(played,)]

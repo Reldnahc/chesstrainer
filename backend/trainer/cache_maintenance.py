@@ -19,7 +19,10 @@ cache hit worth keeping for a while even though nothing references it.
 
 import logging
 import re
+import sqlite3
 from datetime import datetime, timedelta, timezone
+
+from sqlalchemy.exc import DBAPIError
 
 from trainer.db import immediate_transaction
 
@@ -119,7 +122,9 @@ def reclaim_space(db):
     ``db`` is a sqlite3 connection outside any transaction. A database in
     incremental auto-vacuum mode releases its free pages in place. Older files
     were created without it: once a quarter of one is free it is rebuilt with a
-    VACUUM, in incremental mode, so later deletes are cheap to return.
+    VACUUM, in incremental mode, so later deletes are cheap to return. Both write
+    the moved pages through the WAL, which is then checkpointed and truncated, or
+    the space would only move into the ``-wal`` file until the server stops.
     """
     pages = db.execute("PRAGMA page_count").fetchone()[0]
     free = db.execute("PRAGMA freelist_count").fetchone()[0]
@@ -134,15 +139,26 @@ def reclaim_space(db):
         db.execute("VACUUM")
     else:
         return 0
+    db.execute("PRAGMA wal_checkpoint(TRUNCATE)").fetchall()
     return free - db.execute("PRAGMA freelist_count").fetchone()[0]
 
 
 def maintain_shared_caches(engine):
-    """The startup sweep and space reclaim; call it before any job or request runs."""
-    with immediate_transaction(engine) as connection:
-        removed = sweep_shared_caches(connection.connection.driver_connection)
-    with engine.connect() as connection:
-        released = reclaim_space(connection.connection.driver_connection)
+    """The startup sweep and space reclaim; call it before any job or request runs.
+
+    A failure, such as a full disk during the one-time VACUUM, is logged and the
+    server starts anyway: the maintenance runs again at the next start.
+    """
+    removed, released = dict.fromkeys(SHARED_CACHES, 0), 0
+    try:
+        with immediate_transaction(engine) as connection:
+            removed = sweep_shared_caches(connection.connection.driver_connection)
+        with engine.connect() as connection:
+            released = reclaim_space(connection.connection.driver_connection)
+    except (sqlite3.Error, DBAPIError):
+        log.warning(
+            "Shared cache maintenance failed; it runs again at the next start", exc_info=True
+        )
     if any(removed.values()) or released:
         log.info(
             "Swept unused shared cache rows",

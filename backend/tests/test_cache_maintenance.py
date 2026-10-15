@@ -136,20 +136,40 @@ def test_an_offline_sweep_also_removes_recent_unused_rows(settings, sessions):
     assert "e-new" not in engine and "h-new" not in human
 
 
+def _on_disk(path):
+    wal = path.with_name(path.name + "-wal")
+    return path.stat().st_size + (wal.stat().st_size if wal.exists() else 0)
+
+
 def test_startup_sweeps_and_gives_the_space_back(settings, sql_engine):
     with closing(sqlite3.connect(settings.database_path)) as db:
         assert db.execute("PRAGMA auto_vacuum").fetchone() == (INCREMENTAL,)
         _cache_rows(db, [uid() for _ in range(200)], [], payload=json.dumps(["x" * 4000]))
         db.commit()
-        pages = db.execute("PRAGMA page_count").fetchone()[0]
+        db.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+    before = _on_disk(settings.database_path)
 
     removed, released = maintain_shared_caches(sql_engine)
 
     assert removed == {"engine_analyses": 200, "human_analyses": 0}
     assert released > 0
+    # The server's pooled connections are still open, so the WAL file stays; the
+    # freed space must leave it too, not wait for shutdown.
+    assert _on_disk(settings.database_path) < before - 150 * 4096
     with closing(sqlite3.connect(settings.database_path)) as db:
         assert db.execute("PRAGMA freelist_count").fetchone() == (0,)
-        assert db.execute("PRAGMA page_count").fetchone()[0] < pages - 150
+
+
+def test_a_failed_maintenance_does_not_stop_the_server(settings, sql_engine, monkeypatch, caplog):
+    def full(db):
+        raise sqlite3.OperationalError("database or disk is full")
+
+    monkeypatch.setattr("trainer.cache_maintenance.reclaim_space", full)
+    settings.stockfish_path = "missing-stockfish-test"
+
+    with TestClient(create_app(settings, workers=False)) as client:
+        assert client.get("/api/health").status_code == 200
+    assert "Shared cache maintenance failed" in caplog.text
 
 
 def test_the_server_sweeps_before_it_serves(settings, sql_engine):
