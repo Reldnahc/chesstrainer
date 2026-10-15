@@ -134,8 +134,12 @@ export function useReviewSession({
         }
       } catch (e) {
         if (version === generation.current) {
-          // A session link that no longer exists is not asked for again; Try again opens the queue.
-          if (resumeSession && e instanceof ApiError && e.status === 404) lastLoad.current = [id, previous, null];
+          // A session link that no longer exists is not asked for again; Try again opens the
+          // queue, and the address drops it so a reload does not ask for it either.
+          if (resumeSession && e instanceof ApiError && e.status === 404) {
+            lastLoad.current = [id, previous, null];
+            clearReviewSessionLink();
+          }
           setLoadError(errorMessage(e));
         }
       } finally {
