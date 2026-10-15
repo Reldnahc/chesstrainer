@@ -256,7 +256,7 @@ test("all positional speech branches validate their structured facts and keep al
   }
 });
 
-test("recorded-game recovery is tied to learner and current node generation, and never voiced", () => {
+test("recorded-game recovery is tied to learner and current node generation", () => {
   const current = context(causal[0].report);
   current.report!.intelligence!.events = [];
   const evidence = [{source: "stockfish" as const, id: "recovery-search", field: "verified-sequence", ply: 1}];
@@ -269,8 +269,8 @@ test("recorded-game recovery is tied to learner and current node generation, and
   const recovered = rerender(current);
   const told = (value: typeof recovered) => value.intent.claims.some(item => item.code === "recovery");
   expect(told(recovered)).toBe(true);
-  // Its takes credit this move with restoring the game, which the opponent's moves did.
-  expect(selectWalterGameRecording(onlyClaim(recovered, "recovery"))).toBeNull();
+  // The opponent's errors helped, so the assisted take plays.
+  expect(selectWalterGameRecording(onlyClaim(recovered, "recovery"))).toBe("recovery-assisted");
   for (const change of ["actor", "generation", "endpoint"] as const) {
     const changed = structuredClone(current);
     if (change === "actor") changed.game.context!.relationships[0].actor = "black";
@@ -300,7 +300,7 @@ test("the chance-taken clip, some of whose takes call the reply exact, plays onl
   expect(takenWith("Good")).toBeNull();
 });
 
-test("the repeated-issue clip, whose takes say once before or a second time, plays only on the second occurrence", () => {
+test("the repeated-issue clip, whose takes never count occurrences, plays from the second occurrence on", () => {
   const current = context(causal[0].report);
   const evidence = [{source: "stockfish" as const, id: "repeat-search", field: "verified-sequence", ply: 1}];
   const actor = current.game.orientation;
@@ -315,8 +315,8 @@ test("the repeated-issue clip, whose takes say once before or a second time, pla
     return selectWalterGameRecording(onlyClaim(rerender(changed), "repeated"));
   };
   expect(repeatedAt(2)).toBe("repeated-issue");
-  expect(repeatedAt(3)).toBeNull();
-  expect(repeatedAt(5)).toBeNull();
+  expect(repeatedAt(3)).toBe("repeated-issue");
+  expect(repeatedAt(5)).toBe("repeated-issue");
 });
 
 test("finite no-report status recordings are manual-only and never authorize legacy prose or stale analysis", () => {

@@ -10,10 +10,11 @@ import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
 const relationshipGames = semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py");
-// Recovery takes credit this move with restoring the game, which the opponent's
-// moves did; the written line is told and no recovery take plays.
+// A move never raises its own evaluation, so neither the written line nor the
+// recorded take credits this move; the take names the opponent's help when the
+// line does.
 for (const [name, game] of Object.entries(relationshipGames)) if (name.startsWith("combo-recovery"))
-  test(`${name}: a recovery is written but never voiced`, () => {
+  test(`${name}: a recovery is written and voiced without crediting the move`, () => {
     const ply = game.frames.length - 1, frame = game.frames[ply], report = frame.report!;
     const intent = gameIntent({key: name, game, frame, report, ply, expression: "neutral"});
     const claimIndex = intent.claims.findIndex(item => item.code === "recovery");
@@ -23,7 +24,9 @@ for (const [name, game] of Object.entries(relationshipGames)) if (name.startsWit
     expect(utterance.text).not.toMatch(/\bthis (?:move )?(?:restores|makes|brings|gets)/i);
     const context: GameSpeechContext = {game, frame, report, ply, intent, utterance};
     const index = utterance.renderedClaims!.findIndex(item => item.code === "recovery");
-    expect(selectGameRecording({...context, claimIndex: index})).toBeNull();
+    const claim = utterance.renderedClaims![index];
+    expect(selectGameRecording({...context, claimIndex: index}))
+      .toBe(claim.slots.help ? "recovery-assisted" : "recovery");
   });
 const games = {
   ...semanticFixtures<Record<string, Game>>("review_speech_policy_fixtures.py"),

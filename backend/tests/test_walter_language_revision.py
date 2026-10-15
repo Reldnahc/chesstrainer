@@ -25,6 +25,11 @@ def test_walter_revision_preserves_meanings_and_the_locked_voice():
     pilot = {
         item["id"]: item for item in read(BANK / "revisions/walter-pilot-v1.json")["recordings"]
     }
+    # The false-takes rewrite re-recorded a few takes after every earlier revision.
+    rewritten = {
+        item["id"]: item
+        for item in read(BANK / "revisions/walter-false-takes-v1.json")["recordings"]
+    }
     assert len(changes) == len(revision["recordings"])
     # Coaches never voice a Maia (human-move) reading, so those recordings are
     # retired, as are the clock observations; every other original recording
@@ -40,6 +45,12 @@ def test_walter_revision_preserves_meanings_and_the_locked_voice():
     for key in before:
         item = after[key]
         assert item["group"] == before[key]["group"]
+        if key in rewritten:
+            earlier = pilot.get(key) or changes.get(key) or before[key]
+            assert rewritten[key]["previousText"] == earlier["text"]
+            assert item["text"] == rewritten[key]["text"] != earlier["text"]
+            assert item["audioPath"] != before[key]["audioPath"]
+            continue
         if key in pilot:
             previous = changes.get(key, before[key])["text"]
             assert pilot[key]["previousText"] == previous
