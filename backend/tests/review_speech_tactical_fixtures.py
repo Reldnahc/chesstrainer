@@ -28,9 +28,11 @@ POOR = (
 PATTERNS = (
     (
         "pin",
-        "4k3/4n3/2p5/1B6/8/8/P7/4R1K1 w - - 0 1",
-        "b5c6 e8f8 c6g2 f8g7",
-        "b5f1",
+        # The bishop makes the pin itself; a pin already on the board is not this
+        # move's (pin takes then stay silent).
+        "4k3/p7/2n5/3P4/8/8/P7/4KB2 w - - 0 1",
+        "f1b5 e8e7 d5c6 e7d6",
+        "a2a3",
         ("missed",),
     ),
     (
@@ -85,7 +87,7 @@ PATTERNS = (
 )
 
 ALLOWED = (
-    ("pin", "4k3/p3n3/2p5/1B6/8/8/P7/4R1K1 b - - 0 1", "a7a6 b5c6 e8f8 c6g2 f8g7", "e8f8"),
+    ("pin", "4k3/p7/2n5/3P4/8/8/P7/4KB2 b - - 0 1", "a7a5 f1b5 e8e7 d5c6 e7d6", "c6e5"),
     (
         "removing-defender",
         "6k1/6pp/5n2/3q2B1/8/8/8/3R2K1 b - - 0 1",

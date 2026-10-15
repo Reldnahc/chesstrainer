@@ -11,7 +11,6 @@ import chess
 from review_cause_fixtures import CAUSES, cause_report
 from review_human_fixtures import human_game
 from review_intelligence_fixtures import move_report
-from test_patterns_v2 import CASES as PATTERN_CASES
 from trainer.chess_core import Candidate, Score, digest, evaluation_loss
 from trainer.contracts.games import GameDetail
 from trainer.game_review import line_evidence, position, public_report
@@ -135,7 +134,15 @@ def fixtures(raw_cases=None):
             name,
             policy,
         )
-        for motif, fen, line, alternative in PATTERN_CASES[:1]:
+        # A pin the move itself makes: pin takes stay silent for one already there.
+        for motif, fen, line, alternative in [
+            (
+                "pin",
+                "4k3/p7/2n5/3P4/8/8/P7/4KB2 w - - 0 1",
+                ["f1b5", "e8e7", "d5c6", "e7d6"],
+                ["a2a3"],
+            )
+        ]:
             name = f"{motif}-{policy}"
             result[name] = project(
                 witnessed(

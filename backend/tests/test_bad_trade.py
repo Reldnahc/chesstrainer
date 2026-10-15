@@ -31,3 +31,17 @@ def test_an_exchange_that_ends_down_material_is_a_bad_trade_with_the_net_amount(
         if f.skill_id == "avoiding_bad_trades"
     ]
     assert "gives up 4 material points" in finding.explanation
+
+
+def test_a_recapture_that_promotes_counts_the_new_piece():
+    # Rxf1 gxf1=Q+: a knight for the rook and a new queen, ten points down.
+    fen = "7k/8/8/8/8/7K/6p1/R4n2 w - - 0 1"
+    (finding,) = [
+        f
+        for f in move_causes(line(fen, "Rxf1", "gxf1=Q+"), "analysis")
+        if f.skill_id == "avoiding_bad_trades"
+    ]
+    assert "gives up 10 material points" in finding.explanation
+    # Qxd8 Rxd8 exd8=Q+ nets seven points: no bad trade.
+    fen = "3n1r1k/4P3/8/8/8/8/8/3Q2K1 w - - 0 1"
+    assert "avoiding_bad_trades" not in skills(line(fen, "Qxd8", "Rxd8", "exd8=Q+"))

@@ -106,6 +106,9 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   // Promotion clips describe a pawn still on its way to the last rank. When the
   // witnessed move is itself the promotion they are false, and the grade speaks.
   if (motif === "promotion_awareness" && promotes(opening.san)) return null;
+  // Every pin take says the move makes (or allows, or missed making) the pin; a
+  // line that uses a pin already on the board before the move is not that.
+  if (motif === "pin" && f.pinned_before === true) return null;
   if (recordedTacticMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";

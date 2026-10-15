@@ -200,6 +200,11 @@ def tactical_events(report, emit, ref, fen, actor):
                     "moves": finding["moves"],
                     "squares": finding["squares"],
                     "roles": finding["roles"],
+                    **(
+                        {"pinned_before": pinned_before(fen, finding["roles"])}
+                        if finding["skill_id"] == "pin"
+                        else {}
+                    ),
                     "verification": finding["verification"],
                     "context_fen": finding.get("context_fen"),
                     "context_move": finding.get("context_move"),
@@ -229,6 +234,17 @@ def tactical_events(report, emit, ref, fen, actor):
                 ],
                 mover=finding["actor"],
             )
+
+
+def pinned_before(fen, roles):
+    """Whether a pin's pinned pieces were already pinned before the move: the
+    line uses a pin that existed, rather than creating one."""
+    board = chess.Board(fen)
+    squares = [chess.parse_square(square) for square in roles.get("pinned_defender", [])]
+    return bool(squares) and all(
+        (piece := board.piece_at(square)) is not None and board.is_pinned(piece.color, square)
+        for square in squares
+    )
 
 
 def uncovers_attack(fen, uci):

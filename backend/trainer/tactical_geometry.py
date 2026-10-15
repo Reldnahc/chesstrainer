@@ -39,6 +39,21 @@ def defenders(board, square, color):
     return found
 
 
+def recapturers(board, square, color):
+    """Pieces of ``color`` that defend ``square`` just after a capture landed there.
+
+    Geometry, not legality: a defender behind the capturing piece (an x-ray along
+    its line) counts, a pinned piece only along its pin, and the king only while
+    no other enemy piece covers the square. A defender that must first answer a
+    check still defends: the captured piece was not undefended.
+    """
+    found = {sq for sq in board.attackers(color, square) if square in effective_attacks(board, sq)}
+    king = board.king(color)
+    if king in found and board.attackers(not color, square):
+        found.discard(king)
+    return found
+
+
 def valuable_targets(board, attacker_square):
     piece = board.piece_at(attacker_square)
     if piece is None:

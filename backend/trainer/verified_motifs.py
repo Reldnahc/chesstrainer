@@ -14,6 +14,7 @@ from trainer.tactical_geometry import (
     SLIDERS,
     defender_capture_is_worthwhile,
     names,
+    recapturers,
     valuable_targets,
     witness,
 )
@@ -106,9 +107,9 @@ def hanging_capture(event: TacticalEvent) -> None:
         event.first == event.origin_first
         and captured
         and captured.piece_type != chess.PAWN
-        # Undefended means no legal recapture once the capture is made, which also
-        # counts a defender behind the capturing piece (an x-ray along its line).
-        and not any(reply.to_square == event.move.to_square for reply in event.after.legal_moves)
+        # Undefended means no defender once the capture is made, which also counts
+        # a defender behind the capturing piece (an x-ray along its line).
+        and not recapturers(event.after, event.move.to_square, captured.color)
         and gain > 0
         # An equal trade followed by an unrelated lost pawn is not a hung
         # queen. Later compensation may reduce a real initial material loss.

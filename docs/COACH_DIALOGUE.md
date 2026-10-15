@@ -64,6 +64,9 @@ its grade take instead. A second sentence never restates the lead: no capture cl
 cause, hanging-piece or allowed-mate clip, and no stronger-alternative clip after a missed
 tactic or mate. Promotion clips describe a pawn still on its way, so they never play
 when the witnessed move is itself the promotion, in game review or in practice findings.
+Pin clips say the move makes (or allows, or missed making) the pin, so a line that only
+uses a pin already on the board before the move (the tactic's `pinned_before` fact) speaks
+its grade take instead.
 The evaluation-loss clip, some of whose takes call the cost small, plays only on an
 Inaccuracy; a larger loss passes the lead on or speaks its grade take.
 A forced-mate stage is told once per run of the same side's moves, and an

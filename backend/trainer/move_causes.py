@@ -144,6 +144,9 @@ def exchange_balance(boards, square, mover):
             value = VALUES[chess.PAWN]
         else:
             value = VALUES[position.piece_at(square).piece_type]
+        if move.promotion:
+            # A capture that promotes also turns a pawn into the new piece.
+            value += VALUES[move.promotion] - VALUES[chess.PAWN]
         balance += value if position.turn == mover else -value
     return balance
 
