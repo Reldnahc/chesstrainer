@@ -1,5 +1,5 @@
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../../api";
-import { capturedPieces, findingPieces, withPieceVariant } from "./pieceVariants";
+import { capturedPieces, findingMeaningId, findingPieces, withPieceVariant } from "./pieceVariants";
 
 /** Only replay_line's explicit facts authorize a complete recorded frame description.
  * A quiet checkmate credits the learner only when the learner mates; a line where
@@ -59,20 +59,6 @@ export function explanationSummaryRecording(data: MoveExplanation): string | nul
   return summaryRecording(kind, data.orientation, data.summary_frame_index == null ? null : data.frames[data.summary_frame_index]);
 }
 
-// A "promotion" finding is always the promoting move itself, which the game bank's
-// promotion clips describe as a pawn still on its way; its frame line speaks instead.
-const findingAliases: Record<string, string | undefined> = {
-  fork_recognized: "tactic-fork-played", defender_captured: "tactic-removing-defender-played",
-  deflection: "tactic-deflection-played",
-  undefended_capture: "tactic-undefended-capture-played", back_rank_mate: "tactic-back-rank-played",
-  abandoned_defender: "cause-abandoned-defender", unfavorable_exchange: "cause-avoiding-bad-trades",
-};
-const findingMechanisms = new Set([
-  "fork_collected", "pin_prevents_capture", "pin_restricts_escape", "pin_defenders_no_recapture", "pin_collected",
-  "skewer_collected", "king_skewer_collected", "sole_defender_captured", "deflection_collected",
-  "discovered_capture", "discovered_check", "double_check", "double_attack_collected",
-  "promotion_material_retained", "undefended_capture_gain",
-]);
 const cueKeys = new Set(["hanging_piece", "missed_tactical_capture", "fork", "pin", "skewer", "removing_defender",
   "discovered_attack", "double_attack", "back_rank", "promotion_awareness", "abandoned_defender", "avoiding_bad_trades", "deflection"]);
 
@@ -85,8 +71,7 @@ function currentFinding(data: MoveExplanation, finding: PatternFinding | null | 
 }
 export function explanationFindingRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
   if (!currentFinding(data, finding, index) || !finding.mechanism) return null;
-  const id = findingAliases[finding.mechanism] ?? (findingMechanisms.has(finding.mechanism)
-    ? `explanation-finding-${finding.mechanism.replaceAll("_", "-")}` : null);
+  const id = findingMeaningId(finding.mechanism);
   return id && withPieceVariant(id, findingPieces(data, finding)?.pieces);
 }
 export function explanationCueRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
