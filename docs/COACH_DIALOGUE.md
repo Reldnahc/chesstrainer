@@ -62,6 +62,8 @@ its grade take instead. A second sentence never restates the lead: no capture cl
 cause, hanging-piece or allowed-mate clip, and no stronger-alternative clip after a missed
 tactic or mate. Promotion clips describe a pawn still on its way, so they never play
 when the witnessed move is itself the promotion, in game review or in practice findings.
+The evaluation-loss clip, some of whose takes call the cost small, plays only on an
+Inaccuracy; a larger loss passes the lead on or speaks its grade take.
 A forced-mate stage is told once per run of the same side's moves, and an
 erosion run only on a move graded as an error. Takes rotate so that a side's back-to-back
 moves (two plies apart) differ whenever a meaning has three or more takes.

@@ -5,7 +5,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
-import {GRADE_TAKES, gradeTakeIds, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {GRADE_TAKES, gradeTakeIds, selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import {humanGames} from "../tests/human-fixtures";
 
@@ -46,6 +46,20 @@ for (const coach of coaches) {
       expect(speech.recordingId).toMatch(/^(?:evaluation-loss|stronger-alternative)/);
       expect(gradeTakeIds(label)).toContain(speech.gradeId);
     });
+
+  test(`${coach.id}: the evaluation-loss reading, which can call the cost small, is kept for Inaccuracies`, () => {
+    const loss = (label: string) => {
+      const game = plainError(label), item = context(game, 1, coach);
+      const index = item.utterance.renderedClaims!.findIndex(claim => claim.code === "loss");
+      expect(index).toBeGreaterThanOrEqual(0);
+      return selectGameRecording({...item, claimIndex: index});
+    };
+    expect(loss("Inaccuracy")).toBe("evaluation-loss");
+    for (const label of ["Mistake", "Miss", "Blunder"]) {
+      expect(loss(label)).toBeNull();
+      expect(selectGameSpeech(context(plainError(label), 1, coach)).recordingId).not.toMatch(/evaluation-loss/);
+    }
+  });
 
   for (const [label, generic] of [["Brilliant", "best-supported-choice"], ["Great", "best-supported-choice"],
     ["Best", "best-supported-choice"], ["Good", "good-choice"]])

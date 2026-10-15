@@ -256,6 +256,9 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
     return item.code === "recovery" ? item.slots.help ? "recovery-assisted" : "recovery" : simpleIds[item.code];
   }
+  // Several evaluation-loss takes call the cost small ("a little leak"), which
+  // is only true of an Inaccuracy. A larger loss leaves it to the next clip or the grade.
+  if (item.code === "loss" && report.label !== "Inaccuracy") return null;
   // Source-backed event codes must not bypass their validation when an event ID
   // is absent or ambiguous. Only these direct report claims have no event ID.
   return ["reply_capture", "reply_check", "alternative", "loss", "best", "good"].includes(item.code)
