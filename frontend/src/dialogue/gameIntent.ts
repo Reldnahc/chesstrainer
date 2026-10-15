@@ -11,6 +11,9 @@ const purposes: Record<Report["label"], DialoguePurpose> = {
   Inaccuracy: "inaccuracy", Mistake: "mistake", Blunder: "blunder", Miss: "missed",
 };
 
+/** A listed fact that is present and empty; a missing fact never passes. */
+const none = (value: unknown) => Array.isArray(value) && value.length === 0;
+
 function moveLabel(game: Game, ply: number) {
   const frame = game.frames[ply];
   return frame ? `${frame.number}${frame.actor === "black" ? "..." : "."} ${frame.san}` : `Ply ${ply}`;
@@ -109,7 +112,11 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
       const earlier = moveLabel(game, relation.plies[0]), f = relation.facts;
       const linked = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
-      if (relation.kind === "recovery") {
+      // Each relationship is told only where its wording holds: a recovery that
+      // this move made (its lines say "this move restores a playable position"), a
+      // conversion without a Mistake of the side's own inside the run ("cleanly"),
+      // and an erosion without a separate Blunder inside it ("no single blunder").
+      if (relation.kind === "recovery" && f.restored_by_move === true) {
         linked("recovery", {earlier, help: Array.isArray(f.opponent_errors) && f.opponent_errors.length ? " The opponent's errors helped make that possible." : ""}, 88);
         purpose = "recovery";
         expression = "recovered";
@@ -126,8 +133,9 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
         linked("support_restored", {earlier, piece: words(f.piece)}, 75);
       }
       // A run of concessions is only told on a move that is itself one.
-      if (relation.kind === "erosion" && poor) linked("erosion", {earlier}, 71);
-      if (relation.kind === "advantage_run" && f.outcome === "converted") linked("conversion", {earlier, side}, 75);
+      if (relation.kind === "erosion" && poor && none(f.own_blunder_plies)) linked("erosion", {earlier}, 71);
+      if (relation.kind === "advantage_run" && f.outcome === "converted" && none(f.own_mistake_plies))
+        linked("conversion", {earlier, side}, 75);
     }
     for (const item of game.history?.weaknesses ?? []) if (item.status === "supported" && item.related_plies.includes(ply))
       claims.push(claim("history", {motif: words(item.skill_id), games: item.independent_games}, 67, item.evidence, item.decision_ids));

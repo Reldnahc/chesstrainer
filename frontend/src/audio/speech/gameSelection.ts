@@ -254,6 +254,8 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     // Fresh gameIntent above enforces current node generation, actor and relation
     // endpoint (and supported history); branches never inherit those relationships.
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
+    // The repeated-issue takes say "once before" or "a second time".
+    if (item.code === "repeated" && item.slots.count !== 2) return null;
     return item.code === "recovery" ? item.slots.help ? "recovery-assisted" : "recovery" : simpleIds[item.code];
   }
   // Several evaluation-loss takes call the cost small ("a little leak"), which
