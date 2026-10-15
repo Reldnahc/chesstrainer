@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Rivet"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "tactic-back-rank-allowed-rook",
+      "text": "Alert: back-rank mate route open for the other side. Attacker: rook. King status: boxed in behind its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "b73fe358157d5703c36825b941d1f6bcb985eed53de585722c7c711ae00dd9bd",
+  "recordedAt": "2026-10-15T19:22:11.581Z",
+  "sha256": "517ce4065cbf2c7e30efeda85c7d06ea55fab6e6611b687addad0c95505d25c6",
+  "bytes": 27675,
+  "requestId": "Sn3P7Ul4QRF6NG7MqwTb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cd4985ce836049d9b93a0606775b8f23a11d73d9c3bdd2769a6e8b34b934eac",
+    "bytes": 149672
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "That earlier setback turned the game, but it did not settle it. The position is playable once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "a969e9df9c1f01c39a2b90fa84e495dc573600c83e69a257dce51d239877a16d",
+  "recordedAt": "2026-10-15T19:23:57.971Z",
+  "sha256": "25512c8a68aac8594bd6c2d521b64d8ad8a41df830aae90fca2bf05a96c21482",
+  "bytes": 20932,
+  "requestId": "2fIxjy9P9yIAsDWp7h68",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fd2508713f9eea5d492f2424e8a5be407c903671684d81c82fdd4571a034f7e9",
+    "bytes": 107458
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Button"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "After the earlier stumble, things hold together again. The position is playable once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "98f7ea1487eaa946bcdbbccf8108a07579fa37f35c36ffcb2f3b9bb6c2d99f71",
+  "recordedAt": "2026-10-15T19:16:11.446Z",
+  "sha256": "2146f8b97910a608eab15bb77cc69562e71ec38eec0be5f6e0e01d43bb8bebb7",
+  "bytes": 18354,
+  "requestId": "XPTMGby2gueKj5zyulZ9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6848d9d1a001f0c72070f62951204469cc371f9db00cc86332bb94b69d98e284",
+    "bytes": 93247
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

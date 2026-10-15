@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Wisp"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "tactic-back-rank-allowed-queen",
+      "text": "The king sits behind its own pieces, and that wall can become a trap. Now the other side's queen has a route to a back-rank mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dbc863490d6fd25d1f4b1802210fbe15c5eccf70686aaeb150441fd47382dd0",
+  "recordedAt": "2026-10-15T19:24:43.243Z",
+  "sha256": "4d9b5be67ce982cf11b3a3e49dabadda27a34680805874edde46c4cfb6744a25",
+  "bytes": 27604,
+  "requestId": "IGNafrX0poiy3Of66JPD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5781adc432bb6712dd7225142f7c6beb5ec37c74c4e1bba9139107aaede5e0be",
+    "bytes": 141731
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

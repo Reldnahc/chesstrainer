@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Button"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "tactic-back-rank-allowed-queen",
+      "text": "Things are a little crowded around the king. It's huddled behind its own pieces, and that leaves a path for the other side's queen toward a back-rank mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "827b1e07c2fdc46c7c3995626a6498e0d653ceea337bd870cdb07a77821c08bc",
+  "recordedAt": "2026-10-15T19:16:19.016Z",
+  "sha256": "e90d2510f9779795bbae5ce62fbf39b53819c1bbb2eba559d7a293d1b0e1e2e4",
+  "bytes": 29734,
+  "requestId": "ofrOUhWdAogii96H6sPE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dfcdcb3a1aef8d70c1dc9e6ca6c2ff0cfffa58421ba471521ce698122161e4af",
+    "bytes": 149672
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

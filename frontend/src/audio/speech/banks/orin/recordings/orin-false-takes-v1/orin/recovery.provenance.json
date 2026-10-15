@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Orin"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "The earlier setback no longer rules the board, and the position is playable once more. A setback need not be the end of the lesson."
+    },
+    "takeId": null
+  },
+  "requestHash": "e356313431705e85430a76023ab81f9a5e4008b722d481f6047953524603a795",
+  "recordedAt": "2026-10-15T19:20:28.121Z",
+  "sha256": "e4185cd6ba32acac5fab6e26779892bc4a51da7161fa53c42244e34a3270d11d",
+  "bytes": 28410,
+  "requestId": "BO3V1expkYRaVSWOmJV9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "086e6ca1d8bcb47331500ac111ccc55631acadafda9fb6bd59f91cb8c00a9147",
+    "bytes": 147164
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

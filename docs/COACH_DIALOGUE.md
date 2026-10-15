@@ -73,17 +73,15 @@ A forced-mate stage is told once per run of the same side's moves, and an
 erosion run only on an Inaccuracy. The chance-taken clip, some of whose takes call the
 reply exact, plays only on a move graded Best, Great or Brilliant. A recovery plays
 `recovery-assisted` when the opponent made Mistakes in between and `recovery`
-otherwise, only in the voices whose take does not credit this move: a move never
-raises its own evaluation, and the opponent's moves made the game playable. The opening-departure
-event fires after the game's last move in our opening catalogue, which can be a
-main-line theory move, so its clip plays only for the voices whose take says our
-opening book ends there; for the others the written line shows when the departure is
-the move's only claim (another voiced claim takes the bubble, as for any unvoiced
-claim). Some coaches'
-takes are false in other places too, and `audio/speech/falseTakes.ts` keeps them silent
-the same way: back-rank takes saying the king's own pieces block its escape squares
-never play (in game review, or as a practice finding's Listen button); no double-attack
-take plays for a double check (its witness names the king: one target, and every legal
+otherwise; no take credits this move, since a move never raises its own evaluation
+and the opponent's moves made the game playable. The opening-departure event fires
+after the game's last move in our opening catalogue, which can be a main-line theory
+move, so every take says our opening book ends there, never that theory ends or that
+the game leaves the book for the first time. Repeated-issue takes never count the
+occurrences, so they play from the second on. A take found false where its meaning
+fires goes in `ALWAYS_FALSE` in `audio/speech/falseTakes.ts` until it is re-recorded;
+the list is empty since the Oct 15 re-recordings. Narrower gates apply elsewhere: no
+double-attack take plays for a double check (its witness names the king: one target, and every legal
 reply meets both checks); book takes saying the opening has a name sit out where our
 catalogue has no name; and chance-taken takes calling the opponent's error small drop out of the take rotation
 unless that error was graded Inaccuracy or Mistake. Takes rotate so that a side's back-to-back
@@ -162,45 +160,21 @@ pure functions rather than implement another dialogue pipeline.
 
 These takes are false in some positions where their meaning fires, so selection
 keeps them silent there and the written line (or the next clip or grade take)
-stands in. The owner approved replacement wording on Oct 15 for every take listed
-below except the chance-taken ones: each bank's `revisions/false-takes-v1.json`
-(Walter's `bank/revisions/walter-false-takes-v1.json`) holds the previous text, the
-new text and the reason, and the scripts already carry the new text. Recording them
-lets them play again; then update `falseTakes.ts`, the departure classification spec
-and this list.
+stands in. Re-recording them with true wording would let them play again.
 
-- **`recovery`** for alfie, arjun, bandit, biscuit, button, celeste, ember, felix,
-  ingrid, jun, mateo, monty, orin, percy, pickle, tala, tamar, waffles, walter,
-  winston, wisp and ziggy, and **`recovery-assisted`** for biscuit, button, mateo,
-  reka, tala, walter and ziggy. They credit this move or the learner with the
-  recovery, or call the other side's Mistakes small (`AWAITING_RERECORDING`).
-- **`repeated-issue`** for wisp ("the earlier moments" assumes more than one). The
-  other repeated-issue takes count ("once before", "second time", "two moments"),
-  so the clip plays only on the second occurrence until the new takes for arjun,
-  femi, ingrid, juniper, marisol, mateo, monty and tala are recorded.
-- **`draw`** for orin: "Neither side could force more" is false for a repetition in
-  a winning position. It still plays until the new take is recorded.
-
-- **`opening-departure`** for arjun, biscuit, ember, felix, femi, ingrid, jun,
-  marisol, mateo, monty, pip, reka, tala and ziggy. Their takes say theory, the
-  known opening, preparation or a documented line ends here, or that everything
-  after is new or fresh; the event only knows our catalogue ends. A new take
-  should say the game leaves our opening book, as Walter's does. A spec classifies
-  every voice's take by these words, so a re-recording must also update the set.
-- **`tactic-back-rank-*`** (with their rook and queen variants): played for alfie,
-  arjun, bandit, femi, ingrid, jun, marisol, percy, rivet and winston; allowed for
-  button, ember, felix, pickle, rivet, tala, wisp and ziggy; missed for femi, jun and
-  marisol.
-  They say the king's own pieces occupy or block its escape squares (or exits). A
-  back-rank mate checks along the king's rank, so the square beside the king toward
-  the checker is empty or the checker itself, never an own piece; the claim never
-  holds. A new take can say the king is boxed in behind its own pieces, as the
-  others do.
 - **`chance-taken`** (the base take) for celeste, mateo and pickle after an
   opponent's Blunder or Miss: "a small gift", "a little something", "a little gap".
   Their other chance-taken takes still play.
+- **Book takes saying the opening has a name** (felix, pip, reka, tala, tamar) sit
+  out where our catalogue has no name for the position.
 - Left playing, because they are false only rarely: the castling "shelter" takes
   (false only when castling into an attack).
+
+The back-rank, recovery, opening-departure, repeated-issue and Orin draw takes that
+were false were rewritten and re-recorded on Oct 15; each bank's
+`revisions/false-takes-v1.json` (Walter's `bank/revisions/walter-false-takes-v1.json`)
+holds the previous text, the new text and the reason, and a spec checks no recorded
+take brings those claims back.
 
 ## Personality boundary
 

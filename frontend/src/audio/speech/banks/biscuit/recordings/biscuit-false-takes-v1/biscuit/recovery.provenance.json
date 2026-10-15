@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Biscuit"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "Hey, we're back in it, teammate! That earlier setback is in the rearview now, and the game is playable again. Let's keep it that way!"
+    },
+    "takeId": null
+  },
+  "requestHash": "3affdb7b04cddab69cad7325d488710b085b9bf857775a1294a226e4b7708243",
+  "recordedAt": "2026-10-15T19:15:55.793Z",
+  "sha256": "f39cd4cd8dbe9c9ab15946ce2b0d7b6a07b40585d35fad464652ceb8eeaa4629",
+  "bytes": 27450,
+  "requestId": "esWHXW6U6uja1C4KgdU9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24a6ecbc28b843c3a77eee7353648cf0115c1ce865098131056de59dd822aa82",
+    "bytes": 136715
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

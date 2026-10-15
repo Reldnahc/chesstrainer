@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Arjun"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "tactic-back-rank-played-queen",
+      "text": "Here's the back-rank theme to test: what happens when a king sits behind its own pieces and the queen reaches its last rank? That rank becomes the target."
+    },
+    "takeId": null
+  },
+  "requestHash": "142527a77e16d33bf49d29de4b96716a0dddafccfee440b6a9fd05ccd8af0ebe",
+  "recordedAt": "2026-10-15T19:15:11.782Z",
+  "sha256": "a0c2844f21aaeb872572ad35af9b3fc48249e94707768c6c3482bb2a37b3acbf",
+  "bytes": 32140,
+  "requestId": "LrJhK2NIO4pppEJkBzuZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55defa9e1654736e94f30cf8ffd0de82625fa578e015eb0df5cbb65d4acc9681",
+    "bytes": 166390
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -31,6 +31,7 @@ VOICELESS = frozenset(("P", "T", "K", "F", "TH"))
 # Reviewed CMU-style pronunciations for interjections, coinages and coach names
 # in authored scripts that no dictionary base or regular rule can produce.
 LEXICON = {
+    "deja": ("D", "EY", "ZH", "AA"),
     "eek": ("IY", "K"),
     "femi": ("F", "EH", "M", "IY"),
     "hidey": ("HH", "AY", "D", "IY"),
@@ -40,8 +41,10 @@ LEXICON = {
     "psst": ("P", "S", "T"),
     "reka": ("R", "EY", "K", "AA"),
     "smidge": ("S", "M", "IH", "JH"),
+    "squished": ("S", "K", "W", "IH", "SH", "T"),
     "tala": ("T", "AA", "L", "AH"),
     "tamar": ("T", "AA", "M", "AA", "R"),
+    "vu": ("V", "UW"),
     "wheee": ("W", "IY"),
     "wonky": ("W", "AA", "NG", "K", "IY"),
     "wowee": ("W", "AW", "IY"),

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Ember"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "After the earlier setback, the position is back on its feet. Now prove it can stay there."
+    },
+    "takeId": null
+  },
+  "requestHash": "286ce9fbbf4681b2d13c6ac01ca30d78e4339901293d44f8b528e416c5c8b385",
+  "recordedAt": "2026-10-15T19:16:51.501Z",
+  "sha256": "d95cdf832cc80eb25a82f88425317554789610e350e24fb48d5fac4f4f414a40",
+  "bytes": 20376,
+  "requestId": "XTow1W75WHh4ac6PbMvb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7dc647597eb042d0c21f5366a4484aee99bbf4f6cbe3ac3532b2ef07d845e090",
+    "bytes": 103278
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Bandit"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "The position's playable again, earlier setback and all. A second chance like that is worth grabbing."
+    },
+    "takeId": null
+  },
+  "requestHash": "01746761849044b0560949a6194323f777f685cf341fd3d896b5d522b15cf723",
+  "recordedAt": "2026-10-15T19:15:29.884Z",
+  "sha256": "a86d1f77d326127685770d29b9c95a11ddf343804217a59c6a0725f374fed37d",
+  "bytes": 21118,
+  "requestId": "kqsrsYDw4HdLjuPny3He",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9960f20306934e5653c4995c04b1713c031361d8769a3bfc5b05f65407fbec7e",
+    "bytes": 106204
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

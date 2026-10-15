@@ -23,7 +23,7 @@ import {corgi} from "../src/dialogue/characters/corgi";
 import {host} from "../src/dialogue/characters/host";
 import {spark} from "../src/dialogue/characters/spark";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
-import {AWAITING_RERECORDING, NAMED_OPENING_TAKES, SILENT_DEPARTURE_VOICES} from "../src/audio/speech/falseTakes";
+import {NAMED_OPENING_TAKES} from "../src/audio/speech/falseTakes";
 import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
 import {readFileSync} from "node:fs";
 
@@ -370,23 +370,19 @@ function departureSelection(coach: {id: string; personality: typeof storyteller}
   return selectGameRecording({game, ply, frame, report, intent: single, utterance: renderDialogue(single, coach)});
 }
 
-test("the opening-departure clip plays only for coaches whose take says our book ends", () => {
-  // Walter says the game leaves "our opening book": true where the catalogue ends.
+test("the opening-departure clip plays for every coach, each saying our book ends", () => {
   expect(departureSelection({id: "classic", personality: storyteller})).toBe("opening-departure");
-  // Arjun says "the known theory runs out", false when the catalogue ends on a theory move.
-  expect(departureSelection({id: "man-partner", personality: partner})).toBeNull();
+  expect(departureSelection({id: "man-partner", personality: partner})).toBe("opening-departure");
 });
 
-test("every recorded opening-departure take is classified by what it claims", () => {
-  // A take that names theory, the known opening, preparation or a documented line,
-  // or calls what follows new or fresh, claims more than our catalogue knows.
-  const claimsTheory = /theory|known opening|prep\b|documented|new\b|fresh/i;
+test("no recorded opening-departure take claims more than our catalogue knows", () => {
+  // The departure fires where our catalogue ends, which can be a main-line theory move,
+  // and an earlier off-book move can come before a transposition back in.
+  const claimsTheory = /theory|known opening|prep\b|documented|new\b|fresh|first time/i;
   for (const bank of registry.banks) {
-    const path = bank.manifestPath;
-    const manifest = JSON.parse(readFileSync(new URL(`../src/audio/speech/${path}`, import.meta.url), "utf8")) as {recordings: {id: string; text: string}[]};
-    const take = manifest.recordings.find(recording => recording.id === "opening-departure");
+    const take = recordedTakes(bank.manifestPath).find(recording => recording.id === "opening-departure");
     expect(take, bank.voiceId).toBeTruthy();
-    expect(SILENT_DEPARTURE_VOICES.has(bank.voiceId), `${bank.voiceId}: ${take!.text}`).toBe(claimsTheory.test(take!.text));
+    expect(claimsTheory.test(take!.text), `${bank.voiceId}: ${take!.text}`).toBe(false);
   }
 });
 
@@ -402,19 +398,17 @@ test("book takes that say the opening has a name are listed to sit out where our
   }
 });
 
-test("takes awaiting re-recording are still the recorded text their revision ledger replaces", () => {
-  // Once a voice is re-recorded its take no longer matches previousText: take it off the list.
-  for (const bank of registry.banks) {
-    const ids = AWAITING_RERECORDING[bank.voiceId] ?? [];
-    if (!ids.length) continue;
-    const ledgerPath = bank.voiceId === "walter" ? "bank/revisions/walter-false-takes-v1.json" : `banks/${bank.voiceId}/revisions/false-takes-v1.json`;
-    const ledger = JSON.parse(readFileSync(new URL(`../src/audio/speech/${ledgerPath}`, import.meta.url), "utf8")) as
-      {recordings: {id: string; previousText: string}[]};
-    const takes = recordedTakes(bank.manifestPath);
-    for (const id of ids) {
-      const revision = ledger.recordings.find(row => row.id === id);
-      expect(revision, `${bank.voiceId} ${id}`).toBeTruthy();
-      expect(takes.find(take => take.id === id)?.text, `${bank.voiceId} ${id}`).toBe(revision!.previousText);
-    }
-  }
+test("no recorded take repeats the claims the Oct 15 rewrites removed", () => {
+  const banned: [RegExp, RegExp][] = [
+    // A back-rank mate's square toward the checker never holds the king's own piece.
+    [/^tactic-back-rank-/, /own pieces (are )?(block|blocking|occupy|occupied)( its| the| them)|escape squares?:? (are )?(blocked|occupied)|exits are occupied|blocked its exits|blocking its (escape|exits)|closing off its escape|escape barrier|sitting (on|where|right where)|stand where|in the way|own side/i],
+    // A move never raises its own evaluation; the opponent's moves made the game playable.
+    [/^recovery/, /this move (makes|restores|brings|gets|puts|did)|this (brings|restores)|with this move|thanks to this move|correct repair|good fight|fighting (back|spirit)|you used them|ready to grab|grabbing chances/i],
+    // The issue can recur a third time or more.
+    [/^repeated-issue$/, /\bonce\b|second|twice|\btwo\b|\bboth\b|earlier moments/i],
+    [/^draw$/, /could force more/i],
+  ];
+  for (const bank of registry.banks) for (const take of recordedTakes(bank.manifestPath))
+    for (const [id, claim] of banned)
+      if (id.test(take.id)) expect(claim.test(take.text), `${bank.voiceId} ${take.id}: ${take.text}`).toBe(false);
 });

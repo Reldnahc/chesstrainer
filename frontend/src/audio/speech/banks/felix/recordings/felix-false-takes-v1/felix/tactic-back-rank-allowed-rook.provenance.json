@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Felix"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "tactic-back-rank-allowed-rook",
+      "text": "The king is penned in behind its own pieces. The other side's rook now has a back-rank mate to aim for."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a439a8559f4a7625591dbffede0abddf9cad0a7636c6a0434acce5b95be3fe3",
+  "recordedAt": "2026-10-15T19:17:20.854Z",
+  "sha256": "9743911ebdeaeda3ed1b70c094fe59c547aa2980fe4db1c6679986a71466273a",
+  "bytes": 22634,
+  "requestId": "5TxL5JRBS6zXdWYXFLbQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d93a91404bc9796f7254673ef5c698d264829dca679fd737dbaddae0a66b4b9d",
+    "bytes": 113727
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

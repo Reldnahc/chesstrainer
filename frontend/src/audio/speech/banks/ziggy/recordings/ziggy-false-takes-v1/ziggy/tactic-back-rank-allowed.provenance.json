@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Ziggy"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "tactic-back-rank-allowed",
+      "text": "This opens a route to a back-rank mate for the other side. Curious detail: the pieces sheltering the king are also what confine it."
+    },
+    "takeId": null
+  },
+  "requestHash": "51fbde30609cd2ab83bc758765cb73d3dee6d93276693d7385c837167a85bb8a",
+  "recordedAt": "2026-10-15T19:25:09.411Z",
+  "sha256": "94efec850129b723e0f93e407a203c067ba3434ac22e49460af9d89403285c52",
+  "bytes": 27647,
+  "requestId": "ZZFCLNx3jByxyo1f6FKz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f269754ed4bc95fa1ab119b3c5dd6fed85f7bf5cf846a9418f2e141a507e676c",
+    "bytes": 142985
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

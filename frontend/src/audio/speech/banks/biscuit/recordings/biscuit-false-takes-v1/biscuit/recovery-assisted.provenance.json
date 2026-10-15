@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Biscuit"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "recovery-assisted",
+      "text": "Phew, playable again after that earlier setback! The other side's errors did us a favor there. Let's not waste it!"
+    },
+    "takeId": null
+  },
+  "requestHash": "61e861992945f8f50147da2677c928424d554fd46e2e8356bd48bd6b1ea5d015",
+  "recordedAt": "2026-10-15T19:15:57.925Z",
+  "sha256": "619aee38a779fe080e2d5899c83b3787adceffbc2654d9ef9d30527036eb7186",
+  "bytes": 24556,
+  "requestId": "tHI5pge4YjtVs5SbwKLs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "091138ec01eed519bf9f9bbdbd653a4cf9f1bb341de2715a13ccfada42cad50b",
+    "bytes": 125430
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

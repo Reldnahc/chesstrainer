@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Ember"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "This move takes the game past our opening book. From here, each move earns its verdict on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "c98baac207b309d943840a2887d2d8f8a6a35f272c57cb908ea3d771223dd887",
+  "recordedAt": "2026-10-15T19:16:49.537Z",
+  "sha256": "e36567770d2c27a550480b6361dac990233121083f9110407d810af64e209453",
+  "bytes": 20663,
+  "requestId": "EMMR92cGfokmBK5KJ16z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4343a1e4430289b77e65f5931e36b128ca6e1cfe9e958d2bf5af20c7fd7df485",
+    "bytes": 103278
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

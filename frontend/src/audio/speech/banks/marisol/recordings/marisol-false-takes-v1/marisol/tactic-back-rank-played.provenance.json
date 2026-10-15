@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Marisol"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "tactic-back-rank-played",
+      "text": "The king stands behind its own pieces, and its last rank has become the point of attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3f075aaaf66770450152c13c1722a58ea01cb0ab1bac0729a5bd7ff799cd0ef",
+  "recordedAt": "2026-10-15T19:19:29.006Z",
+  "sha256": "72f649162d876fe5ccc26ad61a43726012a3e5f4608e5b7e6e1d6892f253a7b8",
+  "bytes": 18160,
+  "requestId": "VK4IjOkZijwasilbliyn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2cc471c519c6b8cdfa2af242ce64e2c6608d68706917200e9bee56e42aa0cb9",
+    "bytes": 90740
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

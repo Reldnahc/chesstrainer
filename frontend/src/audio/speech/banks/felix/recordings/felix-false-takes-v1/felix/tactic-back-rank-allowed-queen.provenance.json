@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Felix"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "tactic-back-rank-allowed-queen",
+      "text": "The king is penned in behind its own pieces. The other side's queen now has a back-rank mate to aim for."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cdbc7e5256e4bd8cbee4b857e00c5aeb7eb70b3fb7d584e07951c7d5022ec53",
+  "recordedAt": "2026-10-15T19:17:18.660Z",
+  "sha256": "62e29989a6d4eab799a95de93626967527ef2f146ce650cee73b2932715edc9b",
+  "bytes": 23607,
+  "requestId": "xxMl8dGV9gG6co0nMp7Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19b382e1ce37ae8b586057bc71dc173cf3895844fcaf3b239f6375073dd2067d",
+    "bytes": 118743
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

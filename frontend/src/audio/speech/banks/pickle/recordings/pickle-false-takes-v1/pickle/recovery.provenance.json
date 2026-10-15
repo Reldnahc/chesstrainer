@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Pickle"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "Ooh, look at that! The earlier setback didn't stick: the position is playable again."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a2544edbe5ec2d6256aeacfcfef0c1df4d173beff89996be63305a09a2c7c90",
+  "recordedAt": "2026-10-15T19:20:41.092Z",
+  "sha256": "8812632726b67b816006e2603d06d91d278b1fa13b5b8778e751dfd9539c1656",
+  "bytes": 19224,
+  "requestId": "xy6foJKhHQMAWXJNpJIq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cda75f5a74a381f9b37a676a9a04b2f9c99a8036e9770f578e17fbb81d01e798",
+    "bytes": 99517
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

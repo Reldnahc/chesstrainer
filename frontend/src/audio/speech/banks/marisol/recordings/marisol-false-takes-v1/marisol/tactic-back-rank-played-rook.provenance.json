@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Marisol"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "tactic-back-rank-played-rook",
+      "text": "The king stands behind its own pieces, and its last rank has become the rook's point of attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "4faf26aa123d9eaddcced8276f6c0bbad347d7571bf7e333b4d875cd88f22255",
+  "recordedAt": "2026-10-15T19:19:32.574Z",
+  "sha256": "41f5d0fe7f947301c306e998c5655ade0b7666c43a96c5eb889118eb46594e3d",
+  "bytes": 18982,
+  "requestId": "42c9V88a0YOY9jTjkAJq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e00642ab6d79e5329467936d7a1ba38dc507534605c326386fcf3539806fe895",
+    "bytes": 95755
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

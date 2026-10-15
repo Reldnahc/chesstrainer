@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Femi"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "tactic-back-rank-played",
+      "text": "Back-rank mate idea, and here's the catch: the king's boxed in behind its own pieces, right on the rank where the check lands."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec43329507b257c2f0df1e1d541c4bf0ca5bf18488e286f731ba353a7d6c6899",
+  "recordedAt": "2026-10-15T19:17:46.205Z",
+  "sha256": "a9a3f2fe1ca6a458eadcb266414bae105f3f2d76231f2df646790ae0aa520193",
+  "bytes": 27525,
+  "requestId": "5cz2gWWPjAL9Dww1DTCM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4db4daf0c8f306daa0ff651e35d63e3e7a04d15cf4ee9c7bbfd8e2c4dbf62f66",
+    "bytes": 140477
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Tala"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "Plot twist: the game is playable again after the earlier setback! Now hunt down the moment the tide turned."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dc37c44a22f12610a5e4dc82b1790f20f8ab9ad3793a6e075761410b5b34239",
+  "recordedAt": "2026-10-15T19:22:38.423Z",
+  "sha256": "5f9e820e8acf6438fe4d39f04f8259995b2d9981ef5c9dfad0336b8afa45e77e",
+  "bytes": 23126,
+  "requestId": "yK6j2jV4N4ORDcJc8UuX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f4ccb595fa1bcec296d53962150cbb7a8e6163ca53118e6dd7539517be0c2db",
+    "bytes": 116235
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

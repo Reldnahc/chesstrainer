@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Rivet"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "tactic-back-rank-played-queen",
+      "text": "The pattern is back-rank mate. King location: behind its own pieces. Exits off the last rank: none. Follow how the queen reaches it."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b0edf1e6beda1973cb55a8a73ea91536d7f57ad460fbc9202af6b1114c8e71a",
+  "recordedAt": "2026-10-15T19:22:17.198Z",
+  "sha256": "97a38120112ed28a87426af9f4ddd06b98c33a8d441c7e263ffab6067f6b502e",
+  "bytes": 31534,
+  "requestId": "Wufzq04cn3HXc6MgqXZG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dbab4cddf8262246818f8c7e87bff2269e4587231a3806c271fcbd806f85191",
+    "bytes": 170152
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

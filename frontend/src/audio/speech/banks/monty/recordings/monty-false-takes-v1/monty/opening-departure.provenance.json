@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Monty"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "Simple point: this move is past the end of our opening book. From here, the position is the only guide."
+    },
+    "takeId": null
+  },
+  "requestHash": "e750f865002af61ce9bf0978ffd707551fbab74134781daf1b5c0aa9ef061863",
+  "recordedAt": "2026-10-15T19:20:08.261Z",
+  "sha256": "9f91c03c39243300db412f31e81e8d91dddac7d573e0d964460a58d9d55605b8",
+  "bytes": 22528,
+  "requestId": "9jnnNejPAO7YwDGljl9F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6f965e0458e006fd69a9925d6070f603076c09d7c275b24e2820dbf7f875073",
+    "bytes": 116235
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Felix"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "Our opening book runs out here. Calculation from here on."
+    },
+    "takeId": null
+  },
+  "requestHash": "aad4c9792fa18ee1ecc0f7a877ef4bd498b3da3f54adb02b116bec61aad9d9a5",
+  "recordedAt": "2026-10-15T19:17:12.925Z",
+  "sha256": "010f5c15d3a8defadcdc33516142df93650b24ed76882dcff8006a52475780f0",
+  "bytes": 14741,
+  "requestId": "iBSphTE0wAJRAibzsEPi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93359ed7fecae89dff787aa9471bd98ec0325c2639f616bccf80557f7d73415f",
+    "bytes": 72767
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

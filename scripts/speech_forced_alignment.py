@@ -92,13 +92,15 @@ def normalize_text(text: str) -> str:
     if not isinstance(text, str):
         raise ValueError("Forced alignment needs transcript text")
     text = text.lower().replace("’", "'")
-    # An accented name folds to plain letters only when the reviewed lexicon has it.
+
+    # An accented word folds to plain letters only when the reviewed lexicon has it.
+    def fold(word: str) -> str:
+        return word.replace("é", "e").replace("à", "a")
+
     text = re.sub(
-        r"[a-zé]+",
+        r"[a-zéà]+",
         lambda m: (
-            m.group(0).replace("é", "e")
-            if m.group(0).replace("é", "e") in speech_pronunciation.LEXICON
-            else m.group(0)
+            fold(m.group(0)) if fold(m.group(0)) in speech_pronunciation.LEXICON else m.group(0)
         ),
         text,
     )

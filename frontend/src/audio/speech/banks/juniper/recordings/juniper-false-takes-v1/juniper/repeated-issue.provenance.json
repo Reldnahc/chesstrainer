@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Juniper"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "repeated-issue",
+      "text": "This issue was here earlier in the game, too. Now it has come back, quietly. Look at where it appeared before, then here."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee4e7015ef593d2ae5ae26820b3fdd75a23ca10c544b1139dba94af467dc9d24",
+  "recordedAt": "2026-10-15T19:19:06.188Z",
+  "sha256": "abff6f0b8c7d4abca064c4d6e32674f5cdd4dd939c25a159c4cb4b6425ae8bd3",
+  "bytes": 27301,
+  "requestId": "SaGErJFbw7vlA7lIj7L6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "007bb844ffab26ed46ddf6cf88d010a9e8ad5a8b6dca9b336de1e04950eb942f",
+    "bytes": 147164
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

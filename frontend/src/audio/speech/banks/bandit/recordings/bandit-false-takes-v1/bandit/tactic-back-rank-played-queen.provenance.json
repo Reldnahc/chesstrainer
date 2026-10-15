@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Bandit"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "tactic-back-rank-played-queen",
+      "text": "The back rank turns into a cage, and the queen is working it. The king's boxed in behind its own bodyguards, and that's right where it gets caught. Ugly for the defender, and it works."
+    },
+    "takeId": null
+  },
+  "requestHash": "0db00b960b2f562a5c44677b3bb3708a3432aba5b427687ecf88e263f32a0b7c",
+  "recordedAt": "2026-10-15T19:15:35.624Z",
+  "sha256": "e96f83af004a0018148f482dff14cdc2a430a307462d36f6e3f678da3cb05ed5",
+  "bytes": 38415,
+  "requestId": "B1fGbGqb3c8Yy9X65XML",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a8236f3a498f25a49a75d3055c4f50ec29eb40e560988e3ffead62a0a3b33db",
+    "bytes": 195647
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

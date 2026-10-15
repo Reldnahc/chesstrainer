@@ -250,12 +250,12 @@ test("a double check plays no double-attack take", () => {
   expect(reviewedTactics([twoTargets], jun)("double-check")).toBe("tactic-double-attack-played");
 });
 
-test("back-rank takes saying the king's own pieces block its escape squares stay silent", () => {
+test("back-rank takes play for every coach", () => {
   const backRank = {id: "back-rank", motif: "back_rank", plies: [1], roles: {attacker: ["d1"], king: ["h1"], escape_blockers: ["g2", "h2"]}};
   // Walter's take says the king is boxed in by its own pieces, which holds.
   expect(reviewedTactics([backRank])("back-rank")).toBe("tactic-back-rank-played");
-  // Jun's says "the king's own pieces block its escape squares": never all of them.
-  expect(reviewedTactics([backRank], {id: "man-expert", personality: expert})("back-rank")).toBeNull();
+  // Jun's re-recorded take says the king is confined behind its own pieces.
+  expect(reviewedTactics([backRank], {id: "man-expert", personality: expert})("back-rank")).toBe("tactic-back-rank-played");
 });
 
 // The learner's 3.Qxd8 takes the queen Black's 2nd move left; a punishment relation links them.
@@ -302,14 +302,12 @@ test("a chance-taken take calling the error small sits out after a blunder", () 
   expect(punishedError("Blunder", {id: "classic", personality: storyteller}).takes).toContain("chance-taken");
 });
 
-test("a recovery plays only the takes that do not credit the move", () => {
+test("a recovery plays the assisted take after the other side's Mistakes", () => {
   // The learner's earlier Qd8 is reused as the setback; Qxd8 is the move after which it is playable again.
   const recovery = (help: boolean) => ({kind: "recovery", plies: [1, 3], code: "recovery",
     facts: {outcome: "playable_position", opponent_errors: help ? [2] : []}});
   const fergus = {id: "frog", personality: newCastPersonalities.frog};
   expect(punishedError("Mistake", fergus, recovery(false)).primaryId).toBe("recovery");
   expect(punishedError("Mistake", fergus, recovery(true)).primaryId).toBe("recovery-assisted");
-  // Winston's recorded take says "playable again with this move"; Walter's says "this restores".
-  expect(punishedError("Mistake", {id: "capybara", personality: newCastPersonalities.capybara}, recovery(false)).primaryId).toBeNull();
-  expect(punishedError("Mistake", {id: "classic", personality: storyteller}, recovery(true)).primaryId).toBeNull();
+  expect(punishedError("Mistake", {id: "classic", personality: storyteller}, recovery(true)).primaryId).toBe("recovery-assisted");
 });

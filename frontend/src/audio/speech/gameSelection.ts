@@ -277,13 +277,11 @@ function selectMeaning(context: GameSpeechContext): string | null {
     // Fresh gameIntent above enforces current node generation, actor and relation
     // endpoint (and supported history); branches never inherit those relationships.
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
-    // The repeated-issue takes say "once before" or "a second time".
-    if (item.code === "repeated" && item.slots.count !== 2) return null;
     // Some chance-taken takes say "exactly the right reply" or "takes full
     // advantage", which a Good move (up to half a pawn short of the best) is not.
     if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label)) return null;
-    // A move never raises its own evaluation: the opponent's moves did. Takes that
-    // credit this move or the learner sit out in falseTakes.ts until re-recorded.
+    // A move never raises its own evaluation: the opponent's moves did, and no take
+    // credits this move or the learner.
     if (item.code === "recovery") return item.slots.help ? "recovery-assisted" : "recovery";
     return simpleIds[item.code];
   }

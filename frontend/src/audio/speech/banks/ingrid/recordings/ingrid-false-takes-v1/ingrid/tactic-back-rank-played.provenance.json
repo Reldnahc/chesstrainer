@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Ingrid"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "tactic-back-rank-played",
+      "text": "The weak spot is the back rank, plain and simple. The king is stuck behind its own pieces, so that last rank is open to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "eae7f90d6737fa8bef39a48e37d62b800cd7edb23145c7c78560d2473804dddb",
+  "recordedAt": "2026-10-15T19:18:14.038Z",
+  "sha256": "f9b68cd8c057725f41bdfe724505019ae5f595fbde08dfe5b01ca639229d5c85",
+  "bytes": 28493,
+  "requestId": "0eQWUhedVWLr8DiZP4hn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3fbbb9322556a124600f26b7c060a065875a1490be60f7d88363c83ad656fbf",
+    "bytes": 144238
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Femi"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "tactic-back-rank-missed-queen",
+      "text": "The back rank was there for the queen to exploit, with the king stuck behind its own pieces. This move walks right past the mate idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "4be69beed1107cb3d24923f8fb72ede13db094abfd012b9a136ddda119edf14f",
+  "recordedAt": "2026-10-15T19:17:41.567Z",
+  "sha256": "cbf791170f175e4a2ee760561af0f53211c67991b4143dc07453f65a66f00830",
+  "bytes": 28611,
+  "requestId": "dRyVa6pcLoAALFOLft6t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41c1a356b212dbc4931c05cff460b388af790dd7088771d7e618f5bb0881e861",
+    "bytes": 145910
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Monty"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "Simple point: after the earlier setback, the game is playable again. Keep building from here."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7764eb11be1877f28e38da277c41c5015c3c9f309461da4e02949966daf23dc",
+  "recordedAt": "2026-10-15T19:20:10.030Z",
+  "sha256": "bfd4c70c2b35ab32d60700ad035f5afba281447e4f4001e9d49b29b543a07bed",
+  "bytes": 20163,
+  "requestId": "RddaIc8oWxUfR2eGuIiA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5307e25b7599cbded0ee7605045a7347918929bc1b11c5499af47af9304b604b",
+    "bytes": 104950
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

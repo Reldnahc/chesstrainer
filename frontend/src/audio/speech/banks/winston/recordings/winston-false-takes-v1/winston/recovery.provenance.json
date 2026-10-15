@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Winston"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "The setback's behind us now, and the position's playable again. Carry on from here."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c6d9e224edaf1e22b78d5fb9e482b68bf69cb679fe5ab1878b7a60ec1516f07",
+  "recordedAt": "2026-10-15T19:24:13.499Z",
+  "sha256": "ad86b925255c0e2b1e444cbc0d98e28ae8847596b60c06dee8a812fb870071f8",
+  "bytes": 15811,
+  "requestId": "IumJW8cdsmU3iuljjO5J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8bb65a7685efffc8723bdb2fc95172cf1ce8f57da059541ef4bb93364a875347",
+    "bytes": 80291
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

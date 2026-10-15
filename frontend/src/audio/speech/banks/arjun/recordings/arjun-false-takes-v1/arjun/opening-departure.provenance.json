@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Arjun"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "Our opening book has no line past this point. So which ideas actually fit the position now? That's worth exploring move by move."
+    },
+    "takeId": null
+  },
+  "requestHash": "7afea5fc2bc741d3b9467d9d10c169dc6a06733610a0ac873f6d32705ec7a5f1",
+  "recordedAt": "2026-10-15T19:15:01.935Z",
+  "sha256": "f7d38c73ae9e4b0e4c08e064d1513c28287761f370eb93a4fddbc0ab1645d851",
+  "bytes": 28367,
+  "requestId": "poIwzIHbGvnF47gGsBe9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7be6c53ab9ebcbd79e026c52eb75bab0ce1dce7e07e9f99b2a53a5373336cb71",
+    "bytes": 147164
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Femi"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "tactic-back-rank-missed-rook",
+      "text": "The back rank was there for the rook to exploit, with the king stuck behind its own pieces. This move walks right past the mate idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7cd821a441c05b2b5720230ef22d0889fe07ff2a73cbc32cf06f60204332e14",
+  "recordedAt": "2026-10-15T19:17:44.048Z",
+  "sha256": "841ee74b24c5cf99e0339d1365186b876ef1453a9b812be2b416b2f8d6a3cc5a",
+  "bytes": 28659,
+  "requestId": "BUFGe5QHpoj5wxeOriQY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef960cd7a92aa2c4cd13b61cf05df6f6f56baf42e0124e895420b061389964e5",
+    "bytes": 145910
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

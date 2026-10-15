@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Winston"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "tactic-back-rank-played-queen",
+      "text": "Okay, the king's sitting behind its own pieces on the back rank, and this move goes after that, with the queen doing the work. Run along the back rank and see what's hemming it in."
+    },
+    "takeId": null
+  },
+  "requestHash": "abb9a7f8147a85fbee98edc0f227c4ae9fd9ad742e8571b2bd2a99d26b68914e",
+  "recordedAt": "2026-10-15T19:24:18.497Z",
+  "sha256": "5122b5076c7d2b03d07997309a90d9f4cb7f4cbf0d179e8682793c90cba54601",
+  "bytes": 32345,
+  "requestId": "FDwodBoHNeUuqnucCuhZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d13bb90303cdbe156ffefbbbbf6ee59a408f6c2fe1b507b867b09ec7ecabb8a",
+    "bytes": 166390
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Tala"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "Here the game walks off the end of our book. From this move on, every clue comes from the board itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "1aa7d79e6c6566b4085616462c307a0d3ffedd515023ba5eee410d6676215436",
+  "recordedAt": "2026-10-15T19:22:36.173Z",
+  "sha256": "d113ef71040fd8839ec17bfc4c3a4850bad4a5904f4c3cc88df58cc2f89a07c0",
+  "bytes": 21689,
+  "requestId": "WhHtuGCreZ68Bryic3NL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "caa71741cba1c5a868b65267c0e355b44c7968707ddbb783847770005a17123d",
+    "bytes": 108712
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

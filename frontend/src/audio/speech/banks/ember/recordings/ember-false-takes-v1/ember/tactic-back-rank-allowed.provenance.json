@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Ember"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "tactic-back-rank-allowed",
+      "text": "The back rank is weak, and this move lets the other side use it. The king is shut in behind its own pieces, and that is a route to mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "7973c57a0b277f06b9cc259cac3af7b2a7067c90f69448cf20c1af6ef745768e",
+  "recordedAt": "2026-10-15T19:16:53.767Z",
+  "sha256": "c09c4acee97e365013b760b5e71572e7094951a6cf49f744239948909d924a36",
+  "bytes": 29371,
+  "requestId": "5UvFFSwEo8Pi2eTffWpT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f19fdee43d6d32c28cf7a042bbfa0bd2ebc3dafeba897f8564825755719b6b5",
+    "bytes": 149672
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

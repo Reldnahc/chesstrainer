@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Monty"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "repeated-issue",
+      "text": "Bottom line: this game has run into the same problem before. Find the common thread in those moments."
+    },
+    "takeId": null
+  },
+  "requestHash": "43674081f8dc94c2623763eee6c5cfda88dd9340d702aabf1054f5800d9f0c9f",
+  "recordedAt": "2026-10-15T19:20:11.947Z",
+  "sha256": "2d2f007157e3693c57d9bdc190b4a1c1150414915ab35b563f7a2b92e90cdac0",
+  "bytes": 21720,
+  "requestId": "C5QKTnWOKmAKBNBwAIcT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d832afdc386952b6992c27d17d585f59a54c44fd80d6d450bb796f58583e2db6",
+    "bytes": 112474
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

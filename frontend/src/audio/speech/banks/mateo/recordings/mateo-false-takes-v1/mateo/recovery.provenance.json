@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Mateo"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "Wait, look! After that earlier mistake, the game is back to playable. Keep it going."
+    },
+    "takeId": null
+  },
+  "requestHash": "238d87978926fb6c7e8c24633acfbc8314530a3636c935d743229b17be6455ee",
+  "recordedAt": "2026-10-15T19:19:50.014Z",
+  "sha256": "19792acad16b49cdf8eed024d3c12edb74514c07133dd7fffdb810724a34e8bd",
+  "bytes": 19386,
+  "requestId": "PuWk64t8Uqgr0pRECQh3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c99df0766ee801b5bd13be4f2432a91b6528d20486771d491a1965662d86e58",
+    "bytes": 95755
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

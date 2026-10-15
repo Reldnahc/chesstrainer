@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Pip"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "Oh! Our opening book has no more moves for this game. Now it's just the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "f97faf52420c6895468fa8e05a46872676451f6a788d273a87fec5b260e35f9f",
+  "recordedAt": "2026-10-15T19:21:37.656Z",
+  "sha256": "5ffa1da5bbe75c21b32d9fb5d62941987aac3afd465578a71a670d9aaa847359",
+  "bytes": 17795,
+  "requestId": "omR1Wtnh9g3CRV0X9Grt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7f8fb5cac783b5192caa01f7c5c9e859a0f0188203fd3b6aa76f880669a8d3f",
+    "bytes": 88232
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

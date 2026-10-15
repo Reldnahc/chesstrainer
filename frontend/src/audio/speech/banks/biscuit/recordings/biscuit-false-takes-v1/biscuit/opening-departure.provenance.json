@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Biscuit"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "Here's where our opening book stops for this game! No more book to lean on now, so we'll work out every move together."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e06882f18059776fec00a6a6d56192ea6abe3c813a0aae8428c15aae7c4a4c7",
+  "recordedAt": "2026-10-15T19:15:53.133Z",
+  "sha256": "7f3a4e9a8d0b69a5f461ea959b9f389234c5bbce491993c8fe5ab99d85012910",
+  "bytes": 23532,
+  "requestId": "lRsgwaMotxwwtSglzY8i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4306feaafa8cfb95dbe86bd2fb456552b0df46fef7b4b495763094945aa049ca",
+    "bytes": 117489
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

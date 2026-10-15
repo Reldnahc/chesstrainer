@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Jun"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "tactic-back-rank-played-rook",
+      "text": "Back-rank mating motif with the rook. The king is confined behind its own pieces, and its last rank is the weakness."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d7ccb5d9471db13bc12ccda52c5f3ce091e813a11b91ba57d7f02f6634ce98e",
+  "recordedAt": "2026-10-15T19:18:50.079Z",
+  "sha256": "9df1792428ea8d61f5b6cf19ddfa2b4f8080f9a3506e38d583f3d8e8e6ce898b",
+  "bytes": 25854,
+  "requestId": "5tF2GXPynslZr6FCf67e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5cc5af028c08c00dde16b5ac94548c8071a040d29d6e9cb2cb205ce3d17b349c",
+    "bytes": 132954
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

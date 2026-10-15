@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Marisol"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "repeated-issue",
+      "text": "This issue is not new in this game; it came up earlier. Placed side by side, those moments share a pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "3cb815a9e40859773d4a39174e21eac129b4695dc5d9e048c4e9c6c323c44928",
+  "recordedAt": "2026-10-15T19:19:20.969Z",
+  "sha256": "9a0707479453fb137edaad563d89f088025436d7328e4b9845757fb35e32c8a5",
+  "bytes": 23559,
+  "requestId": "BKAPRYBfzPnbB9dsyqJb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "979234cec51a2019bd35b3dd51559af216cec168bedde7f634680b96d05e5a15",
+    "bytes": 122505
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

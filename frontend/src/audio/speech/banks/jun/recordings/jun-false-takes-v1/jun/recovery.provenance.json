@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Jun"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "The evaluation has climbed back into playable range since the earlier error. Precise moves keep it there."
+    },
+    "takeId": null
+  },
+  "requestHash": "fcf4c7c1737b3c45ca1f453994afdc5614d315887f6281e1a01d344a217ad4c0",
+  "recordedAt": "2026-10-15T19:18:36.008Z",
+  "sha256": "c5ad9bf3b1e44042dbe64ca5008f2ec93790d797bf88e352d77f06de630c4422",
+  "bytes": 21174,
+  "requestId": "d7AidBxjufRobrllPgOI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e69a30bee5c8ce1ba3d0fabb2810a3aaa26c2b72633d9825c34c59c9e0ef86c5",
+    "bytes": 107458
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

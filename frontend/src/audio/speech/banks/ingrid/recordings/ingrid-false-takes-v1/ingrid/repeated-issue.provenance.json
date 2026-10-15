@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Ingrid"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "repeated-issue",
+      "text": "This issue has shown up earlier in this game too. That's useful to know: set this moment beside where it came up before, and see what they share."
+    },
+    "takeId": null
+  },
+  "requestHash": "f76135dbd40336dfc0b88d27d17de258a291effaba3aa5d9a5492651c123bad9",
+  "recordedAt": "2026-10-15T19:18:11.518Z",
+  "sha256": "69339d8051b085780efb2d727d5ec22287c65d282d6cd839c6826247f3d7c6f3",
+  "bytes": 28957,
+  "requestId": "eXcstL6UnCmBUyrEEaNq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56ff0b5cbbf66c3ba9d3086539493895413aac57a99a718410e4e240672a6834",
+    "bytes": 148418
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

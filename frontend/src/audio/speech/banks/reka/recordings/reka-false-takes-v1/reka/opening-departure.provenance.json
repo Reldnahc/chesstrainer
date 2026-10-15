@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Reka"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "opening-departure",
+      "text": "And the game steps off the edge of our opening book! From here, we're on our own, and that's the fun part."
+    },
+    "takeId": null
+  },
+  "requestHash": "36bdbd6ea09ccf093677e4cf05fb0597b7bbe445fbf2bc84fb44a022c9519719",
+  "recordedAt": "2026-10-15T19:21:51.065Z",
+  "sha256": "c3848dd3f69cdb495c357f7b992872e02ebf886b3538303465bd2a6d1cc8ce76",
+  "bytes": 20951,
+  "requestId": "gInZd6VMq3tPoogLXCFg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f29b75719eefb00468f7db029f7c4780e192f1fb6e9180ed250b5e89091af22b",
+    "bytes": 106204
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

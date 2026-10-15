@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Waffles"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "recovery",
+      "text": "Back in the fight! Playable again after the earlier setback. Hold this ground!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2b7daeb3f8053fa8259dc7327e4a907a3d6a8bd3b601964558ecd6a392792a46",
+  "recordedAt": "2026-10-15T19:23:44.773Z",
+  "sha256": "e3162b22f613288b053c20fd972a79673cbc774ce0911bfb94e51a4c3dd59d06",
+  "bytes": 18695,
+  "requestId": "QGB7MY2a8SZ3Hm3ecRed",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d6377f6e8b24c9506764a90eff892953d9219e20bf9d130468e838121c8402d",
+    "bytes": 94501
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

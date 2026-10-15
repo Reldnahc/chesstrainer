@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Tala"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "tactic-back-rank-allowed",
+      "text": "Zoom in on the king: it's cooped up behind its own pieces, and a back-rank mate is now in reach for the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "ecfb335ef65e97de41831c8b015a36889f17dac6798d9b3ff684e929ba0db124",
+  "recordedAt": "2026-10-15T19:22:44.332Z",
+  "sha256": "d7ed22dfebd420316bca48b0b509babfe1a48d375dc31a443d78ed9274518617",
+  "bytes": 23294,
+  "requestId": "giO7y3LfiLjUBqwP9TkL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27647d2f585020593879548c1b2280a80e219487f7f96357d99cb66353ccf056",
+    "bytes": 118743
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
