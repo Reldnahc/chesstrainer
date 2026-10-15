@@ -1,5 +1,5 @@
 import type {Schema} from "../../api";
-import type {Game, Position, Report} from "../../gameReview/types";
+import {isErrorLabel, type Game, type Position, type Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
 import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings, tacticStartsHere} from "../../dialogue/eventClaims";
@@ -78,7 +78,7 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   const f = event.facts, role = f.role, motif = String(f.motif);
   if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item)) return null;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
-  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.label);
+  const poor = isErrorLabel(report.label);
   if ((role === "played" && poor) || (["allowed", "caused", "missed"].includes(String(role)) && !poor)) return null;
   const source = role === "missed" ? "best" : "actual";
   if (!item.evidence.some(ref => ref.source === "stockfish" && ref.field.startsWith(`${source}_line/findings/`))
@@ -395,7 +395,6 @@ const gradePools: Readonly<Record<string, string>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
 };
-const correctionGrades = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
 // The generic readings a grade take stands in for. Anything else (a capture,
 // check, tactic, mate, opening or relationship) is specific and keeps its clip.
 const plainCorrection = new Set(["evaluation-loss", "stronger-alternative",
@@ -422,7 +421,7 @@ function gradeTake(context: GameSpeechContext, recordingId: string | null): stri
   // A reviewed move whose sentences have no clip at all still speaks its grade. A
   // legacy report without move intelligence keeps showing its own written coaching.
   if (!label || !gradePools[label] || (recordingId
-    ? !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
+    ? !(isErrorLabel(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
   // Takes a coach has not recorded yet sit out, so every turn plays a take.
   const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
   const ids = recorded.length ? recorded : all;

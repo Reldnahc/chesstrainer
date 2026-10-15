@@ -3,10 +3,8 @@ import { ChevronRight } from "lucide-react";
 import MoveSymbol from "../MoveSymbol";
 import MoveBadge from "../MoveBadge";
 import ReviewSummary from "./ReviewSummary";
-import type { Analysis, Game } from "./types";
+import { isErrorLabel, type Analysis, type Game } from "./types";
 import type { GameExploration } from "./useGameExploration";
-
-const bad = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
 
 export default function ReviewMoves({
   game,
@@ -76,15 +74,15 @@ export default function ReviewMoves({
           hidden={tab !== "moves"}
           onClick={() => {
             const next = game.frames.findIndex(
-              (f, i) => i > cursor.ply && f.report && bad.has(f.report.label),
+              (f, i) => i > cursor.ply && isErrorLabel(f.report?.label),
             );
             const first = game.frames.findIndex(
-              (f) => f.report && bad.has(f.report.label),
+              (f) => isErrorLabel(f.report?.label),
             );
             if (next >= 0 || first >= 0) navigate(next >= 0 ? next : first);
           }}
           disabled={
-            !game.frames.some((f) => f.report && bad.has(f.report.label))
+            !game.frames.some((f) => isErrorLabel(f.report?.label))
           }
         >
           Next mistake <ChevronRight size={14} />

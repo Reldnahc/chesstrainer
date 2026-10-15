@@ -7,7 +7,7 @@ import Reveal from "../Reveal";
 import ReturnButton from "../ReturnButton";
 import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
-import type { Game, Position, Report } from "./types";
+import { isErrorLabel, type Game, type Position, type Report } from "./types";
 import { gameReaction } from "../coach/reactions";
 import { gameIntent } from "../dialogue/gameIntent";
 import { useDialogue } from "../dialogue/useDialogue";
@@ -173,9 +173,7 @@ export default function PositionCoach({
             <span className="coach-rated-move">
               <span className="sr-only">{actor} · </span>
               {frame?.san || "Move"} is{" "}
-              {["Mistake", "Miss", "Blunder", "Inaccuracy"].includes(
-                report.label,
-              )
+              {isErrorLabel(report.label)
                 ? report.label === "Inaccuracy"
                   ? "an "
                   : "a "
