@@ -157,12 +157,14 @@ def deviation_verdict(engine, board: chess.Board, played: str, book_moves) -> di
         # Shown as walking into a mate the book move avoids.
         return {"verdict": "worse", "loss_cp": None, "compared_with": best_uci}
     # A mate the book move had and the learner's move gives up counts as a forced
-    # mate's usual 1000 cp, so it is reported as a loss, not a mate walked into.
+    # mate's usual 1000 cp, so it is reported as a loss, not a mate walked into;
+    # mate_lost lets the text name the mate instead of a pawn count.
     cp = loss.cp if loss.cp is not None else mate_lost_cp(best, scores[played])
     return {
         "verdict": "fine" if cp <= FINE_LOSS_CP else "worse",
         "loss_cp": cp,
         "compared_with": best_uci,
+        "mate_lost": loss.mate_lost,
     }
 
 
@@ -220,6 +222,7 @@ def learner_moved(practice: dict, book: Book, before: chess.Board, move: chess.M
             "verdict": None,
             "loss_cp": None,
             "compared_with": None,
+            "mate_lost": False,
         },
     }
 
@@ -240,6 +243,7 @@ def judged(practice: dict, before: chess.Board, verdict: dict) -> dict:
         verdict=verdict["verdict"],
         loss_cp=verdict["loss_cp"],
         compared_with=before.san(chess.Move.from_uci(compared)) if compared else None,
+        mate_lost=bool(verdict.get("mate_lost")),
     )
     return {**practice, "deviation": deviation}
 
@@ -286,7 +290,7 @@ def kept_playing(practice: dict) -> dict:
     return _ended(practice, "book_end")
 
 
-DEVIATION_FIELDS = ("ply", "san", "uci", "book", "verdict", "loss_cp", "compared_with")
+DEVIATION_FIELDS = ("ply", "san", "uci", "book", "verdict", "loss_cp", "compared_with", "mate_lost")
 
 
 def book_moves(practice: dict) -> list[str]:
@@ -304,6 +308,10 @@ def practice_view(practice: dict | None) -> dict | None:
         "title": practice["title"],
         "status": practice["status"],
         "ended": practice["ended"],
-        "deviation": {key: deviation[key] for key in DEVIATION_FIELDS} if deviation else None,
+        # A deviation saved before mate_lost existed has not lost a mate.
+        "deviation": {key: deviation[key] for key in DEVIATION_FIELDS[:-1]}
+        | {"mate_lost": deviation.get("mate_lost", False)}
+        if deviation
+        else None,
         "book_moves": book_moves(practice),
     }

@@ -43,7 +43,9 @@ function practicePrompt(session: PlaySession, bot: string) {
         ? `${deviation.san} is within ${pawnsText(30)} of the book move.`
         : deviation.loss_cp === null
           ? `${deviation.san} walks into a mate the book move avoids.`
-          : `${deviation.san} gives up about ${pawnsText(deviation.loss_cp)} against the book move.`;
+          : deviation.mate_lost
+            ? `${deviation.san} misses the forced mate the book move has.`
+            : `${deviation.san} gives up about ${pawnsText(deviation.loss_cp)} against the book move.`;
     return {
       title: <strong>{bot}</strong>,
       text: <div className="play-practice-prompt" role="status"><p>{line}</p><p className="small">{detail}</p></div>,
