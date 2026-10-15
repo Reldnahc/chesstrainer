@@ -11,7 +11,8 @@ from dataclasses import dataclass
 
 import chess
 
-from trainer.chess_core import Score, digest, evaluation_loss
+from trainer.chess_core import Loss, Score, digest, evaluation_loss
+from trainer.game_accuracy import accuracy_cp
 
 VERSION = "coach-bot-1"
 # From each rating upward the bot refuses moves that allow a forced mate, then
@@ -35,6 +36,20 @@ class BotChoice:
 def seeded(game_id: str, ply: int) -> random.Random:
     """A retry of the same move request must choose the same reply."""
     return random.Random(int(digest([VERSION, game_id, ply])[:12], 16))
+
+
+def mate_lost_cp(best: Score, played: Score) -> int:
+    """The loss when a forced mate is given up, with the mate counted as 1000 cp."""
+    return max(0, accuracy_cp(best) - accuracy_cp(played))
+
+
+def guard_loss(best: Score, played: Score) -> Loss:
+    """The loss the guards judge. Giving up a forced mate counts in centipawns, with
+    the mate as 1000 cp, so throwing a mate away into a lost position is vetoed."""
+    loss = evaluation_loss(best, played)
+    if loss.mate_lost and not loss.allows_mate:
+        return Loss(cp=mate_lost_cp(best, played), mate_lost=True)
+    return loss
 
 
 def guard_violated(rating: int, loss) -> bool:
@@ -80,14 +95,14 @@ def human_move(engine, board: chess.Board, policy, rating: int, rng) -> BotChoic
         if uci not in scores:
             probe = engine.analyze(board, root_moves=[uci], multipv=1)
             scores[uci] = Score.model_validate(probe.candidates[0]["score"])
-        loss = evaluation_loss(best, scores[uci])
+        loss = guard_loss(best, scores[uci])
         checked.append((uci, loss))
         if not guard_violated(rating, loss):
             return _choice(board, uci, "human", best, len(checked))
     # Every draw failed the guard: keep the least damaging human candidate rather
     # than switching to the engine's move, which would change the bot's character.
     uci = min(checked, key=lambda row: (row[1].allows_mate, row[1].cp or 0))[0]
-    return _choice(board, uci, "fallback", best, len(checked))
+    return _choice(board, uci, "human", best, len(checked))
 
 
 def _choice(board, uci, source, best, samples):

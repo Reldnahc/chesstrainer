@@ -17,7 +17,7 @@ export type PuzzleSelection = {
 export const PUZZLE_GOALS: readonly { value: PuzzleGoal; label: string }[] = [
   { value: "", label: "Any goal" },
   { value: "mate", label: "Checkmate" },
-  { value: "material", label: "Win material" },
+  { value: "material", label: "Winning advantage" },
 ];
 
 /** Rating bands are a convenience over the pack's own Lichess ratings, not a skill claim. */

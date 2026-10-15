@@ -192,7 +192,8 @@ def starter_pack() -> PackProvider:
 def production_providers(settings) -> tuple:
     """Local packs plus the account's own-game puzzles; nothing is fetched at runtime.
 
-    A configured installed pack is verified at startup.
+    A configured installed pack's manifest, hash and rows are checked at startup; it
+    is engine-verified only when scripts/verify_puzzle_pack.py was run on it.
     """
 
     providers = []

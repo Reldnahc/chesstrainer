@@ -1736,7 +1736,8 @@
               "rook",
               "queen",
               "minor",
-              "pawn"
+              "pawn",
+              "mixed"
             ],
             "title": "Kind",
             "type": "string"
@@ -3974,6 +3975,17 @@
             "title": "Id",
             "type": "string"
           },
+          "move": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Move"
+          },
           "opponent": {
             "title": "Opponent",
             "type": "string"
@@ -4028,7 +4040,8 @@
           "opponent_rating",
           "result",
           "played_on",
-          "ply"
+          "ply",
+          "move"
         ],
         "title": "InsightGame",
         "type": "object"
@@ -6741,6 +6754,10 @@
             "title": "Games",
             "type": "integer"
           },
+          "human_model": {
+            "title": "Human Model",
+            "type": "boolean"
+          },
           "platform": {
             "anyOf": [
               {
@@ -6781,6 +6798,7 @@
         },
         "required": [
           "status",
+          "human_model",
           "fitted_rating",
           "platform_rating",
           "platform",
@@ -6938,6 +6956,24 @@
             "title": "Coach Name",
             "type": "string"
           },
+          "fallback_elo": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fallback Elo"
+          },
+          "fallback_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Fallback Plies",
+            "type": "array"
+          },
           "frames": {
             "items": {
               "$ref": "#/components/schemas/GameFrame"
@@ -7060,6 +7096,8 @@
           "termination",
           "saved_game_id",
           "reply",
+          "fallback_plies",
+          "fallback_elo",
           "frames"
         ],
         "title": "PlayState",

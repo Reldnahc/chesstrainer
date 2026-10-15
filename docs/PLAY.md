@@ -34,11 +34,23 @@ rating upward (`trainer/play/bot.py`, `GUARDS`):
 | 1800 | A move that loses at least 500 cp |
 | 2200 | A move that loses at least 300 cp |
 
+Giving up a forced mate counts as a loss with the mate worth 1000 cp (the accuracy
+convention), so a mate thrown away into a −9.00 position loses 1900 cp and is
+refused from 1400.
+
 Up to five draws are checked. If every one fails, the least damaging checked
 human move is played rather than the engine's move, so the bot never switches
 character. Draws are seeded by game and ply, so a retried request plays the same
 reply. Above 2500 the policy's rating dial stops improving play, so the range
 ends there.
+
+**Without the human model.** Human-like play needs the human move model. When the
+profile reports it cannot answer (`human_model: false`), the setup page disables
+Human-like and offers only the engine. If the model fails during a Human-like game,
+the bot still answers, with Stockfish at `UCI_Elo` max(1320, the chosen rating), and
+the reply's source is `fallback`. The game keeps those plies (`fallback_plies`); the
+page banner says how many of the bot's moves came from Stockfish and at what
+setting, and the saved PGN's `Bot` header records it.
 
 **Engine (1800 to 2600).** Stockfish's own `UCI_LimitStrength` and `UCI_Elo`,
 through `Stockfish.play_limited`, never cached or graded. Stockfish's limiter
@@ -97,8 +109,10 @@ book verdict still being computed when the learner goes back is discarded.
 ### No resignation, no draw offers
 
 The coach never resigns; it plays on until the board decides. There is no draw
-offer. Threefold repetition and the fifty-move rule end the game automatically,
-and the learner can resign.
+offer. Threefold repetition and the fifty-move rule end the game automatically
+once they have happened: the third occurrence of the position, or fifty moves by
+each side without a capture or pawn move. A draw the side to move could only claim
+with its next move does not end the game. The learner can resign.
 
 ## Match my level
 
@@ -112,7 +126,8 @@ keeps the rating with the highest mean log-probability of the moves actually
 played. The result, its sample size and the median platform rating are stored in
 `play_profiles` and refreshed whenever the library's game count changes, by a
 `level_fit` job of the account (queued first, cancellable, drained on shutdown, and
-kept out of the import activity list). Without the model, or before the fit finishes, games use 1200. The fit is
+kept out of the import activity list). The median platform rating ("where you were
+rated N") reads only imported games' Elo headers, never a Play game's. Without the model, or before the fit finishes, games use 1200. The fit is
 a conditioning value with its evidence shown beside it, not a rating claim.
 
 ## Commentary
@@ -140,7 +155,8 @@ by position without move counters (`trainer/play/book.py`), so a transposition j
 the line it reaches: the Dragon's 2.Nc3 and 3.Nc3 lines meet the main Dragon. While
 the game is in that tree the bot answers from it. With one book move it plays that;
 with several it samples them by the Maia policy at the chosen rating restricted to the
-book moves, each keeping at least a 10% share so rarer lines still come up. Book
+book moves, each keeping at least a 10% share of the choice (the rest keeps the
+policy's proportions) so rarer lines still come up. Book
 replies do no engine work and are shown without waiting for the learner's grade.
 
 Nothing about the practice is shown above the board. While the learner is in book,
@@ -151,7 +167,10 @@ When the learner leaves the book, the move stays on the board and the bot waits.
 The coach's own bubble says it is not the line, with **Take back** and **Play on**
 in place of its usual actions. The reply request compares the move with the best
 book move in one restricted Stockfish search: within 0.3 pawns it is "decent, but
-not the line", otherwise it "costs something", with the loss in pawns. The question
+not the line", otherwise it "costs something", with the loss in pawns. A move that
+lets the opponent mate where the book move does not is reported as walking into a
+mate; a mate the book move had and the learner's move gives up is a loss, with the
+mate worth 1000 cp. The question
 appears even when the move is fine. Play on turns the game into an ordinary one
 against the usual bot.
 
@@ -169,8 +188,13 @@ other game.
 
 When a game ends (checkmate, draw by rule, or the learner resigning) the moves
 are written as a PGN with the coach as the opponent and both conditioning ratings
-as the Elo headers, imported through the ordinary import path with the learner's
-side explicit, and queued for analysis like any imported game. The finished
+as the Elo headers, plus a `Bot` header naming what really chose the bot's moves
+(for example `Maia-3 conditioned at 600`, `Stockfish UCI_Elo 1800`, or the Maia
+setting followed by the moves Stockfish played while the human model was
+unavailable). It is imported through the ordinary import path with the learner's
+side explicit, and queued for analysis like any imported game. The Elo headers
+are model settings, not ratings: Insights leaves Play games out of its rating
+statistics, and the level fit's median platform rating ignores them. The finished
 page shows the result in the page banner with a link to that review; it stays
 until closed. Starting a new game while one is active marks the old
 one abandoned without saving it.

@@ -109,6 +109,8 @@ export default function PlayGame({ id }: { id: string }) {
     );
   const shownOrientation = orientation ?? state.learner_color;
   const finished = state.status === "finished";
+  // Replies the engine played because the human move model was unavailable, once shown.
+  const stoodIn = state.fallback_plies.filter((reply) => reply <= latest).length;
   // The latest position on the learner's turn, or an earlier one to play from again.
   const playable = (session.learnerToMove && !session.browsing) || session.canRewind;
   const score = positionScore(report?.white_score, frame);
@@ -136,6 +138,11 @@ export default function PlayGame({ id }: { id: string }) {
   return (
     <div className="game-workspace">
       {session.error && <Banner tone="error" onDismiss={session.dismissError}>{session.error}</Banner>}
+      {stoodIn > 0 && state.fallback_elo != null && (
+        <Banner tone="info">
+          {stoodIn} of {bot}'s moves came from Stockfish at Elo {state.fallback_elo}, because the human move model was unavailable.
+        </Banner>
+      )}
       {finished && (
         <Banner tone="success" action={state.saved_game_id ? (
           <ActionLink variant="primary" size="compact" href={gamesPath(1, state.saved_game_id)}>

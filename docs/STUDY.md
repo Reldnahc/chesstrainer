@@ -69,7 +69,10 @@ The bundled starter pack (`starter_pack/`, CC0, 972 puzzles) is weighted toward
 lower ratings with solver lines of at most nine plies; its README records the
 sampling. `scripts/build_puzzle_pack.py` rebuilds or enlarges a pack from a
 downloaded dataset under a new version. `PUZZLE_PACK_PATH` adds a larger
-installed pack, verified at startup. Saved solves keep their own snapshots across
+installed pack, whose manifest, hash, rows and count are checked at startup; it is
+engine-verified only if `verify_puzzle_pack.py` was run on it (the manifest's
+`verification` block records that run). The starter pack's recorded run is
+`solution-uniqueness-v1`, which allowed a slower rival mate as a warning. Saved solves keep their own snapshots across
 pack revisions. Lichess themes and ratings are external labels; Fieldwork makes
 no claim about a puzzle's pedagogical value.
 
@@ -79,8 +82,8 @@ no claim about a puzzle's pedagogical value.
 under Fieldwork's own engine, not only Lichess's generator and votes. For every
 solver decision it runs bounded native Stockfish at one root and limit, as the
 review pipeline does, and requires that the solution scores within 50 cp of the
-engine's best move, that every other move is at least 100 cp worse (a second
-mate of equal or shorter length fails, a slower one is a warning), and that the
+engine's best move, that every other move is at least 100 cp worse and no longer
+winning (under +200 cp), that no other move mates at any length, and that the
 line ends at least 150 cp ahead or in mate. Opponent replies are not graded.
 Results stream to ignored `data/puzzle-verification/<run>/results.jsonl` with
 `report.json` and `report.md`; `--resume` continues an interrupted run,
@@ -88,9 +91,11 @@ Results stream to ignored `data/puzzle-verification/<run>/results.jsonl` with
 `manifest.json`, and `--prune` removes failed rows and re-pins the CSV.
 
 The verifier rejects puzzles that are ambiguous for this player, which accepts
-only the pinned line: a second mate in one (for example either rook capturing,
-or a rook underpromotion beside the queen promotion) or an alternative within
-the margin. Lichess accepts any mate in one there; Fieldwork's `line-v1`
+only the pinned line: a second mate (for example either rook capturing, or a
+rook underpromotion beside the queen promotion, or a slower mate), an
+alternative within the margin, or one that still wins. Lichess's own generator
+also rejects any second mate and any rival that keeps comparable win chances.
+Lichess accepts any mate in one when solving; Fieldwork's `line-v1`
 definitions do not yet carry accepted alternatives, so such puzzles are pruned
 rather than mis-graded. Passing means engine agreement at the recorded depth,
 not pedagogical value.
@@ -98,9 +103,10 @@ not pedagogical value.
 ### Puzzles from your games
 
 `puzzles/generation.py` mines each analyzed game once per generator version
-(`games-v1`) for missed mates and missed wins. Candidates come from evidence the
+(`games-v2`) for missed mates and missed wins. Candidates come from evidence the
 analysis job already saved: a training decision, or a full-game review move on a
-ply the training pipeline never judged, where the learner was to move, the best
+ply the training pipeline never judged (read as the review shows it: the adopted
+refinement when a deeper search replaced the baseline), where the learner was to move, the best
 move was a forced mate the learner did not play, or the best move kept at least
 +150 cp and the learner gave up at least 150 cp. Defensive resources are not
 mined yet. Nothing is searched when a page opens.
@@ -108,8 +114,9 @@ mined yet. Nothing is searched when a page opens.
 For each candidate the line builder asks Stockfish for two lines at the learner's
 root (`PUZZLE_GENERATION_DEPTH` 18, at most `PUZZLE_GENERATION_TIME` seconds per
 search, through the shared engine cache). The best move is kept only if it is
-unique by the pack verifier's margins in `puzzles/verification.py`: at least
-100 cp better than the second line, or a mate with no equal or faster rival mate.
+unique by the pack verifier's rule in `puzzles/verification.py`: the second line
+is at least 100 cp worse, below +200 cp (a rival that still wins clearly would be
+a correct answer marked wrong), and not a mate of any length.
 The opponent then plays the engine's best defence, not the move played in the
 game. The line continues until the next learner move is no longer unique or the
 position is mate, and is cut after the last learner move. It needs at least two
@@ -122,8 +129,9 @@ already serving a ready puzzle for the account abstains as a duplicate.
 
 Kept lines become `source="games"` definitions keyed `game_id:ply`, with the
 vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`
-only when the kept line ends in checkmate, otherwise `advantage`/`crushing`, so a
-forced mate cut short by an ambiguous move is a crushing win), length
+only when the kept line ends in checkmate, otherwise Lichess's ranges: `crushing`
+above +6.00, `advantage` above +2.00 and no goal theme below that, so a forced
+mate cut short by an ambiguous move is a crushing win), length
 and phase themes, no rating, and provenance
 naming the matchup, date, move number and the move actually played. Each row in
 `game_puzzles` records its status, abstention reason, root and verification
@@ -149,7 +157,8 @@ no exercise, recall, FSRS or weakness evidence.
 ### Selection
 
 `GET /api/puzzles/next` accepts a source, rating bounds, one theme, a goal
-(`mate`, or `material` for everything else) and a mode. New mode chooses
+(`mate` for the `mate` theme, or `material`, shown as "Winning advantage", for the
+`advantage` and `crushing` themes) and a mode. New mode chooses
 randomly among matching puzzles the account has not started; once everything
 has been seen it skips the twenty most recently started puzzles before allowing
 repeats. Retry mode offers puzzles whose latest finished attempt was revealed or
@@ -299,8 +308,8 @@ teach patterns and basic skills rather than an opening. Their examples start
 from separate positions, and they have no recall lines, so they never add
 anything to Due.
 
-The current revisions are `2026-10-v4` for `italian-foundations`, and
-`2026-10-v5` for `italian-black-foundations` and `kings-gambit-foundations`.
+The current revisions are `2026-10-v4` for `italian-foundations`, `2026-10-v5`
+for `italian-black-foundations` and `2026-10-v6` for `kings-gambit-foundations`.
 The Sicilian Dragon, `sicilian-dragon`, and the Vienna Gambit, `vienna-gambit`,
 start at `2026-10-v1`.
 Black decisions and rehearsal use Black orientation

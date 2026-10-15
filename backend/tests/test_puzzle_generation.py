@@ -219,6 +219,9 @@ def test_build_line_keeps_unique_moves_and_the_best_defence():
     assert build_line(Scripted(FORK), chess.Board(FORK_FEN), max_plies=3) == (built, None)
 
 
+BACK_RANK_FEN = "3r3k/6pp/8/8/8/8/R7/R5K1 w - - 0 1"
+
+
 @pytest.mark.parametrize(
     ("fen", "answers", "reason"),
     [
@@ -240,13 +243,36 @@ def test_build_line_keeps_unique_moves_and_the_best_defence():
             {key(TWO_MATES_FEN): [("a1a8", mate(1)), ("d1d8", mate(1))]},
             "ambiguous #1 vs #1",
         ),
+        # Any rival mate is ambiguous, however slow: a solver playing it also mates.
+        (
+            BACK_RANK_FEN,
+            {key(BACK_RANK_FEN): [("a2a8", mate(2)), ("a2a7", mate(9))]},
+            "ambiguous #2 vs #9",
+        ),
+        # A rival that still wins clearly is no wrong answer, though far worse.
+        (
+            FORK_FEN,
+            FORK | {key(FORK_FEN): [("c3d5", 1190), ("c3e4", 250)]},
+            "ambiguous +1190 vs +250",
+        ),
     ],
 )
 def test_build_line_abstains_with_a_reason(fen, answers, reason):
     assert build_line(Scripted(answers), chess.Board(fen), max_plies=13) == (None, reason)
 
 
-BACK_RANK_FEN = "3r3k/6pp/8/8/8/8/R7/R5K1 w - - 0 1"
+def test_rivals_are_judged_by_one_shared_rule():
+    from trainer.puzzles.verification import rival_verdict
+
+    assert rival_verdict(520, 40) == "unique"
+    assert rival_verdict(520, 480) == "close"
+    assert rival_verdict(1190, 250) == "still_winning"
+    assert rival_verdict(mate(3), 199) == "unique"
+    assert rival_verdict(mate(2), mate(9)) == "rival_mate"
+    assert rival_verdict(300, mate(4)) == "rival_mate"
+    assert rival_verdict(mate(2), -MATE_SCORE + 3) == "unique"
+
+
 BACK_RANK = {
     key(BACK_RANK_FEN): [("a2a8", mate(2)), ("g1f1", 0)],
     key(BACK_RANK_FEN, "a2a8"): [("d8a8", -mate(1))],
@@ -254,22 +280,24 @@ BACK_RANK = {
 }
 # A learner's game (session b11d17d3): Black has a forced mate in 16. The old 13-ply
 # cap cut the line on Qc2+, seven Black moves in, and still labeled it mate. Here the
-# scripted line instead ends there because Black's next move is ambiguous.
+# scripted line instead ends there because Black's next move is ambiguous. In the real
+# game the rivals still won or mated too, which now makes the very first step
+# ambiguous; the script gives every rival a level score so the line runs on.
 CAPPED_MATE_FEN = "2b1kbnr/pp4pp/1q1p4/3p4/3P4/PP3P2/2n1K1PP/5R2 b k - 0 18"
 CAPPED_MATE_LINE = (
-    ("c2d4", 16, 1431),
+    ("c2d4", 16, 0),
     ("e2e1", None, None),
-    ("d4c2", 13, mate(17)),
+    ("d4c2", 13, 0),
     ("e1d1", None, None),
-    ("b6d4", 12, 1326),
+    ("b6d4", 12, 0),
     ("d1c2", None, None),
-    ("c8f5", 5, 1237),
+    ("c8f5", 5, 0),
     ("c2c1", None, None),
-    ("d4c3", 4, mate(6)),
+    ("d4c3", 4, 0),
     ("c1d1", None, None),
-    ("c3b3", 15, mate(17)),
+    ("c3b3", 15, 0),
     ("d1e2", None, None),
-    ("b3c2", 9, mate(14)),
+    ("b3c2", 9, 0),
 )
 
 
@@ -528,3 +556,72 @@ def test_native_engine_builds_the_fork_line(settings, sessions, stockfish_path):
         assert len(cached) == len(set(search.analysis_ids))
     finally:
         engine.close()
+
+
+def test_review_candidates_read_the_report_the_review_shows(sessions):
+    from trainer.models import GameReviewMove, ReviewRefinement
+    from trainer.puzzles.generation import review_prospects
+
+    def cp(value):
+        return {"kind": "cp", "value": value, "mate_given": False}
+
+    # The baseline saw nothing to find; the adopted deeper search found the fork.
+    baseline = {
+        "before_analysis_id": "before",
+        "played_analysis_id": "played",
+        "depth": 12,
+        "best": {"san": "Ne4", "uci": "c3e4", "score": cp(40)},
+        "actual": {"san": "Ne4", "uci": "c3e4", "score": cp(40)},
+        "actual_line": {"frames": [{"fen": FORK_FEN}]},
+        "second_score": None,
+    }
+    refined = baseline | {
+        "depth": 22,
+        "best": {"san": "Nd5+", "uci": "c3d5", "score": cp(520)},
+        "second_score": cp(40),
+    }
+    with sessions() as db:
+        game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="fork",
+            triggers=[],
+            config={"baseline_ids": ["before", "played"]},
+            adopted=True,
+            status="completed",
+            report=refined,
+        )
+        db.add(task)
+        db.flush()
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
+        db.commit()
+        [prospect] = review_prospects(db, game, set())
+        assert (prospect.kind, prospect.saved_best_san, prospect.saved_unique) == (
+            "missed_win",
+            "Nd5+",
+            True,
+        )
+        # Without an adopted refinement the baseline stands, and there is nothing to mine.
+        task.adopted = False
+        db.commit()
+        assert list(review_prospects(db, game, set())) == []
+
+
+@pytest.mark.parametrize(
+    ("payoff", "goal"), [(605, "crushing"), (601, "crushing"), (450, "advantage"), (180, None)]
+)
+def test_goal_themes_use_lichess_ranges(payoff, goal):
+    from dataclasses import replace
+
+    from trainer.puzzles.sessions import _matches
+
+    root = chess.Board(FORK_FEN)
+    built, _ = build_line(Scripted(FORK), root, max_plies=13)
+    built = replace(built, payoff=payoff)
+    themes = set(line_themes(replay_moves(root, built.solution), built, "goal"))
+    assert themes & {"crushing", "advantage", "equality"} == ({goal} if goal else set())
+    definition = type("Definition", (), {"source": "games", "themes": tuple(themes)})()
+    query = PuzzleQuery(source="games", goal="material")
+    assert _matches(definition, query) is (goal is not None)
+    assert not _matches(definition, PuzzleQuery(source="games", goal="mate"))

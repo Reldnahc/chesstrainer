@@ -340,8 +340,8 @@ def test_illustrative_passages_support_their_specific_board_claims():
         ),
         (
             "kings-gambit-foundations",
-            "2026-10-v5",
-            "1b46ad40f6ff90e0692a10e077bd24b7020372537a60384fded9b9acba89eb77",
+            "2026-10-v6",
+            "dc6ed3d3e5272e9d31d8ab94d712b85f4d9fd29ee2250e17d36ddf64aa4e05de",
         ),
         (
             "sicilian-dragon",

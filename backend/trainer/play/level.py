@@ -22,6 +22,7 @@ from trainer.human_models.context import request_for, source_domain
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable
 from trainer.job_lifecycle import JobKind, ensure_job
 from trainer.models import Game, PlayProfile, now
+from trainer.play import from_play
 
 log = logging.getLogger(__name__)
 
@@ -39,11 +40,13 @@ def learner_positions(games, limit=POSITIONS):
         if parsed is None or parsed.board().fen() != chess.STARTING_FEN:
             continue
         board = parsed.board()
+        # Play games carry this fit's own value as the learner's Elo, not a rating.
+        rating = None if from_play(parsed.headers) else pgn_rating(parsed, game.learner_color)
         moves = []
         for move in parsed.mainline_moves():
             ply = len(moves)
             if FIRST_PLY <= ply <= LAST_PLY and board.turn == game.learner_color:
-                rows.append((parsed, list(moves), move.uci(), pgn_rating(parsed, board.turn)))
+                rows.append((parsed, list(moves), move.uci(), rating))
             moves.append(move.uci())
             board.push(move)
     random.Random(int(digest([VERSION, sorted(g.id for g in games)])[:12], 16)).shuffle(rows)
@@ -90,6 +93,7 @@ def profile_payload(row, games, human_models):
         status = row.status
     return {
         "status": status,
+        "human_model": human_models.can_attempt(),
         "fitted_rating": row.fitted_rating if row else None,
         "platform_rating": row.platform_rating if row else None,
         "platform": row.platform if row else None,

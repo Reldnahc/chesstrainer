@@ -53,6 +53,8 @@ class PlayReply(Contract):
     ply: int
     san: str
     uci: str
+    # "fallback": the human model was unavailable, so the engine answered for a
+    # Human-like bot.
     source: Literal["human", "engine", "fallback", "book"]
 
 
@@ -109,6 +111,10 @@ class PlayState(Contract):
     saved_game_id: str | None
     reply: PlayReply | None
     practice: PlayPractice | None = None
+    # The bot's plies the engine played because the human model was unavailable,
+    # and the engine setting it played them at (Human-like games only).
+    fallback_plies: list[int]
+    fallback_elo: int | None
     frames: list[GameFrame]
 
 
@@ -118,6 +124,8 @@ class ActivePlay(Contract):
 
 class PlayProfile(Contract):
     status: Literal["ready", "computing", "unavailable", "no_games", "disabled"]
+    # Whether the human move model can answer now; Human-like play needs it.
+    human_model: bool
     fitted_rating: int | None
     platform_rating: int | None
     platform: str | None

@@ -94,6 +94,7 @@ def test_pass_requires_best_unique_and_winning():
         ),
         ((after(FEN, *ROW["Moves"].split()), ()), [("d7c7", -80)], "final position only +80"),
         ((after(FEN, "e8e7"), ()), [("c3d5", 520), ("c3e4", 450)], "Ne4 scores +450, within 100"),
+        ((after(FEN, "e8e7"), ()), [("c3d5", 1190), ("c3e4", 250)], "Ne4 still wins (+250"),
     ],
 )
 def test_weak_ambiguous_or_unwinning_lines_fail(question, answer, message):
@@ -103,7 +104,7 @@ def test_weak_ambiguous_or_unwinning_lines_fail(question, answer, message):
     assert any(message in failure for failure in result["failures"]), result["failures"]
 
 
-def test_mates_distinguish_equal_slower_and_solution_mates():
+def test_any_rival_mate_is_ambiguous_and_a_mating_solution_passes():
     row = {
         "PuzzleId": "mate",
         "FEN": "6k1/5ppp/8/8/8/8/8/R5K1 b - - 0 1",
@@ -120,10 +121,13 @@ def test_mates_distinguish_equal_slower_and_solution_mates():
 
     equal = verify([("a1a8", mate_in(1)), ("a1a7", mate_in(1))])
     assert not equal["passed"] and equal["failures"] == ["ply 0: Ra7 also mates in 1"]
+    # A slower mate is still a mate: a solver playing it was not wrong.
     slower = verify([("a1a8", mate_in(1)), ("a1a7", mate_in(3))])
-    assert slower["passed"] and slower["warnings"] == ["ply 0: Ra7 mates more slowly (#3)"]
-    assert slower["payoff"] == {"score": MATE_SCORE, "display": "#0", "checkmate": True}
-    assert slower["decisions"][0]["solution"] == "#1" and slower["decisions"][0]["best"] == "#1"
+    assert not slower["passed"] and slower["failures"] == ["ply 0: Ra7 also mates in 3"]
+    unique = verify([("a1a8", mate_in(1)), ("a1a7", 0)])
+    assert unique["passed"] and unique["warnings"] == []
+    assert unique["payoff"] == {"score": MATE_SCORE, "display": "#0", "checkmate": True}
+    assert unique["decisions"][0]["solution"] == "#1" and unique["decisions"][0]["best"] == "#1"
     # A mating solution is not "weaker" than a faster mate, but that faster mate is an ambiguity.
     faster = ScriptedVerifier(
         {

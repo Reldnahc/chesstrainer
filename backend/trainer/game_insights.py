@@ -19,8 +19,10 @@ from trainer.contracts.insights import Speed
 from trainer.game_accuracy import STARTING_CP, accuracy_cp, mover_accuracy
 from trainer.game_library import mover_rating, parsed_game, pgn_rating
 from trainer.game_review import blunder_kind
+from trainer.imports import played_at as header_start
 from trainer.models import now as current_time
 from trainer.opening_book import book_run
+from trainer.play import from_play
 from trainer.review_intelligence.clocks import clock_facts, control
 from trainer.review_scores import MISTAKE_CP
 
@@ -50,6 +52,8 @@ class Ply:
     fullmove: int
     phase: str
     learner_cp: int | None = None  # Learner-relative evaluation after this ply.
+    # Learner-relative evaluation before this ply, from the same search as its loss.
+    before_cp: int | None = None
     loss_cp: int | None = None
     blunder: bool = False
     mistake: bool = False
@@ -67,6 +71,8 @@ class GameFacts:
     learner_rating: int | None
     learner_white: bool
     played_at: datetime | None
+    # When the game started: synced games' played_at is their end time.
+    started_at: datetime | None
     played_on: str | None
     result: str | None  # win, draw, loss; None for unfinished games.
     speed: str
@@ -82,14 +88,18 @@ class GameFacts:
     endgame_entry: int | None = None
 
 
-def speed_of(time_control):
+def speed_of(time_control, site=None):
+    """The rating pool the provider files the game under, from its time control."""
     if (time_control or "").strip().startswith("1/"):
         return "daily"
     kind, initial, increment = control(time_control)
     if initial is None:
         return "unknown"
-    # Lichess's published estimate: base time plus forty moves of increment.
+    # Both sites estimate a game as base time plus forty moves of increment.
     estimate = initial + 40 * (increment or 0)
+    if site == "Chess.com":
+        # Chess.com's classes: under 3 minutes bullet, under 10 blitz, otherwise rapid.
+        return "bullet" if estimate < 180 else "blitz" if estimate < 600 else "rapid"
     return (
         "bullet"
         if estimate < 180
@@ -128,6 +138,12 @@ def termination_of(headers, board, result):
     if board.is_insufficient_material():
         return "insufficient_material"
     text = (headers.get("Termination") or "").lower()
+    # Chess.com's sentence names the winner; a username such as "Timeless_Tal" is
+    # not a keyword.
+    for player in (headers.get("White"), headers.get("Black")):
+        if player and player.strip() not in {"", "?", "-"}:
+            text = text.replace(player.strip().lower(), " ")
+    text = text.strip()
     for needle, name in (
         ("abandon", "abandoned"),
         ("insufficient", "insufficient_material"),
@@ -145,6 +161,11 @@ def termination_of(headers, board, result):
     if text == "normal" and result in {"1-0", "0-1"}:
         return "resignation"
     if text == "normal" and result == "1/2-1/2":
+        # Lichess writes Normal for rule draws too; the board tells them apart.
+        if board.is_repetition(3):
+            return "repetition"
+        if board.is_fifty_moves():
+            return "fifty_moves"
         return "agreement"
     return "other"
 
@@ -166,11 +187,14 @@ def phase_of(board):
 
 
 def endgame_class(board):
+    """Queen, rook and minor-piece endings have only that kind of piece; others are mixed."""
     queens = any(board.pieces(chess.QUEEN, color) for color in chess.COLORS)
     rooks = any(board.pieces(chess.ROOK, color) for color in chess.COLORS)
     minors = any(
         board.pieces(kind, color) for kind in (chess.KNIGHT, chess.BISHOP) for color in chess.COLORS
     )
+    if queens + rooks + minors > 1:
+        return "mixed"
     return "queen" if queens else "rook" if rooks else "minor" if minors else "pawn"
 
 
@@ -183,8 +207,10 @@ def game_facts(game, scores=None, rating=None):
     parsed = parsed_game(game)
     headers = parsed.headers
     learner_white = bool(game.learner_color)
-    learner_rating = pgn_rating(headers, learner_white)
-    opponent_rating = pgn_rating(headers, not learner_white)
+    # A Play game's Elo headers are model settings, so they stay out of rating statistics.
+    rated = not from_play(headers)
+    learner_rating = pgn_rating(headers, learner_white) if rated else None
+    opponent_rating = pgn_rating(headers, not learner_white) if rated else None
     raw_result = headers.get("Result", "*")
     time_control = headers.get("TimeControl")
     _, initial, _ = control(time_control)
@@ -200,9 +226,10 @@ def game_facts(game, scores=None, rating=None):
         learner_rating=learner_rating,
         learner_white=learner_white,
         played_at=game.played_at,
+        started_at=header_start(parsed) or game.played_at,
         played_on=game.played_on,
         result=learner_result(raw_result, learner_white),
-        speed=speed_of(time_control),
+        speed=speed_of(time_control, site_of(headers)),
         site=site_of(headers),
         termination="other",
         opening=None,
@@ -235,6 +262,8 @@ def game_facts(game, scores=None, rating=None):
                 actual = white if mover_white else white.negate()
                 white_cp = accuracy_cp(white)
                 row.learner_cp = white_cp if learner_white else -white_cp
+                best_white = accuracy_cp(best if mover_white else best.negate())
+                row.before_cp = best_white if learner_white else -best_white
                 loss = evaluation_loss(best, actual)
                 row.loss_cp = (
                     loss.cp
@@ -255,7 +284,7 @@ def game_facts(game, scores=None, rating=None):
     facts.termination = termination_of(headers, board, raw_result)
     if not facts.reviewed:
         for row in facts.plies:
-            row.learner_cp = row.loss_cp = row.accuracy = None
+            row.learner_cp = row.before_cp = row.loss_cp = row.accuracy = None
             row.blunder = row.mistake = False
     return facts
 
@@ -276,6 +305,8 @@ def example(game, ply=None):
         "result": game.result or "unfinished",
         "played_on": game.played_on,
         "ply": ply,
+        # The move number as the game counts it, also from a custom start.
+        "move": fullmove_of(game, ply),
     }
 
 
@@ -515,6 +546,12 @@ def lead_changes(game):
     return changes
 
 
+def kept_lead(values):
+    """Went +LEAD_CP up and never fell back to level or worse after that."""
+    ahead = next((index for index, value in enumerate(values) if value >= LEAD_CP), None)
+    return ahead is not None and all(value > 0 for value in values[ahead:])
+
+
 def shape_of(game):
     values = [row.learner_cp for row in learner_series(game)]
     if not values:
@@ -523,7 +560,7 @@ def shape_of(game):
         return "slipped"
     if min(values) <= -DECISIVE_CP and game.result != "loss":
         return "comeback"
-    if game.result == "win" and max(values) >= LEAD_CP and min(values) > -MISTAKE_CP:
+    if game.result == "win" and kept_lead(values) and min(values) > -MISTAKE_CP:
         return "wire_to_wire"
     if lead_changes(game) >= 2:
         return "back_and_forth"
@@ -588,8 +625,8 @@ def tilt(games):
     rematches = []
     for previous, game in zip(ordered, ordered[1:]):
         if (
-            not (previous.played_at and game.played_at)
-            or game.played_at - previous.played_at > SESSION_GAP
+            not (previous.started_at and game.started_at)
+            or game.started_at - previous.started_at > SESSION_GAP
         ):
             continue
         key = "loss" if previous.result == "loss" else "other"
@@ -671,8 +708,8 @@ def punishment(games):
         for index, row in enumerate(rows[:-1]):
             if not row.mistake:
                 continue
-            start = STARTING_CP if game.learner_white else -STARTING_CP
-            before = rows[index - 1].learner_cp if index else start
+            # The swing is measured in the mistake's own search, as its loss is.
+            before = row.before_cp
             swing = abs(row.learner_cp - before)
             reply = rows[index + 1].learner_cp
             if swing == 0:
@@ -688,12 +725,13 @@ def punishment(games):
 
 def endgames(games):
     output = []
-    for kind in ("rook", "queen", "minor", "pawn"):
+    for kind in ("rook", "queen", "minor", "pawn", "mixed"):
         reached = [game for game in games if game.reviewed and game.result and game.endgame == kind]
         held = 0
         for game in reached:
+            # The evaluation where the endgame began, before its first move.
             entry = game.plies[game.endgame_entry - 1]
-            verdict = entry.learner_cp if entry.learner_cp is not None else 0
+            verdict = entry.before_cp if entry.before_cp is not None else 0
             expected = (
                 "win" if verdict >= DECISIVE_CP else "loss" if verdict <= -DECISIVE_CP else "draw"
             )

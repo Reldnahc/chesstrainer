@@ -2275,7 +2275,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "rook" | "queen" | "minor" | "pawn";
+            kind: "rook" | "queen" | "minor" | "pawn" | "mixed";
         };
         /** Ending */
         Ending: {
@@ -2922,6 +2922,8 @@ export interface components {
         InsightGame: {
             /** Id */
             id: string;
+            /** Move */
+            move: number | null;
             /** Opponent */
             opponent: string;
             /** Opponent Rating */
@@ -3853,6 +3855,8 @@ export interface components {
             fitted_rating: number | null;
             /** Games */
             games: number;
+            /** Human Model */
+            human_model: boolean;
             /** Platform */
             platform: string | null;
             /** Platform Rating */
@@ -3915,6 +3919,10 @@ export interface components {
             coach_id: string;
             /** Coach Name */
             coach_name: string;
+            /** Fallback Elo */
+            fallback_elo: number | null;
+            /** Fallback Plies */
+            fallback_plies: number[];
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
             /** Id */

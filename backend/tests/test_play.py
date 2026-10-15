@@ -25,6 +25,21 @@ def test_guards_tighten_with_rating_and_never_touch_small_errors():
         assert not guard_violated(rating, small)
 
 
+def test_the_guard_counts_a_thrown_away_mate_as_a_loss():
+    from trainer.chess_core import Score
+    from trainer.play.bot import guard_loss
+
+    mate = Score(kind="mate", value=2)
+    thrown = guard_loss(mate, Score(kind="cp", value=-900))
+    assert thrown.cp == 1900 and thrown.mate_lost
+    assert guard_violated(1400, thrown) and not guard_violated(1200, thrown)
+    # Still clearly winning after missing the mate: only the strictest guards object.
+    kept = guard_loss(mate, Score(kind="cp", value=700))
+    assert kept.cp == 300 and guard_violated(2200, kept) and not guard_violated(1800, kept)
+    # A slower mate gives nothing up.
+    assert not guard_violated(2500, guard_loss(mate, Score(kind="mate", value=5)))
+
+
 def test_sampling_is_seeded_and_weighted():
     probabilities = {"e2e4": 0.7, "d2d4": 0.2, "g1f3": 0.1}
     first = sample_order(probabilities, seeded("game", 4), 3)
@@ -289,10 +304,42 @@ def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
         status="finished",
         result="1/2-1/2",
     )
+    # The eighth move repeats the start position a third time.
     frames = frames_for(play, "Learner")
     assert frames[-1]["legal_moves"] == [] and frames[-1]["result"] == "1/2-1/2"
-    # Earlier frames are not cut short by the claim rule.
-    assert frames[-2]["legal_moves"]
+    assert frames[-1]["termination"] == "threefold repetition"
+    # A repetition Black could only claim with its next move does not end the game.
+    play.moves, play.status, play.result = shuffle[:7], "active", None
+    frames = frames_for(play, "Learner")
+    assert frames[-1]["legal_moves"] and frames[-1]["result"] is None
+
+
+def test_play_ends_only_on_a_draw_that_has_happened():
+    import chess
+    from trainer.play.sessions import board_outcome
+
+    def after(fen, *sans):
+        board = chess.Board(fen)
+        for san in sans:
+            board.push_san(san)
+        return board
+
+    # A queen and rook up, White is to move one step short of a third repetition.
+    checks = ["Qh5+", "Kg8", "Qe8+", "Kh7"] * 2
+    board = after("8/p5pk/8/8/8/8/5PPP/R2Q2K1 w - - 0 1", *checks)
+    assert not board.is_repetition(3) and board_outcome(board) is None
+    board.push_san("Qh5+")
+    assert board.is_repetition(3)
+    assert board_outcome(board).termination == chess.Termination.THREEFOLD_REPETITION
+    # Half-move clock 99 can be claimed with the next move; Play waits for 100.
+    board = after("8/8/4k3/8/8/3QK3/8/8 w - - 98 120", "Qd4")
+    assert board.halfmove_clock == 99 and board_outcome(board) is None
+    board.push_san("Kf5")
+    assert board_outcome(board).termination == chess.Termination.FIFTY_MOVES
+    # Checkmate still ends the game on the hundredth half-move.
+    mate = chess.Board("7k/8/6K1/8/8/8/8/R7 w - - 99 120")
+    mate.push_san("Ra8#")
+    assert board_outcome(mate).termination == chess.Termination.CHECKMATE
 
 
 def test_review_presentation_keeps_one_entry_per_game(monkeypatch):
@@ -316,3 +363,69 @@ def test_review_presentation_keeps_one_entry_per_game(monkeypatch):
     second = present(2)
     assert second is not first and len(loads) == 2  # A new revision re-renders.
     assert presentation._presented.get(game.id)[1] is second  # Only the latest is kept.
+
+
+def test_a_human_like_reply_without_the_model_is_recorded_as_the_engine_setting():
+    from types import SimpleNamespace
+
+    from trainer.human_models.runtime import HumanUnavailable
+    from trainer.play.sessions import apply_reply, choose_reply, parsed_for, state, truncate
+
+    class NoModel:
+        def policy(self, sessions, request, cancelled=lambda: False):
+            raise HumanUnavailable("not_configured")
+
+    limited = []
+
+    def play_limited(board, elo, seconds):
+        limited.append(elo)
+        return "e7e5"
+
+    engine = SimpleNamespace(play_limited=play_limited)
+    play = PlayGame(
+        id="no-model",
+        coach_id="classic",
+        coach_name="Walter",
+        learner_color=True,
+        opponent_kind="human",
+        opponent_rating=600,
+        learner_rating=1000,
+        moves=["e2e4"],
+        reports={},
+        status="active",
+    )
+    choice = choose_reply(engine, NoModel(), None, play, _after("e2e4"))
+    assert choice.source == "fallback" and limited == [1320]
+    apply_reply(None, play, choice, "Learner", None)
+    assert play.fallback_plies == [2]
+    shown = state(play, "Learner")
+    assert shown["fallback_plies"] == [2] and shown["fallback_elo"] == 1320
+    # The saved PGN says what really played; the Elo header stays the model setting.
+    headers = parsed_for(play, "Learner").headers
+    assert headers["BlackElo"] == "600"
+    assert headers["Bot"] == (
+        "Maia-3 conditioned at 600; Stockfish UCI_Elo 1320 played 1 move"
+        " while the human model was unavailable"
+    )
+    # Going back past the move forgets it.
+    truncate(play, 1)
+    assert play.fallback_plies == []
+    assert parsed_for(play, "Learner").headers["Bot"] == "Maia-3 conditioned at 600"
+
+
+def _after(*moves):
+    board = chess.Board()
+    for uci in moves:
+        board.push_uci(uci)
+    return board
+
+
+def test_the_profile_says_whether_human_like_play_is_available(settings):
+    settings.stockfish_path = "missing-test-engine"
+    # The test settings point at no model file, so the human model cannot answer.
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        assert client.get("/api/play/profile").json()["human_model"] is False
+    app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
+    with TestClient(app) as client:
+        assert client.get("/api/play/profile").json()["human_model"] is True

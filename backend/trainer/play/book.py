@@ -14,7 +14,7 @@ import chess
 from trainer.chess_core import Score, evaluation_loss, position_key
 from trainer.contracts.play import HUMAN_RATINGS
 from trainer.human_models.runtime import HumanUnavailable
-from trainer.play.bot import BotChoice
+from trainer.play.bot import BotChoice, mate_lost_cp
 from trainer.recent_cache import RecentCache
 
 # Every book move keeps at least this share of the choice, so rarer lines still
@@ -91,16 +91,33 @@ def _build(course) -> Book:
 
 
 def book_weights(book_moves, policy) -> dict[str, float]:
-    """The policy restricted to the book moves, with a floor for the rare ones."""
+    """The policy restricted to the book moves, as shares summing to one.
+
+    Every book move gets at least MINIMUM_SHARE; the rest keeps the policy's
+    proportions. Without a policy, or with too many moves for the floor, the shares
+    are equal.
+    """
     shares = {uci: 0.0 for uci in book_moves}
     if policy is not None:
         for row in policy.moves:
             if row.uci in shares:
                 shares[row.uci] = row.probability or 0.0
     total = sum(shares.values())
-    if total <= 0:
-        return {uci: 1.0 for uci in book_moves}
-    return {uci: max(share / total, MINIMUM_SHARE) for uci, share in shares.items()}
+    equal = {uci: 1 / len(shares) for uci in shares}
+    if total <= 0 or len(shares) * MINIMUM_SHARE >= 1:
+        return equal
+    floored: set[str] = set()
+    while True:
+        free = [uci for uci in shares if uci not in floored]
+        free_total = sum(shares[uci] for uci in free)
+        if not free or free_total <= 0:
+            return equal
+        mass = 1 - MINIMUM_SHARE * len(floored)
+        scaled = {uci: mass * shares[uci] / free_total for uci in free}
+        low = {uci for uci, share in scaled.items() if share < MINIMUM_SHARE}
+        if not low:
+            return {uci: scaled.get(uci, MINIMUM_SHARE) for uci in shares}
+        floored |= low
 
 
 def book_reply(human_models, sessions, request, board: chess.Board, book_moves, rng) -> BotChoice:
@@ -136,9 +153,12 @@ def deviation_verdict(engine, board: chess.Board, played: str, book_moves) -> di
         return {"verdict": "fine", "loss_cp": 0}
     best_uci, best = max(book_scores, key=lambda row: row[1].order_key())
     loss = evaluation_loss(best, scores[played])
-    if loss.allows_mate or loss.mate_lost:
+    if loss.allows_mate:
+        # Shown as walking into a mate the book move avoids.
         return {"verdict": "worse", "loss_cp": None, "compared_with": best_uci}
-    cp = loss.cp or 0
+    # A mate the book move had and the learner's move gives up counts as a forced
+    # mate's usual 1000 cp, so it is reported as a loss, not a mate walked into.
+    cp = loss.cp if loss.cp is not None else mate_lost_cp(best, scores[played])
     return {
         "verdict": "fine" if cp <= FINE_LOSS_CP else "worse",
         "loss_cp": cp,
