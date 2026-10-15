@@ -58,7 +58,7 @@ def uid() -> str:
 
 # New indexes, checks, foreign keys and primary keys get predictable names that
 # migrations can refer to. Unique constraints are left out: the existing ones
-# are unnamed in every database, and naming them would rebuild each table
+# were named by hand or not at all, and renaming them would rebuild each table
 # (engine_analyses included) at the next start. Name a new one explicitly.
 NAMING_CONVENTION = {
     "ix": "ix_%(column_0_label)s",
