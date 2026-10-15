@@ -8,8 +8,12 @@ from trainer.models import Decision, EngineAnalysis, ExerciseAnswer, Game
 from trainer.scheduling import FSRSScheduler
 
 
-def seed_review(db, settings, black=False, key="explanation"):
-    board = chess.Board("6k1/8/8/q7/1B6/8/8/R5K1 w - - 0 1")
+def seed_review(db, settings, black=False, key="explanation", spare_pawn=False):
+    # Every seed of one position shares one exercise, so a fixture whose card must
+    # not inherit another test's (perhaps since refined) decision adds a spare pawn.
+    board = chess.Board(
+        "6k1/8/8/q7/1B6/8/7P/R5K1 w - - 0 1" if spare_pawn else "6k1/8/8/q7/1B6/8/8/R5K1 w - - 0 1"
+    )
     if black:
         board = board.mirror()
 

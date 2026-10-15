@@ -22,7 +22,7 @@ from trainer.models import (
 
 
 def seed_classified(db, settings, key="practice"):
-    fixture = seed_review(db, settings, key=key)
+    fixture = seed_review(db, settings, key=key, spare_pawn=True)
     decision = db.scalar(select(Decision).order_by(Decision.created_at.desc()))
     for analysis_id, line in (
         (decision.before_analysis_id, [fixture["best"], "g8f7", "a5a1", "f7e6"]),
