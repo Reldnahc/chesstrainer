@@ -473,3 +473,22 @@ def test_falkbeer_side_trips_state_real_board_facts():
     ):
         line = bundled.line(identity)
         assert line.repertoire and line.position == bundled.line("falkbeer-center").position
+
+
+def test_line_codes_name_the_deepest_catalogue_position_reached():
+    from trainer.chess_core import position_key
+    from trainer.opening_book import catalogue_lines
+
+    named = {}
+    for eco, _, initial_fen, moves in catalogue_lines():
+        board = chess.Board(initial_fen)
+        for uci in moves:
+            board.push_uci(uci)
+        named.setdefault(position_key(board), set()).add(eco)
+    for line in course().lines:
+        board = chess.Board(line.position.initial_fen)
+        deepest = None
+        for uci in (*line.position.moves, *line.moves):
+            board.push_uci(uci)
+            deepest = named.get(position_key(board), deepest)
+        assert deepest and line.eco in deepest, (line.id, line.eco, deepest)

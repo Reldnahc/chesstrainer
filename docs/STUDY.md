@@ -308,8 +308,8 @@ teach patterns and basic skills rather than an opening. Their examples start
 from separate positions, and they have no recall lines, so they never add
 anything to Due.
 
-The current revisions are `2026-10-v4` for `italian-foundations`, and
-`2026-10-v5` for `italian-black-foundations` and `kings-gambit-foundations`.
+The current revisions are `2026-10-v4` for `italian-foundations`, `2026-10-v5`
+for `italian-black-foundations` and `2026-10-v6` for `kings-gambit-foundations`.
 The Sicilian Dragon, `sicilian-dragon`, and the Vienna Gambit, `vienna-gambit`,
 start at `2026-10-v1`.
 Black decisions and rehearsal use Black orientation
