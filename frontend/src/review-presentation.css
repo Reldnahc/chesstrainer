@@ -81,6 +81,9 @@ main.review-page:has(.review-workspace-layout) {
   scrollbar-gutter: stable;
   container-type: inline-size;
 }
+/* Before its board arrives, a session's heading and loader are spaced like a page's blocks. */
+.review-loading { display: flex; flex-direction: column; gap: var(--page-gap); }
+.review-loading > .review-workspace-heading { margin-bottom: 0; }
 .review-workspace-heading {
   /* Never shrink inside the scrolling sidebar: taller controls (the lesson
      editor's Save) would otherwise spill above its top edge and be clipped. */
