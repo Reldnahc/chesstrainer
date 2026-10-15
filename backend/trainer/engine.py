@@ -51,6 +51,58 @@ class EngineReferenceMismatch(EngineUnavailable):
     """Stockfish is usable, but this position requires a different saved executable."""
 
 
+# Part of every cached analysis's key: bump it when the adapter changes what a
+# search with the same settings returns.
+ADAPTER_VERSION = "2"
+
+
+def search_config(
+    settings,
+    binary_hash,
+    *,
+    deep=False,
+    root_moves=None,
+    multipv=None,
+    reference=None,
+    classification_probe=False,
+    limits=None,
+):
+    """The engine configuration one search runs with, and caches under.
+
+    One profile applies: triage (the default) or ``deep`` from settings, the
+    limits of a ``reference`` analysis being extended, the classification
+    probe's, or explicit ``limits``. A reference cannot be combined with a probe
+    or explicit limits, nor a probe with explicit limits.
+    """
+    if reference and (classification_probe or limits):
+        raise ValueError("A classification probe cannot change grading reference limits")
+    if classification_probe and limits:
+        raise ValueError("Choose one explicit search profile")
+    config = {
+        "threads": settings.stockfish_threads,
+        "hash_mb": settings.stockfish_hash_mb,
+        "depth": settings.deep_depth if deep else settings.triage_depth,
+        "time": settings.deep_time if deep else settings.triage_time,
+        "nodes": settings.deep_nodes if deep else settings.triage_nodes,
+        "multipv": multipv or (settings.multipv if deep else 1),
+        "root_moves": sorted(root_moves) if root_moves else None,
+        "binary_sha256": binary_hash,
+        "adapter_version": ADAPTER_VERSION,
+    }
+    if reference:
+        for name in ("threads", "hash_mb", "depth", "time", "nodes"):
+            config[name] = reference.config[name]
+    if classification_probe:
+        config.update(
+            depth=settings.classification_probe_depth,
+            time=settings.classification_probe_time,
+            nodes=None,
+        )
+    if limits:
+        config.update(limits.model_dump())
+    return config
+
+
 class Stockfish:
     """A serialized native engine with a persistent, context-sensitive cache."""
 
@@ -151,35 +203,16 @@ class Stockfish:
                     "Restore that STOCKFISH_PATH to verify additional moves; "
                     "stored accepted answers remain usable."
                 )
-            count = multipv or (self.settings.multipv if deep else 1)
-            config = {
-                "threads": self.settings.stockfish_threads,
-                "hash_mb": self.settings.stockfish_hash_mb,
-                "depth": self.settings.deep_depth if deep else self.settings.triage_depth,
-                "time": self.settings.deep_time if deep else self.settings.triage_time,
-                "nodes": self.settings.deep_nodes if deep else self.settings.triage_nodes,
-                "multipv": count,
-                "root_moves": sorted(root_moves) if root_moves else None,
-                "binary_sha256": self.binary_hash,
-                "adapter_version": "2",
-            }
-            if reference:
-                if classification_probe or limits:
-                    raise ValueError(
-                        "A classification probe cannot change grading reference limits"
-                    )
-                for name in ("threads", "hash_mb", "depth", "time", "nodes"):
-                    config[name] = reference.config[name]
-            if classification_probe:
-                if limits:
-                    raise ValueError("Choose one explicit search profile")
-                config.update(
-                    depth=self.settings.classification_probe_depth,
-                    time=self.settings.classification_probe_time,
-                    nodes=None,
-                )
-            if limits:
-                config.update(limits.model_dump())
+            config = search_config(
+                self.settings,
+                self.binary_hash,
+                deep=deep,
+                root_moves=root_moves,
+                multipv=multipv,
+                reference=reference,
+                classification_probe=classification_probe,
+                limits=limits,
+            )
             key = digest(
                 {"context": engine_context(board), "engine": self.version, "config": config}
             )
@@ -205,13 +238,13 @@ class Stockfish:
                             self.process,
                             board,
                             limit,
-                            multipv=count,
+                            multipv=config["multipv"],
                             root_moves=roots,
                             cancelled=cancelled,
                         )
                         if cancelled is not None
                         else self.process.analyse(
-                            board, limit, multipv=count, root_moves=roots, game=object()
+                            board, limit, multipv=config["multipv"], root_moves=roots, game=object()
                         )
                     )
                     candidates = []
