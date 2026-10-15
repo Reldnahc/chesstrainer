@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "coachId": "raccoon",
+  "voiceId": "bandit",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "recovery",
+      "previousText": "The earlier setback's behind it: this move gets the position playable again. A second chance, and it's worth using.",
+      "text": "The position's playable again, earlier setback and all. A second chance like that is worth grabbing.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "previousText": "The back rank turns into a cage. The king's own pieces block its escape, so its bodyguards are what trap it. Ugly for the defender, and it works.",
+      "text": "The back rank turns into a cage. The king's boxed in behind its own bodyguards, and that's right where it gets caught. Ugly for the defender, and it works.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-played-queen",
+      "previousText": "The back rank turns into a cage, and the queen is working it. The king's own pieces block its escape, so its bodyguards are what trap it. Ugly for the defender, and it works.",
+      "text": "The back rank turns into a cage, and the queen is working it. The king's boxed in behind its own bodyguards, and that's right where it gets caught. Ugly for the defender, and it works.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-played-rook",
+      "previousText": "The back rank turns into a cage, and the rook is working it. The king's own pieces block its escape, so its bodyguards are what trap it. Ugly for the defender, and it works.",
+      "text": "The back rank turns into a cage, and the rook is working it. The king's boxed in behind its own bodyguards, and that's right where it gets caught. Ugly for the defender, and it works.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    }
+  ]
+}

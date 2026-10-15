@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "coachId": "human-boy",
+  "voiceId": "mateo",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "opening-departure",
+      "previousText": "Here the game leaves the opening book, so everything from now on is new.",
+      "text": "Ooh, here the game leaves our opening book! Now it's time to look at the board and figure it out.",
+      "reason": "The departure fires where our opening catalogue ends, not where theory, the known opening or preparation ends, and the game may have left the book before a transposition."
+    },
+    {
+      "id": "recovery",
+      "previousText": "After that earlier mistake, the game is back to playable. That's how to bounce back. Keep it going.",
+      "text": "Wait, look! After that earlier mistake, the game is back to playable. Keep it going.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "recovery-assisted",
+      "previousText": "After that earlier mistake, the position works again, and the other side's mistakes gave a hand. Grabbing chances like that matters!",
+      "text": "After that earlier mistake, the position works again, and the other side's mistakes gave a hand. Let's make the most of it!",
+      "reason": "The take no longer credits this move or the learner, and does not call the other side's Mistakes small."
+    },
+    {
+      "id": "repeated-issue",
+      "previousText": "Hey, this exact problem popped up earlier in this game too. Line up the two moments and the pattern is easier to catch.",
+      "text": "Oh, I've seen this before! The same problem came up earlier in this game. Flip back to where it happened and check what matches this one.",
+      "reason": "The issue can recur a third time or more, so the take no longer counts the occurrences."
+    }
+  ]
+}

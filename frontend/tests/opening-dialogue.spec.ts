@@ -23,7 +23,7 @@ import {corgi} from "../src/dialogue/characters/corgi";
 import {host} from "../src/dialogue/characters/host";
 import {spark} from "../src/dialogue/characters/spark";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
-import {SILENT_DEPARTURE_VOICES} from "../src/audio/speech/falseTakes";
+import {AWAITING_RERECORDING, NAMED_OPENING_TAKES, SILENT_DEPARTURE_VOICES} from "../src/audio/speech/falseTakes";
 import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
 import {readFileSync} from "node:fs";
 
@@ -387,5 +387,34 @@ test("every recorded opening-departure take is classified by what it claims", ()
     const take = manifest.recordings.find(recording => recording.id === "opening-departure");
     expect(take, bank.voiceId).toBeTruthy();
     expect(SILENT_DEPARTURE_VOICES.has(bank.voiceId), `${bank.voiceId}: ${take!.text}`).toBe(claimsTheory.test(take!.text));
+  }
+});
+
+const recordedTakes = (manifestPath: string) => (JSON.parse(readFileSync(
+  new URL(`../src/audio/speech/${manifestPath}`, import.meta.url), "utf8")) as {recordings: {id: string; text: string}[]}).recordings;
+
+test("book takes that say the opening has a name are listed to sit out where our catalogue has none", () => {
+  const claimsName = /\ba name\b|named|by name|own name|has a name/i;
+  for (const bank of registry.banks) for (const take of recordedTakes(bank.manifestPath)) {
+    if (!take.id.startsWith("book-opening-")) continue;
+    expect(NAMED_OPENING_TAKES[bank.voiceId]?.includes(take.id) ?? false, `${bank.voiceId} ${take.id}: ${take.text}`)
+      .toBe(claimsName.test(take.text));
+  }
+});
+
+test("takes awaiting re-recording are still the recorded text their revision ledger replaces", () => {
+  // Once a voice is re-recorded its take no longer matches previousText: take it off the list.
+  for (const bank of registry.banks) {
+    const ids = AWAITING_RERECORDING[bank.voiceId] ?? [];
+    if (!ids.length) continue;
+    const ledgerPath = bank.voiceId === "walter" ? "bank/revisions/walter-false-takes-v1.json" : `banks/${bank.voiceId}/revisions/false-takes-v1.json`;
+    const ledger = JSON.parse(readFileSync(new URL(`../src/audio/speech/${ledgerPath}`, import.meta.url), "utf8")) as
+      {recordings: {id: string; previousText: string}[]};
+    const takes = recordedTakes(bank.manifestPath);
+    for (const id of ids) {
+      const revision = ledger.recordings.find(row => row.id === id);
+      expect(revision, `${bank.voiceId} ${id}`).toBeTruthy();
+      expect(takes.find(take => take.id === id)?.text, `${bank.voiceId} ${id}`).toBe(revision!.previousText);
+    }
   }
 });

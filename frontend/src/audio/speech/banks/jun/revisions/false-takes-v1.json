@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "coachId": "man-expert",
+  "voiceId": "jun",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "opening-departure",
+      "previousText": "Opening theory stops at this point. From here on, no prepared line applies.",
+      "text": "Our opening book ends before this move. It has no line from here on.",
+      "reason": "The departure fires where our opening catalogue ends, not where theory, the known opening or preparation ends, and the game may have left the book before a transposition."
+    },
+    {
+      "id": "recovery",
+      "previousText": "Playable again despite the earlier error. That is the correct repair.",
+      "text": "The evaluation has climbed back into playable range since the earlier error. Precise moves keep it there.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "previousText": "Back-rank mate was on offer: the enemy king's own pieces blocked its exits. Not exploited.",
+      "text": "Back-rank mate was on offer against a king shut in behind its own pieces. Not exploited.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-missed-queen",
+      "previousText": "A back-rank mate idea for the queen was on offer: the enemy king's own pieces blocked its exits. Not exploited.",
+      "text": "A back-rank mate idea for the queen was on offer against a king shut in behind its own pieces. Not exploited.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-missed-rook",
+      "previousText": "A back-rank mate idea for the rook was on offer: the enemy king's own pieces blocked its exits. Not exploited.",
+      "text": "A back-rank mate idea for the rook was on offer against a king shut in behind its own pieces. Not exploited.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "previousText": "Back-rank mating motif. The king's own pieces block its escape squares, and the rank behind it is the weakness.",
+      "text": "Back-rank mating motif. The king is confined behind its own pieces, and its last rank is the weakness.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-played-queen",
+      "previousText": "Back-rank mating motif with the queen. The king's own pieces block its escape squares, and the rank behind it is the weakness.",
+      "text": "Back-rank mating motif with the queen. The king is confined behind its own pieces, and its last rank is the weakness.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-played-rook",
+      "previousText": "Back-rank mating motif with the rook. The king's own pieces block its escape squares, and the rank behind it is the weakness.",
+      "text": "Back-rank mating motif with the rook. The king is confined behind its own pieces, and its last rank is the weakness.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    }
+  ]
+}

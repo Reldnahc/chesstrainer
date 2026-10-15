@@ -237,16 +237,17 @@ test("without a recorded greeting the start keeps its own bubble text", async ({
     .toHaveText("Select a move or move a piece to explore an alternative.");
 });
 
-test("a double check is not voiced by takes that name two targets", () => {
-  // A double check's witness names the king it checks: one target, two attackers.
+test("a double check plays no double-attack take", () => {
+  // A double check's witness names the king it checks: one target, and every legal
+  // reply meets both checks, so neither "two targets" nor "one reply rarely meets both" holds.
   const doubleCheck = {id: "double-check", motif: "double_attack", plies: [1], roles: {attackers: ["c2", "d8"], king: ["e3"]}};
-  expect(reviewedTactics([doubleCheck])("double-check")).toBe("tactic-double-attack-played");
-  // Jun's take says "two targets are threatened".
   const jun = {id: "man-expert", personality: expert};
+  expect(reviewedTactics([doubleCheck])("double-check")).toBeNull();
   expect(reviewedTactics([doubleCheck], jun)("double-check")).toBeNull();
-  // A double attack on two targets keeps Jun's take.
-  expect(reviewedTactics([{...doubleCheck, roles: {attackers: ["c2", "d1"], targets: ["e3", "a1"]}}], jun)("double-check"))
-    .toBe("tactic-double-attack-played");
+  // A double attack on two targets keeps the takes.
+  const twoTargets = {...doubleCheck, roles: {attackers: ["c2", "d1"], targets: ["e3", "a1"]}};
+  expect(reviewedTactics([twoTargets])("double-check")).toBe("tactic-double-attack-played");
+  expect(reviewedTactics([twoTargets], jun)("double-check")).toBe("tactic-double-attack-played");
 });
 
 test("back-rank takes saying the king's own pieces block its escape squares stay silent", () => {
@@ -258,7 +259,9 @@ test("back-rank takes saying the king's own pieces block its escape squares stay
 });
 
 // The learner's 3.Qxd8 takes the queen Black's 2nd move left; a punishment relation links them.
-function punishedError(label: string, coach: DialogueCharacter) {
+function punishedError(label: string, coach: DialogueCharacter,
+  relationship: {kind: string; plies: number[]; facts: Record<string, unknown>; code: string} =
+  {kind: "punishment", plies: [2, 3], facts: {outcome: "capitalized"}, code: "punishment"}) {
   const score = {kind: "cp" as const, value: 900, mate_given: false};
   const actual = {uci: "d1d8", san: "Qxd8", score, depth: 20, pv: ["d1d8"]};
   const evidence = [{source: "stockfish" as const, id: "punish-search", field: "candidate_search", ply: 3}];
@@ -274,10 +277,10 @@ function punishedError(label: string, coach: DialogueCharacter) {
     version: "game-context-1", input_digest: "context", complete: true, total_plies: 3, missing_plies: [],
     turning_points: [], biggest_swing_ply: null, limitations: [],
     nodes: [{ply: 3, actor: "white", input_digest: "punish", event_ids: [], before: score, after: score, evidence}],
-    relationships: [{id: "punish-1", kind: "punishment", actor: "white", plies: [2, 3], event_ids: [],
-      facts: {outcome: "capitalized"}, evidence}]}} as unknown as Game;
+    relationships: [{id: "punish-1", kind: relationship.kind, actor: "white", plies: relationship.plies, event_ids: [],
+      facts: relationship.facts, evidence}]}} as unknown as Game;
   const intent = gameIntent({game, ply: 3, frame: game.frames[3], report, key: "punished", expression: "best"});
-  const claim = intent.claims.find(item => item.code === "punishment")!;
+  const claim = intent.claims.find(item => item.code === relationship.code)!;
   expect(claim).toBeTruthy();
   const single = {...intent, claims: [claim]};
   const {primaryId, variants} = selectGameSpeech({game, ply: 3, frame: game.frames[3], report, intent: single,
@@ -297,4 +300,16 @@ test("a chance-taken take calling the error small sits out after a blunder", () 
   expect(afterBlunder.takes).toEqual(expect.arrayContaining(["chance-taken-2", "chance-taken-3", "chance-taken-4"]));
   // Walter's takes say nothing of size, so all of them stay.
   expect(punishedError("Blunder", {id: "classic", personality: storyteller}).takes).toContain("chance-taken");
+});
+
+test("a recovery plays only the takes that do not credit the move", () => {
+  // The learner's earlier Qd8 is reused as the setback; Qxd8 is the move after which it is playable again.
+  const recovery = (help: boolean) => ({kind: "recovery", plies: [1, 3], code: "recovery",
+    facts: {outcome: "playable_position", opponent_errors: help ? [2] : []}});
+  const fergus = {id: "frog", personality: newCastPersonalities.frog};
+  expect(punishedError("Mistake", fergus, recovery(false)).primaryId).toBe("recovery");
+  expect(punishedError("Mistake", fergus, recovery(true)).primaryId).toBe("recovery-assisted");
+  // Winston's recorded take says "playable again with this move"; Walter's says "this restores".
+  expect(punishedError("Mistake", {id: "capybara", personality: newCastPersonalities.capybara}, recovery(false)).primaryId).toBeNull();
+  expect(punishedError("Mistake", {id: "classic", personality: storyteller}, recovery(true)).primaryId).toBeNull();
 });

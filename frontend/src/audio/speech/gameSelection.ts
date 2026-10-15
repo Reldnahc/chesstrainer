@@ -12,7 +12,7 @@ import {capturedPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tact
 import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
 import {meanings} from "./meaningCatalog";
 import registry from "./banks/registry.json" with {type: "json"};
-import {alwaysFalseTake, coachVoice, SMALL_ERROR_TAKES, TWO_TARGETS} from "./falseTakes";
+import {alwaysFalseTake, coachVoice, NAMED_OPENING_TAKES, SMALL_ERROR_TAKES} from "./falseTakes";
 
 export type GameSpeechContext = {
   game: Game;
@@ -74,7 +74,7 @@ function eventFor(item: Claim, report: Report): Event | undefined {
   return matches.length === 1 && same(matches[0].evidence, item.evidence) ? matches[0] : undefined;
 }
 
-function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", report: Report, voice: string | null): string | null {
+function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", report: Report): string | null {
   const f = event.facts, role = f.role, motif = String(f.motif);
   if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item)) return null;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
@@ -110,10 +110,9 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   // Every pin take says the move makes (or allows, or missed making) the pin; a
   // line that uses a pin already on the board before the move is not that.
   if (motif === "pin" && f.pinned_before === true) return null;
-  // A double check (its witness names the king) attacks one target; takes that
-  // name two targets sit out for it.
-  if (motif === "double_attack" && Array.isArray(object(f.roles).king) && voice
-    && TWO_TARGETS[voice]?.includes(role as "played")) return null;
+  // A double check (its witness names the king) attacks one target, and every
+  // legal reply meets both checks, so no double-attack take holds there.
+  if (motif === "double_attack" && Array.isArray(object(f.roles).king)) return null;
   if (recordedTacticMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
@@ -245,11 +244,16 @@ function selectMeaning(context: GameSpeechContext): string | null {
   const mover = opposite(frame.turn);
   const event = eventFor(item, report);
   if (item.code.startsWith("tactic_") || item.code.startsWith("cause_"))
-    return event ? tacticalRecording(item, event, mover, report, coachVoice(utterance.coachId)) : null;
+    return event ? tacticalRecording(item, event, mover, report) : null;
   if (item.position) return event ? positionalRecording(item, event, mover, report) : null;
   if (!evidenced(item)) return null;
-  if (item.code === "book" || item.code === "book_sound") return report.opening
-    && nonempty(report.opening.version) ? item.opening ? bookRecordingId(item.opening) : "recognized-opening" : null;
+  if (item.code === "book" || item.code === "book_sound") {
+    if (!report.opening || !nonempty(report.opening.version)) return null;
+    const id = item.opening ? bookRecordingId(item.opening) : "recognized-opening";
+    // Some takes say the opening has a name; our catalogue has none for every position.
+    const voice = coachVoice(utterance.coachId);
+    return !nonempty(report.opening.name) && voice && NAMED_OPENING_TAKES[voice]?.includes(id) ? null : id;
+  }
   if (event) {
     if (event.actor !== mover) return null;
     if (item.code === "allowed_mate" || item.code === "missed_mate") {
@@ -278,9 +282,9 @@ function selectMeaning(context: GameSpeechContext): string | null {
     // Some chance-taken takes say "exactly the right reply" or "takes full
     // advantage", which a Good move (up to half a pawn short of the best) is not.
     if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label)) return null;
-    // Recovery takes credit this move with restoring the game, and a move never
-    // raises its own evaluation: the opponent's moves did. The line stays written.
-    if (item.code === "recovery") return null;
+    // A move never raises its own evaluation: the opponent's moves did. Takes that
+    // credit this move or the learner sit out in falseTakes.ts until re-recorded.
+    if (item.code === "recovery") return item.slots.help ? "recovery-assisted" : "recovery";
     return simpleIds[item.code];
   }
   // Several evaluation-loss takes call the cost small ("a little leak"), which

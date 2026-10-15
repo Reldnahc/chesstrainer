@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "coachId": "cat-kitten",
+  "voiceId": "pickle",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "recovery",
+      "previousText": "Look who's back! The earlier setback is behind us, and this move makes the position playable again.",
+      "text": "Ooh, look at that! The earlier setback didn't stick: the position is playable again.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "previousText": "Clue spotted: the king's own pieces are blocking its escape hatch. Now the other side has a shot at a back-rank mate.",
+      "text": "Clue spotted: the king's squished in behind its own pieces. Now the other side has a shot at a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-queen",
+      "previousText": "Clue spotted: the king's own pieces are blocking its escape hatch. Now the other side's queen has a shot at a back-rank mate.",
+      "text": "Clue spotted: the king's squished in behind its own pieces. Now the other side's queen has a shot at a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-rook",
+      "previousText": "Clue spotted: the king's own pieces are blocking its escape hatch. Now the other side's rook has a shot at a back-rank mate.",
+      "text": "Clue spotted: the king's squished in behind its own pieces. Now the other side's rook has a shot at a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    }
+  ]
+}

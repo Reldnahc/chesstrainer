@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "coachId": "mushroom",
+  "voiceId": "button",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "recovery",
+      "previousText": "After the earlier stumble, things hold together again. This move brings back a playable position.",
+      "text": "After the earlier stumble, things hold together again. The position is playable once more.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "recovery-assisted",
+      "previousText": "After the earlier setback, the position is upright again, partly thanks to the other side's errors. This move makes it playable once more.",
+      "text": "After the earlier setback, the position is upright again, partly thanks to the other side's errors. It's playable once more.",
+      "reason": "The take no longer credits this move or the learner, and does not call the other side's Mistakes small."
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "previousText": "Things have gotten a little crowded around the king. This gives the other side a route to a back-rank mate, where the king's own pieces block its escape.",
+      "text": "Things are a little crowded around the king. It's huddled behind its own pieces, and that leaves a path for the other side toward a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-queen",
+      "previousText": "Things have gotten a little crowded around the king. This gives the other side a route to a back-rank mate with a queen, where the king's own pieces block its escape.",
+      "text": "Things are a little crowded around the king. It's huddled behind its own pieces, and that leaves a path for the other side's queen toward a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-rook",
+      "previousText": "Things have gotten a little crowded around the king. This gives the other side a route to a back-rank mate with a rook, where the king's own pieces block its escape.",
+      "text": "Things are a little crowded around the king. It's huddled behind its own pieces, and that leaves a path for the other side's rook toward a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    }
+  ]
+}

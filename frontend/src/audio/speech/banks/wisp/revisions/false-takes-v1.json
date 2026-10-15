@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "coachId": "ghost",
+  "voiceId": "wisp",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "recovery",
+      "previousText": "After the earlier setback, the position is playable again. This move brings it back.",
+      "text": "The earlier setback is still part of this game, but the position is playable again.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "repeated-issue",
+      "previousText": "The same issue has appeared earlier in this game. It returns here, and the earlier moments carry the same warning sign.",
+      "text": "The same issue has appeared earlier in this game. It returns here, carrying the same warning sign.",
+      "reason": "The issue can recur a third time or more, so the take no longer counts the occurrences."
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "previousText": "The king's own pieces stand where it would need to escape. That gives the other side a route to a back-rank mate.",
+      "text": "The king sits behind its own pieces, and that wall can become a trap. Now the other side has a route to a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-queen",
+      "previousText": "The king's own pieces stand where it would need to escape. That gives the other side's queen a route to a back-rank mate.",
+      "text": "The king sits behind its own pieces, and that wall can become a trap. Now the other side's queen has a route to a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-rook",
+      "previousText": "The king's own pieces stand where it would need to escape. That gives the other side's rook a route to a back-rank mate.",
+      "text": "The king sits behind its own pieces, and that wall can become a trap. Now the other side's rook has a route to a back-rank mate.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    }
+  ]
+}
