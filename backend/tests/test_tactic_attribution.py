@@ -59,6 +59,16 @@ def test_an_opponent_back_rank_mate_on_the_movers_line_is_not_an_error():
     assert recognized(boards) == set()
 
 
+def test_a_pinner_sliding_along_an_existing_pin_makes_no_new_pin():
+    # Bb5 already pins the c6 knight to its king; Ba4 keeps that pin and later
+    # collects the knight, which uses the pin rather than making one.
+    boards = line("4k3/ppp2ppp/2n5/1B6/8/8/PPPP1PPP/4K3 w - - 0 1", "Ba4", "h6", "Bxc6+")
+    assert ("pin", "pin_collected") not in detected(boards)
+    # From f1 the same bishop move makes the pin itself.
+    boards = line("4k3/ppp2ppp/2n5/8/8/8/PPPP1PPP/4KB2 w - - 0 1", "Bb5", "h6", "Bxc6+")
+    assert ("pin", "pin_collected") in detected(boards)
+
+
 def test_a_pin_already_on_the_board_is_marked_as_existing():
     from trainer.review_intelligence.event_facts import pinned_before
 
