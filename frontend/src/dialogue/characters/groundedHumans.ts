@@ -65,7 +65,7 @@ export const youngGirl: CoachPersonality = {
     mate_win: [{observation: "Puzzle solved!", fact: "Checkmate! Every escape square is gone, and the win is yours."}],
     mate_loss: [{fact: "Checkmate; your king ran out of squares.", question: "Where could the defense have started?"}],
     draw: [{fact: "Drawn, so no winner this time.", question: "Which earlier decision is worth a second look?"}],
-    recovery: [{observation: "You climbed back.", fact: "Since that slip at {earlier}, you've dug back to a playable game.{help}"}],
+    recovery: [{observation: "Back in the game.", fact: "Since that slip at {earlier}, it's a playable game again.{help}"}],
     repeated: [{observation: "This pattern, once more.", fact: "Count them: {count} times so far, this {motif} problem has shown up in the game."}],
     retry: [{fact: "Not quite.", question: "What did that move overlook?"}],
     recovered: [{observation: "Second look, solved!", fact: "{detail}"}],

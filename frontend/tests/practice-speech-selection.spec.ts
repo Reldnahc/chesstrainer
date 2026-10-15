@@ -221,10 +221,13 @@ test("pin-escape takes are not voiced for a piece that cannot move along its pin
   const onDiagonal = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["g7"], king: ["h8"], attacker: ["b2"], target: ["g7"]}});
   const diagonal = explanation({findings: [onDiagonal], frames: [frame({uci: null}), frame({fen: "7k/6b1/8/8/8/8/1B6/K7 b - - 0 1"})]});
   expect(explanationFindingRecording(diagonal, onDiagonal, 1)).toContain("explanation-finding-pin-restricts-escape");
-  // A pawn pinned along its rank cannot push or capture; one pinned on its file can push.
+  // A pawn pinned along its rank or a diagonal cannot push; one pinned on its file can.
   const onRank = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d5"], king: ["h5"], attacker: ["a5"], target: ["d5"]}});
   const rank = explanation({findings: [onRank], frames: [frame({uci: null}), frame({fen: "8/8/8/R2p3k/8/8/8/K7 b - - 0 1"})]});
   expect(explanationFindingRecording(rank, onRank, 1)).toBeNull();
+  const onDiagonalPawn = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["e6"], king: ["g8"], attacker: ["c4"], target: ["e6"]}});
+  const diagonalPawn = explanation({findings: [onDiagonalPawn], frames: [frame({uci: null}), frame({fen: "6k1/8/4p3/8/2B5/8/8/4K3 b - - 0 1"})]});
+  expect(explanationFindingRecording(diagonalPawn, onDiagonalPawn, 1)).toBeNull();
   const pawnOnFile = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d6"], king: ["d8"], attacker: ["d1"], target: ["d6"]}});
   const file = explanation({findings: [pawnOnFile], frames: [frame({uci: null}), frame({fen: "3k4/8/3p4/8/8/8/8/K2R4 b - - 0 1"})]});
   expect(explanationFindingRecording(file, pawnOnFile, 1)).toContain("explanation-finding-pin-restricts-escape");
