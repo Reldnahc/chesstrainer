@@ -2,7 +2,10 @@
 
 import json
 
+import chess
 import pytest
+from trainer.chess_core import position_key
+from trainer.opening_book import _index
 from trainer.study_lessons import course_files
 from trainer.study_lessons.bundled import BundledCourses
 from trainer.study_lessons.course_files import CourseFileError
@@ -97,3 +100,28 @@ def test_unreachable_step_needs_its_own_position():
     )
     with pytest.raises(CourseFileError, match="aside cannot be reached"):
         course_files.load(data)
+
+
+# Lines whose last catalogued position is shallower than the code they carry.
+# COURSE_SOURCES.md records why each code is right.
+ECO_BEYOND_CATALOGUE = {
+    # Castled before 8.Be3 Nc6: the B73 position of 6.Be3 Bg7 7.Be2 Nc6 8.O-O O-O.
+    ("sicilian-dragon", "dragon-classical"): "B73",
+    # 2.Nc3 Nc6 3.Bc4 Nf6 4.d3 is C28; Lichess files that position as C24.
+    ("vienna-gambit", "vienna-second-knights-pin"): "C28",
+}
+
+
+def test_course_line_codes_match_their_deepest_catalogued_position():
+    _, names = _index()
+    for course in BundledCourses().courses(None):
+        for line in course.lines:
+            if line.eco is None:
+                continue
+            board = chess.Board(line.position.initial_fen)
+            deepest = None
+            for uci in (*line.position.moves, *line.moves):
+                board.push_uci(uci)
+                deepest = names.get(position_key(board), deepest)
+            expected = ECO_BEYOND_CATALOGUE.get((course.id, line.id)) or deepest[0]
+            assert line.eco == expected, (course.id, line.id, deepest)
