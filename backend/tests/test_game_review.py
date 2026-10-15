@@ -79,19 +79,40 @@ def test_great_needs_a_runner_up_that_actually_loses():
     assert classify(mate, 1500)[0] == "Best"
 
 
-def test_a_long_mate_against_an_equally_decisive_score_is_not_a_mate_transition():
-    kept = quality(0, 499)
-    kept["best"]["score"] = {"kind": "mate", "value": 8}
-    assert classify(kept, 1500)[0] == "Good"  # Not a Miss: the move still wins decisively.
-    short = quality(0, 499)
-    short["best"]["score"] = {"kind": "mate", "value": 2}
-    assert classify(short, 1500)[0] == "Miss"  # A short mate is found reliably.
-    lost = quality(-581, 0)
-    lost["actual"]["score"] = {"kind": "mate", "value": -6}
-    assert classify(lost, 1500)[0] == "Good"  # Already decisively lost.
-    blundered = quality(-100, 0)
-    blundered["actual"]["score"] = {"kind": "mate", "value": -6}
-    assert classify(blundered, 1500)[0] == "Blunder"
+def test_a_mate_seen_on_one_side_only_is_a_mate_transition():
+    # Scores alone cannot tell a horizon difference from a real miss; the review
+    # settles that with a deeper search before grading (see the native test).
+    missed = quality(0, 499)
+    missed["best"]["score"] = {"kind": "mate", "value": 5}
+    assert classify(missed, 1500)[0] == "Miss"
+    allowed = quality(-442, 0)
+    allowed["actual"]["score"] = {"kind": "mate", "value": -4}
+    assert classify(allowed, 1500)[0] == "Blunder"
+
+
+@pytest.mark.stockfish
+def test_a_long_mate_beyond_the_played_moves_search_is_settled_deeper(
+    settings, sessions, stockfish_path
+):
+    from trainer.engine import Stockfish
+
+    settings.stockfish_path = stockfish_path
+    engine = Stockfish(settings, sessions)
+    try:
+        # Kh6 keeps a queen-against-king mate its first search reads as about +6.
+        kept = analyze_move(
+            engine, chess.Board("8/8/8/7K/8/7Q/5k2/8 w - - 0 1"), chess.Move.from_uci("h5h6")
+        )
+        assert kept["actual"]["score"]["kind"] == "mate"
+        assert classify(kept, 1500)[0] == "Good"
+        # Qxc8+ really gives up Bh6+'s mate in five for about +5.
+        board = chess.Board("r1r2k2/2Q1R2p/5bp1/8/3p2P1/2P2Pn1/1P6/1NB2RK1 w - - 1 25")
+        missed = analyze_move(engine, board, chess.Move.from_uci("c7c8"))
+        if missed["best"]["score"]["kind"] == "mate":
+            assert missed["actual"]["score"]["kind"] == "cp"
+            assert classify(missed, 1500)[0] == "Miss"
+    finally:
+        engine.close()
 
 
 def test_previous_scores_carry_whether_the_opponent_erred():

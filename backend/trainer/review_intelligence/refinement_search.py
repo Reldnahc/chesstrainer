@@ -15,7 +15,8 @@ class RefinementEngine:
         self.native, self.task, self.sessions, self.cancelled = native, task, sessions, cancelled
         self.queries = list(task.queries)
 
-    def analyze(self, board, deep=False, root_moves=None, multipv=None):
+    def analyze(self, board, deep=False, root_moves=None, multipv=None, limits=None):
+        # Every refinement question already runs at the task's own deeper limits.
         if self.cancelled():
             raise EngineCancelled()
         count = multipv if root_moves else self.task.config["multipv"]

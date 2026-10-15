@@ -243,11 +243,11 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
 - Inaccuracy: 50–99 cp loss, or, in a position lost to mate either way, a move that
   is mated sooner than the best defence.
 - A mate on one side of a comparison only is a mate transition (a Miss or an allowed
-  mate) unless it is a long mate (four moves or more) and the other side is just as
-  decisive in centipawns (+3.00 or better for a kept win, -3.00 or worse for an
-  already lost position): at the same search depth one search can see such a mate
-  and the other not. The move then counts as no loss. Insights, events and
-  difficulty read the same comparison.
+  mate). When the best move mates in four or more and the played move's search reads
+  only +3.00 or better, the played move may keep the mate beyond that search's
+  horizon, so the review searches it again at depth 22 (2 seconds) before grading:
+  a move that still mates is graded as a slower mate, and one that really gives the
+  mate up stays a Miss.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
 - Blunder: newly allowed forced mate, a transition from at least -50 cp (or a
   forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating

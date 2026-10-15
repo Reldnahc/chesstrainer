@@ -9,6 +9,7 @@ from trainer.chess_core import (
     evaluation_loss,
     legal_move,
     legal_move_options,
+    mate_horizon,
 )
 from trainer.classification_stages import REVIEW_RULES, line_findings
 from trainer.continuations import replay, settled_delta
@@ -35,6 +36,7 @@ from trainer.review_scores import (
     is_poor,
     strongest_alternative,
 )
+from trainer.search_limits import SearchLimits
 
 VERSION = "game-review-1"
 
@@ -232,6 +234,11 @@ def move_frames(board, moves, reports, *, play_end=False, extra=None):
     return frames
 
 
+# The deeper search that settles a long mate one search saw and the played
+# move's did not (the review refinement's own default limits).
+MATE_HORIZON_LIMITS = SearchLimits(depth=22, time=2.0)
+
+
 def analyze_move(engine, board, move, previous_score=None):
     before = engine.analyze(board, deep=True, multipv=2)
     candidates = [Candidate.model_validate(c) for c in before.candidates]
@@ -240,6 +247,13 @@ def analyze_move(engine, board, move, previous_score=None):
     actual_id = before.id
     if actual is None:
         played = engine.analyze(board, deep=True, root_moves=[move.uci()], multipv=1)
+        actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
+    if mate_horizon(best.score, actual.score):
+        # A move that keeps a long mate is no Miss; one that really gives it up
+        # for a big lead still is. Searching it deeper tells them apart.
+        played = engine.analyze(
+            board, deep=True, root_moves=[move.uci()], multipv=1, limits=MATE_HORIZON_LIMITS
+        )
         actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
     loss = evaluation_loss(best.score, actual.score)
     poor = is_poor(loss)
