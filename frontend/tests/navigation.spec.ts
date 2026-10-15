@@ -94,6 +94,34 @@ test('an entry from before history entries were numbered is rewritten and counte
   await expect(page).toHaveURL('/study');
 });
 
+test('without the Navigation API, Forward onto an entry from before numbering counts as a step forward', async ({page}) => {
+  // Browsers without the Navigation API give no position in session history.
+  await page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
+  await page.goto('/play');
+  // A tab reloaded on an earlier page after the upgrade: old-build entries lie on both sides of it.
+  await page.evaluate(() => {
+    history.replaceState({fieldworkEntry: 'legacy-before'}, '', '/play');
+    history.pushState({fieldworkEntry: 'reloaded'}, '', '/study');
+    history.pushState({fieldworkEntry: 'legacy-after'}, '', '/play');
+  });
+  await page.goBack();
+  await expect(page).toHaveURL('/study');
+  await page.reload();
+  const index = () => page.evaluate(() => history.state.fieldworkIndex as number);
+  const start = await index();
+  // The first step after loading cannot tell its direction and is counted as Back.
+  await page.goBack();
+  await expect(page).toHaveURL('/play');
+  expect(await index()).toBe(start - 1);
+  await page.goForward();
+  await expect(page).toHaveURL('/study');
+  expect(await index()).toBe(start);
+  // Leaving the numbered run at its high end is Forward.
+  await page.goForward();
+  await expect(page).toHaveURL('/play');
+  expect(await index()).toBe(start + 1);
+});
+
 test('game links support opening a second tab without navigating the first', async ({page}, info) => {
   test.skip(info.project.name !== 'desktop', 'Modifier-click is a desktop interaction.');
   const {id} = await (await page.request.post('/__test/game-review-fixture/new-tab')).json();
