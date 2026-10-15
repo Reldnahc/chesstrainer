@@ -4,9 +4,9 @@ import type { Job } from '../src/api';
 test('native connection and history disclosures support keyboard and touch without losing open state on refresh', async ({page}, info) => {
   let games = 1;
   const job = (): Job => ({
-    id: 'disclosure-history', status: 'completed', kind: 'training', user_id: 'disclosure-fixture',
+    id: 'disclosure-history', status: 'completed', kind: 'analysis', user_id: 'disclosure-fixture',
     created_at: '2026-09-29T10:00:00Z', activity: null, cancel_requested: false,
-    chesscom: null, classifications_completed: games, priority: 0, puzzles_found: 0, deep_completed: games, error: null,
+    classifications_completed: games, priority: 0, puzzles_found: 0, deep_completed: games, error: null,
     games_processed: games, games_total: games, import_id: null, mistakes_identified: games,
     positions_triaged: games * 2, probe_total: null, provider_import: null,
   });

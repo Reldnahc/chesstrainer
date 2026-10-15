@@ -89,7 +89,7 @@ test("import confirmation is a status while existing engine availability stays p
     engine_available: false, engine_error: "Stockfish is unavailable. Check the server logs.", engine_version: null,
   } }));
   const result: Schema["PgnImportResult"] = {
-    imported: 2, duplicates: 1, processed: 4, import_id: "notice-import", job_id: null,
+    imported: 2, duplicates: 1, processed: 4, import_id: "notice-import",
     errors: [{ game: 4, error: "The PGN move sequence was invalid." }],
   };
   await page.route("**/api/imports", route => route.fulfill({ json: result }));
@@ -113,7 +113,7 @@ test("import confirmation is a status while existing engine availability stays p
 test("opening failed import history never re-announces saved errors as current alerts", async ({ page }) => {
   const job: Job = {
     id: "notice-history", kind: "provider_fetch", status: "failed", user_id: "notice-fixture",
-    created_at: "2026-09-29T10:00:00Z", activity: null, cancel_requested: false, chesscom: null,
+    created_at: "2026-09-29T10:00:00Z", activity: null, cancel_requested: false,
     classifications_completed: 0, priority: 0, puzzles_found: 0, deep_completed: 0, games_processed: 0, games_total: 0,
     import_id: null, mistakes_identified: 0, positions_triaged: 0, probe_total: null,
     error: "A previously saved download was interrupted.",
