@@ -261,20 +261,31 @@ def root_comparison(engine, board, move, limits=None):
     return before, candidates, actual, actual_id
 
 
+def mated_beyond_horizon(best, actual):
+    """One side of the comparison is mated and the other reads only a lost
+    centipawn score: every move may be mated beyond one search's horizon."""
+    return any(
+        seen.outcome() == -1 and mate_horizon(seen, other)
+        for seen, other in ((best, actual), (actual, best))
+    )
+
+
 def analyze_move(engine, board, move, previous_score=None):
     before, candidates, actual, actual_id = root_comparison(engine, board, move)
-    if mate_horizon(actual.score.negate(), candidates[0].score.negate()):
-        # The mirror case: the played move is mated in four or more and the best
-        # defence reads only a lost centipawn score. Every defence may be mated
-        # beyond the root search's horizon; the whole comparison is searched
-        # deeper, so a move that only hastens the mate is not "allows mate".
+    if mated_beyond_horizon(candidates[0].score, actual.score):
+        # Either the played move reads mated while the best defence reads only a
+        # lost score, or the best defence reads mated while the played move's
+        # restricted search reads only a lost score. The whole comparison is
+        # searched deeper at one limit, so a move that only hastens an unavoidable
+        # mate is not "allows mate", and a faster-mated move whose search stopped
+        # short of its mate is not promoted over the best defence.
         before, candidates, actual, actual_id = root_comparison(
             engine, board, move, MATE_HORIZON_LIMITS
         )
     best = candidates[0]
-    if mate_horizon(best.score, actual.score):
-        # A move that keeps a long mate is no Miss; one that really gives it up
-        # for a big lead still is. Searching it deeper tells them apart.
+    if best.score.outcome() == 1 and mate_horizon(best.score, actual.score):
+        # A move that keeps a mate, however long, is no Miss; one that really
+        # gives it up for a big lead still is. Searching it deeper tells them apart.
         played = engine.analyze(
             board, deep=True, root_moves=[move.uci()], multipv=1, limits=MATE_HORIZON_LIMITS
         )
@@ -362,6 +373,11 @@ def promote_stronger_played(report):
     best = Score.model_validate(report["best"]["score"])
     actual = Score.model_validate(report["actual"]["score"])
     if actual.order_key() <= best.order_key():
+        return report
+    # A centipawn score against a best move that is mated is a horizon
+    # difference, not a stronger move: the restricted search stopped short of
+    # the mate. Saved rows from before the deeper re-search still hold such pairs.
+    if best.outcome() == -1 and actual.kind == "cp":
         return report
     return report | {
         "best": report["actual"],

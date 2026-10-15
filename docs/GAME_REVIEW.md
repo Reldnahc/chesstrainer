@@ -237,21 +237,28 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   nearly equal score is not Best. When a played move's
   restricted-root search scores it above the reported best, presentation treats it
   as the best move found (best move, best line and grade), without rewriting the
-  saved report.
+  saved report; a centipawn score never outranks a best move that is mated.
 - Good: less than 50 cp loss without qualifying for a higher label. Keeping a
   forced win but taking longer to mate is Good, never Best, Great, or Brilliant.
 - Inaccuracy: 50–99 cp loss, or, in a position lost to mate either way, a move that
   is mated sooner than the best defence.
 - A mate on one side of a comparison only is a mate transition (a Miss or an allowed
-  mate). When the best move mates in four or more and the played move's search reads
-  only +3.00 or better, the played move may keep the mate beyond that search's
-  horizon, so the review searches it again at depth 22 (2 seconds) before grading:
-  a move that still mates is graded as a slower mate, and one that really gives the
-  mate up stays a Miss. The mirror case, a played move mated in four or more while
-  the best defence reads -3.00 or worse, searches the whole comparison again at those
-  limits: when every defence is mated, the move only hastens the mate (an Inaccuracy)
-  and allows nothing. Practice grades a move a card has not seen against the same
-  search its answers came from.
+  mate), unless it may be a horizon difference: two searches at one nominal depth do
+  not see equally far (a restricted root searches a narrower tree), so a mate of any
+  length seen by one search may lie just beyond the other's horizon. When the best
+  move mates and the played move's search reads only +3.00 or better, the review
+  searches the played move again at depth 22 (2 seconds) before grading: a move
+  that still mates is graded as a slower mate (Good), and one that really gives the
+  mate up stays a Miss. When either side is mated while the other reads only -3.00
+  or worse (the played move mated against a lost best defence, or the best defence
+  mated against a played move whose restricted search reads only a lost score), the
+  whole comparison is searched again at those limits: when every defence is mated,
+  a move that only hastens the mate is an Inaccuracy and allows nothing, and a move
+  whose first search stopped short of its own mate is never shown as the best
+  defence. Play's live commentary shares this rule, since it never refines.
+  Presentation never promotes a centipawn score over a best move that is mated, so
+  saved reports from before the deeper search keep the same grades. Practice grades
+  a move a card has not seen against the same search its answers came from.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
 - Blunder: newly allowed forced mate, a transition from at least -50 cp (or a
   forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating

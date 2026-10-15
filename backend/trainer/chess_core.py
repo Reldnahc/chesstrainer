@@ -106,9 +106,6 @@ class Loss(BaseModel):
 # A centipawn score at least this large is a clearly winning (or, negated,
 # clearly lost) position.
 DECISIVE_CP = 300
-# Mates at least this long can be seen by one search and not by another at the
-# same depth; shorter ones are found reliably.
-LONG_MATE = 4
 
 
 def evaluation_loss(best: Score, played: Score) -> Loss:
@@ -120,16 +117,15 @@ def evaluation_loss(best: Score, played: Score) -> Loss:
     )
 
 
-def mate_horizon(best: Score, played: Score) -> bool:
-    """The best move's search mates in four or more and the played move's
-    restricted search reads only a decisive centipawn win: the played move may
-    keep the mate beyond its search's horizon, so it is asked again deeper."""
-    return (
-        best.outcome() == 1
-        and best.value >= LONG_MATE
-        and played.kind == "cp"
-        and played.value >= DECISIVE_CP
-    )
+def mate_horizon(seen: Score, other: Score) -> bool:
+    """One search reads a forced mate, of any length and for either side, and the
+    other only a decisive centipawn score on the same side: the second search may
+    hold the same mate beyond its horizon, so the comparison is asked again deeper.
+    Two searches at one nominal depth do not see equally far (a restricted root
+    searches a narrower tree), so no mate length is reliable across them."""
+    if seen.kind != "mate" or other.kind != "cp":
+        return False
+    return other.value >= DECISIVE_CP if seen.outcome() == 1 else other.value <= -DECISIVE_CP
 
 
 class Candidate(BaseModel):
