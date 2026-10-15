@@ -280,15 +280,17 @@ test("connecting with a LAN token restores preferences without a page reload", a
 });
 
 test("a device's pre-account coach and motion choices seed this account's caches once", async ({ page }) => {
+  // The saved preferences never arrive, so the page starts from what the device remembers.
+  // Held from the first load too: a response landing after the clear below would fill
+  // the account's caches before the old keys could seed them.
+  await page.route("**/api/preferences/coach", () => undefined);
+  await page.route("**/api/preferences/motion", () => undefined);
   await page.goto("/settings");
   await page.evaluate(() => {
     localStorage.clear();
     localStorage.setItem("fieldwork:coach-id", "robot");
     localStorage.setItem("fieldwork.interface-motion", "natural");
   });
-  // The saved preferences never arrive, so the page starts from what the device remembers.
-  await page.route("**/api/preferences/coach", () => undefined);
-  await page.route("**/api/preferences/motion", () => undefined);
   await page.reload();
   // Before its preference loads, the interface moves only when the device remembers a choice.
   await expect(page.locator("html")).toHaveAttribute("data-interface-motion", "natural");
