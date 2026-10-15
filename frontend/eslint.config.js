@@ -1,7 +1,8 @@
 // Lint for the app, the development tools, their tests and the build scripts.
 // `npm run build` runs it with no warnings allowed (scripts/build.mjs), so a
 // finding fails the build like a type error. An intended exception is written
-// at the line as `// eslint-disable-next-line <rule> -- <why>`.
+// at the line as `// eslint-disable-next-line <rule> -- <why>` (or a disable/enable
+// pair around one short block); never for a whole file. See docs/TESTING.md.
 import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
