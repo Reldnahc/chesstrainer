@@ -26,6 +26,23 @@ from trainer.models import (
 from trainer.opening_studies import recall as opening_recall
 
 
+def shown_material_change(boards, settled, line_end):
+    """The material change a summary may claim for the shown line.
+
+    Read where the line settles, not at its last frame, which can stop in the
+    middle of an exchange. Without a settled endpoint the last frame counts only
+    when its capture cannot simply be taken back.
+    """
+    if settled is not None:
+        return settled
+    last = boards[-1]
+    if len(boards) > 1 and boards[-2].is_capture(last.peek()):
+        square = last.peek().to_square
+        if any(reply.to_square == square for reply in last.legal_moves):
+            return 0
+    return line_end
+
+
 def explain_review(db, session_id, attempt_id=None, solution=False):
     session = db.get(ReviewSession, session_id)
     if session is None:
@@ -90,7 +107,9 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         raise InvalidInput("The saved analysis does not contain this move")
     frames = replay_line(board, candidate.pv)
     learner = color_name(board.turn)
-    balance_change = frames[-1].material_change
+    boards = replay(board, candidate)
+    delta, end = settled_delta(boards, board.turn, max_plies=EXPLANATION_RULES.settle_plies)
+    balance_change = shown_material_change(boards, delta, frames[-1].material_change)
     notes = [
         "This is one Stockfish continuation against strong replies; it does not mean every reply is forced.",
         "Material changes refer only to the shown line, compared with the starting position. Pieces use values 1/3/3/5/9.",
@@ -134,9 +153,7 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
     note_kinds.append("saved_policy")
     # These witnesses come from THIS answer's exact line. A classification from
     # the source game would be wrong for a different move made during review.
-    boards = replay(board, candidate)
     first = 1 if accepted else 2
-    delta, end = settled_delta(boards, board.turn, max_plies=EXPLANATION_RULES.settle_plies)
     gain = delta if accepted else -delta if delta is not None else None
     mate_supported = candidate.score.kind == "mate" and candidate.score.outcome() == (
         1 if accepted else -1

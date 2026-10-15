@@ -256,3 +256,23 @@ def test_legacy_facts_do_not_acquire_mechanism_by_matching_prose():
     legacy = finding.model_dump(exclude={"mechanism", "cue_key"})
     parsed = Finding.model_validate(legacy)
     assert parsed.mechanism is None and parsed.cue_key is None
+
+
+def test_a_line_ending_mid_exchange_claims_no_material():
+    from trainer.chess_core import replay_moves
+    from trainer.continuations import settled_delta
+    from trainer.explanation_types import replay_line
+    from trainer.explanations import shown_material_change
+
+    start = "rn1qkbnr/ppp2ppp/3p4/4p3/2B1P1b1/5N2/PPPP1PPP/RNBQK2R w KQkq - 2 4"
+    board, ucis = chess.Board(start), []
+    for san in ["h3", "Bh5", "g4", "Bg6", "Nh4", "Nc6", "Nxg6"]:
+        move = board.parse_san(san)
+        ucis.append(move.uci())
+        board.push(move)
+    boards = replay_moves(chess.Board(start), ucis)
+    frames = replay_line(chess.Board(start), ucis)
+    settled, _ = settled_delta(boards, True, max_plies=16)
+    # The line stops on Nxg6 with ...hxg6 available: +3 at the last frame, not a gain.
+    assert frames[-1].material_change == 3
+    assert shown_material_change(boards, settled, frames[-1].material_change) == 0
