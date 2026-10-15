@@ -100,6 +100,32 @@ def piece_capture_ply(boards, square, start, end):
     return None
 
 
+def absolute_pinner(board, square):
+    """The square of the piece pinning the piece on ``square`` to its king, or None.
+
+    That is the first piece beyond the pinned one on the line from its king, the
+    one actually pinning, never another slider further along the same line.
+    """
+    piece = board.piece_at(square)
+    if piece is None or piece.piece_type == chess.KING or not board.is_pinned(piece.color, square):
+        return None
+    king = board.king(piece.color)
+    file_step = (chess.square_file(square) > chess.square_file(king)) - (
+        chess.square_file(square) < chess.square_file(king)
+    )
+    rank_step = (chess.square_rank(square) > chess.square_rank(king)) - (
+        chess.square_rank(square) < chess.square_rank(king)
+    )
+    file, rank = chess.square_file(square), chess.square_rank(square)
+    while True:
+        file, rank = file + file_step, rank + rank_step
+        if not (0 <= file < 8 and 0 <= rank < 8):
+            return None
+        beyond = chess.square(file, rank)
+        if board.piece_at(beyond) is not None:
+            return beyond
+
+
 def relative_pinners(board, target, *, effective=True):
     """(slider, piece behind) for each slider pinning ``target`` to a more valuable piece.
 

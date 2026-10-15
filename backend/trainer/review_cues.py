@@ -3,7 +3,7 @@
 import chess
 
 from trainer.chess_core import VALUES
-from trainer.tactical_geometry import SLIDERS, relative_pinners
+from trainer.tactical_geometry import absolute_pinner, relative_pinners
 
 
 def pins(board):
@@ -16,17 +16,11 @@ def pins(board):
     for square, piece in board.piece_map().items():
         if piece.piece_type in {chess.KING, chess.PAWN}:
             continue
-        if board.is_pinned(piece.color, square):
-            king = board.king(piece.color)
-            for source in board.pin(piece.color, square):
-                pinner = board.piece_at(source)
-                if (
-                    pinner
-                    and pinner.color != piece.color
-                    and pinner.piece_type in SLIDERS
-                    and square in chess.SquareSet(chess.between(source, king))
-                ):
-                    found.add((source, square, king))
+        # The arrow starts at the piece actually pinning, the nearest one beyond
+        # the pinned piece, not any slider elsewhere on the line.
+        source = absolute_pinner(board, square)
+        if source is not None:
+            found.add((source, square, board.king(piece.color)))
         found.update(
             (slider, square, rear)
             for slider, rear in relative_pinners(board, square)

@@ -2,7 +2,7 @@
 
 ## Classification v4: pinned Lichess recognition
 
-Version 4.0-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
+Version 4.1-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
 
 Recognition and mistake admission are separate. A pin or double check can be present in a line without a settled material outcome. Review can show that factual motif; an active weakness finding still needs Fieldwork's existing engine comparison, material/mate support and relevant episode. Fieldwork's own collection witnesses and independently verified native extensions also run; upstream recognition adds motifs those narrower witnesses miss.
 
@@ -23,7 +23,7 @@ The vendored [Lichess puzzler](https://github.com/ornicar/lichess-puzzler) tagge
 | Module | Role |
 |---|---|
 | `lichess_patterns.py` | Rebuilds a python-chess PGN line and calls the pinned predicates |
-| `lichess_witnesses.py` | Turns their successful return sites into real move indices, board frames and square roles |
+| `lichess_witnesses.py` | Turns their successful return sites into real move indices, board frames and square roles; declines (without a crash) an upstream back-rank mate of the line's own mover, castling counted as a discovered check, and a pin that already existed before the move and that the move does not use |
 | `tactical_patterns.py` | Applies Fieldwork's connected-episode and outcome admission boundaries |
 | `verified_patterns.py` | Keeps Fieldwork's own detailed collection witnesses and independently verified extensions |
 

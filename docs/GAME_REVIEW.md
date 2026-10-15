@@ -75,7 +75,7 @@ clears those cues. Outside Show why, the opponent's strongest reply to the
 selected move is drawn as one faded blue arrow, and the same reply appears as
 **Reply** under **Best** beside the coach portrait. A pin the selected move
 makes (a piece, never a pawn, pinned to its king or to something worth more
-than the pinning piece; either side's pieces) is drawn as a faded red arrow from the pinning piece through the
+than the pinning piece; either side's pieces) is drawn as a faded red arrow from the pinning piece (the nearest piece beyond the pinned one, never another slider further along the line) through the
 pinned piece to the piece behind it, with or without Show why. A pin kept from
 an earlier move is not drawn again. The board cues' `pins` list carries these
 from `review_cues.py`. The action row sits below the speech bubble.

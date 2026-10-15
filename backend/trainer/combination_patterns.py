@@ -4,6 +4,7 @@ import chess
 
 from trainer.tactical_geometry import (
     SLIDERS,
+    absolute_pinner,
     defenders,
     effective_attacks,
     names,
@@ -24,13 +25,10 @@ def pin_collected(boards, plies, ply, analysis_id, direction):
             or not after.is_pinned(not actor, target)
         ):
             continue
-        pinners = [
-            s
-            for s in after.attackers(actor, target)
-            if target in chess.SquareSet(chess.between(s, after.king(not actor)))
-        ]
-        if move.to_square not in pinners:
+        pinner = absolute_pinner(after, target)
+        if pinner != move.to_square:
             continue
+        pinners = [pinner]
         collection = piece_capture_ply(boards, target, ply, plies[-1])
         if collection is not None:
             yield witness(

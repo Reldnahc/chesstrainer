@@ -180,7 +180,12 @@ def checking_attack(event: TacticalEvent) -> None:
             f"{event.san} gives double check in this verified continuation.",
             mechanism="double_check",
         )
-    elif checkers and event.move.to_square not in checkers:
+    elif (
+        checkers
+        and event.move.to_square not in checkers
+        # Castling checks from the castling rook itself; nothing is uncovered.
+        and not event.before.is_castling(event.move)
+    ):
         event.add(
             "discovered_attack",
             [event.first],
@@ -199,14 +204,19 @@ def pinned_defender(event: TacticalEvent) -> None:
         event.before.piece_at(event.move.to_square) if event.before.is_capture(event.move) else None
     )
     if captured:
-        defenders = set(event.before.attackers(captured.color, event.move.to_square))
+        # Judged after the capture: a capture by the pinning piece itself releases
+        # the pin, and then the defender can recapture after all.
+        after, target = event.after, event.move.to_square
+        defenders = set(after.attackers(captured.color, target))
         pinned = [
             sq
             for sq in defenders
-            if event.before.is_pinned(captured.color, sq)
-            and event.move.to_square not in event.before.pin(captured.color, sq)
+            if after.is_pinned(captured.color, sq) and target not in after.pin(captured.color, sq)
         ]
-        if pinned and set(pinned) == defenders:
+        recapture = any(
+            move.to_square == target and move.from_square in defenders for move in after.legal_moves
+        )
+        if pinned and set(pinned) == defenders and not recapture:
             event.add(
                 "pin",
                 [event.first],

@@ -8,7 +8,7 @@ import chess.pgn
 
 from trainer._vendor.lichess_puzzler import cook
 from trainer.chess_core import legal_move, position_key, valid_board
-from trainer.lichess_witnesses import MotifWitness, witness
+from trainer.lichess_witnesses import DECLINED, MotifWitness, witness
 
 THEME_RULES = {
     "fork": ("fork",),
@@ -120,16 +120,20 @@ def recognize(boards, first, end, analysis_id, *, previous_move=None, themes=Non
         if theme == "hangingPiece" and not setup_known:
             result.skipped.append("hangingPiece:setup_context_unavailable")
             continue
-        hits = []
+        hits, declined = [], []
 
         def observe(rule, context):
             item = witness(theme, rule, context, puzzle, positions)
-            if item is not None:
+            if item is DECLINED:
+                declined.append(rule)
+            elif item is not None:
                 hits.append(item)
 
         puzzle.record_hit = observe
         if any(getattr(cook, name)(puzzle) for name in THEME_RULES[theme]):
             if not hits:
+                if declined:
+                    continue  # Deliberately not credited to this line's mover.
                 raise ValueError(f"Upstream {theme} returned True without a concrete witness")
             result.themes.append(theme)
             result.witnesses.extend(hits)
