@@ -87,7 +87,7 @@ def human_move(engine, board: chess.Board, policy, rating: int, rng) -> BotChoic
     # Every draw failed the guard: keep the least damaging human candidate rather
     # than switching to the engine's move, which would change the bot's character.
     uci = min(checked, key=lambda row: (row[1].allows_mate, row[1].cp or 0))[0]
-    return _choice(board, uci, "fallback", best, len(checked))
+    return _choice(board, uci, "human", best, len(checked))
 
 
 def _choice(board, uci, source, best, samples):

@@ -348,3 +348,69 @@ def test_review_presentation_keeps_one_entry_per_game(monkeypatch):
     second = present(2)
     assert second is not first and len(loads) == 2  # A new revision re-renders.
     assert presentation._presented.get(game.id)[1] is second  # Only the latest is kept.
+
+
+def test_a_human_like_reply_without_the_model_is_recorded_as_the_engine_setting():
+    from types import SimpleNamespace
+
+    from trainer.human_models.runtime import HumanUnavailable
+    from trainer.play.sessions import apply_reply, choose_reply, parsed_for, state, truncate
+
+    class NoModel:
+        def policy(self, sessions, request, cancelled=lambda: False):
+            raise HumanUnavailable("not_configured")
+
+    limited = []
+
+    def play_limited(board, elo, seconds):
+        limited.append(elo)
+        return "e7e5"
+
+    engine = SimpleNamespace(play_limited=play_limited)
+    play = PlayGame(
+        id="no-model",
+        coach_id="classic",
+        coach_name="Walter",
+        learner_color=True,
+        opponent_kind="human",
+        opponent_rating=600,
+        learner_rating=1000,
+        moves=["e2e4"],
+        reports={},
+        status="active",
+    )
+    choice = choose_reply(engine, NoModel(), None, play, _after("e2e4"))
+    assert choice.source == "fallback" and limited == [1320]
+    apply_reply(None, play, choice, "Learner", None)
+    assert play.fallback_plies == [2]
+    shown = state(play, "Learner")
+    assert shown["fallback_plies"] == [2] and shown["fallback_elo"] == 1320
+    # The saved PGN says what really played; the Elo header stays the model setting.
+    headers = parsed_for(play, "Learner").headers
+    assert headers["BlackElo"] == "600"
+    assert headers["Bot"] == (
+        "Maia-3 conditioned at 600; Stockfish UCI_Elo 1320 played 1 move"
+        " while the human model was unavailable"
+    )
+    # Going back past the move forgets it.
+    truncate(play, 1)
+    assert play.fallback_plies == []
+    assert parsed_for(play, "Learner").headers["Bot"] == "Maia-3 conditioned at 600"
+
+
+def _after(*moves):
+    board = chess.Board()
+    for uci in moves:
+        board.push_uci(uci)
+    return board
+
+
+def test_the_profile_says_whether_human_like_play_is_available(settings):
+    settings.stockfish_path = "missing-test-engine"
+    # The test settings point at no model file, so the human model cannot answer.
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        assert client.get("/api/play/profile").json()["human_model"] is False
+    app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
+    with TestClient(app) as client:
+        assert client.get("/api/play/profile").json()["human_model"] is True

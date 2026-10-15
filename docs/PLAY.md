@@ -40,6 +40,14 @@ character. Draws are seeded by game and ply, so a retried request plays the same
 reply. Above 2500 the policy's rating dial stops improving play, so the range
 ends there.
 
+**Without the human model.** Human-like play needs the human move model. When the
+profile reports it cannot answer (`human_model: false`), the setup page disables
+Human-like and offers only the engine. If the model fails during a Human-like game,
+the bot still answers, with Stockfish at `UCI_Elo` max(1320, the chosen rating), and
+the reply's source is `fallback`. The game keeps those plies (`fallback_plies`); the
+page banner says how many of the bot's moves came from Stockfish and at what
+setting, and the saved PGN's `Bot` header records it.
+
 **Engine (1800 to 2600).** Stockfish's own `UCI_LimitStrength` and `UCI_Elo`,
 through `Stockfish.play_limited`, never cached or graded. Stockfish's limiter
 cannot imitate anyone weaker than a strong club player, so the setup page does
@@ -171,7 +179,10 @@ other game.
 
 When a game ends (checkmate, draw by rule, or the learner resigning) the moves
 are written as a PGN with the coach as the opponent and both conditioning ratings
-as the Elo headers, imported through the ordinary import path with the learner's
+as the Elo headers, plus a `Bot` header naming what really chose the bot's moves
+(for example `Maia-3 conditioned at 600`, `Stockfish UCI_Elo 1800`, or the Maia
+setting followed by the moves Stockfish played while the human model was
+unavailable). It is imported through the ordinary import path with the learner's
 side explicit, and queued for analysis like any imported game. The finished
 page shows the result in the page banner with a link to that review; it stays
 until closed. Starting a new game while one is active marks the old

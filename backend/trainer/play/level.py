@@ -90,6 +90,7 @@ def profile_payload(row, games, human_models):
         status = row.status
     return {
         "status": status,
+        "human_model": human_models.can_attempt(),
         "fitted_rating": row.fitted_rating if row else None,
         "platform_rating": row.platform_rating if row else None,
         "platform": row.platform if row else None,

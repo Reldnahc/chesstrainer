@@ -137,10 +137,13 @@ function PlaySetup() {
     if (playable) setInvited(`play-setup:${coach.id}`);
   }, [playable, coach.id]);
   const invitation = useSelectedCoachSpokenText(PLAY_INVITATION);
-  const range = opponent === "human" ? HUMAN : ENGINE;
+  // Human-like play needs the human move model; without it only the engine is offered.
+  const humanModel = profile?.human_model ?? true;
+  const shownOpponent: Opponent = humanModel ? opponent : "engine";
+  const range = shownOpponent === "human" ? HUMAN : ENGINE;
   const clamped = Math.max(range.min, Math.min(range.max, rating));
   const matched = profile?.default_rating ?? 1200;
-  const chosen = level === "match" && opponent === "human" ? matched : clamped;
+  const chosen = level === "match" && shownOpponent === "human" ? matched : clamped;
   // Practice plays the course's side; the color choice shows it but cannot change it.
   const picked = courses.find((item) => item.id === courseId) ?? null;
   const course = mode === "practice" ? picked : null;
@@ -152,7 +155,7 @@ function PlaySetup() {
       const game = await read(
         api.POST("/api/play", {
           body: {
-            coach_id: coach.id, coach_name: coach.name, color: shownColor, opponent, rating: chosen,
+            coach_id: coach.id, coach_name: coach.name, color: shownColor, opponent: shownOpponent, rating: chosen,
             ...(course ? { course_id: course.id } : {}),
           },
         }),
@@ -210,31 +213,32 @@ function PlaySetup() {
           </div>
           <div className="play-field">
             <span id="play-opponent">Opponent</span>
-            <ChoiceGroup label="Opponent" options={OPPONENTS} value={opponent} onChange={(value) => {
+            <ChoiceGroup label="Opponent" value={shownOpponent} onChange={(value) => {
               setOpponent(value);
               if (value === "engine") setLevel("choose");
-            }} />
+            }} options={OPPONENTS.map(option => ({ ...option, disabled: option.value === "human" && !humanModel }))} />
             {/* Both descriptions share one cell so switching never changes its height. */}
             <div className="play-swap">
-              <p className="small muted" hidden={opponent !== "human"}>
+              <p className="small muted" hidden={shownOpponent !== "human"}>
                 {coach.name} plays like a person at the chosen rating: the mistakes of that level, not an engine's random ones.
               </p>
-              <p className="small muted" hidden={opponent !== "engine"}>
+              <p className="small muted" hidden={shownOpponent !== "engine"}>
                 {coach.name} plays engine chess at a limited strength. Stockfish cannot imitate players below 1800.
+                {!humanModel && " Human-like play needs the human move model, which is not available."}
               </p>
             </div>
           </div>
           <div className="play-field">
             <span>Strength</span>
             {/* The engine cannot match a human level; keep the choice visible but unavailable. */}
-            <ChoiceGroup label="Strength" value={opponent === "human" ? level : "choose"} onChange={setLevel}
-              options={LEVELS.map(option => ({ ...option, disabled: opponent !== "human" && option.value === "match" }))} />
+            <ChoiceGroup label="Strength" value={shownOpponent === "human" ? level : "choose"} onChange={setLevel}
+              options={LEVELS.map(option => ({ ...option, disabled: shownOpponent !== "human" && option.value === "match" }))} />
             <div className="play-swap">
-              <div className="play-level" hidden={!(level === "match" && opponent === "human")}>
+              <div className="play-level" hidden={!(level === "match" && shownOpponent === "human")}>
                 <strong>{profile?.status === "computing" && !profile.fitted_rating ? "…" : matched}</strong>
                 <span className="small muted">{fitLine}</span>
               </div>
-              <div className="play-strength" hidden={level === "match" && opponent === "human"}>
+              <div className="play-strength" hidden={level === "match" && shownOpponent === "human"}>
                 <input id="play-rating" type="range" aria-label="Opponent rating" min={range.min} max={range.max}
                   step={range.step} value={clamped} onChange={(event) => setRating(Number(event.target.value))} />
                 <output htmlFor="play-rating">{clamped}</output>

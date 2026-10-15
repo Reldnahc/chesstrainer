@@ -3851,6 +3851,8 @@ export interface components {
             fitted_rating: number | null;
             /** Games */
             games: number;
+            /** Human Model */
+            human_model: boolean;
             /** Platform */
             platform: string | null;
             /** Platform Rating */
@@ -3913,6 +3915,10 @@ export interface components {
             coach_id: string;
             /** Coach Name */
             coach_name: string;
+            /** Fallback Elo */
+            fallback_elo: number | null;
+            /** Fallback Plies */
+            fallback_plies: number[];
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
             /** Id */

@@ -62,6 +62,34 @@ def ratings(play: PlayGame) -> tuple[int, int]:
     return (learner, bot) if learner_is_white(play) else (bot, learner)
 
 
+def fallback_elo(play: PlayGame) -> int:
+    """The engine setting that answers for a Human-like bot without the human model."""
+    return max(ENGINE_ELO[0], play.opponent_rating)
+
+
+def fallback_plies(play: PlayGame) -> list[int]:
+    return list(play.fallback_plies or [])
+
+
+def bot_setting(play: PlayGame) -> str:
+    """What really chose the bot's moves, for the saved PGN.
+
+    The Elo headers carry the model's conditioning values, which the review reuses;
+    they are settings, not ratings.
+    """
+    if play.opponent_kind == "engine":
+        return f"Stockfish UCI_Elo {play.opponent_rating}"
+    setting = f"Maia-3 conditioned at {play.opponent_rating}"
+    stood_in = len(fallback_plies(play))
+    if stood_in:
+        moves = "move" if stood_in == 1 else "moves"
+        setting += (
+            f"; Stockfish UCI_Elo {fallback_elo(play)} played {stood_in} {moves}"
+            " while the human model was unavailable"
+        )
+    return setting
+
+
 def parsed_for(play: PlayGame, learner_name: str, board: chess.Board | None = None):
     """The game as a PGN, so ratings, Maia domain and the saved review read it alike."""
     board = board or board_for(play)
@@ -81,6 +109,7 @@ def parsed_for(play: PlayGame, learner_name: str, board: chess.Board | None = No
         TimeControl="-",
         Termination=play.termination or "unterminated",
     )
+    game.headers["Bot"] = bot_setting(play)
     node = game
     for move in board.move_stack:
         node = node.add_variation(move)
@@ -161,6 +190,8 @@ def state(play: PlayGame, learner_name: str, reply=None) -> dict:
         "saved_game_id": play.saved_game_id,
         "reply": reply,
         "practice": practice_view(play.practice),
+        "fallback_plies": fallback_plies(play),
+        "fallback_elo": fallback_elo(play) if play.opponent_kind == "human" else None,
         "frames": frames_for(play, learner_name),
     }
 
@@ -227,8 +258,8 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
         policy = None
     if policy is None:
         # Without the human model the bot still answers, at the engine's weakest
-        # human-like setting, and says so through the reply's source.
-        choice = engine_move(engine, board, max(ENGINE_ELO[0], play.opponent_rating))
+        # setting, and says so through the reply's source; the game records it.
+        choice = engine_move(engine, board, fallback_elo(play))
         choice.source = "fallback"
         return choice
     return human_move(engine, board, policy, play.opponent_rating, rng)
@@ -293,6 +324,8 @@ def truncate(play: PlayGame, ply: int):
     play.reports = {key: value for key, value in play.reports.items() if int(key) <= ply}
     if play.last_reply and play.last_reply["ply"] > ply:
         play.last_reply = None
+    if play.fallback_plies:
+        play.fallback_plies = [kept for kept in play.fallback_plies if kept <= ply]
 
 
 def rewind(db, courses, play: PlayGame, ply: int):
@@ -327,6 +360,8 @@ def apply_reply(db, play: PlayGame, choice, learner_name: str, book):
         "uci": choice.uci,
         "source": choice.source,
     }
+    if choice.source == "fallback":
+        play.fallback_plies = [*fallback_plies(play), len(play.moves)]
     outcome = board_outcome(board)
     if outcome:
         finish(db, play, *result_for(outcome), learner_name)

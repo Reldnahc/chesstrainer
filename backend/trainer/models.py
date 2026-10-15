@@ -321,6 +321,9 @@ class PlayGame(Owned, Base):
     reports: Mapped[dict] = mapped_column(JSON, default=dict)
     # The bot's latest reply {ply, san, uci, source}, repeated to a retried request.
     last_reply: Mapped[dict | None] = mapped_column(JSON)
+    # Plies a Human-like bot played with the engine because the human model was
+    # unavailable; shown in the game and recorded in the saved PGN.
+    fallback_plies: Mapped[list | None] = mapped_column(JSON)
     # Opening practice: the course whose repertoire is the bot's book, and where the
     # game stands against it. None for an ordinary game.
     practice: Mapped[dict | None] = mapped_column(JSON)
