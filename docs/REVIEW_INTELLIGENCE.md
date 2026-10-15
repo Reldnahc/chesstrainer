@@ -161,7 +161,7 @@ the durable sources; reading semantics requires no migration or engine/model.
 | `tactic` | Played, allowed, caused, missed or alternative motif in a verified line | Matching line root/first move, actor, valid witness plies and exact analysis/rule IDs; never attribute an alternative's tactic to the played move |
 | `human_contrast` | Natural error, unusual strong find, unusual model best choice | Compatible saved human evidence plus objective references; carries conditioning, domain, unvalidated calibration and confidence |
 | `clock_observation` | Low time, fast play with time, long think, accompanying evaluated error | Actual clock annotations/derivable values plus grading evidence; explicitly no psychological causation. Coaches do not voice or display it |
-| `opening_departure` | First unmatched move in the initial catalogue sequence | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
+| `opening_departure` | The move after the game's last catalogue move (`opening_book.book_run`); a gap the game later returns from by transposition is not a departure, and a game that ends in the catalogue has none | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
 | `check` | Giving check or answering check | Legally replayed actual move; checkmate supersedes generic check |
 | `finish` | Immediate checkmate, stalemate, insufficient material | python-chess actual transition; never inferred from a mate PV or declared PGN result |
 | `positional` | Immediate development, pawn, rook-file, support, king-flight and bishop-pair changes | Explicit geometry/history rules in [positional evidence](#positional-evidence); no strategic value inferred from an evaluation |

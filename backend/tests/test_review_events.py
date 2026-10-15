@@ -266,7 +266,7 @@ def test_semantics_are_deterministic_prose_independent_and_no_refs_means_no_obje
 
 def test_opening_event_means_catalogue_departure_not_bad_move():
     parsed = game(
-        "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O 9. h3 Nb8 10. Kh2 Kh8 11. Kg1 Kg8 *"
+        "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O 9. h3 Nb8 10. Kh2 Kh8 11. Kg1 Kg8 12. Kh1 Kh7 *"
     )
     context = next(c for c in move_contexts(parsed).values() if c.opening_departure)
     report = move_report(chess.Board(context.before_fen), context.uci)

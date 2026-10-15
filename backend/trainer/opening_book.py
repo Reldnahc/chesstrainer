@@ -87,17 +87,29 @@ def book_move(fen: str, uci: str) -> dict | None:
 
 
 def book_run(parsed):
-    """A game's leading book moves: ({ply: book match}, the first non-book ply or None).
+    """A game's book moves and where it leaves the catalogue for good.
 
-    The walk stops at the first move no catalogued line reaches; later moves
-    are out of book even if they transpose back into one.
+    Returns ({ply: book match}, the ply after the last book move, or None when the
+    game ends in book). A move outside the catalogue followed by a return to it by
+    transposition is not a departure: the badge, the review's departure event and
+    Insights all read this one rule. Plies past the longest catalogued line cannot
+    be book, so the walk stops there.
     """
     board = parsed.board()
     matches = {}
+    total = 0
     for ply, move in enumerate(parsed.mainline_moves(), 1):
-        opening = book_move(board.fen(), move.uci())
-        if opening is None:
-            return matches, ply
-        matches[ply] = opening
+        total = ply
+        if ply <= _longest_line():
+            opening = book_move(board.fen(), move.uci())
+            if opening is not None:
+                matches[ply] = opening
         board.push(move)
-    return matches, None
+    departure = max(matches, default=0) + 1
+    return matches, departure if departure <= total else None
+
+
+@cache
+def _longest_line():
+    """Plies in the longest catalogued line; no later move can reach a book position."""
+    return max(len(moves) for _, _, _, moves in catalogue_lines())

@@ -37,7 +37,7 @@ are a subset.
 | Speed | Lichess's estimate, base + 40 × increment: under 180 s bullet, under 480 s blitz, under 1500 s rapid, else classical; `1/…` controls are daily. |
 | How games end | A mate, stalemate or insufficient material on the final board wins over the header; otherwise keywords in Chess.com's sentence or Lichess's `Termination` (`Normal` decisive games count as resignations). |
 | Openings | The deepest named position reached in the bundled Lichess opening list, grouped by family (text before `:`) and the learner's side. Score counts a draw as half. |
-| Leaving the book | The learner's own move that first leaves the book, counted as costly when it is a Mistake-sized loss (100 cp or more) or a Blunder. |
+| Leaving the book | The learner's own move that leaves the book for good (the move after the game's last catalogue move, the review's departure rule), counted as costly when it is a Mistake-sized loss (100 cp or more) or a Blunder. |
 | Clearly winning / lost | A learner-relative evaluation of ±300 cp or a forced mate at any ply. |
 | Where the win slipped | In clearly winning games not won, the ply after which the evaluation never returned to +300. |
 | Game shapes | One per reviewed game, in this order: let slip, comeback, led throughout (won, reached +150, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
