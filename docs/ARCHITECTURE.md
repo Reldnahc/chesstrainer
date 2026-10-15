@@ -479,6 +479,7 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | Tables | Role |
 |---|---|
 | users, auth_sessions, user_preferences | Account credentials/session digests, administrator and password-change-required flags, presence for polling, and persisted coach/motion/audio preferences |
+| site_settings | Server settings an administrator edits in Settings, as JSON text by key; the environment seeds missing rows once |
 | provider_connections | Account-owned provider usernames and the poller's change markers (`poll_state`) |
 | game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts, unique fingerprints and the nullable `rated` flag (statistics skip only games known to be unrated) |
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
@@ -486,6 +487,8 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
 | play_games, play_profiles | Account-owned games against the coach's bot (moves, saved per-ply reports, result, the saved library game) and the measured level fit with its evidence size |
 | game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
+| review_refinements | Account-owned deeper searches planned for chosen plies of a completed review, with their status, reason and the refined report that may be adopted |
+| human_analyses | Shared Maia policy cache, unique by versioned key (see below) |
 | decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
 | skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
 | classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
@@ -494,11 +497,13 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused and archived lesson attempts are separate |
 | puzzle_sessions, puzzle_attempts | Private immutable puzzle snapshots, revisioned solve progress and idempotent practice commands; independent of Review/FSRS |
 | game_puzzles, game_puzzle_searches | Account-owned puzzles mined from the learner's games, each with its engine evidence or abstention reason, and one search record per game and generator version |
+| opening_studies, opening_study_moves, opening_cards, opening_recall_snapshots, opening_content_changes | Opening studies and their chosen moves, one review card per learner position with its active revision and retirement guard, the answer set a recall session was started with, and the audit of content changes |
+| study_lesson_sessions, study_lesson_commands, study_lesson_progress | Study lesson sessions, their exactly-once commands and per-chapter progress pinned to a course revision and content hash |
 | courses, course_units, unit_evidence, course_revisions, lessons, lesson_items | Archived course snapshots, source evidence, ordered items and historical progress; no active generation/progression |
 | teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
 | repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
 
-There are 51 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 52 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
 
 `human_analyses` stores provider-neutral requests and complete policy facts, unique
 by versioned cache key. Like `engine_analyses` it is shared between accounts: the
@@ -508,8 +513,9 @@ references that evidence independently of Stockfish analysis IDs. Model weights
 remain reproducible files outside SQLite. Native inference holds no database
 transaction. See [human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence) for identity and interpretation.
 
-Host configuration lives in environment/.env. User settings are account-owned and
-editable in Settings. SQLite contains salted password hashes and session-token
+Server settings live in `site_settings` and are edited in Settings by an administrator; only
+the `ENV_ONLY` host settings (paths, ports, secrets) stay in the environment or `.env`. User
+settings are account-owned and editable in Settings. SQLite contains salted password hashes and session-token
 digests, never plaintext passwords or session tokens. Skill state is derived from
 evidence and reviews, avoiding a duplicated mastery table. See [ADMINISTRATION.md](ADMINISTRATION.md)
 for ownership filtering and private foreign-key validation.
