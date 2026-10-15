@@ -49,6 +49,10 @@ def require_active_review(db, exercise_id):
     if state.retired_at is not None:
         raise InvalidInput("This position is retired and will no longer appear in reviews.")
     exercise = db.get(Exercise, exercise_id)
+    if exercise.source == "game" and not state.eligible:
+        raise InvalidInput(
+            "This position is no longer a mistake in its game's review, so it has left the queue."
+        )
     if exercise.source == "opening":
         card = db.get(OpeningCard, exercise_id)
         if card is None or not card.active or not state.eligible:

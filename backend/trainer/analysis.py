@@ -1,7 +1,14 @@
-from sqlalchemy import select, update
+from sqlalchemy import func, select, update
 
 from trainer.chess_core import Candidate, board_facts, digest, evaluation_loss, position_key
-from trainer.models import Decision, EngineAnalysis, GameReviewMove, SkillEvidence
+from trainer.models import (
+    Decision,
+    EngineAnalysis,
+    Exercise,
+    GameReviewMove,
+    SkillEvidence,
+    SRSState,
+)
 from trainer.policy import MovePolicy
 from trainer.review_reports import saved_report
 
@@ -52,9 +59,42 @@ def analyze_decision(db, engine, settings, game, ply, board, move):
             .where(SkillEvidence.decision_id == existing.id)
             .values(active=False)
         )
+    if existing:
+        sync_card_eligibility(db, existing)
     db.add(decision)
     db.commit()
     return decision
+
+
+def sync_card_eligibility(db, decision):
+    """A card made from ``decision`` leaves the practice queue while the decision
+    is no longer a mistake, and returns when a deeper search makes it one again.
+
+    The card keeps its answers and schedule either way: practice must not drill a
+    move the review now calls Good or Best, but rewriting the card would drop
+    answers graded during practice. A card shared by the same mistake in another
+    game stays in the queue while any decision on its position is meaningful.
+    """
+    cards = db.scalars(
+        select(SRSState)
+        .join(Exercise, Exercise.id == SRSState.exercise_id)
+        .where(Exercise.decision_id == decision.id, Exercise.source == "game")
+    ).all()
+    if not cards:
+        return
+    eligible = decision.meaningful or bool(
+        db.scalar(
+            select(func.count())
+            .select_from(Decision)
+            .where(
+                Decision.position_key == decision.position_key,
+                Decision.meaningful.is_(True),
+                Decision.id != decision.id,
+            )
+        )
+    )
+    for state in cards:
+        state.eligible = eligible
 
 
 def reviewed_searches(db, engine, board, move, report):

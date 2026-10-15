@@ -101,7 +101,10 @@ review runs again, keeping its id, so its weakness labels follow the deeper
 search; a decision that stops being a mistake drops them. An exercise already made
 from it keeps its answers and schedule (rewriting them would drop answers graded in
 practice, and the same mistake in other games can share the exercise); only a
-decision without one gets a new one from the deeper search.
+decision without one gets a new one from the deeper search. While the decision is
+no longer a mistake its card is ineligible, so it leaves the Due queue and focused
+practice and cannot be started directly, unless another meaningful decision shares
+its position; a later search that makes it a mistake again puts the card back.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original
