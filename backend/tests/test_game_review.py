@@ -97,6 +97,8 @@ def test_a_long_mate_beyond_the_played_moves_search_is_settled_deeper(
     from trainer.engine import Stockfish
 
     settings.stockfish_path = stockfish_path
+    # The review's own default limits, where these horizon differences arise.
+    settings.deep_depth, settings.deep_time = 16, 0.8
     engine = Stockfish(settings, sessions)
     try:
         # Kh6 keeps a queen-against-king mate its first search reads as about +6.
@@ -105,6 +107,13 @@ def test_a_long_mate_beyond_the_played_moves_search_is_settled_deeper(
         )
         assert kept["actual"]["score"]["kind"] == "mate"
         assert classify(kept, 1500)[0] == "Good"
+        # Every defence of the bare king is mated; the root search reads Kd3 as
+        # about -5.8 and Kf3 as mated in four. Deeper, Kf3 only hastens the mate.
+        lost = analyze_move(
+            engine, chess.Board("4Q3/8/8/8/8/7K/4k3/8 b - - 0 1"), chess.Move.from_uci("e2f3")
+        )
+        assert lost["best"]["score"]["kind"] == "mate"
+        assert classify(lost, 1500)[0] in {"Inaccuracy", "Best"}
         # Qxc8+ really gives up Bh6+'s mate in five for about +5.
         board = chess.Board("r1r2k2/2Q1R2p/5bp1/8/3p2P1/2P2Pn1/1P6/1NB2RK1 w - - 1 25")
         missed = analyze_move(engine, board, chess.Move.from_uci("c7c8"))

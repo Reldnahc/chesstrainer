@@ -247,7 +247,11 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   only +3.00 or better, the played move may keep the mate beyond that search's
   horizon, so the review searches it again at depth 22 (2 seconds) before grading:
   a move that still mates is graded as a slower mate, and one that really gives the
-  mate up stays a Miss.
+  mate up stays a Miss. The mirror case, a played move mated in four or more while
+  the best defence reads -3.00 or worse, searches the whole comparison again at those
+  limits: when every defence is mated, the move only hastens the mate (an Inaccuracy)
+  and allows nothing. Practice grades a move a card has not seen against the same
+  search its answers came from.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
 - Blunder: newly allowed forced mate, a transition from at least -50 cp (or a
   forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating

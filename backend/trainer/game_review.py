@@ -243,15 +243,35 @@ def move_frames(board, moves, reports, *, play_end=False, extra=None):
 MATE_HORIZON_LIMITS = SearchLimits(depth=22, time=2.0)
 
 
-def analyze_move(engine, board, move, previous_score=None):
-    before = engine.analyze(board, deep=True, multipv=2)
+def root_comparison(engine, board, move, limits=None):
+    """The root search, its candidates, and the played move's candidate and search."""
+    before = engine.analyze(board, deep=True, multipv=2, **({"limits": limits} if limits else {}))
     candidates = [Candidate.model_validate(c) for c in before.candidates]
-    best = candidates[0]
     actual = next((c for c in candidates if c.uci == move.uci()), None)
     actual_id = before.id
     if actual is None:
-        played = engine.analyze(board, deep=True, root_moves=[move.uci()], multipv=1)
+        played = engine.analyze(
+            board,
+            deep=True,
+            root_moves=[move.uci()],
+            multipv=1,
+            **({"limits": limits} if limits else {}),
+        )
         actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
+    return before, candidates, actual, actual_id
+
+
+def analyze_move(engine, board, move, previous_score=None):
+    before, candidates, actual, actual_id = root_comparison(engine, board, move)
+    if mate_horizon(actual.score.negate(), candidates[0].score.negate()):
+        # The mirror case: the played move is mated in four or more and the best
+        # defence reads only a lost centipawn score. Every defence may be mated
+        # beyond the root search's horizon; the whole comparison is searched
+        # deeper, so a move that only hastens the mate is not "allows mate".
+        before, candidates, actual, actual_id = root_comparison(
+            engine, board, move, MATE_HORIZON_LIMITS
+        )
+    best = candidates[0]
     if mate_horizon(best.score, actual.score):
         # A move that keeps a long mate is no Miss; one that really gives it up
         # for a big lead still is. Searching it deeper tells them apart.

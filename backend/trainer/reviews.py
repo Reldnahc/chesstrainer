@@ -367,11 +367,20 @@ def answer_search(db, session_id, uci):
     if db.get(ExerciseAnswer, (exercise.id, move.uci())) is not None:
         return None
     decision = db.get(Decision, exercise.decision_id)
+    # Graded against the search the exercise's own answers came from: a decision
+    # refreshed by a later refinement keeps its earlier exercise, and one card
+    # never mixes two engine references.
+    primary = db.scalar(
+        select(ExerciseAnswer).where(
+            ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
+        )
+    )
+    reference = primary.analysis_id if primary and primary.analysis_id else None
     return AnswerSearch(
         uci=move.uci(),
         san=board.san(move),
         board=decision_board(db.get(Game, decision.game_id), decision.ply),
-        original=db.get(EngineAnalysis, decision.before_analysis_id),
+        original=db.get(EngineAnalysis, reference or decision.before_analysis_id),
         policy=exercise.policy,
     )
 

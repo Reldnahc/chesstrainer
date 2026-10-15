@@ -301,3 +301,12 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
             select(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise.id)
         ).all()
         assert {answer.analysis_id for answer in answers} == {rows["base"].id}
+        # A move the card has not seen is graded against the same search as its
+        # answers, not the decision's newer one.
+        from trainer.models import ReviewSession
+        from trainer.reviews import answer_search
+
+        session = ReviewSession(exercise_id=exercise.id)
+        db.add(session)
+        db.commit()
+        assert answer_search(db, session.id, "g1f3").original.id == rows["base"].id
