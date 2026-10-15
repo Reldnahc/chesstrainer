@@ -90,16 +90,18 @@ def load_accuracy_scores(db, game_ids):
         # A JSON null is stored as text, so test for an object, as the Python rule does.
         func.json_type(refined) == "object",
     )
-    rows = db.execute(
-        select(
-            GameReviewMove.game_id,
-            GameReviewMove.ply,
-            case((adopted, refined["white_score"]), else_=base["white_score"]),
-            case((adopted, refined["best"]["score"]), else_=base["best"]["score"]),
-        )
-        .outerjoin(ReviewRefinement, GameReviewMove.refinement_id == ReviewRefinement.id)
-        .where(GameReviewMove.game_id.in_(game_ids))
-    )
-    for game_id, ply, white_score, best_score in rows:
-        saved[game_id][ply] = {"white_score": white_score, "best": {"score": best_score}}
+    statement = select(
+        GameReviewMove.game_id,
+        GameReviewMove.ply,
+        case((adopted, refined["white_score"]), else_=base["white_score"]),
+        case((adopted, refined["best"]["score"]), else_=base["best"]["score"]),
+    ).outerjoin(ReviewRefinement, GameReviewMove.refinement_id == ReviewRefinement.id)
+    game_ids = list(game_ids)
+    # Chunked: a whole library's ids would exceed SQLite's bound-parameter limit.
+    for start in range(0, len(game_ids), 500):
+        chunk = game_ids[start : start + 500]
+        for game_id, ply, white_score, best_score in db.execute(
+            statement.where(GameReviewMove.game_id.in_(chunk))
+        ):
+            saved[game_id][ply] = {"white_score": white_score, "best": {"score": best_score}}
     return saved

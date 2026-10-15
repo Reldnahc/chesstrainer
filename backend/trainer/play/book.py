@@ -7,8 +7,6 @@ among the book moves the way a player at the chosen rating would; once the learn
 leaves it, or the book ends, the game carries on as an ordinary game.
 """
 
-import threading
-from collections import OrderedDict
 from dataclasses import dataclass
 
 import chess
@@ -17,6 +15,7 @@ from trainer.chess_core import Score, evaluation_loss, position_key
 from trainer.contracts.play import HUMAN_RATINGS
 from trainer.human_models.runtime import HumanUnavailable
 from trainer.play.bot import BotChoice
+from trainer.recent_cache import RecentCache
 
 # Every book move keeps at least this share of the choice, so rarer lines still
 # come up in practice instead of the most popular reply every time.
@@ -62,30 +61,16 @@ def practice_courses(courses) -> list[dict]:
 
 # Books by (course id, revision). Each admin edit makes a new revision, so only
 # the most recently used few are kept.
-_books: OrderedDict[tuple[str, str], Book] = OrderedDict()
-_books_lock = threading.Lock()
-BOOKS_KEPT = 32
+_books = RecentCache(32)
 
 
 def cached_book(course_id, revision) -> Book | None:
     """The book already built for this exact revision, without listing any course."""
-    with _books_lock:
-        book = _books.get((course_id, revision))
-        if book is not None:
-            _books.move_to_end((course_id, revision))
-        return book
+    return _books.get((course_id, revision))
 
 
 def book_for(course) -> Book:
-    key = (course.id, course.revision)
-    book = cached_book(*key)
-    if book is None:
-        book = _build(course)
-        with _books_lock:
-            _books[key] = book
-            while len(_books) > BOOKS_KEPT:
-                _books.popitem(last=False)
-    return book
+    return _books.get_or_make((course.id, course.revision), lambda: _build(course))
 
 
 def _build(course) -> Book:

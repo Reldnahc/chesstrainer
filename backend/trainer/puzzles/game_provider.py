@@ -1,13 +1,11 @@
 """Serve the account's own-game puzzles; the account-bound session does the filtering."""
 
-import threading
-from collections import OrderedDict
-
 from sqlalchemy import select
 
 from trainer.models import GamePuzzle
 from trainer.puzzles.definitions import PuzzleDefinition
 from trainer.puzzles.generation import GENERATOR_VERSION, PROVIDER_ID
+from trainer.recent_cache import RecentCache
 
 # Validating a definition replays its line. A ready puzzle row never changes, so
 # each is validated once per process; the most recently used are kept.
@@ -22,21 +20,12 @@ class GamePuzzleProvider:
     url = None
 
     def __init__(self):
-        self._definitions = OrderedDict()
-        self._lock = threading.Lock()
+        self._definitions = RecentCache(DEFINITIONS_KEPT)
 
     def _definition(self, row_id, record):
-        with self._lock:
-            definition = self._definitions.get(row_id)
-            if definition is not None:
-                self._definitions.move_to_end(row_id)
-                return definition
-        definition = PuzzleDefinition.model_validate(record)
-        with self._lock:
-            self._definitions[row_id] = definition
-            while len(self._definitions) > DEFINITIONS_KEPT:
-                self._definitions.popitem(last=False)
-        return definition
+        return self._definitions.get_or_make(
+            row_id, lambda: PuzzleDefinition.model_validate(record)
+        )
 
     @staticmethod
     def _ready():

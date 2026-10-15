@@ -8,9 +8,11 @@ including `?category=outcomes`, and `/games/insights` redirect without an extra
 history entry.
 
 **Insights → Overview** (`/insights`) summarizes patterns across the learner's
-saved games. It is read-only: `GET /api/insights` recomputes everything from saved
-PGNs and completed original-game reviews on each request, stores nothing and
-never starts Stockfish. Filters choose a speed (from the speeds present) and a
+saved games. It is read-only: `GET /api/insights` computes everything from saved
+PGNs and completed original-game reviews, stores nothing in the database and
+never starts Stockfish. Each game's facts are kept in memory per review revision,
+so a request replays only games whose review changed; filters are applied to
+those facts on every request. Filters choose a speed (from the speeds present) and a
 period (all time, 30, 90 or 365 days); weekday and time of day use the viewer's
 UTC offset.
 

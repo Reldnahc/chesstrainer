@@ -1,8 +1,5 @@
 """State of a game against the coach's bot, and its hand-off into the game library."""
 
-import threading
-from collections import OrderedDict
-
 import chess
 import chess.pgn
 from sqlalchemy import select
@@ -35,6 +32,7 @@ from trainer.play.book import (
     replayed,
 )
 from trainer.play.bot import engine_move, human_move, seeded
+from trainer.recent_cache import RecentCache
 from trainer.review_intelligence.context import move_contexts
 
 
@@ -90,9 +88,7 @@ def parsed_for(play: PlayGame, learner_name: str, board: chess.Board | None = No
 
 # Rendered reports by (game, moves up to the ply): a saved engine report for a ply
 # never changes, so each is rendered once while the server runs.
-_rendered: OrderedDict = OrderedDict()
-_rendered_lock = threading.Lock()
-RENDERED_KEPT = 4096
+_rendered = RecentCache(4096)
 
 
 def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
@@ -107,22 +103,15 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
     output = {}
     for ply, report in saved.items():
         key = (play.id, tuple(play.moves[:ply]), report.get("previous_score") is not None)
-        with _rendered_lock:
-            cached = _rendered.get(key)
-            if cached is not None:
-                _rendered.move_to_end(key)
-        if cached is None:
-            color = starting if ply % 2 else not starting
-            cached = public_report(
+        color = starting if ply % 2 else not starting
+        output[ply] = _rendered.get_or_make(
+            key,
+            lambda report=report, color=color, ply=ply: public_report(
                 report,
                 mover_rating(parsed, color, play.learner_rating),
                 context=contexts.get(ply),
-            )
-            with _rendered_lock:
-                _rendered[key] = cached
-                while len(_rendered) > RENDERED_KEPT:
-                    _rendered.popitem(last=False)
-        output[ply] = cached
+            ),
+        )
     return output
 
 
