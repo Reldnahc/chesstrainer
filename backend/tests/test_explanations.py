@@ -238,3 +238,49 @@ def test_an_answer_within_tolerance_is_accepted_not_called_good(settings):
         assert solved["grade"] == "acceptable"
         assert solved["message_kind"] == "accepted"
         assert solved["message"] == "Accepted: within your practice tolerance."
+
+
+@pytest.mark.parametrize(
+    ("fen", "line", "score", "balance", "accepted", "kind", "frame_index"),
+    [
+        (chess.STARTING_FEN, ["e2e4"], ("mate", 3), 0, True, "mate_for_mover", None),
+        (chess.STARTING_FEN, ["e2e4"], ("mate", -3), 0, False, "mate_against_mover", None),
+        (chess.STARTING_FEN, ["e2e4"], ("cp", 300), 3, True, "material_gain", None),
+        (chess.STARTING_FEN, ["e2e4"], ("cp", -300), -3, False, "material_loss", None),
+        (
+            "4k3/8/8/3r4/8/8/8/4K2R w K - 0 1",
+            ["h1h5", "d5h5"],
+            ("cp", 0),
+            0,
+            False,
+            "frame",
+            2,
+        ),
+        ("4k3/8/8/3p4/8/8/8/4K2R w K - 0 1", ["e1g1"], ("cp", 0), 0, True, "frame", 1),
+        (chess.STARTING_FEN, ["e2e4"], ("cp", 20), 0, True, "engine_accepted", None),
+        (chess.STARTING_FEN, ["e2e4"], ("cp", -20), 0, False, "engine_rejected", None),
+    ],
+)
+def test_engine_summary_takes_the_first_claim_the_line_supports(
+    fen, line, score, balance, accepted, kind, frame_index
+):
+    from trainer.chess_core import Score
+    from trainer.explanations import _engine_summary
+
+    board = chess.Board(fen)
+    frames = replay_line(board, line)
+    move_ = chess.Move.from_uci(line[0])
+    summary = _engine_summary(
+        board,
+        move_,
+        board.san(move_),
+        Score(kind=score[0], value=score[1]),
+        frames,
+        balance,
+        accepted,
+    )
+    assert summary.kind == kind
+    assert summary.frame_index == frame_index
+    if frame_index is not None:
+        assert summary.text == frames[frame_index].annotation
+    assert (summary.note_kind == "no_simple_reason") == kind.startswith("engine_")
