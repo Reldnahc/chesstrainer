@@ -432,8 +432,38 @@ PRESENTATION_KEYS = frozenset(
 
 
 def engine_facts(report):
-    """A saved report without derived presentation, as older Play rows stored it."""
-    return {key: value for key, value in report.items() if key not in PRESENTATION_KEYS}
+    """A saved report without derived presentation, as older Play rows stored it,
+    with the root search's own best move where an older rendering had already
+    swapped the played move in for it."""
+    return unpromoted({key: value for key, value in report.items() if key not in PRESENTATION_KEYS})
+
+
+def unpromoted(report):
+    """The raw comparison of a report saved after promote_stronger_played had
+    swapped its best move for the played one (Play rows from before reports were
+    saved as engine facts). analyze_move always names the root search's first
+    candidate as best, so a best move equal to the played move while the root's
+    first candidate differs is such a swap; that candidate, its line replayed from
+    the saved position, and the loss against it restore the comparison, so the
+    previous-score link and the Great rule read it as for every other row."""
+    roots = report.get("root_candidates") or []
+    best, actual = report.get("best"), report.get("actual")
+    frames = (report.get("actual_line") or {}).get("frames") or []
+    if (
+        not (roots and best and actual and frames)
+        or best["uci"] != actual["uci"]
+        or roots[0]["uci"] == actual["uci"]
+    ):
+        return report
+    root_best = Candidate.model_validate(roots[0])
+    loss = evaluation_loss(root_best.score, Score.model_validate(actual["score"]))
+    return report | {
+        "best": root_best.model_dump(),
+        "best_line": line_evidence(
+            chess.Board(frames[0]["fen"]), root_best, report["before_analysis_id"], 1
+        ),
+        "loss_cp": loss.cp,
+    }
 
 
 def link_previous_scores(reports: dict) -> dict:
