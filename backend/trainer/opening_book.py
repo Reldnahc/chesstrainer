@@ -16,35 +16,45 @@ VERSION = f"lichess-openings-{lichess_openings.COMMIT[:8]}-1"
 _load_lock = Lock()
 
 
-@cache
+_lines = None
+_lines_lock = Lock()
+
+
 def catalogue_lines():
-    """Every bundled Lichess opening as (row, parsed game), in catalogue order.
+    """Every bundled Lichess opening as (eco, name, initial FEN, UCI moves), in order.
 
     Parsing is most of the cost, so the book index and the opening-study
-    catalogue share this one pass.
+    catalogue share this one pass, done once under a lock. Only plain values
+    are kept, not the parsed PGN trees.
     """
-    lines = []
-    for volume in "abcde":
-        text = files(lichess_openings).joinpath(f"{volume}.tsv").read_text(encoding="utf-8")
-        for row in csv.DictReader(io.StringIO(text), delimiter="\t"):
-            game = chess.pgn.read_game(io.StringIO(row["pgn"]))
-            if game is None or game.errors:
-                raise ValueError(f"Invalid bundled opening: {row['name']}")
-            lines.append((row, game))
-    return tuple(lines)
+    global _lines
+    with _lines_lock:
+        if _lines is None:
+            lines = []
+            for volume in "abcde":
+                path = files(lichess_openings).joinpath(f"{volume}.tsv")
+                text = path.read_text(encoding="utf-8")
+                for row in csv.DictReader(io.StringIO(text), delimiter="	"):
+                    game = chess.pgn.read_game(io.StringIO(row["pgn"]))
+                    if game is None or game.errors:
+                        raise ValueError(f"Invalid bundled opening: {row['name']}")
+                    moves = tuple(move.uci() for move in game.mainline_moves())
+                    lines.append((row["eco"], row["name"], game.board().fen(), moves))
+            _lines = tuple(lines)
+        return _lines
 
 
 @cache
 def _index():
     positions = set()
     names = {}
-    for row, game in catalogue_lines():
-        board = game.board()
-        for move in game.mainline_moves():
-            board.push(move)
+    for eco, name, initial_fen, moves in catalogue_lines():
+        board = chess.Board(initial_fen)
+        for uci in moves:
+            board.push_uci(uci)
             positions.add(position_key(board))
         # A few positions have aliases. Keep the catalogue's stable order.
-        names.setdefault(position_key(board), (row["eco"], row["name"]))
+        names.setdefault(position_key(board), (eco, name))
     return positions, names
 
 
@@ -74,3 +84,20 @@ def book_move(fen: str, uci: str) -> dict | None:
         "eco": opening[0] if opening else None,
         "name": opening[1] if opening else None,
     }
+
+
+def book_run(parsed):
+    """A game's leading book moves: ({ply: book match}, the first non-book ply or None).
+
+    The walk stops at the first move no catalogued line reaches; later moves
+    are out of book even if they transpose back into one.
+    """
+    board = parsed.board()
+    matches = {}
+    for ply, move in enumerate(parsed.mainline_moves(), 1):
+        opening = book_move(board.fen(), move.uci())
+        if opening is None:
+            return matches, ply
+        matches[ply] = opening
+        board.push(move)
+    return matches, None

@@ -15,17 +15,16 @@ _lock = Lock()
 @cache
 def _load():
     records = {}
-    for row, game in catalogue_lines():
-        moves = [move.uci() for move in game.mainline_moves()]
-        initial_fen = game.board().fen()
-        Position(initial_fen=initial_fen, moves=tuple(moves))
-        key = digest({"eco": row["eco"], "name": row["name"], "fen": initial_fen, "moves": moves})
+    for eco, name, initial_fen, line in catalogue_lines():
+        moves = list(line)
+        Position(initial_fen=initial_fen, moves=line)
+        key = digest({"eco": eco, "name": name, "fen": initial_fen, "moves": moves})
         records[key] = OpeningLine(
             source="lichess_catalogue",
             source_key=key,
             source_version=VERSION,
-            name=row["name"],
-            eco=row["eco"],
+            name=name,
+            eco=eco,
             initial_fen=initial_fen,
             moves=moves,
         )
