@@ -207,14 +207,16 @@ def lead_order(findings, first):
     return sorted(findings, key=lambda f: (min(f.plies) > first + 1, f.skill_id not in LEAD_SKILLS))
 
 
-def move_frames(board, moves, reports, *, extra=None):
+def move_frames(board, moves, reports, *, result=None, extra=None):
     """The start frame and one frame per move, as game review and Play show them.
 
     ``reports`` maps ply to its rendered report; ``extra(ply)`` adds fields such
     as a clock. The last frame ends where the game did, on a repetition or
     fifty-move draw that has happened too, whether the game was played here or
-    imported.
+    imported, unless ``result`` (an imported game's header) says a side won: a
+    repetition nobody claimed before a resignation or a lost clock ends nothing.
     """
+    decisive = result not in (None, "", "*", "1/2-1/2")
     board = board.copy()
     frames = [
         position(board)
@@ -230,7 +232,7 @@ def move_frames(board, moves, reports, *, extra=None):
         san, number, actor = board.san(move), board.fullmove_number, board.turn
         board.push(move)
         frames.append(
-            position(board, final=ply == len(moves))
+            position(board, final=ply == len(moves) and not decisive)
             | {
                 "san": san,
                 "uci": move.uci(),
@@ -341,13 +343,7 @@ def analyze_move(engine, board, move, previous_score=None):
                         "score": response.score.negate().model_dump(),
                     }
                     break
-    best_delta, actual_delta = best_line["material_delta"], actual_line["material_delta"]
-    missed = (
-        poor
-        and best_delta is not None
-        and actual_delta is not None
-        and (best_delta >= 1 and best_delta - actual_delta >= 1 and bool(best_line["findings"]))
-    )
+    missed = missed_opportunity(poor, best_line, actual_line)
     return {
         "version": VERSION,
         "engine_version": before.engine_version,
@@ -367,6 +363,17 @@ def analyze_move(engine, board, move, previous_score=None):
         "best_line": best_line,
         "white_score": (actual.score if board.turn else actual.score.negate()).model_dump(),
     }
+
+
+def missed_opportunity(poor, best_line, actual_line):
+    """A poor move passed up a line that wins material with a named idea."""
+    best_delta, actual_delta = best_line["material_delta"], actual_line["material_delta"]
+    return (
+        poor
+        and best_delta is not None
+        and actual_delta is not None
+        and (best_delta >= 1 and best_delta - actual_delta >= 1 and bool(best_line["findings"]))
+    )
 
 
 def promote_stronger_played(report):
@@ -457,12 +464,16 @@ def unpromoted(report):
         return report
     root_best = Candidate.model_validate(roots[0])
     loss = evaluation_loss(root_best.score, Score.model_validate(actual["score"]))
+    best_line = line_evidence(
+        chess.Board(frames[0]["fen"]), root_best, report["before_analysis_id"], 1
+    )
     return report | {
         "best": root_best.model_dump(),
-        "best_line": line_evidence(
-            chess.Board(frames[0]["fen"]), root_best, report["before_analysis_id"], 1
-        ),
+        "best_line": best_line,
         "loss_cp": loss.cp,
+        "opportunity_missed": bool(
+            missed_opportunity(is_poor(loss), best_line, report["actual_line"])
+        ),
     }
 
 

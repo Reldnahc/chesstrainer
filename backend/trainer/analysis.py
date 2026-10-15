@@ -8,6 +8,7 @@ from trainer.models import (
     GameReviewMove,
     SkillEvidence,
     SRSState,
+    keep_shared,
 )
 from trainer.policy import MovePolicy
 from trainer.review_reports import saved_report
@@ -72,13 +73,15 @@ def sync_card_eligibility(db, decision):
 
     The card keeps its answers and schedule either way: practice must not drill a
     move the review now calls Good or Best, but rewriting the card would drop
-    answers graded during practice. A card shared by the same mistake in another
-    game stays in the queue while any decision on its position is meaningful.
+    answers graded during practice. Cards are found by position, so one shared by
+    the same mistake in another game stays in the queue while any decision on its
+    position is meaningful, whichever decision made it.
     """
     cards = db.scalars(
         select(SRSState)
         .join(Exercise, Exercise.id == SRSState.exercise_id)
-        .where(Exercise.decision_id == decision.id, Exercise.source == "game")
+        .join(Decision, Decision.id == Exercise.decision_id)
+        .where(Decision.position_key == decision.position_key, Exercise.source == "game")
     ).all()
     if not cards:
         return
@@ -122,16 +125,18 @@ def restricted_view(db, analysis, uci):
     existing = db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
     if existing is not None:
         return existing
-    view = EngineAnalysis(
-        cache_key=key,
-        fen=analysis.fen,
-        engine_version=analysis.engine_version,
-        config=analysis.config | {"multipv": 1, "root_moves": [uci], "view_of": analysis.id},
-        candidates=[candidate],
+    # The shared-cache insert: two jobs building the view at once keep one row.
+    db.execute(
+        keep_shared(
+            EngineAnalysis,
+            key,
+            fen=analysis.fen,
+            engine_version=analysis.engine_version,
+            config=analysis.config | {"multipv": 1, "root_moves": [uci], "view_of": analysis.id},
+            candidates=[candidate],
+        )
     )
-    db.add(view)
-    db.flush()
-    return view
+    return db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
 
 
 def triaged_searches(engine, settings, board, move):

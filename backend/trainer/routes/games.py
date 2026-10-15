@@ -213,7 +213,13 @@ def create_router(*, settings):
                 remaining, _ = clock_annotation(nodes[ply - 1], "clk")
                 return {} if remaining is None else {"clock": remaining}
 
-            frames = move_frames(board, [node.move for node in nodes], reports, extra=clock)
+            frames = move_frames(
+                board,
+                [node.move for node in nodes],
+                reports,
+                result=parsed.headers.get("Result"),
+                extra=clock,
+            )
             _, clock_start, _ = clock_control(parsed.headers.get("TimeControl"))
             return {
                 "id": game.id,

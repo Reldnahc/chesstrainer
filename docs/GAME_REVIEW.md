@@ -97,8 +97,10 @@ game, imported or played here, ends on a threefold repetition or fifty-move draw
 that has actually happened (the third occurrence of the position, or fifty moves
 by each side without a capture or pawn move), the rule Play ends its games by, so
 such a game shows its draw and offers no moves there. A draw the side to move
-could only claim with its next move ends nothing, and an earlier position the
-game played past is not ended by a repetition. A score that rounds to
+could only claim with its next move ends nothing, an earlier position the
+game played past is not ended by a repetition, and an imported game whose header
+says a side won keeps its last frame live (nobody claimed the repetition before
+the resignation or the lost clock). A score that rounds to
 zero has no sign. The score's verdict uses the review's advantage bands: Equal
 within ±1.00, then slightly better, better from ±2.00 and winning from ±3.00.
 Pending evaluations show a dash.

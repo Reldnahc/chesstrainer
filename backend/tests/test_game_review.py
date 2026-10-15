@@ -598,6 +598,14 @@ def test_a_game_drawn_by_a_repetition_that_happened_ends_its_last_frame(settings
         # An earlier frame is not ended by a repetition the game then played past,
         # and the draw White could only claim with its next move ends nothing.
         assert frames[4]["result"] is None and frames[4]["legal_moves"]
+        # The same moves with a decisive header: nobody claimed the repetition
+        # before Black resigned, so the review does not call the game a draw.
+        seed(app, f'[White "Learner"]\n[Black "Opponent"]\n\n{shuffle} 1-0')
+        with app.state.sessions() as db:
+            won = db.scalar(select(Game.id).where(Game.id != drawn))
+        detail = client.get(f"/api/games/{won}").json()
+        assert detail["result"] == "1-0"
+        assert detail["frames"][-1]["result"] is None and detail["frames"][-1]["legal_moves"]
         seed(app, f'[White "Learner"]\n[Black "Other"]\n\n{shuffle} 5. e4 *')
         with app.state.sessions() as db:
             played_on = db.scalar(select(Game.id).where(Game.black == "Other"))

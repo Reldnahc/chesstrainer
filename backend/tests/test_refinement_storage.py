@@ -458,3 +458,18 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         assert back.id == decision.id and back.meaningful
         assert db.get(SRSState, exercise.id).eligible
         require_active_review(db, exercise.id)
+
+        # The same mistake in another game shares the card: its meaningful decision
+        # puts the card back even while this game's decision is no longer one.
+        adopt(db, game, "fine-again", rows["fine"], rows["fine_played"], baseline)
+        analyze_decision(db, None, settings, game, 1, board, move)
+        assert not db.get(SRSState, exercise.id).eligible
+        other = Game(fingerprint="queue-2", white="A", black="B", learner_color=True, pgn="1. f3 *")
+        db.add(other)
+        db.flush()
+        db.add(GameReviewMove(game_id=other.id, ply=1, report=baseline))
+        db.commit()
+        shared = analyze_decision(db, None, settings, other, 1, board, move)
+        assert shared.meaningful and shared.id != decision.id
+        assert exercise_from_decision(db, shared, settings, scheduler).id == exercise.id
+        assert db.get(SRSState, exercise.id).eligible
