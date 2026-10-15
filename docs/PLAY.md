@@ -173,7 +173,8 @@ book move in one restricted Stockfish search: within 0.3 pawns it is "decent, bu
 not the line", otherwise it "costs something", with the loss in pawns. A move that
 lets the opponent mate where the book move does not is reported as walking into a
 mate; a mate the book move had and the learner's move gives up is a loss, with the
-mate worth 1000 cp. The question
+mate worth 1000 cp, and the bubble says the move misses the forced mate the book
+move has rather than giving a pawn count. The question
 appears even when the move is fine. Play on turns the game into an ordinary one
 against the usual bot.
 

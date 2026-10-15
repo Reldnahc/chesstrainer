@@ -317,7 +317,12 @@ def test_a_missed_mate_off_book_is_a_loss_not_a_mate_walked_into():
     missed = deviation_verdict(
         engine({"e2e4": mate, "d2d4": {"kind": "cp", "value": 300}}), board, "d2d4", ("e2e4",)
     )
-    assert missed == {"verdict": "worse", "loss_cp": 700, "compared_with": "e2e4"}
+    assert missed == {
+        "verdict": "worse",
+        "loss_cp": 700,
+        "compared_with": "e2e4",
+        "mate_lost": True,
+    }
     # The learner's move lets the opponent mate: that is the mate walked into.
     allowed = deviation_verdict(
         engine({"e2e4": {"kind": "cp", "value": 20}, "d2d4": {"kind": "mate", "value": -3}}),
@@ -326,3 +331,26 @@ def test_a_missed_mate_off_book_is_a_loss_not_a_mate_walked_into():
         ("e2e4",),
     )
     assert allowed == {"verdict": "worse", "loss_cp": None, "compared_with": "e2e4"}
+
+
+def test_a_deviation_saved_before_mate_lost_reads_as_no_mate_lost():
+    from trainer.play.book import practice_view
+
+    deviation = {
+        "ply": 1,
+        "san": "d4",
+        "uci": "d2d4",
+        "book": ["e4"],
+        "verdict": "worse",
+        "loss_cp": 700,
+        "compared_with": "e4",
+    }
+    practice = {
+        "course_id": "italian",
+        "title": "Italian",
+        "status": "deviation",
+        "ended": None,
+        "deviation": deviation,
+        "book_moves": ["e2e4"],
+    }
+    assert practice_view(practice)["deviation"] == {**deviation, "mate_lost": False}

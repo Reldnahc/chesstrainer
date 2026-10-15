@@ -69,6 +69,8 @@ class PlayDeviation(Contract):
     verdict: Literal["fine", "worse"] | None
     loss_cp: int | None
     compared_with: str | None
+    # The best book move forces mate and the learner's move does not.
+    mate_lost: bool = False
 
 
 class PlayPractice(Contract):

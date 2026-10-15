@@ -3807,6 +3807,11 @@ export interface components {
             compared_with: string | null;
             /** Loss Cp */
             loss_cp: number | null;
+            /**
+             * Mate Lost
+             * @default false
+             */
+            mate_lost: boolean;
             /** Ply */
             ply: number;
             /** San */
