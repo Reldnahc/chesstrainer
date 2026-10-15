@@ -676,6 +676,10 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await weakness.getByRole('link', {name: /Practice .* positions?/}).click();
   await expect(page).toHaveURL(/\/study\/due\?focus=/);
   const focusedUrl = page.url();
+  // Other tests' cards in this skill can lead the focused queue (a lapse or a later
+  // review sorts them first), so open this fixture's card in place of the entry.
+  await page.evaluate(url => location.replace(url), `${focusedUrl}&exercise=${fixture.exercise_id}`);
+  await page.waitForURL(url => url.searchParams.get('exercise') === fixture.exercise_id);
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
   await expect(page.getByText('practiced this session', {exact: true})).toBeVisible();
   await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
@@ -700,7 +704,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(page).toHaveURL('/study/due');
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toHaveCount(0);
   await page.goBack();
-  await expect(page).toHaveURL(focusedUrl);
+  await expect(page).toHaveURL(url => url.href.startsWith(focusedUrl));
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
   await expect(page.getByRole('link', {name: 'Return to mixed review', exact: true})).toBeVisible();
   await page.goBack();
