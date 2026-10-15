@@ -4,7 +4,7 @@ import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
-import { positionScore, scoreText, strength } from "../evaluation";
+import { negateScore, positionScore, scoreText, strength } from "../evaluation";
 import ActionLink from "../ActionLink";
 import { LoadingState, UnavailableState } from "../LoadState";
 import { PlayerRow } from "./Players";
@@ -78,18 +78,22 @@ export default function GameWorkspace({
   });
   const currentAnalysis = analysis.get(root, path);
   const report = saved || currentAnalysis?.report;
+  // The first move's best score is the start position's own score, from the
+  // side to move; the board shows it from White's side.
   const initialScore = firstReport
-    ? {
-        ...firstReport.best.score,
-        value:
-          firstReport.best.score.value *
-          (game?.frames[0].turn === "white" ? 1 : -1),
-      }
+    ? game?.frames[0].turn === "white"
+      ? firstReport.best.score
+      : negateScore(firstReport.best.score)
     : null;
-  const score = positionScore(
-    report?.white_score ||
-    currentAnalysis?.score ||
-    (startingReport ? initialScore : null), frame);
+  // A move's saved score is that move's search; a variation's own search and
+  // the start's score belong to the position itself.
+  const score = report
+    ? positionScore(report.white_score, frame)
+    : positionScore(
+        currentAnalysis?.score || (startingReport ? initialScore : null),
+        frame,
+        "position",
+      );
   const bestMove =
     report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
   const cues =

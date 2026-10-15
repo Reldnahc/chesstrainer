@@ -86,7 +86,14 @@ the whole game from the board's side, one move a second, made in the browser.
 The compact coach shows the move and rating together, with a prominent signed
 evaluation in the opposite corner. Scores always use White's perspective, even
 in a variation or after flipping the board: positive favors White, negative favors
-Black, and signed `M` values denote forced mate. Pending evaluations show a dash.
+Black, and signed `M` values denote forced mate. A move's saved score is its own
+root search, which counts the move just played, so after the mating side's move
+the board shows one move fewer (a saved mate in 2 reads `M1`, a delivered mate
+`M0`); the defender's moves keep the mating side's count. A drawn final position
+(stalemate, insufficient material, repetition) reads 0.00. A score that rounds to
+zero has no sign. The score's verdict uses the review's advantage bands: Equal
+within ±1.00, then slightly better, better from ±2.00 and winning from ±3.00.
+Pending evaluations show a dash.
 The board's narrow evaluation bar shows a horizontal score rounded to one decimal;
 the coach and game graph retain two decimals. Mate distances keep their `M` notation.
 Only the played position and immediate reply supply visual cues; later engine
