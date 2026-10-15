@@ -30,11 +30,26 @@ export const OWN_PIECES_BLOCK_ESCAPE: Readonly<Record<string, readonly Role[]>> 
   tala: ["allowed"], winston: ["played"], wisp: ["allowed"], ziggy: ["allowed"],
 };
 
-/** Double-attack takes naming two targets or two things attacked. A double check,
- * which the double-attack meaning also voices, attacks one target: the king. */
-export const TWO_TARGETS: Readonly<Record<string, readonly Role[]>> = {
-  button: ["allowed"], felix: ["missed"], fergus: ["played", "allowed", "missed"], jun: ["played"],
-  mateo: ["played"], monty: ["played", "allowed", "missed"], pickle: ["missed"], tamar: ["allowed"],
+/** Recovery takes that credit this move or the learner with restoring the game
+ * (a move never raises its own evaluation; the opponent's moves did), assisted
+ * takes that also call the other side's Mistakes small, and Wisp's repeated-issue
+ * take, whose "earlier moments" assumes more than one. Their rewrites are in each
+ * bank's revisions/false-takes-v1.json; remove a voice here once it is re-recorded. */
+export const AWAITING_RERECORDING: Readonly<Record<string, readonly string[]>> = {
+  alfie: ["recovery"], arjun: ["recovery"], bandit: ["recovery"], biscuit: ["recovery", "recovery-assisted"],
+  button: ["recovery", "recovery-assisted"], celeste: ["recovery"], ember: ["recovery"], felix: ["recovery"],
+  ingrid: ["recovery"], jun: ["recovery"], mateo: ["recovery", "recovery-assisted"], monty: ["recovery"],
+  orin: ["recovery"], percy: ["recovery"], pickle: ["recovery"], reka: ["recovery-assisted"],
+  tala: ["recovery", "recovery-assisted"], tamar: ["recovery"], waffles: ["recovery"],
+  walter: ["recovery", "recovery-assisted"], winston: ["recovery"], wisp: ["recovery", "repeated-issue"],
+  ziggy: ["recovery", "recovery-assisted"],
+};
+
+/** Book takes saying the opening has a name. Our catalogue has no name for some
+ * positions, and there they sit out (gameSelection.ts). */
+export const NAMED_OPENING_TAKES: Readonly<Record<string, readonly string[]>> = {
+  felix: ["book-opening-follow-8"], pip: ["book-opening-entry-2"], reka: ["book-opening-entry-2", "book-opening-entry-3"],
+  tala: ["book-opening-entry-2", "book-opening-entry-3"], tamar: ["book-opening-entry-1", "book-opening-entry-3"],
 };
 
 /** Chance-taken takes calling the opponent's error small ("a small gift", "a little
@@ -48,6 +63,7 @@ export const SMALL_ERROR_TAKES: Readonly<Record<string, readonly string[]>> = {
 export function alwaysFalseTake(coachId: string | null | undefined, id: string): boolean {
   const voice = coachVoice(coachId);
   return !!voice && id.split(/[|+]/).some(part => {
+    if (AWAITING_RERECORDING[voice]?.includes(part)) return true;
     if (part === "opening-departure") return SILENT_DEPARTURE_VOICES.has(voice);
     const backRank = /^tactic-back-rank-(played|allowed|missed)(-[a-z]+)?$/.exec(part)?.[1] as Role | undefined;
     return !!backRank && !!OWN_PIECES_BLOCK_ESCAPE[voice]?.includes(backRank);

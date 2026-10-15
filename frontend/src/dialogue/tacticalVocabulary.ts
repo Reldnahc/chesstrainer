@@ -68,8 +68,10 @@ export const findingMechanisms: Readonly<Record<string, MechanismEntry>> = {
   back_rank_mate: {alias: "tactic-back-rank-played", subject: "back_rank"},
   abandoned_defender: {alias: "cause-abandoned-defender", subject: "own_target"},
   unfavorable_exchange: {alias: "cause-avoiding-bad-trades", subject: "moved"},
-  // Its recording is an open owner decision; only its piece subject is known.
-  relative_pin_released: {subject: "relative_pin"},
+  // Every coach's take says what the backend detects: the opponent's last move
+  // freed the attacking piece from a relative pin, and the shown line captures
+  // the target that stayed (owner decision, Oct 15).
+  relative_pin_released: {recorded: true, subject: "relative_pin"},
 };
 
 /** A skill ID or fact value as words ("removing defender"). */
