@@ -158,8 +158,9 @@ def classify(report, rating):
     if immediate_mate:
         return "Best", "This gives an equally immediate checkmate."
     # A move exactly as strong as the top move (the same mate distance, or the
-    # same score) is not merely Good.
-    if best == actual and best.outcome() != -1:
+    # same score) is not merely Good, whose takes say something better existed;
+    # that holds for an equally long defence against mate too.
+    if best == actual:
         return "Best", "This is as strong as the engine's top move."
     return "Good", "A sound move that keeps the important opportunities intact."
 
@@ -179,24 +180,27 @@ def line_evidence(board, candidate, analysis_id, first, previous=None):
         mate_supported=mate,
         previous=previous,
     )
-    # Prefer an actual causal mechanism over a generic capture annotation, but only
-    # one that starts with the move or its reply: an incidental pin later in the
-    # line is not the reason for this move.
-    preferred = {
-        "opponent_threat_recognition",
-        "abandoned_defender",
-        "pin",
-        "fork",
-        "skewer",
-        "double_attack",
-    }
-    findings.sort(key=lambda f: f.skill_id not in preferred or min(f.plies) > first + 1)
+    findings = lead_order(findings, first)
     return {
         "frames": [f.model_dump() for f in replay_line(board, candidate.pv[:32])],
         "findings": [f.model_dump() for f in findings],
         "material_delta": delta,
         "settled": delta is not None,
     }
+
+
+# Causal mechanisms the coach prefers to lead with over a generic capture annotation.
+LEAD_SKILLS = frozenset(
+    {"opponent_threat_recognition", "abandoned_defender", "pin", "fork", "skewer", "double_attack"}
+)
+
+
+def lead_order(findings, first):
+    """Findings in the order the coach may lead with them: those starting with the
+    move or its reply first, a preferred mechanism ahead of the rest; a later one,
+    preferred or not, after them all (an incidental pin later in the line is not
+    the reason for this move)."""
+    return sorted(findings, key=lambda f: (min(f.plies) > first + 1, f.skill_id not in LEAD_SKILLS))
 
 
 def move_frames(board, moves, reports, *, play_end=False, extra=None):

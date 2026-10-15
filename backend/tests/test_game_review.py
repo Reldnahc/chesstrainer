@@ -138,7 +138,7 @@ def test_mate_is_not_centipawn_loss():
     # Already lost: being mated sooner is the only thing left to give away.
     assert classify(report, 400)[0] == "Inaccuracy"
     report["actual"]["score"] = {"kind": "mate", "value": -3}
-    assert classify(report, 400)[0] == "Good"
+    assert classify(report, 400)[0] == "Best"  # The same defence length: nothing better.
     report["best"]["score"] = {"kind": "mate", "value": 2}
     report["actual"]["score"] = {"kind": "cp", "value": 0}
     assert classify(report, 400)[0] == "Miss"
@@ -177,6 +177,10 @@ def test_a_different_move_that_mates_as_fast_is_best(distance):
 def test_an_equally_scored_different_move_is_best():
     assert classify(quality(0, 0), 1000) == ("Best", "This is as strong as the engine's top move.")
     assert classify(quality(10, 0), 1000)[0] == "Good"
+    # ...h5 and ...h6 are both mated in one: nothing better existed.
+    mated = quality(0, 0)
+    mated["best"]["score"] = mated["actual"]["score"] = {"kind": "mate", "value": -1}
+    assert classify(mated, 1000) == ("Best", "This is as strong as the engine's top move.")
 
 
 def seed(app, pgn='[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'):
@@ -672,3 +676,22 @@ def test_a_promotion_caption_reads_as_one_sentence():
 
     frames = replay_line(chess.Board("8/P6k/8/8/8/8/8/K7 w - - 0 1"), ["a7a8q"])
     assert frames[1].annotation.startswith("White plays a8=Q, promoting to a queen")
+
+
+def test_the_coach_leads_with_a_finding_that_starts_with_the_move():
+    from types import SimpleNamespace
+
+    from trainer.game_review import lead_order
+
+    def finding(skill_id, plies):
+        return SimpleNamespace(skill_id=skill_id, plies=plies)
+
+    capture, late_pin, fork = (
+        finding("hanging_piece", [1]),
+        finding("pin", [3]),
+        finding("fork", [2]),
+    )
+    # A pin three plies on comes after the capture the move itself makes.
+    assert lead_order([late_pin, capture], 1) == [capture, late_pin]
+    # A preferred mechanism starting with the reply still leads.
+    assert lead_order([capture, late_pin, fork], 1) == [fork, capture, late_pin]
