@@ -1,5 +1,7 @@
 """Library insights come from saved PGNs and completed reviews, never new engine work."""
 
+from datetime import datetime, timezone
+
 import chess
 import chess.pgn
 import pytest
@@ -271,3 +273,35 @@ def test_blunders_use_the_movers_pgn_rating_like_the_review_badges():
     assert blunder_kind(best, actual, 1500) is not None
     assert blunder_kind(best, actual, 1000) is None
     assert facts.plies[0].learner and facts.plies[0].blunder
+
+
+def test_play_games_keep_their_model_settings_out_of_rating_statistics():
+    from trainer.game_insights import game_facts, ratings, streaks
+    from trainer.models import PlayGame
+    from trainer.play.level import learner_positions
+    from trainer.play.sessions import parsed_for
+
+    sans = "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5".split()
+    board = chess.Board()
+    moves = [board.push_san(san).uci() for san in sans]
+    play = PlayGame(
+        coach_name="Walter",
+        learner_color=True,
+        opponent_kind="engine",
+        opponent_rating=2600,
+        learner_rating=1200,
+        moves=moves,
+        result="1-0",
+        termination="resignation",
+    )
+    pgn = str(parsed_for(play, "Student"))
+    assert '[BlackElo "2600"]' in pgn and '[WhiteElo "1200"]' in pgn
+    game = Game(id="play", pgn=pgn, learner_color=True, white="Student", black="Walter (bot)")
+    facts = game_facts(game)
+    assert facts.result == "win"
+    assert facts.learner_rating is None and facts.opponent_rating is None
+    facts.played_at = datetime(2026, 10, 1, tzinfo=timezone.utc)
+    assert streaks([facts])["best_win"] is None and ratings([facts]) == []
+    # The level fit's "where you were rated" median ignores the fit's own number.
+    rows = learner_positions([game])
+    assert rows and all(rating is None for *_, rating in rows)

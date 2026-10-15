@@ -30,7 +30,9 @@ how games end, winning and losing runs, the highest-rated win, rating series per
 site and speed, openings by side and score, clock pressure and think time.
 Evaluation-based sections use only games whose review completed with every ply
 evaluated, and name how many games that is. The page says so when reviewed games
-are a subset.
+are a subset. Games saved from Play count everywhere except the rating sections:
+their Elo headers hold the bot's setting and the learner's fitted model level, not
+ratings, so they never become a highest-rated win or a rating series point.
 
 | Section | Definition |
 | --- | --- |

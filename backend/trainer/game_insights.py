@@ -21,6 +21,7 @@ from trainer.game_library import mover_rating, parsed_game, pgn_rating
 from trainer.game_review import blunder_kind
 from trainer.models import now as current_time
 from trainer.opening_book import book_run
+from trainer.play import from_play
 from trainer.review_intelligence.clocks import clock_facts, control
 from trainer.review_scores import MISTAKE_CP
 
@@ -183,8 +184,10 @@ def game_facts(game, scores=None, rating=None):
     parsed = parsed_game(game)
     headers = parsed.headers
     learner_white = bool(game.learner_color)
-    learner_rating = pgn_rating(headers, learner_white)
-    opponent_rating = pgn_rating(headers, not learner_white)
+    # A Play game's Elo headers are model settings, so they stay out of rating statistics.
+    rated = not from_play(headers)
+    learner_rating = pgn_rating(headers, learner_white) if rated else None
+    opponent_rating = pgn_rating(headers, not learner_white) if rated else None
     raw_result = headers.get("Result", "*")
     time_control = headers.get("TimeControl")
     _, initial, _ = control(time_control)

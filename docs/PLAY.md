@@ -122,7 +122,8 @@ keeps the rating with the highest mean log-probability of the moves actually
 played. The result, its sample size and the median platform rating are stored in
 `play_profiles` and refreshed whenever the library's game count changes, by a
 `level_fit` job of the account (queued first, cancellable, drained on shutdown, and
-kept out of the import activity list). Without the model, or before the fit finishes, games use 1200. The fit is
+kept out of the import activity list). The median platform rating ("where you were
+rated N") reads only imported games' Elo headers, never a Play game's. Without the model, or before the fit finishes, games use 1200. The fit is
 a conditioning value with its evidence shown beside it, not a rating claim.
 
 ## Commentary
@@ -183,7 +184,9 @@ as the Elo headers, plus a `Bot` header naming what really chose the bot's moves
 (for example `Maia-3 conditioned at 600`, `Stockfish UCI_Elo 1800`, or the Maia
 setting followed by the moves Stockfish played while the human model was
 unavailable). It is imported through the ordinary import path with the learner's
-side explicit, and queued for analysis like any imported game. The finished
+side explicit, and queued for analysis like any imported game. The Elo headers
+are model settings, not ratings: Insights leaves Play games out of its rating
+statistics, and the level fit's median platform rating ignores them. The finished
 page shows the result in the page banner with a link to that review; it stays
 until closed. Starting a new game while one is active marks the old
 one abandoned without saving it.

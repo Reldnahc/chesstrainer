@@ -21,6 +21,7 @@ from trainer.human_models.context import request_for
 from trainer.human_models.runtime import HumanUnavailable
 from trainer.imports import import_games
 from trainer.models import ImportGame, PlayGame, now
+from trainer.play import PLAY_EVENT, PLAY_SITE
 from trainer.play.book import (
     POLICY_RATING_CAP,
     book_for,
@@ -97,8 +98,8 @@ def parsed_for(play: PlayGame, learner_name: str, board: chess.Board | None = No
     white_rating, black_rating = ratings(play)
     game = chess.pgn.Game()
     game.headers.update(
-        Event="Fieldwork play",
-        Site="Fieldwork",
+        Event=PLAY_EVENT,
+        Site=PLAY_SITE,
         Date=play.created_at.strftime("%Y.%m.%d") if play.created_at else "????.??.??",
         Round="-",
         White=white,
