@@ -129,8 +129,9 @@ already serving a ready puzzle for the account abstains as a duplicate.
 
 Kept lines become `source="games"` definitions keyed `game_id:ply`, with the
 vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`
-only when the kept line ends in checkmate, otherwise `advantage`/`crushing`, so a
-forced mate cut short by an ambiguous move is a crushing win), length
+only when the kept line ends in checkmate, otherwise Lichess's ranges: `crushing`
+above +6.00, `advantage` above +2.00 and no goal theme below that, so a forced
+mate cut short by an ambiguous move is a crushing win), length
 and phase themes, no rating, and provenance
 naming the matchup, date, move number and the move actually played. Each row in
 `game_puzzles` records its status, abstention reason, root and verification
@@ -156,7 +157,8 @@ no exercise, recall, FSRS or weakness evidence.
 ### Selection
 
 `GET /api/puzzles/next` accepts a source, rating bounds, one theme, a goal
-(`mate`, or `material` for everything else) and a mode. New mode chooses
+(`mate` for the `mate` theme, or `material`, shown as "Winning advantage", for the
+`advantage` and `crushing` themes) and a mode. New mode chooses
 randomly among matching puzzles the account has not started; once everything
 has been seen it skips the twenty most recently started puzzles before allowing
 repeats. Retry mode offers puzzles whose latest finished attempt was revealed or

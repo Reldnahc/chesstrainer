@@ -101,6 +101,10 @@ def _history(db):
     return latest, set(recent)
 
 
+# A goal is a Lichess goal theme: a mate, or a winning advantage short of mate.
+GOAL_THEMES = {"mate": {"mate"}, "material": {"advantage", "crushing"}}
+
+
 def _needs_retry(outcome):
     status, failed = outcome
     return status == "revealed" or (status == "solved" and failed)
@@ -111,7 +115,7 @@ def _matches(definition, query):
         return False
     if query.theme is not None and query.theme not in definition.themes:
         return False
-    if query.goal is not None and ("mate" in definition.themes) != (query.goal == "mate"):
+    if query.goal is not None and not GOAL_THEMES[query.goal] & set(definition.themes):
         return False
     if query.min_rating is not None or query.max_rating is not None:
         if definition.rating is None:

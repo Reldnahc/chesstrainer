@@ -606,3 +606,22 @@ def test_review_candidates_read_the_report_the_review_shows(sessions):
         task.adopted = False
         db.commit()
         assert list(review_prospects(db, game, set())) == []
+
+
+@pytest.mark.parametrize(
+    ("payoff", "goal"), [(605, "crushing"), (601, "crushing"), (450, "advantage"), (180, None)]
+)
+def test_goal_themes_use_lichess_ranges(payoff, goal):
+    from dataclasses import replace
+
+    from trainer.puzzles.sessions import _matches
+
+    root = chess.Board(FORK_FEN)
+    built, _ = build_line(Scripted(FORK), root, max_plies=13)
+    built = replace(built, payoff=payoff)
+    themes = set(line_themes(replay_moves(root, built.solution), built, "goal"))
+    assert themes & {"crushing", "advantage", "equality"} == ({goal} if goal else set())
+    definition = type("Definition", (), {"source": "games", "themes": tuple(themes)})()
+    query = PuzzleQuery(source="games", goal="material")
+    assert _matches(definition, query) is (goal is not None)
+    assert not _matches(definition, PuzzleQuery(source="games", goal="mate"))

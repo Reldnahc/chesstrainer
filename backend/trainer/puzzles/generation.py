@@ -54,8 +54,10 @@ MIN_LOSS_CP = 150
 MIN_WIN_CP = 150
 # Lichess length tags count solver moves; a single decision is never a puzzle here.
 LENGTH_THEMES = {2: "short", 3: "long"}
-# Lichess calls a winning line "crushing" above this many centipawns, else "advantage".
+# Lichess's goal themes: "crushing" above +6.00, "advantage" above +2.00. A line that
+# ends between PAYOFF_CP and +2.00 gets neither.
 CRUSHING_CP = 600
+ADVANTAGE_CP = 200
 
 
 @dataclass(frozen=True)
@@ -300,8 +302,10 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
         themes.add("mate")
         if decisions <= 5:
             themes.add(f"mateIn{decisions}")
-    else:
-        themes.add("crushing" if built.payoff > CRUSHING_CP else "advantage")
+    elif built.payoff > CRUSHING_CP:
+        themes.add("crushing")
+    elif built.payoff > ADVANTAGE_CP:
+        themes.add("advantage")
     themes.add(LENGTH_THEMES.get(decisions, "veryLong"))
     themes.add(game_phase(boards[0]))
     return tuple(sorted(themes))
