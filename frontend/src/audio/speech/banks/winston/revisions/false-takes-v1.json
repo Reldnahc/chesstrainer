@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "coachId": "capybara",
+  "voiceId": "winston",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "recovery",
+      "previousText": "The setback's behind us now, and the position's playable again with this move. Carry on from here.",
+      "text": "The setback's behind us now, and the position's playable again. Carry on from here.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "previousText": "The king's own pieces are closing off its escape, and that's the back-rank mate idea in this move. Run along the back rank and see what's hemming it in.",
+      "text": "Okay, the king's sitting behind its own pieces on the back rank, and this move goes after that. Run along the back rank and see what's hemming it in.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-played-queen",
+      "previousText": "The king's own pieces are closing off its escape, and that's the back-rank mate idea in this move, with the queen doing the work. Run along the back rank and see what's hemming it in.",
+      "text": "Okay, the king's sitting behind its own pieces on the back rank, and this move goes after that, with the queen doing the work. Run along the back rank and see what's hemming it in.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-played-rook",
+      "previousText": "The king's own pieces are closing off its escape, and that's the back-rank mate idea in this move, with the rook doing the work. Run along the back rank and see what's hemming it in.",
+      "text": "Okay, the king's sitting behind its own pieces on the back rank, and this move goes after that, with the rook doing the work. Run along the back rank and see what's hemming it in.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    }
+  ]
+}

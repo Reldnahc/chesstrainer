@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "coachId": "human-girl",
+  "voiceId": "tala",
+  "baseCommit": "6647d2c92",
+  "recordings": [
+    {
+      "id": "opening-departure",
+      "previousText": "Here the game walks off the end of the book. Everything after this is fresh.",
+      "text": "Here the game walks off the end of our book. From this move on, every clue comes from the board itself.",
+      "reason": "The departure fires where our opening catalogue ends, not where theory, the known opening or preparation ends, and the game may have left the book before a transposition."
+    },
+    {
+      "id": "recovery",
+      "previousText": "You worked your way back! Setback fixed, and the game is playable again thanks to this move. That's persistence.",
+      "text": "Plot twist: the game is playable again after the earlier setback! Now hunt down the moment the tide turned.",
+      "reason": "A move never raises its own evaluation; the opponent's moves made the game playable again, so the take no longer credits this move or the learner."
+    },
+    {
+      "id": "recovery-assisted",
+      "previousText": "Playable again! The other side made errors, and you used them to climb back in.",
+      "text": "Playable again! The other side made errors, and that opened a way back in.",
+      "reason": "The take no longer credits this move or the learner, and does not call the other side's Mistakes small."
+    },
+    {
+      "id": "repeated-issue",
+      "previousText": "Same pattern, second time: this kind of mistake already came up earlier in the game. Let's study both moments together.",
+      "text": "Déjà vu! The same issue came up earlier in the game. Find the clue that links those moments.",
+      "reason": "The issue can recur a third time or more, so the take no longer counts the occurrences."
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "previousText": "Zoom in on the king's exits: its own pieces block them, and a back-rank mate is now in reach for the other side.",
+      "text": "Zoom in on the king: it's cooped up behind its own pieces, and a back-rank mate is now in reach for the other side.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-queen",
+      "previousText": "Zoom in on the king's exits: its own pieces block them, and the other side's queen now has a back-rank mate idea.",
+      "text": "Zoom in on the king: it's cooped up behind its own pieces, and the other side's queen now has a back-rank mate idea.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-rook",
+      "previousText": "Zoom in on the king's exits: its own pieces block them, and the other side's rook now has a back-rank mate idea.",
+      "text": "Zoom in on the king: it's cooped up behind its own pieces, and the other side's rook now has a back-rank mate idea.",
+      "reason": "A back-rank mate checks along the king's rank, so the square beside the king toward the checker is never blocked by an own piece; the take now says the king is boxed in behind its own pieces."
+    }
+  ]
+}
