@@ -72,10 +72,10 @@ export default function ReviewScreen({
   return (
     <>
       {loading ? (
-        <>
+        <div className="review-loading">
           <div className="review-workspace-heading">{heading}</div>
           <LoadingState presentation="panel">Loading your practice…</LoadingState>
-        </>
+        </div>
       ) : (
         <div className="review-session">
           <ReviewWorkspace

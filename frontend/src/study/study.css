@@ -1,6 +1,6 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-.study-page { display: flex; flex-direction: column; gap: var(--space-5); }
+.study-page { display: flex; flex-direction: column; gap: var(--page-gap); }
 .study-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
 .study-option { display: grid; grid-template-rows: subgrid; grid-row: span 5; align-items: start; justify-items: start; gap: var(--space-3); }
 .study-option > svg { color: var(--accent); }
@@ -49,6 +49,7 @@
 .opening-search label:nth-child(2) { width: 90px; }
 .opening-search label { min-width: 0; }
 .opening-search button { flex: none; }
+.opening-catalogue-results { display: flex; flex-direction: column; gap: inherit; min-width: 0; }
 .opening-results { display: flex; flex-direction: column; }
 .opening-result { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-1); text-decoration: none; border-top: 1px solid var(--line); transition: background var(--motion-fast) var(--ease-standard); }
 .opening-result:hover { background: var(--raised); }
@@ -78,7 +79,6 @@
 .lesson-repertoire-lines { display: flex; flex-direction: column; gap: var(--space-2); border-top: 1px solid var(--line); padding-top: var(--space-4); }
 .lesson-repertoire-lines h3 { font-size: var(--text-lg); }
 @media (max-width: 760px) {
-  .study-page { gap: var(--space-4); }
   .study-options { grid-template-columns: 1fr; gap: var(--space-3); }
   .study-option { display: flex; flex-direction: column; grid-row: auto; }
   .puzzle-start .puzzle-filters { gap: var(--space-3); }

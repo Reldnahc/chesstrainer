@@ -36,7 +36,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const spoken = useSelectedCoachSpokenText(speech?.recordingId);
   usePageTitle(session?.course_title || "Opening lesson");
   if (loading) return <LoadingState presentation="panel">Loading your lesson…</LoadingState>;
-  if (!session) return <UnavailableState presentation="panel" heading={<h1>Lesson unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.openings}>All lessons</ActionLink></>}>{error}</UnavailableState>;
+  if (!session) return <UnavailableState presentation="panel" heading={<h1>Lesson unavailable</h1>} actions={<><Button variant="secondary" onClick={state.reload}>Try again</Button><ActionLink variant="secondary" href={studyPaths.openings}>All lessons</ActionLink></>}>Couldn’t load your lesson. {error}</UnavailableState>;
   const has = (action: LessonAction) => session.actions.includes(action);
   const finished = session.status === "completed";
   const { feedback } = session;

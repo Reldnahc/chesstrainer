@@ -8,6 +8,10 @@
 .insight-toolbar { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); }
 .insight-filter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
 .insight-filter > span { font: var(--text-2xs) var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); min-width: 48px; }
+/* A changed filter keeps the last insights, dimmed, beside the shared loading line. */
+.insight-refreshing { align-self: center; }
+.insights > :not(.insight-toolbar) { transition: opacity var(--motion-fast) var(--ease-standard); }
+.insights[data-reloading] > :not(.insight-toolbar) { opacity: 0.55; }
 
 .insight-summary { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); padding: var(--space-8); }
 .insight-headlines { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
@@ -195,7 +199,9 @@
   .insight-summary { gap: var(--space-5); }
   .insight-panel { gap: var(--space-4); }
   /* Phones show each filter as a dropdown; the filters share one row. */
-  .insight-toolbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: var(--space-3); }
+  .insight-toolbar { gap: var(--space-3); }
+  .insight-toolbar > .insight-filter { flex: 1 1 0; min-width: 0; }
+  .insight-refreshing { flex-basis: 100%; }
   .insight-filter { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: var(--space-1-5); }
   .insight-filter > span { min-width: 0; }
   .insight-headlines li { font-size: var(--text-base); }

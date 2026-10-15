@@ -118,6 +118,11 @@ main.workspace-page {
 main.workspace-page > * {
   margin-block: 0;
 }
+/* A board page sits the same page gap below the navigation while it loads or
+   shows its setup; its board workspace sets its own tighter padding. */
+main.review-page {
+  padding-top: var(--page-gap);
+}
 /* A panel stacks its contents. Panels with their own layout set their own
    display (zero specificity here), a dialog keeps the browser's open/closed
    display, and a bare action keeps its natural width instead of stretching. */

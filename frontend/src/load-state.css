@@ -38,6 +38,14 @@
 @media (prefers-reduced-motion: reduce) {
   :root:not([data-interface-motion="natural"]) .load-state-indicator > span:is(:nth-child(1), :nth-child(4)) { opacity: 1; }
 }
+/* Content kept on screen while its request reloads (QueryReloading). */
+.reloadable { transition: opacity var(--motion-fast) var(--ease-standard); }
+.reloadable[data-reloading] { opacity: 0.55; }
+/* Phone workspaces use smaller body text; loaders on board pages match it, so a
+   loader reads the same on every page. */
+@media (max-width: 760px) {
+  .load-state-message { font-size: var(--text-md); }
+}
 .load-state-actions {
   display: flex;
   flex-wrap: wrap;

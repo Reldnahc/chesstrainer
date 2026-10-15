@@ -3,6 +3,7 @@ import { errorMessage } from "./api";
 import Banner from "./Banner";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
+import Reveal from "./Reveal";
 
 export type Query<T> = {
   /** The last loaded value; kept while a retry or a dependency change reloads. */
@@ -23,14 +24,17 @@ export type Query<T> = {
  * change, aborts when the screen leaves or a newer load starts, and only the
  * latest load may change the result. Each screen keeps its own request; only
  * the lifecycle is shared (as useSavedPreferences does for preferences).
+ * `enabled: false` holds a request the screen does not need yet (a tab not opened).
  */
-export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: DependencyList = []): Query<T> {
+export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: DependencyList = [],
+  { enabled = true }: { enabled?: boolean } = {}): Query<T> {
   const [data, setData] = useState<T>();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(true);
   const [attempt, setAttempt] = useState(0);
   const run = useEffectEvent(load);
   useEffect(() => {
+    if (!enabled) return;
     const controller = new AbortController();
     // eslint-disable-next-line react-hooks/set-state-in-effect -- a load starts here; the query is pending until it answers
     setPending(true);
@@ -50,7 +54,7 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
     return () => controller.abort();
     // The caller's deps decide when the request is a different one.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- the hook's API takes the caller's dependency list, and load is read through an effect event
-  }, [attempt, ...deps]);
+  }, [attempt, enabled, ...deps]);
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
   const dismiss = useCallback(() => setError(null), []);
   return { data, error, pending, retry, dismiss, setData: setData as Query<T>["setData"] };
@@ -79,6 +83,26 @@ export function QueryResult<T>({ query, label, presentation, heading, children }
     {query.error && <Banner tone="error" action={retry} onDismiss={query.dismiss}>Couldn’t refresh {label}.</Banner>}
     {children(query.data)}
   </>;
+}
+
+/**
+ * The loading line for a request whose filters or page changed while its last
+ * result stays on screen: it shows the shared compact LoadingState only during
+ * that reload. Give the kept content `className="reloadable"` and
+ * `data-reloading={reloading(query)}` so it dims until the new result arrives.
+ */
+export function QueryReloading<T>({ query, label, className }: {
+  query: Query<T>;
+  /** What is loading, in the reader's words, as for QueryResult. */
+  label: string;
+  className?: string;
+}) {
+  return <Reveal className={className}>{reloading(query) && <LoadingState>Loading {label}…</LoadingState>}</Reveal>;
+}
+
+/** True while a query that already has a result loads a new one. */
+export function reloading<T>(query: Query<T>): true | undefined {
+  return query.pending && query.data !== undefined ? true : undefined;
 }
 
 /**

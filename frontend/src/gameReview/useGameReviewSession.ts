@@ -174,6 +174,13 @@ export function useGameReviewSession(id: string) {
     error,
     setError,
     dismissError: () => setError(""),
+    /** Loads the game again after its first load failed. */
+    retryLoad: () => {
+      setError("");
+      void load().catch((e) => {
+        if (mounted.current) setError(errorMessage(e));
+      });
+    },
     start,
     cancel,
     analysisEpoch,

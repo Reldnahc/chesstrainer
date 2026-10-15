@@ -65,7 +65,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     finally { if (!controller.signal.aborted) { setOpeningNext(false); nextRequest.current = null; } }
   }
   if (loading) return <LoadingState presentation="panel">Loading your puzzle…</LoadingState>;
-  if (!session) return <UnavailableState presentation="panel" heading={<h1>Puzzle unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.puzzles}>All puzzles</ActionLink></>}>{error}</UnavailableState>;
+  if (!session) return <UnavailableState presentation="panel" heading={<h1>Puzzle unavailable</h1>} actions={<><Button variant="secondary" onClick={state.reload}>Try again</Button><ActionLink variant="secondary" href={studyPaths.puzzles}>All puzzles</ActionLink></>}>Couldn’t load your puzzle. {error}</UnavailableState>;
   const complete = session.status !== "active";
   const incorrect = retrying && !complete;
   const correct = session.feedback?.grade === "correct" && !complete;

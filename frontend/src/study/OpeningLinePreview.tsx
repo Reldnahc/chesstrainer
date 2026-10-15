@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
-import { errorMessage, api, read, type Schema } from "../api";
+import { api, read } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
@@ -11,7 +11,6 @@ import { moveSquares } from "../boardCues";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ContinuationMoves from "../ContinuationMoves";
-import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import ReviewCoach from "../ReviewCoach";
@@ -20,18 +19,14 @@ import ReviewWorkspace from "../ReviewWorkspace";
 import SourceLine from "../SourceLine";
 import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, openingStudiesPath, studyPaths } from "../navigation";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
-import { useCommand } from "../useQuery";
+import { QueryResult, useCommand, useQuery } from "../useQuery";
 
 export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   catalogueKey: string | null;
   courseLine: { courseId: string; lineId: string; revision: string; color?: "white" | "black" } | null;
 }) {
-  const [line, setLine] = useState<Schema["OpeningLineView"] | null>(null);
-  const [studies, setStudies] = useState<Schema["OpeningStudySummary"][]>([]);
   const [color, setColor] = useState<"white" | "black">(courseLine?.color ?? "white");
   const [ply, setPly] = useState(0);
-  const [error, setError] = useState("");
-  const [attempt, setAttempt] = useState(0);
   const command = useCommand();
   const busy = !!command.busy;
   const [saved, setSaved] = useState(false);
@@ -45,22 +40,17 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     audio.step(ply, next, line.frames[next - 1]?.san, eventId);
     setPly(next);
   }
-  useEffect(() => {
-    const pending = new AbortController();
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- a fetch starts here; a retry clears the last failure while it loads
-    setError("");
+  // The route keys this screen by its line, so another line always loads fresh.
+  const query = useQuery(async signal => {
     const selected = catalogueKey
-      ? read(api.GET("/api/openings/catalog/{key}", { params: { path: { key: catalogueKey } }, signal: pending.signal }))
-      : read(api.GET("/api/openings/course-lines/{course_id}/{line_id}", { params: { path: { course_id: courseLine!.courseId, line_id: courseLine!.lineId }, query: { revision: courseLine!.revision } }, signal: pending.signal }));
-    Promise.all([selected, read(api.GET("/api/opening-studies", { signal: pending.signal }))])
-      .then(([result, library]) => {
-        if (pending.signal.aborted) return;
-        setLine(result);
-        setStudies(library.items);
-        setColor(preferred => result[`${preferred}_positions`] ? preferred : preferred === "white" ? "black" : "white");
-      }).catch(e => { if (!pending.signal.aborted) setError(errorMessage(e)); });
-    return () => pending.abort();
-  }, [catalogueKey, courseLine, attempt]);
+      ? read(api.GET("/api/openings/catalog/{key}", { params: { path: { key: catalogueKey } }, signal }))
+      : read(api.GET("/api/openings/course-lines/{course_id}/{line_id}", { params: { path: { course_id: courseLine!.courseId, line_id: courseLine!.lineId }, query: { revision: courseLine!.revision } }, signal }));
+    const [result, library] = await Promise.all([selected, read(api.GET("/api/opening-studies", { signal }))]);
+    if (!signal.aborted) setColor(preferred => result[`${preferred}_positions`] ? preferred : preferred === "white" ? "black" : "white");
+    return { line: result, studies: library.items };
+  });
+  const line = query.data?.line;
+  const studies = query.data?.studies ?? [];
   usePageTitle(line?.line.name);
   const selectedStudy = line && studies.find(study => study.source === line.line.source && study.source_key === line.line.source_key && study.source_version === line.line.source_version && study.color === color);
   function enroll() {
@@ -71,7 +61,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
           source: line.line.source, source_key: line.line.source_key, source_version: line.line.source_version,
           course_id: line.line.course_id, line_id: line.line.line_id, color,
         }, signal })), (result) => {
-      setStudies(previous => [...previous.filter(study => study.id !== result.id), result]);
+      query.setData(previous => ({ line: previous!.line, studies: [...previous!.studies.filter(study => study.id !== result.id), result] }));
       setSaved(true);
     });
   }
@@ -89,9 +79,8 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   // The preview's single coach sentence is shown as the coach says it.
   const spoken = useSelectedCoachSpokenText(recordingId);
   // The back link stays mounted (and keeps focus) while the load turns into an error.
-  if (!line) return <section className="panel"><h1>Opening preview</h1>{error
-    ? <UnavailableState actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>{error}</UnavailableState>
-    : <LoadingState>Loading the selected line…</LoadingState>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
+  if (!line) return <section className="panel"><h1>Opening preview</h1>
+    <QueryResult query={query} label="the selected line">{() => null}</QueryResult><ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
   const frame = ply ? line.frames[ply - 1] : null;
   const positions = color === "white" ? line.white_positions : line.black_positions;
   return <ReviewWorkspace

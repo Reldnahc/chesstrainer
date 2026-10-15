@@ -232,6 +232,7 @@ export default function ImportSettings({
                 selectedProvider
                   ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
                   : !providerQuery.data && !providerQuery.error ? <LoadingState>Loading game providers…</LoadingState>
+                    : !providerQuery.data ? <UnavailableState actions={<Button variant="secondary" onClick={providerQuery.retry}>Try again</Button>}>Couldn’t load game providers.</UnavailableState>
                     : <UnavailableState>That game provider is unavailable. Choose an import action above.</UnavailableState>
               ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
                 <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />

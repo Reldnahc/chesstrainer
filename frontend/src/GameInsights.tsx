@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { plural, shortDate } from "./format";
 import { OutcomeBadge } from "./GameHistory";
 import { ChartColumn } from "lucide-react";
@@ -8,9 +8,8 @@ import StatList from "./StatList";
 import EmptyState from "./EmptyState";
 import { pawnsText } from "./evaluation";
 import ActionLink from "./ActionLink";
-import Button from "./Button";
 import Link from "./Link";
-import { LoadingState, UnavailableState } from "./LoadState";
+import { QueryReloading, QueryResult, reloading, useQuery, type Query } from "./useQuery";
 import { gameReviewPath, gamesPath, pagePaths } from "./navigation";
 import "./game-insights.css";
 
@@ -435,37 +434,36 @@ function Endgames({ data }: { data: Insights }) {
 export default function GameInsights() {
   const [speed, setSpeed] = useState<Speed>("all");
   const [days, setDays] = useState(0);
-  const [data, setData] = useState<Insights | null>(null);
-  const [error, setError] = useState(false);
-  const [attempt, setAttempt] = useState(0);
-  useEffect(() => {
-    const controller = new AbortController();
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
-    setError(false);
-    read(api.GET("/api/insights", {
-      signal: controller.signal,
-      params: { query: { speed, days: days || undefined, offset: -new Date().getTimezoneOffset() } },
-    }))
-      .then(value => { if (!controller.signal.aborted) setData(value); })
-      .catch(() => { if (!controller.signal.aborted) setError(true); });
-    return () => controller.abort();
-  }, [speed, days, attempt]);
+  const query = useQuery(signal => read(api.GET("/api/insights", {
+    signal,
+    params: { query: { speed, days: days || undefined, offset: -new Date().getTimezoneOffset() } },
+  })), [speed, days]);
+  return <QueryResult query={query} label="your insights" presentation="panel">
+    {data => <InsightsView data={data} speed={speed} setSpeed={setSpeed} days={days} setDays={setDays} query={query} />}
+  </QueryResult>;
+}
 
-  if (error) return <UnavailableState presentation="panel" actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>
-    Couldn’t load your insights. Please try again.
-  </UnavailableState>;
-  if (!data) return <LoadingState presentation="panel">Reading your games…</LoadingState>;
+/** The loaded insights; a changed filter keeps them, marked busy, until the new ones arrive. */
+function InsightsView({ data, speed, setSpeed, days, setDays, query }: {
+  data: Insights;
+  speed: Speed;
+  setSpeed: (speed: Speed) => void;
+  days: number;
+  setDays: (days: number) => void;
+  query: Query<Insights>;
+}) {
   const speeds: Speed[] = ["all", ...data.speeds];
   const lines = headlines(data);
   const finished = data.wins + data.draws + data.losses;
   const reviewed = data.reviewed_games > 0;
-  return <div className="insights">
+  return <div className="insights" data-reloading={reloading(query)}>
     <div className="insight-toolbar">
       {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
         <ChoiceGroup label="Speed" labelId="insight-speed" size="compact" value={speed} onChange={setSpeed} phone="select"
           options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
       <div className="insight-filter"><span id="insight-period">Period</span>
         <ChoiceGroup label="Period" labelId="insight-period" size="compact" value={days} onChange={setDays} options={periods} phone="select" /></div>
+      <QueryReloading query={query} label="your insights" className="insight-refreshing" />
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
       <ActionLink href={pagePaths.Settings}>Import games in Settings</ActionLink>}>

@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import Button from "./Button";
+import { LoadingState } from "./LoadState";
 import { useEffect, useRef, useState } from "react";
 import { api, errorMessage, read, type Schema } from "./api";
 import { navigate, settingsPath } from "./navigation";
@@ -67,7 +68,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
             providerName={connection.name} label={`${connection.name} username (optional)`}
             value={connection.username} disabled={busy || loading}
             onChange={username => setConnections(values => values.map(value => value.id === connection.id ? { ...value, username } : value))} />)}
-          {loading && <p role="status">Loading connections…</p>}
+          {loading && <LoadingState>Loading connections…</LoadingState>}
           <Button type="submit" variant="primary" disabled={busy || loading}>{busy ? "Saving…" : "Continue"}</Button>
         </form>
       </> : <>

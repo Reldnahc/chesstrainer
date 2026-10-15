@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { LoadingState } from "./LoadState";
 import { useEffect, useState, type ReactNode } from "react";
 import { api, errorMessage, onAuthRequired, read, setAccountSession, type Schema } from "./api";
 import { AccountContext, GuestContext } from "./accountContext";
@@ -67,7 +68,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
   if (!identity)
     return (
       <main className="workspace-page">
-        <p role="status">Connecting to Fieldwork…</p>
+        <LoadingState presentation="panel">Connecting to Fieldwork…</LoadingState>
         <Reveal>{error && (
           <Notice announcement="alert" tone="error" appearance="inline"
             actions={<Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>}>
