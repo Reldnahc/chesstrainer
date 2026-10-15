@@ -63,8 +63,7 @@ class JobExecution:
                     else f"{type(exc).__name__}: analysis interrupted; completed work retained.",
                 )
                 db.commit()
-            if engine:
-                engine.close()
+            # A caller that supplied ``engine`` owns it and closes it.
         finally:
             self.pipeline = None
 

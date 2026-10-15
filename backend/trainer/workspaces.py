@@ -8,7 +8,7 @@ from typing import Annotated
 
 from fastapi import Depends, HTTPException, Request
 
-from trainer.ownership import account_sessions
+from trainer.ownership import LOCAL_USER_ID, account_sessions
 from trainer.presence import touch
 
 
@@ -78,7 +78,7 @@ class Workspaces:
         with self._guard:
             if user_id not in self._locks:
                 self._locks[user_id] = _Locks(
-                    self.local_mutation_lock if user_id == "local" else threading.RLock(),
+                    self.local_mutation_lock if user_id == LOCAL_USER_ID else threading.RLock(),
                     threading.Lock(),
                 )
             lease = self._locks[user_id]
@@ -108,7 +108,7 @@ def request_workspace(request: Request):
             raise HTTPException(401, "Sign in to your account.")
         user_id = user["id"]
     else:
-        user_id = "local"
+        user_id = LOCAL_USER_ID
     workspaces = request.app.state.workspaces
     touch(workspaces.sql_engine, user_id, request.app.state.settings)
     with workspaces.open(user_id) as workspace:

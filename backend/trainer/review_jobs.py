@@ -48,7 +48,7 @@ def run_baseline(runner, job_id, engine_override=None):
     for engine in engines:
         available.put(engine)
 
-    human = getattr(runner, "human_models", None)
+    human = runner.human_models
 
     def analyze(board, move, cached):
         if runner.cancelled(job_id):

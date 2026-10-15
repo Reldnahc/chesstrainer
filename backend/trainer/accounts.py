@@ -18,6 +18,7 @@ from trainer.config import Settings
 from trainer.db import database, immediate_transaction
 from trainer.errors import Conflict, DomainError, InvalidInput, NotFound
 from trainer.models import AuthSession, Base, User
+from trainer.ownership import LOCAL_USER_ID
 
 USERS, SESSIONS = User.__table__, AuthSession.__table__
 # The reserved workspace that single-user installs and migrated data belong to.
@@ -179,12 +180,12 @@ class Accounts:
     def claim_local(self, name, password):
         """Give the reserved local workspace a name and password, as its administrator."""
         with self.engine.begin() as db:
-            current = db.scalar(select(USERS.c.username).where(USERS.c.id == "local"))
+            current = db.scalar(select(USERS.c.username).where(USERS.c.id == LOCAL_USER_ID))
             if current != LOCAL_USERNAME:
                 raise InvalidInput("Existing local workspace has already been claimed")
             db.execute(
                 update(USERS)
-                .where(USERS.c.id == "local")
+                .where(USERS.c.id == LOCAL_USER_ID)
                 .values(
                     username=username(name),
                     password=password_hash(password),
@@ -224,7 +225,7 @@ class Accounts:
 
     def delete(self, user):
         """Remove an account with every row it owns; shared caches stay."""
-        if user["id"] == "local":
+        if user["id"] == LOCAL_USER_ID:
             raise InvalidInput(
                 "The original workspace account cannot be deleted; disable it instead"
             )

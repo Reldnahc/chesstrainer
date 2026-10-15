@@ -8,7 +8,7 @@ from alembic.script import ScriptDirectory
 from sqlalchemy import create_engine, event
 from sqlalchemy.pool import NullPool, QueuePool
 
-from trainer.ownership import account_sessions
+from trainer.ownership import LOCAL_USER_ID, account_sessions
 
 
 def database(path: Path, timeout=30, *, pooled=True):
@@ -41,7 +41,7 @@ def database(path: Path, timeout=30, *, pooled=True):
         cursor.close()
 
     # Single-user mode and offline tools work in the reserved local account.
-    return engine, account_sessions(engine, "local")
+    return engine, account_sessions(engine, LOCAL_USER_ID)
 
 
 def _config():

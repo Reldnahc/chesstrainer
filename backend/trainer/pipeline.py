@@ -1,6 +1,7 @@
 """One job's bounded chess and pedagogy stages, with independent process/session ownership."""
 
 import threading
+from contextlib import contextmanager
 
 from sqlalchemy import select, update
 
@@ -158,27 +159,17 @@ class JobPipeline:
             self.failed.set()
             raise
 
-    def run_generation(self, game_ids):
-        try:
-            for game_id in game_ids:
-                if not self.games.submit(self.generate, game_id):
-                    break
-        finally:
-            self.games.close()
-            self.classifications.close()
-            for engine in self.engines:
-                engine.close()
-        if self.games.errors:
-            raise self.games.errors[0]
+    @contextmanager
+    def _drain(self):
+        """Run a submitting block, then always drain both pools and close engines.
 
-    def run(self, game_ids, classification_only=False):
+        Producers finish before their consumer pool closes. Already-started work
+        commits even on cancel; queued tasks check cancellation before running.
+        The first worker error from either pool is raised once both are drained.
+        """
         try:
-            for game_id in game_ids:
-                if not self.games.submit(self.game, game_id, classification_only):
-                    break
+            yield
         finally:
-            # Producers finish before closing their consumer pool. Already-started API
-            # calls commit even on cancel; queued tasks check cancellation before calling.
             self.games.close()
             self.classifications.close()
             for engine in self.engines:
@@ -186,6 +177,18 @@ class JobPipeline:
         errors = self.games.errors + self.classifications.errors
         if errors:
             raise errors[0]
+
+    def run_generation(self, game_ids):
+        with self._drain():
+            for game_id in game_ids:
+                if not self.games.submit(self.generate, game_id):
+                    break
+
+    def run(self, game_ids, classification_only=False):
+        with self._drain():
+            for game_id in game_ids:
+                if not self.games.submit(self.game, game_id, classification_only):
+                    break
 
     def probe(self, task):
         if self.cancelled():
@@ -205,7 +208,7 @@ class JobPipeline:
         self.bump(positions_triaged=1, deep_completed=1, classifications_completed=int(classified))
 
     def run_enrichment(self):
-        try:
+        with self._drain():
             with self.sessions() as db:
                 tasks = plan_probes(
                     db,
@@ -217,13 +220,6 @@ class JobPipeline:
             for task in tasks:
                 if not self.games.submit(self.probe, task):
                     break
-        finally:
-            self.games.close()
-            self.classifications.close()
-            for engine in self.engines:
-                engine.close()
-        if self.games.errors:
-            raise self.games.errors[0]
 
     def snapshot(self):
         return {"games": self.games.snapshot(), "classifications": self.classifications.snapshot()}

@@ -21,6 +21,10 @@ class AccountSession(Session):
     bulk_insert_mappings = bulk_update_mappings = bulk_save_objects
 
 
+# The reserved account single-user mode and offline tools work in.
+LOCAL_USER_ID = "local"
+
+
 def account_sessions(engine, user_id):
     if not user_id:
         raise ValueError("An account identity is required")

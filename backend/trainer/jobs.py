@@ -12,6 +12,7 @@ from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
 from trainer.local_classifier import LocalClassifier
 from trainer.models import AnalysisJob, User
+from trainer.ownership import LOCAL_USER_ID
 from trainer.presence import active_cutoff
 from trainer.workspaces import Workspaces
 
@@ -22,7 +23,7 @@ class JobRunner:
     def __init__(
         self,
         settings,
-        sessions,
+        sql_engine,
         scheduler,
         classifier=None,
         engine_factory=Stockfish,
@@ -33,10 +34,11 @@ class JobRunner:
         self.settings, self.scheduler = settings, scheduler
         self.classifier = classifier if classifier is not None else LocalClassifier(settings)
         self.engine_factory = engine_factory
-        self.workspaces = workspaces or Workspaces(sessions.kw["bind"], settings, engine_factory)
+        self.workspaces = workspaces or Workspaces(sql_engine, settings, engine_factory)
+        # Account mode claims every account's jobs; single-user mode only its own.
         self.queue = JobQueue(
             self.workspaces.sql_engine,
-            user_id=None if settings.accounts_enabled else sessions.kw["info"]["user_id"],
+            user_id=None if settings.accounts_enabled else LOCAL_USER_ID,
         )
 
         self.providers = ProviderGateway(settings, client_factories() | (provider_factories or {}))

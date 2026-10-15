@@ -146,7 +146,7 @@ def test_async_api_import_to_review_reload(settings, stockfish_path):
 
 @pytest.mark.stockfish
 def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
-    settings, sessions, stockfish_path
+    settings, sessions, sql_engine, stockfish_path
 ):
     from trainer.engine import Stockfish
 
@@ -167,7 +167,7 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
             return super().classify(evidence)
 
     runner = JobRunner(
-        settings, sessions, FSRSScheduler(settings), classifier=CancellingClassifier()
+        settings, sql_engine, FSRSScheduler(settings), classifier=CancellingClassifier()
     )
     engine = Stockfish(settings, sessions)
     try:
@@ -208,7 +208,7 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
         engine.close()
 
 
-def test_recover_cancel_and_partial_import(settings, sessions):
+def test_recover_cancel_and_partial_import(settings, sessions, sql_engine):
     with sessions() as db:
         result = import_games(
             db,
@@ -222,7 +222,7 @@ def test_recover_cancel_and_partial_import(settings, sessions):
         job = db.get(AnalysisJob, result["job_id"])
         job.status = "running"
         db.commit()
-    runner = JobRunner(settings, sessions, FSRSScheduler(settings))
+    runner = JobRunner(settings, sql_engine, FSRSScheduler(settings))
     runner.recover()
     with sessions() as db:
         job = db.get(AnalysisJob, result["job_id"])

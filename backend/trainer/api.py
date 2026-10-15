@@ -83,7 +83,7 @@ def create_app(
     )
     runner = JobRunner(
         settings,
-        sessions,
+        sql_engine,
         scheduler,
         classifier,
         engine_factory,

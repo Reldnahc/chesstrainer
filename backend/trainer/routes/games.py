@@ -38,6 +38,7 @@ from trainer.models import (
     Game,
     GameReview,
 )
+from trainer.ownership import LOCAL_USER_ID
 from trainer.review_intelligence.clocks import annotation as clock_annotation
 from trainer.review_intelligence.clocks import control as clock_control
 from trainer.review_intelligence.context import move_contexts
@@ -91,7 +92,7 @@ def game_view(request: Request, game_id: str):
         user = getattr(request.state, "user", None)
         viewer = user["id"] if user else None
     else:
-        viewer = "local"
+        viewer = LOCAL_USER_ID
     sql_engine = app.workspaces.sql_engine
     # The one cross-account read: which account owns this game, if any.
     with sql_engine.connect() as connection:
