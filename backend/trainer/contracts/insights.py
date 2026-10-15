@@ -3,6 +3,7 @@ from typing import Literal
 from trainer.contracts.common import Color, Contract
 
 Speed = Literal["bullet", "blitz", "rapid", "classical", "daily"]
+SpeedFilter = Literal["all", Speed]
 Outcome = Literal["win", "draw", "loss", "unfinished"]
 
 
@@ -194,7 +195,7 @@ class EndgameRecord(Contract):
 
 class Insights(Contract):
     version: str
-    speed: Literal["all", "bullet", "blitz", "rapid", "classical", "daily"]
+    speed: SpeedFilter
     days: int | None
     speeds: list[Speed]
     games: int

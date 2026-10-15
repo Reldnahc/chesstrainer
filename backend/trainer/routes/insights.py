@@ -1,11 +1,9 @@
 """Read-only library insights over saved games and completed reviews."""
 
-from typing import Literal
-
 from fastapi import APIRouter, Query
 from sqlalchemy import select
 
-from trainer.contracts.insights import Insights
+from trainer.contracts.insights import Insights, SpeedFilter
 from trainer.game_insights import game_facts, summarize
 from trainer.models import AnalysisJob, Game, GameReview
 from trainer.review_reports import load_accuracy_scores
@@ -18,7 +16,7 @@ def create_router():
     @router.get("/api/insights", response_model=Insights)
     def insights(
         workspace: CurrentWorkspace,
-        speed: Literal["all", "bullet", "blitz", "rapid", "classical", "daily"] = "all",
+        speed: SpeedFilter = "all",
         days: int | None = Query(None, ge=1, le=3650),
         # Minutes east of UTC, so weekday and time-of-day use the viewer's clock.
         offset: int = Query(0, ge=-840, le=840),

@@ -17,6 +17,7 @@ from trainer.models import AnalysisJob, EngineAnalysis, Game, GameReview, GameRe
         ("60", "bullet"),
         ("120+1", "bullet"),
         ("180+2", "blitz"),
+        (" 300+2 ", "blitz"),  # The library label ignores the spaces too.
         ("180", "blitz"),
         ("600", "rapid"),
         ("900+10", "rapid"),

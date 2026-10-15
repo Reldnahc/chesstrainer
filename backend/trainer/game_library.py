@@ -30,12 +30,15 @@ def pgn_rating(parsed, color):
         return None
 
 
-def time_control_label(value: str | None) -> str | None:
-    if not value or value.strip() in {"?", ""}:
+def parse_time_control(value: str | None):
+    """A PGN TimeControl tag as validated stages, or None when it gives none.
+
+    Surrounding whitespace is ignored. "?" (unknown) and "-" (no limit) have no
+    stages, and a value with a negative or non-finite stage is rejected.
+    """
+    value = (value or "").strip()
+    if value in {"", "?", "-"}:
         return None
-    value = value.strip()
-    if value == "-":
-        return "Unlimited"
     try:
         control = chess.pgn.parse_time_control(value)
     except (ValueError, IndexError, OverflowError):
@@ -49,6 +52,15 @@ def time_control_label(value: str | None) -> str | None:
         or part.delay < 0
         for part in control.parts
     ):
+        return None
+    return control
+
+
+def time_control_label(value: str | None) -> str | None:
+    if (value or "").strip() == "-":
+        return "Unlimited"
+    control = parse_time_control(value)
+    if control is None:
         return None
 
     def duration(seconds):

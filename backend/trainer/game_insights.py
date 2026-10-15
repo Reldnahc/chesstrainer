@@ -10,12 +10,14 @@ import io
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
+from typing import get_args
 
 import chess
 import chess.pgn
 
 from trainer._vendor.lichess_accuracy import move_accuracy, win_percent
 from trainer.chess_core import Score, evaluation_loss
+from trainer.contracts.insights import Speed
 from trainer.game_accuracy import accuracy_cp
 from trainer.game_library import mover_rating, pgn_rating
 from trainer.game_review import blunder_kind
@@ -24,7 +26,7 @@ from trainer.review_intelligence.clocks import clock_facts, control
 from trainer.review_scores import MISTAKE_CP
 
 VERSION = "insights-1"
-SPEEDS = ("bullet", "blitz", "rapid", "classical", "daily")
+SPEEDS = get_args(Speed)
 # Learner-relative thresholds. "Clearly" winning or lost is three pawns, the same
 # size of swing that makes an ordinary move a Blunder for most ratings.
 DECISIVE_CP = 300
@@ -82,7 +84,7 @@ class GameFacts:
 
 
 def speed_of(time_control):
-    if time_control and time_control.strip().startswith("1/"):
+    if (time_control or "").strip().startswith("1/"):
         return "daily"
     kind, initial, increment = control(time_control)
     if initial is None:

@@ -1,7 +1,6 @@
 """Game library, resumable whole-game review and legal variation analysis."""
 
 import io
-import math
 from typing import Annotated
 
 import chess
@@ -39,6 +38,7 @@ from trainer.models import (
     Game,
     GameReview,
 )
+from trainer.review_intelligence.clocks import annotation as clock_annotation
 from trainer.review_intelligence.clocks import control as clock_control
 from trainer.review_intelligence.context import move_contexts
 from trainer.review_intelligence.history import cross_game_context
@@ -223,8 +223,9 @@ def create_router(*, settings):
                     "actor": "white" if actor else "black",
                     "report": reports.get(ply),
                 }
-                remaining = node.clock()
-                if remaining is not None and math.isfinite(remaining) and remaining >= 0:
+                # The same validated annotation Insights and clock facts read.
+                remaining, _ = clock_annotation(node, "clk")
+                if remaining is not None:
                     frame["clock"] = remaining
                 frames.append(frame)
             _, clock_start, _ = clock_control(parsed.headers.get("TimeControl"))
