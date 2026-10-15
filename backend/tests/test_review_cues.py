@@ -223,3 +223,10 @@ def test_pin_arrows_start_at_the_piece_actually_pinning(fen, san, expected):
     board = chess.Board(fen)
     board.push_san(san)
     assert {tuple(map(chess.square_name, pin)) for pin in pins(board)} == expected
+
+
+def test_a_relative_pin_the_pinned_piece_can_break_by_capture_is_not_drawn():
+    # 5.Bxf6: the bishop "pins" Be7 to Qd8, but Be7 simply takes it.
+    board = chess.Board("rnbqk2r/ppppbppp/5n2/4p1B1/3PP3/8/PPP2PPP/RN1QKBNR w KQkq - 0 5")
+    board.push_san("Bxf6")
+    assert pins(board) == set()

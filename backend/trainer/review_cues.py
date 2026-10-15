@@ -21,10 +21,13 @@ def pins(board):
         source = absolute_pinner(board, square)
         if source is not None:
             found.add((source, square, board.king(piece.color)))
+        # A relative pin the pinned piece can answer by taking the pinner (5.Bxf6
+        # "pinning" Be7 to Qd8) is not drawn as a pin.
         found.update(
             (slider, square, rear)
             for slider, rear in relative_pinners(board, square)
             if VALUES[board.piece_type_at(rear)] > VALUES[board.piece_type_at(slider)]
+            and slider not in board.attacks(square)
         )
     return found
 
