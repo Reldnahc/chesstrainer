@@ -585,6 +585,27 @@ def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monk
         assert detail["frames"][1]["report"] == first_report
 
 
+def test_a_game_drawn_by_a_repetition_that_happened_ends_its_last_frame(settings):
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False)
+    shuffle = "1. Nf3 Nf6 2. Ng1 Ng8 3. Nf3 Nf6 4. Ng1 Ng8"
+    with TestClient(app) as client:
+        # The eighth move repeats the start position a third time: a draw, like Play's.
+        drawn = seed(app, f'[White "Learner"]\n[Black "Opponent"]\n\n{shuffle} 1/2-1/2')
+        frames = client.get(f"/api/games/{drawn}").json()["frames"]
+        assert frames[-1]["termination"] == "threefold repetition"
+        assert frames[-1]["result"] == "1/2-1/2" and frames[-1]["legal_moves"] == []
+        # An earlier frame is not ended by a repetition the game then played past,
+        # and the draw White could only claim with its next move ends nothing.
+        assert frames[4]["result"] is None and frames[4]["legal_moves"]
+        seed(app, f'[White "Learner"]\n[Black "Other"]\n\n{shuffle} 5. e4 *')
+        with app.state.sessions() as db:
+            played_on = db.scalar(select(Game.id).where(Game.black == "Other"))
+        frames = client.get(f"/api/games/{played_on}").json()["frames"]
+        assert frames[8]["result"] is None and frames[-1]["result"] is None
+        assert frames[-1]["legal_moves"]
+
+
 def test_parallel_review_preserves_order_history_and_engine_budget(settings, monkeypatch):
     import threading
 

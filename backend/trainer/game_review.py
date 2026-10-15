@@ -41,10 +41,11 @@ from trainer.search_limits import SearchLimits
 VERSION = "game-review-1"
 
 
-def play_outcome(board):
-    """How a Play game ends here: the board's own outcome, or a threefold repetition
-    or fifty-move count that has actually happened. A draw the side to move could
-    only claim with its next move does not end the game."""
+def game_outcome(board):
+    """How a game ends here: the board's own outcome, or a threefold repetition or
+    fifty-move count that has actually happened. A draw the side to move could
+    only claim with its next move does not end the game. Play ends its games by
+    this rule, and the final frame of every game review reads it."""
     outcome = board.outcome()
     if outcome is None and board.is_repetition(3):
         return chess.Outcome(chess.Termination.THREEFOLD_REPETITION, None)
@@ -53,9 +54,12 @@ def play_outcome(board):
     return outcome
 
 
-def position(board, *, play_end=False):
-    """A frame's board facts; ``play_end`` ends it where Play ends a game."""
-    outcome = play_outcome(board) if play_end else board.outcome()
+def position(board, *, final=False):
+    """A frame's board facts. The ``final`` frame of a game also ends on a
+    repetition or fifty-move draw that has happened; earlier frames and
+    variation positions end only where the board itself does, since a game may
+    have continued past an unclaimed repetition."""
+    outcome = game_outcome(board) if final else board.outcome()
     return {
         "fen": board.fen(),
         "turn": "white" if board.turn else "black",
@@ -203,12 +207,13 @@ def lead_order(findings, first):
     return sorted(findings, key=lambda f: (min(f.plies) > first + 1, f.skill_id not in LEAD_SKILLS))
 
 
-def move_frames(board, moves, reports, *, play_end=False, extra=None):
+def move_frames(board, moves, reports, *, extra=None):
     """The start frame and one frame per move, as game review and Play show them.
 
     ``reports`` maps ply to its rendered report; ``extra(ply)`` adds fields such
-    as a clock. Play also ends a game on a repetition or fifty-move draw that has
-    happened, so it asks for its last frame to end where the game did.
+    as a clock. The last frame ends where the game did, on a repetition or
+    fifty-move draw that has happened too, whether the game was played here or
+    imported.
     """
     board = board.copy()
     frames = [
@@ -225,7 +230,7 @@ def move_frames(board, moves, reports, *, play_end=False, extra=None):
         san, number, actor = board.san(move), board.fullmove_number, board.turn
         board.push(move)
         frames.append(
-            position(board, play_end=play_end and ply == len(moves))
+            position(board, final=ply == len(moves))
             | {
                 "san": san,
                 "uci": move.uci(),

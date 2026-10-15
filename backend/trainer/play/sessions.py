@@ -11,9 +11,9 @@ from trainer.game_analysis import REQUESTED, queue_imported
 from trainer.game_library import mover_rating
 from trainer.game_review import (
     engine_facts,
+    game_outcome,
     link_previous_scores,
     move_frames,
-    play_outcome,
     public_report,
     review_move,
 )
@@ -172,8 +172,7 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
 def frames_for(play: PlayGame, learner_name: str) -> list[dict]:
     reports = rendered_reports(play, parsed_for(play, learner_name))
     moves = [chess.Move.from_uci(uci) for uci in play.moves]
-    # The last frame ends where the game did, on a repetition or fifty-move draw too.
-    return move_frames(chess.Board(), moves, reports, play_end=True)
+    return move_frames(chess.Board(), moves, reports)
 
 
 def state(play: PlayGame, learner_name: str, reply=None) -> dict:
@@ -228,7 +227,7 @@ def finish(db, play: PlayGame, result: str, termination: str, learner_name: str)
 
 
 def board_outcome(board: chess.Board):
-    return play_outcome(board)
+    return game_outcome(board)
 
 
 def result_for(outcome) -> tuple[str, str]:
