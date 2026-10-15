@@ -6,7 +6,7 @@ import chess
 
 from trainer.chess_core import digest
 from trainer.opening_book import VERSION as BOOK_VERSION
-from trainer.opening_book import book_move
+from trainer.opening_book import book_run
 from trainer.review_intelligence.clocks import clock_facts
 from trainer.review_intelligence.events_types import ClockFacts
 
@@ -32,20 +32,16 @@ def move_contexts(parsed):
         if opening
         else None
     )
-    last_book = None
+    book, book_end = book_run(parsed) if opening else ({}, None)
     output = {}
     for ply, move in enumerate(parsed.mainline_moves(), 1):
-        matched = book_move(board.fen(), move.uci()) if opening else None
         departure = None
-        if opening and not matched:
+        if ply == book_end:
             departure = {
                 "catalogue": BOOK_VERSION,
                 "previous_book_ply": ply - 1,
-                "previous_name": last_book.get("name") if last_book else None,
+                "previous_name": book.get(ply - 1, {}).get("name"),
             }
-            opening = False
-        if matched:
-            last_book = matched
         output[ply] = MoveContext(
             ply,
             pgn_key,

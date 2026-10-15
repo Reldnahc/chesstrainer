@@ -14,14 +14,13 @@ from typing import get_args
 import chess
 import chess.pgn
 
-from trainer._vendor.lichess_accuracy import move_accuracy, win_percent
 from trainer.chess_core import Score, evaluation_loss
 from trainer.contracts.insights import Speed
-from trainer.game_accuracy import accuracy_cp
+from trainer.game_accuracy import STARTING_CP, accuracy_cp, mover_accuracy
 from trainer.game_library import mover_rating, parsed_game, pgn_rating
 from trainer.game_review import blunder_kind
 from trainer.models import now as current_time
-from trainer.opening_book import book_move
+from trainer.opening_book import book_run
 from trainer.review_intelligence.clocks import clock_facts, control
 from trainer.review_scores import MISTAKE_CP
 
@@ -193,7 +192,7 @@ def game_facts(game, scores=None, rating=None):
     board = parsed.board()
     total = sum(1 for _ in parsed.mainline_moves())
     reviewed = scores is not None and set(scores) == set(range(1, total + 1)) and total > 0
-    previous_white = 15 if board.fen() == chess.STARTING_FEN else None
+    previous_white = STARTING_CP if board.fen() == chess.STARTING_FEN else None
     facts = GameFacts(
         id=game.id,
         opponent=game.black if learner_white else game.white,
@@ -210,21 +209,17 @@ def game_facts(game, scores=None, rating=None):
         reviewed=reviewed,
         initial_seconds=initial,
     )
-    in_book = True
+    book, book_end = book_run(parsed)
     for ply, move in enumerate(parsed.mainline_moves(), 1):
         mover_white = board.turn == chess.WHITE
         learner = mover_white == learner_white
         row = Ply(ply=ply, learner=learner, fullmove=board.fullmove_number, phase=phase_of(board))
         if row.phase == "endgame" and facts.endgame is None:
             facts.endgame, facts.endgame_entry = endgame_class(board), ply
-        if in_book:
-            opening = book_move(board.fen(), move.uci())
-            if opening is None:
-                in_book = False
-                if learner and ply > 1:
-                    facts.book_exit = ply
-            elif opening["name"]:
-                facts.opening = opening["name"]
+        if book.get(ply, {}).get("name"):
+            facts.opening = book[ply]["name"]
+        if ply == book_end and learner and ply > 1:
+            facts.book_exit = ply
         clock = clocks.get(ply)
         if clock and clock.status == "annotated":
             row.clock_before, row.clock_after = clock.before_seconds, clock.after_seconds
@@ -253,9 +248,7 @@ def game_facts(game, scores=None, rating=None):
                 row.blunder = blunder_kind(best, actual, mover) is not None
                 row.mistake = row.blunder or (loss.cp or 0) >= MISTAKE_CP or loss.mate_lost
                 if previous_white is not None:
-                    before = win_percent(previous_white if mover_white else -previous_white)
-                    after = win_percent(white_cp if mover_white else -white_cp)
-                    row.accuracy = move_accuracy(before, after)
+                    row.accuracy = mover_accuracy(previous_white, white_cp, mover_white)
                 previous_white = white_cp
         facts.plies.append(row)
         board.push(move)
@@ -678,7 +671,8 @@ def punishment(games):
         for index, row in enumerate(rows[:-1]):
             if not row.mistake:
                 continue
-            before = rows[index - 1].learner_cp if index else 15 if game.learner_white else -15
+            start = STARTING_CP if game.learner_white else -STARTING_CP
+            before = rows[index - 1].learner_cp if index else start
             swing = abs(row.learner_cp - before)
             reply = rows[index + 1].learner_cp
             if swing == 0:

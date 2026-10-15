@@ -48,11 +48,18 @@ def create_router():
                 game.id for key, game, completed, _ in keyed if completed and not _facts.get(key)
             ]
             saved = load_accuracy_scores(db, missing)
+
+            def facts_for(game, completed, rating):
+                if completed and game.id not in saved:
+                    # Cached a moment ago, then evicted by another request: load it now.
+                    saved.update(load_accuracy_scores(db, [game.id]))
+                return game_facts(game, saved.get(game.id) if completed else None, rating)
+
             facts = [
                 _facts.get_or_make(
                     key,
-                    lambda game=game, completed=completed, rating=rating: game_facts(
-                        game, saved.get(game.id) if completed else None, rating
+                    lambda game=game, completed=completed, rating=rating: facts_for(
+                        game, completed, rating
                     ),
                 )
                 for key, game, completed, rating in keyed
