@@ -37,7 +37,7 @@ export default function EvidenceDialog({
     >
       <div className="row-between">
         <div>
-          <div className="eyebrow">VERIFIED GAME EVIDENCE</div>
+          <div className="eyebrow">GAME EVIDENCE</div>
           <h2>Decision evidence</h2>
         </div>
         <IconButton
@@ -61,7 +61,7 @@ export default function EvidenceDialog({
               {data.allows_mate
                 ? "The engine found a forced mate for the opponent."
                 : data.mate_lost
-                  ? "The move gave up a verified forced mate."
+                  ? "The move gave up a forced mate the engine found."
                   : `Estimated loss: ${((data.loss_cp || 0) / 100).toFixed(2)} pawns.`}
             </p>
             <h3>Engine candidates</h3>

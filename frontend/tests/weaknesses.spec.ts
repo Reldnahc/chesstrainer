@@ -97,10 +97,10 @@ test('skill evidence, targeted practice and disabled positions remain usable on 
   await page.goto('/weaknesses');
   const supported = card(page, 'Pinned defender');
   const early = card(page, 'Missed tactical capture');
-  await expect(supported).toContainText(/across several games/i);
+  await expect(supported).toContainText(/across 2 games/i);
   await expect(early).toContainText(/early evidence/i);
   await expect(supported).toContainText('Check what the pinned piece protects.');
-  await expect(supported.getByRole('term')).toHaveText(['Positions', 'Games', 'Scheduled reviews']);
+  await expect(supported.getByRole('term')).toHaveText(['Positions', 'Games', 'Recent reviews']);
   await expect(supported.getByRole('definition')).toHaveText(['3', '2', '4']);
   await expect(supported).toContainText(/3\s*\/\s*4\s+clean solves in recent focused practice/);
   await expect(supported.getByRole('link', {name: 'Practice 3 positions', exact: true})).toHaveAttribute('href', '/study/due?focus=pin');

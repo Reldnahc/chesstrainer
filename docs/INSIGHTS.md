@@ -41,7 +41,7 @@ are a subset.
 | Clearly winning / lost | A learner-relative evaluation of ±300 cp or a forced mate at any ply. |
 | Where the win slipped | In clearly winning games not won, the ply after which the evaluation never returned to +300. |
 | Game shapes | One per reviewed game, in this order: let slip, comeback, led throughout (won, reached +150, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
-| Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is higher than the volatility-weighted game accuracy and is not a substitute for it. |
+| Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is usually higher than the volatility-weighted game accuracy, though not always, and is not a substitute for it. |
 | Phases | Six or fewer pieces besides kings and pawns is an endgame; moves 1–10 with more than ten pieces are the opening; otherwise middlegame. |
 | Blunders | The game review's own Blunder rule (`blunder_kind`) with the same rating the review's badges use (`game_library.mover_rating`): the moving player's PGN rating, else the review's stored rating. |
 | After a loss | The next game when it started within 90 minutes of the previous one. A rematch is that next game against the same opponent. |
@@ -86,7 +86,7 @@ The live Weaknesses route calls priorities() in weaknesses.py. It uses these exp
 5. For compatibility, up to 30 completed **historical lesson attempts** still contribute a bounded multiplier of 1 + 0.25 times their failure fraction. New attempts in that legacy domain cannot be created by the app; authored Study lessons do not contribute to this multiplier.
 6. Five or more recent SRS recalls with no failures reduce priority by 20%. The label is improving retention, not proven chess mastery.
 
-New local evidence uses weight 1. Recurring groups sort before provisional groups; default recurrence requires two independent games. The priority is rounded to one decimal and used for ordering, not presented as a scientific mastery score. Supporting evidence and decision IDs remain available for audit.
+New local evidence uses weight 1. Recurring groups sort before provisional groups; default recurrence requires two independent games. A recurring card's badge names its game count ("Across 2 games"), and its **Recent reviews** figure is the number of those latest recalls, at most 30. The priority is rounded to one decimal and used for ordering, not presented as a scientific mastery score. Supporting evidence and decision IDs remain available for audit.
 
 Focused attempts have separate recent attempt/failure counts. They do not change the ordinary recall fractions above or become evidence of blind recall.
 
