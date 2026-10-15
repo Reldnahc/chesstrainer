@@ -234,6 +234,7 @@ test('a course that fails to load in the lesson editor offers Try again', async 
   await page.goto('/settings/courses/editor?course=demo');
   await expect(page.getByText('Couldn’t load the course.')).toBeVisible();
   await page.getByRole('button', {name: 'Try again', exact: true}).click();
-  await expect(page.getByRole('button', {name: 'Save course'})).toBeVisible();
+  // The opened course has nothing unsaved yet.
+  await expect(page.getByRole('button', {name: 'Saved', exact: true})).toBeVisible();
   expect(asked).toBe(2);
 });
