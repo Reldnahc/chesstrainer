@@ -85,7 +85,14 @@ def sync_card_eligibility(db, decision):
     ).all()
     if not cards:
         return
-    eligible = decision.meaningful or bool(
+    eligible = still_a_mistake(db, decision)
+    for state in cards:
+        state.eligible = eligible
+
+
+def still_a_mistake(db, decision):
+    """Whether ``decision``, or another decision on its position, is a mistake."""
+    return decision.meaningful or bool(
         db.scalar(
             select(func.count())
             .select_from(Decision)
@@ -96,8 +103,6 @@ def sync_card_eligibility(db, decision):
             )
         )
     )
-    for state in cards:
-        state.eligible = eligible
 
 
 def reviewed_searches(db, engine, board, move, report):

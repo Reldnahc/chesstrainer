@@ -4,8 +4,9 @@ from datetime import timedelta
 
 from sqlalchemy import select
 
+from trainer.analysis import still_a_mistake
 from trainer.errors import InvalidInput
-from trainer.models import Exercise, OpeningCard, SRSState, User, now
+from trainer.models import Decision, Exercise, OpeningCard, SRSState, User, now
 from trainer.scheduling import last_reviewed
 
 
@@ -49,7 +50,9 @@ def require_active_review(db, exercise_id):
     if state.retired_at is not None:
         raise InvalidInput("This position is retired and will no longer appear in reviews.")
     exercise = db.get(Exercise, exercise_id)
-    if exercise.source == "game" and not state.eligible:
+    # Only a card set aside because its decision stopped being a mistake is refused;
+    # other ineligible game cards (such as the removed lessons' cards) still start.
+    if exercise.source == "game" and not state.eligible and not _decision_is_mistake(db, exercise):
         raise InvalidInput(
             "This position is no longer a mistake in its game's review, so it has left the queue."
         )
@@ -59,3 +62,8 @@ def require_active_review(db, exercise_id):
             raise InvalidInput(
                 "This opening study is inactive. Restore a contributing study to review it."
             )
+
+
+def _decision_is_mistake(db, exercise):
+    decision = db.get(Decision, exercise.decision_id) if exercise.decision_id else None
+    return decision is None or still_a_mistake(db, decision)
