@@ -4,15 +4,19 @@ Playwright starts the entries of a webServer list one after another, waiting for
 each to be ready. One launcher that starts every per-worker server together and
 then serves a readiness URL turns that wait into a single startup.
 
-Run: python backend/tests/browser_servers.py --ready-port 8769 --ports 8765,8771 \
-    --database-template data/ui-test-{stamp}-{index}.sqlite3
+Each server's database lives in a temporary folder the launcher removes when it
+stops (a forced kill leaves it to the system's temp cleanup), never in data/.
+
+Run: python backend/tests/browser_servers.py --ready-port 8769 --ports 8765,8771
 """
 
 import argparse
 import os
+import shutil
 import signal
 import subprocess
 import sys
+import tempfile
 import threading
 import time
 import urllib.error
@@ -47,12 +51,16 @@ def main(argv=None):
     parser.add_argument("--ports", required=True, help="Comma-separated server ports")
     parser.add_argument(
         "--database-template",
-        required=True,
-        help="Database path per server; {index} is the server's position",
+        help="Database path per server; {index} is the server's position. "
+        "Defaults to a temporary folder removed on exit.",
     )
     parser.add_argument("--timeout", type=float, default=120.0)
     args = parser.parse_args(argv)
     ports = [int(port) for port in args.ports.split(",")]
+    scratch = None
+    if args.database_template is None:
+        scratch = tempfile.mkdtemp(prefix="fieldwork-ui-")
+        args.database_template = os.path.join(scratch, "ui-test-{index}.sqlite3")
     children = []
     for index, port in enumerate(ports):
         env = dict(os.environ, DATABASE_PATH=args.database_template.format(index=index))
@@ -85,6 +93,9 @@ def main(argv=None):
                 child.wait(timeout=10)
             except subprocess.TimeoutExpired:
                 child.kill()
+                child.wait()
+        if scratch:
+            shutil.rmtree(scratch, ignore_errors=True)
         raise SystemExit(code)
 
     for name in ("SIGTERM", "SIGINT", "SIGBREAK"):

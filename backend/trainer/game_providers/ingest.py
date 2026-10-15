@@ -9,6 +9,7 @@ from sqlalchemy import func, select
 from trainer.game_providers import get_provider
 from trainer.game_providers.base import GameProviderClient, check_cancel
 from trainer.imports import fingerprint, identify_learner, import_games, parse_games
+from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, ImportBatch, ImportGame, ProviderCheckpoint, ProviderImport
 
 
@@ -24,7 +25,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
             request.max_games,
             request.time_class,
         )
-        sync = job.kind == "sync"
+        sync = job.kind == JobKind.SYNC
         anchor = job.created_at
         start_date, end_date = request.start_date, request.end_date
         if job.import_id is None:
@@ -126,7 +127,6 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                         batch=db.get(ImportBatch, job.import_id),
                         commit=False,
                         max_new_games=remaining,
-                        retain_original=not sync,
                         completed_times=completed_times,
                         rated=rated,
                         games=[(index, *entry) for index, entry in enumerate(games, 1)],

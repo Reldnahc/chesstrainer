@@ -5,7 +5,8 @@ engine findings, reviews, mistakes, game-based review cards and their history, p
 from those games, and the archived game-built course. Games played in Play stay, without the
 link to their removed library copy. Settings, preferences, coach choice, saved provider
 usernames, Study lesson progress, puzzle packs and opening studies are kept. Stop the server
-first. Without --yes it only reports what would be removed.
+first. Without --yes it only reports what would be removed; with it, the file is compacted
+afterwards so the freed space returns to the disk.
 """
 
 import argparse
@@ -189,6 +190,10 @@ def clear_games(database: Path, username: str | None = None, apply: bool = False
             if db.in_transaction:
                 db.execute("ROLLBACK")
             raise
+        if apply:
+            # SQLite keeps freed pages in the file; the server is stopped, so the
+            # file can be rewritten to give the space back.
+            db.execute("VACUUM")
     return removed
 
 

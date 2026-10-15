@@ -111,19 +111,21 @@ def import_games(
     batch: ImportBatch | None = None,
     commit: bool = True,
     max_new_games: int | None = None,
-    retain_original: bool = True,
     completed_times: dict[str, datetime] | None = None,
     rated: dict[str, bool] | None = None,
     games=None,
 ):
     """Save the games in ``pgn``; ``games`` is ``parse_games(pgn)`` when the caller
-    already has it, so a provider import does not parse every game twice."""
+    already has it, so a provider import does not parse every game twice.
+
+    An upload keeps its original text on its new batch. A provider import passes
+    its own batch and keeps none: every game's PGN is already saved, and
+    appending each archive to one row rewrote an ever larger value per archive.
+    """
     if batch is None:
         batch = ImportBatch(filename=filename, original_pgn=pgn)
         db.add(batch)
         db.flush()
-    elif retain_original:
-        batch.original_pgn += ("\n\n" if batch.original_pgn else "") + pgn
     errors, imported, duplicates, processed = [], 0, 0, 0
     linked = set(db.scalars(select(ImportGame.game_id).where(ImportGame.import_id == batch.id)))
     for index, parsed, error in games if games is not None else parse_games(pgn):

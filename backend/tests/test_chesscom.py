@@ -131,7 +131,7 @@ def test_import_filters_matches_both_sides_and_deduplicates_pgn(settings, sessio
                 (False, False),
             }
             batch = db.get(ImportBatch, db.get(AnalysisJob, job_id).import_id)
-            assert PGN in batch.original_pgn and BLACK_PGN in batch.original_pgn
+            assert batch.original_pgn == ""  # Each game's PGN is saved; no archive copy.
             assert db.scalar(select(func.count()).select_from(Game)) == 2
     finally:
         client.close()
