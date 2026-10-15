@@ -400,7 +400,7 @@ classification_quality.py and the read-only report script support blinded export
 Removed generated lesson/course, model teaching and repertoire product routes answer 410; their tables were dropped (migration 4ca1e88adf37). Due/unfinished-session queries exclude archived repertoire exercises (`source="repertoire"`); direct archived practice is rejected. Manual exercises remain. Saved lesson attempts are review sessions with `mode="lesson"`: active review cannot start, resume or finish one, including through direct domain calls. Tests seed explicit historical rows. The authored Study domain and `source="opening"` recall have their own explicit contracts described above.
 
 There is no hosted AI service: no model SDK or model network calls at runtime.
-Historical classification and teaching responses stay local. Explicit Chess.com
+Historical classification responses stay local. Explicit Chess.com
 imports and enabled recent-game synchronization use the public Chess.com API.
 
 Supported installations include the published Docker image and a source checkout,

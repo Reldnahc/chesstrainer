@@ -102,7 +102,7 @@ Classification supports factual feedback, recurring-weakness evidence and focuse
 
 ## Removed and archived
 
-The old generated lesson/course domain, Repertoire and manual-position entry forms remain archived. Historical data and domain helpers remain for compatibility and backups. Their legacy product routes return HTTP 410; archived sessions cannot be practiced through review endpoints. The authored Study lesson framework uses separate versioned content and progress, not those archived tables or endpoints. Historical teaching audits and the low-level manual exercise API remain accessible. Imports and classification never generate courses or enroll cards into lessons.
+The old generated lesson/course domain, model teaching, Repertoire and manual-position entry forms were removed, and their tables dropped. Their legacy routes return HTTP 410. Saved lesson attempts and repertoire cards stay as archived review history that cannot be practiced through review endpoints. The authored Study lesson framework uses separate versioned content and progress. The low-level manual exercise API remains. Imports and classification never generate courses or enroll cards into lessons.
 
 There is no LLM runtime, SDK, model service or model API-key requirement. Historical model responses are retained locally for audit; their labels are inactive.
 

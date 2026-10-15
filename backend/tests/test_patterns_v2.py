@@ -125,5 +125,5 @@ def test_unsettled_recapture_after_quiet_prefix_does_not_establish_material():
     boards = replay(
         valid_board(payload["fen"]), Candidate.model_validate(payload["best_candidates"][0])
     )
-    assert settled_delta(boards[:4], True)[0] is None
-    assert settled_delta(boards, True)[0] == 5
+    assert settled_delta(boards[:4], True, max_plies=16)[0] is None
+    assert settled_delta(boards, True, max_plies=16)[0] == 5

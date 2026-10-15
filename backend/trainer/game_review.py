@@ -286,8 +286,6 @@ def promote_stronger_played(report):
     }
 
 
-# Keys public_report derives from a saved engine report. Saved reports keep only
-# engine facts, so a later rule change reaches every saved review and Play game.
 # The report fields review polling sends for each newly saved ply. Board
 # positions were sent once with the game, so witness lines and legal moves stay out.
 PROGRESS_KEYS = (
@@ -309,6 +307,8 @@ PROGRESS_KEYS = (
     "immediate_reply",
     "immediate_recapture",
 )
+# Keys public_report derives from a saved engine report. Saved reports keep only
+# engine facts, so a later rule change reaches every saved review and Play game.
 PRESENTATION_KEYS = frozenset(
     {
         "immediate_reply",
