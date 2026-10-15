@@ -244,3 +244,51 @@ def test_values_requests_used_to_fill_in_are_backfilled(tmp_path):
         )
     assert games == {"g1": 4, "g2": 0}
     assert sessions == {"s1": 2500, "s2": None, "s3": 900}
+
+
+def test_dropping_the_archived_lesson_tables_keeps_their_sessions_and_cards(tmp_path):
+    from lesson_fixtures import archived_lesson_rows
+
+    engine, _ = database(tmp_path / "archived.sqlite3")
+    upgrade_to(engine, "5745573b0835")
+    with engine.begin() as connection:
+        fill(connection, "users", id="u1", username="u1")
+        fill(connection, "skills", id="king_safety")
+        fill(connection, "repertoires", id="r1", user_id="u1")
+        fill(
+            connection,
+            "exercises",
+            id="x1",
+            user_id="u1",
+            identity="x1",
+            source="repertoire",
+            repertoire_id="r1",
+        )
+        fill(connection, "exercises", id="x2", user_id="u1", identity="x2", source="game")
+        archived_lesson_rows(connection, ["x2"], user_id="u1")
+        fill(
+            connection,
+            "review_sessions",
+            id="lesson",
+            user_id="u1",
+            exercise_id="x2",
+            lesson_item_id="archived-item-0",
+        )
+        fill(connection, "review_sessions", id="plain", user_id="u1", exercise_id="x2")
+    upgrade_to(engine, "head")
+    assert not tables(engine) & {
+        "courses",
+        "course_units",
+        "unit_evidence",
+        "course_revisions",
+        "lessons",
+        "lesson_items",
+        "teaching_runs",
+        "repertoires",
+    }
+    with engine.connect() as connection:
+        modes = dict(connection.exec_driver_sql("SELECT id, mode FROM review_sessions").all())
+        sources = dict(connection.exec_driver_sql("SELECT id, source FROM exercises").all())
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
+    assert modes == {"lesson": "lesson", "plain": "review"}
+    assert sources == {"x1": "repertoire", "x2": "game"}

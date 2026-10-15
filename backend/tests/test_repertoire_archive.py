@@ -4,9 +4,8 @@ import sqlite3
 
 from explanation_fixtures import seed_review
 from fastapi.testclient import TestClient
-from sqlalchemy import select
 from trainer.api import create_app
-from trainer.exercises import import_repertoire
+from trainer.exercises import enroll
 from trainer.models import Exercise, ReviewSession, SRSState, now
 from trainer.scheduling import FSRSScheduler
 
@@ -39,12 +38,24 @@ def test_repertoire_removal_preserves_history_and_excludes_stale_sessions(settin
         with app.state.sessions() as db:
             game = seed_review(db, settings)
             scheduler = FSRSScheduler(settings)
-            imported = import_repertoire(
-                db, scheduler, "Archived opening", "1. e4 e5 2. Nf3 Nc6 *", True
-            )
-            cards = db.scalars(
-                select(Exercise).where(Exercise.repertoire_id == imported["id"])
-            ).all()
+            cards = []
+            for fen in (
+                "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+                "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+            ):
+                # Cards the removed repertoire training left behind.
+                card = Exercise(
+                    identity=fen,
+                    source="repertoire",
+                    fen=fen,
+                    orientation="white",
+                    explanation="A continuation from your curated repertoire.",
+                    policy={"authority": "repertoire", "version": "1"},
+                )
+                db.add(card)
+                db.flush()
+                enroll(db, card, scheduler)
+                cards.append(card)
             card_ids = {card.id for card in cards}
             # An unfinished recall saved before repertoires were archived.
             stale = ReviewSession(exercise_id=cards[0].id)

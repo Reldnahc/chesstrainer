@@ -9,7 +9,7 @@ from sqlalchemy import func, select
 from trainer.analysis import analyze_decision
 from trainer.classification import Classification, classify_decision
 from trainer.engine import Stockfish
-from trainer.exercises import exercise_from_decision, import_repertoire, manual_exercise
+from trainer.exercises import exercise_from_decision, manual_exercise
 from trainer.imports import identify_learner, import_games, learner_decisions
 from trainer.local_classifier import LocalClassifier
 from trainer.models import (
@@ -120,16 +120,6 @@ def test_first_failure_and_reveal_schedule_once(settings, sessions):
         assert db.scalar(select(Review)).failed
         reveal(db, cold["session_id"], scheduler, settings)
         assert db.scalar(select(func.count()).select_from(Review)) == 1
-
-
-def test_repertoire_multiple_answers_and_trained_side(settings, sessions):
-    scheduler = FSRSScheduler(settings)
-    pgn = '[White "R"]\n[Black "R"]\n\n1. e4 (1. d4 d5) e5 2. Nf3 Nc6 *'
-    with sessions() as db:
-        result = import_repertoire(db, scheduler, "My lines", pgn, True)
-        assert result["exercises"] == 2
-        answers = db.scalars(select(ExerciseAnswer)).all()
-        assert {a.uci for a in answers} == {"e2e4", "d2d4", "g1f3"}
 
 
 def test_schema_and_srs_mapping():

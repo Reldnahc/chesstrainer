@@ -2,13 +2,11 @@ from sqlalchemy import select
 
 from trainer.chess_core import Candidate, digest, legal_move, position_key, valid_board
 from trainer.errors import InvalidInput
-from trainer.imports import parse_games
 from trainer.models import (
     EngineAnalysis,
     Exercise,
     ExerciseAnswer,
     ExerciseTag,
-    Repertoire,
     SRSState,
 )
 from trainer.policy import MovePolicy
@@ -103,53 +101,3 @@ def manual_exercise(db, scheduler, fen, moves, orientation, explanation="", tags
     enroll(db, exercise, scheduler)
     db.commit()
     return exercise
-
-
-def import_repertoire(db, scheduler, name, pgn, color):
-    parsed = list(parse_games(pgn))
-    errors = [{"game": i, "error": error} for i, _, error in parsed if error]
-    games = [game for _, game, error in parsed if not error]
-    if not games:
-        raise ValueError("No valid repertoire lines found")
-    repertoire = Repertoire(name=name, pgn=pgn, color=color)
-    db.add(repertoire)
-    db.flush()
-    positions = {}
-
-    def visit(node):
-        board = node.board()
-        if board.turn == color and node.variations:
-            entry = positions.setdefault(position_key(board), {"board": board, "moves": set()})
-            entry["moves"].update(child.move.uci() for child in node.variations)
-        for child in node.variations:
-            visit(child)
-
-    for game in games:
-        visit(game)
-    for key, entry in positions.items():
-        board = entry["board"]
-        exercise = Exercise(
-            identity=digest({"repertoire": repertoire.id, "position": key}),
-            source="repertoire",
-            repertoire_id=repertoire.id,
-            fen=board.fen(),
-            orientation="white" if color else "black",
-            explanation=f"A continuation from your curated repertoire: {name}.",
-            policy={"authority": "repertoire", "version": "1"},
-        )
-        db.add(exercise)
-        db.flush()
-        for index, uci in enumerate(sorted(entry["moves"])):
-            move = legal_move(board, uci)
-            db.add(
-                ExerciseAnswer(
-                    exercise_id=exercise.id,
-                    uci=uci,
-                    san=board.san(move),
-                    grade="correct",
-                    primary=index == 0,
-                )
-            )
-        enroll(db, exercise, scheduler)
-    db.commit()
-    return {"id": repertoire.id, "exercises": len(positions), "errors": errors}

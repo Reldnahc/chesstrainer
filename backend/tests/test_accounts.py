@@ -310,6 +310,7 @@ def test_secure_cookie_and_origin(settings):
 
 
 def test_account_migration_preserves_existing_learning_history(settings):
+    import sqlalchemy
     from alembic import command
     from alembic.config import Config
     from lesson_fixtures import seed_lesson
@@ -341,8 +342,14 @@ def test_account_migration_preserves_existing_learning_history(settings):
             for table in tables
         }
     migrate(engine)
+    # Later migrations dropped the archived lesson tables and their link columns.
+    dropped = {"lesson_item_id", "repertoire_id"}
+    current = set(sqlalchemy.inspect(engine).get_table_names())
     with engine.connect() as connection:
         for table, rows in before.items():
+            if table not in current:
+                continue
+            rows = [{k: v for k, v in row.items() if k not in dropped} for row in rows]
             after = [
                 dict(row)
                 for row in connection.exec_driver_sql(

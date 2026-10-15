@@ -82,7 +82,6 @@ def _active_reviews(columns):
         SRSState.eligible.is_(True),
         SRSState.retired_at.is_(None),
         ReviewSession.completed.is_(False),
-        ReviewSession.lesson_item_id.is_(None),
         ReviewSession.mode == "review",
     )
 
@@ -155,7 +154,7 @@ def open_session(db, session_id):
     if session is None:
         raise NotFound("Review session not found")
     review_exercise(db, session.exercise_id)
-    if session.lesson_item_id is not None:
+    if session.mode == "lesson":
         raise Gone("This lesson attempt is archived. Start a position in Review.")
     return session
 
@@ -175,7 +174,6 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         .where(
             ReviewSession.exercise_id == exercise_id,
             ReviewSession.completed.is_(False),
-            ReviewSession.lesson_item_id.is_(None),
             ReviewSession.mode == mode,
             ReviewSession.focus_skill_id == focus_skill_id,
         )

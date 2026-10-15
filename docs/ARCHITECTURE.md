@@ -62,7 +62,7 @@ saved game then queues its own analysis job. See
 | game_analysis.py, game_sync.py | One analysis job per saved game with requested/fresh/backfill priority, and the server-side connection poller; see [Automatic game analysis](GAME_ANALYSIS.md) |
 | play/ / routes/play.py | Games against the coach's bot: Maia-sampled human-like moves with a Stockfish guardrail, strength-limited engine moves, the per-account level fit, play sessions, on-request or live per-move reports and the hand-off of finished games into the library. See [Play](PLAY.md) |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
-| routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
+| routes/compatibility.py | 410 answers for the removed course, lesson, teaching and repertoire routes, and manual exercise creation |
 | contracts/ | Explicit HTTP response schemas grouped by endpoint domain; reused chess evidence types retain their original owners |
 
 Each router is registered once and receives shared configuration/services explicitly.
@@ -397,7 +397,7 @@ classification_quality.py and the read-only report script support blinded export
 
 ## Archives, privacy and deployment
 
-Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. Historical rows, manual exercises and teaching audit/rejection access remain. Active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Tests seed explicit historical rows. The authored Study domain and `source="opening"` recall have their own explicit contracts described above.
+Removed generated lesson/course, model teaching and repertoire product routes answer 410; their tables were dropped (migration 4ca1e88adf37). Due/unfinished-session queries exclude archived repertoire exercises (`source="repertoire"`); direct archived practice is rejected. Manual exercises remain. Saved lesson attempts are review sessions with `mode="lesson"`: active review cannot start, resume or finish one, including through direct domain calls. Tests seed explicit historical rows. The authored Study domain and `source="opening"` recall have their own explicit contracts described above.
 
 There is no hosted AI service: no model SDK or model network calls at runtime.
 Historical classification and teaching responses stay local. Explicit Chess.com
@@ -494,16 +494,13 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
 | exercises, exercise_tags, exercise_answers | Game/manual practice and archived repertoire exercises, normalized answers/tags, policy snapshots and verification references |
 | srs_states | One serialized library card per exercise, due/review/lapse fields, eligibility and persistent retirement |
-| review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused and archived lesson attempts are separate |
+| review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused (`mode="focus"`) and archived lesson (`mode="lesson"`) attempts are separate |
 | puzzle_sessions, puzzle_attempts | Private immutable puzzle snapshots, revisioned solve progress and idempotent practice commands; independent of Review/FSRS |
 | game_puzzles, game_puzzle_searches | Account-owned puzzles mined from the learner's games, each with its engine evidence or abstention reason, and one search record per game and generator version |
 | opening_studies, opening_study_moves, opening_cards, opening_recall_snapshots, opening_content_changes | Opening studies and their chosen moves, one review card per learner position with its active revision and retirement guard, the answer set a recall session was started with, and the audit of content changes |
 | study_lesson_sessions, study_lesson_commands, study_lesson_progress | Study lesson sessions, their exactly-once commands and per-chapter progress pinned to a course revision and content hash |
-| courses, course_units, unit_evidence, course_revisions, lessons, lesson_items | Archived course snapshots, source evidence, ordered items and historical progress; no active generation/progression |
-| teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
-| repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
 
-There are 52 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 44 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots and FSRS serialization.
 
 `human_analyses` stores provider-neutral requests and complete policy facts, unique
 by versioned cache key. Like `engine_analyses` it is shared between accounts: the

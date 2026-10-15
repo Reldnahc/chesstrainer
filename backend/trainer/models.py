@@ -449,93 +449,6 @@ class SkillEvidence(Owned, Base):
     active: Mapped[bool] = mapped_column(default=True, server_default="1")
 
 
-class Course(Owned, Base):
-    __tablename__ = "courses"
-    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    title: Mapped[str]
-    target_rating: Mapped[int]
-    active: Mapped[bool] = mapped_column(default=True)
-    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
-
-
-class CourseUnit(Owned, Base):
-    __tablename__ = "course_units"
-    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    course_id: Mapped[str] = mapped_column(ForeignKey("courses.id"))
-    skill_id: Mapped[str] = mapped_column(ForeignKey("skills.id"))
-    title: Mapped[str]
-    rationale: Mapped[str] = mapped_column(Text)
-    ordinal: Mapped[int]
-    provisional: Mapped[bool]
-    group_key: Mapped[str] = mapped_column(default="", server_default="")
-    active: Mapped[bool] = mapped_column(default=True, server_default="1")
-
-
-class UnitEvidence(Owned, Base):
-    __tablename__ = "unit_evidence"
-    unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"), primary_key=True)
-    evidence_id: Mapped[str] = mapped_column(ForeignKey("skill_evidence.id"), primary_key=True)
-
-
-class Lesson(Owned, Base):
-    __tablename__ = "lessons"
-    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"))
-    stage: Mapped[str]
-    ordinal: Mapped[int]
-    completed: Mapped[bool] = mapped_column(default=False)
-    check_rounds: Mapped[int] = mapped_column(default=0, server_default="0")
-    last_check_correct: Mapped[int] = mapped_column(default=0, server_default="0")
-
-
-class CourseRevision(Owned, Base):
-    __tablename__ = "course_revisions"
-    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    course_id: Mapped[str] = mapped_column(ForeignKey("courses.id"), index=True)
-    fingerprint: Mapped[str]
-    snapshot: Mapped[dict] = mapped_column(JSON)
-    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
-
-
-class LessonItem(Owned, Base):
-    __tablename__ = "lesson_items"
-    __table_args__ = (UniqueConstraint("lesson_id", "ordinal"),)
-    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    lesson_id: Mapped[str] = mapped_column(ForeignKey("lessons.id"), index=True)
-    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"))
-    ordinal: Mapped[int]
-    completed: Mapped[bool] = mapped_column(default=False)
-    clean: Mapped[bool] = mapped_column(default=False)
-
-
-class TeachingRun(Owned, Base):
-    __tablename__ = "teaching_runs"
-    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
-    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"), index=True)
-    cache_key: Mapped[str]
-    model: Mapped[str]
-    schema_version: Mapped[str]
-    prompt_version: Mapped[str]
-    evidence_ids: Mapped[list] = mapped_column(JSON)
-    response: Mapped[dict | None] = mapped_column(JSON)
-    confidence: Mapped[float | None]
-    status: Mapped[str]
-    error: Mapped[str | None]
-    input_tokens: Mapped[int] = mapped_column(default=0)
-    output_tokens: Mapped[int] = mapped_column(default=0)
-    attempts: Mapped[int] = mapped_column(default=1)
-    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
-
-
-class Repertoire(Owned, Base):
-    __tablename__ = "repertoires"
-    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    name: Mapped[str]
-    color: Mapped[bool]
-    pgn: Mapped[str] = mapped_column(Text)
-
-
 class Exercise(Owned, Base):
     __tablename__ = "exercises"
     __table_args__ = (UniqueConstraint("user_id", "identity"),)
@@ -543,7 +456,6 @@ class Exercise(Owned, Base):
     identity: Mapped[str]
     source: Mapped[str]
     decision_id: Mapped[str | None] = mapped_column(ForeignKey("decisions.id"), index=True)
-    repertoire_id: Mapped[str | None] = mapped_column(ForeignKey("repertoires.id"))
     fen: Mapped[str]
     orientation: Mapped[str]
     explanation: Mapped[str] = mapped_column(Text, default="")
@@ -584,7 +496,8 @@ class ReviewSession(Owned, Base):
     last_attempt_id: Mapped[str | None] = mapped_column(
         ForeignKey("exercise_attempts.id", use_alter=True, name="fk_review_sessions_last_attempt")
     )
-    lesson_item_id: Mapped[str | None] = mapped_column(ForeignKey("lesson_items.id"))
+    # "review" (scheduled recall), "focus" (skill practice) or "lesson" (an attempt
+    # from the removed lessons, kept as archived history).
     mode: Mapped[str] = mapped_column(default="review", server_default="review")
     focus_skill_id: Mapped[str | None] = mapped_column(ForeignKey("skills.id"))
     response_ms: Mapped[int | None]

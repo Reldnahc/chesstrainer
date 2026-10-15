@@ -84,8 +84,3 @@ class ClassificationAudit(RunAudit):
     provider: str
     version: str
     decision_id: str
-
-
-class TeachingAudit(RunAudit):
-    unit_id: str
-    evidence_ids: list[str]

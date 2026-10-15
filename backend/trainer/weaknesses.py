@@ -117,7 +117,7 @@ def priorities(db, settings):
             .join(Exercise)
             .where(
                 Exercise.decision_id.in_([d.id for _, d in pairs]),
-                ReviewSession.lesson_item_id.is_not(None),
+                ReviewSession.mode == "lesson",  # Archived lesson attempts.
                 ReviewSession.completed.is_(True),
             )
             .order_by(ReviewSession.started_at.desc())

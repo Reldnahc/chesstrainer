@@ -7,18 +7,12 @@ from trainer.chess_core import Candidate, Score, position_key
 from trainer.exercises import exercise_from_decision
 from trainer.models import (
     ClassificationRun,
-    Course,
-    CourseRevision,
-    CourseUnit,
     Decision,
     EngineAnalysis,
     ExerciseAnswer,
     Game,
-    Lesson,
-    LessonItem,
     SkillEvidence,
     SRSState,
-    UnitEvidence,
 )
 from trainer.scheduling import FSRSScheduler
 from trainer.taxonomy import seed_skills
@@ -133,38 +127,29 @@ def seed_lesson(db, settings, count=8, offset=0, skills=None):
             )
         )
         db.commit()
-    # Historical rows are explicit fixtures, not a retained course-generation engine.
-    course = Course(title="Archived fixture course", target_rating=settings.target_rating)
-    db.add(course)
-    db.flush()
-    unit = CourseUnit(
-        course_id=course.id,
-        skill_id="king_safety",
-        title="Archived unit",
-        rationale="Historical fixture",
-        ordinal=0,
-        provisional=True,
-        group_key="Tactical awareness",
-    )
-    db.add(unit)
-    db.flush()
-    exercises = db.scalars(select(SRSState)).all()
-    for ordinal, stage in enumerate(("diagnose", "teach", "drill", "check", "retain")):
-        lesson = Lesson(unit_id=unit.id, stage=stage, ordinal=ordinal)
-        db.add(lesson)
-        db.flush()
-        if stage != "retain":
-            for index, state in enumerate(exercises):
-                state.eligible = False
-                db.add(
-                    LessonItem(lesson_id=lesson.id, exercise_id=state.exercise_id, ordinal=index)
-                )
-    for evidence in db.scalars(select(SkillEvidence)):
-        db.add(UnitEvidence(unit_id=unit.id, evidence_id=evidence.id))
-    db.add(
-        CourseRevision(
-            course_id=course.id, fingerprint="archived-fixture", snapshot={"fixture": True}
-        )
-    )
+    # Cards that belonged to the removed lessons stayed ineligible for Review.
+    for state in db.scalars(select(SRSState)):
+        state.eligible = False
     db.commit()
-    return course
+
+
+def archived_lesson_rows(connection, exercise_ids, user_id="local"):
+    """Rows the removed lessons left, written at a revision that still has their tables."""
+    from test_migrations import fill
+
+    def add(table, **values):
+        # Revisions before accounts have no owner column.
+        columns = {row[1] for row in connection.exec_driver_sql(f'PRAGMA table_info("{table}")')}
+        fill(connection, table, **values, **({"user_id": user_id} if "user_id" in columns else {}))
+
+    add("courses", id="archived-course")
+    add("course_units", id="archived-unit", course_id="archived-course", skill_id="king_safety")
+    add("lessons", id="archived-lesson", unit_id="archived-unit")
+    for ordinal, exercise_id in enumerate(exercise_ids):
+        add(
+            "lesson_items",
+            id=f"archived-item-{ordinal}",
+            lesson_id="archived-lesson",
+            exercise_id=exercise_id,
+            ordinal=ordinal,
+        )

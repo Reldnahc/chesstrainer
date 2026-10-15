@@ -550,7 +550,7 @@ Completing one attempt is not permanent retirement. The library defaults include
 
 Completed feedback displays the saved next due time. A returning cold position identifies only its scheduling reason (learning, relearning, due review, extra practice or unfinished attempt), never its chess concept or answer. The queue falls back to the most recent completed recall in SQLite for repeat avoidance when the browser supplies no last card. Unfinished attempts still take precedence. Completed direct exercise links are removed from the browser URL so refresh returns to the due queue.
 
-Historical lesson sessions have a lesson_item_id and never called FSRS. They are archived and cannot accept moves or reveals through the API. Their attempts remain preserved separately from ordinary recalls.
+Historical lesson sessions have `mode="lesson"` and never called FSRS. They are archived and cannot accept moves or reveals through the API. Their attempts remain preserved separately from ordinary recalls.
 
 ### Long-term intervals and mobile feedback
 

@@ -1,11 +1,10 @@
 """Remove imported games and everything derived from them so the library can be reimported.
 
 Takes a backup with scripts/backup.py first, then deletes games, imports and import jobs,
-engine findings, reviews, mistakes, game-based review cards and their history, puzzles mined
-from those games, and the archived game-built course. Games played in Play stay, without the
-link to their removed library copy. Settings, preferences, coach choice, saved provider
-usernames, Study lesson progress, puzzle packs and opening studies are kept. Stop the server
-first. Without --yes it only reports what would be removed; with it, the file is compacted
+engine findings, reviews, mistakes, game-based review cards and their history, and puzzles
+mined from those games. Games played in Play stay, without the link to their removed library
+copy. Settings, preferences, coach choice, saved provider usernames, Study lesson progress,
+puzzle packs and opening studies are kept. Stop the server first. Without --yes it only reports what would be removed; with it, the file is compacted
 afterwards so the freed space returns to the disk.
 """
 
@@ -31,13 +30,6 @@ STEPS = (
     ),
     ("opening_recall_snapshots", "session_id IN (SELECT id FROM temp.clear_sessions)"),
     ("review_sessions", "id IN (SELECT id FROM temp.clear_sessions)"),
-    ("unit_evidence", "unit_id IN (SELECT id FROM temp.clear_units)"),
-    ("teaching_runs", "unit_id IN (SELECT id FROM temp.clear_units)"),
-    ("lesson_items", "lesson_id IN (SELECT id FROM temp.clear_lessons)"),
-    ("lessons", "id IN (SELECT id FROM temp.clear_lessons)"),
-    ("course_units", "id IN (SELECT id FROM temp.clear_units)"),
-    ("course_revisions", "course_id IN (SELECT id FROM temp.clear_courses)"),
-    ("courses", "id IN (SELECT id FROM temp.clear_courses)"),
     ("exercise_answers", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
     ("exercise_tags", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
     ("srs_states", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
@@ -123,12 +115,7 @@ def _collect(db, owner):
         CREATE TEMP TABLE clear_sessions AS SELECT id FROM review_sessions
             WHERE exercise_id IN (SELECT id FROM temp.clear_exercises);
         CREATE TEMP TABLE clear_imports AS SELECT id FROM game_imports WHERE {owner};
-        CREATE TEMP TABLE clear_jobs AS SELECT id FROM analysis_jobs WHERE {owner};
-        CREATE TEMP TABLE clear_courses AS SELECT id FROM courses WHERE {owner};
-        CREATE TEMP TABLE clear_units AS SELECT id FROM course_units
-            WHERE course_id IN (SELECT id FROM temp.clear_courses);
-        CREATE TEMP TABLE clear_lessons AS SELECT id FROM lessons
-            WHERE unit_id IN (SELECT id FROM temp.clear_units)
+        CREATE TEMP TABLE clear_jobs AS SELECT id FROM analysis_jobs WHERE {owner}
         """
     for statement in script.split(";"):
         db.execute(statement)

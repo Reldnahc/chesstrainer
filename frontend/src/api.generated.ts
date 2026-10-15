@@ -1605,40 +1605,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/teaching-runs/{run_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Teaching Audit */
-        get: operations["teaching_audit_api_teaching_runs__run_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/teaching-runs/{run_id}/reject": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Reject Teaching */
-        post: operations["reject_teaching_api_teaching_runs__run_id__reject_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/weaknesses": {
         parameters: {
             query?: never;
@@ -4811,46 +4777,6 @@ export interface components {
             status: string;
             /** Username */
             username: string;
-        };
-        /** TeachingAudit */
-        TeachingAudit: {
-            /** Attempts */
-            attempts: number;
-            /** Cache Key */
-            cache_key: string;
-            /** Confidence */
-            confidence: number | null;
-            /**
-             * Created At
-             * Format: date-time
-             */
-            created_at: string;
-            /** Error */
-            error: string | null;
-            /** Evidence Ids */
-            evidence_ids: string[];
-            /** Id */
-            id: string;
-            /** Input Tokens */
-            input_tokens: number;
-            /** Model */
-            model: string;
-            /** Output Tokens */
-            output_tokens: number;
-            /** Prompt Version */
-            prompt_version: string;
-            /** Response */
-            response: {
-                [key: string]: components["schemas"]["JsonValue"];
-            } | null;
-            /** Schema Version */
-            schema_version: string;
-            /** Status */
-            status: string;
-            /** Unit Id */
-            unit_id: string;
-            /** User Id */
-            user_id: string;
         };
         /** Theory */
         Theory: {
@@ -8047,68 +7973,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["LessonSessionView"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    teaching_audit_api_teaching_runs__run_id__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                run_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TeachingAudit"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    reject_teaching_api_teaching_runs__run_id__reject_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                run_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Rejected"];
                 };
             };
             /** @description Validation Error */

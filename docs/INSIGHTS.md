@@ -106,7 +106,7 @@ progression are not active workflows. Imports and classification do not build
 courses or withhold new cards. Legacy course/lesson product routes return HTTP
 410, and old lesson review sessions cannot accept moves or reveals.
 
-Nonretired cards once held by lessons are eligible for Due (migration d17b63e02a48); their schedules, attempts, reviews and lesson records are kept. Teaching-generation routes and retries return 410; historical teaching audit reads/rejections remain available. Backups include the archived records.
+Nonretired cards once held by lessons are eligible for Due (migration d17b63e02a48); their schedules, attempts and reviews are kept, and lesson attempts stay as review sessions with `mode="lesson"`. The lesson, course and teaching tables themselves were dropped (migration 4ca1e88adf37). Teaching routes return 410.
 
 A future generated-curriculum redesign requires separate product work. Current
 priorities, focused practice and authored Study lessons do not re-enable legacy
