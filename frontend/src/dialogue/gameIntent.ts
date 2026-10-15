@@ -168,7 +168,11 @@ function explainsCost(f: Record<string, unknown>, mover: string | null | undefin
       const defended = strings(f.after).length > 0;
       return actual ? own && !defended : own === defended;
     }
-    case "doubled_files": case "isolated_pawns": case "bishop_pair": return actual ? own : !own;
+    // The better move's own doubled or isolated pawns are its drawback, and the
+    // opponent's are a gain that the alternative's lines frame as the better
+    // move's own untidy structure, so only the played move's own count.
+    case "doubled_files": case "isolated_pawns": return actual && own;
+    case "bishop_pair": return actual ? own : !own;
     case "rook_file": case "passed_pawns": return actual ? !own : own;
     case "passed_pawn_advance": case "first_development": case "castling": return !actual;
     default: return false;

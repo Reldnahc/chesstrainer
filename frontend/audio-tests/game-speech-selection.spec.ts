@@ -54,9 +54,16 @@ for (const fixture of causal) test(`Walter selects ${fixture.skill} for ${fixtur
 for (const fixture of positional) for (const line of ["actual", "alternative"] as const)
   test(`Walter preserves ${fixture.feature} ${line} scope (${fixture.mirrored ? "Black" : "White"})`, () => {
     const report = structuredClone(fixture[line]);
-    // After an error only a cost-explaining fact is spoken: the better move doubles the opponent's pawns.
-    if (line === "alternative" && fixture.feature === "doubled_files") for (const event of report.intelligence!.events)
-      if (event.facts.feature === "doubled_files" && event.facts.line === "best") event.facts.side = event.facts.side === "white" ? "black" : "white";
+    // After an error the better move's pawn structure is never told: its own doubled
+    // pawns are a drawback, and the alternative lines frame the opponent's as one too.
+    if (line === "alternative" && fixture.feature === "doubled_files") {
+      for (const side of ["white", "black"] as const) {
+        for (const event of report.intelligence!.events)
+          if (event.facts.feature === "doubled_files" && event.facts.line === "best") event.facts.side = side;
+        expect(context(report).intent.claims.some(item => item.code === fixture.code)).toBe(false);
+      }
+      return;
+    }
     const current = onlyClaim(context(report), fixture.code);
     const expected = `positional-${fixture.feature === "bishop_pair" ? "bishop-pair" : "doubled"}-${line}`;
     expect(selectWalterGameRecording(current)).toBe(expected);
@@ -230,9 +237,10 @@ test("all positional speech branches validate their structured facts and keep al
     // After an error, the better move's line names only what it gains: the opponent's weaknesses.
     if (line === "best" && ["isolated", "doubled", "unsupported"].includes(example.name)) event.facts.side = "black";
     report.intelligence!.events = [event];
-    if (line === "best" && example.name === "king-flight") {
-      // A king square never explains an error.
-      expect(context(report).intent.claims.some(item => item.code === "flights")).toBe(false);
+    if (line === "best" && ["king-flight", "isolated", "doubled"].includes(example.name)) {
+      // A king square never explains an error, and the better move's pawn structure,
+      // even the opponent's weakened pawns, is not told as an alternative.
+      expect(context(report).intent.claims.some(item => item.code === example.code)).toBe(false);
       continue;
     }
     const current = onlyClaim(context(report), example.code);

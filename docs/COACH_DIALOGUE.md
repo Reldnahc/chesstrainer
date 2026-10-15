@@ -54,8 +54,10 @@ On a move graded Inaccuracy or worse, a positional fact is kept only when it exp
 the cost: the mover's own piece losing its defender or pawns becoming doubled or isolated,
 the opponent gaining an open file or passed pawn, or what the better move would have
 gained. A gained defender, a new king square, castling and the better move's own
-drawbacks are left out, as is the better move's development or castling when the played
-move did the same. Defender facts on a piece that is simply recaptured are left out on
+drawbacks are left out, and so is the better move's pawn structure: the alternative
+doubled- and isolated-pawn lines frame it as the better move's own untidy structure,
+which is false when the weakened pawns are the opponent's. The better move's
+development or castling is also left out when the played move did the same. Defender facts on a piece that is simply recaptured are left out on
 any move. In speech, repeated-issue and saved-history lines only follow the sentence that
 names the issue (a tactic, cause or mate clip); a move with no playable sentence speaks
 its grade take instead. A second sentence never restates the lead: no capture clip after a
