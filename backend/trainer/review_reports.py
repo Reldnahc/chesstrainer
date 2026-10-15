@@ -17,6 +17,13 @@ def touch_report(db, row):
     row.revision = review.revision
 
 
+def saved_report(db, row):
+    """A saved review move's report as the review shows it: the adopted
+    refinement when there is one, else the baseline."""
+    task = db.get(ReviewRefinement, row.refinement_id) if row.refinement_id else None
+    return effective_report(db, row, task)
+
+
 def effective_report(db, row, task):
     baseline = row.report
     if task and (

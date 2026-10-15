@@ -3,6 +3,7 @@ from sqlalchemy import select
 from trainer.chess_core import Candidate, board_facts, evaluation_loss, position_key
 from trainer.models import Decision, EngineAnalysis, GameReviewMove
 from trainer.policy import MovePolicy
+from trainer.review_reports import saved_report
 
 
 def analyze_decision(db, engine, settings, game, ply, board, move):
@@ -16,7 +17,9 @@ def analyze_decision(db, engine, settings, game, ply, board, move):
         return existing
     reviewed = db.get(GameReviewMove, (game.id, ply))
     if reviewed is not None:
-        before, played, deep = reviewed_searches(db, engine, board, move, reviewed.report)
+        # The report the review shows, so an adopted deeper search reaches training.
+        report = saved_report(db, reviewed)
+        before, played, deep = reviewed_searches(db, engine, board, move, report)
     else:
         before, played, deep = triaged_searches(engine(), settings, board, move)
     best = Candidate.model_validate(before.candidates[0])

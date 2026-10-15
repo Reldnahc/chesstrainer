@@ -165,3 +165,59 @@ def test_the_game_page_and_library_accuracy_agree_on_the_adopted_report(
             "white_score": page["white_score"],
             "best": {"score": page["best"]["score"]},
         }
+
+
+def test_training_decisions_use_the_adopted_refinement(settings, sessions):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.models import Decision, EngineAnalysis
+
+    board = chess.Board()
+    move = chess.Move.from_uci("e2e4")
+
+    def analysis(key, value):
+        candidate = {
+            "uci": "e2e4",
+            "san": "e4",
+            "pv": ["e2e4"],
+            "score": {"kind": "cp", "value": value},
+        }
+        return EngineAnalysis(
+            cache_key=key,
+            fen=board.fen(),
+            engine_version="fixture",
+            config={},
+            candidates=[candidate],
+        )
+
+    with sessions() as db:
+        game = Game(fingerprint="train", white="A", black="B", learner_color=True, pgn="1. e4 *")
+        rows = {key: analysis(key, value) for key, value in [("base", 20), ("deep", 35)]}
+        db.add_all([game, *rows.values()])
+        db.flush()
+        baseline = {
+            "before_analysis_id": rows["base"].id,
+            "played_analysis_id": rows["base"].id,
+            "depth": 16,
+        }
+        refined = baseline | {
+            "before_analysis_id": rows["deep"].id,
+            "played_analysis_id": rows["deep"].id,
+            "depth": 22,
+        }
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="train",
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report=refined,
+            config={"baseline_ids": [rows["base"].id, rows["base"].id]},
+        )
+        db.add(task)
+        db.flush()
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
+        db.commit()
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
