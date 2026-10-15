@@ -52,9 +52,11 @@ export function explanationSummaryRecording(data: MoveExplanation): string | nul
   return summaryRecording(kind, data.summary_frame_index == null ? null : data.frames[data.summary_frame_index]);
 }
 
+// A "promotion" finding is always the promoting move itself, which the game bank's
+// promotion clips describe as a pawn still on its way; its frame line speaks instead.
 const findingAliases: Record<string, string | undefined> = {
   fork_recognized: "tactic-fork-played", defender_captured: "tactic-removing-defender-played",
-  deflection: "tactic-deflection-played", promotion: "tactic-promotion-awareness-played",
+  deflection: "tactic-deflection-played",
   undefended_capture: "tactic-undefended-capture-played", back_rank_mate: "tactic-back-rank-played",
   abandoned_defender: "cause-abandoned-defender", unfavorable_exchange: "cause-avoiding-bad-trades",
 };

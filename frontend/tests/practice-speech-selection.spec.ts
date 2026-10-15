@@ -96,13 +96,16 @@ test("selected finding and cue require the same analysis, witness moves and disp
 test("every supported finding mechanism maps to its full recorded meaning, including game-bank aliases", () => {
   const mechanisms: NonNullable<PatternFinding["mechanism"]>[] = ["fork_recognized", "fork_collected", "pin_prevents_capture", "pin_restricts_escape",
     "pin_defenders_no_recapture", "pin_collected", "skewer_collected", "king_skewer_collected", "defender_captured", "sole_defender_captured",
-    "deflection", "deflection_collected", "discovered_capture", "discovered_check", "double_check", "double_attack_collected", "promotion",
+    "deflection", "deflection_collected", "discovered_capture", "discovered_check", "double_check", "double_attack_collected",
     "promotion_material_retained", "undefended_capture", "undefended_capture_gain", "back_rank_mate", "abandoned_defender", "unfavorable_exchange"];
   for (const mechanism of mechanisms) {
     const item = finding({mechanism});
     const id = explanationFindingRecording(explanation({findings: [item]}), item, 1);
     expect(bank.has(id!), mechanism).toBe(true);
   }
+  // The promoting move itself never plays a clip about a pawn still on its way.
+  const promotion = finding({mechanism: "promotion", skill_id: "promotion_awareness", moves: ["e2e4"]});
+  expect(explanationFindingRecording(explanation({findings: [promotion]}), promotion, 1)).toBeNull();
 });
 
 test("notes need producer note identities; unstructured notes remain silent", () => {

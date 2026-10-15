@@ -92,10 +92,12 @@ test("the bubble writes the named piece's square; the generic line and spoken te
 const tacticalPieces: Record<string, string | null> = {
   "tactic-pin": "knight", "tactic-skewer": "king", "tactic-removing-defender": "knight",
   "tactic-discovered-attack": "bishop", "tactic-deflection": "knight", "tactic-undefended-capture": "queen",
-  "tactic-hanging-piece": "rook", "tactic-back-rank": "rook", "tactic-double-attack": null, "tactic-promotion-awareness": null,
+  "tactic-hanging-piece": "rook", "tactic-back-rank": "rook", "tactic-double-attack": null,
 };
-const tactical = semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py");
-for (const [key, game] of Object.entries(tactical)) {
+// Promotion witnesses are the promoting move, whose clips sit out (game-speech-tactical-policy).
+const tactical = Object.entries(semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py"))
+  .filter(([key]) => !key.startsWith("tactic-promotion-awareness-"));
+for (const [key, game] of tactical) {
   test(`${key} names the piece its tactic is about`, () => {
     const objective = key.split(":")[0], family = objective.replace(/-(?:played|allowed|missed)$/, "");
     const piece = tacticalPieces[family];

@@ -41,6 +41,8 @@ const square = (value: unknown): value is string => typeof value === "string" &&
 const files = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0)
   && value.every(f => typeof f === "string" && /^[a-h]$/.test(f));
 const squares = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0) && value.every(square);
+/** Whether a SAN move promotes a pawn ("e8=Q", "bxa8=N+"). */
+const promotes = (san: unknown) => typeof san === "string" && san.includes("=");
 function same(a: unknown, b: unknown): boolean {
   if (a === b) return true;
   if (!a || !b || typeof a !== "object" || typeof b !== "object" || Array.isArray(a) !== Array.isArray(b)) return false;
@@ -103,6 +105,9 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   const opening = object(f.witness[0]), expectedPly = role === "allowed" ? 2 : 1;
   if (motif !== "back_rank" && (f.plies[0] !== expectedPly || opening.ply !== expectedPly
     || (role !== "allowed" && opening.san !== report[role === "missed" ? "best" : "actual"].san))) return null;
+  // Promotion clips describe a pawn still on its way to the last rank. When the
+  // witnessed move is itself the promotion they are false, and the grade speaks.
+  if (motif === "promotion_awareness" && promotes(opening.san)) return null;
   if (tacticalMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
