@@ -250,3 +250,48 @@ def test_the_level_fit_runs_as_a_cancellable_job_of_the_account(settings):
         assert profile["status"] in {"ready", "no_games"} and profile["games"] == 1
         with app.state.sessions() as db:
             assert db.get(AnalysisJob, jobs[0].id).status == "completed"
+
+
+def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
+    from trainer.models import PlayGame
+    from trainer.play.sessions import frames_for
+
+    shuffle = ["g1f3", "g8f6", "f3g1", "f6g8"] * 2
+    play = PlayGame(
+        id="repetition",
+        coach_name="Coach",
+        learner_color=True,
+        opponent_rating=1200,
+        learner_rating=1200,
+        moves=shuffle,
+        reports={},
+        status="finished",
+        result="1/2-1/2",
+    )
+    frames = frames_for(play, "Learner")
+    assert frames[-1]["legal_moves"] == [] and frames[-1]["result"] == "1/2-1/2"
+    # Earlier frames are not cut short by the claim rule.
+    assert frames[-2]["legal_moves"]
+
+
+def test_review_presentation_keeps_one_entry_per_game(monkeypatch):
+    from types import SimpleNamespace
+
+    from trainer.review_intelligence import presentation
+
+    loads = []
+    monkeypatch.setattr(
+        presentation, "load_game_reports", lambda db, game_id: loads.append(game_id) or ({}, {})
+    )
+    monkeypatch.setattr(presentation, "present_game", lambda *args, **kwargs: ({}, None))
+    game = SimpleNamespace(id="presentation-cache")
+
+    def present(revision):
+        review = SimpleNamespace(revision=revision, rating=1200)
+        return presentation.presented_review(None, game, None, review, completed=False)
+
+    first = present(1)
+    assert present(1) is first and len(loads) == 1  # An unchanged poll reuses it.
+    second = present(2)
+    assert second is not first and len(loads) == 2  # A new revision re-renders.
+    assert presentation._presented.get(game.id)[1] is second  # Only the latest is kept.

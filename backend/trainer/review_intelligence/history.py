@@ -1,10 +1,12 @@
 """Account-owned corroboration from the existing active weakness projection."""
 
 from collections import defaultdict
+from time import monotonic
 from typing import Literal
 
 from trainer.chess_core import digest
 from trainer.contracts.common import Contract
+from trainer.recent_cache import RecentCache
 from trainer.review_intelligence.events_types import EvidenceReference
 from trainer.taxonomy import SKILLS
 from trainer.weaknesses import active_groups, recurrence
@@ -89,3 +91,20 @@ def cross_game_context(db, settings, game, reports, context):
             "recurrence_does_not_measure_training_transfer",
         ],
     )
+
+
+# Review polling asks for the same game's history every poll. It also reads the
+# learner's other games, so a reused answer is kept only briefly.
+_recent = RecentCache(64)
+RECENT_SECONDS = 10
+
+
+def recent_cross_game_context(db, settings, game, reports, context, revision):
+    """cross_game_context, reused for RECENT_SECONDS while the review revision holds."""
+    stamp = (revision, settings.min_independent_games)
+    hit = _recent.get(game.id)
+    if hit is not None and hit[0] == stamp and monotonic() - hit[1] < RECENT_SECONDS:
+        return hit[2]
+    result = cross_game_context(db, settings, game, reports, context)
+    _recent.put(game.id, (stamp, monotonic(), result))
+    return result

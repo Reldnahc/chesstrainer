@@ -42,7 +42,10 @@ from trainer.ownership import LOCAL_USER_ID
 from trainer.review_intelligence.clocks import annotation as clock_annotation
 from trainer.review_intelligence.clocks import control as clock_control
 from trainer.review_intelligence.context import move_contexts
-from trainer.review_intelligence.history import cross_game_context
+from trainer.review_intelligence.history import (
+    cross_game_context,
+    recent_cross_game_context,
+)
 from trainer.review_intelligence.presentation import presented_review
 from trainer.review_reports import load_accuracy_scores
 from trainer.workspaces import CurrentWorkspace
@@ -327,17 +330,21 @@ def create_router(*, settings):
                 accuracy = review_accuracy(
                     saved, total=total, starting_board=parsed.board(), completed=True
                 )
+            revision = max([after_revision or 0, *(revisions[ply] for ply in plies)])
+            history = (
+                recent_cross_game_context(
+                    db, settings, game, reports, context, (review.revision, completed)
+                )
+                if view.owned
+                else None
+            )
             return {
                 "job": job_progress(job, len(saved), total, review),
                 "moves": moves,
                 "context": context,
-                **(
-                    {"history": cross_game_context(db, settings, game, reports, context)}
-                    if view.owned
-                    else {}
-                ),
+                **({"history": history} if view.owned else {}),
                 "accuracy": accuracy,
-                "revision": max([after_revision or 0, *(revisions[ply] for ply in plies)]),
+                "revision": revision,
             }
 
     @router.post(

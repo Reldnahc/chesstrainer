@@ -151,3 +151,30 @@ def test_missing_metadata_black_learner_and_odd_move_count(settings):
         assert item["time_control_label"] is None and item["accuracy"] is None
         assert item["played_at"] == "2026-09-26T15:30:00+00:00"
         assert item["result"] == "1/2-1/2"
+
+
+def test_player_bars_show_only_valid_clock_annotations(settings):
+    settings.stockfish_path = "missing-clock-test-engine"
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            import_games(
+                db,
+                "clocks.pgn",
+                "\n".join(
+                    [
+                        '[White "Student"]',
+                        '[Black "Opponent"]',
+                        '[TimeControl "300+0"]',
+                        "",
+                        "1. e4 { [%clk 0:04:58] } e5 { [%clk 0:61:00] } 2. Nf3 *",
+                    ]
+                ),
+                ["Student"],
+                None,
+            )
+            game_id = db.scalar(select(Game.id))
+        frames = client.get(f"/api/games/{game_id}").json()["frames"]
+        assert frames[1]["clock"] == 298
+        # Clock facts reject an impossible annotation, so the bars do not show it either.
+        assert "clock" not in frames[2] and "clock" not in frames[3]

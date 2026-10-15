@@ -86,9 +86,23 @@ def parsed_for(play: PlayGame, learner_name: str, board: chess.Board | None = No
     return game
 
 
-# Rendered reports by (game, moves up to the ply): a saved engine report for a ply
-# never changes, so each is rendered once while the server runs.
-_rendered = RecentCache(4096)
+# Rendered reports per Play game, keyed by what each rendering depends on. Only
+# the current game's plies are kept, so a take-back drops the abandoned line.
+_rendered = RecentCache(64)
+
+
+def _render_key(play, ply, report):
+    human = report.get("human") or {}
+    return (
+        tuple(play.moves[:ply]),
+        report.get("previous_score") is not None,
+        report.get("before_analysis_id"),
+        report.get("played_analysis_id"),
+        human.get("status"),
+        human.get("evidence_id"),
+        human.get("configuration_key"),
+        play.learner_rating,
+    )
 
 
 def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
@@ -100,18 +114,21 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
         return {}
     contexts = move_contexts(parsed)
     starting = parsed.board().turn
+    known = _rendered.get(play.id) or {}
+    current = {}
     output = {}
     for ply, report in saved.items():
-        key = (play.id, tuple(play.moves[:ply]), report.get("previous_score") is not None)
-        color = starting if ply % 2 else not starting
-        output[ply] = _rendered.get_or_make(
-            key,
-            lambda report=report, color=color, ply=ply: public_report(
+        key = _render_key(play, ply, report)
+        rendered = known.get(key)
+        if rendered is None:
+            color = starting if ply % 2 else not starting
+            rendered = public_report(
                 report,
                 mover_rating(parsed, color, play.learner_rating),
                 context=contexts.get(ply),
-            ),
-        )
+            )
+        current[key] = output[ply] = rendered
+    _rendered.put(play.id, current)
     return output
 
 

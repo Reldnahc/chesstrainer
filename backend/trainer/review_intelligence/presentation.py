@@ -33,8 +33,8 @@ class PresentedReview:
     context: object
 
 
-# Presentations by (game, review revision, rating, completed). Every saved or
-# adopted report bumps the review's revision, so a poll that finds nothing new
+# The latest presentation per game, stamped with (review revision, rating, completed).
+# Every saved or adopted report bumps the revision, so a poll that finds nothing new
 # reuses the last presentation instead of re-rendering the whole game.
 _presented = RecentCache(64)
 
@@ -43,11 +43,14 @@ def presented_review(db, game, parsed, review, *, completed):
     """The game's saved reports and their presentation, rendered once per review revision."""
 
     rating = review.rating if review else DEFAULT_RATING
-    key = (game.id, review.revision if review else 0, rating, completed)
-
-    def present():
-        saved, revisions = load_game_reports(db, game.id)
-        reports, context = present_game(parsed, saved, rating, completed=completed)
-        return PresentedReview(saved, revisions, reports, context)
-
-    return _presented.get_or_make(key, present)
+    # One entry per game: a new revision replaces the last presentation rather
+    # than keeping every superseded one while a review saves ply after ply.
+    stamp = (review.revision if review else 0, rating, completed)
+    cached = _presented.get(game.id)
+    if cached is not None and cached[0] == stamp:
+        return cached[1]
+    saved, revisions = load_game_reports(db, game.id)
+    reports, context = present_game(parsed, saved, rating, completed=completed)
+    presented = PresentedReview(saved, revisions, reports, context)
+    _presented.put(game.id, (stamp, presented))
+    return presented
