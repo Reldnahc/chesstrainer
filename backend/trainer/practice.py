@@ -6,11 +6,11 @@ from sqlalchemy import select
 
 from trainer.errors import InvalidInput
 from trainer.models import Decision, Exercise, SkillEvidence, SRSState
-from trainer.taxonomy import SKILLS
+from trainer.taxonomy import SKILLS, UNCLASSIFIED
 
 
 def require_focus(db, exercise, skill_id):
-    if skill_id not in SKILLS or skill_id == "unclassified":
+    if skill_id not in SKILLS or skill_id == UNCLASSIFIED:
         raise InvalidInput("Unknown practice skill")
     if exercise.source != "game" or not db.scalar(
         select(SkillEvidence.id).where(
@@ -23,7 +23,7 @@ def require_focus(db, exercise, skill_id):
 
 
 def focus_queue(db, skill_id, limit=12):
-    if skill_id not in SKILLS or skill_id == "unclassified":
+    if skill_id not in SKILLS or skill_id == UNCLASSIFIED:
         raise InvalidInput("Unknown practice skill")
     rows = db.execute(
         select(Exercise.id, Decision.position_key, Decision.game_id)

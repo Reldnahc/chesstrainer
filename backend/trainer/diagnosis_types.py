@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from trainer.taxonomy import SKILLS
+from trainer.taxonomy import SKILLS, UNCLASSIFIED
 
 RULE_VERSION = "4.0-lichess-8d9faff6"
 
@@ -85,7 +85,7 @@ class Finding(BaseModel):
     @field_validator("skill_id")
     @classmethod
     def known_skill(cls, value):
-        if value not in SKILLS or value == "unclassified":
+        if value not in SKILLS or value == UNCLASSIFIED:
             raise ValueError("Unknown local skill")
         return value
 

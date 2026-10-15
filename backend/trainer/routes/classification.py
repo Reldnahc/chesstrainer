@@ -1,7 +1,7 @@
 """Local classification jobs, weakness evidence and immutable audits."""
 
 from fastapi import APIRouter, HTTPException
-from sqlalchemy import func, select
+from sqlalchemy import select
 
 from trainer.classification import reject_run
 from trainer.contracts.classification import ClassificationAudit, Evidence, Weaknesses
@@ -42,19 +42,11 @@ def create_router(*, settings, classifier) -> APIRouter:
     @router.get("/api/weaknesses", response_model=Weaknesses, response_model_exclude_unset=True)
     def weaknesses(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
+            counts = coverage(db)
             return {
                 "skills": priorities(db, settings),
-                "coverage": coverage(db),
-                "unclassified": db.scalar(
-                    select(func.count())
-                    .select_from(Decision)
-                    .where(
-                        Decision.meaningful.is_(True),
-                        ~Decision.id.in_(
-                            select(SkillEvidence.decision_id).where(SkillEvidence.active.is_(True))
-                        ),
-                    )
-                ),
+                "coverage": counts,
+                "unclassified": counts["unclassified"],
                 "classification_available": True,
             }
 

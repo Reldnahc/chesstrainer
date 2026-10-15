@@ -19,7 +19,7 @@ from trainer.models import (
     SkillEvidence,
     now,
 )
-from trainer.taxonomy import SKILLS, TAXONOMY_VERSION
+from trainer.taxonomy import SKILLS, TAXONOMY_VERSION, UNCLASSIFIED
 
 PROMPT_VERSION = "1"
 SCHEMA_VERSION = "3"
@@ -241,7 +241,7 @@ def _validated(output, decision, classifier, payload):
     expected = position_key(valid_board(decision.fen))
     if any(position_key(valid_board(fen)) != expected for fen in payload["analysis_fens"]):
         raise EvidenceIntegrityError("Classification analysis belongs to a different position")
-    labels = set([result.primary_skill, *result.secondary_skills]) - {"unclassified"}
+    labels = set([result.primary_skill, *result.secondary_skills]) - {UNCLASSIFIED}
     if labels != {f.skill_id for f in result.findings}:
         raise EvidenceIntegrityError("Classification labels lack matching findings")
     probes = {p["analysis_id"] for p in payload.get("probes", [])}
@@ -278,7 +278,7 @@ def activate_run(db, run):
     if result.confidence < LABEL_CONFIDENCE:
         return
     for skill in dict.fromkeys([result.primary_skill, *result.secondary_skills]):
-        if skill == "unclassified":
+        if skill == UNCLASSIFIED:
             continue
         evidence = rows.get(skill)
         if evidence is None:

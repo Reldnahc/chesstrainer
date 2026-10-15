@@ -119,7 +119,7 @@ def create_app(
             optimize(sql_engine)
             sql_engine.dispose()
 
-    app = FastAPI(title="Fieldwork accounts" if pool else "Local Chess Trainer", lifespan=lifespan)
+    app = FastAPI(title="Fieldwork", lifespan=lifespan)
     app.state.sessions, app.state.runner, app.state.settings = sessions, runner, settings
     app.state.workspaces = workspaces
     app.state.human_models = human_models

@@ -15,12 +15,11 @@ def coverage(db):
     ids = set(db.scalars(select(Decision.id).where(Decision.meaningful.is_(True))))
     labels = defaultdict(set)
     for decision_id, skill in db.execute(
-        select(SkillEvidence.decision_id, SkillEvidence.skill_id).where(
-            SkillEvidence.active.is_(True)
-        )
+        select(SkillEvidence.decision_id, SkillEvidence.skill_id)
+        .join(Decision, Decision.id == SkillEvidence.decision_id)
+        .where(SkillEvidence.active.is_(True), Decision.meaningful.is_(True))
     ):
-        if decision_id in ids:
-            labels[decision_id].add(skill)
+        labels[decision_id].add(skill)
     outcomes = {key for key, skills in labels.items() if skills & OUTCOME_SKILLS}
     mechanisms = {key for key, skills in labels.items() if skills & MECHANISM_SKILLS}
     # Only each decision's latest local run matters. Rank in SQL rather than loading
@@ -37,15 +36,20 @@ def coverage(db):
             )
             .label("rank"),
         )
-        .where(ClassificationRun.provider == LocalClassifier.provider)
+        .join(Decision, Decision.id == ClassificationRun.decision_id)
+        .where(
+            ClassificationRun.provider == LocalClassifier.provider, Decision.meaningful.is_(True)
+        )
         .subquery()
     )
-    latest = {}
-    for decision_id, status, response in db.execute(
-        select(ranked.c.decision_id, ranked.c.status, ranked.c.response).where(ranked.c.rank == 1)
-    ):
-        if decision_id in ids:
-            latest[decision_id] = (status, response)
+    latest = {
+        decision_id: (status, response)
+        for decision_id, status, response in db.execute(
+            select(ranked.c.decision_id, ranked.c.status, ranked.c.response).where(
+                ranked.c.rank == 1
+            )
+        )
+    }
     reasons = Counter(
         reason
         for status, response in latest.values()

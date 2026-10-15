@@ -12,10 +12,15 @@ from typing import Protocol
 
 from trainer.cancellation import WaitCancelled, WaitTimedOut, taking, wait_until
 from trainer.human_models.preset import provenance
-from trainer.human_models.types import HumanPolicy, HumanReadiness, ModelProvenance
+from trainer.human_models.types import (
+    MESSAGE_LIMIT,
+    HumanPolicy,
+    HumanReadiness,
+    ModelProvenance,
+)
 
 # Positions per worker exchange: one forward pass each, and request and reply
-# lines stay well under the worker's 256 KiB line limit.
+# lines stay well under MESSAGE_LIMIT.
 BATCH_POSITIONS = 32
 
 
@@ -76,7 +81,7 @@ class Worker:
     def _read(self):
         try:
             while not self.closed.is_set():
-                line = self.process.stdout.readline(262144)
+                line = self.process.stdout.readline(MESSAGE_LIMIT)
                 if not line or not line.endswith("\n"):
                     break
                 try:
@@ -95,7 +100,7 @@ class Worker:
         if self.closed.is_set():
             raise HumanUnavailable("worker_closed")
         message = json.dumps(payload, separators=(",", ":"), allow_nan=False) + "\n"
-        if len(message.encode("utf-8")) >= 262144:
+        if len(message.encode("utf-8")) >= MESSAGE_LIMIT:
             raise HumanUnavailable("history_too_large")
         try:
             # Pipe writes can themselves block. The caller's deadline must cover

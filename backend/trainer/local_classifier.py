@@ -14,6 +14,7 @@ from trainer.classification_stages import (
 )
 from trainer.config import Settings
 from trainer.diagnosis_types import RULE_VERSION
+from trainer.taxonomy import UNCLASSIFIED
 
 
 def classifier_parameters(settings=None):
@@ -65,7 +66,7 @@ class LocalClassifier:
             parameters=self.parameters,
             continuations={line.analysis_id: line.endpoint for line in (best, actual)},
             defense_checks=defense_checks,
-            primary_skill=skills[0] if skills else "unclassified",
+            primary_skill=skills[0] if skills else UNCLASSIFIED,
             secondary_skills=skills[1:],
             confidence=1.0 if skills else 0.0,
             explanation=" ".join(f.explanation for f in found)

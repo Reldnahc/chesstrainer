@@ -26,6 +26,25 @@ from trainer.preferences import (
 from trainer.workspaces import CurrentWorkspace
 
 
+def run_counts(db):
+    """Local classification runs, and how many failed, were rejected or abstained."""
+    run = ClassificationRun
+    total, failed, rejected, abstained = db.execute(
+        select(
+            func.count(),
+            func.count().filter(run.status == "failed"),
+            func.count().filter(run.status == "rejected"),
+            func.count().filter(run.status == "completed", run.confidence == 0),
+        ).where(run.provider == LocalClassifier.provider)
+    ).one()
+    return {
+        "classification_runs": total,
+        "classification_failed": failed,
+        "classification_rejected": rejected,
+        "classification_abstained": abstained,
+    }
+
+
 def create_router(*, settings, health, classifier) -> APIRouter:
     router = APIRouter()
 
@@ -89,36 +108,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
                     "coverage": coverage(db),
                     "classification_provider": LocalClassifier.provider,
                     "classification_version": classifier.version,
-                    "classification_runs": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(ClassificationRun.provider == LocalClassifier.provider)
-                    ),
-                    "classification_failed": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(
-                            ClassificationRun.provider == LocalClassifier.provider,
-                            ClassificationRun.status == "failed",
-                        )
-                    ),
-                    "classification_rejected": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(
-                            ClassificationRun.provider == LocalClassifier.provider,
-                            ClassificationRun.status == "rejected",
-                        )
-                    ),
-                    "classification_abstained": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(
-                            ClassificationRun.provider == LocalClassifier.provider,
-                            ClassificationRun.status == "completed",
-                            ClassificationRun.confidence == 0,
-                        )
-                    ),
+                    **run_counts(db),
                 }
             )
 

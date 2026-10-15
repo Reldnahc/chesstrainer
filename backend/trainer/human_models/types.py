@@ -7,6 +7,12 @@ from pydantic import Field, model_validator
 
 from trainer.contracts.common import Color, Contract
 
+# Shared by the server and its Maia worker process, and by the provenance that
+# keys cached policies, so each value is written once.
+MESSAGE_LIMIT = 256 * 1024  # Bytes per JSON line between server and worker.
+HISTORY_WINDOW = 8  # Positions of history the model reads.
+SEED = 42  # torch seed for reproducible inference.
+
 
 class History(Contract):
     root: str
