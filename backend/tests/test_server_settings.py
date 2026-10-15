@@ -47,6 +47,15 @@ def test_the_old_provider_names_still_configure_lichess(monkeypatch):
     assert Settings(_env_file=None).lichess_timeout_seconds == 7
 
 
+def test_a_setting_with_an_old_environment_name_saves_and_loads(settings):
+    sql_engine, _ = database(settings.database_path)
+    site_settings.load(Settings(_env_file=None, database_path=settings.database_path))
+    site_settings.save(sql_engine, {"lichess_timeout_seconds": 15})
+    sql_engine.dispose()
+    loaded = site_settings.load(Settings(_env_file=None, database_path=settings.database_path))
+    assert loaded.lichess_timeout_seconds == 15
+
+
 def test_the_environment_seeds_missing_settings_and_the_table_wins_afterwards(
     settings, monkeypatch
 ):

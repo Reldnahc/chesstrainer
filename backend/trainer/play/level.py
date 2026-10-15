@@ -147,6 +147,11 @@ def run_level_fit(execution, job_id):
         return
     except HumanUnavailable:
         result, status = None, "unavailable"
+    except Exception:
+        # Saved as unavailable, so Play stops showing "computing" and does not
+        # queue the same failing fit again on its next poll.
+        log.exception("level_fit_failed", extra={"job_id": job_id})
+        result, status = None, "unavailable"
     with execution.mutation_lock, sessions() as db:
         row = db.get(PlayProfile, user_id)
         if row is None:

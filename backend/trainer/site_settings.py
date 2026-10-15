@@ -6,6 +6,7 @@ the database: on each start, a value set in the environment fills in a setting t
 table does not have yet, after which the table wins. Changes apply on restart.
 """
 
+import copy
 import functools
 import json
 import logging
@@ -200,11 +201,11 @@ MANAGED = tuple(entry[0] for _, entries in GROUPS for entry in entries)
 
 @functools.cache
 def _model(name):
-    # Reuses the field's own type and limits, exactly as Settings validates them.
-    return create_model(
-        f"Setting_{name}",
-        value=(Settings.model_fields[name].annotation, Settings.model_fields[name]),
-    )
+    # Reuses the field's own type and limits, exactly as Settings validates them,
+    # but not its environment-name aliases: the value is always given as "value".
+    field = copy.copy(Settings.model_fields[name])
+    field.alias = field.validation_alias = field.serialization_alias = None
+    return create_model(f"Setting_{name}", value=(field.annotation, field))
 
 
 def _validate(name, value):

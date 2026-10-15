@@ -151,7 +151,7 @@ def classify_decision(db, decision, classifier, *, mutation_lock=None):
             return False
         try:
             payload = verified_payload(db, decision)
-        except ValueError as exc:
+        except (ValueError, NotFound) as exc:
             _log_failure(decision, exc)
             return False
         run = _start_run(db, decision, classifier, payload)

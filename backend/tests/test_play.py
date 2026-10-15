@@ -252,6 +252,27 @@ def test_the_level_fit_runs_as_a_cancellable_job_of_the_account(settings):
             assert db.get(AnalysisJob, jobs[0].id).status == "completed"
 
 
+def test_a_failing_level_fit_is_saved_unavailable_and_not_queued_again(settings, monkeypatch):
+    from trainer.play import level
+
+    def broken(*args, **kwargs):
+        raise RuntimeError("unexpected")
+
+    monkeypatch.setattr(level, "fit_level", broken)
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
+    with TestClient(app) as client:
+        seed(app)
+        assert client.get("/api/play/profile").json()["status"] == "computing"
+        with app.state.sessions() as db:
+            job_id = db.scalar(select(AnalysisJob.id).where(AnalysisJob.kind == "level_fit"))
+        app.state.runner.run_job(job_id)
+        assert client.get("/api/play/profile").json()["status"] == "unavailable"
+        with app.state.sessions() as db:
+            jobs = db.scalars(select(AnalysisJob).where(AnalysisJob.kind == "level_fit")).all()
+            assert [job.status for job in jobs] == ["completed"]
+
+
 def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
     from trainer.models import PlayGame
     from trainer.play.sessions import frames_for

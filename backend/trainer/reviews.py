@@ -65,7 +65,7 @@ def explanation_brief(db, session_id, attempt_id=None, solution=False, include_r
             result["attempt_frame"] = explanation.frames[1].model_dump()
             result["counter_reply"] = explanation.frames[2].model_dump()
         return result
-    except ValueError:
+    except (ValueError, NotFound):
         # Explanation problems must never turn a saved recall into a failed HTTP move.
         log.warning("review_explanation_unavailable")
         return {}

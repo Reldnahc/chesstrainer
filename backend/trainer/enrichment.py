@@ -11,6 +11,7 @@ from trainer.continuations import continuation_end, extended_line
 from trainer.defensive_probes import hypotheses
 from trainer.diagnosis_types import OUTCOME_SKILLS
 from trainer.engine import EngineUnavailable
+from trainer.errors import NotFound
 from trainer.imports import decision_board
 from trainer.local_classifier import LocalClassifier, classifier_parameters
 from trainer.models import (
@@ -69,7 +70,7 @@ def plan_probes(db, job_id, settings, engine, *, mutation_lock=None):
             continue
         try:
             result, _ = classifier.classify(verified_payload(db, decision))
-        except ValueError as exc:
+        except (ValueError, NotFound) as exc:
             # One decision with inconsistent saved evidence must not stop planning
             # for the rest of the account.
             log.warning(
