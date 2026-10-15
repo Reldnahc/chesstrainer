@@ -1,5 +1,5 @@
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../../api";
-import { capturedPieces, findingMeaningId, findingPieces, withPieceVariant } from "./pieceVariants";
+import { capturedPieces, findingMeaningId, findingPieces, findingWordingHolds, withPieceVariant } from "./pieceVariants";
 
 /** Only replay_line's explicit facts authorize a complete recorded frame description.
  * A quiet checkmate credits the learner only when the learner mates; a line where
@@ -70,7 +70,7 @@ function currentFinding(data: MoveExplanation, finding: PatternFinding | null | 
     && finding.plies.every((ply, i) => Number.isInteger(ply) && ply > 0 && data.frames[ply]?.uci === finding.moves[i]);
 }
 export function explanationFindingRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
-  if (!currentFinding(data, finding, index) || !finding.mechanism) return null;
+  if (!currentFinding(data, finding, index) || !finding.mechanism || !findingWordingHolds(data, finding)) return null;
   const id = findingMeaningId(finding.mechanism);
   return id && withPieceVariant(id, findingPieces(data, finding)?.pieces);
 }

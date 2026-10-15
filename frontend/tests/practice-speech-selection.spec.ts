@@ -209,3 +209,13 @@ test("each lesson command picks at most one generic prompt from its own action a
   expect(select("show_move", {status: "completed", feedback: {kind: "revealed", text: "The lesson plays e4."}})).toBe("lesson-move-revealed");
   expect(select("continue", {status: "completed"}, {...before, status: "completed"})).toBeNull();
 });
+
+test("pin-escape takes are not voiced for a piece that cannot move along its pin line", () => {
+  // A bishop pinned on the e-file cannot move at all; its take says it may move along the line.
+  const onFile = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["e7"], king: ["e8"], attacker: ["e1"], target: ["e7"]}});
+  const data = explanation({findings: [onFile], frames: [frame({uci: null}), frame({fen: "4k3/4b3/8/8/8/8/8/4R1K1 b - - 0 1"})]});
+  expect(explanationFindingRecording(data, onFile, 1)).toBeNull();
+  const onDiagonal = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["g7"], king: ["h8"], attacker: ["b2"], target: ["g7"]}});
+  const diagonal = explanation({findings: [onDiagonal], frames: [frame({uci: null}), frame({fen: "7k/6b1/8/8/8/8/1B6/K7 b - - 0 1"})]});
+  expect(explanationFindingRecording(diagonal, onDiagonal, 1)).toContain("explanation-finding-pin-restricts-escape");
+});
