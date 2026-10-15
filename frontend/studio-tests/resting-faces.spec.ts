@@ -34,7 +34,7 @@ async function mountFace(page: Page, options: Partial<FaceOptions> = {}, reduced
     // Use the real shared component; the studio does not expose reaction-key or
     // capability toggles, which are essential interruption cases here.
     const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const { CoachCharacter } = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const { getCoach } = await import(`${root}/src/coach/registry.ts`);
     let current: FaceOptions = {
       coach: "classic", state: "good", key: "move:1", motion: "natural",

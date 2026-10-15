@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ghostCopy } from "./ghost";
+import { playLeavingCopy } from "./ghost";
 import { useInterfaceMotion } from "./MotionProvider";
 
 /**
@@ -15,16 +15,7 @@ export default function usePopoverExit<T extends HTMLElement>() {
     if (!popover || motion === "still") return;
     const leave = (event: Event) => {
       if ((event as ToggleEvent).newState !== "closed") return;
-      const copy = ghostCopy(popover);
-      copy.inert = true;
-      copy.popover = "manual";
-      copy.classList.add("popover-leaving");
-      document.body.append(copy);
-      copy.showPopover();
-      const running = copy.getAnimations();
-      const remove = () => copy.remove();
-      if (!running.length) remove();
-      else Promise.all(running.map(animation => animation.finished)).then(remove, remove);
+      playLeavingCopy(popover, copy => copy.classList.add("popover-leaving"));
     };
     popover.addEventListener("beforetoggle", leave);
     return () => popover.removeEventListener("beforetoggle", leave);

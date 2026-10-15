@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* Native details owns toggling, keyboard activation and open state. */
 .disclosure {
   display: block;
@@ -6,9 +8,10 @@
 .disclosure > summary {
   display: list-item;
   list-style-position: inside;
-  min-height: 44px;
+  min-height: var(--touch-target);
   padding: var(--space-3) 0;
   color: #d1d6df;
   font-size: var(--text-md);
   cursor: pointer;
+}
 }

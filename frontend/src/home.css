@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .home-dashboard {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr);
@@ -27,4 +29,5 @@
 @media (max-width: 760px) {
   .home-dashboard { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
   .home-dashboard .home-section-heading h2 { font-size: var(--text-xl); }
+}
 }

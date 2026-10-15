@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .game-player {
   width: 100%;
   display: flex;
@@ -58,7 +60,7 @@
 .game-eval-bar {
   position: relative;
   background: #25272c;
-  border: 1px solid #44484f;
+  border: 1px solid var(--control-border);
   border-radius: 3px;
 }
 .game-eval-bar > div {
@@ -76,7 +78,7 @@
   min-width: 100%;
   white-space: nowrap;
   text-align: center;
-  background: #30343a;
+  background: var(--control-hover);
   color: #fff;
   padding: var(--space-1) var(--space-0-5);
   border-radius: 3px;
@@ -141,7 +143,10 @@
   background: var(--surface);
   border-bottom: 1px solid var(--line);
 }
-.game-move-heading button {
+/* The notation header's own dense controls: its tabs and its commands (Next
+   mistake, and whole-game commands such as Export passed in ReviewMoves' actions,
+   which add .game-move-command). They are notation chrome, not ordinary actions. */
+:is(.game-review-tabs button, .game-move-command) {
   font-size: var(--text-xs);
   padding: var(--space-1) var(--space-1-5);
   min-height: 28px;
@@ -154,12 +159,9 @@
   align-items: center;
   gap: var(--space-1);
 }
-.game-move-heading .game-export-button {
+.game-move-command--icon {
   min-width: 28px;
   justify-content: center;
-}
-.game-move-heading button[hidden] {
-  display: none;
 }
 .game-review-tabs {
   display: flex;
@@ -175,7 +177,7 @@
 }
 .game-review-tabs button[aria-selected="true"] {
   border-bottom-color: var(--accent);
-  color: #eceef1;
+  color: var(--text);
 }
 .game-notation-scroll {
   position: relative;
@@ -406,7 +408,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background: #141517;
+  background: var(--page-background);
 }
 .game-summary thead th {
   width: 30%;
@@ -543,12 +545,17 @@
   .review-workspace-layout .game-notation {
     margin-bottom: var(--space-3);
   }
-  .game-move-heading button,
+  :is(.game-review-tabs button, .game-move-command),
   .game-move-list button,
   .game-variation-row button {
-    min-height: 44px;
+    min-height: var(--touch-target);
+  }
+  /* An icon command is a square phone target too. */
+  .game-move-command--icon {
+    min-width: var(--touch-target);
   }
   .game-graph-verdict {
     display: none;
   }
+}
 }

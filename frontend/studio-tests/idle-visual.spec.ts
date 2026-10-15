@@ -31,7 +31,7 @@ test("actual-size signature contact sheets retain real tracks and fixed portrait
   const moduleRoot = viteFsPath(path.resolve("."));
   await page.evaluate(async root => {
     const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const { CoachCharacter } = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
     const { configuredGestures } = await import(`${root}/src/coach/idleGestures.ts`);
     const app = document.getElementById("root");

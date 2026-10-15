@@ -1,39 +1,36 @@
 import Button from "./Button";
 import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { api, read, type Schema } from "./api";
+import { useRef, useState } from "react";
+import { api, errorMessage, read, type Schema } from "./api";
 import ActionLink from "./ActionLink";
 import { pagePaths } from "./navigation";
 import ProviderUsernameField from "./ProviderUsernameField";
 import Notice from "./Notice";
 import Reveal, { Swap } from "./Reveal";
-import { LoadingState } from "./LoadState";
+import { useGameProviders, useServerDraft, type GameProvider } from "./gameProviders";
+import { useLatest } from "./useLatest";
+import { usePolling } from "./usePolling";
+import { QueryResult } from "./useQuery";
 
 type Sync = Schema["SyncStatus"];
-type Provider = Schema["GameProvider"];
 type Queue = Schema["AnalysisQueue"];
 const running = (value?: Sync) => !!value && ["queued", "running"].includes(value.status);
 const path = (provider: string) => ({ path: { provider } });
 
 function Connection({ provider, status, save, busy, onImportOlderGames }: {
-  provider: Provider; status?: Sync; save: (provider: string, name: string) => Promise<boolean>; busy: boolean;
+  provider: GameProvider; status?: Sync; save: (provider: string, name: string) => Promise<boolean>; busy: boolean;
   onImportOlderGames?: (provider: string) => void;
 }) {
-  const [name, setName] = useState(status?.username || "");
-  const edited = useRef(false);
   // Polling must not overwrite an unfinished username edit.
-  useEffect(() => { if (!edited.current) setName(status?.username || ""); }, [status?.username]);
+  const name = useServerDraft(status?.username);
   async function submit(event: React.FormEvent) {
     event.preventDefault();
-    if (await save(provider.id, name)) {
-      edited.current = false;
-      setName(name.trim());
-    }
+    if (await save(provider.id, name.draft)) name.settle(name.draft.trim());
   }
   const form = <form className="sync-form" onSubmit={submit}>
     <ProviderUsernameField providerName={provider.name} label="Username" accessibleLabel={`Remembered ${provider.name} username`}
-      disabled={!status || busy} value={name} onChange={value => { edited.current = true; setName(value); }} placeholder={`Your ${provider.name} username`} />
+      disabled={!status || busy} value={name.draft} onChange={name.edit} placeholder={`Your ${provider.name} username`} />
     <Button type="submit" disabled={!status || busy}>Save username</Button>
   </form>;
   return <section className="panel game-sync" aria-label={`Recent ${provider.name} games`}>
@@ -64,18 +61,11 @@ function queueSummary(queue: Queue) {
 // Every saved game is analyzed in the background; this reports the shared queue.
 function AnalysisQueueStatus() {
   const [queue, setQueue] = useState<Queue | null>(null);
-  useEffect(() => {
-    let active = true;
-    const load = () => {
-      if (document.visibilityState === "hidden") return;
-      read(api.GET("/api/analysis/queue")).then(value => { if (active) setQueue(value); }).catch(() => undefined);
-    };
-    load();
-    const timer = window.setInterval(load, 15000);
-    document.addEventListener("visibilitychange", load);
-    return () => { active = false; window.clearInterval(timer); document.removeEventListener("visibilitychange", load); };
-  }, []);
-  return queue ? <Notice announcement="status" appearance="inline" className="small analysis-queue-status">{queueSummary(queue)}</Notice> : null;
+  usePolling(async (signal) => {
+    const value = await read(api.GET("/api/analysis/queue", { signal }));
+    if (!signal.aborted) setQueue(value);
+  }, { intervalMs: 15000 });
+  return <Reveal>{queue && <Notice announcement="status" appearance="inline" className="small analysis-queue-status">{queueSummary(queue)}</Notice>}</Reveal>;
 }
 
 export default function GameSync({ onChanged, compact = false, setupLabel, onStatusChange, onImportOlderGames }: {
@@ -85,123 +75,99 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
   onStatusChange?: (status: Sync) => void;
   onImportOlderGames?: (provider: string) => void;
 }) {
-  const [providers, setProviders] = useState<Provider[]>([]);
+  const providers = useGameProviders();
   const [statuses, setStatuses] = useState<Record<string, Sync>>({});
+  const [checked, setChecked] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const callback = useRef(onChanged);
-  callback.current = onChanged;
-  const statusCallback = useRef(onStatusChange);
-  statusCallback.current = onStatusChange;
+  const callbacks = useLatest({ onChanged, onStatusChange });
   const versions = useRef<Record<string, string>>({});
-  const generation = useRef(0);
-  const inFlight = useRef<number | null>(null);
-  const inFlightRun = useRef<Promise<void> | null>(null);
   const edits = useRef<Record<string, number>>({});
-  function update(value: Sync, token: number) {
-    if (generation.current !== token) return;
+  const refreshNext = useRef(false);
+  function update(value: Sync) {
     setStatuses(previous => ({ ...previous, [value.provider]: value }));
-    statusCallback.current?.(value);
+    callbacks.current.onStatusChange?.(value);
     const previous = versions.current[value.provider];
     const version = `${value.job_id}:${value.checked_at}:${value.imported}:${value.status}`;
     versions.current[value.provider] = version;
     // The first status is the baseline; after it, only a finished check can change the library.
-    if (previous !== undefined && version !== previous && value.job_id && !running(value)) callback.current?.();
+    if (previous !== undefined && version !== previous && value.job_id && !running(value)) callbacks.current.onChanged?.();
   }
-  async function check(items: Provider[], token: number, refresh: boolean, explicit = false) {
-    if (inFlight.current === token) {
-      // A background pass is running. Explicit requests run after it; ticks are dropped.
-      if (!explicit || !inFlightRun.current) return;
-      await inFlightRun.current;
-      if (generation.current !== token) return;
-    }
-    inFlight.current = token;
-    const run = (async () => {
-      let firstError: unknown = null;
+  // One pass reads every provider's status; an explicit Update also asks each
+  // connected provider to check now, after any background pass in flight.
+  const polling = usePolling(async (signal) => {
+    const refresh = refreshNext.current;
+    refreshNext.current = false;
+    let firstError: unknown = null;
+    for (const provider of providers.data ?? []) {
+      if (signal.aborted) return;
       try {
-        for (const provider of items) {
-          if (generation.current !== token) return;
-          try {
-            const revision = edits.current[provider.id];
-            let value = await read(api.GET("/api/providers/{provider}/sync", { params: path(provider.id) }));
-            if (generation.current !== token) return;
-            if (edits.current[provider.id] !== revision) continue;
-            update(value, token);
-            if (refresh && value.username && !running(value)) {
-              value = await read(api.POST("/api/providers/{provider}/sync", { params: path(provider.id) }));
-              if (edits.current[provider.id] === revision) update(value, token);
-            }
-          } catch (e) {
-            // Keep checking the other providers; report the first problem afterwards.
-            firstError ??= e;
-          }
+        const revision = edits.current[provider.id];
+        let value = await read(api.GET("/api/providers/{provider}/sync", { params: path(provider.id), signal }));
+        if (signal.aborted) return;
+        if (edits.current[provider.id] !== revision) continue;
+        update(value);
+        if (refresh && value.username && !running(value)) {
+          value = await read(api.POST("/api/providers/{provider}/sync", { params: path(provider.id), signal }));
+          if (!signal.aborted && edits.current[provider.id] === revision) update(value);
         }
-        if (firstError) throw firstError;
-      } finally {
-        if (inFlight.current === token) { inFlight.current = null; inFlightRun.current = null; }
+      } catch (e) {
+        // Keep checking the other providers; report the first problem afterwards.
+        firstError ??= e;
       }
-    })();
-    inFlightRun.current = run;
-    await run;
-  }
-  useEffect(() => {
-    const token = ++generation.current;
-    let items: Provider[] = [];
-    const tick = () => {
-      if (document.visibilityState === "hidden" || generation.current !== token) return;
-      void check(items, token, false).catch(e => { if (generation.current === token) setError(e.message); });
-    };
-    read(api.GET("/api/game-providers")).then(async value => {
-      if (generation.current !== token) return;
-      items = value;
-      setProviders(value);
-      await check(value, token, false);
-    }).catch(e => { if (generation.current === token) setError(e.message); })
-      .finally(() => { if (generation.current === token) setLoading(false); });
-    const timer = window.setInterval(tick, 15000);
-    document.addEventListener("visibilitychange", tick);
-    return () => {
-      generation.current++;
-      window.clearInterval(timer);
-      document.removeEventListener("visibilitychange", tick);
-    };
-  }, []);
+    }
+    if (signal.aborted) return;
+    setChecked(true);
+    if (firstError) {
+      setError(errorMessage(firstError));
+      throw firstError;
+    }
+  }, { intervalMs: 15000, enabled: !!providers.data });
   async function refresh() {
-    const token = generation.current;
-    setBusy(true); setError("");
-    try { await check(providers, token, true, true); }
-    catch (e) { if (generation.current === token) setError((e as Error).message); }
-    finally { if (generation.current === token) setBusy(false); }
+    setBusy(true);
+    setError("");
+    refreshNext.current = true;
+    try { await polling.run(); }
+    finally { setBusy(false); }
   }
   async function save(provider: string, name: string) {
-    const token = generation.current;
-    setBusy(true); setError("");
+    setBusy(true);
+    setError("");
     edits.current[provider] = (edits.current[provider] || 0) + 1;
     try {
       const saved = await read(api.PUT("/api/providers/{provider}/connection", { params: path(provider), body: { username: name.trim() } }));
-      if (generation.current !== token) return false;
       // A poll started while the save was pending may still contain the old
       // username. Invalidate that read before publishing the saved connection.
       edits.current[provider] = (edits.current[provider] || 0) + 1;
-      update(saved, token);
-      if (saved.username) update(await read(api.POST("/api/providers/{provider}/sync", { params: path(provider) })), token);
-      return generation.current === token;
-    } catch (e) { if (generation.current === token) setError((e as Error).message); return false; }
-    finally { if (generation.current === token) setBusy(false); }
+      update(saved);
+      if (saved.username) update(await read(api.POST("/api/providers/{provider}/sync", { params: path(provider) })));
+      return true;
+    } catch (e) {
+      setError(errorMessage(e));
+      return false;
+    } finally {
+      setBusy(false);
+    }
   }
+  const loading = !providers.error && !checked;
   const connected = Object.values(statuses).some(value => value.username);
   const checking = Object.values(statuses).some(running);
   const button = <Button variant="secondary" size={compact ? "compact" : undefined} disabled={loading || busy || checking} onClick={refresh}>{compact && <RotateCw size={16} aria-hidden="true" />}{busy || checking ? "Updating…" : "Update games"}</Button>;
+  // A request's failure is a page banner, as in Settings; a provider's own sync
+  // error is lasting state, so the compact control keeps it beside the button.
+  const syncError = Object.values(statuses).find(value => value.error)?.error;
   if (compact) return <div className="game-sync-compact">
     {!loading && !connected ? <ActionLink variant="secondary" size="compact" href={pagePaths.Settings} title="Set up game imports in Settings">{setupLabel ?? <><RotateCw size={16} aria-hidden="true" />Update games</>}</ActionLink> : button}
-    <Reveal>{(error || Object.values(statuses).find(value => value.error)?.error) && <Notice announcement="alert" tone="error" appearance="inline" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</Notice>}</Reveal>
+    <Reveal>{syncError && <Notice announcement="alert" tone="error" appearance="inline" className="small">{syncError}</Notice>}</Reveal>
+    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    {providers.error && <Banner tone="error" action={<Button size="compact" onClick={providers.retry}>Try again</Button>}>Couldn’t load game connections.</Banner>}
   </div>;
   return <section className="game-connections" aria-label="Connected game accounts">
     <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks for new games every minute and analyzes each one automatically, newest first. Older imported games are analyzed after your recent ones. Checks pause after a week without visiting.</p>{connected && button}</div>
     {connected && <AnalysisQueueStatus />}
-    {loading && providers.length === 0 && <LoadingState>Loading game connections…</LoadingState>}
-    <div className="provider-connections">{providers.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>
+    <QueryResult query={providers} label="game connections">{items =>
+      <div className="provider-connections">{items.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>}
+    </QueryResult>
     {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
   </section>;
 }

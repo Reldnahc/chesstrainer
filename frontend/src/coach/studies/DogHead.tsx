@@ -11,7 +11,7 @@ export default function DogHead({
   pose: AnimalPose;
 }) {
   const palette = dogPalettes[look];
-  const golden = look === "sunny" || look === "gentle";
+  const golden = look === "gentle";
   return (
     <HeadRig>
       {[false, true].map((right) => (
@@ -28,11 +28,7 @@ export default function DogHead({
               {golden ? (
                 <>
                   <path
-                    d={
-                      look === "gentle"
-                        ? "M27 19Q8 21 9 48l-2 11 4-2 1 12 4-4q0 8 7 9 12-13 12-30Z"
-                        : "M28 19Q12 15 9 36L6 56l5-2-1 12 5-3 1 9 5-6q1 7 5 7 10-13 8-35Z"
-                    }
+                    d="M27 19Q8 21 9 48l-2 11 4-2 1 12 4-4q0 8 7 9 12-13 12-30Z"
                     fill={palette.dark}
                   />
                   <path

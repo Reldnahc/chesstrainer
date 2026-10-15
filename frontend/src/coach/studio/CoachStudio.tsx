@@ -19,6 +19,7 @@ import {
 import { useReducedMotion } from "../../useReducedMotion";
 import MotionSelect from "../../MotionSelect";
 import ChoiceGroup from "../../ChoiceGroup";
+import Button from "../../Button";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
@@ -125,6 +126,7 @@ export default function CoachStudio() {
   useEffect(() => {
     if (!playing) return;
     let index = 0;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the sequence timer starts from its first expression
     setExpression(sequence[index]);
     setIdlePreview("");
     const timer = window.setInterval(() => {
@@ -231,7 +233,7 @@ export default function CoachStudio() {
                   <MotionSelect id="studio-motion" label="Motion intensity" layout="stacked"
                     value={motion} onChange={value => { setMotion(value); setReduced(false); }} />
                   {view === "acting" && <>
-                  <button
+                  <Button
                     onClick={() => {
                       setPlaying(false);
                       setIdlePreview("");
@@ -241,13 +243,13 @@ export default function CoachStudio() {
                     }}
                   >
                     <RotateCcw size={15} /> Replay reaction
-                  </button>
-                  <button
-                    className={playing ? "primary" : "secondary"}
+                  </Button>
+                  <Button
+                    variant={playing ? "primary" : "secondary"}
                     onClick={() => setPlaying((value) => !value)}
                   >
                     <Play size={15} /> {playing ? "Stop sequence" : "Play a sequence"}
-                  </button>
+                  </Button>
                   </>}
                   <label className="studio-reduced">
                     <input

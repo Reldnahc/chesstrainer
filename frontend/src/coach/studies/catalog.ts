@@ -1,5 +1,6 @@
 import {
   expressions,
+  type AuthoredCoachCollection,
   type CoachDefinition,
   type CoachCollection,
 } from "../model";
@@ -22,27 +23,8 @@ import { professor } from "../../dialogue/characters/professor";
 import { corgi } from "../../dialogue/characters/corgi";
 import { collie } from "../../dialogue/characters/collie";
 import { newCoachCollections } from "../cast/catalog";
-import { coachPerformance } from "../motionVocabulary";
+import { coachPerformance, reactionTiming } from "../motionVocabulary";
 
-const animalPerformance: CoachDefinition["animation"] = {
-  defaultReactionMs: 1400,
-  reactionMs: { brilliant: 1700, blunder: 1850, winning: 1700, losing: 1500 },
-  defaultIdle: ["blink", "glance", "breathe", "ears"],
-  idleGestures: {
-    brilliant: ["blink", "tail", "twinkle"],
-    blunder: ["blink", "sigh", "ears"],
-    thinking: ["glance", "blink", "ears"],
-    uncertain: ["glance", "ears"],
-    losing: ["blink", "breathe"],
-    mistake: ["blink", "sigh"],
-    great: ["blink", "tail", "nod"],
-    good: ["blink", "nod", "tail"],
-    winning: ["blink", "tail", "twinkle"],
-    book: ["glance", "blink"],
-    encouraging: ["blink", "nod"],
-    recovered: ["blink", "tail"],
-  },
-};
 const animalIntents: CoachDefinition["expressionIntents"] = {
   neutral: "An attentive gaze and a relaxed, welcoming posture.",
   brilliant:
@@ -71,7 +53,7 @@ const common = {
   capabilities: { reactions: true, idle: true },
 } as const;
 
-export const manStudy: CoachCollection = {
+export const manStudy: AuthoredCoachCollection = {
   ...common,
   id: "classic",
   group: "humans",
@@ -79,14 +61,7 @@ export const manStudy: CoachCollection = {
   name: "Men",
   description:
     "Walter and three new faces, each with a distinct silhouette and wardrobe.",
-  animation: {
-    ...classicPerformance,
-    idleGestures: {
-      ...classicPerformance.idleGestures,
-      blunder: ["blink", "sigh"],
-      thinking: ["glance", "blink"],
-    },
-  },
+  animation: classicPerformance,
   families: [
     {
       id: "storyteller",
@@ -97,7 +72,6 @@ export const manStudy: CoachCollection = {
       description:
         "A warm veteran who connects this move to the game's turning points.",
       character: "Anticipation · open gestures · soft settling",
-      animation: classicPerformance,
     },
     {
       id: "host",
@@ -133,7 +107,7 @@ export const manStudy: CoachCollection = {
   Artwork: ManCoach,
 };
 
-export const womanStudy: CoachCollection = {
+export const womanStudy: AuthoredCoachCollection = {
   ...common,
   capabilities: { ...common.capabilities, speech: true },
   id: "woman",
@@ -147,19 +121,7 @@ export const womanStudy: CoachCollection = {
     best: "Quiet conviction. Exactly the move she was hoping for.",
     thinking: "Eyes follow an idea, with one hand at her chin.",
   },
-  animation: {
-    ...animalPerformance,
-    defaultIdle: ["blink", "glance", "breathe", "hair"],
-    idleGestures: {
-      brilliant: ["blink", "twinkle", "nod"],
-      blunder: ["blink", "sigh", "hair"],
-      thinking: ["glance", "blink", "hair"],
-      good: ["blink", "nod"],
-      winning: ["blink", "twinkle"],
-      losing: ["blink", "breathe"],
-      encouraging: ["blink", "nod"],
-    },
-  },
+  animation: reactionTiming,
   families: [
     {
       id: "captain",
@@ -201,7 +163,7 @@ export const womanStudy: CoachCollection = {
   Artwork: WomanCoach,
 };
 
-export const catStudy: CoachCollection = {
+export const catStudy: AuthoredCoachCollection = {
   ...common,
   capabilities: { ...common.capabilities, speech: true },
   id: "cat",
@@ -211,7 +173,7 @@ export const catStudy: CoachCollection = {
   description:
     "Two watchful feline coaches, with expressive ears and very deliberate paws.",
   expressionIntents: animalIntents,
-  animation: animalPerformance,
+  animation: reactionTiming,
   families: [
     {
       id: "tuxedo",
@@ -235,7 +197,7 @@ export const catStudy: CoachCollection = {
   Artwork: CatCoach,
 };
 
-export const dogStudy: CoachCollection = {
+export const dogStudy: AuthoredCoachCollection = {
   ...common,
   capabilities: { ...common.capabilities, speech: true },
   id: "dog",
@@ -245,7 +207,7 @@ export const dogStudy: CoachCollection = {
   description:
     "A patient golden retriever, a decisive corgi and an intensely focused collie.",
   expressionIntents: animalIntents,
-  animation: animalPerformance,
+  animation: reactionTiming,
   families: [
     {
       id: "gentle",
@@ -279,15 +241,17 @@ export const dogStudy: CoachCollection = {
 };
 
 // Settings, review and the studio share these assets and performance definitions.
+// Each family resolves its own performance; the collection keeps its default family's.
 export const coachStudies: readonly CoachCollection[] = [
   manStudy, womanStudy, catStudy, dogStudy, ...newCoachCollections,
-].map((collection) => ({
-  ...collection,
-  families: collection.families.map((family) => ({
+].map((collection) => {
+  const families = collection.families.map((family) => ({
     ...family,
     animation: coachPerformance(family.coachId, family.animation ?? collection.animation),
-  })),
-}));
+  }));
+  const fallback = families.find((family) => family.id === collection.defaultFamily) ?? families[0];
+  return { ...collection, families, animation: fallback.animation };
+});
 export function getCoachStudy(id: string | null | undefined) {
   // Existing golden-retriever preview links now open the broader dog collection.
   const requested = id === "retriever" ? "dog" : id;

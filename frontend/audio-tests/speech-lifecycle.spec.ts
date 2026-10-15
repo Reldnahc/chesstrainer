@@ -26,7 +26,7 @@ async function mountSpeech(page: Page, options: Partial<Options> = {}, feedCoach
     // Exercise the real shared portrait with controllable handles. This harness
     // exists only in the browser test; production exposes no testing entrypoint.
     const {React, createRoot} = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const {CoachCharacter} = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const {CoachCharacter} = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const {getCoach} = await import(`${root}/src/coach/registry.ts`);
     // Every selectable coach now has a speaking rig, so "unsupported" is the man-expert
     // with speech switched off, standing in for a future rig without a mouth.

@@ -1,6 +1,6 @@
 import {useMemo, useState} from "react";
 import {selectableCoaches} from "../src/coach/registry";
-import {CoachCharacter} from "../src/coach/CoachAvatar";
+import {CoachCharacter} from "../src/coach/CoachCharacter";
 import {renderDialogue} from "../src/dialogue/neutral";
 import DialogueText from "../src/dialogue/DialogueText";
 import {stableKey, type DialogueIntent} from "../src/dialogue/model";
@@ -34,7 +34,7 @@ export function CoachComparison({intent, samples}: {intent: DialogueIntent; samp
 export default function WritingLab() {
   const [example, setExample] = useState(3), [take, setTake] = useState(0);
   const [compareSet, setCompareSet] = useState(false);
-  const audit = useMemo(auditCorpus, []);
+  const audit = useMemo(() => auditCorpus(), []);
   const intent = exampleIntent(example, take);
   return <section aria-label="Writing laboratory">
     <h2>Full-cast writing comparison</h2><p>Synthetic writing exercises, not analyzed chess positions. Every card receives identical facts.</p>

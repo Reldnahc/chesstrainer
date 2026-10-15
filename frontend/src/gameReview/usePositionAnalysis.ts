@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useState } from "react";
 import { api, read } from "../api";
 import type { Analysis } from "./types";
+import { useAnalysisRequests } from "./useAnalysisRequests";
 
 const cacheKey = (root: number, path: string[], rating: number) =>
   `${root}:${path.join(",")}@${rating}`;
@@ -23,90 +24,40 @@ export function usePositionAnalysis({
   positionKey: string;
   browse: boolean;
 }) {
-  const cache = useRef(new Map<string, Analysis>());
-  const requests = useRef(new Map<string, Promise<Analysis | undefined>>());
-  const inFlight = useRef<Promise<Analysis | undefined> | null>(null);
-  const generation = useRef(0);
-  const mounted = useRef(false);
-  const [, setRevision] = useState(0);
+  const requests = useAnalysisRequests<Analysis>(`${id}@${rating}#${epoch}`);
   const [retryCount, setRetryCount] = useState(0);
-  const [failure, setFailure] = useState<{
-    key: string;
-    message: string;
-  } | null>(null);
-
-  useEffect(() => {
-    mounted.current = true;
-    generation.current++;
-    cache.current.clear();
-    requests.current.clear();
-    setFailure(null);
-    setRevision((value) => value + 1);
-    return () => {
-      mounted.current = false;
-      generation.current++;
-    };
-  }, [id, rating, epoch]);
-
+  const { request: send, settled } = requests;
   const request = useCallback(
-    (ply: number, moves: string[]) => {
-      const key = cacheKey(ply, moves, rating);
-      if (cache.current.has(key)) return Promise.resolve(cache.current.get(key));
-      const pending = requests.current.get(key);
-      if (pending) return pending;
-      const version = generation.current;
-      const current = () => mounted.current && version === generation.current;
-      const work = (inFlight.current || Promise.resolve())
-        .then(async () => {
-          if (!current()) return;
-          try {
-            const value = await read(
-              api.POST("/api/games/{game_id}/analyze", {
-                params: { path: { game_id: id } },
-                body: { ply, moves },
-              }),
-            );
-            if (!current()) return;
-            cache.current.set(key, value);
-            setRevision((value) => value + 1);
-            setFailure((previous) => (previous?.key === key ? null : previous));
-            return value;
-          } catch (e) {
-            if (current()) setFailure({ key, message: (e as Error).message });
-          }
-        })
-        .finally(() => {
-          if (requests.current.get(key) === work) requests.current.delete(key);
-        });
-      requests.current.set(key, work);
-      inFlight.current = work;
-      return work;
-    },
-    [id, rating],
+    (ply: number, moves: string[]) =>
+      send(cacheKey(ply, moves, rating), () =>
+        read(api.POST("/api/games/{game_id}/analyze", { params: { path: { game_id: id } }, body: { ply, moves } }))),
+    [send, id, rating],
   );
 
+  // Read when the effect runs, so the debounced request keeps the position it was for.
+  const position = useEffectEvent(() => ({ root, path }));
   useEffect(() => {
     if (!browse) return;
     let active = true;
-    const timer = window.setTimeout(async () => {
-      if (inFlight.current) await inFlight.current;
+    const { root, path } = position();
+    // settled() never rejects; the request reports its own failure.
+    const timer = window.setTimeout(() => void settled().then(() => {
       if (active) void request(root, path);
-    }, 350);
+    }), 350);
     return () => {
       active = false;
       window.clearTimeout(timer);
     };
     // positionKey identifies root and the complete path, including repetitions.
-  }, [request, positionKey, browse, retryCount, epoch]);
+  }, [request, settled, positionKey, browse, retryCount, epoch]);
 
+  const current = cacheKey(root, path, rating);
   return {
     request,
-    get: (ply: number, moves: string[]) =>
-      cache.current.get(cacheKey(ply, moves, rating)),
-    error:
-      failure?.key === cacheKey(root, path, rating) ? failure.message : null,
+    get: (ply: number, moves: string[]) => requests.get(cacheKey(ply, moves, rating)),
+    error: requests.failure(current),
     retry: () => {
-      setFailure(null);
+      requests.clearFailure(current);
       setRetryCount((value) => value + 1);
     },
   };

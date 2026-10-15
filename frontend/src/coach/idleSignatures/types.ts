@@ -7,6 +7,7 @@ export type SignatureGesture = IdleGesture & {
   description: string;
   expressions: readonly CoachExpression[];
 };
+/** One group's signatures; `allSignatures` must cover every coach. */
 export type SignatureCollection = Partial<Record<CoachId, readonly SignatureGesture[]>>;
 
 export const attentive: readonly CoachExpression[] = [

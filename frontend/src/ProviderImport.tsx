@@ -6,6 +6,7 @@ import ProviderUsernameField from "./ProviderUsernameField";
 import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
+import { useServerDraft } from "./gameProviders";
 
 
 export function ProviderImportForm({
@@ -19,20 +20,20 @@ export function ProviderImportForm({
   fail: (e: unknown) => void;
   rememberedUsername?: string;
 }) {
-  const [username, setUsername] = useState(rememberedUsername || "");
-  const [loadingUsername, setLoadingUsername] = useState(rememberedUsername === undefined);
-  const editedUsername = useRef(false);
+  // The field follows the remembered (or saved) username until the reader edits it.
+  const [savedUsername, setSavedUsername] = useState<string>();
+  const [fetchingUsername, setFetchingUsername] = useState(rememberedUsername === undefined);
+  // A remembered username needs no fetch, so the field is ready as soon as one arrives.
+  const loadingUsername = rememberedUsername === undefined && fetchingUsername;
+  const name = useServerDraft(rememberedUsername ?? savedUsername);
+  const username = name.draft;
   useEffect(() => {
-    if (rememberedUsername !== undefined) {
-      if (!editedUsername.current) setUsername(rememberedUsername);
-      setLoadingUsername(false);
-      return;
-    }
+    if (rememberedUsername !== undefined) return;
     let active = true;
     read(api.GET("/api/providers/{provider}/sync", { params: { path: { provider: provider.id } } }))
-      .then(value => { if (active && !editedUsername.current) setUsername(value.username); })
+      .then(value => { if (active) setSavedUsername(value.username); })
       .catch(error => { if (active) fail(error); })
-      .finally(() => { if (active) setLoadingUsername(false); });
+      .finally(() => { if (active) setFetchingUsername(false); });
     return () => { active = false; };
   }, [provider.id, rememberedUsername, fail]);
   const [timeClass, setTimeClass] =
@@ -90,7 +91,7 @@ export function ProviderImportForm({
           providerName={provider.name}
           disabled={loadingUsername}
           value={username}
-          onChange={value => { editedUsername.current = true; setUsername(value); }}
+          onChange={name.edit}
           required
           placeholder={`Your ${provider.name} username`}
           description="Your side is identified separately in every game."
@@ -235,9 +236,8 @@ export function ImportJob({
         : job.kind === "training" ? "Training analysis"
           : job.kind === "game_review" ? "Full-game review"
             : job.kind === "enrichment" ? "Deeper classification evidence"
-              : job.kind === "teaching" ? "Archived lesson summaries"
-                : job.kind === "puzzle_generation" ? "Puzzles from your games"
-                  : job.kind === "classification" ? "Skill classification" : "Game analysis";
+              : job.kind === "puzzle_generation" ? "Puzzles from your games"
+                : job.kind === "classification" ? "Skill classification" : "Game analysis";
   const summary = source ? `${source.games_imported} imported · ${source.duplicates} duplicates`
     : fetchOnly ? `${job.games_processed} games fetched`
       : job.kind === "game_review" ? `${job.positions_triaged} moves reviewed`
@@ -253,13 +253,13 @@ export function ImportJob({
               ? ["queued", "running"].includes(job.status) ? "Fetching public game archives" : "Game download interrupted"
               : fetchOnly ? "Download complete" : "Download complete · local analysis"}
           </p>
-          {fetching && ["queued", "running"].includes(job.status) && (
+          <Reveal>{fetching && ["queued", "running"].includes(job.status) && (
             <progress
               aria-label="Game download progress"
               value={source.archives_total ? source.archives_processed : undefined}
               max={Math.max(1, source.archives_total)}
             />
-          )}
+          )}</Reveal>
           <p>
             {source.games_fetched} {source.games_fetched === 1 ? "game" : "games"} fetched
           </p>
@@ -267,13 +267,13 @@ export function ImportJob({
             {source.games_imported} imported · {source.duplicates} duplicates ·{" "}
             {source.filtered} filtered · {source.rejected} rejected
           </p>
-          {source.fetch_completed && source.games_imported === 0 && (
+          <Reveal>{source.fetch_completed && source.games_imported === 0 && (
             <p>
               {source.duplicates > 0
                 ? fetchOnly ? "No new games found. Saved games were skipped." : "No new games found. Saved games were skipped; use Retry saved work on an earlier job to finish interrupted analysis."
                 : "No matching games imported. Check the username, range and time control."}
             </p>
-          )}
+          )}</Reveal>
           {source.errors.length > 0 && (
             <details className="disclosure">
               <summary>Import issues ({source.rejected})</summary>
@@ -287,24 +287,7 @@ export function ImportJob({
           )}
         </>
       )}
-      {job.kind === "teaching" && (
-        <>
-          <progress
-            aria-label="Teaching progress"
-            value={job.games_processed}
-            max={Math.max(1, job.games_total)}
-          />
-          <p>
-            {job.games_processed} / {job.games_total} units processed
-          </p>
-          <p className="small">
-            {job.classifications_completed} historical summaries. Generation has
-            been removed.
-          </p>
-        </>
-      )}
       {!fetching && !fetchOnly &&
-        job.kind !== "teaching" &&
         job.kind !== "enrichment" &&
         job.kind !== "game_review" && (
           <>
@@ -314,8 +297,7 @@ export function ImportJob({
               max={Math.max(1, job.games_total)}
             />
             <p>
-              {job.games_processed} / {job.games_total}{" "}
-              {job.kind === "teaching" ? "units" : "games"} ·{" "}
+              {job.games_processed} / {job.games_total} games ·{" "}
               {job.positions_triaged} decisions
             </p>
             <p className="small">
@@ -371,12 +353,11 @@ export function ImportJob({
             Cancel
           </Button>
         )}
-        {job.kind !== "teaching" &&
-          ["failed", "cancelled"].includes(job.status) && (
-            <Button onClick={() => updateJob("retry")}>
-              Retry saved work
-            </Button>
-          )}
+        {["failed", "cancelled"].includes(job.status) && (
+          <Button onClick={() => updateJob("retry")}>
+            Retry saved work
+          </Button>
+        )}
       </div>
     </>;
   return (

@@ -16,6 +16,7 @@ import OpeningRecallPanel from "./OpeningRecallPanel";
 import RecallReceipt from "./RecallReceipt";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import { UnavailableState } from "../LoadState";
 import { pagePaths, studyPaths } from "../navigation";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { practiceRecording } from "../audio/speech/practiceSelection";
@@ -107,6 +108,10 @@ function GameRecallPanel({
           onFrame={setExplanationFrame}
           onClose={closeExplanation}
         />
+      ) : !position && session.loadError ? (
+        <UnavailableState actions={<Button variant="secondary" onClick={() => void session.retryLoad()}>Try again</Button>}>
+          Couldn’t load your practice. {session.loadError}
+        </UnavailableState>
       ) : !position ? (
         <>
           <span className="section-number">GET STARTED</span>

@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import { speechMouthPoses } from "../src/coach/speechMouth";
 
 test("held mouth shapes use the real rig, size choices and authored fallback", async ({ page }, info) => {

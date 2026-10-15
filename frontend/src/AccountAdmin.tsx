@@ -1,51 +1,34 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import Banner from "./Banner";
 import { DoorClosed, DoorOpen, KeyRound, ShieldCheck, Trash2, UserCheck, UserPlus, UserX } from "lucide-react";
 import { api, read, type Schema } from "./api";
+import { NewPasswordInput, UsernameInput } from "./accountFields";
 import Button from "./Button";
-import { LoadingState, UnavailableState } from "./LoadState";
 import { RevealList, Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
+import { QueryResult, useCommand, useQuery } from "./useQuery";
 
 type ManagedAccount = Schema["ManagedAccount"];
 type Pending = { id: string; action: "password" | "delete" } | { id: "new"; action: "add" } | null;
 
 /** Administrator account management: add members, open sign-ups, reset passwords, disable, promote and delete accounts. */
 export default function AccountAdmin({ selfId }: { selfId: string }) {
-  const [accounts, setAccounts] = useState<ManagedAccount[] | null>(null);
-  const [signupsOpen, setSignupsOpen] = useState(false);
+  const listing = useQuery((signal) => read(api.GET("/api/auth/accounts", { signal })));
+  const command = useCommand();
+  const busy = !!command.busy;
   const [username, setUsername] = useState("");
-  const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  const [busy, setBusy] = useState(false);
   const [pending, setPending] = useState<Pending>(null);
   const [password, setPassword] = useState("");
-  const [reload, setReload] = useState(0);
-  useEffect(() => {
-    const controller = new AbortController();
-    read(api.GET("/api/auth/accounts", { signal: controller.signal }))
-      .then(result => {
-        if (controller.signal.aborted) return;
-        setAccounts(result.accounts);
-        setSignupsOpen(result.signups_open);
-      })
-      .catch(e => { if (!controller.signal.aborted) setError((e as Error).message); });
-    return () => controller.abort();
-  }, [reload]);
-  async function act(action: () => Promise<unknown>, message: string) {
-    if (busy) return;
-    setBusy(true);
-    setError("");
+  function act(action: () => Promise<unknown>, message: string) {
     setNotice("");
-    try {
-      await action();
+    void command.run(true, action, () => {
       setPending(null);
       setPassword("");
       setUsername("");
       setNotice(message);
-      setReload(value => value + 1);
-    } catch (e) { setError((e as Error).message); }
-    finally { setBusy(false); }
+      listing.retry();
+    });
   }
   const path = (account: ManagedAccount) => ({ params: { path: { account_id: account.id } } });
   function resetPassword(event: FormEvent, account: ManagedAccount) {
@@ -65,11 +48,11 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
     setUsername("");
   }
   const adding = pending?.action === "add";
-  if (!accounts) return error ? <UnavailableState presentation="panel">{error}</UnavailableState> : <LoadingState presentation="panel">Loading accounts…</LoadingState>;
-  return <SettingsSection id="settings-accounts" title="Accounts"
+  return <QueryResult query={listing} label="accounts" presentation="panel">{({ accounts, signups_open: signupsOpen }) =>
+  <SettingsSection id="settings-accounts" title="Accounts"
     description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
     {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Sign-ups</h3>
@@ -92,13 +75,11 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
         ? <form className="button-row account-password-form" key="form" onSubmit={addMember}>
           <label>
             <span>Username</span>
-            <input autoComplete="off" minLength={3} maxLength={32} pattern="[a-zA-Z0-9_-]+" required autoFocus
-              value={username} onChange={event => setUsername(event.target.value)} />
+            <UsernameInput autoFocus value={username} onChange={event => setUsername(event.target.value)} />
           </label>
           <label>
             <span>Temporary password</span>
-            <input type="password" autoComplete="new-password" minLength={10} maxLength={128} required
-              value={password} onChange={event => setPassword(event.target.value)} />
+            <NewPasswordInput value={password} onChange={event => setPassword(event.target.value)} />
           </label>
           <Button type="submit" size="compact" variant="primary" disabled={busy}>Add member</Button>
           <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
@@ -122,8 +103,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
           ? <form className="button-row account-password-form" key="password" onSubmit={event => resetPassword(event, account)}>
             <label>
               <span>Temporary password for {account.username}</span>
-              <input type="password" autoComplete="new-password" minLength={10} maxLength={128} required autoFocus
-                value={password} onChange={event => setPassword(event.target.value)} />
+              <NewPasswordInput autoFocus value={password} onChange={event => setPassword(event.target.value)} />
             </label>
             <Button type="submit" size="compact" variant="primary" disabled={busy}>Set temporary password</Button>
             <Button size="compact" variant="quiet" onClick={() => choose(null)}>Cancel</Button>
@@ -156,5 +136,5 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
       </div>;
     })}</RevealList>
     <p className="small muted">Deleting an account removes its games, reviews and training history for good. Disable it instead to keep them. Change your own password above.</p>
-  </SettingsSection>;
+  </SettingsSection>}</QueryResult>;
 }

@@ -4,29 +4,22 @@ import { ChevronRight, Clock3 } from "lucide-react";
 import Link from "./Link";
 import { gamesPath } from "./navigation";
 import { AccuracyReadout } from "./gameReview/Players";
+import { pgnDate, shortDate } from "./format";
 
 export type HistoryItem = Schema["GameHistoryItem"];
 
+// The PGN's own date when it has a complete one, else the day it was played on the site.
 function gameDate(item: HistoryItem) {
-  const day = /^\d{4}\.\d{2}\.\d{2}$/.test(item.played_on || "")
-    ? item.played_on!.replaceAll(".", "-")
-    : item.played_at?.slice(0, 10);
-  const date = day ? new Date(`${day}T12:00:00Z`) : null;
-  if (
-    !date ||
-    !Number.isFinite(date.getTime()) ||
-    date.toISOString().slice(0, 10) !== day
-  )
-    return null;
-  return {
-    iso: day,
-    label: date.toLocaleDateString(undefined, {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      timeZone: "UTC",
-    }),
-  };
+  const day = /^\d{4}\.\d{2}\.\d{2}$/.test(item.played_on || "") ? pgnDate(item.played_on) : pgnDate(item.played_at?.slice(0, 10));
+  return day ? { iso: day.iso, label: shortDate(day.iso)! } : null;
+}
+
+export type Outcome = "win" | "loss" | "draw" | "unknown";
+export const OUTCOME_LABELS: Record<Outcome, string> = { win: "Won", loss: "Lost", draw: "Draw", unknown: "—" };
+
+/** A game's result from the learner's side, in the shared outcome colours. */
+export function OutcomeBadge({ outcome, title, children }: { outcome: Outcome; title?: string; children?: ReactNode }) {
+  return <span className={`history-outcome outcome-${outcome}`} title={title}>{children ?? OUTCOME_LABELS[outcome]}</span>;
 }
 
 function historyResult(item: HistoryItem) {
@@ -37,7 +30,7 @@ function historyResult(item: HistoryItem) {
   };
   const winner =
     item.result === "1-0" ? "white" : item.result === "0-1" ? "black" : null;
-  const outcome =
+  const outcome: Outcome =
     item.result === "1/2-1/2"
       ? "draw"
       : winner && item.learner_color
@@ -45,9 +38,7 @@ function historyResult(item: HistoryItem) {
           ? "win"
           : "loss"
         : "unknown";
-  const label = { win: "Won", loss: "Lost", draw: "Draw", unknown: "—" }[
-    outcome
-  ];
+  const label = OUTCOME_LABELS[outcome];
   const description =
     outcome === "win"
       ? "You won"
@@ -150,9 +141,9 @@ export default function GameHistory({
                 <HistoryPlayers item={item} scores={compact ? result.scores : undefined} />
                 {compact ? <>
                   <span className="history-recent-details">
-                    <span className={`history-outcome outcome-${result.outcome}`} title={result.description}>
+                    <OutcomeBadge outcome={result.outcome} title={result.description}>
                       {result.outcome === "unknown" ? result.description : result.label}
-                    </span>
+                    </OutcomeBadge>
                     <HistoryMetadata item={item} date={date} />
                     {item.status === "completed" && <span className="history-recent-accuracy">
                       <span>Accuracy</span>
@@ -171,9 +162,7 @@ export default function GameHistory({
                       </span>
                     ))}
                   </span>
-                  <span className={`history-outcome outcome-${result.outcome}`}>
-                    {result.label}
-                  </span>
+                  <OutcomeBadge outcome={result.outcome} />
                 </span>
                 <span
                   className="history-accuracy"

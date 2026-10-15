@@ -40,6 +40,10 @@ function mainlineFrame(frame: Frame | undefined, previous: Frame | undefined, re
     && previous.turn === frame.actor;
 }
 
+/** Recorded wordings for entering an opening and for each later book move. */
+export const BOOK_ENTRY_VARIANTS = 3;
+export const BOOK_FOLLOW_VARIANTS = 8;
+
 /** A stable semantic slot shared by written dialogue and every recorded voice. */
 export function bookRecordingId(presentation: BookPresentation): string {
   return `book-opening-${presentation.kind}-${presentation.variant}`;
@@ -57,7 +61,9 @@ export function deriveBookPresentation({game, report, frame, ply, variation = fa
     const seed = Number.parseInt(stableKey([game.id, catalogueVersion,
       runStartPly ?? ["recognized-position", frame.fen, report.actual.uci]]), 16);
     const kind = runOrdinal !== null && runOrdinal > 1 ? "follow" : "entry";
-    const variant = kind === "follow" ? ((runOrdinal! - 2 + seed % 8) % 8) + 1 : (seed % 3) + 1;
+    const variant = kind === "follow"
+      ? ((runOrdinal! - 2 + seed % BOOK_FOLLOW_VARIANTS) % BOOK_FOLLOW_VARIANTS) + 1
+      : (seed % BOOK_ENTRY_VARIANTS) + 1;
     return {kind, variant, catalogueVersion, scope, runStartPly, runOrdinal};
   };
   if (variation) return make(null, null);

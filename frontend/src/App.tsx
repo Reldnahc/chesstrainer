@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { setFallbackTitle } from "./PageTitle";
 import {
   BookOpen,
   ChartColumn,
@@ -10,7 +11,7 @@ import {
   ShieldCheck,
   Swords,
 } from "lucide-react";
-import { api, read, type Health } from "./api";
+import { errorMessage, LAN_TOKEN_KEY, onAuthRequired } from "./api";
 import ReviewScreen from "./Review";
 import GamesScreen from "./GameReview";
 import SettingsScreen from "./Settings";
@@ -18,8 +19,10 @@ import InsightsScreen from "./Weaknesses";
 import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
 import DialogPresence from "./DialogPresence";
-import { gamesPath, pagePaths, useRoute } from "./navigation";
-import StudyScreen from "./study/StudyScreen";
+import { gamesPath, pagePaths, useRoute, useScrollRestoration, type Screen as RouteScreen } from "./navigation";
+import StudyHome from "./study/StudyHome";
+import LessonsScreen from "./study/LessonsScreen";
+import PuzzleLibrary from "./study/PuzzleLibrary";
 import LessonEditor from "./study/LessonEditor";
 import PlayScreen from "./play/PlayScreen";
 import PuzzlePlayer from "./study/PuzzlePlayer";
@@ -31,7 +34,7 @@ import ActionLink from "./ActionLink";
 import Banner, { BannerOutlet } from "./Banner";
 import WelcomeBack from "./WelcomeBack";
 import appMark from "./assets/fieldwork.svg";
-import { useAccount, useGuestSignIn } from "./AccountGate";
+import { useAccount, useGuestSignIn } from "./accountContext";
 import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
 import { useAudioPreferences } from "./audio/AudioProvider";
@@ -52,7 +55,8 @@ export default function App() {
   const { retry: reloadMotionPreferences } = useMotionPreferences();
   const { retry: reloadAudioPreferences } = useAudioPreferences();
   const route = useRoute();
-  const { tab, focusSkill, exercise } = route;
+  useScrollRestoration();
+  const { tab, screen } = route;
   // An error belongs to the page it happened on. It is dropped in the same render
   // that shows the next page, so it never appears there and then collapses away.
   const [failure, setFailure] = useState<{ route: typeof route; message: string } | null>(null);
@@ -63,38 +67,21 @@ export default function App() {
     setFailure(message ? { route: currentRoute.current, message } : null), []);
   const [connection, setConnection] = useState(false);
   const [token, setToken] = useState("");
-  const [health, setHealth] = useState<Health | null>(null);
   const [evidenceId, setEvidenceId] = useState<string | null>(null);
-  const [refresh, setRefresh] = useState(0);
-  const fail = useCallback(
-    (e: unknown) => setError(e instanceof Error ? e.message : String(e)),
-    [setError],
-  );
-  useEffect(() => {
-    if (guest) return;
-    let active = true;
-    const connect = () => setConnection(true);
-    window.addEventListener("connection-required", connect);
-    read(api.GET("/api/health"))
-      .then((result) => {
-        if (active) setHealth(result);
-      })
-      .catch((error) => {
-        if (active) fail(error);
-      });
-    return () => {
-      active = false;
-      window.removeEventListener("connection-required", connect);
-    };
-  }, [refresh, fail, tab, guest]);
-  useEffect(() => {
-    setError("");
+  const fail = useCallback((e: unknown) => setError(errorMessage(e)), [setError]);
+  // A LAN install without its access token asks for it in place of the page.
+  useEffect(() => (guest ? undefined : onAuthRequired("connection", () => setConnection(true))), [guest]);
+  // A new page drops the last page's error and evidence dialog in the render that shows it.
+  const [shownRoute, setShownRoute] = useState(route);
+  if (shownRoute !== route) {
+    setShownRoute(route);
+    setFailure(null);
     setEvidenceId(null);
-  }, [route, setError]);
+  }
   // Set the route fallback before child effects apply a more specific title.
   useLayoutEffect(() => {
-    document.title = `${route.gameId ? "Game review" : route.studyMode === "due" ? focusSkill ? "Focused practice" : "Due" : (tab ?? "Page not found")} · Fieldwork`;
-  }, [route, tab]);
+    setFallbackTitle(screenTitle(screen) ?? tab ?? "Page not found");
+  }, [screen, tab]);
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -121,7 +108,7 @@ export default function App() {
             {tabs.map(([name, Icon]) => (
               <Link
                 key={name}
-                href={name === "Games" && route.gameId ? gamesPath(route.page) : pagePaths[name]}
+                href={name === "Games" && screen.kind === "games" && screen.gameId ? gamesPath(screen.page) : pagePaths[name]}
                 aria-current={tab === name ? "page" : undefined}
                 className={
                   tab === name
@@ -140,9 +127,7 @@ export default function App() {
         id="main-content"
         tabIndex={-1}
         className={
-          route.studyMode === "due" || route.puzzleSessionId || route.lessonSessionId || route.openingCatalogueKey || route.openingCourseLine || (tab === "Games" && route.gameId) || route.playGameId
-            ? "review-page"
-            : "workspace-page"
+          boardPage(screen) ? "review-page" : "workspace-page"
         }
       >
         <BannerOutlet page={route.href.split("?")[0]} />
@@ -156,12 +141,12 @@ export default function App() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                sessionStorage.setItem("lan-token", token);
+                sessionStorage.setItem(LAN_TOKEN_KEY, token);
                 reloadCoachPreferences();
                 reloadMotionPreferences();
                 reloadAudioPreferences();
+                // The page's screen mounts again in place of this form, so it loads afresh.
                 setConnection(false);
-                setRefresh((v) => v + 1);
                 setError("");
               }}
             >
@@ -178,61 +163,7 @@ export default function App() {
             </form>
           </section>
         ) : (
-          <>
-            {tab === "Home" && <HomeScreen key={refresh} />}
-            {route.studyMode === "due" && (
-              <ReviewScreen
-                key={`${refresh}-${route.href}`}
-                focusSkill={focusSkill}
-                requested={exercise}
-                requestedSession={route.reviewSessionId}
-                fail={fail}
-                onEvidence={setEvidenceId}
-              />
-            )}
-            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && !route.openingCatalogueKey && !route.openingCourseLine && (
-              <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} courseId={route.lessonCourseId} courseRevision={route.lessonRevision} openingSection={route.openingSection} openingQuery={route.openingQuery} openingEco={route.openingEco} openingOffset={route.openingOffset} />
-            )}
-            {route.courseEditor && (
-              <LessonEditor key={`${refresh}-${route.href}`} courseId={route.courseEditor.courseId} revision={route.courseEditor.revision} />
-            )}
-            {route.puzzleSessionId && (
-              <PuzzlePlayer key={`${refresh}-${route.puzzleSessionId}`} sessionId={route.puzzleSessionId} />
-            )}
-            {route.lessonSessionId && (
-              <LessonPlayer key={`${refresh}-${route.lessonSessionId}`} sessionId={route.lessonSessionId} />
-            )}
-            {(route.openingCatalogueKey || route.openingCourseLine) && <OpeningLinePreview key={`${refresh}-${route.href}`} catalogueKey={route.openingCatalogueKey} courseLine={route.openingCourseLine} />}
-            {tab === "Play" && (
-              <PlayScreen key={`${refresh}-${route.href}`} gameId={route.playGameId} />
-            )}
-            {tab === "Games" && (
-              <GamesScreen
-                key={route.href}
-                page={route.page}
-                selected={route.gameId}
-                initialPly={route.ply}
-              />
-            )}
-            {tab === "Insights" && (
-              <InsightsScreen
-                onEvidence={setEvidenceId}
-                category={route.insightsSection}
-              />
-            )}
-            {tab === "Settings" && !route.courseEditor && (
-              <SettingsScreen health={health} fail={fail} section={route.settingsTab} importSource={route.importSource} restoringScroll={route.restoringScroll} />
-            )}
-            {!tab && (
-              <section className="panel">
-                <h1>Page not found</h1>
-                <p>This address does not match a page in Fieldwork.</p>
-                <ActionLink variant="primary" href={pagePaths.Games}>
-                  Go to your games
-                </ActionLink>
-              </section>
-            )}
-          </>
+          <Screen screen={screen} href={route.href} restoringScroll={route.restoringScroll} fail={fail} onEvidence={setEvidenceId} />
         )}
       </main>
       <footer className="app-footer">
@@ -253,9 +184,71 @@ export default function App() {
         <EvidenceDialog
           id={evidenceId}
           onClose={() => setEvidenceId(null)}
-          fail={fail}
         />
       )}</DialogPresence>
     </>
   );
+}
+
+// Board pages lay out the board and its sidebar; every other screen is a workspace page.
+function boardPage(screen: RouteScreen): boolean {
+  switch (screen.kind) {
+    case "due": case "puzzle-session": case "lesson-session": case "line-preview": case "play": return true;
+    case "games": return !!screen.gameId;
+    default: return false;
+  }
+}
+
+// The page title before a screen sets its own; null uses the tab's name.
+function screenTitle(screen: RouteScreen): string | null {
+  if (screen.kind === "games" && screen.gameId) return "Game review";
+  if (screen.kind === "due") return screen.focusSkill ? "Focused practice" : "Due";
+  return null;
+}
+
+/** The one screen a route shows. Screens keyed by address start afresh when it changes. */
+function Screen({ screen, href, restoringScroll, fail, onEvidence }: {
+  screen: RouteScreen; href: string; restoringScroll: boolean;
+  fail: (e: unknown) => void; onEvidence: (id: string) => void;
+}) {
+  switch (screen.kind) {
+    case "home":
+      return <HomeScreen />;
+    case "due":
+      return <ReviewScreen key={href} focusSkill={screen.focusSkill} requested={screen.exercise}
+        requestedSession={screen.sessionId} fail={fail} onEvidence={onEvidence} />;
+    case "study-home":
+      return <StudyHome />;
+    case "lessons":
+      return <LessonsScreen key={href} section={screen.section} courseId={screen.courseId} revision={screen.revision}
+        query={screen.query} eco={screen.eco} offset={screen.offset} />;
+    case "puzzles":
+      return <PuzzleLibrary key={href} source={screen.source} />;
+    case "course-editor":
+      return <LessonEditor key={href} courseId={screen.courseId} revision={screen.revision} />;
+    case "puzzle-session":
+      return <PuzzlePlayer key={screen.id} sessionId={screen.id} />;
+    case "lesson-session":
+      return <LessonPlayer key={screen.id} sessionId={screen.id} />;
+    case "line-preview":
+      return <OpeningLinePreview key={href} catalogueKey={screen.catalogueKey} courseLine={screen.courseLine} />;
+    case "play":
+      return <PlayScreen key={href} gameId={screen.gameId} from={screen.from} />;
+    case "games":
+      return <GamesScreen key={href} page={screen.page} selected={screen.gameId} initialPly={screen.ply} />;
+    case "insights":
+      return <InsightsScreen onEvidence={onEvidence} category={screen.section} />;
+    case "settings":
+      return <SettingsScreen fail={fail} section={screen.section} importSource={screen.importSource} restoringScroll={restoringScroll} />;
+    case "not-found":
+      return (
+        <section className="panel">
+          <h1>Page not found</h1>
+          <p>This address does not match a page in Fieldwork.</p>
+          <ActionLink variant="primary" href={pagePaths.Games}>
+            Go to your games
+          </ActionLink>
+        </section>
+      );
+  }
 }

@@ -1,14 +1,16 @@
 import {selectableCoaches} from "../src/coach/registry";
-import {dialoguePurposes, stableKey} from "../src/dialogue/model";
+import {dialoguePurposes, isClaimCode, stableKey, type ClaimCode} from "../src/dialogue/model";
 import {neutralTemplates} from "../src/dialogue/templates";
 import {openingSequenceTemplate, renderDialogue} from "../src/dialogue/neutral";
+import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS} from "../src/dialogue/openingPresentation";
 import {factualParts, validWording, wordingParts} from "../src/dialogue/composition";
 import {writingExamples, exampleIntent} from "./examples";
 import {neutralTacticalTemplates} from "../src/dialogue/scopedTacticalWording";
 import type {TacticalPresentationKey} from "../src/dialogue/tacticalTemplates";
 
+const bookSlot = new RegExp(`^book-opening-(?:entry-[1-${BOOK_ENTRY_VARIANTS}]|follow-[1-${BOOK_FOLLOW_VARIANTS}])$`);
 const normalize = (text: string) => text.toLowerCase().replace(/[^a-z0-9{}]+/g, " ").trim();
-export const commonClaims = ["allowed_mate", "tactic_played", "tactic_allowed", "tactic_missed",
+export const commonClaims: readonly ClaimCode[] = ["allowed_mate", "tactic_played", "tactic_allowed", "tactic_missed",
   "cause_abandoned_defender", "cause_opponent_threat_recognition", "cause_avoiding_bad_trades",
   "sacrifice", "only_move", "best", "good", "loss", "recovery", "retry", "explanation", "development",
   "human_natural_error", "human_challenging", "human_defense_found", "mate_win", "mate_loss", "recovered", "accepted", "cold", "thinking", "unavailable"];
@@ -34,8 +36,8 @@ export function auditCorpus() {
     for (const [code, options] of Object.entries(definition.templates)) {
       const reference = definition.tacticalWording === "witness" && Object.hasOwn(neutralTacticalTemplates, code)
         ? neutralTacticalTemplates[code as TacticalPresentationKey]
-        : definition.openingWording === "sequence" && /^book-opening-(?:entry-[1-3]|follow-[1-8])$/.test(code)
-          ? openingSequenceTemplate : neutralTemplates[code];
+        : definition.openingWording === "sequence" && bookSlot.test(code)
+          ? openingSequenceTemplate : isClaimCode(code) ? neutralTemplates[code] : undefined;
       if (!reference) {errors.push(`${coach.name}: unknown claim ${code}`); continue;}
       const seen = new Set<string>();
       for (const wording of options ?? []) {

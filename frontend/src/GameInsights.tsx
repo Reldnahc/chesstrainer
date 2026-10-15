@@ -1,14 +1,17 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { plural, shortDate } from "./format";
+import { OutcomeBadge } from "./GameHistory";
 import { ChartColumn } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import ChoiceGroup from "./ChoiceGroup";
 import StatList from "./StatList";
 import EmptyState from "./EmptyState";
+import { pawnsText } from "./evaluation";
 import ActionLink from "./ActionLink";
 import Button from "./Button";
 import Link from "./Link";
 import { LoadingState, UnavailableState } from "./LoadState";
-import { gamesPath, pagePaths } from "./navigation";
+import { gameReviewPath, gamesPath, pagePaths } from "./navigation";
 import "./game-insights.css";
 
 type Insights = Schema["Insights"];
@@ -48,23 +51,13 @@ const endgameLabels = { rook: "Rook endings", queen: "Queen endings", minor: "Mi
 const clockLabels = { over_half: "Over half left", quarter: "25–50% left", tenth: "10–25% left", under_tenth: "Under 10% left" } as const;
 
 const percent = (part: number, whole: number) => whole ? Math.round(100 * part / whole) : 0;
-const plural = (count: number, word: string, many = `${word}s`) => `${count} ${count === 1 ? word : many}`;
-const pawns = (cp: number | null | undefined) => cp == null ? "—" : `${(cp / 100).toFixed(1)}`;
+const pawns = (cp: number | null | undefined) => cp == null ? "— pawns" : pawnsText(cp);
 const fixed = (value: number | null | undefined, digits = 0, suffix = "") => value == null ? "—" : `${value.toFixed(digits)}${suffix}`;
 const recordText = ({ wins, draws, losses }: { wins: number; draws: number; losses: number }) => `${wins}W ${draws}D ${losses}L`;
 const moveOf = (ply: number) => Math.ceil(ply / 2);
 
-function gameHref(game: InsightGame) {
-  const base = gamesPath(1, game.id);
-  return game.ply ? `${base}?ply=${game.ply}` : base;
-}
+const gameHref = (game: InsightGame) => gameReviewPath(game.id, { ply: game.ply });
 
-function shortDate(value: string | null) {
-  if (!value || !/^\d{4}\.\d{2}\.\d{2}$/.test(value)) return null;
-  const date = new Date(`${value.replaceAll(".", "-")}T12:00:00Z`);
-  return Number.isFinite(date.getTime())
-    ? date.toLocaleDateString(undefined, { month: "short", day: "numeric", timeZone: "UTC" }) : null;
-}
 
 function Panel({ id, title, meta, wide, children }: {
   id: string; title: string; meta?: ReactNode; wide?: boolean; children: ReactNode;
@@ -123,11 +116,9 @@ function GameLinks({ label, games, slip }: { label: string; games: InsightGame[]
     <ul>
       {games.map(game => <li key={game.id}>
         <Link href={gameHref(game)}>
-          <span className={`history-outcome outcome-${game.result === "unfinished" ? "unknown" : game.result}`}>
-            {{ win: "Won", draw: "Draw", loss: "Lost", unfinished: "—" }[game.result]}
-          </span>
+          <OutcomeBadge outcome={game.result === "unfinished" ? "unknown" : game.result} />
           <span className="insight-game-name">vs {game.opponent}{game.opponent_rating ? ` (${game.opponent_rating})` : ""}</span>
-          <span className="small muted">{[shortDate(game.played_on), slip && game.ply ? `move ${moveOf(game.ply)}` : null].filter(Boolean).join(" · ")}</span>
+          <span className="small muted">{[shortDate(game.played_on, { year: false }), slip && game.ply ? `move ${moveOf(game.ply)}` : null].filter(Boolean).join(" · ")}</span>
         </Link>
       </li>)}
     </ul>
@@ -297,7 +288,7 @@ function Theory({ data }: { data: Insights }) {
   if (!theory.reviewed_games) return null;
   return <Panel id="theory" title="Leaving the opening book" meta={`${theory.costly_exits}/${theory.exits} exits`}>
     <Lead>{theory.costly_exits
-      ? <>In {plural(theory.costly_exits, "reviewed game")}, your first move out of book cost a pawn or more: on average <strong>{pawns(theory.average_cost_cp)} pawns</strong> around move {fixed(theory.average_exit_move, 0)}.</>
+      ? <>In {plural(theory.costly_exits, "reviewed game")}, your first move out of book cost a pawn or more: on average <strong>{pawns(theory.average_cost_cp)}</strong> around move {fixed(theory.average_exit_move, 0)}.</>
       : theory.exits ? <>None of your {plural(theory.exits, "move")} out of the opening book cost a pawn or more.</>
       : <>You did not leave the opening book yourself in a reviewed game.</>}</Lead>
     {theory.openings.length > 0 && <Bars label="Costliest openings to leave" unit=" p" rows={theory.openings.map(row => ({
@@ -450,6 +441,7 @@ export default function GameInsights() {
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
     setError(false);
     read(api.GET("/api/insights", {
       signal: controller.signal,
@@ -471,10 +463,10 @@ export default function GameInsights() {
   return <div className="insights">
     <div className="insight-toolbar">
       {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
-        <ChoiceGroup label="Speed" value={speed} onChange={setSpeed} phone="select"
+        <ChoiceGroup label="Speed" labelId="insight-speed" size="compact" value={speed} onChange={setSpeed} phone="select"
           options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
       <div className="insight-filter"><span id="insight-period">Period</span>
-        <ChoiceGroup label="Period" value={days} onChange={setDays} options={periods} phone="select" /></div>
+        <ChoiceGroup label="Period" labelId="insight-period" size="compact" value={days} onChange={setDays} options={periods} phone="select" /></div>
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
       <ActionLink href={pagePaths.Settings}>Import games in Settings</ActionLink>}>

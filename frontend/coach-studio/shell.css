@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* The studio owns its page layout; application navigation and settings styles
    must not affect character previews. Shared controls stay in foundation.css. */
 .studio-page {
@@ -6,7 +8,6 @@
   width: var(--studio-page-width);
   margin: auto;
   padding: var(--space-10) var(--studio-inline-padding) var(--space-16);
-  min-height: calc(100vh - 149px);
 }
 @media (max-width: 1440px) {
   .studio-page { --studio-page-width: 100%; }
@@ -27,7 +28,8 @@
     font-size: var(--text-md);
     line-height: 1.5;
   }
-  .studio-page button,
-  .studio-page summary { min-height: 44px; }
+  .studio-page button:not(.action-control),
+  .studio-page summary { min-height: var(--touch-target); }
   .studio-page label { gap: var(--space-1-5); }
+}
 }

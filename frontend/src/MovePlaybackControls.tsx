@@ -6,7 +6,8 @@ import "./move-playback-controls.css";
 
 type PlaybackAction = Pick<ButtonProps, "disabled" | "aria-disabled" | "title"> & {
   "aria-label": string;
-  onClick: NonNullable<ButtonProps["onClick"]>;
+  /** Called from a click and from the page keys alike, so it takes no event. */
+  onClick: () => void;
 };
 
 // A key does what its button does, and nothing while the button is unavailable.
@@ -14,7 +15,7 @@ function shortcut(action: PlaybackAction | undefined) {
   if (!action) return undefined;
   return () => {
     if (!action.disabled && action["aria-disabled"] !== true && action["aria-disabled"] !== "true")
-      (action.onClick as () => void)();
+      action.onClick();
   };
 }
 

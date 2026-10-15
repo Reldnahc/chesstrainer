@@ -126,9 +126,9 @@ test("a fresh navigation waits for its own report then speaks once after the dwe
   expect(await starts(page)).toBe(0);
   await tick(page, 1);
   await speaking(page);
-  const played = await state(page);
-  expect(played.track?.cues).toBeGreaterThan(0);
-  expect(played.portrait).toBe(FIRST);
+  // Mouth timing joins the playback when it arrives; it never delays the line.
+  await expect.poll(() => state(page).then(value => value.track?.cues ?? 0)).toBeGreaterThan(0);
+  expect((await state(page)).portrait).toBe(FIRST);
   await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.finish());
   await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
   await tick(page, 1000);
@@ -307,7 +307,7 @@ test("a late audio decode cannot speak after navigation or unmount", async ({pag
   expect(await starts(page)).toBe(0);
 });
 
-test("a delayed mouth-track load is discarded when a newer selection replaces it", async ({page}) => {
+test("a delayed mouth-track load never holds back the line and only joins its own playback", async ({page}) => {
   let captured!: () => void, release!: () => void;
   const requested = new Promise<void>(resolve => {captured = resolve;});
   const gate = new Promise<void>(resolve => {release = resolve;});
@@ -316,16 +316,28 @@ test("a delayed mouth-track load is discarded when a newer selection replaces it
     captured(); await gate; await route.fallback();
   });
   await mount(page);
-  await speak(page);
   await requested;
+  await speak(page);
+  await speaking(page);
+  expect((await state(page)).track).toBe(null);
   await update(page, {scopeKey: "game:one:2", recordingId: SECOND});
+  await expect.poll(() => state(page).then(value => value.active)).toBe(null);
   release();
   await page.evaluate(id => (window as unknown as SpeechWindow).coachSpeechHarness.track(id), SECOND);
   await tick(page, 500);
-  expect(await starts(page)).toBe(0);
-  expect((await state(page)).active).toBe(null);
+  expect(await starts(page)).toBe(1);
+  expect((await state(page)).track).toBe(null);
   await speak(page);
-  await speaking(page, SECOND);
+  await speaking(page, SECOND, 2);
+  await expect.poll(() => state(page).then(value => value.track?.cues ?? 0)).toBeGreaterThan(0);
+});
+
+test("a failed mouth-track load still plays the line", async ({page}) => {
+  await page.route(/\/speech\/bank\/tracks\.json$/, route => route.fulfill({status: 404, body: "Missing timing"}));
+  await mount(page);
+  await speak(page);
+  await speaking(page);
+  expect((await state(page)).track).toBe(null);
 });
 
 test("secondary-only recordings have no empty primary control and reject unrelated IDs", async ({page}) => {

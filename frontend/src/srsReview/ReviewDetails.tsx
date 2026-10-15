@@ -49,7 +49,7 @@ export default function ReviewDetails({
           )}
           {feedback.next_due && (
             <p className="small">
-              Scheduled for {new Date(feedback.next_due).toLocaleString()}.
+              {/* The receipt above names the next review; its exact time is the receipt's tooltip. */}
               Successful recalls build longer intervals. New positions can
               return within minutes while you learn them.
             </p>

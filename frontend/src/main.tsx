@@ -8,8 +8,10 @@ import { AudioProvider } from "./audio/AudioProvider";
 import { BannerProvider } from "./Banner";
 import { installDisclosureMotion } from "./disclosureMotion";
 import { installLoadHandoff } from "./loadHandoff";
+import { startRouter } from "./navigation";
 import "./styles.css";
 
+startRouter();
 installDisclosureMotion();
 installLoadHandoff(document.getElementById("root")!);
 

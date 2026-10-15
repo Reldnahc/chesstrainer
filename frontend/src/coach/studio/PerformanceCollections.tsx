@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import { RotateCcw } from "lucide-react";
-import { CoachCharacter } from "../CoachAvatar";
+import { CoachCharacter } from "../CoachCharacter";
 import { getCoach, selectableCoaches } from "../registry";
 import {
   expressionIdles,

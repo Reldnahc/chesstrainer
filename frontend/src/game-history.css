@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .game-library {
   container-type: inline-size;
   --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 17px;
@@ -20,7 +22,7 @@
   font-size: var(--text-sm);
 }
 .game-library-count strong {
-  color: #eceef1;
+  color: var(--text);
   font-weight: 600;
 }
 .game-library-heading,
@@ -309,7 +311,7 @@
   gap: var(--space-1-5);
 }
 .history-recent-accuracy { gap: var(--space-3); font-size: var(--text-xs); color: var(--muted); }
-.history-recent-side .history-line { min-height: 0; color: #eceef1; font: var(--text-xs) var(--mono); }
+.history-recent-side .history-line { min-height: 0; color: var(--text); font: var(--text-xs) var(--mono); }
 .history-recent-action { margin-left: auto; font-size: var(--text-sm); font-weight: 500; color: #c1d6c8; }
 @container (max-width: 400px) {
   .game-library--compact .history-player strong { font-size: var(--text-base); }
@@ -335,4 +337,5 @@
   .game-library-toolbar { padding-top: 0; }
   /* Phone panels are flat with no side padding, so there is nothing to bleed into. */
   .panel .game-library--compact { --history-bleed: 0px; }
+}
 }

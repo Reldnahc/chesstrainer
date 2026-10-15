@@ -1,5 +1,6 @@
 @import "./scifi.css";
-
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* New detail wrappers sit inside the expression pose, so idle transforms never
    replace a wing's tucked angle, the beard attachment or a sleeve's joint. */
 .fantasy-dragon .coach-idle-wings { transform-origin: 28px 103px; }
@@ -177,4 +178,5 @@
   0%, 100% { transform: none; }
   23%, 52% { transform: translate(-1px, .5px); }
   78% { transform: translate(.25px, -.15px); }
+}
 }

@@ -8,7 +8,7 @@
     "src/board.css": { ".board-quality": "board", ".board-shell": "board", ".promotion": "overlay" },
     "src/coach-presentation.css": { ".coach-speech": "status", ".human-insight-popover": "overlay" },
     "src/coach/settings.css": { ".coach-option": "control" },
-    "src/foundation.css": { "button, .button-link": "control", "input, textarea, select": "control" },
+    "src/foundation.css": { "button, .button-link": "control", "input:not([type=\"checkbox\"], [type=\"radio\"]), textarea, select": "control" },
     "src/game-history.css": { ".game-library": "section", ".history-color": "swatch", ".history-review-action": "control" },
     "src/game-insights.css": { ".insight-side": "swatch" },
     "src/game-review.css": { ".game-eval-bar": "board", ".game-notation": "section", ".game-graph": "section", ".game-summary-side i": "swatch" },

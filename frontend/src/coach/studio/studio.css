@@ -1,5 +1,6 @@
 @import "./idle-playback.css";
-
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .coach-studio {
   --studio-paper: #ede6d8;
   --studio-muted: #aaa99e;
@@ -104,6 +105,10 @@
   border: 1px solid #424b40;
   border-radius: 12px;
   background: #1c211e;
+}
+.studio-cast button:hover {
+  background: var(--control-hover);
+  border-color: var(--control-hover-border);
 }
 .studio-cast button[aria-pressed="true"] {
   background: #303c2d;
@@ -239,7 +244,6 @@
   letter-spacing: 1px;
 }
 .studio-current {
-  font: var(--text-2xs) var(--sans);
   letter-spacing: 0;
   border: 1px solid #63715b;
   border-radius: 20px;
@@ -504,36 +508,19 @@
   color: #a8b0a1;
   letter-spacing: 1px;
 }
-.studio-context .review-coach {
+.studio-context:not(.studio-context-compact) .review-coach {
   --coach-height: 136px;
   --coach-avatar-width: 92.8px;
 }
-.studio-context .coach-avatar {
+.studio-context:not(.studio-context-compact) .coach-avatar {
   height: 136px;
   margin: 0;
 }
-.studio-context-compact .review-coach {
-  --coach-height: 156px;
-  --coach-avatar-width: 52.5px;
-  gap: var(--space-2);
-}
-.studio-context-compact .coach-avatar {
-  height: 65.625px;
-  position: relative;
-  top: var(--space-1-5);
-}
-.studio-context-compact .coach-portrait {
-  grid-row: 1;
-}
-.studio-context-compact .coach-actions,
-.studio-context-compact .coach-context {
-  grid-column: 1 / -1;
-}
-.studio-context-compact .coach-label {
-  font-size: var(--text-sm);
-}
-.studio-context-compact .coach-speech {
-  padding: var(--space-3);
+/* The compact preview is a narrow column, so the application's own narrow coach
+   layout (coach-presentation.css, @container max-width 440px) applies to it. */
+.studio-context.studio-context-compact {
+  container-type: inline-size;
+  max-width: 440px;
 }
 .studio-expression-grid {
   display: grid;
@@ -765,4 +752,5 @@
   .studio-expression small {
     display: none;
   }
+}
 }

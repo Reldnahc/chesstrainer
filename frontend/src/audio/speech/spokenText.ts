@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useOptionalCoachPreferences } from '../../coach/CoachProvider';
 import { coachRecording } from './voiceBank';
 import { withSquares, type Squares } from './pieceVariants';
-import { ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR } from './sequence';
+import { SEQUENCE_SEPARATOR, resolveSentences } from './sequence';
 
 /** The words a coach says for a meaning: its recorded line when the bank has
  * one, otherwise the line its script would speak. The bubble shows this text,
@@ -42,32 +42,23 @@ export function loadCoachScript(coachId: string): Promise<void> {
 }
 
 // A recorded alternative wins, since that is what plays; otherwise the first scripted one.
-function partId(coachId: string, part: string): string | undefined {
-  const alternatives = part.split(ALTERNATIVE_SEPARATOR);
-  return alternatives.find(id => coachRecording(coachId, id)) ?? alternatives.find(id => loadedScripts.get(coachId)?.has(id));
-}
-function partText(coachId: string, part: string, squares?: Squares): string | undefined {
-  const id = partId(coachId, part);
-  const text = id ? coachRecording(coachId, id)?.text ?? loadedScripts.get(coachId)?.get(id) : undefined;
-  return id && text ? withSquares(id, text, squares) : text;
+function sentences(coachId: string, id: string): string[] | null {
+  return resolveSentences(id, part => !!coachRecording(coachId, part), part => !!loadedScripts.get(coachId)?.has(part));
 }
 
 /** The meaning whose words {@link spokenText} shows, with any alternatives resolved. */
 export function spokenId(coachId: string | null | undefined, id: string | null | undefined): string | null {
   if (!coachId || !id) return null;
-  const parts = id.split(SEQUENCE_SEPARATOR).map(part => partId(coachId, part));
-  return parts.every((part): part is string => !!part) ? parts.join(SEQUENCE_SEPARATOR) : id;
+  return sentences(coachId, id)?.join(SEQUENCE_SEPARATOR) ?? id;
 }
 
 /** Synchronous lookup; a script that has not loaded yet reads as unknown (null).
- * Squares are written after the pieces a line names, for the bubble only. */
+ * A sequence is one line only when every sentence resolves. Squares are written
+ * after the pieces a line names, keyed by the concrete sentence, for the bubble only. */
 export function spokenText(coachId: string | null | undefined, id: string | null | undefined, squares?: Squares): string | null {
   if (!coachId || !id) return null;
-  const recorded = coachRecording(coachId, id);
-  if (recorded) return withSquares(id, recorded.text, squares);
-  // A sequence is one line only when every sentence resolves.
-  const parts = id.split(SEQUENCE_SEPARATOR).map(part => partText(coachId, part, squares));
-  return parts.every((part): part is string => !!part) ? parts.join(' ') : null;
+  const parts = sentences(coachId, id);
+  return parts?.map(part => withSquares(part, coachRecording(coachId, part)?.text ?? loadedScripts.get(coachId)!.get(part)!, squares)).join(' ') ?? null;
 }
 
 /** Null while the coach's script loads or when it has no line for this meaning;

@@ -1,13 +1,23 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* Shared by SRS, explanation playback and full-game review. */
-main:has(.review-workspace-layout) {
+main.review-page:has(.review-workspace-layout) {
   min-height: 0;
   padding: var(--space-3) var(--page-inline-padding);
+}
+/* The lesson editor is a workspace page that composes the workspace: it keeps the
+   page's top padding (and its phone padding) with the workspace's tight bottom. */
+@media (min-width: 761px) {
+  main.workspace-page:has(.review-workspace-layout) {
+    min-height: 0;
+    padding-bottom: var(--space-3);
+  }
 }
 .review-workspace-layout {
   --review-gutter: 35px;
   --review-meta-height: 24px;
   /* Reserve the ordinary playback controls even when this mode has none. */
-  --review-controls-height: 42px;
+  --review-controls-height: var(--control-height);
   --review-sidebar-min: 300px;
   display: grid;
   grid-template-columns:
@@ -133,13 +143,13 @@ main:has(.review-workspace-layout) {
   }
 }
 @media (max-width: 760px) {
-  main:has(.review-workspace-layout) {
+  main.review-page:has(.review-workspace-layout) {
     padding-block: var(--space-2) var(--space-6);
   }
   .review-workspace-layout {
     --review-gutter: 27px;
     --review-meta-height: 27px;
-    --review-controls-height: 44px;
+    --review-controls-height: var(--touch-target);
     /* One gap above the top player bar (after the coach's actions) and below the
        bottom player bar (before the move controls), so the board sits evenly. */
     --review-board-gap: var(--space-1);
@@ -191,4 +201,5 @@ main:has(.review-workspace-layout) {
     order: -1;
     margin: 0 0 var(--review-board-gap);
   }
+}
 }

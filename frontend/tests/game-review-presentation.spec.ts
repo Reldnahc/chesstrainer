@@ -101,7 +101,7 @@ test('a pin is drawn in red on the move that makes it, not on later moves that k
   await page.locator('.board-shell').screenshot({path: `test-results/pin-arrow-board-${info.project.name}.png`});
   await page.screenshot({path: `test-results/pin-arrow-${info.project.name}.png`, fullPage: true});
   // The evaluation graph can mark the same move, so look in the move list.
-  await page.locator('.game-move-list').getByRole('button', {name: /^4\.\.\. h6/}).click();
+  await page.locator('.game-move-list').getByRole('button', {name: /^4… h6/}).click();
   await expect(page).toHaveURL(/ply=8/);
   await expect(page.locator('.board-shell marker').first()).toBeAttached({timeout: 60_000});
   await expect(pin).toHaveCount(0);
@@ -175,7 +175,7 @@ test('moves and move quality swap in one stable panel without adding page height
     await expect(movesTab).toHaveAttribute('aria-selected', 'true');
     await expect(page.getByRole('tabpanel', {name: 'Moves', exact: true})).toBeVisible();
     await expect(quality).toBeHidden();
-    await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
+    await expect(page.getByRole('button', {name: '1… e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
     await page.evaluate(() => document.fonts.ready);
     await movesTab.scrollIntoViewIfNeeded();
     const before = await panel.boundingBox();
@@ -258,7 +258,7 @@ test('moves and move quality swap in one stable panel without adding page height
     await qualityTab.press('ArrowLeft');
     await expect(movesTab).toBeFocused();
     await expect(movesTab).toHaveAttribute('aria-selected', 'true');
-    await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
+    await expect(page.getByRole('button', {name: '1… e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
     await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=2$`));
     await movesTab.press('End');
     await expect(qualityTab).toBeFocused();

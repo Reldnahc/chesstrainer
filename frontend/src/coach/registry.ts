@@ -1,19 +1,12 @@
 import { coachStudies } from "./studies/catalog";
 import type { CoachGroup, SelectableCoach } from "./model";
-import { neutralPersonality } from "../dialogue/personality";
 
 export const coachCollections = coachStudies;
-export const coachGroups: readonly { id: CoachGroup; label: string }[] = [
-  { id: "humans", label: "Humans" },
-  { id: "dogs", label: "Dogs" },
-  { id: "cats", label: "Cats" },
-  { id: "animals", label: "Other animals" },
-  { id: "fantasy", label: "Fantasy" },
-  { id: "scifi", label: "Sci-Fi" },
-  { id: "conceptual", label: "Silly & conceptual" },
+// The picker lists coaches in this group order.
+const coachGroups: readonly CoachGroup[] = [
+  "humans", "dogs", "cats", "animals", "fantasy", "scifi", "conceptual",
 ];
-const groupOrder = (group: CoachGroup | undefined) =>
-  coachGroups.findIndex((entry) => entry.id === group);
+const groupOrder = (group: CoachGroup | undefined) => group ? coachGroups.indexOf(group) : -1;
 
 export const selectableCoaches: readonly SelectableCoach[] =
   coachCollections.flatMap((collection) =>
@@ -24,7 +17,7 @@ export const selectableCoaches: readonly SelectableCoach[] =
       collectionId: collection.id,
       name: family.name,
       description: family.description,
-      personality: family.personality ?? neutralPersonality,
+      personality: family.personality,
       defaultFamily: family.id,
       families: [family],
       animation: family.animation ?? collection.animation,

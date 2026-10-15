@@ -62,8 +62,8 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
       id: current.utteranceId, coachId: current.utteranceCoach, autoSpeakSuitable: current.autoSpeakSuitable};
     const voice = useCoachSpeech({...current, utterance});
     const observed = useCurrentSpeechPlayback();
-    saveAudio = patch => audio.save({...audio.preferences, ...patch});
-    saveCoach = patch => coach.save({...coach.preferences, ...patch});
+    saveAudio = patch => audio.save({...audio.preferences, ...patch}).then(result => result === "saved");
+    saveCoach = patch => coach.save({...coach.preferences, ...patch}).then(result => result === "saved");
     play = voice.play;
     stop = voice.stop;
     consumeAutomatic = voice.consumeAutomatic;

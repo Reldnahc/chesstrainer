@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .study-resume {
   display: flex;
   align-items: center;
@@ -11,3 +13,4 @@
 .study-resume small { color: var(--muted); }
 .study-resume > span { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; overflow-wrap: anywhere; }
 .study-resume > svg { flex: none; }
+}

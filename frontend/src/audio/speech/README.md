@@ -221,7 +221,8 @@ pinned knight" instead of "a pinned piece"). Each is a catalogue meaning
 listing only the pieces that can occur there: a pin never holds a king, a
 back-rank mate is a rook or queen, an undefended capture is never a pawn, and the
 explanation double check names both checkers (`knight-rook`). There are 268
-variants over 60 base meanings. [pieceVariants.ts](pieceVariants.ts) reads the
+variants over 60 base meanings. The catalogue is parsed once, with one `Meaning`
+type, in [meaningCatalog.ts](meaningCatalog.ts). [pieceVariants.ts](pieceVariants.ts) reads the
 piece from the evidence that selected the clip: a tactic's witness roles and
 their `pieces`, a positional fact's `piece`, an explanation finding's roles on its
 frame board, a capture frame's `capture`, and for a brilliant take the piece the

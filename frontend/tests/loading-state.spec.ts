@@ -71,6 +71,7 @@ test.beforeAll(async () => {
           return (await transformWithEsbuild(harness, "loading-state-fixture.tsx", { loader: "tsx", jsx: "automatic" })).code;
       },
       configureServer(vite) {
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises -- the handler catches every failure and passes it to next
         vite.middlewares.use("/__loading-state", async (_request, response, next) => {
           try {
             const html = await vite.transformIndexHtml("/__loading-state", `<!doctype html>

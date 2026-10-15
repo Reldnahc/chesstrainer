@@ -19,6 +19,7 @@ export default function useModalDialog(
         : fallbackFocus?.current;
       target?.focus({ preventScroll: true });
       if (document.activeElement !== target)
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- the fallback is whatever element holds the ref when the dialog closes
         fallbackFocus?.current?.focus({ preventScroll: true });
     };
   }, [fallbackFocus]);

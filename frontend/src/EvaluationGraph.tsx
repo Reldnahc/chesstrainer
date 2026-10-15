@@ -1,7 +1,10 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
+import Reveal from "./Reveal";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import EvaluationScore from "./EvaluationScore";
 import { positionScore, scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
+import { MOVE_LABELS } from "./moveQuality";
+import { moveNumber } from "./fen";
 
 type Frame = {
   number: number; actor: "white" | "black" | null; san: string;
@@ -9,7 +12,8 @@ type Frame = {
   report: { label: string; white_score: Score } | null;
 };
 type Point = { ply: number; score: Score };
-const marked = new Set(["Brilliant", "Great", "Best", "Inaccuracy", "Mistake", "Miss", "Blunder"]);
+// Every grade except the unremarkable Good and Book gets a marker.
+const marked: ReadonlySet<string> = new Set(MOVE_LABELS.filter(label => label !== "Good" && label !== "Book"));
 
 export default function EvaluationGraph({ frames, initialScore, selected, onSelect, onScrubStart, onScrubSelect, onScrubEnd }: {
   frames: Frame[]; initialScore?: Score | null; selected: number; onSelect: (ply: number) => void;
@@ -77,7 +81,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
     if (commit && ply !== null) onScrubEnd?.(ply);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   };
-  const pointName = (ply: number) => `${frames[ply].number}${frames[ply].actor === "white" ? "." : "..."} ${frames[ply].san}`;
+  const pointName = (ply: number) => `${moveNumber(frames[ply].number, frames[ply].actor === "white" ? "white" : "black")} ${frames[ply].san}`;
   return <section className="game-graph" aria-label="Original-game evaluation">
     <div className="game-graph-heading">
       <div><strong>Game evaluation</strong><span>White<ArrowUp size={11} aria-label="up" role="img" /> · Black<ArrowDown size={11} aria-label="down" role="img" /></span></div>
@@ -143,6 +147,6 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
       })}
       {selected === 0 && current && <circle className="game-graph-start" cx={x(0)} cy={y(current)} r={12} pointerEvents="none" aria-hidden="true"/>}
     </svg>
-    {!reviewed.length && <p>The timeline fills as your game is reviewed.</p>}
+    <Reveal>{!reviewed.length && <p>The timeline fills as your game is reviewed.</p>}</Reveal>
   </section>;
 }

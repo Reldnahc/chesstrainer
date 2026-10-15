@@ -99,7 +99,7 @@ test('saved motion controls actual pieces, board feedback and interface transiti
         (element as HTMLElement & {stopObserving: () => void}).stopObserving = () => observer.disconnect();
       });
       await page.getByRole('button', {name: 'Next move', exact: true}).click();
-      await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
+      await expect(page.getByRole('button', {name: '1… e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
       await expect(board).toHaveAttribute('data-piece-motion', animated ? 'animated' : 'none');
       await expect(page.locator('.board-quality')).toHaveCSS('animation-name', animated ? 'rating-appear' : 'none');
       await expect(page.locator('.game-eval-bar > div')).toHaveCSS('transition-duration', animated ? '0.25s' : '0s');

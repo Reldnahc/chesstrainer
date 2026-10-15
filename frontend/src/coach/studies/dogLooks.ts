@@ -1,17 +1,7 @@
 import type { AnimalPalette } from "./AnimalFace";
 
-export type DogLook = "sunny" | "gentle" | "corgi" | "collie";
+export type DogLook = "gentle" | "corgi" | "collie";
 export const dogPalettes: Record<DogLook, AnimalPalette> = {
-  sunny: {
-    fur: "#d8a150",
-    dark: "#ac783b",
-    light: "#ecc080",
-    muzzle: "#f3d7a5",
-    nose: "#42322b",
-    iris: "#8c6949",
-    accent: "#618b98",
-    brow: "#9c6939",
-  },
   gentle: {
     fur: "#dfc087",
     dark: "#b59662",
@@ -45,8 +35,7 @@ export const dogPalettes: Record<DogLook, AnimalPalette> = {
   },
 };
 
+/** An unknown family draws the collection's default dog. */
 export function dogLook(family: string): DogLook {
-  return family === "gentle" || family === "corgi" || family === "collie"
-    ? family
-    : "sunny";
+  return family === "corgi" || family === "collie" ? family : "gentle";
 }

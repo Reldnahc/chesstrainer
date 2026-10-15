@@ -1,9 +1,8 @@
 import {stableKey} from "../../dialogue/model";
-import catalogue from "./meanings.json" with {type: "json"};
+import {meanings, type Meaning} from "./meaningCatalog";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR} from "./sequence";
 
 export type Side = "white" | "black";
-type Meaning = {id: string; colourOf?: string; takeOf?: string; side?: Side};
 
 // A colour line names the side its meaning is about ("White's passed pawn") and
 // plays ahead of the colourless line, which stays its fallback. A take is another
@@ -12,7 +11,7 @@ type Meaning = {id: string; colourOf?: string; takeOf?: string; side?: Side};
 // them only when its lines are imported (scripts/coach_line_slots.py), and the
 // voice bank skips any that a coach has not recorded yet.
 const colours = new Map<string, Map<Side, string>>(), takes = new Map<string, Meaning[]>();
-for (const meaning of catalogue.meanings as Meaning[]) {
+for (const meaning of meanings) {
   if (meaning.colourOf && meaning.side) {
     const set = colours.get(meaning.colourOf) ?? new Map<Side, string>();
     colours.set(meaning.colourOf, set.set(meaning.side, meaning.id));

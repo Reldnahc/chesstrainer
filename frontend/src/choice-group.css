@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .choice-group {
   display: flex;
   flex-wrap: wrap;
@@ -6,6 +8,9 @@
 .choice-group button {
   background: transparent;
 }
+.choice-group button:hover {
+  background: var(--control-hover);
+}
 .choice-group button[aria-pressed="true"] {
   background: var(--raised);
   border-color: var(--accent);
@@ -13,6 +18,13 @@
 }
 @media (max-width: 760px) {
   .choice-group button {
-    min-height: 44px;
+    min-height: var(--touch-target);
   }
+}
+/* The compact row keeps its height on phones, beside the toolbar it sits in. */
+.choice-group--compact button {
+  min-height: var(--control-height-compact);
+  padding: var(--space-1-5) var(--space-4);
+  font-size: var(--text-md);
+}
 }

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, read, type Promotion, type Schema } from "../api";
+import { errorMessage, api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
+import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
 import { lessonRecording } from "../audio/speech/practiceSelection";
@@ -46,13 +47,15 @@ export function useLessonSession(id: string) {
         params: { path: { session_id: id } }, signal: controller.signal,
       }));
       if (generation.current === version) setSession(result);
-    } catch (e) { if (generation.current === version) setError((e as Error).message); }
+    } catch (e) { if (generation.current === version) setError(errorMessage(e)); }
     finally {
       if (generation.current === version) { locked.current = false; setLoading(false); setBusy(false); }
     }
   }, [id, reset]);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading the session fetches it; load marks it loading first
     void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
     return () => { generation.current++; request.current?.abort(); };
   }, [load]);
   async function command(action: LessonAction, extra?: { uci?: string; ply?: number }) {
@@ -83,16 +86,16 @@ export function useLessonSession(id: string) {
         audio.play("move", `${eventId}:board`);
       }
       if (session.status !== "completed" && result.status === "completed" && action !== "show_move") {
-        audio.play("complete", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("complete", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (action === "move" && result.feedback?.kind === "correct") {
-        audio.play("correct", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("correct", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (action === "move" && result.feedback?.kind === "incorrect") {
-        audio.play("retry", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
     } catch (e) {
       // A command may have committed despite a lost response. Reconcile first.
       if (generation.current === version) {
-        setError((e as Error).message);
+        setError(errorMessage(e));
         setSpeech({ eventId: `lesson:${++speechEvents.current}:error`, recordingId: "lesson-error" });
       }
     } finally {

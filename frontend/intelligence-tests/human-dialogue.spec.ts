@@ -28,7 +28,7 @@ test("every coach preserves human facts, alternative meaning and natural wording
 
 test("all coaches keep opening recognition concise and out of quality disclaimers", async ({page}) => {
   await page.goto("/");
-  for (const code of ["book", "book_sound", "departure"]) {
+  for (const code of ["book", "book_sound", "departure"] as const) {
     const outputs = await renderCoaches(page, makeIntent("opening-copy", "book", "game", "book",
       [claim(code, {opening: "Bongcloud"})]));
     for (const utterance of outputs) {

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* Opposite directions and authored rhythms extend the same resting rig. */
 @keyframes coach-idle-double-blink {
   0%, 42%, 88%, 100% { transform: scaleY(1); }
@@ -45,4 +47,5 @@
     transform: translateX(calc(2.2px * var(--idle-settle))) rotate(calc(0.7deg * var(--idle-strength)));
   }
   82% { transform: translateX(calc(0.6px * var(--idle-settle))); }
+}
 }

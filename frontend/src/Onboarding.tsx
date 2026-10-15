@@ -1,8 +1,9 @@
 import { ChevronRight } from "lucide-react";
 import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
-import { api, read, type Schema } from "./api";
-import { navigate } from "./navigation";
+import { api, errorMessage, read, type Schema } from "./api";
+import { navigate, settingsPath } from "./navigation";
+import { loadGameProviders } from "./gameProviders";
 import ProviderUsernameField from "./ProviderUsernameField";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
@@ -23,14 +24,14 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
   useEffect(() => {
     let active = true;
     async function load() {
-      const providers = await read(api.GET("/api/game-providers"));
+      const providers = await loadGameProviders();
       const values = await Promise.all(providers.map(async provider => {
         const saved = await read(api.GET("/api/providers/{provider}/sync", { params: { path: { provider: provider.id } } }));
         return { id: provider.id, name: provider.name, username: saved.username };
       }));
       if (active) { setConnections(values); setLoading(false); }
     }
-    load().catch(e => { if (active) setError(e.message); });
+    load().catch(e => { if (active) setError(errorMessage(e)); });
     return () => { active = false; };
   }, []);
   async function next(event: React.FormEvent) {
@@ -43,7 +44,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
         }));
       }
       setStep(2);
-    } catch (e) { setError((e as Error).message); }
+    } catch (e) { setError(errorMessage(e)); }
     finally { setBusy(false); }
   }
   const selected = connections.filter(connection => connection.username.trim());
@@ -51,9 +52,9 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
     setBusy(true); setError("");
     try {
       const result = await read(api.POST("/api/auth/onboarding/complete"));
-      if (openImports) navigate(`/settings?import=${encodeURIComponent(selected[0]?.id || "pgn")}`);
+      if (openImports) navigate(settingsPath("imports", { importSource: selected[0]?.id || "pgn" }));
       onComplete(result.user);
-    } catch (e) { setError((e as Error).message); setBusy(false); }
+    } catch (e) { setError(errorMessage(e)); setBusy(false); }
   }
   return <main className="account-entry onboarding">
     <section className="panel" aria-labelledby="onboarding-title">

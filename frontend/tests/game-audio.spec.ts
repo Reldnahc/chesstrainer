@@ -14,6 +14,10 @@ const scope = {
   move(san, eventId, options) { window.gameAudioEvents.push({kind: "move", san, eventId, options}); },
   play(cue, eventId, options) { window.gameAudioEvents.push({kind: "play", cue, eventId, options}); },
   cancel() { window.gameAudioEvents.push({kind: "cancel"}); },
+  // The navigation rules, written in terms of the two recorded cues as AudioProvider does.
+  advance(forward, san, eventId) { if (forward) scope.move(san, eventId); else scope.play("move", eventId); },
+  step(from, to, san, eventId) { scope.advance(to === from + 1, san, eventId); },
+  moveOr(san, eventId, options) { if (san) scope.move(san, eventId, options); else scope.play("move", eventId, options); },
 };
 export function useAudioScope() { return scope; }
 `;
@@ -108,6 +112,7 @@ test.beforeAll(async () => {
           return (await transformWithEsbuild(harness, "game-audio-fixture.tsx", {loader: "tsx", jsx: "automatic"})).code;
       },
       configureServer(vite) {
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises -- the handler catches every failure and passes it to next
         vite.middlewares.use("/__game-audio", async (_request, response, next) => {
           try {
             const html = await vite.transformIndexHtml("/__game-audio", `<!doctype html>

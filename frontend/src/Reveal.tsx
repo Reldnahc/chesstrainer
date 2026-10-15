@@ -2,15 +2,15 @@ import {
   Children, Fragment, isValidElement, useLayoutEffect, useReducer, useRef,
   type Key, type ReactElement, type ReactNode,
 } from "react";
-import { ghostCopy } from "./ghost";
+import { afterAnimations, ghostCopy } from "./ghost";
 import { useInterfaceMotion } from "./MotionProvider";
 
 /*
  * Content that appears or disappears grows (or narrows) open and closed instead
  * of popping, the same way in every browser: each item sits in a one-track grid
- * whose track animates between 0fr and 1fr. Leaving items stay mounted and inert
- * with their last content until their transition ends. See
- * docs/UI_COMPONENTS.md#motion.
+ * whose track animates between 0fr and 1fr. A leaving item's live content
+ * unmounts at once; a decorative copy of it (ghost.ts) stays, inert, until the
+ * track has closed. See docs/UI_COMPONENTS.md#motion.
  */
 
 type Phase = "entering" | "open" | "closing";
@@ -27,9 +27,16 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
 }) {
   const motion = useInterfaceMotion();
   const [, refresh] = useReducer((value: number) => value + 1, 0);
+  // The committed list; each render derives its own list from it and commits that
+  // in the layout effect, so a render React discards changes nothing.
   const entries = useRef<Entry[]>([]);
+  // Leaving items whose close has finished, dropped by the next render.
+  const left = useRef(new Set<Key>());
   const arrivals = useRef(animateFirst);
   const elements = useRef(new Map<Key, HTMLDivElement>());
+  /* eslint-disable react-hooks/refs -- each render derives its list from the
+     committed one synchronously, so closing items keep their place and ghost in
+     the same render that drops them; nothing here is committed until the effect. */
   const current = Children.toArray(children).filter(isValidElement) as ReactElement[];
   const index = new Map<Key, number>(current.map((node, position) => [node.key!, position]));
   const previous = new Map(entries.current.map(entry => [entry.key, entry]));
@@ -47,7 +54,7 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
     if (position === undefined) {
       // Leaving content is replaced by a decorative copy, so its live components
       // unmount now and nothing can find its controls or text while it fades.
-      if (!animate || !exit) continue;
+      if (!animate || !exit || left.current.has(entry.key)) continue;
       const clip = elements.current.get(entry.key)?.firstElementChild;
       const ghost = entry.ghost ?? (clip instanceof HTMLElement ? ghostCopy(clip) : undefined);
       merged.push({ ...entry, phase: "closing", ghost });
@@ -56,13 +63,16 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
     while (next <= position) merged.push(make(current[next++]));
   }
   while (next < current.length) merged.push(make(current[next++]));
-  entries.current = merged;
-  if (settled) arrivals.current = true;
+  /* eslint-enable react-hooks/refs */
 
+  // eslint-disable-next-line react-hooks/immutability -- marking an entered item open in the list just committed is what makes the next render keep it open
   useLayoutEffect(() => {
+    entries.current = merged;
+    if (settled) arrivals.current = true;
+    for (const key of left.current)
+      if (!merged.some(entry => entry.key === key && entry.phase === "closing")) left.current.delete(key);
     let opened = false;
-    const waits: (() => void)[] = [];
-    for (const entry of entries.current) {
+    for (const entry of merged) {
       const element = elements.current.get(entry.key);
       if (!element) continue;
       if (entry.phase !== "open") collapseGap(element);
@@ -74,18 +84,15 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
         opened = true;
       } else if (entry.phase === "closing" && !element.dataset.leaving) {
         element.dataset.leaving = "true";
-        const running = element.getAnimations();
-        const done = () => {
+        // A cancelled close means the item came back, so it stays.
+        afterAnimations(element, () => {
           const latest = entries.current.find(item => item.key === entry.key);
           if (latest?.phase !== "closing") return;
-          entries.current = entries.current.filter(item => item !== latest);
+          left.current.add(entry.key);
           refresh();
-        };
-        if (!running.length) waits.push(done);
-        else Promise.all(running.map(animation => animation.finished)).then(done, () => {});
+        }, () => {});
       }
     }
-    for (const wait of waits) wait();
     if (opened) refresh();
   });
 
@@ -93,7 +100,7 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
     if (element) elements.current.set(key, element);
     else elements.current.delete(key);
   };
-  return entries.current.map(entry => ({ ...entry, ref: ref(entry.key) }));
+  return merged.map(entry => ({ ...entry, ref: ref(entry.key) }));
 }
 
 /**
@@ -116,14 +123,15 @@ function Item({ entry, className, axis }: {
   className?: string;
   axis?: "block" | "inline";
 }) {
-  const open = entry.phase === "open";
-  return <div ref={entry.ref} className={["reveal", className].filter(Boolean).join(" ")}
-    data-open={open} data-axis={axis} inert={entry.phase === "closing" || undefined}
-    aria-hidden={entry.phase === "closing" || undefined}>
+  const { ref, phase, ghost, node } = entry;
+  const open = phase === "open";
+  return <div ref={ref} className={["reveal", className].filter(Boolean).join(" ")}
+    data-open={open} data-axis={axis} inert={phase === "closing" || undefined}
+    aria-hidden={phase === "closing" || undefined}>
     {/* Distinct keys, so content that comes back mounts fresh beside no leftover copy. */}
-    {entry.ghost
-      ? <div key="ghost" className="reveal-clip" ref={clip => { if (clip && entry.ghost && !clip.firstChild) clip.append(...entry.ghost.childNodes); }} />
-      : <div key="live" className="reveal-clip">{entry.node}</div>}
+    {ghost
+      ? <div key="ghost" className="reveal-clip" data-ghost="" ref={clip => { if (clip && !clip.firstChild) clip.append(...ghost.childNodes); }} />
+      : <div key="live" className="reveal-clip">{node}</div>}
   </div>;
 }
 

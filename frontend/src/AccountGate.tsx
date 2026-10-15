@@ -1,75 +1,16 @@
 import Button from "./Button";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
-import { api, read, setAccountSession, type Schema } from "./api";
+import { useEffect, useState, type ReactNode } from "react";
+import { api, errorMessage, onAuthRequired, read, setAccountSession, type Schema } from "./api";
+import { AccountContext, GuestContext } from "./accountContext";
+import { NewPasswordInput, PASSWORD_RULES, UsernameInput } from "./accountFields";
 import { useRoute } from "./navigation";
 
 import Onboarding from "./Onboarding";
 import ChangePasswordForm from "./ChangePasswordForm";
-import SettingsSection from "./SettingsSection";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
 
-export type Account = Schema["Account"];
 type Identity = Schema["Identity"];
-type AccountSession = {
-  user: Account;
-  logout: (all?: boolean) => Promise<void>;
-  busy: boolean;
-  error: string;
-};
-const AccountContext = createContext<AccountSession | null>(null);
-export const useAccount = () => useContext(AccountContext)?.user ?? null;
-// A signed-out visitor opening a shared game link; the value opens sign-in.
-const GuestContext = createContext<(() => void) | null>(null);
-export const useGuestSignIn = () => useContext(GuestContext);
-export const useGuest = () => !!useContext(GuestContext);
-
-export function AccountSettings() {
-  const session = useContext(AccountContext);
-  if (!session) return null;
-  const { user, logout, busy, error } = session;
-  return (<>
-    <SettingsSection id="account-settings" title="Account" className="account-settings">
-      <p>
-        Signed in as <strong>{user.username}</strong>
-      </p>
-      <div className="account-actions">
-        <Button disabled={busy} onClick={() => logout()}>
-          Sign out
-        </Button>
-        <Button
-          variant="secondary"
-          disabled={busy}
-          onClick={() => logout(true)}
-        >
-          Sign out all devices
-        </Button>
-      </div>
-      <Reveal>{error && (
-        <Notice announcement="alert" tone="error">
-          {error}
-        </Notice>
-      )}</Reveal>
-    </SettingsSection>
-    <PasswordSettings />
-  </>);
-}
-
-function PasswordSettings() {
-  const [changed, setChanged] = useState(false);
-  return (
-    <SettingsSection id="password-settings" title="Password" description="Change the password you sign in with.">
-      <Reveal>{changed && <Notice announcement="status" tone="success">Password changed. Your other devices are signed out.</Notice>}</Reveal>
-      <ChangePasswordForm onChanged={() => setChanged(true)} />
-    </SettingsSection>
-  );
-}
 
 export default function AccountGate({ children }: { children: ReactNode }) {
   const [identity, setIdentity] = useState<Identity | null>(null);
@@ -89,10 +30,9 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     const refresh = () =>
       read(api.GET("/api/auth/me"))
         .then(accept)
-        .catch((e) => setError(e.message));
+        .catch((e) => setError(errorMessage(e)));
     void refresh();
-    window.addEventListener("account-required", refresh);
-    return () => window.removeEventListener("account-required", refresh);
+    return onAuthRequired("account", () => void refresh());
   }, []);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -107,7 +47,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
         ),
       );
     } catch (e) {
-      setError((e as Error).message);
+      setError(errorMessage(e));
     } finally {
       setBusy(false);
     }
@@ -119,7 +59,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
       await read(api.POST(all ? "/api/auth/logout-all" : "/api/auth/logout"));
       accept({ enabled: true, user: null, signups_open: identity?.signups_open });
     } catch (e) {
-      setError((e as Error).message);
+      setError(errorMessage(e));
     } finally {
       setBusy(false);
     }
@@ -138,7 +78,8 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     );
   if (!identity.enabled) return <>{children}</>;
   // Anyone with a game's link may read its review without an account.
-  if (!identity.user && route.gameId && !signingIn)
+  const sharedGame = route.screen.kind === "games" && !!route.screen.gameId;
+  if (!identity.user && sharedGame && !signingIn)
     return (
       <GuestContext.Provider value={() => setSigningIn(true)}>
         {children}
@@ -161,34 +102,22 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           <form onSubmit={submit}>
             <label>
               Username
-              <input
-                autoComplete="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                minLength={3}
-                maxLength={32}
-                pattern="[a-zA-Z0-9_-]+"
-                required
-              />
+              <UsernameInput autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
             </label>
             <label>
               Password
-              <input
-                type="password"
-                autoComplete={creating ? "new-password" : "current-password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                minLength={10}
-                maxLength={128}
-                required
-              />
+              {/* Signing in checks only the length limit; the minimum is for new passwords. */}
+              {creating
+                ? <NewPasswordInput value={password} onChange={(e) => setPassword(e.target.value)} />
+                : <input type="password" autoComplete="current-password" maxLength={PASSWORD_RULES.maxLength} required
+                  value={password} onChange={(e) => setPassword(e.target.value)} />}
             </label>
-            {creating && (
+            <Reveal>{creating && (
               <p className="small">
-                Use at least 10 characters. Your host can reset a forgotten
+                Use at least {PASSWORD_RULES.minLength} characters. Your host can reset a forgotten
                 password.
               </p>
-            )}
+            )}</Reveal>
             <Button type="submit" variant="primary" disabled={busy}>
               {busy ? "Please wait…" : creating ? "Create account" : "Sign in"}
             </Button>
@@ -208,7 +137,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           ) : (
             <p className="small">New here? Ask whoever runs this Fieldwork server for an account.</p>
           )}
-          {signingIn && route.gameId && (
+          {signingIn && sharedGame && (
             <Button variant="quiet" disabled={busy} onClick={() => setSigningIn(false)}>
               Back to the shared game
             </Button>
@@ -234,7 +163,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     return <Onboarding key={identity.user.id} onComplete={user => setIdentity(current => current ? { ...current, user } : current)} />;
   return (
     <AccountContext.Provider
-      value={{ user: identity.user, logout, busy, error }}
+      value={{ user: identity.user, logout, busy, error, dismissError: () => setError("") }}
     >
       <div key={identity.user.id}>{children}</div>
     </AccountContext.Provider>

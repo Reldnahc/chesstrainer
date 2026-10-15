@@ -4,11 +4,10 @@ import Button from "../../Button";
 import ChoiceGroup from "../../ChoiceGroup";
 import MotionSelect from "../../MotionSelect";
 import ReviewCoach from "../../ReviewCoach";
-import { CoachCharacter } from "../../coach/CoachAvatar";
+import { CoachCharacter } from "../../coach/CoachCharacter";
 import { getCoach } from "../../coach/registry";
 import type { SpeechMouthTrack } from "../../coach/speechMouth";
 import type { MotionPreference } from "../../motion";
-import type { CoachUtterance } from "../../dialogue/model";
 import type { StudioPlayer } from "./useStudioPlayer";
 import "../../coach-presentation.css";
 import "../../disclosure.css";
@@ -37,14 +36,15 @@ export default function WalterWordingReview({player, catalog}: {player: StudioPl
   const example = examples.find(item => item.id === exampleId) ?? examples[0];
   const clipKey = `${version}:${example?.id ?? ""}`;
   const [loaded, setLoaded] = useState<{key: string; clip?: WordingClip}>();
+  const exampleKey = example?.id;
   useEffect(() => {
-    if (!example) return;
+    if (exampleKey === undefined) return;
     let current = true;
-    void catalog.loadClip(example.id, version).then(clip => {
+    void catalog.loadClip(exampleKey, version).then(clip => {
       if (current) setLoaded({key: clipKey, clip});
     }, () => {if (current) setLoaded({key: clipKey});});
     return () => {current = false;};
-  }, [catalog, example?.id, version, clipKey]);
+  }, [catalog, exampleKey, version, clipKey]);
   if (!example) return null;
 
   const clip = loaded?.key === clipKey ? loaded.clip : undefined;
@@ -56,16 +56,8 @@ export default function WalterWordingReview({player, catalog}: {player: StudioPl
   const categories = [...new Set(examples.map(item => item.category))];
   function play(inContext: boolean) {
     if (!clip || !example) return;
-    const utterance: CoachUtterance = {
-      version: "coach-utterance-1", id: `development:walter-wording:${clipKey}`,
-      intentId: `development:wording:${example.id}`, coachId: walter.id,
-      text: clip.text, speechText: clip.text, expression: "explaining",
-      intensity: .4, priority: 50, interruptible: true, autoSpeakSuitable: false,
-      trace: {renderer: "development-walter-wording", variants: [], decisions: [
-        "Manual comparison of original and revised wording in Walter's locked voice.",
-        "This preview does not change analysis, casting choices or account preferences.",
-      ]},
-    };
+    // Manual comparison in Walter's locked voice; it changes no analysis, casting choice or preference.
+    const utterance = {id: `development:walter-wording:${clipKey}`, coachId: walter.id, priority: 50, interruptible: true};
     void player.playSpeech({url: clip.url, recordingId: clip.id, voiceId,
       voiceName: version === "original" ? "Original wording" : "Revised wording",
       scriptId: example.id, coachName: walter.name, utterance}, inContext);

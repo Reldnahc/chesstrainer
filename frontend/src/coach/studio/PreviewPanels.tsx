@@ -1,7 +1,7 @@
 import ReviewCoach from "../../ReviewCoach";
 import Button from "../../Button";
 import EvaluationScore from "../../EvaluationScore";
-import { CoachCharacter } from "../CoachAvatar";
+import { CoachCharacter } from "../CoachCharacter";
 import { ArrowRight } from "lucide-react";
 import { selectableCoaches } from "../registry";
 import {
@@ -72,8 +72,8 @@ export function ConceptComparison({
             </div>
             <span>{direction.character}</span>
           </div>
-          <button
-            className="text-button"
+          <Button
+            variant="quiet"
             aria-pressed={family === direction.id}
             onClick={() => onFamily(direction.id)}
           >
@@ -81,7 +81,7 @@ export function ConceptComparison({
               ? "Viewing this collection"
               : "Explore this collection"}
             <ArrowRight size={15} />
-          </button>
+          </Button>
         </article>
       ))}
     </section>

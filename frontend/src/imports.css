@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .game-sync-compact { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1-5); max-width: 100%; }
 .game-sync-compact [role="alert"] { max-width: 32ch; }
 .game-connections { display: flex; flex-direction: column; gap: var(--space-4); }
@@ -32,7 +34,7 @@
 .import-options > label { min-width: 0; }
 .import-options input, .import-options select { width: 100%; min-width: 0; }
 .import-phase { color: #e3e6ec; }
-.upload-zone { position: relative; border: 1px dashed #5c636e; border-radius: 6px; min-height: 140px; display: flex !important; align-items: center; justify-content: center; flex-direction: column; background: #202329; gap: var(--space-3) !important; text-align: center; cursor: pointer; padding: var(--space-4); }
+.upload-zone { position: relative; border: 1px dashed #5c636e; border-radius: 6px; min-height: 140px; display: flex; align-items: center; justify-content: center; flex-direction: column; background: #202329; gap: var(--space-3); text-align: center; cursor: pointer; padding: var(--space-4); }
 .upload-zone:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
 .upload-zone svg { color: var(--accent); }
 .upload-zone strong { max-width: 100%; overflow-wrap: anywhere; }
@@ -40,9 +42,10 @@
 .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; max-width: 100%; }
 .import-activity { min-width: 0; }
 .job { padding: var(--space-6); --panel-gap: var(--space-2); }
-.job-details { display: flex; flex-direction: column; gap: var(--space-2); }
+.job-details { display: flex; flex-direction: column; gap: var(--space-2); padding-block: var(--space-1) var(--space-4); }
 .import-activity .job { padding: 0 0 var(--space-4); border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; }
-.import-activity > .reveal:nth-last-child(1 of .reveal:has(> .reveal-clip > .job)) .job { border-bottom: 0; padding-bottom: 0; }
+/* The last job row, across the active and history lists, has no divider below it. */
+.import-activity > .import-job-row:nth-last-child(1 of .import-job-row) .job { border-bottom: 0; padding-bottom: 0; }
 .job .row-between { gap: var(--space-3); }
 .job .row-between strong { overflow-wrap: anywhere; min-width: 0; }
 .job .badge { flex-shrink: 0; }
@@ -53,7 +56,7 @@
 .job-summary-copy strong { overflow-wrap: anywhere; font-weight: 500; }
 .job-summary-copy .small { color: var(--muted); }
 .job-inspect { color: var(--accent); white-space: nowrap; }
-.job-details { padding-block: var(--space-1) var(--space-4); }
+
 .import-activity .history-toggle { width: 100%; }
 @media (max-width: 760px) {
   .provider-connections { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
@@ -64,8 +67,9 @@
   .import-form .form-panel { gap: var(--space-4); }
   .import-form-actions { align-items: stretch; flex-direction: column; gap: var(--space-3); padding-top: var(--space-3); }
   .import-options { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
-  .workspace-page .upload-zone { min-height: 108px; gap: var(--space-1-5) !important; padding: var(--space-3); }
+  .workspace-page .upload-zone { min-height: 108px; gap: var(--space-1-5); padding: var(--space-3); }
   .job-summary-content { flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
   .job-summary-copy { flex-basis: calc(100% - 100px); }
   .job-inspect { flex-basis: 100%; }
+}
 }

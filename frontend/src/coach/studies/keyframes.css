@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 @keyframes study-arrive {
   0% {
     transform: translateY(2px) rotate(calc(-3deg * var(--study-strength)));
@@ -317,4 +319,5 @@
   100% {
     transform: none;
   }
+}
 }

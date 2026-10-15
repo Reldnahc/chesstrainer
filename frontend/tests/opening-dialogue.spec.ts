@@ -1,6 +1,6 @@
 import {test, expect} from "@playwright/test";
 import type {Frame, Game, Report} from "../src/gameReview/types";
-import {bookRecordingId, deriveBookPresentation} from "../src/dialogue/openingPresentation";
+import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS, bookRecordingId, deriveBookPresentation} from "../src/dialogue/openingPresentation";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {makeIntent} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
@@ -52,6 +52,9 @@ function gameWithReports(count = 12, orientation: "white" | "black" = "white"): 
         input_digest: frame.report!.intelligence!.input_digest, event_ids: [], before: score, after: score, evidence: []}))}};
 }
 
+const entrySlot = new RegExp(`^book-opening-entry-[1-${BOOK_ENTRY_VARIANTS}]$`);
+const followSlot = new RegExp(`^book-opening-follow-[1-${BOOK_FOLLOW_VARIANTS}]$`);
+
 function presentation(game: Game, ply: number, variation = false) {
   return deriveBookPresentation({game, ply, frame: game.frames[ply], report: game.frames[ply]?.report, variation});
 }
@@ -60,15 +63,15 @@ test("reviewed book runs share deterministic entry/follow slots with no adjacent
   const game = gameWithReports(18);
   const first = presentation(game, 1)!;
   expect(first).toMatchObject({kind: "entry", runStartPly: 1, runOrdinal: 1});
-  expect(bookRecordingId(first)).toMatch(/^book-opening-entry-[1-3]$/);
+  expect(bookRecordingId(first)).toMatch(entrySlot);
   const following = Array.from({length: 17}, (_, i) => presentation(game, i + 2)!);
   following.forEach((value, i) => {
     expect(value).toMatchObject({kind: "follow", runStartPly: 1, runOrdinal: i + 2});
-    expect(bookRecordingId(value)).toMatch(/^book-opening-follow-[1-8]$/);
+    expect(bookRecordingId(value)).toMatch(followSlot);
     if (i) expect(value.variant).not.toBe(following[i - 1].variant);
   });
-  expect(new Set(following.slice(0, 8).map(bookRecordingId)).size).toBe(8);
-  expect(following[0].variant).toBe(following[8].variant);
+  expect(new Set(following.slice(0, BOOK_FOLLOW_VARIANTS).map(bookRecordingId)).size).toBe(BOOK_FOLLOW_VARIANTS);
+  expect(following[0].variant).toBe(following[BOOK_FOLLOW_VARIANTS].variant);
 });
 
 test("both movers and learner orientations use the same neutral sequence facts", () => {
@@ -106,7 +109,7 @@ test("unknown prefixes and branches vary generic recognition by the stable curre
   const mainline = game.frames.slice(1).map((_, index) => presentation(game, index + 1)!);
   const branches = game.frames.slice(1).map((_, index) => presentation(game, index + 1, true)!);
   for (const values of [mainline, branches]) {
-    expect(new Set(values.map(bookRecordingId)).size).toBe(3);
+    expect(new Set(values.map(bookRecordingId)).size).toBe(BOOK_ENTRY_VARIANTS);
     for (const value of values) expect(value).toMatchObject({kind: "entry", runOrdinal: null, runStartPly: null});
   }
   for (let ply = 1; ply <= 24; ply++) {
@@ -152,7 +155,7 @@ for (const [name, damage] of Object.entries(prefixDamage)) test(`${name} falls b
   damage(game);
   const value = presentation(game, 9)!;
   expect(value).toMatchObject({kind: "entry", runStartPly: null, runOrdinal: null});
-  expect(bookRecordingId(value)).toMatch(/^book-opening-entry-[1-3]$/);
+  expect(bookRecordingId(value)).toMatch(entrySlot);
 });
 
 test("the current report must bind to the displayed position before any book wording is selected", () => {

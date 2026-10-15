@@ -121,7 +121,7 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('86.4');
   await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText('100.0');
   await page.getByRole('tab', {name: 'Moves', exact: true}).click();
-  await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByRole('button', {name: '1… e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'Start of game', exact: true}).click();
   await expect(page.locator('.move-playback-counter')).toHaveText('0 / 4');
@@ -168,7 +168,7 @@ test('book moves appear on the board, coach and branches with original-game accu
   await page.screenshot({path: `test-results/book-review-${info.project.name}.png`, fullPage: true});
 
   await page.getByRole('tab', {name: 'Moves', exact: true}).click();
-  await page.getByRole('button', {name: '1... e5, Book', exact: true}).click();
+  await page.getByRole('button', {name: '1… e5, Book', exact: true}).click();
   await expect(page.locator('.coach-avatar')).toHaveAttribute('data-expression', 'book');
   await page.reload();
   await expect(page.locator('.coach-avatar')).toHaveAttribute('data-expression', 'book');
@@ -303,7 +303,7 @@ test('review both players, explain in place, and branch without changing the gam
   if (testInfo.project.name === 'mobile') await originalMove.tap();
   else await originalMove.click();
   await expect(page.getByRole('button', {name: 'Return to game', exact: true})).toHaveCount(0);
-  await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName(/^1\.\.\. e5/);
+  await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName(/^1… e5/);
   await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=2$`));
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
@@ -497,7 +497,7 @@ test('stale engine responses never replace the selected move and failures remain
   await page.getByRole('link', {name: new RegExp(`Review-stale-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: '1. f3', exact: true}).click();
   await page.waitForRequest(r => r.url().endsWith('/analyze') && r.postDataJSON().ply === 1);
-  await page.getByRole('button', {name: '1... e5', exact: true}).click();
+  await page.getByRole('button', {name: '1… e5', exact: true}).click();
   const speechHeight = (await page.locator('.coach-speech').boundingBox())!.height;
   const notationTop = (await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY);
   release();
@@ -528,7 +528,7 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
   await page.goto('/');
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await page.getByRole('link', {name: new RegExp(`Review-layout-${testInfo.project.name} vs CoachFixture`)}).click();
-  await page.getByRole('button', {name: '1... e5, Good', exact: true}).click();
+  await page.getByRole('button', {name: '1… e5, Good', exact: true}).click();
   const dimensions = async () => ({
     height: (await page.locator('.coach-speech').boundingBox())!.height,
     notationTop: (await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY),

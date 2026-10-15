@@ -1,7 +1,7 @@
 import registry from './banks/registry.json' with { type: 'json' };
 import type { SpeechMouthTrack } from '../../coach/speechMouth';
 import { recordingAssets as assets } from './recordingAssets';
-import { ALTERNATIVE_SEPARATOR, SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR } from './sequence';
+import { ALTERNATIVE_SEPARATOR, SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR, resolveSentences } from './sequence';
 
 type BankManifest = {
   coachId: string; voiceId: string;
@@ -77,8 +77,7 @@ export function hasCoachVoice(coachId: string): boolean { return banks.has(coach
 export function recordedId(coachId: string, id: string | null | undefined): string | null {
   const recordings = banks.get(coachId)?.recordings;
   if (!id || !recordings) return null;
-  const parts = id.split(SEQUENCE_SEPARATOR).map(part => part.split(ALTERNATIVE_SEPARATOR).find(item => recordings.has(item)));
-  return parts.every((part): part is string => !!part) ? parts.join(SEQUENCE_SEPARATOR) : null;
+  return resolveSentences(id, item => recordings.has(item))?.join(SEQUENCE_SEPARATOR) ?? null;
 }
 
 /** Unknown coaches or meanings stay silent; a different character is never a fallback. */
@@ -123,6 +122,12 @@ export async function coachMouthTrack(coachId: string, id: string): Promise<Spee
   return sequenceTrack(tracks, recording.id);
 }
 
+/** Start loading a coach's mouth timing early; a failure is retried on the next request. */
+export function prefetchCoachMouthTracks(coachId: string): void {
+  const bank = banks.get(coachId);
+  if (bank && !loadedTracks.has(coachId)) loadTracks(coachId, bank.tracksUrl).catch(() => {});
+}
+
 export function loadedCoachMouthTrack(coachId: string, id: string | undefined): SpeechMouthTrack | undefined {
   const tracks = loadedTracks.get(coachId), recorded = recordedId(coachId, id);
   return recorded && tracks ? sequenceTrack(tracks, recorded) : undefined;
@@ -132,4 +137,3 @@ export function loadedCoachMouthTrack(coachId: string, id: string | undefined): 
 // the same registry functions for every registered voice.
 export const walterRecording = (id: string | null | undefined) => coachRecording('classic', id);
 export const walterMouthTrack = (id: string) => coachMouthTrack('classic', id);
-export const loadedWalterMouthTrack = (id: string | undefined) => loadedCoachMouthTrack('classic', id);

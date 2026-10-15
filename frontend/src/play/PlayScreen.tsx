@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePolling } from "../usePolling";
 import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
-import { api, read, type Schema } from "../api";
+import { api, errorMessage, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ChoiceGroup from "../ChoiceGroup";
@@ -46,14 +47,14 @@ const LEVELS = [
   { value: "choose", label: "Choose a rating" },
 ] as const;
 
-export default function PlayScreen({ gameId }: { gameId: string | null }) {
+export default function PlayScreen({ gameId, from }: { gameId: string | null; from: string | null }) {
   // Keyed so "Go again" starts the new game with a fresh session.
   if (gameId) return <PlayGame key={gameId} id={gameId} />;
-  return <PlaySetup />;
+  return <PlaySetup from={from} />;
 }
 
 // Phones use the shared ReviewCoach layout; desktop keeps the large portrait.
-function PlaySetup() {
+function PlaySetup({ from }: { from: string | null }) {
   const phone = usePhone();
   const { preferences } = useCoachPreferences();
   const coach = getCoach(preferences.coach_id);
@@ -72,24 +73,23 @@ function PlaySetup() {
   const [courseId, setCourseId] = useState("");
   const [error, setError] = useState("");
   const [starting, setStarting] = useState(false);
-  useEffect(() => {
-    document.title = "Play · Fieldwork";
-  }, []);
+  // The fit runs in the background after imports; poll until it settles. A failed
+  // read is reported once and retried with a growing wait rather than given up.
+  const profileFailed = useRef(false);
+  usePolling(async (signal) => {
+    try {
+      const value = await read(api.GET("/api/play/profile", { signal }));
+      if (signal.aborted) return;
+      profileFailed.current = false;
+      setProfile(value);
+    } catch (e) {
+      if (!signal.aborted && !profileFailed.current) setError(errorMessage(e));
+      profileFailed.current = true;
+      throw e;
+    }
+  }, { intervalMs: 3000, enabled: !profile || profile.status === "computing" });
   useEffect(() => {
     let active = true;
-    let timer: number | undefined;
-    const load = () =>
-      read(api.GET("/api/play/profile"))
-        .then((value) => {
-          if (!active) return;
-          setProfile(value);
-          // The fit runs in the background after imports; poll until it settles.
-          if (value.status === "computing") timer = window.setTimeout(load, 3000);
-        })
-        .catch((e) => {
-          if (active) setError(e.message);
-        });
-    load();
     read(api.GET("/api/play/openings"))
       .then((value) => {
         if (!active) return;
@@ -100,7 +100,6 @@ function PlaySetup() {
         if (active) setCourses([]);
       });
     // "New game" after a game starts from that game's settings.
-    const from = new URLSearchParams(window.location.search).get("from");
     if (from)
       read(api.GET("/api/play/{play_id}", { params: { path: { play_id: from } } }))
         .then((previous) => {
@@ -122,9 +121,8 @@ function PlaySetup() {
       });
     return () => {
       active = false;
-      window.clearTimeout(timer);
     };
-  }, []);
+  }, [from]);
   // The coach asks for a game when the page opens: its clip plays when recorded,
   // and the bubble shows the line either way.
   // The page opening is the narration event, raised once the clip can play so
@@ -133,9 +131,8 @@ function PlaySetup() {
   const voice = useCoachSpeech({ scopeKey: `play-setup:${coach.id}`, recordingId: PLAY_INVITATION,
     automaticEventId: invited });
   const playable = voice.canPlay(PLAY_INVITATION);
-  useEffect(() => {
-    if (playable) setInvited(`play-setup:${coach.id}`);
-  }, [playable, coach.id]);
+  const invitationEvent = `play-setup:${coach.id}`;
+  if (playable && invited !== invitationEvent) setInvited(invitationEvent);
   const invitation = useSelectedCoachSpokenText(PLAY_INVITATION);
   const range = opponent === "human" ? HUMAN : ENGINE;
   const clamped = Math.max(range.min, Math.min(range.max, rating));
@@ -159,7 +156,7 @@ function PlaySetup() {
       );
       navigate(playGamePath(game.id));
     } catch (e) {
-      setError((e as Error).message);
+      setError(errorMessage(e));
       setStarting(false);
     }
   }
@@ -174,7 +171,7 @@ function PlaySetup() {
           : "The human move model is not available, so the bot uses a provisional level.";
   return (
     <>
-      <PageTitle title={`Play ${coach.name}`} />
+      <PageTitle title={`Play ${coach.name}`} documentTitle="Play" />
       {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
       {active && (
         <section aria-label="Game in progress">
@@ -189,8 +186,8 @@ function PlaySetup() {
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
           <div className="play-field">
-            <span>Opening</span>
-            <ChoiceGroup label="Opening" value={mode} onChange={setMode}
+            <span id="play-mode">Opening</span>
+            <ChoiceGroup label="Opening" labelId="play-mode" value={mode} onChange={setMode}
               options={MODES.map(option => ({ ...option, disabled: option.value === "practice" && !courses.length }))} />
             {/* The course picker stays in place, unavailable until practice is chosen, so
                 choosing practice never pushes the rows below it down. */}
@@ -210,7 +207,7 @@ function PlaySetup() {
           </div>
           <div className="play-field">
             <span id="play-opponent">Opponent</span>
-            <ChoiceGroup label="Opponent" options={OPPONENTS} value={opponent} onChange={(value) => {
+            <ChoiceGroup label="Opponent" labelId="play-opponent" options={OPPONENTS} value={opponent} onChange={(value) => {
               setOpponent(value);
               if (value === "engine") setLevel("choose");
             }} />
@@ -225,9 +222,9 @@ function PlaySetup() {
             </div>
           </div>
           <div className="play-field">
-            <span>Strength</span>
+            <span id="play-strength">Strength</span>
             {/* The engine cannot match a human level; keep the choice visible but unavailable. */}
-            <ChoiceGroup label="Strength" value={opponent === "human" ? level : "choose"} onChange={setLevel}
+            <ChoiceGroup label="Strength" labelId="play-strength" value={opponent === "human" ? level : "choose"} onChange={setLevel}
               options={LEVELS.map(option => ({ ...option, disabled: opponent !== "human" && option.value === "match" }))} />
             <div className="play-swap">
               <div className="play-level" hidden={!(level === "match" && opponent === "human")}>
@@ -242,8 +239,8 @@ function PlaySetup() {
             </div>
           </div>
           <div className="play-field">
-            <span>Your color</span>
-            <ChoiceGroup label="Your color" value={shownColor} onChange={setColor}
+            <span id="play-color">Your color</span>
+            <ChoiceGroup label="Your color" labelId="play-color" value={shownColor} onChange={setColor}
               options={COLORS.map(option => ({ ...option, disabled: !!course && option.value !== course.learner_color }))} />
           </div>
           <p className="small muted">
@@ -257,7 +254,7 @@ function PlaySetup() {
         </section>
         {phone && invitation ? (
           <div className="play-setup-coach">
-            <ReviewCoach title={<strong>{coach.name}</strong>} voice={voice}
+            <ReviewCoach title={<strong>{coach.name}</strong>} voice={voice} fit="content"
               reaction={{ key: "play-setup", state: "neutral" }}>
               <p aria-label={`${coach.name} says`}>{invitation}</p>
             </ReviewCoach>

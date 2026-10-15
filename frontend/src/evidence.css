@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .weakness-content { display: flex; flex-direction: column; gap: var(--space-6); }
 .weakness-section { display: flex; flex-direction: column; gap: var(--space-5); }
 .weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
@@ -18,17 +20,12 @@
 .weakness-practice strong { color: #d4d8de; font-weight: 500; font-variant-numeric: tabular-nums; }
 .weakness-evidence { border-top: 1px solid var(--line); padding-top: var(--space-2); }
 .weakness-practice-note { font-size: var(--text-sm); }
+/* The dialog's surface, backdrop and phone sheet are dialog.css's. */
 .evidence-dialog {
   width: 100%;
   max-width: 1080px;
-  max-height: 90vh;
-  overflow: auto;
-  color: #eceef1;
-  margin: auto;
 }
 .evidence-dialog[open] {
-  display: flex;
-  flex-direction: column;
   gap: var(--space-6);
 }
 .evidence-dialog > .row-between > div,
@@ -76,12 +73,6 @@
   padding: var(--space-4);
   font-size: var(--text-xs);
 }
-.evidence-dialog::backdrop {
-  background: #07090bd9;
-}
-body:has(dialog[open]) {
-  overflow: hidden;
-}
 .evidence-dialog > .row-between {
   position: sticky;
   top: -28px;
@@ -112,16 +103,6 @@ body:has(dialog[open]) {
   .weakness-list { gap: var(--space-4); }
   .weakness-section-heading { gap: var(--space-3); }
   .weakness-practice { align-items: stretch; }
-  .evidence-dialog {
-    width: 100%;
-    max-width: none;
-    max-height: 100dvh;
-    height: 100dvh;
-    border: 0;
-    border-radius: 0;
-    padding: max(var(--space-3), env(safe-area-inset-top)) var(--space-3)
-      max(16px, env(safe-area-inset-bottom));
-  }
   .evidence-dialog h2 {
     font-size: var(--text-xl);
   }
@@ -135,4 +116,5 @@ body:has(dialog[open]) {
     width: min(100%, 400px);
     margin: auto;
   }
+}
 }

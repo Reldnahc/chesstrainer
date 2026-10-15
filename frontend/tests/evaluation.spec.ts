@@ -69,7 +69,7 @@ test('evaluation scales to the game and preserves mate scores without a redundan
   await expect(coach.locator('.evaluation-score')).toHaveAttribute('data-side', 'black');
   await expect(coach.locator('.evaluation-score')).toHaveText('−3.20');
   await node(22).click();
-  await expect(node(22)).toHaveAttribute('aria-label', /11\.\.\. bxa8=Q\+/);
+  await expect(node(22)).toHaveAttribute('aria-label', /11… bxa8=Q\+/);
   await node(22).press('ArrowLeft');
   await expect(node(21)).toHaveAttribute('aria-current', 'step');
   await node(21).press('ArrowRight');

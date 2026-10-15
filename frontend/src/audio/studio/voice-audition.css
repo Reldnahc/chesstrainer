@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* Shared audition framing; each audition owns its domain-specific controls. */
 .voice-audition { display: flex; flex-direction: column; gap: var(--space-6); padding: var(--space-8) var(--space-6) var(--space-6); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .voice-audition-heading { display: flex; flex-direction: column; gap: var(--space-2); }
@@ -20,4 +22,5 @@
 @media (max-width: 560px) {
   .voice-audition { padding: var(--space-6) var(--space-4) var(--space-4); }
   .voice-audition-heading h2 { font-size: var(--text-3xl); }
+}
 }

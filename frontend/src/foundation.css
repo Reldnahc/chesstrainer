@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer foundation {
 /* Shared visual primitives for the application and development tools. */
 @font-face {
   font-family: "IBM Plex Sans";
@@ -20,8 +22,10 @@
   font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
   font-synthesis: none;
   color-scheme: dark;
-  color: #eceef1;
-  background: #141517;
+  color: var(--text);
+  background: var(--page-background);
+  --text: #eceef1;
+  --page-background: #141517;
   --surface: #1c1e21;
   --raised: #23262a;
   --muted: #a0a5ae;
@@ -30,6 +34,25 @@
   --accent-hover: #ff9b7c;
   --board-light: #c7cbd0;
   --board-dark: #737e8b;
+  /* Controls: ordinary and compact heights, the phone touch target, the resting
+     border, and the hover fill and border. */
+  --control-height: 42px;
+  --control-height-compact: 36px;
+  --touch-target: 44px;
+  --control-border: #44484f;
+  --control-hover: #30343a;
+  --control-hover-border: #69707c;
+  /* Game outcomes (history badges, Insights' split and legend). */
+  --outcome-win: #89ad5d;
+  --outcome-win-text: #c0dda1;
+  --outcome-draw: #86a4bd;
+  --outcome-draw-text: #bccede;
+  --outcome-loss: #d35f6b;
+  --outcome-loss-text: #ff9ca4;
+  /* Tactical roles on the board and in the pattern legend that explains them. */
+  --pattern-attacker: #2785c4;
+  --pattern-target: #f78b40;
+  --pattern-defender: #ab6ee9;
   --mono: "IBM Plex Mono", monospace;
   /* Spacing scale: every margin, padding and gap uses one of these steps
      (a 4px grid, plus 2px and 6px for tight controls). The step number is the
@@ -97,9 +120,6 @@
 .stack--tight {
   --stack-gap: var(--space-2);
 }
-.stack--loose {
-  --stack-gap: var(--space-6);
-}
 .cluster {
   display: flex;
   flex-wrap: wrap;
@@ -144,9 +164,9 @@ button,
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: 42px;
+  min-height: var(--control-height);
   padding: var(--space-3) var(--space-4);
-  border: 1px solid #44484f;
+  border: 1px solid var(--control-border);
   border-radius: 6px;
   background: var(--raised);
   color: #e8eaee;
@@ -161,8 +181,12 @@ button,
 }
 button:hover,
 .button-link:hover {
-  background: #30343a;
-  border-color: #69707c;
+  background: var(--control-hover);
+  border-color: var(--control-hover-border);
+}
+/* The element rules' display must not defeat the hidden attribute. */
+button[hidden] {
+  display: none;
 }
 button:disabled {
   opacity: 0.45;
@@ -177,36 +201,7 @@ summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
-.primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #191a1c;
-  font-weight: 600;
-}
-.primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-}
-.secondary {
-  background: transparent;
-}
-.text-button {
-  border: 0;
-  background: transparent;
-  padding-left: 0;
-  justify-content: flex-start;
-  color: var(--muted);
-}
-.text-button:hover {
-  background: transparent;
-  color: #fff;
-}
-.icon-button {
-  border: 0;
-  background: transparent;
-  padding: var(--space-2);
-  flex-shrink: 0;
-}
+/* A caption overrides the type of whatever it marks, including phone body text. */
 .small {
   font-size: var(--text-caption) !important;
   line-height: 1.65 !important;
@@ -275,12 +270,12 @@ label {
   font-weight: 500;
   min-width: 0;
 }
-input,
+input:not([type="checkbox"], [type="radio"]),
 textarea,
 select {
   width: 100%;
   min-width: 0;
-  min-height: 44px;
+  min-height: var(--touch-target);
   padding: var(--space-3) var(--space-3);
   border: 1px solid #484d55;
   border-radius: 5px;
@@ -322,9 +317,6 @@ details[open] > summary ~ * ~ * {
 .error-text {
   color: #ffacb4;
 }
-.success-text {
-  color: #c6d7ef;
-}
 dl {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -348,4 +340,5 @@ dd {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
 }

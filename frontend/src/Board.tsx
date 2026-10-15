@@ -63,6 +63,7 @@ function PromotionDialog({ board, promotion, onChoose, onClose }: {
     const anchor = board.current!;
     const position = () => {
       const bounds = anchor.getBoundingClientRect();
+      // eslint-disable-next-line react-hooks/immutability -- the element is the dialog DOM node behind the hook's ref; positioning it in a layout effect is intended
       const styles = getComputedStyle(element);
       const inlineInset = Number.parseFloat(styles.getPropertyValue("--promotion-inline-inset"));
       const blockInset = Number.parseFloat(styles.getPropertyValue("--promotion-block-inset"));

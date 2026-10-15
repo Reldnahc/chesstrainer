@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .settings-content,
 .settings-import {
   display: grid;
@@ -135,23 +137,25 @@
   gap: var(--space-1-5);
   font-size: var(--text-base);
 }
-/* The same checkbox row as Sound settings. */
-.server-setting-check {
+/* A checkbox beside its label: the shared row for Settings (Sound, Server) and the
+   lesson editor. Each use sets its own alignment and height. */
+.check-row {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   gap: var(--space-3);
-  font-size: var(--text-base);
   cursor: pointer;
 }
-.server-setting-check input {
+.check-row > input[type="checkbox"] {
   flex: 0 0 20px;
   width: 20px;
   height: 20px;
-  min-height: 20px;
-  padding: 0;
   margin: 0;
   accent-color: var(--accent);
+}
+/* Server settings align the box with the label's first line. */
+.server-setting-check {
+  align-items: flex-start;
+  font-size: var(--text-base);
 }
 .server-setting-check > span {
   display: grid;
@@ -164,4 +168,12 @@
 }
 .server-settings > .button-row {
   justify-content: flex-start;
+}
+/* A row of several section commands goes under the heading on phones (Courses). */
+@media (max-width: 760px) {
+  .settings-section--stacked-actions .settings-section-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
 }

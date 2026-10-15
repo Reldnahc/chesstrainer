@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { api, read } from "./api";
+import { errorMessage, api, read } from "./api";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
 import ActionLink from "./ActionLink";
 import Pagination from "./Pagination";
-import Notice from "./Notice";
-import Reveal from "./Reveal";
+import Banner from "./Banner";
+import Button from "./Button";
 import EmptyState from "./EmptyState";
 import { gamesPath } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
-import { LoadingState } from "./LoadState";
+import { LoadingState, UnavailableState } from "./LoadState";
 
 export default function GamesScreen({
   page,
@@ -34,8 +34,10 @@ export default function GamesScreen({
     let active = true;
     if (!background.current) {
       setLoading(true);
-      setError("");
+      setItems([]);
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
+    setError("");
     background.current = false;
     read(api.GET("/api/games", { params: { query: { offset } } }))
       .then((data) => {
@@ -45,7 +47,7 @@ export default function GamesScreen({
         }
       })
       .catch((e) => {
-        if (active) setError(e.message);
+        if (active) setError(errorMessage(e));
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -69,14 +71,15 @@ export default function GamesScreen({
   };
   return (
     <>
-      <PageTitle title="Your games" />
-      <Reveal>{error && (
-        <Notice announcement="alert" tone="error">
-          {error}
-        </Notice>
-      )}</Reveal>
+      <PageTitle title="Your games" documentTitle="Games" />
+      {error && items.length > 0 && <Banner tone="error" onDismiss={() => setError("")}>Couldn’t refresh your games. {error}</Banner>}
       {loading ? (
         <LoadingState>Loading your games…</LoadingState>
+      ) : error && !items.length ? (
+        // A failed load is never "no games": it says so and offers the load again.
+        <UnavailableState actions={<Button variant="secondary" onClick={() => setRevision((value) => value + 1)}>Try again</Button>}>
+          Couldn’t load your games. {error}
+        </UnavailableState>
       ) : !items.length ? (
         <EmptyState title={page > 1
               ? "No games on this page."

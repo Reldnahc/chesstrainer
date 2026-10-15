@@ -8,7 +8,7 @@ import EmptyState from "./EmptyState";
 import { LoadingState, UnavailableState } from "./LoadState";
 import Button from "./Button";
 import ActionLink from "./ActionLink";
-import { insightsPaths, studyPaths, type InsightsSection } from "./navigation";
+import { focusedPracticePath, insightsPaths, settingsPath, type InsightsSection } from "./navigation";
 import GameInsights from "./GameInsights";
 
 function WeaknessCard({ skill, onEvidence }: {
@@ -31,7 +31,7 @@ function WeaknessCard({ skill, onEvidence }: {
         <strong>{skill.focused_attempts - skill.focused_failures} / {skill.focused_attempts}</strong> clean solves in recent focused practice
       </p>}
       {skill.practice_positions ? <ActionLink variant="secondary"
-        href={`${studyPaths.due}?focus=${encodeURIComponent(skill.skill_id)}`}>
+        href={focusedPracticePath(skill.skill_id)}>
         Practice {skill.practice_positions} {skill.practice_positions === 1 ? "position" : "positions"}
         <ArrowRight size={16} aria-hidden="true" />
       </ActionLink> : <Button variant="secondary" disabled>No active positions</Button>}
@@ -60,6 +60,7 @@ export default function InsightsScreen({ onEvidence, category }: {
   useEffect(() => {
     if (!wanted) return;
     const controller = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
     setError(false);
     read(api.GET("/api/weaknesses", { signal: controller.signal }))
       .then(value => { if (!controller.signal.aborted) setData(value); })
@@ -85,7 +86,7 @@ export default function InsightsScreen({ onEvidence, category }: {
         Couldn’t load your weaknesses. Please try again.
       </UnavailableState> : !data ? <LoadingState presentation="panel">Loading your evidence…</LoadingState>
         : !data.skills.length ? <EmptyState title="No supported weaknesses yet." icon={<Flag />} actions={
-          <ActionLink variant="secondary" href="/settings?section=advanced">Training settings</ActionLink>
+          <ActionLink variant="secondary" href={settingsPath("advanced")}>Training settings</ActionLink>
         }>
           Classify saved games in Settings. Your positions are still available in Due.
         </EmptyState> : <section className="weakness-section" aria-labelledby="weakness-category-title">
