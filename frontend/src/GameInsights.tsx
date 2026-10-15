@@ -9,9 +9,7 @@ import EmptyState from "./EmptyState";
 import { pawnsText } from "./evaluation";
 import ActionLink from "./ActionLink";
 import Link from "./Link";
-import { LoadingState } from "./LoadState";
-import Reveal from "./Reveal";
-import { QueryResult, useQuery } from "./useQuery";
+import { QueryReloading, QueryResult, reloading, useQuery, type Query } from "./useQuery";
 import { gameReviewPath, gamesPath, pagePaths } from "./navigation";
 import "./game-insights.css";
 
@@ -441,32 +439,31 @@ export default function GameInsights() {
     params: { query: { speed, days: days || undefined, offset: -new Date().getTimezoneOffset() } },
   })), [speed, days]);
   return <QueryResult query={query} label="your insights" presentation="panel">
-    {data => <InsightsView data={data} speed={speed} setSpeed={setSpeed} days={days} setDays={setDays}
-      refreshing={query.pending} />}
+    {data => <InsightsView data={data} speed={speed} setSpeed={setSpeed} days={days} setDays={setDays} query={query} />}
   </QueryResult>;
 }
 
 /** The loaded insights; a changed filter keeps them, marked busy, until the new ones arrive. */
-function InsightsView({ data, speed, setSpeed, days, setDays, refreshing }: {
+function InsightsView({ data, speed, setSpeed, days, setDays, query }: {
   data: Insights;
   speed: Speed;
   setSpeed: (speed: Speed) => void;
   days: number;
   setDays: (days: number) => void;
-  refreshing: boolean;
+  query: Query<Insights>;
 }) {
   const speeds: Speed[] = ["all", ...data.speeds];
   const lines = headlines(data);
   const finished = data.wins + data.draws + data.losses;
   const reviewed = data.reviewed_games > 0;
-  return <div className="insights" data-refreshing={refreshing || undefined}>
+  return <div className="insights" data-reloading={reloading(query)}>
     <div className="insight-toolbar">
       {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
         <ChoiceGroup label="Speed" labelId="insight-speed" size="compact" value={speed} onChange={setSpeed} phone="select"
           options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
       <div className="insight-filter"><span id="insight-period">Period</span>
         <ChoiceGroup label="Period" labelId="insight-period" size="compact" value={days} onChange={setDays} options={periods} phone="select" /></div>
-      <Reveal className="insight-refreshing">{refreshing && <LoadingState>Loading your insights…</LoadingState>}</Reveal>
+      <QueryReloading query={query} label="your insights" className="insight-refreshing" />
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
       <ActionLink href={pagePaths.Settings}>Import games in Settings</ActionLink>}>

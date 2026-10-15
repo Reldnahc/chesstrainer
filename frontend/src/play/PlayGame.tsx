@@ -110,7 +110,7 @@ export default function PlayGame({ id }: { id: string }) {
     return (
       <>
         <ActionLink variant="quiet" href={pagePaths.Play}>Play</ActionLink>
-        <QueryResult query={session.load} label="the game">{() => <LoadingState>Setting up the board…</LoadingState>}</QueryResult>
+        <QueryResult query={session.load} label="the game" presentation="panel">{() => <LoadingState presentation="panel">Loading the game…</LoadingState>}</QueryResult>
       </>
     );
   const shownOrientation = orientation ?? state.learner_color;

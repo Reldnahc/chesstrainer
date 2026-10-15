@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
-import { api, errorMessage, read, type Evidence, type Schema } from "./api";
+import { api, errorMessage, read, type Schema } from "./api";
 import Board from "./Board";
 import Button, { IconButton } from "./Button";
 import { scoreText } from "./evaluation";
 import { sideToMove } from "./fen";
 import useModalDialog from "./useModalDialog";
-import { LoadingState } from "./LoadState";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
+import { QueryResult, useQuery } from "./useQuery";
 export default function EvidenceDialog({
   id,
   onClose,
@@ -16,24 +16,15 @@ export default function EvidenceDialog({
   id: string;
   onClose: () => void;
 }) {
-  const [data, setData] = useState<Evidence | null>(null),
-    [audit, setAudit] = useState<Schema["ClassificationAudit"] | null>(null);
+  const [audit, setAudit] = useState<Schema["ClassificationAudit"] | null>(null);
   const [rejecting, setRejecting] = useState(false);
   // The dialog shows its own failures: a page banner would sit behind the modal.
   const [error, setError] = useState("");
   const fail = (e: unknown) => setError(errorMessage(e));
   const dialog = useModalDialog(onClose);
-  useEffect(() => {
-    let active = true;
-    read(
-      api.GET("/api/evidence/{decision_id}", {
-        params: { path: { decision_id: id } },
-      }),
-    )
-      .then((value) => { if (active) setData(value); })
-      .catch((e) => { if (active) setError(errorMessage(e)); });
-    return () => { active = false; };
-  }, [id]);
+  const evidence = useQuery(signal => read(api.GET("/api/evidence/{decision_id}", {
+    signal, params: { path: { decision_id: id } },
+  })), [id]);
   return (
     <dialog
       {...dialog}
@@ -54,7 +45,7 @@ export default function EvidenceDialog({
         </IconButton>
       </div>
       <Reveal>{error && <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>}</Reveal>
-      {data ? (
+      <QueryResult query={evidence} label="the evidence">{data => (
         <div className="evidence-grid">
           <Board
             fen={data.fen}
@@ -120,7 +111,7 @@ export default function EvidenceDialog({
                           }),
                         ),
                       )
-                      .then(setData)
+                      .then(evidence.setData)
                       .catch(fail)
                       .finally(() => setRejecting(false));
                   }}
@@ -134,9 +125,7 @@ export default function EvidenceDialog({
             )}
           </div>
         </div>
-      ) : (
-        !error && <LoadingState>Loading evidence…</LoadingState>
-      )}
+      )}</QueryResult>
     </dialog>
   );
 }

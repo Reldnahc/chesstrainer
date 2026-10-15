@@ -11,7 +11,7 @@
 /* A changed filter keeps the last insights, dimmed, beside the shared loading line. */
 .insight-refreshing { align-self: center; }
 .insights > :not(.insight-toolbar) { transition: opacity var(--motion-fast) var(--ease-standard); }
-.insights[data-refreshing] > :not(.insight-toolbar) { opacity: 0.55; }
+.insights[data-reloading] > :not(.insight-toolbar) { opacity: 0.55; }
 
 .insight-summary { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); padding: var(--space-8); }
 .insight-headlines { list-style: none; padding: 0; display: grid; gap: var(--space-3); }

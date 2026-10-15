@@ -131,8 +131,8 @@ async function expectLoading(page: Page, message: string) {
 }
 
 for (const fixture of [
-  { view: "lesson", endpoint: "/api/study/lesson-sessions/loading-fixture", message: "Loading your lesson…", heading: "Lesson unavailable", link: "All lessons", href: "/study/openings" },
-  { view: "puzzle", endpoint: "/api/puzzle-sessions/loading-fixture", message: "Loading your puzzle…", heading: "Puzzle unavailable", link: "All puzzles", href: "/study/puzzles" },
+  { view: "lesson", endpoint: "/api/study/lesson-sessions/loading-fixture", message: "Loading your lesson…", failed: "Couldn’t load your lesson.", heading: "Lesson unavailable", link: "All lessons", href: "/study/openings" },
+  { view: "puzzle", endpoint: "/api/puzzle-sessions/loading-fixture", message: "Loading your puzzle…", failed: "Couldn’t load your puzzle.", heading: "Puzzle unavailable", link: "All puzzles", href: "/study/puzzles" },
 ]) {
   test(`${fixture.view} loading and retry preserve caller-owned recovery commands`, async ({ page }) => {
     const request = await holdEndpoint(page, fixture.endpoint);
@@ -140,9 +140,9 @@ for (const fixture of [
     await expectLoading(page, fixture.message);
     await request.reply({ detail: "Saved session could not be loaded." }, 503);
     await expect(page.getByRole("heading", { name: fixture.heading, level: 1 })).toBeVisible();
-    await expect(page.getByRole("alert")).toHaveText("Saved session could not be loaded.");
+    await expect(page.getByRole("alert")).toHaveText(`${fixture.failed} Saved session could not be loaded.`);
     await expect(page.getByRole("status")).toHaveCount(0);
-    const retry = page.getByRole("button", { name: "Try loading again", exact: true });
+    const retry = page.getByRole("button", { name: "Try again", exact: true });
     const back = page.getByRole("link", { name: fixture.link, exact: true });
     await expect(retry).toHaveAttribute("type", "button");
     await expect(back).toHaveAttribute("href", fixture.href);
@@ -152,7 +152,7 @@ for (const fixture of [
     await expect(retry).toHaveCount(0);
     await expect.poll(() => request.methods).toEqual(["GET", "GET"]);
     await request.reply({ detail: "The saved session is still unavailable." }, 503);
-    await expect(page.getByRole("alert")).toHaveText("The saved session is still unavailable.");
+    await expect(page.getByRole("alert")).toHaveText(`${fixture.failed} The saved session is still unavailable.`);
     await expect(retry).toBeEnabled();
     await expect(back).toHaveAttribute("href", fixture.href);
     expect(request.methods).toEqual(["GET", "GET"]);
@@ -161,13 +161,13 @@ for (const fixture of [
 }
 
 for (const fixture of [
-  { view: "game", endpoint: "/api/games/loading-fixture", message: "Opening game…", link: "All games", href: "/games?page=3" },
-  { view: "library", endpoint: "/api/study/courses", message: "Loading opening lessons…" },
-  { view: "chapters", endpoint: "/api/study/courses/loading-fixture?revision=fixture-v1", message: "Loading lesson chapters…", link: "All openings", href: "/study/openings" },
-  { view: "preview", endpoint: "/api/openings/catalog/loading-fixture", message: "Loading the selected line…", link: "Back to openings", href: "/study/openings/catalogue" },
-  { view: "course-preview", endpoint: "/api/openings/course-lines/loading-fixture/line?revision=fixture-v1", message: "Loading the selected line…", link: "Back to openings", href: "/study/openings/courses/loading-fixture?revision=fixture-v1" },
+  { view: "game", endpoint: "/api/games/loading-fixture", message: "Loading the game…", failed: "Couldn’t load the game. The requested content could not be loaded.", link: "All games", href: "/games?page=3" },
+  { view: "library", endpoint: "/api/study/courses", message: "Loading opening lessons…", failed: "Couldn’t load opening lessons." },
+  { view: "chapters", endpoint: "/api/study/courses/loading-fixture?revision=fixture-v1", message: "Loading the course…", failed: "Couldn’t load the course.", link: "All openings", href: "/study/openings" },
+  { view: "preview", endpoint: "/api/openings/catalog/loading-fixture", message: "Loading the selected line…", failed: "Couldn’t load the selected line.", link: "Back to openings", href: "/study/openings/catalogue" },
+  { view: "course-preview", endpoint: "/api/openings/course-lines/loading-fixture/line?revision=fixture-v1", message: "Loading the selected line…", failed: "Couldn’t load the selected line.", link: "Back to openings", href: "/study/openings/courses/loading-fixture?revision=fixture-v1" },
 ]) {
-  test(`${fixture.view} switches its loading announcement to the caller error and retains navigation`, async ({ page }) => {
+  test(`${fixture.view} switches its loading announcement to the standard failure with Try again and retains navigation`, async ({ page }) => {
     const request = await holdEndpoint(page, fixture.endpoint);
     await page.route("**/api/opening-studies", route => route.fulfill({ json: { items: [] } }));
     await openFixture(page, fixture.view);
@@ -178,9 +178,9 @@ for (const fixture of [
       await back.focus();
     }
     await request.reply({ detail: "The requested content could not be loaded." }, 503);
-    await expect(page.getByRole("alert")).toHaveText("The requested content could not be loaded.");
+    await expect(page.getByRole("alert")).toHaveText(fixture.failed);
     await expect(page.getByRole("status")).toHaveCount(0);
-    await expect(page.getByRole("button", { name: /retry|try loading again/i })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Try again", exact: true })).toBeVisible();
     if (fixture.link) {
       const back = page.getByRole("link", { name: fixture.link, exact: true });
       await expect(back).toHaveAttribute("href", fixture.href!);
@@ -205,8 +205,8 @@ test("pending evidence has a compact announcement while its close action stays u
   const opener = page.getByRole("button", { name: "Open evidence", exact: true });
   await opener.click();
   const dialog = page.getByRole("dialog", { name: "Decision evidence" });
-  await expectLoading(page, "Loading evidence…");
-  await expect(dialog.getByRole("status")).toHaveText("Loading evidence…");
+  await expectLoading(page, "Loading the evidence…");
+  await expect(dialog.getByRole("status")).toHaveText("Loading the evidence…");
   const close = dialog.getByRole("button", { name: "Close evidence", exact: true });
   await expect(close).toBeEnabled();
   await close.click();

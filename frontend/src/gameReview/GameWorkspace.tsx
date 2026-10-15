@@ -9,6 +9,7 @@ import EvaluationBar from "../EvaluationBar";
 import { ARROW_COLOURS, cueArrows, cuesFor, moveSquares, uciArrow } from "../boardCues";
 import ActionLink from "../ActionLink";
 import { LoadingState, UnavailableState } from "../LoadState";
+import Button from "../Button";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
@@ -41,6 +42,7 @@ export default function GameWorkspace({
     error,
     setError,
     dismissError,
+    retryLoad,
     start,
     cancel,
     analysisEpoch,
@@ -114,8 +116,8 @@ export default function GameWorkspace({
           All games
         </ActionLink>
         {error
-          ? <UnavailableState>{error}</UnavailableState>
-          : <LoadingState>Opening game…</LoadingState>}
+          ? <UnavailableState presentation="panel" actions={<Button variant="secondary" onClick={retryLoad}>Try again</Button>}>Couldn’t load the game. {error}</UnavailableState>
+          : <LoadingState presentation="panel">Loading the game…</LoadingState>}
       </>
     );
   const playerName = (color: "white" | "black") => {

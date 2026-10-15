@@ -148,7 +148,7 @@ export default function ReviewExplanation({
         {error ? (
           <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>
         ) : !data || !frame ? (
-          <p role="status">Loading the saved continuation...</p>
+          <p role="status">Loading the saved continuation…</p>
         ) : (
           <DialogueText className="explanation-caption" utterance={utterance} />
         )}

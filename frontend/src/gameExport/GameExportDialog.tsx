@@ -1,11 +1,11 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Check, Copy, Download, X } from "lucide-react";
-import { errorMessage, api, read, type Schema } from "../api";
+import { api, read, type Schema } from "../api";
 import Button, { IconButton } from "../Button";
 import { download } from "../download";
 import Notice from "../Notice";
 import Reveal from "../Reveal";
-import { LoadingState } from "../LoadState";
+import { QueryResult, useQuery } from "../useQuery";
 import useModalDialog from "../useModalDialog";
 import "./game-export.css";
 
@@ -59,17 +59,11 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
 }) {
   const dialog = useModalDialog(onClose);
   const ids = useId();
-  const [game, setGame] = useState<Exported | null>(null);
+  const exported = useQuery(signal => read(api.GET("/api/games/{game_id}/export", { signal, params: { path: { game_id: id } } })), [id]);
+  const game = exported.data;
   const [error, setError] = useState("");
   const [gif, setGif] = useState<{ url: string; blob: Blob } | null>(null);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
-  useEffect(() => {
-    let active = true;
-    read(api.GET("/api/games/{game_id}/export", { params: { path: { game_id: id } } }))
-      .then((value) => { if (active) setGame(value); })
-      .catch((e) => { if (active) setError(errorMessage(e)); });
-    return () => { active = false; };
-  }, [id]);
   useEffect(() => () => { if (gif) URL.revokeObjectURL(gif.url); }, [gif]);
   // Closing the dialog stops a GIF still being drawn.
   const drawing = useRef<AbortController | null>(null);
@@ -100,7 +94,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
         </IconButton>
       </div>
       <Reveal>{error && <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>}</Reveal>
-      {!game ? (!error && <LoadingState>Preparing the game…</LoadingState>) : <>
+      <QueryResult query={exported} label="the game">{game => <>
         <section className="game-export-section" aria-labelledby={`${ids}-pgn`}>
           <div className="row-between">
             <h3 id={`${ids}-pgn`}>PGN</h3>
@@ -135,7 +129,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
           </div>
           {gif && <img className="game-export-preview" src={gif.url} alt={`Animated game: ${game.white} vs ${game.black}`} />}
         </section>
-      </>}
+      </>}</QueryResult>
     </dialog>
   );
 }

@@ -250,7 +250,10 @@ test('Insights shows the shared loading line while a changed filter reloads, and
     await expect(page.getByRole('status')).toHaveText('Loading your insights…');
     // The filters and the last insights stay while the new ones load.
     await expect(period).toBeVisible();
-    await expect(page.getByRole('heading', {name: 'No games in this selection.'})).toBeVisible();
+    // This worker's database may or may not hold games from earlier files.
+    await expect(page.getByRole('heading', {name: 'No games in this selection.'})
+      .or(page.getByRole('region', {name: 'At a glance'}))).toBeVisible();
+    await expect(page.locator('.insights')).toHaveAttribute('data-reloading', 'true');
     release();
     await expect(page.getByRole('status')).toHaveCount(0);
   } finally {

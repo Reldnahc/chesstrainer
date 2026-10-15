@@ -3,6 +3,7 @@ import { errorMessage } from "./api";
 import Banner from "./Banner";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
+import Reveal from "./Reveal";
 
 export type Query<T> = {
   /** The last loaded value; kept while a retry or a dependency change reloads. */
@@ -82,6 +83,26 @@ export function QueryResult<T>({ query, label, presentation, heading, children }
     {query.error && <Banner tone="error" action={retry} onDismiss={query.dismiss}>Couldn’t refresh {label}.</Banner>}
     {children(query.data)}
   </>;
+}
+
+/**
+ * The loading line for a request whose filters or page changed while its last
+ * result stays on screen: it shows the shared compact LoadingState only during
+ * that reload. Give the kept content `className="reloadable"` and
+ * `data-reloading={reloading(query)}` so it dims until the new result arrives.
+ */
+export function QueryReloading<T>({ query, label, className }: {
+  query: Query<T>;
+  /** What is loading, in the reader's words, as for QueryResult. */
+  label: string;
+  className?: string;
+}) {
+  return <Reveal className={className}>{reloading(query) && <LoadingState>Loading {label}…</LoadingState>}</Reveal>;
+}
+
+/** True while a query that already has a result loads a new one. */
+export function reloading<T>(query: Query<T>): true | undefined {
+  return query.pending && query.data !== undefined ? true : undefined;
 }
 
 /**

@@ -185,7 +185,7 @@ function PlaySetup({ from }: { from: string | null }) {
           </Notice>
         </section>
       )}
-      {active === undefined || loadedCourses === undefined || (!profile && !error) ? <LoadingState>Loading…</LoadingState> : (
+      {active === undefined || loadedCourses === undefined || (!profile && !error) ? <LoadingState presentation="panel">Loading the game setup…</LoadingState> : (
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
           <div className="play-field">

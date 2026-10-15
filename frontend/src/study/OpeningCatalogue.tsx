@@ -6,7 +6,7 @@ import Button from "../Button";
 import Pagination from "../Pagination";
 import EmptyState from "../EmptyState";
 import { navigate, openingCataloguePath } from "../navigation";
-import { QueryResult, useQuery } from "../useQuery";
+import { QueryReloading, QueryResult, reloading, useQuery } from "../useQuery";
 
 const PAGE = 50;
 
@@ -33,15 +33,16 @@ export default function OpeningCatalogue({ query, eco, offset }: { query: string
       <label>ECO<input value={code} onChange={event => setCode(event.target.value)} placeholder="C50" maxLength={3} /></label>
       <Button variant="primary" type="submit"><Search size={16} />Search</Button>
     </form>
-    <QueryResult query={catalogue} label="opening lines">{(catalogue) => <>
-      <p className="small muted">{catalogue.total} matching {catalogue.total === 1 ? "line" : "lines"}</p>
-      {catalogue.items.length
-        ? <div className="opening-results">{catalogue.items.map(line => <CatalogueLine key={line.source_key} line={line} />)}</div>
+    <QueryReloading query={catalogue} label="opening lines" />
+    <QueryResult query={catalogue} label="opening lines">{(lines) => <div className="opening-catalogue-results reloadable" data-reloading={reloading(catalogue)}>
+      <p className="small muted">{lines.total} matching {lines.total === 1 ? "line" : "lines"}</p>
+      {lines.items.length
+        ? <div className="opening-results">{lines.items.map(line => <CatalogueLine key={line.source_key} line={line} />)}</div>
         : <EmptyState presentation="compact">No opening lines match this search.</EmptyState>}
-      {(offset > 0 || offset + catalogue.items.length < catalogue.total) && <Pagination label="Opening catalogue pages"
-        start={catalogue.items.length ? offset + 1 : 0} end={offset + catalogue.items.length} total={catalogue.total}
+      {(offset > 0 || offset + lines.items.length < lines.total) && <Pagination label="Opening catalogue pages"
+        start={lines.items.length ? offset + 1 : 0} end={offset + lines.items.length} total={lines.total}
         previousHref={offset > 0 ? searchPath(Math.max(0, offset - PAGE)) : undefined}
-        nextHref={offset + catalogue.items.length < catalogue.total ? searchPath(offset + PAGE) : undefined} />}
-    </>}</QueryResult>
+        nextHref={offset + lines.items.length < lines.total ? searchPath(offset + PAGE) : undefined} />}
+    </div>}</QueryResult>
   </section>;
 }
