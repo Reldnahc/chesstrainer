@@ -315,6 +315,9 @@ function initialLocation(): Location {
 
 let location: Location | null = null;
 let currentIndex = 0;
+// The browser's own position in session history, where the Navigation API offers it.
+const browserIndex = () => (window as { navigation?: { currentEntry?: { index: number } | null } }).navigation?.currentEntry?.index;
+let lastBrowserIndex: number | undefined;
 let ignoredPop = false;
 const listeners = new Set<() => void>();
 
@@ -327,6 +330,7 @@ export function startRouter() {
   if (url.href !== window.location.href || !state[entryKey] || entryIndex(state) === null)
     window.history.replaceState({ ...state, [entryKey]: state[entryKey] ?? localId(), [indexKey]: currentIndex }, "", url);
   location = initialLocation();
+  lastBrowserIndex = browserIndex();
 }
 
 function saveScroll(entry: string) {
@@ -341,6 +345,7 @@ function persistScroll() {
 }
 
 function update() {
+  lastBrowserIndex = browserIndex();
   if (location) saveScroll(location.route.entry);
   const entry = String(historyState()[entryKey] ?? "");
   const saved = scrollPositions.get(entry) ?? (historyState()[scrollKey] as ScrollPosition | undefined);
@@ -357,10 +362,12 @@ function popped(event: PopStateEvent) {
   let next = entryIndex(event.state);
   if (next === null) {
     // An in-page #fragment link adds an entry the app did not write; it follows the current one.
-    // An entry written before entries were numbered (a tab open across an upgrade) precedes every
-    // numbered one, so reaching it is a step back.
+    // An entry written before entries were numbered (a tab open across an upgrade) is placed by
+    // how far the browser moved; without that, it precedes every numbered one, so it is a step back.
     const legacy = typeof historyState()[entryKey] === "string";
-    next = legacy ? currentIndex - 1 : currentIndex + 1;
+    const now = browserIndex();
+    next = legacy && now !== undefined && lastBrowserIndex !== undefined ? currentIndex + now - lastBrowserIndex
+      : legacy ? currentIndex - 1 : currentIndex + 1;
     window.history.replaceState({ ...historyState(), [entryKey]: historyState()[entryKey] ?? localId(), [indexKey]: next }, "");
   }
   // Back or Forward out of a screen with unsaved work asks first, as a link does.

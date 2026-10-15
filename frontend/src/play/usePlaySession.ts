@@ -251,7 +251,10 @@ export function usePlaySession(id: string) {
     replyRequested.current = null;
     try {
       const next = await send();
-      if (mounted.current) apply(next);
+      if (!mounted.current) return;
+      // The command answered the game, so a failed reply to the earlier position is settled.
+      setReplyError(null);
+      apply(next);
     } catch (e) {
       if (!mounted.current) return;
       setError(errorMessage(e));
@@ -389,7 +392,7 @@ export function usePlaySession(id: string) {
     game,
     error,
     /** The bot's reply failed; asking again (retryReply) is safe and the only way on, so it is not dismissed. */
-    replyError,
+    replyError: botToMove ? replyError : null,
     dismissError: () => setError(""),
     moving,
     /** A command (take back, play on, keep playing, go again, resign) is being sent. */
