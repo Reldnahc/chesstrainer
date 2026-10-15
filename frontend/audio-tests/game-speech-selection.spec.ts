@@ -280,6 +280,26 @@ test("recorded-game recovery is tied to learner and current node generation, and
   }
 });
 
+test("the chance-taken clip, some of whose takes call the reply exact, plays only on a top-graded move", () => {
+  const current = context(causal[0].report);
+  current.report!.intelligence!.events = [];
+  const evidence = [{source: "stockfish" as const, id: "chance-search", field: "verified-sequence", ply: 1}];
+  const actor = current.game.orientation;
+  const takenWith = (label: Report["label"]) => {
+    const changed = structuredClone(current);
+    changed.report = {...changed.report!, label};
+    changed.game.context = {version: "game-context-1", input_digest: "current-game", complete: true,
+      limitations: [], missing_plies: [], total_plies: 1, biggest_swing_ply: null, turning_points: [],
+      nodes: [{ply: 1, actor, input_digest: changed.report.intelligence!.input_digest,
+        before: changed.report.best.score, after: changed.report.actual.score, evidence, event_ids: []}],
+      relationships: [{id: "chance-now", kind: "punishment", actor, plies: [0, 1],
+        facts: {outcome: "capitalized"}, evidence, event_ids: []}]};
+    return selectWalterGameRecording(onlyClaim(rerender(changed), "punishment"));
+  };
+  expect(takenWith("Best")).toBe("chance-taken");
+  expect(takenWith("Good")).toBeNull();
+});
+
 test("the repeated-issue clip, whose takes say once before or a second time, plays only on the second occurrence", () => {
   const current = context(causal[0].report);
   const evidence = [{source: "stockfish" as const, id: "repeat-search", field: "verified-sequence", ply: 1}];

@@ -263,6 +263,9 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
     // The repeated-issue takes say "once before" or "a second time".
     if (item.code === "repeated" && item.slots.count !== 2) return null;
+    // Some chance-taken takes say "exactly the right reply" or "takes full
+    // advantage", which a Good move (up to half a pawn short of the best) is not.
+    if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label)) return null;
     // Recovery takes credit this move with restoring the game, and a move never
     // raises its own evaluation: the opponent's moves did. The line stays written.
     if (item.code === "recovery") return null;
