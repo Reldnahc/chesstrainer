@@ -2,7 +2,7 @@ import type {Schema} from "../../api";
 import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
 import {humanInsightLabels} from "../../dialogue/humanClaims";
-import {object, strings} from "../../dialogue/eventClaims";
+import {object, strings, tacticStartsHere} from "../../dialogue/eventClaims";
 import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
@@ -102,9 +102,8 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   // after a double check, is only a possibility from here, never this move's tactic.
   // A back-rank witness is the mate that ends the line, so the move that starts
   // that mating line (such as a decoy check) is the back-rank idea.
-  const opening = object(f.witness[0]), expectedPly = role === "allowed" ? 2 : 1;
-  if (motif !== "back_rank" && (f.plies[0] !== expectedPly || opening.ply !== expectedPly
-    || (role !== "allowed" && opening.san !== report[role === "missed" ? "best" : "actual"].san))) return null;
+  const opening = object(f.witness[0]);
+  if (motif !== "back_rank" && !tacticStartsHere(event, report.actual.san, report.best.san)) return null;
   // Promotion clips describe a pawn still on its way to the last rank. When the
   // witnessed move is itself the promotion they are false, and the grade speaks.
   if (motif === "promotion_awareness" && promotes(opening.san)) return null;

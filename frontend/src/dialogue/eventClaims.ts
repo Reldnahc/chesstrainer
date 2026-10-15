@@ -41,6 +41,20 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
   }
 }
 
+/** Whether a tactic belongs to this move (or, when allowed, to the reply it allows)
+ * rather than appearing later in the line: its verified witness starts on that move,
+ * with the move's SAN, and its reference board is the position just before or after
+ * it. The written timing ("After Nf3, there is a fork") and the recorded tactic
+ * clips both use this one rule. */
+export function tacticStartsHere(event: Event, move: string, best: string): boolean {
+  const f = event.facts, role = String(f.role), expectedPly = role === "allowed" ? 2 : 1;
+  const witness = Array.isArray(f.witness) ? f.witness.map(object) : [], first = witness[0];
+  return event.confidence === "line_witness" && Array.isArray(f.plies) && f.plies.length === witness.length
+    && f.plies[0] === expectedPly && (f.frame_ply === expectedPly || f.frame_ply === expectedPly - 1)
+    && !!first && first.ply === expectedPly && typeof first.san === "string" && !!first.san
+    && (role === "allowed" || first.san === (role === "missed" ? best : move));
+}
+
 export function tacticalClaim(event: Event, move: string, best: string, opponent: string): Claim | null {
   const f = event.facts, role = f.role;
   if (role === "caused") return causalClaim(event, move);
@@ -60,19 +74,13 @@ export function tacticalClaim(event: Event, move: string, best: string, opponent
   }
   // A tactic that starts on this move outranks one that only appears later in
   // the same line, so the bubble leads with the idea the move itself offers.
-  const later = !Array.isArray(f.plies) || f.plies[0] !== (role === "allowed" ? 2 : 1) ? 0.5 : 0;
+  const immediate = tacticStartsHere(event, move, best);
+  const later = immediate ? 0 : 0.5;
   const result = claim(`tactic_${role}`, {move, best, opponent, motif: words(f.motif), detail},
     (role === "allowed" ? 94 : role === "missed" ? 91 : 83) - later, event.evidence, [event.id]);
   if (event.actor !== "white" && event.actor !== "black") return result;
   const witness = Array.isArray(f.witness) ? f.witness.map(object) : [];
-  const expectedPly = role === "allowed" ? 2 : 1;
   const first = witness[0];
-  // A reference board alone says nothing about when a tactic is available. A
-  // multi-ply witness can include both an immediate fork and its later collection.
-  const immediate = event.confidence === "line_witness" && Array.isArray(f.plies) &&
-    f.plies.length === 1 && f.plies[0] === expectedPly && f.frame_ply === expectedPly &&
-    witness.length === 1 && first.ply === expectedPly && typeof first.san === "string" &&
-    !!first.san && (role === "allowed" || first.san === (role === "missed" ? best : move));
   const forkTargets = [...new Set(targets.filter(p => /^[a-h][1-8]$/.test(p.square) &&
     ["white", "black"].includes(String(p.color)) &&
     ["pawn", "knight", "bishop", "rook", "queen", "king"].includes(String(p.piece)))

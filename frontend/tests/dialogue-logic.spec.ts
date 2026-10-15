@@ -117,7 +117,7 @@ test("a capture taken straight back is an even trade, not a reply that wins mate
 test("a missed tactic that starts on this move outranks one that appears later in the line", () => {
   const tactic = (id: string, motif: string, plies: number[]): Schema["ReviewEvent"] => ({id, actor: "white",
     confidence: "line_witness", importance: 75, kind: "tactic", evidence: [ref],
-    facts: {motif, role: "missed", plies, witness: plies.map(ply => ({ply, san: ply === 1 ? "d4" : "Nxc4"}))}});
+    facts: {motif, role: "missed", plies, frame_ply: plies[0], witness: plies.map(ply => ({ply, san: ply === 1 ? "d4" : "Nxc4"}))}});
   const value = {...report([tactic("later", "removing_defender", [3, 5]), tactic("now", "fork", [1, 3])]),
     label: "Inaccuracy", engine_label: "Inaccuracy"} as Report;
   const claims = [...gameIntent({...args, report: value}).claims].sort((a, b) => b.priority - a.priority);

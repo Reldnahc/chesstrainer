@@ -199,11 +199,14 @@ the complete neutral fallback; character wording never replaces chess evidence.
 
 All thirty coaches' on-screen tactical wording opts into `tacticalWording: "witness"`.
 `eventClaims` attaches derived timing/effect metadata while retaining the original
-claim codes, slots and source references. Only a sole matching line witness at
-root ply 1 or the opponent's immediate reply at ply 2 supports direct timing;
-the reference frame alone does not. Multi-ply or incomplete timing remains a
-possible idea, without pretending the motif necessarily begins later. Current
-facts do not imply that the move created a previously absent pin or fork.
+claim codes, slots and source references. A line witness that starts on this
+move (root ply 1, with its SAN) or on the opponent's immediate reply (ply 2), with
+its reference board just before or after that move, supports direct timing, even
+when the witness goes on to a later collection; the reference frame alone does
+not. `eventClaims.tacticStartsHere` is that one rule, and the recorded tactic
+clips use it too. A witness that starts later, or incomplete timing, remains a
+possible idea. Current facts do not imply that the move created a previously
+absent pin or fork.
 
 `tacticalTemplates` selects one of 29 scoped presentation keys and typed slots
 containing moves, motif names, targets and capture nouns. It does not construct
