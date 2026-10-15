@@ -2,17 +2,18 @@
 
 import ipaddress
 import secrets
-import sqlite3
 import threading
 import time
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 
 from fastapi import HTTPException, Request, Response
 from fastapi.responses import JSONResponse
+from sqlalchemy.exc import IntegrityError
 from starlette.concurrency import run_in_threadpool
 
 from trainer.accounts import (
     COOKIE,
+    LOCAL_USERNAME,
     SESSION_SECONDS,
     Accounts,
     csrf_token,
@@ -269,7 +270,7 @@ def configure_accounts(app, settings):
     # accounts to manage, leaves these routes out of its contract.
     def managed(request, account_id, *, not_self=None):
         user = accounts.by_id(account_id)
-        if not user or user["username"] == "__local__":
+        if not user or user["username"] == LOCAL_USERNAME:
             raise HTTPException(404, "Account not found.")
         if not_self and user["id"] == request.state.user["id"]:
             raise HTTPException(409, not_self)
@@ -278,7 +279,7 @@ def configure_accounts(app, settings):
     def administer(action, *args):
         try:
             action(*args)
-        except (ValueError, sqlite3.IntegrityError) as exc:
+        except (ValueError, IntegrityError) as exc:
             raise HTTPException(409, str(exc).rstrip(".") + ".") from exc
         return {"ok": True}
 
@@ -293,7 +294,7 @@ def configure_accounts(app, settings):
                     **row,
                     "admin": bool(row["admin"]),
                     "disabled": bool(row["disabled"]),
-                    "created": datetime.fromtimestamp(row["created"], UTC),
+                    "created": datetime.fromtimestamp(row["created"], timezone.utc),
                 }
                 for row in accounts.listing()
             ],

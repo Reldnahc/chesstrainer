@@ -72,7 +72,6 @@ class LichessClient:
     def batches(self, request, anchor, cancelled, completed=frozenset()):
         if not re.fullmatch(r"[a-z0-9_-]{1,50}", request.username):
             raise ProviderError("Invalid Lichess username.")
-        anchor = anchor.replace(tzinfo=timezone.utc)
         since = request.start_date
         if since is None and request.end_date is None and request.months:
             month = anchor.year * 12 + anchor.month - request.months

@@ -36,7 +36,7 @@ def seed_classified(db, settings, key="practice"):
         candidates[0]["pv"] = line
         analysis.candidates = candidates
     db.commit()
-    assert classify_decision(db, decision, LocalClassifier(settings), settings)
+    assert classify_decision(db, decision, LocalClassifier(settings))
     return fixture
 
 

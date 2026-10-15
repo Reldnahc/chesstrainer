@@ -135,7 +135,7 @@ def verified_payload(db, decision):
     }
 
 
-def classify_decision(db, decision, classifier, settings, *, mutation_lock=None):
+def classify_decision(db, decision, classifier, *, mutation_lock=None):
     """Classify one meaningful decision and set its current labels; returns whether it did.
 
     A decision whose saved evidence cannot be assembled is skipped and logged, like

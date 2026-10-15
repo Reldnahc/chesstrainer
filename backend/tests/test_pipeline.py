@@ -78,7 +78,7 @@ def test_real_engine_vertical_slice_and_persistence(settings, sessions, stockfis
                 decision = analyze_decision(db, lambda: engine, settings, game, ply, board, move)
                 if decision.meaningful:
                     meaningful.append(decision)
-                    assert classify_decision(db, decision, LocalClassifier(settings), settings)
+                    assert classify_decision(db, decision, LocalClassifier(settings))
                     exercise = exercise_from_decision(db, decision, settings, scheduler)
             assert meaningful
             assert any(d.allows_mate for d in meaningful)

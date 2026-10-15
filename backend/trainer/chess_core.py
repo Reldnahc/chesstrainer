@@ -18,7 +18,10 @@ def digest(value: object) -> str:
 
 
 def valid_board(fen: str) -> chess.Board:
-    board = chess.Board(fen)
+    try:
+        board = chess.Board(fen)
+    except ValueError as exc:
+        raise InvalidInput(f"Invalid FEN: {exc}") from exc
     if not board.is_valid():
         raise InvalidInput(f"Invalid chess position (python-chess status {board.status()})")
     return board

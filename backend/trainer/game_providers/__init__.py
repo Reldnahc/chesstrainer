@@ -4,6 +4,8 @@ from dataclasses import dataclass
 
 from trainer.errors import InvalidInput
 from trainer.game_providers.base import ProviderError
+from trainer.game_providers.chesscom import ChessComClient
+from trainer.game_providers.lichess import LichessClient
 
 
 @dataclass(frozen=True)
@@ -34,9 +36,6 @@ def get_provider(provider):
 
 
 def client_factories():
-    from trainer.game_providers.chesscom import ChessComClient
-    from trainer.game_providers.lichess import LichessClient
-
     return {"chesscom": ChessComClient, "lichess": LichessClient}
 
 

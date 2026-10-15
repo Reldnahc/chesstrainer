@@ -179,15 +179,15 @@ def test_local_cache_rejection_and_backfill_preserve_srs(settings):
             state = db.get(SRSState, fixture["exercise_id"])
             saved = state.card, state.due, state.reviews, state.retired_at, state.eligible
             classifier = LocalClassifier(settings)
-            assert classify_decision(db, decision, classifier, settings)
-            assert classify_decision(db, decision, classifier, settings)
+            assert classify_decision(db, decision, classifier)
+            assert classify_decision(db, decision, classifier)
             runs = db.scalars(select(ClassificationRun)).all()
             assert len(runs) == 1 and runs[0].provider == "local_rules"
             assert runs[0].response["primary_skill"] == "unclassified"  # Short fixture PV.
             reject_run(db, runs[0].id)
-            assert not classify_decision(db, decision, classifier, settings)
+            assert not classify_decision(db, decision, classifier)
             settings.classification_max_plies = 6
-            assert classify_decision(db, decision, LocalClassifier(settings), settings)
+            assert classify_decision(db, decision, LocalClassifier(settings))
             assert len(db.scalars(select(ClassificationRun)).all()) == 2
         job_id = client.post("/api/classifications/retry").json()["job_id"]
         app.state.runner.run_job(job_id)

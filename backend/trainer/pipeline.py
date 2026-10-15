@@ -73,7 +73,6 @@ class JobPipeline:
                     db,
                     decision_id,
                     self.runner.classifier,
-                    self.settings,
                     mutation_lock=self.runner.mutation_lock,
                 )
             self.bump(classifications_completed=int(classified))
@@ -202,7 +201,6 @@ class JobPipeline:
                 db,
                 task.decision_id,
                 self.runner.classifier,
-                self.settings,
                 mutation_lock=self.runner.mutation_lock,
             )
         self.bump(positions_triaged=1, deep_completed=1, classifications_completed=int(classified))

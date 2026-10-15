@@ -92,12 +92,12 @@ def test_classification_failure_retry_cache_and_evidence(settings, sessions, dec
     with sessions() as db:
         item = db.get(Decision, decision)
         classifier.fail = True
-        assert not classify_decision(db, item, classifier, settings)
+        assert not classify_decision(db, item, classifier)
         assert db.scalar(select(ClassificationRun)).status == "failed"
         assert db.get(EngineAnalysis, item.before_analysis_id)
         classifier.fail = False
-        assert classify_decision(db, item, classifier, settings)
-        assert classify_decision(db, item, classifier, settings)
+        assert classify_decision(db, item, classifier)
+        assert classify_decision(db, item, classifier)
         assert classifier.calls == 2
         run = db.scalar(select(ClassificationRun))
         assert run.attempts == 2 and run.response["decision_id"] == decision
@@ -111,7 +111,7 @@ def test_unreliable_classification_cannot_create_skill(
     classifier = FixtureClassifier()
     classifier.confidence, classifier.wrong_id = confidence, wrong_id
     with sessions() as db:
-        classify_decision(db, db.get(Decision, decision), classifier, settings)
+        classify_decision(db, db.get(Decision, decision), classifier)
         assert db.scalar(select(func.count()).select_from(SkillEvidence)) == 0
 
 
