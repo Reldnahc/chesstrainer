@@ -26,7 +26,7 @@ from trainer.opening_studies import recall as opening_recall
 from trainer.policy import MovePolicy
 from trainer.practice import require_focus
 from trainer.retirement import require_active_review, retire_if_ready
-from trainer.scheduling import behavior_rating
+from trainer.scheduling import behavior_rating, card_phase, is_lapse
 
 log = logging.getLogger(__name__)
 
@@ -202,7 +202,7 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         if state.reviews == 0
         else "practice"
         if state.due > now()
-        else {1: "learning", 2: "review", 3: "relearning"}[state.card["state"]]
+        else card_phase(state.card)
     )
     return review_position(db, existing, reason=reason)
 
@@ -259,7 +259,7 @@ def record_once(db, session, scheduler, settings, response_ms):
     card, due, scheduler_log = scheduler.review(state.card, rating, now(), response_ms)
     state.card, state.due = card, due
     state.reviews += 1
-    state.lapses += int(rating.name == "Again")
+    state.lapses += int(is_lapse(rating))
     if snapshot:
         db.get(OpeningCard, session.exercise_id).retirement_guard_revision = None
     retire_if_ready(state, settings)

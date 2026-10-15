@@ -1,6 +1,24 @@
+from datetime import datetime
 from importlib.metadata import version
 
-from fsrs import Card, Rating, Scheduler
+from fsrs import Card, Rating, Scheduler, State
+
+# Everything the app reads from a saved FSRS card goes through these, so the
+# py-fsrs serialization stays inside this module.
+
+
+def card_phase(card: dict) -> str:
+    """ "learning", "review" or "relearning", from py-fsrs's own State."""
+    return State(card["state"]).name.lower()
+
+
+def last_reviewed(card: dict) -> datetime | None:
+    value = card.get("last_review")
+    return None if value is None else datetime.fromisoformat(value)
+
+
+def is_lapse(rating) -> bool:
+    return rating == Rating.Again
 
 
 def behavior_rating(failed: bool, revealed: bool, response_ms: int, slow_seconds: float):

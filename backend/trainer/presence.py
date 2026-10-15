@@ -2,11 +2,11 @@
 
 import threading
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 
 from sqlalchemy import select, update
 
-from trainer.models import User
+from trainer.models import User, now
 from trainer.ownership import account_sessions
 
 # Requests within this window skip the database write entirely.
@@ -17,17 +17,17 @@ _lock = threading.Lock()
 
 
 def active_cutoff(settings):
-    return datetime.now(timezone.utc) - timedelta(days=settings.sync_away_days)
+    return now() - timedelta(days=settings.sync_away_days)
 
 
 def touch(sql_engine, user_id, settings):
     """Record a request; a return after SYNC_AWAY_DAYS leaves a welcome-back note."""
-    now, key = time.monotonic(), (id(sql_engine), user_id)
+    tick, key = time.monotonic(), (id(sql_engine), user_id)
     with _lock:
-        if now - _touched.get(key, -TOUCH_EVERY_SECONDS) < TOUCH_EVERY_SECONDS:
+        if tick - _touched.get(key, -TOUCH_EVERY_SECONDS) < TOUCH_EVERY_SECONDS:
             return
-        _touched[key] = now
-    current = datetime.now(timezone.utc)
+        _touched[key] = tick
+    current = now()
     # Bound to the account like any request's session: it can only read and
     # write that account's own row.
     with account_sessions(sql_engine, user_id)() as db:

@@ -21,6 +21,7 @@ from trainer.contracts.insights import Speed
 from trainer.game_accuracy import accuracy_cp
 from trainer.game_library import mover_rating, pgn_rating
 from trainer.game_review import blunder_kind
+from trainer.models import now as current_time
 from trainer.opening_book import book_move
 from trainer.review_intelligence.clocks import clock_facts, control
 from trainer.review_scores import MISTAKE_CP
@@ -710,7 +711,7 @@ def endgames(games):
 
 
 def summarize(facts, *, speed="all", days=None, now=None, offset_minutes=0):
-    now = now or datetime.now(timezone.utc)
+    now = now or current_time()
     selected = [
         game
         for game in facts

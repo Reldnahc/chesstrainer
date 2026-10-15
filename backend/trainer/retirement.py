@@ -1,21 +1,22 @@
 """Application retirement policy, separate from FSRS's memory scheduling."""
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from sqlalchemy import select
 
 from trainer.errors import InvalidInput
 from trainer.models import Exercise, OpeningCard, SRSState, User, now
+from trainer.scheduling import last_reviewed
 
 
 def retire_if_ready(state, settings, retired_at=None):
     if state.retired_at is not None or not state.reviews:
         return False
-    last_review = state.card.get("last_review")
+    last_review = last_reviewed(state.card)
     if last_review is None:
         return False
     # Compare the scheduled interval, never card age or remaining time until due.
-    interval = state.due - datetime.fromisoformat(last_review)
+    interval = state.due - last_review
     if interval <= timedelta(days=settings.retire_after_days):
         return False
     state.retired_at = retired_at or now()
