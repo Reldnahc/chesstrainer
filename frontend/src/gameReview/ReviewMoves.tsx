@@ -27,8 +27,9 @@ export default function ReviewMoves({
   const id = useId();
   const { cursor, branch, branches, navigate, selectBranch } = exploration;
   const moveButtons = useRef(new Map<number, HTMLButtonElement>());
+  const inBranch = !!branch;
   useEffect(() => {
-    if (branch || tab !== "moves") return;
+    if (inBranch || tab !== "moves") return;
     const button = moveButtons.current.get(cursor.ply);
     const list = button?.closest(".game-notation-scroll");
     if (!button || !list) return;
@@ -38,7 +39,7 @@ export default function ReviewMoves({
     if (row.top < pane.top) list.scrollTop -= pane.top - row.top;
     else if (row.bottom > pane.bottom)
       list.scrollTop += row.bottom - pane.bottom;
-  }, [cursor.ply, !!branch, tab]);
+  }, [cursor.ply, inBranch, tab]);
   return (
     <section className="game-notation" aria-label="Moves and move quality">
       <div className="game-move-heading">

@@ -26,9 +26,11 @@ export default function DialogPresence({ children }: { children: ReactNode }) {
     const dialog = ref.current?.querySelector("dialog");
     if (motion !== "still" && dialog?.open) playLeavingCopy(dialog, copy => { copy.dataset.closing = "true"; });
     last.current = null;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- unmounts only after the closing render's dialog has been copied from the DOM
     setMounted(false);
   }, [open, mounted, motion]);
   if (!mounted) return null;
   // The wrapper never boxes: the dialog renders in the top layer.
+  // eslint-disable-next-line react-hooks/refs -- the closing render shows the last open children once more so the effect can copy that dialog
   return <div ref={ref} style={{ display: "contents" }}>{open ? children : last.current}</div>;
 }

@@ -72,6 +72,7 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
   useEffect(() => {
     const version = ++generation.current;
     const controller = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- a load starts here; the preferences are not ready until it answers
     setReady(false);
     setError("");
     // A reload replaces any change still waiting; a write in flight is ignored.
@@ -90,6 +91,7 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
           setError(errorMessage(error));
       });
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate the load and any write in flight
       generation.current++;
       controller.abort();
     };

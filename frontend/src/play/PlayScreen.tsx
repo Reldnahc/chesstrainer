@@ -131,9 +131,8 @@ function PlaySetup({ from }: { from: string | null }) {
   const voice = useCoachSpeech({ scopeKey: `play-setup:${coach.id}`, recordingId: PLAY_INVITATION,
     automaticEventId: invited });
   const playable = voice.canPlay(PLAY_INVITATION);
-  useEffect(() => {
-    if (playable) setInvited(`play-setup:${coach.id}`);
-  }, [playable, coach.id]);
+  const invitationEvent = `play-setup:${coach.id}`;
+  if (playable && invited !== invitationEvent) setInvited(invitationEvent);
   const invitation = useSelectedCoachSpokenText(PLAY_INVITATION);
   const range = opponent === "human" ? HUMAN : ENGINE;
   const clamped = Math.max(range.min, Math.min(range.max, rating));

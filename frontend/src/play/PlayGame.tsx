@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
@@ -90,11 +90,18 @@ export default function PlayGame({ id }: { id: string }) {
   const { preferences } = useCoachPreferences();
   const bot = getCoach(preferences.coach_id).name;
   const [orientation, setOrientation] = useState<"white" | "black" | null>(null);
-  // "Show book": arrows for the book moves where the learner is deciding.
-  const [showBook, setShowBook] = useState(false);
+  // "Show book": arrows for the book moves where the learner is deciding, for
+  // the position it was turned on in.
   const bookMoves = state?.status === "active" ? (state.practice?.book_moves ?? []) : [];
   const bookKey = `${state?.frames.length}:${state?.practice?.status}`;
-  useEffect(() => setShowBook(false), [bookKey]);
+  // Any change of position or practice status turns it off, even one that comes back
+  // to an earlier key (a take-back followed by the same move).
+  const [showBook, setShowBook] = useState(false);
+  const [bookFor, setBookFor] = useState(bookKey);
+  if (bookFor !== bookKey) {
+    setBookFor(bookKey);
+    setShowBook(false);
+  }
   usePageTitle(state ? `Playing ${bot}` : null);
   if (!state || !game)
     return (
@@ -232,7 +239,7 @@ export default function PlayGame({ id }: { id: string }) {
           prompt={prompt}
           extraAction={bookMoves.length > 0 && (session.learnerToMove || session.deviation) && !session.browsing ? (
             <Button size="compact" aria-pressed={showBook} title="Show the book move on the board"
-              onClick={() => setShowBook((value) => !value)}>
+              onClick={() => setShowBook(value => !value)}>
               {showBook ? "Hide book" : "Show book"}
             </Button>
           ) : undefined}

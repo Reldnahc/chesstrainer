@@ -60,6 +60,7 @@ export default function InsightsScreen({ onEvidence, category }: {
   useEffect(() => {
     if (!wanted) return;
     const controller = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
     setError(false);
     read(api.GET("/api/weaknesses", { signal: controller.signal }))
       .then(value => { if (!controller.signal.aborted) setData(value); })

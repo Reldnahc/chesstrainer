@@ -47,6 +47,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   }
   useEffect(() => {
     const pending = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- a fetch starts here; a retry clears the last failure while it loads
     setError("");
     const selected = catalogueKey
       ? read(api.GET("/api/openings/catalog/{key}", { params: { path: { key: catalogueKey } }, signal: pending.signal }))

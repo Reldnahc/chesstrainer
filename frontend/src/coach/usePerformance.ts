@@ -76,7 +76,7 @@ export function usePerformance({
     // so a cached/fast answer doesn't flash a loading expression.
     const delay = reaction.state === "thinking" ? 420 : 110;
     const timer = window.setTimeout(() => {
-      setCommitted({ ...reaction, identity });
+      setCommitted({ key: reaction.key, state: reaction.state, identity });
       setTake((value) => value + 1);
     }, delay);
     return () => window.clearTimeout(timer);
@@ -90,14 +90,17 @@ export function usePerformance({
     reaction.state === "thinking" && !current ? "neutral" : reaction.state;
   const gestures = useMemo(() => configuredGestures(animation, expression), [animation, expression]);
   const coordinator = useMemo(() => createIdleCoordinator(gestures, {
+    // eslint-disable-next-line react-hooks/purity -- the idle clock starts when this coordinator is created
     now: performance.now(),
     random: idleSeed === undefined ? undefined : seededIdleRandom(idleSeed),
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- a new coach identity or an idle reset deliberately starts a fresh coordinator
   }), [gestures, identity, idleSeed, idleReset]);
   const owner = `${identity}:${reaction.key}:${reaction.state}:${take}:${idleSeed ?? "random"}:${idleReset}`;
   const idlePreview = gestures.find((entry) => entry.id === previewIdle);
   useEffect(() => {
     let timer: number | undefined;
     const running = effectiveMotion !== "still" && visible && active && current;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- this effect drives the idle timers; each run clears the previous run's frame first
     setFrame(null);
     coordinator.suspend(performance.now());
     const fresh = current && played.current !== take;

@@ -19,7 +19,8 @@ export function usePuzzleSession(id: string) {
   const generation = useRef(0);
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
-  const started = useRef(performance.now());
+  // Set when the puzzle loads, before any move can be timed.
+  const started = useRef(0);
   const audio = useAudioScope(`puzzle:${id}`);
   const playback = useStudyPlayback(() => { started.current = performance.now(); }, undefined, audio, session?.fen);
   const { reset, playing } = playback;
@@ -57,7 +58,9 @@ export function usePuzzleSession(id: string) {
     }
   }, [id, reset]);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading the session fetches it; load marks it loading first
     void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
     return () => { generation.current++; controller.current?.abort(); };
   }, [load]);
 

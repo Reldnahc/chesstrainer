@@ -90,6 +90,7 @@ export function useStudioPlayer() {
     return () => {
       mounted = false;
       contextSpeechRef.current = null;
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the live take invalidates any scenario still in flight
       takeRef.current++;
       timersRef.current.forEach(clearTimeout);
       document.removeEventListener("visibilitychange", pauseScenario);

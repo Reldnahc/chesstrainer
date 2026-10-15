@@ -12,6 +12,7 @@ export default function RecallReceipt({ message, nextDue }: {
     <Reveal>{message && <p className="review-due" role="status">
       {message}
       {nextDue && <> Next review: <time dateTime={nextDue} title={new Date(nextDue).toLocaleString()}>
+        {/* eslint-disable-next-line react-hooks/purity -- the relative label reads the clock whenever a receipt renders */}
         {relativeDue(nextDue, Date.now())}
       </time>.</>}
     </p>}</Reveal>

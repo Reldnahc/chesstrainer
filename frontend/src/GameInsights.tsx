@@ -441,6 +441,7 @@ export default function GameInsights() {
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
     setError(false);
     read(api.GET("/api/insights", {
       signal: controller.signal,

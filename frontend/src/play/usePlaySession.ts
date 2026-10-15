@@ -182,17 +182,32 @@ export function usePlaySession(id: string) {
   // its voice ends, or, with no voice, a while after the grade is on screen.
   const heldGraded = held !== null && graded(held);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- records the voice starting (a change, not its current value) for this turn
     if (voicePlaying) setTurn((current) => (current.voiced ? current : { ...current, voiced: true }));
   }, [voicePlaying]);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- stamps when the grade first reached the screen, which needs the clock
     if (heldGraded) setTurn((current) => (current.gradedAt === null ? { ...current, gradedAt: Date.now() } : current));
   }, [heldGraded]);
   const holdShown = useDeadline(held !== null && !turn.voiced && turn.gradedAt !== null ? turn.gradedAt + COACH_HOLD_MS : null);
   const holdOverdue = useDeadline(held !== null ? turn.movedAt + REPORT_TIMEOUT_MS : null);
   const said = turn.voiced ? !voicePlaying : holdShown;
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the hold ends once; derived, it would return when another line starts
     if (held !== null && (said || holdOverdue)) setHeld(null);
   }, [held, said, holdOverdue]);
+
+  // The latest position the learner may see: a fetched reply stays hidden until revealed.
+  const latest = state ? Math.min(shown, state.frames.length - 1) : 0;
+  const ply = cursor === null ? latest : Math.max(0, Math.min(cursor, latest));
+  const waitingForBot =
+    !!state && state.status === "active" && !choosing && state.frames[latest]?.turn !== state.learner_color;
+  const learnerToMove =
+    !!state && state.status === "active" && !choosing && !waitingForBot && !pending;
+  const browsing = ply !== latest;
+  // Looking back at a position where it was the learner's move, they may play from there.
+  const canRewind =
+    !!state && state.status === "active" && browsing && state.frames[ply]?.turn === state.learner_color;
 
   // Drop everything known about the moves after this ply: they are no longer played.
   function forget(kept: number) {
@@ -312,9 +327,6 @@ export function usePlaySession(id: string) {
     });
   };
 
-  // The latest position the learner may see: a fetched reply stays hidden until revealed.
-  const latest = state ? Math.min(shown, state.frames.length - 1) : 0;
-  const ply = cursor === null ? latest : Math.max(0, Math.min(cursor, latest));
   const navigate = useCallback(
     (target: number, options?: { silent?: boolean }) => {
       if (!state) return;
@@ -375,17 +387,9 @@ export function usePlaySession(id: string) {
       history: null,
       review_revision: 0,
     };
-    // reportAt reads the cache; revision changes whenever a report is added or dropped.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reportAt reads the cache; revision changes whenever a report is added or dropped
   }, [state, latest, reportAt, revision]);
 
-  const waitingForBot =
-    !!state && state.status === "active" && !choosing && state.frames[latest]?.turn !== state.learner_color;
-  const learnerToMove =
-    !!state && state.status === "active" && !choosing && !waitingForBot && !pending;
-  const browsing = ply !== latest;
-  // Looking back at a position where it was the learner's move, they may play from there.
-  const canRewind =
-    !!state && state.status === "active" && browsing && state.frames[ply]?.turn === state.learner_color;
   // The coach panel's position: the board's, or the learner's move while its line plays.
   const coachPly = held !== null && cursor === null && held < latest ? held : ply;
   const coachFailure = coachPly > 0 ? analyses.failure(String(coachPly)) : null;

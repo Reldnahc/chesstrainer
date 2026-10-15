@@ -107,10 +107,11 @@ export default function ImportSettings({
       setClosingSource(source);
     }
   }
+  // A close is forgotten once another source opens, so reopening that source later is not a close.
+  if (closingSource && source !== closingSource) setClosingSource(null);
   useEffect(() => {
-    if (closingSource && source !== closingSource) setClosingSource(null);
     // An immediate reversal at zero height has no transitionend to wait for.
-    else if (closing && (motion === "still" || !formRef.current?.getAnimations().some(animation =>
+    if (closing && (motion === "still" || !formRef.current?.getAnimations().some(animation =>
       animation instanceof CSSTransition && animation.transitionProperty === "grid-template-rows"))) {
       setClosingSource(null);
       selectSource(null);

@@ -36,6 +36,7 @@ export default function GamesScreen({
       setLoading(true);
       setItems([]);
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- each request starts by clearing the previous one's failure
     setError("");
     background.current = false;
     read(api.GET("/api/games", { params: { query: { offset } } }))

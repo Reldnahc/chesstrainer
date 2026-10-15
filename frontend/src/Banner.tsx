@@ -39,12 +39,12 @@ const BannerEntries = createContext<Entry[]>([]);
 
 export function BannerProvider({ children }: { children: ReactNode }) {
   const [entries, setEntries] = useState<Entry[]>([]);
-  const actions = useRef<Actions>({
+  const [actions] = useState<Actions>(() => ({
     set: (entry) => setEntries((list) => list.some((item) => item.id === entry.id)
       ? list.map((item) => (item.id === entry.id ? entry : item))
       : [...list, entry]),
     remove: (id) => setEntries((list) => list.filter((item) => item.id !== id)),
-  }).current;
+  }));
   return (
     <BannerActions.Provider value={actions}>
       <BannerEntries.Provider value={entries}>{children}</BannerEntries.Provider>

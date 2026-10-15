@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { errorMessage, api, read } from "../api";
 import { rememberGamePly } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
@@ -63,6 +63,8 @@ export function useGameExploration(
       ? branchPosition.value
       : null
     : game?.frames[cursor.ply];
+  const hasGame = game !== null;
+  const inBranch = branch !== undefined;
   const current = branch ? cursor.step : cursor.ply;
   const maximum = branch ? branch.moves.length : (game?.frames.length ?? 1) - 1;
 
@@ -72,36 +74,47 @@ export function useGameExploration(
       mounted.current = false;
     };
   }, []);
-  useEffect(() => {
+  // Each game opens in its own orientation; a flip lasts until another game loads.
+  const gameId = game?.id ?? null;
+  const [orientedGame, setOrientedGame] = useState<string | null>(null);
+  if (gameId !== orientedGame) {
+    setOrientedGame(gameId);
     if (game) setOrientation(game.orientation);
-  }, [game?.id]);
+  }
   // Opening an untouched review at the start is one fresh greeting event. A
   // restored later ply or a branch stays silent; any navigation replaces it.
   const opened = useRef<string | null>(null);
-  useEffect(() => {
-    if (!game || opened.current === game.id) return;
-    opened.current = game.id;
+  const greetOpening = useEffectEvent(() => {
     if (selection.ply === 0 && selection.branch === null && actionVersion.current === 0)
       setSpeechNavigation({key: "0:", eventId: `${id}:open`, awaitAnalysis: false, opening: true});
-  }, [game?.id]);
+  });
   useEffect(() => {
-    if (game && !branch) rememberGamePly(id, cursor.ply);
-  }, [id, !!game, cursor.ply, !!branch]);
+    if (gameId === null || opened.current === gameId) return;
+    opened.current = gameId;
+    greetOpening();
+  }, [gameId]);
+  useEffect(() => {
+    if (hasGame && !inBranch) rememberGamePly(id, cursor.ply);
+  }, [id, hasGame, cursor.ply, inBranch]);
+
+  // Read once per key: the key already names root and path, and a held
+  // position arriving later must not restart the request.
+  const branchRequest = useEffectEvent(() =>
+    branchPosition?.key === key ? null : { ply: root, moves: path });
+  const failBranch = useEffectEvent((message: string) => fail(message));
 
   useEffect(() => {
-    if (!branch) return;
+    if (!inBranch) return;
     // play() and selectBranch() store the position they already hold; only
     // positions this hook has not seen need a request.
-    if (branchPosition?.key === key) return;
+    const body = branchRequest();
+    if (!body) return;
     let active = true;
     const requestAction = actionVersion.current;
     read(
       api.POST("/api/games/{game_id}/position", {
         params: { path: { game_id: id } },
-        body: {
-          ply: root,
-          moves: path,
-        },
+        body,
       }),
     )
       .then((value) => {
@@ -117,13 +130,13 @@ export function useGameExploration(
         if (!active || !mounted.current || activeKey.current !== key) return;
         if (pendingNavigation.current?.eventId === requestAction) pendingNavigation.current = null;
         setSpeechNavigation(value => value?.eventId === `${id}:${requestAction}` ? null : value);
-        fail(errorMessage(e));
+        failBranch(errorMessage(e));
       });
     return () => {
       active = false;
     };
     // The key includes the entire variation, including repetition history.
-  }, [id, key, !!branch]);
+  }, [id, key, inBranch, audio, activeKey]);
 
   function beginAction() {
     pendingNavigation.current = null;

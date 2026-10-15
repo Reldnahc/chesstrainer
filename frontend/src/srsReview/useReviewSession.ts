@@ -48,7 +48,7 @@ export function useReviewSession({
   const generation = useRef(0);
   const responseSequence = useRef(0);
   const audio = useAudioScope(`review:${requestedSession || requested || focusSkill || "queue"}`);
-  const sound = useLatest(audio);
+  const soundRef = useLatest(audio);
   // A queue or card that failed to load is the panel's own state, with Try again,
   // never "Build your study queue".
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -69,7 +69,7 @@ export function useReviewSession({
       const version = ++generation.current;
       lastLoad.current = [id, previous, resumeSession];
       setLoadError(null);
-      sound.current.cancel();
+      soundRef.current.cancel();
       setLoading(true);
       setBusy(false);
       setPosition(null);
@@ -142,7 +142,7 @@ export function useReviewSession({
         if (version === generation.current) setLoading(false);
       }
     },
-    [focusSkill, refreshDue],
+    [focusSkill, refreshDue, soundRef],
   );
 
   // Announce the opener only after the card has rendered, so the speech
@@ -158,8 +158,10 @@ export function useReviewSession({
     practiceBatch.current = null;
     practiced.current.clear();
     coldOpened.current = false;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- a load starts by showing loading and clearing the previous card
     void load(requested, null, requestedSession);
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the live generation retires any load still in flight
       generation.current++;
     };
   }, [load, requested, requestedSession]);

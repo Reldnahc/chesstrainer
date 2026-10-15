@@ -126,6 +126,7 @@ export default function CoachStudio() {
   useEffect(() => {
     if (!playing) return;
     let index = 0;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the sequence timer starts from its first expression
     setExpression(sequence[index]);
     setIdlePreview("");
     const timer = window.setInterval(() => {

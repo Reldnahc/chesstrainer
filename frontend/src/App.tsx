@@ -71,10 +71,13 @@ export default function App() {
   const fail = useCallback((e: unknown) => setError(errorMessage(e)), [setError]);
   // A LAN install without its access token asks for it in place of the page.
   useEffect(() => (guest ? undefined : onAuthRequired("connection", () => setConnection(true))), [guest]);
-  useEffect(() => {
-    setError("");
+  // A new page drops the last page's error and evidence dialog in the render that shows it.
+  const [shownRoute, setShownRoute] = useState(route);
+  if (shownRoute !== route) {
+    setShownRoute(route);
+    setFailure(null);
     setEvidenceId(null);
-  }, [route, setError]);
+  }
   // Set the route fallback before child effects apply a more specific title.
   useLayoutEffect(() => {
     setFallbackTitle(screenTitle(screen) ?? tab ?? "Page not found");

@@ -66,7 +66,7 @@ export function usePolling(task: (signal: AbortSignal) => Promise<unknown>,
       } finally {
         ticking = false;
       }
-      if (!stopped) timer = window.setTimeout(tick, delay());
+      if (!stopped) timer = window.setTimeout(() => void tick(), delay());
     };
     const visibility = () => {
       if (!document.hidden) void tick();

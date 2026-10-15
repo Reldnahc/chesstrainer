@@ -27,6 +27,7 @@ export function useStudyPlayback(
   useEffect(() => {
     if (!frames.length) return;
     if (motion === "still") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- switching to still motion ends a playback in progress and reports it finished
       setFrames([]);
       finish.current?.();
       return;
@@ -40,13 +41,13 @@ export function useStudyPlayback(
       else { setFrames([]); finish.current?.(); }
     }, intervalMs);
     return () => window.clearTimeout(timer);
-  }, [frames, index, motion, intervalMs]);
+  }, [frames, index, motion, intervalMs, finish, sound]);
   const reset = useCallback(() => {
     sound.current?.cancel();
     playbackId.current++;
     setFrames([]);
     setInspection(null);
-  }, []);
+  }, [sound]);
   const play = useCallback((next: Frame[], fromStart = false) => {
     sound.current?.cancel();
     const run = ++playbackId.current;
@@ -59,7 +60,7 @@ export function useStudyPlayback(
     setInspection(motion === "still" && fromStart && next.length ? { fen: next[0].before_fen, frame: null } : null);
     setIndex(fromStart ? -1 : 0);
     setFrames(next);
-  }, [motion]);
+  }, [motion, sound]);
   return {
     frame, fen, playing, motion, play, reset,
     inspect: (selected: Frame) => {

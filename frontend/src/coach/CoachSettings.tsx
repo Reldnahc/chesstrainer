@@ -36,6 +36,7 @@ export default function CoachSettings() {
   const { play } = voice;
   useEffect(() => {
     if (!introduce || savedCoachId !== introduce) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- consumes the one-shot request as its introduction starts playing
     setIntroduce(null);
     void play(COACH_INTRODUCTION);
   }, [introduce, savedCoachId, play]);

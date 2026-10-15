@@ -36,14 +36,15 @@ export default function WalterWordingReview({player, catalog}: {player: StudioPl
   const example = examples.find(item => item.id === exampleId) ?? examples[0];
   const clipKey = `${version}:${example?.id ?? ""}`;
   const [loaded, setLoaded] = useState<{key: string; clip?: WordingClip}>();
+  const exampleKey = example?.id;
   useEffect(() => {
-    if (!example) return;
+    if (exampleKey === undefined) return;
     let current = true;
-    void catalog.loadClip(example.id, version).then(clip => {
+    void catalog.loadClip(exampleKey, version).then(clip => {
       if (current) setLoaded({key: clipKey, clip});
     }, () => {if (current) setLoaded({key: clipKey});});
     return () => {current = false;};
-  }, [catalog, example?.id, version, clipKey]);
+  }, [catalog, exampleKey, version, clipKey]);
   if (!example) return null;
 
   const clip = loaded?.key === clipKey ? loaded.clip : undefined;

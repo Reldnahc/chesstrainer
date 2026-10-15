@@ -67,13 +67,14 @@ export function AudioProvider({children}: {children: ReactNode}) {
       instance.dispose();
       if (engine.current === instance) engine.current = null;
     };
-  }, []);
+  }, [current]);
   useLayoutEffect(() => {
     engine.current?.setPreferences(state.preferences);
     engine.current?.setMuted(muted);
     engine.current?.setReady(state.ready);
   }, [state.preferences, state.ready, muted]);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs with localStorage when the account (and so the key) changes
     setMute(readMute(muteKey));
     const changed = (event: StorageEvent) => {
       if (event.key === muteKey || event.key === null) setMute(readMute(muteKey));

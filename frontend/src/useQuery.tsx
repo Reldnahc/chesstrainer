@@ -32,6 +32,7 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
   const run = useEffectEvent(load);
   useEffect(() => {
     const controller = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- a load starts here; the query is pending until it answers
     setPending(true);
     setError(null);
     run(controller.signal).then(
@@ -48,6 +49,7 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
     );
     return () => controller.abort();
     // The caller's deps decide when the request is a different one.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- the hook's API takes the caller's dependency list, and load is read through an effect event
   }, [attempt, ...deps]);
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
   const dismiss = useCallback(() => setError(null), []);

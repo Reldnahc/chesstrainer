@@ -34,6 +34,9 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
   const left = useRef(new Set<Key>());
   const arrivals = useRef(animateFirst);
   const elements = useRef(new Map<Key, HTMLDivElement>());
+  /* eslint-disable react-hooks/refs -- each render derives its list from the
+     committed one synchronously, so closing items keep their place and ghost in
+     the same render that drops them; nothing here is committed until the effect. */
   const current = Children.toArray(children).filter(isValidElement) as ReactElement[];
   const index = new Map<Key, number>(current.map((node, position) => [node.key!, position]));
   const previous = new Map(entries.current.map(entry => [entry.key, entry]));
@@ -60,7 +63,9 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
     while (next <= position) merged.push(make(current[next++]));
   }
   while (next < current.length) merged.push(make(current[next++]));
+  /* eslint-enable react-hooks/refs */
 
+  // eslint-disable-next-line react-hooks/immutability -- marking an entered item open in the list just committed is what makes the next render keep it open
   useLayoutEffect(() => {
     entries.current = merged;
     if (settled) arrivals.current = true;
@@ -118,14 +123,15 @@ function Item({ entry, className, axis }: {
   className?: string;
   axis?: "block" | "inline";
 }) {
-  const open = entry.phase === "open";
-  return <div ref={entry.ref} className={["reveal", className].filter(Boolean).join(" ")}
-    data-open={open} data-axis={axis} inert={entry.phase === "closing" || undefined}
-    aria-hidden={entry.phase === "closing" || undefined}>
+  const { ref, phase, ghost, node } = entry;
+  const open = phase === "open";
+  return <div ref={ref} className={["reveal", className].filter(Boolean).join(" ")}
+    data-open={open} data-axis={axis} inert={phase === "closing" || undefined}
+    aria-hidden={phase === "closing" || undefined}>
     {/* Distinct keys, so content that comes back mounts fresh beside no leftover copy. */}
-    {entry.ghost
-      ? <div key="ghost" className="reveal-clip" data-ghost="" ref={clip => { if (clip && entry.ghost && !clip.firstChild) clip.append(...entry.ghost.childNodes); }} />
-      : <div key="live" className="reveal-clip">{entry.node}</div>}
+    {ghost
+      ? <div key="ghost" className="reveal-clip" data-ghost="" ref={clip => { if (clip && !clip.firstChild) clip.append(...ghost.childNodes); }} />
+      : <div key="live" className="reveal-clip">{node}</div>}
   </div>;
 }
 

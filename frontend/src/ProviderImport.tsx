@@ -22,19 +22,18 @@ export function ProviderImportForm({
 }) {
   // The field follows the remembered (or saved) username until the reader edits it.
   const [savedUsername, setSavedUsername] = useState<string>();
-  const [loadingUsername, setLoadingUsername] = useState(rememberedUsername === undefined);
+  const [fetchingUsername, setFetchingUsername] = useState(rememberedUsername === undefined);
+  // A remembered username needs no fetch, so the field is ready as soon as one arrives.
+  const loadingUsername = rememberedUsername === undefined && fetchingUsername;
   const name = useServerDraft(rememberedUsername ?? savedUsername);
   const username = name.draft;
   useEffect(() => {
-    if (rememberedUsername !== undefined) {
-      setLoadingUsername(false);
-      return;
-    }
+    if (rememberedUsername !== undefined) return;
     let active = true;
     read(api.GET("/api/providers/{provider}/sync", { params: { path: { provider: provider.id } } }))
       .then(value => { if (active) setSavedUsername(value.username); })
       .catch(error => { if (active) fail(error); })
-      .finally(() => { if (active) setLoadingUsername(false); });
+      .finally(() => { if (active) setFetchingUsername(false); });
     return () => { active = false; };
   }, [provider.id, rememberedUsername, fail]);
   const [timeClass, setTimeClass] =

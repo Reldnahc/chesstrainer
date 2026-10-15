@@ -37,14 +37,18 @@ export default function RecordedCoachComparison({player, catalog}: {player: Stud
   const recording = coach && meaning ? catalog.recording(coach.id, meaning.id) : undefined;
   const clipKey = `${coach?.id ?? ""}:${meaning?.id ?? ""}:${recording?.url ?? ""}`;
   const [loaded, setLoaded] = useState<{key: string; track?: SpeechMouthTrack}>();
+  // A sequenced recording is a fresh object each render; reload only when the clip changes.
+  const clipCoachId = coach?.id;
+  const clipMeaningId = meaning?.id;
+  const clipUrl = recording?.url;
   useEffect(() => {
-    if (coaches.length < 2 || !coach || !meaning || !recording) return;
+    if (coaches.length < 2 || clipCoachId === undefined || clipMeaningId === undefined || clipUrl === undefined) return;
     let current = true;
-    void catalog.loadTrack(coach.id, meaning.id).then(track => {
+    void catalog.loadTrack(clipCoachId, clipMeaningId).then(track => {
       if (current) setLoaded({key: clipKey, track});
     }, () => {if (current) setLoaded({key: clipKey});});
     return () => {current = false;};
-  }, [catalog, coaches.length, coach?.id, meaning?.id, recording?.url, clipKey]);
+  }, [catalog, coaches.length, clipCoachId, clipMeaningId, clipUrl, clipKey]);
   if (coaches.length < 2) return null;
 
   const track = loaded?.key === clipKey ? loaded.track : undefined;

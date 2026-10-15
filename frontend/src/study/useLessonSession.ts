@@ -53,7 +53,9 @@ export function useLessonSession(id: string) {
     }
   }, [id, reset]);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading the session fetches it; load marks it loading first
     void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
     return () => { generation.current++; request.current?.abort(); };
   }, [load]);
   async function command(action: LessonAction, extra?: { uci?: string; ply?: number }) {

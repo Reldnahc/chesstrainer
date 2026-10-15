@@ -85,7 +85,7 @@ export default function ReviewExplanation({
     return () => {
       current = false;
     };
-  }, [sessionId, attemptId, solution, initialPly]);
+  }, [sessionId, attemptId, solution, initialPly, requestKey, speechVisit]);
   const frame = data?.frames[index];
   const utterance = useDialogue(data && frame
     ? explanationIntent(`${sessionId}:${attemptId ?? "solution"}`, data, frame, index)

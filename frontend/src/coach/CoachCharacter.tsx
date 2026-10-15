@@ -62,7 +62,10 @@ export function CoachCharacter({
   const direction = resolveFamily(coach, family);
   const animation = resolveAnimation(coach, direction);
   const requested = resolveExpression(coach, reaction.state);
-  const performance = usePerformance({
+  // Destructured so the lint rules see the ref apart from the rendered values.
+  const {
+    ref, expression, face, animated, phase, micro, take, motion: performedMotion, idles, idleStyle: idleTracks,
+  } = usePerformance({
     reaction: { ...reaction, state: requested },
     identity: `${coach.id}:${direction}`,
     motion,
@@ -76,42 +79,42 @@ export function CoachCharacter({
     onPerformance,
   });
   const Artwork = coach.Artwork;
-  useSpeechPerformance(performance.ref, speech,
-    performance.animated && supportsSpeech(coach, direction) && speech?.coachId === coach.id,
+  useSpeechPerformance(ref, speech,
+    animated && supportsSpeech(coach, direction) && speech?.coachId === coach.id,
     `${coach.id}:${direction}`, speechTrack,
     supportsSpeech(coach, direction) ? previewSpeechShape : undefined);
   const profile = animation.motionProfile;
   const idleStyle = {
-    ...performance.idleStyle,
+    ...idleTracks,
     "--idle-strength": profile?.amplitude ?? 1,
     "--idle-gaze": profile?.gaze ?? 1,
     "--idle-settle": profile?.settle ?? 1,
   } as CSSProperties;
   return (
     <div
-      ref={performance.ref}
+      ref={ref}
       className="coach-avatar"
       role="img"
       aria-label={label}
       data-coach={coach.id}
       data-family={direction}
-      data-expression={performance.expression}
+      data-expression={expression}
       data-requested={requested}
-      data-phase={performance.phase}
-      data-face={performance.face}
-      data-micro={performance.micro}
-      data-idles={performance.idles}
-      data-motion={performance.motion}
-      data-take={performance.take}
+      data-phase={phase}
+      data-face={face}
+      data-micro={micro}
+      data-idles={idles}
+      data-motion={performedMotion}
+      data-take={take}
       data-motion-profile={profile?.id ?? "default"}
       style={idleStyle}
-      title={`${coach.name} · ${expressionInfo[performance.expression].label}`}
+      title={`${coach.name} · ${expressionInfo[expression].label}`}
     >
-      <CoachFaceProvider value={performance.face}>
+      <CoachFaceProvider value={face}>
         <CharacterArtwork
           Artwork={Artwork}
-          key={performance.take}
-          expression={performance.expression}
+          key={take}
+          expression={expression}
           family={direction}
         />
       </CoachFaceProvider>

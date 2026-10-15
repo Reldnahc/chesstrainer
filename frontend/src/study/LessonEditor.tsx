@@ -152,6 +152,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   useEffect(() => {
     if (!course) return;
     const controller = new AbortController();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- a server check starts here; the editor shows it pending until it answers
     setChecking(true);
     const timer = window.setTimeout(() => {
       read(api.POST("/api/study/course-files/check", { body: course, signal: controller.signal }))

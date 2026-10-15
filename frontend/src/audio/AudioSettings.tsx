@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Reveal from "../Reveal";
 import Button from "../Button";
 import PreferenceStatus from "../PreferenceStatus";
@@ -21,11 +21,14 @@ export default function AudioSettings() {
   // failed or reloaded) the controls show the saved preferences again.
   const [draft, setDraft] = useState(preferences);
   const [volume, setVolume] = useState(preferences.volume);
-  useEffect(() => {
-    if (saving) return;
-    setDraft(preferences);
-    setVolume(preferences.volume);
-  }, [preferences, saving]);
+  const [shown, setShown] = useState({preferences, saving});
+  if (shown.preferences !== preferences || shown.saving !== saving) {
+    setShown({preferences, saving});
+    if (!saving) {
+      setDraft(preferences);
+      setVolume(preferences.volume);
+    }
+  }
   async function update(next: Partial<AudioPreferences>) {
     setSaved(false);
     const value = {...draft, ...next};

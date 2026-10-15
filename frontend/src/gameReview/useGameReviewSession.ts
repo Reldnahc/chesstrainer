@@ -43,6 +43,7 @@ export function useGameReviewSession(id: string) {
     });
     return () => {
       mounted.current = false;
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the live generation invalidates any load still in flight
       loadVersion.current++;
     };
   }, [load]);
@@ -95,6 +96,7 @@ export function useGameReviewSession(id: string) {
     openedReview.current = true;
     // Someone else's shared game is read as it is; only its owner starts reviews.
     if (game.read_only) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- part of the one-time opening decision, which also starts requests
       setReviewStarting(false);
       return;
     }

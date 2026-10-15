@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useEffectEvent, useState } from "react";
 import { api, read } from "../api";
 import type { Analysis } from "./types";
 import { useAnalysisRequests } from "./useAnalysisRequests";
@@ -34,13 +34,16 @@ export function usePositionAnalysis({
     [send, id, rating],
   );
 
+  // Read when the effect runs, so the debounced request keeps the position it was for.
+  const position = useEffectEvent(() => ({ root, path }));
   useEffect(() => {
     if (!browse) return;
     let active = true;
-    const timer = window.setTimeout(async () => {
-      await settled();
+    const { root, path } = position();
+    // settled() never rejects; the request reports its own failure.
+    const timer = window.setTimeout(() => void settled().then(() => {
       if (active) void request(root, path);
-    }, 350);
+    }), 350);
     return () => {
       active = false;
       window.clearTimeout(timer);
