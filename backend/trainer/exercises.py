@@ -48,6 +48,12 @@ def exercise_from_decision(db, decision, settings, scheduler):
         return owned
     exercise = db.scalar(select(Exercise).where(Exercise.identity == identity))
     if exercise:
+        # Shared by this mistake in another game: a card set aside because that
+        # game's decision stopped being a mistake comes back for this one.
+        state = db.get(SRSState, exercise.id)
+        if state is not None and not state.eligible:
+            state.eligible = True
+            db.commit()
         return exercise
     analysis = db.get(EngineAnalysis, decision.before_analysis_id)
     candidates = [Candidate.model_validate(c) for c in analysis.candidates]

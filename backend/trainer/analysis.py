@@ -1,7 +1,15 @@
-from sqlalchemy import select, update
+from sqlalchemy import func, select, update
 
-from trainer.chess_core import Candidate, board_facts, evaluation_loss, position_key
-from trainer.models import Decision, EngineAnalysis, GameReviewMove, SkillEvidence
+from trainer.chess_core import Candidate, board_facts, digest, evaluation_loss, position_key
+from trainer.models import (
+    Decision,
+    EngineAnalysis,
+    Exercise,
+    GameReviewMove,
+    SkillEvidence,
+    SRSState,
+    keep_shared,
+)
 from trainer.policy import MovePolicy
 from trainer.review_reports import saved_report
 
@@ -52,19 +60,83 @@ def analyze_decision(db, engine, settings, game, ply, board, move):
             .where(SkillEvidence.decision_id == existing.id)
             .values(active=False)
         )
+    if existing:
+        sync_card_eligibility(db, existing)
     db.add(decision)
     db.commit()
     return decision
+
+
+def sync_card_eligibility(db, decision):
+    """A card made from ``decision`` leaves the practice queue while the decision
+    is no longer a mistake, and returns when a deeper search makes it one again.
+
+    The card keeps its answers and schedule either way: practice must not drill a
+    move the review now calls Good or Best, but rewriting the card would drop
+    answers graded during practice. Cards are found by position, so one shared by
+    the same mistake in another game stays in the queue while any decision on its
+    position is meaningful, whichever decision made it.
+    """
+    cards = db.scalars(
+        select(SRSState)
+        .join(Exercise, Exercise.id == SRSState.exercise_id)
+        .join(Decision, Decision.id == Exercise.decision_id)
+        .where(Decision.position_key == decision.position_key, Exercise.source == "game")
+    ).all()
+    if not cards:
+        return
+    eligible = decision.meaningful or bool(
+        db.scalar(
+            select(func.count())
+            .select_from(Decision)
+            .where(
+                Decision.position_key == decision.position_key,
+                Decision.meaningful.is_(True),
+                Decision.id != decision.id,
+            )
+        )
+    )
+    for state in cards:
+        state.eligible = eligible
 
 
 def reviewed_searches(db, engine, board, move, report):
     before = db.get(EngineAnalysis, report["before_analysis_id"])
     played = db.get(EngineAnalysis, report["played_analysis_id"])
     if played.candidates[0]["uci"] != move.uci():
-        # The review read a second-choice move from the root search; decisions
-        # need the played move first, so search it at the review's own limits.
-        played = engine().analyze(board, deep=True, root_moves=[move.uci()], multipv=1)
+        # The review read the played move from the root search's MultiPV, the
+        # same search (and depth) its best move came from. Decisions need the
+        # played move first, so that candidate becomes its own restricted view of
+        # the search; a new search at other limits would compare two depths.
+        played = restricted_view(db, played, move.uci()) or engine().analyze(
+            board, deep=True, root_moves=[move.uci()], multipv=1
+        )
     return before, played, True
+
+
+def restricted_view(db, analysis, uci):
+    """``analysis`` restricted to its own candidate for ``uci``, saved once as an
+    analysis of its own: the same search, limits and engine, with that move first.
+    None when the search has no line for the move."""
+    candidate = next((c for c in analysis.candidates if c["uci"] == uci), None)
+    if candidate is None:
+        return None
+    key = digest({"restricted_view": analysis.id, "root_moves": [uci]})
+    existing = db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
+    if existing is not None:
+        return existing
+    # The shared-cache insert: two jobs building the view at once keep one row.
+    db.execute(
+        keep_shared(
+            EngineAnalysis,
+            key,
+            fen=analysis.fen,
+            engine_version=analysis.engine_version,
+            config=analysis.config | {"multipv": 1, "root_moves": [uci], "view_of": analysis.id},
+            candidates=[candidate],
+        )
+    )
+    return db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
 
 
 def triaged_searches(engine, settings, board, move):

@@ -15,7 +15,10 @@ from trainer.tactical_geometry import (
 
 
 def pin_collected(boards, plies, ply, analysis_id, direction):
-    """The move pins a piece to its king, and the pinned piece is collected."""
+    """The move pins a piece to its king, and the pinned piece is collected.
+
+    The pin must be new: a piece already pinned before the move (the pinner slid
+    along the pin's line, or another piece held it) is used, not made."""
     before, after = boards[ply - 1], boards[ply]
     move, actor = after.peek(), before.turn
     for target, victim in after.piece_map().items():
@@ -23,6 +26,7 @@ def pin_collected(boards, plies, ply, analysis_id, direction):
             victim.color == actor
             or victim.piece_type == chess.KING
             or not after.is_pinned(not actor, target)
+            or before.is_pinned(not actor, target)
         ):
             continue
         pinner = absolute_pinner(after, target)

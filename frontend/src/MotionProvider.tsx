@@ -16,6 +16,8 @@ const MotionContext = createContext<Context | null>(null);
 const deviceCache: DeviceCache<Preferences> = {
   name: "interface-motion",
   pick: ({motion}) => motion === "system" || motion === "natural" || motion === "still" ? {motion} : {},
+  // Before caches were kept per account, one device-wide key held the motion choice as text.
+  legacy: { key: "fieldwork.interface-motion", read: motion => ({ motion }) },
 };
 
 export function MotionProvider({children}: {children: ReactNode}) {

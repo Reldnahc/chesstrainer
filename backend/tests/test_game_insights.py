@@ -226,6 +226,52 @@ def test_library_insights_from_saved_games(settings, monkeypatch):
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0
 
 
+def test_each_game_is_replayed_once_and_the_cache_is_bounded(settings, monkeypatch):
+    from trainer import game_insights
+    from trainer.recent_cache import RecentCache
+    from trainer.routes import insights
+
+    built = []
+
+    def counted(game, *args):
+        built.append(game.id)
+        return game_insights.game_facts(game, *args)
+
+    monkeypatch.setattr(insights, "game_facts", counted)
+    monkeypatch.setattr(insights, "_facts", RecentCache(10))
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            seed(db)
+        first = client.get("/api/insights").json()
+        assert len(built) == 3
+        # A filter change or a repeat replays nothing while the reviews are unchanged.
+        assert client.get("/api/insights?speed=blitz").json()["games"] == 2
+        assert client.get("/api/insights").json() == first
+        assert len(built) == 3
+
+        # A library larger than the cache reuses what it holds: hits are read
+        # before misses are stored, so a miss never evicts a game still to come.
+        monkeypatch.setattr(insights, "_facts", RecentCache(2))
+        built.clear()
+        assert client.get("/api/insights").json() == first
+        assert len(built) == 3
+        built.clear()
+        assert client.get("/api/insights").json() == first
+        assert len(built) == 1
+    assert insights.FACTS_CACHE_SIZE <= 6000
+
+
+def test_facts_keep_no_per_instance_dictionary():
+    from trainer.game_insights import game_facts
+
+    # Cached for the life of the process: slots keep each ply small.
+    pgn = '[White "Student"]\n[Black "Rival"]\n[Result "*"]\n\n1. e4 e5 *'
+    facts = game_facts(Game(id="slots", pgn=pgn, learner_color=True, white="Student"))
+    assert not hasattr(facts, "__dict__")
+    assert not any(hasattr(row, "__dict__") for row in facts.plies)
+
+
 def test_empty_library(settings):
     app = create_app(settings, workers=False, start_engine=False)
     with TestClient(app) as client:

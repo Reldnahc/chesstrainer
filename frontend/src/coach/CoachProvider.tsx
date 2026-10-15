@@ -20,17 +20,9 @@ const deviceCache: DeviceCache<CoachPreferences> = {
   name: "coach",
   pick: stored => typeof stored.coach_id === "string"
     ? { coach_id: getCoach(stored.coach_id).id as CoachPreferences["coach_id"] } : {},
+  // Before caches were kept per account, one device-wide key held the last coach's id.
+  legacy: { key: "fieldwork:coach-id", read: coach_id => ({ coach_id }) },
 };
-// Before caches were kept per account, one device-wide key held the last coach.
-// It seeds the first visit after the upgrade (the account's own cache wins) and is then removed.
-function upgradedDefaults(): CoachPreferences {
-  try {
-    const id = localStorage.getItem("fieldwork:coach-id");
-    if (!id) return defaults;
-    localStorage.removeItem("fieldwork:coach-id");
-    return { ...defaults, coach_id: getCoach(id).id as CoachPreferences["coach_id"] };
-  } catch { return defaults; }
-}
 const load = (signal: AbortSignal) => read(api.GET("/api/preferences/coach", {signal}));
 // Coach and coach motion share one saved record but are separate controls,
 // so each change writes only its own field.
@@ -44,8 +36,7 @@ function without(change: CoachChange, field: CoachField): CoachChange {
 }
 
 export function CoachProvider({ children }: { children: ReactNode }) {
-  const [initial] = useState(upgradedDefaults);
-  const state = useSavedPreferences({defaults: initial, load, write, deviceCache});
+  const state = useSavedPreferences({defaults, load, write, deviceCache});
   const {save, retry} = state;
   const [pending, setPending] = useState<CoachChange>({});
   const [failed, setFailed] = useState<CoachField | null>(null);

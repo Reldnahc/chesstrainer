@@ -126,7 +126,10 @@ keeps the rating with the highest mean log-probability of the moves actually
 played. The result, its sample size and the median platform rating are stored in
 `play_profiles` and refreshed whenever the library's game count changes, by a
 `level_fit` job of the account (queued first, cancellable, drained on shutdown, and
-kept out of the import activity list). The median platform rating ("where you were
+kept out of the import activity list). "Computing" means such a fit is queued or
+running; a fit stopped before it saved (cancelled, or the process shut down) leaves
+the previous result in place, and the next poll queues one fit again while the
+library has changed since. The median platform rating ("where you were
 rated N") reads only imported games' Elo headers, never a Play game's. Without the model, or before the fit finishes, games use 1200. The fit is
 a conditioning value with its evidence shown beside it, not a rating claim.
 

@@ -288,6 +288,133 @@ def test_a_failing_level_fit_is_saved_unavailable_and_not_queued_again(settings,
             assert [job.status for job in jobs] == ["completed"]
 
 
+def test_a_book_departure_that_moves_later_in_the_game_is_rendered_again():
+    import chess
+    from review_intelligence_fixtures import move_report
+    from trainer.models import PlayGame
+    from trainer.play.sessions import parsed_for, rendered_reports
+
+    # 3.Nc3 leaves the catalogue; 3...Nf6 4.d4 cxd4 5.Nxd4 g6 transposes into the Dragon.
+    moves = ["e2e4", "c7c5", "g1f3", "d7d6", "b1c3", "g8f6", "d2d4", "c5d4", "f3d4", "g7g6"]
+    board = chess.Board()
+    reports = {}
+    for ply, uci in enumerate(moves, 1):
+        reports[str(ply)] = move_report(board, played=uci)
+        board.push_uci(uci)
+    play = PlayGame(
+        id="dragon-transposition",
+        coach_name="Coach",
+        learner_color=True,
+        opponent_rating=1200,
+        learner_rating=1200,
+        moves=moves[:5],
+        reports={ply: report for ply, report in reports.items() if int(ply) <= 5},
+        status="active",
+    )
+
+    def departures():
+        rendered = rendered_reports(play, parsed_for(play, "Learner"))
+        return [
+            ply
+            for ply, report in rendered.items()
+            if any(
+                event["kind"] == "opening_departure" for event in report["intelligence"]["events"]
+            )
+        ]
+
+    assert departures() == [5]
+    play.moves, play.reports = moves, reports
+    # The game never left the book for good: the cached ply 5 rendering must not say so.
+    assert departures() == []
+    assert all(
+        rendered_reports(play, parsed_for(play, "Learner"))[ply]["label"] == "Book"
+        for ply in (1, 2, 3, 4, 10)
+    )
+
+
+def test_a_cancelled_level_fit_keeps_the_previous_result_and_is_queued_once_when_stale(
+    settings, monkeypatch
+):
+    from trainer.human_models.runtime import HumanCancelled
+    from trainer.play import level
+
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
+    with TestClient(app) as client:
+        seed(app)
+        assert client.get("/api/play/profile").json()["status"] == "computing"
+        with app.state.sessions() as db:
+            first = db.scalar(select(AnalysisJob.id).where(AnalysisJob.kind == "level_fit"))
+        app.state.runner.run_job(first)
+        before = client.get("/api/play/profile").json()
+        assert before["status"] in {"ready", "no_games"}
+
+        def cancelled(*args, **kwargs):
+            raise HumanCancelled("cancelled")
+
+        monkeypatch.setattr(level, "fit_level", cancelled)
+        # A refresh queues a fit; cancelling it leaves the previous result readable.
+        assert client.post("/api/play/profile/refresh").json()["status"] == "computing"
+        with app.state.sessions() as db:
+            job = db.scalar(
+                select(AnalysisJob).where(
+                    AnalysisJob.kind == "level_fit", AnalysisJob.status == "queued"
+                )
+            )
+            job.cancel_requested = True
+            db.commit()
+            second = job.id
+        app.state.runner.run_job(second)
+        assert client.get("/api/play/profile").json() == before
+
+        def statuses():
+            with app.state.sessions() as db:
+                jobs = db.scalars(
+                    select(AnalysisJob)
+                    .where(AnalysisJob.kind == "level_fit")
+                    .order_by(AnalysisJob.created_at, AnalysisJob.id)
+                )
+                return [job.status for job in jobs]
+
+        assert statuses() == ["completed", "cancelled"]
+        # A library change makes the profile stale: the next poll queues one fit,
+        # and polling while it waits queues no more.
+        seed(app, '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 *')
+        assert client.get("/api/play/profile").json()["status"] == "computing"
+        client.get("/api/play/profile")
+        assert statuses() == ["completed", "cancelled", "queued"]
+
+
+def test_an_older_row_whose_best_was_swapped_for_the_played_move_is_read_raw():
+    import chess
+    from review_intelligence_fixtures import move_report
+    from trainer.game_review import engine_facts, link_previous_scores, promote_stronger_played
+
+    board = chess.Board()
+    report = move_report(board, played="e2e4", best="d2d4", before=20, after=30, second=15)
+    runner_up = report["best"] | {"uci": "g1f3", "san": "Nf3", "pv": ["g1f3"]}
+    runner_up["score"] = {"kind": "cp", "value": 15, "mate_given": False}
+    report["root_candidates"] = [report["best"], runner_up]
+    # Before reports were saved as engine facts, Play saved the rendered report,
+    # where the stronger played move had already replaced the root's best move.
+    swapped = promote_stronger_played(report) | {"label": "Best", "coach": "Old wording."}
+    assert swapped["best"]["uci"] == "e2e4"
+    facts = engine_facts(swapped)
+    assert facts["best"] == report["best"] and facts["loss_cp"] == 0
+    assert facts["best_line"]["frames"][1]["uci"] == "d2d4"
+    assert "label" not in facts
+    # The previous-score link then reads the root's best, as for every other row.
+    after = chess.Board()
+    after.push_uci("e2e4")
+    linked = link_previous_scores({1: facts, 2: move_report(after, played="e7e5")})
+    assert linked[2]["previous_score"] == {"kind": "cp", "value": -20, "mate_given": False}
+    # A row saved raw, and one whose best move was played, are untouched.
+    assert engine_facts(report) == report
+    top = move_report(board, played="d2d4", before=20, after=20, second=15)
+    top["root_candidates"] = [top["best"], runner_up]
+    assert engine_facts(top) == top
+
+
 def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
     from trainer.models import PlayGame
     from trainer.play.sessions import frames_for

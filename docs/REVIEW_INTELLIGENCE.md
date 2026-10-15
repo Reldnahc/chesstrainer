@@ -98,10 +98,16 @@ comparison. Diagnostics retain why an investigation was not adopted.
 Training reads the same effective report: a decision built before a refinement
 was adopted (a later refine request) takes the deeper searches when the game's
 review runs again, keeping its id, so its weakness labels follow the deeper
-search; a decision that stops being a mistake drops them. An exercise already made
+search; a decision that stops being a mistake drops them. When the review read the
+played move from the root search's own lines, the decision compares it there too,
+through a saved restricted view of that search (same limits, that move first),
+never a new search at other limits. An exercise already made
 from it keeps its answers and schedule (rewriting them would drop answers graded in
 practice, and the same mistake in other games can share the exercise); only a
-decision without one gets a new one from the deeper search.
+decision without one gets a new one from the deeper search. While the decision is
+no longer a mistake its card is ineligible, so it leaves the Due queue and focused
+practice and cannot be started directly, unless another meaningful decision shares
+its position; a later search that makes it a mistake again puts the card back.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original
@@ -165,7 +171,7 @@ the durable sources; reading semantics requires no migration or engine/model.
 | `mate` | Newly allowed or missed searched mate | Best/played Stockfish IDs, typed mate transition and `mate_in` (1 when the reply itself mates); already-forced loss is not a new error |
 | `forced_mate` | A move inside a forced mate that neither allows nor misses it | Best/played Stockfish IDs; `stage` is `started` (the opponent's last move allowed it), `continued`, `slower` (a faster mate existed), `next` (mate on the mover's next move whatever the reply), `hastened` (already lost, mated sooner) or `held` (already lost, best defence); delivered mate stays a `finish` |
 | `evaluation_change` | Concession, lost advantage, decisive transition | Saved best/actual scores; mate remains separate from cp |
-| `critical_resource` | Only-good-at-depth, defensive versus decisive resource, practical difficulty | Safe best, losing searched runner-up, near-best played move, multiple legal moves; a good separately searched alternative disproves uniqueness |
+| `critical_resource` | Only-good-at-depth, defensive versus decisive resource, practical difficulty | The Great badge's only-move rule: safe best, losing searched runner-up, near-best played move that itself holds at least -50 cp, multiple legal moves; a good separately searched alternative disproves uniqueness. "Decisive" from the review's winning band (+3.00 or a forced win) |
 | `sacrifice` | Sound offer and explicit acceptance response | Existing Fieldwork sacrifice witness and acceptance analysis ID, under 50 cp loss and no newly lost/allowed mate |
 | `tactic` | Played, allowed, caused, missed or alternative motif in a verified line | Matching line root/first move, actor, valid witness plies and exact analysis/rule IDs; never attribute an alternative's tactic to the played move |
 | `human_contrast` | Natural error, unusual strong find, unusual model best choice | Compatible saved human evidence plus objective references; carries conditioning, domain, unvalidated calibration and confidence |

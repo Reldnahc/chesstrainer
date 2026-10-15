@@ -80,7 +80,10 @@ features). `web.py` maps them in one place and never imports them into domain mo
 the other way round; domain packages do not raise FastAPI's `HTTPException`. Any other
 exception, including a bare `ValueError` or `EvidenceIntegrityError` from inconsistent
 saved evidence, is a server fault and answers 500. `EngineReferenceMismatch` answers 409:
-Stockfish works, but this position's saved evidence needs a different executable.
+Stockfish works, but this position's saved evidence needs a different executable. Moves
+a client sends are checked at the contract (`UciMove` and `SquareMove` in
+`contracts/common.py`): a move that starts and ends on one square, which python-chess
+cannot parse, answers 422 before any route code runs.
 
 The composition root performs migrations, global skill seeding and retirement
 reconciliation once, and owns worker/engine shutdown. Hosted retirement maintenance
@@ -131,7 +134,7 @@ lock, while other accounts have independent locks.
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Visually hidden page heading and the browser tab title (`usePageTitle`); App sets the route's fallback title first |
-| navigation.ts / Link.tsx | URL routing and normal anchor/modifier-click behavior. Every in-app address is built by a typed builder here (`gameReviewPath`, `settingsPath`, `focusedPracticePath`, `puzzleSourcePath`…). `parseScreen` turns an address into one `Screen` (a discriminated union) without touching history, and App picks the screen with an exhaustive switch. One store owns the history listeners whatever renders the route; `startRouter` rewrites old addresses once before the first render, and `useScrollRestoration` (App only) restores positions and follows a fresh link's anchor until the page settles. `useLeaveGuard` asks before a link, Back, Forward or reload leaves unsaved work: each entry records its place in the session, so a refused Back returns to the entry the reader was on |
+| navigation.ts / Link.tsx | URL routing and normal anchor/modifier-click behavior. Every in-app address is built by a typed builder here (`gameReviewPath`, `settingsPath`, `focusedPracticePath`, `puzzleSourcePath`…). `parseScreen` turns an address into one `Screen` (a discriminated union) without touching history, and App picks the screen with an exhaustive switch. One store owns the history listeners whatever renders the route; `startRouter` rewrites old addresses once before the first render, and `useScrollRestoration` (App only) restores positions and follows a fresh link's anchor until the page settles. `useLeaveGuard` asks before a link, Back, Forward or reload leaves unsaved work: each entry records its place in the session, so a refused Back returns to the entry the reader was on. An unnumbered entry from an older build is placed by the Navigation API where the browser has it, otherwise by which end of the numbered run the step leaves; the first step after loading cannot tell and counts as Back, and a wrong first guess can misplace a later old entry on the other side (only a refused leave-guard step reads the number) |
 | api.ts / api.generated.ts | Same-origin typed OpenAPI client, authentication/error handling and generated request/response contracts |
 
 Existing Board, MoveStatus, ReviewExplanation, ProviderImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
@@ -373,6 +376,10 @@ mode and belong to the job in local mode. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
+A game's session never holds a pooled database connection while Stockfish searches:
+`pipeline.ReleasingEngine` ends the session's transaction before each search when it has
+only read (pysqlite opens a SQLite transaction only before a write, so this drops no
+snapshot or lock), and keeps it when a write is pending, so a write is never split.
 Cancellation is read from the job row: task boundaries check it exactly, while loops
 waiting for a lock, a pooled process or a running native search re-check it at most
 every 250 ms.

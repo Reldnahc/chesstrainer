@@ -84,6 +84,16 @@ test("every positional claim carries branch scope that personality wording canno
   expect(fallback.trace.variants).toEqual([]);
 });
 
+test("forced-mate lines count the winning move itself and the mating side's moves after a losing one", () => {
+  // From 8/8/4k3/8/8/8/1R6/R5K1 w, Ra6+ is a saved mate in 5; the bar after it reads M4.
+  const line = (code: ClaimCode) => renderNeutral(makeIntent(`mate-${code}`, "best", "game", "best",
+    [claim(code, {move: "Ra6+", best: "Rb6+", opponent: "Black", mate: 5}, 97)])).text;
+  expect(line("forced_mate_started")).toBe("Ra6+ begins a forced mate in 5, whatever Black replies.");
+  expect(line("forced_mate_continued")).toBe("Ra6+ keeps the forced checkmate going; from this move it is mate in 5.");
+  expect(line("forced_mate_slower")).toBe("Ra6+ still begins a forced mate in 5, but Rb6+ mated sooner.");
+  expect(line("forced_mate_held")).toBe("The position was already lost to a forced mate; even against the best defence, Black mates in 5.");
+});
+
 test("semantic dialogue names supported tactics, replies and exact severity without inventing causes", () => {
   const tactic = event("tactic", {role: "allowed", motif: "fork", roles: {targets: ["e4", "h7"]},
     pieces: {e4: {piece: "queen", color: "white"}, h7: {piece: "king", color: "white"}}});

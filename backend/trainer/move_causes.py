@@ -169,7 +169,7 @@ def bad_trade(c: Capture, previous):
             "avoiding_bad_trades",
             [1, 2],
             c.common | {"moved_piece": names([move.from_square])},
-            f"{before.san(move)} takes a {chess.piece_name(captured.piece_type)}, but {c.after.san(reply)} recaptures your {chess.piece_name(c.victim.piece_type)}. This immediate exchange gives up {-net} material points; the saved comparison also favors the alternative.",
+            f"{before.san(move)} takes a {chess.piece_name(captured.piece_type)}, but {c.after.san(reply)} recaptures your {chess.piece_name(c.victim.piece_type)}. The whole exchange on {chess.square_name(move.to_square)} gives up {-net} material points; the saved comparison also favors the alternative.",
             frame=0,
             mechanism="unfavorable_exchange",
         )

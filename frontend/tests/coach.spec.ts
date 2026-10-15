@@ -278,3 +278,24 @@ test("connecting with a LAN token restores preferences without a page reload", a
     page.getByRole("button", { name: "Reload preferences" }),
   ).toHaveCount(0);
 });
+
+test("a device's pre-account coach and motion choices seed this account's caches once", async ({ page }) => {
+  await page.goto("/settings");
+  await page.evaluate(() => {
+    localStorage.clear();
+    localStorage.setItem("fieldwork:coach-id", "robot");
+    localStorage.setItem("fieldwork.interface-motion", "natural");
+  });
+  // The saved preferences never arrive, so the page starts from what the device remembers.
+  await page.route("**/api/preferences/coach", () => undefined);
+  await page.route("**/api/preferences/motion", () => undefined);
+  await page.reload();
+  // Before its preference loads, the interface moves only when the device remembers a choice.
+  await expect(page.locator("html")).toHaveAttribute("data-interface-motion", "natural");
+  expect(await page.evaluate(() => {
+    const cached = (name: string) => Object.keys(localStorage).filter(key => key.startsWith(`fieldwork.${name}:`))
+      .map(key => JSON.parse(localStorage.getItem(key)!) as unknown);
+    return {coach: cached("coach"), motion: cached("interface-motion"),
+      legacy: [localStorage.getItem("fieldwork:coach-id"), localStorage.getItem("fieldwork.interface-motion")]};
+  })).toEqual({ coach: [{ coach_id: "robot" }], motion: [{ motion: "natural" }], legacy: [null, null] });
+});

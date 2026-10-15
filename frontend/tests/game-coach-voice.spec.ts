@@ -4,9 +4,12 @@ import type {Game, Report} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
+import {expert} from "../src/dialogue/characters/expert";
+import {newCastPersonalities} from "../src/dialogue/characters/newCast";
+import type {DialogueCharacter} from "../src/dialogue/personality";
 
 import {captureSpeech, speechActivity} from "./helpers/speech";
-import {selectGameOpener, selectGameRecording} from "../src/audio/speech/gameSelection";
+import {selectGameOpener, selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
 import walterBank from "../src/audio/speech/bank/manifest.json" with {type: "json"};
 import pilotAdditions from "../src/audio/speech/banks/pilot-additions.json" with {type: "json"};
 
@@ -131,23 +134,24 @@ test("a game against the coach greets with its own line only before the first mo
 // The review line of a double check that a queen fork follows three moves
 // later (backend output for 30...Nc2+ in the position below,
 // the same shape as the reviewed 30...Nf5+ that was voiced as a fork).
-function doubleCheckThenFork(forkPlies: number[]) {
+type Witness = {id: string; motif: string; plies: number[]; roles?: Record<string, string[]>};
+function reviewedTactics(witnesses: Witness[], coach: DialogueCharacter = {id: "classic", personality: storyteller}) {
   const fen = "rnbk1b2/pp4pp/1q1p4/3p4/3n4/2P1K1PP/PP6/3R4 b - - 0 30";
   const sans = ["Nc2+", "Kf3", "Qe3+", "Kg2", "Qe2+", "Kh1", "Qxd1+"];
   const score = {kind: "mate" as const, value: -7, mate_given: false};
   const actual = {uci: "d4c2", san: "Nc2+", score, depth: 20, pv: ["d4c2"]};
-  const tactic = (id: string, index: number, motif: string, plies: number[]) => ({
+  const tactic = ({id, motif, plies, roles = {}}: Witness, index: number) => ({
     id, kind: "tactic" as const, actor: "black" as const, confidence: "line_witness" as const, importance: 65,
     facts: {role: "played", motif, plies, frame_ply: plies[0], verification: "verified_line",
       witness: plies.map(ply => ({ply, san: sans[ply - 1], capture: null, gives_check: true})),
-      roles: {}, pieces: {}, squares: []},
+      roles, pieces: {}, squares: []},
     evidence: [{source: "stockfish" as const, id: "played", field: `actual_line/findings/${index}`},
       {source: "rule" as const, id: `rule-${motif}`, field: "verified_witness"}],
   });
   const report: Report = {label: "Best", engine_label: "Best", actual, best: actual, reason: "", coach: "",
     white_score: score, depth: 20, engine_version: "fixture", opening: null, board_cues: null,
     intelligence: {version: "move-events-4", input_digest: "double-check", ply: 1, clock: null, limitations: [],
-      events: [tactic("double-check", 0, "double_attack", [1]), tactic("later-fork", 1, "fork", forkPlies)]}};
+      events: witnesses.map(tactic)}};
   const start = {fen, turn: "black" as const, uci: null, san: "Start", actor: null, number: 30,
     legal_moves: [], result: null, termination: null, report: null};
   const frame = {fen: "after-Nc2+", turn: "white" as const, uci: "d4c2", san: "Nc2+", actor: "black" as const,
@@ -160,9 +164,15 @@ function doubleCheckThenFork(forkPlies: number[]) {
     expect(claim).toBeTruthy();
     // Speak each witness as the move's whole line; the selector re-derives the full intent.
     const single = {...intent, claims: [claim]};
-    const utterance = renderDialogue(single, {id: "classic", personality: storyteller});
+    const utterance = renderDialogue(single, coach);
     return selectGameRecording({game, ply: 1, frame, report, intent: single, utterance, anyCoach: true});
   };
+  return select;
+}
+
+function doubleCheckThenFork(forkPlies: number[]) {
+  const select = reviewedTactics([{id: "double-check", motif: "double_attack", plies: [1]},
+    {id: "later-fork", motif: "fork", plies: forkPlies}]);
   return {doubleCheck: select("double-check"), fork: select("later-fork")};
 }
 
@@ -225,4 +235,66 @@ test("without a recorded greeting the start keeps its own bubble text", async ({
   await voiceGame(page, humanGames.unusual_strong, 0);
   await expect(page.locator(".coach-message > [data-utterance]"))
     .toHaveText("Select a move or move a piece to explore an alternative.");
+});
+
+test("a double check is not voiced by takes that name two targets", () => {
+  // A double check's witness names the king it checks: one target, two attackers.
+  const doubleCheck = {id: "double-check", motif: "double_attack", plies: [1], roles: {attackers: ["c2", "d8"], king: ["e3"]}};
+  expect(reviewedTactics([doubleCheck])("double-check")).toBe("tactic-double-attack-played");
+  // Jun's take says "two targets are threatened".
+  const jun = {id: "man-expert", personality: expert};
+  expect(reviewedTactics([doubleCheck], jun)("double-check")).toBeNull();
+  // A double attack on two targets keeps Jun's take.
+  expect(reviewedTactics([{...doubleCheck, roles: {attackers: ["c2", "d1"], targets: ["e3", "a1"]}}], jun)("double-check"))
+    .toBe("tactic-double-attack-played");
+});
+
+test("back-rank takes saying the king's own pieces block its escape squares stay silent", () => {
+  const backRank = {id: "back-rank", motif: "back_rank", plies: [1], roles: {attacker: ["d1"], king: ["h1"], escape_blockers: ["g2", "h2"]}};
+  // Walter's take says the king is boxed in by its own pieces, which holds.
+  expect(reviewedTactics([backRank])("back-rank")).toBe("tactic-back-rank-played");
+  // Jun's says "the king's own pieces block its escape squares": never all of them.
+  expect(reviewedTactics([backRank], {id: "man-expert", personality: expert})("back-rank")).toBeNull();
+});
+
+// The learner's 3.Qxd8 takes the queen Black's 2nd move left; a punishment relation links them.
+function punishedError(label: string, coach: DialogueCharacter) {
+  const score = {kind: "cp" as const, value: 900, mate_given: false};
+  const actual = {uci: "d1d8", san: "Qxd8", score, depth: 20, pv: ["d1d8"]};
+  const evidence = [{source: "stockfish" as const, id: "punish-search", field: "candidate_search", ply: 3}];
+  const report = {label: "Best", engine_label: "Best", actual, best: actual, reason: "", coach: "",
+    white_score: score, depth: 20, engine_version: "fixture", opening: null, board_cues: null,
+    intelligence: {version: "move-events-4", input_digest: "punish", ply: 3, clock: null, limitations: [], events: []}} as Report;
+  const frame = (ply: number, san: string, actor: "white" | "black", frameReport: unknown) => ({fen: `after-${ply}`,
+    turn: actor === "white" ? "black" : "white", uci: "a1a2", san, actor, number: Math.ceil(ply / 2),
+    legal_moves: [], result: null, termination: null, report: frameReport});
+  const frames = [{...frame(0, "Start", "black", null), actor: null, uci: null, turn: "white"},
+    frame(1, "d4", "white", null), frame(2, "Qd8", "black", {label}), frame(3, "Qxd8", "white", report)];
+  const game = {...humanGames.unusual_strong, id: "punished", orientation: "white", frames, context: {
+    version: "game-context-1", input_digest: "context", complete: true, total_plies: 3, missing_plies: [],
+    turning_points: [], biggest_swing_ply: null, limitations: [],
+    nodes: [{ply: 3, actor: "white", input_digest: "punish", event_ids: [], before: score, after: score, evidence}],
+    relationships: [{id: "punish-1", kind: "punishment", actor: "white", plies: [2, 3], event_ids: [],
+      facts: {outcome: "capitalized"}, evidence}]}} as unknown as Game;
+  const intent = gameIntent({game, ply: 3, frame: game.frames[3], report, key: "punished", expression: "best"});
+  const claim = intent.claims.find(item => item.code === "punishment")!;
+  expect(claim).toBeTruthy();
+  const single = {...intent, claims: [claim]};
+  const {primaryId, variants} = selectGameSpeech({game, ply: 3, frame: game.frames[3], report, intent: single,
+    utterance: renderDialogue(single, coach), anyCoach: true});
+  return {primaryId, takes: variants.primaryId?.split("|") ?? []};
+}
+
+test("a chance-taken take calling the error small sits out after a blunder", () => {
+  // Celeste's base take says the opponent's move "held a small gift".
+  const celeste = {id: "unicorn", personality: newCastPersonalities.unicorn};
+  const afterMistake = punishedError("Mistake", celeste);
+  expect(afterMistake.primaryId).toBe("chance-taken");
+  expect(afterMistake.takes).toContain("chance-taken");
+  const afterBlunder = punishedError("Blunder", celeste);
+  expect(afterBlunder.primaryId).toBe("chance-taken");
+  expect(afterBlunder.takes).not.toContain("chance-taken");
+  expect(afterBlunder.takes).toEqual(expect.arrayContaining(["chance-taken-2", "chance-taken-3", "chance-taken-4"]));
+  // Walter's takes say nothing of size, so all of them stay.
+  expect(punishedError("Blunder", {id: "classic", personality: storyteller}).takes).toContain("chance-taken");
 });

@@ -2,8 +2,15 @@
 
 import chess
 
-from trainer.chess_core import Score, evaluation_loss
-from trainer.review_scores import MISTAKE_CP, is_decisive_swing, is_near_best, is_poor
+from trainer.chess_core import DECISIVE_CP, Score, evaluation_loss
+from trainer.review_scores import (
+    MISTAKE_CP,
+    is_decisive_swing,
+    is_near_best,
+    is_only_good_move,
+    is_poor,
+    strongest_alternative,
+)
 from trainer.tactical_geometry import SLIDERS
 
 MOVER_CAUSES = {"abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"}
@@ -95,7 +102,10 @@ def objective_events(report, practical, emit, evidence, ref):
             },
             evidence,
         )
-    if near and report["legal_count"] > 1 and practical.components.only_good_move_at_depth:
+    # The Great badge's only-move rule: the runner-up loses and the played move
+    # holds, so the coach says "only move" exactly where the badge says Great.
+    only_move = is_only_good_move(best, actual, strongest_alternative(report))
+    if near and report["legal_count"] > 1 and only_move:
         emit(
             "critical_resource",
             "searched",
@@ -103,10 +113,10 @@ def objective_events(report, practical, emit, evidence, ref):
             {
                 "only_good_at_depth": report["depth"],
                 "difficult": practical.best_find_difficulty == "difficult",
-                # "Decisive" only in the app's own advantage band (+2.00 or a forced
-                # win), the band the evaluation-change events use.
+                # "Decisive" from the review's winning band (+3.00 or a forced
+                # win), so "kept the decisive advantage" agrees with "winning".
                 "purpose": "decisive_resource"
-                if advantage(best) in {"advantage", "forced_win"}
+                if best.outcome() == 1 or (best.kind == "cp" and best.value >= DECISIVE_CP)
                 else "defense",
             },
             evidence + [ref("rule", practical.version, practical.input_digest)],

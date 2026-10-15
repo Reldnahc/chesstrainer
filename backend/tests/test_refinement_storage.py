@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import pytest
 from alembic import command
 from alembic.config import Config
-from sqlalchemy import select, text
+from sqlalchemy import func, select, text
 from trainer.accounts import Accounts
 from trainer.db import database, migrate
 from trainer.errors import NotFound
@@ -223,6 +223,66 @@ def test_training_decisions_use_the_adopted_refinement(settings, sessions):
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
 
 
+def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(settings, sessions):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.models import Decision, EngineAnalysis
+
+    board = chess.Board()
+    move = chess.Move.from_uci("e2e4")
+    root = EngineAnalysis(
+        cache_key="refined-root",
+        fen=board.fen(),
+        engine_version="fixture",
+        config={"depth": 22, "time": 2.0, "multipv": 2, "root_moves": None},
+        candidates=[
+            {"uci": "d2d4", "san": "d4", "pv": ["d2d4"], "score": {"kind": "cp", "value": 45}},
+            {
+                "uci": "e2e4",
+                "san": "e4",
+                "pv": ["e2e4", "e7e5"],
+                "score": {"kind": "cp", "value": 40},
+            },
+        ],
+    )
+    with sessions() as db:
+        game = Game(
+            fingerprint="same-depth", white="A", black="B", learner_color=True, pgn="1. e4 *"
+        )
+        db.add_all([game, root])
+        db.flush()
+        # The review read e4 from the root MultiPV: both ids name the root search.
+        report = {"before_analysis_id": root.id, "played_analysis_id": root.id, "depth": 22}
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=report))
+        db.commit()
+        # No engine is available: nothing may be searched again at other limits.
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        played = db.get(EngineAnalysis, decision.played_analysis_id)
+        assert (
+            played.candidates[0]["uci"] == "e2e4" and played.candidates[0]["score"]["value"] == 40
+        )
+        assert played.config["depth"] == 22 and played.config["root_moves"] == ["e2e4"]
+        assert played.config["view_of"] == root.id
+        assert decision.loss_cp == 5 and decision.deep
+        assert decision.facts["verified_line"][1]["san"] == "e5"
+        # Analysed again (the saved decision no longer matches the report's root
+        # search), the same view is reused rather than saved twice.
+        other = EngineAnalysis(
+            cache_key="other-root",
+            fen=board.fen(),
+            engine_version="fixture",
+            config=root.config,
+            candidates=root.candidates,
+        )
+        db.add(other)
+        db.flush()
+        db.get(Decision, decision.id).before_analysis_id = other.id
+        db.commit()
+        again = analyze_decision(db, None, settings, game, 1, board, move)
+        assert again.played_analysis_id == played.id
+        assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 3
+
+
 def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settings, sessions):
     import chess
     from trainer.analysis import analyze_decision
@@ -310,3 +370,106 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
         db.add(session)
         db.commit()
         assert answer_search(db, session.id, "g1f3").original.id == rows["base"].id
+
+
+def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(settings, sessions):
+    import chess
+    import pytest
+    from trainer.analysis import analyze_decision
+    from trainer.errors import InvalidInput
+    from trainer.exercises import exercise_from_decision
+    from trainer.models import EngineAnalysis, SRSState
+    from trainer.retirement import require_active_review
+    from trainer.scheduling import FSRSScheduler
+
+    board = chess.Board()
+    move = chess.Move.from_uci("f2f3")
+
+    def analysis(key, scores):
+        candidates = [
+            {"uci": uci, "san": board.san(chess.Move.from_uci(uci)), "pv": [uci]}
+            | {"score": {"kind": "cp", "value": value}}
+            for uci, value in scores
+        ]
+        return EngineAnalysis(
+            cache_key=key,
+            fen=board.fen(),
+            engine_version="fixture",
+            config={},
+            candidates=candidates,
+        )
+
+    def adopt(db, game, key, before, played, baseline):
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key=key,
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report=baseline | {"before_analysis_id": before.id, "played_analysis_id": played.id},
+            config={
+                "baseline_ids": [baseline["before_analysis_id"], baseline["played_analysis_id"]]
+            },
+        )
+        db.add(task)
+        db.flush()
+        db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
+        db.commit()
+
+    with sessions() as db:
+        game = Game(fingerprint="queue", white="A", black="B", learner_color=True, pgn="1. f3 *")
+        rows = {
+            "base": analysis("q-base", [("e2e4", 40), ("f2f3", -260)]),
+            "base_played": analysis("q-base-played", [("f2f3", -260)]),
+            # Deeper, the played move is as good as the best: no longer a mistake.
+            "fine": analysis("q-fine", [("d2d4", 45), ("f2f3", 40)]),
+            "fine_played": analysis("q-fine-played", [("f2f3", 40)]),
+            # Deeper still, it is a mistake again.
+            "worse": analysis("q-worse", [("d2d4", 45), ("f2f3", -200)]),
+            "worse_played": analysis("q-worse-played", [("f2f3", -200)]),
+        }
+        db.add_all([game, *rows.values()])
+        db.flush()
+        baseline = {
+            "before_analysis_id": rows["base"].id,
+            "played_analysis_id": rows["base_played"].id,
+            "depth": 16,
+        }
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
+        db.commit()
+        scheduler = FSRSScheduler(settings)
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        exercise = exercise_from_decision(db, decision, settings, scheduler)
+        assert decision.meaningful and db.get(SRSState, exercise.id).eligible
+
+        adopt(db, game, "fine", rows["fine"], rows["fine_played"], baseline)
+        again = analyze_decision(db, None, settings, game, 1, board, move)
+        assert again.id == decision.id and not again.meaningful
+        # The card keeps its answers and schedule but leaves the queue, and a
+        # direct start is refused too.
+        state = db.get(SRSState, exercise.id)
+        assert state is not None and not state.eligible
+        with pytest.raises(InvalidInput, match="no longer a mistake"):
+            require_active_review(db, exercise.id)
+
+        adopt(db, game, "worse", rows["worse"], rows["worse_played"], baseline)
+        back = analyze_decision(db, None, settings, game, 1, board, move)
+        assert back.id == decision.id and back.meaningful
+        assert db.get(SRSState, exercise.id).eligible
+        require_active_review(db, exercise.id)
+
+        # The same mistake in another game shares the card: its meaningful decision
+        # puts the card back even while this game's decision is no longer one.
+        adopt(db, game, "fine-again", rows["fine"], rows["fine_played"], baseline)
+        analyze_decision(db, None, settings, game, 1, board, move)
+        assert not db.get(SRSState, exercise.id).eligible
+        other = Game(fingerprint="queue-2", white="A", black="B", learner_color=True, pgn="1. f3 *")
+        db.add(other)
+        db.flush()
+        db.add(GameReviewMove(game_id=other.id, ply=1, report=baseline))
+        db.commit()
+        shared = analyze_decision(db, None, settings, other, 1, board, move)
+        assert shared.meaningful and shared.id != decision.id
+        assert exercise_from_decision(db, shared, settings, scheduler).id == exercise.id
+        assert db.get(SRSState, exercise.id).eligible

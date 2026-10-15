@@ -6,6 +6,7 @@ import {positionalClaim, strings, tacticalClaim, words} from "./eventClaims";
 import {humanClaims} from "./humanClaims";
 import {isPoorMove} from "../moveQuality";
 import {deriveBookPresentation} from "./openingPresentation";
+import {moveNumber} from "../fen";
 
 const purposes: Record<Report["label"], DialoguePurpose> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good", Book: "book",
@@ -17,7 +18,7 @@ const none = (value: unknown) => Array.isArray(value) && value.length === 0;
 
 function moveLabel(game: Game, ply: number) {
   const frame = game.frames[ply];
-  return frame ? `${frame.number}${frame.actor === "black" ? "..." : "."} ${frame.san}` : `Ply ${ply}`;
+  return frame ? `${moveNumber(frame.number, frame.actor === "black" ? "black" : "white")} ${frame.san}` : `Ply ${ply}`;
 }
 
 /** The coach's dialogue never carries a Maia (human-move model) reading; only

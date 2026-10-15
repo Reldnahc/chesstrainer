@@ -16,7 +16,7 @@ const MAX_BACKOFF = 8;
 /**
  * Repeats `task` while enabled, one pass at a time. A pass that throws counts as
  * failed (the task reports its own error); the screen leaving aborts the signal
- * and stops the loop. `run()` asks for a fresh pass now: it waits for any pass
+ * and stops the loop, and that aborted pass is not a failure. `run()` asks for a fresh pass now: it waits for any pass
  * already in flight, so an explicit refresh after a change is never answered by
  * a response that started before it.
  */
@@ -30,7 +30,11 @@ export function usePolling(task: (signal: AbortSignal) => Promise<unknown>,
   useEffect(() => {
     const controller = new AbortController();
     lifetime.current = controller;
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      // An aborted pass answers nothing; a remount (StrictMode's in development) starts afresh.
+      flight.current = null;
+    };
   }, []);
 
   const pass = useCallback((): Promise<void> => {
@@ -38,7 +42,8 @@ export function usePolling(task: (signal: AbortSignal) => Promise<unknown>,
     if (!signal || signal.aborted) return Promise.resolve();
     const current: Promise<void> = latest.current(signal).then(
       () => { failures.current = 0; },
-      () => { failures.current += 1; },
+      // Leaving the screen aborts a pass; that is not the server failing.
+      () => { if (!signal.aborted) failures.current += 1; },
     ).finally(() => {
       if (flight.current === current) flight.current = null;
     });

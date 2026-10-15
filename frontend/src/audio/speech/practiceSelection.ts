@@ -1,6 +1,7 @@
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../../api";
 import { capturedPieces, findingPieces, findingWordingHolds, withPieceVariant } from "./pieceVariants";
 import { cueMotifs, findingAliases, recordedFindingMechanisms } from "../../dialogue/tacticalVocabulary";
+import { sideToMove } from "../../fen";
 
 /** Only replay_line's explicit facts authorize a complete recorded frame description.
  * A quiet checkmate credits the learner only when the learner mates; a line where
@@ -16,8 +17,7 @@ export function explanationFrameRecording(frame: ExplanationFrame | null | undef
   }
   if (!frame.capture && !frame.promotion && ending === "mate") {
     // The side to move on a checkmated board is the side that was mated.
-    const mated = frame.fen.split(" ")[1] === "w" ? "white" : "black";
-    return mated === learner ? "mate-defense-ended" : "mate-finished";
+    return sideToMove(frame.fen) === learner ? "mate-defense-ended" : "mate-finished";
   }
   const id = `explanation-frame-${frame.capture ? "capture" : "quiet"}-${frame.promotion ? "promotion" : "move"}-${ending}`;
   return withPieceVariant(id, capturedPieces(frame)?.pieces);

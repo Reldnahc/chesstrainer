@@ -154,6 +154,34 @@ test("a failed bot reply can be asked for again, and the game carries on", async
   expect(replies).toBe(2);
 });
 
+test("Try again waits for a running command, and a resigned game stays finished", async ({page}) => {
+  await mockPlay(page);
+  let replies = 0;
+  await page.route("**/api/play/play1/reply", async route => {
+    replies += 1;
+    await route.fulfill({status: 503, json: {detail: "The bot is unavailable."}});
+  });
+  let release = () => {};
+  const held = new Promise<void>(resolve => { release = resolve; });
+  await page.route("**/api/play/play1/resign", async route => {
+    await held;
+    await route.fulfill({json: {...base, status: "finished", result: "0-1", termination: "resignation", frames: [frame0, frame1]}});
+  });
+  await page.goto("/play/play1");
+  await page.locator('[data-square="e2"]').first().click();
+  await page.locator('[data-square="e4"]').first().click();
+  const banners = page.getByRole("region", {name: "Notifications"});
+  await expect(banners).toContainText("The bot is unavailable.");
+  await page.getByRole("button", {name: "Resign"}).click();
+  // While the resign is in flight, a retried reply could land on the finished game.
+  await expect(banners.getByRole("button", {name: "Try again"})).toBeDisabled();
+  release();
+  await expect(banners).toContainText("You resigned. Walter takes the game.");
+  await expect(page.getByText("The bot is unavailable.")).toHaveCount(0);
+  await expect(page.getByRole("button", {name: "Resign"})).toHaveCount(0);
+  expect(replies).toBe(1);
+});
+
 test("an analysis failure belongs to its own move, and saved reports are not asked for again", async ({page}) => {
   await mockPlay(page);
   const asked: number[] = [];
@@ -221,6 +249,20 @@ test("playing a move from an earlier position replaces the rest of the game", as
   expect(bodies).toEqual([{ply: 0, uci: "d2d4", rewind: true}]);
   await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("1 / 1");
   await expect(page.getByText("Walter is thinking…")).toBeVisible();
+});
+
+test("a game that fails to load offers Try again", async ({page}) => {
+  await mockPlay(page);
+  let loads = 0;
+  await page.route("**/api/play/play1", async route => {
+    if (++loads === 1) return route.fulfill({status: 503, json: {detail: "The server is busy."}});
+    await route.fallback();
+  });
+  await page.goto("/play/play1");
+  await expect(page.getByText("Couldn’t load the game.")).toBeVisible();
+  await page.getByRole("button", {name: "Try again", exact: true}).click();
+  await expect(page.getByText("Your move")).toBeVisible();
+  expect(loads).toBe(2);
 });
 
 test("a finished game offers its saved review", async ({page}) => {

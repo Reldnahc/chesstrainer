@@ -89,8 +89,18 @@ in a variation or after flipping the board: positive favors White, negative favo
 Black, and signed `M` values denote forced mate. A move's saved score is its own
 root search, which counts the move just played, so after the mating side's move
 the board shows one move fewer (a saved mate in 2 reads `M1`, a delivered mate
-`M0`); the defender's moves keep the mating side's count. A drawn final position
-(stalemate, insufficient material, repetition) reads 0.00. A score that rounds to
+`M0`); the defender's moves keep the mating side's count. The coach's written forced-mate
+lines keep the saved count, so a winning move "begins a forced mate in 3" while
+the bar reads `M2`; a losing move's line names the mating side's count, as the bar does. A drawn final position
+(stalemate, insufficient material, repetition) reads 0.00. The last frame of every
+game, imported or played here, ends on a threefold repetition or fifty-move draw
+that has actually happened (the third occurrence of the position, or fifty moves
+by each side without a capture or pawn move), the rule Play ends its games by, so
+such a game shows its draw and offers no moves there. A draw the side to move
+could only claim with its next move ends nothing, an earlier position the
+game played past is not ended by a repetition, and an imported game whose header
+says a side won keeps its last frame live (nobody claimed the repetition before
+the resignation or the lost clock). A score that rounds to
 zero has no sign. The score's verdict uses the review's advantage bands: Equal
 within ±1.00, then slightly better, better from ±2.00 and winning from ±3.00.
 Pending evaluations show a dash.
@@ -237,21 +247,28 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   nearly equal score is not Best. When a played move's
   restricted-root search scores it above the reported best, presentation treats it
   as the best move found (best move, best line and grade), without rewriting the
-  saved report.
+  saved report; a centipawn score never outranks a best move that is mated.
 - Good: less than 50 cp loss without qualifying for a higher label. Keeping a
   forced win but taking longer to mate is Good, never Best, Great, or Brilliant.
 - Inaccuracy: 50–99 cp loss, or, in a position lost to mate either way, a move that
   is mated sooner than the best defence.
 - A mate on one side of a comparison only is a mate transition (a Miss or an allowed
-  mate). When the best move mates in four or more and the played move's search reads
-  only +3.00 or better, the played move may keep the mate beyond that search's
-  horizon, so the review searches it again at depth 22 (2 seconds) before grading:
-  a move that still mates is graded as a slower mate, and one that really gives the
-  mate up stays a Miss. The mirror case, a played move mated in four or more while
-  the best defence reads -3.00 or worse, searches the whole comparison again at those
-  limits: when every defence is mated, the move only hastens the mate (an Inaccuracy)
-  and allows nothing. Practice grades a move a card has not seen against the same
-  search its answers came from.
+  mate), unless it may be a horizon difference: two searches at one nominal depth do
+  not see equally far (a restricted root searches a narrower tree), so a mate of any
+  length seen by one search may lie just beyond the other's horizon. When the best
+  move mates and the played move's search reads only +3.00 or better, the review
+  searches the played move again at depth 22 (2 seconds) before grading: a move
+  that still mates is graded as a slower mate (Good), and one that really gives the
+  mate up stays a Miss. When either side is mated while the other reads only -3.00
+  or worse (the played move mated against a lost best defence, or the best defence
+  mated against a played move whose restricted search reads only a lost score), the
+  whole comparison is searched again at those limits: when every defence is mated,
+  a move that only hastens the mate is an Inaccuracy and allows nothing, and a move
+  whose first search stopped short of its own mate is never shown as the best
+  defence. Play's live commentary shares this rule, since it never refines.
+  Presentation never promotes a centipawn score over a best move that is mated, so
+  saved reports from before the deeper search keep the same grades. Practice grades
+  a move a card has not seen against the same search its answers came from.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
 - Blunder: newly allowed forced mate, a transition from at least -50 cp (or a
   forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating
@@ -265,12 +282,17 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
 - Great: at most 20 cp loss and more than one legal move, plus either the only
   good move (the strongest alternative actually loses: -1.50 or worse or mated, at
   least 150 cp / a mate outcome below the best move, while the played move retains
-  at least -50 cp; the same rule the coach's only-move evidence uses); or
+  at least -50 cp; `is_only_good_move`, the one rule the coach's only-move evidence
+  reads, so the coach says "only move" exactly where the badge is Great, except
+  that a Brilliant sacrifice outranks Great); or
   successful exploitation of a preceding opponent error (the opponent's move was
   itself a Mistake or worse, and the previous position between -150 and +150 becomes
   at least +200, or previous position at most -200 becomes at least -50). Previous scores use the position
-  before the opponent's move, normalized to the current mover. The same rules
-  apply in variations. A sole legal move is not Great.
+  before the opponent's move, normalized to the current mover. A variation move
+  can be the only-move Great but never the capitalizing one: its previous score
+  comes from a search of the position before the opponent's move, and no grade of
+  that move exists in a variation, so no opponent error is established. A sole
+  legal move is not Great.
 - Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
   involving the played move, or a winning mate; a non-pawn sacrifice at an
   immediate net material cost; and an explicit native

@@ -9,7 +9,8 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import FlipBoardButton from "../FlipBoardButton";
 import MovePlaybackControls from "../MovePlaybackControls";
-import { LoadingState, UnavailableState } from "../LoadState";
+import { LoadingState } from "../LoadState";
+import { QueryResult } from "../useQuery";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import { pawnsText, positionScore, startingScore } from "../evaluation";
 import EvaluationBar from "../EvaluationBar";
@@ -107,7 +108,7 @@ export default function PlayGame({ id }: { id: string }) {
     return (
       <>
         <ActionLink variant="quiet" href={pagePaths.Play}>Play</ActionLink>
-        {session.error ? <UnavailableState>{session.error}</UnavailableState> : <LoadingState>Setting up the board…</LoadingState>}
+        <QueryResult query={session.load} label="the game">{() => <LoadingState>Setting up the board…</LoadingState>}</QueryResult>
       </>
     );
   const shownOrientation = orientation ?? state.learner_color;
@@ -117,9 +118,11 @@ export default function PlayGame({ id }: { id: string }) {
   // The latest position on the learner's turn, or an earlier one to play from again.
   const playable = (session.learnerToMove && !session.browsing) || session.canRewind;
   // The starting position is scored from the first move's report, as in game review.
+  // A move's score is that move's search; the start's belongs to the position itself.
   const initialScore = startingScore(game.frames);
-  const scoreAt = (at: number, atReport: typeof report, atFrame: typeof frame) =>
-    positionScore(atReport?.white_score ?? (at === 0 ? initialScore : null), atFrame);
+  const scoreAt = (at: number, atReport: typeof report, atFrame: typeof frame) => atReport
+    ? positionScore(atReport.white_score, atFrame)
+    : positionScore(at === 0 ? initialScore : null, atFrame, "position");
   const score = scoreAt(ply, report, frame);
   const cues = cuesFor(report, frame);
   const explaining = session.explaining && !!cues;
@@ -146,7 +149,7 @@ export default function PlayGame({ id }: { id: string }) {
     <div className="game-workspace">
       {session.error && <Banner tone="error" onDismiss={session.dismissError}>{session.error}</Banner>}
       {session.replyError && (
-        <Banner tone="error" action={<Button size="compact" onClick={session.retryReply}>Try again</Button>}>
+        <Banner tone="error" action={<Button size="compact" disabled={session.busy} onClick={session.retryReply}>Try again</Button>}>
           {session.replyError}
         </Banner>
       )}

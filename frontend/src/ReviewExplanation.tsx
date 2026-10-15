@@ -16,6 +16,8 @@ import { useCoachSpeech } from "./audio/speech/useCoachSpeech";
 import CoachSpeechButton from "./audio/speech/CoachSpeechButton";
 import { explanationCueRecording, explanationFindingRecording, explanationFrameRecording, explanationNoteRecording,
   explanationSummaryRecording } from "./audio/speech/practiceSelection";
+import { alwaysFalseTake } from "./audio/speech/falseTakes";
+import { useOptionalCoachPreferences } from "./coach/CoachProvider";
 
 export default function ReviewExplanation({
   sessionId,
@@ -96,7 +98,11 @@ export default function ReviewExplanation({
   }, [ready]);
   const finding =
     selectedFinding === null ? null : data?.findings?.[selectedFinding];
-  const findingRecording = data ? explanationFindingRecording(data, finding, index) : null;
+  // A finding can borrow a game clip (a back-rank mate plays the back-rank take);
+  // a coach whose take for it is false offers no Listen button.
+  const coachId = useOptionalCoachPreferences()?.preferences.coach_id;
+  const findingClip = data ? explanationFindingRecording(data, finding, index) : null;
+  const findingRecording = findingClip && !alwaysFalseTake(coachId, findingClip) ? findingClip : null;
   const cueRecording = data ? explanationCueRecording(data, finding, index) : null;
   const summaryRecording = data ? explanationSummaryRecording(data) : null;
   const noteRecordings = data && notesOpen ? data.notes.map((_, i) => explanationNoteRecording(data, i)) : [];

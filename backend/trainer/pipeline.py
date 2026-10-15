@@ -15,6 +15,36 @@ from trainer.puzzles.generation import EngineSearch, generate_for_game
 from trainer.work_pool import GameCompletion, WorkPool
 
 
+def release_reads(db):
+    """End ``db``'s transaction when it has only read, returning its pooled connection.
+
+    A Session keeps its connection from its first statement until it commits.
+    pysqlite opens a SQLite transaction only before a write, so a session that has
+    only read holds no snapshot or lock, and committing it only hands the
+    connection back. A session with unflushed or uncommitted writes is kept as
+    it is, so a write is never split. Loaded rows stay usable (no expiry on commit).
+    """
+    if db.new or db.dirty or db.deleted or not db.in_transaction():
+        return
+    if db.connection().connection.driver_connection.in_transaction:
+        return
+    db.commit()
+
+
+class ReleasingEngine:
+    """An engine whose searches never run while ``db`` holds a connection only to read."""
+
+    def __init__(self, db, engine):
+        self.db, self.engine = db, engine
+
+    def analyze(self, *args, **kwargs):
+        release_reads(self.db)
+        return self.engine.analyze(*args, **kwargs)
+
+    def __getattr__(self, name):
+        return getattr(self.engine, name)
+
+
 class JobPipeline:
     def __init__(self, runner, job_id, engine_override=None, *, counters=True):
         self.runner, self.job_id = runner, job_id
@@ -119,7 +149,13 @@ class JobPipeline:
                         if self.cancelled():
                             return
                         decision = analyze_decision(
-                            db, self.engine, self.settings, game, ply, board, move
+                            db,
+                            lambda: ReleasingEngine(db, self.engine()),
+                            self.settings,
+                            game,
+                            ply,
+                            board,
+                            move,
                         )
                         self.process_decision(db, decision, completion)
                     if self.settings.puzzle_generation:
@@ -136,7 +172,7 @@ class JobPipeline:
     def mine(self, db, game):
         result = generate_for_game(
             db,
-            EngineSearch(self.engine(), self.settings),
+            EngineSearch(ReleasingEngine(db, self.engine()), self.settings),
             self.settings,
             game,
             cancelled=self.cancelled,

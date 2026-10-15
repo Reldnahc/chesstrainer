@@ -1,5 +1,7 @@
 """Whole-game review must explain both colors without changing training data."""
 
+from types import SimpleNamespace
+
 import chess
 import chess.pgn
 import pytest
@@ -122,6 +124,109 @@ def test_a_long_mate_beyond_the_played_moves_search_is_settled_deeper(
             assert classify(missed, 1500)[0] == "Miss"
     finally:
         engine.close()
+
+
+class HorizonEngine:
+    """Scripted searches whose answers depend on the root moves and the limits asked,
+    the two things that decide how far a search sees."""
+
+    engine_version = "scripted"
+
+    def __init__(self, answers):
+        self.answers = answers
+        self.calls = []
+
+    def analyze(self, board, deep=False, root_moves=None, multipv=None, limits=None, **_):
+        roots = tuple(root_moves or ())
+        self.calls.append((roots, limits))
+        rows = self.answers[(roots, limits is not None)]
+        return SimpleNamespace(
+            id=f"{'deep' if limits else 'default'}:{','.join(roots) or 'root'}",
+            engine_version=self.engine_version,
+            candidates=[
+                {
+                    "uci": uci,
+                    "san": board.san(chess.Move.from_uci(uci)),
+                    "score": {"kind": kind, "value": value},
+                    "pv": [uci],
+                    "depth": limits.depth if limits else 16,
+                }
+                for uci, kind, value in rows
+            ],
+        )
+
+
+def test_a_played_move_that_reads_centipawns_against_a_mating_best_is_searched_deeper():
+    from trainer.game_review import MATE_HORIZON_LIMITS
+
+    # Rb4 keeps a rook mate its restricted search reads as +6.19; Kc7 mates in three.
+    board = chess.Board("k2K4/8/1R6/8/8/8/8/8 w - - 0 1")
+    root = [("d8c7", "mate", 3), ("b6b8", "mate", 3)]
+    engine = HorizonEngine(
+        {
+            ((), False): root,
+            (("b6b4",), False): [("b6b4", "cp", 619)],
+            (("b6b4",), True): [("b6b4", "mate", 9)],
+        }
+    )
+    report = analyze_move(engine, board, chess.Move.from_uci("b6b4"))
+    assert (("b6b4",), MATE_HORIZON_LIMITS) in engine.calls
+    assert report["actual"]["score"] == {"kind": "mate", "value": 9, "mate_given": False}
+    assert report["played_analysis_id"] == "deep:b6b4" and report["depth"] == 16
+    assert classify(report, 1500)[0] == "Good"
+    # A move that really gives the mate up for a big lead is still a Miss.
+    engine.answers[(("b6b4",), True)] = [("b6b4", "cp", 650)]
+    gave_up = analyze_move(engine, board, chess.Move.from_uci("b6b4"))
+    assert gave_up["actual"]["score"]["kind"] == "cp"
+    assert classify(gave_up, 1500)[0] == "Miss"
+
+
+def test_a_mated_defence_against_a_lost_centipawn_best_searches_the_whole_comparison_deeper():
+    from trainer.game_review import MATE_HORIZON_LIMITS, public_report
+
+    # Ke1 is mated in three; the root reads Kf3 as -5.19 and is mated in eight deeper.
+    board = chess.Board("8/8/6Q1/8/8/1K6/4k3/8 b - - 0 1")
+    engine = HorizonEngine(
+        {
+            ((), False): [("e2f3", "cp", -519), ("e2e1", "mate", -3)],
+            ((), True): [("e2f3", "mate", -8), ("e2e1", "mate", -3)],
+        }
+    )
+    report = analyze_move(engine, board, chess.Move.from_uci("e2e1"))
+    assert engine.calls == [((), None), ((), MATE_HORIZON_LIMITS)]
+    assert report["before_analysis_id"] == "deep:root"
+    assert report["best"]["score"] == {"kind": "mate", "value": -8, "mate_given": False}
+    assert classify(report, 1500) == (
+        "Inaccuracy",
+        "There was a stronger way to keep your position intact.",
+    )
+    assert public_report(report, 1500)["label"] == "Inaccuracy"
+
+
+def test_a_faster_mated_move_whose_search_stopped_short_is_not_promoted_to_best():
+    from trainer.game_review import MATE_HORIZON_LIMITS, public_report
+
+    # Kd7 is mated in twelve; Kb7's restricted search reads -5.09, deeper mated in seven.
+    board = chess.Board("8/2k5/8/8/7Q/K7/8/8 b - - 0 1")
+    engine = HorizonEngine(
+        {
+            ((), False): [("c7d7", "mate", -12), ("c7c8", "mate", -9)],
+            (("c7b7",), False): [("c7b7", "cp", -509)],
+            ((), True): [("c7d7", "mate", -9), ("c7c8", "mate", -8)],
+            (("c7b7",), True): [("c7b7", "mate", -7)],
+        }
+    )
+    report = analyze_move(engine, board, chess.Move.from_uci("c7b7"))
+    assert engine.calls[2:] == [((), MATE_HORIZON_LIMITS), (("c7b7",), MATE_HORIZON_LIMITS)]
+    assert report["best"]["uci"] == "c7d7" and report["actual"]["score"]["kind"] == "mate"
+    rendered = public_report(report, 1500)
+    assert rendered["best"]["uci"] == "c7d7" and rendered["label"] == "Inaccuracy"
+    # A saved row from before the deeper search still holds the centipawn reading;
+    # it is a horizon difference, never a stronger move than the mated best.
+    saved = quality(0, -509, second_score={"kind": "mate", "value": -9})
+    saved["best"]["score"] = {"kind": "mate", "value": -12}
+    assert promote_stronger_played(saved) == saved
+    assert classify(saved, 1500)[0] != "Best"
 
 
 def test_previous_scores_carry_whether_the_opponent_erred():
@@ -478,6 +583,35 @@ def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monk
         assert detail["job"]["status"] == "completed"
         assert detail["job"]["completed"] == 4
         assert detail["frames"][1]["report"] == first_report
+
+
+def test_a_game_drawn_by_a_repetition_that_happened_ends_its_last_frame(settings):
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False)
+    shuffle = "1. Nf3 Nf6 2. Ng1 Ng8 3. Nf3 Nf6 4. Ng1 Ng8"
+    with TestClient(app) as client:
+        # The eighth move repeats the start position a third time: a draw, like Play's.
+        drawn = seed(app, f'[White "Learner"]\n[Black "Opponent"]\n\n{shuffle} 1/2-1/2')
+        frames = client.get(f"/api/games/{drawn}").json()["frames"]
+        assert frames[-1]["termination"] == "threefold repetition"
+        assert frames[-1]["result"] == "1/2-1/2" and frames[-1]["legal_moves"] == []
+        # An earlier frame is not ended by a repetition the game then played past,
+        # and the draw White could only claim with its next move ends nothing.
+        assert frames[4]["result"] is None and frames[4]["legal_moves"]
+        # The same moves with a decisive header: nobody claimed the repetition
+        # before Black resigned, so the review does not call the game a draw.
+        seed(app, f'[White "Learner"]\n[Black "Opponent"]\n\n{shuffle} 1-0')
+        with app.state.sessions() as db:
+            won = db.scalar(select(Game.id).where(Game.id != drawn))
+        detail = client.get(f"/api/games/{won}").json()
+        assert detail["result"] == "1-0"
+        assert detail["frames"][-1]["result"] is None and detail["frames"][-1]["legal_moves"]
+        seed(app, f'[White "Learner"]\n[Black "Other"]\n\n{shuffle} 5. e4 *')
+        with app.state.sessions() as db:
+            played_on = db.scalar(select(Game.id).where(Game.black == "Other"))
+        frames = client.get(f"/api/games/{played_on}").json()["frames"]
+        assert frames[8]["result"] is None and frames[-1]["result"] is None
+        assert frames[-1]["legal_moves"]
 
 
 def test_parallel_review_preserves_order_history_and_engine_budget(settings, monkeypatch):

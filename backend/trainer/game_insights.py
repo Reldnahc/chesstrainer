@@ -15,7 +15,7 @@ from typing import get_args
 import chess
 import chess.pgn
 
-from trainer.chess_core import Score, evaluation_loss
+from trainer.chess_core import DECISIVE_CP, Score, evaluation_loss
 from trainer.contracts.insights import Speed
 from trainer.game_accuracy import STARTING_CP, accuracy_cp, mover_accuracy
 from trainer.game_library import mover_rating, parsed_game, pgn_rating
@@ -29,9 +29,9 @@ from trainer.review_scores import MISTAKE_CP
 
 VERSION = "insights-1"
 SPEEDS = get_args(Speed)
-# Learner-relative thresholds. "Clearly" winning or lost is three pawns, the same
-# size of swing that makes an ordinary move a Blunder for most ratings.
-DECISIVE_CP = 300
+# Learner-relative thresholds. "Clearly" winning or lost is the review's own
+# decisive score (DECISIVE_CP, three pawns), the same size of swing that makes an
+# ordinary move a Blunder for most ratings; a lead is half of that.
 LEAD_CP = 150
 SESSION_GAP = timedelta(minutes=90)
 MOVE_BUCKETS = ((1, 5), (6, 10), (11, 15), (16, 20), (21, 30), (31, None))
@@ -46,7 +46,7 @@ CLOCK_BUCKETS = (
 DAY_PARTS = ("night", "morning", "afternoon", "evening")
 
 
-@dataclass
+@dataclass(slots=True)
 class Ply:
     ply: int
     learner: bool
@@ -64,7 +64,7 @@ class Ply:
     elapsed: float | None = None
 
 
-@dataclass
+@dataclass(slots=True)
 class GameFacts:
     id: str
     opponent: str
