@@ -9,6 +9,7 @@ from review_intelligence_fixtures import move_report
 from test_review_sacrifices import PAWN_WINNING_TRADE, PROMOTION, QUEEN_SACRIFICE, offer
 from trainer.chess_core import Candidate
 from trainer.game_review import analyze_move, line_evidence, public_report
+from trainer.search_limits import DEEP
 
 
 @pytest.mark.parametrize("black", [False, True])
@@ -112,9 +113,9 @@ def test_forced_king_move_never_claims_brilliant_or_runs_acceptance_search(black
     class Engine:
         calls = 0
 
-        def analyze(self, position, *, deep, multipv):
+        def analyze(self, position, profile, *, multipv):
             self.calls += 1
-            assert position.fen() == board.fen() and deep and multipv == 2
+            assert position.fen() == board.fen() and profile == DEEP and multipv == 2
             return SimpleNamespace(
                 id="forced-root",
                 engine_version="Synthetic authority",

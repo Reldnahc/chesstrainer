@@ -14,7 +14,7 @@ from trainer.chess_core import Candidate, Score, digest, engine_context, legal_m
 from trainer.config import Settings
 from trainer.engine_search import cancellable_search, search_lock
 from trainer.models import EngineAnalysis, keep_shared
-from trainer.search_limits import EngineCancelled, SearchLimits
+from trainer.search_limits import TRIAGE, EngineCancelled, SearchProfile
 
 log = logging.getLogger(__name__)
 
@@ -56,51 +56,43 @@ class EngineReferenceMismatch(EngineUnavailable):
 ADAPTER_VERSION = "2"
 
 
-def search_config(
-    settings,
-    binary_hash,
-    *,
-    deep=False,
-    root_moves=None,
-    multipv=None,
-    reference=None,
-    classification_probe=False,
-    limits=None,
-):
-    """The engine configuration one search runs with, and caches under.
+def profile_limits(settings, profile):
+    """The threads, hash, depth, time and node limits a search profile runs at."""
+    if profile.kind == "reference":
+        return {
+            name: profile.reference.config[name]
+            for name in ("threads", "hash_mb", "depth", "time", "nodes")
+        }
+    limits = {"threads": settings.stockfish_threads, "hash_mb": settings.stockfish_hash_mb}
+    if profile.kind == "triage":
+        return limits | {
+            "depth": settings.triage_depth,
+            "time": settings.triage_time,
+            "nodes": settings.triage_nodes,
+        }
+    if profile.kind == "deep":
+        return limits | {
+            "depth": settings.deep_depth,
+            "time": settings.deep_time,
+            "nodes": settings.deep_nodes,
+        }
+    if profile.kind == "probe":
+        return limits | {
+            "depth": settings.classification_probe_depth,
+            "time": settings.classification_probe_time,
+            "nodes": None,
+        }
+    return limits | profile.limits.model_dump()
 
-    One profile applies: triage (the default) or ``deep`` from settings, the
-    limits of a ``reference`` analysis being extended, the classification
-    probe's, or explicit ``limits``. A reference cannot be combined with a probe
-    or explicit limits, nor a probe with explicit limits.
-    """
-    if reference and (classification_probe or limits):
-        raise ValueError("A classification probe cannot change grading reference limits")
-    if classification_probe and limits:
-        raise ValueError("Choose one explicit search profile")
-    config = {
-        "threads": settings.stockfish_threads,
-        "hash_mb": settings.stockfish_hash_mb,
-        "depth": settings.deep_depth if deep else settings.triage_depth,
-        "time": settings.deep_time if deep else settings.triage_time,
-        "nodes": settings.deep_nodes if deep else settings.triage_nodes,
-        "multipv": multipv or (settings.multipv if deep else 1),
+
+def search_config(settings, binary_hash, profile=TRIAGE, *, root_moves=None, multipv=None):
+    """The engine configuration one search runs with, and caches under."""
+    return profile_limits(settings, profile) | {
+        "multipv": multipv or (1 if profile.single_line else settings.multipv),
         "root_moves": sorted(root_moves) if root_moves else None,
         "binary_sha256": binary_hash,
         "adapter_version": ADAPTER_VERSION,
     }
-    if reference:
-        for name in ("threads", "hash_mb", "depth", "time", "nodes"):
-            config[name] = reference.config[name]
-    if classification_probe:
-        config.update(
-            depth=settings.classification_probe_depth,
-            time=settings.classification_probe_time,
-            nodes=None,
-        )
-    if limits:
-        config.update(limits.model_dump())
-    return config
 
 
 class Stockfish:
@@ -184,16 +176,17 @@ class Stockfish:
     def analyze(
         self,
         board: chess.Board,
-        deep=False,
+        profile: SearchProfile = TRIAGE,
+        *,
         root_moves: list[str] | None = None,
         multipv: int | None = None,
-        reference: EngineAnalysis | None = None,
-        classification_probe: bool = False,
-        limits: SearchLimits | None = None,
         cancelled=None,
     ) -> EngineAnalysis:
+        """Search ``board`` at ``profile``'s limits, optionally only ``root_moves``
+        and for ``multipv`` lines, reusing the cached result for the same search."""
         with search_lock(self.lock, cancelled):
             self.start()
+            reference = profile.reference
             if reference and (
                 reference.engine_version != self.version
                 or reference.config["binary_sha256"] != self.binary_hash
@@ -204,14 +197,7 @@ class Stockfish:
                     "stored accepted answers remain usable."
                 )
             config = search_config(
-                self.settings,
-                self.binary_hash,
-                deep=deep,
-                root_moves=root_moves,
-                multipv=multipv,
-                reference=reference,
-                classification_probe=classification_probe,
-                limits=limits,
+                self.settings, self.binary_hash, profile, root_moves=root_moves, multipv=multipv
             )
             key = digest(
                 {"context": engine_context(board), "engine": self.version, "config": config}

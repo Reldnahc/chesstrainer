@@ -3,7 +3,7 @@
 from trainer.chess_core import digest, engine_context
 from trainer.engine import EngineReferenceMismatch
 from trainer.models import EngineAnalysis, ReviewRefinement
-from trainer.search_limits import EngineCancelled, SearchLimits
+from trainer.search_limits import EngineCancelled, SearchLimits, SearchProfile
 
 
 class QueryBudgetReached(RuntimeError):
@@ -15,8 +15,9 @@ class RefinementEngine:
         self.native, self.task, self.sessions, self.cancelled = native, task, sessions, cancelled
         self.queries = list(task.queries)
 
-    def analyze(self, board, deep=False, root_moves=None, multipv=None, limits=None):
-        # Every refinement question already runs at the task's own deeper limits.
+    def analyze(self, board, profile=None, *, root_moves=None, multipv=None):
+        # Every refinement question runs at the task's own deeper limits, whatever
+        # profile the shared move analysis asks for.
         if self.cancelled():
             raise EngineCancelled()
         count = multipv if root_moves else self.task.config["multipv"]
@@ -37,10 +38,9 @@ class RefinementEngine:
             raise EngineReferenceMismatch("Refinement requires the baseline's Stockfish executable")
         result = self.native.analyze(
             board,
-            deep=True,
+            SearchProfile.explicit(SearchLimits.model_validate(self.task.config["limits"])),
             root_moves=root_moves,
             multipv=count,
-            limits=SearchLimits.model_validate(self.task.config["limits"]),
             cancelled=self.cancelled,
         )
         # A pool may lease a different process for start and analyze. Verify the

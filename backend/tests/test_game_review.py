@@ -136,8 +136,9 @@ class HorizonEngine:
         self.answers = answers
         self.calls = []
 
-    def analyze(self, board, deep=False, root_moves=None, multipv=None, limits=None, **_):
+    def analyze(self, board, profile=None, *, root_moves=None, multipv=None, **_):
         roots = tuple(root_moves or ())
+        limits = profile.limits if profile else None
         self.calls.append((roots, limits))
         rows = self.answers[(roots, limits is not None)]
         return SimpleNamespace(

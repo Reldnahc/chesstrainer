@@ -32,7 +32,7 @@ class SavedFixtureEngine:
     def start(self):
         pass
 
-    def analyze(self, board, **kwargs):
+    def analyze(self, board, _profile=None, **kwargs):
         self.calls += 1
         if position_key(board) == self.decision.position_key:
             return self.actual if kwargs.get("root_moves") else self.before

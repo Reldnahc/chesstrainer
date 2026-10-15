@@ -369,7 +369,7 @@ def test_a_game_holds_no_database_connection_while_stockfish_searches(
         def __init__(self, _settings, engine_sessions):
             self.sessions = engine_sessions
 
-        def analyze(self, board, *, root_moves=None, **_):
+        def analyze(self, board, _profile=None, *, root_moves=None, **_):
             with lock:
                 searches.append(held[threading.get_ident()])
             move = (

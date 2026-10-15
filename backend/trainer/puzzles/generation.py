@@ -43,7 +43,7 @@ from trainer.puzzles.verification import (
     score_int,
 )
 from trainer.review_reports import saved_report
-from trainer.search_limits import SearchLimits
+from trainer.search_limits import SearchLimits, SearchProfile
 
 # v2: a rival that mates or still wins makes a step ambiguous; review reports are
 # read as the review shows them (refined when adopted).
@@ -193,14 +193,16 @@ class EngineSearch:
 
     def __init__(self, engine, settings):
         self.engine = engine
-        self.limits = SearchLimits(
-            depth=settings.puzzle_generation_depth, time=settings.puzzle_generation_time
+        self.profile = SearchProfile.explicit(
+            SearchLimits(
+                depth=settings.puzzle_generation_depth, time=settings.puzzle_generation_time
+            )
         )
         self.analysis_ids = []
         self.engine_version = ""
 
     def __call__(self, board, *, multipv=1):
-        analysis = self.engine.analyze(board, multipv=multipv, limits=self.limits)
+        analysis = self.engine.analyze(board, self.profile, multipv=multipv)
         self.analysis_ids.append(analysis.id)
         self.engine_version = analysis.engine_version
         return [

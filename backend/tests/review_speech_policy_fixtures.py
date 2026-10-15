@@ -96,7 +96,7 @@ def policy_games():
         )
         roots = [actual, other] if same else [other, actual]
 
-        def analyze(position, **options):
+        def analyze(position, _profile=None, **options):
             if options.get("root_moves"):
                 capture = Candidate(
                     uci=pv[1],
