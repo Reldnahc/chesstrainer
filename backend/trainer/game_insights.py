@@ -46,7 +46,7 @@ CLOCK_BUCKETS = (
 DAY_PARTS = ("night", "morning", "afternoon", "evening")
 
 
-@dataclass
+@dataclass(slots=True)
 class Ply:
     ply: int
     learner: bool
@@ -64,7 +64,7 @@ class Ply:
     elapsed: float | None = None
 
 
-@dataclass
+@dataclass(slots=True)
 class GameFacts:
     id: str
     opponent: str

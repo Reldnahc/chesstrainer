@@ -12,7 +12,11 @@ from trainer.review_reports import load_accuracy_scores
 from trainer.workspaces import CurrentWorkspace
 
 # Per-game facts for every account's library; ids are unique across accounts.
-_facts = RecentCache(20000)
+# A reviewed 80-ply game's facts take about 17 KB (measured with tracemalloc), so
+# the bound keeps the cache near 100 MB. A larger library replays only the games
+# beyond the bound on each request, about 7 ms each.
+FACTS_CACHE_SIZE = 6000
+_facts = RecentCache(FACTS_CACHE_SIZE)
 
 
 def create_router():
@@ -44,23 +48,19 @@ def create_router():
                 )
                 for game, status, rating, revision in rows
             ]
-            missing = [
-                game.id for key, game, completed, _ in keyed if completed and not _facts.get(key)
-            ]
-            saved = load_accuracy_scores(db, missing)
-
-            def facts_for(game, completed, rating):
-                if completed and game.id not in saved:
-                    # Cached a moment ago, then evicted by another request: load it now.
-                    saved.update(load_accuracy_scores(db, [game.id]))
-                return game_facts(game, saved.get(game.id) if completed else None, rating)
-
+            # Every hit is taken before any miss is stored, so a library larger
+            # than the cache still reuses what the cache holds instead of each new
+            # entry evicting one this request is about to read.
+            cached = {key: value for key, *_ in keyed if (value := _facts.get(key)) is not None}
+            saved = load_accuracy_scores(
+                db,
+                [game.id for key, game, completed, _ in keyed if completed and key not in cached],
+            )
             facts = [
-                _facts.get_or_make(
-                    key,
-                    lambda game=game, completed=completed, rating=rating: facts_for(
-                        game, completed, rating
-                    ),
+                cached[key]
+                if key in cached
+                else _facts.put(
+                    key, game_facts(game, saved.get(game.id) if completed else None, rating)
                 )
                 for key, game, completed, rating in keyed
             ]

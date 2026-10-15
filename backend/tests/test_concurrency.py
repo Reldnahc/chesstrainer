@@ -10,7 +10,7 @@ import pytest
 from classifier_fixtures import FixtureClassifierBase
 from fastapi.testclient import TestClient
 from job_fixtures import queue_import_analysis
-from sqlalchemy import func, select
+from sqlalchemy import event, func, select
 from trainer.api import create_app
 from trainer.chess_core import Candidate, Score, position_key
 from trainer.classification import Classification
@@ -341,3 +341,102 @@ def test_failed_worker_drains_and_closes_processes_before_next_job(
     runner.run_job(next_id)
     with sessions() as db:
         assert db.get(AnalysisJob, next_id).status == "completed"
+
+
+def test_a_game_holds_no_database_connection_while_stockfish_searches(
+    settings, sessions, sql_engine
+):
+    settings.stockfish_workers = 1
+    with sessions() as db:
+        seed_skills(db)
+        pgn = '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 *'
+        imported = import_games(db, "held.pgn", pgn, ["Learner"], None)
+        job_id = queue_import_analysis(db, imported)
+    held, searches = Counter(), []
+    lock = threading.Lock()
+
+    def checkout(*_):
+        with lock:
+            held[threading.get_ident()] += 1
+
+    def checkin(*_):
+        with lock:
+            held[threading.get_ident()] -= 1
+
+    class SearchFixture:
+        """Every move scores 0.00, so nothing is a mistake and nothing is classified."""
+
+        def __init__(self, _settings, engine_sessions):
+            self.sessions = engine_sessions
+
+        def analyze(self, board, *, root_moves=None, **_):
+            with lock:
+                searches.append(held[threading.get_ident()])
+            move = (
+                chess.Move.from_uci(root_moves[0]) if root_moves else next(iter(board.legal_moves))
+            )
+            with self.sessions() as cache:
+                analysis = EngineAnalysis(
+                    cache_key=f"held-{len(searches)}",
+                    fen=board.fen(),
+                    engine_version="fixture",
+                    config={},
+                    candidates=[
+                        Candidate(
+                            uci=move.uci(),
+                            san=board.san(move),
+                            score=Score(kind="cp", value=0),
+                            pv=[move.uci()],
+                        ).model_dump()
+                    ],
+                )
+                cache.add(analysis)
+                cache.commit()
+                return analysis
+
+        def close(self):
+            pass
+
+    event.listen(sql_engine, "checkout", checkout)
+    event.listen(sql_engine, "checkin", checkin)
+    try:
+        runner = JobRunner(
+            settings, sql_engine, FSRSScheduler(settings), engine_factory=SearchFixture
+        )
+        assert runner.claim() == job_id
+        runner.run_job(job_id)
+    finally:
+        event.remove(sql_engine, "checkout", checkout)
+        event.remove(sql_engine, "checkin", checkin)
+    with sessions() as db:
+        job = db.get(AnalysisJob, job_id)
+        assert job.status == "completed", job.error
+        assert db.scalar(select(func.count()).select_from(Decision)) == 3
+    # Two searches per learner move, each started with no connection checked out
+    # by the searching thread.
+    assert searches and set(searches) == {0}
+
+
+def test_releasing_a_session_before_a_search_never_splits_a_write(sessions):
+    from trainer.pipeline import release_reads
+
+    def row(key):
+        return EngineAnalysis(
+            cache_key=key,
+            fen=chess.STARTING_FEN,
+            engine_version="fixture",
+            config={},
+            candidates=[],
+        )
+
+    with sessions() as db:
+        db.scalar(select(func.count()).select_from(Game))
+        release_reads(db)  # Only read: the transaction ends.
+        assert not db.in_transaction()
+        db.add(row("pending"))
+        release_reads(db)  # Unflushed write: kept.
+        db.flush()
+        release_reads(db)  # Flushed, uncommitted write: kept.
+        assert db.in_transaction()
+        db.rollback()
+        assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0

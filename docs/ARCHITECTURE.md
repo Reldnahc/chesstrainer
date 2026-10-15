@@ -80,7 +80,10 @@ features). `web.py` maps them in one place and never imports them into domain mo
 the other way round; domain packages do not raise FastAPI's `HTTPException`. Any other
 exception, including a bare `ValueError` or `EvidenceIntegrityError` from inconsistent
 saved evidence, is a server fault and answers 500. `EngineReferenceMismatch` answers 409:
-Stockfish works, but this position's saved evidence needs a different executable.
+Stockfish works, but this position's saved evidence needs a different executable. Moves
+a client sends are checked at the contract (`UciMove` and `SquareMove` in
+`contracts/common.py`): a move that starts and ends on one square, which python-chess
+cannot parse, answers 422 before any route code runs.
 
 The composition root performs migrations, global skill seeding and retirement
 reconciliation once, and owns worker/engine shutdown. Hosted retirement maintenance
@@ -373,6 +376,10 @@ mode and belong to the job in local mode. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
+A game's session never holds a pooled database connection while Stockfish searches:
+`pipeline.ReleasingEngine` ends the session's transaction before each search when it has
+only read (pysqlite opens a SQLite transaction only before a write, so this drops no
+snapshot or lock), and keeps it when a write is pending, so a write is never split.
 Cancellation is read from the job row: task boundaries check it exactly, while loops
 waiting for a lock, a pooled process or a running native search re-check it at most
 every 250 ms.

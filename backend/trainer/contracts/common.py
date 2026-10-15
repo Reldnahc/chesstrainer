@@ -1,6 +1,6 @@
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
 
 from trainer.job_lifecycle import JobStatus as Status
 
@@ -26,8 +26,18 @@ def from_row(contract, row, **computed):
     } | computed
 
 
+def _distinct_squares(uci: str) -> str:
+    # python-chess refuses a move that starts and ends on one square (only the
+    # null move "0000" may), so such a request is invalid input, not a server error.
+    if uci[:2] == uci[2:4]:
+        raise ValueError("A move must leave its square")
+    return uci
+
+
 # Moves the client sends: either one UCI string, or a board's from/to squares.
-UciMove = Annotated[str, Field(pattern="^[a-h][1-8][a-h][1-8][qrbn]?$")]
+UciMove = Annotated[
+    str, Field(pattern="^[a-h][1-8][a-h][1-8][qrbn]?$"), AfterValidator(_distinct_squares)
+]
 Square = Annotated[str, Field(pattern="^[a-h][1-8]$")]
 
 
@@ -35,6 +45,11 @@ class SquareMove(Contract):
     from_square: Square
     to_square: Square
     promotion: Literal["q", "r", "b", "n"] | None = None
+
+    @model_validator(mode="after")
+    def _leaves_its_square(self):
+        _distinct_squares(self.uci)
+        return self
 
     @property
     def uci(self) -> str:

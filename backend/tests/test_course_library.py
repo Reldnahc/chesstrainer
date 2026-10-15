@@ -2,10 +2,13 @@
 
 import json
 
+import pytest
 from fastapi.testclient import TestClient
+from pydantic import TypeAdapter, ValidationError
 from test_course_files import sample
 from trainer.accounts import Accounts
 from trainer.api import create_app
+from trainer.contracts.common import SquareMove, UciMove
 
 LIBRARY = "/api/study/courses"
 FILES = "/api/study/course-files"
@@ -198,6 +201,20 @@ def test_editor_position_records_moves_with_server_legality(settings):
             f"{FILES}/position", json={"move": {"from_square": "e2", "to_square": "e5"}}
         )
         assert illegal.status_code == 422
+        # A move that never leaves its square is invalid input, not a server error.
+        still = client.post(
+            f"{FILES}/position", json={"move": {"from_square": "e2", "to_square": "e2"}}
+        )
+        assert still.status_code == 422
+
+
+def test_move_contracts_refuse_a_move_that_stays_on_its_square():
+    with pytest.raises(ValidationError):
+        SquareMove(from_square="g1", to_square="g1")
+    with pytest.raises(ValidationError):
+        TypeAdapter(UciMove).validate_python("e2e2q")
+    assert SquareMove(from_square="g1", to_square="f3").uci == "g1f3"
+    assert TypeAdapter(UciMove).validate_python("e7e8q") == "e7e8q"
 
 
 def test_editor_check_keeps_boards_while_a_step_is_unfinished(settings):
