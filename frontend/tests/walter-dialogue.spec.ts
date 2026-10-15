@@ -31,7 +31,8 @@ for (const {scenario, black, report} of fixtures) test(`legal ${scenario}, ${bla
     frame: {turn: black ? "white" : "black"} as Position, ply: 1, key: `legal:${scenario}:${black}`, expression: "best"});
   if (scenario === "root_capture") {
     const captured = intent.claims.find(item => item.slots.motif === "undefended capture")!;
-    expect(captured.tactic?.timing).toBe("possible");
+    // The capture is the played move itself, witnessed on the board before it.
+    expect(captured.tactic?.timing).toBe("immediate");
     const output = renderDialogue({...intent, claims: [captured]}, walter);
     expect(output.text).toContain(`${report.actual.san} captures a queen`);
     expect(output.text).not.toMatch(/follow-up|possibility|would capture/);
@@ -45,7 +46,8 @@ for (const {scenario, black, report} of fixtures) test(`legal ${scenario}, ${bla
   const event = report.intelligence!.events.find(value => value.id === fork.sourceIds[0])!;
   expect(output.renderedClaims?.[0].sourceIds).toEqual([event.id]);
   expect(output.renderedClaims?.[0].evidence).toEqual(event.evidence);
-  if (scenario === "played_fork") {
+  // A fork made by this move and collected later is still this move's fork.
+  if (scenario === "played_fork" || scenario === "collected_fork") {
     expect(output.text).toContain(`After ${report.actual.san}`);
     expect(output.text).toContain("are attacked together");
   } else {
@@ -53,14 +55,18 @@ for (const {scenario, black, report} of fixtures) test(`legal ${scenario}, ${bla
     expect(output.text).not.toContain("are attacked together");
     if (scenario === "missed_fork") expect(output.text).toContain(`With ${report.best.san}, there would be`);
     if (scenario === "allowed_fork") expect(output.text).toContain(`${black ? "White" : "Black"} can reply with`);
-    if (scenario === "collected_fork") expect(output.text).toContain("if the replies allow it");
   }
   expect(output.text).not.toMatch(/continuation|verified|search|engine/i);
 });
 
 test("Walter states a witnessed root fork without turning a future opportunity into a board fact", () => {
   const current = build(event());
-  const future = build(event("played", {plies: [1, 3], witness: [{ply: 1, san: "Ng5+"}, {ply: 3, san: "Nxe4", capture: "queen"}]}));
+  // The same fork collected two moves later is still this move's fork, as its clip says.
+  const collected = build(event("played", {plies: [1, 3], witness: [{ply: 1, san: "Ng5+"}, {ply: 3, san: "Nxe4", capture: "queen"}]}));
+  expect(collected.tactic?.timing).toBe("immediate");
+  expect(render(collected).text).toContain("king on h7 and queen on e4 are attacked together");
+  // A fork whose witness starts later in the line is only a possibility from here.
+  const future = build(event("played", {plies: [3], frame_ply: 3, witness: [{ply: 3, san: "Ng5+"}]}));
   expect(current.tactic?.timing).toBe("immediate");
   expect(future.tactic?.timing).toBe("possible");
   const actual = render(current), possible = render(future);
@@ -124,7 +130,8 @@ test("capture descriptions preserve actual, alternative, reply and uncertain tim
     const ply = role === "allowed" ? 2 : 1;
     const item = build(event(role, {motif: "hanging_piece", frame_ply: ply - 1,
       witness: [{ply, san: "Ng5+", capture: "queen"}]}));
-    expect(item.tactic?.timing).toBe("possible");
+    // The pre-capture reference board still makes the capture this move's.
+    expect(item.tactic?.timing).toBe("immediate");
     const output = render(item);
     expect(output.text).toContain(role === "played" ? "Ng5+ captures a queen" : "Ng5+ would capture a queen");
     expect(output.text).not.toContain("One possible follow-up is Ng5+");

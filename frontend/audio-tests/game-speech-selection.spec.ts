@@ -54,9 +54,16 @@ for (const fixture of causal) test(`Walter selects ${fixture.skill} for ${fixtur
 for (const fixture of positional) for (const line of ["actual", "alternative"] as const)
   test(`Walter preserves ${fixture.feature} ${line} scope (${fixture.mirrored ? "Black" : "White"})`, () => {
     const report = structuredClone(fixture[line]);
-    // After an error only a cost-explaining fact is spoken: the better move doubles the opponent's pawns.
-    if (line === "alternative" && fixture.feature === "doubled_files") for (const event of report.intelligence!.events)
-      if (event.facts.feature === "doubled_files" && event.facts.line === "best") event.facts.side = event.facts.side === "white" ? "black" : "white";
+    // After an error the better move's pawn structure is never told: its own doubled
+    // pawns are a drawback, and the alternative lines frame the opponent's as one too.
+    if (line === "alternative" && fixture.feature === "doubled_files") {
+      for (const side of ["white", "black"] as const) {
+        for (const event of report.intelligence!.events)
+          if (event.facts.feature === "doubled_files" && event.facts.line === "best") event.facts.side = side;
+        expect(context(report).intent.claims.some(item => item.code === fixture.code)).toBe(false);
+      }
+      return;
+    }
     const current = onlyClaim(context(report), fixture.code);
     const expected = `positional-${fixture.feature === "bishop_pair" ? "bishop-pair" : "doubled"}-${line}`;
     expect(selectWalterGameRecording(current)).toBe(expected);
@@ -230,9 +237,10 @@ test("all positional speech branches validate their structured facts and keep al
     // After an error, the better move's line names only what it gains: the opponent's weaknesses.
     if (line === "best" && ["isolated", "doubled", "unsupported"].includes(example.name)) event.facts.side = "black";
     report.intelligence!.events = [event];
-    if (line === "best" && example.name === "king-flight") {
-      // A king square never explains an error.
-      expect(context(report).intent.claims.some(item => item.code === "flights")).toBe(false);
+    if (line === "best" && ["king-flight", "isolated", "doubled"].includes(example.name)) {
+      // A king square never explains an error, and the better move's pawn structure,
+      // even the opponent's weakened pawns, is not told as an alternative.
+      expect(context(report).intent.claims.some(item => item.code === example.code)).toBe(false);
       continue;
     }
     const current = onlyClaim(context(report), example.code);
@@ -257,9 +265,13 @@ test("recorded-game recovery is tied to learner, current node generation and ass
     nodes: [{ply: 1, actor: "white", input_digest: current.report!.intelligence!.input_digest,
       before: current.report!.best.score, after: current.report!.actual.score, evidence, event_ids: []}],
     relationships: [{id: "recovery-now", kind: "recovery", actor: "white", plies: [0, 1],
-      facts: {opponent_errors: []}, evidence, event_ids: []}]};
+      facts: {opponent_errors: [], restored_by_move: true}, evidence, event_ids: []}]};
   const recovered = rerender(current);
   expect(selectWalterGameRecording(recovered)).toBe("recovery");
+  // Its lines credit this move, so a game the opponent's moves made playable is not told.
+  const kept = structuredClone(current);
+  kept.game.context!.relationships[0].facts.restored_by_move = false;
+  expect(rerender(kept).intent.claims.some(item => item.code === "recovery")).toBe(false);
   const assisted = structuredClone(recovered);
   assisted.game.context!.relationships[0].facts.opponent_errors = [1];
   expect(selectWalterGameRecording(rerender(assisted))).toBe("recovery-assisted");
@@ -272,6 +284,25 @@ test("recorded-game recovery is tied to learner, current node generation and ass
     expect(selectWalterGameRecording(changed)).toBeNull();
   }
   expect(selectWalterGameRecording({...recovered, variation: true, intent: {...recovered.intent, mode: "variation"}})).toBeNull();
+});
+
+test("the repeated-issue clip, whose takes say once before or a second time, plays only on the second occurrence", () => {
+  const current = context(causal[0].report);
+  const evidence = [{source: "stockfish" as const, id: "repeat-search", field: "verified-sequence", ply: 1}];
+  const actor = current.game.orientation;
+  const repeatedAt = (occurrence: number) => {
+    const changed = structuredClone(current);
+    changed.game.context = {version: "game-context-1", input_digest: "current-game", complete: true,
+      limitations: [], missing_plies: [], total_plies: 1, biggest_swing_ply: null, turning_points: [],
+      nodes: [{ply: 1, actor, input_digest: changed.report!.intelligence!.input_digest,
+        before: changed.report!.best.score, after: changed.report!.actual.score, evidence, event_ids: []}],
+      relationships: [{id: "repeat-now", kind: "repeated_motif", actor, plies: [0, 1],
+        facts: {role: "caused", motif: causal[0].skill, occurrence}, evidence, event_ids: []}]};
+    return selectWalterGameRecording(onlyClaim(rerender(changed), "repeated"));
+  };
+  expect(repeatedAt(2)).toBe("repeated-issue");
+  expect(repeatedAt(3)).toBeNull();
+  expect(repeatedAt(5)).toBeNull();
 });
 
 test("finite no-report status recordings are manual-only and never authorize legacy prose or stale analysis", () => {

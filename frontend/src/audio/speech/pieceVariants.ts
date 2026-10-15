@@ -148,19 +148,36 @@ export function tacticPieces(event: Event): NamedPieces | null {
 /** Subjects that stand on their square before the tactic: its targets and defenders. */
 const standing = new Set(["pin", "pin_target", "pinned", "skewer", "capture", "defender", "own_target"]);
 
-const findingSubjects: Record<string, string> = {
-  fork_recognized: "fork", fork_collected: "fork", pin_prevents_capture: "pinned", pin_restricts_escape: "pinned",
-  pin_collected: "pin_target", skewer_collected: "skewer", king_skewer_collected: "capture",
-  defender_captured: "defender", sole_defender_captured: "defender", deflection: "defender",
-  deflection_collected: "capture", discovered_capture: "slider", discovered_check: "slider",
-  double_check: "double_check", double_attack_collected: "second", undefended_capture: "capture",
-  undefended_capture_gain: "capture", back_rank_mate: "back_rank", abandoned_defender: "own_target",
-  unfavorable_exchange: "moved", relative_pin_released: "relative_pin",
+const finding = (subject?: string, id?: string) => ({...(subject ? {subject} : {}), ...(id ? {id} : {})});
+/** Every explanation finding mechanism with a recorded meaning: the piece it is
+ * about (when its line names one), and the game-review clip it borrows (otherwise its own
+ * explanation-finding-* line). Practice selection and piece variants both read
+ * this one table. A "promotion" finding is the promoting move itself, which the
+ * game bank's promotion clips describe as a pawn still on its way, so it has none. */
+export const FINDING_MEANINGS: Readonly<Record<string, {subject?: string; id?: string}>> = {
+  fork_recognized: finding("fork", "tactic-fork-played"), fork_collected: finding("fork"),
+  pin_prevents_capture: finding("pinned"), pin_restricts_escape: finding("pinned"),
+  pin_defenders_no_recapture: finding(), pin_collected: finding("pin_target"),
+  skewer_collected: finding("skewer"), king_skewer_collected: finding("capture"),
+  defender_captured: finding("defender", "tactic-removing-defender-played"), sole_defender_captured: finding("defender"),
+  deflection: finding("defender", "tactic-deflection-played"), deflection_collected: finding("capture"),
+  discovered_capture: finding("slider"), discovered_check: finding("slider"), double_check: finding("double_check"),
+  double_attack_collected: finding("second"), promotion_material_retained: finding(),
+  undefended_capture: finding("capture", "tactic-undefended-capture-played"), undefended_capture_gain: finding("capture"),
+  back_rank_mate: finding("back_rank", "tactic-back-rank-played"),
+  abandoned_defender: finding("own_target", "cause-abandoned-defender"),
+  unfavorable_exchange: finding("moved", "cause-avoiding-bad-trades"), relative_pin_released: finding("relative_pin"),
+};
+
+/** The recorded meaning of an explanation finding mechanism, if it has one. */
+export const findingMeaningId = (mechanism: string | null | undefined) => {
+  const meaning = mechanism ? FINDING_MEANINGS[mechanism] : undefined;
+  return meaning ? meaning.id ?? `explanation-finding-${mechanism!.replaceAll("_", "-")}` : null;
 };
 
 /** The subject piece of an explanation finding, read from the board its roles describe. */
 export function findingPieces(data: MoveExplanation, finding: PatternFinding): NamedPieces | null {
-  const kind = finding.mechanism ? findingSubjects[finding.mechanism] : undefined;
+  const kind = finding.mechanism ? FINDING_MEANINGS[finding.mechanism]?.subject : undefined;
   const fen = data.frames[finding.frame_ply]?.fen;
   if (!kind || !fen || !finding.roles) return null;
   return subject(kind, finding.roles, finding.actor, square => pieceOn(fen, square), finding.moves[0]?.slice(2, 4));

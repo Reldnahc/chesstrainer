@@ -117,7 +117,7 @@ test("a capture taken straight back is an even trade, not a reply that wins mate
 test("a missed tactic that starts on this move outranks one that appears later in the line", () => {
   const tactic = (id: string, motif: string, plies: number[]): Schema["ReviewEvent"] => ({id, actor: "white",
     confidence: "line_witness", importance: 75, kind: "tactic", evidence: [ref],
-    facts: {motif, role: "missed", plies, witness: plies.map(ply => ({ply, san: ply === 1 ? "d4" : "Nxc4"}))}});
+    facts: {motif, role: "missed", plies, frame_ply: plies[0], witness: plies.map(ply => ({ply, san: ply === 1 ? "d4" : "Nxc4"}))}});
   const value = {...report([tactic("later", "removing_defender", [3, 5]), tactic("now", "fork", [1, 3])]),
     label: "Inaccuracy", engine_label: "Inaccuracy"} as Report;
   const claims = [...gameIntent({...args, report: value}).claims].sort((a, b) => b.priority - a.priority);
@@ -160,13 +160,35 @@ test("recorded relationships need the matching node and never follow a variation
     nodes: [{ply: 1, actor: "white", before: value.best.score, after: value.actual.score,
       event_ids: [], input_digest: "facts", evidence: [ref]}], turning_points: [],
     relationships: [{id: "recovery", kind: "recovery", actor: "white", plies: [0, 1],
-      event_ids: [], facts: {opponent_errors: [0]}, evidence: [ref]}]};
+      event_ids: [], facts: {opponent_errors: [0], restored_by_move: true}, evidence: [ref]}]};
   const full = {...args, game: {...game, context}, report: value};
   expect(renderNeutral(gameIntent(full)).text).toMatch(/playable.*opponent's errors/i);
   expect(gameIntent(full).expression).toBe("recovered");
   expect(renderNeutral(gameIntent({...full, variation: true})).text).not.toMatch(/playable|recovered|opponent's errors/);
   const stale = {...context, nodes: []};
   expect(gameIntent({...full, game: {...game, context: stale}}).claims.some(c => c.code === "recovery")).toBe(false);
+});
+
+test("game-context relationships are told only where their wording holds", () => {
+  const value = report();
+  const relation = (kind: Schema["GameRelationship"]["kind"], facts: Schema["GameRelationship"]["facts"]) =>
+    ({id: kind, kind, actor: "white" as const, plies: [0, 1], event_ids: [], facts, evidence: [ref]});
+  const codes = (relationships: Schema["GameRelationship"][], label: Report["label"] = "Mistake") => gameIntent({...args,
+    report: {...value, label}, game: {...game, context: {version: "game-context-1", complete: true, input_digest: "context",
+      total_plies: 1, missing_plies: [], limitations: [], biggest_swing_ply: null, turning_points: [],
+      nodes: [{ply: 1, actor: "white", before: value.best.score, after: value.actual.score, event_ids: [], input_digest: "facts",
+        evidence: [ref]}], relationships}}}).claims.map(c => c.code);
+  // A recovery is this move's only when the position before it was still lost.
+  expect(codes([relation("recovery", {opponent_errors: [], restored_by_move: true})], "Best")).toContain("recovery");
+  expect(codes([relation("recovery", {opponent_errors: [], restored_by_move: false})], "Best")).not.toContain("recovery");
+  expect(codes([relation("recovery", {opponent_errors: []})], "Best")).not.toContain("recovery");
+  // An erosion run is "small concessions" only without a separate Blunder inside it.
+  expect(codes([relation("erosion", {own_blunder_plies: []})])).toContain("erosion");
+  expect(codes([relation("erosion", {own_blunder_plies: [3]})])).not.toContain("erosion");
+  // A conversion is told as clean only without a Mistake of the side's own inside the run.
+  expect(codes([relation("advantage_run", {outcome: "converted", own_mistake_plies: []})], "Best")).toContain("conversion");
+  expect(codes([relation("advantage_run", {outcome: "converted", own_mistake_plies: [5]})], "Best")).not.toContain("conversion");
+  expect(codes([relation("advantage_run", {outcome: "converted"})], "Best")).not.toContain("conversion");
 });
 
 test("book is recognition, positive findings teach and arbitrary structure is not a cause", () => {

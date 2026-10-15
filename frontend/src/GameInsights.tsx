@@ -387,7 +387,7 @@ function MoveQuality({ data }: { data: Insights }) {
         </tr>)}</tbody>
       </table>
     </div>
-    <p className="small muted insight-note">Move accuracy averages Lichess's per-move score, so it runs higher than a game's accuracy. The endgame starts at six or fewer pieces besides kings and pawns.</p>
+    <p className="small muted insight-note">Move accuracy averages Lichess's per-move score; a game's accuracy weights its moves differently, so the two can differ. The endgame starts at six or fewer pieces besides kings and pawns.</p>
   </Panel>;
 }
 

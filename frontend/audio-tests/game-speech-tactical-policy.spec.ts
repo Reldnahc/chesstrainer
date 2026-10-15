@@ -31,6 +31,16 @@ for (const coach of [{id: "classic", personality: storyteller}, {id: "robot", pe
       const insight = {intent: child, utterance: renderDialogue(child, coach)};
       const claimIndex = context.utterance.renderedClaims!.findIndex(claim => !humanInsightLabels[claim.code]);
       expect(claimIndex).toBeGreaterThanOrEqual(0);
+      if (objectiveId.startsWith("tactic-promotion-awareness-")) {
+        // Every promotion witness is the promoting move itself, which the promotion
+        // clips describe as a pawn still on its way: the clip sits out, and the next
+        // sentence with a clip leads or the grade speaks.
+        expect(selectGameRecording({...context, claimIndex})).toBeNull();
+        const speech = selectGameSpeech(context);
+        expect(speech.recordingId ?? "").not.toMatch(/promotion/);
+        expect(speech.recordingId ?? speech.gradeId).toBeTruthy();
+        return;
+      }
       expect(selectGameRecording({...context, claimIndex})).toBe(objectiveId);
       expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[shown]]);
       const speech = selectGameSpeech(context);

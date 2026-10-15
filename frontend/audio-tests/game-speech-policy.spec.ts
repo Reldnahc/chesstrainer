@@ -9,9 +9,24 @@ import {gameReaction} from "../src/coach/reactions";
 import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
+const relationshipGames = semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py");
+// The recovery fixtures' last move keeps a game that the opponent's moves since the
+// error had already made playable. Recovery lines credit the move itself ("this move
+// restores a playable position"), so the fixtures as produced are not told...
+for (const [name, game] of Object.entries(relationshipGames)) if (name.startsWith("combo-recovery"))
+  test(`${name}: a recovery made by the opponent's moves is not credited to this move`, () => {
+    const ply = game.frames.length - 1, frame = game.frames[ply];
+    const intent = gameIntent({key: name, game, frame, report: frame.report!, ply, expression: "neutral"});
+    expect(game.context!.relationships.some(item => item.kind === "recovery" && item.facts.restored_by_move === false)).toBe(true);
+    expect(intent.claims.some(item => item.code === "recovery")).toBe(false);
+  });
+// ...and below, as though the move itself restored it.
+const restored = structuredClone(relationshipGames);
+for (const [name, game] of Object.entries(restored)) if (name.startsWith("combo-recovery"))
+  for (const relation of game.context!.relationships) if (relation.kind === "recovery") relation.facts.restored_by_move = true;
 const games = {
   ...semanticFixtures<Record<string, Game>>("review_speech_policy_fixtures.py"),
-  ...semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py"),
+  ...restored,
 };
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // Objective explanations that the policy profiles reach while a Maia reading

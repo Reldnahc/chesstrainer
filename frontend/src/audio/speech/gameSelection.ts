@@ -1,8 +1,8 @@
 import type {Schema} from "../../api";
-import type {Game, Position, Report} from "../../gameReview/types";
+import {isErrorLabel, type Game, type Position, type Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
 import {humanInsightLabels} from "../../dialogue/humanClaims";
-import {object, strings} from "../../dialogue/eventClaims";
+import {object, strings, tacticStartsHere} from "../../dialogue/eventClaims";
 import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
@@ -41,6 +41,8 @@ const square = (value: unknown): value is string => typeof value === "string" &&
 const files = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0)
   && value.every(f => typeof f === "string" && /^[a-h]$/.test(f));
 const squares = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0) && value.every(square);
+/** Whether a SAN move promotes a pawn ("e8=Q", "bxa8=N+"). */
+const promotes = (san: unknown) => typeof san === "string" && san.includes("=");
 function same(a: unknown, b: unknown): boolean {
   if (a === b) return true;
   if (!a || !b || typeof a !== "object" || typeof b !== "object" || Array.isArray(a) !== Array.isArray(b)) return false;
@@ -76,7 +78,7 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   const f = event.facts, role = f.role, motif = String(f.motif);
   if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item)) return null;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
-  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.label);
+  const poor = isErrorLabel(report.label);
   if ((role === "played" && poor) || (["allowed", "caused", "missed"].includes(String(role)) && !poor)) return null;
   const source = role === "missed" ? "best" : "actual";
   if (!item.evidence.some(ref => ref.source === "stockfish" && ref.field.startsWith(`${source}_line/findings/`))
@@ -100,9 +102,11 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   // after a double check, is only a possibility from here, never this move's tactic.
   // A back-rank witness is the mate that ends the line, so the move that starts
   // that mating line (such as a decoy check) is the back-rank idea.
-  const opening = object(f.witness[0]), expectedPly = role === "allowed" ? 2 : 1;
-  if (motif !== "back_rank" && (f.plies[0] !== expectedPly || opening.ply !== expectedPly
-    || (role !== "allowed" && opening.san !== report[role === "missed" ? "best" : "actual"].san))) return null;
+  const opening = object(f.witness[0]);
+  if (motif !== "back_rank" && !tacticStartsHere(event, report.actual.san, report.best.san)) return null;
+  // Promotion clips describe a pawn still on its way to the last rank. When the
+  // witnessed move is itself the promotion they are false, and the grade speaks.
+  if (motif === "promotion_awareness" && promotes(opening.san)) return null;
   if (tacticalMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
@@ -249,8 +253,13 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     // Fresh gameIntent above enforces current node generation, actor and relation
     // endpoint (and supported history); branches never inherit those relationships.
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
+    // The repeated-issue takes say "once before" or "a second time".
+    if (item.code === "repeated" && item.slots.count !== 2) return null;
     return item.code === "recovery" ? item.slots.help ? "recovery-assisted" : "recovery" : simpleIds[item.code];
   }
+  // Several evaluation-loss takes call the cost small ("a little leak"), which
+  // is only true of an Inaccuracy. A larger loss leaves it to the next clip or the grade.
+  if (item.code === "loss" && report.label !== "Inaccuracy") return null;
   // Source-backed event codes must not bypass their validation when an event ID
   // is absent or ambiguous. Only these direct report claims have no event ID.
   return ["reply_capture", "reply_check", "alternative", "loss", "best", "good"].includes(item.code)
@@ -386,7 +395,6 @@ const gradePools: Readonly<Record<string, string>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
 };
-const correctionGrades = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
 // The generic readings a grade take stands in for. Anything else (a capture,
 // check, tactic, mate, opening or relationship) is specific and keeps its clip.
 const plainCorrection = new Set(["evaluation-loss", "stronger-alternative",
@@ -413,7 +421,7 @@ function gradeTake(context: GameSpeechContext, recordingId: string | null): stri
   // A reviewed move whose sentences have no clip at all still speaks its grade. A
   // legacy report without move intelligence keeps showing its own written coaching.
   if (!label || !gradePools[label] || (recordingId
-    ? !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
+    ? !(isErrorLabel(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
   // Takes a coach has not recorded yet sit out, so every turn plays a take.
   const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
   const ids = recorded.length ? recorded : all;

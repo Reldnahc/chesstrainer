@@ -1,4 +1,4 @@
-import type { Game, Position, Report } from "../gameReview/types";
+import { isErrorLabel, type Game, type Position, type Report } from "../gameReview/types";
 import type {CoachExpression} from "../coach/model";
 import {scoreText} from "../evaluation";
 import {claim, makeIntent, type Claim, type DialoguePurpose, type EvidenceRef} from "./model";
@@ -10,6 +10,9 @@ const purposes: Record<Report["label"], DialoguePurpose> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good", Book: "book",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Blunder: "blunder", Miss: "missed",
 };
+
+/** A listed fact that is present and empty; a missing fact never passes. */
+const none = (value: unknown) => Array.isArray(value) && value.length === 0;
 
 function moveLabel(game: Game, ply: number) {
   const frame = game.frames[ply];
@@ -47,7 +50,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   // Recognized theory is shared by both players; it is not personal praise.
   // Keep the incoming reaction so check and explicit explanations still win.
   if (!learnerMove && !(mover && report.label === "Book")) expression = "explaining";
-  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.label);
+  const poor = isErrorLabel(report.label);
   const side = mover === "white" ? "White" : mover === "black" ? "Black" : "The mover";
   const opponent = mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent";
   const move = report.actual.san, best = report.best.san;
@@ -109,7 +112,11 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
       const earlier = moveLabel(game, relation.plies[0]), f = relation.facts;
       const linked = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
-      if (relation.kind === "recovery") {
+      // Each relationship is told only where its wording holds: a recovery that
+      // this move made (its lines say "this move restores a playable position"), a
+      // conversion without a Mistake of the side's own inside the run ("cleanly"),
+      // and an erosion without a separate Blunder inside it ("no single blunder").
+      if (relation.kind === "recovery" && f.restored_by_move === true) {
         linked("recovery", {earlier, help: Array.isArray(f.opponent_errors) && f.opponent_errors.length ? " The opponent's errors helped make that possible." : ""}, 88);
         purpose = "recovery";
         expression = "recovered";
@@ -126,8 +133,9 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
         linked("support_restored", {earlier, piece: words(f.piece)}, 75);
       }
       // A run of concessions is only told on a move that is itself one.
-      if (relation.kind === "erosion" && poor) linked("erosion", {earlier}, 71);
-      if (relation.kind === "advantage_run" && f.outcome === "converted") linked("conversion", {earlier, side}, 75);
+      if (relation.kind === "erosion" && poor && none(f.own_blunder_plies)) linked("erosion", {earlier}, 71);
+      if (relation.kind === "advantage_run" && f.outcome === "converted" && none(f.own_mistake_plies))
+        linked("conversion", {earlier, side}, 75);
     }
     for (const item of game.history?.weaknesses ?? []) if (item.status === "supported" && item.related_plies.includes(ply))
       claims.push(claim("history", {motif: words(item.skill_id), games: item.independent_games}, 67, item.evidence, item.decision_ids));
@@ -168,7 +176,11 @@ function explainsCost(f: Record<string, unknown>, mover: string | null | undefin
       const defended = strings(f.after).length > 0;
       return actual ? own && !defended : own === defended;
     }
-    case "doubled_files": case "isolated_pawns": case "bishop_pair": return actual ? own : !own;
+    // The better move's own doubled or isolated pawns are its drawback, and the
+    // opponent's are a gain that the alternative's lines frame as the better
+    // move's own untidy structure, so only the played move's own count.
+    case "doubled_files": case "isolated_pawns": return actual && own;
+    case "bishop_pair": return actual ? own : !own;
     case "rook_file": case "passed_pawns": return actual ? !own : own;
     case "passed_pawn_advance": case "first_development": case "castling": return !actual;
     default: return false;
