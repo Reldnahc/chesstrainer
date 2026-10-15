@@ -92,8 +92,8 @@ dialog[open][data-closing]::backdrop { animation: backdrop-out var(--motion-base
 }
 @layer motion {
 /* A leaving copy (ghost.ts marks it data-ghost) only fades away: its cloned
-   panels must not replay their own entrances while it does. The motion layer
-   comes last, so this wins over every normal entrance declaration. */
+   panels must not replay their own entrances while it does. !important wins
+   over every normal entrance declaration in any layer. */
 [data-ghost] *,
 [data-ghost] *::before,
 [data-ghost] *::after {

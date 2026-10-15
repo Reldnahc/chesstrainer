@@ -258,6 +258,8 @@ export function usePlaySession(id: string) {
     } catch (e) {
       if (!mounted.current) return;
       setError(errorMessage(e));
+      // The reply is asked for again now, so its old failure (and Try again) goes.
+      setReplyError(null);
       setReplyAttempt((value) => value + 1);
     } finally {
       commandRunning.current = false;
