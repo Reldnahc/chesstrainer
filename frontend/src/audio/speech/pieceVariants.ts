@@ -149,10 +149,11 @@ export function findingPieces(data: MoveExplanation, finding: PatternFinding): N
   return subject(kind, finding.roles, finding.actor, square => pieceOn(fen, square), finding.moves[0]?.slice(2, 4));
 }
 
-/** Whether a finding's recorded takes hold for its board. The bishop, rook and
- * generic pin-restricts-escape takes say the pinned piece may move only along the
- * pin line; a bishop pinned on a file or rank, or a rook pinned on a diagonal,
- * cannot move at all. (The knight takes already say it cannot move.) */
+/** Whether a finding's recorded takes hold for its board. The bishop, rook, pawn
+ * and generic pin-restricts-escape takes say the pinned piece may move only along
+ * the pin line; a bishop pinned on a file or rank, a rook pinned on a diagonal, or
+ * a pawn pinned along a rank cannot move at all. (The knight takes already say it
+ * cannot move.) */
 export function findingWordingHolds(data: MoveExplanation, finding: PatternFinding): boolean {
   if (finding.mechanism !== "pin_restricts_escape") return true;
   const fen = data.frames[finding.frame_ply]?.fen;
@@ -160,7 +161,8 @@ export function findingWordingHolds(data: MoveExplanation, finding: PatternFindi
   if (!fen || !pinned || !king) return true;  // Without its board the claim cannot be checked.
   const piece = pieceOn(fen, pinned)?.piece;
   const straight = pinned[0] === king[0] || pinned[1] === king[1];
-  return piece === "bishop" ? !straight : piece === "rook" ? straight : true;
+  return piece === "bishop" ? !straight : piece === "rook" ? straight
+    : piece === "pawn" ? pinned[1] !== king[1] : true;
 }
 
 /** The piece a capture frame takes, on the square it stood. A frame highlights

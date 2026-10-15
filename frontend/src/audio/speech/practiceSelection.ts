@@ -76,6 +76,9 @@ export function explanationFindingRecording(data: MoveExplanation, finding: Patt
 }
 export function explanationCueRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
   if (!currentFinding(data, finding, index) || !finding.cue_key || finding.cue_key !== finding.skill_id || !cueMotifs.has(finding.cue_key)) return null;
+  // The promotion cues ask how far the pawn still has to go; a finding whose
+  // first move is the promotion (a five-letter UCI move) has none left.
+  if (finding.cue_key === "promotion_awareness" && (finding.mechanism === "promotion" || finding.moves[0]?.length === 5)) return null;
   return `explanation-cue-${finding.cue_key.replaceAll("_", "-")}`;
 }
 const noteKinds = new Set(["curated_authority", "strong_replies", "material_scope", "no_simple_reason", "saved_policy"]);

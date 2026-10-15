@@ -138,6 +138,11 @@ test("all supported teaching cues retain their selected finding's explicit cue i
   }
   const mismatched = finding({skill_id: "pin", cue_key: "fork"});
   expect(explanationCueRecording(explanation({findings: [mismatched]}), mismatched, 1)).toBeNull();
+  // The promotion cues count the pawn's remaining squares; on the promoting move there are none.
+  const promoting = finding({skill_id: "promotion_awareness", cue_key: "promotion_awareness", mechanism: "promotion", moves: ["e7e8q"]});
+  expect(explanationCueRecording(explanation({findings: [promoting]}), promoting, 1)).toBeNull();
+  const retained = {...promoting, mechanism: "promotion_material_retained" as const};
+  expect(explanationCueRecording(explanation({findings: [retained]}), retained, 1)).toBeNull();
 });
 
 test("opening recall keeps repertoire authority, changed-study rejection and reveal distinct", () => {
@@ -216,4 +221,11 @@ test("pin-escape takes are not voiced for a piece that cannot move along its pin
   const onDiagonal = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["g7"], king: ["h8"], attacker: ["b2"], target: ["g7"]}});
   const diagonal = explanation({findings: [onDiagonal], frames: [frame({uci: null}), frame({fen: "7k/6b1/8/8/8/8/1B6/K7 b - - 0 1"})]});
   expect(explanationFindingRecording(diagonal, onDiagonal, 1)).toContain("explanation-finding-pin-restricts-escape");
+  // A pawn pinned along its rank cannot push or capture; one pinned on its file can push.
+  const onRank = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d5"], king: ["h5"], attacker: ["a5"], target: ["d5"]}});
+  const rank = explanation({findings: [onRank], frames: [frame({uci: null}), frame({fen: "8/8/8/R2p3k/8/8/8/K7 b - - 0 1"})]});
+  expect(explanationFindingRecording(rank, onRank, 1)).toBeNull();
+  const pawnOnFile = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d6"], king: ["d8"], attacker: ["d1"], target: ["d6"]}});
+  const file = explanation({findings: [pawnOnFile], frames: [frame({uci: null}), frame({fen: "3k4/8/3p4/8/8/8/8/K2R4 b - - 0 1"})]});
+  expect(explanationFindingRecording(file, pawnOnFile, 1)).toContain("explanation-finding-pin-restricts-escape");
 });
