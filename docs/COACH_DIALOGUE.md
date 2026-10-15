@@ -75,7 +75,9 @@ reply exact, plays only on a move graded Best, Great or Brilliant. A recovery is
 this move, and the opponent's moves made the game playable. The opening-departure
 event fires after the game's last move in our opening catalogue, which can be a
 main-line theory move, so its clip plays only for the voices whose take says our
-opening book ends there; the others show the written line alone. Some coaches'
+opening book ends there; for the others the written line shows when the departure is
+the move's only claim (another voiced claim takes the bubble, as for any unvoiced
+claim). Some coaches'
 takes are false in other places too, and `audio/speech/falseTakes.ts` keeps them silent
 the same way: back-rank takes saying the king's own pieces block its escape squares
 never play (in game review, or as a practice finding's Listen button); double-attack
@@ -167,7 +169,8 @@ stands in. Re-recording them with the wording below would let them play again.
   every voice's take by these words, so a re-recording must also update the set.
 - **`tactic-back-rank-*`** (with their rook and queen variants): played for alfie,
   arjun, bandit, femi, ingrid, jun, marisol, percy, rivet and winston; allowed for
-  button, ember, felix, pickle, rivet, tala, wisp and ziggy; missed for femi and jun.
+  button, ember, felix, pickle, rivet, tala, wisp and ziggy; missed for femi, jun and
+  marisol.
   They say the king's own pieces occupy or block its escape squares (or exits). A
   back-rank mate checks along the king's rank, so the square beside the king toward
   the checker is empty or the checker itself, never an own piece; the claim never

@@ -26,7 +26,7 @@ export const SILENT_DEPARTURE_VOICES: ReadonlySet<string> = new Set([
 export const OWN_PIECES_BLOCK_ESCAPE: Readonly<Record<string, readonly Role[]>> = {
   alfie: ["played"], arjun: ["played"], bandit: ["played"], button: ["allowed"], ember: ["allowed"],
   felix: ["allowed"], femi: ["played", "missed"], ingrid: ["played"], jun: ["played", "missed"],
-  marisol: ["played"], percy: ["played"], pickle: ["allowed"], rivet: ["played", "allowed"],
+  marisol: ["played", "missed"], percy: ["played"], pickle: ["allowed"], rivet: ["played", "allowed"],
   tala: ["allowed"], winston: ["played"], wisp: ["allowed"], ziggy: ["allowed"],
 };
 
