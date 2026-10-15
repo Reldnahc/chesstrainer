@@ -202,9 +202,9 @@ test("explanation findings name the piece each mechanism is about, never the wro
 });
 
 test("capture frames name the captured piece", () => {
-  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "bishop", checkmate: true, gives_check: true}), 1))
+  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "bishop", checkmate: true, gives_check: true}), 1, "white"))
     .toBe("explanation-frame-capture-move-mate-bishop|explanation-frame-capture-move-mate");
-  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "rook", promotion: "queen"}), 1))
+  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "rook", promotion: "queen"}), 1, "white"))
     .toBe("explanation-frame-capture-promotion-ordinary-rook|explanation-frame-capture-promotion-ordinary");
 });
 

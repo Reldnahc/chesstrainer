@@ -102,7 +102,7 @@ export default function ReviewExplanation({
   const noteRecordings = data && notesOpen ? data.notes.map((_, i) => explanationNoteRecording(data, i)) : [];
   const voice = useCoachSpeech({
     scopeKey: `explanation:${requestKey}:${data?.analysis_id ?? "curated"}:${index}:${frame?.fen ?? "loading"}:${selectedFinding ?? "frame"}:${notesOpen}`,
-    recordingId: explanationFrameRecording(frame, index), utterance,
+    recordingId: data ? explanationFrameRecording(frame, index, data.orientation) : null, utterance,
     automaticEventId: speechEvent,
     manualRecordingIds: [findingRecording, cueRecording, summaryRecording, ...noteRecordings].filter((id): id is string => !!id),
     ready: loadedKey === requestKey && !!data && !!frame && !error,

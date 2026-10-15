@@ -277,6 +277,9 @@ its exact `renderedClaims`. The selectors in `audio/speech/gameSelection.ts` and
 feedback before choosing a recording ID. They do not extract meaning from prose
 or match a phrase to a clip. A missing or unsupported recording leaves the written
 feedback available; it never triggers synthesis or weaker evidence validation.
+A checkmate frame in a practice or Show why line plays `mate-finished` only when the
+learner (the exercise's orientation) delivers the mate; when the other side mates,
+it plays `mate-defense-ended`, as a game's final position does.
 
 Walter (`classic`, `storyteller.ts`) and Rivet (`robot`, `robot.ts`) are the current
 production references for this complete path. Both use the scoped tactical and

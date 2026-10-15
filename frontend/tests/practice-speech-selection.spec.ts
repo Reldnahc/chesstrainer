@@ -25,11 +25,11 @@ const finding = (overrides: Partial<PatternFinding> = {}): PatternFinding => ({
 });
 
 test("all twenty recorded frame combinations use explicit replay facts and retain combined meaning", () => {
-  const selected = [explanationFrameRecording(frame({uci: null}), 0)];
+  const selected = [explanationFrameRecording(frame({uci: null}), 0, "white")];
   for (const capture of [null, "pawn"]) for (const promotion of [null, "queen"]) {
     for (const ending of ["ordinary", "check", "mate", "escape"] as const) {
       const id = explanationFrameRecording(frame({capture, promotion, gives_check: ending === "check" || ending === "mate",
-        checkmate: ending === "mate", escaped_check: ending === "escape"}), 1);
+        checkmate: ending === "mate", escaped_check: ending === "escape"}), 1, "white");
       const expected = !capture && !promotion && ending === "mate" ? "mate-finished"
         : `explanation-frame-${capture ? "capture" : "quiet"}-${promotion ? "promotion" : "move"}-${ending}`;
       // A captured pawn names itself first; nothing but a piece stands on the promotion rank.
@@ -38,13 +38,27 @@ test("all twenty recorded frame combinations use explicit replay facts and retai
     }
   }
   for (const ending of ["ordinary", "check", "mate"] as const) {
-    selected.push(explanationFrameRecording(frame({castling: true, gives_check: ending !== "ordinary", checkmate: ending === "mate"}), 1));
+    selected.push(explanationFrameRecording(frame({castling: true, gives_check: ending !== "ordinary", checkmate: ending === "mate"}), 1, "white"));
   }
   expect(selected).toHaveLength(20);
   for (const id of selected) expect(bank.has(id!)).toBe(true);
-  expect(explanationFrameRecording(frame({facts_version: null, san: "Qxh8#", annotation: "Checkmate!"}), 1)).toBeNull();
-  expect(explanationFrameRecording(frame({castling: true, capture: "pawn"}), 1)).toBeNull();
-  expect(explanationFrameRecording(frame({uci: null}), 1)).toBeNull();
+  expect(explanationFrameRecording(frame({facts_version: null, san: "Qxh8#", annotation: "Checkmate!"}), 1, "white")).toBeNull();
+  expect(explanationFrameRecording(frame({castling: true, capture: "pawn"}), 1, "white")).toBeNull();
+  expect(explanationFrameRecording(frame({uci: null}), 1, "white")).toBeNull();
+});
+
+test("a quiet checkmate credits the learner only when the learner mates", () => {
+  // After 1.f3 e5, the line 2.g4 Qh4# shows why g4 falls short: Black mates White.
+  const qh4 = frame({san: "Qh4#", uci: "d8h4", fen: "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+    gives_check: true, checkmate: true});
+  expect(explanationFrameRecording(qh4, 2, "white")).toBe("mate-defense-ended");
+  expect(explanationFrameRecording(qh4, 2, "black")).toBe("mate-finished");
+  for (const learner of ["white", "black"] as const) expect(bank.has(explanationFrameRecording(qh4, 2, learner)!)).toBe(true);
+  // A summary frame and a practice preview frame use the exercise's learner the same way.
+  expect(explanationSummaryRecording(explanation({summary_kind: "frame", summary_frame_index: 1,
+    frames: [frame({uci: null}), qh4]}))).toBe("mate-defense-ended");
+  expect(practiceRecording({position: {...position, orientation: "black"}, feedback: feedback({completed: false}),
+    frame: {...qh4, annotation: "Checkmate."}})).toBe("mate-finished");
 });
 
 test("cold practice cannot borrow future frames or reveal an answer", () => {

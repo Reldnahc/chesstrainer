@@ -1,8 +1,11 @@
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../../api";
 import { capturedPieces, findingPieces, withPieceVariant } from "./pieceVariants";
 
-/** Only replay_line's explicit facts authorize a complete recorded frame description. */
-export function explanationFrameRecording(frame: ExplanationFrame | null | undefined, index?: number): string | null {
+/** Only replay_line's explicit facts authorize a complete recorded frame description.
+ * A quiet checkmate credits the learner only when the learner mates; a line where
+ * the other side mates (why a move falls short) plays the defence-ended meaning. */
+export function explanationFrameRecording(frame: ExplanationFrame | null | undefined, index: number | undefined,
+  learner: "white" | "black"): string | null {
   if (!frame || frame.facts_version !== 1) return null;
   if (!frame.uci) return index === 0 ? "explanation-frame-original" : null;
   const ending = frame.checkmate ? "mate" : frame.gives_check ? "check" : frame.escaped_check ? "escape" : "ordinary";
@@ -10,7 +13,11 @@ export function explanationFrameRecording(frame: ExplanationFrame | null | undef
     if (frame.capture || frame.promotion || frame.escaped_check) return null;
     return ending === "ordinary" ? "positional-castling-actual" : `explanation-frame-castle-${ending}`;
   }
-  if (!frame.capture && !frame.promotion && ending === "mate") return "mate-finished";
+  if (!frame.capture && !frame.promotion && ending === "mate") {
+    // The side to move on a checkmated board is the side that was mated.
+    const mated = frame.fen.split(" ")[1] === "w" ? "white" : "black";
+    return mated === learner ? "mate-defense-ended" : "mate-finished";
+  }
   const id = `explanation-frame-${frame.capture ? "capture" : "quiet"}-${frame.promotion ? "promotion" : "move"}-${ending}`;
   return withPieceVariant(id, capturedPieces(frame)?.pieces);
 }
@@ -21,8 +28,8 @@ const summaryRecordings: Record<string, string | undefined> = {
   engine_accepted: "srs-summary-engine-accepted", engine_rejected: "srs-summary-engine-rejected",
   curated_accepted: "srs-summary-curated-accepted", curated_rejected: "srs-summary-curated-rejected",
 };
-function summaryRecording(kind: string | null | undefined, frame?: ExplanationFrame | null) {
-  return kind === "frame" ? explanationFrameRecording(frame) : kind ? summaryRecordings[kind] ?? null : null;
+function summaryRecording(kind: string | null | undefined, learner: "white" | "black", frame?: ExplanationFrame | null) {
+  return kind === "frame" ? explanationFrameRecording(frame, undefined, learner) : kind ? summaryRecordings[kind] ?? null : null;
 }
 
 export function practiceRecording({position, feedback, frame, error}: {
@@ -32,10 +39,10 @@ export function practiceRecording({position, feedback, frame, error}: {
   if (error) return "srs-practice-error";
   // A cold position cannot borrow future frames, stored findings or answer details.
   if (!feedback) return position.failed ? "srs-retry" : "srs-cold";
-  if (frame?.annotation) return explanationFrameRecording(frame);
+  if (frame?.annotation) return explanationFrameRecording(frame, undefined, position.orientation);
   if (!feedback.completed) return "srs-retry";
   if (feedback.explanation_summary)
-    return summaryRecording(feedback.explanation_summary_kind, feedback.explanation_summary_frame);
+    return summaryRecording(feedback.explanation_summary_kind, position.orientation, feedback.explanation_summary_frame);
   if (feedback.message) {
     if (feedback.grade === "revealed") return null;
     return feedback.message_kind === "good_move" ? "srs-fallback-good"
@@ -49,7 +56,7 @@ export function explanationSummaryRecording(data: MoveExplanation): string | nul
   const kind = data.summary_kind;
   if (kind?.startsWith("engine_") && data.authority !== "stockfish") return null;
   if (kind?.startsWith("curated_") && data.authority !== "curated") return null;
-  return summaryRecording(kind, data.summary_frame_index == null ? null : data.frames[data.summary_frame_index]);
+  return summaryRecording(kind, data.orientation, data.summary_frame_index == null ? null : data.frames[data.summary_frame_index]);
 }
 
 // A "promotion" finding is always the promoting move itself, which the game bank's
