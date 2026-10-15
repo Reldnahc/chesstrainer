@@ -32,7 +32,7 @@ test('native connection and history disclosures support keyboard and touch witho
   await expect(history).not.toHaveAttribute('open');
   await expect(summary).toHaveCSS('display', 'list-item');
   expect(await summary.evaluate(element => getComputedStyle(element).listStyleType)).not.toBe('none');
-  await expect(summary).toContainText('Training analysis');
+  await expect(summary).toContainText('Game analysis');
   await expect(summary).toContainText('1 / 1 games · 2 decisions');
   await expect(summary.locator('.badge')).toHaveText('completed');
   await expect(summary).toContainText('View details');
