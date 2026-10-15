@@ -32,7 +32,7 @@ from trainer.review_scores import (
     blunder_cp,
     is_decisive_swing,
     is_mistake,
-    is_only_good,
+    is_only_good_move,
     is_poor,
     strongest_alternative,
 )
@@ -131,10 +131,10 @@ def classify(report, rating):
         return "Brilliant", "You found a sound piece sacrifice with a verified tactical idea."
     # Great is best/near-best AND critical; a sole legal reply is never an achievement.
     if cp <= NEAR_BEST_CP and report["legal_count"] > 1:
-        second = strongest_alternative(report)
-        # Only when the runner-up actually loses, as the coach's only-move
-        # evidence requires; a runner-up that still wins is no reason for Great.
-        only_good = second is not None and is_only_good(best, second) and numeric(actual) >= -50
+        # Only when the runner-up actually loses and this move holds, the one rule
+        # the coach's only-move evidence reads; a runner-up that still wins is no
+        # reason for Great.
+        only_good = is_only_good_move(best, actual, strongest_alternative(report))
         previous = report["previous_score"]
         # Capitalizing needs an opponent error: their previous move was graded a
         # Mistake or worse, not just a different search's score for the position.

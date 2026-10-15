@@ -133,6 +133,29 @@ def test_only_good_defense_requires_losing_runner_up_and_more_than_one_legal_mov
     assert "unusual_strong_move" in events(report, kind="human_contrast")[0].facts["observations"]
 
 
+def test_the_only_move_event_fires_exactly_where_the_great_badge_does():
+    held = move_report(before=-40, after=-40, second=-200)
+    assert events(held, kind="critical_resource")
+    assert public_report(held, 1000)["engine_label"] == "Great"
+    # The runner-up still loses, but a played score that does not hold -0.50 is
+    # no sole resource for the badge, so the coach does not claim one either.
+    lost = deepcopy(held)
+    lost["actual"]["score"]["value"] = -60
+    assert not events(lost, kind="critical_resource")
+    assert public_report(lost, 1000)["engine_label"] == "Best"  # The top move, not Great.
+
+
+def test_a_decisive_resource_needs_the_winning_band():
+    # +2.50 is "better", not "winning": the only move there defends an advantage.
+    better = move_report(before=250, after=250, second=-200)
+    assert events(better, kind="critical_resource")[0].facts["purpose"] == "defense"
+    winning = move_report(before=300, after=300, second=-200)
+    assert events(winning, kind="critical_resource")[0].facts["purpose"] == "decisive_resource"
+    mate = {"kind": "mate", "value": 4}
+    forced = move_report(before=mate, after=mate, second=-200)
+    assert events(forced, kind="critical_resource")[0].facts["purpose"] == "decisive_resource"
+
+
 def test_restricted_played_root_can_disprove_an_only_good_move_claim():
     report = move_report(played="e2e4", best="d2d4", before=0, after=-5, second=-220)
     practical = assess_difficulty(report)

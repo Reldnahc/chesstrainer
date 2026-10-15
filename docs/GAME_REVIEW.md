@@ -278,7 +278,9 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
 - Great: at most 20 cp loss and more than one legal move, plus either the only
   good move (the strongest alternative actually loses: -1.50 or worse or mated, at
   least 150 cp / a mate outcome below the best move, while the played move retains
-  at least -50 cp; the same rule the coach's only-move evidence uses); or
+  at least -50 cp; `is_only_good_move`, the one rule the coach's only-move evidence
+  reads, so the coach says "only move" exactly where the badge is Great, except
+  that a Brilliant sacrifice outranks Great); or
   successful exploitation of a preceding opponent error (the opponent's move was
   itself a Mistake or worse, and the previous position between -150 and +150 becomes
   at least +200, or previous position at most -200 becomes at least -50). Previous scores use the position
