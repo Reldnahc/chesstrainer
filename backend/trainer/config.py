@@ -2,24 +2,22 @@ from pathlib import Path
 from typing import Literal
 from urllib.parse import urlsplit
 
-from pydantic import Field, SecretStr
+from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Host paths, the bound address and contact details stay with the administrator;
-# every signed-in account can read the rest of the configuration.
-PRIVATE_SETTINGS = frozenset(
-    {
-        "lan_access_token",
-        "allowed_hosts",
-        "server_host",
-        "database_path",
-        "courses_path",
-        "public_origin",
-        "stockfish_path",
-        "human_model_path",
-        "chesscom_user_agent",
-    }
-)
+
+def env_only(default, *, private=False, **constraints):
+    """A setting read only from the environment, never stored in ``site_settings``.
+
+    These are what the server needs before it can open its database, or what
+    guards who can reach it. ``private`` ones (host paths, the bound address,
+    contact details, secrets) also stay out of ``/api/settings``; every signed-in
+    account can read the rest of the configuration. Every other setting is
+    administrator-managed in the database; see trainer.site_settings.
+    """
+    return Field(default, json_schema_extra={"env_only": True, "private": private}, **constraints)
+
+
 # The published image creates this file. Containers are for hosting, so they always
 # require sign-in; the no-login workspace is for running from source.
 CONTAINER_MARKER = Path("/etc/fieldwork-container")
@@ -27,17 +25,17 @@ CONTAINER_MARKER = Path("/etc/fieldwork-container")
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
-    server_host: str = "127.0.0.1"
-    server_port: int = Field(default=8000, ge=1, le=65535)
-    database_path: Path = Path("data/trainer.sqlite3")
+    server_host: str = env_only("127.0.0.1", private=True)
+    server_port: int = env_only(8000, ge=1, le=65535)
+    database_path: Path = env_only(Path("data/trainer.sqlite3"), private=True)
     # The club's own Study course files; blank keeps them in a courses folder
     # beside the database, so they live on the same volume.
-    courses_path: Path | None = None
-    accounts_enabled: bool = False
-    session_secure: bool = True
-    public_origin: str = ""
+    courses_path: Path | None = env_only(None, private=True)
+    accounts_enabled: bool = env_only(False)
+    session_secure: bool = env_only(True)
+    public_origin: str = env_only("", private=True)
     engine_slots: int = Field(default=4, ge=1, le=32)
-    stockfish_path: str = "stockfish"
+    stockfish_path: str = env_only("stockfish", private=True)
     stockfish_threads: int = Field(default=1, ge=1, le=32)
     stockfish_hash_mb: int = Field(default=64, ge=16, le=4096)
     stockfish_workers: int = Field(default=1, ge=1, le=16)
@@ -51,8 +49,9 @@ class Settings(BaseSettings):
     # Days without a visit before polling pauses and a welcome back is shown.
     sync_away_days: int = Field(default=7, ge=1, le=365)
     human_model_enabled: bool = True
-    human_model_path: Path = Path("data/models/maia3-79m.pt")
-    human_model_device: Literal["cpu", "cuda"] = "cpu"
+    human_model_path: Path = env_only(Path("data/models/maia3-79m.pt"), private=True)
+    # The container entrypoint reads it to fetch CUDA PyTorch before Python starts.
+    human_model_device: Literal["cpu", "cuda"] = env_only("cpu")
     human_model_threads: int = Field(default=2, ge=1, le=16)
     human_model_workers: int = Field(default=1, ge=1, le=4)
     human_model_timeout: float = Field(default=30, ge=1, le=120)
@@ -87,18 +86,39 @@ class Settings(BaseSettings):
     retire_after_days: int = Field(default=100, ge=1, le=36500)
     desired_retention: float = Field(default=0.9, ge=0.7, le=0.99)
     min_independent_games: int = Field(default=2, ge=2, le=20)
-    lan_access_token: SecretStr = SecretStr("")
+    lan_access_token: SecretStr = env_only(SecretStr(""), private=True)
     # Extra host names the local-mode API answers to; LAN addresses need no entry.
-    allowed_hosts: str = ""
+    allowed_hosts: str = env_only("", private=True)
     max_import_bytes: int = Field(default=10_000_000, ge=1000, le=100_000_000)
     chesscom_timeout_seconds: float = Field(default=20, gt=0, le=60)
     chesscom_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
-    chesscom_user_agent: str = "FieldworkChessTrainer/0.1 (local personal chess training)"
-    provider_timeout_seconds: float = Field(default=20, gt=0, le=60)
-    provider_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
-    provider_max_scan_games: int = Field(default=10000, ge=1000, le=100000)
+    # Sent to Chess.com and Lichess. CHESSCOM_USER_AGENT, its former name, still works.
+    provider_user_agent: str = env_only(
+        "FieldworkChessTrainer/0.1 (local personal chess training)",
+        private=True,
+        validation_alias=AliasChoices("provider_user_agent", "chesscom_user_agent"),
+    )
+    # Lichess limits. The older PROVIDER_* environment names still work.
+    lichess_timeout_seconds: float = Field(
+        default=20,
+        gt=0,
+        le=60,
+        validation_alias=AliasChoices("lichess_timeout_seconds", "provider_timeout_seconds"),
+    )
+    lichess_max_response_bytes: int = Field(
+        default=25_000_000,
+        ge=1000,
+        le=100_000_000,
+        validation_alias=AliasChoices("lichess_max_response_bytes", "provider_max_response_bytes"),
+    )
+    lichess_max_scan_games: int = Field(
+        default=10000,
+        ge=1000,
+        le=100000,
+        validation_alias=AliasChoices("lichess_max_scan_games", "provider_max_scan_games"),
+    )
     puzzle_starter_pack: bool = True
-    puzzle_pack_path: Path | None = None
+    puzzle_pack_path: Path | None = env_only(None, private=True)
     # Puzzles mined from the learner's own games. Margins are shared with the pack
     # verifier; depth 18 matches the starter pack's recorded verification.
     puzzle_generation: bool = True
@@ -146,7 +166,19 @@ class Settings(BaseSettings):
                 )
         return self.model_copy(update={"public_origin": origin})
 
+    @classmethod
+    def marked(cls, flag):
+        return frozenset(
+            name
+            for name, field in cls.model_fields.items()
+            if (field.json_schema_extra or {}).get(flag)
+        )
+
     def public(self) -> dict:
         return self.model_dump(mode="json", exclude=set(PRIVATE_SETTINGS)) | {
             "lan_token_configured": bool(self.lan_access_token.get_secret_value()),
         }
+
+
+ENV_ONLY = Settings.marked("env_only")
+PRIVATE_SETTINGS = Settings.marked("private")

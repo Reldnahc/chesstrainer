@@ -75,7 +75,7 @@ def test_opening_studies_and_recall_are_private_even_for_the_same_catalogue_line
             response = client.request(method, path, json=payload, headers=bob_headers)
             assert response.status_code == 404, response.text
             assert response.json() == {"detail": "Opening study not found"}
-        # Review's existing missing-item contract is 422, identical for absent and foreign IDs.
+        # A missing review item is a 404, identical for absent and foreign IDs.
         for method, path, payload in (
             ("GET", alice_path, None),
             ("GET", alice_path + "/explanation", None),
@@ -83,12 +83,12 @@ def test_opening_studies_and_recall_are_private_even_for_the_same_catalogue_line
             ("POST", alice_path + "/reveal", None),
         ):
             response = client.request(method, path, json=payload, headers=bob_headers)
-            assert response.status_code == 422, response.text
+            assert response.status_code == 404, response.text
             assert response.json() == {"detail": "Review session not found"}
         foreign_start = client.post(
             f"/api/review/{alice_recall['exercise_id']}/start", headers=bob_headers
         )
-        assert foreign_start.status_code == 422
+        assert foreign_start.status_code == 404
         assert foreign_start.json() == {"detail": "Exercise not found"}
 
         bob_study = response_json(client.post(STUDIES, json=enrollment(), headers=bob_headers))

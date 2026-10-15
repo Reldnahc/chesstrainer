@@ -80,7 +80,7 @@ export const mushroom: CoachPersonality = {
     book: ["Someone has put a name beside this opening: {opening}."],
     book_sound: ["This follows a recognized line, {opening}. A place already on the map."],
     departure: ["The opening catalogue stops here. There is still a whole board to look at."],
-    recovery: ["There is room to play again after the error at {earlier}.{help}", "This makes the position playable again after {earlier}. Something worth returning to.{help}"],
+    recovery: ["There is room to play again after the error at {earlier}.{help}", "The position is playable again after {earlier}. Something worth returning to.{help}"],
     repeated: ["The same {motif} issue has appeared {count} times in the reviewed game. Put those moments side by side."],
     history: ["This {motif} issue also appears in {games} other saved games. A small collection worth looking through."],
     support_restored: ["The {piece} has company in its defense again, after being unguarded at {earlier}."],

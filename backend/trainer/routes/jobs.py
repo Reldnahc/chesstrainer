@@ -1,12 +1,16 @@
 """Saved job progress and cancellation/retry controls."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from sqlalchemy import func, select
 
-from trainer.contracts.common import JobStatus
-from trainer.contracts.jobs import AnalysisQueue, Job
+from trainer import job_lifecycle
+from trainer.contracts.common import JobStatus, from_row
+from trainer.contracts.jobs import AnalysisQueue, Job, ProviderImportProgress
+from trainer.errors import Gone, NotFound
 from trainer.game_analysis import BACKFILL, FRESH, REQUESTED
 from trainer.game_providers import get_provider
+from trainer.job_lifecycle import JobKind
+from trainer.job_lifecycle import JobStatus as JS
 from trainer.models import AnalysisJob, ClassificationTask, Game, GameReview, ProviderImport
 from trainer.workspaces import CurrentWorkspace
 
@@ -17,46 +21,44 @@ def create_router(*, runner) -> APIRouter:
     @router.get("/api/jobs", response_model=list[Job], response_model_exclude_unset=True)
     def jobs(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
-            # Per-game analysis has its own summary below; it would crowd out imports here.
+            # Per-game analysis has its own summary below and the level fit shows in Play;
+            # either would crowd out imports here.
             rows = db.scalars(
                 select(AnalysisJob)
-                .where(AnalysisJob.kind != "game_review")
+                .where(AnalysisJob.kind.not_in([JobKind.GAME_REVIEW, JobKind.LEVEL_FIT]))
                 .order_by(AnalysisJob.created_at.desc())
                 .limit(50)
             ).all()
+            ids = [row.id for row in rows]
             sources = {
                 source.job_id: source
                 for source in db.scalars(
-                    select(ProviderImport).where(
-                        ProviderImport.job_id.in_([row.id for row in rows])
-                    )
+                    select(ProviderImport).where(ProviderImport.job_id.in_(ids))
                 )
             }
+            probes = dict(
+                db.execute(
+                    select(ClassificationTask.job_id, func.count())
+                    .where(ClassificationTask.job_id.in_(ids))
+                    .group_by(ClassificationTask.job_id)
+                ).all()
+            )
+
+            def provider_import(source):
+                return from_row(
+                    ProviderImportProgress,
+                    source,
+                    provider_name=get_provider(source.provider).name,
+                )
+
             return [
-                {c.name: getattr(row, c.name) for c in AnalysisJob.__table__.columns}
-                | {
-                    "probe_total": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationTask)
-                        .where(ClassificationTask.job_id == row.id)
-                    )
-                    if row.kind == "enrichment"
-                    else None,
-                    "activity": runner.activity(row.id),
-                    "provider_import": {
-                        c.name: getattr(sources[row.id], c.name)
-                        for c in ProviderImport.__table__.columns
-                    }
-                    | {"provider_name": get_provider(sources[row.id].provider).name}
-                    if row.id in sources
-                    else None,
-                    "chesscom": {
-                        c.name: getattr(sources[row.id], c.name)
-                        for c in ProviderImport.__table__.columns
-                    }
-                    if row.id in sources and sources[row.id].provider == "chesscom"
-                    else None,
-                }
+                from_row(
+                    Job,
+                    row,
+                    probe_total=probes.get(row.id, 0) if row.kind == JobKind.ENRICHMENT else None,
+                    activity=runner.activity(row.id),
+                    provider_import=provider_import(sources[row.id]) if row.id in sources else None,
+                )
                 for row in rows
             ]
 
@@ -67,7 +69,7 @@ def create_router(*, runner) -> APIRouter:
                 (status, priority): count
                 for status, priority, count in db.execute(
                     select(AnalysisJob.status, AnalysisJob.priority, func.count())
-                    .where(AnalysisJob.kind == "game_review")
+                    .where(AnalysisJob.kind == JobKind.GAME_REVIEW)
                     .group_by(AnalysisJob.status, AnalysisJob.priority)
                 )
             }
@@ -75,7 +77,7 @@ def create_router(*, runner) -> APIRouter:
                 select(Game)
                 .join(GameReview, GameReview.game_id == Game.id)
                 .join(AnalysisJob, AnalysisJob.id == GameReview.job_id)
-                .where(AnalysisJob.status == "running")
+                .where(AnalysisJob.status == JS.RUNNING)
             )
 
             def total(status, level=None):
@@ -94,26 +96,27 @@ def create_router(*, runner) -> APIRouter:
                 }
                 if running
                 else None,
-                "requested": total("queued", REQUESTED),
-                "fresh": total("queued", FRESH),
-                "backfill": total("queued", BACKFILL),
-                "completed": total("completed"),
-                "failed": total("failed"),
+                "requested": total(JS.QUEUED, REQUESTED),
+                "fresh": total(JS.QUEUED, FRESH),
+                "backfill": total(JS.QUEUED, BACKFILL),
+                "completed": total(JS.COMPLETED),
+                "failed": total(JS.FAILED),
             }
+
+    def require_job(db, job_id):
+        job = db.get(AnalysisJob, job_id)
+        if job is None:
+            raise NotFound("Job not found")
+        return job
 
     @router.post(
         "/api/jobs/{job_id}/cancel", response_model=JobStatus, response_model_exclude_unset=True
     )
     def cancel_job(workspace: CurrentWorkspace, job_id: str):
         with workspace.sessions() as db:
-            job = db.get(AnalysisJob, job_id)
-            if job is None:
-                raise HTTPException(404, "Job not found")
-            if job.status in {"queued", "running"}:
-                job.cancel_requested = True
-                if job.status == "queued":
-                    job.status = "cancelled"
-                db.commit()
+            job = require_job(db, job_id)
+            job_lifecycle.request_cancel(job)
+            db.commit()
             return {"status": job.status}
 
     @router.post(
@@ -121,14 +124,10 @@ def create_router(*, runner) -> APIRouter:
     )
     def retry_job(workspace: CurrentWorkspace, job_id: str):
         with workspace.sessions() as db:
-            job = db.get(AnalysisJob, job_id)
-            if job is None:
-                raise HTTPException(404, "Job not found")
-            if job.kind == "teaching":
-                raise HTTPException(410, "Model teaching generation has been removed.")
-            if job.status not in {"failed", "cancelled"}:
-                raise HTTPException(409, "Only failed or cancelled jobs can be retried")
-            job.status, job.cancel_requested, job.error = "queued", False, None
+            job = require_job(db, job_id)
+            if job.kind not in JobKind:
+                raise Gone("This kind of job has been removed.")
+            job_lifecycle.retry(job)
             db.commit()
             return {"status": job.status}
 

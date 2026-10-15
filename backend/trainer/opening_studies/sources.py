@@ -1,9 +1,8 @@
 """Normalize approved sources before enrollment; no client-supplied move truth."""
 
-from fastapi import HTTPException
-
 from trainer.chess_core import digest
 from trainer.contracts.opening_studies import OpeningLine, OpeningLineView
+from trainer.errors import InvalidInput, NotFound
 from trainer.opening_studies import catalogue
 from trainer.study_lessons.content import Position
 from trainer.study_lessons.queries import course_for
@@ -33,9 +32,9 @@ def course_line(db, providers, course_id, revision, line_id):
     try:
         line = course.line(line_id)
     except StopIteration as exc:
-        raise HTTPException(404, "Course repertoire line not found") from exc
+        raise NotFound("Course repertoire line not found") from exc
     if not line.repertoire:
-        raise HTTPException(422, "Only designated course repertoire lines can be studied")
+        raise InvalidInput("Only designated course repertoire lines can be studied")
     return OpeningLine(
         source="course_line",
         source_key=course_key(course.id, line.id),
@@ -52,10 +51,15 @@ def course_line(db, providers, course_id, revision, line_id):
 def resolve_line(db, providers, request):
     if request.source == "lichess_catalogue":
         if request.course_id is not None or request.line_id is not None:
-            raise HTTPException(422, "Catalogue enrollment cannot identify a course line")
+            raise InvalidInput("Catalogue enrollment cannot identify a course line")
         return catalogue.get(request.source_key, request.source_version)
     if request.course_id is None or request.line_id is None:
-        raise HTTPException(422, "Course enrollment requires a course and repertoire line")
+        raise InvalidInput("Course enrollment requires a course and repertoire line")
     if request.source_key != course_key(request.course_id, request.line_id):
-        raise HTTPException(422, "Course line identity does not match its source key")
+        raise InvalidInput("Course line identity does not match its source key")
     return course_line(db, providers, request.course_id, request.source_version, request.line_id)
+
+
+def catalogue_detail(key):
+    """A catalogue line with its board frames, for the opening browser."""
+    return line_view(catalogue.get(key))

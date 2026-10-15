@@ -10,12 +10,17 @@ from queue import Empty, Full, Queue
 from time import monotonic
 from typing import Protocol
 
-from trainer.cancellation import throttled
+from trainer.cancellation import WaitCancelled, WaitTimedOut, taking, wait_until
 from trainer.human_models.preset import provenance
-from trainer.human_models.types import HumanPolicy, HumanReadiness, ModelProvenance
+from trainer.human_models.types import (
+    MESSAGE_LIMIT,
+    HumanPolicy,
+    HumanReadiness,
+    ModelProvenance,
+)
 
 # Positions per worker exchange: one forward pass each, and request and reply
-# lines stay well under the worker's 256 KiB line limit.
+# lines stay well under MESSAGE_LIMIT.
 BATCH_POSITIONS = 32
 
 
@@ -76,7 +81,7 @@ class Worker:
     def _read(self):
         try:
             while not self.closed.is_set():
-                line = self.process.stdout.readline(262144)
+                line = self.process.stdout.readline(MESSAGE_LIMIT)
                 if not line or not line.endswith("\n"):
                     break
                 try:
@@ -95,7 +100,7 @@ class Worker:
         if self.closed.is_set():
             raise HumanUnavailable("worker_closed")
         message = json.dumps(payload, separators=(",", ":"), allow_nan=False) + "\n"
-        if len(message.encode("utf-8")) >= 262144:
+        if len(message.encode("utf-8")) >= MESSAGE_LIMIT:
             raise HumanUnavailable("history_too_large")
         try:
             # Pipe writes can themselves block. The caller's deadline must cover
@@ -202,20 +207,24 @@ class MaiaProvider:
         if self.provenance.inference.get("torch") == "unavailable":
             raise HumanUnavailable("runtime_unavailable")
         deadline = monotonic() + self.settings.human_model_timeout
-        waiting = throttled(cancelled)
-        while True:
-            if waiting() or self._closed.is_set():
-                raise HumanCancelled("cancelled")
-            if monotonic() >= deadline:
-                raise HumanUnavailable("busy")
+        take = taking(self.available)
+
+        def attempt(timeout):
             with self._guard:
                 if monotonic() < self._retry_after:
                     raise HumanUnavailable("cooldown")
-            try:
-                worker = self.available.get(timeout=0.05)
-                break
-            except Empty:
-                continue
+            return take(timeout)
+
+        try:
+            worker = wait_until(
+                attempt,
+                lambda: self._closed.is_set() or cancelled(),
+                deadline=deadline,
+            )
+        except WaitCancelled as exc:
+            raise HumanCancelled("cancelled") from exc
+        except WaitTimedOut as exc:
+            raise HumanUnavailable("busy") from exc
         with self._guard:
             cooling = monotonic() < self._retry_after
         if cooling:
@@ -250,6 +259,7 @@ class MaiaProvider:
                 self._state = "ready"
             return result
         except Exception as exc:
+            # A failed worker is discarded, not reused; the slot starts a new one.
             if worker is not None:
                 worker.close()
                 with self._guard:

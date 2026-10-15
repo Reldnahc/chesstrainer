@@ -5,7 +5,8 @@ import hashlib
 import json
 from collections import Counter, defaultdict
 
-from trainer.chess_core import digest
+from trainer.chess_core import Candidate, digest, valid_board
+from trainer.continuations import extended_line
 from trainer.coverage import MECHANISM_SKILLS
 from trainer.diagnosis_types import OUTCOME_SKILLS
 
@@ -91,9 +92,6 @@ def export_sample(report, path, size=60, *, blind=False):
             best_pv = payload["best_candidates"][0]["pv"]
             actual_pv = payload["played_candidate"]["pv"]
             if any(p["kind"] == "tail" for p in payload.get("probes", [])):
-                from trainer.chess_core import Candidate, valid_board
-                from trainer.continuations import extended_line
-
                 best_pv = extended_line(
                     valid_board(payload["fen"]),
                     Candidate.model_validate(payload["best_candidates"][0]),

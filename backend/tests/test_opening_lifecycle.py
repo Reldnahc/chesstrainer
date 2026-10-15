@@ -31,7 +31,7 @@ from trainer.models import (
 )
 from trainer.opening_studies import projection, recall, service, sources
 from trainer.retirement import retire_existing, retire_if_ready
-from trainer.scheduling import FSRSScheduler, utc
+from trainer.scheduling import FSRSScheduler
 from trainer.study_lessons.content import CourseDefinition
 from trainer.study_lessons.providers import CourseProviders
 from trainer.study_lessons.queries import course_for
@@ -171,7 +171,7 @@ def test_failed_current_attempt_counts_as_due_in_study_library(settings):
         submit(client, cold["session_id"], "d2d4")
         with app.state.sessions() as db:
             state = db.get(SRSState, cold["exercise_id"])
-            assert utc(state.due) > now()
+            assert state.due > now()
         library = response_json(client.get("/api/opening-studies"))
         assert library["due_positions"] == 1
         assert library["items"][0]["due_positions"] == 1
@@ -305,8 +305,8 @@ def retire_card(app, exercise_id):
             deepcopy(state.card),
             state.reviews,
             state.lapses,
-            utc(state.due),
-            utc(state.retired_at),
+            state.due,
+            state.retired_at,
         )
 
 
@@ -324,14 +324,14 @@ def test_retirement_unchanged_restore_and_material_change_guard_survive_restart(
                 state.card,
                 state.reviews,
                 state.lapses,
-                utc(state.due),
-                utc(state.retired_at),
+                state.due,
+                state.retired_at,
             ) == original
         second = enroll_catalogue(client, "d2d4")
         with app.state.sessions() as db:
             state = db.get(SRSState, exercise_id)
             card = db.get(OpeningCard, exercise_id)
-            assert state.retired_at is None and utc(state.due) <= now()
+            assert state.retired_at is None and state.due <= now()
             assert (state.card, state.reviews, state.lapses) == original[:3]
             guard = card.retirement_guard_revision
             assert guard == card.revision

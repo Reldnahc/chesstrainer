@@ -1,16 +1,15 @@
 """Game library, resumable whole-game review and legal variation analysis."""
 
 import io
-import math
-from datetime import timezone
 from typing import Annotated
 
 import chess
 import chess.pgn
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from pydantic import BaseModel, Field
-from sqlalchemy import func, select, update
+from sqlalchemy import func, select
 
+from trainer import job_lifecycle
+from trainer.authz import shared_links
 from trainer.chess_core import Score
 from trainer.contracts.common import JobStarted
 from trainer.contracts.games import (
@@ -20,36 +19,38 @@ from trainer.contracts.games import (
     GameHistory,
     GamePosition,
     ReviewProgress,
+    ReviewRequest,
+    VariationRequest,
 )
 from trainer.game_accuracy import review_accuracy
-from trainer.game_analysis import REQUESTED
-from trainer.game_library import pgn_rating, time_control_label
-from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
+from trainer.game_analysis import DEFAULT_RATING, request_review
+from trainer.game_library import mover_rating, pgn_rating, time_control_label
+from trainer.game_review import (
+    PROGRESS_KEYS,
+    branch_board,
+    move_frames,
+    parsed_game,
+    position,
+    public_report,
+    review_move,
+)
+from trainer.job_lifecycle import JobStatus
 from trainer.models import (
     AnalysisJob,
     Game,
     GameReview,
-    GameReviewMove,
-    ImportBatch,
-    ImportGame,
-    ReviewRefinement,
 )
+from trainer.ownership import LOCAL_USER_ID
+from trainer.review_intelligence.clocks import annotation as clock_annotation
 from trainer.review_intelligence.clocks import control as clock_control
 from trainer.review_intelligence.context import move_contexts
-from trainer.review_intelligence.history import cross_game_context
-from trainer.review_intelligence.presentation import present_game
-from trainer.review_reports import load_accuracy_scores, load_game_reports
+from trainer.review_intelligence.history import (
+    cross_game_context,
+    recent_cross_game_context,
+)
+from trainer.review_intelligence.presentation import presented_review
+from trainer.review_reports import load_accuracy_scores
 from trainer.workspaces import CurrentWorkspace
-
-
-class ReviewRequest(BaseModel):
-    rating: int | None = Field(default=None, ge=400, le=3000)
-    refine: bool = False
-
-
-class VariationRequest(BaseModel):
-    ply: int = Field(default=0, ge=0)
-    moves: list[str] = Field(default_factory=list, max_length=128)
 
 
 def job_progress(job, completed, total, review=None):
@@ -59,13 +60,13 @@ def job_progress(job, completed, total, review=None):
             "id": job.id,
             "status": job.status,
             "completed": min(completed, job.positions_triaged)
-            if job.status in {"queued", "running"}
+            if job.status in job_lifecycle.ACTIVE
             else completed,
             "total": total,
             "error": job.error,
             "cancel_requested": job.cancel_requested,
             "phase": "complete"
-            if job.status == "completed"
+            if job.status == JobStatus.COMPLETED
             else "refinement"
             if plan and job.positions_triaged >= total
             else "baseline",
@@ -96,7 +97,7 @@ def game_view(request: Request, game_id: str):
         user = getattr(request.state, "user", None)
         viewer = user["id"] if user else None
     else:
-        viewer = "local"
+        viewer = LOCAL_USER_ID
     sql_engine = app.workspaces.sql_engine
     # The one cross-account read: which account owns this game, if any.
     with sql_engine.connect() as connection:
@@ -109,7 +110,7 @@ def game_view(request: Request, game_id: str):
 ViewedGame = Annotated[GameView, Depends(game_view)]
 
 
-def create_router(*, settings, engine_factory):
+def create_router(*, settings):
     router = APIRouter()
 
     def require_game(db, game_id):
@@ -129,20 +130,17 @@ def create_router(*, settings, engine_factory):
                 select(Game, AnalysisJob.status)
                 .outerjoin(GameReview, GameReview.game_id == Game.id)
                 .outerjoin(AnalysisJob, AnalysisJob.id == GameReview.job_id)
-                .order_by(Game.played_at.desc(), Game.created_at.desc(), Game.id)
+                .order_by(Game.played_at.desc(), Game.created_at.desc(), Game.id.desc())
                 .offset(offset)
                 .limit(limit)
             ).all()
-            completed_ids = [game.id for game, status in rows if status == "completed"]
+            completed_ids = [game.id for game, status in rows if status == JobStatus.COMPLETED]
             saved = load_accuracy_scores(db, completed_ids)
             items = []
-            backfill = {}
             for game, status in rows:
                 # Headers are enough for the library; replaying moves is the slow part.
                 headers = chess.pgn.read_headers(io.StringIO(game.pgn)) or chess.pgn.Headers()
                 plies = game.move_count
-                if plies is None:
-                    plies = backfill[game.id] = sum(1 for _ in parsed_game(game).mainline_moves())
                 time_control = headers.get("TimeControl")
                 items.append(
                     {
@@ -153,9 +151,7 @@ def create_router(*, settings, engine_factory):
                         "black_rating": pgn_rating(headers, False),
                         "learner_color": "white" if game.learner_color else "black",
                         "played_on": game.played_on,
-                        "played_at": game.played_at.replace(tzinfo=timezone.utc).isoformat()
-                        if game.played_at
-                        else None,
+                        "played_at": game.played_at.isoformat() if game.played_at else None,
                         "result": headers.get("Result", "*"),
                         "time_control": time_control,
                         "time_control_label": time_control_label(time_control),
@@ -164,23 +160,12 @@ def create_router(*, settings, engine_factory):
                         "accuracy": review_accuracy(
                             saved[game.id],
                             total=plies,
-                            starting_board=chess.Board(headers["FEN"])
-                            if "FEN" in headers
-                            else chess.Board(),
-                            completed=status == "completed",
+                            starting_board=headers.board(),
+                            completed=status == JobStatus.COMPLETED,
                         ),
                     }
                 )
             total = db.scalar(select(func.count()).select_from(Game))
-            if backfill:
-                # Rows imported before move counts were saved: one short write per page.
-                # The lock is taken before anything is written. Writing first (an
-                # autoflushed row) and then waiting for the lock deadlocks with a
-                # background job that holds the lock while waiting to write.
-                with workspace.mutation_lock:
-                    for game_id, plies in backfill.items():
-                        db.execute(update(Game).where(Game.id == game_id).values(move_count=plies))
-                    db.commit()
             return {"items": items, "total": total}
 
     @router.get("/api/games/{game_id}/export", response_model=GameExport)
@@ -203,8 +188,11 @@ def create_router(*, settings, engine_factory):
                 "positions": positions,
             }
 
-    @router.get(
-        "/api/games/{game_id}", response_model=GameDetail, response_model_exclude_unset=True
+    @shared_links.route(
+        router.get,
+        "/api/games/{game_id}",
+        response_model=GameDetail,
+        response_model_exclude_unset=True,
     )
     def game_detail(view: ViewedGame, game_id: str):
         with view.sessions() as db:
@@ -213,36 +201,19 @@ def create_router(*, settings, engine_factory):
             board = parsed.board()
             review = db.get(GameReview, game_id)
             job = db.get(AnalysisJob, review.job_id) if review else None
-            rating = review.rating if review else 1000
-            saved, revisions = load_game_reports(db, game_id)
-            reports, context = present_game(
-                parsed, saved, rating, completed=bool(job and job.status == "completed")
+            presented = presented_review(
+                db, game, parsed, review, completed=bool(job and job.status == JobStatus.COMPLETED)
             )
-            frames = [
-                position(board)
-                | {
-                    "san": "Start",
-                    "uci": None,
-                    "number": board.fullmove_number,
-                    "actor": None,
-                    "report": None,
-                }
-            ]
-            for ply, node in enumerate(parsed.mainline(), 1):
-                move = node.move
-                san, number, actor = board.san(move), board.fullmove_number, board.turn
-                board.push(move)
-                frame = position(board) | {
-                    "san": san,
-                    "uci": move.uci(),
-                    "number": number,
-                    "actor": "white" if actor else "black",
-                    "report": reports.get(ply),
-                }
-                remaining = node.clock()
-                if remaining is not None and math.isfinite(remaining) and remaining >= 0:
-                    frame["clock"] = remaining
-                frames.append(frame)
+            saved, revisions = presented.saved, presented.revisions
+            reports, context = presented.reports, presented.context
+            nodes = list(parsed.mainline())
+
+            def clock(ply):
+                # The same validated annotation Insights and clock facts read.
+                remaining, _ = clock_annotation(nodes[ply - 1], "clk")
+                return {} if remaining is None else {"clock": remaining}
+
+            frames = move_frames(board, [node.move for node in nodes], reports, extra=clock)
             _, clock_start, _ = clock_control(parsed.headers.get("TimeControl"))
             return {
                 "id": game.id,
@@ -259,7 +230,7 @@ def create_router(*, settings, engine_factory):
                 "played_on": game.played_on,
                 "result": parsed.headers.get("Result", "*"),
                 "orientation": "white" if game.learner_color else "black",
-                "rating": rating,
+                "rating": review.rating if review else DEFAULT_RATING,
                 "white_rating": pgn_rating(parsed, True),
                 "black_rating": pgn_rating(parsed, False),
                 **({"clock_start": clock_start} if clock_start is not None else {}),
@@ -270,11 +241,12 @@ def create_router(*, settings, engine_factory):
                     saved,
                     total=len(frames) - 1,
                     starting_board=parsed.board(),
-                    completed=bool(job and job.status == "completed"),
+                    completed=bool(job and job.status == JobStatus.COMPLETED),
                 ),
             }
 
-    @router.get(
+    @shared_links.route(
+        router.get,
         "/api/games/{game_id}/review",
         response_model=ReviewProgress,
         response_model_exclude_unset=True,
@@ -293,15 +265,15 @@ def create_router(*, settings, engine_factory):
             job = db.get(AnalysisJob, review.job_id)
             parsed = parsed_game(game)
             total = sum(1 for _ in parsed.mainline_moves())
-            saved, revisions = load_game_reports(db, game_id)
+            completed = bool(job and job.status == JobStatus.COMPLETED)
+            presented = presented_review(db, game, parsed, review, completed=completed)
+            saved, revisions = presented.saved, presented.revisions
+            reports, context = presented.reports, presented.context
             if after_revision is not None:
                 plies = [ply for ply in saved if revisions[ply] > after_revision]
             else:
-                ceiling = job.positions_triaged if job.status in {"queued", "running"} else total
+                ceiling = job.positions_triaged if job.status in job_lifecycle.ACTIVE else total
                 plies = [ply for ply in saved if after < ply <= ceiling]
-            reports, context = present_game(
-                parsed, saved, review.rating, completed=bool(job and job.status == "completed")
-            )
             moves = []
             for ply in plies:
                 report = reports[ply]
@@ -310,47 +282,29 @@ def create_router(*, settings, engine_factory):
                 moves.append(
                     {
                         "ply": ply,
-                        "report": {
-                            key: report[key]
-                            for key in (
-                                "label",
-                                "engine_label",
-                                "opening",
-                                "reason",
-                                "coach",
-                                "best",
-                                "actual",
-                                "white_score",
-                                "depth",
-                                "engine_version",
-                                "board_cues",
-                                "human",
-                                "practical",
-                                "refinement",
-                                "intelligence",
-                                "immediate_reply",
-                                "immediate_recapture",
-                            )
-                            if key in report
-                        },
+                        "report": {key: report[key] for key in PROGRESS_KEYS if key in report},
                     }
                 )
             accuracy = None
-            if job and job.status == "completed":
+            if job and job.status == JobStatus.COMPLETED:
                 accuracy = review_accuracy(
                     saved, total=total, starting_board=parsed.board(), completed=True
                 )
+            revision = max([after_revision or 0, *(revisions[ply] for ply in plies)])
+            history = (
+                recent_cross_game_context(
+                    db, settings, game, reports, context, (review.revision, completed)
+                )
+                if view.owned
+                else None
+            )
             return {
                 "job": job_progress(job, len(saved), total, review),
                 "moves": moves,
                 "context": context,
-                **(
-                    {"history": cross_game_context(db, settings, game, reports, context)}
-                    if view.owned
-                    else {}
-                ),
+                **({"history": history} if view.owned else {}),
                 "accuracy": accuracy,
-                "revision": max([after_revision or 0, *(revisions[ply] for ply in plies)]),
+                "revision": revision,
             }
 
     @router.post(
@@ -358,53 +312,19 @@ def create_router(*, settings, engine_factory):
     )
     def begin_review(workspace: CurrentWorkspace, game_id: str, data: ReviewRequest):
         with workspace.mutation_lock, workspace.sessions() as db:
-            game = require_game(db, game_id)
-            review = db.get(GameReview, game_id)
-            if review:
-                if data.rating is not None:
-                    review.rating = data.rating
-                job = db.get(AnalysisJob, review.job_id)
-                refresh = job.status == "completed" and bool(
-                    settings.review_refinement_positions
-                    and (data.refine or review.refinement_plan is None)
-                )
-                if data.refine and job.status not in {"queued", "running"}:
-                    review.refinement_plan = None
-                    for task in db.scalars(
-                        select(ReviewRefinement).where(
-                            ReviewRefinement.game_id == game_id,
-                            ReviewRefinement.status == "unavailable",
-                        )
-                    ):
-                        task.status, task.reason = "pending", None
-                if job.status == "completed" and workspace.human_models.can_attempt():
-                    parsed = parsed_game(game)
-                    starting = parsed.board().turn
-                    refresh = refresh or any(
-                        workspace.human_models.needs_refresh(
-                            row.report.get("human"),
-                            parsed,
-                            starting if row.ply % 2 else not starting,
-                            review.rating,
-                        )
-                        for row in db.scalars(
-                            select(GameReviewMove).where(GameReviewMove.game_id == game_id)
-                        )
-                    )
-                if job.status in {"failed", "cancelled"} or refresh:
-                    job.status, job.cancel_requested, job.error = "queued", False, None
-                    job.positions_triaged = 0
-                # Opening a game moves its background analysis to the front.
-                job.priority = REQUESTED
-            else:
-                job = AnalysisJob(kind="game_review", games_total=1, priority=REQUESTED)
-                db.add(job)
-                db.flush()
-                db.add(GameReview(game_id=game_id, job_id=job.id, rating=data.rating or 1000))
+            job = request_review(
+                db,
+                require_game(db, game_id),
+                rating=data.rating,
+                refine=data.refine,
+                settings=settings,
+                human_models=workspace.human_models,
+            )
             db.commit()
             return {"job_id": job.id, "status": job.status}
 
-    @router.post(
+    @shared_links.route(
+        router.post,
         "/api/games/{game_id}/position",
         response_model=GamePosition,
         response_model_exclude_unset=True,
@@ -421,35 +341,6 @@ def create_router(*, settings, engine_factory):
         return position(board) | {"san": san}
 
     @router.post(
-        "/api/games/{game_id}/train",
-        status_code=202,
-        response_model=JobStarted,
-        response_model_exclude_unset=True,
-    )
-    def train_game(workspace: CurrentWorkspace, game_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
-            require_game(db, game_id)
-            active = db.scalar(
-                select(AnalysisJob)
-                .join(ImportGame, ImportGame.import_id == AnalysisJob.import_id)
-                .where(
-                    ImportGame.game_id == game_id,
-                    AnalysisJob.kind == "training",
-                    AnalysisJob.status.in_(["queued", "running"]),
-                )
-            )
-            if active:
-                return {"job_id": active.id, "status": active.status}
-            batch = ImportBatch(filename="Selected game training", original_pgn="")
-            db.add(batch)
-            db.flush()
-            db.add(ImportGame(import_id=batch.id, game_id=game_id, is_new=True))
-            job = AnalysisJob(kind="training", import_id=batch.id, games_total=1)
-            db.add(job)
-            db.commit()
-            return {"job_id": job.id, "status": job.status}
-
-    @router.post(
         "/api/games/{game_id}/analyze",
         response_model=GameAnalysis,
         response_model_exclude_unset=True,
@@ -463,43 +354,33 @@ def create_router(*, settings, engine_factory):
             board = branch_board(game, data.ply, data.moves)
             parsed = parsed_game(game)
             review = db.get(GameReview, game_id)
-            rating = review.rating if review else 1000
+            rating = review.rating if review else DEFAULT_RATING
+        # The account's interactive engine, as Play uses: warm in single-user mode,
+        # a pooled slot with accounts. One variation search at a time per account.
         with workspace.variation_lock:
-            engine = engine_factory(settings, workspace.sessions)
-            try:
-                if not board.move_stack:
-                    if board.is_game_over():
-                        return {"report": None, "score": None, "best_move": None}
-                    result = engine.analyze(board, deep=True, multipv=2)
-                    best = result.candidates[0]
-                    score = Score.model_validate(best["score"])
-                    return {
-                        "report": None,
-                        "best_move": best["san"],
-                        "score": (score if board.turn else score.negate()).model_dump(),
-                    }
-                move = board.pop()
-                fallback = rating
-                rating = pgn_rating(parsed, board.turn) or fallback
-                previous_score = None
-                if board.move_stack:
-                    previous = board.copy(stack=True)
-                    previous.pop()
-                    result = engine.analyze(previous, deep=True, multipv=2)
-                    previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
-                report = analyze_move(engine, board, move, previous_score)
-            finally:
-                engine.close()
-            report["human"] = workspace.human_models.evidence(
+            engine = workspace.engine
+            if not board.move_stack:
+                if board.is_game_over():
+                    return {"report": None, "score": None, "best_move": None}
+                result = engine.analyze(board, deep=True, multipv=2)
+                best = result.candidates[0]
+                score = Score.model_validate(best["score"])
+                return {
+                    "report": None,
+                    "best_move": best["san"],
+                    "score": (score if board.turn else score.negate()).model_dump(),
+                }
+            report = review_move(
+                engine,
+                workspace.human_models,
                 workspace.sessions,
                 parsed,
                 board,
-                move.uci(),
-                report["best"]["uci"],
-                fallback,
+                fallback_rating=rating,
             )
+            mover = not board.turn  # The side that made the analysed move.
             context = move_contexts(parsed).get(data.ply) if not data.moves else None
-            report = public_report(report, rating, context=context)
+            report = public_report(report, mover_rating(parsed, mover, rating), context=context)
             return {"report": report, "score": report["white_score"], "best_move": None}
 
     return router

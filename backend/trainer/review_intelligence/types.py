@@ -6,6 +6,9 @@ from pydantic import Field
 
 from trainer.contracts.common import Contract
 
+# Bumped when the saved shape changes; difficulty.py imports it.
+PRACTICAL_VERSION = "practical-2"
+
 Naturalness = Literal["preferred", "plausible", "unusual", "unknown"]
 DifficultyBand = Literal["forced", "natural", "challenging", "difficult", "unknown"]
 
@@ -28,7 +31,7 @@ class DifficultyComponents(Contract):
 
 
 class PracticalAssessment(Contract):
-    version: Literal["practical-2"] = "practical-2"
+    version: Literal[PRACTICAL_VERSION] = PRACTICAL_VERSION
     input_digest: str
     stockfish_analysis_ids: list[str]
     human_evidence_id: str | None

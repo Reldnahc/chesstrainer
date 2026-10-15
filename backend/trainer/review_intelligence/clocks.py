@@ -1,11 +1,11 @@
 """Conservative observations from actual PGN annotations, never guessed thinking time."""
 
-import math
 import re
 
 import chess
 import chess.pgn
 
+from trainer.game_library import parse_time_control
 from trainer.review_intelligence.events_types import ClockFacts
 
 _CONTROL = re.compile(
@@ -24,20 +24,12 @@ def annotation(node, tag):
 
 
 def control(value):
-    if not value or len(value) > 100 or not _CONTROL.fullmatch(value):
+    # Stricter than the library label: only the shapes clock arithmetic understands.
+    value = (value or "").strip()
+    if len(value) > 100 or not _CONTROL.fullmatch(value):
         return "unknown", None, None
-    try:
-        parsed = chess.pgn.parse_time_control(value)
-    except (ValueError, IndexError, OverflowError):
-        return "unknown", None, None
-    if not parsed.parts or any(
-        p.time < 0
-        or p.moves < 0
-        or not math.isfinite(p.increment + p.delay)
-        or p.increment < 0
-        or p.delay < 0
-        for p in parsed.parts
-    ):
+    parsed = parse_time_control(value)
+    if parsed is None:
         return "unknown", None, None
     if len(parsed.parts) != 1 or parsed.parts[0].moves:
         return "staged", None, None

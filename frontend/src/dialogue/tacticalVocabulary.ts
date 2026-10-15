@@ -60,7 +60,8 @@ export const findingMechanisms: Readonly<Record<string, MechanismEntry>> = {
   discovered_check: {recorded: true, subject: "slider"},
   double_check: {recorded: true, subject: "double_check"},
   double_attack_collected: {recorded: true, subject: "second"},
-  promotion: {alias: "tactic-promotion-awareness-played"},
+  // A "promotion" finding is the promoting move itself, which the game bank's
+  // promotion clips describe as a pawn still on its way, so it has no recording.
   promotion_material_retained: {recorded: true},
   undefended_capture: {alias: "tactic-undefended-capture-played", subject: "capture"},
   undefended_capture_gain: {recorded: true, subject: "capture"},

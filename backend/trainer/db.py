@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from pathlib import Path
 
 from alembic import command
@@ -5,14 +6,30 @@ from alembic.config import Config
 from alembic.runtime.migration import MigrationContext
 from alembic.script import ScriptDirectory
 from sqlalchemy import create_engine, event
+from sqlalchemy.pool import NullPool, QueuePool
+
+from trainer.ownership import LOCAL_USER_ID, account_sessions
 
 
-def database(path: Path, timeout=30):
-    """``timeout`` is how many seconds a statement waits for another writer."""
+def database(path: Path, timeout=30, *, pooled=True):
+    """``timeout`` is how many seconds a statement waits for another writer.
+
+    A few connections stay open for reuse (opening one costs about a millisecond
+    and a half on Windows), and any number more open on demand and close when
+    returned: job coordinators, classification workers, engine caches and requests
+    share this engine, and a fixed pool could run dry and fail work after its
+    checkout timeout. ``pooled=False`` closes every connection when it is returned,
+    for short-lived tools.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
     engine = create_engine(
         f"sqlite:///{path.resolve().as_posix()}",
         connect_args={"check_same_thread": False, "timeout": timeout},
+        **(
+            {"poolclass": QueuePool, "pool_size": 8, "max_overflow": -1}
+            if pooled
+            else {"poolclass": NullPool}
+        ),
     )
 
     @event.listens_for(engine, "connect")
@@ -23,9 +40,8 @@ def database(path: Path, timeout=30):
         cursor.execute(f"PRAGMA busy_timeout={int(timeout * 1000)}")
         cursor.close()
 
-    from trainer.ownership import account_sessions
-
-    return engine, account_sessions(engine)
+    # Single-user mode and offline tools work in the reserved local account.
+    return engine, account_sessions(engine, LOCAL_USER_ID)
 
 
 def _config():
@@ -42,19 +58,80 @@ def migrations_pending(engine):
         return MigrationContext.configure(connection).get_current_revision() != head
 
 
-def migrate(engine):
-    config = _config()
+@contextmanager
+def immediate_transaction(engine, *, foreign_keys=True, defer_foreign_keys=False):
+    """A connection in one ``BEGIN IMMEDIATE`` transaction that SQLite, not pysqlite, runs.
+
+    The write lock is taken at once, and every statement, DDL included, commits or
+    rolls back together. ``foreign_keys=False`` turns enforcement off on this
+    connection while it is open; ``defer_foreign_keys`` checks them at commit.
+    """
     with engine.connect() as connection:
-        # SQLite batch migrations rebuild referenced tables. Disable FK checks only
-        # on this migration connection, then validate the resulting complete graph.
-        connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
-        connection.commit()
+        if not foreign_keys:
+            # SQLite ignores this pragma inside a transaction.
+            connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
+            connection.commit()
+        driver = connection.connection.driver_connection
+        legacy = driver.isolation_level
+        driver.isolation_level = None
         try:
             with connection.begin():
-                config.attributes["connection"] = connection
-                command.upgrade(config, "head")
-                if connection.exec_driver_sql("PRAGMA foreign_key_check").first():
-                    raise ValueError("Migration produced an invalid foreign-key reference")
+                connection.exec_driver_sql("BEGIN IMMEDIATE")
+                if defer_foreign_keys:
+                    connection.exec_driver_sql("PRAGMA defer_foreign_keys=ON")
+                yield connection
         finally:
-            connection.exec_driver_sql("PRAGMA foreign_keys=ON")
-            connection.commit()
+            driver.isolation_level = legacy
+            if not foreign_keys:
+                connection.exec_driver_sql("PRAGMA foreign_keys=ON")
+                connection.commit()
+
+
+@contextmanager
+def migration_connection(engine):
+    """One all-or-nothing transaction for schema changes, foreign keys checked at the end.
+
+    pysqlite opens a transaction only before INSERT/UPDATE/DELETE, so DDL that runs
+    first would commit on its own and survive a failed revision, leaving the schema
+    half-applied for the next start to trip over. This connection hands transaction
+    control to SQLite (``BEGIN IMMEDIATE`` ... ``COMMIT``), so a failure anywhere,
+    including the final foreign-key check, rolls every statement back.
+
+    SQLite batch migrations rebuild referenced tables, so foreign keys are off on
+    this connection (SQLite ignores that pragma inside a transaction) and the
+    complete graph is validated before committing. Both the application and the
+    ``alembic`` command line migrate through here.
+    """
+    with immediate_transaction(engine, foreign_keys=False) as connection:
+        yield connection
+        if connection.exec_driver_sql("PRAGMA foreign_key_check").first():
+            raise ValueError("Migration produced an invalid foreign-key reference")
+
+
+def optimize(engine, *, opening=False):
+    """Refresh the query planner's statistics, as SQLite recommends.
+
+    At startup every table is checked (``0x10002``), within an analysis limit so a
+    large library costs milliseconds; at shutdown only tables this process
+    queried are. Without statistics SQLite tends to pick each account table's
+    user_id index and sort or scan the rest.
+    """
+    with engine.connect() as connection:
+        connection.exec_driver_sql("PRAGMA analysis_limit = 400")
+        connection.exec_driver_sql("PRAGMA optimize = 0x10002" if opening else "PRAGMA optimize")
+
+
+def migrate(engine):
+    """Bring the schema to head; returns whether anything was applied.
+
+    A database that is already current is left untouched, so starting the server
+    or running a tool costs one version read rather than an upgrade and a full
+    foreign-key scan.
+    """
+    if not migrations_pending(engine):
+        return False
+    config = _config()
+    with migration_connection(engine) as connection:
+        config.attributes["connection"] = connection
+        command.upgrade(config, "head")
+    return True

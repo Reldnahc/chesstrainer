@@ -1,10 +1,8 @@
 """Cold review, focused practice and exact-answer playback endpoints."""
 
-from typing import Literal
+from fastapi import APIRouter
 
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, Field
-
+from trainer.contracts.common import SquareMove
 from trainer.contracts.opening_studies import ReviewCount
 from trainer.contracts.review import (
     ColdPosition,
@@ -13,16 +11,18 @@ from trainer.contracts.review import (
     ReviewQueueItem,
 )
 from trainer.explanations import MoveExplanation, explain_review
-from trainer.models import Exercise, ReviewSession
 from trainer.practice import focus_queue
-from trainer.reviews import queue, resume_review, reveal, start_review, submit_move
+from trainer.reviews import (
+    answer_search,
+    due_count,
+    queue,
+    resume_review,
+    reveal,
+    search_answer,
+    start_review,
+    submit_move,
+)
 from trainer.workspaces import CurrentWorkspace
-
-
-class MoveRequest(BaseModel):
-    from_square: str = Field(pattern="^[a-h][1-8]$")
-    to_square: str = Field(pattern="^[a-h][1-8]$")
-    promotion: Literal["q", "r", "b", "n"] | None = None
 
 
 def create_router(*, settings, scheduler) -> APIRouter:
@@ -38,7 +38,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
     @router.get("/api/review/count", response_model=ReviewCount)
     def review_count(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
-            return {"due": len(queue(db, limit=None))}
+            return {"due": due_count(db)}
 
     @router.get(
         "/api/practice/queue",
@@ -49,13 +49,6 @@ def create_router(*, settings, scheduler) -> APIRouter:
         with workspace.sessions() as db:
             return focus_queue(db, skill_id)
 
-    def require_review_exercise(db, exercise_id):
-        exercise = db.get(Exercise, exercise_id)
-        if exercise is not None and exercise.source == "repertoire":
-            raise HTTPException(
-                410, "This repertoire position is archived. Review your game mistakes instead."
-            )
-
     @router.post(
         "/api/review/{exercise_id}/start",
         response_model=ColdPosition,
@@ -65,15 +58,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         workspace: CurrentWorkspace, exercise_id: str, focus_skill_id: str | None = None
     ):
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_exercise(db, exercise_id)
             return start_review(db, exercise_id, focus_skill_id=focus_skill_id)
-
-    def require_review_session(db, session_id):
-        session = db.get(ReviewSession, session_id)
-        if session is not None:
-            require_review_exercise(db, session.exercise_id)
-        if session is not None and session.lesson_item_id is not None:
-            raise HTTPException(410, "This lesson attempt is archived. Start a position in Review.")
 
     @router.get(
         "/api/review/sessions/{session_id}",
@@ -81,8 +66,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def resume(workspace: CurrentWorkspace, session_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_session(db, session_id)
+        with workspace.sessions() as db:
             return resume_review(db, session_id)
 
     @router.post(
@@ -90,16 +74,19 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model=ReviewFeedback,
         response_model_exclude_unset=True,
     )
-    def move(workspace: CurrentWorkspace, session_id: str, data: MoveRequest):
+    def move(workspace: CurrentWorkspace, session_id: str, data: SquareMove):
+        uci = data.uci
+        # Grading an unseen answer is a deep search: it runs before the account lock
+        # is taken, so the account's other work never waits on it.
+        with workspace.sessions() as db:
+            search = answer_search(db, session_id, uci)
+        graded = None
+        if search is not None:
+            with workspace.variation_lock:
+                graded = search_answer(workspace.engine, search)
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_session(db, session_id)
             return submit_move(
-                db,
-                session_id,
-                data.from_square + data.to_square + (data.promotion or ""),
-                workspace.engine,
-                scheduler,
-                settings,
+                db, session_id, uci, workspace.engine, scheduler, settings, graded=graded
             )
 
     @router.post(
@@ -109,7 +96,6 @@ def create_router(*, settings, scheduler) -> APIRouter:
     )
     def show_move(workspace: CurrentWorkspace, session_id: str):
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_review_session(db, session_id)
             return reveal(db, session_id, scheduler, settings)
 
     @router.get("/api/review/sessions/{session_id}/explanation", response_model=MoveExplanation)
@@ -119,7 +105,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         attempt_id: str | None = None,
         solution: bool = False,
     ):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.sessions() as db:
             return explain_review(db, session_id, attempt_id, solution)
 
     return router

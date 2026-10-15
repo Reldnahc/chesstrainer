@@ -1,7 +1,5 @@
 """Connections and on-demand checks; the server also polls them on its own."""
 
-from datetime import timezone
-
 from fastapi import APIRouter, HTTPException, Request
 
 from trainer.contracts.accounts import (
@@ -22,32 +20,21 @@ from trainer.workspaces import CurrentWorkspace
 def create_router():
     router = APIRouter()
 
-    def connection(db, provider="chesscom"):
+    def connection(db, provider):
         name = connected_username(db, provider)
         return name, latest_sync(db, provider, name)
 
-    def status(db, name, job, provider="chesscom"):
+    def status(db, name, job, provider):
         source = db.get(ProviderImport, job.id) if job else None
         return {
             "provider": provider,
             "username": name,
             "job_id": job.id if job else None,
             "status": job.status if job else "not_started",
-            "checked_at": job.created_at.replace(tzinfo=timezone.utc).isoformat() if job else None,
+            "checked_at": job.created_at.isoformat() if job else None,
             "imported": source.games_imported if source else 0,
             "error": job.error if job else None,
         }
-
-    @router.get("/api/sync", response_model=SyncStatus, response_model_exclude_unset=True)
-    def get_sync(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
-            return status(db, *connection(db))
-
-    @router.post(
-        "/api/sync", status_code=202, response_model=SyncStatus, response_model_exclude_unset=True
-    )
-    def begin_sync(workspace: CurrentWorkspace):
-        return queue_sync(workspace, "chesscom")
 
     def queue_sync(workspace, provider):
         with workspace.mutation_lock, workspace.sessions() as db:

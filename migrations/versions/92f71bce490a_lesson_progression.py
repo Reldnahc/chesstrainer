@@ -78,13 +78,20 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("lessons", "last_check_correct")
-    op.drop_column("lessons", "check_rounds")
+    with op.batch_alter_table("lessons") as batch:
+        batch.drop_column("last_check_correct")
+    with op.batch_alter_table("lessons") as batch:
+        batch.drop_column("check_rounds")
     op.drop_table("teaching_runs")
-    op.drop_column("review_sessions", "lesson_item_id")
+    with op.batch_alter_table("review_sessions") as batch:
+        batch.drop_column("lesson_item_id")
     op.drop_table("lesson_items")
     op.drop_table("course_revisions")
-    op.drop_column("srs_states", "eligible")
-    op.drop_column("course_units", "active")
-    op.drop_column("course_units", "group_key")
-    op.drop_column("skill_evidence", "active")
+    with op.batch_alter_table("srs_states") as batch:
+        batch.drop_column("eligible")
+    with op.batch_alter_table("course_units") as batch:
+        batch.drop_column("active")
+    with op.batch_alter_table("course_units") as batch:
+        batch.drop_column("group_key")
+    with op.batch_alter_table("skill_evidence") as batch:
+        batch.drop_column("active")

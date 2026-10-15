@@ -301,9 +301,9 @@ test('activity stays compact when empty and bounds completed history without hid
   await expect(activity).toBeVisible();
   await expect(activity.locator('.job')).toHaveCount(0);
   expect((await activity.boundingBox())!.height).toBeLessThan(240);
-  const job = (id: string, status: string): Job => ({
-    id, status, kind: 'training', user_id: 'settings-fixture', created_at: '2026-09-29T10:00:00Z',
-    activity: null, cancel_requested: false, chesscom: null, classifications_completed: 1, priority: 0, puzzles_found: 0, deep_completed: 1,
+  const job = (id: string, status: Job['status']): Job => ({
+    id, status, kind: 'analysis', user_id: 'settings-fixture', created_at: '2026-09-29T10:00:00Z',
+    activity: null, cancel_requested: false, classifications_completed: 1, priority: 0, puzzles_found: 0, deep_completed: 1,
     error: null, games_processed: status === 'completed' ? 1 : 0, games_total: 1, import_id: null,
     mistakes_identified: 1, positions_triaged: 2, probe_total: null, provider_import: null,
   });

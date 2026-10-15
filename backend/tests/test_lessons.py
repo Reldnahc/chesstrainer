@@ -1,23 +1,12 @@
-"""Archived lesson compatibility and safe removal from the live product."""
-
-import copy
+"""Removed lessons: their routes answer 410 and old attempts stay archived."""
 
 import pytest
 from fastapi.testclient import TestClient
-from lesson_fixtures import seed_lesson
+from lesson_fixtures import archived_lesson_rows, seed_lesson
 from sqlalchemy import select
 from trainer.api import create_app
-from trainer.models import (
-    Course,
-    CourseRevision,
-    CourseUnit,
-    Lesson,
-    LessonItem,
-    ReviewSession,
-    SRSState,
-    TeachingRun,
-    UnitEvidence,
-)
+from trainer.errors import Gone
+from trainer.models import ReviewSession, SRSState
 from trainer.reviews import reveal, submit_move
 from trainer.scheduling import FSRSScheduler
 
@@ -29,13 +18,12 @@ def test_lesson_routes_and_old_attempts_are_archived(settings, completed):
     with TestClient(app) as client:
         with app.state.sessions() as db:
             seed_lesson(db, settings, count=3)
-            item = db.scalar(select(LessonItem))
-            session = ReviewSession(
-                exercise_id=item.exercise_id, lesson_item_id=item.id, completed=completed
-            )
+            exercise_id = db.scalar(select(SRSState.exercise_id))
+            # An attempt saved by the removed lessons.
+            session = ReviewSession(exercise_id=exercise_id, mode="lesson", completed=completed)
             db.add(session)
             db.commit()
-            session_id, exercise_id = session.id, item.exercise_id
+            session_id = session.id
             before = db.get(SRSState, exercise_id).card
         for method, path in [
             ("get", "/api/course"),
@@ -59,9 +47,9 @@ def test_lesson_routes_and_old_attempts_are_archived(settings, completed):
             assert db.get(ReviewSession, session_id).completed == completed
             assert db.get(SRSState, exercise_id).card == before
             # Offline/domain callers cannot bypass the HTTP archive guard either.
-            with pytest.raises(ValueError, match="archived"):
+            with pytest.raises(Gone, match="archived"):
                 reveal(db, session_id, FSRSScheduler(settings), settings)
-            with pytest.raises(ValueError, match="archived"):
+            with pytest.raises(Gone, match="archived"):
                 submit_move(db, session_id, "e1d1", None, FSRSScheduler(settings), settings)
         # An ordinary review of the same position is a separate usable session.
         position = client.post(f"/api/review/{exercise_id}/start").json()
@@ -71,53 +59,22 @@ def test_lesson_routes_and_old_attempts_are_archived(settings, completed):
         )
 
 
-def test_current_review_preserves_archives_and_teaching_audit_access(settings):
+def test_teaching_routes_are_gone_and_old_lesson_cards_review_normally(settings):
     app = create_app(settings, workers=False, start_engine=False)
-    tables = (Course, CourseUnit, CourseRevision, Lesson, LessonItem, UnitEvidence)
-
-    def snapshot(db):
-        return copy.deepcopy(
-            {
-                model.__tablename__: [
-                    {column.name: getattr(row, column.name) for column in model.__table__.columns}
-                    for row in db.scalars(select(model))
-                ]
-                for model in tables
-            }
-        )
-
     with TestClient(app) as client:
         with app.state.sessions() as db:
             seed_lesson(db, settings, count=3)
-            unit = db.scalar(select(CourseUnit))
-            run = TeachingRun(
-                unit_id=unit.id,
-                cache_key="historical-audit",
-                model="archived",
-                schema_version="1",
-                prompt_version="1",
-                evidence_ids=[],
-                response={"explanation": "Saved historical teaching"},
-                status="completed",
-            )
-            db.add(run)
-            db.commit()
-            run_id = run.id
-            exercise_id = db.scalar(select(LessonItem.exercise_id))
-            before = snapshot(db)
+            exercise_id = db.scalar(select(SRSState.exercise_id))
         cold = client.post(f"/api/review/{exercise_id}/start").json()
         response = client.post(f"/api/review/sessions/{cold['session_id']}/reveal")
         assert response.status_code == 200
         assert "lesson_result" not in response.json()
         assert client.get("/api/weaknesses").status_code == 200
-        audit = client.get(f"/api/teaching-runs/{run_id}")
-        assert audit.status_code == 200
-        assert audit.json()["response"] == {"explanation": "Saved historical teaching"}
-        assert client.post(f"/api/teaching-runs/{run_id}/reject").status_code == 200
+        assert client.post("/api/course/teaching").status_code == 410
+        assert client.get("/api/teaching-runs/old").status_code == 410
+        assert client.post("/api/teaching-runs/old/reject").status_code == 410
         with app.state.sessions() as db:
-            assert snapshot(db) == before
             assert db.get(SRSState, exercise_id).reviews == 1
-            assert db.get(TeachingRun, run_id).status == "rejected"
 
 
 def test_lesson_release_migration_preserves_scheduling_and_history(settings, sessions):
@@ -154,6 +111,13 @@ def test_lesson_release_migration_preserves_scheduling_and_history(settings, ses
         config.attributes["connection"] = connection
         command.downgrade(config, "c42d1738a9bf")
         connection.commit()
+    with engine.begin() as connection:
+        lesson_cards = [
+            row[0]
+            for row in connection.exec_driver_sql("SELECT exercise_id FROM srs_states")
+            if row[0] != unrelated_id
+        ]
+        archived_lesson_rows(connection, lesson_cards)
 
     def snapshot(connection):
         tables = [

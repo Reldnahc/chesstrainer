@@ -9,7 +9,18 @@ from typing import Literal
 import chess
 from pydantic import BaseModel
 
-from trainer.chess_core import Candidate, legal_move, material, position_key, valid_board
+from trainer.chess_core import (
+    Candidate,
+    material,
+    position_key,
+    replay_moves,
+    valid_board,
+)
+from trainer.config import Settings
+from trainer.errors import EvidenceIntegrityError
+
+# The classifier's default extension past the settled horizon.
+EXTENSION_PLIES = Settings.model_fields["classification_extension_plies"].default
 
 
 class ContinuationEnd(BaseModel):
@@ -21,12 +32,7 @@ class ContinuationEnd(BaseModel):
 
 
 def replay(board: chess.Board, candidate: Candidate) -> list[chess.Board]:
-    boards = [board.copy(stack=True)]
-    for uci in candidate.pv:
-        following = boards[-1].copy(stack=True)
-        following.push(legal_move(following, uci))
-        boards.append(following)
-    return boards
+    return replay_moves(board, candidate.pv)
 
 
 def balance(board: chess.Board, color: chess.Color) -> int:
@@ -72,7 +78,7 @@ def continuation_end(
     )
 
 
-def settled_delta(boards, color, max_plies=16, extra_plies=16):
+def settled_delta(boards, color, max_plies, extra_plies=EXTENSION_PLIES):
     endpoint = continuation_end(boards, color, max_plies, extra_plies)
     return endpoint.material_delta, endpoint.end_ply
 
@@ -88,7 +94,9 @@ def extended_line(board, candidate, analysis_id, probes):
         if probe["at_ply"] != len(pv) or position_key(valid_board(probe["fen"])) != position_key(
             boards[-1]
         ):
-            raise ValueError("Continuation probe does not match its saved parent endpoint")
+            raise EvidenceIntegrityError(
+                "Continuation probe does not match its saved parent endpoint"
+            )
         extra = Candidate.model_validate(probe["candidate"])
         continuation = replay(boards[-1], extra)
         boards.extend(continuation[1:])

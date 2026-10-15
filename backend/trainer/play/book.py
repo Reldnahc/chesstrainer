@@ -11,22 +11,19 @@ from dataclasses import dataclass
 
 import chess
 
-from trainer.chess_core import Score, evaluation_loss
+from trainer.chess_core import Score, evaluation_loss, position_key
+from trainer.contracts.play import HUMAN_RATINGS
 from trainer.human_models.runtime import HumanUnavailable
-from trainer.play.bot import BotChoice, bot_request
+from trainer.play.bot import BotChoice, mate_lost_cp
+from trainer.recent_cache import RecentCache
 
 # Every book move keeps at least this share of the choice, so rarer lines still
 # come up in practice instead of the most popular reply every time.
 MINIMUM_SHARE = 0.1
 # An off-book move this close to the book move by Stockfish is still fine.
 FINE_LOSS_CP = 30
-# Human-like play stops improving above this rating, so the policy is capped there.
-POLICY_RATING_CAP = 2500
-
-
-def position_key(board: chess.Board) -> str:
-    """The position without move counters, so transpositions share a node."""
-    return board.epd()
+# Human-like play stops improving above the top human rating, so the policy is capped there.
+POLICY_RATING_CAP = HUMAN_RATINGS[1]
 
 
 @dataclass(frozen=True)
@@ -62,14 +59,18 @@ def practice_courses(courses) -> list[dict]:
     ]
 
 
-_books: dict[tuple[str, str], Book] = {}
+# Books by (course id, revision). Each admin edit makes a new revision, so only
+# the most recently used few are kept.
+_books = RecentCache(32)
+
+
+def cached_book(course_id, revision) -> Book | None:
+    """The book already built for this exact revision, without listing any course."""
+    return _books.get((course_id, revision))
 
 
 def book_for(course) -> Book:
-    key = (course.id, course.revision)
-    if key not in _books:
-        _books[key] = _build(course)
-    return _books[key]
+    return _books.get_or_make((course.id, course.revision), lambda: _build(course))
 
 
 def _build(course) -> Book:
@@ -90,27 +91,44 @@ def _build(course) -> Book:
 
 
 def book_weights(book_moves, policy) -> dict[str, float]:
-    """The policy restricted to the book moves, with a floor for the rare ones."""
+    """The policy restricted to the book moves, as shares summing to one.
+
+    Every book move gets at least MINIMUM_SHARE; the rest keeps the policy's
+    proportions. Without a policy, or with too many moves for the floor, the shares
+    are equal.
+    """
     shares = {uci: 0.0 for uci in book_moves}
     if policy is not None:
         for row in policy.moves:
             if row.uci in shares:
                 shares[row.uci] = row.probability or 0.0
     total = sum(shares.values())
-    if total <= 0:
-        return {uci: 1.0 for uci in book_moves}
-    return {uci: max(share / total, MINIMUM_SHARE) for uci, share in shares.items()}
+    equal = {uci: 1 / len(shares) for uci in shares}
+    if total <= 0 or len(shares) * MINIMUM_SHARE >= 1:
+        return equal
+    floored: set[str] = set()
+    while True:
+        free = [uci for uci in shares if uci not in floored]
+        free_total = sum(shares[uci] for uci in free)
+        if not free or free_total <= 0:
+            return equal
+        mass = 1 - MINIMUM_SHARE * len(floored)
+        scaled = {uci: mass * shares[uci] / free_total for uci in free}
+        low = {uci for uci, share in scaled.items() if share < MINIMUM_SHARE}
+        if not low:
+            return {uci: scaled.get(uci, MINIMUM_SHARE) for uci in shares}
+        floored |= low
 
 
-def book_move(human_models, sessions, play, board: chess.Board, book_moves, rng) -> BotChoice:
-    """No engine work: book replies are ready as soon as the learner's move is saved."""
+def book_reply(human_models, sessions, request, board: chess.Board, book_moves, rng) -> BotChoice:
+    """No engine work: book replies are ready as soon as the learner's move is saved.
+
+    ``request`` is the bot's Maia request for this position (``bot_policy_request``).
+    """
     policy = None
     if len(book_moves) > 1 and human_models is not None:
-        rating = min(play.opponent_rating, POLICY_RATING_CAP)
         try:
-            policy, _ = human_models.policy(
-                sessions, bot_request(board, rating, play.learner_rating)
-            )
+            policy, _ = human_models.policy(sessions, request)
         except HumanUnavailable:
             policy = None
     weights = book_weights(book_moves, policy)
@@ -133,25 +151,19 @@ def deviation_verdict(engine, board: chess.Board, played: str, book_moves) -> di
     book_scores = [(uci, scores[uci]) for uci in book_moves if uci in scores]
     if played not in scores or not book_scores:
         return {"verdict": "fine", "loss_cp": 0}
-    best_uci, best = max(book_scores, key=lambda row: _order(row[1]))
+    best_uci, best = max(book_scores, key=lambda row: row[1].order_key())
     loss = evaluation_loss(best, scores[played])
-    if loss.allows_mate or loss.mate_lost:
+    if loss.allows_mate:
+        # Shown as walking into a mate the book move avoids.
         return {"verdict": "worse", "loss_cp": None, "compared_with": best_uci}
-    cp = loss.cp or 0
+    # A mate the book move had and the learner's move gives up counts as a forced
+    # mate's usual 1000 cp, so it is reported as a loss, not a mate walked into.
+    cp = loss.cp if loss.cp is not None else mate_lost_cp(best, scores[played])
     return {
         "verdict": "fine" if cp <= FINE_LOSS_CP else "worse",
         "loss_cp": cp,
         "compared_with": best_uci,
     }
-
-
-def _order(score: Score):
-    """Sort key for scores from the mover's side: mates beat any centipawns."""
-    if score.kind == "mate":
-        if score.outcome() == 1:
-            return (2, -score.value)
-        return (0, -score.value)
-    return (1, score.value)
 
 
 # Where a practice game stands against its book. The state is stored on the game as

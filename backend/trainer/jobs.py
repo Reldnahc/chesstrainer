@@ -4,12 +4,15 @@ import logging
 import threading
 import time
 
-from trainer.chesscom import ChessComClient
 from trainer.engine import Stockfish
+from trainer.game_providers import client_factories
+from trainer.game_providers.gateway import ProviderGateway
 from trainer.game_sync import poll as poll_connections
 from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
+from trainer.local_classifier import LocalClassifier
 from trainer.models import AnalysisJob, User
+from trainer.ownership import LOCAL_USER_ID
 from trainer.presence import active_cutoff
 from trainer.workspaces import Workspaces
 
@@ -20,33 +23,25 @@ class JobRunner:
     def __init__(
         self,
         settings,
-        sessions,
+        sql_engine,
         scheduler,
         classifier=None,
         engine_factory=Stockfish,
         *,
-        chesscom_factory=ChessComClient,
         provider_factories=None,
-        import_lock=None,
         workspaces=None,
     ):
-        self.settings, self.scheduler, self.classifier = settings, scheduler, classifier
-        self.engine_factory, self.chesscom_factory = engine_factory, chesscom_factory
-        self.workspaces = workspaces or Workspaces(
-            sessions.kw["bind"], settings, engine_factory, local_lock=import_lock
-        )
+        self.settings, self.scheduler = settings, scheduler
+        self.classifier = classifier if classifier is not None else LocalClassifier(settings)
+        self.engine_factory = engine_factory
+        self.workspaces = workspaces or Workspaces(sql_engine, settings, engine_factory)
+        # Account mode claims every account's jobs; single-user mode only its own.
         self.queue = JobQueue(
             self.workspaces.sql_engine,
-            user_id=None if settings.accounts_enabled else sessions.kw["info"]["user_id"],
+            user_id=None if settings.accounts_enabled else LOCAL_USER_ID,
         )
-        self.import_lock = self.course_lock = self.workspaces.local_lock
-        from trainer.game_providers import client_factories
 
-        self.provider_factories = (
-            client_factories() | {"chesscom": chesscom_factory} | (provider_factories or {})
-        )
-        self.provider_retry_at = {}
-        self.provider_lock = threading.Lock()  # One active provider request per host.
+        self.providers = ProviderGateway(settings, client_factories() | (provider_factories or {}))
 
         self.stop_event = threading.Event()
         self.threads = []

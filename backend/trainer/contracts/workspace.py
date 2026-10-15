@@ -1,5 +1,8 @@
 from typing import Literal
 
+from pydantic import create_model
+
+from trainer.config import PRIVATE_SETTINGS, Settings
 from trainer.contracts.common import Contract
 
 
@@ -31,67 +34,7 @@ class Stats(Contract):
     reviews: int
 
 
-class WorkspaceSettings(EngineHealth):
-    server_port: int
-    accounts_enabled: bool
-    session_secure: bool
-    engine_slots: int
-    human_model_enabled: bool
-    human_model_device: Literal["cpu", "cuda"]
-    human_model_threads: int
-    human_model_workers: int
-    human_model_timeout: float
-    review_refinement_positions: int
-    review_refinement_queries: int
-    review_refinement_depth: int
-    review_refinement_time: float
-    review_refinement_multipv: int
-    stockfish_threads: int
-    stockfish_hash_mb: int
-    stockfish_workers: int
-    sync_interval_seconds: int
-    sync_games: int
-    sync_lichess_batch: int
-    sync_away_days: int
-    triage_depth: int
-    triage_time: float
-    triage_nodes: int | None
-    deep_depth: int
-    deep_time: float
-    deep_nodes: int | None
-    multipv: int
-    classification_workers: int
-    classification_max_plies: int
-    classification_extension_plies: int
-    classification_tactic_plies: int
-    classification_min_loss_cp: int
-    classification_min_material: int
-    classification_probe_positions: int
-    classification_probe_depth: int
-    classification_probe_time: float
-    classification_probe_queries: int
-    target_rating: int
-    acceptance_mode: Literal["best_only", "engine_tolerance", "practical", "custom"]
-    tolerance_cp: int
-    practical_tolerance_cp: int
-    mistake_threshold_cp: int
-    slow_answer_seconds: float
-    retire_after_days: int
-    desired_retention: float
-    min_independent_games: int
-    max_import_bytes: int
-    chesscom_timeout_seconds: float
-    chesscom_max_response_bytes: int
-    provider_timeout_seconds: float
-    provider_max_response_bytes: int
-    provider_max_scan_games: int
-    puzzle_starter_pack: bool
-    puzzle_pack_path: str | None
-    puzzle_generation: bool
-    puzzle_generation_depth: int
-    puzzle_generation_time: float
-    puzzle_generation_max_plies: int
-    puzzle_generation_games: int
+class WorkspaceExtras(EngineHealth):
     lan_token_configured: bool
     coverage: Coverage
     classification_provider: str
@@ -100,3 +43,16 @@ class WorkspaceSettings(EngineHealth):
     classification_failed: int
     classification_rejected: int
     classification_abstained: int
+
+
+# Every setting an account may read, typed exactly as Settings declares it, so a
+# new setting reaches the contract without a hand-kept copy.
+WorkspaceSettings = create_model(
+    "WorkspaceSettings",
+    __base__=WorkspaceExtras,
+    **{
+        name: (field.annotation, ...)
+        for name, field in Settings.model_fields.items()
+        if name not in PRIVATE_SETTINGS
+    },
+)

@@ -1,9 +1,8 @@
 """Resume bounded questions using the existing Stockfish cache and move analyzer."""
 
-from trainer.chess_core import Score, digest, engine_context
+from trainer.chess_core import digest, engine_context
 from trainer.engine import EngineReferenceMismatch
 from trainer.models import EngineAnalysis, ReviewRefinement
-from trainer.review_scores import score_order
 from trainer.search_limits import EngineCancelled, SearchLimits
 
 
@@ -16,7 +15,8 @@ class RefinementEngine:
         self.native, self.task, self.sessions, self.cancelled = native, task, sessions, cancelled
         self.queries = list(task.queries)
 
-    def analyze(self, board, deep=False, root_moves=None, multipv=None):
+    def analyze(self, board, deep=False, root_moves=None, multipv=None, limits=None):
+        # Every refinement question already runs at the task's own deeper limits.
         if self.cancelled():
             raise EngineCancelled()
         count = multipv if root_moves else self.task.config["multipv"]
@@ -60,6 +60,8 @@ class RefinementEngine:
                 "question": "restricted_alternative" if root_moves else "root_comparison",
             }
         )
+        # No account lock: only the running refinement writes its own task's query
+        # log, and opening the game resets only tasks that are not running.
         with self.sessions() as db:
             db.get(ReviewRefinement, self.task.id).queries = list(self.queries)
             db.commit()
@@ -72,11 +74,7 @@ def adoption_reason(baseline, refined):
         return "insufficient_depth"
     if refined["engine_version"] != baseline["engine_version"]:
         return "incompatible_engine"
-    best = Score.model_validate(refined["best"]["score"])
-    actual = Score.model_validate(refined["actual"]["score"])
-
-    # Restricted roots can discover a line missed by the unrestricted search.
-    # Do not publish an internally inconsistent best/played comparison.
-    if score_order(actual) > score_order(best):
-        return "inconsistent_roots"
+    # Restricted roots can find the played move stronger than the unrestricted
+    # search's best. Presentation already promotes such a move to best (as for
+    # baseline reports), so the deeper evidence is adopted rather than rejected.
     return None

@@ -1,12 +1,63 @@
 """Ordering/comparison of saved Stockfish facts, without converting mate into centipawns."""
 
-from trainer.chess_core import Score
+from trainer.chess_core import Score, evaluation_loss
+
+# Centipawns lost at each label boundary of game review's grades. Review labels,
+# events, practical difficulty, refinement, game context and Insights all read
+# these, so a boundary changes in one place.
+NEAR_BEST_CP = 20  # At most this: near best, eligible for Great.
+INACCURACY_CP = 50
+MISTAKE_CP = 100
+BLUNDER_CP = 200  # For a mover rated BLUNDER_RATING or more.
+BLUNDER_CP_LOW_RATED = 300  # Below that rating, an ordinary pawn loss is not a Blunder.
+BLUNDER_RATING = 1200
+GRADE_BOUNDARIES = (INACCURACY_CP, MISTAKE_CP, BLUNDER_CP, BLUNDER_CP_LOW_RATED)
 
 
-def score_order(score):
-    if score.kind == "cp":
-        return 1, score.value
-    return (2, -abs(score.value)) if score.outcome() == 1 else (0, abs(score.value))
+def mate_changed(loss):
+    return loss.allows_mate or loss.mate_lost
+
+
+def is_poor(loss):
+    """Inaccuracy or worse: a mate given up or allowed, or INACCURACY_CP lost."""
+    return mate_changed(loss) or (loss.cp or 0) >= INACCURACY_CP
+
+
+def is_near_best(loss):
+    return not mate_changed(loss) and (loss.cp or 0) <= NEAR_BEST_CP
+
+
+def is_mistake(loss):
+    """Mistake-sized or worse: a mate given up or allowed, or MISTAKE_CP lost."""
+    return mate_changed(loss) or (loss.cp or 0) >= MISTAKE_CP
+
+
+def is_only_good(best, second):
+    """The runner-up actually loses, so the best move is the only good one.
+
+    Not merely a smaller advantage: the best move keeps the mover safe (a forced
+    win, or -0.50 or better), the runner-up is lost (-1.50 or worse, or mated), and
+    the gap is at least 1.50 or a mate. The Great badge and the coach's only-move
+    evidence both read this.
+    """
+    gap = evaluation_loss(best, second)
+    safe_best = best.outcome() == 1 or (best.kind == "cp" and best.value >= -50)
+    losing_second = second.outcome() == -1 or (second.kind == "cp" and second.value <= -150)
+    return safe_best and losing_second and (mate_changed(gap) or (gap.cp or 0) >= 150)
+
+
+def is_decisive_swing(best, actual):
+    """The mover was not losing (-0.50 or better, or winning by mate) and now is
+    (-2.00 or worse, or mated). Mates count, so the review and its events agree."""
+
+    def value(score):
+        return score.value if score.kind == "cp" else score.outcome() * 10000
+
+    return value(best) >= -50 and value(actual) <= -200
+
+
+def blunder_cp(rating):
+    return BLUNDER_CP_LOW_RATED if rating < BLUNDER_RATING else BLUNDER_CP
 
 
 def strongest_alternative(report):
@@ -17,6 +68,6 @@ def strongest_alternative(report):
         played = Score.model_validate(report["actual"]["score"])
         # Restricted-root analysis may reveal a good alternative absent from MultiPV.
         # It disproves an only-move claim even when the original runner-up was poor.
-        if score_order(played) > score_order(second):
+        if played.order_key() > second.order_key():
             second = played
     return second

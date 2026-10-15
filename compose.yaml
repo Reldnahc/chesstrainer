@@ -21,7 +21,7 @@ services:
       # cpu needs nothing extra. cuda downloads CUDA PyTorch (about 3 GB) into
       # /data once on first start and needs the GPU reservation below.
       HUMAN_MODEL_DEVICE: "${HUMAN_MODEL_DEVICE:-cpu}"
-      CHESSCOM_USER_AGENT: "${CHESSCOM_USER_AGENT:-FieldworkChessTrainer/0.1}"
+      PROVIDER_USER_AGENT: "${PROVIDER_USER_AGENT:-${CHESSCOM_USER_AGENT:-FieldworkChessTrainer/0.1}}"
     stop_grace_period: 90s
     security_opt:
       - no-new-privileges:true

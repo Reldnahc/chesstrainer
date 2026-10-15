@@ -1,17 +1,21 @@
 """Explain recorded moves using saved engine evidence and legal replay only."""
 
-from typing import Literal
-
-import chess
-from pydantic import BaseModel, Field
 from sqlalchemy import select
 
-from trainer.chess_core import Candidate, Score, legal_move, material, position_key, valid_board
+from trainer.chess_core import Candidate, legal_move, position_key, valid_board
+from trainer.classification_stages import EXPLANATION_RULES, line_findings
 from trainer.continuations import replay, settled_delta
-from trainer.diagnosis_types import Finding
+from trainer.errors import EvidenceIntegrityError, InvalidInput, NotFound
+from trainer.explanation_types import (
+    NO_SOLUTION,
+    SOLVE_FIRST,
+    MoveExplanation,
+    attempt_for,
+    color_name,
+    replay_line,
+)
 from trainer.imports import decision_board
 from trainer.models import (
-    Attempt,
     Decision,
     EngineAnalysis,
     Exercise,
@@ -19,161 +23,48 @@ from trainer.models import (
     Game,
     ReviewSession,
 )
-from trainer.move_causes import move_causes
-from trainer.tactical_patterns import detect_patterns, recognized_patterns
-
-SummaryKind = Literal[
-    "mate_for_mover",
-    "mate_against_mover",
-    "material_gain",
-    "material_loss",
-    "engine_accepted",
-    "engine_rejected",
-    "curated_accepted",
-    "curated_rejected",
-    "frame",
-]
-NoteKind = Literal[
-    "curated_authority", "strong_replies", "material_scope", "no_simple_reason", "saved_policy"
-]
+from trainer.opening_studies import recall as opening_recall
 
 
-class Frame(BaseModel):
-    fen: str
-    uci: str | None
-    san: str
-    annotation: str
-    highlights: list[str]
-    material_change: int
-    capture: str | None = None
-    gives_check: bool = False
-    # Only legal replay produces this version; absent legacy facts stay unknown.
-    facts_version: Literal[1] | None = None
-    promotion: str | None = None
-    castling: bool = False
-    checkmate: bool = False
-    escaped_check: bool = False
+def shown_material_change(boards, settled, line_end):
+    """The material change a summary may claim for the shown line.
 
-
-class MoveExplanation(BaseModel):
-    version: str = "1"
-    attempt_id: str | None
-    authority: Literal["stockfish", "curated"]
-    accepted: bool
-    move_uci: str
-    move_san: str
-    summary: str
-    summary_kind: SummaryKind | None = None
-    summary_frame_index: int | None = None
-    notes: list[str]
-    note_kinds: list[NoteKind | None] = Field(default_factory=list)
-    frames: list[Frame]
-    orientation: Literal["white", "black"]
-    analysis_id: str | None = None
-    engine_version: str | None = None
-    score: Score | None = None
-    findings: list[Finding] = Field(default_factory=list)
-
-
-def color_name(color):
-    return "White" if color else "Black"
-
-
-def replay_line(board, line):
-    replay = board.copy(stack=True)
-    learner = board.turn
-    initial_balance = material(board, learner) - material(board, not learner)
-    frames = [
-        Frame(
-            fen=board.fen(),
-            uci=None,
-            san="Start",
-            annotation="The original position.",
-            highlights=[],
-            material_change=0,
-            facts_version=1,
-        )
-    ]
-    for uci in line:
-        move = legal_move(replay, uci)
-        san = replay.san(move)
-        actor = color_name(replay.turn)
-        opponent = color_name(not replay.turn)
-        capture_square = move.to_square
-        if replay.is_en_passant(move):
-            capture_square += -8 if replay.turn else 8
-        captured = replay.piece_at(capture_square) if replay.is_capture(move) else None
-        castling = replay.is_castling(move)
-        annotation = f"{actor} plays {san}"
-        if captured:
-            annotation += f", capturing {opponent}'s {chess.piece_name(captured.piece_type)}"
-        if move.promotion:
-            annotation += f" and promoting to a {chess.piece_name(move.promotion)}"
-        if castling:
-            annotation += " and castles"
-        was_check = replay.is_check()
-        replay.push(move)
-        if replay.is_checkmate():
-            annotation += ". This is checkmate"
-        elif replay.is_check():
-            annotation += ", giving check"
-        elif was_check:
-            annotation += ", getting out of check"
-        highlights = [chess.square_name(move.from_square), chess.square_name(move.to_square)]
-        if captured and capture_square != move.to_square:
-            highlights.append(chess.square_name(capture_square))
-        frames.append(
-            Frame(
-                fen=replay.fen(),
-                uci=uci,
-                san=san,
-                annotation=annotation + ".",
-                highlights=highlights,
-                capture=chess.piece_name(captured.piece_type) if captured else None,
-                gives_check=replay.is_check(),
-                facts_version=1,
-                promotion=chess.piece_name(move.promotion) if move.promotion else None,
-                castling=castling,
-                checkmate=replay.is_checkmate(),
-                escaped_check=was_check,
-                material_change=material(replay, learner)
-                - material(replay, not learner)
-                - initial_balance,
-            )
-        )
-    return frames
+    Read where the line settles, not at its last frame, which can stop in the
+    middle of an exchange. Without a settled endpoint the last frame counts only
+    when its capture cannot simply be taken back.
+    """
+    if settled is not None:
+        return settled
+    last = boards[-1]
+    if len(boards) > 1 and boards[-2].is_capture(last.peek()):
+        square = last.peek().to_square
+        if any(reply.to_square == square for reply in last.legal_moves):
+            return 0
+    return line_end
 
 
 def explain_review(db, session_id, attempt_id=None, solution=False):
     session = db.get(ReviewSession, session_id)
     if session is None:
-        raise ValueError("Review session not found")
-    from trainer.opening_studies import recall as opening_recall
-
+        raise NotFound("Review session not found")
     snapshot = opening_recall.get_snapshot(db, session)
     if snapshot:
         return opening_recall.explain(db, session, snapshot, attempt_id, solution)
     exercise = db.get(Exercise, session.exercise_id)
     if solution:
         if not session.completed:
-            raise ValueError("Solve the position or use Reveal move before opening the solution")
+            raise InvalidInput(SOLVE_FIRST)
         answer = db.scalar(
             select(ExerciseAnswer).where(
                 ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
             )
         )
         if answer is None:
-            raise ValueError("No saved solution is available")
+            raise InvalidInput(NO_SOLUTION)
         selected_attempt = None
         uci, grade = answer.uci, answer.grade
     else:
-        selected_attempt = (
-            db.get(Attempt, attempt_id or session.last_attempt_id)
-            if (attempt_id or session.last_attempt_id)
-            else None
-        )
-        if selected_attempt is None or selected_attempt.session_id != session.id:
-            raise ValueError("Submit a move in this review before asking for its explanation")
+        selected_attempt = attempt_for(db, session, attempt_id)
         uci, grade = selected_attempt.uci, selected_attempt.grade
         answer = db.get(ExerciseAnswer, (exercise.id, uci))
     board = valid_board(exercise.fen)
@@ -206,17 +97,19 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         )
     analysis = db.get(EngineAnalysis, answer.analysis_id) if answer and answer.analysis_id else None
     if analysis is None:
-        raise ValueError("No saved engine continuation is available for this move")
+        raise InvalidInput("No saved engine continuation is available for this move")
     if position_key(valid_board(analysis.fen)) != position_key(board):
-        raise ValueError("The saved analysis does not match this position")
+        raise EvidenceIntegrityError("The saved analysis does not match this position")
     candidate = next(
         (Candidate.model_validate(c) for c in analysis.candidates if c["uci"] == uci), None
     )
     if candidate is None:
-        raise ValueError("The saved analysis does not contain this move")
+        raise InvalidInput("The saved analysis does not contain this move")
     frames = replay_line(board, candidate.pv)
     learner = color_name(board.turn)
-    balance_change = frames[-1].material_change
+    boards = replay(board, candidate)
+    delta, end = settled_delta(boards, board.turn, max_plies=EXPLANATION_RULES.settle_plies)
+    balance_change = shown_material_change(boards, delta, frames[-1].material_change)
     notes = [
         "This is one Stockfish continuation against strong replies; it does not mean every reply is forced.",
         "Material changes refer only to the shown line, compared with the starting position. Pieces use values 1/3/3/5/9.",
@@ -260,38 +153,25 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
     note_kinds.append("saved_policy")
     # These witnesses come from THIS answer's exact line. A classification from
     # the source game would be wrong for a different move made during review.
-    boards = replay(board, candidate)
     first = 1 if accepted else 2
-    direction = "missed_opportunity" if accepted else "allowed_opponent_tactic"
-    delta, end = settled_delta(boards, board.turn, max_plies=16)
     gain = delta if accepted else -delta if delta is not None else None
     mate_supported = candidate.score.kind == "mate" and candidate.score.outcome() == (
         1 if accepted else -1
     )
     findings = []
     if len(boards) > first:
-        findings = detect_patterns(
+        # A check/fork/pin can be visible even when this finite PV has no settled
+        # material endpoint; the rules add it as a factual playback annotation,
+        # never an additional grading event or automatically a weakness label.
+        findings = line_findings(
             boards,
             first,
-            min(len(boards) - 1, 16) if mate_supported else end,
             analysis.id,
-            direction,
+            EXPLANATION_RULES,
+            end=end,
             material_supported=gain is not None and gain >= 1,
             mate_supported=mate_supported,
         )
-        # A check/fork/pin can be visible even when this finite PV has no
-        # settled material endpoint. It remains a factual playback annotation,
-        # never an additional grading event or automatically a weakness label.
-        detailed_skills = {finding.skill_id for finding in findings}
-        findings.extend(
-            finding
-            for finding in recognized_patterns(
-                boards, first, min(len(boards) - 1, 16), analysis.id, direction
-            )
-            if finding.skill_id not in detailed_skills
-        )
-        if not accepted and gain is not None and gain >= 1:
-            findings.extend(move_causes(boards, analysis.id))
     return MoveExplanation(
         attempt_id=selected_attempt.id if selected_attempt else None,
         authority="stockfish",

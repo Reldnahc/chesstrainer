@@ -3,6 +3,8 @@
 import chess
 
 from trainer.chess_core import Score, evaluation_loss
+from trainer.review_scores import MISTAKE_CP, is_decisive_swing, is_near_best, is_poor
+from trainer.tactical_geometry import SLIDERS
 
 MOVER_CAUSES = {"abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"}
 
@@ -49,7 +51,7 @@ def objective_events(report, practical, emit, evidence, ref):
     best = Score.model_validate(report["best"]["score"])
     actual = Score.model_validate(report["actual"]["score"])
     loss = evaluation_loss(best, actual)
-    near = not (loss.allows_mate or loss.mate_lost) and (loss.cp or 0) <= 20
+    near = is_near_best(loss)
     if loss.allows_mate or loss.mate_lost:
         emit(
             "mate",
@@ -78,7 +80,7 @@ def objective_events(report, practical, emit, evidence, ref):
             },
             evidence,
         )
-    if (loss.cp or 0) >= 100 or advantage(best) != advantage(actual):
+    if (loss.cp or 0) >= MISTAKE_CP or advantage(best) != advantage(actual):
         emit(
             "evaluation_change",
             "searched",
@@ -89,9 +91,7 @@ def objective_events(report, practical, emit, evidence, ref):
                 "loss_cp": loss.cp,
                 "lost_advantage": advantage(best) in {"advantage", "forced_win"}
                 and advantage(actual) not in {"advantage", "forced_win"},
-                "decisive": best.kind == actual.kind == "cp"
-                and best.value >= -50
-                and actual.value <= -200,
+                "decisive": is_decisive_swing(best, actual),
             },
             evidence,
         )
@@ -103,19 +103,16 @@ def objective_events(report, practical, emit, evidence, ref):
             {
                 "only_good_at_depth": report["depth"],
                 "difficult": practical.best_find_difficulty == "difficult",
-                "purpose": "defense"
-                if best.kind == "cp" and best.value <= 150
-                else "decisive_resource",
+                # "Decisive" only in the app's own advantage band (+2.00 or a forced
+                # win), the band the evaluation-change events use.
+                "purpose": "decisive_resource"
+                if advantage(best) in {"advantage", "forced_win"}
+                else "defense",
             },
             evidence + [ref("rule", practical.version, practical.input_digest)],
         )
     sacrifice = report.get("sacrifice")
-    if (
-        not (loss.allows_mate or loss.mate_lost)
-        and (loss.cp or 0) < 50
-        and sacrifice
-        and sacrifice.get("analysis_id")
-    ):
+    if not is_poor(loss) and sacrifice and sacrifice.get("analysis_id"):
         emit(
             "sacrifice",
             "searched",
@@ -134,7 +131,7 @@ def tactical_events(report, emit, ref, fen, actor):
         Score.model_validate(report["best"]["score"]),
         Score.model_validate(report["actual"]["score"]),
     )
-    poor = loss.allows_mate or loss.mate_lost or (loss.cp or 0) >= 50
+    poor = is_poor(loss)
     opponent = "black" if actor == "white" else "white"
     for source in ("actual", "best"):
         if source == "best" and report["best"]["uci"] == report["actual"]["uci"]:
@@ -203,6 +200,11 @@ def tactical_events(report, emit, ref, fen, actor):
                     "moves": finding["moves"],
                     "squares": finding["squares"],
                     "roles": finding["roles"],
+                    **(
+                        {"pinned_before": pinned_before(fen, finding["roles"])}
+                        if finding["skill_id"] == "pin"
+                        else {}
+                    ),
                     "verification": finding["verification"],
                     "context_fen": finding.get("context_fen"),
                     "context_move": finding.get("context_move"),
@@ -234,6 +236,17 @@ def tactical_events(report, emit, ref, fen, actor):
             )
 
 
+def pinned_before(fen, roles):
+    """Whether a pin's pinned pieces were already pinned before the move: the
+    line uses a pin that existed, rather than creating one."""
+    board = chess.Board(fen)
+    squares = [chess.parse_square(square) for square in roles.get("pinned_defender", [])]
+    return bool(squares) and all(
+        (piece := board.piece_at(square)) is not None and board.is_pinned(piece.color, square)
+        for square in squares
+    )
+
+
 def uncovers_attack(fen, uci):
     """Moving off a line lets the mover's own long-range piece attack an enemy
     piece (a pawn is too small to count) or give check."""
@@ -243,7 +256,7 @@ def uncovers_attack(fen, uci):
         return False
     actor = board.turn
     board.push(move)
-    for kind in (chess.BISHOP, chess.ROOK, chess.QUEEN):
+    for kind in SLIDERS:
         for square in board.pieces(kind, actor):
             if square == move.to_square:
                 continue

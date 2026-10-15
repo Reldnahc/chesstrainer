@@ -14,10 +14,10 @@ from trainer._vendor.maia3.models import MAIA3Model
 from trainer._vendor.maia3.utils import get_all_possible_moves, mirror_move
 from trainer.chess_core import legal_move, valid_board
 from trainer.human_models.preset import verify_checkpoint, verify_source
-from trainer.human_models.types import HumanMove, HumanPolicy
+from trainer.human_models.types import HISTORY_WINDOW, SEED, HumanMove, HumanPolicy
 
 ARCHITECTURE = dict(
-    history=8,
+    history=HISTORY_WINDOW,
     include_time_info=False,
     dim_emb=128,
     dim_vit=1024,
@@ -50,7 +50,7 @@ class MaiaPredictor:
             raise ValueError("device_unavailable")
         torch.set_num_threads(provenance.inference["threads"])
         torch.set_num_interop_threads(1)
-        torch.manual_seed(42)
+        torch.manual_seed(SEED)
         torch.use_deterministic_algorithms(True)
         self.cfg = SimpleNamespace(**ARCHITECTURE)
         self.model = MAIA3Model(self.cfg).to(self.device)

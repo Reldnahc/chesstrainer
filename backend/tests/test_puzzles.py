@@ -12,6 +12,7 @@ from sqlalchemy import func, select
 from trainer.accounts import COOKIE
 from trainer.api import create_app
 from trainer.contracts.puzzles import PuzzleMove
+from trainer.errors import DomainError, NotFound
 from trainer.models import PuzzleAttempt, PuzzleSession, Review, SkillEvidence, SRSState
 from trainer.puzzles.definitions import PuzzleDefinition
 from trainer.puzzles.providers import PuzzleProviders
@@ -286,8 +287,6 @@ def test_simultaneous_duplicate_request_commits_once(settings):
 
 
 def test_conditional_revision_write_rejects_stale_database_session(settings):
-    from fastapi import HTTPException
-
     app = app_with(settings)
     with TestClient(app) as client:
         state = start(client)
@@ -296,9 +295,9 @@ def test_conditional_revision_write_rejects_stale_database_session(settings):
             request = PuzzleMove(request_id="first", revision=0, uci=LINE[0])
             command(first, state["id"], request)
             assert stale.revision == 0
-            with pytest.raises(HTTPException) as raised:
+            with pytest.raises(DomainError) as raised:
                 command(second, state["id"], request.model_copy(update={"request_id": "second"}))
-            assert raised.value.status_code == 409
+            assert raised.value.status == 409
         assert client.get(f"/api/puzzle-sessions/{state['id']}").json()["current_step"] == 2
 
 
@@ -528,7 +527,7 @@ def test_account_isolation_private_history_and_snapshot(settings):
                     response={},
                 )
             )
-            with pytest.raises(ValueError, match="Referenced item"):
+            with pytest.raises(NotFound, match="Referenced item"):
                 db.flush()
         bob = start(client, headers=bob_headers)
         assert bob["id"] != cold["id"]  # same create token is private to each account

@@ -92,10 +92,12 @@ test("the bubble writes the named piece's square; the generic line and spoken te
 const tacticalPieces: Record<string, string | null> = {
   "tactic-pin": "knight", "tactic-skewer": "king", "tactic-removing-defender": "knight",
   "tactic-discovered-attack": "bishop", "tactic-deflection": "knight", "tactic-undefended-capture": "queen",
-  "tactic-hanging-piece": "rook", "tactic-back-rank": "rook", "tactic-double-attack": null, "tactic-promotion-awareness": null,
+  "tactic-hanging-piece": "rook", "tactic-back-rank": "rook", "tactic-double-attack": null,
 };
-const tactical = semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py");
-for (const [key, game] of Object.entries(tactical)) {
+// Promotion witnesses are the promoting move, whose clips sit out (game-speech-tactical-policy).
+const tactical = Object.entries(semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py"))
+  .filter(([key]) => !key.startsWith("tactic-promotion-awareness-"));
+for (const [key, game] of tactical) {
   test(`${key} names the piece its tactic is about`, () => {
     const objective = key.split(":")[0], family = objective.replace(/-(?:played|allowed|missed)$/, "");
     const piece = tacticalPieces[family];
@@ -200,9 +202,9 @@ test("explanation findings name the piece each mechanism is about, never the wro
 });
 
 test("capture frames name the captured piece", () => {
-  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "bishop", checkmate: true, gives_check: true}), 1))
+  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "bishop", checkmate: true, gives_check: true}), 1, "white"))
     .toBe("explanation-frame-capture-move-mate-bishop|explanation-frame-capture-move-mate");
-  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "rook", promotion: "queen"}), 1))
+  expect(explanationFrameRecording(frame("8/8/8/8/8/8/8/8 w - - 0 1", {capture: "rook", promotion: "queen"}), 1, "white"))
     .toBe("explanation-frame-capture-promotion-ordinary-rook|explanation-frame-capture-promotion-ordinary");
 });
 

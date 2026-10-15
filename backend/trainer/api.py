@@ -6,10 +6,9 @@ from fastapi import FastAPI
 from sqlalchemy.orm import sessionmaker
 
 from trainer import site_settings
-from trainer.chesscom import ChessComClient
 from trainer.config import Settings
 from trainer.contracts.accounts import Identity
-from trainer.db import database, migrate
+from trainer.db import database, migrate, optimize
 from trainer.engine import EngineUnavailable, Stockfish
 from trainer.engine_health import EngineHealth
 from trainer.engine_pool import EnginePool
@@ -36,8 +35,6 @@ from trainer.routes import (
     sync,
     workspace,
 )
-from trainer.routes.compatibility import ManualRequest as ManualRequest
-from trainer.routes.review import MoveRequest as MoveRequest
 from trainer.scheduling import FSRSScheduler
 from trainer.study_lessons.club import ClubCourses, InstalledCourses, courses_folder
 from trainer.study_lessons.providers import CourseProviders
@@ -52,7 +49,6 @@ def create_app(
     classifier=None,
     workers=True,
     engine_factory=Stockfish,
-    chesscom_factory=ChessComClient,
     start_engine=True,
     human_provider=None,
     provider_factories=None,
@@ -87,11 +83,10 @@ def create_app(
     )
     runner = JobRunner(
         settings,
-        sessions,
+        sql_engine,
         scheduler,
         classifier,
         engine_factory,
-        chesscom_factory=chesscom_factory,
         provider_factories=provider_factories,
         workspaces=workspaces,
     )
@@ -100,6 +95,7 @@ def create_app(
     async def lifespan(app):
         try:
             migrate(sql_engine)
+            optimize(sql_engine, opening=True)
             # Startup maintenance runs once for the database. Administrative
             # sessions never reach HTTP handlers or job execution.
             maintenance = sessionmaker(sql_engine) if settings.accounts_enabled else sessions
@@ -120,9 +116,10 @@ def create_app(
             engine.close()
             if pool:
                 pool.close()
+            optimize(sql_engine)
             sql_engine.dispose()
 
-    app = FastAPI(title="Fieldwork accounts" if pool else "Local Chess Trainer", lifespan=lifespan)
+    app = FastAPI(title="Fieldwork", lifespan=lifespan)
     app.state.sessions, app.state.runner, app.state.settings = sessions, runner, settings
     app.state.workspaces = workspaces
     app.state.human_models = human_models
@@ -147,7 +144,7 @@ def create_app(
     app.include_router(imports.create_router(settings=settings))
     app.include_router(jobs.create_router(runner=runner))
     app.include_router(sync.create_router())
-    app.include_router(games.create_router(settings=settings, engine_factory=engine_factory))
+    app.include_router(games.create_router(settings=settings))
     app.include_router(insights.create_router())
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
     app.include_router(play.create_router(settings=settings, courses=courses))

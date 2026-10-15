@@ -5,7 +5,7 @@ import json
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
-from trainer.human_models.types import ModelProvenance
+from trainer.human_models.types import HISTORY_WINDOW, SEED, ModelProvenance
 
 MANIFEST = Path(__file__).with_name("manifest.json")
 PINS = json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -30,9 +30,9 @@ def provenance(settings):
             "precision": "float32",
             "torch": torch_version,
             "threads": settings.human_model_threads,
-            "history_window": 8,
+            "history_window": HISTORY_WINDOW,
             "policy": "complete-legal-softmax",
-            "seed": 42,
+            "seed": SEED,
         },
     )
 

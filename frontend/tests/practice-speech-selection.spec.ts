@@ -25,11 +25,11 @@ const finding = (overrides: Partial<PatternFinding> = {}): PatternFinding => ({
 });
 
 test("all twenty recorded frame combinations use explicit replay facts and retain combined meaning", () => {
-  const selected = [explanationFrameRecording(frame({uci: null}), 0)];
+  const selected = [explanationFrameRecording(frame({uci: null}), 0, "white")];
   for (const capture of [null, "pawn"]) for (const promotion of [null, "queen"]) {
     for (const ending of ["ordinary", "check", "mate", "escape"] as const) {
       const id = explanationFrameRecording(frame({capture, promotion, gives_check: ending === "check" || ending === "mate",
-        checkmate: ending === "mate", escaped_check: ending === "escape"}), 1);
+        checkmate: ending === "mate", escaped_check: ending === "escape"}), 1, "white");
       const expected = !capture && !promotion && ending === "mate" ? "mate-finished"
         : `explanation-frame-${capture ? "capture" : "quiet"}-${promotion ? "promotion" : "move"}-${ending}`;
       // A captured pawn names itself first; nothing but a piece stands on the promotion rank.
@@ -38,13 +38,27 @@ test("all twenty recorded frame combinations use explicit replay facts and retai
     }
   }
   for (const ending of ["ordinary", "check", "mate"] as const) {
-    selected.push(explanationFrameRecording(frame({castling: true, gives_check: ending !== "ordinary", checkmate: ending === "mate"}), 1));
+    selected.push(explanationFrameRecording(frame({castling: true, gives_check: ending !== "ordinary", checkmate: ending === "mate"}), 1, "white"));
   }
   expect(selected).toHaveLength(20);
   for (const id of selected) expect(bank.has(id!)).toBe(true);
-  expect(explanationFrameRecording(frame({facts_version: null, san: "Qxh8#", annotation: "Checkmate!"}), 1)).toBeNull();
-  expect(explanationFrameRecording(frame({castling: true, capture: "pawn"}), 1)).toBeNull();
-  expect(explanationFrameRecording(frame({uci: null}), 1)).toBeNull();
+  expect(explanationFrameRecording(frame({facts_version: null, san: "Qxh8#", annotation: "Checkmate!"}), 1, "white")).toBeNull();
+  expect(explanationFrameRecording(frame({castling: true, capture: "pawn"}), 1, "white")).toBeNull();
+  expect(explanationFrameRecording(frame({uci: null}), 1, "white")).toBeNull();
+});
+
+test("a quiet checkmate credits the learner only when the learner mates", () => {
+  // After 1.f3 e5, the line 2.g4 Qh4# shows why g4 falls short: Black mates White.
+  const qh4 = frame({san: "Qh4#", uci: "d8h4", fen: "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+    gives_check: true, checkmate: true});
+  expect(explanationFrameRecording(qh4, 2, "white")).toBe("mate-defense-ended");
+  expect(explanationFrameRecording(qh4, 2, "black")).toBe("mate-finished");
+  for (const learner of ["white", "black"] as const) expect(bank.has(explanationFrameRecording(qh4, 2, learner)!)).toBe(true);
+  // A summary frame and a practice preview frame use the exercise's learner the same way.
+  expect(explanationSummaryRecording(explanation({summary_kind: "frame", summary_frame_index: 1,
+    frames: [frame({uci: null}), qh4]}))).toBe("mate-defense-ended");
+  expect(practiceRecording({position: {...position, orientation: "black"}, feedback: feedback({completed: false}),
+    frame: {...qh4, annotation: "Checkmate."}})).toBe("mate-finished");
 });
 
 test("cold practice cannot borrow future frames or reveal an answer", () => {
@@ -85,7 +99,7 @@ test("selected finding and cue require the same analysis, witness moves and disp
   expect(explanationFindingRecording({...data, analysis_id: "different"}, item, 1)).toBeNull();
   expect(explanationFindingRecording({...data, frames: [frame({uci: null}), frame({uci: "d2d4"})]}, item, 1)).toBeNull();
   expect(explanationFindingRecording(data, {...item}, 1)).toBeNull();
-  for (const patch of [{mechanism: null}, {mechanism: "previous_threat"}, {mechanism: "relative_pin_released"}] as const) {
+  for (const patch of [{mechanism: null}, {mechanism: "previous_threat"}] as const) {
     const legacy = finding(patch);
     expect(explanationFindingRecording(explanation({findings: [legacy]}), legacy, 1)).toBeNull();
   }
@@ -96,13 +110,16 @@ test("selected finding and cue require the same analysis, witness moves and disp
 test("every supported finding mechanism maps to its full recorded meaning, including game-bank aliases", () => {
   const mechanisms: NonNullable<PatternFinding["mechanism"]>[] = ["fork_recognized", "fork_collected", "pin_prevents_capture", "pin_restricts_escape",
     "pin_defenders_no_recapture", "pin_collected", "skewer_collected", "king_skewer_collected", "defender_captured", "sole_defender_captured",
-    "deflection", "deflection_collected", "discovered_capture", "discovered_check", "double_check", "double_attack_collected", "promotion",
+    "deflection", "deflection_collected", "discovered_capture", "discovered_check", "double_check", "double_attack_collected",
     "promotion_material_retained", "undefended_capture", "undefended_capture_gain", "back_rank_mate", "abandoned_defender", "unfavorable_exchange"];
   for (const mechanism of mechanisms) {
     const item = finding({mechanism});
     const id = explanationFindingRecording(explanation({findings: [item]}), item, 1);
     expect(bank.has(id!), mechanism).toBe(true);
   }
+  // The promoting move itself never plays a clip about a pawn still on its way.
+  const promotion = finding({mechanism: "promotion", skill_id: "promotion_awareness", moves: ["e2e4"]});
+  expect(explanationFindingRecording(explanation({findings: [promotion]}), promotion, 1)).toBeNull();
 });
 
 test("notes need producer note identities; unstructured notes remain silent", () => {
@@ -121,6 +138,11 @@ test("all supported teaching cues retain their selected finding's explicit cue i
   }
   const mismatched = finding({skill_id: "pin", cue_key: "fork"});
   expect(explanationCueRecording(explanation({findings: [mismatched]}), mismatched, 1)).toBeNull();
+  // The promotion cues count the pawn's remaining squares; on the promoting move there are none.
+  const promoting = finding({skill_id: "promotion_awareness", cue_key: "promotion_awareness", mechanism: "promotion", moves: ["e7e8q"]});
+  expect(explanationCueRecording(explanation({findings: [promoting]}), promoting, 1)).toBeNull();
+  const retained = {...promoting, mechanism: "promotion_material_retained" as const};
+  expect(explanationCueRecording(explanation({findings: [retained]}), retained, 1)).toBeNull();
 });
 
 test("opening recall keeps repertoire authority, changed-study rejection and reveal distinct", () => {
@@ -189,4 +211,24 @@ test("each lesson command picks at most one generic prompt from its own action a
   expect(select("game_seek", {}, inGame)).toBeNull();
   expect(select("show_move", {status: "completed", feedback: {kind: "revealed", text: "The lesson plays e4."}})).toBe("lesson-move-revealed");
   expect(select("continue", {status: "completed"}, {...before, status: "completed"})).toBeNull();
+});
+
+test("pin-escape takes are not voiced for a piece that cannot move along its pin line", () => {
+  // A bishop pinned on the e-file cannot move at all; its take says it may move along the line.
+  const onFile = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["e7"], king: ["e8"], attacker: ["e1"], target: ["e7"]}});
+  const data = explanation({findings: [onFile], frames: [frame({uci: null}), frame({fen: "4k3/4b3/8/8/8/8/8/4R1K1 b - - 0 1"})]});
+  expect(explanationFindingRecording(data, onFile, 1)).toBeNull();
+  const onDiagonal = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["g7"], king: ["h8"], attacker: ["b2"], target: ["g7"]}});
+  const diagonal = explanation({findings: [onDiagonal], frames: [frame({uci: null}), frame({fen: "7k/6b1/8/8/8/8/1B6/K7 b - - 0 1"})]});
+  expect(explanationFindingRecording(diagonal, onDiagonal, 1)).toContain("explanation-finding-pin-restricts-escape");
+  // A pawn pinned along its rank or a diagonal cannot push; one pinned on its file can.
+  const onRank = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d5"], king: ["h5"], attacker: ["a5"], target: ["d5"]}});
+  const rank = explanation({findings: [onRank], frames: [frame({uci: null}), frame({fen: "8/8/8/R2p3k/8/8/8/K7 b - - 0 1"})]});
+  expect(explanationFindingRecording(rank, onRank, 1)).toBeNull();
+  const onDiagonalPawn = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["e6"], king: ["g8"], attacker: ["c4"], target: ["e6"]}});
+  const diagonalPawn = explanation({findings: [onDiagonalPawn], frames: [frame({uci: null}), frame({fen: "6k1/8/4p3/8/2B5/8/8/4K3 b - - 0 1"})]});
+  expect(explanationFindingRecording(diagonalPawn, onDiagonalPawn, 1)).toBeNull();
+  const pawnOnFile = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d6"], king: ["d8"], attacker: ["d1"], target: ["d6"]}});
+  const file = explanation({findings: [pawnOnFile], frames: [frame({uci: null}), frame({fen: "3k4/8/3p4/8/8/8/8/K2R4 b - - 0 1"})]});
+  expect(explanationFindingRecording(file, pawnOnFile, 1)).toContain("explanation-finding-pin-restricts-escape");
 });

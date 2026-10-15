@@ -1,13 +1,14 @@
 """Enrollment and dedicated rehearsal reuse existing Exercise and lesson machinery."""
 
-from fastapi import HTTPException
 from sqlalchemy import func, select
 
 from trainer.chess_core import digest
 from trainer.contracts.opening_studies import OpeningLine
 from trainer.contracts.study_lessons import LessonStart
+from trainer.errors import Conflict, InvalidInput, NotFound
 from trainer.models import OpeningCard, OpeningStudy, OpeningStudyMove, SRSState
 from trainer.opening_studies import projection, sources
+from trainer.reviews import queue
 from trainer.study_lessons.content import CourseDefinition
 from trainer.study_lessons.providers import CourseProviders
 from trainer.study_lessons.sessions import start_session
@@ -25,7 +26,7 @@ def line_identity(snapshot):
 def require_study(db, study_id):
     study = db.get(OpeningStudy, study_id)
     if study is None:
-        raise HTTPException(404, "Opening study not found")
+        raise NotFound("Opening study not found")
     return study
 
 
@@ -43,7 +44,7 @@ def enroll_line(db, providers, request, scheduler):
             request.course_id,
             request.line_id,
         ):
-            raise HTTPException(422, "Opening source identity does not match the saved study")
+            raise InvalidInput("Opening source identity does not match the saved study")
         projection.set_active(db, study, True)
     else:
         line = sources.resolve_line(db, providers, request)
@@ -57,7 +58,7 @@ def enroll_line(db, providers, request, scheduler):
         )
         current = line_identity(line.model_dump(mode="json"))
         if any(line_identity(row.snapshot) != current for row in siblings):
-            raise HTTPException(409, "Opening content changed without a new source revision")
+            raise Conflict("Opening content changed without a new source revision")
         study = OpeningStudy(
             source=line.source,
             source_key=line.source_key,
@@ -76,8 +77,6 @@ def enroll_line(db, providers, request, scheduler):
 
 
 def due_ids(db):
-    from trainer.reviews import queue
-
     opening_ids = set(db.scalars(select(OpeningCard.exercise_id)))
     return {item["exercise_id"] for item in queue(db, limit=None)} & opening_ids
 

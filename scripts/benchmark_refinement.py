@@ -39,7 +39,7 @@ def run(executable, targeted=False):
         runner = SimpleNamespace(
             settings=settings,
             sessions=sessions,
-            import_lock=RLock(),
+            mutation_lock=RLock(),
             engine_factory=Stockfish,
             cancelled=lambda _: False,
         )

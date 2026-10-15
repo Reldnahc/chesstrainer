@@ -25,6 +25,12 @@ class MotifWitness:
     explanation: str
 
 
+# Returned for an upstream hit this adapter deliberately does not credit to the
+# line's mover (an opponent's back-rank mate, castling "uncovering" check, a pin
+# that was already there and is not used). Unlike None, it is not a missing witness.
+DECLINED = object()
+
+
 def names(squares):
     return [chess.square_name(s) for s in sorted({s for s in squares if s is not None})]
 
@@ -39,9 +45,19 @@ def witness(theme, rule, context, puzzle, positions) -> MotifWitness | None:
         return None
     ply = positions[id(node)]
     board, move = node.board(), node.move
+    before = node.parent.board()
     actor = not node.turn()
     if actor != puzzle.pov:
+        # Upstream back_rank_mate does not ask who is mated; when the mover is the
+        # one being mated it describes the opponent's mate, which is not this
+        # line's witness. Any other wrong-side return is a real integrity error.
+        if rule == "back_rank_mate":
+            return DECLINED
         raise ValueError("Upstream witness belongs to the wrong side")
+    # Castling that gives check gives it from the castling rook itself; nothing
+    # is uncovered.
+    if rule == "discovered_check" and before.is_castling(move):
+        return DECLINED
     san = node.san()
     plies, frame = [ply], ply
     roles = {}
@@ -72,6 +88,12 @@ def witness(theme, rule, context, puzzle, positions) -> MotifWitness | None:
         )
     elif rule in {"pin_prevents_attack", "pin_prevents_escape"}:
         square = context.get("pinned_square", context.get("square"))
+        # A pin that was already there is this move's only when the move uses it:
+        # it lands where the pinned piece would otherwise capture, or attacks the
+        # pinned piece. Otherwise it is not credited to this move.
+        used = context["attack"] if rule == "pin_prevents_attack" else context["attacker_square"]
+        if before.is_pinned(not actor, square) and used != move.to_square:
+            return DECLINED
         roles = {"pinned_defender": names([square]), "king": names([board.king(not actor)])}
         if rule == "pin_prevents_attack":
             roles["target"] = names([context["attack"]])

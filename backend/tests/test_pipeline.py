@@ -3,12 +3,13 @@ import io
 import chess
 import chess.pgn
 import pytest
+from classifier_fixtures import FixtureClassifierBase, findings_for
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.analysis import analyze_decision
 from trainer.classification import Classification, classify_decision
 from trainer.engine import Stockfish
-from trainer.exercises import exercise_from_decision, import_repertoire, manual_exercise
+from trainer.exercises import exercise_from_decision, manual_exercise
 from trainer.imports import identify_learner, import_games, learner_decisions
 from trainer.local_classifier import LocalClassifier
 from trainer.models import (
@@ -32,7 +33,7 @@ PGN = """[Event "Fixture"]
 """
 
 
-class MockClassifier:
+class MockClassifier(FixtureClassifierBase):
     model = "test-only-verified-classifier"
 
     def classify(self, evidence):
@@ -45,6 +46,7 @@ class MockClassifier:
             secondary_skills=[],
             confidence=0.9,
             explanation="The verified continuation allows a mating attack.",
+            findings=findings_for(evidence, "king_safety"),
         ), {}
 
 
@@ -54,7 +56,7 @@ def test_multi_import_dedupe_and_learner(sessions):
         assert result["imported"] == 1 and result["duplicates"] == 1
         assert db.scalar(select(func.count()).select_from(Game)) == 1
         ambiguous = import_games(db, "test.pgn", PGN, [], None)
-        assert ambiguous["errors"] and ambiguous["job_id"] is None
+        assert ambiguous["errors"] and not ambiguous["imported"]
         assert len(list(learner_decisions(db.scalar(select(Game))))) == 2
     parsed = chess.pgn.read_game(io.StringIO(PGN))
     with pytest.raises(ValueError):
@@ -76,7 +78,7 @@ def test_real_engine_vertical_slice_and_persistence(settings, sessions, stockfis
                 decision = analyze_decision(db, lambda: engine, settings, game, ply, board, move)
                 if decision.meaningful:
                     meaningful.append(decision)
-                    assert classify_decision(db, decision, LocalClassifier(settings), settings)
+                    assert classify_decision(db, decision, LocalClassifier(settings))
                     exercise = exercise_from_decision(db, decision, settings, scheduler)
             assert meaningful
             assert any(d.allows_mate for d in meaningful)
@@ -120,16 +122,6 @@ def test_first_failure_and_reveal_schedule_once(settings, sessions):
         assert db.scalar(select(func.count()).select_from(Review)) == 1
 
 
-def test_repertoire_multiple_answers_and_trained_side(settings, sessions):
-    scheduler = FSRSScheduler(settings)
-    pgn = '[White "R"]\n[Black "R"]\n\n1. e4 (1. d4 d5) e5 2. Nf3 Nc6 *'
-    with sessions() as db:
-        result = import_repertoire(db, scheduler, "My lines", pgn, True)
-        assert result["exercises"] == 2
-        answers = db.scalars(select(ExerciseAnswer)).all()
-        assert {a.uci for a in answers} == {"e2e4", "d2d4", "g1f3"}
-
-
 def test_schema_and_srs_mapping():
     with pytest.raises(ValidationError):
         Classification(
@@ -143,3 +135,19 @@ def test_schema_and_srs_mapping():
     assert behavior_rating(False, True, 10, 30).name == "Again"
     assert behavior_rating(False, False, 31_000, 30).name == "Hard"
     assert behavior_rating(False, False, 10_000, 30).name == "Good"
+
+
+def test_a_castling_alias_is_graded_and_saved_as_the_canonical_move(settings, sessions):
+    from trainer.exercises import manual_exercise
+    from trainer.models import Attempt
+
+    scheduler = FSRSScheduler(settings)
+    with sessions() as db:
+        exercise = manual_exercise(
+            db, scheduler, "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", ["e1g1"], "white"
+        )
+        cold = start_review(db, exercise.id)
+        # An API client may send castling as the king taking its rook.
+        result = submit_move(db, cold["session_id"], "e1h1", None, scheduler, settings)
+        assert result["completed"] and result["grade"] != "failure"
+        assert db.scalar(select(Attempt.uci)) == "e1g1"

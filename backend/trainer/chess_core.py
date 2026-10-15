@@ -6,6 +6,8 @@ import chess
 import chess.engine
 from pydantic import BaseModel, model_validator
 
+from trainer.errors import InvalidInput
+
 VALUES = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
 
 
@@ -16,9 +18,12 @@ def digest(value: object) -> str:
 
 
 def valid_board(fen: str) -> chess.Board:
-    board = chess.Board(fen)
+    try:
+        board = chess.Board(fen)
+    except ValueError as exc:
+        raise InvalidInput(f"Invalid FEN: {exc}") from exc
     if not board.is_valid():
-        raise ValueError(f"Invalid chess position (python-chess status {board.status()})")
+        raise InvalidInput(f"Invalid chess position (python-chess status {board.status()})")
     return board
 
 
@@ -42,10 +47,10 @@ def legal_move(board: chess.Board, uci: str) -> chess.Move:
         # python-chess parses the UCI null move, but passing a turn is not legal chess.
         # Check before normalization, which can discard an invalid castling promotion.
         if move not in board.legal_moves:
-            raise ValueError("Null/illegal move")
+            raise InvalidInput("Null/illegal move")
         return board.parse_uci(uci)
     except ValueError as exc:
-        raise ValueError("Move is not legal in this position") from exc
+        raise InvalidInput("Move is not legal in this position") from exc
 
 
 def legal_move_options(board: chess.Board) -> list[dict]:
@@ -79,6 +84,13 @@ class Score(BaseModel):
     def outcome(self) -> int:
         return (1 if self.value > 0 or self.mate_given else -1) if self.kind == "mate" else 0
 
+    def order_key(self):
+        """Sort key from the mover's side: a mate given beats any centipawns, sooner
+        is better, and a mate against is worse than any centipawns, later is better."""
+        if self.kind == "cp":
+            return 1, self.value
+        return (2, -abs(self.value)) if self.outcome() == 1 else (0, abs(self.value))
+
     def negate(self):
         if self.kind == "mate" and self.value == 0:
             return Score(kind="mate", value=0, mate_given=not self.mate_given)
@@ -91,12 +103,32 @@ class Loss(BaseModel):
     allows_mate: bool = False
 
 
+# A centipawn score at least this large is a clearly winning (or, negated,
+# clearly lost) position.
+DECISIVE_CP = 300
+# Mates at least this long can be seen by one search and not by another at the
+# same depth; shorter ones are found reliably.
+LONG_MATE = 4
+
+
 def evaluation_loss(best: Score, played: Score) -> Loss:
     if best.kind == played.kind == "cp":
         return Loss(cp=max(0, best.value - played.value))
     return Loss(
         mate_lost=best.outcome() == 1 and played.outcome() != 1,
         allows_mate=best.outcome() != -1 and played.outcome() == -1,
+    )
+
+
+def mate_horizon(best: Score, played: Score) -> bool:
+    """The best move's search mates in four or more and the played move's
+    restricted search reads only a decisive centipawn win: the played move may
+    keep the mate beyond its search's horizon, so it is asked again deeper."""
+    return (
+        best.outcome() == 1
+        and best.value >= LONG_MATE
+        and played.kind == "cp"
+        and played.value >= DECISIVE_CP
     )
 
 
@@ -116,6 +148,27 @@ class Candidate(BaseModel):
 
 def material(board: chess.Board, color: chess.Color) -> int:
     return sum(len(board.pieces(piece, color)) * value for piece, value in VALUES.items())
+
+
+# Material (pawn = 1) at or below which a position counts as an endgame.
+ENDGAME_MATERIAL = 26
+OPENING_MOVES = 10
+
+
+def game_phase(board: chess.Board) -> str:
+    if material(board, True) + material(board, False) <= ENDGAME_MATERIAL:
+        return "endgame"
+    return "opening" if board.fullmove_number <= OPENING_MOVES else "middlegame"
+
+
+def replay_moves(board: chess.Board, ucis) -> list[chess.Board]:
+    """``board`` and the board after each legal move of ``ucis``, with full history."""
+    boards = [board.copy(stack=True)]
+    for uci in ucis:
+        following = boards[-1].copy(stack=True)
+        following.push(legal_move(following, uci))
+        boards.append(following)
+    return boards
 
 
 def board_facts(board: chess.Board, move: chess.Move, pv: list[str]) -> dict:
@@ -140,11 +193,7 @@ def board_facts(board: chess.Board, move: chess.Move, pv: list[str]) -> dict:
             and board.is_attacked_by(not color, sq)
             and not board.is_attacked_by(color, sq)
         ],
-        "phase": "endgame"
-        if material(board, True) + material(board, False) <= 26
-        else "opening"
-        if board.fullmove_number <= 10
-        else "middlegame",
+        "phase": game_phase(board),
     }
     replay = board.copy()
     trace = []

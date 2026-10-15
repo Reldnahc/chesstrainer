@@ -12,6 +12,7 @@ from trainer.contracts.preferences import (
 from trainer.contracts.workspace import Health, Stats, WorkspaceSettings
 from trainer.coverage import coverage
 from trainer.human_models.types import HumanReadiness
+from trainer.local_classifier import LocalClassifier
 from trainer.models import ClassificationRun, Exercise, Review
 from trainer.preferences import (
     audio_preferences,
@@ -23,6 +24,25 @@ from trainer.preferences import (
     save_motion_preferences,
 )
 from trainer.workspaces import CurrentWorkspace
+
+
+def run_counts(db):
+    """Local classification runs, and how many failed, were rejected or abstained."""
+    run = ClassificationRun
+    total, failed, rejected, abstained = db.execute(
+        select(
+            func.count(),
+            func.count().filter(run.status == "failed"),
+            func.count().filter(run.status == "rejected"),
+            func.count().filter(run.status == "completed", run.confidence == 0),
+        ).where(run.provider == LocalClassifier.provider)
+    ).one()
+    return {
+        "classification_runs": total,
+        "classification_failed": failed,
+        "classification_rejected": rejected,
+        "classification_abstained": abstained,
+    }
 
 
 def create_router(*, settings, health, classifier) -> APIRouter:
@@ -72,7 +92,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
         return {
             "database": "ready",
             **health.snapshot(),
-            "classification_available": classifier is not None,
+            "classification_available": True,  # Local rules always run.
         }
 
     @router.get(
@@ -84,42 +104,11 @@ def create_router(*, settings, health, classifier) -> APIRouter:
                 settings.public()
                 | health.snapshot()
                 | {
-                    "classification_available": classifier is not None,
+                    "classification_available": True,
                     "coverage": coverage(db),
-                    "classification_provider": "local_rules",
-                    "classification_version": classifier.version
-                    if hasattr(classifier, "version")
-                    else "test",
-                    "classification_runs": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(ClassificationRun.provider == "local_rules")
-                    ),
-                    "classification_failed": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(
-                            ClassificationRun.provider == "local_rules",
-                            ClassificationRun.status == "failed",
-                        )
-                    ),
-                    "classification_rejected": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(
-                            ClassificationRun.provider == "local_rules",
-                            ClassificationRun.status == "rejected",
-                        )
-                    ),
-                    "classification_abstained": db.scalar(
-                        select(func.count())
-                        .select_from(ClassificationRun)
-                        .where(
-                            ClassificationRun.provider == "local_rules",
-                            ClassificationRun.status == "completed",
-                            ClassificationRun.confidence == 0,
-                        )
-                    ),
+                    "classification_provider": LocalClassifier.provider,
+                    "classification_version": classifier.version,
+                    **run_counts(db),
                 }
             )
 

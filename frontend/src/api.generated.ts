@@ -490,23 +490,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/games/{game_id}/train": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Train Game */
-        post: operations["train_game_api_games__game_id__train_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/health": {
         parameters: {
             query?: never;
@@ -552,23 +535,6 @@ export interface paths {
         put?: never;
         /** Upload Pgn */
         post: operations["upload_pgn_api_imports_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/imports/chesscom": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Import Chesscom */
-        post: operations["import_chesscom_api_imports_chesscom_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1639,58 +1605,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/sync": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Sync */
-        get: operations["get_sync_api_sync_get"];
-        put?: never;
-        /** Begin Sync */
-        post: operations["begin_sync_api_sync_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/teaching-runs/{run_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Teaching Audit */
-        get: operations["teaching_audit_api_teaching_runs__run_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/teaching-runs/{run_id}/reject": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Reject Teaching */
-        post: operations["reject_teaching_api_teaching_runs__run_id__reject_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/weaknesses": {
         parameters: {
             query?: never;
@@ -1925,78 +1839,6 @@ export interface components {
             score: components["schemas"]["Score"];
             /** Uci */
             uci: string;
-        };
-        /** ChessComImportProgress */
-        ChessComImportProgress: {
-            /** Archives Processed */
-            archives_processed: number;
-            /** Archives Total */
-            archives_total: number;
-            /** Duplicates */
-            duplicates: number;
-            /** End Date */
-            end_date: string | null;
-            /** Errors */
-            errors: components["schemas"]["ImportError"][];
-            /** Fetch Completed */
-            fetch_completed: boolean;
-            /** Filtered */
-            filtered: number;
-            /** Games Fetched */
-            games_fetched: number;
-            /** Games Imported */
-            games_imported: number;
-            /** Job Id */
-            job_id: string;
-            /** Max Games */
-            max_games: number;
-            /** Months */
-            months: number;
-            /**
-             * Provider
-             * @default chesscom
-             */
-            provider: string;
-            /**
-             * Provider Name
-             * @default Chess.com
-             */
-            provider_name: string;
-            /** Rejected */
-            rejected: number;
-            /** Start Date */
-            start_date: string | null;
-            /** Time Class */
-            time_class: string;
-            /** User Id */
-            user_id: string;
-            /** Username */
-            username: string;
-        };
-        /** ChessComRequest */
-        ChessComRequest: {
-            /** End Date */
-            end_date?: string | null;
-            /**
-             * Max Games
-             * @default 100
-             */
-            max_games: number;
-            /**
-             * Months
-             * @default 3
-             */
-            months: number;
-            /** Start Date */
-            start_date?: string | null;
-            /**
-             * Time Class
-             * @default rapid
-             * @enum {string}
-             */
-            time_class: "rapid" | "blitz" | "bullet" | "daily" | "all";
-            /** Username */
-            username: string;
         };
         /** ClassificationAudit */
         ClassificationAudit: {
@@ -2312,13 +2154,6 @@ export interface components {
             /** Id */
             id: string;
         };
-        /** Credentials */
-        Credentials: {
-            /** Password */
-            password: string;
-            /** Username */
-            username: string;
-        };
         /** CrossGameContext */
         CrossGameContext: {
             /** Input Digest */
@@ -2403,15 +2238,6 @@ export interface components {
             /** Time Control */
             time_control: string | null;
         };
-        /** EditorMove */
-        EditorMove: {
-            /** From Square */
-            from_square: string;
-            /** Promotion */
-            promotion?: ("q" | "r" | "b" | "n") | null;
-            /** To Square */
-            to_square: string;
-        };
         /** EditorPosition */
         EditorPosition: {
             /** Fen */
@@ -2432,7 +2258,7 @@ export interface components {
         EditorPositionRequest: {
             /** Fen */
             fen?: string | null;
-            move?: components["schemas"]["EditorMove"] | null;
+            move?: components["schemas"]["SquareMove"] | null;
             /**
              * Moves
              * @default
@@ -2449,7 +2275,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "rook" | "queen" | "minor" | "pawn";
+            kind: "rook" | "queen" | "minor" | "pawn" | "mixed";
         };
         /** Ending */
         Ending: {
@@ -2512,7 +2338,9 @@ export interface components {
             /** Explanation */
             explanation: string;
             /** Findings */
-            findings: components["schemas"]["Finding"][];
+            findings: {
+                [key: string]: components["schemas"]["JsonValue"];
+            }[];
             /** Provider */
             provider: string;
             /** Run Id */
@@ -2934,6 +2762,8 @@ export interface components {
             /** Played Analysis Id */
             played_analysis_id: string;
             practical?: components["schemas"]["PracticalAssessment"] | null;
+            /** Previous Mistake */
+            previous_mistake?: boolean | null;
             previous_score: components["schemas"]["Score"] | null;
             /** Reason */
             reason: string;
@@ -3092,6 +2922,8 @@ export interface components {
         InsightGame: {
             /** Id */
             id: string;
+            /** Move */
+            move: number | null;
             /** Opponent */
             opponent: string;
             /** Opponent Rating */
@@ -3152,7 +2984,6 @@ export interface components {
             activity: components["schemas"]["JobActivity"] | null;
             /** Cancel Requested */
             cancel_requested: boolean;
-            chesscom: components["schemas"]["ChessComImportProgress"] | null;
             /** Classifications Completed */
             classifications_completed: number;
             /**
@@ -3185,14 +3016,17 @@ export interface components {
             priority: number;
             /** Probe Total */
             probe_total: number | null;
-            provider_import?: components["schemas"]["ChessComImportProgress"] | null;
+            provider_import: components["schemas"]["ProviderImportProgress"] | null;
             /**
              * Puzzles Found
              * @default 0
              */
             puzzles_found: number;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "completed" | "failed" | "cancelled";
             /** User Id */
             user_id: string;
         };
@@ -3210,13 +3044,19 @@ export interface components {
         JobStarted: {
             /** Job Id */
             job_id: string;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "completed" | "failed" | "cancelled";
         };
         /** JobStatus */
         JobStatus: {
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "completed" | "failed" | "cancelled";
         };
         JsonValue: unknown;
         /** LegalMove */
@@ -3536,7 +3376,10 @@ export interface components {
             /** Signups Open */
             signups_open: boolean;
         };
-        /** ManualRequest */
+        /**
+         * ManualRequest
+         * @description A hand-made exercise: a position and the moves that answer it.
+         */
         ManualRequest: {
             /**
              * Explanation
@@ -3673,15 +3516,6 @@ export interface components {
             by_phase: components["schemas"]["PhaseRate"][];
             /** Reviewed Games */
             reviewed_games: number;
-        };
-        /** MoveRequest */
-        MoveRequest: {
-            /** From Square */
-            from_square: string;
-            /** Promotion */
-            promotion?: ("q" | "r" | "b" | "n") | null;
-            /** To Square */
-            to_square: string;
         };
         /**
          * NewAccount
@@ -3928,8 +3762,6 @@ export interface components {
             import_id: string;
             /** Imported */
             imported: number;
-            /** Job Id */
-            job_id: string | null;
             /** Processed */
             processed: number;
         };
@@ -4023,6 +3855,8 @@ export interface components {
             fitted_rating: number | null;
             /** Games */
             games: number;
+            /** Human Model */
+            human_model: boolean;
             /** Platform */
             platform: string | null;
             /** Platform Rating */
@@ -4085,6 +3919,10 @@ export interface components {
             coach_id: string;
             /** Coach Name */
             coach_name: string;
+            /** Fallback Elo */
+            fallback_elo: number | null;
+            /** Fallback Plies */
+            fallback_plies: number[];
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
             /** Id */
@@ -4204,6 +4042,47 @@ export interface components {
         };
         /** ProviderConnectionRequest */
         ProviderConnectionRequest: {
+            /** Username */
+            username: string;
+        };
+        /** ProviderImportProgress */
+        ProviderImportProgress: {
+            /** Archives Processed */
+            archives_processed: number;
+            /** Archives Total */
+            archives_total: number;
+            /** Duplicates */
+            duplicates: number;
+            /** End Date */
+            end_date: string | null;
+            /** Errors */
+            errors: components["schemas"]["ImportError"][];
+            /** Fetch Completed */
+            fetch_completed: boolean;
+            /** Filtered */
+            filtered: number;
+            /** Games Fetched */
+            games_fetched: number;
+            /** Games Imported */
+            games_imported: number;
+            /** Job Id */
+            job_id: string;
+            /** Max Games */
+            max_games: number;
+            /** Months */
+            months: number;
+            /** Provider */
+            provider: string;
+            /** Provider Name */
+            provider_name: string;
+            /** Rejected */
+            rejected: number;
+            /** Start Date */
+            start_date: string | null;
+            /** Time Class */
+            time_class: string;
+            /** User Id */
+            user_id: string;
             /** Username */
             username: string;
         };
@@ -4598,7 +4477,7 @@ export interface components {
             /** Message */
             message?: string | null;
             /** Message Kind */
-            message_kind?: ("good_move" | "practice_saved" | "relearning" | "opening_rejected" | "opening_rejected_changed" | "opening_rejected_retired") | null;
+            message_kind?: ("good_move" | "accepted" | "practice_saved" | "relearning" | "opening_rejected" | "opening_rejected_changed" | "opening_rejected_retired") | null;
             /** Next Due */
             next_due?: string | null;
             /** Non Scheduling Reason */
@@ -4756,6 +4635,8 @@ export interface components {
             choices: string[] | null;
             /** Default */
             default: boolean | number | string | null;
+            /** Exclusive Minimum */
+            exclusive_minimum?: number | null;
             /** Help */
             help: string;
             /** Key */
@@ -4871,6 +4752,15 @@ export interface components {
             /** Unique Positions */
             unique_positions: number;
         };
+        /** SquareMove */
+        SquareMove: {
+            /** From Square */
+            from_square: string;
+            /** Promotion */
+            promotion?: ("q" | "r" | "b" | "n") | null;
+            /** To Square */
+            to_square: string;
+        };
         /** Stats */
         Stats: {
             /** Exercises */
@@ -4897,46 +4787,6 @@ export interface components {
             status: string;
             /** Username */
             username: string;
-        };
-        /** TeachingAudit */
-        TeachingAudit: {
-            /** Attempts */
-            attempts: number;
-            /** Cache Key */
-            cache_key: string;
-            /** Confidence */
-            confidence: number | null;
-            /**
-             * Created At
-             * Format: date-time
-             */
-            created_at: string;
-            /** Error */
-            error: string | null;
-            /** Evidence Ids */
-            evidence_ids: string[];
-            /** Id */
-            id: string;
-            /** Input Tokens */
-            input_tokens: number;
-            /** Model */
-            model: string;
-            /** Output Tokens */
-            output_tokens: number;
-            /** Prompt Version */
-            prompt_version: string;
-            /** Response */
-            response: {
-                [key: string]: components["schemas"]["JsonValue"];
-            } | null;
-            /** Schema Version */
-            schema_version: string;
-            /** Status */
-            status: string;
-            /** Unit Id */
-            unit_id: string;
-            /** User Id */
-            user_id: string;
         };
         /** Theory */
         Theory: {
@@ -5130,6 +4980,12 @@ export interface components {
             human_model_workers: number;
             /** Lan Token Configured */
             lan_token_configured: boolean;
+            /** Lichess Max Response Bytes */
+            lichess_max_response_bytes: number;
+            /** Lichess Max Scan Games */
+            lichess_max_scan_games: number;
+            /** Lichess Timeout Seconds */
+            lichess_timeout_seconds: number;
             /** Max Import Bytes */
             max_import_bytes: number;
             /** Min Independent Games */
@@ -5140,12 +4996,6 @@ export interface components {
             multipv: number;
             /** Practical Tolerance Cp */
             practical_tolerance_cp: number;
-            /** Provider Max Response Bytes */
-            provider_max_response_bytes: number;
-            /** Provider Max Scan Games */
-            provider_max_scan_games: number;
-            /** Provider Timeout Seconds */
-            provider_timeout_seconds: number;
             /** Puzzle Generation */
             puzzle_generation: boolean;
             /** Puzzle Generation Depth */
@@ -5156,8 +5006,6 @@ export interface components {
             puzzle_generation_max_plies: number;
             /** Puzzle Generation Time */
             puzzle_generation_time: number;
-            /** Puzzle Pack Path */
-            puzzle_pack_path: string | null;
             /** Puzzle Starter Pack */
             puzzle_starter_pack: boolean;
             /** Retire After Days */
@@ -5426,7 +5274,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["Credentials"];
+                "application/json": components["schemas"]["NewAccount"];
             };
         };
         responses: {
@@ -5572,7 +5420,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["Credentials"];
+                "application/json": components["schemas"]["NewAccount"];
             };
         };
         responses: {
@@ -6068,37 +5916,6 @@ export interface operations {
             };
         };
     };
-    train_game_api_games__game_id__train_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                game_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["JobStarted"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     get_health_api_health_get: {
         parameters: {
             query?: never;
@@ -6159,39 +5976,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PgnImportResult"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    import_chesscom_api_imports_chesscom_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChessComRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["JobStarted"];
                 };
             };
             /** @description Validation Error */
@@ -7661,7 +7445,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["MoveRequest"];
+                "application/json": components["schemas"]["SquareMove"];
             };
         };
         responses: {
@@ -8199,108 +7983,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["LessonSessionView"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_sync_api_sync_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SyncStatus"];
-                };
-            };
-        };
-    };
-    begin_sync_api_sync_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SyncStatus"];
-                };
-            };
-        };
-    };
-    teaching_audit_api_teaching_runs__run_id__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                run_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TeachingAudit"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    reject_teaching_api_teaching_runs__run_id__reject_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                run_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Rejected"];
                 };
             };
             /** @description Validation Error */

@@ -67,7 +67,7 @@ export const corgi: CoachPersonality = {
     human_natural_strong: ["Natural by the human-move model, strong by the engine, and the engine's favorite is another move."],
     book: ["That is {opening}. Standard drill."],
     book_sound: ["Known route: {opening}.", "The manual recognizes {opening} here."],
-    departure: ["End of the manual. From here, the game is in open country."],
+    departure: ["End of our manual. From here, there are no more pages to check."],
     recovery: [{reaction: "Back in the fight!", fact: "After {earlier}, the position is back in playable shape.{help}", takeaway: "Press on."}],
     punishment: ["Chance seized! This move exploits the opening the opponent handed {side} at {earlier}."],
     missed_punishment: ["Chance passed up. {side} got an opening from the opponent at {earlier}, and this move lets it go."],

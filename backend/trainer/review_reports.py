@@ -2,18 +2,26 @@
 
 from collections import defaultdict
 
-from sqlalchemy import and_, case, select
+from sqlalchemy import and_, case, func, select
 
-from trainer.chess_core import Score
+from trainer.game_review import link_previous_scores
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import GameReview, GameReviewMove, HumanAnalysis, ReviewRefinement
+from trainer.review_intelligence.refinement_plan import VERSION as REFINEMENT_VERSION
 
 
 def touch_report(db, row):
     review = db.get(GameReview, row.game_id)
     review.revision += 1
     row.revision = review.revision
+
+
+def saved_report(db, row):
+    """A saved review move's report as the review shows it: the adopted
+    refinement when there is one, else the baseline."""
+    task = db.get(ReviewRefinement, row.refinement_id) if row.refinement_id else None
+    return effective_report(db, row, task)
 
 
 def effective_report(db, row, task):
@@ -31,7 +39,7 @@ def effective_report(db, row, task):
     )
     if task:
         report["refinement"] = dict(
-            version="refinement-1",
+            version=REFINEMENT_VERSION,
             task_id=task.id,
             status=task.status,
             triggers=task.triggers,
@@ -67,14 +75,7 @@ def load_game_reports(db, game_id):
         .where(GameReviewMove.game_id == game_id)
         .order_by(GameReviewMove.ply)
     ).all()
-    reports = {}
-    previous = None
-    for row, task in rows:
-        report = effective_report(db, row, task)
-        # Great/recovery comparisons must use the same generation as displayed scores.
-        report["previous_score"] = previous.model_dump() if previous else None
-        previous = Score.model_validate(report["best"]["score"]).negate()
-        reports[row.ply] = report
+    reports = link_previous_scores({row.ply: effective_report(db, row, task) for row, task in rows})
     return reports, {row.ply: row.revision for row, _ in rows}
 
 
@@ -93,18 +94,21 @@ def load_accuracy_scores(db, game_ids):
         == base["before_analysis_id"].as_string(),
         ReviewRefinement.config["baseline_ids"][1].as_string()
         == base["played_analysis_id"].as_string(),
-        refined.is_not(None),
+        # A JSON null is stored as text, so test for an object, as the Python rule does.
+        func.json_type(refined) == "object",
     )
-    rows = db.execute(
-        select(
-            GameReviewMove.game_id,
-            GameReviewMove.ply,
-            case((adopted, refined["white_score"]), else_=base["white_score"]),
-            case((adopted, refined["best"]["score"]), else_=base["best"]["score"]),
-        )
-        .outerjoin(ReviewRefinement, GameReviewMove.refinement_id == ReviewRefinement.id)
-        .where(GameReviewMove.game_id.in_(game_ids))
-    )
-    for game_id, ply, white_score, best_score in rows:
-        saved[game_id][ply] = {"white_score": white_score, "best": {"score": best_score}}
+    statement = select(
+        GameReviewMove.game_id,
+        GameReviewMove.ply,
+        case((adopted, refined["white_score"]), else_=base["white_score"]),
+        case((adopted, refined["best"]["score"]), else_=base["best"]["score"]),
+    ).outerjoin(ReviewRefinement, GameReviewMove.refinement_id == ReviewRefinement.id)
+    game_ids = list(game_ids)
+    # Chunked: a whole library's ids would exceed SQLite's bound-parameter limit.
+    for start in range(0, len(game_ids), 500):
+        chunk = game_ids[start : start + 500]
+        for game_id, ply, white_score, best_score in db.execute(
+            statement.where(GameReviewMove.game_id.in_(chunk))
+        ):
+            saved[game_id][ply] = {"white_score": white_score, "best": {"score": best_score}}
     return saved

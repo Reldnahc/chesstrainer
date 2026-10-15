@@ -7,6 +7,7 @@ from trainer import presence
 from trainer.accounts import Accounts
 from trainer.config import Settings
 from trainer.db import database, migrate
+from trainer.ownership import LOCAL_USER_ID, account_sessions
 
 
 @pytest.fixture(autouse=True)
@@ -40,11 +41,16 @@ def settings(tmp_path):
 
 
 @pytest.fixture
-def sessions(settings):
-    engine, factory = database(settings.database_path)
+def sql_engine(settings):
+    engine, _ = database(settings.database_path)
     migrate(engine)
-    yield factory
+    yield engine
     engine.dispose()
+
+
+@pytest.fixture
+def sessions(sql_engine):
+    return account_sessions(sql_engine, LOCAL_USER_ID)
 
 
 @pytest.fixture

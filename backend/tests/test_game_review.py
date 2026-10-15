@@ -7,7 +7,12 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.chess_core import Score
-from trainer.game_review import analyze_move, classify, promote_stronger_played
+from trainer.game_review import (
+    analyze_move,
+    classify,
+    link_previous_scores,
+    promote_stronger_played,
+)
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, Decision, Game, GameReviewMove, Review
 
@@ -50,12 +55,82 @@ def test_great_only_good_and_both_opponent_error_transitions():
     losing["actual"]["uci"] = losing["best"]["uci"]
     assert classify(losing, 1000)[0] == "Best"
     for prior, current in [(0, 250), (-250, 0)]:
-        assert (
-            classify(
-                quality(current, current, previous_score={"kind": "cp", "value": prior}), 1000
-            )[0]
-            == "Great"
+        previous = {"previous_score": {"kind": "cp", "value": prior}}
+        assert classify(quality(current, current, **previous, previous_mistake=True), 1000)[0] == (
+            "Great"
         )
+        # The same scores without an opponent error are a different search, not a gift.
+        assert classify(quality(current, current, **previous, previous_mistake=False), 1000)[0] == (
+            "Best"
+        )
+
+
+def test_great_needs_a_runner_up_that_actually_loses():
+    still_winning = quality(500, 500, second_score={"kind": "cp", "value": 300})
+    still_winning["actual"]["uci"] = still_winning["best"]["uci"]
+    assert classify(still_winning, 1500)[0] == "Best"
+    mated = quality(500, 500, second_score={"kind": "mate", "value": -3})
+    mated["actual"]["uci"] = mated["best"]["uci"]
+    assert classify(mated, 1500)[0] == "Great"
+    # A runner-up that only misses a mate while still winning is not losing.
+    mate = quality(0, 0, second_score={"kind": "cp", "value": 600})
+    mate["best"]["score"] = mate["actual"]["score"] = {"kind": "mate", "value": 3}
+    mate["actual"]["uci"] = mate["best"]["uci"]
+    assert classify(mate, 1500)[0] == "Best"
+
+
+def test_a_mate_seen_on_one_side_only_is_a_mate_transition():
+    # Scores alone cannot tell a horizon difference from a real miss; the review
+    # settles that with a deeper search before grading (see the native test).
+    missed = quality(0, 499)
+    missed["best"]["score"] = {"kind": "mate", "value": 5}
+    assert classify(missed, 1500)[0] == "Miss"
+    allowed = quality(-442, 0)
+    allowed["actual"]["score"] = {"kind": "mate", "value": -4}
+    assert classify(allowed, 1500)[0] == "Blunder"
+
+
+@pytest.mark.stockfish
+def test_a_long_mate_beyond_the_played_moves_search_is_settled_deeper(
+    settings, sessions, stockfish_path
+):
+    from trainer.engine import Stockfish
+
+    settings.stockfish_path = stockfish_path
+    # The review's own default limits, where these horizon differences arise.
+    settings.deep_depth, settings.deep_time = 16, 0.8
+    engine = Stockfish(settings, sessions)
+    try:
+        # Kh6 keeps a queen-against-king mate its first search reads as about +6.
+        kept = analyze_move(
+            engine, chess.Board("8/8/8/7K/8/7Q/5k2/8 w - - 0 1"), chess.Move.from_uci("h5h6")
+        )
+        assert kept["actual"]["score"]["kind"] == "mate"
+        assert classify(kept, 1500)[0] == "Good"
+        # Every defence of the bare king is mated; the root search reads Kd3 as
+        # about -5.8 and Kf3 as mated in four. Deeper, Kf3 only hastens the mate.
+        lost = analyze_move(
+            engine, chess.Board("4Q3/8/8/8/8/7K/4k3/8 b - - 0 1"), chess.Move.from_uci("e2f3")
+        )
+        assert lost["best"]["score"]["kind"] == "mate"
+        assert classify(lost, 1500)[0] in {"Inaccuracy", "Best"}
+        # Qxc8+ really gives up Bh6+'s mate in five for about +5.
+        board = chess.Board("r1r2k2/2Q1R2p/5bp1/8/3p2P1/2P2Pn1/1P6/1NB2RK1 w - - 1 25")
+        missed = analyze_move(engine, board, chess.Move.from_uci("c7c8"))
+        if missed["best"]["score"]["kind"] == "mate":
+            assert missed["actual"]["score"]["kind"] == "cp"
+            assert classify(missed, 1500)[0] == "Miss"
+    finally:
+        engine.close()
+
+
+def test_previous_scores_carry_whether_the_opponent_erred():
+    first = quality(30, -150)
+    second = quality(0, 0)
+    linked = link_previous_scores({1: first, 2: second})
+    assert linked[2]["previous_score"] == {"kind": "cp", "value": -30, "mate_given": False}
+    assert linked[2]["previous_mistake"] is True
+    assert link_previous_scores({1: quality(30, 0), 2: second})[2]["previous_mistake"] is False
 
 
 def test_a_forced_move_can_never_be_brilliant_even_with_saved_sacrifice_evidence():
@@ -69,13 +144,16 @@ def test_mate_is_not_centipawn_loss():
     report["actual"]["score"] = {"kind": "mate", "value": -2}
     assert classify(report, 400)[0] == "Blunder"
     report["best"]["score"] = {"kind": "mate", "value": -3}
-    assert classify(report, 400)[0] == "Good"  # Already lost, no new allowed mate.
+    # Already lost: being mated sooner is the only thing left to give away.
+    assert classify(report, 400)[0] == "Inaccuracy"
+    report["actual"]["score"] = {"kind": "mate", "value": -3}
+    assert classify(report, 400)[0] == "Best"  # The same defence length: nothing better.
     report["best"]["score"] = {"kind": "mate", "value": 2}
     report["actual"]["score"] = {"kind": "cp", "value": 0}
     assert classify(report, 400)[0] == "Miss"
 
 
-@pytest.mark.parametrize("loss", [0, 1, 5, 10])
+@pytest.mark.parametrize("loss", [1, 5, 10])
 @pytest.mark.parametrize("rating", [400, 2500])
 def test_best_requires_the_top_move_not_a_nearby_evaluation(loss, rating):
     report = quality(20, 20 - loss)
@@ -97,17 +175,26 @@ def test_retaining_a_slower_mate_is_good_not_missed_or_exceptional(best_mate, pl
     assert classify(report, 1000)[0] == "Miss"
 
 
-@pytest.mark.parametrize("distance,expected", [(1, "Best"), (2, "Good")])
-def test_different_mating_moves_only_tie_for_best_when_both_are_immediate(distance, expected):
+@pytest.mark.parametrize("distance", [1, 2, 5])
+def test_a_different_move_that_mates_as_fast_is_best(distance):
     report = quality(second_score={"kind": "mate", "value": distance})
     report["best"]["score"] = {"kind": "mate", "value": distance}
     report["actual"]["score"] = {"kind": "mate", "value": distance}
-    assert classify(report, 1000)[0] == expected
+    assert classify(report, 1000)[0] == "Best"
+
+
+def test_an_equally_scored_different_move_is_best():
+    assert classify(quality(0, 0), 1000) == ("Best", "This is as strong as the engine's top move.")
+    assert classify(quality(10, 0), 1000)[0] == "Good"
+    # ...h5 and ...h6 are both mated in one: nothing better existed.
+    mated = quality(0, 0)
+    mated["best"]["score"] = mated["actual"]["score"] = {"kind": "mate", "value": -1}
+    assert classify(mated, 1000) == ("Best", "This is as strong as the engine's top move.")
 
 
 def seed(app, pgn='[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'):
     with app.state.sessions() as db:
-        import_games(db, "synthetic.pgn", pgn, ["Learner"], None, queue_analysis=False)
+        import_games(db, "synthetic.pgn", pgn, ["Learner"], None)
         return db.scalar(select(Game.id))
 
 
@@ -446,11 +533,14 @@ def test_parallel_review_preserves_order_history_and_engine_budget(settings, mon
             assert job.positions_triaged == 4
             rows = db.scalars(select(GameReviewMove).order_by(GameReviewMove.ply)).all()
             assert [row.ply for row in rows] == [1, 2, 3, 4]
-            assert rows[0].report["previous_score"] is None
-            for row in rows[1:]:
-                assert row.report["previous_score"] == {
+            # Previous scores are linked when reports are read, in game order.
+            reports = link_previous_scores({row.ply: row.report for row in rows})
+            assert "previous_score" not in rows[0].report
+            assert reports[1].get("previous_score") is None
+            for ply in (2, 3, 4):
+                assert reports[ply]["previous_score"] == {
                     "kind": "cp",
-                    "value": -(row.ply - 1) * 100,
+                    "value": -(ply - 1) * 100,
                     "mate_given": False,
                 }
         assert finished[:2] == [2, 1]
@@ -572,3 +662,45 @@ def test_export_returns_saved_pgn_and_every_mainline_position(settings):
     assert data["positions"][0]["uci"] is None
     assert [p["uci"] for p in data["positions"][1:]] == [f["uci"] for f in detail["frames"][1:]]
     assert data["orientation"] == detail["orientation"]
+
+
+def test_a_blunder_reason_says_whether_the_mover_stays_winning_or_was_lost():
+    # Centipawn grading is unchanged; only the reason is truthful about the result.
+    assert classify(quality(1500, 1200), 1500) == (
+        "Blunder",
+        "This move gives up a large amount of a winning advantage, though the position "
+        "remains clearly winning.",
+    )
+    assert classify(quality(-372, -604), 1500) == (
+        "Blunder",
+        "This move makes an already lost position much worse.",
+    )
+    assert classify(quality(0, -250), 1500)[1] == (
+        "This move gives away a decisive advantage or allows a severe loss."
+    )
+
+
+def test_a_promotion_caption_reads_as_one_sentence():
+    from trainer.explanation_types import replay_line
+
+    frames = replay_line(chess.Board("8/P6k/8/8/8/8/8/K7 w - - 0 1"), ["a7a8q"])
+    assert frames[1].annotation.startswith("White plays a8=Q, promoting to a queen")
+
+
+def test_the_coach_leads_with_a_finding_that_starts_with_the_move():
+    from types import SimpleNamespace
+
+    from trainer.game_review import lead_order
+
+    def finding(skill_id, plies):
+        return SimpleNamespace(skill_id=skill_id, plies=plies)
+
+    capture, late_pin, fork = (
+        finding("hanging_piece", [1]),
+        finding("pin", [3]),
+        finding("fork", [2]),
+    )
+    # A pin three plies on comes after the capture the move itself makes.
+    assert lead_order([late_pin, capture], 1) == [capture, late_pin]
+    # A preferred mechanism starting with the reply still leads.
+    assert lead_order([capture, late_pin, fork], 1) == [fork, capture, late_pin]

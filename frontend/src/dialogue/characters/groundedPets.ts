@@ -76,7 +76,7 @@ export const puppy: CoachPersonality = {
     unavailable: [{fact: "Hmm, the engine came back without enough to explain this one.", takeaway: "Feel free to explore the board anyway!"}],
     book: [{fact: "Opening name tag: {opening}.", takeaway: "Now we know what to call it!"}],
     book_sound: [{fact: "Book road, and it's called {opening}."}],
-    departure: [{fact: "Book's all read up; from this move on, no more pages.", takeaway: "Uncharted ground from here, woo!"}],
+    departure: [{fact: "Book's all read up; from this move on, no more pages.", takeaway: "Off our map from here, woo!"}],
     variation: [{fact: "Trying this side path: {detail}", takeaway: "Just a what-if! The game itself went differently."}],
     development: [{fact: "{lead}gets the {piece} up and out of its starting spot.", takeaway: "Another teammate joins in!"}],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Zoom zoom!"],

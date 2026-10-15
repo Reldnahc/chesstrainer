@@ -3,15 +3,18 @@
 import hashlib
 import json
 
-from fastapi import HTTPException
 from sqlalchemy import select
 
+from trainer.errors import Conflict, NotFound
 from trainer.models import StudyLessonProgress, StudyLessonSession
-from trainer.study_lessons.bundled import course_topic
+from trainer.session_commands import RESUME_LIMIT
 from trainer.study_lessons.content import CourseDefinition
 
 
 def fingerprint(course):
+    # Saved with every lesson's progress, so this exact encoding is pinned by a
+    # known-hash test: chess_core.digest uses compact separators and would
+    # invalidate every learner's progress.
     return hashlib.sha256(
         json.dumps(course.model_dump(mode="json"), sort_keys=True).encode()
     ).hexdigest()
@@ -28,7 +31,7 @@ def course_for(db, providers, course_id, revision=None, *, for_start=False, inst
     else:
         try:
             course = providers.get(db, course_id, revision)
-        except HTTPException as exc:
+        except NotFound as exc:
             snapshot = db.scalar(saved.order_by(StudyLessonSession.started_at.desc()).limit(1))
             if snapshot is None:
                 raise exc
@@ -44,13 +47,13 @@ def course_for(db, providers, course_id, revision=None, *, for_start=False, inst
     if existing_hash and existing_hash != fingerprint(course):
         # A revision is immutable even if a provider accidentally changes its file.
         if for_start:
-            raise HTTPException(409, "Installed course changed without a new revision")
+            raise Conflict("Installed course changed without a new revision")
         snapshot = db.scalar(
             saved.where(StudyLessonSession.course_revision == course.revision).limit(1)
         )
         if snapshot is not None:
             return CourseDefinition.model_validate(snapshot)
-        raise HTTPException(409, "Installed course changed without a new revision")
+        raise Conflict("Installed course changed without a new revision")
     return course
 
 
@@ -67,7 +70,7 @@ def completions(db):
     )
 
 
-def library(db, providers, source=lambda course_id, revision=None: "built_in"):
+def library(db, providers):
     completed = completions(db)
     courses = []
     for candidate in providers.courses(db):
@@ -84,8 +87,8 @@ def library(db, providers, source=lambda course_id, revision=None: "built_in"):
                     (course.id, course.revision, chapter.id) in completed
                     for chapter in course.chapters
                 ),
-                "topic": course_topic(course.id),
-                "source": source(course.id, course.revision),
+                "topic": providers.topic(course.id),
+                "source": providers.source(course.id, course.revision),
             }
         )
     resume = db.execute(
@@ -104,14 +107,14 @@ def library(db, providers, source=lambda course_id, revision=None: "built_in"):
             StudyLessonSession.course_id.in_({course["id"] for course in courses}),
         )
         .order_by(StudyLessonSession.updated_at.desc())
-        .limit(20)
+        .limit(RESUME_LIMIT)
     )
     return {
         "courses": courses,
         "resume": [
             {
                 **row._mapping,
-                "course_topic": course_topic(row.course_id),
+                "course_topic": providers.topic(row.course_id),
                 "updated_at": row.updated_at.isoformat(),
             }
             for row in resume
@@ -119,9 +122,7 @@ def library(db, providers, source=lambda course_id, revision=None: "built_in"):
     }
 
 
-def course_view(
-    db, providers, course_id, revision=None, source=lambda course_id, revision=None: "built_in"
-):
+def course_view(db, providers, course_id, revision=None):
     course = course_for(db, providers, course_id, revision)
     completed = completions(db)
     return {
@@ -130,8 +131,8 @@ def course_view(
         "title": course.title,
         "description": course.description,
         "learner_color": course.learner_color,
-        "topic": course_topic(course.id),
-        "source": source(course.id, course.revision),
+        "topic": providers.topic(course.id),
+        "source": providers.source(course.id, course.revision),
         "chapters": [
             {
                 "id": chapter.id,

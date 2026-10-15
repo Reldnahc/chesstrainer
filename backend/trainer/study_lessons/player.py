@@ -2,9 +2,8 @@
 
 from copy import deepcopy
 
-from fastapi import HTTPException
-
 from trainer.chess_core import legal_move
+from trainer.errors import Conflict, InvalidInput
 from trainer.study_lessons.content import Decision, Position
 
 
@@ -99,7 +98,7 @@ def decision(course, step, state, uci, reveal):
     try:
         move = legal_move(board, uci)
     except ValueError as exc:
-        raise HTTPException(422, "Move is not legal in this lesson position") from exc
+        raise InvalidInput("Move is not legal in this lesson position") from exc
     if step.kind == "decision":
         choice = next((choice for choice in step.choices if choice.uci == uci), None)
         if choice is None:
@@ -143,11 +142,11 @@ def transition(course, chapter, previous, request):
     state = deepcopy(previous)
     action = request.action
     if action not in available_actions(course, chapter, state):
-        raise HTTPException(409, "That action is not available at this lesson step")
+        raise Conflict("That action is not available at this lesson step")
     if (action == "move") != (request.uci is not None) or (action == "game_seek") != (
         request.ply is not None
     ):
-        raise HTTPException(422, "Lesson action parameters do not match the command")
+        raise InvalidInput("Lesson action parameters do not match the command")
     step = chapter.step(state["step_id"])
     if action == "back":
         state.update(state["trail"].pop())
@@ -209,7 +208,7 @@ def inspect_game(course, step, state, request):
         return state, []
     full_moves = (*game.position.moves, *game.moves)
     if request.ply > len(full_moves):
-        raise HTTPException(422, "Game position is outside the source game")
+        raise InvalidInput("Game position is outside the source game")
     previous_ply = state["game"]["ply"]
     state["game"]["ply"] = request.ply
     state["position"] = Position(

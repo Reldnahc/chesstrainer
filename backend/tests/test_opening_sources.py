@@ -2,9 +2,9 @@
 
 import chess
 import pytest
-from fastapi import HTTPException
 from study_lesson_fixtures import BrowserLessonProvider, connected_course
 from trainer.contracts.opening_studies import OpeningEnrollment
+from trainer.errors import DomainError
 from trainer.opening_book import VERSION
 from trainer.opening_studies import catalogue, sources
 from trainer.study_lessons.content import CourseDefinition, Position
@@ -29,9 +29,9 @@ def test_catalogue_resolution_rejects_other_revisions_and_returns_independent_da
     first = catalogue.get(original.source_key, VERSION)
     first.moves.append("0000")
     assert catalogue.get(original.source_key).moves == original.moves
-    with pytest.raises(HTTPException) as error:
+    with pytest.raises(DomainError) as error:
         catalogue.get(original.source_key, "future-catalogue")
-    assert error.value.status_code == 404
+    assert error.value.status == 404
 
 
 def test_catalogue_search_pagination_and_detail_count_actual_decisions():
@@ -44,7 +44,7 @@ def test_catalogue_search_pagination_and_detail_count_actual_decisions():
     )
     for row in result.items:
         assert "italian" in row.name.casefold() and row.eco.startswith("C5")
-        detail = catalogue.detail(None, row.source_key)
+        detail = sources.catalogue_detail(row.source_key)
         assert row.white_positions + row.black_positions == row.plies
         assert len(detail.frames) == row.plies
         assert detail.white_positions == row.white_positions
@@ -100,22 +100,22 @@ def test_course_line_can_be_independent_of_catalogue_and_keeps_full_setup_histor
         assert line.initial_fen == chess.STARTING_FEN and line.eco is None
         assert line.source_version == "fixture-v1" and line.source == "course_line"
         assert sources.resolve_line(db, providers, request_for(line)) == line
-        with pytest.raises(HTTPException) as error:
+        with pytest.raises(DomainError) as error:
             sources.resolve_line(db, providers, request_for(line, source_key="wrong-line"))
-        assert error.value.status_code == 422
+        assert error.value.status == 422
 
 
 @pytest.mark.parametrize("line_id", ["example-only", "fixture-game", "quiet-reply"])
 def test_illustrative_games_and_undesignated_lines_cannot_become_repertoire(sessions, line_id):
     provider = BrowserLessonProvider()
     provider.install("local", "connected")
-    with sessions() as db, pytest.raises(HTTPException) as error:
+    with sessions() as db, pytest.raises(DomainError) as error:
         sources.course_line(db, CourseProviders((provider,)), "connected", "fixture-v1", line_id)
-    assert error.value.status_code in {404, 422}
+    assert error.value.status in {404, 422}
 
 
 def test_catalogue_enrollment_cannot_smuggle_course_identity():
     line = catalogue.lines()[0]
-    with pytest.raises(HTTPException) as error:
+    with pytest.raises(DomainError) as error:
         sources.resolve_line(None, None, request_for(line, course_id="connected"))
-    assert error.value.status_code == 422
+    assert error.value.status == 422

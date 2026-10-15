@@ -1,20 +1,27 @@
 """Account-owned lesson snapshots, progress and exactly-once player commands."""
 
-from fastapi import HTTPException
-from sqlalchemy import select, update
-from sqlalchemy.orm.attributes import set_committed_value
+from sqlalchemy import select
 
+from trainer.errors import NotFound
 from trainer.models import StudyLessonCommand, StudyLessonProgress, StudyLessonSession, now
+from trainer.session_commands import (
+    answered_before,
+    claim_revision,
+    require_revision,
+    started_before,
+)
 from trainer.study_lessons.content import CourseDefinition, Position
 from trainer.study_lessons.player import initial_state, transition
 from trainer.study_lessons.presentation import view
 from trainer.study_lessons.queries import course_for, fingerprint
 
+CHANGED = "Lesson changed. Reload the session before continuing."
+
 
 def require_session(db, session_id):
     session = db.get(StudyLessonSession, session_id)
     if session is None:
-        raise HTTPException(404, "Lesson session not found")
+        raise NotFound("Lesson session not found")
     return session
 
 
@@ -40,19 +47,21 @@ def progress_for(db, session):
 
 
 def start_session(db, providers, request):
-    previous = db.scalar(
-        select(StudyLessonSession).where(StudyLessonSession.request_id == request.request_id)
+    previous = started_before(
+        db,
+        StudyLessonSession,
+        request.request_id,
+        (request.course_id, request.course_revision, request.chapter_id),
+        lambda row: (row.course_id, row.course_revision, row.chapter_id),
+        "Request ID already used for another lesson",
     )
-    identity = (request.course_id, request.course_revision, request.chapter_id)
     if previous:
-        if (previous.course_id, previous.course_revision, previous.chapter_id) != identity:
-            raise HTTPException(409, "Request ID already used for another lesson")
-        return view(previous)
+        return view(previous, providers.topic(previous.course_id))
     course = course_for(db, providers, request.course_id, request.course_revision, for_start=True)
     try:
         chapter = course.chapter(request.chapter_id)
     except StopIteration as exc:
-        raise HTTPException(404, "Course chapter not found") from exc
+        raise NotFound("Course chapter not found") from exc
     session = StudyLessonSession(
         request_id=request.request_id,
         course_id=course.id,
@@ -71,41 +80,29 @@ def start_session(db, providers, request):
     start = chapter.step(chapter.entry_step).position
     current = Position.model_validate(session.state["position"])
     playback = current.frames()[len(start.moves) :]
-    result = view(session, playback)
+    result = view(session, providers.topic(course.id), playback)
     db.commit()
     return result
 
 
-def command(db, session_id, request):
+def command(db, providers, session_id, request):
     session = require_session(db, session_id)
     payload = request.model_dump(mode="json")
-    previous = db.scalar(
-        select(StudyLessonCommand).where(
-            StudyLessonCommand.session_id == session.id,
-            StudyLessonCommand.request_id == request.request_id,
-        )
+    answered = answered_before(
+        db,
+        StudyLessonCommand,
+        session,
+        request.request_id,
+        payload,
+        "Request ID already used for another lesson action",
     )
-    if previous:
-        if previous.request != payload:
-            raise HTTPException(409, "Request ID already used for another lesson action")
-        return previous.response
-    if session.revision != request.revision:
-        raise HTTPException(409, "Lesson changed. Reload the session before continuing.")
+    if answered is not None:
+        return answered
+    require_revision(session, request.revision, CHANGED)
     course = CourseDefinition.model_validate(session.snapshot)
     chapter = course.chapter(session.chapter_id)
     state, playback = transition(course, chapter, session.state, request)
-    changed = db.execute(
-        update(StudyLessonSession)
-        .where(
-            StudyLessonSession.id == session.id,
-            StudyLessonSession.revision == request.revision,
-        )
-        .values(revision=request.revision + 1)
-        .execution_options(synchronize_session=False)
-    )
-    if changed.rowcount != 1:
-        raise HTTPException(409, "Lesson changed. Reload the session before continuing.")
-    set_committed_value(session, "revision", request.revision + 1)
+    claim_revision(db, session, request.revision, CHANGED)
     progress = progress_for(db, session)
     progress.viewed_steps = sorted(set(progress.viewed_steps) | {state["step_id"]})
     if request.action in {"move", "show_move"}:
@@ -114,13 +111,14 @@ def command(db, session_id, request):
         )
     session.state = state
     session.status = state["status"]
-    session.updated_at = progress.updated_at = now()
+    moment = now()  # One transition, one time.
+    session.updated_at = progress.updated_at = moment
     if state["status"] == "completed":
         if session.completed_at is None:
-            session.completed_at = now()
+            session.completed_at = moment
         if progress.completed_at is None:
-            progress.completed_at = now()
-    result = view(session, playback)
+            progress.completed_at = moment
+    result = view(session, providers.topic(session.course_id), playback)
     db.add(
         StudyLessonCommand(
             session_id=session.id, request_id=request.request_id, request=payload, response=result

@@ -6,7 +6,6 @@ from pydantic import JsonValue
 from trainer.chess_core import Candidate
 from trainer.contracts.common import Contract
 from trainer.contracts.workspace import Coverage
-from trainer.diagnosis_types import Finding
 
 
 class SkillPriority(Contract):
@@ -44,7 +43,9 @@ class EvidenceClassification(Contract):
     confidence: float
     run_id: str
     provider: str
-    findings: list[Finding]
+    # Read from saved runs of any rule version, so opaque like RunAudit.response:
+    # an older run's findings need not match today's Finding shape.
+    findings: list[dict[str, JsonValue]]
 
 
 class Evidence(Contract):
@@ -83,8 +84,3 @@ class ClassificationAudit(RunAudit):
     provider: str
     version: str
     decision_id: str
-
-
-class TeachingAudit(RunAudit):
-    unit_id: str
-    evidence_ids: list[str]

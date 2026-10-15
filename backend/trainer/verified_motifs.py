@@ -10,7 +10,14 @@ import chess
 
 from trainer.chess_core import VALUES, material
 from trainer.diagnosis_types import Finding
-from trainer.tactical_geometry import names, valuable_targets, witness
+from trainer.tactical_geometry import (
+    SLIDERS,
+    defender_capture_is_worthwhile,
+    names,
+    recapturers,
+    valuable_targets,
+    witness,
+)
 
 
 @dataclass
@@ -100,7 +107,9 @@ def hanging_capture(event: TacticalEvent) -> None:
         event.first == event.origin_first
         and captured
         and captured.piece_type != chess.PAWN
-        and not event.before.attackers(captured.color, event.move.to_square)
+        # Undefended means no defender once the capture is made, which also counts
+        # a defender behind the capturing piece (an x-ray along its line).
+        and not recapturers(event.after, event.move.to_square, captured.color)
         and gain > 0
         # An equal trade followed by an unrelated lost pawn is not a hung
         # queen. Later compensation may reduce a real initial material loss.
@@ -174,7 +183,12 @@ def checking_attack(event: TacticalEvent) -> None:
             f"{event.san} gives double check in this verified continuation.",
             mechanism="double_check",
         )
-    elif checkers and event.move.to_square not in checkers:
+    elif (
+        checkers
+        and event.move.to_square not in checkers
+        # Castling checks from the castling rook itself; nothing is uncovered.
+        and not event.before.is_castling(event.move)
+    ):
         event.add(
             "discovered_attack",
             [event.first],
@@ -193,14 +207,19 @@ def pinned_defender(event: TacticalEvent) -> None:
         event.before.piece_at(event.move.to_square) if event.before.is_capture(event.move) else None
     )
     if captured:
-        defenders = set(event.before.attackers(captured.color, event.move.to_square))
+        # Judged after the capture: a capture by the pinning piece itself releases
+        # the pin, and then the defender can recapture after all.
+        after, target = event.after, event.move.to_square
+        defenders = set(after.attackers(captured.color, target))
         pinned = [
             sq
             for sq in defenders
-            if event.before.is_pinned(captured.color, sq)
-            and event.move.to_square not in event.before.pin(captured.color, sq)
+            if after.is_pinned(captured.color, sq) and target not in after.pin(captured.color, sq)
         ]
-        if pinned and set(pinned) == defenders:
+        recapture = any(
+            move.to_square == target and move.from_square in defenders for move in after.legal_moves
+        )
+        if pinned and set(pinned) == defenders and not recapture:
             event.add(
                 "pin",
                 [event.first],
@@ -221,7 +240,7 @@ def absolute_skewer(event: TacticalEvent) -> None:
         event.before.is_check() is False
         and event.after.is_check()
         and event.move.to_square in event.after.checkers()
-        and event.piece.piece_type in {chess.BISHOP, chess.ROOK, chess.QUEEN}
+        and event.piece.piece_type in SLIDERS
         and event.first + 2 <= event.witness_end
     ):
         # Absolute skewer: king must leave the ray; this same slider then takes
@@ -267,13 +286,14 @@ def removed_defender(event: TacticalEvent) -> None:
                 and not remaining
                 and event.move.to_square != follow.to_square
                 and capture_board.is_capture(follow)
-                and (
-                    VALUES[victim.piece_type] >= VALUES[captured.piece_type]
-                    or (
-                        event.boards[event.first].is_capture(event.boards[event.first + 1].peek())
-                        and event.boards[event.first + 1].peek().to_square == event.move.to_square
-                        and VALUES[event.piece.piece_type] >= VALUES[captured.piece_type]
+                and defender_capture_is_worthwhile(
+                    victim.piece_type,
+                    captured.piece_type,
+                    event.piece.piece_type,
+                    recaptured=event.boards[event.first].is_capture(
+                        event.boards[event.first + 1].peek()
                     )
+                    and event.boards[event.first + 1].peek().to_square == event.move.to_square,
                 )
             ):
                 event.add(

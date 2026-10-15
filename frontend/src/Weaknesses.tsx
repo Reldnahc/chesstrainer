@@ -18,13 +18,14 @@ function WeaknessCard({ skill, onEvidence }: {
   return <article className="panel weakness" aria-labelledby={`weakness-${skill.skill_id}`}>
     <div className="weakness-heading">
       <h3 id={`weakness-${skill.skill_id}`}>{skill.title}</h3>
-      <span className="badge">{skill.provisional ? "Early evidence" : "Across several games"}</span>
+      <span className="badge">{skill.provisional ? "Early evidence" : `Across ${skill.independent_games} games`}</span>
     </div>
     <p className="weakness-cue">{skill.cue}</p>
     <StatList items={[
       { label: "Positions", value: skill.unique_positions },
       { label: "Games", value: skill.independent_games },
-      { label: "Scheduled reviews", value: skill.reviews },
+      // The priority reads at most the 30 latest recalls of these positions.
+      { label: "Recent reviews", value: skill.reviews },
     ]} />
     <div className="weakness-practice">
       {skill.focused_attempts > 0 && <p className="small">

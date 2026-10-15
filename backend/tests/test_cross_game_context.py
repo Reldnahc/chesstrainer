@@ -125,3 +125,21 @@ def test_no_supported_history_never_turns_into_a_practice_transfer_claim(setting
         assert result.weaknesses == []
         assert result.scope == "other_saved_games"
         assert "recurrence_does_not_measure_training_transfer" in result.limitations
+
+
+def test_weakness_priority_formula():
+    from trainer.weaknesses import priority_score
+
+    score = priority_score(
+        [1.0, 0.5],
+        foundation=True,
+        target_rating=1500,
+        reviews=10,
+        failures=2,
+        slow=1,
+        lessons=4,
+        lesson_failures=1,
+    )
+    assert score == pytest.approx(1.5 * 1.4 * (1 + 0.2 + 0.02) * 1.0625)
+    clean = dict(foundation=False, target_rating=2000, slow=0, lessons=0, lesson_failures=0)
+    assert priority_score([2.0], reviews=5, failures=0, **clean) == pytest.approx(1.6)

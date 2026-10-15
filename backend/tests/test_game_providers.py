@@ -144,7 +144,7 @@ def test_lichess_errors_do_not_follow_redirects_or_retry_rate_limits(settings, s
 
 
 def test_lichess_bounds_and_cancellation(settings, sessions):
-    settings.provider_max_response_bytes = 1000
+    settings.lichess_max_response_bytes = 1000
     with pytest.raises(ProviderError, match="response limit"):
         run(source(sessions), sessions, settings, client(settings, [record()] * 10))
     remote = client(settings, [record()])
@@ -194,7 +194,7 @@ def test_generic_api_connections_and_fetch_jobs_never_start_engine(settings):
         app.state.runner.run_job(job)
         saved = api.get("/api/jobs").json()[0]
         assert saved["status"] == "completed" and saved["positions_triaged"] == 0
-        assert saved["provider_import"]["provider"] == "lichess" and saved["chesscom"] is None
+        assert saved["provider_import"]["provider"] == "lichess"
         sync = api.post("/api/providers/lichess/sync").json()
         assert sync["provider"] == "lichess"
         assert api.post("/api/providers/lichess/sync").json()["job_id"] == sync["job_id"]

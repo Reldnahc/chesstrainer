@@ -215,7 +215,7 @@ export function ImportJob({
   fail: (e: unknown) => void;
   compact?: boolean;
 }) {
-  const source = job.provider_import || job.chesscom;
+  const source = job.provider_import;
   const mounted = useRef(false);
   useEffect(() => {
     mounted.current = true;
@@ -233,9 +233,8 @@ export function ImportJob({
   const title = source ? `${source.provider_name} · ${source.username}`
     : job.kind === "sync" ? "Recent-game sync"
       : fetchOnly ? "Fetch games"
-        : job.kind === "training" ? "Training analysis"
-          : job.kind === "game_review" ? "Full-game review"
-            : job.kind === "enrichment" ? "Deeper classification evidence"
+        : job.kind === "game_review" ? "Full-game review"
+          : job.kind === "enrichment" ? "Deeper classification evidence"
               : job.kind === "puzzle_generation" ? "Puzzles from your games"
                 : job.kind === "classification" ? "Skill classification" : "Game analysis";
   const summary = source ? `${source.games_imported} imported · ${source.duplicates} duplicates`

@@ -1,11 +1,24 @@
-from datetime import timezone
+from datetime import datetime
 from importlib.metadata import version
 
-from fsrs import Card, Rating, Scheduler
+from fsrs import Card, Rating, Scheduler, State
+
+# Everything the app reads from a saved FSRS card goes through these, so the
+# py-fsrs serialization stays inside this module.
 
 
-def utc(value):
-    return value.replace(tzinfo=timezone.utc) if value.tzinfo is None else value
+def card_phase(card: dict) -> str:
+    """ "learning", "review" or "relearning", from py-fsrs's own State."""
+    return State(card["state"]).name.lower()
+
+
+def last_reviewed(card: dict) -> datetime | None:
+    value = card.get("last_review")
+    return None if value is None else datetime.fromisoformat(value)
+
+
+def is_lapse(rating) -> bool:
+    return rating == Rating.Again
 
 
 def behavior_rating(failed: bool, revealed: bool, response_ms: int, slow_seconds: float):
@@ -27,6 +40,6 @@ class FSRSScheduler:
 
     def review(self, state: dict, rating, at, response_ms: int):
         card, log = self.scheduler.review_card(
-            Card.from_dict(state), rating, review_datetime=utc(at), review_duration=response_ms
+            Card.from_dict(state), rating, review_datetime=at, review_duration=response_ms
         )
         return card.to_dict(), card.due, log.to_dict()

@@ -1,10 +1,13 @@
 """Lichess recognition plus application-specific evidence admission and rich witnesses."""
 
 from trainer._vendor.lichess_puzzler import COMMIT
-from trainer.chess_core import VALUES
-from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
+from trainer.diagnosis_types import RULE_VERSION, make_finding
 from trainer.lichess_patterns import THEME_SKILLS, recognize
-from trainer.tactical_geometry import tactical_plies
+from trainer.tactical_geometry import (
+    TACTIC_PLIES,
+    defender_capture_is_worthwhile,
+    tactical_plies,
+)
 from trainer.verified_patterns import detect_patterns as verified_patterns
 
 RECOGNIZED_MECHANISMS = {
@@ -25,7 +28,7 @@ RECOGNIZED_MECHANISMS = {
 
 
 def recognized_patterns(
-    boards, first, end, analysis_id, direction, *, max_tactic_plies=8, previous_move=None
+    boards, first, end, analysis_id, direction, *, max_tactic_plies=TACTIC_PLIES, previous_move=None
 ):
     """Recognize facts in the relevant episode without asserting a material outcome."""
     if first >= len(boards) or end < first:
@@ -43,21 +46,21 @@ def recognized_patterns(
         skill = THEME_SKILLS[item.theme]
         if item.theme == "hangingPiece" and direction == "allowed_opponent_tactic":
             skill = "hanging_piece"
+        # The actor is the upstream puzzle's solver.
         found.append(
-            Finding(
-                skill_id=skill,
+            make_finding(
+                boards,
+                skill,
+                item.plies,
+                actor=actor,
                 rule_id=f"lichess:{item.rule}:{COMMIT[:8]}:{RULE_VERSION}",
                 direction=direction,
-                actor="white" if actor else "black",
                 analysis_id=analysis_id,
-                plies=item.plies,
-                moves=[boards[p].peek().uci() for p in item.plies],
                 frame_ply=item.frame_ply,
                 squares=sorted({s for squares in item.roles.values() for s in squares}),
                 roles=item.roles,
                 explanation=item.explanation,
                 mechanism=RECOGNIZED_MECHANISMS[item.rule],
-                cue=CUES[skill],
                 cue_key=skill,
                 verification="verified_line",
             )
@@ -83,10 +86,11 @@ def useful_cause(finding, boards):
     if not all((defender, victim, attacker)):
         return False
     reply = boards[first + 1].peek()
-    return VALUES[victim.piece_type] >= VALUES[defender.piece_type] or (
-        boards[first].is_capture(reply)
-        and reply.to_square == take.to_square
-        and VALUES[attacker.piece_type] >= VALUES[defender.piece_type]
+    return defender_capture_is_worthwhile(
+        victim.piece_type,
+        defender.piece_type,
+        attacker.piece_type,
+        recaptured=boards[first].is_capture(reply) and reply.to_square == take.to_square,
     )
 
 
@@ -99,7 +103,7 @@ def detect_patterns(
     *,
     material_supported,
     mate_supported,
-    max_tactic_plies=8,
+    max_tactic_plies=TACTIC_PLIES,
     previous_move=None,
 ):
     """Admit recognized motifs only after the caller verifies an adverse outcome.

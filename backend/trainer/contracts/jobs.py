@@ -1,6 +1,6 @@
 from datetime import date, datetime
 
-from trainer.contracts.common import Contract
+from trainer.contracts.common import Contract, JobStatusName
 
 
 class ImportError(Contract):
@@ -14,13 +14,12 @@ class PgnImportResult(Contract):
     processed: int
     imported: int
     duplicates: int
-    job_id: str | None
     errors: list[ImportError]
 
 
-class ChessComImportProgress(Contract):
-    provider: str = "chesscom"
-    provider_name: str = "Chess.com"
+class ProviderImportProgress(Contract):
+    provider: str
+    provider_name: str
     job_id: str
     user_id: str
     username: str
@@ -55,7 +54,7 @@ class Job(Contract):
     user_id: str
     kind: str
     import_id: str | None
-    status: str
+    status: JobStatusName
     games_total: int
     games_processed: int
     positions_triaged: int
@@ -69,8 +68,7 @@ class Job(Contract):
     priority: int = 0
     probe_total: int | None
     activity: JobActivity | None
-    chesscom: ChessComImportProgress | None
-    provider_import: ChessComImportProgress | None = None
+    provider_import: ProviderImportProgress | None
 
 
 class AnalysisQueueGame(Contract):

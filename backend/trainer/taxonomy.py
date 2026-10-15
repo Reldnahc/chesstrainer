@@ -1,4 +1,8 @@
+from trainer.models import Skill
+
 TAXONOMY_VERSION = "3"
+# The skill a classification gets when no rule names one; never a practice target.
+UNCLASSIFIED = "unclassified"
 GROUPS = {
     "Tactical awareness": "hanging_piece opponent_threat_recognition fork pin skewer discovered_attack double_attack overloaded_defender removing_defender back_rank mating_pattern missed_tactical_capture",
     "Opening and development": "development king_safety castling center_control premature_queen_activity opening_repertoire",
@@ -6,7 +10,7 @@ GROUPS = {
     "Pawn play": "pawn_structure pawn_breaks passed_pawns promotion_awareness",
     "Endgames": "king_activity king_and_pawn_endgames rook_endgames minor_piece_endgames basic_mates",
     "Decision making": "opponent_plan_awareness calculation move_order forcing_moves defensive_resource",
-    "Unclassified": "unclassified",
+    "Unclassified": UNCLASSIFIED,
 }
 GROUPS["Tactical awareness"] += (
     " allowed_mate missed_mate abandoned_defender deflection trapped_piece"
@@ -19,8 +23,6 @@ SKILLS = {
 
 
 def seed_skills(db):
-    from trainer.models import Skill
-
     for key, data in SKILLS.items():
         if db.get(Skill, key) is None:
             db.add(Skill(id=key, **data))

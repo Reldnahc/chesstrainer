@@ -4,9 +4,9 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from trainer.taxonomy import SKILLS
+from trainer.taxonomy import SKILLS, UNCLASSIFIED
 
-RULE_VERSION = "4.0-lichess-8d9faff6"
+RULE_VERSION = "4.1-lichess-8d9faff6"
 
 OUTCOME_SKILLS = {"material_loss", "missed_material_gain", "allowed_mate", "missed_mate"}
 CUES = {
@@ -85,7 +85,7 @@ class Finding(BaseModel):
     @field_validator("skill_id")
     @classmethod
     def known_skill(cls, value):
-        if value not in SKILLS or value == "unclassified":
+        if value not in SKILLS or value == UNCLASSIFIED:
             raise ValueError("Unknown local skill")
         return value
 
@@ -98,3 +98,26 @@ class Outcome(BaseModel):
     material_points: int | None = None
     explanation: str
     supporting_analysis_ids: list[str] = Field(default_factory=list)
+
+
+def make_finding(boards, skill, plies, *, actor, rule_id, direction, analysis_id, **fields):
+    """The one way to build a Finding from a replayed line.
+
+    ``actor`` (True for White) is the side the finding is about, and each kind of
+    producer says which side that is: the mover of the first witnessed ply for
+    line witnesses (``tactical_geometry.witness``), the side that gains for a
+    classification outcome (``classification_stages.EvidenceLine.finding``), and
+    the solver for an upstream Lichess theme. Moves come from ``boards`` at
+    ``plies``; the cue is the skill's, or empty for a skill without one.
+    """
+    return Finding(
+        skill_id=skill,
+        rule_id=rule_id,
+        direction=direction,
+        actor="white" if actor else "black",
+        analysis_id=analysis_id,
+        plies=plies,
+        moves=[boards[ply].peek().uci() for ply in plies],
+        cue=CUES.get(skill, ""),
+        **fields,
+    )

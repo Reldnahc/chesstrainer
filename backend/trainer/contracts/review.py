@@ -1,11 +1,11 @@
 from typing import Literal
 
-from pydantic import JsonValue
+from pydantic import Field, JsonValue
 
 from trainer.chess_core import Candidate
-from trainer.contracts.common import Color, Contract, LegalMove
+from trainer.contracts.common import Color, Contract, LegalMove, UciMove
 from trainer.contracts.opening_studies import OpeningContinuation, OpeningRecallContext
-from trainer.explanations import Frame, SummaryKind
+from trainer.explanation_types import Frame, SummaryKind
 
 
 class PracticeQueueItem(Contract):
@@ -54,6 +54,7 @@ class ReviewFeedback(Contract):
     message_kind: (
         Literal[
             "good_move",
+            "accepted",
             "practice_saved",
             "relearning",
             "opening_rejected",
@@ -85,3 +86,13 @@ class ReviewFeedback(Contract):
 
 
 ColdPosition.model_rebuild()
+
+
+class ManualRequest(Contract):
+    """A hand-made exercise: a position and the moves that answer it."""
+
+    fen: str = Field(max_length=200)
+    moves: list[UciMove] = Field(min_length=1, max_length=100)
+    orientation: Literal["white", "black"] = "white"
+    explanation: str = Field(default="", max_length=5000)
+    tags: list[str] = Field(default_factory=list, max_length=20)

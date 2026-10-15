@@ -6,6 +6,9 @@ import uvicorn
 from trainer import restart
 from trainer.config import Settings
 
+# Attributes every LogRecord has; anything else came from a call's ``extra``.
+STANDARD = frozenset(vars(logging.LogRecord("", 0, "", 0, "", (), None))) | {"message", "asctime"}
+
 
 class JSONFormatter(logging.Formatter):
     def format(self, record):
@@ -15,14 +18,14 @@ class JSONFormatter(logging.Formatter):
             "logger": record.name,
             "event": record.getMessage(),
         }
-        for key in ["job_id", "decision_id", "engine", "error_type", "game_index"]:
-            if hasattr(record, key):
-                result[key] = getattr(record, key)
+        for key, value in vars(record).items():
+            if key not in STANDARD and key not in result:
+                result[key] = value
         if record.exc_info:
             result["exception"] = self.formatException(record.exc_info)
         if record.stack_info:
             result["stack"] = self.formatStack(record.stack_info)
-        return json.dumps(result)
+        return json.dumps(result, default=str)
 
 
 def main():

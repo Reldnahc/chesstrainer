@@ -98,7 +98,7 @@ decisions, practice exercises and Weaknesses evidence exist once the review
 finishes ([Automatic game analysis](GAME_ANALYSIS.md)). Those decisions are marked
 deep and run no triage. The only extra search is a restricted played-move search
 when the played move was the review's second candidate, at the review's limits.
-A training-only job for an unreviewed game (`POST /api/games/{game_id}/train`, which has no button in the app) still triages as above.
+A whole-import `analysis` job saved by an older version still triages as above when it runs; nothing creates them now.
 The review's progress counters describe only the review. Bounded [refinement](REVIEW_INTELLIGENCE.md#targeted-review-investigation) adds investigation to selected
 positions without replacing or reducing that baseline.
 
@@ -113,7 +113,7 @@ contracts; changing coach requires no analysis or saved-fact rewrite.
 ### Scores and policy
 Score stores kind cp/mate, signed value and mate_given for positive terminal mate-zero. Values are root-decision-maker relative. CP loss is max(0,best-played). Mate is never flattened to an arbitrary CP number: losing a winning mate and newly allowing losing mate are separate flags. Winning mate lengths can be interchangeable; already forced-lost positions do not generate artificial mate-length exercises.
 
-Policies snapshot version, mode and tolerances into exercises. best_only requires primary; engine_tolerance/custom use TOLERANCE_CP; practical uses PRACTICAL_TOLERANCE_CP. Default practical tolerance is 100 cp; significant failure is 150 cp. Between thresholds is inaccuracy, currently mapped to failed recall. Target rating affects weakness prioritization, not engine evaluation or these acceptance thresholds.
+Policies snapshot version, mode and tolerances into exercises. best_only requires primary; engine_tolerance/custom use TOLERANCE_CP; practical uses PRACTICAL_TOLERANCE_CP. Default practical tolerance is 100 cp; significant failure is 150 cp. Between thresholds is inaccuracy, currently mapped to failed recall. A correct (primary) answer is told "Good move."; an answer accepted only within the tolerance is told "Accepted: within your practice tolerance.", since game review can grade the same move an Inaccuracy, and plays no "good move" clip. Target rating affects weakness prioritization, not engine evaluation or these acceptance thresholds.
 
 MultiPV supplies stored primary and accepted alternatives. Unlisted legal moves require local verification before judgment; engine unavailability returns 503 without recording failure. Saved manual answers use curated membership and bypass Stockfish; repertoire exercises are archived and unavailable for review.
 
@@ -160,7 +160,7 @@ To add a provider:
 2. Register its ID, label and supported time controls in `PROVIDERS` and its factory in `client_factories()`.
 3. Add injected HTTP fixtures covering legal games, invalid responses, resume, limits and ownership. The generic API, saved connections, Settings selector/forms and Update games require no provider-specific UI implementation.
 
-Discovery is `GET /api/game-providers`; imports use `POST /api/imports/provider/{provider}`. Connections use `PUT /api/providers/{provider}/connection` and GET/POST `/api/providers/{provider}/sync`. `provider_import` on job responses carries progress and the provider's display name. The Chess.com-specific import/sync endpoints and job response field are compatibility aliases. The deprecated auth profile username write also updates the connection; clients read provider connections rather than that profile field.
+Discovery is `GET /api/game-providers`; imports use `POST /api/imports/provider/{provider}`. Connections use `PUT /api/providers/{provider}/connection` and GET/POST `/api/providers/{provider}/sync`. `provider_import` on job responses carries progress and the provider's display name; the `chesscom` job field is a compatibility alias the client still reads as a fallback. The Chess.com-only `POST /api/imports/chesscom` and `GET`/`POST /api/sync` aliases are gone. Every provider request goes through `game_providers.gateway.ProviderGateway`: one request at a time on the host, and a 429 from any import, sync or poll pauses that provider for every account (Chess.com archive downloads included). Clients share `game_providers/http.py` for their setup, User-Agent and Retry-After handling. The deprecated auth profile username write also updates the connection; clients read provider connections rather than that profile field.
 
 All providers share the import/checkpoint tables (physically named `chesscom_imports` / `chesscom_archives` to preserve saved jobs), with a provider discriminator and an account-owned connections table in the same database. There is no second import subsystem or database.
 
@@ -170,7 +170,7 @@ Uses [Lichess's public game export API](https://lichess.org/api#tag/Games/operat
 
 A completed game is checkpointed atomically as it is saved. Retry reopens the bounded export and skips saved checkpoint IDs; it never assumes a moving page offset is stable. Streams close when the requested limit is reached, on cancellation, or on error. Saved games survive a failed/cancelled request. A 429 produces a retryable error instructing the user to wait at least a minute; a shared one-minute cooldown also prevents later queued jobs from immediately contacting Lichess again.
 
-All provider traffic shares one host lock. Lichess limits default to `PROVIDER_TIMEOUT_SECONDS=20` per network read, `PROVIDER_MAX_RESPONSE_BYTES=25000000`, `PROVIDER_MAX_SCAN_GAMES=10000`, one megabyte per record and ten minutes per export. Narrow the date range if a cap is reached. Cancellation during a blocked read completes when that bounded read returns. Chess.com uses its own `CHESSCOM_*` transport settings.
+All provider traffic shares one host lock. Lichess limits default to `LICHESS_TIMEOUT_SECONDS=20` per network read, `LICHESS_MAX_RESPONSE_BYTES=25000000`, `LICHESS_MAX_SCAN_GAMES=10000` (the older `PROVIDER_*` names still work), one megabyte per record and ten minutes per export. Narrow the date range if a cap is reached. Cancellation during a blocked read completes when that bounded read returns. Chess.com uses its own `CHESSCOM_*` transport settings.
 
 Automated tests inject provider responses and make no live provider requests. This verifies Fieldwork's transport contract and integration, not the external services' uptime.
 
@@ -206,7 +206,7 @@ Chess.com may serve cached data; newly completed games need not appear immediate
 
 #### Local API and persistence
 
-`POST /api/imports/chesscom` accepts:
+`POST /api/imports/provider/chesscom` accepts:
 
 ```json
 {"username":"your_username","time_class":"rapid","months":3,"max_games":100,"start_date":null,"end_date":null}
@@ -242,7 +242,7 @@ No matching archives/games produces a completed import with zero games and an ex
 
 Only the requested username, archive paths and configured User-Agent go to Chess.com, from the host. No credentials, existing local games or database contents are transmitted. The import form starts from the Chess.com connection's saved username. Games, classification and learning data remain local.
 
-`CHESSCOM_TIMEOUT_SECONDS=20`, `CHESSCOM_MAX_RESPONSE_BYTES=25000000` (decompressed bytes per HTTP response), and `CHESSCOM_USER_AGENT` are centralized host settings. Default User-Agent identifies Fieldwork; users may append contact information. Runtime HTTPX is explicitly declared and pinned in the dependency lock.
+`CHESSCOM_TIMEOUT_SECONDS=20`, `CHESSCOM_MAX_RESPONSE_BYTES=25000000` (decompressed bytes per HTTP response), and `PROVIDER_USER_AGENT` (formerly `CHESSCOM_USER_AGENT`; also sent to Lichess) are centralized host settings. Default User-Agent identifies Fieldwork; users may append contact information. Runtime HTTPX is explicitly declared and pinned in the dependency lock.
 
 #### Verification
 

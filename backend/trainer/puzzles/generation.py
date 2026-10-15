@@ -9,7 +9,6 @@ with its reason, so a game is searched once per generator version and never
 when a page opens. Generation writes no exercise, recall or weakness evidence.
 """
 
-import io
 from contextlib import nullcontext
 from dataclasses import dataclass
 
@@ -18,11 +17,12 @@ import chess.pgn
 from sqlalchemy import func, select
 from sqlalchemy.orm import aliased
 
-from trainer.chess_core import Score, legal_move, material, position_key
+from trainer.chess_core import Score, game_phase, legal_move, position_key, replay_moves
 from trainer.contracts.puzzles import PuzzleProvenance
+from trainer.game_library import board_before, parsed_game
+from trainer.job_lifecycle import JobKind, active_job
 from trainer.lichess_patterns import recognize
 from trainer.models import (
-    AnalysisJob,
     Decision,
     EngineAnalysis,
     Game,
@@ -35,22 +35,29 @@ from trainer.puzzles.verification import (
     MARGIN_CP,
     MATE_SCORE,
     PAYOFF_CP,
+    RIVAL_WINNING_CP,
     describe,
     is_mate,
     payoff_ok,
     rival_verdict,
     score_int,
 )
+from trainer.review_reports import saved_report
 from trainer.search_limits import SearchLimits
 
-GENERATOR_VERSION = "games-v1"
+# v2: a rival that mates or still wins makes a step ambiguous; review reports are
+# read as the review shows them (refined when adopted).
+GENERATOR_VERSION = "games-v2"
 PROVIDER_ID = "your-games"
-JOB_KIND = "puzzle_generation"
 # A missed win: the learner gave up at least MIN_LOSS_CP from a position worth MIN_WIN_CP.
 MIN_LOSS_CP = 150
 MIN_WIN_CP = 150
 # Lichess length tags count solver moves; a single decision is never a puzzle here.
 LENGTH_THEMES = {2: "short", 3: "long"}
+# Lichess's goal themes: "crushing" above +6.00, "advantage" above +2.00. A line that
+# ends between PAYOFF_CP and +2.00 gets neither.
+CRUSHING_CP = 600
+ADVANTAGE_CP = 200
 
 
 @dataclass(frozen=True)
@@ -92,7 +99,7 @@ def classify_scores(best: int, played: int) -> str | None:
 
 
 def _saved_unique(best: int, second: int | None) -> bool:
-    return second is not None and rival_verdict(best, second) in {"unique", "slower_mate"}
+    return second is not None and rival_verdict(best, second) == "unique"
 
 
 def _score(payload) -> int:
@@ -134,15 +141,19 @@ def decision_prospects(db, game):
 
 
 def review_prospects(db, game, skip):
-    """Candidates from full-game review reports on plies the training pipeline never judged."""
-    rows = db.execute(
-        select(GameReviewMove.ply, GameReviewMove.report)
-        .where(GameReviewMove.game_id == game.id)
-        .order_by(GameReviewMove.ply)
+    """Candidates from full-game review reports on plies the training pipeline never judged.
+
+    The reports are read as the review shows them: refined when a deeper search was adopted.
+    """
+    rows = db.scalars(
+        select(GameReviewMove).where(GameReviewMove.game_id == game.id).order_by(GameReviewMove.ply)
     )
-    for ply, report in rows:
+    for row in rows:
+        if row.ply in skip:
+            continue
+        ply, report = row.ply, saved_report(db, row)
         frames = (report.get("actual_line") or {}).get("frames") or []
-        if ply in skip or not frames:
+        if not frames:
             continue
         if (frames[0]["fen"].split()[1] == "w") != game.learner_color:
             continue
@@ -171,13 +182,10 @@ def prospects(db, game) -> list[Prospect]:
 
 def root_board(game, ply) -> chess.Board:
     """The position before the learner's move at ``ply``, with its full history."""
-    parsed = chess.pgn.read_game(io.StringIO(game.pgn))
-    board = parsed.board()
-    for index, move in enumerate(parsed.mainline_moves(), start=1):
-        if index == ply:
-            return board
-        board.push(move)
-    raise ValueError("Ply is beyond the saved game")
+    board = board_before(parsed_game(game), ply)
+    if board is None:
+        raise ValueError("Ply is beyond the saved game")
+    return board
 
 
 class EngineSearch:
@@ -231,7 +239,7 @@ def build_line(search, root: chess.Board, *, max_plies: int):
             if not decisions and not payoff_ok(best.score):
                 return None, f"not_winning {describe(best.score)}"
             verdict = "unique" if rival is None else rival_verdict(best.score, rival.score)
-            if verdict in {"equal_mate", "close"}:
+            if verdict != "unique":
                 if len(decisions) >= 2:
                     stop = "ambiguous"
                     break
@@ -281,15 +289,6 @@ def build_line(search, root: chess.Board, *, max_plies: int):
     return Built(tuple(line), decisions, payoff, stop), None
 
 
-def replay(root: chess.Board, solution) -> list[chess.Board]:
-    boards = [root.copy(stack=True)]
-    for uci in solution:
-        following = boards[-1].copy(stack=True)
-        following.push(legal_move(following, uci))
-        boards.append(following)
-    return boards
-
-
 def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
     """Lichess-style labels: tagger motifs, goal, mate distance, length and phase."""
     themes = set()
@@ -303,16 +302,12 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
         themes.add("mate")
         if decisions <= 5:
             themes.add(f"mateIn{decisions}")
-    else:
-        themes.add("crushing" if built.payoff > 600 else "advantage")
+    elif built.payoff > CRUSHING_CP:
+        themes.add("crushing")
+    elif built.payoff > ADVANTAGE_CP:
+        themes.add("advantage")
     themes.add(LENGTH_THEMES.get(decisions, "veryLong"))
-    root = boards[0]
-    if material(root, True) + material(root, False) <= 26:
-        themes.add("endgame")
-    elif root.fullmove_number <= 10:
-        themes.add("opening")
-    else:
-        themes.add("middlegame")
+    themes.add(game_phase(boards[0]))
     return tuple(sorted(themes))
 
 
@@ -339,14 +334,14 @@ def definition_for(game, prospect: Prospect, root, built: Built, themes) -> Puzz
     )
 
 
-def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, write_lock=None):
+def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mutation_lock=None):
     """Mine one game once per generator version.
 
     Returns the candidate and kept counts, or None when the game was already
     searched or the work was cancelled before the search record could be written
     (judged candidates are kept, so a later run resumes where this one stopped).
     """
-    lock = nullcontext() if write_lock is None else write_lock
+    lock = nullcontext() if mutation_lock is None else mutation_lock
     searched = db.scalar(
         select(GamePuzzleSearch.id).where(
             GamePuzzleSearch.game_id == game.id,
@@ -384,7 +379,7 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, wr
                 built, reason = None, "duplicate_position"
         definition = None
         if built is not None:
-            boards = replay(root, built.solution)
+            boards = replay_moves(root, built.solution)
             label = prospect.decision_id or f"{game.id}:{prospect.ply}"
             definition = definition_for(
                 game, prospect, root, built, line_themes(boards, built, label)
@@ -404,7 +399,11 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, wr
                 "engine": search.engine_version,
                 "depth": settings.puzzle_generation_depth,
                 "time": settings.puzzle_generation_time,
-                "thresholds": {"margin_cp": MARGIN_CP, "payoff_cp": PAYOFF_CP},
+                "thresholds": {
+                    "margin_cp": MARGIN_CP,
+                    "rival_winning_cp": RIVAL_WINNING_CP,
+                    "payoff_cp": PAYOFF_CP,
+                },
                 "source": prospect.source,
                 "saved_best": prospect.saved_best_san,
                 "saved_unique_first": prospect.saved_unique,
@@ -483,12 +482,8 @@ def generation_status(db, *, automatic: bool) -> dict:
         .select_from(GamePuzzle)
         .where(GamePuzzle.status == "ready", GamePuzzle.generator_version == GENERATOR_VERSION)
     )
-    job_status = db.scalar(
-        select(AnalysisJob.status)
-        .where(AnalysisJob.kind == JOB_KIND, AnalysisJob.status.in_(["queued", "running"]))
-        .order_by(AnalysisJob.created_at.desc())
-        .limit(1)
-    )
+    active = active_job(db, JobKind.PUZZLE_GENERATION)
+    job_status = active.status if active else None
     return {
         "automatic": automatic,
         "analyzed_games": analyzed,
@@ -497,6 +492,6 @@ def generation_status(db, *, automatic: bool) -> dict:
         "puzzles": puzzles,
         "candidates": candidates,
         "kept": kept,
-        "last_searched_at": None if last is None else str(last),
+        "last_searched_at": None if last is None else last.isoformat(),
         "job_status": job_status,
     }

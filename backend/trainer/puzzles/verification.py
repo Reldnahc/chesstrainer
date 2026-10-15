@@ -11,6 +11,10 @@ MATE_SCORE = 100_000
 TOLERANCE_CP = 50
 # Every rival must score at least this much worse than the solution.
 MARGIN_CP = 100
+# A rival still this far ahead also wins, so a solver choosing it would be marked
+# wrong for a winning move; the step is not unique. Lichess's generator asks the same
+# of a rival through win chances; any rival mate is ambiguous there too.
+RIVAL_WINNING_CP = 200
 # After the final solver move the position must be at least this far ahead, or mate.
 PAYOFF_CP = 150
 
@@ -36,18 +40,26 @@ def score_int(score) -> int:
     return score.value
 
 
-def rival_verdict(solution: int, rival: int, *, margin: int = MARGIN_CP) -> str:
+def rival_verdict(
+    solution: int, rival: int, *, margin: int = MARGIN_CP, winning: int = RIVAL_WINNING_CP
+) -> str:
     """How a rival move compares with the solution at the same root.
 
-    ``unique``: the rival is clearly worse. ``slower_mate``: both mate, the rival
-    more slowly, which the pack verifier only warns about. ``equal_mate``: the
-    rival mates as fast or faster, so a solver choosing it would be marked wrong.
-    ``close``: the rival is within the margin.
+    Only ``unique`` makes the step a puzzle move. ``rival_mate``: the rival mates
+    too, however slowly. ``still_winning``: the rival stays at least ``winning``
+    ahead. ``close``: the rival is within the margin of the solution.
+
+    A mating solution asks for the mate, so, as in Lichess's mate puzzles, only a
+    second mate makes it ambiguous; a rival that merely wins does not.
     """
-    if is_mate(solution) and solution > 0 and is_mate(rival) and rival > 0:
-        return "equal_mate" if rival >= solution else "slower_mate"
+    if is_mate(rival) and rival > 0:
+        return "rival_mate"
+    if is_mate(solution) and solution > 0:
+        return "unique"
     if solution - rival < margin:
         return "close"
+    if rival >= winning:
+        return "still_winning"
     return "unique"
 
 

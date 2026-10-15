@@ -88,11 +88,20 @@ search profile, human configuration provenance, per-question cache references,
 completion status and the investigated report. A finite plan on `GameReview`
 records task IDs and progress. These contain no coach-specific dialogue.
 
-Completed evidence is adopted only with the same engine, at least baseline depth
-for the actual/best/root comparisons, and consistent best-versus-played ordering.
+Completed evidence is adopted only with the same engine and at least baseline
+depth for the actual/best/root comparisons. A deeper report that finds the played
+move stronger than its best is adopted too; presentation promotes the played
+move, as it does for a baseline report.
 Budget exhaustion or unavailable/incompatible engines leaves the baseline usable.
 An optional human-alternative query failure cannot discard a completed root
 comparison. Diagnostics retain why an investigation was not adopted.
+Training reads the same effective report: a decision built before a refinement
+was adopted (a later refine request) takes the deeper searches when the game's
+review runs again, keeping its id, so its weakness labels follow the deeper
+search; a decision that stops being a mistake drops them. An exercise already made
+from it keeps its answers and schedule (rewriting them would drop answers graded in
+practice, and the same mistake in other games can share the exercise); only a
+decision without one gets a new one from the deeper search.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original
@@ -161,7 +170,7 @@ the durable sources; reading semantics requires no migration or engine/model.
 | `tactic` | Played, allowed, caused, missed or alternative motif in a verified line | Matching line root/first move, actor, valid witness plies and exact analysis/rule IDs; never attribute an alternative's tactic to the played move |
 | `human_contrast` | Natural error, unusual strong find, unusual model best choice | Compatible saved human evidence plus objective references; carries conditioning, domain, unvalidated calibration and confidence |
 | `clock_observation` | Low time, fast play with time, long think, accompanying evaluated error | Actual clock annotations/derivable values plus grading evidence; explicitly no psychological causation. Coaches do not voice or display it |
-| `opening_departure` | First unmatched move in the initial catalogue sequence | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
+| `opening_departure` | The move after the game's last catalogue move (`opening_book.book_run`); a gap the game later returns from by transposition is not a departure, and a game that ends in the catalogue has none | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
 | `check` | Giving check or answering check | Legally replayed actual move; checkmate supersedes generic check |
 | `finish` | Immediate checkmate, stalemate, insufficient material | python-chess actual transition; never inferred from a mate PV or declared PGN result |
 | `positional` | Immediate development, pawn, rook-file, support, king-flight and bishop-pair changes | Explicit geometry/history rules in [positional evidence](#positional-evidence); no strategic value inferred from an evaluation |
@@ -386,10 +395,10 @@ Relations are deliberately narrower than an unrestricted chess story:
 | Relation | Evidence gate |
 | --- | --- |
 | Punishment | Adjacent actual moves; previous concession of 100 cp or a mate transition; a searched advantage/equalizing opportunity; next move either keeps that opportunity with less than 50 cp concession or loses its advantage/playable band. Partially using an opportunity is not called wholly missed. |
-| Recovery | Same player's earlier error left a searched disadvantage/forced loss; a later near-best move restores at least a playable score. Intervening opponent errors are recorded, so dialogue cannot claim the recovering player created all the improvement. |
-| Repeated motif | Same responsible player, supported tactical motif and role on different reviewed plies. Duplicate detectors do not inflate the count; a best-line alternative is excluded. Counts are explicitly among observed reviewed plies. |
-| Advantage run | At least six contiguous reviewed plies stay at 200 cp or searched mate for one side. A completed review ending in that side's recorded win adds a conversion observation. This does not mean flawless play or a mathematically proved win. |
-| Erosion | At least three 30–149 cp concessions by one side in a nine-ply window, with at least 150 cp net deterioration. Opponent errors that restore the position defeat the net-deterioration claim. |
+| Recovery | Same player's earlier error left a searched disadvantage/forced loss; a later near-best move restores at least a playable score. Intervening opponent errors are recorded, so dialogue cannot claim the recovering player created all the improvement. A move never raises its own evaluation, so the position was already playable before it: the coach writes a recovery in neutral words ("playable again") and plays no recovery take, whose lines credit this move. |
+| Repeated motif | Same responsible player, supported tactical motif and role on different reviewed plies. Duplicate detectors do not inflate the count; a best-line alternative is excluded. Counts are explicitly among observed reviewed plies. The recorded repeated-issue clip ("once before", "a second time") plays only at `occurrence` 2; the written line names the count. |
+| Advantage run | At least six contiguous reviewed plies stay at 200 cp or searched mate for one side. A completed review ending in that side's recorded win adds a conversion observation. This does not mean flawless play or a mathematically proved win. `own_error_plies` lists the side's own moves inside the run graded Inaccuracy or worse, and the coach tells a conversion only when it is empty (its takes say there was no slip). |
+| Erosion | At least three 30–149 cp concessions by one side in a nine-ply window, with at least 150 cp net deterioration. Opponent errors that restore the position defeat the net-deterioration claim. `own_mistake_plies` lists the side's Mistake-sized moves from the first concession, concessions included; the coach tells an erosion only on an Inaccuracy and only when it is empty, because its takes call the concessions small and say no single big mistake did it. |
 | Support restored | A concrete surviving piece loses effective support and later regains it. Track its moves; captures, castling ambiguity, missing review or changed actor break the link. This says nothing about why an eventual tactic worked. The coach mentions it only when the piece is attacked on the restoring move and that move is not graded Inaccuracy or worse, in place of the plain "gains a defender" fact. |
 
 Contiguous score relationships stop at missing plies, invalid mainline contexts,

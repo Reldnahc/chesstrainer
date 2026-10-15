@@ -1,6 +1,7 @@
 import type { Schema } from "../api";
 
 export type Report = Schema["GameMoveReport"];
+
 export type Position = Schema["GamePosition"];
 export type Accuracy = Schema["GameAccuracy"];
 export type Analysis = Schema["GameAnalysis"];

@@ -7,9 +7,11 @@ import chess
 from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, valid_board
 from trainer.continuations import ContinuationEnd, continuation_end, extended_line
 from trainer.defensive_probes import hypotheses, verify_defense
-from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome
+from trainer.diagnosis_types import OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome, make_finding
+from trainer.errors import EvidenceIntegrityError
 from trainer.move_causes import move_causes
-from trainer.tactical_patterns import detect_patterns
+from trainer.tactical_geometry import TACTIC_PLIES
+from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 
 @dataclass(frozen=True)
@@ -22,19 +24,19 @@ class EvidenceLine:
     endpoint: ContinuationEnd
 
     def finding(self, skill, plies, squares, explanation, *, mate=False):
+        # The actor is the side the outcome favours: the learner for a missed
+        # opportunity, the opponent for a tactic the learner allowed.
         learner = self.boards[0].turn
-        actor = learner if self.direction == "missed_opportunity" else not learner
-        return Finding(
-            skill_id=skill,
-            cue=CUES.get(skill, ""),
-            frame_ply=plies[0],
+        return make_finding(
+            self.boards,
+            skill,
+            plies,
+            actor=learner if self.direction == "missed_opportunity" else not learner,
             rule_id=f"{skill}:{RULE_VERSION}",
             direction=self.direction,
-            actor="white" if actor else "black",
             analysis_id=self.analysis_id,
-            plies=plies,
+            frame_ply=plies[0],
             squares=sorted(set(squares)),
-            moves=[self.boards[p].peek().uci() for p in plies],
             explanation=explanation,
             verification="engine_mate" if mate else "verified_line",
         )
@@ -54,11 +56,11 @@ def read_lines(evidence, parameters) -> tuple[EvidenceLine, EvidenceLine, Loss]:
         position_key(valid_board(fen)) != position_key(board)
         for fen in evidence.get("analysis_fens", [])
     ):
-        raise ValueError("Analysis belongs to a different position")
+        raise EvidenceIntegrityError("Analysis belongs to a different position")
     best = Candidate.model_validate(evidence["best_candidates"][0])
     actual = Candidate.model_validate(evidence["played_candidate"])
     if actual.uci != evidence["user_move"]["uci"]:
-        raise ValueError("Actual analysis does not match learner move")
+        raise EvidenceIntegrityError("Actual analysis does not match learner move")
     best_id, actual_id = evidence["evidence_ids"]
     probes = evidence.get("probes", [])
 
@@ -187,6 +189,91 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
     return result
 
 
+@dataclass(frozen=True)
+class LineRules:
+    """How one caller reads a saved line into findings.
+
+    Weaknesses classification, game review and the SRS "Show why" explanation read
+    lines with different horizons and safeguards. The differences are kept as they
+    are, but named here in one place, so agreeing a single rule is one change.
+    """
+
+    settle_plies: int  # Horizon for the settled material endpoint.
+    tactic_plies: int = TACTIC_PLIES  # Episode bound for the tactic detectors.
+    # Plies searched for a mating pattern when a mate supports the line; None reads
+    # only to the settled endpoint.
+    mate_window: int | None = None
+    # Review annotations also list recognized patterns up to here that the admitted
+    # findings lack. They bypass ``useful_cause``: an annotation describes the line,
+    # it is never a grading event or a weakness label. None adds none.
+    annotate_plies: int | None = None
+    causes_first: bool = True  # Move causes ahead of tactical findings.
+    previous_to_detectors: bool = False  # The move before, for the learner's own line.
+    previous_to_causes: bool = True
+
+
+def classification_rules(parameters):
+    return LineRules(
+        settle_plies=parameters["max_plies"],
+        tactic_plies=parameters["tactic_plies"],
+        mate_window=parameters["max_plies"],
+        previous_to_detectors=True,
+    )
+
+
+# Game review's line evidence and the SRS explanation's answer line.
+REVIEW_RULES = LineRules(settle_plies=32, annotate_plies=16)
+EXPLANATION_RULES = LineRules(
+    settle_plies=16,
+    mate_window=16,
+    annotate_plies=16,
+    causes_first=False,
+    previous_to_causes=False,
+)
+DIRECTIONS = {1: "missed_opportunity", 2: "allowed_opponent_tactic"}
+
+
+def line_findings(
+    boards, first, analysis_id, rules, *, end, material_supported, mate_supported, previous=None
+):
+    """Tactical findings and move causes in one saved line; every caller uses this.
+
+    ``first`` is 1 for the mover's own line (an opportunity), 2 when the opponent
+    replies first (a tactic the move allowed). Move causes are added only for an
+    allowed tactic that the line shows costs material.
+    """
+    direction = DIRECTIONS[first]
+    window = (
+        min(len(boards) - 1, rules.mate_window)
+        if mate_supported and rules.mate_window is not None
+        else end
+    )
+    found = detect_patterns(
+        boards,
+        first,
+        window,
+        analysis_id,
+        direction,
+        material_supported=material_supported,
+        mate_supported=mate_supported,
+        max_tactic_plies=rules.tactic_plies,
+        previous_move=previous if rules.previous_to_detectors and first == 1 else None,
+    )
+    if rules.annotate_plies is not None:
+        detailed = {finding.skill_id for finding in found}
+        found.extend(
+            finding
+            for finding in recognized_patterns(
+                boards, first, min(len(boards) - 1, rules.annotate_plies), analysis_id, direction
+            )
+            if finding.skill_id not in detailed
+        )
+    if first == 2 and material_supported:
+        caused = move_causes(boards, analysis_id, previous if rules.previous_to_causes else None)
+        found = caused + found if rules.causes_first else found + caused
+    return found
+
+
 def diagnose_line(
     line: EvidenceLine, alternative: EvidenceLine, loss: Loss, evidence, parameters
 ) -> LineDiagnosis:
@@ -199,23 +286,16 @@ def diagnose_line(
         finding, outcome = material_consequence(line, alternative)
         result.findings.append(finding)
         result.outcomes.append(outcome)
-    if line.first == 2 and supports:
-        result.findings.extend(
-            move_causes(line.boards, line.analysis_id, evidence.get("previous_move"))
-        )
     result.findings.extend(
-        detect_patterns(
+        line_findings(
             line.boards,
             line.first,
-            min(len(line.boards) - 1, parameters["max_plies"])
-            if mate_support
-            else line.endpoint.end_ply,
             line.analysis_id,
-            line.direction,
+            classification_rules(parameters),
+            end=line.endpoint.end_ply,
             material_supported=supports,
             mate_supported=mate_support,
-            max_tactic_plies=parameters["tactic_plies"],
-            previous_move=evidence.get("previous_move") if line.first == 1 else None,
+            previous=evidence.get("previous_move"),
         )
     )
     defense = defensive_findings(

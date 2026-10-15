@@ -1,8 +1,40 @@
 """Display metadata from saved PGNs; no engine or remote profile requests."""
 
+import io
 from math import isfinite
 
 import chess.pgn
+
+
+def parsed_game(game):
+    """A saved game's PGN, parsed."""
+    return chess.pgn.read_game(io.StringIO(game.pgn))
+
+
+def board_before(parsed, ply):
+    """The position before mainline move ``ply`` (1-based), with its full history.
+
+    None when the game has no move ``ply``.
+    """
+    board = parsed.board()
+    for index, move in enumerate(parsed.mainline_moves(), start=1):
+        if index == ply:
+            return board
+        board.push(move)
+    return None
+
+
+# The rating a review assumes when the game records none.
+DEFAULT_RATING = 1000
+
+
+def mover_rating(parsed, color, fallback):
+    """The rating every review grade uses for ``color``'s moves: the PGN's, else ``fallback``.
+
+    Review badges, Insights and Play all grade a move against this, so a blunder
+    counts the same on every screen.
+    """
+    return pgn_rating(parsed, color) or fallback or DEFAULT_RATING
 
 
 def pgn_rating(parsed, color):
@@ -18,12 +50,15 @@ def pgn_rating(parsed, color):
         return None
 
 
-def time_control_label(value: str | None) -> str | None:
-    if not value or value.strip() in {"?", ""}:
+def parse_time_control(value: str | None):
+    """A PGN TimeControl tag as validated stages, or None when it gives none.
+
+    Surrounding whitespace is ignored. "?" (unknown) and "-" (no limit) have no
+    stages, and a value with a negative or non-finite stage is rejected.
+    """
+    value = (value or "").strip()
+    if value in {"", "?", "-"}:
         return None
-    value = value.strip()
-    if value == "-":
-        return "Unlimited"
     try:
         control = chess.pgn.parse_time_control(value)
     except (ValueError, IndexError, OverflowError):
@@ -37,6 +72,15 @@ def time_control_label(value: str | None) -> str | None:
         or part.delay < 0
         for part in control.parts
     ):
+        return None
+    return control
+
+
+def time_control_label(value: str | None) -> str | None:
+    if (value or "").strip() == "-":
+        return "Unlimited"
+    control = parse_time_control(value)
+    if control is None:
         return None
 
     def duration(seconds):

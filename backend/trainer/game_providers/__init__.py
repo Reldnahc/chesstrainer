@@ -2,7 +2,10 @@
 
 from dataclasses import dataclass
 
+from trainer.errors import InvalidInput
 from trainer.game_providers.base import ProviderError
+from trainer.game_providers.chesscom import ChessComClient
+from trainer.game_providers.lichess import LichessClient
 
 
 @dataclass(frozen=True)
@@ -13,7 +16,7 @@ class Provider:
 
     def validate(self, request):
         if request.time_class not in self.time_classes:
-            raise ValueError(f"Unsupported {self.name} time control.")
+            raise InvalidInput(f"Unsupported {self.name} time control.")
 
 
 PROVIDERS = {
@@ -28,14 +31,11 @@ PROVIDERS = {
 
 def get_provider(provider):
     if provider not in PROVIDERS:
-        raise ValueError("Unknown chess provider.")
+        raise InvalidInput("Unknown chess provider.")
     return PROVIDERS[provider]
 
 
 def client_factories():
-    from trainer.chesscom import ChessComClient
-    from trainer.game_providers.lichess import LichessClient
-
     return {"chesscom": ChessComClient, "lichess": LichessClient}
 
 

@@ -3,7 +3,7 @@
 from contextlib import contextmanager
 from time import monotonic, sleep
 
-from trainer.cancellation import throttled
+from trainer.cancellation import WaitCancelled, acquiring, throttled, wait_until
 from trainer.search_limits import EngineCancelled
 
 
@@ -13,10 +13,10 @@ def search_lock(lock, cancelled):
         with lock:
             yield
         return
-    cancelled = throttled(cancelled)
-    while not lock.acquire(timeout=0.05):
-        if cancelled():
-            raise EngineCancelled()
+    try:
+        wait_until(acquiring(lock), cancelled)
+    except WaitCancelled as exc:
+        raise EngineCancelled() from exc
     try:
         if cancelled():
             raise EngineCancelled()

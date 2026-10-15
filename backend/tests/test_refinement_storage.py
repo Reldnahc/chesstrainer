@@ -9,6 +9,7 @@ from alembic.config import Config
 from sqlalchemy import select, text
 from trainer.accounts import Accounts
 from trainer.db import database, migrate
+from trainer.errors import NotFound
 from trainer.models import Game, GameReview, GameReviewMove, ReviewRefinement, uid
 from trainer.ownership import account_sessions
 from trainer.review_reports import effective_report
@@ -31,11 +32,11 @@ def test_private_task_queries_and_references_cannot_cross_accounts(settings, ses
         db.add(own)
         db.flush()
         db.add(GameReviewMove(game_id=own.id, ply=1, report={}, refinement_id=task.id))
-        with pytest.raises(ValueError, match="not in this account"):
+        with pytest.raises(NotFound, match="not in this account"):
             db.flush()
     with sessions() as db:
         db.add(ReviewRefinement(game_id=game.id, ply=1, task_key="stolen", triggers=[], config={}))
-        with pytest.raises(ValueError, match="not in this account"):
+        with pytest.raises(NotFound, match="not in this account"):
             db.flush()
 
 
@@ -110,3 +111,202 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
     with sql.connect() as connection:
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     sql.dispose()
+
+
+@pytest.mark.parametrize(
+    "adopted,status,baseline_ids,refined",
+    [
+        (True, "completed", ["base", "played"], True),
+        (False, "completed", ["base", "played"], True),
+        (True, "budget_limited", ["base", "played"], True),
+        (True, "completed", ["other", "played"], True),
+        (True, "completed", ["base", "played"], False),
+    ],
+)
+def test_the_game_page_and_library_accuracy_agree_on_the_adopted_report(
+    sessions, adopted, status, baseline_ids, refined
+):
+    # effective_report (Python) and load_accuracy_scores (SQL) state one rule twice.
+    from trainer.review_reports import load_accuracy_scores
+
+    def score(value):
+        return {"kind": "cp", "value": value, "mate_given": False}
+
+    baseline = {
+        "before_analysis_id": "base",
+        "played_analysis_id": "played",
+        "depth": 16,
+        "white_score": score(10),
+        "best": {"score": score(20)},
+    }
+    better = baseline | {"depth": 22, "white_score": score(-40), "best": {"score": score(60)}}
+    with sessions() as db:
+        game = Game(fingerprint="agree", white="A", black="B", learner_color=True, pgn="*")
+        db.add(game)
+        db.flush()
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="agree",
+            triggers=[],
+            adopted=adopted,
+            status=status,
+            report=better if refined else None,
+            config={"baseline_ids": baseline_ids},
+        )
+        db.add(task)
+        db.flush()
+        row = GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id)
+        db.add(row)
+        db.commit()
+        page = effective_report(db, row, task)
+        library = load_accuracy_scores(db, [game.id])[game.id][1]
+        assert library == {
+            "white_score": page["white_score"],
+            "best": {"score": page["best"]["score"]},
+        }
+
+
+def test_training_decisions_use_the_adopted_refinement(settings, sessions):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.models import Decision, EngineAnalysis
+
+    board = chess.Board()
+    move = chess.Move.from_uci("e2e4")
+
+    def analysis(key, value):
+        candidate = {
+            "uci": "e2e4",
+            "san": "e4",
+            "pv": ["e2e4"],
+            "score": {"kind": "cp", "value": value},
+        }
+        return EngineAnalysis(
+            cache_key=key,
+            fen=board.fen(),
+            engine_version="fixture",
+            config={},
+            candidates=[candidate],
+        )
+
+    with sessions() as db:
+        game = Game(fingerprint="train", white="A", black="B", learner_color=True, pgn="1. e4 *")
+        rows = {key: analysis(key, value) for key, value in [("base", 20), ("deep", 35)]}
+        db.add_all([game, *rows.values()])
+        db.flush()
+        baseline = {
+            "before_analysis_id": rows["base"].id,
+            "played_analysis_id": rows["base"].id,
+            "depth": 16,
+        }
+        refined = baseline | {
+            "before_analysis_id": rows["deep"].id,
+            "played_analysis_id": rows["deep"].id,
+            "depth": 22,
+        }
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="train",
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report=refined,
+            config={"baseline_ids": [rows["base"].id, rows["base"].id]},
+        )
+        db.add(task)
+        db.flush()
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
+        db.commit()
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
+
+
+def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settings, sessions):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.exercises import exercise_from_decision
+    from trainer.models import Decision, EngineAnalysis, ExerciseAnswer, SRSState
+    from trainer.scheduling import FSRSScheduler
+
+    board = chess.Board()
+    move = chess.Move.from_uci("f2f3")
+
+    def analysis(key, scores):
+        candidates = [
+            {"uci": uci, "san": board.san(chess.Move.from_uci(uci)), "pv": [uci]}
+            | {"score": {"kind": "cp", "value": value}}
+            for uci, value in scores
+        ]
+        return EngineAnalysis(
+            cache_key=key,
+            fen=board.fen(),
+            engine_version="fixture",
+            config={},
+            candidates=candidates,
+        )
+
+    with sessions() as db:
+        game = Game(fingerprint="later", white="A", black="B", learner_color=True, pgn="1. f3 *")
+        rows = {
+            "base": analysis("base", [("e2e4", 40), ("f2f3", -260)]),
+            "base_played": analysis("base_played", [("f2f3", -260)]),
+            "deep": analysis("deep", [("d2d4", 45), ("e2e4", 40), ("f2f3", -240)]),
+            "deep_played": analysis("deep_played", [("f2f3", -240)]),
+        }
+        db.add_all([game, *rows.values()])
+        db.flush()
+        baseline = {
+            "before_analysis_id": rows["base"].id,
+            "played_analysis_id": rows["base_played"].id,
+            "depth": 16,
+        }
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
+        db.commit()
+        scheduler = FSRSScheduler(settings)
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        exercise = exercise_from_decision(db, decision, settings, scheduler)
+        assert decision.meaningful
+
+        # A refine request adopts a deeper search after training was built.
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="later",
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report=baseline
+            | {
+                "before_analysis_id": rows["deep"].id,
+                "played_analysis_id": rows["deep_played"].id,
+            },
+            config={"baseline_ids": [rows["base"].id, rows["base_played"].id]},
+        )
+        db.add(task)
+        db.flush()
+        db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
+        db.commit()
+
+        again = analyze_decision(db, None, settings, game, 1, board, move)
+        assert again.id == decision.id
+        assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
+        assert again.loss_cp == 285
+        kept = exercise_from_decision(db, again, settings, scheduler)
+        # The same exercise and schedule, never a second card: its answers (and any
+        # graded during practice) stay as they were made.
+        assert kept.id == exercise.id and db.get(SRSState, exercise.id) is not None
+        answers = db.scalars(
+            select(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise.id)
+        ).all()
+        assert {answer.analysis_id for answer in answers} == {rows["base"].id}
+        # A move the card has not seen is graded against the same search as its
+        # answers, not the decision's newer one.
+        from trainer.models import ReviewSession
+        from trainer.reviews import answer_search
+
+        session = ReviewSession(exercise_id=exercise.id)
+        db.add(session)
+        db.commit()
+        assert answer_search(db, session.id, "g1f3").original.id == rows["base"].id

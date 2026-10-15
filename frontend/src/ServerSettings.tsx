@@ -111,7 +111,7 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
           {setting.choices?.map(choice => <option key={choice} value={choice}>{choice.replace(/_/g, " ")}</option>)}
         </select>
         : <input id={id} type="number" inputMode={setting.kind === "integer" ? "numeric" : "decimal"}
-          step={setting.kind === "integer" ? 1 : "any"} min={setting.minimum ?? undefined} max={setting.maximum ?? undefined}
+          step={setting.kind === "integer" ? 1 : "any"} min={setting.minimum ?? setting.exclusive_minimum ?? undefined} max={setting.maximum ?? undefined}
           required={!setting.nullable} placeholder={setting.nullable ? "None" : undefined} aria-describedby={`${id}-help`}
           value={value === null ? "" : String(value)}
           onChange={event => edit(setting, event.target.value)} />}

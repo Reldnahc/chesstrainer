@@ -1,6 +1,7 @@
 """One job's bounded chess and pedagogy stages, with independent process/session ownership."""
 
 import threading
+from contextlib import contextmanager
 
 from sqlalchemy import select, update
 
@@ -39,7 +40,7 @@ class JobPipeline:
         # SQL increments and a short shared write lock prevent lost progress updates.
         if not self.counters:
             return
-        with self.runner.import_lock, self.sessions() as db:
+        with self.runner.mutation_lock, self.sessions() as db:
             db.execute(
                 update(AnalysisJob)
                 .where(AnalysisJob.id == self.job_id)
@@ -72,8 +73,7 @@ class JobPipeline:
                     db,
                     decision_id,
                     self.runner.classifier,
-                    self.settings,
-                    write_lock=self.runner.import_lock,
+                    mutation_lock=self.runner.mutation_lock,
                 )
             self.bump(classifications_completed=int(classified))
             success = True
@@ -85,14 +85,14 @@ class JobPipeline:
 
     def process_decision(self, db, decision, completion, ensure_exercise=True):
         if decision.meaningful and ensure_exercise:
-            with self.runner.import_lock:
+            with self.runner.mutation_lock:
                 exercise_from_decision(db, decision, self.settings, self.runner.scheduler)
         self.bump(
             positions_triaged=1,
             deep_completed=int(decision.deep),
             mistakes_identified=int(decision.meaningful),
         )
-        if decision.meaningful and self.runner.classifier:
+        if decision.meaningful:
             completion.add()
             if not self.classifications.submit(self.classify, decision.id, completion):
                 completion.finish(False)
@@ -140,7 +140,7 @@ class JobPipeline:
             self.settings,
             game,
             cancelled=self.cancelled,
-            write_lock=self.runner.import_lock,
+            mutation_lock=self.runner.mutation_lock,
         )
         if result is not None:
             self.bump(puzzles_found=result["kept"])
@@ -158,27 +158,17 @@ class JobPipeline:
             self.failed.set()
             raise
 
-    def run_generation(self, game_ids):
-        try:
-            for game_id in game_ids:
-                if not self.games.submit(self.generate, game_id):
-                    break
-        finally:
-            self.games.close()
-            self.classifications.close()
-            for engine in self.engines:
-                engine.close()
-        if self.games.errors:
-            raise self.games.errors[0]
+    @contextmanager
+    def _drain(self):
+        """Run a submitting block, then always drain both pools and close engines.
 
-    def run(self, game_ids, classification_only=False):
+        Producers finish before their consumer pool closes. Already-started work
+        commits even on cancel; queued tasks check cancellation before running.
+        The first worker error from either pool is raised once both are drained.
+        """
         try:
-            for game_id in game_ids:
-                if not self.games.submit(self.game, game_id, classification_only):
-                    break
+            yield
         finally:
-            # Producers finish before closing their consumer pool. Already-started API
-            # calls commit even on cancel; queued tasks check cancellation before calling.
             self.games.close()
             self.classifications.close()
             for engine in self.engines:
@@ -187,11 +177,23 @@ class JobPipeline:
         if errors:
             raise errors[0]
 
+    def run_generation(self, game_ids):
+        with self._drain():
+            for game_id in game_ids:
+                if not self.games.submit(self.generate, game_id):
+                    break
+
+    def run(self, game_ids, classification_only=False):
+        with self._drain():
+            for game_id in game_ids:
+                if not self.games.submit(self.game, game_id, classification_only):
+                    break
+
     def probe(self, task):
         if self.cancelled():
             return
         if not enrich_decision(
-            self.sessions, task, self.engine(), self.runner.import_lock, self.cancelled
+            self.sessions, task, self.engine(), self.runner.mutation_lock, self.cancelled
         ):
             return
         with self.sessions() as db:
@@ -199,31 +201,23 @@ class JobPipeline:
                 db,
                 task.decision_id,
                 self.runner.classifier,
-                self.settings,
-                write_lock=self.runner.import_lock,
+                mutation_lock=self.runner.mutation_lock,
             )
         self.bump(positions_triaged=1, deep_completed=1, classifications_completed=int(classified))
 
     def run_enrichment(self):
-        try:
+        with self._drain():
             with self.sessions() as db:
                 tasks = plan_probes(
                     db,
                     self.job_id,
                     self.settings,
                     self.engine(),
-                    write_lock=self.runner.import_lock,
+                    mutation_lock=self.runner.mutation_lock,
                 )
             for task in tasks:
                 if not self.games.submit(self.probe, task):
                     break
-        finally:
-            self.games.close()
-            self.classifications.close()
-            for engine in self.engines:
-                engine.close()
-        if self.games.errors:
-            raise self.games.errors[0]
 
     def snapshot(self):
         return {"games": self.games.snapshot(), "classifications": self.classifications.snapshot()}

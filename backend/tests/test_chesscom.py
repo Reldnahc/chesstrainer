@@ -8,13 +8,10 @@ from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.api import create_app
-from trainer.chesscom import (
-    ChessComClient,
-    ChessComError,
-    ChessComRequest,
-    ImportCancelled,
-    fetch_import,
-)
+from trainer.game_providers.base import ImportCancelled, ProviderError
+from trainer.game_providers.base import ProviderImportRequest as ChessComRequest
+from trainer.game_providers.chesscom import ChessComClient
+from trainer.game_providers.ingest import fetch_import
 from trainer.imports import import_games
 from trainer.models import (
     AnalysisJob,
@@ -134,7 +131,7 @@ def test_import_filters_matches_both_sides_and_deduplicates_pgn(settings, sessio
                 (False, False),
             }
             batch = db.get(ImportBatch, db.get(AnalysisJob, job_id).import_id)
-            assert PGN in batch.original_pgn and BLACK_PGN in batch.original_pgn
+            assert batch.original_pgn == ""  # Each game's PGN is saved; no archive copy.
             assert db.scalar(select(func.count()).select_from(Game)) == 2
     finally:
         client.close()
@@ -279,7 +276,7 @@ def test_repeat_import_100_saved_plus_20_new_only_schedules_20(settings, session
             assert len(links) == 120  # Full provenance remains separate from job scope.
             assert sum(link.is_new for link in links) == 20
             repeated = import_games(db, "again.pgn", "\n\n".join(pgns), ["learner"], None)
-            assert repeated["duplicates"] == 120 and repeated["job_id"] is None
+            assert repeated["duplicates"] == 120 and repeated["imported"] == 0
         repeated_job = source_job(sessions)
         fetch(repeated_job, sessions, settings, client)
         with sessions() as db:
@@ -295,7 +292,7 @@ def test_partial_failure_and_restart_keep_archive_checkpoint(settings, sessions)
     responses = {ROOT + "/archives": {"archives": [OLD, NEW]}, NEW: {"games": [game()]}, OLD: 503}
     client = mock_client(settings, responses, seen)
     try:
-        with pytest.raises(ChessComError, match="busy"):
+        with pytest.raises(ProviderError, match="busy"):
             fetch(job_id, sessions, settings, client)
         with sessions() as db:
             assert db.get(ChessComArchive, (job_id, NEW))
@@ -344,7 +341,7 @@ def test_cancel_retains_downloads_and_can_resume(settings, sessions):
 def test_provider_errors_are_actionable(settings, status, match):
     client = mock_client(settings, {ROOT + "/archives": status})
     try:
-        with pytest.raises(ChessComError, match=match):
+        with pytest.raises(ProviderError, match=match):
             client.archives("learner", 0, datetime.now(timezone.utc), lambda: False)
     finally:
         client.close()
@@ -367,7 +364,7 @@ def test_retries_rate_limit_without_following_untrusted_urls(settings):
         assert client.archives("learner", 0, datetime.now(timezone.utc), lambda: False) == []
         assert len(calls) == 2 and delays == [0]
         assert calls[0].headers["User-Agent"].startswith("FieldworkChessTrainer/")
-        with pytest.raises(ChessComError, match="unsupported"):
+        with pytest.raises(ProviderError, match="unsupported"):
             client.get_json("http://127.0.0.1/private", lambda: False)
         assert len(calls) == 2
     finally:
@@ -383,7 +380,7 @@ def test_bad_response_limit_and_archive_host(settings):
     ]:
         client = mock_client(settings, {ROOT + "/archives": payload})
         try:
-            with pytest.raises(ChessComError, match=match):
+            with pytest.raises(ProviderError, match=match):
                 client.archives("learner", 0, datetime.now(timezone.utc), lambda: False)
         finally:
             client.close()
@@ -392,27 +389,34 @@ def test_bad_response_limit_and_archive_host(settings):
 def test_enqueue_is_immediate_validated_and_deduplicates_active_jobs(settings):
     settings.stockfish_path = "missing-test-engine"
     with TestClient(create_app(settings, workers=False)) as client:
-        response = client.post("/api/imports/chesscom", json={"username": " Learner "})
+        response = client.post("/api/imports/provider/chesscom", json={"username": " Learner "})
         assert response.status_code == 202
         job_id = response.json()["job_id"]
         assert (
-            client.post("/api/imports/chesscom", json={"username": "learner"}).json()["job_id"]
+            client.post("/api/imports/provider/chesscom", json={"username": "learner"}).json()[
+                "job_id"
+            ]
             == job_id
         )
-        assert client.post("/api/imports/chesscom", json={"username": "../evil"}).status_code == 422
+        assert (
+            client.post("/api/imports/provider/chesscom", json={"username": "../evil"}).status_code
+            == 422
+        )
         job = client.get("/api/jobs").json()[0]
-        assert job["status"] == "queued" and job["chesscom"]["username"] == "learner"
+        assert job["status"] == "queued" and job["provider_import"]["username"] == "learner"
         assert client.post(f"/api/jobs/{job_id}/cancel").json()["status"] == "cancelled"
         bounded = {"username": "learner", "start_date": "2026-02-10", "end_date": "2026-02-11"}
-        dated_id = client.post("/api/imports/chesscom", json=bounded).json()["job_id"]
-        assert client.post("/api/imports/chesscom", json=bounded).json()["job_id"] == dated_id
+        dated_id = client.post("/api/imports/provider/chesscom", json=bounded).json()["job_id"]
+        assert (
+            client.post("/api/imports/provider/chesscom", json=bounded).json()["job_id"] == dated_id
+        )
         changed_id = client.post(
-            "/api/imports/chesscom", json={**bounded, "end_date": "2026-02-12"}
+            "/api/imports/provider/chesscom", json={**bounded, "end_date": "2026-02-12"}
         ).json()["job_id"]
         assert changed_id != dated_id
         assert (
             client.post(
-                "/api/imports/chesscom", json={**bounded, "end_date": "2026-02-01"}
+                "/api/imports/provider/chesscom", json={**bounded, "end_date": "2026-02-01"}
             ).status_code
             == 422
         )
@@ -428,10 +432,10 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
             config, {ROOT + "/archives": {"archives": [NEW]}, NEW: {"games": [game()]}}, seen
         )
 
-    with TestClient(create_app(settings, chesscom_factory=factory)) as client:
+    with TestClient(create_app(settings, provider_factories={"chesscom": factory})) as client:
         assert client.get("/api/health").json()["classification_available"]
         job_id = client.post(
-            "/api/imports/chesscom", json={"username": "learner", "months": 0}
+            "/api/imports/provider/chesscom", json={"username": "learner", "months": 0}
         ).json()["job_id"]
         deadline = time.monotonic() + 20
         while time.monotonic() < deadline:
@@ -440,7 +444,7 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
                 break
             time.sleep(0.1)
         assert job["status"] == "completed", job
-        assert job["chesscom"]["games_imported"] == 1
+        assert job["provider_import"]["games_imported"] == 1
         # The fetched game then runs its own review + training analysis job.
         while time.monotonic() < deadline:
             queue = client.get("/api/analysis/queue").json()
@@ -451,3 +455,20 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
         exercise = client.get("/api/review/queue").json()[0]["exercise_id"]
         assert client.post(f"/api/review/{exercise}/start").json()["fen"]
         assert len(seen) == 2
+
+
+def test_an_archive_rate_limit_pauses_chess_com_for_the_whole_host(settings, sessions):
+    from trainer.game_providers.base import ProviderRateLimited
+    from trainer.game_providers.gateway import ProviderCoolingDown, ProviderGateway
+
+    job_id = source_job(sessions)
+    responses = {ROOT + "/archives": 429}
+    gateway = ProviderGateway(settings, {"chesscom": lambda s: mock_client(s, responses)})
+    with pytest.raises(ProviderRateLimited, match="busy"):
+        with gateway.client("chesscom") as client:
+            fetch(job_id, sessions, settings, client)
+    # Every account's imports and the poller now wait out the cooldown.
+    assert gateway.cooling_down("chesscom")
+    with pytest.raises(ProviderCoolingDown):
+        with gateway.client("chesscom"):
+            pass

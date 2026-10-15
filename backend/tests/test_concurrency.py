@@ -7,7 +7,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 import chess
 import pytest
+from classifier_fixtures import FixtureClassifierBase
 from fastapi.testclient import TestClient
+from job_fixtures import queue_import_analysis
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.chess_core import Candidate, Score, position_key
@@ -28,6 +30,7 @@ def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
             for i in range(games)
         )
         imported = import_games(db, "fixture.pgn", pgn, ["Learner"], None)
+        imported["job_id"] = queue_import_analysis(db, imported)
         job = db.get(AnalysisJob, imported["job_id"])
         job.kind = kind
         for game in db.scalars(select(Game)):
@@ -72,7 +75,7 @@ def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
         return job.id
 
 
-class BlockingClassifier:
+class BlockingClassifier(FixtureClassifierBase):
     model = "concurrency-fixture"
 
     def __init__(self, workers):
@@ -154,7 +157,7 @@ def test_llm_concurrency_cancel_and_resume_without_repeat_calls(
 
 
 def test_single_import_uses_multiple_game_workers_and_closes_engines(
-    settings, sessions, monkeypatch
+    settings, sessions, sql_engine, monkeypatch
 ):
     settings.stockfish_workers = 2
     job_id = saved_job(sessions, games=4, kind="analysis")
@@ -190,7 +193,7 @@ def test_single_import_uses_multiple_game_workers_and_closes_engines(
                 active -= 1
 
     monkeypatch.setattr("trainer.pipeline.analyze_decision", analysis)
-    runner = JobRunner(settings, sessions, FSRSScheduler(settings), engine_factory=EngineFixture)
+    runner = JobRunner(settings, sql_engine, FSRSScheduler(settings), engine_factory=EngineFixture)
     assert runner.claim() == job_id
     runner.run_job(job_id)
     with sessions() as db:
@@ -228,7 +231,7 @@ def test_concurrent_native_engines_share_identical_cached_search(
 
 @pytest.mark.stockfish
 def test_parallel_native_import_persists_every_decision_and_classification(
-    settings, sessions, stockfish_path
+    settings, sessions, sql_engine, stockfish_path
 ):
     settings.stockfish_path = stockfish_path
     settings.stockfish_workers = settings.classification_workers = 3
@@ -248,9 +251,10 @@ def test_parallel_native_import_persists_every_decision_and_classification(
             for i in range(6)
         )
         imported = import_games(db, "native.pgn", pgn, ["Learner"], None)
+        imported["job_id"] = queue_import_analysis(db, imported)
     runner = JobRunner(
         settings,
-        sessions,
+        sql_engine,
         FSRSScheduler(settings),
         classifier=classifier,
         engine_factory=engine_factory,
@@ -287,7 +291,9 @@ def test_analysis_continues_while_model_request_is_waiting(settings, sessions, m
             until = time.monotonic() + 5
             while time.monotonic() < until:
                 job = next(j for j in client.get("/api/jobs").json() if j["id"] == job_id)
-                if job["positions_triaged"] == 2:
+                # A position is counted just before its classification is queued.
+                pending = job["activity"]["classifications"]["pending"]
+                if job["positions_triaged"] == 2 and pending == 2:
                     break
                 time.sleep(0.05)
             assert job["positions_triaged"] == 2
@@ -298,7 +304,9 @@ def test_analysis_continues_while_model_request_is_waiting(settings, sessions, m
         assert wait_status(client, job_id, {"completed", "failed"})["status"] == "completed"
 
 
-def test_failed_worker_drains_and_closes_processes_before_next_job(settings, sessions, monkeypatch):
+def test_failed_worker_drains_and_closes_processes_before_next_job(
+    settings, sessions, sql_engine, monkeypatch
+):
     settings.stockfish_workers = 2
     job_id = saved_job(sessions, kind="analysis")
     engines = []
@@ -316,7 +324,7 @@ def test_failed_worker_drains_and_closes_processes_before_next_job(settings, ses
         raise EngineUnavailable("Fixture engine exited")
 
     monkeypatch.setattr("trainer.pipeline.analyze_decision", broken_analysis)
-    runner = JobRunner(settings, sessions, FSRSScheduler(settings), engine_factory=BrokenEngine)
+    runner = JobRunner(settings, sql_engine, FSRSScheduler(settings), engine_factory=BrokenEngine)
     assert runner.claim() == job_id
     runner.run_job(job_id)
     with sessions() as db:

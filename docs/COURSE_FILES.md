@@ -159,7 +159,10 @@ restored database (or `<name>-courses` when that folder is already in use; point
   content (a built-in revision, or an earlier save, even one since deleted) gives
   it a new revision (today's date). Members who started the earlier revision keep
   the version they began; their progress is keyed by revision. The folder's
-  `revisions.ledger` remembers every saved revision for this.
+  `revisions.ledger` remembers every saved revision for this. If that file (or
+  `hidden-built-ins.ledger`) cannot be read, Settings â†’ Courses lists it as a problem
+  and saves are refused until it is fixed or restored, so its history is never
+  overwritten.
 - The editor refuses to save a new course over an existing id, and refuses to
   save over a course someone else saved after the editor opened it.
 

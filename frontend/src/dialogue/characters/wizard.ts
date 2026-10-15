@@ -91,8 +91,8 @@ export const wizard: CoachPersonality = {
     book_sound: ["The move stands in the recorded line of {opening}."],
     departure: ["Here the game passes the last move our opening book records. From now on, the position must be read on its own terms."],
     recovery: [
-      {observation: "A setback need not be the end of the lesson.", fact: "This move repairs the damage of {earlier}, and the position is playable again.{help}"},
-      "Following the error at {earlier}, this move brings back a playable position.{help}",
+      {observation: "A setback need not be the end of the lesson.", fact: "The damage of {earlier} is repaired, and the position is playable again.{help}"},
+      "Following the error at {earlier}, a playable position is back.{help}",
     ],
     punishment: ["The opponent's move at {earlier} offered {side} an opportunity, and this move takes it. A gift must be seen before it can be taken."],
     missed_punishment: ["At {earlier}, the opponent offered {side} an opportunity, and this move does not take it. Return to that moment and look again."],

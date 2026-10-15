@@ -15,4 +15,5 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("review_sessions", "last_attempt_id")
+    with op.batch_alter_table("review_sessions") as batch:
+        batch.drop_column("last_attempt_id")

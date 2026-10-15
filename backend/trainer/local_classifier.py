@@ -4,6 +4,7 @@ Rules describe observable consequences, not a learner's thought process. A PV
 is one engine continuation, not proof that every reply is forced.
 """
 
+from trainer.classification import Classification
 from trainer.classification_stages import (
     abstention_reasons,
     attach_provenance,
@@ -11,7 +12,29 @@ from trainer.classification_stages import (
     mate_findings,
     read_lines,
 )
+from trainer.config import Settings
 from trainer.diagnosis_types import RULE_VERSION
+from trainer.taxonomy import UNCLASSIFIED
+
+
+def classifier_parameters(settings=None):
+    """The classifier's line limits, from the host's settings or their defaults.
+
+    The keys are saved in every classification and hashed into its cache key, so
+    they keep their names: ``max_plies`` is the continuation horizon and
+    ``tactic_plies`` the bound on one tactical episode.
+    """
+    fields = {
+        "max_plies": "classification_max_plies",
+        "extension_plies": "classification_extension_plies",
+        "tactic_plies": "classification_tactic_plies",
+        "min_loss_cp": "classification_min_loss_cp",
+        "min_material": "classification_min_material",
+    }
+    return {
+        key: getattr(settings, name) if settings else Settings.model_fields[name].default
+        for key, name in fields.items()
+    }
 
 
 class LocalClassifier:
@@ -20,16 +43,9 @@ class LocalClassifier:
     model = "local-rules"  # Retained audit column; no model is loaded.
 
     def __init__(self, settings=None):
-        self.parameters = {
-            "max_plies": settings.classification_max_plies if settings else 16,
-            "extension_plies": settings.classification_extension_plies if settings else 16,
-            "tactic_plies": settings.classification_tactic_plies if settings else 8,
-            "min_loss_cp": settings.classification_min_loss_cp if settings else 150,
-            "min_material": settings.classification_min_material if settings else 1,
-        }
+        self.parameters = classifier_parameters(settings)
 
     def classify(self, evidence):
-        from trainer.classification import Classification
 
         best, actual, loss = read_lines(evidence, self.parameters)
         found = mate_findings(best, actual, loss)
@@ -50,7 +66,7 @@ class LocalClassifier:
             parameters=self.parameters,
             continuations={line.analysis_id: line.endpoint for line in (best, actual)},
             defense_checks=defense_checks,
-            primary_skill=skills[0] if skills else "unclassified",
+            primary_skill=skills[0] if skills else UNCLASSIFIED,
             secondary_skills=skills[1:],
             confidence=1.0 if skills else 0.0,
             explanation=" ".join(f.explanation for f in found)

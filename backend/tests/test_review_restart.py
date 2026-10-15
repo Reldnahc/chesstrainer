@@ -7,7 +7,6 @@ from sqlalchemy import select
 from trainer import reviews
 from trainer.api import create_app
 from trainer.models import Review, ReviewSession, SRSState
-from trainer.scheduling import utc
 
 
 @pytest.mark.parametrize("outcome", ["correct", "failed_then_solved", "revealed"])
@@ -48,7 +47,7 @@ def test_restart_preserves_schedule_until_due(settings, monkeypatch, outcome):
         with restarted.state.sessions() as db:
             state = db.get(SRSState, exercise)
             assert state.card == saved_card
-            assert utc(state.due) == due
+            assert state.due == due
             assert state.reviews == 1
             assert db.scalar(select(Review)).rating == ("Good" if outcome == "correct" else "Again")
         clock[0] = due

@@ -42,8 +42,12 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("game_review_moves", "refinement_id")
-    op.drop_column("game_review_moves", "revision")
+    with op.batch_alter_table("game_review_moves") as batch:
+        batch.drop_column("refinement_id")
+    with op.batch_alter_table("game_review_moves") as batch:
+        batch.drop_column("revision")
     op.drop_table("review_refinements")
-    op.drop_column("game_reviews", "refinement_plan")
-    op.drop_column("game_reviews", "revision")
+    with op.batch_alter_table("game_reviews") as batch:
+        batch.drop_column("refinement_plan")
+    with op.batch_alter_table("game_reviews") as batch:
+        batch.drop_column("revision")

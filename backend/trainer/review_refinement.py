@@ -8,8 +8,10 @@ from sqlalchemy import select
 
 from trainer.chess_core import digest, legal_move
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
+from trainer.game_library import board_before
+from trainer.game_review import analyze_move
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
-from trainer.review_intelligence.refinement_plan import VERSION, plan_key, selection
+from trainer.review_intelligence.refinement_plan import BROAD_TRIGGERS, VERSION, plan_key, selection
 from trainer.review_intelligence.refinement_search import (
     QueryBudgetReached,
     RefinementEngine,
@@ -22,7 +24,8 @@ TERMINAL = {"completed", "budget_limited", "unavailable"}
 
 
 def prepare(runner, game_id):
-    with runner.sessions() as db:
+    # Opening the game can reset the plan, so the plan is written under the account lock.
+    with runner.mutation_lock, runner.sessions() as db:
         review = db.get(GameReview, game_id)
         baseline = {
             r.ply: r.report
@@ -37,16 +40,7 @@ def prepare(runner, game_id):
             original = db.get(EngineAnalysis, report["before_analysis_id"])
             if original is None:
                 continue
-            broad = bool(
-                set(triggers)
-                & {
-                    "narrow_resource",
-                    "critical_alternative",
-                    "human_disagreement",
-                    "verify_sacrifice",
-                    "verify_opportunity",
-                }
-            )
+            broad = bool(set(triggers) & BROAD_TRIGGERS)
             config = dict(
                 version=VERSION,
                 engine_version=original.engine_version,
@@ -128,7 +122,7 @@ def run_refinement(runner, job_id, parsed, game_id):
 
 
 def record_progress(runner, game_id, plan):
-    with runner.import_lock, runner.sessions() as db:
+    with runner.mutation_lock, runner.sessions() as db:
         statuses = db.scalars(
             select(ReviewRefinement.status).where(ReviewRefinement.id.in_(plan["tasks"]))
         )
@@ -144,15 +138,11 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
     with runner.sessions() as db:
         task = db.get(ReviewRefinement, task_id)
         baseline = db.get(GameReviewMove, (game_id, task.ply)).report
-    board = parsed.board()
-    for move in list(parsed.mainline_moves())[: task.ply - 1]:
-        board.push(move)
+    board = board_before(parsed, task.ply)
     move = legal_move(board, baseline["actual"]["uci"])
     status, reason, report = "completed", None, None
     adopted = False
     try:
-        from trainer.game_review import analyze_move
-
         bounded = RefinementEngine(engine, task, runner.sessions, lambda: runner.cancelled(job_id))
         report = analyze_move(bounded, board, move)
         reason = adoption_reason(baseline, report)
@@ -176,7 +166,7 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
         status, reason = "unavailable", "incompatible_engine"
     except EngineUnavailable:
         status, reason = "unavailable", "engine_unavailable"
-    with runner.import_lock, runner.sessions() as db:
+    with runner.mutation_lock, runner.sessions() as db:
         current = db.get(ReviewRefinement, task_id)
         current.status, current.reason, current.report = status, reason, report
         current.adopted = adopted and status == "completed"

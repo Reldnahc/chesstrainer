@@ -1,11 +1,15 @@
 """Adversarial multi-account requests and durable sessions in one database."""
 
+import sqlite3
+from contextlib import closing
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select, update
 from trainer.accounts import COOKIE, Accounts
 from trainer.api import create_app
 from trainer.db import database, migrate
+from trainer.errors import Conflict, NotFound
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, Game, GameReview, User
 from trainer.ownership import account_sessions
@@ -178,7 +182,6 @@ def test_sessions_isolation_csrf_and_restart(settings):
             ).status_code
             == 200
         )
-        assert client.post(f"/api/games/{game}/train", headers=bob_headers).status_code == 404
         assert (
             client.post(f"/api/games/{game}/review", json={}, headers=bob_headers).status_code
             == 404
@@ -228,7 +231,6 @@ def test_sessions_isolation_csrf_and_restart(settings):
         assert client.get("/api/games").status_code == 401
         assert client.post(f"/api/games/{game}/review", json={}, headers=ORIGIN).status_code == 401
         assert client.post(f"/api/games/{game}/analyze", json={}, headers=ORIGIN).status_code == 401
-        assert client.post(f"/api/games/{game}/train", headers=ORIGIN).status_code == 401
         client.cookies.set(COOKIE, token)
         assert client.get("/api/games").json()["items"][0]["id"] == game
 
@@ -243,7 +245,10 @@ def test_database_scope_aggregates_updates_and_references(settings):
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
         game_id = db.scalar(select(Game.id))
-        job_id = db.scalar(select(AnalysisJob.id))
+        job = AnalysisJob(kind="classification")
+        db.add(job)
+        db.commit()
+        job_id = job.id
     with sb() as db:
         assert db.get(Game, game_id) is None
         assert db.scalar(select(func.count()).select_from(Game)) == 0
@@ -251,11 +256,42 @@ def test_database_scope_aggregates_updates_and_references(settings):
         db.add(GameReview(game_id=game_id, job_id=job_id, rating=1000))
         import pytest
 
-        with pytest.raises(ValueError, match="not in this account"):
+        with pytest.raises(NotFound, match="not in this account"):
             db.commit()
     with sa() as db:
         assert db.get(AnalysisJob, job_id).status == "queued"
         assert db.scalar(select(User).where(User.id == a["id"])).username == "alice"
+    engine.dispose()
+
+
+def test_bulk_writes_cannot_cross_accounts(settings):
+    import pytest
+
+    engine, _ = database(settings.database_path)
+    migrate(engine)
+    accounts = Accounts(settings.database_path)
+    a = accounts.create("alice", "testing-password")
+    b = accounts.create("bobby", "testing-password")
+    sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
+    with sa() as db:
+        import_games(db, "test", PGN, [], "white")
+        game_id = db.scalar(select(Game.id))
+    with sb() as db:
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.execute(update(Game), [{"id": game_id, "white": "Changed"}])
+        with pytest.raises(ValueError, match="validated ORM writes"):
+            db.execute(
+                update(Game).where(Game.id == game_id).ordered_values((Game.user_id, b["id"]))
+            )
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.bulk_update_mappings(Game, [{"id": game_id, "white": "Changed"}])
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.bulk_insert_mappings(Game, [{"fingerprint": "x", "pgn": "", "user_id": a["id"]}])
+        with pytest.raises(ValueError, match="Bulk writes"):
+            db.bulk_save_objects([Game(fingerprint="y", pgn="")])
+    with sa() as db:
+        game = db.get(Game, game_id)
+        assert game.user_id == a["id"] and game.white != "Changed"
     engine.dispose()
 
 
@@ -274,6 +310,7 @@ def test_secure_cookie_and_origin(settings):
 
 
 def test_account_migration_preserves_existing_learning_history(settings):
+    import sqlalchemy
     from alembic import command
     from alembic.config import Config
     from lesson_fixtures import seed_lesson
@@ -305,8 +342,14 @@ def test_account_migration_preserves_existing_learning_history(settings):
             for table in tables
         }
     migrate(engine)
+    # Later migrations dropped the archived lesson tables and their link columns.
+    dropped = {"lesson_item_id", "repertoire_id"}
+    current = set(sqlalchemy.inspect(engine).get_table_names())
     with engine.connect() as connection:
         for table, rows in before.items():
+            if table not in current:
+                continue
+            rows = [{k: v for k, v in row.items() if k not in dropped} for row in rows]
             after = [
                 dict(row)
                 for row in connection.exec_driver_sql(
@@ -518,17 +561,17 @@ def test_administrators_manage_other_accounts_from_settings(settings):
         assert repeat.status_code == 409
         assert repeat.json()["detail"] == "Account is already an administrator."
 
-        with accounts.connect() as db:
+        with closing(sqlite3.connect(settings.database_path)) as db, db:
             db.execute("UPDATE analysis_jobs SET status='running' WHERE user_id=?", (friend_id,))
         assert "analysis running" in client.delete(target, headers=headers).json()["detail"]
-        with accounts.connect() as db:
+        with closing(sqlite3.connect(settings.database_path)) as db, db:
             db.execute("UPDATE analysis_jobs SET status='queued' WHERE user_id=?", (friend_id,))
         deleted = client.delete(target, headers=headers)
         assert deleted.status_code == 200, deleted.text
         assert [row["username"] for row in client.get("/api/auth/accounts").json()["accounts"]] == [
             "keeper"
         ]
-        with accounts.connect() as db:
+        with closing(sqlite3.connect(settings.database_path)) as db, db:
             tables = [
                 row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")
             ]
@@ -690,7 +733,7 @@ def test_a_disabled_account_with_interrupted_analysis_can_still_be_deleted(setti
         db.add(AnalysisJob(user_id=friend["id"], kind="training", status="running"))
         db.commit()
     accounts.set_disabled(friend, True)
-    with pytest.raises(ValueError, match="analysis running"):
+    with pytest.raises(Conflict, match="analysis running"):
         accounts.delete(accounts.by_id(friend["id"]))
     # A restart interrupted that job; recovery requeues it even for a disabled owner.
     JobQueue(engine).recover()

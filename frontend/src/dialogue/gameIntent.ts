@@ -12,6 +12,9 @@ const purposes: Record<Report["label"], DialoguePurpose> = {
   Inaccuracy: "inaccuracy", Mistake: "mistake", Blunder: "blunder", Miss: "missed",
 };
 
+/** A listed fact that is present and empty; a missing fact never passes. */
+const none = (value: unknown) => Array.isArray(value) && value.length === 0;
+
 function moveLabel(game: Game, ply: number) {
   const frame = game.frames[ply];
   return frame ? `${frame.number}${frame.actor === "black" ? "..." : "."} ${frame.san}` : `Ply ${ply}`;
@@ -110,6 +113,11 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
       const earlier = moveLabel(game, relation.plies[0]), f = relation.facts;
       const linked = (code: ClaimCode, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
+      // Each relationship is told only where its wording holds: a conversion
+      // with no Inaccuracy or worse of the side's own inside the run ("cleanly"),
+      // and an erosion on an Inaccuracy with no Mistake of the side's own since its
+      // first concession ("small slips", "no single big mistake"). A recovery is
+      // written but never voiced (see gameSelection).
       if (relation.kind === "recovery") {
         linked("recovery", {earlier, help: Array.isArray(f.opponent_errors) && f.opponent_errors.length ? " The opponent's errors helped make that possible." : ""}, 88);
         purpose = "recovery";
@@ -127,8 +135,9 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
         linked("support_restored", {earlier, piece: words(f.piece)}, 75);
       }
       // A run of concessions is only told on a move that is itself one.
-      if (relation.kind === "erosion" && poor) linked("erosion", {earlier}, 71);
-      if (relation.kind === "advantage_run" && f.outcome === "converted") linked("conversion", {earlier, side}, 75);
+      if (relation.kind === "erosion" && report.label === "Inaccuracy" && none(f.own_mistake_plies)) linked("erosion", {earlier}, 71);
+      if (relation.kind === "advantage_run" && f.outcome === "converted" && none(f.own_error_plies))
+        linked("conversion", {earlier, side}, 75);
     }
     for (const item of game.history?.weaknesses ?? []) if (item.status === "supported" && item.related_plies.includes(ply))
       claims.push(claim("history", {motif: words(item.skill_id), games: item.independent_games}, 67, item.evidence, item.decision_ids));
@@ -169,7 +178,11 @@ function explainsCost(f: Record<string, unknown>, mover: string | null | undefin
       const defended = strings(f.after).length > 0;
       return actual ? own && !defended : own === defended;
     }
-    case "doubled_files": case "isolated_pawns": case "bishop_pair": return actual ? own : !own;
+    // The better move's own doubled or isolated pawns are its drawback, and the
+    // opponent's are a gain that the alternative's lines frame as the better
+    // move's own untidy structure, so only the played move's own count.
+    case "doubled_files": case "isolated_pawns": return actual && own;
+    case "bishop_pair": return actual ? own : !own;
     case "rook_file": case "passed_pawns": return actual ? !own : own;
     case "passed_pawn_advance": case "first_development": case "castling": return !actual;
     default: return false;

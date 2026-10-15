@@ -78,7 +78,7 @@ for (const game of games) {
       ["punishment", "missed_punishment", {outcome: "missed"}],
       ["repeated_motif", "repeated", {role: "caused", motif: "abandoned_defender", occurrence: 2}],
       ["support_restored", "support_restored", {piece: "knight"}],
-      ["erosion", "erosion", {}], ["advantage_run", "conversion", {outcome: "converted"}],
+      ["erosion", "erosion", {own_mistake_plies: []}], ["advantage_run", "conversion", {outcome: "converted", own_error_plies: []}],
     ] as const;
     for (const [kind, code, facts] of kinds) {
       // A restored defender is spoken only for a piece under attack on this move.

@@ -3,9 +3,9 @@
 from collections.abc import Iterable
 from typing import Protocol
 
-from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
+from trainer.errors import NotFound
 from trainer.study_lessons.content import CourseDefinition
 
 
@@ -14,6 +14,8 @@ class CourseProvider(Protocol):
 
 
 class CourseProviders:
+    """Every installed course, plus the Study topic and source each provider knows for it."""
+
     def __init__(self, providers=()):
         self.providers = tuple(providers)
 
@@ -21,8 +23,12 @@ class CourseProviders:
         seen = set()
         for provider in self.providers:
             for item in provider.courses(db):
-                record = item.model_dump() if isinstance(item, CourseDefinition) else item
-                course = CourseDefinition.model_validate(record)
+                # A built definition already replayed its lines; only raw records need it.
+                course = (
+                    item
+                    if isinstance(item, CourseDefinition)
+                    else CourseDefinition.model_validate(item)
+                )
                 identity = (course.id, course.revision)
                 if identity in seen:
                     raise ValueError("Duplicate course revision")
@@ -30,14 +36,40 @@ class CourseProviders:
                 yield course
 
     def get(self, db, course_id, revision=None):
-        course = next(
-            (
-                item
-                for item in self.courses(db)
-                if item.id == course_id and (revision is None or item.revision == revision)
-            ),
-            None,
-        )
+        if all(hasattr(provider, "find") for provider in self.providers):
+            # Each provider copies only the course asked for.
+            course = next(
+                (
+                    found
+                    for provider in self.providers
+                    if (found := provider.find(db, course_id, revision)) is not None
+                ),
+                None,
+            )
+        else:
+            course = next(
+                (
+                    item
+                    for item in self.courses(db)
+                    if item.id == course_id and (revision is None or item.revision == revision)
+                ),
+                None,
+            )
         if course is None:
-            raise HTTPException(404, "Course revision not installed")
+            raise NotFound("Course revision not installed")
         return course
+
+    def topic(self, course_id):
+        """The Study section a course belongs to; ``opening`` unless its provider says."""
+        for provider in self.providers:
+            topic = getattr(provider, "topic", lambda _: None)(course_id)
+            if topic:
+                return topic
+        return "opening"
+
+    def source(self, course_id, revision=None):
+        """``club`` for a revision a club file holds, otherwise ``built_in``."""
+        for provider in self.providers:
+            if hasattr(provider, "source"):
+                return provider.source(course_id, revision)
+        return "built_in"

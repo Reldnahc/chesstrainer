@@ -4,7 +4,7 @@ import json
 
 import pytest
 from trainer.study_lessons import course_files
-from trainer.study_lessons.bundled import BundledCourses, course_topic
+from trainer.study_lessons.bundled import BundledCourses
 from trainer.study_lessons.course_files import CourseFileError
 from trainer.study_lessons.queries import fingerprint
 
@@ -62,10 +62,10 @@ def test_writing_a_course_reads_back_identically():
 
 @pytest.mark.parametrize("course", BundledCourses().courses(None), ids=lambda course: course.id)
 def test_every_bundled_course_survives_the_file_format(course):
-    data = json.loads(json.dumps(course_files.dump(course, course_topic(course.id))))
+    data = json.loads(json.dumps(course_files.dump(course, BundledCourses().topic(course.id))))
     loaded, topic = course_files.load(data)
     assert loaded == course and fingerprint(loaded) == fingerprint(course)
-    assert topic == course_topic(course.id)
+    assert topic == BundledCourses().topic(course.id)
 
 
 @pytest.mark.parametrize(

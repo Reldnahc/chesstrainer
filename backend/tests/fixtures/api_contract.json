@@ -466,195 +466,6 @@
         "title": "Candidate",
         "type": "object"
       },
-      "ChessComImportProgress": {
-        "additionalProperties": false,
-        "properties": {
-          "archives_processed": {
-            "title": "Archives Processed",
-            "type": "integer"
-          },
-          "archives_total": {
-            "title": "Archives Total",
-            "type": "integer"
-          },
-          "duplicates": {
-            "title": "Duplicates",
-            "type": "integer"
-          },
-          "end_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Date"
-          },
-          "errors": {
-            "items": {
-              "$ref": "#/components/schemas/ImportError"
-            },
-            "title": "Errors",
-            "type": "array"
-          },
-          "fetch_completed": {
-            "title": "Fetch Completed",
-            "type": "boolean"
-          },
-          "filtered": {
-            "title": "Filtered",
-            "type": "integer"
-          },
-          "games_fetched": {
-            "title": "Games Fetched",
-            "type": "integer"
-          },
-          "games_imported": {
-            "title": "Games Imported",
-            "type": "integer"
-          },
-          "job_id": {
-            "title": "Job Id",
-            "type": "string"
-          },
-          "max_games": {
-            "title": "Max Games",
-            "type": "integer"
-          },
-          "months": {
-            "title": "Months",
-            "type": "integer"
-          },
-          "provider": {
-            "default": "chesscom",
-            "title": "Provider",
-            "type": "string"
-          },
-          "provider_name": {
-            "default": "Chess.com",
-            "title": "Provider Name",
-            "type": "string"
-          },
-          "rejected": {
-            "title": "Rejected",
-            "type": "integer"
-          },
-          "start_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Start Date"
-          },
-          "time_class": {
-            "title": "Time Class",
-            "type": "string"
-          },
-          "user_id": {
-            "title": "User Id",
-            "type": "string"
-          },
-          "username": {
-            "title": "Username",
-            "type": "string"
-          }
-        },
-        "required": [
-          "job_id",
-          "user_id",
-          "username",
-          "time_class",
-          "months",
-          "max_games",
-          "start_date",
-          "end_date",
-          "archives_total",
-          "archives_processed",
-          "games_fetched",
-          "games_imported",
-          "duplicates",
-          "filtered",
-          "rejected",
-          "errors",
-          "fetch_completed"
-        ],
-        "title": "ChessComImportProgress",
-        "type": "object"
-      },
-      "ChessComRequest": {
-        "properties": {
-          "end_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Date"
-          },
-          "max_games": {
-            "default": 100,
-            "maximum": 1000.0,
-            "minimum": 1.0,
-            "title": "Max Games",
-            "type": "integer"
-          },
-          "months": {
-            "default": 3,
-            "maximum": 120.0,
-            "minimum": 0.0,
-            "title": "Months",
-            "type": "integer"
-          },
-          "start_date": {
-            "anyOf": [
-              {
-                "format": "date",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Start Date"
-          },
-          "time_class": {
-            "default": "rapid",
-            "enum": [
-              "rapid",
-              "blitz",
-              "bullet",
-              "daily",
-              "all"
-            ],
-            "title": "Time Class",
-            "type": "string"
-          },
-          "username": {
-            "maxLength": 50,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z0-9_-]+$",
-            "title": "Username",
-            "type": "string"
-          }
-        },
-        "required": [
-          "username"
-        ],
-        "title": "ChessComRequest",
-        "type": "object"
-      },
       "ClassificationAudit": {
         "additionalProperties": false,
         "properties": {
@@ -1575,28 +1386,6 @@
         "title": "CreatedId",
         "type": "object"
       },
-      "Credentials": {
-        "properties": {
-          "password": {
-            "maxLength": 128,
-            "minLength": 10,
-            "title": "Password",
-            "type": "string"
-          },
-          "username": {
-            "maxLength": 32,
-            "minLength": 3,
-            "title": "Username",
-            "type": "string"
-          }
-        },
-        "required": [
-          "username",
-          "password"
-        ],
-        "title": "Credentials",
-        "type": "object"
-      },
       "CrossGameContext": {
         "additionalProperties": false,
         "properties": {
@@ -1849,44 +1638,6 @@
         "title": "Domain",
         "type": "object"
       },
-      "EditorMove": {
-        "additionalProperties": false,
-        "properties": {
-          "from_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "From Square",
-            "type": "string"
-          },
-          "promotion": {
-            "anyOf": [
-              {
-                "enum": [
-                  "q",
-                  "r",
-                  "b",
-                  "n"
-                ],
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Promotion"
-          },
-          "to_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "To Square",
-            "type": "string"
-          }
-        },
-        "required": [
-          "from_square",
-          "to_square"
-        ],
-        "title": "EditorMove",
-        "type": "object"
-      },
       "EditorPosition": {
         "additionalProperties": false,
         "properties": {
@@ -1952,7 +1703,7 @@
           "move": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/EditorMove"
+                "$ref": "#/components/schemas/SquareMove"
               },
               {
                 "type": "null"
@@ -1985,7 +1736,8 @@
               "rook",
               "queen",
               "minor",
-              "pawn"
+              "pawn",
+              "mixed"
             ],
             "title": "Kind",
             "type": "string"
@@ -2176,7 +1928,10 @@
           },
           "findings": {
             "items": {
-              "$ref": "#/components/schemas/Finding"
+              "additionalProperties": {
+                "$ref": "#/components/schemas/JsonValue"
+              },
+              "type": "object"
             },
             "title": "Findings",
             "type": "array"
@@ -3644,6 +3399,17 @@
               }
             ]
           },
+          "previous_mistake": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Mistake"
+          },
           "previous_score": {
             "anyOf": [
               {
@@ -4209,6 +3975,17 @@
             "title": "Id",
             "type": "string"
           },
+          "move": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Move"
+          },
           "opponent": {
             "title": "Opponent",
             "type": "string"
@@ -4263,7 +4040,8 @@
           "opponent_rating",
           "result",
           "played_on",
-          "ply"
+          "ply",
+          "move"
         ],
         "title": "InsightGame",
         "type": "object"
@@ -4432,16 +4210,6 @@
             "title": "Cancel Requested",
             "type": "boolean"
           },
-          "chesscom": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ChessComImportProgress"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "classifications_completed": {
             "title": "Classifications Completed",
             "type": "integer"
@@ -4520,7 +4288,7 @@
           "provider_import": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/ChessComImportProgress"
+                "$ref": "#/components/schemas/ProviderImportProgress"
               },
               {
                 "type": "null"
@@ -4533,6 +4301,13 @@
             "type": "integer"
           },
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled"
+            ],
             "title": "Status",
             "type": "string"
           },
@@ -4558,7 +4333,7 @@
           "created_at",
           "probe_total",
           "activity",
-          "chesscom"
+          "provider_import"
         ],
         "title": "Job",
         "type": "object"
@@ -4602,6 +4377,13 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -4617,6 +4399,13 @@
         "additionalProperties": false,
         "properties": {
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -5533,6 +5322,8 @@
         "type": "object"
       },
       "ManualRequest": {
+        "additionalProperties": false,
+        "description": "A hand-made exercise: a position and the moves that answer it.",
         "properties": {
           "explanation": {
             "default": "",
@@ -5547,6 +5338,7 @@
           },
           "moves": {
             "items": {
+              "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
               "type": "string"
             },
             "maxItems": 100,
@@ -5973,43 +5765,6 @@
           "by_phase"
         ],
         "title": "MoveRates",
-        "type": "object"
-      },
-      "MoveRequest": {
-        "properties": {
-          "from_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "From Square",
-            "type": "string"
-          },
-          "promotion": {
-            "anyOf": [
-              {
-                "enum": [
-                  "q",
-                  "r",
-                  "b",
-                  "n"
-                ],
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Promotion"
-          },
-          "to_square": {
-            "pattern": "^[a-h][1-8]$",
-            "title": "To Square",
-            "type": "string"
-          }
-        },
-        "required": [
-          "from_square",
-          "to_square"
-        ],
-        "title": "MoveRequest",
         "type": "object"
       },
       "NewAccount": {
@@ -6707,17 +6462,6 @@
             "title": "Imported",
             "type": "integer"
           },
-          "job_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Job Id"
-          },
           "processed": {
             "title": "Processed",
             "type": "integer"
@@ -6728,7 +6472,6 @@
           "processed",
           "imported",
           "duplicates",
-          "job_id",
           "errors"
         ],
         "title": "PgnImportResult",
@@ -6901,8 +6644,7 @@
             "type": "boolean"
           },
           "uci": {
-            "maxLength": 5,
-            "minLength": 4,
+            "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
             "title": "Uci",
             "type": "string"
           }
@@ -7012,6 +6754,10 @@
             "title": "Games",
             "type": "integer"
           },
+          "human_model": {
+            "title": "Human Model",
+            "type": "boolean"
+          },
           "platform": {
             "anyOf": [
               {
@@ -7052,6 +6798,7 @@
         },
         "required": [
           "status",
+          "human_model",
           "fitted_rating",
           "platform_rating",
           "platform",
@@ -7209,6 +6956,24 @@
             "title": "Coach Name",
             "type": "string"
           },
+          "fallback_elo": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fallback Elo"
+          },
+          "fallback_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Fallback Plies",
+            "type": "array"
+          },
           "frames": {
             "items": {
               "$ref": "#/components/schemas/GameFrame"
@@ -7331,6 +7096,8 @@
           "termination",
           "saved_game_id",
           "reply",
+          "fallback_plies",
+          "fallback_elo",
           "frames"
         ],
         "title": "PlayState",
@@ -7552,6 +7319,129 @@
           "username"
         ],
         "title": "ProviderConnectionRequest",
+        "type": "object"
+      },
+      "ProviderImportProgress": {
+        "additionalProperties": false,
+        "properties": {
+          "archives_processed": {
+            "title": "Archives Processed",
+            "type": "integer"
+          },
+          "archives_total": {
+            "title": "Archives Total",
+            "type": "integer"
+          },
+          "duplicates": {
+            "title": "Duplicates",
+            "type": "integer"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/ImportError"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "fetch_completed": {
+            "title": "Fetch Completed",
+            "type": "boolean"
+          },
+          "filtered": {
+            "title": "Filtered",
+            "type": "integer"
+          },
+          "games_fetched": {
+            "title": "Games Fetched",
+            "type": "integer"
+          },
+          "games_imported": {
+            "title": "Games Imported",
+            "type": "integer"
+          },
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "max_games": {
+            "title": "Max Games",
+            "type": "integer"
+          },
+          "months": {
+            "title": "Months",
+            "type": "integer"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_name": {
+            "title": "Provider Name",
+            "type": "string"
+          },
+          "rejected": {
+            "title": "Rejected",
+            "type": "integer"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "time_class": {
+            "title": "Time Class",
+            "type": "string"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "provider_name",
+          "job_id",
+          "user_id",
+          "username",
+          "time_class",
+          "months",
+          "max_games",
+          "start_date",
+          "end_date",
+          "archives_total",
+          "archives_processed",
+          "games_fetched",
+          "games_imported",
+          "duplicates",
+          "filtered",
+          "rejected",
+          "errors",
+          "fetch_completed"
+        ],
+        "title": "ProviderImportProgress",
         "type": "object"
       },
       "ProviderImportRequest": {
@@ -8824,6 +8714,7 @@
               {
                 "enum": [
                   "good_move",
+                  "accepted",
                   "practice_saved",
                   "relearning",
                   "opening_rejected",
@@ -9168,6 +9059,7 @@
         "type": "object"
       },
       "ReviewRequest": {
+        "additionalProperties": false,
         "properties": {
           "rating": {
             "anyOf": [
@@ -9358,6 +9250,17 @@
               }
             ],
             "title": "Default"
+          },
+          "exclusive_minimum": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exclusive Minimum"
           },
           "help": {
             "title": "Help",
@@ -9725,6 +9628,44 @@
         "title": "SkillPriority",
         "type": "object"
       },
+      "SquareMove": {
+        "additionalProperties": false,
+        "properties": {
+          "from_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "From Square",
+            "type": "string"
+          },
+          "promotion": {
+            "anyOf": [
+              {
+                "enum": [
+                  "q",
+                  "r",
+                  "b",
+                  "n"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promotion"
+          },
+          "to_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "To Square",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_square",
+          "to_square"
+        ],
+        "title": "SquareMove",
+        "type": "object"
+      },
       "Stats": {
         "additionalProperties": false,
         "properties": {
@@ -9807,123 +9748,6 @@
           "error"
         ],
         "title": "SyncStatus",
-        "type": "object"
-      },
-      "TeachingAudit": {
-        "additionalProperties": false,
-        "properties": {
-          "attempts": {
-            "title": "Attempts",
-            "type": "integer"
-          },
-          "cache_key": {
-            "title": "Cache Key",
-            "type": "string"
-          },
-          "confidence": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Confidence"
-          },
-          "created_at": {
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "error": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Error"
-          },
-          "evidence_ids": {
-            "items": {
-              "type": "string"
-            },
-            "title": "Evidence Ids",
-            "type": "array"
-          },
-          "id": {
-            "title": "Id",
-            "type": "string"
-          },
-          "input_tokens": {
-            "title": "Input Tokens",
-            "type": "integer"
-          },
-          "model": {
-            "title": "Model",
-            "type": "string"
-          },
-          "output_tokens": {
-            "title": "Output Tokens",
-            "type": "integer"
-          },
-          "prompt_version": {
-            "title": "Prompt Version",
-            "type": "string"
-          },
-          "response": {
-            "anyOf": [
-              {
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/JsonValue"
-                },
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Response"
-          },
-          "schema_version": {
-            "title": "Schema Version",
-            "type": "string"
-          },
-          "status": {
-            "title": "Status",
-            "type": "string"
-          },
-          "unit_id": {
-            "title": "Unit Id",
-            "type": "string"
-          },
-          "user_id": {
-            "title": "User Id",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "user_id",
-          "cache_key",
-          "model",
-          "schema_version",
-          "prompt_version",
-          "status",
-          "response",
-          "confidence",
-          "error",
-          "input_tokens",
-          "output_tokens",
-          "attempts",
-          "created_at",
-          "unit_id",
-          "evidence_ids"
-        ],
-        "title": "TeachingAudit",
         "type": "object"
       },
       "Theory": {
@@ -10168,9 +9992,11 @@
         "type": "object"
       },
       "VariationRequest": {
+        "additionalProperties": false,
         "properties": {
           "moves": {
             "items": {
+              "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
               "type": "string"
             },
             "maxItems": 128,
@@ -10453,6 +10279,18 @@
             "title": "Lan Token Configured",
             "type": "boolean"
           },
+          "lichess_max_response_bytes": {
+            "title": "Lichess Max Response Bytes",
+            "type": "integer"
+          },
+          "lichess_max_scan_games": {
+            "title": "Lichess Max Scan Games",
+            "type": "integer"
+          },
+          "lichess_timeout_seconds": {
+            "title": "Lichess Timeout Seconds",
+            "type": "number"
+          },
           "max_import_bytes": {
             "title": "Max Import Bytes",
             "type": "integer"
@@ -10473,18 +10311,6 @@
             "title": "Practical Tolerance Cp",
             "type": "integer"
           },
-          "provider_max_response_bytes": {
-            "title": "Provider Max Response Bytes",
-            "type": "integer"
-          },
-          "provider_max_scan_games": {
-            "title": "Provider Max Scan Games",
-            "type": "integer"
-          },
-          "provider_timeout_seconds": {
-            "title": "Provider Timeout Seconds",
-            "type": "number"
-          },
           "puzzle_generation": {
             "title": "Puzzle Generation",
             "type": "boolean"
@@ -10504,17 +10330,6 @@
           "puzzle_generation_time": {
             "title": "Puzzle Generation Time",
             "type": "number"
-          },
-          "puzzle_pack_path": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Puzzle Pack Path"
           },
           "puzzle_starter_pack": {
             "title": "Puzzle Starter Pack",
@@ -10618,10 +10433,25 @@
           "engine_error",
           "engine_version",
           "classification_available",
+          "lan_token_configured",
+          "coverage",
+          "classification_provider",
+          "classification_version",
+          "classification_runs",
+          "classification_failed",
+          "classification_rejected",
+          "classification_abstained",
           "server_port",
           "accounts_enabled",
           "session_secure",
           "engine_slots",
+          "stockfish_threads",
+          "stockfish_hash_mb",
+          "stockfish_workers",
+          "sync_interval_seconds",
+          "sync_games",
+          "sync_lichess_batch",
+          "sync_away_days",
           "human_model_enabled",
           "human_model_device",
           "human_model_threads",
@@ -10632,13 +10462,6 @@
           "review_refinement_depth",
           "review_refinement_time",
           "review_refinement_multipv",
-          "stockfish_threads",
-          "stockfish_hash_mb",
-          "stockfish_workers",
-          "sync_interval_seconds",
-          "sync_games",
-          "sync_lichess_batch",
-          "sync_away_days",
           "triage_depth",
           "triage_time",
           "triage_nodes",
@@ -10668,24 +10491,15 @@
           "max_import_bytes",
           "chesscom_timeout_seconds",
           "chesscom_max_response_bytes",
-          "provider_timeout_seconds",
-          "provider_max_response_bytes",
-          "provider_max_scan_games",
+          "lichess_timeout_seconds",
+          "lichess_max_response_bytes",
+          "lichess_max_scan_games",
           "puzzle_starter_pack",
-          "puzzle_pack_path",
           "puzzle_generation",
           "puzzle_generation_depth",
           "puzzle_generation_time",
           "puzzle_generation_max_plies",
-          "puzzle_generation_games",
-          "lan_token_configured",
-          "coverage",
-          "classification_provider",
-          "classification_version",
-          "classification_runs",
-          "classification_failed",
-          "classification_rejected",
-          "classification_abstained"
+          "puzzle_generation_games"
         ],
         "title": "WorkspaceSettings",
         "type": "object"
@@ -10955,7 +10769,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Credentials"
+                "$ref": "#/components/schemas/NewAccount"
               }
             }
           },
@@ -11104,7 +10918,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Credentials"
+                "$ref": "#/components/schemas/NewAccount"
               }
             }
           },
@@ -11748,45 +11562,6 @@
         "summary": "Begin Review"
       }
     },
-    "/api/games/{game_id}/train": {
-      "post": {
-        "operationId": "train_game_api_games__game_id__train_post",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "game_id",
-            "required": true,
-            "schema": {
-              "title": "Game Id",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JobStarted"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Train Game"
-      }
-    },
     "/api/health": {
       "get": {
         "operationId": "get_health_api_health_get",
@@ -11859,44 +11634,6 @@
           }
         },
         "summary": "Upload Pgn"
-      }
-    },
-    "/api/imports/chesscom": {
-      "post": {
-        "operationId": "import_chesscom_api_imports_chesscom_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChessComRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JobStarted"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Import Chesscom"
       }
     },
     "/api/imports/provider/{provider}": {
@@ -13873,7 +13610,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MoveRequest"
+                "$ref": "#/components/schemas/SquareMove"
               }
             }
           },
@@ -14589,118 +14326,6 @@
           }
         },
         "summary": "Command"
-      }
-    },
-    "/api/sync": {
-      "get": {
-        "operationId": "get_sync_api_sync_get",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SyncStatus"
-                }
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Get Sync"
-      },
-      "post": {
-        "operationId": "begin_sync_api_sync_post",
-        "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SyncStatus"
-                }
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Begin Sync"
-      }
-    },
-    "/api/teaching-runs/{run_id}": {
-      "get": {
-        "operationId": "teaching_audit_api_teaching_runs__run_id__get",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "run_id",
-            "required": true,
-            "schema": {
-              "title": "Run Id",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeachingAudit"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Teaching Audit"
-      }
-    },
-    "/api/teaching-runs/{run_id}/reject": {
-      "post": {
-        "operationId": "reject_teaching_api_teaching_runs__run_id__reject_post",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "run_id",
-            "required": true,
-            "schema": {
-              "title": "Run Id",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Rejected"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Reject Teaching"
       }
     },
     "/api/weaknesses": {

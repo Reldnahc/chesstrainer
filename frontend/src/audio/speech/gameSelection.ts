@@ -2,7 +2,7 @@ import type {Schema} from "../../api";
 import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
 import {humanInsightLabels} from "../../dialogue/humanClaims";
-import {object, strings} from "../../dialogue/eventClaims";
+import {object, strings, tacticStartsHere} from "../../dialogue/eventClaims";
 import {isForcedMateStage, type Claim, type ClaimCode, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {causeMotifs, recordedTacticMotifs} from "../../dialogue/tacticalVocabulary";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
@@ -43,6 +43,8 @@ const square = (value: unknown): value is string => typeof value === "string" &&
 const files = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0)
   && value.every(f => typeof f === "string" && /^[a-h]$/.test(f));
 const squares = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0) && value.every(square);
+/** Whether a SAN move promotes a pawn ("e8=Q", "bxa8=N+"). */
+const promotes = (san: unknown) => typeof san === "string" && san.includes("=");
 function same(a: unknown, b: unknown): boolean {
   if (a === b) return true;
   if (!a || !b || typeof a !== "object" || typeof b !== "object" || Array.isArray(a) !== Array.isArray(b)) return false;
@@ -99,9 +101,14 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   // after a double check, is only a possibility from here, never this move's tactic.
   // A back-rank witness is the mate that ends the line, so the move that starts
   // that mating line (such as a decoy check) is the back-rank idea.
-  const opening = object(f.witness[0]), expectedPly = role === "allowed" ? 2 : 1;
-  if (motif !== "back_rank" && (f.plies[0] !== expectedPly || opening.ply !== expectedPly
-    || (role !== "allowed" && opening.san !== report[role === "missed" ? "best" : "actual"].san))) return null;
+  const opening = object(f.witness[0]);
+  if (motif !== "back_rank" && !tacticStartsHere(event, report.actual.san, report.best.san)) return null;
+  // Promotion clips describe a pawn still on its way to the last rank. When the
+  // witnessed move is itself the promotion they are false, and the grade speaks.
+  if (motif === "promotion_awareness" && promotes(opening.san)) return null;
+  // Every pin take says the move makes (or allows, or missed making) the pin; a
+  // line that uses a pin already on the board before the move is not that.
+  if (motif === "pin" && f.pinned_before === true) return null;
   if (recordedTacticMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
@@ -125,12 +132,17 @@ function positionalRecording(item: Claim, event: Event, mover: "white" | "black"
         && item.evidence.some(ref => ref.source === "pgn" && ref.field === "original_minor_piece_history")) name = "development";
       break;
     case "rook_file":
-      if (files([f.file]) && ["open", "semi_open"].includes(String(f.after))) name = f.after === "open" ? "rook-open" : "rook-semi-open";
+      // The semi-open takes say the file stays usable ("still", "remain"); a file that
+      // was open and became half-open is a change the takes do not describe.
+      if (files([f.file]) && ["open", "semi_open"].includes(String(f.after))
+        && !(f.after === "semi_open" && f.before === "open")) name = f.after === "open" ? "rook-open" : "rook-semi-open";
       break;
     case "passed_pawns": if (squares(f.added)) name = "passed"; break;
     case "isolated_pawns": if (squares(f.added)) name = "isolated"; break;
     case "passed_pawn_advance":
-      if (f.side === mover && square(f.before) && square(f.after) && String(f.uci).length === 4) name = "passer-advance";
+      // The takes count one step; a pawn's double step is not "one square closer".
+      if (f.side === mover && square(f.before) && square(f.after) && String(f.uci).length === 4
+        && Math.abs(Number(String(f.after)[1]) - Number(String(f.before)[1])) === 1) name = "passer-advance";
       break;
     case "piece_support":
       if (square(f.target) && ["knight", "bishop", "rook", "queen"].includes(String(f.piece))
@@ -139,7 +151,8 @@ function positionalRecording(item: Claim, event: Event, mover: "white" | "black"
         if (strings(f.before).length && !strings(f.after).length) name = "unsupported";
       }
       break;
-    case "king_flights": if (f.side === mover && squares(f.opened)) name = "king-flight"; break;
+    // The takes speak of one new flight square.
+    case "king_flights": if (f.side === mover && squares(f.opened) && strings(f.opened).length === 1) name = "king-flight"; break;
     case "castling": if (f.side === mover && square(f.before) && square(f.after)) name = "castling"; break;
     case "bishop_pair": if (f.side === opposite(mover) && f.before === 2 && f.after === 1) name = "bishop-pair"; break;
     case "doubled_files": if (files(f.before, true) && files(f.after) && files(f.added)) name = "doubled"; break;
@@ -248,8 +261,19 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     // Fresh gameIntent above enforces current node generation, actor and relation
     // endpoint (and supported history); branches never inherit those relationships.
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
-    return item.code === "recovery" ? item.slots.help ? "recovery-assisted" : "recovery" : simpleIds[item.code];
+    // The repeated-issue takes say "once before" or "a second time".
+    if (item.code === "repeated" && item.slots.count !== 2) return null;
+    // Some chance-taken takes say "exactly the right reply" or "takes full
+    // advantage", which a Good move (up to half a pawn short of the best) is not.
+    if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label)) return null;
+    // Recovery takes credit this move with restoring the game, and a move never
+    // raises its own evaluation: the opponent's moves did. The line stays written.
+    if (item.code === "recovery") return null;
+    return simpleIds[item.code];
   }
+  // Several evaluation-loss takes call the cost small ("a little leak"), which
+  // is only true of an Inaccuracy. A larger loss leaves it to the next clip or the grade.
+  if (item.code === "loss" && report.label !== "Inaccuracy") return null;
   // Source-backed event codes must not bypass their validation when an event ID
   // is absent or ambiguous. Only these direct report claims have no event ID.
   return ["reply_capture", "reply_check", "alternative", "loss", "best", "good"].includes(item.code)

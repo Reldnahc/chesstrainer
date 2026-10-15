@@ -3,6 +3,7 @@ from typing import Literal
 from trainer.contracts.common import Color, Contract
 
 Speed = Literal["bullet", "blitz", "rapid", "classical", "daily"]
+SpeedFilter = Literal["all", Speed]
 Outcome = Literal["win", "draw", "loss", "unfinished"]
 
 
@@ -13,6 +14,8 @@ class InsightGame(Contract):
     result: Outcome
     played_on: str | None
     ply: int | None
+    # The move number of ``ply`` as the game counts it (custom starts included).
+    move: int | None
 
 
 class RhythmCell(Contract):
@@ -187,14 +190,14 @@ class Punishment(Contract):
 
 
 class EndgameRecord(Contract):
-    kind: Literal["rook", "queen", "minor", "pawn"]
+    kind: Literal["rook", "queen", "minor", "pawn", "mixed"]
     games: int
     held: int
 
 
 class Insights(Contract):
     version: str
-    speed: Literal["all", "bullet", "blitz", "rapid", "classical", "daily"]
+    speed: SpeedFilter
     days: int | None
     speeds: list[Speed]
     games: int

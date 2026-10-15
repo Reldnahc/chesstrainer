@@ -3,7 +3,7 @@
 import json
 import sys
 
-from trainer.human_models.types import HumanRequest, ModelProvenance
+from trainer.human_models.types import MESSAGE_LIMIT, HumanRequest, ModelProvenance
 
 
 def send(payload):
@@ -12,7 +12,7 @@ def send(payload):
 
 def main():
     try:
-        configuration = json.loads(sys.stdin.readline(262144))
+        configuration = json.loads(sys.stdin.readline(MESSAGE_LIMIT))
         from trainer.human_models.predictor import MaiaPredictor
 
         model = MaiaPredictor(
@@ -22,7 +22,7 @@ def main():
     except Exception:
         send({"error": "initialization_failed"})
         return 1
-    while raw := sys.stdin.readline(262144):
+    while raw := sys.stdin.readline(MESSAGE_LIMIT):
         if not raw.endswith("\n"):
             send({"error": "request_too_large"})
             return 1

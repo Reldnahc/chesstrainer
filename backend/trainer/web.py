@@ -10,9 +10,9 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from trainer.config import Settings
-from trainer.engine import EngineUnavailable
-
-PRIVATE_SUFFIXES = (".local", ".localhost", ".lan", ".home", ".home.arpa", ".internal")
+from trainer.engine import EngineReferenceMismatch, EngineUnavailable
+from trainer.errors import DomainError
+from trainer.lan import lan_hostname, same_origin
 
 
 def host_allowed(host: str, settings: Settings) -> bool:
@@ -37,12 +37,7 @@ def host_allowed(host: str, settings: Settings) -> bool:
         pass
     allowed = {name.strip().lower() for name in settings.allowed_hosts.split(",") if name.strip()}
     allowed.add(settings.server_host.strip().lower())
-    return (
-        hostname in allowed
-        or hostname == "localhost"
-        or "." not in hostname
-        or hostname.endswith(PRIVATE_SUFFIXES)
-    )
+    return hostname in allowed or lan_hostname(hostname)
 
 
 def configure_http(app: FastAPI, settings: Settings):
@@ -70,7 +65,7 @@ def configure_http(app: FastAPI, settings: Settings):
                 )
             origin = request.headers.get("origin")
             if request.method not in {"GET", "HEAD", "OPTIONS"} and origin:
-                if urlsplit(origin).netloc != request.headers.get("host"):
+                if not same_origin(origin, request.headers.get("host")):
                     return JSONResponse(
                         {"detail": "Cross-origin writes are disabled."}, status_code=403
                     )
@@ -80,13 +75,20 @@ def configure_http(app: FastAPI, settings: Settings):
         response.headers["X-Content-Type-Options"] = "nosniff"
         return response
 
-    @app.exception_handler(ValueError)
-    async def invalid_input(request, exc):
-        return JSONResponse({"detail": str(exc)}, status_code=422)
+    # Domain errors carry their status. Any other exception, including a bare
+    # ValueError, is a server fault: it is logged and answers 500.
+    @app.exception_handler(DomainError)
+    async def domain_error(request, exc):
+        return JSONResponse({"detail": str(exc)}, status_code=exc.status)
 
     @app.exception_handler(EngineUnavailable)
     async def unavailable_engine(request, exc):
         return JSONResponse({"detail": str(exc)}, status_code=503)
+
+    @app.exception_handler(EngineReferenceMismatch)
+    async def incompatible_evidence(request, exc):
+        # Stockfish works; only this position's saved evidence needs another executable.
+        return JSONResponse({"detail": str(exc)}, status_code=409)
 
 
 def serve_frontend(app: FastAPI):

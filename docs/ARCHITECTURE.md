@@ -44,8 +44,9 @@ saved game then queues its own analysis job. See
 | accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`, `open-signups`, `close-signups`) |
 | site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
-| jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
-| backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback |
+| job_lifecycle.py | Job kinds and statuses as enums, the fetch lane, and every state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
+| jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution dispatched by kind |
+| backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback; `lan.py` holds the host-name and same-origin rules it shares with account mode |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, a durable cache shared across accounts like the engine cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
@@ -61,7 +62,7 @@ saved game then queues its own analysis job. See
 | game_analysis.py, game_sync.py | One analysis job per saved game with requested/fresh/backfill priority, and the server-side connection poller; see [Automatic game analysis](GAME_ANALYSIS.md) |
 | play/ / routes/play.py | Games against the coach's bot: Maia-sampled human-like moves with a Stockfish guardrail, strength-limited engine moves, the per-account level fit, play sessions, on-request or live per-move reports and the hand-off of finished games into the library. See [Play](PLAY.md) |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
-| routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
+| routes/compatibility.py | 410 answers for the removed course, lesson, teaching and repertoire routes, and manual exercise creation |
 | contracts/ | Explicit HTTP response schemas grouped by endpoint domain; reused chess evidence types retain their original owners |
 
 Each router is registered once and receives shared configuration/services explicitly.
@@ -71,6 +72,15 @@ mutation/variation locks and a lazy interactive engine handle. Account scopes ar
 cached applications and contain no workers. Lock leases are released when the last
 request/job for that account finishes. HTTP handlers continue to delegate chess and
 scheduling behavior to existing domain functions.
+
+Domain code reports failures with `trainer.errors`: `InvalidInput` (422, also a
+`ValueError`), `NotFound` (404, including another account's items), `Conflict` (409:
+stale revisions, reused request IDs, work in progress) and `Gone` (410: archived
+features). `web.py` maps them in one place and never imports them into domain modules
+the other way round; domain packages do not raise FastAPI's `HTTPException`. Any other
+exception, including a bare `ValueError` or `EvidenceIntegrityError` from inconsistent
+saved evidence, is a server fault and answers 500. `EngineReferenceMismatch` answers 409:
+Stockfish works, but this position's saved evidence needs a different executable.
 
 The composition root performs migrations, global skill seeding and retirement
 reconciliation once, and owns worker/engine shutdown. Hosted retirement maintenance
@@ -332,7 +342,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 - play/bot.py / play/level.py / play/sessions.py: human-like move choice from the shared human policy with engine veto rules by rating, the measured level fit over imported games, and game-session state whose finished games are imported like any other game. See [Play](PLAY.md).
 - game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
 - review_cues.py: projects saved immediate witnesses into current-board arrows and square roles without new engine searches; skips later witnesses and checks attack geometry with python-chess. Cues are derived when reports are read, so existing reviews need no reanalysis.
-- imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.
+- imports.py / game_providers/: learner resolution, provenance, deduplication and bounded serial public-game download through one provider gateway.
 - jobs.py / job_queue.py / job_execution.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution, bounded worker pools, cancellation and atomic progress.
 - classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence. `classification_stages.py` separates root validation, line outcome admission, defense checks, provenance and abstention reasons; the classifier preserves ordered aggregation and primary-skill selection.
 - weaknesses.py: active weakness priorities with read-only historical attempt statistics; no course generation or progression.
@@ -369,15 +379,19 @@ every 250 ms.
 
 Full-game review jobs instead parallelize independent move evidence, with at most
 `min(STOCKFISH_WORKERS, ENGINE_SLOTS)` outstanding moves. The coordinator commits
-their reports and progress together in game order, supplying the preceding score
-for Great labels. It reuses saved reports and drains active work on cancellation.
+their reports and progress together in game order. The preceding score for Great
+labels is linked when reports are read (`game_review.link_previous_scores`), so it
+always comes from the same generation as the scores shown; Play uses the same rule. It reuses saved reports and drains active work on cancellation.
 This uses the existing account engine pool and does not change search/cache policy.
 The UI starts/resumes once per game opening and receives incremental display reports
 from `GET /api/games/:id/review?after=N`; the cursor advances only through reports
 actually received. Ordinary mainline browsing uses those reports instead of starting
 duplicate searches while the job runs; manual variations remain interactive.
 
-Short writes share an account's lock; rule computation runs outside it. Progress
+Short writes share an account's lock (`mutation_lock`, the one name for it); rule
+computation, engine searches and Maia inference run outside it, and read-only
+handlers never take it. SRS grading of an unseen answer and the Play bot's reply
+search first and then re-check and write under the lock. Progress
 uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent
 searches. Local interactive grading has a separate serialized engine; hosted
 grading and variations use the same bounded native pool as background work.
@@ -402,7 +416,7 @@ Classification-only backfills launch no background engines and cannot create/enr
 
 diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py bounds and orders events; verified_motifs.py owns independent capture, fork, promotion, check, pin, skewer, defender-removal and back-rank rules. tactical_geometry.py, combination_patterns.py and move_causes.py retain shared geometry and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
 
-defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.0-lichess-8d9faff6 are separate version boundaries.
+defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.1-lichess-8d9faff6 are separate version boundaries.
 
 Geometric detectors construct findings through `tactical_geometry.witness`, which
 preserves actor, move/frame, square-role and rule-version metadata. Mate/material
@@ -414,10 +428,10 @@ classification_quality.py and the read-only report script support blinded export
 
 ## Archives, privacy and deployment
 
-Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. Historical rows, manual exercises and teaching audit/rejection access remain. Active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Tests seed explicit historical rows. The authored Study domain and `source="opening"` recall have their own explicit contracts described above.
+Removed generated lesson/course, model teaching and repertoire product routes answer 410; their tables were dropped (migration 4ca1e88adf37). Due/unfinished-session queries exclude archived repertoire exercises (`source="repertoire"`); direct archived practice is rejected. Manual exercises remain. Saved lesson attempts are review sessions with `mode="lesson"`: active review cannot start, resume or finish one, including through direct domain calls. Tests seed explicit historical rows. The authored Study domain and `source="opening"` recall have their own explicit contracts described above.
 
 There is no hosted AI service: no model SDK or model network calls at runtime.
-Historical classification and teaching responses stay local. Explicit Chess.com
+Historical classification responses stay local. Explicit Chess.com
 imports and enabled recent-game synchronization use the public Chess.com API.
 
 Supported installations include the published Docker image and a source checkout,
@@ -441,7 +455,13 @@ pool remain the compute authority. See [targeted review investigation](REVIEW_IN
 `review_intelligence/events`, `event_facts`, `context` and `clocks` derive typed,
 traceable semantic events from saved chess facts and PGN annotations. No character
 prose enters this layer. [review events and clocks](REVIEW_INTELLIGENCE.md#semantic-review-events-and-clock-context) specifies gates and
-clock abstention; `review_scores` shares Stockfish-only alternative comparisons.
+clock abstention; `review_scores` shares Stockfish-only alternative comparisons and
+owns the grade boundaries (`NEAR_BEST_CP`, `INACCURACY_CP`, `MISTAKE_CP`, the Blunder
+thresholds, `GRADE_BOUNDARIES`) and predicates (`is_poor`, `is_near_best`,
+`is_mistake`) every other module reads. Every reading of a saved line into tactical
+findings and move causes goes through `classification_stages.line_findings`, with
+the classifier's, review's and SRS explanation's differing horizons named as
+`LineRules` beside it.
 ## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for
@@ -481,13 +501,16 @@ Chess.com and Lichess share one checkpointed ingestion pipeline, job lanes, and 
 
 ## Data model
 
-SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes from frozen revision 475ea36d42d5; `alembic heads` shows the current revision. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
+SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes from frozen revision 475ea36d42d5; `alembic heads` shows the current revision. Runtime does not use metadata.create_all. Transactions persist small independent units of work. Account tables are indexed for their hot queries with composite indexes that lead with `user_id`, and the server runs `PRAGMA optimize` at startup and shutdown so the planner has statistics.
+
+Every upgrade, from the server start or from `alembic upgrade head`, runs through `db.migration_connection`: foreign keys off on that connection, one `BEGIN IMMEDIATE` transaction that SQLite rather than pysqlite controls (so DDL rolls back too), and a `foreign_key_check` before commit. A failed revision leaves the schema and `alembic_version` exactly as they were. A database that is already current is not touched. Revision ids come from `alembic revision`, never typed by hand, and `models.NAMING_CONVENTION` names new indexes, checks and foreign keys (name a new unique constraint explicitly).
 
 ### Current and archival relationships
 
 | Tables | Role |
 |---|---|
 | users, auth_sessions, user_preferences | Account credentials/session digests, administrator and password-change-required flags, presence for polling, and persisted coach/motion/audio preferences |
+| site_settings | Server settings an administrator edits in Settings, as JSON text by key; the environment seeds missing rows once |
 | provider_connections | Account-owned provider usernames and the poller's change markers (`poll_state`) |
 | game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts, unique fingerprints and the nullable `rated` flag (statistics skip only games known to be unrated) |
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
@@ -495,19 +518,20 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
 | play_games, play_profiles | Account-owned games against the coach's bot (moves, saved per-ply reports, result, the saved library game) and the measured level fit with its evidence size |
 | game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
+| review_refinements | Account-owned deeper searches planned for chosen plies of a completed review, with their status, reason and the refined report that may be adopted |
+| human_analyses | Shared Maia policy cache, unique by versioned key (see below) |
 | decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
 | skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
 | classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
 | exercises, exercise_tags, exercise_answers | Game/manual practice and archived repertoire exercises, normalized answers/tags, policy snapshots and verification references |
 | srs_states | One serialized library card per exercise, due/review/lapse fields, eligibility and persistent retirement |
-| review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused and archived lesson attempts are separate |
+| review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused (`mode="focus"`) and archived lesson (`mode="lesson"`) attempts are separate |
 | puzzle_sessions, puzzle_attempts | Private immutable puzzle snapshots, revisioned solve progress and idempotent practice commands; independent of Review/FSRS |
 | game_puzzles, game_puzzle_searches | Account-owned puzzles mined from the learner's games, each with its engine evidence or abstention reason, and one search record per game and generator version |
-| courses, course_units, unit_evidence, course_revisions, lessons, lesson_items | Archived course snapshots, source evidence, ordered items and historical progress; no active generation/progression |
-| teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
-| repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
+| opening_studies, opening_study_moves, opening_cards, opening_recall_snapshots, opening_content_changes | Opening studies and their chosen moves, one review card per learner position with its active revision and retirement guard, the answer set a recall session was started with, and the audit of content changes |
+| study_lesson_sessions, study_lesson_commands, study_lesson_progress | Study lesson sessions, their exactly-once commands and per-chapter progress pinned to a course revision and content hash |
 
-There are 51 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 44 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots and FSRS serialization.
 
 `human_analyses` stores provider-neutral requests and complete policy facts, unique
 by versioned cache key. Like `engine_analyses` it is shared between accounts: the
@@ -517,8 +541,9 @@ references that evidence independently of Stockfish analysis IDs. Model weights
 remain reproducible files outside SQLite. Native inference holds no database
 transaction. See [human move evidence](REVIEW_INTELLIGENCE.md#human-move-evidence) for identity and interpretation.
 
-Host configuration lives in environment/.env. User settings are account-owned and
-editable in Settings. SQLite contains salted password hashes and session-token
+Server settings live in `site_settings` and are edited in Settings by an administrator; only
+the `ENV_ONLY` host settings (paths, ports, secrets) stay in the environment or `.env`. User
+settings are account-owned and editable in Settings. SQLite contains salted password hashes and session-token
 digests, never plaintext passwords or session tokens. Skill state is derived from
 evidence and reviews, avoiding a duplicated mastery table. See [ADMINISTRATION.md](ADMINISTRATION.md)
 for ownership filtering and private foreign-key validation.

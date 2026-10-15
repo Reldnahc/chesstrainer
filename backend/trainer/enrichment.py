@@ -6,13 +6,14 @@ from contextlib import nullcontext
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, digest
-from trainer.classification import verified_payload
+from trainer.classification import probe_record, verified_payload
 from trainer.continuations import continuation_end, extended_line
 from trainer.defensive_probes import hypotheses
 from trainer.diagnosis_types import OUTCOME_SKILLS
 from trainer.engine import EngineUnavailable
+from trainer.errors import NotFound
 from trainer.imports import decision_board
-from trainer.local_classifier import LocalClassifier
+from trainer.local_classifier import LocalClassifier, classifier_parameters
 from trainer.models import (
     ClassificationAnalysis,
     ClassificationProbe,
@@ -43,7 +44,7 @@ def probe_key(decision, settings, engine):
     )
 
 
-def plan_probes(db, job_id, settings, engine, *, write_lock=None):
+def plan_probes(db, job_id, settings, engine, *, mutation_lock=None):
     """Select decisions worth probing; only the task rows are written under the account lock."""
     saved = db.scalars(select(ClassificationTask).where(ClassificationTask.job_id == job_id)).all()
     if saved:
@@ -67,7 +68,16 @@ def plan_probes(db, job_id, settings, engine, *, write_lock=None):
             select(ClassificationAnalysis.id).where(ClassificationAnalysis.cache_key == key)
         ):
             continue
-        result, _ = classifier.classify(verified_payload(db, decision))
+        try:
+            result, _ = classifier.classify(verified_payload(db, decision))
+        except (ValueError, NotFound) as exc:
+            # One decision with inconsistent saved evidence must not stop planning
+            # for the rest of the account.
+            log.warning(
+                "probe_planning_skipped",
+                extra={"decision_id": decision.id, "error_type": type(exc).__name__},
+            )
+            continue
         specific = any(f.skill_id not in OUTCOME_SKILLS for f in result.findings)
         pending_defense = "defense_probe_pending" in result.abstention_reasons
         if (
@@ -82,7 +92,7 @@ def plan_probes(db, job_id, settings, engine, *, write_lock=None):
     candidates.sort(
         key=lambda item: item[:3]
     )  # Concrete defensive questions first, then missing outcomes.
-    lock = write_lock if write_lock is not None else nullcontext()
+    lock = mutation_lock if mutation_lock is not None else nullcontext()
     with lock:
         # The classification pass above ran without the lock, so this account's
         # handlers stayed responsive; re-check before the short write.
@@ -100,7 +110,7 @@ def plan_probes(db, job_id, settings, engine, *, write_lock=None):
     return tasks
 
 
-def enrich_decision(sessions, task, engine, write_lock, cancelled):
+def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
     with sessions() as db:
         cached = db.scalar(
             select(ClassificationAnalysis).where(ClassificationAnalysis.cache_key == task.cache_key)
@@ -127,7 +137,8 @@ def enrich_decision(sessions, task, engine, write_lock, cancelled):
     probes = []
     queries = 2
     settings = engine.settings
-    hard_end = settings.classification_max_plies + settings.classification_extension_plies
+    limits = classifier_parameters(settings)
+    hard_end = limits["max_plies"] + limits["extension_plies"]
     roots = [before, actual]
     # Resolve a short unfinished tail directly. The original root score stays
     # attached to its root; the new analysis has its own side-to-move perspective.
@@ -140,8 +151,8 @@ def enrich_decision(sessions, task, engine, write_lock, cancelled):
         endpoint = continuation_end(
             boards,
             board.turn,
-            settings.classification_max_plies,
-            settings.classification_extension_plies,
+            limits["max_plies"],
+            limits["extension_plies"],
         )
         if (
             endpoint.material_delta is not None
@@ -152,18 +163,9 @@ def enrich_decision(sessions, task, engine, write_lock, cancelled):
             continue
         tail = engine.analyze(boards[-1], multipv=1, classification_probe=True)
         queries += 1
-        probes.append(
-            {
-                "kind": "tail",
-                "root_analysis_id": root.id,
-                "at_ply": len(candidate.pv),
-                "query_key": digest({"kind": "tail", "root": root.id, "at_ply": len(candidate.pv)}),
-                "analysis_id": tail.id,
-                "fen": tail.fen,
-                "config": tail.config,
-                "candidate": tail.candidates[0],
-            }
-        )
+        at_ply = len(candidate.pv)
+        key = digest({"kind": "tail", "root": root.id, "at_ply": at_ply})
+        probes.append(probe_record("tail", root.id, at_ply, key, tail))
         if cancelled():
             return False
     for root, first, direction in (
@@ -176,8 +178,8 @@ def enrich_decision(sessions, task, engine, write_lock, cancelled):
         endpoint = continuation_end(
             boards,
             board.turn,
-            settings.classification_max_plies,
-            settings.classification_extension_plies,
+            limits["max_plies"],
+            limits["extension_plies"],
         )
         for request in hypotheses(
             boards,
@@ -185,7 +187,7 @@ def enrich_decision(sessions, task, engine, write_lock, cancelled):
             endpoint.end_ply,
             root.id,
             direction,
-            settings.classification_tactic_plies,
+            limits["tactic_plies"],
         ):
             if queries >= settings.classification_probe_queries:
                 break
@@ -196,22 +198,11 @@ def enrich_decision(sessions, task, engine, write_lock, cancelled):
                 classification_probe=True,
             )
             queries += 1
-            probes.append(
-                {
-                    "kind": request.kind,
-                    "root_analysis_id": root.id,
-                    "at_ply": request.at_ply,
-                    "query_key": request.key,
-                    "analysis_id": test.id,
-                    "fen": test.fen,
-                    "config": test.config,
-                    "candidate": test.candidates[0],
-                }
-            )
+            probes.append(probe_record(request.kind, root.id, request.at_ply, request.key, test))
             if cancelled():
                 return False
     # Both immutable engine records commit before the optional classification link.
-    with write_lock, sessions() as db:
+    with mutation_lock, sessions() as db:
         if not db.scalar(
             select(ClassificationAnalysis.id).where(
                 ClassificationAnalysis.cache_key == task.cache_key

@@ -33,4 +33,5 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("games", "played_at")
+    with op.batch_alter_table("games") as batch:
+        batch.drop_column("played_at")

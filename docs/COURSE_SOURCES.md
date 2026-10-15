@@ -297,7 +297,7 @@ rewrite the authored answer contract.
 
 ## King's Gambit
 
-`kings-gambit-foundations`, revision `2026-10-v5`, is an original Fieldwork
+`kings-gambit-foundations`, revision `2026-10-v6`, is an original Fieldwork
 course for White. The chapters teach a bounded selection, not a complete
 repertoire or a promise that the gambit gives White an advantage. Explanations,
 prompts, feedback and position annotations are original. Sources informed the

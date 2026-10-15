@@ -48,7 +48,7 @@ export const tuxedo: CoachPersonality = {
     human_natural_strong: ["Natural to the human-move model, and strong. Not far off the best line."],
     book: ["This opening is catalogued: {opening}."],
     book_sound: ["Theory, filed under {opening}.", "On file in theory: {opening}."],
-    departure: ["Theory runs out here. Calculation from now on."],
+    departure: ["Our book runs out here. Calculation from now on."],
     recovery: ["The setback at {earlier} no longer leaves a losing position.{help}", "Since the setback at {earlier}, the position has become playable again.{help}"],
     repeated: ["The {motif} issue, again: it has shown up {count} times in the reviewed game. A pattern worth addressing."],
     mate_win: ["Checkmate, and nothing left to negotiate.", "Mate, and every square the king had is gone."],

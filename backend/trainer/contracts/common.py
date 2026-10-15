@@ -1,13 +1,44 @@
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
+
+from trainer.job_lifecycle import JobStatus as Status
 
 Color = Literal["white", "black"]
+JobStatusName = Literal[tuple(status.value for status in Status)]
 
 
 class Contract(BaseModel):
     # Detect accidental additions as well as missing/wrongly typed output fields.
     model_config = ConfigDict(extra="forbid")
+
+
+def from_row(contract, row, **computed):
+    """The fields ``contract`` declares, read off an ORM row, plus computed ones.
+
+    Only declared fields are read, so a new table column is neither exposed nor
+    a validation failure until the contract chooses to include it.
+    """
+    return {
+        name: getattr(row, name)
+        for name in contract.model_fields
+        if name not in computed and hasattr(row, name)
+    } | computed
+
+
+# Moves the client sends: either one UCI string, or a board's from/to squares.
+UciMove = Annotated[str, Field(pattern="^[a-h][1-8][a-h][1-8][qrbn]?$")]
+Square = Annotated[str, Field(pattern="^[a-h][1-8]$")]
+
+
+class SquareMove(Contract):
+    from_square: Square
+    to_square: Square
+    promotion: Literal["q", "r", "b", "n"] | None = None
+
+    @property
+    def uci(self) -> str:
+        return self.from_square + self.to_square + (self.promotion or "")
 
 
 class LegalMove(Contract):
@@ -22,11 +53,11 @@ class JobCreated(Contract):
 
 
 class JobStarted(JobCreated):
-    status: str
+    status: JobStatusName
 
 
 class JobStatus(Contract):
-    status: str
+    status: JobStatusName
 
 
 class CreatedId(Contract):

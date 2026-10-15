@@ -20,6 +20,7 @@ const base = {
   learner_color: "white", opponent: "human", rating: 1000, learner_rating: 1000,
   white_rating: 1000, black_rating: 1000, status: "active",
   result: null, termination: null, saved_game_id: null, reply: null,
+  fallback_plies: [] as number[], fallback_elo: 1320 as number | null,
 };
 
 const report = (san: string, uci: string, label: string, value: number) => ({
@@ -37,7 +38,7 @@ async function mockPlay(page: Page) {
   let moves: string[] = [];
   const state = () => ({...base, frames: [frame0, ...(moves.length ? [frame1] : []), ...(moves.length > 1 ? [frame2] : [])]});
   await page.route("**/api/play/profile", route => route.fulfill({json: {
-    status: "ready", fitted_rating: 1000, platform_rating: 723, platform: "chesscom", positions: 60, games: 100,
+    status: "ready", human_model: true, fitted_rating: 1000, platform_rating: 723, platform: "chesscom", positions: 60, games: 100,
     computed_at: "2026-10-03T00:00:00Z", default_rating: 1000,
   }}));
   await page.route("**/api/play/active", route => route.fulfill({json: {game: null}}));
@@ -236,6 +237,31 @@ test("a finished game offers its saved review", async ({page}) => {
   await expect(page.getByRole("button", {name: "Resign"})).toHaveCount(0);
 });
 
+test("without the human move model the setup offers only the engine", async ({page}) => {
+  await mockPlay(page);
+  await page.route("**/api/play/profile", route => route.fulfill({json: {
+    status: "unavailable", human_model: false, fitted_rating: null, platform_rating: null, platform: null, positions: 0,
+    games: 100, computed_at: null, default_rating: 1200,
+  }}));
+  await page.goto("/play");
+  await expect(page.getByRole("button", {name: "Human-like"})).toBeDisabled();
+  await expect(page.getByRole("button", {name: "Engine"})).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByText("Human-like play needs the human move model, which is not available.")).toBeVisible();
+  await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveAttribute("min", "1800");
+  const started = page.waitForRequest(request => request.url().endsWith("/api/play") && request.method() === "POST");
+  await page.getByRole("button", {name: "Play Walter"}).click();
+  expect((await started).postDataJSON()).toMatchObject({opponent: "engine", rating: 1800});
+});
+
+test("a reply the engine played for the human model says so", async ({page}) => {
+  await page.route("**/api/play/play1", route => route.fulfill({json: {
+    ...base, fallback_plies: [2], frames: [frame0, frame1, frame2],
+  }}));
+  await page.goto("/play/play1");
+  await expect(page.getByRole("region", {name: "Notifications"}).getByRole("status"))
+    .toContainText("1 of Walter's moves came from Stockfish at Elo 1320, because the human move model was unavailable.");
+});
+
 test("the setup page's coach asks for a game in its own words", async ({page}, testInfo) => {
   await mockPlay(page);
   await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: "cat-black", motion: "still"}}));
@@ -259,7 +285,7 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   const state = (reply: unknown = null) => ({...base, reply, practice,
     frames: [frame0, ...(moves.length ? [frame1] : []), ...(moves.length > 1 ? [frame2] : [])]});
   await page.route("**/api/play/profile", route => route.fulfill({json: {
-    status: "ready", fitted_rating: 1000, platform_rating: null, platform: null, positions: 60, games: 100,
+    status: "ready", human_model: true, fitted_rating: 1000, platform_rating: null, platform: null, positions: 60, games: 100,
     computed_at: "2026-10-03T00:00:00Z", default_rating: 1000,
   }}));
   await page.route("**/api/play/active", route => route.fulfill({json: {game: null}}));

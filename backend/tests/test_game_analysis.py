@@ -10,8 +10,8 @@ from sqlalchemy import func, select, update
 from sqlalchemy.orm import Session
 from trainer import presence
 from trainer.api import create_app
-from trainer.chesscom import ChessComClient
 from trainer.game_analysis import BACKFILL, FRESH, REQUESTED, queue_games, queue_imported
+from trainer.game_providers.chesscom import ChessComClient
 from trainer.game_providers.lichess import LichessClient
 from trainer.game_sync import poll
 from trainer.imports import import_games
@@ -38,7 +38,7 @@ def seed_games(app, count):
         for i in range(count)
     )
     with app.state.sessions() as db:
-        import_games(db, "games.pgn", pgn, ["Learner"], None, queue_analysis=False)
+        import_games(db, "games.pgn", pgn, ["Learner"], None)
         ids = db.scalars(select(Game.id).order_by(Game.pgn)).all()
         for i, game_id in enumerate(ids):
             db.get(Game, game_id).played_at = START + timedelta(days=i)
@@ -138,8 +138,8 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
     FakeClient.calls, FakeClient.answers = [], {}
     app = create_app(settings, workers=False)
     runner = app.state.runner
-    monkeypatch.setitem(runner.provider_factories, "chesscom", FakeClient)
-    monkeypatch.setitem(runner.provider_factories, "lichess", FakeClient)
+    monkeypatch.setitem(runner.providers.factories, "chesscom", FakeClient)
+    monkeypatch.setitem(runner.providers.factories, "lichess", FakeClient)
     with TestClient(app):
         poll(runner, ["local"])
         assert FakeClient.calls == [] and syncs(app) == {}
@@ -169,7 +169,7 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
         assert syncs(app)[("chesscom", "learner")][0] == "completed"
         # A rate-limited provider is skipped until its cooldown ends.
         calls = len(FakeClient.calls)
-        runner.provider_retry_at["chesscom"] = time.monotonic() + 60
+        runner.providers.retry_at["chesscom"] = time.monotonic() + 60
         poll(runner, ["local"])
         assert len(FakeClient.calls) == calls + 1
 
@@ -214,7 +214,6 @@ def test_game_analysis_runs_review_and_training_in_one_job(settings, stockfish_p
                 '[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1',
                 ["Learner"],
                 None,
-                queue_analysis=False,
             )
             queue_imported(db, db.scalar(select(ImportGame.import_id)), FRESH)
             db.commit()

@@ -3,6 +3,7 @@
 from sqlalchemy import delete, select
 
 from trainer.chess_core import digest, legal_move, position_key, valid_board
+from trainer.errors import InvalidInput
 from trainer.exercises import enroll
 from trainer.models import (
     Exercise,
@@ -14,7 +15,6 @@ from trainer.models import (
     SRSState,
     now,
 )
-from trainer.scheduling import utc
 
 
 def contribute(db, study, scheduler):
@@ -56,7 +56,7 @@ def contribute(db, study, scheduler):
             affected.add(exercise.id)
         board.push(move)
     if not affected:
-        raise ValueError("This line contains no moves for the selected color")
+        raise InvalidInput("This line contains no moves for the selected color")
     db.flush()
     return affected
 
@@ -105,7 +105,7 @@ def rebuild(db, exercise_id, *, invalidate=False, reason="study_added"):
     before = {
         "answers": sorted(saved),
         "active": card.active,
-        "due": utc(state.due).isoformat(),
+        "due": state.due.isoformat(),
         "retired_at": state.retired_at.isoformat() if state.retired_at else None,
         "retired_interval_days": state.retired_interval_days,
     }
@@ -117,7 +117,7 @@ def rebuild(db, exercise_id, *, invalidate=False, reason="study_added"):
             state.retired_interval_days = None
             state.due = now()
             card.retirement_guard_revision = card.revision
-        elif previous_target - new and utc(state.due) > now():
+        elif previous_target - new and state.due > now():
             state.due = now()
     db.add(
         OpeningContentChange(
@@ -128,7 +128,7 @@ def rebuild(db, exercise_id, *, invalidate=False, reason="study_added"):
                 "before": before,
                 "answers": sorted(new),
                 "active": active,
-                "due": utc(state.due).isoformat(),
+                "due": state.due.isoformat(),
                 "target_changed": target_changed,
                 "retirement_guard_revision": card.retirement_guard_revision,
             },

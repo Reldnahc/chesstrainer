@@ -6,11 +6,11 @@ test("board-size previews use the application's White-perspective evaluation", a
   const scores = page.getByRole("region", { name: "Actual interface size previews" }).locator(".evaluation-score");
   await expect(scores).toHaveCount(2);
   for (const [state, text, side, summary] of [
-    ["brilliant", "+4.35", "white", "White is better"],
-    ["blunder", "−7.40", "black", "Black is better"],
+    ["brilliant", "+4.35", "white", "White is winning"],
+    ["blunder", "−7.40", "black", "Black is winning"],
     ["winning", "+M0", "white", "White checkmates"],
     ["losing", "−M0", "black", "Black checkmates"],
-    ["draw", "+0.00", "equal", "Equal"],
+    ["draw", "0.00", "equal", "Equal"],
     ["thinking", "—", "unknown", "Not analyzed"],
   ] as const) {
     await expression.selectOption(state);

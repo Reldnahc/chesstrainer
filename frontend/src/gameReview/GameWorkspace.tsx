@@ -81,10 +81,15 @@ export default function GameWorkspace({
   const currentAnalysis = analysis.get(root, path);
   const report = saved || currentAnalysis?.report;
   const initialScore = game ? startingScore(game.frames) : null;
-  const score = positionScore(
-    report?.white_score ||
-    currentAnalysis?.score ||
-    (startingReport ? initialScore : null), frame);
+  // A move's saved score is that move's search; a variation's own search and
+  // the start's score belong to the position itself.
+  const score = report
+    ? positionScore(report.white_score, frame)
+    : positionScore(
+        currentAnalysis?.score || (startingReport ? initialScore : null),
+        frame,
+        "position",
+      );
   const bestMove =
     report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
   const cues = cuesFor(report, frame);

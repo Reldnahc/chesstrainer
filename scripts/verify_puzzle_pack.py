@@ -5,9 +5,10 @@ every puzzle it asks Stockfish two questions at the same root and limit, the way
 the review pipeline compares a played move with the best move:
 
 1. Is the solution move as good as the engine's best move (within --tolerance-cp)?
-2. Is every other move clearly worse (by at least --margin-cp, or mate versus
-   no mate)? The player accepts only the pinned solution, so a second equally
-   good move would wrongly mark a solver as failed.
+2. Is every other move clearly worse: at least --margin-cp below the solution,
+   no longer winning (under --rival-winning-cp), and not a mate of any length?
+   The player accepts only the pinned solution, so a second winning move would
+   wrongly mark a solver as failed.
 
 After the final solver move the position must be clearly won for the solver
 (--payoff-cp or mate). Opponent replies are not graded. A puzzle passes when
@@ -40,6 +41,7 @@ from trainer.puzzles.verification import (
     MARGIN_CP,
     MATE_SCORE,
     PAYOFF_CP,
+    RIVAL_WINNING_CP,
     TOLERANCE_CP,
     describe,
     is_mate,
@@ -47,7 +49,7 @@ from trainer.puzzles.verification import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-VERIFIER_VERSION = "solution-uniqueness-v1"
+VERIFIER_VERSION = "solution-uniqueness-v2"
 
 
 def find_stockfish(explicit: str | None) -> str:
@@ -70,11 +72,23 @@ def pov_score(info, turn: chess.Color) -> int:
 
 
 class Verifier:
-    def __init__(self, engine_path, *, depth, threads, hash_mb, tolerance, margin, payoff):
+    def __init__(
+        self,
+        engine_path,
+        *,
+        depth,
+        threads,
+        hash_mb,
+        tolerance,
+        margin,
+        payoff,
+        winning=RIVAL_WINNING_CP,
+    ):
         self.engine_path = engine_path
         self.limit = chess.engine.Limit(depth=depth)
         self.options = {"Threads": threads, "Hash": hash_mb}
         self.tolerance, self.margin, self.payoff = tolerance, margin, payoff
+        self.winning = winning
         self.local = threading.local()
 
     def engine(self) -> chess.engine.SimpleEngine:
@@ -191,16 +205,18 @@ class Verifier:
                 "san": board.san(chess.Move.from_uci(alt_uci)),
                 "score": describe(alt_score),
             }
-            verdict = rival_verdict(solution_score, alt_score, margin=self.margin)
-            if verdict == "equal_mate":
+            verdict = rival_verdict(
+                solution_score, alt_score, margin=self.margin, winning=self.winning
+            )
+            if verdict == "rival_mate":
                 failures.append(
                     f"ply {index}: {result['alternative']['san']} also mates in "
                     f"{MATE_SCORE - alt_score}"
                 )
-            elif verdict == "slower_mate":
-                warnings.append(
-                    f"ply {index}: {result['alternative']['san']} mates more slowly "
-                    f"({describe(alt_score)})"
+            elif verdict == "still_winning":
+                failures.append(
+                    f"ply {index}: {result['alternative']['san']} still wins "
+                    f"({describe(alt_score)}, at least {self.winning})"
                 )
             elif verdict == "close":
                 failures.append(
@@ -244,6 +260,7 @@ def summarize(results, *, manifest, args, engine_id, elapsed, stockfish):
         "thresholds": {
             "tolerance_cp": args.tolerance_cp,
             "margin_cp": args.margin_cp,
+            "rival_winning_cp": args.rival_winning_cp,
             "payoff_cp": args.payoff_cp,
         },
         "verified": len(results),
@@ -298,7 +315,8 @@ def render(summary, failed_results):
         "",
         f"Engine {summary['engine']['id']}, depth {summary['engine']['depth']}, "
         f"{summary['engine']['threads']} threads. Solution within {summary['thresholds']['tolerance_cp']} cp of best; "
-        f"alternatives at least {summary['thresholds']['margin_cp']} cp worse; final payoff at least "
+        f"alternatives at least {summary['thresholds']['margin_cp']} cp worse, under "
+        f"{summary['thresholds']['rival_winning_cp']} cp and not mating; final payoff at least "
         f"{summary['thresholds']['payoff_cp']} cp or mate.",
         "",
         f"- Verified: {summary['verified']} of {summary['pack']['count']}",
@@ -331,6 +349,7 @@ def main():
     parser.add_argument("--workers", type=int, default=4, help="Parallel engines")
     parser.add_argument("--tolerance-cp", type=int, default=TOLERANCE_CP)
     parser.add_argument("--margin-cp", type=int, default=MARGIN_CP)
+    parser.add_argument("--rival-winning-cp", type=int, default=RIVAL_WINNING_CP)
     parser.add_argument("--payoff-cp", type=int, default=PAYOFF_CP)
     parser.add_argument("--limit", type=int, help="Verify only the first N puzzles")
     parser.add_argument("--resume", action="store_true", help="Keep results already in --output")
@@ -368,6 +387,7 @@ def main():
         tolerance=args.tolerance_cp,
         margin=args.margin_cp,
         payoff=args.payoff_cp,
+        winning=args.rival_winning_cp,
     )
     probe = chess.engine.SimpleEngine.popen_uci(stockfish)
     engine_id = probe.id.get("name", "unknown")

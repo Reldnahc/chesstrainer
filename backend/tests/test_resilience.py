@@ -4,7 +4,9 @@ from pathlib import Path
 
 import chess
 import pytest
+from classifier_fixtures import FixtureClassifierBase, findings_for
 from fastapi.testclient import TestClient
+from job_fixtures import queue_import_analysis
 from pydantic import SecretStr
 from sqlalchemy import func, select
 from trainer.api import create_app
@@ -27,7 +29,7 @@ from trainer.taxonomy import seed_skills
 PGN = '[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
 
 
-class FixtureClassifier:
+class FixtureClassifier(FixtureClassifierBase):
     model = "test-classifier"
     calls = 0
     confidence = 0.9
@@ -44,6 +46,7 @@ class FixtureClassifier:
             secondary_skills=[],
             confidence=self.confidence,
             explanation="Verified mate threat.",
+            findings=findings_for(evidence, "king_safety"),
         ), {"input_tokens": 10, "output_tokens": 5}
 
 
@@ -89,12 +92,12 @@ def test_classification_failure_retry_cache_and_evidence(settings, sessions, dec
     with sessions() as db:
         item = db.get(Decision, decision)
         classifier.fail = True
-        assert not classify_decision(db, item, classifier, settings)
+        assert not classify_decision(db, item, classifier)
         assert db.scalar(select(ClassificationRun)).status == "failed"
         assert db.get(EngineAnalysis, item.before_analysis_id)
         classifier.fail = False
-        assert classify_decision(db, item, classifier, settings)
-        assert classify_decision(db, item, classifier, settings)
+        assert classify_decision(db, item, classifier)
+        assert classify_decision(db, item, classifier)
         assert classifier.calls == 2
         run = db.scalar(select(ClassificationRun))
         assert run.attempts == 2 and run.response["decision_id"] == decision
@@ -108,7 +111,7 @@ def test_unreliable_classification_cannot_create_skill(
     classifier = FixtureClassifier()
     classifier.confidence, classifier.wrong_id = confidence, wrong_id
     with sessions() as db:
-        classify_decision(db, db.get(Decision, decision), classifier, settings)
+        classify_decision(db, db.get(Decision, decision), classifier)
         assert db.scalar(select(func.count()).select_from(SkillEvidence)) == 0
 
 
@@ -143,7 +146,7 @@ def test_async_api_import_to_review_reload(settings, stockfish_path):
 
 @pytest.mark.stockfish
 def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
-    settings, sessions, stockfish_path
+    settings, sessions, sql_engine, stockfish_path
 ):
     from trainer.engine import Stockfish
 
@@ -151,6 +154,7 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
     with sessions() as db:
         seed_skills(db)
         result = import_games(db, "two.pgn", PGN + '\n\n[Round "2"]\n' + PGN, ["Learner"], None)
+        result["job_id"] = queue_import_analysis(db, result)
     calls = []
 
     class CancellingClassifier(FixtureClassifier):
@@ -163,7 +167,7 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
             return super().classify(evidence)
 
     runner = JobRunner(
-        settings, sessions, FSRSScheduler(settings), classifier=CancellingClassifier()
+        settings, sql_engine, FSRSScheduler(settings), classifier=CancellingClassifier()
     )
     engine = Stockfish(settings, sessions)
     try:
@@ -204,7 +208,7 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
         engine.close()
 
 
-def test_recover_cancel_and_partial_import(settings, sessions):
+def test_recover_cancel_and_partial_import(settings, sessions, sql_engine):
     with sessions() as db:
         result = import_games(
             db,
@@ -214,10 +218,11 @@ def test_recover_cancel_and_partial_import(settings, sessions):
             None,
         )
         assert result["errors"] and result["imported"] == 1
+        result["job_id"] = queue_import_analysis(db, result)
         job = db.get(AnalysisJob, result["job_id"])
         job.status = "running"
         db.commit()
-    runner = JobRunner(settings, sessions, FSRSScheduler(settings))
+    runner = JobRunner(settings, sql_engine, FSRSScheduler(settings))
     runner.recover()
     with sessions() as db:
         job = db.get(AnalysisJob, result["job_id"])

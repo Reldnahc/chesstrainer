@@ -5,14 +5,17 @@ import chess
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.review_intelligence.event_facts import objective_events, tactical_events
 from trainer.review_intelligence.events_types import (
+    CLOCK_VERSION,
+    EVENTS_VERSION,
     EvidenceReference,
     MoveIntelligence,
     ReviewEvent,
 )
 from trainer.review_intelligence.positional import VERSION as POSITION_VERSION
 from trainer.review_intelligence.positional import positional_events
+from trainer.review_scores import is_poor
 
-VERSION = "move-events-4"
+VERSION = EVENTS_VERSION
 
 
 def semantic_line(line):
@@ -56,7 +59,9 @@ def describe_move(report, practical, context=None):
         return MoveIntelligence(
             input_digest=key,
             ply=ply,
-            events=sorted(events, key=lambda event: (-event.importance, event.id)),
+            # Equal importance keeps emission order (line findings in their order),
+            # never the order of content hashes, which change with rule versions.
+            events=sorted(events, key=lambda event: -event.importance),
             clock=clock,
             limitations=sorted(set(limitations)),
         )
@@ -190,14 +195,10 @@ def describe_move(report, practical, context=None):
                     "tempo": clock.tempo,
                     "before_seconds": clock.before_seconds,
                     "elapsed_seconds": clock.elapsed_seconds,
-                    "accompanied_error": (
-                        loss.mate_lost or loss.allows_mate or (loss.cp or 0) >= 50
-                    )
-                    if objective_refs
-                    else None,
+                    "accompanied_error": is_poor(loss) if objective_refs else None,
                     "causation": "not_inferred",
                 },
-                [pgn, ref("rule", "clock-1", "bands_and_tempo"), *objective_refs],
+                [pgn, ref("rule", CLOCK_VERSION, "bands_and_tempo"), *objective_refs],
             )
         if (
             clock.before_seconds is not None

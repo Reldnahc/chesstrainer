@@ -4,7 +4,7 @@ from explanation_fixtures import seed_review
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 from trainer.api import create_app
-from trainer.explanations import replay_line
+from trainer.explanation_types import replay_line
 from trainer.models import Attempt, EngineAnalysis, ExerciseAnswer, Review, ReviewSession, SRSState
 
 
@@ -225,3 +225,16 @@ def test_reveal_after_failed_engine_move_plays_primary_answer(settings, black):
         with app.state.sessions() as db:
             assert len(db.scalars(select(Review)).all()) == 1
             assert db.get(SRSState, fixture["exercise_id"]).reviews == 1
+
+
+def test_an_answer_within_tolerance_is_accepted_not_called_good(settings):
+    settings.stockfish_path = "missing-test-engine"
+    app = create_app(settings, workers=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            fixture = seed_review(db, settings)
+        cold = client.post(f"/api/review/{fixture['exercise_id']}/start").json()
+        solved = move(client, cold["session_id"], fixture["alternative"])
+        assert solved["grade"] == "acceptable"
+        assert solved["message_kind"] == "accepted"
+        assert solved["message"] == "Accepted: within your practice tolerance."

@@ -26,7 +26,9 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("classification_runs", "version")
-    op.drop_column("classification_runs", "provider")
+    with op.batch_alter_table("classification_runs") as batch:
+        batch.drop_column("version")
+    with op.batch_alter_table("classification_runs") as batch:
+        batch.drop_column("provider")
     op.execute("ALTER TABLE skill_evidence RENAME COLUMN classification_run_id TO llm_run_id")
     op.execute("ALTER TABLE classification_runs RENAME TO llm_runs")

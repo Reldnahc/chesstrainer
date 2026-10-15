@@ -12,7 +12,7 @@ from trainer.human_models.types import HumanMove, HumanPolicy
 from trainer.play.book import (
     MINIMUM_SHARE,
     book_for,
-    book_move,
+    book_reply,
     book_weights,
     practice_courses,
     replayed,
@@ -84,8 +84,16 @@ def test_book_choice_follows_the_policy_with_a_floor_for_rare_lines():
     weights = book_weights(
         ("b8c6", "d7d6"), policy([("b8c6", 0.6), ("d7d6", 0.001), ("a7a6", 0.3)])
     )
-    assert weights["b8c6"] > 0.99 and weights["d7d6"] == MINIMUM_SHARE
-    assert book_weights(("b8c6", "d7d6"), None) == {"b8c6": 1.0, "d7d6": 1.0}
+    assert weights["d7d6"] == pytest.approx(MINIMUM_SHARE)
+    assert weights["b8c6"] == pytest.approx(1 - MINIMUM_SHARE)
+    assert book_weights(("b8c6", "d7d6"), None) == {"b8c6": 0.5, "d7d6": 0.5}
+    # Each rare line keeps its documented share of the choice, not less.
+    many = book_weights(
+        ("a", "b", "c", "d"), policy([("a", 0.97), ("b", 0.01), ("c", 0.01), ("d", 0.01)])
+    )
+    assert sum(many.values()) == pytest.approx(1)
+    assert all(many[uci] == pytest.approx(MINIMUM_SHARE) for uci in "bcd")
+    assert many["a"] == pytest.approx(1 - 3 * MINIMUM_SHARE)
 
     class Models:
         def policy(self, sessions, request):
@@ -96,11 +104,11 @@ def test_book_choice_follows_the_policy_with_a_floor_for_rare_lines():
 
     board = board_after("e2e4", "e7e5", "g1f3")
     picks = [
-        book_move(Models(), None, Play(), board, ("b8c6", "d7d6"), random.Random(seed)).uci
+        book_reply(Models(), None, Play(), board, ("b8c6", "d7d6"), random.Random(seed)).uci
         for seed in range(200)
     ]
     assert set(picks) == {"b8c6", "d7d6"} and picks.count("b8c6") > picks.count("d7d6")
-    choice = book_move(None, None, Play(), board, ("b8c6",), random.Random(0))
+    choice = book_reply(None, None, Play(), board, ("b8c6",), random.Random(0))
     assert choice.source == "book" and choice.san == "Nc6"
 
 
@@ -288,3 +296,33 @@ def test_the_book_ending_hands_over_to_the_usual_bot(settings, stockfish_path):
         assert kept["practice"]["status"] == "ended" and kept["practice"]["ended"] == "book_end"
         client.post(f"/api/play/{play_id}/move", json={"ply": ply, "uci": legal[0]})
         assert client.post(f"/api/play/{play_id}/reply").json()["reply"]["source"] == "human"
+
+
+def test_a_missed_mate_off_book_is_a_loss_not_a_mate_walked_into():
+    from types import SimpleNamespace
+
+    from trainer.play.book import deviation_verdict
+
+    def engine(scores):
+        def analyze(board, root_moves=None, multipv=None):
+            return SimpleNamespace(
+                candidates=[{"uci": uci, "score": score} for uci, score in scores.items()]
+            )
+
+        return SimpleNamespace(analyze=analyze)
+
+    mate = {"kind": "mate", "value": 2}
+    board = chess.Board()
+    # The book move mates; the learner's move keeps +3.00: it gave up the mate.
+    missed = deviation_verdict(
+        engine({"e2e4": mate, "d2d4": {"kind": "cp", "value": 300}}), board, "d2d4", ("e2e4",)
+    )
+    assert missed == {"verdict": "worse", "loss_cp": 700, "compared_with": "e2e4"}
+    # The learner's move lets the opponent mate: that is the mate walked into.
+    allowed = deviation_verdict(
+        engine({"e2e4": {"kind": "cp", "value": 20}, "d2d4": {"kind": "mate", "value": -3}}),
+        board,
+        "d2d4",
+        ("e2e4",),
+    )
+    assert allowed == {"verdict": "worse", "loss_cp": None, "compared_with": "e2e4"}

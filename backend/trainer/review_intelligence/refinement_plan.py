@@ -2,8 +2,22 @@
 
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.review_intelligence.difficulty import assess_difficulty
+from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, is_near_best
 
 VERSION = "refinement-1"
+
+
+# Triggers whose question is which alternative is best, so refinement searches
+# several candidate moves rather than two.
+BROAD_TRIGGERS = frozenset(
+    {
+        "narrow_resource",
+        "critical_alternative",
+        "human_disagreement",
+        "verify_sacrifice",
+        "verify_opportunity",
+    }
+)
 
 
 def settings_key(settings):
@@ -28,7 +42,7 @@ def nominate(report):
         Score.model_validate(report["actual"]["score"]),
     )
     practical = assess_difficulty(report)
-    triggers = []
+    triggers = []  # (priority, trigger); BROAD_TRIGGERS also widen the search.
     if loss.allows_mate or loss.mate_lost:
         triggers.append((1000, "mate_transition"))
     if (loss.cp or 0) >= 150:
@@ -38,9 +52,8 @@ def nominate(report):
     if practical.components.only_good_move_at_depth:
         triggers.append((760, "narrow_resource"))
     if (
-        not (loss.mate_lost or loss.allows_mate)
+        is_near_best(loss)
         and not (best.kind == "mate" and best.value == 1)
-        and (loss.cp or 0) <= 20
         and report.get("second_score") is not None
     ):
         gap = evaluation_loss(best, Score.model_validate(report["second_score"]))
@@ -48,11 +61,9 @@ def nominate(report):
             triggers.append((740, "critical_alternative"))
     if practical.best_naturalness == "unusual":
         triggers.append((700, "human_disagreement"))
-    if (loss.cp or 0) >= 100 and not report["actual_line"]["findings"]:
+    if (loss.cp or 0) >= MISTAKE_CP and not report["actual_line"]["findings"]:
         triggers.append((680, "unexplained_concession"))
-    if loss.cp is not None and any(
-        abs(loss.cp - boundary) <= 10 for boundary in (50, 100, 200, 300)
-    ):
+    if loss.cp is not None and any(abs(loss.cp - boundary) <= 10 for boundary in GRADE_BOUNDARIES):
         triggers.append((500, "grade_boundary"))
     if report.get("opportunity_missed"):
         triggers.append((720, "verify_opportunity"))

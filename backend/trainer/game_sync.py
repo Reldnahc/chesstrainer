@@ -1,12 +1,12 @@
 """Connected accounts are polled by the server; new games queue their own analysis."""
 
 import logging
-import time
-from datetime import datetime, timezone
 
 from sqlalchemy import delete, select
 
-from trainer.game_providers.base import ProviderRateLimited
+from trainer import job_lifecycle
+from trainer.game_providers.gateway import ProviderCoolingDown
+from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, ProviderCheckpoint, ProviderConnection, ProviderImport, now
 
 log = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ def latest_sync(db, provider, name):
         select(AnalysisJob)
         .join(ProviderImport)
         .where(
-            AnalysisJob.kind == "sync",
+            AnalysisJob.kind == JobKind.SYNC,
             ProviderImport.username == name,
             ProviderImport.provider == provider,
         )
@@ -55,10 +55,8 @@ def queue_sync(db, provider, settings, *, min_age=60):
         return None
     job = latest_sync(db, provider, name)
     if job:
-        age = (
-            datetime.now(timezone.utc) - job.created_at.replace(tzinfo=timezone.utc)
-        ).total_seconds()
-        if job.status in {"queued", "running"} or age < min_age:
+        age = (now() - job.created_at).total_seconds()
+        if job.status in job_lifecycle.ACTIVE or age < min_age:
             return job
         # Reuse this account's sync checkpoint instead of accumulating a job
         # and duplicate raw PGN archive on every periodic refresh.
@@ -70,10 +68,10 @@ def queue_sync(db, provider, settings, *, min_age=60):
             setattr(source, key, 0)
         for key, value in sync_scope(settings).items():
             setattr(source, key, value)
-        job.status, job.cancel_requested, job.error = "queued", False, None
-        job.created_at = now()
+        job_lifecycle.requeue(job)
+        job.created_at = now()  # Sorts as new among queued fetches.
     else:
-        job = AnalysisJob(kind="sync")
+        job = AnalysisJob(kind=JobKind.SYNC)
         db.add(job)
         db.flush()
         db.add(
@@ -115,19 +113,13 @@ def poll(runner, owners):
 
 
 def detect(runner, provider, users):
-    if time.monotonic() < runner.provider_retry_at.get(provider, 0):
-        return {}
+    """What changed for each player; nothing while the provider cools down."""
     states = {name: owned[0][1] for name, owned in users.items()}
-    with runner.provider_lock:
-        client = runner.provider_factories[provider](runner.settings)
-        try:
-            results = client.changed(list(users), states)
-        except ProviderRateLimited as exc:
-            runner.provider_retry_at[provider] = time.monotonic() + exc.retry_after
-            raise
-        finally:
-            client.close()
-    return results
+    try:
+        with runner.providers.client(provider) as client:
+            return client.changed(list(users), states)
+    except ProviderCoolingDown:
+        return {}
 
 
 def record(runner, owner, provider, state, changed):

@@ -36,7 +36,7 @@ def seed_classified(db, settings, key="practice"):
         candidates[0]["pv"] = line
         analysis.candidates = candidates
     db.commit()
-    assert classify_decision(db, decision, LocalClassifier(settings), settings)
+    assert classify_decision(db, decision, LocalClassifier(settings))
     return fixture
 
 
@@ -72,9 +72,8 @@ def test_focus_never_changes_fsrs_and_survives_reload(settings, outcome):
             ).json()
             assert not response["completed"] and response["practice_only"]
             with app.state.sessions() as db:
-                old_session = db.get(ReviewSession, session_id)
-                old_session.response_ms = None  # An unfinished pre-migration session.
-                old_session.started_at = now() - timedelta(seconds=30)
+                # The retry comes much later; the first answer's time stays.
+                db.get(ReviewSession, session_id).started_at = now() - timedelta(seconds=30)
                 db.commit()
             assert (
                 client.get("/api/review/queue").json() == []
@@ -110,7 +109,7 @@ def test_focus_never_changes_fsrs_and_survives_reload(settings, outcome):
             assert session.completed and session.mode == "focus"
             assert session.response_ms is not None and session.completed_at is not None
             if outcome == "retry":
-                assert session.response_ms < 30_000  # Preserves the earlier raw first attempt.
+                assert session.response_ms < 30_000  # The first attempt's time.
             assert session.failed == (outcome != "correct")
             assert (
                 db.scalar(select(func.count()).select_from(Attempt))

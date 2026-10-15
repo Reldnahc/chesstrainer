@@ -6,6 +6,7 @@ the database: on each start, a value set in the environment fills in a setting t
 table does not have yet, after which the table wins. Changes apply on restart.
 """
 
+import copy
 import functools
 import json
 import logging
@@ -14,32 +15,19 @@ import typing
 
 import annotated_types
 from pydantic import ValidationError, create_model
-from sqlalchemy import text
+from sqlalchemy import select
+from sqlalchemy.dialects.sqlite import insert
 
+from trainer import config
 from trainer.config import Settings
 from trainer.db import database, migrate
+from trainer.errors import InvalidInput
+from trainer.models import SiteSetting
 
 log = logging.getLogger(__name__)
 
-ENV_ONLY = frozenset(
-    {
-        "server_host",
-        "server_port",
-        "database_path",
-        "courses_path",
-        "accounts_enabled",
-        "session_secure",
-        "public_origin",
-        "lan_access_token",
-        "allowed_hosts",
-        "stockfish_path",
-        "human_model_path",
-        # The container entrypoint reads it to fetch CUDA PyTorch before Python starts.
-        "human_model_device",
-        "puzzle_pack_path",
-        "chesscom_user_agent",
-    }
-)
+# Marked on each setting in trainer.config; everything else is stored here.
+ENV_ONLY = config.ENV_ONLY
 
 # Group, then (setting, label, help) in the order Settings → Advanced shows them.
 GROUPS = (
@@ -193,13 +181,17 @@ GROUPS = (
                 "Chess.com response limit (bytes)",
                 "Largest Chess.com response read.",
             ),
-            ("provider_timeout_seconds", "Provider timeout (s)", "Longest wait for Lichess."),
+            ("lichess_timeout_seconds", "Lichess timeout (s)", "Longest wait for Lichess."),
             (
-                "provider_max_response_bytes",
+                "lichess_max_response_bytes",
                 "Provider response limit (bytes)",
                 "Largest Lichess response read.",
             ),
-            ("provider_max_scan_games", "Games scanned", "Most games read during a manual import."),
+            (
+                "lichess_max_scan_games",
+                "Games scanned",
+                "Most Lichess games read during a manual import.",
+            ),
         ),
     ),
 )
@@ -209,21 +201,46 @@ MANAGED = tuple(entry[0] for _, entries in GROUPS for entry in entries)
 
 @functools.cache
 def _model(name):
-    # Reuses the field's own type and limits, exactly as Settings validates them.
-    return create_model(
-        f"Setting_{name}",
-        value=(Settings.model_fields[name].annotation, Settings.model_fields[name]),
-    )
+    # Reuses the field's own type and limits, exactly as Settings validates them,
+    # but not its environment-name aliases: the value is always given as "value".
+    field = copy.copy(Settings.model_fields[name])
+    field.alias = field.validation_alias = field.serialization_alias = None
+    return create_model(f"Setting_{name}", value=(field.annotation, field))
 
 
 def _validate(name, value):
     return _model(name).model_validate({"value": value}).value
 
 
+SITE_SETTINGS = SiteSetting.__table__
+
+
+def flag(sql_engine, key):
+    """A stored server-wide value outside Settings (such as signups_open), or None."""
+    with sql_engine.connect() as connection:
+        raw = connection.scalar(select(SITE_SETTINGS.c.value).where(SITE_SETTINGS.c.key == key))
+    return None if raw is None else json.loads(raw)
+
+
+def store(sql_engine, key, value):
+    """Save one server-wide value as JSON text; the one write path for site_settings."""
+    with sql_engine.begin() as connection:
+        _upsert(connection, key, value)
+
+
+def _upsert(connection, key, value):
+    statement = insert(SITE_SETTINGS).values(key=key, value=json.dumps(value))
+    connection.execute(
+        statement.on_conflict_do_update(
+            index_elements=[SITE_SETTINGS.c.key], set_={"value": statement.excluded.value}
+        )
+    )
+
+
 def stored(sql_engine):
     """Saved values that are still valid; an invalid one falls back with a warning."""
     with sql_engine.connect() as connection:
-        rows = connection.execute(text("SELECT key, value FROM site_settings")).all()
+        rows = connection.execute(select(SITE_SETTINGS.c.key, SITE_SETTINGS.c.value)).all()
     values = {}
     for key, raw in rows:
         if key not in MANAGED:
@@ -240,21 +257,15 @@ def save(sql_engine, values):
     clean = {}
     for key, value in values.items():
         if key not in MANAGED:
-            raise ValueError(f"{key} is not a server setting")
+            raise InvalidInput(f"{key} is not a server setting")
         try:
             clean[key] = _validate(key, value)
         except ValidationError as exc:
             message = exc.errors()[0]["msg"]
-            raise ValueError(f"{label(key)}: {message}") from exc
+            raise InvalidInput(f"{label(key)}: {message}") from exc
     with sql_engine.begin() as connection:
         for key, value in clean.items():
-            connection.execute(
-                text(
-                    "INSERT INTO site_settings(key, value) VALUES(:key, :value) "
-                    "ON CONFLICT(key) DO UPDATE SET value=excluded.value"
-                ),
-                {"key": key, "value": json.dumps(value)},
-            )
+            _upsert(connection, key, value)
 
 
 def load(settings):
@@ -302,7 +313,8 @@ def describe(name, value, running):
         if isinstance(constraint, annotated_types.Ge):
             limits["minimum"] = constraint.ge
         elif isinstance(constraint, annotated_types.Gt):
-            limits["minimum"] = constraint.gt
+            # Strictly greater: the bound itself is not a valid value.
+            limits["exclusive_minimum"] = constraint.gt
         elif isinstance(constraint, annotated_types.Le):
             limits["maximum"] = constraint.le
     return {

@@ -3,9 +3,7 @@
 import random
 
 import chess
-from fastapi import HTTPException
-from sqlalchemy import func, select, update
-from sqlalchemy.orm.attributes import set_committed_value
+from sqlalchemy import func, select
 
 from trainer.chess_core import legal_move, legal_move_options
 from trainer.contracts.puzzles import (
@@ -15,15 +13,25 @@ from trainer.contracts.puzzles import (
     PuzzleQuery,
     PuzzleSessionView,
 )
+from trainer.errors import Conflict, InvalidInput, NotFound
 from trainer.models import PuzzleAttempt, PuzzleSession, now
 from trainer.puzzles.definitions import PuzzleDefinition
 from trainer.puzzles.generation import generation_status
+from trainer.session_commands import (
+    RESUME_LIMIT,
+    answered_before,
+    claim_revision,
+    require_revision,
+    started_before,
+)
+
+CHANGED = "Puzzle changed. Reload the session before continuing."
 
 
 def require_session(db, session_id):
     session = db.get(PuzzleSession, session_id)
     if session is None:
-        raise HTTPException(404, "Puzzle session not found")
+        raise NotFound("Puzzle session not found")
     return session
 
 
@@ -93,6 +101,10 @@ def _history(db):
     return latest, set(recent)
 
 
+# A goal is a Lichess goal theme: a mate, or a winning advantage short of mate.
+GOAL_THEMES = {"mate": {"mate"}, "material": {"advantage", "crushing"}}
+
+
 def _needs_retry(outcome):
     status, failed = outcome
     return status == "revealed" or (status == "solved" and failed)
@@ -103,7 +115,7 @@ def _matches(definition, query):
         return False
     if query.theme is not None and query.theme not in definition.themes:
         return False
-    if query.goal is not None and ("mate" in definition.themes) != (query.goal == "mate"):
+    if query.goal is not None and not GOAL_THEMES[query.goal] & set(definition.themes):
         return False
     if query.min_rating is not None or query.max_rating is not None:
         if definition.rating is None:
@@ -167,7 +179,7 @@ def library(db, providers, settings=None):
         # A started puzzle with no committed move or reveal has nothing to resume.
         .where(PuzzleSession.status == "active", PuzzleSession.revision > 0)
         .order_by(PuzzleSession.updated_at.desc(), PuzzleSession.id)
-        .limit(20)
+        .limit(RESUME_LIMIT)
     )
     counts = {
         (status, failed): count
@@ -242,17 +254,19 @@ def next_puzzle(db, providers, query=None, *, rng=random):
 
 
 def start_session(db, providers, request):
-    previous = db.scalar(
-        select(PuzzleSession).where(PuzzleSession.request_id == request.request_id)
+    previous = started_before(
+        db,
+        PuzzleSession,
+        request.request_id,
+        (request.provider_id, request.key, request.version),
+        lambda row: (row.provider_id, row.puzzle_key, row.definition_version),
+        "Request ID already used for another puzzle",
     )
-    identity = (request.provider_id, request.key, request.version)
     if previous:
-        if (previous.provider_id, previous.puzzle_key, previous.definition_version) != identity:
-            raise HTTPException(409, "Request ID already used for another puzzle")
         return session_view(db, previous)
     definition = providers.find(db, request.provider_id, request.key, request.version)
     if definition is None:
-        raise HTTPException(404, "Puzzle definition not found")
+        raise NotFound("Puzzle definition not found")
     session = PuzzleSession(
         request_id=request.request_id,
         provider_id=request.provider_id,
@@ -271,17 +285,19 @@ def start_session(db, providers, request):
 def command(db, session_id, request, *, reveal=False):
     session = require_session(db, session_id)
     payload = request.model_dump(mode="json") | {"action": "reveal" if reveal else "move"}
-    previous = db.scalar(
-        select(PuzzleAttempt).where(
-            PuzzleAttempt.session_id == session.id, PuzzleAttempt.request_id == request.request_id
-        )
+    answered = answered_before(
+        db,
+        PuzzleAttempt,
+        session,
+        request.request_id,
+        payload,
+        "Request ID already used for another puzzle action",
     )
-    if previous:
-        if previous.request != payload:
-            raise HTTPException(409, "Request ID already used for another puzzle action")
-        return previous.response
-    if request.revision != session.revision or session.status != "active":
-        raise HTTPException(409, "Puzzle changed. Reload the session before continuing.")
+    if answered is not None:
+        return answered
+    if session.status != "active":
+        raise Conflict(CHANGED)
+    require_revision(session, request.revision, CHANGED)
     definition = PuzzleDefinition.model_validate(session.snapshot)
     frames = definition.frames()
     step = session.current_step
@@ -292,20 +308,10 @@ def command(db, session_id, request, *, reveal=False):
         try:
             move = legal_move(board, request.uci)
         except ValueError as exc:
-            raise HTTPException(422, "Move is not legal in the current puzzle position") from exc
+            raise InvalidInput("Move is not legal in the current puzzle position") from exc
         submitted_san = board.san(move)
 
-    # The account lock handles normal requests; the conditional write also guards
-    # against two sessions submitting the same expected revision concurrently.
-    changed = db.execute(
-        update(PuzzleSession)
-        .where(PuzzleSession.id == session.id, PuzzleSession.revision == request.revision)
-        .values(revision=request.revision + 1)
-        .execution_options(synchronize_session=False)
-    )
-    if changed.rowcount != 1:
-        raise HTTPException(409, "Puzzle changed. Reload the session before continuing.")
-    set_committed_value(session, "revision", request.revision + 1)
+    claim_revision(db, session, request.revision, CHANGED)
     if reveal:
         grade = "revealed"
         session.current_step = len(frames)

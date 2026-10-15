@@ -1,13 +1,12 @@
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, digest, legal_move, position_key, valid_board
-from trainer.imports import parse_games
+from trainer.errors import InvalidInput
 from trainer.models import (
     EngineAnalysis,
     Exercise,
     ExerciseAnswer,
     ExerciseTag,
-    Repertoire,
     SRSState,
 )
 from trainer.policy import MovePolicy
@@ -29,6 +28,24 @@ def exercise_from_decision(db, decision, settings, scheduler):
             "analysis": decision.before_analysis_id,
         }
     )
+    # A decision whose searches were replaced later (a deeper search adopted after
+    # training was built) keeps the exercise it already has: rewriting its answers
+    # would drop answers graded during practice, and an exercise can be shared by
+    # the same mistake in other games. Only a decision without one gets a new one.
+    owned = next(
+        (
+            row
+            for row in db.scalars(
+                select(Exercise).where(
+                    Exercise.decision_id == decision.id, Exercise.source == "game"
+                )
+            )
+            if row.policy == policy.model_dump()
+        ),
+        None,
+    )
+    if owned is not None:
+        return owned
     exercise = db.scalar(select(Exercise).where(Exercise.identity == identity))
     if exercise:
         return exercise
@@ -65,7 +82,7 @@ def manual_exercise(db, scheduler, fen, moves, orientation, explanation="", tags
     board = valid_board(fen)
     parsed = [legal_move(board, uci) for uci in dict.fromkeys(moves)]
     if not parsed:
-        raise ValueError("At least one expected legal move is required")
+        raise InvalidInput("At least one expected legal move is required")
     identity = digest(
         {
             "source": "manual",
@@ -102,53 +119,3 @@ def manual_exercise(db, scheduler, fen, moves, orientation, explanation="", tags
     enroll(db, exercise, scheduler)
     db.commit()
     return exercise
-
-
-def import_repertoire(db, scheduler, name, pgn, color):
-    parsed = list(parse_games(pgn))
-    errors = [{"game": i, "error": error} for i, _, error in parsed if error]
-    games = [game for _, game, error in parsed if not error]
-    if not games:
-        raise ValueError("No valid repertoire lines found")
-    repertoire = Repertoire(name=name, pgn=pgn, color=color)
-    db.add(repertoire)
-    db.flush()
-    positions = {}
-
-    def visit(node):
-        board = node.board()
-        if board.turn == color and node.variations:
-            entry = positions.setdefault(position_key(board), {"board": board, "moves": set()})
-            entry["moves"].update(child.move.uci() for child in node.variations)
-        for child in node.variations:
-            visit(child)
-
-    for game in games:
-        visit(game)
-    for key, entry in positions.items():
-        board = entry["board"]
-        exercise = Exercise(
-            identity=digest({"repertoire": repertoire.id, "position": key}),
-            source="repertoire",
-            repertoire_id=repertoire.id,
-            fen=board.fen(),
-            orientation="white" if color else "black",
-            explanation=f"A continuation from your curated repertoire: {name}.",
-            policy={"authority": "repertoire", "version": "1"},
-        )
-        db.add(exercise)
-        db.flush()
-        for index, uci in enumerate(sorted(entry["moves"])):
-            move = legal_move(board, uci)
-            db.add(
-                ExerciseAnswer(
-                    exercise_id=exercise.id,
-                    uci=uci,
-                    san=board.san(move),
-                    grade="correct",
-                    primary=index == 0,
-                )
-            )
-        enroll(db, exercise, scheduler)
-    db.commit()
-    return {"id": repertoire.id, "exercises": len(positions), "errors": errors}

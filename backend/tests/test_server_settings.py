@@ -21,6 +21,41 @@ def test_every_setting_is_either_stored_or_an_environment_variable():
         site_settings.describe(name, None, None)  # Every stored type has a form field.
 
 
+def test_host_paths_and_secrets_never_reach_accounts():
+    from pathlib import Path
+
+    from pydantic import SecretStr
+    from trainer.config import PRIVATE_SETTINGS
+    from trainer.contracts.workspace import WorkspaceSettings
+
+    for name, field in Settings.model_fields.items():
+        kinds = str(field.annotation)
+        if "Path" in kinds or field.annotation is SecretStr or name.endswith("_path"):
+            assert name in PRIVATE_SETTINGS, name
+        assert (name in WorkspaceSettings.model_fields) == (name not in PRIVATE_SETTINGS)
+    public = Settings(_env_file=None, puzzle_pack_path=Path("/srv/packs")).public()
+    assert "puzzle_pack_path" not in public
+
+
+def test_strict_lower_bounds_are_reported_as_exclusive():
+    described = site_settings.describe("triage_time", 0.15, 0.15)
+    assert described["exclusive_minimum"] == 0 and "minimum" not in described
+
+
+def test_the_old_provider_names_still_configure_lichess(monkeypatch):
+    monkeypatch.setenv("PROVIDER_TIMEOUT_SECONDS", "7")
+    assert Settings(_env_file=None).lichess_timeout_seconds == 7
+
+
+def test_a_setting_with_an_old_environment_name_saves_and_loads(settings):
+    sql_engine, _ = database(settings.database_path)
+    site_settings.load(Settings(_env_file=None, database_path=settings.database_path))
+    site_settings.save(sql_engine, {"lichess_timeout_seconds": 15})
+    sql_engine.dispose()
+    loaded = site_settings.load(Settings(_env_file=None, database_path=settings.database_path))
+    assert loaded.lichess_timeout_seconds == 15
+
+
 def test_the_environment_seeds_missing_settings_and_the_table_wins_afterwards(
     settings, monkeypatch
 ):
@@ -54,6 +89,7 @@ def test_local_installs_edit_settings_and_restart_only_under_python_m_trainer(
             "nullable": False,
             "choices": None,
             "minimum": 1,
+            "exclusive_minimum": None,
             "maximum": 32,
             "default": 4,
             "value": None,

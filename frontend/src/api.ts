@@ -111,6 +111,7 @@ export type Promotion = NonNullable<LegalMove["promotion"]>;
 export type ColdPosition = Schema["ColdPosition"];
 export type Feedback = Schema["ReviewFeedback"];
 export type Job = Schema["Job"];
+export type ProviderImportProgress = Schema["ProviderImportProgress"];
 export type Evidence = Schema["Evidence"];
 export type MoveExplanation = Schema["MoveExplanation"];
 export type PatternFinding = Schema["Finding"];

@@ -54,14 +54,25 @@ On a move graded Inaccuracy or worse, a positional fact is kept only when it exp
 the cost: the mover's own piece losing its defender or pawns becoming doubled or isolated,
 the opponent gaining an open file or passed pawn, or what the better move would have
 gained. A gained defender, a new king square, castling and the better move's own
-drawbacks are left out, as is the better move's development or castling when the played
-move did the same. Defender facts on a piece that is simply recaptured are left out on
+drawbacks are left out, and so is the better move's pawn structure: the alternative
+doubled- and isolated-pawn lines frame it as the better move's own untidy structure,
+which is false when the weakened pawns are the opponent's. The better move's
+development or castling is also left out when the played move did the same. Defender facts on a piece that is simply recaptured are left out on
 any move. In speech, repeated-issue and saved-history lines only follow the sentence that
 names the issue (a tactic, cause or mate clip); a move with no playable sentence speaks
 its grade take instead. A second sentence never restates the lead: no capture clip after a
 cause, hanging-piece or allowed-mate clip, and no stronger-alternative clip after a missed
-tactic or mate. A forced-mate stage is told once per run of the same side's moves, and an
-erosion run only on a move graded as an error. Takes rotate so that a side's back-to-back
+tactic or mate. Promotion clips describe a pawn still on its way, so they never play
+when the witnessed move is itself the promotion, in game review or in practice findings.
+Pin clips say the move makes (or allows, or missed making) the pin, so a line that only
+uses a pin already on the board before the move (the tactic's `pinned_before` fact) speaks
+its grade take instead.
+The evaluation-loss clip, some of whose takes call the cost small, plays only on an
+Inaccuracy; a larger loss passes the lead on or speaks its grade take.
+A forced-mate stage is told once per run of the same side's moves, and an
+erosion run only on an Inaccuracy. The chance-taken clip, some of whose takes call the
+reply exact, plays only on a move graded Best, Great or Brilliant. A recovery is written, never voiced: its takes credit
+this move, and the opponent's moves made the game playable. Takes rotate so that a side's back-to-back
 moves (two plies apart) differ whenever a meaning has three or more takes.
 
 Intent version 5 records the subject as learner, opponent or unknown position.
@@ -163,6 +174,12 @@ coin toss. The selected claim cap still applies, and low-priority claims cannot
 displace the main consequence. When a response is long, optional cues are removed
 before an entire secondary claim is omitted. Required facts are never truncated.
 
+Recorded positional takes are selected only where their wording holds: the
+passed-pawn advance takes count one step, so a double step is not voiced; the
+king-flight takes speak of one new square, so two or more are not; and the
+semi-open-file takes describe a file that stays semi-open, so a file that was
+open and became semi-open is not voiced. The written lines remain.
+
 Runtime slot validation checks custom forms against the neutral claim contract.
 Unknown slots, missing mandatory slots or facts hidden only in an optional cue
 fall back to neutral wording. Positional alternatives and opponent/unknown-subject
@@ -201,11 +218,14 @@ articles live in `moveQuality.ts`.
 
 All thirty coaches' on-screen tactical wording opts into `tacticalWording: "witness"`.
 `eventClaims` attaches derived timing/effect metadata while retaining the original
-claim codes, slots and source references. Only a sole matching line witness at
-root ply 1 or the opponent's immediate reply at ply 2 supports direct timing;
-the reference frame alone does not. Multi-ply or incomplete timing remains a
-possible idea, without pretending the motif necessarily begins later. Current
-facts do not imply that the move created a previously absent pin or fork.
+claim codes, slots and source references. A line witness that starts on this
+move (root ply 1, with its SAN) or on the opponent's immediate reply (ply 2), with
+its reference board just before or after that move, supports direct timing, even
+when the witness goes on to a later collection; the reference frame alone does
+not. `eventClaims.tacticStartsHere` is that one rule, and the recorded tactic
+clips use it too. A witness that starts later, or incomplete timing, remains a
+possible idea. Current facts do not imply that the move created a previously
+absent pin or fork.
 
 `tacticalTemplates` selects one of 29 scoped presentation keys and typed slots
 containing moves, motif names, targets and capture nouns. It does not construct
@@ -283,6 +303,9 @@ its exact `renderedClaims`. The selectors in `audio/speech/gameSelection.ts` and
 feedback before choosing a recording ID. They do not extract meaning from prose
 or match a phrase to a clip. A missing or unsupported recording leaves the written
 feedback available; it never triggers synthesis or weaker evidence validation.
+A checkmate frame in a practice or Show why line plays `mate-finished` only when the
+learner (the exercise's orientation) delivers the mate; when the other side mates,
+it plays `mate-defense-ended`, as a game's final position does.
 
 Walter (`classic`, `storyteller.ts`) and Rivet (`robot`, `robot.ts`) are the current
 production references for this complete path. Both use the scoped tactical and

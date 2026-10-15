@@ -49,14 +49,17 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("review_sessions", "completed_at")
-    op.drop_column("review_sessions", "response_ms")
+    with op.batch_alter_table("review_sessions") as batch:
+        batch.drop_column("completed_at")
+    with op.batch_alter_table("review_sessions") as batch:
+        batch.drop_column("response_ms")
     # A later SQLite batch rebuild normalizes this inline FK to a table FK.
     with op.batch_alter_table(
         "review_sessions", naming_convention={"fk": "fk_%(table_name)s_%(column_0_name)s"}
     ) as batch:
         batch.drop_constraint("fk_review_sessions_focus_skill_id", type_="foreignkey")
         batch.drop_column("focus_skill_id")
-    op.drop_column("review_sessions", "mode")
+    with op.batch_alter_table("review_sessions") as batch:
+        batch.drop_column("mode")
     op.drop_table("classification_tasks")
     op.drop_table("classification_analyses")

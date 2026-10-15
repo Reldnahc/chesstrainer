@@ -2,10 +2,14 @@
 
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.human_models.types import HumanEvidence
-from trainer.review_intelligence.types import DifficultyComponents, PracticalAssessment
-from trainer.review_scores import strongest_alternative
+from trainer.review_intelligence.types import (
+    PRACTICAL_VERSION,
+    DifficultyComponents,
+    PracticalAssessment,
+)
+from trainer.review_scores import is_near_best, is_only_good, is_poor, strongest_alternative
 
-VERSION = "practical-2"
+VERSION = PRACTICAL_VERSION
 # Coarse gates inspected on the fixed 12-position × 4-rating probe (see docs).
 # These are model-policy descriptions, not calibrated human success rates.
 PREFERRED_POLICY = 0.10
@@ -49,11 +53,7 @@ def root_comparison(report):
         )
     # "Only good" means the runner-up actually loses, not merely that it misses
     # a forced mate while retaining a healthy advantage. Scope is saved search depth.
-    safe_best = best.outcome() == 1 or best.kind == "cp" and best.value >= -50
-    losing_second = second.outcome() == -1 or second.kind == "cp" and second.value <= -150
-    narrow = (
-        safe_best and losing_second and (gap.allows_mate or gap.mate_lost or (gap.cp or 0) >= 150)
-    )
+    narrow = is_only_good(best, second)
     return gap.cp, observed, legal_count <= max(2, len(roots)), bool(narrow)
 
 
@@ -190,8 +190,7 @@ def assess_difficulty(report):
             base["best_find_difficulty"] = (
                 "difficult" if nature == "unusual" and corroborated else "challenging"
             )
-        poor = loss.allows_mate or loss.mate_lost or (loss.cp or 0) >= 50
-        strong = not (loss.allows_mate or loss.mate_lost) and (loss.cp or 0) <= 20
+        poor, strong = is_poor(loss), is_near_best(loss)
         if poor and base["played_naturalness"] == "preferred":
             interpretations.append("natural_error")
         if strong and base["played_naturalness"] == "unusual":

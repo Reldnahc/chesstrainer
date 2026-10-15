@@ -1,7 +1,8 @@
 import chess
+import pytest
 from trainer.contracts.games import BoardCues
-from trainer.explanations import replay_line
-from trainer.review_cues import review_cues
+from trainer.explanation_types import replay_line
+from trainer.review_cues import pins, review_cues
 
 
 def line(fen, moves, findings=()):
@@ -203,3 +204,29 @@ def test_only_piece_pins_to_the_king_or_something_worth_more_get_an_arrow():
     assert review_cues(line("4q2k/8/8/4n3/8/8/R7/K7 w - - 0 1", ["a2e2"]))["pins"] == [
         {"startSquare": "e2", "endSquare": "e8", "kind": "pin", "pinned": "e5"}
     ]
+
+
+@pytest.mark.parametrize(
+    "fen,san,expected",
+    [
+        # The queen pins the rook; the h1 rook on the same diagonal does not.
+        (
+            "3rqb1r/1kp1pppp/p3b3/1n2N3/5B2/P4QP1/1P3P1P/2KR3R b - - 5 17",
+            "Rd5",
+            {("f3", "d5", "b7")},
+        ),
+        # The rook pins the knight; the bishop behind the rook does not.
+        ("4k3/4b3/8/r7/8/8/4N3/4K3 b - - 0 1", "Re5", {("e5", "e2", "e1")}),
+    ],
+)
+def test_pin_arrows_start_at_the_piece_actually_pinning(fen, san, expected):
+    board = chess.Board(fen)
+    board.push_san(san)
+    assert {tuple(map(chess.square_name, pin)) for pin in pins(board)} == expected
+
+
+def test_a_relative_pin_the_pinned_piece_can_break_by_capture_is_not_drawn():
+    # 5.Bxf6: the bishop "pins" Be7 to Qd8, but Be7 simply takes it.
+    board = chess.Board("rnbqk2r/ppppbppp/5n2/4p1B1/3PP3/8/PPP2PPP/RN1QKBNR w KQkq - 0 5")
+    board.push_san("Bxf6")
+    assert pins(board) == set()

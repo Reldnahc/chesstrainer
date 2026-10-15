@@ -8,9 +8,11 @@ including `?category=outcomes`, and `/games/insights` redirect without an extra
 history entry.
 
 **Insights → Overview** (`/insights`) summarizes patterns across the learner's
-saved games. It is read-only: `GET /api/insights` recomputes everything from saved
-PGNs and completed original-game reviews on each request, stores nothing and
-never starts Stockfish. Filters choose a speed (from the speeds present) and a
+saved games. It is read-only: `GET /api/insights` computes everything from saved
+PGNs and completed original-game reviews, stores nothing in the database and
+never starts Stockfish. Each game's facts are kept in memory per review revision,
+so a request replays only games whose review changed; filters are applied to
+those facts on every request. Filters choose a speed (from the speeds present) and a
 period (all time, 30, 90 or 365 days); weekday and time of day use the viewer's
 UTC offset.
 
@@ -28,24 +30,26 @@ how games end, winning and losing runs, the highest-rated win, rating series per
 site and speed, openings by side and score, clock pressure and think time.
 Evaluation-based sections use only games whose review completed with every ply
 evaluated, and name how many games that is. The page says so when reviewed games
-are a subset.
+are a subset. Games saved from Play count everywhere except the rating sections:
+their Elo headers hold the bot's setting and the learner's fitted model level, not
+ratings, so they never become a highest-rated win or a rating series point.
 
 | Section | Definition |
 | --- | --- |
-| Speed | Lichess's estimate, base + 40 × increment: under 180 s bullet, under 480 s blitz, under 1500 s rapid, else classical; `1/…` controls are daily. |
-| How games end | A mate, stalemate or insufficient material on the final board wins over the header; otherwise keywords in Chess.com's sentence or Lichess's `Termination` (`Normal` decisive games count as resignations). |
+| Speed | Each provider's own rating pool from the estimate base + 40 × increment. Chess.com: under 180 s bullet, under 600 s blitz, else rapid. Lichess and other PGNs: under 180 s bullet, under 480 s blitz, under 1500 s rapid, else classical. `1/…` controls are daily. |
+| How games end | A mate, stalemate or insufficient material on the final board wins over the header; otherwise keywords in Chess.com's sentence (with the players' names removed, so a username is never read as a keyword) or Lichess's `Termination`. `Normal` decisive games count as resignations; a `Normal` draw is a repetition when the final position has occurred three times, a fifty-move draw when the fifty-move count is reached, else agreement. |
 | Openings | The deepest named position reached in the bundled Lichess opening list, grouped by family (text before `:`) and the learner's side. Score counts a draw as half. |
-| Leaving the book | The learner's own move that first leaves the book, counted as costly when it is a Mistake-sized loss (100 cp or more) or a Blunder. |
+| Leaving the book | The learner's own move that leaves the book for good (the move after the game's last catalogue move, the review's departure rule), counted as costly when it is a Mistake-sized loss (100 cp or more) or a Blunder. |
 | Clearly winning / lost | A learner-relative evaluation of ±300 cp or a forced mate at any ply. |
 | Where the win slipped | In clearly winning games not won, the ply after which the evaluation never returned to +300. |
-| Game shapes | One per reviewed game, in this order: let slip, comeback, led throughout (won, reached +150, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
-| Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is higher than the volatility-weighted game accuracy and is not a substitute for it. |
+| Game shapes | One per reviewed game, in this order: let slip, comeback, stayed ahead (won, reached +150 and never back to 0 or below after that, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
+| Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is usually higher than the volatility-weighted game accuracy, though not always, and is not a substitute for it. |
 | Phases | Six or fewer pieces besides kings and pawns is an endgame; moves 1–10 with more than ten pieces are the opening; otherwise middlegame. |
-| Blunders | The game review's own Blunder rule (`blunder_kind`), with the review's rating. |
-| After a loss | The next game when it started within 90 minutes of the previous one. A rematch is that next game against the same opponent. |
+| Blunders | The game review's own Blunder rule (`blunder_kind`) with the same rating the review's badges use (`game_library.mover_rating`): the moving player's PGN rating, else the review's stored rating. |
+| After a loss | The next game when it started within 90 minutes of the previous one's start. Start times come from the PGN's `UTCDate`/`UTCTime`, since a synced game's saved time is when it ended. A rematch is that next game against the same opponent. |
 | Clock | `[%clk]` annotations through the shared clock facts. Time trouble is 30 s or less, or a tenth of the starting time, after a learner move. |
-| Mistakes and replies | A move losing 100 cp or more. The reply punishes it, or fails to, by keeping at least half of the evaluation swing. |
-| Endgames | The class at the first endgame ply (queen, rook, minor piece or pawn); held when the result is at least as good as the evaluation then (±300 cp). |
+| Mistakes and replies | A move losing 100 cp or more. The reply punishes it, or fails to, by keeping at least half of the evaluation swing, measured from the mistake's own search (its best move's score) as its loss is. |
+| Endgames | The class at the first endgame position: queen, rook or minor-piece endings have only that kind of piece besides kings and pawns, pawn endings none, and any other combination is mixed. Held when the result is at least as good as the evaluation of that position, before its first move (±300 cp). |
 
 These are descriptions of saved evidence, not ratings of skill or mastery. No
 section presents a mastery score or diagnoses what the player was thinking.
@@ -84,7 +88,7 @@ The live Weaknesses route calls priorities() in weaknesses.py. It uses these exp
 5. For compatibility, up to 30 completed **historical lesson attempts** still contribute a bounded multiplier of 1 + 0.25 times their failure fraction. New attempts in that legacy domain cannot be created by the app; authored Study lessons do not contribute to this multiplier.
 6. Five or more recent SRS recalls with no failures reduce priority by 20%. The label is improving retention, not proven chess mastery.
 
-New local evidence uses weight 1. Recurring groups sort before provisional groups; default recurrence requires two independent games. The priority is rounded to one decimal and used for ordering, not presented as a scientific mastery score. Supporting evidence and decision IDs remain available for audit.
+New local evidence uses weight 1. Recurring groups sort before provisional groups; default recurrence requires two independent games. A recurring card's badge names its game count ("Across 2 games"), and its **Recent reviews** figure is the number of those latest recalls, at most 30. The priority is rounded to one decimal and used for ordering, not presented as a scientific mastery score. Supporting evidence and decision IDs remain available for audit.
 
 Focused attempts have separate recent attempt/failure counts. They do not change the ordinary recall fractions above or become evidence of blind recall.
 
@@ -104,7 +108,7 @@ progression are not active workflows. Imports and classification do not build
 courses or withhold new cards. Legacy course/lesson product routes return HTTP
 410, and old lesson review sessions cannot accept moves or reveals.
 
-Nonretired cards once held by lessons are eligible for Due (migration d17b63e02a48); their schedules, attempts, reviews and lesson records are kept. Teaching-generation routes and retries return 410; historical teaching audit reads/rejections remain available. Backups include the archived records.
+Nonretired cards once held by lessons are eligible for Due (migration d17b63e02a48); their schedules, attempts and reviews are kept, and lesson attempts stay as review sessions with `mode="lesson"`. The lesson, course and teaching tables themselves were dropped (migration 4ca1e88adf37). Teaching routes return 410.
 
 A future generated-curriculum redesign requires separate product work. Current
 priorities, focused practice and authored Study lessons do not re-enable legacy

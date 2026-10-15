@@ -22,6 +22,7 @@ from trainer.chess_core import legal_move, valid_board
 from trainer.contracts.common import Contract
 from trainer.contracts.puzzles import PuzzleProvenance
 from trainer.puzzles.definitions import PuzzleDefinition
+from trainer.puzzles.game_provider import GamePuzzleProvider
 
 MANIFEST = "manifest.json"
 REQUIRED_COLUMNS = frozenset({"PuzzleId", "FEN", "Moves"})
@@ -191,9 +192,9 @@ def starter_pack() -> PackProvider:
 def production_providers(settings) -> tuple:
     """Local packs plus the account's own-game puzzles; nothing is fetched at runtime.
 
-    A configured installed pack is verified at startup.
+    A configured installed pack's manifest, hash and rows are checked at startup; it
+    is engine-verified only when scripts/verify_puzzle_pack.py was run on it.
     """
-    from trainer.puzzles.game_provider import GamePuzzleProvider
 
     providers = []
     if settings.puzzle_starter_pack:

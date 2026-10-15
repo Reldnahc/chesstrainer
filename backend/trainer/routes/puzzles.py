@@ -3,7 +3,6 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Query
-from sqlalchemy import select
 
 from trainer.contracts.common import JobCreated
 from trainer.contracts.puzzles import (
@@ -15,9 +14,8 @@ from trainer.contracts.puzzles import (
     PuzzleSessionView,
     PuzzleStart,
 )
-from trainer.models import AnalysisJob
+from trainer.job_lifecycle import JobKind, ensure_job
 from trainer.puzzles import sessions
-from trainer.puzzles.generation import JOB_KIND
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -38,16 +36,9 @@ def create_router(*, providers, settings=None) -> APIRouter:
     def generate(workspace: CurrentWorkspace):
         """Queue one bounded search of analyzed games not yet mined for puzzles."""
         with workspace.mutation_lock, workspace.sessions() as db:
-            existing = db.scalar(
-                select(AnalysisJob).where(
-                    AnalysisJob.kind == JOB_KIND, AnalysisJob.status.in_(["queued", "running"])
-                )
-            )
-            if existing:
-                return {"job_id": existing.id}
-            workspace.engine.start()
-            job = AnalysisJob(kind=JOB_KIND)
-            db.add(job)
+            job, created = ensure_job(db, JobKind.PUZZLE_GENERATION)
+            if created:
+                workspace.engine.start()  # Searches need Stockfish; fail now, not in the job.
             db.commit()
             return {"job_id": job.id}
 
@@ -63,7 +54,7 @@ def create_router(*, providers, settings=None) -> APIRouter:
 
     @router.get("/api/puzzle-sessions/{session_id}", response_model=PuzzleSessionView)
     def get_session(workspace: CurrentWorkspace, session_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.sessions() as db:
             return sessions.session_view(db, sessions.require_session(db, session_id))
 
     @router.post("/api/puzzle-sessions/{session_id}/move", response_model=PuzzleSessionView)

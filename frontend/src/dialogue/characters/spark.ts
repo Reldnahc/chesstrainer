@@ -49,7 +49,7 @@ export const spark: CoachPersonality = {
     human_natural_strong: ["Natural for the human-move model, and it holds up as a strong move, though the engine keeps another favorite."],
     book: ["Repertoire time: {opening}."],
     book_sound: ["{opening}, straight from the repertoire."],
-    departure: ["And we leave the repertoire. Uncharted squares ahead."],
+    departure: ["And we leave the repertoire. Off our charts from here."],
     recovery: [{ reaction: "Back in it.", fact: "That wobble at {earlier} is steadied now.{help}" }],
     punishment: ["There's the open door from {earlier}, and {side} pounces through it with this move."],
     missed_punishment: ["{earlier} cracked a door open for {side}, and this move strolls on by."],

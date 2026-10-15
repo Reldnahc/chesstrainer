@@ -51,9 +51,15 @@ get these defaults; saving them on one device applies to later account loads.
 Request services and background workers receive an `AccountSession` factory bound
 to one explicit user. ORM read/update/delete criteria apply to all private models,
 including aggregates and guessed IDs. Flush validation assigns ownership and
-rejects cross-account references. Raw SQL and private bulk inserts are prohibited
-in these sessions. The account service alone uses administrative SQL for credentials
-and sessions. Startup maintenance and the host job queue also use administrative
+rejects cross-account references. Raw SQL, private bulk inserts, bulk updates or
+deletes by primary key, `ordered_values` changes to owners or references, and the
+legacy `bulk_*` session methods are all refused in these sessions. Owned models have
+no default owner: an account session stamps its own, and any other insert must name it.
+The account service (`trainer.accounts.Accounts`) alone writes credentials and sign-in
+sessions, with Core statements on the mapped `users` and `auth_sessions` tables over
+the application's own engine; `trainer.site_settings` alone writes `site_settings`,
+including `signups_open`. Presence updates use the requesting account's bound
+session. Startup maintenance and the host job queue also use administrative
 sessions, limited to reconciliation and scheduling metadata respectively; they
 never pass those sessions into request handlers or domain job execution. New
 private models must inherit `Owned`; tests must cover their API.
@@ -69,8 +75,14 @@ cross-account lookup is which account owns the ID. The owner's other games stay
 private: viewers get `read_only: true` and no cross-game history, cannot start,
 pause or refine the review, and never see the game in their own library. Only
 `GET /api/games/<id>`, `GET /api/games/<id>/review` and
-`POST /api/games/<id>/position` accept signed-out requests. Local single-user mode
-never opens another account's games.
+`POST /api/games/<id>/position` accept signed-out requests; each is declared with
+`authz.shared_links.route` beside its route, which is the list the sign-in check
+reads. `GET /api/games/<id>/export` reads shared games for signed-in viewers but
+still needs a sign-in. Local single-user mode never opens another account's games.
+
+Administrator-only endpoints (account administration, course files, server
+settings) declare `dependencies=[authz.administrator(...)]`, so a handler cannot
+forget the check; in local single-user mode the one user is the administrator.
 
 One host-wide engine pool limits native processes through `ENGINE_SLOTS` (default
 4); each process uses `STOCKFISH_THREADS` and `STOCKFISH_HASH_MB`. One application
@@ -190,8 +202,7 @@ availability after a game.
 
 Manual imports fetch older games; there is no analysis choice. Their games join
 the same queue behind games the poller found. Opening a game whose review has not started,
-failed or was paused starts it at the front of the queue. The
-`/api/games/{game_id}/train` endpoint queues training alone for one game. Interactive exploration analyzes the position
+failed or was paused starts it at the front of the queue. Interactive exploration analyzes the position
 you visit. The HTTP import APIs ignore a legacy `analyze` field.
 
 ## Configuration
@@ -208,7 +219,8 @@ environment variables: `SERVER_HOST`, `SERVER_PORT`, `DATABASE_PATH`,
 `COURSES_PATH`, `ACCOUNTS_ENABLED`, `SESSION_SECURE`, `PUBLIC_ORIGIN`,
 `LAN_ACCESS_TOKEN`, `ALLOWED_HOSTS`, `STOCKFISH_PATH`, `HUMAN_MODEL_PATH`,
 `HUMAN_MODEL_DEVICE` (the container entrypoint reads it), `PUZZLE_PACK_PATH` and
-`CHESSCOM_USER_AGENT` (`ENV_ONLY` in `trainer/site_settings.py`).
+`PROVIDER_USER_AGENT` (formerly `CHESSCOM_USER_AGENT`, which still works). Each
+setting is marked env-only where `trainer/config.py` declares it.
 
 Any other variable still works as a starting value: on each start, a stored
 setting the table does not have yet is filled in from the environment, and from
@@ -273,10 +285,10 @@ status is returned.
 | PUZZLE_GENERATION_DEPTH / PUZZLE_GENERATION_TIME | 18 / 4 seconds per search (depth 1..40, time greater than 0 and at most 30) |
 | PUZZLE_GENERATION_MAX_PLIES | 9 (3..9) most solution plies (five learner moves); longer lines abstain |
 | PUZZLE_GENERATION_GAMES | 40 (1..500) unsearched games per backfill job queued from the Puzzles page |
-| PROVIDER_TIMEOUT_SECONDS | 20 seconds per Lichess network read |
-| PROVIDER_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per Lichess export |
-| PROVIDER_MAX_SCAN_GAMES | 10000 records per Lichess export; narrow date range when reached |
-| CHESSCOM_USER_AGENT | FieldworkChessTrainer/0.1 (local personal chess training) |
+| LICHESS_TIMEOUT_SECONDS (formerly PROVIDER_TIMEOUT_SECONDS) | 20 seconds per Lichess network read |
+| LICHESS_MAX_RESPONSE_BYTES (formerly PROVIDER_MAX_RESPONSE_BYTES) | 25000000 decompressed bytes per Lichess export |
+| LICHESS_MAX_SCAN_GAMES (formerly PROVIDER_MAX_SCAN_GAMES) | 10000 records per Lichess export; narrow date range when reached |
+| PROVIDER_USER_AGENT (formerly CHESSCOM_USER_AGENT) | FieldworkChessTrainer/0.1 (local personal chess training); sent to Chess.com and Lichess |
 
 See [.env.example](../.env.example) for a copyable starting point.
 

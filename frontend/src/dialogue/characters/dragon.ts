@@ -83,7 +83,7 @@ export const dragon: CoachPersonality = {
     human_natural_strong: ["A natural move by the human-move model, and a strong one. It gives up almost nothing against the best line."],
     book: ["Theory calls this {opening}. Know the position, not only the name."],
     book_sound: ["Established theory: {opening}. Theory ends sooner or later; understanding has to carry on."],
-    departure: ["Theory ends at this move. From now on the position is judged on its own terms."],
+    departure: ["Our opening lore ends at this move. From now on the position is judged on its own terms."],
     recovery: ["A playable position is restored after the error at {earlier}.{help}", "The damage from {earlier} is repaired; the position is playable again. That is fighting back.{help}"],
     repeated: ["In the reviewed game, the {motif} issue has now come up {count} times. That is a pattern, and patterns get fixed."],
     history: ["{games} other saved games carry this {motif} issue too. Give it dedicated work."],

@@ -15,5 +15,7 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column("srs_states", "retired_interval_days")
-    op.drop_column("srs_states", "retired_at")
+    with op.batch_alter_table("srs_states") as batch:
+        batch.drop_column("retired_interval_days")
+    with op.batch_alter_table("srs_states") as batch:
+        batch.drop_column("retired_at")

@@ -1,13 +1,14 @@
 """Local classification jobs, weakness evidence and immutable audits."""
 
 from fastapi import APIRouter, HTTPException
-from sqlalchemy import func, select
+from sqlalchemy import select
 
 from trainer.classification import reject_run
 from trainer.contracts.classification import ClassificationAudit, Evidence, Weaknesses
-from trainer.contracts.common import JobCreated, Rejected
+from trainer.contracts.common import JobCreated, Rejected, from_row
 from trainer.coverage import coverage
-from trainer.models import AnalysisJob, ClassificationRun, Decision, EngineAnalysis, SkillEvidence
+from trainer.job_lifecycle import JobKind, ensure_job
+from trainer.models import ClassificationRun, Decision, EngineAnalysis, SkillEvidence
 from trainer.weaknesses import priorities
 from trainer.workspaces import CurrentWorkspace
 
@@ -20,16 +21,7 @@ def create_router(*, settings, classifier) -> APIRouter:
     )
     def retry_classifications(workspace: CurrentWorkspace):
         with workspace.mutation_lock, workspace.sessions() as db:
-            existing = db.scalar(
-                select(AnalysisJob).where(
-                    AnalysisJob.kind == "classification",
-                    AnalysisJob.status.in_(["queued", "running"]),
-                )
-            )
-            if existing:
-                return {"job_id": existing.id}
-            job = AnalysisJob(kind="classification")
-            db.add(job)
+            job, _ = ensure_job(db, JobKind.CLASSIFICATION)
             db.commit()
             return {"job_id": job.id}
 
@@ -41,37 +33,21 @@ def create_router(*, settings, classifier) -> APIRouter:
     )
     def enrich_classifications(workspace: CurrentWorkspace):
         with workspace.mutation_lock, workspace.sessions() as db:
-            existing = db.scalar(
-                select(AnalysisJob).where(
-                    AnalysisJob.kind == "enrichment",
-                    AnalysisJob.status.in_(["queued", "running"]),
-                )
-            )
-            if existing:
-                return {"job_id": existing.id}
-            workspace.engine.start()
-            job = AnalysisJob(kind="enrichment")
-            db.add(job)
+            job, created = ensure_job(db, JobKind.ENRICHMENT)
+            if created:
+                workspace.engine.start()  # Probes need Stockfish; fail now, not in the job.
             db.commit()
             return {"job_id": job.id}
 
     @router.get("/api/weaknesses", response_model=Weaknesses, response_model_exclude_unset=True)
     def weaknesses(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
+            counts = coverage(db)
             return {
                 "skills": priorities(db, settings),
-                "coverage": coverage(db),
-                "unclassified": db.scalar(
-                    select(func.count())
-                    .select_from(Decision)
-                    .where(
-                        Decision.meaningful.is_(True),
-                        ~Decision.id.in_(
-                            select(SkillEvidence.decision_id).where(SkillEvidence.active.is_(True))
-                        ),
-                    )
-                ),
-                "classification_available": classifier is not None,
+                "coverage": counts,
+                "unclassified": counts["unclassified"],
+                "classification_available": True,
             }
 
     @router.get(
@@ -103,16 +79,15 @@ def create_router(*, settings, classifier) -> APIRouter:
                         "explanation": e.explanation,
                         "confidence": e.confidence,
                         "run_id": e.classification_run_id,
-                        "provider": db.get(ClassificationRun, e.classification_run_id).provider,
+                        "provider": run.provider,
                         "findings": [
                             f
-                            for f in (
-                                db.get(ClassificationRun, e.classification_run_id).response or {}
-                            ).get("findings", [])
-                            if f["skill_id"] == e.skill_id
+                            for f in (run.response or {}).get("findings", [])
+                            if isinstance(f, dict) and f.get("skill_id") == e.skill_id
                         ],
                     }
                     for e in rows
+                    for run in [db.get(ClassificationRun, e.classification_run_id)]
                 ],
             }
 
@@ -126,7 +101,7 @@ def create_router(*, settings, classifier) -> APIRouter:
             run = db.get(ClassificationRun, run_id)
             if run is None:
                 raise HTTPException(404, "Classification run not found")
-            return {c.name: getattr(run, c.name) for c in ClassificationRun.__table__.columns}
+            return from_row(ClassificationAudit, run)
 
     @router.post(
         "/api/classification-runs/{run_id}/reject",

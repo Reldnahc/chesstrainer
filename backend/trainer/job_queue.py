@@ -2,12 +2,12 @@
 
 import threading
 
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.orm import aliased, sessionmaker
 
+from trainer import job_lifecycle
+from trainer.job_lifecycle import FETCH_KINDS, JobStatus
 from trainer.models import AnalysisJob, Game, GameReview, User
-
-FETCH_KINDS = ("sync", "chesscom_fetch", "provider_fetch")
 
 
 class JobQueue:
@@ -25,13 +25,8 @@ class JobQueue:
         # Nothing runs before startup, so every running row is stale, disabled owners'
         # included: a stale row would otherwise block deleting that account. Claiming
         # still skips disabled owners.
-        owner = AnalysisJob.user_id == self.user_id if self.user_id is not None else True
         with self.sessions() as db:
-            db.execute(
-                update(AnalysisJob)
-                .where(owner, AnalysisJob.status == "running")
-                .values(status="queued")
-            )
+            job_lifecycle.recover_interrupted(db, self.user_id)
             db.commit()
 
     def owner(self, job_id):
@@ -47,18 +42,18 @@ class JobQueue:
         # workers. The fetch lane has its own ordering and never runs analysis.
         running = aliased(AnalysisJob)
         busy_owners = select(running.user_id).where(
-            running.status == "running",
+            running.status == JobStatus.RUNNING,
             running.kind.in_(FETCH_KINDS) if sync_only else running.kind.not_in(FETCH_KINDS),
         )
         with self.lock, self.sessions() as db:
-            job = db.execute(
-                select(AnalysisJob.id, AnalysisJob.user_id, AnalysisJob.cancel_requested)
+            job = db.scalar(
+                select(AnalysisJob)
                 .outerjoin(GameReview, GameReview.job_id == AnalysisJob.id)
                 .outerjoin(Game, Game.id == GameReview.game_id)
                 .where(
                     AnalysisJob.user_id.in_(self.owners()),
                     AnalysisJob.user_id.not_in(busy_owners),
-                    AnalysisJob.status == "queued",
+                    AnalysisJob.status == JobStatus.QUEUED,
                     AnalysisJob.kind.in_(FETCH_KINDS)
                     if sync_only
                     else AnalysisJob.kind.not_in(FETCH_KINDS),
@@ -71,22 +66,9 @@ class JobQueue:
                     AnalysisJob.id,
                 )
                 .limit(1)
-            ).first()
+            )
             if job is None:
                 return None
-            values = (
-                {"status": "cancelled"}
-                if job.cancel_requested
-                else {
-                    "status": "running",
-                    "error": None,
-                    "games_processed": 0,
-                    "positions_triaged": 0,
-                    "deep_completed": 0,
-                    "mistakes_identified": 0,
-                    "classifications_completed": 0,
-                }
-            )
-            db.execute(update(AnalysisJob).where(AnalysisJob.id == job.id).values(**values))
+            started = job_lifecycle.start(job)
             db.commit()
-            return None if job.cancel_requested else (job.id, job.user_id)
+            return (job.id, job.user_id) if started else None

@@ -10,7 +10,6 @@ const workers = Number(process.env.PLAYWRIGHT_WORKERS) || (process.env.CI ? 2 : 
 const port = (slot: number) => slot === 0 ? 8765 : 8770 + slot;
 // Playwright sets this in each worker before it loads the config; the runner itself is slot 0.
 const slot = Number(process.env.TEST_PARALLEL_INDEX ?? 0);
-const stamp = Date.now();
 // On CI each matrix shard runs a duration-balanced set of whole files (see playwright.shared.ts).
 const shardFiles = balancedShardFiles('tests', ['accounts.spec.ts']);
 export default defineConfig({
@@ -22,7 +21,7 @@ export default defineConfig({
   // One launcher starts every worker's server at the same time and answers on 8769 once
   // all are healthy; Playwright would otherwise start a list of servers one by one.
   webServer: {
-    command: `"${python}" backend/tests/browser_servers.py --ready-port 8769 --ports ${Array.from({length: workers}, (_, server) => port(server)).join(',')} --database-template "${path.join(root, `data/ui-test-${stamp}-{index}.sqlite3`)}"`,
+    command: `"${python}" backend/tests/browser_servers.py --ready-port 8769 --ports ${Array.from({length: workers}, (_, server) => port(server)).join(',')}`,
     cwd: root, url: 'http://127.0.0.1:8769/', reuseExistingServer: false,
     env: {ACCOUNTS_ENABLED: 'false', LAN_ACCESS_TOKEN: ''},
   },

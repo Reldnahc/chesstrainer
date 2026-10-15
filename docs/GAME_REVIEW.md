@@ -75,7 +75,7 @@ clears those cues. Outside Show why, the opponent's strongest reply to the
 selected move is drawn as one faded blue arrow, and the same reply appears as
 **Reply** under **Best** beside the coach portrait. A pin the selected move
 makes (a piece, never a pawn, pinned to its king or to something worth more
-than the pinning piece; either side's pieces) is drawn as a faded red arrow from the pinning piece through the
+than the pinning piece; either side's pieces) is drawn as a faded red arrow from the pinning piece (the nearest piece beyond the pinned one, never another slider further along the line) through the
 pinned piece to the piece behind it, with or without Show why. A pin kept from
 an earlier move is not drawn again. The board cues' `pins` list carries these
 from `review_cues.py`. The action row sits below the speech bubble.
@@ -86,7 +86,14 @@ the whole game from the board's side, one move a second, made in the browser.
 The compact coach shows the move and rating together, with a prominent signed
 evaluation in the opposite corner. Scores always use White's perspective, even
 in a variation or after flipping the board: positive favors White, negative favors
-Black, and signed `M` values denote forced mate. Pending evaluations show a dash.
+Black, and signed `M` values denote forced mate. A move's saved score is its own
+root search, which counts the move just played, so after the mating side's move
+the board shows one move fewer (a saved mate in 2 reads `M1`, a delivered mate
+`M0`); the defender's moves keep the mating side's count. A drawn final position
+(stalemate, insufficient material, repetition) reads 0.00. A score that rounds to
+zero has no sign. The score's verdict uses the review's advantage bands: Equal
+within ±1.00, then slightly better, better from ±2.00 and winning from ±3.00.
+Pending evaluations show a dash.
 The board's narrow evaluation bar shows a horizontal score rounded to one decimal;
 the coach and game graph retain two decimals. Mate distances keep their `M` notation.
 Only the played position and immediate reply supply visual cues; later engine
@@ -225,28 +232,43 @@ rating; the review rating is a fallback when that player's rating is missing.
 It changes presentation, never evaluations or tactical facts.
 It defaults to 1000 and is stored with the review; changing it reuses engine evidence.
 
-- Best: engine top choice, or an equally immediate checkmate. A different move
-  with an equal or nearly equal centipawn score is not Best. When a played move's
+- Best: engine top choice, an equally immediate checkmate, or a different move
+  exactly as strong: the same mate distance, or the same centipawn score. A merely
+  nearly equal score is not Best. When a played move's
   restricted-root search scores it above the reported best, presentation treats it
   as the best move found (best move, best line and grade), without rewriting the
   saved report.
 - Good: less than 50 cp loss without qualifying for a higher label. Keeping a
   forced win but taking longer to mate is Good, never Best, Great, or Brilliant.
-- Inaccuracy: 50–99 cp loss.
+- Inaccuracy: 50–99 cp loss, or, in a position lost to mate either way, a move that
+  is mated sooner than the best defence.
+- A mate on one side of a comparison only is a mate transition (a Miss or an allowed
+  mate). When the best move mates in four or more and the played move's search reads
+  only +3.00 or better, the played move may keep the mate beyond that search's
+  horizon, so the review searches it again at depth 22 (2 seconds) before grading:
+  a move that still mates is graded as a slower mate, and one that really gives the
+  mate up stays a Miss. The mirror case, a played move mated in four or more while
+  the best defence reads -3.00 or worse, searches the whole comparison again at those
+  limits: when every defence is mated, the move only hastens the mate (an Inaccuracy)
+  and allows nothing. Practice grades a move a card has not seen against the same
+  search its answers came from.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
-- Blunder: newly allowed forced mate, a transition from at least -50 cp to -200 cp
-  or worse, or at least 300 cp loss below rating 1200 / 200 cp otherwise. Decisive
+- Blunder: newly allowed forced mate, a transition from at least -50 cp (or a
+  forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating
+  1200 / 200 cp otherwise. The review's events call the same transition decisive. Decisive
   pawn losses therefore remain Blunders at low ratings. Already-lost mate positions
   are not treated as newly allowed mate.
 - Miss: lost forced mate, or a concrete missed gain supported by a settled
   comparison and a tactical witness that costs at least 100 cp; a smaller gap keeps
   its ordinary label. Retaining mate in two instead of mate in one is not a
   Miss. Severe losses still take precedence as Blunder.
-- Great: at most 20 cp loss and more than one legal move, plus either the strongest
-  alternative loses at least 150 cp / drops a mate outcome while the played move
-  retains at least -50 cp; or successful exploitation of the preceding opponent
-  error (previous position between -150 and +150 becomes at least +200, or previous
-  position at most -200 becomes at least -50). Previous scores use the position
+- Great: at most 20 cp loss and more than one legal move, plus either the only
+  good move (the strongest alternative actually loses: -1.50 or worse or mated, at
+  least 150 cp / a mate outcome below the best move, while the played move retains
+  at least -50 cp; the same rule the coach's only-move evidence uses); or
+  successful exploitation of a preceding opponent error (the opponent's move was
+  itself a Mistake or worse, and the previous position between -150 and +150 becomes
+  at least +200, or previous position at most -200 becomes at least -50). Previous scores use the position
   before the opponent's move, normalized to the current mover. The same rules
   apply in variations. A sole legal move is not Great.
 - Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
@@ -405,6 +427,9 @@ valid evaluation. Missing, extra, or invalid reports do not produce partial scor
 Like the upstream game calculation, games where both sides have not moved receive
 no score. The final incremental response includes accuracy even when its move list
 is empty. Only completion requires loading all saved evaluations during polling.
+The game's presentation (every rendered report and the game context) is built once
+per review revision and reused by later polls and the game page until a report is
+saved, adopted or refreshed (`presentation.presented_review`).
 
 Already-completed reviews get scores when reopened, including when Stockfish is
 unavailable. Ratings, branch exploration and board orientation cannot modify the

@@ -112,6 +112,8 @@ export default function PlayGame({ id }: { id: string }) {
     );
   const shownOrientation = orientation ?? state.learner_color;
   const finished = state.status === "finished";
+  // Replies the engine played because the human move model was unavailable, once shown.
+  const stoodIn = state.fallback_plies.filter((reply) => reply <= latest).length;
   // The latest position on the learner's turn, or an earlier one to play from again.
   const playable = (session.learnerToMove && !session.browsing) || session.canRewind;
   // The starting position is scored from the first move's report, as in game review.
@@ -146,6 +148,11 @@ export default function PlayGame({ id }: { id: string }) {
       {session.replyError && (
         <Banner tone="error" action={<Button size="compact" onClick={session.retryReply}>Try again</Button>}>
           {session.replyError}
+        </Banner>
+      )}
+      {stoodIn > 0 && state.fallback_elo != null && (
+        <Banner tone="info">
+          {stoodIn} of {bot}'s moves came from Stockfish at Elo {state.fallback_elo}, because the human move model was unavailable.
         </Banner>
       )}
       {finished && (

@@ -141,12 +141,12 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
             assert db.get(AnalysisJob, "bob-first") is None
         fetched.set()
 
-    monkeypatch.setattr("trainer.game_review.run_review", review)
+    monkeypatch.setattr("trainer.job_execution.run_review", review)
     monkeypatch.setattr("trainer.job_execution.fetch_import", fetch)
     app = create_app(
         settings,
         engine_factory=forbidden_engine,
-        chesscom_factory=lambda _: SimpleNamespace(close=lambda: None),
+        provider_factories={"chesscom": lambda _: SimpleNamespace(close=lambda: None)},
     )
     with TestClient(app) as client:
         try:
@@ -220,7 +220,7 @@ def test_requests_and_jobs_share_engine_budget_without_sharing_account_data(
     games = {}
     for owner in owners:
         with account_sessions(sessions.kw["bind"], owner)() as db:
-            import_games(db, "fixture", PGN, [], "white", queue_analysis=False)
+            import_games(db, "fixture", PGN, [], "white")
             games[owner] = db.scalar(select(Game.id))
             db.add(AnalysisJob(id=f"review-{owner}", kind="game_review"))
             db.commit()
@@ -268,7 +268,7 @@ def test_requests_and_jobs_share_engine_budget_without_sharing_account_data(
         finally:
             engine.close()
 
-    monkeypatch.setattr("trainer.game_review.run_review", review)
+    monkeypatch.setattr("trainer.job_execution.run_review", review)
     app = create_app(settings, engine_factory=Engine)
     with TestClient(app) as client, ThreadPoolExecutor(max_workers=2) as requests:
         try:
@@ -303,13 +303,13 @@ def test_shutdown_drains_jobs_and_restart_resumes_without_login(settings, sessio
     started = threading.Event()
 
     def interrupted(execution, job_id, _engine=None):
-        with execution.import_lock, execution.sessions() as db:
+        with execution.mutation_lock, execution.sessions() as db:
             db.get(AnalysisJob, job_id).positions_triaged = 3
             db.commit()
         started.set()
         assert execution.runner.stop_event.wait(8)
 
-    monkeypatch.setattr("trainer.game_review.run_review", interrupted)
+    monkeypatch.setattr("trainer.job_execution.run_review", interrupted)
     app = create_app(settings, engine_factory=forbidden_engine)
     with TestClient(app):
         assert started.wait(8)
@@ -325,7 +325,7 @@ def test_shutdown_drains_jobs_and_restart_resumes_without_login(settings, sessio
             assert db.info["user_id"] == owner
         finished.set()
 
-    monkeypatch.setattr("trainer.game_review.run_review", resumed)
+    monkeypatch.setattr("trainer.job_execution.run_review", resumed)
     with TestClient(create_app(settings, engine_factory=forbidden_engine)):
         assert finished.wait(8)
 

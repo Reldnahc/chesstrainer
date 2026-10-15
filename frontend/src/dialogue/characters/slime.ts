@@ -70,7 +70,7 @@ export const slime: CoachPersonality = {
     human_natural_strong: ["A natural move, and a strong one. It stays close to the best line."],
     book: ["We're in a known opening: {opening}."],
     book_sound: ["A move from the opening book, part of {opening}."],
-    departure: ["The known opening moves stop here. It's all fresh from now on."],
+    departure: ["The opening moves we know stop here. It's all the board from now on."],
     recovery: [{reaction: "Oh, that's more like it!", fact: "The game is playable again after the trouble at {earlier}.{help}"}],
     punishment: ["The opponent left {side} a chance at {earlier}, and this move grabs it!"],
     missed_punishment: ["The opponent left {side} a chance at {earlier}. This move doesn't take it."],

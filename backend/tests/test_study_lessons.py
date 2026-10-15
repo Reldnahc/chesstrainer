@@ -5,7 +5,6 @@ from dataclasses import dataclass
 
 import chess
 import pytest
-from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from sqlalchemy import func, select
@@ -13,6 +12,7 @@ from study_lesson_fixtures import connected_course
 from trainer.accounts import COOKIE
 from trainer.api import create_app
 from trainer.contracts.study_lessons import LessonCommand, LessonStart
+from trainer.errors import DomainError, NotFound
 from trainer.models import StudyLessonCommand, StudyLessonProgress, StudyLessonSession
 from trainer.study_lessons.content import CourseDefinition
 from trainer.study_lessons.providers import CourseProviders
@@ -177,12 +177,14 @@ def test_rejects_incoherent_authored_courses(problem):
         CourseDefinition.model_validate(record)
 
 
-def test_provider_revalidates_content_and_rejects_duplicate_revisions(sessions):
+def test_providers_validate_raw_records_and_reject_duplicate_revisions(sessions):
+    # A built definition already replayed its lines when it was constructed, as the
+    # puzzle providers assume; only raw records are validated here.
     source = tiny()
     with sessions() as db:
         with pytest.raises(ValueError, match="Duplicate"):
             list(CourseProviders((Provider((source, source)),)).courses(db))
-        bad = source.model_copy(update={"learner_color": "black"})
+        bad = {**source.model_dump(mode="json"), "learner_color": "black"}
         with pytest.raises(ValidationError):
             list(CourseProviders((Provider((bad,)),)).courses(db))
 
@@ -233,17 +235,19 @@ def test_stale_database_revision_cannot_update_progress(sessions):
         held = stale.get(StudyLessonSession, initial["id"])
         command(
             first,
+            providers,
             initial["id"],
             LessonCommand(request_id="one", revision=0, action="move", uci="e2e4"),
         )
         assert held.revision == 0
-        with pytest.raises(HTTPException) as raised:
+        with pytest.raises(DomainError) as raised:
             command(
                 stale,
+                providers,
                 initial["id"],
                 LessonCommand(request_id="two", revision=0, action="show_move"),
             )
-        assert raised.value.status_code == 409
+        assert raised.value.status == 409
     with sessions() as db:
         assert db.scalar(select(func.count()).select_from(StudyLessonCommand)) == 1
 
@@ -421,7 +425,7 @@ def test_account_isolation_and_owned_commands(settings):
                     session_id=alice["id"], request_id="foreign", request={}, response={}
                 )
             )
-            with pytest.raises(ValueError, match="Referenced item"):
+            with pytest.raises(NotFound, match="Referenced item"):
                 db.flush()
         bob = begin(client, headers=bob_headers)
         assert bob["id"] != alice["id"]

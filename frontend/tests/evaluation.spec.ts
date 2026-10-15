@@ -1,5 +1,5 @@
 import { test, expect, type Locator } from '@playwright/test';
-import { positionScore, scoreSummary, scoreText } from '../src/evaluation';
+import { negateScore, positionScore, scoreSummary, scoreText } from '../src/evaluation';
 
 const geometry = (locator: Locator) => locator.evaluate(element => {
   const {x, y, width, height} = element.getBoundingClientRect();
@@ -50,7 +50,9 @@ test('evaluation scales to the game and preserves mate scores without a redundan
   await graph.scrollIntoViewIfNeeded();
   await page.evaluate(() => document.fonts.ready);
   const bubbleHeight = (await geometry(coach)).height;
-  for (const [ply, text, barText] of [[1, '+0.35', '+0.4'], [2, '−3.20', '−3.2'], [3, '+M3', '+M3'], [4, '−M2', '−M2'], [5, '+M0', '+M0'], [6, '−M0', '−M0'], [7, '+0.00', '+0.0']] as const) {
+  // Saved scores are each move's own search: White's 2.g4 at +M3 leaves mate in 2
+  // on the board, and Black's 2...Qh4# at −M2 leaves mate in 1.
+  for (const [ply, text, barText] of [[1, '+0.35', '+0.4'], [2, '−3.20', '−3.2'], [3, '+M2', '+M2'], [4, '−M1', '−M1'], [5, '+M0', '+M0'], [6, '−M0', '−M0'], [7, '0.00', '0.0']] as const) {
     if (info.project.name === 'mobile') await node(ply).tap(); else await node(ply).click();
     await expect(coach.locator('.evaluation-score')).toHaveText(text);
     await expect(graph.locator('.evaluation-score')).toHaveText(text);
@@ -59,7 +61,8 @@ test('evaluation scales to the game and preserves mate scores without a redundan
     await expect(bar).toHaveCSS('writing-mode', 'horizontal-tb');
     const bounds = (await bar.boundingBox())!;
     expect(bounds.x).toBeGreaterThanOrEqual(0);
-    expect(bounds.width).toBeGreaterThan(bounds.height);
+    // One horizontal line: even the short unsigned 0.0 is not stacked into a column.
+    expect(bounds.width).toBeGreaterThan(bounds.height * .75);
     expect(await bar.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
     await expect(axes).toHaveText(['+4', '0', '−4']);
     expect((await geometry(coach)).height).toBe(bubbleHeight);
@@ -119,4 +122,52 @@ test('a checkmated position reads M0 for the winner instead of the mating move m
   expect(scoreSummary(black)).toBe('Black checkmates');
   // Any other position keeps its analysis score.
   expect(positionScore(mateInOne, {termination: null, result: null})).toBe(mateInOne);
+});
+
+test('a move into a forced mate shows the mating side one move closer', () => {
+  // 4k3/8/8/8/8/8/1R6/R5K1 w: 1.Ra7 is saved as White mates in 2, and the board
+  // after it is mate in 1 (1...Kd8 2.Rb8#).
+  const ra7 = {kind: 'mate' as const, value: 2, mate_given: false};
+  expect(scoreText(positionScore(ra7, {actor: 'white', turn: 'black'}))).toBe('+M1');
+  expect(scoreSummary(positionScore(ra7, {turn: 'black'}))).toBe('White mates in 1');
+  // Black mating mirrors it; a delivered mate reads M0 for the mover.
+  expect(positionScore({kind: 'mate', value: -3, mate_given: false}, {actor: 'black'})).toEqual({kind: 'mate', value: -2, mate_given: false});
+  expect(positionScore({kind: 'mate', value: 1, mate_given: false}, {actor: 'white'})).toEqual({kind: 'mate', value: 0, mate_given: true});
+  expect(positionScore({kind: 'mate', value: -1, mate_given: false}, {actor: 'black'})).toEqual({kind: 'mate', value: 0, mate_given: false});
+  // The side being mated: the count is already the mating side's moves from here.
+  const defended = {kind: 'mate' as const, value: 1, mate_given: false};
+  expect(positionScore(defended, {actor: 'black'})).toBe(defended);
+  expect(positionScore({kind: 'mate', value: -4, mate_given: false}, {actor: 'white'})).toEqual({kind: 'mate', value: -4, mate_given: false});
+  // A position's own search is not a move's score, and centipawns never shift.
+  expect(positionScore(ra7, {actor: 'white'}, 'position')).toBe(ra7);
+  const cp = {kind: 'cp' as const, value: 250, mate_given: false};
+  expect(positionScore(cp, {actor: 'white'})).toBe(cp);
+});
+
+test('a drawn final position reads equal whatever its last search said', () => {
+  // 8/8/8/4k3/8/2p5/8/1N2K3 w: Nxc3 leaves bare kings and a knight.
+  for (const termination of ['insufficient material', 'stalemate', 'fivefold repetition']) {
+    const score = positionScore({kind: 'cp', value: -10, mate_given: false}, {termination, result: '1/2-1/2', actor: 'white'});
+    expect(scoreText(score)).toBe('0.00');
+    expect(scoreSummary(score)).toBe('Equal');
+  }
+});
+
+test('evaluation verdicts follow the review advantage bands and zero has no sign', () => {
+  const cp = (value: number) => ({kind: 'cp' as const, value, mate_given: false});
+  expect(scoreSummary(cp(4))).toBe('Equal');
+  expect(scoreSummary(cp(-100))).toBe('Equal');
+  expect(scoreSummary(cp(101))).toBe('White is slightly better');
+  expect(scoreSummary(cp(-199))).toBe('Black is slightly better');
+  expect(scoreSummary(cp(200))).toBe('White is better');
+  expect(scoreSummary(cp(-299))).toBe('Black is better');
+  expect(scoreSummary(cp(300))).toBe('White is winning');
+  expect(scoreSummary(cp(-1500))).toBe('Black is winning');
+  for (const value of [-4, 0, 4]) expect(scoreText(cp(value), 1)).toBe('0.0');
+  expect(scoreText(cp(0))).toBe('0.00');
+  expect(scoreText(cp(-5), 1)).toBe('−0.1');
+  expect(scoreText(cp(-4))).toBe('−0.04');
+  // The other side's view keeps a delivered mate's winner.
+  expect(negateScore({kind: 'mate', value: 0, mate_given: true})).toEqual({kind: 'mate', value: 0, mate_given: false});
+  expect(negateScore({kind: 'mate', value: 3, mate_given: false})).toEqual({kind: 'mate', value: -3, mate_given: false});
 });

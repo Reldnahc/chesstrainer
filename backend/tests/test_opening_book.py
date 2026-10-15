@@ -8,7 +8,7 @@ from importlib.resources import files
 import chess
 import pytest
 from trainer._vendor import lichess_openings
-from trainer.explanations import replay_line
+from trainer.explanation_types import replay_line
 from trainer.game_accuracy import review_accuracy
 from trainer.game_review import public_report
 from trainer.opening_book import VERSION, book_move
@@ -118,3 +118,27 @@ def test_book_overrides_bad_quality_without_mutating_saved_evidence_or_accuracy(
         assert review_accuracy(public, **arguments) == review_accuracy(saved, **arguments)
         assert review_accuracy(public, **arguments)["white"] < 100
     assert saved == untouched
+
+
+def test_a_game_leaves_the_catalogue_after_its_last_book_move_not_at_a_gap():
+    import io
+
+    import chess.pgn
+    from trainer.opening_book import book_run
+    from trainer.review_intelligence.context import move_contexts
+
+    pgn = "1. e4 c5 2. Nf3 d6 3. Nc3 Nf6 4. d4 cxd4 5. Nxd4 g6 6. a3 h5 *"
+    game = chess.pgn.read_game(io.StringIO(pgn))
+    matches, departure = book_run(game)
+    # 3.Nc3 is not listed, but the Dragon is reached by transposition afterwards.
+    assert 5 not in matches and matches[10]["name"] == "Sicilian Defense: Dragon Variation"
+    assert departure == 11
+    departures = {
+        ply: context.opening_departure
+        for ply, context in move_contexts(game).items()
+        if context.opening_departure
+    }
+    assert list(departures) == [11]
+    assert departures[11]["previous_name"] == "Sicilian Defense: Dragon Variation"
+    ended_in_book = chess.pgn.read_game(io.StringIO("1. e4 e5 2. Nf3 *"))
+    assert book_run(ended_in_book)[1] is None

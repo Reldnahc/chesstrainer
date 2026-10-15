@@ -1,32 +1,32 @@
 """Account-scoped evidence over a shared durable cache and host-shared human provider."""
 
-import threading
 from time import monotonic
 
 import chess
 from sqlalchemy import select
-from sqlalchemy.dialects.sqlite import insert
 
-from trainer.cancellation import throttled
+from trainer.cancellation import (
+    StripedLocks,
+    WaitCancelled,
+    WaitTimedOut,
+    acquiring,
+    wait_until,
+)
 from trainer.chess_core import digest
+from trainer.game_library import pgn_rating
 from trainer.human_models.context import request_for
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable, MaiaProvider
 from trainer.human_models.types import HumanEvidence, HumanPolicy
-from trainer.models import HumanAnalysis, uid
+from trainer.models import HumanAnalysis, keep_shared
 
 
 def save(key, request, policy):
-    """Insert a shared cache row unless another account or process saved it first."""
-    return (
-        insert(HumanAnalysis)
-        .values(
-            id=uid(),
-            cache_key=key,
-            request=request.model_dump(mode="json"),
-            policy=policy.model_dump(mode="json"),
-        )
-        .on_conflict_do_nothing(index_elements=["cache_key"])
+    return keep_shared(
+        HumanAnalysis,
+        key,
+        request=request.model_dump(mode="json"),
+        policy=policy.model_dump(mode="json"),
     )
 
 
@@ -35,7 +35,7 @@ class HumanModels:
         self.settings = settings
         self.provider = provider or MaiaProvider(settings)
         self.configuration_key = digest(self.provider.provenance.model_dump(mode="json"))
-        self._locks = tuple(threading.Lock() for _ in range(128))
+        self._locks = StripedLocks(128)
         # A prediction failed in this process since the runtime last produced a policy.
         self._failed = False
 
@@ -57,7 +57,6 @@ class HumanModels:
     def needs_refresh(self, evidence, parsed, actor, fallback):
         if not self.can_attempt():
             return False
-        from trainer.game_library import pgn_rating
 
         if (evidence or {}).get("status") == "unavailable" and not self.retries_saved_failures():
             return False
@@ -121,15 +120,15 @@ class HumanModels:
         if not self.settings.human_model_enabled:
             raise HumanUnavailable("disabled")
         key = self.cache_key(request)
-        lock = self._locks[int(key[:4], 16) % len(self._locks)]
+        lock = self._locks.for_key(key)
         deadline = monotonic() + self.settings.human_model_timeout
-        waiting = throttled(cancelled)
         try:
-            while not lock.acquire(timeout=0.05):
-                if waiting():
-                    raise HumanCancelled("cancelled")
-                if monotonic() >= deadline:
-                    raise HumanUnavailable("cache_busy")
+            try:
+                wait_until(acquiring(lock), cancelled, deadline=deadline)
+            except WaitCancelled as exc:
+                raise HumanCancelled("cancelled") from exc
+            except WaitTimedOut as exc:
+                raise HumanUnavailable("cache_busy") from exc
             try:
                 if cancelled():
                     raise HumanCancelled("cancelled")

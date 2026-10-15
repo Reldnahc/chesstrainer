@@ -19,14 +19,19 @@ import chess
 from pydantic import ConfigDict, Field, ValidationError
 
 from trainer.contracts.common import Contract
+from trainer.errors import InvalidInput
 from trainer.study_lessons.content import CourseDefinition, Position
+from trainer.study_lessons.validation import step_result, step_start
 
 FORMAT = "fieldwork-course-1"
 DEFAULT_FEEDBACK = "That is a move taught in this lesson."
 
 
-class CourseFileError(ValueError):
-    """A course file that cannot become a lesson; the message names the place."""
+class CourseFileError(InvalidInput):
+    """A course file that cannot become a lesson, or a course ledger that cannot be read.
+
+    The message names the place; requests answer 422 with it.
+    """
 
 
 class FileModel(Contract):
@@ -254,6 +259,12 @@ def load(data):
 
 
 def chapter_record(chapter, known):
+    """Resolve one chapter of a course file into course records.
+
+    This reads the file's own SAN records before any course exists, so it cannot
+    share ``validation.step_result``; ``dump`` proves after every save that the
+    two agree, by loading the written file back.
+    """
     where = f"Chapter {chapter.id}"
     order = [step.id for step in chapter.steps]
     if len(set(order)) != len(order):
@@ -589,21 +600,10 @@ def implied_positions(course, chapter):
     for step in chapter.steps:
         if step.kind == "decision":
             links = [
-                (choice.next_step, step.position.after((choice.uci, *choice.reply)))
-                for choice in step.choices
+                (choice.next_step, step_result(course, step, choice)) for choice in step.choices
             ]
         else:
-            if step.kind == "demonstration":
-                result = step.position.after(step.moves)
-            elif step.kind == "rehearsal":
-                line = course.line(step.line_id)
-                result = line.position.after(line.moves)
-            elif step.kind == "game_excerpt":
-                game = course.game(step.game_id)
-                result = game.position.after(game.moves[: step.to_ply])
-            else:
-                result = step.position
-            links = [(step.next_step, result)]
+            links = [(step.next_step, step_result(course, step))]
             if step.kind == "branch":
                 links.insert(0, (step.branch_start, step.position))
         for destination, result in links:
@@ -611,11 +611,8 @@ def implied_positions(course, chapter):
                 incoming.setdefault(destination, result)
     implied = {}
     for step in chapter.steps:
-        if step.kind == "rehearsal":
-            implied[step.id] = course.line(step.line_id).position
-        elif step.kind == "game_excerpt":
-            game = course.game(step.game_id)
-            implied[step.id] = game.position.after(game.moves[: step.from_ply])
+        if step.kind in {"rehearsal", "game_excerpt"}:
+            implied[step.id] = step_start(course, step)
         elif step.id == chapter.entry_step:
             implied[step.id] = Position()
         else:

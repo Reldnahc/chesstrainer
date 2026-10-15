@@ -8,14 +8,24 @@ foreign keys before flush. Engine and Maia analyses and the skill taxonomy are s
 from sqlalchemy import event, inspect
 from sqlalchemy.orm import Session, sessionmaker, with_loader_criteria
 
-from trainer.models import AuthSession, Base, Owned, User
+from trainer.errors import NotFound
+from trainer.models import AuthSession, Base, EngineAnalysis, HumanAnalysis, Owned, User
 
 
 class AccountSession(Session):
-    pass
+    """The legacy bulk APIs skip both the statement hook and flush validation."""
+
+    def bulk_save_objects(self, *args, **kwargs):
+        raise ValueError("Bulk writes bypass account ownership; add the rows instead")
+
+    bulk_insert_mappings = bulk_update_mappings = bulk_save_objects
 
 
-def account_sessions(engine, user_id="local"):
+# The reserved account single-user mode and offline tools work in.
+LOCAL_USER_ID = "local"
+
+
+def account_sessions(engine, user_id):
     if not user_id:
         raise ValueError("An account identity is required")
     return sessionmaker(
@@ -30,15 +40,19 @@ def scope_statements(state):
         raise ValueError("Raw SQL is not allowed in account sessions")
     if state.is_insert:
         # Shared Stockfish and Maia cache upserts are the only Core inserts the app uses.
-        from trainer.models import EngineAnalysis, HumanAnalysis
 
         if state.statement.table.name not in {
             EngineAnalysis.__tablename__,
             HumanAnalysis.__tablename__,
         }:
             raise ValueError("Private inserts must pass through ownership validation")
+    if (state.is_update or state.is_delete) and isinstance(state.parameters, list):
+        # ORM bulk UPDATE/DELETE by primary key ignores loader criteria.
+        raise ValueError("Bulk writes by primary key bypass account scoping")
     if state.is_update:
-        for key in state.statement._values or {}:
+        values = [*(state.statement._values or {})]
+        values += [key for key, _ in state.statement._ordered_values or ()]
+        for key in values:
             name = getattr(key, "key", key)
             column = state.statement.table.c.get(name)
             if name == "user_id" or (column is not None and column.foreign_keys):
@@ -86,4 +100,4 @@ def validate_ownership(db, context, instances):
                     for item in db.new
                 )
                 if not pending and db.get(parent, value) is None:
-                    raise ValueError("Referenced item is not in this account")
+                    raise NotFound("Referenced item is not in this account")
