@@ -74,6 +74,14 @@ before an attempt or reveal permits feedback.
 
 - `frontend/src/audio/model.ts` owns semantic cue, preference and prepared-speech
   types. `cueForMove` interprets canonical server SAN, not FEN or local chess rules.
+  Speech playback reads only an utterance's identity, coach, priority and
+  interruptibility (`SpeechUtterance`), never its text. `FEEDBACK_CUE_DELAY_MS`
+  is the one correct/retry/complete delay after a move.
+- `useAudioScope` owns the move-sound rule for every board: `step`/`advance`
+  play the move's SAN cue for one step forward and a plain move for any other
+  jump; `moveOr` plays the SAN cue or a plain move when there is no SAN.
+  In development `AudioProvider` logs failed playback and absorbed engine
+  exceptions (`onEvent`/`onError`) as console warnings; production stays silent.
 - `catalog.ts` owns cue categories, priorities, approved production choices,
   palette metadata, per-cue asset availability and asset URLs. Engine and studio
   validate cue/palette pairs against it; each cue has one approved asset.
@@ -241,8 +249,8 @@ permissions and recording workflow.
 recording using PocketSphinx's public word/phoneme API and the shared mouth rules.
 Detailed source/phoneme archives remain authoring evidence; `bank/tracks.json` is
 Walter's compact runtime projection, and `banks/rivet/tracks.json` is Rivet's.
-Each coach's tracks are fetched as plain JSON the first time that coach speaks,
-never bundled into the initial application or compiled as JavaScript (the 30
+Each coach's tracks are fetched as plain JSON once that coach's voice is eligible
+to play (`prefetchCoachMouthTracks`), never bundled into the initial application or compiled as JavaScript (the 30
 tracks files are about 42 MB, which nearly filled Node's default memory limit
 when the build parsed them as modules). The application bundles only each bank
 manifest's `id`, `text` and `audioPath` (`?runtime`, `speechManifests` in
@@ -347,6 +355,10 @@ second clip's mouth timing is offset by the first clip plus the gap. Stop ends
 both, and nothing overlaps. No extra recordings are needed for these pairs.
 The second clip never opens with the first clip's catchphrase ("Whoa, ... Whoa,"):
 another take of it is used, or the first clip plays alone (`distinctOpeners`).
+Playback never waits for mouth timing: a line starts as soon as it is selected,
+the portrait follows the voice's energy until the coach's tracks arrive, and a
+late track attaches only to the playback that requested it. A failed track load
+never silences the line.
 Selection and lifecycle checks happen again after asynchronous mouth/audio loads.
 Navigation, retry, changing coach, mute, hidden tabs and unmounting invalidate
 obsolete work. No playback backlog accumulates. Initial hydration, restored

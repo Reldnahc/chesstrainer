@@ -5,10 +5,9 @@ import ChoiceGroup from "../../ChoiceGroup";
 import MotionSelect from "../../MotionSelect";
 import Notice from "../../Notice";
 import ReviewCoach from "../../ReviewCoach";
-import {CoachCharacter} from "../../coach/CoachAvatar";
+import {CoachCharacter} from "../../coach/CoachCharacter";
 import {getCoach} from "../../coach/registry";
 import type {SpeechMouthTrack} from "../../coach/speechMouth";
-import type {CoachUtterance} from "../../dialogue/model";
 import type {MotionPreference} from "../../motion";
 import type {StudioPlayer} from "./useStudioPlayer";
 import "../../coach-presentation.css";
@@ -38,14 +37,18 @@ export default function RecordedCoachComparison({player, catalog}: {player: Stud
   const recording = coach && meaning ? catalog.recording(coach.id, meaning.id) : undefined;
   const clipKey = `${coach?.id ?? ""}:${meaning?.id ?? ""}:${recording?.url ?? ""}`;
   const [loaded, setLoaded] = useState<{key: string; track?: SpeechMouthTrack}>();
+  // A sequenced recording is a fresh object each render; reload only when the clip changes.
+  const clipCoachId = coach?.id;
+  const clipMeaningId = meaning?.id;
+  const clipUrl = recording?.url;
   useEffect(() => {
-    if (coaches.length < 2 || !coach || !meaning || !recording) return;
+    if (coaches.length < 2 || clipCoachId === undefined || clipMeaningId === undefined || clipUrl === undefined) return;
     let current = true;
-    void catalog.loadTrack(coach.id, meaning.id).then(track => {
+    void catalog.loadTrack(clipCoachId, clipMeaningId).then(track => {
       if (current) setLoaded({key: clipKey, track});
     }, () => {if (current) setLoaded({key: clipKey});});
     return () => {current = false;};
-  }, [catalog, coaches.length, coach?.id, meaning?.id, recording?.url, clipKey]);
+  }, [catalog, coaches.length, clipCoachId, clipMeaningId, clipUrl, clipKey]);
   if (coaches.length < 2) return null;
 
   const track = loaded?.key === clipKey ? loaded.track : undefined;
@@ -56,16 +59,8 @@ export default function RecordedCoachComparison({player, catalog}: {player: Stud
   const categories = [...new Set(meanings.map(item => item.group))];
   function play(inContext: boolean) {
     if (!recording || !track || !meaning) return;
-    const utterance: CoachUtterance = {
-      version: "coach-utterance-1", id: `development:recorded-coach:${clipKey}`,
-      intentId: `development:recorded-meaning:${meaning.id}`, coachId: coach.id,
-      text: recording.text, speechText: recording.text, expression: "explaining",
-      intensity: .4, priority: 50, interruptible: true, autoSpeakSuitable: false,
-      trace: {renderer: "development-recorded-coach-comparison", variants: [], decisions: [
-        "Manual playback of one complete recording for this coach and supported meaning.",
-        "This preview does not change casting choices or account preferences.",
-      ]},
-    };
+    // Manual playback of one complete recording; it changes no casting choice or preference.
+    const utterance = {id: `development:recorded-coach:${clipKey}`, coachId: coach.id, priority: 50, interruptible: true};
     void player.playSpeech({url: recording.url, recordingId: recording.id, voiceId,
       voiceName: meaning.label, scriptId: meaning.id, coachName: coach.name, utterance}, inContext);
   }

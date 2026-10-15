@@ -1,9 +1,10 @@
-import { isErrorLabel, type Game, type Position, type Report } from "../gameReview/types";
+import type { Game, Position, Report } from "../gameReview/types";
 import type {CoachExpression} from "../coach/model";
 import {scoreText} from "../evaluation";
-import {claim, makeIntent, type Claim, type DialoguePurpose, type EvidenceRef} from "./model";
+import {claim, isForcedMateStage, makeIntent, type Claim, type ClaimCode, type DialoguePurpose, type EvidenceRef} from "./model";
 import {positionalClaim, strings, tacticalClaim, words} from "./eventClaims";
 import {humanClaims} from "./humanClaims";
+import {isPoorMove} from "../moveQuality";
 import {deriveBookPresentation} from "./openingPresentation";
 
 const purposes: Record<Report["label"], DialoguePurpose> = {
@@ -50,7 +51,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   // Recognized theory is shared by both players; it is not personal praise.
   // Keep the incoming reaction so check and explicit explanations still win.
   if (!learnerMove && !(mover && report.label === "Book")) expression = "explaining";
-  const poor = isErrorLabel(report.label);
+  const poor = isPoorMove(report.label);
   const side = mover === "white" ? "White" : mover === "black" ? "Black" : "The mover";
   const opponent = mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent";
   const move = report.actual.san, best = report.best.san;
@@ -62,14 +63,14 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   const recaptured = !!answer?.capture && answer.uci?.slice(2, 4) === report.actual.uci.slice(2, 4) && move.includes("x");
   for (const event of events) {
     const f = event.facts;
-    const add = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, event.evidence, [event.id]));
+    const add = (code: ClaimCode, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, event.evidence, [event.id]));
     if (event.kind === "mate") add(f.transition === "allowed" ? "allowed_mate" : "missed_mate",
       {best, opponent, reply: report.immediate_reply ? `${opponent}'s strongest reply is ${report.immediate_reply.san}.` : ""}, 100);
     // A move inside a forced mate is about the mate, ahead of any tactic or
     // structure. A played back-rank tactic already explains that same mate.
     // Through a long mating run the same side's moves share a stage; it is told once,
     // and later moves of that stage speak their grade instead of repeating it.
-    if (event.kind === "forced_mate" && typeof f.stage === "string" && !events.some(other => other.kind === "tactic"
+    if (event.kind === "forced_mate" && isForcedMateStage(f.stage) && !events.some(other => other.kind === "tactic"
       && other.facts.motif === "back_rank" && other.facts.role === "played")
       && (variation || !game.frames[ply - 2]?.report?.intelligence?.events.some(other =>
         other.kind === "forced_mate" && other.facts.stage === f.stage)))
@@ -111,7 +112,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     for (const relation of game.context?.relationships ?? []) {
       if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
       const earlier = moveLabel(game, relation.plies[0]), f = relation.facts;
-      const linked = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
+      const linked = (code: ClaimCode, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
       // Each relationship is told only where its wording holds: a recovery that
       // this move made (its lines say "this move restores a playable position"), a
       // conversion without a Mistake of the side's own inside the run ("cleanly"),

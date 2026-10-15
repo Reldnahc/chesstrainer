@@ -76,7 +76,7 @@ test("the setup page explains the measured level and starts a live game", async 
   // different height, so measure once it is in place.
   await expect(page.getByLabel("Walter says")).toBeVisible();
   const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
-    document.querySelector('[aria-label="Your color"]')!.getBoundingClientRect().top + window.scrollY]);
+    document.querySelector('[aria-labelledby="play-color"]')!.getBoundingClientRect().top + window.scrollY]);
   const before = await layout();
   await page.getByRole("button", {name: "Engine"}).click();
   await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveAttribute("min", "1800");
@@ -134,6 +134,55 @@ test("the bot answers once the move is graded while the coach finishes its line"
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".coach-quality-name")).toHaveText("Best");
   await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("1 / 2");
+});
+
+test("a failed bot reply can be asked for again, and the game carries on", async ({page}) => {
+  await mockPlay(page);
+  let replies = 0;
+  await page.route("**/api/play/play1/reply", async route => {
+    if (++replies === 1) return route.fulfill({status: 503, json: {detail: "The bot is unavailable."}});
+    await route.fallback();
+  });
+  await page.goto("/play/play1");
+  await page.locator('[data-square="e2"]').first().click();
+  await page.locator('[data-square="e4"]').first().click();
+  const banners = page.getByRole("region", {name: "Notifications"});
+  await expect(banners).toContainText("The bot is unavailable.");
+  await banners.getByRole("button", {name: "Try again"}).click();
+  await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 5000});
+  await expect(page.getByText("The bot is unavailable.")).toHaveCount(0);
+  expect(replies).toBe(2);
+});
+
+test("an analysis failure belongs to its own move, and saved reports are not asked for again", async ({page}) => {
+  await mockPlay(page);
+  const asked: number[] = [];
+  let failing = true;
+  await page.route("**/api/play/play1/analyze", async route => {
+    const {ply} = route.request().postDataJSON() as {ply: number};
+    asked.push(ply);
+    if (ply === 1 && failing) return route.fulfill({status: 503, json: {detail: "Engine unavailable for e4."}});
+    await route.fallback();
+  });
+  await page.goto("/play/play1");
+  await page.locator('[data-square="e2"]').first().click();
+  await page.locator('[data-square="e4"]').first().click();
+  // The failed grade still lets the reply through; the next move's grade is its own.
+  await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 5000});
+  await expect(page.locator(".coach-quality-name")).toHaveText("Good", {timeout: 10000});
+  await expect(page.getByRole("button", {name: "Retry analysis"})).toHaveCount(0);
+  await page.keyboard.press("ArrowLeft");
+  failing = false;
+  await page.getByRole("button", {name: "Retry analysis"}).click();
+  await expect(page.locator(".coach-quality-name")).toHaveText("Best");
+  expect(asked.filter(ply => ply === 2)).toEqual([2]);
+  // Reloading reads the reports the game saved instead of grading the moves again.
+  asked.length = 0;
+  await page.route("**/api/play/play1", route => route.fulfill({json: {...base,
+    frames: [frame0, {...frame1, report: report("e4", "e2e4", "Best", 30)}, {...frame2, report: report("e5", "e7e5", "Good", 20)}]}}));
+  await page.reload();
+  await expect(page.locator(".coach-quality-name")).toHaveText("Good");
+  expect(asked).toEqual([]);
 });
 
 test("playing a move from an earlier position replaces the rest of the game", async ({page}) => {
@@ -280,7 +329,7 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   await expect(page.getByLabel("Walter says")).toBeVisible();
   await expect(page.getByLabel("Course to practice")).toBeDisabled();
   const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
-    document.querySelector('[aria-label="Opponent"]')!.getBoundingClientRect().top + window.scrollY]);
+    document.querySelector('[aria-labelledby="play-opponent"]')!.getBoundingClientRect().top + window.scrollY]);
   const before = await layout();
   await page.getByRole("button", {name: "Practice an opening"}).click();
   await expect(page.getByLabel("Course to practice")).toBeEnabled();

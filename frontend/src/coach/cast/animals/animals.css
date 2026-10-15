@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* The small casts use the existing reaction/idle layers. Species details keep
    their own pivots; no continuously running ambient animation is introduced. */
 .cast-gorilla .study-ear-left,
@@ -27,4 +29,5 @@
 .cast-frog .study-muzzle,
 .cast-capybara .study-muzzle {
   transform-origin: 50px 65px;
+}
 }

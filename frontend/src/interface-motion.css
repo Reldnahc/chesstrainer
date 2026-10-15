@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer motion {
 /* Coach portraits own their own motion choice. All other interface effects use
    this policy, including inline transitions from the board library. */
 :root[data-interface-motion="still"],
@@ -19,4 +21,5 @@
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
 }

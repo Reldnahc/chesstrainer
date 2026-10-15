@@ -1,10 +1,12 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { moveNumber } from "../fen";
 import { ChevronRight } from "lucide-react";
 import MoveSymbol from "../MoveSymbol";
 import MoveBadge from "../MoveBadge";
 import ReviewSummary from "./ReviewSummary";
-import { isErrorLabel, type Analysis, type Game } from "./types";
+import type { Analysis, Game } from "./types";
 import type { GameExploration } from "./useGameExploration";
+import { isPoorMove } from "../moveQuality";
 
 export default function ReviewMoves({
   game,
@@ -25,8 +27,9 @@ export default function ReviewMoves({
   const id = useId();
   const { cursor, branch, branches, navigate, selectBranch } = exploration;
   const moveButtons = useRef(new Map<number, HTMLButtonElement>());
+  const inBranch = !!branch;
   useEffect(() => {
-    if (branch || tab !== "moves") return;
+    if (inBranch || tab !== "moves") return;
     const button = moveButtons.current.get(cursor.ply);
     const list = button?.closest(".game-notation-scroll");
     if (!button || !list) return;
@@ -36,7 +39,7 @@ export default function ReviewMoves({
     if (row.top < pane.top) list.scrollTop -= pane.top - row.top;
     else if (row.bottom > pane.bottom)
       list.scrollTop += row.bottom - pane.bottom;
-  }, [cursor.ply, !!branch, tab]);
+  }, [cursor.ply, inBranch, tab]);
   return (
     <section className="game-notation" aria-label="Moves and move quality">
       <div className="game-move-heading">
@@ -71,18 +74,19 @@ export default function ReviewMoves({
         </div>
         <span className="game-move-actions">
         <button
+          className="game-move-command"
           hidden={tab !== "moves"}
           onClick={() => {
             const next = game.frames.findIndex(
-              (f, i) => i > cursor.ply && isErrorLabel(f.report?.label),
+              (f, i) => i > cursor.ply && f.report && isPoorMove(f.report.label),
             );
             const first = game.frames.findIndex(
-              (f) => isErrorLabel(f.report?.label),
+              (f) => f.report && isPoorMove(f.report.label),
             );
             if (next >= 0 || first >= 0) navigate(next >= 0 ? next : first);
           }}
           disabled={
-            !game.frames.some((f) => isErrorLabel(f.report?.label))
+            !game.frames.some((f) => f.report && isPoorMove(f.report.label))
           }
         >
           Next mistake <ChevronRight size={14} />
@@ -113,11 +117,10 @@ export default function ReviewMoves({
                   !branch && cursor.ply === ply ? "step" : undefined
                 }
                 onClick={() => navigate(ply)}
-                aria-label={`${f.number}${f.actor === "white" ? "." : "..."} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}
+                aria-label={`${moveNumber(f.number, f.actor === "white" ? "white" : "black")} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}
               >
                 <span className="game-move-number">
-                  {f.number}
-                  {f.actor === "white" ? "." : "…"}
+                  {moveNumber(f.number, f.actor === "white" ? "white" : "black")}
                 </span>
                 <strong>{f.san}</strong>
                 {f.report && (

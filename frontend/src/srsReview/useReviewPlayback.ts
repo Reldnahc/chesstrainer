@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { ExplanationFrame, Feedback } from "../api";
 import type { useAudioScope } from "../audio/AudioProvider";
 import { COUNTER_REPLY_DELAY_MS } from "../reviewMotion";
+import { useLatest } from "../useLatest";
 
 /** Presentation-only playback: never submits a move or records another recall. */
 export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<typeof useAudioScope>, feedbackEventId: string | null) {
@@ -15,11 +16,11 @@ export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<t
   const practicePanel = useRef<HTMLDivElement | null>(null);
   const previewTimer = useRef<number | undefined>(undefined);
   const focusFrame = useRef<number | undefined>(undefined);
-  const sound = useRef(audio);
-  sound.current = audio;
+  const soundRef = useLatest(audio);
 
   useEffect(() => {
     window.clearTimeout(previewTimer.current);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- new feedback resets the playback that its counter-reply timer then advances
     setMistakeCue(!!feedback && !feedback.completed);
     if (!feedback) {
       setExplaining(false);
@@ -32,13 +33,13 @@ export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<t
           setPreview("reply");
           // Saved feedback can restore this preview, but only a fresh accepted
           // response authorizes sound for the automatic counter-reply.
-          if (feedbackEventId) sound.current.move(feedback.counter_reply?.san, `${feedbackEventId}:reply`);
+          if (feedbackEventId) soundRef.current.move(feedback.counter_reply?.san, `${feedbackEventId}:reply`);
         },
         COUNTER_REPLY_DELAY_MS,
       );
     } else setPreview(null);
     return () => window.clearTimeout(previewTimer.current);
-  }, [feedback, feedbackEventId]);
+  }, [feedback, feedbackEventId, soundRef]);
   useEffect(
     () => () => {
       if (focusFrame.current) window.cancelAnimationFrame(focusFrame.current);
@@ -47,7 +48,7 @@ export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<t
   );
 
   function openExplanation() {
-    sound.current.cancel();
+    soundRef.current.cancel();
     window.clearTimeout(previewTimer.current);
     // Retain height so opening playback on a scrolled phone doesn't jump upward.
     setExplanationMinHeight(
@@ -56,7 +57,7 @@ export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<t
     setExplaining(true);
   }
   const closeExplanation = useCallback(() => {
-    sound.current.cancel();
+    soundRef.current.cancel();
     setExplaining(false);
     setExplanationFrame(null);
     setMistakeCue(false);
@@ -67,9 +68,9 @@ export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<t
     focusFrame.current = window.requestAnimationFrame(() =>
       explanationOpener.current?.focus({ preventScroll: true }),
     );
-  }, [feedback?.completed]);
+  }, [feedback?.completed, soundRef]);
   function retry() {
-    sound.current.cancel();
+    soundRef.current.cancel();
     setMistakeCue(false);
     window.clearTimeout(previewTimer.current);
     setPreview(null);
@@ -87,7 +88,7 @@ export function useReviewPlayback(feedback: Feedback | null, audio: ReturnType<t
     openExplanation,
     closeExplanation,
     retry,
-    beginAttempt: () => { sound.current.cancel(); setMistakeCue(false); },
+    beginAttempt: () => { soundRef.current.cancel(); setMistakeCue(false); },
     previewFrame:
       preview === "attempt"
         ? feedback?.attempt_frame

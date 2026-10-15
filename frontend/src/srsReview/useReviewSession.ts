@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   api,
+  ApiError,
+  errorMessage,
   read,
   type ColdPosition,
   type Feedback,
@@ -9,6 +11,9 @@ import {
 } from "../api";
 import { clearExerciseLink, clearReviewSessionLink, rememberReviewSession } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
+import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
+import { useLatest } from "../useLatest";
+import { PHONE_QUERY } from "../mediaQuery";
 
 /** Owns grading and queues. Focused practice never changes the SRS queue policy. */
 export function useReviewSession({
@@ -43,8 +48,11 @@ export function useReviewSession({
   const generation = useRef(0);
   const responseSequence = useRef(0);
   const audio = useAudioScope(`review:${requestedSession || requested || focusSkill || "queue"}`);
-  const sound = useRef(audio);
-  sound.current = audio;
+  const soundRef = useLatest(audio);
+  // A queue or card that failed to load is the panel's own state, with Try again,
+  // never "Build your study queue".
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const lastLoad = useRef<[string | null | undefined, string | null | undefined, string | null | undefined]>([null, null, null]);
 
   const refreshDue = useCallback(async (version: number) => {
     try {
@@ -59,7 +67,9 @@ export function useReviewSession({
   const load = useCallback(
     async (id?: string | null, previous?: string | null, resumeSession?: string | null) => {
       const version = ++generation.current;
-      sound.current.cancel();
+      lastLoad.current = [id, previous, resumeSession];
+      setLoadError(null);
+      soundRef.current.cancel();
       setLoading(true);
       setBusy(false);
       setPosition(null);
@@ -70,7 +80,7 @@ export function useReviewSession({
       setSubmittedMove(null);
       setHadFailure(false);
       setGradingError(null);
-      if (window.matchMedia("(max-width: 760px)").matches)
+      if (window.matchMedia(PHONE_QUERY).matches)
         window.scrollTo({ top: 0, behavior: "instant" });
       try {
         if (focusSkill && !practiceBatch.current) {
@@ -123,12 +133,16 @@ export function useReviewSession({
           if (!focusSkill) await refreshDue(version);
         }
       } catch (e) {
-        if (version === generation.current) fail(e);
+        if (version === generation.current) {
+          // A session link that no longer exists is not asked for again; Try again opens the queue.
+          if (resumeSession && e instanceof ApiError && e.status === 404) lastLoad.current = [id, previous, null];
+          setLoadError(errorMessage(e));
+        }
       } finally {
         if (version === generation.current) setLoading(false);
       }
     },
-    [focusSkill, fail, refreshDue],
+    [focusSkill, refreshDue, soundRef],
   );
 
   // Announce the opener only after the card has rendered, so the speech
@@ -144,8 +158,10 @@ export function useReviewSession({
     practiceBatch.current = null;
     practiced.current.clear();
     coldOpened.current = false;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- a load starts by showing loading and clearing the previous card
     void load(requested, null, requestedSession);
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the live generation retires any load still in flight
       generation.current++;
     };
   }, [load, requested, requestedSession]);
@@ -177,10 +193,9 @@ export function useReviewSession({
       if (version !== generation.current) return;
       const eventId = result.attempt_id || `response:${++responseSequence.current}`;
       const san = result.submitted_san || result.attempt_frame?.san;
-      if (san) audio.move(san, `${eventId}:board`);
-      else audio.play("move", `${eventId}:board`);
+      audio.moveOr(san, `${eventId}:board`);
       if (result.grade !== "revealed") {
-        audio.play(result.completed ? "correct" : "retry", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play(result.completed ? "correct" : "retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
       setFeedback(result);
       setFeedbackEventId(eventId);
@@ -194,7 +209,7 @@ export function useReviewSession({
       if (!focusSkill) await refreshDue(version);
     } catch (e) {
       if (version === generation.current) {
-        setGradingError((e as Error).message);
+        setGradingError(errorMessage(e));
         fail(e);
       }
     } finally {
@@ -216,15 +231,14 @@ export function useReviewSession({
       if (version !== generation.current) return;
       const eventId = `reveal:${++responseSequence.current}`;
       const san = result.reveal_frame?.san || result.submitted_san;
-      if (san) audio.move(san, `${eventId}:board`);
-      else audio.play("move", `${eventId}:board`);
+      audio.moveOr(san, `${eventId}:board`);
       setFeedback(result);
       setFeedbackEventId(eventId);
       recordCompletion(position.exercise_id, !result.non_scheduling_reason);
       if (!focusSkill) await refreshDue(version);
     } catch (e) {
       if (version === generation.current) {
-        setGradingError((e as Error).message);
+        setGradingError(errorMessage(e));
         fail(e);
       }
     } finally {
@@ -243,6 +257,8 @@ export function useReviewSession({
     submittedMove,
     hadFailure,
     gradingError,
+    loadError,
+    retryLoad: () => load(...lastLoad.current),
     done,
     answer,
     show,

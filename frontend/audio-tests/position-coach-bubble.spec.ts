@@ -43,7 +43,10 @@ test("a recorded coach's bubble shows its recorded line, and Maia's popup keeps 
   const current = await state(page);
   await expect(bubble(page)).toHaveAttribute("data-spoken", /^cause-abandoned-defender(?:-(?:knight|bishop|rook|queen))?(?:\+[a-z0-9-]+)?$/);
   const spoken = (await bubble(page).getAttribute("data-spoken"))!;
-  await expect.poll(() => shown(page)).toBe(line(arjun.recordings, spoken));
+  // A piece-named take also shows where that piece stands ("a rook on a1"); the voice does not say it.
+  const square = / on [a-h][1-8]\b/;
+  if (/-(?:knight|bishop|rook|queen)(?:\+|$)/.test(spoken)) await expect.poll(() => shown(page)).toMatch(square);
+  await expect.poll(() => shown(page).then(text => text?.replace(square, ""))).toBe(line(arjun.recordings, spoken));
   // Selection still validates the written utterance; only the displayed text changes.
   await expect(bubble(page)).toHaveAttribute("data-utterance", current.utteranceId);
   expect(current.utteranceText).not.toBe(line(arjun.recordings, spoken));

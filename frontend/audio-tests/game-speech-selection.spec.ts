@@ -2,7 +2,7 @@ import {test, expect} from "@playwright/test";
 import type {Schema} from "../src/api";
 import type {Game, Position, Report} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
-import {claim, makeIntent} from "../src/dialogue/model";
+import {claim, makeIntent, type ClaimCode} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {distinctOpeners, selectWalterGameRecording, type WalterGameSpeechContext} from "../src/audio/speech/gameSelection";
@@ -80,7 +80,7 @@ for (const fixture of positional) for (const line of ["actual", "alternative"] a
 test("selection is exact rendered identity, not highest input priority, trace code or a supported fallback", () => {
   const current = context(causal[0].report);
   const item = current.utterance.renderedClaims![0];
-  const intent = {...current.intent, claims: [claim("unrecognized", {}, 999), ...current.intent.claims]};
+  const intent = {...current.intent, claims: [claim("unrecognized" as ClaimCode, {}, 999), ...current.intent.claims]};
   const output = renderDialogue(intent, walter);
   expect(output.renderedClaims![0]).toEqual(item);
   expect(selectWalterGameRecording({...current, intent, utterance: output})).toBe("cause-abandoned-defender");

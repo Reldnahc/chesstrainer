@@ -1,4 +1,4 @@
-import { CoachCharacter } from "../CoachAvatar";
+import { CoachCharacter } from "../CoachCharacter";
 import { selectableCoaches } from "../registry";
 import { availableIdles } from "../model";
 

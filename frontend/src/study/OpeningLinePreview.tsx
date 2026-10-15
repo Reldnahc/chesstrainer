@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
-import { api, read, type Schema } from "../api";
+import { errorMessage, api, read, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 import Board from "../Board";
+import { moveSquares } from "../boardCues";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ContinuationMoves from "../ContinuationMoves";
@@ -13,12 +15,12 @@ import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import ReviewCoach from "../ReviewCoach";
-import Notice from "../Notice";
 import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import SourceLine from "../SourceLine";
-import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
+import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, openingStudiesPath, studyPaths } from "../navigation";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
+import { useCommand } from "../useQuery";
 
 export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   catalogueKey: string | null;
@@ -29,24 +31,24 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   const [color, setColor] = useState<"white" | "black">(courseLine?.color ?? "white");
   const [ply, setPly] = useState(0);
   const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  const command = useCommand();
+  const busy = !!command.busy;
   const [saved, setSaved] = useState(false);
   const [practiceStudy] = useState(createPracticeStarter);
-  const controller = useRef<AbortController | null>(null);
-  const locked = useRef(false);
   const audio = useAudioScope(`opening-preview:${catalogueKey || `${courseLine?.courseId}:${courseLine?.lineId}:${courseLine?.revision}`}`);
   const navigationId = useRef(0);
   function seek(next: number) {
     if (!line || next === ply || next < 0 || next > line.frames.length) return;
     audio.cancel();
     const eventId = `seek:${++navigationId.current}`;
-    if (next === ply + 1) audio.move(line.frames[next - 1].san, eventId);
-    else audio.play("move", eventId);
+    audio.step(ply, next, line.frames[next - 1]?.san, eventId);
     setPly(next);
   }
   useEffect(() => {
     const pending = new AbortController();
-    controller.current = pending;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- a fetch starts here; a retry clears the last failure while it loads
+    setError("");
     const selected = catalogueKey
       ? read(api.GET("/api/openings/catalog/{key}", { params: { path: { key: catalogueKey } }, signal: pending.signal }))
       : read(api.GET("/api/openings/course-lines/{course_id}/{line_id}", { params: { path: { course_id: courseLine!.courseId, line_id: courseLine!.lineId }, query: { revision: courseLine!.revision } }, signal: pending.signal }));
@@ -56,52 +58,40 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
         setLine(result);
         setStudies(library.items);
         setColor(preferred => result[`${preferred}_positions`] ? preferred : preferred === "white" ? "black" : "white");
-      }).catch(e => { if (!pending.signal.aborted) setError(e.message); });
+      }).catch(e => { if (!pending.signal.aborted) setError(errorMessage(e)); });
     return () => pending.abort();
-  }, [catalogueKey, courseLine]);
-  useEffect(() => { if (line) document.title = `${line.line.name} · Fieldwork`; }, [line]);
+  }, [catalogueKey, courseLine, attempt]);
+  usePageTitle(line?.line.name);
   const selectedStudy = line && studies.find(study => study.source === line.line.source && study.source_key === line.line.source_key && study.source_version === line.line.source_version && study.color === color);
-  async function enroll() {
-    if (!line || locked.current || selectedStudy?.active) return;
-    const signal = controller.current?.signal;
-    locked.current = true;
-    setBusy(true);
-    setError("");
-    try {
-      const result = selectedStudy
-        ? await setStudyActive(selectedStudy.id, true, signal)
-        : await read(api.POST("/api/opening-studies", { body: {
-            source: line.line.source, source_key: line.line.source_key, source_version: line.line.source_version,
-            course_id: line.line.course_id, line_id: line.line.line_id, color,
-          }, signal }));
-      if (!signal?.aborted) {
-        setStudies(previous => [...previous.filter(study => study.id !== result.id), result]);
-        setSaved(true);
-      }
-    } catch (e) { if (!signal?.aborted) setError((e as Error).message); }
-    finally { if (!signal?.aborted) { locked.current = false; setBusy(false); } }
+  function enroll() {
+    if (!line || selectedStudy?.active) return;
+    void command.run(true, (signal) => selectedStudy
+      ? setStudyActive(selectedStudy.id, true, signal)
+      : read(api.POST("/api/opening-studies", { body: {
+          source: line.line.source, source_key: line.line.source_key, source_version: line.line.source_version,
+          course_id: line.line.course_id, line_id: line.line.line_id, color,
+        }, signal })), (result) => {
+      setStudies(previous => [...previous.filter(study => study.id !== result.id), result]);
+      setSaved(true);
+    });
   }
-  async function practice() {
-    if (!selectedStudy || locked.current) return;
-    const signal = controller.current?.signal;
-    locked.current = true;
-    setBusy(true);
-    setError("");
-    try {
-      const result = await practiceStudy(selectedStudy.id, signal);
-      if (!signal?.aborted && result) navigate(lessonSessionPath(result.id));
-    } catch (e) { if (!signal?.aborted) setError((e as Error).message); }
-    finally { if (!signal?.aborted) { locked.current = false; setBusy(false); } }
+  function practice() {
+    if (!selectedStudy) return;
+    void command.run(true, (signal) => practiceStudy(selectedStudy.id, signal),
+      (result) => { if (result) navigate(lessonSessionPath(result.id)); });
   }
   const back = courseLine ? lessonCoursePath(courseLine.courseId, courseLine.revision) : openingCataloguePath();
   const recordingId = line ? selectedStudy?.active ? "opening-preview-active" : "opening-preview-inactive" : null;
   const voice = useCoachSpeech({
     scopeKey: `opening-preview:${line?.line.source_key}:${line?.line.source_version}:${color}:${ply}:${!!selectedStudy?.active}`,
-    recordingId, ready: !!line && !busy && !error,
+    recordingId, ready: !!line && !busy && !command.error,
   });
   // The preview's single coach sentence is shown as the coach says it.
   const spoken = useSelectedCoachSpokenText(recordingId);
-  if (!line) return <section className="panel"><h1>Opening preview</h1>{error ? <UnavailableState>{error}</UnavailableState> : <LoadingState>Loading the selected line…</LoadingState>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
+  // The back link stays mounted (and keeps focus) while the load turns into an error.
+  if (!line) return <section className="panel"><h1>Opening preview</h1>{error
+    ? <UnavailableState actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>{error}</UnavailableState>
+    : <LoadingState>Loading the selected line…</LoadingState>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
   const frame = ply ? line.frames[ply - 1] : null;
   const positions = color === "white" ? line.white_positions : line.black_positions;
   return <ReviewWorkspace
@@ -112,21 +102,22 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back</ActionLink><MovePlaybackControls label="Opening line playback" current={ply} maximum={line.frames.length}
       previous={{ "aria-label": "Previous line move", disabled: !ply, onClick: () => seek(ply - 1) }}
       next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => seek(ply + 1) }} /><AudioMuteButton /></div>}
-    board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
+    board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={moveSquares(frame?.uci)} />}
   >
     <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>} voice={voice}
       reaction={{ state: "explaining", key: `${line.line.source_key}:${color}:${!!selectedStudy?.active}` }}
       actions={<><Button size="compact" variant="primary" disabled={busy || !positions || !!selectedStudy?.active} onClick={enroll}>{selectedStudy?.active ? "Added to study" : selectedStudy ? "Resume recalls" : "Add to study"}<ArrowRight size={16} /></Button>{selectedStudy && <Button size="compact" variant="secondary" disabled={busy} onClick={practice}><Play size={16} />Practice line</Button>}</>}
     ><p>{spoken ?? (selectedStudy?.active ? "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone." : "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies.")}</p></ReviewCoach>
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
+    {saved && <Banner tone="success" onDismiss={() => setSaved(false)}>Study saved. Eligible positions are now included in Due.</Banner>}
     <section className="panel opening-preview-details">
       <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{side === "white" ? line.white_positions : line.black_positions} decisions</small></label>)}</fieldset>
       <h2>The selected continuation</h2>
       <ContinuationMoves label="Opening continuation" moves={line.frames} numbered selectedIndex={ply - 1} startSelected={!ply}
         onStart={() => seek(0)} onSelect={index => seek(index + 1)} />
       <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall decisions. This line does not cover every opponent response.</p>
-      <Reveal>{saved && <Notice announcement="status" tone="success" appearance="inline" className="small">Study saved. Eligible positions are now included in Due.</Notice>}</Reveal>
-      <div className="button-row"><ActionLink variant="secondary" href={`${studyPaths.openings}/studies`}>My studies</ActionLink>{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</div>
+      <div className="button-row"><ActionLink variant="secondary" href={openingStudiesPath}>My studies</ActionLink>
+        <Reveal axis="inline">{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</Reveal></div>
       <SourceLine className="opening-source" text={line.line.source === "lichess_catalogue" ? "Lichess opening catalogue" : "Authored course repertoire line"}
         license={line.line.source === "lichess_catalogue" ? "CC0" : undefined} revision={line.line.source_version} />
     </section>

@@ -52,6 +52,24 @@ export function positionScore(score: Score | null | undefined,
   return { kind: "mate", value, mate_given: value === 0 && mover === "white" };
 }
 
+/** A side-to-move score seen from White, as the backend's Score.negate() turns it. */
+export function whitePerspective(score: Score, turn: "white" | "black"): Score {
+  return turn === "white" ? score : negateScore(score);
+}
+
+/** The starting position's score: the first move's report holds the best play
+ * from it, scored for the side to move there. */
+export function startingScore(frames: readonly { turn: "white" | "black"; report?: { best: { score: Score } } | null }[]): Score | null {
+  const first = frames[1]?.report;
+  return first && frames[0] ? whitePerspective(first.best.score, frames[0].turn) : null;
+}
+
+/** A centipawn loss in pawns, to one decimal ("1.0 pawn", "2.5 pawns"). */
+export function pawnsText(cp: number): string {
+  const value = (Math.abs(cp) / 100).toFixed(1);
+  return `${value} ${value === "1.0" ? "pawn" : "pawns"}`;
+}
+
 export function scoreText(score: Score | null | undefined, decimals: 1 | 2 = 2) {
   if (!score) return "—";
   const sign = scoreSide(score) === "black" ? "−" : "+";

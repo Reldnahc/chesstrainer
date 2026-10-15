@@ -1,5 +1,8 @@
-/** Each template says only what its named evidence-backed slots establish. */
-export const neutralTemplates: Record<string, readonly string[]> = {
+import type {ClaimCode} from "./model";
+
+/** Each template says only what its named evidence-backed slots establish. Every
+ * claim code has one, so no claim can render as nothing. */
+export const neutralTemplates: Readonly<Record<ClaimCode, readonly string[]>> = {
   allowed_mate: ["This allows a forced checkmate. {reply}", "{opponent} now has a forced mate. {reply}"],
   forced_mate_started: ["{move} starts a forced checkmate: mate in {mate}, whatever {opponent} replies."],
   forced_mate_continued: ["{move} keeps the forced checkmate going: mate in {mate}."],

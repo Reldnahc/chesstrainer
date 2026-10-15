@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* Canonical track durations come from idleGestures; each resource has one writer.
    These tracks are nested inside entrances and outside held-pose transforms. */
 .coach-avatar[data-phase="rest"][data-motion="natural"] {
@@ -140,4 +142,5 @@
 @keyframes coach-idle-throat {
   0%, 100% { transform: none; }
   45% { transform: scale(1.025, 1.045); }
+}
 }

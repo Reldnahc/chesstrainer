@@ -41,8 +41,9 @@ export function installDisclosureMotion() {
     const summary = event.target.closest("summary");
     const details = summary?.parentElement;
     if (!summary || !(details instanceof HTMLDetailsElement) || details.querySelector(":scope > summary") !== summary) return;
-    if (event.target.closest("a, button, input, select, textarea, label") && event.target.closest("summary") === summary
-      && event.target.closest("a, button, input, select, textarea, label") !== summary) return;
+    // A control inside the summary does its own job instead of toggling.
+    const control = event.target.closest("a, button, input, select, textarea, label");
+    if (control && summary.contains(control)) return;
     if (!motionAllowed()) return;
     event.preventDefault();
     toggle(details, summary);

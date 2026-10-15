@@ -392,8 +392,14 @@ these are the contracts each new character must satisfy.
 
 `model.ts` defines the character contract. `studies/catalog.ts` and `cast/catalog.ts` supply the
 collections, stable character IDs, names, descriptions, supported states, fallback
-maps, families, capabilities, timing/idle configuration and artwork components.
+maps, families, personalities, capabilities, reaction timing and artwork components.
+Catalogs author only reaction timing (`ReactionTiming`; Walter's
+`classic/performance.ts`, everyone else's shared `reactionTiming` in
+`motionVocabulary.ts`); `coachPerformance` supplies every idle pool.
 `registry.ts` derives individual selectable definitions from that single source.
+Every registered family must carry a personality, and every coach ID must have
+entries in `motionVocabulary.ts`, `idleRig.ts` and `idleSignatures/index.ts`:
+a missing one is a type error, never a silent neutral or empty fallback.
 Each has one default family, explicit presentation group and a typed account ID;
 collection IDs remain useful for authoring and studio URLs. They are never saved
 in place of a character ID.

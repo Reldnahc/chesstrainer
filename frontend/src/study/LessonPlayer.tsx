@@ -1,4 +1,5 @@
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import { usePageTitle } from "../PageTitle";
 import { ArrowLeft, ArrowRight, BookOpen, Lightbulb, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
@@ -15,6 +16,8 @@ import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import type { CoachExpression } from "../coach/model";
 import { lessonCoursePath, studyPaths } from "../navigation";
+import { moveSquares } from "../boardCues";
+import { playbackMover, sideName, sideToMove } from "../fen";
 import LessonAttribution from "./LessonAttribution";
 import { useLessonSession, type LessonAction } from "./useLessonSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
@@ -31,9 +34,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     automaticEventId: speech?.eventId ?? null,
   });
   const spoken = useSelectedCoachSpokenText(speech?.recordingId);
-  useEffect(() => {
-    document.title = `${session?.course_title || "Opening lesson"} · Fieldwork`;
-  }, [session?.course_title]);
+  usePageTitle(session?.course_title || "Opening lesson");
   if (loading) return <LoadingState presentation="panel">Loading your lesson…</LoadingState>;
   if (!session) return <UnavailableState presentation="panel" heading={<h1>Lesson unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.openings}>All lessons</ActionLink></>}>{error}</UnavailableState>;
   const has = (action: LessonAction) => session.actions.includes(action);
@@ -67,7 +68,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const feedbackText = feedback && (spokenFor("lesson-wrong-move", feedback.kind === "incorrect")
     ?? spokenFor("lesson-correct-move", feedback.kind === "correct" && step.kind !== "decision") ?? feedback.text);
   const reactionKey = session.game ? `${session.id}:game:${step.id}:${expression}` : `${session.id}:${session.revision}:${expression}`;
-  const turn = fen.split(" ")[1] === "w" ? "White" : "Black";
+  const turn = sideToMove(fen);
   const annotations = !playback.playing && fen === session.fen
     ? session.game ? session.game.note?.annotations : step.annotations : undefined;
   // Pending navigation remains locked in the session hook and announced as
@@ -84,12 +85,12 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   return <ReviewWorkspace
     boardLabel="Lesson position"
     heading={<div className="puzzle-player-heading"><h1>{session.course_title}</h1><span className="muted">{session.orientation === "white" ? "White" : "Black"}</span></div>}
-    aboveBoard={<div className="review-position-status"><TurnIndicator color={turn === "Black" ? "black" : "white"}>{playback.playing ? frame ? `${frame.before_fen.split(" ")[1] === (session.orientation === "white" ? "w" : "b") ? "Your move" : "Opponent reply"} · ${frame.san}` : "Line start" : session.game ? "Game playback" : has("move") ? `${turn} to move` : "Guided lesson"}</TurnIndicator><span>{session.branch ? "ALTERNATIVE LINE" : session.game ? `PLY ${session.game.ply} / ${session.game.total_plies}` : finished ? "CHAPTER COMPLETED" : session.chapter_title}</span></div>}
+    aboveBoard={<div className="review-position-status"><TurnIndicator color={turn}>{playback.playing ? frame ? `${playbackMover(frame.before_fen, session.orientation)} · ${frame.san}` : "Line start" : session.game ? "Game playback" : has("move") ? `${sideName(turn)} to move` : "Guided lesson"}</TurnIndicator><span>{session.branch ? "ALTERNATIVE LINE" : session.game ? `PLY ${session.game.ply} / ${session.game.total_plies}` : finished ? "CHAPTER COMPLETED" : session.chapter_title}</span></div>}
     belowBoard={<div className="review-board-hint">{has("move") ? step.kind === "rehearsal" ? "Play your studied continuation." : "Play this lesson’s move." : session.branch ? "Explore the alternative, then return to the main line." : "Use the lesson controls to continue."}</div>}
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={lessonCoursePath(session.course_id, session.course_revision, session.course_topic)}><ArrowLeft size={16} />Chapters</ActionLink>{session.game && <MovePlaybackControls label="Lesson game playback" current={session.game.ply} maximum={session.game.total_plies}
-      previous={{ "aria-label": "Previous game move", ...gameButtonState(session.game.ply === 0), onClick: () => state.command("game_seek", { ply: session.game!.ply - 1 }) }}
-      next={{ "aria-label": "Next game move", ...gameButtonState(session.game.ply === session.game.total_plies), onClick: () => state.command("game_seek", { ply: session.game!.ply + 1 }) }} />}<AudioMuteButton /></div>}
-    board={<Board fen={fen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={disabled || !has("move")} onMove={state.answer} feedback={feedback?.kind === "incorrect" ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : annotations?.squares || []} arrows={annotations?.arrows?.map(arrow => ({ startSquare: arrow.from_square, endSquare: arrow.to_square, color: "#f5b56abb" })) || []} />}
+      previous={{ "aria-label": "Previous game move", ...gameButtonState(session.game.ply === 0), onClick: () => void state.command("game_seek", { ply: session.game!.ply - 1 }) }}
+      next={{ "aria-label": "Next game move", ...gameButtonState(session.game.ply === session.game.total_plies), onClick: () => void state.command("game_seek", { ply: session.game!.ply + 1 }) }} />}<AudioMuteButton /></div>}
+    board={<Board fen={fen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={disabled || !has("move")} onMove={state.answer} feedback={feedback?.kind === "incorrect" ? "retry" : undefined} highlights={frame ? moveSquares(frame.uci) : annotations?.squares || []} arrows={annotations?.arrows?.map(arrow => ({ startSquare: arrow.from_square, endSquare: arrow.to_square, color: "#f5b56abb" })) || []} />}
   >
     <ReviewCoach compactLabel={!voice.available} voice={voice} title={<h2>{error ? "Let’s restore your lesson." : singleMove ? "Watch the move." : guidedPlayback ? "Follow the continuation." : session.game ? session.game.title : finished ? "Chapter completed." : step.title}</h2>}
       reaction={{ state: expression, key: reactionKey }}

@@ -1,5 +1,4 @@
 import { api, read } from "../api";
-import { gamesPath } from "../navigation";
 import { retryableStart } from "./retryableStart";
 
 export type PuzzleBand = "any" | "easier" | "middle" | "harder";
@@ -70,11 +69,6 @@ export function puzzleQuery(selection: PuzzleSelection) {
     theme: selection.theme || undefined,
     mode: selection.mode,
   };
-}
-
-/** Where the learner's own move sits in the full-game review. */
-export function gameReviewPath(gameId: string, ply: number | null | undefined) {
-  return `${gamesPath(1, gameId)}${ply == null ? "" : `?ply=${ply}`}`;
 }
 
 /** Lichess theme IDs such as backRankMate, mateIn2 or attackingF2F7 as readable text. */

@@ -60,12 +60,10 @@ test("training queue results update the same mounted status across consecutive r
 });
 
 test("current application errors remain alerts and their shared action dismisses them", async ({ page }) => {
-  let first = true;
+  // Activity loads, then a later refresh fails: the outage is a page banner, once.
+  let reads = 0;
   await page.route("**/api/jobs", route => {
-    if (first) {
-      first = false;
-      return route.fulfill({ status: 503, json: { detail: "Import activity could not be loaded." } });
-    }
+    if (++reads === 2) return route.fulfill({ status: 503, json: { detail: "Import activity could not be loaded." } });
     return route.fulfill({ json: [] });
   });
   await page.goto("/settings");

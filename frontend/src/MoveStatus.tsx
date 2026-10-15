@@ -16,9 +16,10 @@ type MoveStatusProps = {
 export default function MoveStatus({busy = false, failed = false, text, children}: MoveStatusProps) {
   const [waiting, setWaiting] = useState(false);
   useEffect(() => {
-    if (!busy) {setWaiting(false); return;}
+    if (!busy) return;
     const timer = window.setTimeout(() => setWaiting(true), 350);
-    return () => window.clearTimeout(timer);
+    // Reset when the check ends, so the next one waits again before showing.
+    return () => {window.clearTimeout(timer); setWaiting(false);};
   }, [busy]);
   const checking = busy && waiting;
   return <div role="status" aria-live="polite" aria-atomic="true" className={`move-status${children != null ? ' move-status-rich' : ''}${failed && !checking ? ' retry' : ''}`}>

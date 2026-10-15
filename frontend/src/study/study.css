@@ -1,8 +1,10 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .study-page { display: flex; flex-direction: column; gap: var(--space-5); }
 .study-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
 .study-option { display: grid; grid-template-rows: subgrid; grid-row: span 5; align-items: start; justify-items: start; gap: var(--space-3); }
 .study-option > svg { color: var(--accent); }
-.study-option > .button-link { grid-row: 5; margin-top: auto; }
+.study-option > .action-control { grid-row: 5; margin-top: auto; }
 .study-option .study-count { font-size: var(--text-5xl); font-weight: 650; color: #f3f0eb; }
 .study-count span { display: block; font-size: var(--text-md); font-weight: 400; color: var(--muted); }
 .study-due { border-color: #705044; }
@@ -57,7 +59,7 @@
 .opening-result > svg { flex: none; }
 .opening-management-heading { display: flex; gap: var(--space-5); justify-content: space-between; align-items: start; }
 .opening-management-heading > div { display: flex; flex-direction: column; gap: var(--space-2); }
-.opening-management-heading > .button-link { flex: none; }
+.opening-management-heading > .action-control { flex: none; }
 .opening-study-list { display: flex; flex-direction: column; gap: var(--space-3); }
 .opening-study { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); border: 1px solid var(--line); padding: var(--space-4); border-radius: 6px; }
 .opening-study > div:first-child { display: flex; flex-direction: column; gap: var(--space-1-5); }
@@ -78,7 +80,7 @@
 @media (max-width: 760px) {
   .study-page { gap: var(--space-4); }
   .study-options { grid-template-columns: 1fr; gap: var(--space-3); }
-  .study-option { display: flex; flex-direction: column; grid-row: auto; padding: var(--space-5); }
+  .study-option { display: flex; flex-direction: column; grid-row: auto; }
   .puzzle-start .puzzle-filters { gap: var(--space-3); }
   .puzzle-filter, .puzzle-filter select { width: 100%; }
   .puzzle-start .button-row button { flex: 1; }
@@ -106,17 +108,15 @@ section.lesson-editor-section { display: grid; gap: var(--space-3); padding-top:
 .lesson-editor-label { font-size: var(--text-md); font-weight: 600; }
 .lesson-editor-field input:not([type="checkbox"]), .lesson-editor-field textarea, .lesson-editor-field select { width: 100%; }
 .lesson-editor-steps { display: grid; gap: var(--space-1); padding: 0; list-style: none; }
-.lesson-editor-steps button { display: flex; align-items: center; justify-content: flex-start; gap: var(--space-3); width: 100%; min-height: 44px; padding: var(--space-1-5) var(--space-3); border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: inherit; text-align: left; font: inherit; cursor: pointer; }
+.lesson-editor-steps button { display: flex; align-items: center; justify-content: flex-start; gap: var(--space-3); width: 100%; min-height: var(--touch-target); padding: var(--space-1-5) var(--space-3); border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: inherit; text-align: left; font: inherit; cursor: pointer; }
 .lesson-editor-steps button[aria-current] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
 .lesson-editor-step-kind { flex: none; width: 104px; color: var(--muted); font-size: var(--text-sm); }
 .lesson-editor-problem { flex: none; margin-left: auto; color: var(--accent); fill: currentColor; }
 .lesson-editor-line { padding-block: var(--space-3); border-top: 1px solid var(--line); }
-.lesson-editor-check { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; }
+.check-row.lesson-editor-check { align-items: center; gap: var(--space-2); min-height: var(--touch-target); }
 .course-settings-group { margin-top: var(--space-4); color: var(--muted); font-size: var(--text-base); }
-@media (max-width: 760px) {
-  .course-settings .settings-section-heading { flex-direction: column; align-items: stretch; }
-}
 /* Beside Back, Show move and Hint on a phone, Main line needs its full width for the label. */
 @media (max-width: 760px) {
   .lesson-branch-return svg { display: none; }
+}
 }

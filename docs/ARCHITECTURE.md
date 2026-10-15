@@ -98,7 +98,7 @@ lock, while other accounts have independent locks.
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
 | Home.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
-| study/ | Study landing, opening catalogue/enrollment, lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. `CourseSettings.tsx` and `LessonEditor.tsx` are the administrator course tools under Settings → Courses |
+| study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` are the administrator course tools under Settings → Courses |
 | play/ | Play setup and live games against the coach's bot (`PlayScreen.tsx`, `PlayGame.tsx`, `usePlaySession.ts`), reusing the game review presentation |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
@@ -108,28 +108,60 @@ lock, while other accounts have independent locks.
 | ReviewCoach.tsx | Common portrait with optional caption, speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
 | gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
 | gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |
-| gameReview/usePositionAnalysis.ts | Serialized engine requests, per-history cache, browsing debounce and stale-response isolation |
+| gameReview/useAnalysisRequests.ts | The analysis request core shared by game review and Play: serial queue, dedupe, cache, failures kept per key, and generation/mounted checks before sending |
+| gameReview/usePositionAnalysis.ts | Game review's use of that core: per-history keys and the browsing debounce |
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
+| useQuery.tsx / usePolling.ts / useDeadline.ts | Shared request lifecycles. `useQuery` loads, aborts and retries one screen request, and `QueryResult` shows loading, unavailable-with-Try-again or the data (a failed refresh keeps the data and shows an error banner), so a failed or pending load never reads as empty. `useCommand` runs one command at a time, aborted if the screen leaves. `usePolling` (import jobs, the analysis queue, provider statuses, Play's profile and game review progress) repeats a task one pass at a time, pauses in hidden tabs, backs off after failures, and lets an explicit refresh wait for the pass in flight. `useDeadline` is one timer to a deadline. Screens keep their own requests; only the lifecycle is shared |
+| gameProviders.ts | The registered game providers, fetched once per page load for every screen that lists them, and `useServerDraft` for fields that follow the server until edited |
 | Settings.tsx / SettingsSection.tsx | URL-addressable Settings sections, shared section layout, account/preferences and classification job controls |
-| AccountAdmin.tsx / ChangePasswordForm.tsx | Administrator account list under Settings → Account, and password changes (including the forced change after an administrator reset) |
+| accountContext.ts | The signed-in account, guest and administrator hooks, with no UI imports, so preference hooks and development tools never pull in the sign-in screens. `AccountGate.tsx` provides the contexts and owns the sign-in, onboarding and forced password screens |
+| AccountSettings.tsx / AccountAdmin.tsx / ChangePasswordForm.tsx / accountFields.tsx | Settings → Account for members, the administrator account list, password changes (including the forced change after an administrator reset), and the shared username and new-password rules |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
-| useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
+| useSavedPreferences.ts | Shared account-bound preference load/save lifecycle: one serialized write queue (latest choice per field wins, results saved/superseded/failed), failure recovery, stale-response guards and an optional per-account device cache (`fieldwork.<name>:<account id or "local">`) |
 | audio/AudioProvider.tsx / AudioSettings.tsx | Existing account preference lifecycle, device-local mute, trusted browser activation and stable scoped sound controls |
 | audio/engine.ts / model.ts / catalog.ts | Semantic sound playback, local asset cache, cancellation/priority, independent speech bus and metadata; no grading, rules, TTS or coach-text generation |
 | MotionProvider.tsx / MotionSettings.tsx / motion.ts / MotionSelect.tsx | Saved piece/interface motion, common device-default override rules and shared motion selector |
 | coach/model.ts / registry.ts / motionVocabulary.ts / usePerformance.ts | Coach definitions, explicit display groups, compatibility fallbacks, expression-specific idle pools, event dwell and one-shot reactions |
-| useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits, boards and controls |
+| mediaQuery.ts / useReducedMotion.ts / usePhone.ts | One event-driven store per media query (subscribed once at module level, resynchronized when the first consumer mounts), shared by the device motion preference and the phone breakpoint (`PHONE_QUERY`) |
+| fen.ts | FEN reading for labels only: `START_FEN`, `sideToMove`, `numberedSan`/`moveNumber` and the playback "Your move / Opponent reply" label; UCI squares come from boardCues.ts |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
 | coach/studies/ / coach/cast/ / coach/studio/ | Shared registered character artwork, cast-specific SVG rigs and a separate development-only expression/idle comparison entry |
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
-| PageTitle.tsx | Visually hidden page heading |
-| navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
+| PageTitle.tsx | Visually hidden page heading and the browser tab title (`usePageTitle`); App sets the route's fallback title first |
+| navigation.ts / Link.tsx | URL routing and normal anchor/modifier-click behavior. Every in-app address is built by a typed builder here (`gameReviewPath`, `settingsPath`, `focusedPracticePath`, `puzzleSourcePath`…). `parseScreen` turns an address into one `Screen` (a discriminated union) without touching history, and App picks the screen with an exhaustive switch. One store owns the history listeners whatever renders the route; `startRouter` rewrites old addresses once before the first render, and `useScrollRestoration` (App only) restores positions and follows a fresh link's anchor until the page settles. `useLeaveGuard` asks before a link, Back, Forward or reload leaves unsaved work: each entry records its place in the session, so a refused Back returns to the entry the reader was on |
 | api.ts / api.generated.ts | Same-origin typed OpenAPI client, authentication/error handling and generated request/response contracts |
 
 Existing Board, MoveStatus, ReviewExplanation, ProviderImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
+
+### Stylesheets
+
+Cascade layers decide which rule wins, never the order in which modules happen to
+import their sheets. `src/layers.css` holds the order,
+`foundation, shell, components, pages, surfaces, motion`, and every stylesheet
+opens with that same `@layer` statement, so whichever sheet the application, a
+development tool or a test fixture loads first fixes it. Every stylesheet wraps
+its rules in one of the layers:
+
+- `foundation`: `foundation.css` (tokens, fonts, element defaults and utilities).
+- `shell`: `base.css` (application chrome, `main`, `.panel` and phone typography).
+- `components`: every shared component's sheet, the coach artwork and the review
+  and coach presentation.
+- `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,
+  the studios' and the lab's own sheets…).
+- `surfaces`: the phone surface policy (sections flatten; see
+  [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
+  padding or border never undoes it. A page that divides flattened panels puts that
+  divider in this layer too (`game-insights.css`).
+- `motion`: `interface-motion.css`, the Still policy over everything but coaches.
+
+A component's rule therefore beats the shell's at any specificity, and a page's
+beats a component's; within one layer the usual specificity and order apply. A new
+stylesheet picks its layer and starts with the order statement; an unlayered rule
+would beat every layer and is not allowed. `scripts/css-layers.mjs` (part of
+`npm run test:styles`) checks both.
 
 `styles.css` is the application stylesheet entry point. `foundation.css` owns
 shared fonts, tokens, element defaults and common form/surface utilities;
@@ -140,9 +172,8 @@ board, legal-move markers, tactical highlights, rating animation and retry effec
 SRS and game-specific panels live in `srs-review.css` and `game-review.css`.
 History, imports, account/sync forms and evidence each have their own stylesheet.
 Keep a component's normal and responsive rules together, with one block per
-breakpoint, rather than appending overrides to the entry point. Shared review
-presentation precedes the base element defaults to preserve the established
-cascade. Board dimensions and motion remain common to both review experiences.
+breakpoint, rather than appending overrides to the entry point. Board dimensions
+and motion remain common to both review experiences.
 `interface-motion.css` applies the resolved account motion choice to all interface CSS
 animations/transitions, excluding coach portrait subtrees with their independent
 choice. `Board` uses that same resolved state for native piece movement. Browser

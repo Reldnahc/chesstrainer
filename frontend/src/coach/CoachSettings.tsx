@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import SettingsSection from "../SettingsSection";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { COACH_INTRODUCTION } from "../audio/speech/voiceBank";
-import { CoachCharacter } from "./CoachAvatar";
+import { CoachCharacter } from "./CoachCharacter";
 import { useCoachPreference, useCoachPreferences } from "./CoachProvider";
 import { getCoach, selectableCoaches } from "./registry";
 import type { CoachId } from "./model";
@@ -28,13 +28,15 @@ export default function CoachSettings() {
     setIntroduce(null);
     voice.stop();
     setSaved(false);
-    const ok = await choice.save(value);
-    setSaved(ok);
-    if (ok && requested.current === value) setIntroduce(value);
+    const result = await choice.save(value);
+    if (result === "superseded") return;
+    setSaved(result === "saved");
+    if (result === "saved" && requested.current === value) setIntroduce(value);
   }
   const { play } = voice;
   useEffect(() => {
     if (!introduce || savedCoachId !== introduce) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- consumes the one-shot request as its introduction starts playing
     setIntroduce(null);
     void play(COACH_INTRODUCTION);
   }, [introduce, savedCoachId, play]);

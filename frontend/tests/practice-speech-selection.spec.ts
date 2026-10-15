@@ -111,9 +111,7 @@ test("every supported finding mechanism maps to its full recorded meaning, inclu
   const mechanisms: NonNullable<PatternFinding["mechanism"]>[] = ["fork_recognized", "fork_collected", "pin_prevents_capture", "pin_restricts_escape",
     "pin_defenders_no_recapture", "pin_collected", "skewer_collected", "king_skewer_collected", "defender_captured", "sole_defender_captured",
     "deflection", "deflection_collected", "discovered_capture", "discovered_check", "double_check", "double_attack_collected",
-    "promotion_material_retained", "undefended_capture", "undefended_capture_gain", "back_rank_mate", "abandoned_defender", "unfavorable_exchange",
-    // Practice and piece variants share one mechanism table, so the recorded relative-pin line plays too.
-    "relative_pin_released"];
+    "promotion_material_retained", "undefended_capture", "undefended_capture_gain", "back_rank_mate", "abandoned_defender", "unfavorable_exchange"];
   for (const mechanism of mechanisms) {
     const item = finding({mechanism});
     const id = explanationFindingRecording(explanation({findings: [item]}), item, 1);

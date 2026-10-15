@@ -1,5 +1,6 @@
-import {isErrorLabel, type Report} from "../gameReview/types";
+import type {Report} from "../gameReview/types";
 import {claim, makeIntent, type Claim, type CoachUtterance, type DialogueIntent, type EvidenceRef} from "./model";
+import {isPoorMove} from "../moveQuality";
 
 /** One prepared insight supplies the visible badge and its explanation; it is never voiced. */
 export type HumanInsightPresentation = {intent: DialogueIntent; utterance: CoachUtterance};
@@ -54,7 +55,7 @@ export function humanClaims(report: Report, ply: number, mover: string | null): 
   ];
   const interpretations = practical.interpretations ?? [];
   const best = report.best.san, foundBest = report.actual.uci === report.best.uci;
-  const poor = isErrorLabel(report.engine_label ?? report.label);
+  const poor = isPoorMove(report.engine_label ?? report.label);
   const result: Claim[] = [];
   if (interpretations.includes("natural_error")) result.push(claim("human_natural_error", {}, 69, refs));
   if (practical.best_find_difficulty === "difficult" && practical.components.only_good_move_at_depth && poor)

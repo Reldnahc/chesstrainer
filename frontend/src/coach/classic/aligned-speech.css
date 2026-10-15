@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 /* This opt-in articulation leaves the original energy-driven artwork untouched.
    Its eight controls are smoothed by the shared playback clock, not CSS loops. */
 .walter-aligned-mouth {
@@ -68,4 +70,5 @@
 .walter-aligned-tongue-floor {
   transform: translateY(calc((var(--walter-aligned-height) - 1) * 6.5px));
   opacity: clamp(0, calc((var(--walter-aligned-height) - .4) * .65), .4);
+}
 }

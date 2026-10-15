@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* Account animation preference controls. */
 .motion-controls {
   display: grid;
@@ -11,4 +13,5 @@
 .motion-preference + .motion-preference {
   padding-top: var(--space-4);
   border-top: 1px solid var(--line);
+}
 }

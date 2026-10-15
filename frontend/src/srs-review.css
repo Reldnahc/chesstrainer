@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 /* The panel stacks the coach, receipt and details; its empty state groups
    an introduction and actions with a looser rhythm. */
 .practice-panel {
@@ -34,7 +36,7 @@
   font-size: var(--text-4xl);
   letter-spacing: -0.8px;
 }
-.practice-actions > .button-link {
+.practice-actions > a.action-control {
   display: flex;
   width: 100%;
 }
@@ -167,13 +169,13 @@
   padding-left: var(--space-1-5);
 }
 .pattern-legend .attacker {
-  border-color: #2785c4;
+  border-color: var(--pattern-attacker);
 }
 .pattern-legend .target {
-  border-color: #f78b40;
+  border-color: var(--pattern-target);
 }
 .pattern-legend .defender {
-  border-color: #ab6ee9;
+  border-color: var(--pattern-defender);
 }
 .pattern-findings {
   border-top: 1px solid var(--line);
@@ -213,4 +215,5 @@
   .review-session .review-move {
     font-size: var(--text-xl);
   }
+}
 }

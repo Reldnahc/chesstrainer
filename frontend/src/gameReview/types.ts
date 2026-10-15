@@ -2,10 +2,6 @@ import type { Schema } from "../api";
 
 export type Report = Schema["GameMoveReport"];
 
-/** The review grades that mark a move as an error: Next mistake, corrections,
- * grade takes and the coach's error wording all use this one set. */
-export const ERROR_LABELS: ReadonlySet<string> = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
-export const isErrorLabel = (label: string | null | undefined) => !!label && ERROR_LABELS.has(label);
 export type Position = Schema["GamePosition"];
 export type Accuracy = Schema["GameAccuracy"];
 export type Analysis = Schema["GameAnalysis"];

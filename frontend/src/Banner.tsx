@@ -1,9 +1,10 @@
 import {
-  createContext, useContext, useEffect, useId, useLayoutEffect, useRef, useState,
+  createContext, isValidElement, useContext, useEffect, useEffectEvent, useId, useLayoutEffect, useRef, useState,
   type ReactNode,
 } from "react";
 import Notice from "./Notice";
 import { RevealList } from "./Reveal";
+import { useLatest } from "./useLatest";
 import "./banner.css";
 
 /*
@@ -19,6 +20,8 @@ const CONFIRMATION_MS = 6000;
 
 type Entry = {
   id: string;
+  /** Changes when the message does, restarting a confirmation's timer. */
+  revision: number;
   tone: "info" | "success" | "error";
   message: ReactNode;
   action?: ReactNode;
@@ -36,12 +39,12 @@ const BannerEntries = createContext<Entry[]>([]);
 
 export function BannerProvider({ children }: { children: ReactNode }) {
   const [entries, setEntries] = useState<Entry[]>([]);
-  const actions = useRef<Actions>({
+  const [actions] = useState<Actions>(() => ({
     set: (entry) => setEntries((list) => list.some((item) => item.id === entry.id)
       ? list.map((item) => (item.id === entry.id ? entry : item))
       : [...list, entry]),
     remove: (id) => setEntries((list) => list.filter((item) => item.id !== id)),
-  }).current;
+  }));
   return (
     <BannerActions.Provider value={actions}>
       <BannerEntries.Provider value={entries}>{children}</BannerEntries.Provider>
@@ -76,18 +79,18 @@ function PageBanners({ entries }: { entries: Entry[] }) {
 
 function BannerCard({ entry }: { entry: Entry }) {
   const [paused, setPaused] = useState(false);
-  const dismiss = useRef(entry.onDismiss ?? (() => undefined));
-  dismiss.current = entry.onDismiss ?? (() => undefined);
+  const dismissible = !!entry.onDismiss;
+  const expire = useEffectEvent(() => entry.onDismiss?.());
   useEffect(() => {
-    if (entry.persistent || !entry.onDismiss || paused) return;
-    const timer = window.setTimeout(() => dismiss.current(), CONFIRMATION_MS);
+    if (entry.persistent || !dismissible || paused) return;
+    const timer = window.setTimeout(expire, CONFIRMATION_MS);
     return () => window.clearTimeout(timer);
-  }, [entry.persistent, paused, entry.message]);
+  }, [entry.persistent, dismissible, paused, entry.revision]);
   return (
     <div onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
       <Notice announcement={entry.tone === "error" ? "alert" : "status"} tone={entry.tone} appearance="banner"
-        actions={entry.action} onDismiss={entry.onDismiss && (() => dismiss.current())}>
+        actions={entry.action} onDismiss={entry.onDismiss}>
         {entry.message}
       </Notice>
     </div>
@@ -100,23 +103,49 @@ function BannerCard({ entry }: { entry: Entry }) {
  * The caller owns the message state; closing (or a confirmation timing out)
  * calls onDismiss.
  */
-export default function Banner({ children, tone = "info", action, onDismiss, persistent }: {
+export default function Banner({ children, tone = "info", action, onDismiss }: {
   children: ReactNode;
   tone?: "info" | "success" | "error";
   /** One command or link, shown before the close button. */
   action?: ReactNode;
   /** Omitted for a banner that stays while its state lasts (a finished game's result); it then has no close button. */
   onDismiss?: () => void;
-  /** Defaults to true for errors and banners with an action; confirmations close themselves. */
-  persistent?: boolean;
 }) {
   const actions = useContext(BannerActions);
   if (!actions) throw new Error("Banner needs a BannerProvider");
   const id = useId();
+  const dismiss = useLatest(onDismiss);
+  // Republish only when what the banner shows changes, not on every owner render.
+  const published = useRef<{ tone: string; children: ReactNode; action: ReactNode; dismissible: boolean;
+    revision: number } | null>(null);
   useLayoutEffect(() => {
-    actions.set({ id, tone, message: children, action, onDismiss,
-      persistent: persistent ?? (tone === "error" || !!action) });
+    const last = published.current;
+    const sameMessage = !!last && last.tone === tone && sameContent(last.children, children);
+    if (sameMessage && sameContent(last.action, action) && last.dismissible === !!onDismiss) return;
+    const revision = sameMessage ? last.revision : (last?.revision ?? 0) + 1;
+    published.current = { tone, children, action, dismissible: !!onDismiss, revision };
+    actions.set({ id, revision, tone, message: children, action,
+      onDismiss: onDismiss && (() => dismiss.current?.()),
+      // Errors and banners with an action stay until closed; confirmations close themselves.
+      persistent: tone === "error" || !!action });
   });
-  useLayoutEffect(() => () => actions.remove(id), [actions, id]);
+  useLayoutEffect(() => () => {
+    published.current = null;
+    actions.remove(id);
+  }, [actions, id]);
   return null;
+}
+
+/** Whether two renders' content shows the same thing: equal values, or elements
+ * of the same type and key whose props are the same. Callbacks compare by
+ * identity, so an action with a fresh handler is republished (but its timer,
+ * which follows the message, keeps running). */
+function sameContent(a: unknown, b: unknown): boolean {
+  if (Object.is(a, b)) return true;
+  if (Array.isArray(a) && Array.isArray(b))
+    return a.length === b.length && a.every((item, index) => sameContent(item, b[index]));
+  if (!isValidElement(a) || !isValidElement(b) || a.type !== b.type || a.key !== b.key) return false;
+  const left = a.props as Record<string, unknown>, right = b.props as Record<string, unknown>;
+  const keys = Object.keys(left);
+  return keys.length === Object.keys(right).length && keys.every((key) => sameContent(left[key], right[key]));
 }

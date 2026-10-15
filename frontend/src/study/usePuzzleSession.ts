@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, read, type Promotion, type Schema } from "../api";
+import { errorMessage, api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
+import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
 
@@ -18,7 +19,8 @@ export function usePuzzleSession(id: string) {
   const generation = useRef(0);
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
-  const started = useRef(performance.now());
+  // Set when the puzzle loads, before any move can be timed.
+  const started = useRef(0);
   const audio = useAudioScope(`puzzle:${id}`);
   const playback = useStudyPlayback(() => { started.current = performance.now(); }, undefined, audio, session?.fen);
   const { reset, playing } = playback;
@@ -46,7 +48,7 @@ export function usePuzzleSession(id: string) {
         setFeedbackEventId(`open:${id}:${result.revision}`);
       started.current = performance.now();
     } catch (e) {
-      if (version === generation.current) setError((e as Error).message);
+      if (version === generation.current) setError(errorMessage(e));
     } finally {
       if (version === generation.current) {
         locked.current = false;
@@ -56,7 +58,9 @@ export function usePuzzleSession(id: string) {
     }
   }, [id, reset]);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading the session fetches it; load marks it loading first
     void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
     return () => { generation.current++; controller.current?.abort(); };
   }, [load]);
 
@@ -86,21 +90,20 @@ export function usePuzzleSession(id: string) {
       playback.play(result.playback);
       const eventId = `revision:${result.revision}`;
       if (uci && !result.playback.length) {
-        if (result.feedback?.submitted_san) audio.move(result.feedback.submitted_san, `${eventId}:board`);
-        else audio.play("move", `${eventId}:board`);
+        audio.moveOr(result.feedback?.submitted_san, `${eventId}:board`);
       }
       if (uci && result.status === "solved") {
-        audio.play("complete", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("complete", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (uci && result.feedback?.grade === "correct") {
-        audio.play("correct", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("correct", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       } else if (uci && result.feedback?.grade === "incorrect") {
-        audio.play("retry", `${eventId}:feedback`, { delayMs: 160 });
+        audio.play("retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
       started.current = performance.now();
     } catch (e) {
       // A lost response may already be committed, or another tab may have moved.
       // Block another write until reload reconciles the server revision.
-      if (version === generation.current) setError((e as Error).message);
+      if (version === generation.current) setError(errorMessage(e));
     } finally {
       if (version === generation.current) { locked.current = false; setBusy(false); }
     }

@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
-import { expressions, type CoachArtworkProps, type CoachCollection, type CoachGroup, type CoachId } from "../model";
+import { expressions, type AuthoredCoachCollection, type CoachArtworkProps, type CoachGroup } from "../model";
+import { reactionTiming } from "../motionVocabulary";
 import { newCastPersonalities } from "../../dialogue/characters/newCast";
 import YoungBoyCoach from "./humansPets/YoungBoyCoach";
 import YoungGirlCoach from "./humansPets/YoungGirlCoach";
@@ -20,7 +21,8 @@ import RobotCoach from "./scifi/RobotCoach";
 import LivingPawnCoach from "./scifi/LivingPawnCoach";
 
 type CastEntry = {
-  id: CoachId;
+  // Only coaches with an authored personality can join the cast.
+  id: keyof typeof newCastPersonalities;
   name: string;
   group: CoachGroup;
   description: string;
@@ -117,19 +119,14 @@ const cast: readonly CastEntry[] = [
   },
 ];
 
-export const newCoachCollections: readonly CoachCollection[] = cast.map((coach) => ({
+export const newCoachCollections: readonly AuthoredCoachCollection[] = cast.map((coach) => ({
   ...coach,
   defaultState: "neutral",
   expressions,
   fallbacks: {},
   defaultFamily: coach.id,
   capabilities: { reactions: true, idle: true, speech: coach.speech ?? false },
-  animation: {
-    defaultReactionMs: 1400,
-    reactionMs: { brilliant: 1700, blunder: 1850, winning: 1700, losing: 1500 },
-    defaultIdle: ["blink", "glance", "breathe", "nod"],
-    idleGestures: {},
-  },
+  animation: reactionTiming,
   families: [{
     id: coach.id,
     coachId: coach.id,

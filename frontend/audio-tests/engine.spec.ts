@@ -99,7 +99,7 @@ async function flush() { for (let i = 0; i < 8; i++) await Promise.resolve(); }
 const move = (eventId: string, scope = "board") => ({cue: "move" as const, eventId, scope});
 function speech(id: string, priority = 50, interruptible = true): PreparedSpeechClip {
   return {scope: "coach", buffer: {} as AudioBuffer,
-    utterance: {id, priority, interruptible, text: "Visible coaching text", speechText: "Prepared spoken text"} as PreparedSpeechClip["utterance"]};
+    utterance: {id, coachId: "", priority, interruptible}};
 }
 function recording(id: string, options: Partial<RecordedSpeechClip> = {}): RecordedSpeechClip {
   return {scope: "coach", url: "/audio/walter/welcome.wav", utterance: speech(id).utterance, ...options};

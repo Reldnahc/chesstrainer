@@ -202,7 +202,8 @@ test("Study home opens Lessons, whose Fundamentals tab alone lists the tactics a
   await page.goto("/study");
   await expect(page.locator(".study-option h2")).toHaveText(["Due now", "Lessons", "Puzzles"]);
   const card = page.locator(".study-option").filter({ has: page.getByRole("heading", { name: "Lessons", exact: true }) });
-  await expect(card).toContainText(/\d+ Chapters? to learn/);
+  await expect(card.locator("dt")).toHaveText(/^Chapters? to learn$/);
+  await expect(card.locator("dd")).toHaveText(/^\d+$/);
   await card.getByRole("link", { name: "Open lessons", exact: true }).click();
   await expect(page).toHaveURL("/study/openings");
   await expect(page.getByRole("heading", { level: 1, name: "Lessons" })).toBeVisible();

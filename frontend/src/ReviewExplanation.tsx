@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
+import { errorMessage, api, read, type ExplanationFrame, type MoveExplanation } from "./api";
 import { useAudioScope } from "./audio/AudioProvider";
 import ReviewCoach from "./ReviewCoach";
 import Notice from "./Notice";
@@ -9,6 +9,7 @@ import MovePlaybackControls from "./MovePlaybackControls";
 import usePageShortcuts from "./usePageShortcuts";
 import { explanationIntent } from "./dialogue/practiceIntent";
 import { claim, makeIntent } from "./dialogue/model";
+import { words } from "./dialogue/tacticalVocabulary";
 import { useDialogue } from "./dialogue/useDialogue";
 import DialogueText from "./dialogue/DialogueText";
 import { useCoachSpeech } from "./audio/speech/useCoachSpeech";
@@ -50,8 +51,7 @@ export default function ReviewExplanation({
     audio.cancel();
     const eventId = `seek:${++navigationId.current}`;
     setSpeechEvent(speak ? `${speechVisit}:${eventId}` : null);
-    if (next === index + 1) audio.move(data.frames[next].san, eventId);
-    else audio.play("move", eventId);
+    audio.step(index, next, data.frames[next].san, eventId);
     setIndex(next);
   }
   useEffect(() => {
@@ -80,12 +80,12 @@ export default function ReviewExplanation({
         }
       })
       .catch((e) => {
-        if (current) setError(e.message);
+        if (current) setError(errorMessage(e));
       });
     return () => {
       current = false;
     };
-  }, [sessionId, attemptId, solution, initialPly]);
+  }, [sessionId, attemptId, solution, initialPly, requestKey, speechVisit]);
   const frame = data?.frames[index];
   const utterance = useDialogue(data && frame
     ? explanationIntent(`${sessionId}:${attemptId ?? "solution"}`, data, frame, index)
@@ -172,10 +172,7 @@ export default function ReviewExplanation({
                       seek(item.frame_ply, false);
                     }}
                   >
-                    Show{" "}
-                    {item.skill_id === "missed_tactical_capture"
-                      ? "undefended capture"
-                      : item.skill_id.replaceAll("_", " ")}
+                    Show {words(item.skill_id)}
                   </Button>
                 ))}
               </div>

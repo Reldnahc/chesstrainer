@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .robot-speech-mouth {
   --robot-open: clamp(0, var(--speech-open, 0), 1);
   --robot-round: clamp(0, var(--speech-round, 0), 1);
@@ -23,3 +25,4 @@
 .robot-speech-toprow { opacity: var(--speech-teeth, 0); }
 .robot-speech-center { opacity: var(--speech-tongue, 0); }
 .robot-speech-clamp { opacity: var(--speech-bite, 0); }
+}

@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer components {
 .coach-avatar[data-coach="classic"][data-family="storyteller"][data-phase="reaction"][data-motion="natural"]
   .coach-head-motion {
   animation: classic-greet 900ms both;
@@ -116,4 +118,5 @@
 .coach-avatar[data-coach="classic"][data-family="storyteller"][data-phase="reaction"][data-motion="natural"][data-expression="explaining"]
   .coach-arm-right {
   animation: classic-present 1000ms both;
+}
 }

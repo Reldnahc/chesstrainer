@@ -106,8 +106,17 @@ export type CoachDefinition = {
   Artwork: ComponentType<CoachArtworkProps>;
 };
 
+/** The only motion a coach authors; `coachPerformance` supplies every idle pool. */
+export type ReactionTiming = Pick<CoachDefinition["animation"], "reactionMs" | "defaultReactionMs">;
+
+/** Every registered family names its coach and personality; nothing falls back silently. */
 export type CoachCollection = Omit<CoachDefinition, "families"> & {
-  families: readonly (CoachFamily & { coachId: CoachId })[];
+  families: readonly (CoachFamily & { coachId: CoachId; personality: CoachPersonality })[];
+};
+/** Catalog input before each family's performance is resolved from its reaction timing. */
+export type AuthoredCoachCollection = Omit<CoachCollection, "animation" | "families"> & {
+  animation: ReactionTiming;
+  families: readonly (Omit<CoachCollection["families"][number], "animation"> & { animation?: ReactionTiming })[];
 };
 export type SelectableCoach = CoachDefinition & {
   id: CoachId;

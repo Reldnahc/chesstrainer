@@ -10,7 +10,7 @@ async function sheet(page: Page, expressions = ["neutral"], sizes = [92.8, 52.5]
   await page.goto("/");
   await page.evaluate(async ({root, animals, expressions, sizes, poses}) => {
     const {React, createRoot} = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const {CoachCharacter} = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const {CoachCharacter} = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const {getCoach} = await import(`${root}/src/coach/registry.ts`);
     const container = document.createElement("section");
     container.id = "other-animal-mouths";
@@ -133,7 +133,7 @@ test("all four animal mouths follow the shared playback clock without replacing 
   await page.goto("/");
   await page.evaluate(async ({root, animals}) => {
     const {React, createRoot} = await import(`${root}/studio-tests/fixtures/runtime.ts`);
-    const {CoachCharacter} = await import(`${root}/src/coach/CoachAvatar.tsx`);
+    const {CoachCharacter} = await import(`${root}/src/coach/CoachCharacter.tsx`);
     const {getCoach} = await import(`${root}/src/coach/registry.ts`);
     let active = true, elapsed = .4;
     const container = document.createElement("section");

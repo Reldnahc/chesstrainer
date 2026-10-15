@@ -8,17 +8,19 @@ import { sourceFiles } from "./source-files.mjs";
 const PROPERTY = /(?:^|[{;\s])(font-size|font|--[\w-]*font-size[\w-]*)\s*:\s*([^;}]*)/g;
 const RAW = /(^|[\s(,/])(\d*\.?\d+)(px|rem|pt)\b/g;
 
+// Whole declarations are read, so a value wrapped over several lines is checked too.
 export function violations(css) {
+  const text = css.replace(/\/\*[\s\S]*?\*\//g, match => match.replace(/[^\n]/g, " "));
+  const lineOf = index => text.slice(0, index).split("\n").length;
   const found = [];
-  css.replace(/\/\*[\s\S]*?\*\//g, match => match.replace(/[^\n]/g, " ")).split("\n").forEach((line, index) => {
-    for (const [, property, value] of line.matchAll(PROPERTY)) {
-      // In a shorthand only the size before any "/line-height" counts; px line heights are not sizes.
-      const size = property === "font" ? value.split("/")[0] : value;
-      for (const [, , number, unit] of size.matchAll(RAW)) {
-        found.push({ line: index + 1, property, value: value.trim(), raw: `${number}${unit}` });
-      }
+  for (const match of text.matchAll(PROPERTY)) {
+    const [, property, value] = match;
+    // In a shorthand only the size before any "/line-height" counts; px line heights are not sizes.
+    const size = property === "font" ? value.split("/")[0] : value;
+    for (const [, , number, unit] of size.matchAll(RAW)) {
+      found.push({ line: lineOf(match.index + match[0].indexOf(property)), property, value: value.replace(/\s+/g, " ").trim(), raw: `${number}${unit}` });
     }
-  });
+  }
   return found;
 }
 

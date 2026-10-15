@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useLayoutEffect, type ReactNode } from "react";
+import { createContext, useContext, useLayoutEffect, type ReactNode } from "react";
 import { api, read } from "./api";
 import { resolveMotion, type MotionPreference } from "./motion";
 import { useReducedMotion } from "./useReducedMotion";
-import { useSavedPreferences, type SavedPreferences } from "./useSavedPreferences";
+import { useSavedPreferences, type DeviceCache, type SavedPreferences } from "./useSavedPreferences";
 
 type Preferences = {motion: MotionPreference};
 type Context = SavedPreferences<Preferences> & {motion: "natural" | "still"};
@@ -10,26 +10,18 @@ const defaults: Preferences = {motion: "system"};
 const load = (signal: AbortSignal) => read(api.GET("/api/preferences/motion", {signal}));
 const write = (body: Preferences) => read(api.PUT("/api/preferences/motion", {body}));
 const MotionContext = createContext<Context | null>(null);
-// The last saved choice on this browser, so the first page's content can animate
-// in before the account preference arrives (a Still choice still stays still).
-const CACHE = "fieldwork.interface-motion";
-const cached = (): MotionPreference | null => {
-  try {
-    const value = localStorage.getItem(CACHE);
-    return value === "system" || value === "natural" || value === "still" ? value : null;
-  } catch { return null; }
+// The account's last choice on this browser, so the first page's content can
+// animate in before the account preference arrives (a Still choice still stays
+// still). Without one, nothing moves until the preference loads.
+const deviceCache: DeviceCache<Preferences> = {
+  name: "interface-motion",
+  pick: ({motion}) => motion === "system" || motion === "natural" || motion === "still" ? {motion} : {},
 };
 
 export function MotionProvider({children}: {children: ReactNode}) {
-  const state = useSavedPreferences({defaults, load, write});
+  const state = useSavedPreferences({defaults, load, write, deviceCache});
   const deviceReduced = useReducedMotion();
-  const remembered = cached();
-  const motion = state.ready ? resolveMotion(state.preferences.motion, deviceReduced)
-    : remembered ? resolveMotion(remembered, deviceReduced) : "still";
-  useEffect(() => {
-    if (!state.ready) return;
-    try { localStorage.setItem(CACHE, state.preferences.motion); } catch { /* storage unavailable */ }
-  }, [state.ready, state.preferences.motion]);
+  const motion = state.ready || state.cached ? resolveMotion(state.preferences.motion, deviceReduced) : "still";
   useLayoutEffect(() => {
     document.documentElement.dataset.interfaceMotion = motion;
     return () => { delete document.documentElement.dataset.interfaceMotion; };

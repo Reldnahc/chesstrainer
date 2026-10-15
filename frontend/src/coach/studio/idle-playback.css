@@ -1,3 +1,5 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer pages {
 .studio-playback {
   display: flex;
   flex-direction: column;
@@ -122,4 +124,5 @@
   .studio-motion-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .studio-motion-tables { grid-template-columns: 1fr; gap: var(--space-4); }
   .studio-comparison-controls { flex: 1; justify-content: end; }
+}
 }

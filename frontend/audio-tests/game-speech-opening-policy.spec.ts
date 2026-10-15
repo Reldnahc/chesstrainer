@@ -6,7 +6,7 @@ import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaim
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
-import {bookRecordingId, deriveBookPresentation} from "../src/dialogue/openingPresentation";
+import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS, bookRecordingId, deriveBookPresentation} from "../src/dialogue/openingPresentation";
 import {selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
@@ -57,8 +57,8 @@ for (const coach of coaches) {
         }
       }
       expect([...slots].sort()).toEqual([
-        ...Array.from({length: 3}, (_, i) => `book-opening-entry-${i + 1}`),
-        ...Array.from({length: 8}, (_, i) => `book-opening-follow-${i + 1}`),
+        ...Array.from({length: BOOK_ENTRY_VARIANTS}, (_, i) => `book-opening-entry-${i + 1}`),
+        ...Array.from({length: BOOK_FOLLOW_VARIANTS}, (_, i) => `book-opening-follow-${i + 1}`),
       ].sort());
     }
     expect(observed.size).toBe(55);

@@ -1,20 +1,7 @@
-import type { CoachDefinition } from "../model";
+import type { ReactionTiming } from "../model";
 
-export const classicPerformance: CoachDefinition["animation"] = {
+/** Walter's reaction holds; his idle repertoire comes from the motion vocabulary. */
+export const classicPerformance: ReactionTiming = {
   defaultReactionMs: 1300,
   reactionMs: { brilliant: 1650, blunder: 1800, winning: 1650, losing: 1450 },
-  defaultIdle: ["blink", "glance", "breathe"],
-  idleGestures: {
-    brilliant: ["blink", "twinkle", "nod"],
-    blunder: ["blink", "sigh", "glasses"],
-    thinking: ["glance", "blink", "glasses"],
-    uncertain: ["glance", "blink"],
-    losing: ["blink", "breathe"],
-    mistake: ["blink", "breathe", "sigh"],
-    good: ["blink", "nod", "breathe"],
-    winning: ["blink", "nod", "twinkle"],
-    book: ["glance", "blink"],
-    encouraging: ["blink", "nod"],
-    recovered: ["blink", "nod"],
-  },
 };

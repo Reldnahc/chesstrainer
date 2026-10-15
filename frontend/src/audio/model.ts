@@ -32,6 +32,9 @@ export function cueForMove(san: string | null | undefined): SoundCue | null {
   return "move";
 }
 
+/** A practice result's correct/retry/complete cue follows its move by this much. */
+export const FEEDBACK_CUE_DELAY_MS = 160;
+
 export type SoundRequest = {
   cue: SoundCue;
   scope: string;
@@ -40,9 +43,12 @@ export type SoundRequest = {
   delayMs?: number;
 };
 
+/** The utterance identity and arbitration fields that playback reads; never its text. */
+export type SpeechUtterance = Pick<CoachUtterance, "id" | "coachId" | "priority" | "interruptible">;
+
 /** A provider prepares a clip elsewhere; playback does not generate speech or choose text. */
 export type PreparedSpeechClip = {
-  utterance: CoachUtterance;
+  utterance: SpeechUtterance;
   buffer: AudioBuffer;
   scope: string;
   eventId?: string;

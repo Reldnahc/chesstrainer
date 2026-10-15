@@ -1,5 +1,6 @@
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../../api";
-import { capturedPieces, findingMeaningId, findingPieces, findingWordingHolds, withPieceVariant } from "./pieceVariants";
+import { capturedPieces, findingPieces, findingWordingHolds, withPieceVariant } from "./pieceVariants";
+import { cueMotifs, findingAliases, recordedFindingMechanisms } from "../../dialogue/tacticalVocabulary";
 
 /** Only replay_line's explicit facts authorize a complete recorded frame description.
  * A quiet checkmate credits the learner only when the learner mates; a line where
@@ -59,8 +60,6 @@ export function explanationSummaryRecording(data: MoveExplanation): string | nul
   return summaryRecording(kind, data.orientation, data.summary_frame_index == null ? null : data.frames[data.summary_frame_index]);
 }
 
-const cueKeys = new Set(["hanging_piece", "missed_tactical_capture", "fork", "pin", "skewer", "removing_defender",
-  "discovered_attack", "double_attack", "back_rank", "promotion_awareness", "abandoned_defender", "avoiding_bad_trades", "deflection"]);
 
 function currentFinding(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): finding is PatternFinding {
   return !!finding && !!data.analysis_id && finding.analysis_id === data.analysis_id
@@ -71,11 +70,12 @@ function currentFinding(data: MoveExplanation, finding: PatternFinding | null | 
 }
 export function explanationFindingRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
   if (!currentFinding(data, finding, index) || !finding.mechanism || !findingWordingHolds(data, finding)) return null;
-  const id = findingMeaningId(finding.mechanism);
+  const id = findingAliases[finding.mechanism] ?? (recordedFindingMechanisms.has(finding.mechanism)
+    ? `explanation-finding-${finding.mechanism.replaceAll("_", "-")}` : null);
   return id && withPieceVariant(id, findingPieces(data, finding)?.pieces);
 }
 export function explanationCueRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
-  if (!currentFinding(data, finding, index) || !finding.cue_key || finding.cue_key !== finding.skill_id || !cueKeys.has(finding.cue_key)) return null;
+  if (!currentFinding(data, finding, index) || !finding.cue_key || finding.cue_key !== finding.skill_id || !cueMotifs.has(finding.cue_key)) return null;
   return `explanation-cue-${finding.cue_key.replaceAll("_", "-")}`;
 }
 const noteKinds = new Set(["curated_authority", "strong_replies", "material_scope", "no_simple_reason", "saved_policy"]);

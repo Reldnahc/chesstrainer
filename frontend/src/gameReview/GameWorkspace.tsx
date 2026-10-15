@@ -4,7 +4,9 @@ import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
-import { negateScore, positionScore, scoreText, strength } from "../evaluation";
+import { positionScore, startingScore } from "../evaluation";
+import EvaluationBar from "../EvaluationBar";
+import { ARROW_COLOURS, cueArrows, cuesFor, moveSquares, uciArrow } from "../boardCues";
 import ActionLink from "../ActionLink";
 import { LoadingState, UnavailableState } from "../LoadState";
 import { PlayerRow } from "./Players";
@@ -17,7 +19,7 @@ import DialogPresence from "../DialogPresence";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
-import { useGuest } from "../AccountGate";
+import { useGuest } from "../accountContext";
 
 export default function GameWorkspace({
   id,
@@ -78,13 +80,7 @@ export default function GameWorkspace({
   });
   const currentAnalysis = analysis.get(root, path);
   const report = saved || currentAnalysis?.report;
-  // The first move's best score is the start position's own score, from the
-  // side to move; the board shows it from White's side.
-  const initialScore = firstReport
-    ? game?.frames[0].turn === "white"
-      ? firstReport.best.score
-      : negateScore(firstReport.best.score)
-    : null;
+  const initialScore = game ? startingScore(game.frames) : null;
   // A move's saved score is that move's search; a variation's own search and
   // the start's score belong to the position itself.
   const score = report
@@ -96,10 +92,7 @@ export default function GameWorkspace({
       );
   const bestMove =
     report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
-  const cues =
-    report?.board_cues?.fen === frame?.fen
-      ? (report?.board_cues ?? null)
-      : null;
+  const cues = cuesFor(report, frame);
   const explaining = exploration.explanationKey === key && !!cues;
   const actor =
     (branch ? cursor.step > 0 : cursor.ply > 0) && frame?.san
@@ -146,12 +139,12 @@ export default function GameWorkspace({
   const reply = report?.immediate_reply?.uci;
   const replyArrow =
     reply && frame && report.actual.san === frame.san && !frame.termination
-      ? [{ startSquare: reply.slice(0, 2), endSquare: reply.slice(2, 4), color: "#4f9cff8c" }]
+      ? [uciArrow(reply, ARROW_COLOURS.suggestedReply)]
       : [];
   // Pins the move just made, from the pinning piece through the pinned piece to
   // the one behind it. A pin kept from an earlier move is not drawn again.
   const pinArrows = (cues?.pins ?? []).map((pin) => ({
-    startSquare: pin.startSquare, endSquare: pin.endSquare, color: "#ff71878c",
+    startSquare: pin.startSquare, endSquare: pin.endSquare, color: ARROW_COLOURS.pin,
   }));
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
@@ -185,21 +178,7 @@ export default function GameWorkspace({
             running={!branch && !frame?.termination && toMove === orientation}
           />
         }
-        evaluation={
-          <div
-            className="game-eval-bar"
-            aria-label={`Evaluation for White: ${scoreText(score, 1)}`}
-          >
-            <div
-              style={{
-                height: `${score ? 50 + 48 * strength(score) : 50}%`,
-                top: orientation === "black" ? 0 : "auto",
-                bottom: orientation === "white" ? 0 : "auto",
-              }}
-            />
-            <span>{scoreText(score, 1)}</span>
-          </div>
-        }
+        evaluation={<EvaluationBar score={score} orientation={orientation} />}
         board={
           <Board
             fen={displayed.fen}
@@ -207,9 +186,7 @@ export default function GameWorkspace({
             legalMoves={guest ? [] : frame?.legal_moves || []}
             disabled={!frame || moving || guest}
             onMove={play}
-            highlights={
-              currentUci ? [currentUci.slice(0, 2), currentUci.slice(2, 4)] : []
-            }
+            highlights={moveSquares(currentUci)}
             quality={
               report && currentUci
                 ? { square: currentUci.slice(2, 4), label: report.label }
@@ -219,15 +196,7 @@ export default function GameWorkspace({
             arrows={
               explaining
                 ? [
-                    ...cues!.arrows.map((a) => ({
-                      ...a,
-                      color:
-                        a.kind === "move"
-                          ? "#b8d69be6"
-                          : a.kind === "reply"
-                            ? "#ffb17be6"
-                            : "#ff7187db",
-                    })),
+                    ...cueArrows(cues!),
                     ...pinArrows.filter((pin) => !cues!.arrows.some((a) =>
                       a.startSquare === pin.startSquare && a.endSquare === pin.endSquare)),
                   ]
@@ -265,7 +234,7 @@ export default function GameWorkspace({
           exploration={exploration}
           getAnalysis={analysis.get}
           actions={
-            <button className="game-export-button" aria-label="Export game" title="Export PGN, FEN or GIF"
+            <button className="game-move-command game-move-command--icon" aria-label="Export game" title="Export PGN, FEN or GIF"
               onClick={() => setExporting(true)}>
               <Share size={14} />
             </button>

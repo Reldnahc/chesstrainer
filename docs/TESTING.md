@@ -429,12 +429,27 @@ whose only reading was Maia gets the plain best or good line.
 `position-coach-speech.spec.ts` and `coach-speech.spec.ts` observe actual playback,
 including delayed Maia results, the silent Maia popup and cancellation.
 
+`npm run lint` runs ESLint ([eslint.config.js](../frontend/eslint.config.js)) over the
+application, the three development tools, their browser tests and the build scripts,
+with no warnings allowed: the JavaScript and typescript-eslint recommended rules, and
+every React rule from `eslint-plugin-react-hooks`, including Rules of Hooks, exhaustive
+effect dependencies and the React Compiler's checks (refs, state set in effects,
+render purity), and two type-aware rules: no floating promises, and no promise passed
+where a plain callback is expected (async event-handler attributes are allowed, since
+each reports its own failure). An intended exception is written at its line as
+`// eslint-disable-next-line <rule> -- <why>`, or as a `/* eslint-disable <rule> -- <why> */`
+… `/* eslint-enable <rule> */` pair around one short block (Reveal's presence bookkeeping);
+never disable a rule for a whole file. A disable comment that is no longer needed is
+itself reported, so stale exceptions fail the build.
+
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It then runs the CSS design-system checks `frontend/scripts/spacing-scale.mjs`,
 `scripts/surfaces.mjs`, `scripts/type-scale.mjs` and `scripts/motion-scale.mjs`
 (see the spacing, surface, type and motion rules in
-[UI_COMPONENTS.md](UI_COMPONENTS.md#spacing)).
+[UI_COMPONENTS.md](UI_COMPONENTS.md#spacing)), and `scripts/css-layers.mjs`, which
+requires every stylesheet to keep its rules inside a declared cascade layer (see
+[ARCHITECTURE.md](ARCHITECTURE.md#stylesheets)).
 It also rejects direct or lazy application imports of either studio and verifies
 the real application graph. Production Walter recordings remain permitted. These
 checks inspect runtime dependencies; the corresponding-source download can still
@@ -518,7 +533,7 @@ intelligence-lab and audio-studio browser tests and their Playwright configs. Th
 browser-test project includes Node 24 declarations for its runner and fixture helpers; fixtures
 must satisfy the same generated API contracts as the application. Both frontend
 checks run as part of `npm run build`, which `frontend/scripts/build.mjs` runs side by
-side with the style-boundary and symbol checks and the Vite build itself (the build
+side with the lint, the style-boundary and symbol checks and the Vite build itself (the build
 waits only for the API contract check and the public-source archive);
 backend contract tests and the export check run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.

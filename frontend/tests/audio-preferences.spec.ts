@@ -198,7 +198,9 @@ for (const input of ['pointer', 'keyboard'] as const) {
       await expect.poll(() => writes.length).toBe(1);
       const expected = String(Math.round(writes[0].volume * 100));
       expect(Number(expected)).toBeGreaterThan(35);
-      await expect(volume).toBeDisabled();
+      // The slider stays usable (and focused) while the change saves; the controls are marked busy.
+      await expect(volume).toBeEnabled();
+      await expect(sound.locator('.audio-settings-controls')).toHaveAttribute('aria-busy', 'true');
       await expect(sound.locator('.preference-status')).toHaveAttribute('data-state', 'saving');
       await sound.getByRole('heading', {name: 'Sound', exact: true}).click();
       await expect(volume).toHaveValue(expected);
@@ -235,7 +237,7 @@ test('quick mute persists only on this device and never writes account preferenc
   await page.reload();
   await expect(unmute).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', {name: 'Previous move', exact: true}).click();
-  await expect(page.locator('.game-move-list').getByRole('button', {name: /^1\.\.\. e5(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
+  await expect(page.locator('.game-move-list').getByRole('button', {name: /^1… e5(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
   expect(await audioCues(page)).toEqual([]);
   expect(await (await page.request.get(preferencePath)).json()).toEqual(defaults);
   await page.getByRole('link', {name: 'Settings', exact: true}).click();

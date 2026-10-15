@@ -48,7 +48,7 @@ test("section navigation keeps phone targets and disappears inside a lesson cour
   await page.setViewportSize({ width: 320, height: 700 });
   for (const { route, links } of [
     { route: "/insights?section=patterns", links: ["Overview", "Weaknesses", "Tactical patterns", "Material & mate"] },
-    { route: "/settings?section=advanced", links: ["Games & imports", "Coach & animations", "Sound", "Advanced"] },
+    { route: "/settings?section=advanced", links: ["Games & imports", "Coach & animations", "Sound", "Courses", "Advanced"] },
     { route: "/study/openings", links: ["Fundamentals", "Openings", "Catalogue", "My studies"] },
   ]) {
     await page.goto(route);

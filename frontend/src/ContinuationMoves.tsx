@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { numberedSan } from "./fen";
 import "./continuation-moves.css";
 
 type ContinuationMove = { san: string; before_fen: string };
@@ -15,11 +16,7 @@ export default function ContinuationMoves({ label, moves, selectedIndex, startSe
 }) {
   return <div className="continuation-moves" role="group" aria-label={label}>
     <Button size="compact" disabled={disabled} aria-current={startSelected ? "step" : undefined} onClick={onStart}>Start</Button>
-    {moves.map((move, index) => {
-      const position = numbered ? move.before_fen.split(" ") : null;
-      const prefix = position ? `${position[5]}${position[1] === "w" ? "." : "…"} ` : "";
-      return <Button size="compact" key={index} disabled={disabled} aria-current={selectedIndex === index ? "step" : undefined}
-        onClick={() => onSelect(index)}>{prefix}{move.san}</Button>;
-    })}
+    {moves.map((move, index) => <Button size="compact" key={index} disabled={disabled} aria-current={selectedIndex === index ? "step" : undefined}
+      onClick={() => onSelect(index)}>{numbered ? numberedSan(move.before_fen, move.san) : move.san}</Button>)}
   </div>;
 }

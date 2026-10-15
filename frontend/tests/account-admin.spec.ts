@@ -168,7 +168,8 @@ test('everyone can change their own password in Settings', async ({page}, info) 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({path: `test-results/settings-password-${info.project.name}.png`, fullPage: true});
   await password.getByRole('button', {name: 'Change password'}).click();
-  await expect(password.getByRole('status')).toHaveText('Password changed. Your other devices are signed out.');
+  // The confirmation is a page banner, like Settings' other results.
+  await expect(page.getByRole('region', {name: 'Notifications'})).toContainText('Password changed. Your other devices are signed out.');
   await expect(password.getByLabel('Current password')).toHaveValue('');
   expect(bodies).toEqual([{current_password: 'old-password', new_password: 'brand-new-password'}]);
 });
