@@ -7,10 +7,12 @@ COPY . .
 RUN npm --prefix frontend run build
 
 FROM python:3.12-slim-trixie AS runtime
+# SQLITE_TMPDIR: SQLite's temporary files, such as the copy a VACUUM makes, go
+# beside the database rather than into the small /tmp.
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     SERVER_HOST=0.0.0.0 SERVER_PORT=8000 DATABASE_PATH=/data/trainer.sqlite3 \
     STOCKFISH_PATH=/usr/games/stockfish ACCOUNTS_ENABLED=true SESSION_SECURE=true \
-    HUMAN_MODEL_PATH=/data/models/maia3-79m.pt HF_HUB_OFFLINE=1
+    HUMAN_MODEL_PATH=/data/models/maia3-79m.pt HF_HUB_OFFLINE=1 SQLITE_TMPDIR=/data
 RUN apt-get update && apt-get install -y --no-install-recommends stockfish \
     && rm -rf /var/lib/apt/lists/* \
     && groupadd --gid 1000 fieldwork && useradd --uid 1000 --gid 1000 --no-create-home fieldwork \

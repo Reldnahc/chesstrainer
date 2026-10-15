@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import sqlite3
 from pathlib import Path
 
@@ -161,6 +162,35 @@ def test_clear_games_removes_mined_puzzles_and_unlinks_play_games(settings, sess
             ("played", None)
         ]
         assert db.execute("SELECT COUNT(*) FROM games").fetchone() == (0,)
+
+
+def test_clear_games_keeps_engine_rows_a_kept_play_report_mentions(settings, sessions):
+    from test_migrations import fill
+
+    with sessions() as db:
+        import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+        game_id = db.scalar(select(Game.id))
+        played = _engine(db, "played").id
+        _engine(db, "unused")
+        db.commit()
+    with sqlite3.connect(settings.database_path) as db:
+        # Play reports name their analyses only inside JSON, and Play games stay.
+        report = {"1": {"played_analysis_id": played}}
+        fill(db, "play_games", id="played", user_id="local", reports=json.dumps(report))
+        fill(
+            db,
+            "decisions",
+            user_id="local",
+            game_id=game_id,
+            before_analysis_id=played,
+            played_analysis_id=played,
+        )
+
+    removed = _script().clear_games(settings.database_path, apply=True)
+    assert removed["decisions"] == 1 and removed["engine_analyses"] == 1
+    with sqlite3.connect(settings.database_path) as db:
+        assert db.execute("SELECT id FROM engine_analyses").fetchall() == [(played,)]
+        assert db.execute("PRAGMA auto_vacuum").fetchone() == (2,)
 
 
 def test_every_reference_to_a_cleared_row_is_cleared_or_unlinked():
