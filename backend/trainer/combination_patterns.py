@@ -42,7 +42,7 @@ def pin_collected(boards, plies, ply, analysis_id, direction):
                     "target": names([target]),
                     "king": names([after.king(not actor)]),
                 },
-                f"{before.san(move)} pins the {chess.piece_name(victim.piece_type)} to its king. It can only move along the pin line, and it is lost in the shown continuation.",
+                f"{before.san(move)} pins the {chess.piece_name(victim.piece_type)} to its king. It cannot step off the line to its king, and it is lost in the shown continuation.",
                 mechanism="pin_collected",
             )
 

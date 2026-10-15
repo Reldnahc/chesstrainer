@@ -42,7 +42,7 @@ export const analyst: CoachPersonality = {
     uncertain_reason: ["The engine values {best} more highly. Why is not yet established, and no reason is assumed."],
     human_natural_error: [{ fact: "Routine in the human-move model's forecast; the reply is where its cost appears." }],
     human_rare: ["An unlikely move in the human-move model's forecast. After the engine's reply, it still holds."],
-    difficult_defense: ["{best} would have held; the human-move model forecasts that few players locate that defense."],
+    difficult_defense: ["{best} would have held; the human-move model rarely picks that defense."],
     human_challenging: [{ fact: "The human-move model rates {best} difficult to locate." }],
     human_defense_found: [{ fact: "After {best}, the position was still intact; the human-move model forecasts that defense as a rare find.", consequence: "It was found." }],
     human_natural_best: ["Routine in the human-move model's forecast and unimproved upon in the engine's search: the two readings coincide."],

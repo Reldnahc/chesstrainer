@@ -66,7 +66,7 @@ export function tacticalClaim(event: Event, move: string, best: string, opponent
   if (f.motif === "fork" && targets.length >= 2)
     detail = `The ${join(targets.slice(0, 3).map(p => `${p.piece} on ${p.square}`))} are attacked together.`;
   else if (typeof f.settled_material_delta === "number" && f.settled_material_delta > 0)
-    detail = "The verified continuation wins material.";
+    detail = "The shown continuation gains material, depending on the replies.";
   else {
     const witness = Array.isArray(f.witness) ? f.witness.map(object) : [];
     const capture = witness.find(frame => frame.capture && frame.san);

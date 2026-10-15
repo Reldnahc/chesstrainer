@@ -169,6 +169,12 @@ coin toss. The selected claim cap still applies, and low-priority claims cannot
 displace the main consequence. When a response is long, optional cues are removed
 before an entire secondary claim is omitted. Required facts are never truncated.
 
+Recorded positional takes are selected only where their wording holds: the
+passed-pawn advance takes count one step, so a double step is not voiced; the
+king-flight takes speak of one new square, so two or more are not; and the
+semi-open-file takes describe a file that stays semi-open, so a file that was
+open and became semi-open is not voiced. The written lines remain.
+
 Runtime slot validation checks custom forms against the neutral claim contract.
 Unknown slots, missing mandatory slots or facts hidden only in an optional cue
 fall back to neutral wording. Positional alternatives and opponent/unknown-subject

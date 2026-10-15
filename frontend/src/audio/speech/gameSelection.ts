@@ -130,12 +130,17 @@ function positionalRecording(item: Claim, event: Event, mover: "white" | "black"
         && item.evidence.some(ref => ref.source === "pgn" && ref.field === "original_minor_piece_history")) name = "development";
       break;
     case "rook_file":
-      if (files([f.file]) && ["open", "semi_open"].includes(String(f.after))) name = f.after === "open" ? "rook-open" : "rook-semi-open";
+      // The semi-open takes say the file stays usable ("still", "remain"); a file that
+      // was open and became half-open is a change the takes do not describe.
+      if (files([f.file]) && ["open", "semi_open"].includes(String(f.after))
+        && !(f.after === "semi_open" && f.before === "open")) name = f.after === "open" ? "rook-open" : "rook-semi-open";
       break;
     case "passed_pawns": if (squares(f.added)) name = "passed"; break;
     case "isolated_pawns": if (squares(f.added)) name = "isolated"; break;
     case "passed_pawn_advance":
-      if (f.side === mover && square(f.before) && square(f.after) && String(f.uci).length === 4) name = "passer-advance";
+      // The takes count one step; a pawn's double step is not "one square closer".
+      if (f.side === mover && square(f.before) && square(f.after) && String(f.uci).length === 4
+        && Math.abs(Number(String(f.after)[1]) - Number(String(f.before)[1])) === 1) name = "passer-advance";
       break;
     case "piece_support":
       if (square(f.target) && ["knight", "bishop", "rook", "queen"].includes(String(f.piece))
@@ -144,7 +149,8 @@ function positionalRecording(item: Claim, event: Event, mover: "white" | "black"
         if (strings(f.before).length && !strings(f.after).length) name = "unsupported";
       }
       break;
-    case "king_flights": if (f.side === mover && squares(f.opened)) name = "king-flight"; break;
+    // The takes speak of one new flight square.
+    case "king_flights": if (f.side === mover && squares(f.opened) && strings(f.opened).length === 1) name = "king-flight"; break;
     case "castling": if (f.side === mover && square(f.before) && square(f.after)) name = "castling"; break;
     case "bishop_pair": if (f.side === opposite(mover) && f.before === 2 && f.after === 1) name = "bishop-pair"; break;
     case "doubled_files": if (files(f.before, true) && files(f.after) && files(f.added)) name = "doubled"; break;

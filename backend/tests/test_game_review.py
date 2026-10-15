@@ -628,3 +628,26 @@ def test_export_returns_saved_pgn_and_every_mainline_position(settings):
     assert data["positions"][0]["uci"] is None
     assert [p["uci"] for p in data["positions"][1:]] == [f["uci"] for f in detail["frames"][1:]]
     assert data["orientation"] == detail["orientation"]
+
+
+def test_a_blunder_reason_says_whether_the_mover_stays_winning_or_was_lost():
+    # Centipawn grading is unchanged; only the reason is truthful about the result.
+    assert classify(quality(1500, 1200), 1500) == (
+        "Blunder",
+        "This move gives up a large amount of a winning advantage, though the position "
+        "remains clearly winning.",
+    )
+    assert classify(quality(-372, -604), 1500) == (
+        "Blunder",
+        "This move makes an already lost position much worse.",
+    )
+    assert classify(quality(0, -250), 1500)[1] == (
+        "This move gives away a decisive advantage or allows a severe loss."
+    )
+
+
+def test_a_promotion_caption_reads_as_one_sentence():
+    from trainer.explanation_types import replay_line
+
+    frames = replay_line(chess.Board("8/P6k/8/8/8/8/8/K7 w - - 0 1"), ["a7a8q"])
+    assert frames[1].annotation.startswith("White plays a8=Q, promoting to a queen")

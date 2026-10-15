@@ -113,7 +113,8 @@ def replay_line(board, line):
         if captured:
             annotation += f", capturing {opponent}'s {chess.piece_name(captured.piece_type)}"
         if move.promotion:
-            annotation += f" and promoting to a {chess.piece_name(move.promotion)}"
+            joiner = " and" if captured else ","
+            annotation += f"{joiner} promoting to a {chess.piece_name(move.promotion)}"
         if castling:
             annotation += " and castles"
         was_check = replay.is_check()

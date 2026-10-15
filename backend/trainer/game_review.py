@@ -1,6 +1,7 @@
 """Evidence-backed game coaching. Never writes training decisions or recall history."""
 
 from trainer.chess_core import (
+    DECISIVE_CP,
     Candidate,
     Score,
     evaluation_loss,
@@ -72,6 +73,14 @@ def classify(report, rating):
     if blunder == "mate":
         return "Blunder", "This move allows a forced checkmate."
     if blunder:
+        # Centipawn grading stands; the reason says what actually happened.
+        if numeric(actual) >= DECISIVE_CP:
+            return (
+                "Blunder",
+                "This move gives up a large amount of a winning advantage, though the position remains clearly winning.",
+            )
+        if numeric(best) <= -DECISIVE_CP:
+            return "Blunder", "This move makes an already lost position much worse."
         return "Blunder", "This move gives away a decisive advantage or allows a severe loss."
     # Mate distance is not a centipawn loss. Keeping a slower forced win is
     # still good, but cannot qualify for an exceptional or Best label.

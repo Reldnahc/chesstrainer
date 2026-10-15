@@ -33,7 +33,7 @@ export const neutralTemplates: Record<string, readonly string[]> = {
   human_natural_strong: ["A natural, strong choice that stays close to the best continuation."],
   book: ["This follows {opening}."],
   book_sound: ["This follows {opening}.", "Recognized theory: {opening}."],
-  departure: ["The game leaves known opening theory here."],
+  departure: ["The game leaves our opening catalogue here."],
   recovery: ["This restores a playable position after the error at {earlier}.{help}", "The position is playable again, after the setback at {earlier}.{help}"],
   punishment: ["This uses the chance the opponent gave {side} at {earlier}."],
   missed_punishment: ["The opponent gave {side} a chance at {earlier}, but this lets it slip."],
