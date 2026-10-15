@@ -24,6 +24,10 @@ export type SavedPreferences<T, W extends Partial<T> = T> = {
 export type DeviceCache<T> = {
   name: string;
   pick: (stored: Partial<Record<keyof T, unknown>>) => Partial<T>;
+  /** The device-wide key used before caches were kept per account, and how to read
+   * its stored text. The first account (never a signed-out guest) to read its own
+   * cache on this device starts from it when it has none, then the key is removed. */
+  legacy?: { key: string; read: (stored: string) => Partial<Record<keyof T, unknown>> };
 };
 
 /** The one key scheme for device caches: `fieldwork.<name>:<account id or "local">`. */
@@ -35,6 +39,21 @@ function readCache<T>(key: string, pick: DeviceCache<T>["pick"]): Partial<T> {
     const stored: unknown = JSON.parse(localStorage.getItem(key) ?? "null");
     return stored && typeof stored === "object" ? pick(stored as Partial<Record<keyof T, unknown>>) : {};
   } catch { return {}; }
+}
+
+/** Moves a pre-account device key into the account's cache when that has nothing yet.
+ * The account key is written before the old one is removed, so reading twice (as
+ * StrictMode does) finds the same starting point. */
+function migrateCache<T>(key: string, cache: DeviceCache<T>) {
+  if (!cache.legacy) return;
+  try {
+    const old = localStorage.getItem(cache.legacy.key);
+    if (old === null) return;
+    const seeded = cache.pick(cache.legacy.read(old));
+    if (!Object.keys(readCache(key, cache.pick)).length && Object.keys(seeded).length)
+      localStorage.setItem(key, JSON.stringify(seeded));
+    localStorage.removeItem(cache.legacy.key);
+  } catch { /* storage unavailable */ }
 }
 
 type Waiter<W> = { value: W; resolve: (result: SaveResult) => void };
@@ -56,6 +75,7 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
   const guest = useGuest();
   const cacheKey = deviceCache ? deviceCacheKey(deviceCache.name, account?.id) : null;
   const [initial] = useState(() => {
+    if (cacheKey && deviceCache && !guest) migrateCache(cacheKey, deviceCache);
     const remembered = cacheKey && deviceCache ? readCache(cacheKey, deviceCache.pick) : {};
     return { preferences: { ...defaults, ...remembered }, cached: Object.keys(remembered).length > 0 };
   });

@@ -94,6 +94,34 @@ test('an entry from before history entries were numbered is rewritten and counte
   await expect(page).toHaveURL('/study');
 });
 
+test('without the Navigation API, Forward onto an entry from before numbering counts as a step forward', async ({page}) => {
+  // Browsers without the Navigation API give no position in session history.
+  await page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
+  await page.goto('/play');
+  // A tab reloaded on an earlier page after the upgrade: old-build entries lie on both sides of it.
+  await page.evaluate(() => {
+    history.replaceState({fieldworkEntry: 'legacy-before'}, '', '/play');
+    history.pushState({fieldworkEntry: 'reloaded'}, '', '/study');
+    history.pushState({fieldworkEntry: 'legacy-after'}, '', '/play');
+  });
+  await page.goBack();
+  await expect(page).toHaveURL('/study');
+  await page.reload();
+  const index = () => page.evaluate(() => history.state.fieldworkIndex as number);
+  const start = await index();
+  // The first step after loading cannot tell its direction and is counted as Back.
+  await page.goBack();
+  await expect(page).toHaveURL('/play');
+  expect(await index()).toBe(start - 1);
+  await page.goForward();
+  await expect(page).toHaveURL('/study');
+  expect(await index()).toBe(start);
+  // Leaving the numbered run at its high end is Forward.
+  await page.goForward();
+  await expect(page).toHaveURL('/play');
+  expect(await index()).toBe(start + 1);
+});
+
 test('game links support opening a second tab without navigating the first', async ({page}, info) => {
   test.skip(info.project.name !== 'desktop', 'Modifier-click is a desktop interaction.');
   const {id} = await (await page.request.post('/__test/game-review-fixture/new-tab')).json();
@@ -192,4 +220,21 @@ test('the lesson editor asks before Back or Forward leaves unsaved changes', asy
   await page.evaluate(() => history.forward());
   await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
   expect(prompts).toHaveLength(2);
+});
+
+test('a course that fails to load in the lesson editor offers Try again', async ({page}) => {
+  let asked = 0;
+  await page.route('**/api/study/courses/demo/file*', route => {
+    asked += 1;
+    if (asked === 1) return route.fulfill({status: 503, json: {detail: 'Course files are unavailable.'}});
+    return route.fulfill({json: {format: 'fieldwork-course-1', id: 'demo', revision: '2026-10-15', title: 'Demo course',
+      side: 'white', topic: 'opening', credits: [], lines: [],
+      chapters: [{id: 'chapter-1', title: 'Chapter 1', steps: [{id: 'introduction', title: 'Introduction', text: ''}]}]}});
+  });
+  await page.goto('/settings/courses/editor?course=demo');
+  await expect(page.getByText('Couldn’t load the course.')).toBeVisible();
+  await page.getByRole('button', {name: 'Try again', exact: true}).click();
+  // The opened course has nothing unsaved yet.
+  await expect(page.getByRole('button', {name: 'Saved', exact: true})).toBeVisible();
+  expect(asked).toBe(2);
 });

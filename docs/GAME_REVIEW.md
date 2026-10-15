@@ -89,7 +89,9 @@ in a variation or after flipping the board: positive favors White, negative favo
 Black, and signed `M` values denote forced mate. A move's saved score is its own
 root search, which counts the move just played, so after the mating side's move
 the board shows one move fewer (a saved mate in 2 reads `M1`, a delivered mate
-`M0`); the defender's moves keep the mating side's count. A drawn final position
+`M0`); the defender's moves keep the mating side's count. The coach's written forced-mate
+lines keep the saved count, so a winning move "begins a forced mate in 3" while
+the bar reads `M2`; a losing move's line names the mating side's count, as the bar does. A drawn final position
 (stalemate, insufficient material, repetition) reads 0.00. The last frame of every
 game, imported or played here, ends on a threefold repetition or fifty-move draw
 that has actually happened (the third occurrence of the position, or fifty moves

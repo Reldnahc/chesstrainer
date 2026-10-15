@@ -13,6 +13,15 @@ type Value = Setting["value"];
 
 const show = (value: Value) => value === null ? "none" : value === true ? "on" : value === false ? "off" : String(value);
 
+/** A strictly-positive (exclusive minimum) number the server would refuse, in its
+ * words. An integer field's `min` is the next whole number, so the browser already
+ * refuses it there; a decimal one has no smallest value above the bound to use. */
+function belowExclusiveMinimum(setting: Setting, value: Value) {
+  const bound = setting.exclusive_minimum;
+  if (bound == null || (setting.kind !== "integer" && setting.kind !== "number") || value === null || value === "") return "";
+  return Number(value) > bound ? "" : `${setting.label} must be greater than ${bound}.`;
+}
+
 // How long a restart may take before the page stops waiting for the server.
 const RESTART_WAIT_MS = 120_000;
 
@@ -52,6 +61,12 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
   }
   async function save(event: FormEvent) {
     event.preventDefault();
+    const refused = settings.map(setting => setting.key in draft ? belowExclusiveMinimum(setting, draft[setting.key]) : "").find(Boolean);
+    if (refused) {
+      setNotice("");
+      setError(refused);
+      return;
+    }
     setBusy("save");
     setError("");
     try {
@@ -111,7 +126,7 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
           {setting.choices?.map(choice => <option key={choice} value={choice}>{choice.replace(/_/g, " ")}</option>)}
         </select>
         : <input id={id} type="number" inputMode={setting.kind === "integer" ? "numeric" : "decimal"}
-          step={setting.kind === "integer" ? 1 : "any"} min={setting.minimum ?? setting.exclusive_minimum ?? undefined} max={setting.maximum ?? undefined}
+          step={setting.kind === "integer" ? 1 : "any"} min={setting.minimum ?? (setting.kind === "integer" && setting.exclusive_minimum != null ? Math.floor(setting.exclusive_minimum) + 1 : undefined)} max={setting.maximum ?? undefined}
           required={!setting.nullable} placeholder={setting.nullable ? "None" : undefined} aria-describedby={`${id}-help`}
           value={value === null ? "" : String(value)}
           onChange={event => edit(setting, event.target.value)} />}

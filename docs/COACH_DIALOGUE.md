@@ -72,7 +72,16 @@ Inaccuracy; a larger loss passes the lead on or speaks its grade take.
 A forced-mate stage is told once per run of the same side's moves, and an
 erosion run only on an Inaccuracy. The chance-taken clip, some of whose takes call the
 reply exact, plays only on a move graded Best, Great or Brilliant. A recovery is written, never voiced: its takes credit
-this move, and the opponent's moves made the game playable. Takes rotate so that a side's back-to-back
+this move, and the opponent's moves made the game playable. The opening-departure
+event fires after the game's last move in our opening catalogue, which can be a
+main-line theory move, so its clip plays only for the voices whose take says our
+opening book ends there; the others show the written line alone. Some coaches'
+takes are false in other places too, and `audio/speech/falseTakes.ts` keeps them silent
+the same way: back-rank takes saying the king's own pieces block its escape squares
+never play (in game review, or as a practice finding's Listen button); double-attack
+takes naming two targets do not play for a double check (its witness names the king);
+and chance-taken takes calling the opponent's error small drop out of the take rotation
+unless that error was graded Inaccuracy or Mistake. Takes rotate so that a side's back-to-back
 moves (two plies apart) differ whenever a meaning has three or more takes.
 
 Intent version 5 records the subject as learner, opponent or unknown position.
@@ -143,6 +152,38 @@ the existing reduced-motion behavior.
 Regression coverage lives in `dialogue-logic.spec.ts`, game/coach/practice browser
 suites and backend review-event tests. Developer diagnostics consume these same
 pure functions rather than implement another dialogue pipeline.
+
+### Recorded lines that would need new takes
+
+These takes are false in some positions where their meaning fires, so selection
+keeps them silent there and the written line (or the next clip or grade take)
+stands in. Re-recording them with the wording below would let them play again.
+
+- **`opening-departure`** for arjun, biscuit, ember, felix, femi, ingrid, jun,
+  marisol, mateo, monty, pip, reka, tala and ziggy. Their takes say theory, the
+  known opening, preparation or a documented line ends here, or that everything
+  after is new or fresh; the event only knows our catalogue ends. A new take
+  should say the game leaves our opening book, as Walter's does. A spec classifies
+  every voice's take by these words, so a re-recording must also update the set.
+- **`tactic-back-rank-*`** (with their rook and queen variants): played for alfie,
+  arjun, bandit, femi, ingrid, jun, marisol, percy, rivet and winston; allowed for
+  button, ember, felix, pickle, rivet, tala, wisp and ziggy; missed for femi and jun.
+  They say the king's own pieces occupy or block its escape squares (or exits). A
+  back-rank mate checks along the king's rank, so the square beside the king toward
+  the checker is empty or the checker itself, never an own piece; the claim never
+  holds. A new take can say the king is boxed in behind its own pieces, as the
+  others do.
+- **`tactic-double-attack-*`** for a double check only: played for fergus, jun,
+  mateo and monty; allowed for button, fergus, monty and tamar; missed for felix,
+  fergus, monty and pickle. They name two targets or two things attacked, and a
+  double check attacks only the king. A new take can speak of two attacks or two
+  threats at once.
+- **`chance-taken`** (the base take) for celeste, mateo and pickle after an
+  opponent's Blunder or Miss: "a small gift", "a little something", "a little gap".
+  Their other chance-taken takes still play.
+- Left playing, because they are false only rarely: the castling "shelter" takes
+  (false only when castling into an attack) and Orin's "Neither side could force
+  more" on a repetition draw in a winning position.
 
 ## Personality boundary
 

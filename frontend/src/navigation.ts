@@ -318,6 +318,12 @@ let currentIndex = 0;
 // The browser's own position in session history, where the Navigation API offers it.
 const browserIndex = () => (window as { navigation?: { currentEntry?: { index: number } | null } }).navigation?.currentEntry?.index;
 let lastBrowserIndex: number | undefined;
+// The run of numbered entries this document has reached, and whether it has added an
+// entry (which drops every entry ahead). Without the Navigation API these tell which
+// side an entry from before numbering lies on when the step leaves the run at one end.
+let lowestIndex = 0;
+let highestIndex = 0;
+let added = false;
 let ignoredPop = false;
 const listeners = new Set<() => void>();
 
@@ -327,6 +333,8 @@ export function startRouter() {
   const url = canonicalUrl(window.location.href);
   const state = historyState();
   currentIndex = entryIndex(state) ?? 0;
+  lowestIndex = highestIndex = currentIndex;
+  added = false;
   if (url.href !== window.location.href || !state[entryKey] || entryIndex(state) === null)
     window.history.replaceState({ ...state, [entryKey]: state[entryKey] ?? localId(), [indexKey]: currentIndex }, "", url);
   location = initialLocation();
@@ -363,13 +371,16 @@ function popped(event: PopStateEvent) {
   if (next === null) {
     // An in-page #fragment link adds an entry the app did not write; it follows the current one.
     // An entry written before entries were numbered (a tab open across an upgrade) is placed by
-    // how far the browser moved; without that, it precedes every numbered one, so it is a step back.
+    // how far the browser moved, where the Navigation API says so; otherwise see legacyStep.
     const legacy = typeof historyState()[entryKey] === "string";
     const now = browserIndex();
     next = legacy && now !== undefined && lastBrowserIndex !== undefined ? currentIndex + now - lastBrowserIndex
-      : legacy ? currentIndex - 1 : currentIndex + 1;
+      : legacy ? currentIndex + legacyStep() : currentIndex + 1;
+    if (!legacy) added = true;
     window.history.replaceState({ ...historyState(), [entryKey]: historyState()[entryKey] ?? localId(), [indexKey]: next }, "");
   }
+  lowestIndex = Math.min(lowestIndex, next);
+  highestIndex = Math.max(highestIndex, next);
   // Back or Forward out of a screen with unsaved work asks first, as a link does.
   // Refusing returns to the entry the reader was on, and that return is not a navigation.
   if (leaveGuard && next !== currentIndex && !leaveGuard()) {
@@ -382,6 +393,16 @@ function popped(event: PopStateEvent) {
   const url = canonicalUrl(window.location.href);
   if (url.href !== window.location.href) window.history.replaceState(historyState(), "", url);
   update();
+}
+
+/** Which way a step onto an unnumbered old-build entry went, without the Navigation API.
+ * Such entries lie only outside the numbered run: leaving its high end is Forward and
+ * its low end Back, and once this document has added an entry nothing lies ahead. When
+ * the run is a single entry (the first step after loading) the direction cannot be
+ * known; Back is assumed, since a tab reloaded on its latest page has only older
+ * entries. A jump of several entries is counted as one step. */
+function legacyStep() {
+  return !added && currentIndex === highestIndex && currentIndex > lowestIndex ? 1 : -1;
 }
 
 function subscribe(listener: () => void) {
@@ -431,6 +452,8 @@ export function navigate(href: string) {
   if (leaveGuard && !leaveGuard()) return;
   persistScroll();
   currentIndex += 1;
+  highestIndex = currentIndex;
+  added = true;
   window.history.pushState({ [entryKey]: localId(), [indexKey]: currentIndex }, "", url);
   window.dispatchEvent(new Event(navigationEvent));
 }

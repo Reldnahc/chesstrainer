@@ -24,3 +24,22 @@ test('leaving an SRS session discards its late grading error', async ({page}, in
   await expect(page.getByText('Failure from the previous review')).toHaveCount(0);
   await expect(page).toHaveURL(/\/settings$/);
 });
+
+test('Try again after a dead session link opens the queue and clears the link', async ({page}) => {
+  let asked = 0;
+  await page.route('**/api/review/sessions/dead-session', route => {
+    asked += 1;
+    return route.fulfill({status: 404, json: {detail: 'This review session no longer exists.'}});
+  });
+  await page.goto('/?session=dead-session');
+  await expect(page.getByText('This review session no longer exists.')).toBeVisible();
+  await page.getByRole('button', {name: 'Try again', exact: true}).click();
+  await expect(page.getByText('This review session no longer exists.')).toHaveCount(0);
+  await expect(page).not.toHaveURL(/session=/);
+  // A reload opens the queue rather than the same missing session.
+  const counted = page.waitForResponse(response => response.url().includes('/api/review/count'));
+  await page.reload();
+  await counted;
+  await expect(page.getByText('This review session no longer exists.')).toHaveCount(0);
+  expect(asked).toBe(1);
+});
