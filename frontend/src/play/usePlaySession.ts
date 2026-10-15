@@ -70,9 +70,15 @@ export function usePlaySession(id: string) {
   const report = (ply: number) => analyses.get(String(ply)) ?? null;
   const graded = (ply: number) => !!report(ply) || !!analyses.failure(String(ply));
 
+  // A game never comes back from finished. A reply the server answered before a
+  // resign can land after it; its active state is stale and is not applied.
+  const finished = useRef(false);
   const accept = useCallback((next: PlayState) => {
+    if (finished.current && next.status === "active") return false;
+    finished.current = next.status !== "active";
     setState(next);
     seed(next.frames.flatMap((frame, ply) => (frame.report ? [[String(ply), frame.report as Report] as const] : [])));
+    return true;
   }, [seed]);
 
   useEffect(() => {
@@ -144,8 +150,7 @@ export function usePlaySession(id: string) {
     const started = replyGeneration.current;
     read(api.POST("/api/play/{play_id}/reply", { params: { path: { play_id: id } } }))
       .then((next) => {
-        if (!mounted.current || started !== replyGeneration.current) return;
-        accept(next);
+        if (!mounted.current || started !== replyGeneration.current || !accept(next)) return;
         if (next.reply && next.reply.ply > learnerPly) {
           setPending({ reply: next.reply, at: Date.now(), learnerPly });
         }
@@ -438,6 +443,8 @@ export function usePlaySession(id: string) {
       requestAnalysis(coachPly);
     },
     retryReply: () => {
+      // A running command settles the reply itself, and asks again if it still fails.
+      if (commandRunning.current) return;
       replyRequested.current = null;
       setReplyError(null);
       setReplyAttempt((value) => value + 1);
