@@ -9,7 +9,7 @@ had the default. Every owned row now names its owner.
 import sqlalchemy as sa
 from alembic import op
 
-revision = "a7d3e9b1c5f2"
+revision = "5addd7d590a1"
 down_revision = "c8e1f4a7b2d9"
 branch_labels = None
 depends_on = None

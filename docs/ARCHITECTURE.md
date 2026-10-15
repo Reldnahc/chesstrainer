@@ -472,7 +472,7 @@ Chess.com and Lichess share one checkpointed ingestion pipeline, job lanes, and 
 
 SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes from frozen revision 475ea36d42d5; `alembic heads` shows the current revision. Runtime does not use metadata.create_all. Transactions persist small independent units of work. Account tables are indexed for their hot queries with composite indexes that lead with `user_id`, and the server runs `PRAGMA optimize` at startup and shutdown so the planner has statistics.
 
-Every upgrade, from the server start or from `alembic upgrade head`, runs through `db.migration_connection`: foreign keys off on that connection, one `BEGIN IMMEDIATE` transaction that SQLite rather than pysqlite controls (so DDL rolls back too), and a `foreign_key_check` before commit. A failed revision leaves the schema and `alembic_version` exactly as they were. A database that is already current is not touched.
+Every upgrade, from the server start or from `alembic upgrade head`, runs through `db.migration_connection`: foreign keys off on that connection, one `BEGIN IMMEDIATE` transaction that SQLite rather than pysqlite controls (so DDL rolls back too), and a `foreign_key_check` before commit. A failed revision leaves the schema and `alembic_version` exactly as they were. A database that is already current is not touched. Revision ids come from `alembic revision`, never typed by hand, and `models.NAMING_CONVENTION` names new indexes, checks and foreign keys (name a new unique constraint explicitly).
 
 ### Current and archival relationships
 

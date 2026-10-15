@@ -173,7 +173,7 @@ def test_timestamps_with_an_offset_are_rewritten_and_read_back_in_utc(tmp_path):
     from trainer.models import Game, User
 
     engine, _ = database(tmp_path / "timestamps.sqlite3")
-    upgrade_to(engine, "d2b6f8a0c3e5")
+    upgrade_to(engine, "3613644faa1d")
     with engine.begin() as connection:
         fill(connection, "users", id="u1", username="u1")
         for game_id, played in (
@@ -201,7 +201,7 @@ def test_timestamps_with_an_offset_are_rewritten_and_read_back_in_utc(tmp_path):
 
 def test_values_requests_used_to_fill_in_are_backfilled(tmp_path):
     engine, _ = database(tmp_path / "backfill.sqlite3")
-    upgrade_to(engine, "f6c0e2a4b8d7")
+    upgrade_to(engine, "6a2018868e89")
     with engine.begin() as connection:
         fill(connection, "users", id="u1", username="u1")
         fill(

@@ -10,8 +10,8 @@ queries follow get their own index.
 
 from alembic import op
 
-revision = "f6c0e2a4b8d7"
-down_revision = "e4a8c2f6d0b3"
+revision = "6a2018868e89"
+down_revision = "244574c5d59e"
 branch_labels = None
 depends_on = None
 

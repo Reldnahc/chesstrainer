@@ -8,8 +8,8 @@ and the client decides from that source whether to show the reply at once.
 import sqlalchemy as sa
 from alembic import op
 
-revision = "c9f2a4e6b8d1"
-down_revision = "b5e1d7f3a9c4"
+revision = "747b84117a4e"
+down_revision = "40983c9dbb47"
 branch_labels = None
 depends_on = None
 

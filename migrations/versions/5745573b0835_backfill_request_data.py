@@ -12,8 +12,8 @@ import chess.pgn
 import sqlalchemy as sa
 from alembic import op
 
-revision = "a3e7c1f5b9d2"
-down_revision = "f6c0e2a4b8d7"
+revision = "5745573b0835"
+down_revision = "6a2018868e89"
 branch_labels = None
 depends_on = None
 

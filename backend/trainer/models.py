@@ -8,6 +8,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Index,
+    MetaData,
     Text,
     TypeDecorator,
     UniqueConstraint,
@@ -55,8 +56,20 @@ def uid() -> str:
     return uuid.uuid4().hex
 
 
+# New indexes, checks, foreign keys and primary keys get predictable names that
+# migrations can refer to. Unique constraints are left out: the existing ones
+# are unnamed in every database, and naming them would rebuild each table
+# (engine_analyses included) at the next start. Name a new one explicitly.
+NAMING_CONVENTION = {
+    "ix": "ix_%(column_0_label)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s",
+}
+
+
 class Base(DeclarativeBase):
-    pass
+    metadata = MetaData(naming_convention=NAMING_CONVENTION)
 
 
 class User(Base):

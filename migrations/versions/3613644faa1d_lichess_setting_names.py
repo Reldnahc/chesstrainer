@@ -7,8 +7,8 @@ values move to the new names; the old environment names are still read.
 
 from alembic import op
 
-revision = "d2b6f8a0c3e5"
-down_revision = "c9f2a4e6b8d1"
+revision = "3613644faa1d"
+down_revision = "747b84117a4e"
 branch_labels = None
 depends_on = None
 

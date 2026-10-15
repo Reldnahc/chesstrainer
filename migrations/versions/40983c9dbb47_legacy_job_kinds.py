@@ -8,8 +8,8 @@ row of either old fetch kind now runs in the fetch lane instead of the analysis 
 
 from alembic import op
 
-revision = "b5e1d7f3a9c4"
-down_revision = "a7d3e9b1c5f2"
+revision = "40983c9dbb47"
+down_revision = "5addd7d590a1"
 branch_labels = None
 depends_on = None
 
