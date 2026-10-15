@@ -9,7 +9,8 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import FlipBoardButton from "../FlipBoardButton";
 import MovePlaybackControls from "../MovePlaybackControls";
-import { LoadingState, UnavailableState } from "../LoadState";
+import { LoadingState } from "../LoadState";
+import { QueryResult } from "../useQuery";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import { pawnsText, positionScore, startingScore } from "../evaluation";
 import EvaluationBar from "../EvaluationBar";
@@ -107,7 +108,7 @@ export default function PlayGame({ id }: { id: string }) {
     return (
       <>
         <ActionLink variant="quiet" href={pagePaths.Play}>Play</ActionLink>
-        {session.error ? <UnavailableState>{session.error}</UnavailableState> : <LoadingState>Setting up the board…</LoadingState>}
+        <QueryResult query={session.load} label="the game">{() => <LoadingState>Setting up the board…</LoadingState>}</QueryResult>
       </>
     );
   const shownOrientation = orientation ?? state.learner_color;

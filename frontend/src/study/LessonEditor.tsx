@@ -7,7 +7,7 @@ import ActionLink from "../ActionLink";
 import Board from "../Board";
 import Button from "../Button";
 import ChoiceGroup from "../ChoiceGroup";
-import { LoadingState, UnavailableState } from "../LoadState";
+import { LoadingState } from "../LoadState";
 import Notice from "../Notice";
 import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -15,6 +15,7 @@ import TurnIndicator from "../TurnIndicator";
 import { courseEditorPath, courseSettingsPath, lessonCoursePath, replaceAddress, useLeaveGuard, type LessonTopic } from "../navigation";
 import { sideName, sideToMove, START_FEN } from "../fen";
 import { useLatest } from "../useLatest";
+import { QueryResult, useQuery } from "../useQuery";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 // The editor edits the readable course file itself (docs/COURSE_FILES.md), so
@@ -111,8 +112,22 @@ function words(value: string) {
 }
 
 export default function LessonEditor({ courseId, revision }: { courseId: string | null; revision: string | null }) {
-  const [course, setCourse] = useState<Course | null>(courseId ? null : newCourse);
-  const [loadError, setLoadError] = useState("");
+  usePageTitle("Lesson editor");
+  if (!courseId) return <CourseEditor initial={newCourse()} opened={false} />;
+  return <SavedCourseEditor courseId={courseId} revision={revision} />;
+}
+
+/** A saved course's file, loaded once for the editor, with Try again when it fails. */
+function SavedCourseEditor({ courseId, revision }: { courseId: string; revision: string | null }) {
+  const query = useQuery(signal => fetchCourseFile(courseId, revision || undefined, signal) as Promise<Course>, [courseId, revision]);
+  return <QueryResult query={query} label="the course" presentation="panel">
+    {file => <CourseEditor initial={file} opened />}
+  </QueryResult>;
+}
+
+/** Edits one course: `opened` is a saved course's file, otherwise a new course. */
+function CourseEditor({ initial, opened }: { initial: Course; opened: boolean }) {
+  const [course, setCourse] = useState<Course | null>(initial);
   const [chapterIndex, setChapterIndex] = useState(0);
   const [stepIndex, setStepIndex] = useState(0);
   const [check, setCheck] = useState<Check | null>(null);
@@ -120,7 +135,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   // The check request itself failed (not a problem in the course); Try again re-runs it.
   const [checkError, setCheckError] = useState("");
   const [checkAttempt, setCheckAttempt] = useState(0);
-  const [dirty, setDirty] = useState(!courseId);
+  const [dirty, setDirty] = useState(!opened);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
@@ -129,7 +144,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   const [saved, setSaved] = useState<Schema["CourseFileSaved"] | null>(null);
   // The revision the editor opened (null for a new course), so a save never
   // replaces someone else's newer save or an existing course by accident.
-  const [base, setBase] = useState<string | null>(null);
+  const [base, setBase] = useState<string | null>(opened ? initial.revision : null);
   const [pending, setPending] = useState(false);
   // The step id being typed; links to the step follow it once it is committed.
   const [stepId, setStepId] = useState<string | null>(null);
@@ -137,16 +152,6 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   const recordingRef = useLatest(recording);
   // Bumped when recording starts or stops, so a late answer cannot restart it.
   const recordingRequest = useRef(0);
-
-  usePageTitle("Lesson editor");
-  useEffect(() => {
-    if (!courseId) return;
-    const controller = new AbortController();
-    fetchCourseFile(courseId, revision || undefined, controller.signal)
-      .then(file => { if (!controller.signal.aborted) { setCourse(file as Course); setBase((file as Course).revision); } })
-      .catch(e => { if (!controller.signal.aborted) setLoadError(errorMessage(e)); });
-    return () => controller.abort();
-  }, [courseId, revision]);
 
   // Check the whole file shortly after each change; the server owns every chess rule.
   useEffect(() => {
@@ -175,7 +180,6 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
   const board = check?.steps[stepKey];
   const otherSteps = useMemo(() => chapter?.steps.filter(item => item !== step) ?? [], [chapter, step]);
 
-  if (loadError) return <UnavailableState presentation="panel">{loadError}</UnavailableState>;
   if (!course || !chapter || !step) return <LoadingState presentation="panel">Loading the course…</LoadingState>;
   const current: Course = course;
   const kind = kindOf(step);
@@ -378,7 +382,7 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
     {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
     {notice && <Banner tone="success" onDismiss={() => setNotice("")} action={saved ? <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink> : undefined}>{notice}</Banner>}
 
-    <details className="disclosure lesson-editor-section" open={!courseId}>
+    <details className="disclosure lesson-editor-section" open={!opened}>
       <summary>Course details</summary>
       <div className="lesson-editor-fields">
         <Field label="Title"><input value={current.title} onChange={event => change(draft => { draft.title = event.target.value; })} /></Field>

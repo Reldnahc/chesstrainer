@@ -251,6 +251,20 @@ test("playing a move from an earlier position replaces the rest of the game", as
   await expect(page.getByText("Walter is thinking…")).toBeVisible();
 });
 
+test("a game that fails to load offers Try again", async ({page}) => {
+  await mockPlay(page);
+  let loads = 0;
+  await page.route("**/api/play/play1", async route => {
+    if (++loads === 1) return route.fulfill({status: 503, json: {detail: "The server is busy."}});
+    await route.fallback();
+  });
+  await page.goto("/play/play1");
+  await expect(page.getByText("Couldn’t load the game.")).toBeVisible();
+  await page.getByRole("button", {name: "Try again", exact: true}).click();
+  await expect(page.getByText("Your move")).toBeVisible();
+  expect(loads).toBe(2);
+});
+
 test("a finished game offers its saved review", async ({page}) => {
   await page.route("**/api/play/play1", route => route.fulfill({json: {
     ...base, status: "finished", result: "0-1", termination: "resignation", saved_game_id: "saved9",

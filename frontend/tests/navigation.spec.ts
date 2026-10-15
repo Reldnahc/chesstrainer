@@ -221,3 +221,19 @@ test('the lesson editor asks before Back or Forward leaves unsaved changes', asy
   await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
   expect(prompts).toHaveLength(2);
 });
+
+test('a course that fails to load in the lesson editor offers Try again', async ({page}) => {
+  let asked = 0;
+  await page.route('**/api/study/courses/demo/file*', route => {
+    asked += 1;
+    if (asked === 1) return route.fulfill({status: 503, json: {detail: 'Course files are unavailable.'}});
+    return route.fulfill({json: {format: 'fieldwork-course-1', id: 'demo', revision: '2026-10-15', title: 'Demo course',
+      side: 'white', topic: 'opening', credits: [], lines: [],
+      chapters: [{id: 'chapter-1', title: 'Chapter 1', steps: [{id: 'introduction', title: 'Introduction', text: ''}]}]}});
+  });
+  await page.goto('/settings/courses/editor?course=demo');
+  await expect(page.getByText('Couldn’t load the course.')).toBeVisible();
+  await page.getByRole('button', {name: 'Try again', exact: true}).click();
+  await expect(page.getByRole('button', {name: 'Save course'})).toBeVisible();
+  expect(asked).toBe(2);
+});

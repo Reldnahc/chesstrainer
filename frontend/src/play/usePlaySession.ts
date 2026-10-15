@@ -4,6 +4,7 @@ import { navigate as openPage, playGamePath } from "../navigation";
 import { useAudioScope, useCurrentSpeechPlayback } from "../audio/AudioProvider";
 import usePageShortcuts from "../usePageShortcuts";
 import { useDeadline } from "../useDeadline";
+import { useQuery } from "../useQuery";
 import type { Game, Report } from "../gameReview/types";
 import { useAnalysisRequests } from "../gameReview/useAnalysisRequests";
 import { speechNavigationFor, type SpeechNavigation } from "../gameReview/useGameExploration";
@@ -33,7 +34,6 @@ export function usePlaySession(id: string) {
   const audio = useAudioScope(`play:${id}`);
   // Play's only speech is the coach's, so any line playing is the one the panel waits on.
   const voicePlaying = !!useCurrentSpeechPlayback();
-  const [state, setState] = useState<PlayState | null>(null);
   const [error, setError] = useState("");
   const [moving, setMoving] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -73,30 +73,28 @@ export function usePlaySession(id: string) {
   // A game never comes back from finished. A reply the server answered before a
   // resign can land after it; its active state is stale and is not applied.
   const finished = useRef(false);
+  const seedReports = useCallback((next: PlayState) => {
+    seed(next.frames.flatMap((frame, ply) => (frame.report ? [[String(ply), frame.report as Report] as const] : [])));
+  }, [seed]);
+  // The game as saved, opened on its latest position. Commands and replies then
+  // replace it (accept); a failed first load offers Try again.
+  const load = useQuery((signal) => read(api.GET("/api/play/{play_id}", { params: { path: { play_id: id } }, signal }))
+    .then((value) => {
+      finished.current = value.status !== "active";
+      seedReports(value);
+      setShown(value.frames.length - 1);
+      setCursor(null);
+      return value;
+    }), [id]);
+  const state = load.data ?? null;
+  const { setData } = load;
   const accept = useCallback((next: PlayState) => {
     if (finished.current && next.status === "active") return false;
     finished.current = next.status !== "active";
-    setState(next);
-    seed(next.frames.flatMap((frame, ply) => (frame.report ? [[String(ply), frame.report as Report] as const] : [])));
+    setData(next);
+    seedReports(next);
     return true;
-  }, [seed]);
-
-  useEffect(() => {
-    let active = true;
-    read(api.GET("/api/play/{play_id}", { params: { path: { play_id: id } } }))
-      .then((value) => {
-        if (!active || !mounted.current) return;
-        accept(value);
-        setShown(value.frames.length - 1);
-        setCursor(null);
-      })
-      .catch((e) => {
-        if (active && mounted.current) setError(errorMessage(e));
-      });
-    return () => {
-      active = false;
-    };
-  }, [id, accept]);
+  }, [setData, seedReports]);
 
   // A learner's move or navigation interrupts; the bot's reply only adds its own.
   const announce = useCallback(
@@ -401,6 +399,8 @@ export function usePlaySession(id: string) {
   return {
     state,
     game,
+    /** The first load of the game, for its loading and Try again states. */
+    load,
     error,
     /** The bot's reply failed; asking again (retryReply) is safe and the only way on, so it is not dismissed. */
     replyError: botToMove ? replyError : null,
