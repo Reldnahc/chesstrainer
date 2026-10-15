@@ -49,7 +49,7 @@ export const captain: CoachPersonality = {
     human_natural_strong: ["A natural move by the human-move model's reckoning, and the engine keeps it close to its top line. Good instincts."],
     book: ["{opening} territory. Know it well."],
     book_sound: ["{opening} is the road the game is on."],
-    departure: ["The book ends here. From now on, the position has to be worked out over the board."],
+    departure: ["Our opening book ends here. From now on, the position is judged move by move."],
     recovery: [{reaction: "Good fight.", fact: "From the setback at {earlier}, the position is back to playable.{help}", takeaway: "Study how the recovery was made."}],
     punishment: ["The chance arrived at {earlier}, and {side} takes it here. That is how mistakes get punished."],
     missed_punishment: ["At {earlier}, {side} was given a chance, and this move lets it go by. Find the punishment."],

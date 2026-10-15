@@ -56,7 +56,7 @@ export const professor: CoachPersonality = {
     human_natural_strong: ["The human-move model considers this likely, and the engine finds it strong, close to its best line."],
     book: ["This position comes from {opening}."],
     book_sound: ["{opening}, a recognized opening line, includes this move.", "In the opening catalogue, this move sits under {opening}."],
-    departure: ["The game leaves its known opening line here, so the reasons behind each move matter more from now on."],
+    departure: ["The game leaves our catalogued opening line here, so the reasons behind each move matter more from now on."],
     recovery: [{observation: "A setback isn't final while the position can still be held.", fact: "Despite the error at {earlier}, the position can be held again.{help}", takeaway: "The setback and the recovery belong in the same lesson."}],
     punishment: ["{side} was handed an opportunity at {earlier}, and this move makes use of it. Keeping those two moves together is what makes the lesson stick."],
     missed_punishment: ["{side} was handed an opportunity at {earlier}. This move doesn't take it, so the useful question is what that earlier move changed."],

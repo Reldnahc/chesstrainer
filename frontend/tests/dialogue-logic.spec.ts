@@ -160,7 +160,7 @@ test("recorded relationships need the matching node and never follow a variation
     nodes: [{ply: 1, actor: "white", before: value.best.score, after: value.actual.score,
       event_ids: [], input_digest: "facts", evidence: [ref]}], turning_points: [],
     relationships: [{id: "recovery", kind: "recovery", actor: "white", plies: [0, 1],
-      event_ids: [], facts: {opponent_errors: [0], restored_by_move: true}, evidence: [ref]}]};
+      event_ids: [], facts: {opponent_errors: [0]}, evidence: [ref]}]};
   const full = {...args, game: {...game, context}, report: value};
   expect(renderNeutral(gameIntent(full)).text).toMatch(/playable.*opponent's errors/i);
   expect(gameIntent(full).expression).toBe("recovered");
@@ -178,16 +178,16 @@ test("game-context relationships are told only where their wording holds", () =>
       total_plies: 1, missing_plies: [], limitations: [], biggest_swing_ply: null, turning_points: [],
       nodes: [{ply: 1, actor: "white", before: value.best.score, after: value.actual.score, event_ids: [], input_digest: "facts",
         evidence: [ref]}], relationships}}}).claims.map(c => c.code);
-  // A recovery is this move's only when the position before it was still lost.
-  expect(codes([relation("recovery", {opponent_errors: [], restored_by_move: true})], "Best")).toContain("recovery");
-  expect(codes([relation("recovery", {opponent_errors: [], restored_by_move: false})], "Best")).not.toContain("recovery");
-  expect(codes([relation("recovery", {opponent_errors: []})], "Best")).not.toContain("recovery");
-  // An erosion run is "small concessions" only without a separate Blunder inside it.
-  expect(codes([relation("erosion", {own_blunder_plies: []})])).toContain("erosion");
-  expect(codes([relation("erosion", {own_blunder_plies: [3]})])).not.toContain("erosion");
-  // A conversion is told as clean only without a Mistake of the side's own inside the run.
-  expect(codes([relation("advantage_run", {outcome: "converted", own_mistake_plies: []})], "Best")).toContain("conversion");
-  expect(codes([relation("advantage_run", {outcome: "converted", own_mistake_plies: [5]})], "Best")).not.toContain("conversion");
+  // A recovery is written in neutral words ("playable again"), never crediting the move.
+  expect(codes([relation("recovery", {opponent_errors: []})], "Best")).toContain("recovery");
+  // An erosion run is "small concessions" only on an Inaccuracy, with no Mistake of
+  // the side's own since its first concession.
+  expect(codes([relation("erosion", {own_mistake_plies: []})], "Inaccuracy")).toContain("erosion");
+  expect(codes([relation("erosion", {own_mistake_plies: []})], "Mistake")).not.toContain("erosion");
+  expect(codes([relation("erosion", {own_mistake_plies: [3]})], "Inaccuracy")).not.toContain("erosion");
+  // A conversion is told as clean only with no Inaccuracy or worse of the side's own inside the run.
+  expect(codes([relation("advantage_run", {outcome: "converted", own_error_plies: []})], "Best")).toContain("conversion");
+  expect(codes([relation("advantage_run", {outcome: "converted", own_error_plies: [5]})], "Best")).not.toContain("conversion");
   expect(codes([relation("advantage_run", {outcome: "converted"})], "Best")).not.toContain("conversion");
 });
 

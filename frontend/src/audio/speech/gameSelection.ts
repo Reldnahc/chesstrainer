@@ -263,7 +263,10 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
     // The repeated-issue takes say "once before" or "a second time".
     if (item.code === "repeated" && item.slots.count !== 2) return null;
-    return item.code === "recovery" ? item.slots.help ? "recovery-assisted" : "recovery" : simpleIds[item.code];
+    // Recovery takes credit this move with restoring the game, and a move never
+    // raises its own evaluation: the opponent's moves did. The line stays written.
+    if (item.code === "recovery") return null;
+    return simpleIds[item.code];
   }
   // Several evaluation-loss takes call the cost small ("a little leak"), which
   // is only true of an Inaccuracy. A larger loss leaves it to the next clip or the grade.

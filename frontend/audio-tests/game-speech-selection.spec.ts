@@ -256,7 +256,7 @@ test("all positional speech branches validate their structured facts and keep al
   }
 });
 
-test("recorded-game recovery is tied to learner, current node generation and assistance facts", () => {
+test("recorded-game recovery is tied to learner and current node generation, and never voiced", () => {
   const current = context(causal[0].report);
   current.report!.intelligence!.events = [];
   const evidence = [{source: "stockfish" as const, id: "recovery-search", field: "verified-sequence", ply: 1}];
@@ -265,25 +265,19 @@ test("recorded-game recovery is tied to learner, current node generation and ass
     nodes: [{ply: 1, actor: "white", input_digest: current.report!.intelligence!.input_digest,
       before: current.report!.best.score, after: current.report!.actual.score, evidence, event_ids: []}],
     relationships: [{id: "recovery-now", kind: "recovery", actor: "white", plies: [0, 1],
-      facts: {opponent_errors: [], restored_by_move: true}, evidence, event_ids: []}]};
+      facts: {opponent_errors: [1]}, evidence, event_ids: []}]};
   const recovered = rerender(current);
-  expect(selectWalterGameRecording(recovered)).toBe("recovery");
-  // Its lines credit this move, so a game the opponent's moves made playable is not told.
-  const kept = structuredClone(current);
-  kept.game.context!.relationships[0].facts.restored_by_move = false;
-  expect(rerender(kept).intent.claims.some(item => item.code === "recovery")).toBe(false);
-  const assisted = structuredClone(recovered);
-  assisted.game.context!.relationships[0].facts.opponent_errors = [1];
-  expect(selectWalterGameRecording(rerender(assisted))).toBe("recovery-assisted");
-  expect(selectWalterGameRecording(assisted)).toBeNull();
+  const told = (value: typeof recovered) => value.intent.claims.some(item => item.code === "recovery");
+  expect(told(recovered)).toBe(true);
+  // Its takes credit this move with restoring the game, which the opponent's moves did.
+  expect(selectWalterGameRecording(onlyClaim(recovered, "recovery"))).toBeNull();
   for (const change of ["actor", "generation", "endpoint"] as const) {
-    const changed = structuredClone(recovered);
+    const changed = structuredClone(current);
     if (change === "actor") changed.game.context!.relationships[0].actor = "black";
     if (change === "generation") changed.game.context!.nodes[0].input_digest = "old-generation";
     if (change === "endpoint") changed.game.context!.relationships[0].plies = [0, 9];
-    expect(selectWalterGameRecording(changed)).toBeNull();
+    expect(told(rerender(changed)), change).toBe(false);
   }
-  expect(selectWalterGameRecording({...recovered, variation: true, intent: {...recovered.intent, mode: "variation"}})).toBeNull();
 });
 
 test("the repeated-issue clip, whose takes say once before or a second time, plays only on the second occurrence", () => {

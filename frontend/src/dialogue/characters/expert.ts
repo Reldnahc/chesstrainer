@@ -50,7 +50,7 @@ export const expert: CoachPersonality = {
     human_natural_strong: ["High natural rating from the human-move model. Engine: strong. Top move: another."],
     book: ["Opening theory: {opening}."],
     book_sound: ["Catalogued in {opening}."],
-    departure: ["Theory stops here. No prepared line applies from this point."],
+    departure: ["Our catalogue stops here. It has no prepared line from this point."],
     recovery: [{fact: "Repair completed. The error at {earlier} no longer leaves the position lost.{help}"}],
     punishment: ["{side} converts the opportunity conceded at {earlier}."],
     missed_punishment: ["The opportunity conceded to {side} at {earlier} goes unconverted."],

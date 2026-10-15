@@ -52,16 +52,13 @@ def test_mistake_missed_punishment_recovery_preserves_actor_and_evidence():
     assert not links(punished, "recovery")
 
 
-def test_recovery_says_whether_this_move_or_earlier_play_restored_the_position():
-    # Black's error at ply 2 made the game playable again; White's ply 3 only kept it.
+def test_recovery_records_the_opponent_errors_that_helped():
+    # Black's error at ply 2 made the game playable again; White's ply 3 kept it.
     _, _, context = reviewed([-300, 0, 0])
-    assert links(context, "recovery")[0].facts["restored_by_move"] is False
-    # Here the position before White's third move was still lost and the move itself
-    # (searched above the root's first choice) brings it back.
-    _, _, context = reviewed([-300, -300, 0])
     recovery = links(context, "recovery")[0]
-    assert recovery.plies[-1] == 3 and recovery.facts["opponent_errors"] == []
-    assert recovery.facts["restored_by_move"] is True
+    assert recovery.plies[-1] == 3 and recovery.facts["opponent_errors"] == [2]
+    # A move never raises its own evaluation, so no fact credits this move alone.
+    assert "restored_by_move" not in recovery.facts
 
 
 def test_partial_benefit_is_not_described_as_completely_missed():
@@ -106,14 +103,17 @@ def test_only_sustained_reviewed_advantage_and_matching_result_can_be_converted(
     assert not links(reviewed([300, 300, 0, 0])[2], "advantage_run")
 
 
-def test_an_advantage_run_lists_the_sides_own_mistakes_inside_it():
+def test_an_advantage_run_lists_the_sides_own_errors_inside_it():
     context = reviewed([300] * 8, initial=300, result="1-0")[2]
-    assert links(context, "advantage_run")[0].facts["own_mistake_plies"] == []
+    assert links(context, "advantage_run")[0].facts["own_error_plies"] == []
     # White drops four pawns at ply 3 but stays above +2.00, so the run still converts.
     context = reviewed([900, 900, 500, 500, 500, 500, 500, 500], initial=900, result="1-0")[2]
     run = links(context, "advantage_run")[0]
     assert run.facts["outcome"] == "converted" and run.plies == list(range(1, 9))
-    assert run.facts["own_mistake_plies"] == [3]
+    assert run.facts["own_error_plies"] == [3]
+    # Inaccuracies count too: 0.90 given back at plies 3 and 7 is not "no slip".
+    context = reviewed([900, 900, 810, 810, 810, 810, 720, 720], initial=900, result="1-0")[2]
+    assert links(context, "advantage_run")[0].facts["own_error_plies"] == [3, 7]
 
 
 def test_several_small_concessions_need_net_deterioration_not_just_badges():
@@ -122,15 +122,22 @@ def test_several_small_concessions_need_net_deterioration_not_just_badges():
     assert erosion.actor == "white" and erosion.plies == [1, 3, 5]
     assert erosion.facts["net_deterioration_cp"] == 300
     assert not links(reviewed([400, 500, 400, 500, 400, 500, 400, 500], initial=500)[2], "erosion")
-    assert erosion.facts["own_blunder_plies"] == []
+    # Each of these concessions is a full pawn, a Mistake.
+    assert erosion.facts["own_mistake_plies"] == [1, 3, 5]
 
 
-def test_erosion_lists_a_separate_blunder_inside_its_run():
-    # Concessions at plies 1, 5 and 7 with a three-pawn drop at ply 3 between them.
+def test_erosion_lists_the_sides_own_mistakes_since_its_first_concession():
+    # Four 0.60 concessions: small slips, no Mistake among them.
+    context = reviewed([500, 500, 440, 440, 380, 380, 320, 320], initial=560)[2]
+    erosion = links(context, "erosion")[-1]
+    assert erosion.plies == [1, 3, 5, 7] and erosion.facts["own_mistake_plies"] == []
+    # The last concession is 1.40, a Mistake.
+    context = reviewed([500, 500, 440, 440, 380, 380, 240, 240], initial=560)[2]
+    assert links(context, "erosion")[-1].facts["own_mistake_plies"] == [7]
+    # A separate three-pawn drop at ply 3 between concessions at 1, 5 and 7.
     context = reviewed([900, 900, 600, 600, 500, 500, 400, 400], initial=1000)[2]
     erosion = links(context, "erosion")[0]
-    assert erosion.plies == [1, 5, 7]
-    assert erosion.facts["own_blunder_plies"] == [3]
+    assert erosion.plies == [1, 5, 7] and 3 in erosion.facts["own_mistake_plies"]
 
 
 def test_repeated_motif_uses_player_role_and_unique_plies_not_duplicate_detectors():

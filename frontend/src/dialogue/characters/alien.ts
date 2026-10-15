@@ -85,7 +85,7 @@ export const alien: CoachPersonality = {
     human_natural_strong: ["A natural choice by the human-move model, and a strong one. Here the obvious move also holds up."],
     book: ["This position carries a name in the opening catalogue: {opening}."],
     book_sound: ["The move follows the documented line of {opening}."],
-    departure: ["Here the game steps off the catalogued opening. Beyond this point it is entirely its own."],
+    departure: ["Here the game steps off the catalogued opening. Beyond this point our book has no more to say."],
     recovery: [
       {observation: "The earlier damage was not permanent.", fact: "After the error at {earlier}, the position is playable again.{help}"},
       "The position becomes playable again, despite the error at {earlier}.{help}",

@@ -49,7 +49,7 @@ export const blonde: CoachPersonality = {
     human_natural_strong: ["The human-move model calls it an everyday move, and the engine rates it strong, though its own favorite is different."],
     book: ["This position goes by the name {opening}."],
     book_sound: ["Comfortably in the recognized line of {opening}."],
-    departure: ["The game steps off the known opening path here, so it's fresh ground from now on."],
+    departure: ["The game steps off our opening catalogue here, so the book has nothing more to add."],
     recovery: [{ reaction: "That's the steady way back.", fact: "The setback at {earlier} has been absorbed, and play can carry on.{help}" }],
     punishment: ["Something was left on the table for {side} at {earlier}, and this move collects it."],
     missed_punishment: ["Something was left on the table for {side} at {earlier}, and this move leaves the chance unused. Worth a calm replay."],

@@ -46,7 +46,7 @@ export const host: CoachPersonality = {
     human_natural_error: [{reaction: "Sure, it looks like the move.", fact: "The human-move model rates it natural, though the reply turns it sour.", takeaway: "Let's put that reply on the board."}],
     difficult_defense: ["{best} would have kept it together, though the human-move model rarely picks it. Worth taking to the analysis board."],
     human_challenging: [{fact: "Digging out {best} was hard work, according to the human-move model.", takeaway: "That's one to bring to the analysis board."}],
-    human_defense_found: [{reaction: "Nice defense.", fact: "{best} rescued the position, and the human-move model doesn't expect many to see it."}],
+    human_defense_found: [{reaction: "Nice defense.", fact: "{best} rescued the position, and the human-move model rarely picks it."}],
     book: ["No exit from {opening} yet."],
     book_sound: ["We have {opening} on the board.", "That's {opening}, a line with a name."],
     departure: ["And here's where the game steps out of prep."],

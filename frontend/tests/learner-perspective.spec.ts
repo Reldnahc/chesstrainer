@@ -7,10 +7,6 @@ import {neutralPersonality} from "../src/dialogue/personality";
 import type {Game} from "../src/gameReview/types";
 
 const games = semanticFixtures<Game[]>("review_perspective_fixtures.py");
-// These fixtures' recovering move keeps a game the opponent's errors had already made
-// playable. Recovery lines credit the move itself, so here that move restores it.
-for (const game of games) for (const relation of game.context!.relationships)
-  if (relation.kind === "recovery") relation.facts.restored_by_move = true;
 const opposite = (color: "white" | "black") => color === "white" ? "black" : "white";
 function intentAt(game: Game, ply: number) {
   const frame = game.frames[ply], report = frame.report;
@@ -78,11 +74,11 @@ for (const game of games) {
 
   test(`${learner} relationships and history cannot become the opponent's coaching journey`, () => {
     const kinds = [
-      ["recovery", "recovery", {restored_by_move: true}], ["punishment", "punishment", {outcome: "capitalized"}],
+      ["recovery", "recovery", {}], ["punishment", "punishment", {outcome: "capitalized"}],
       ["punishment", "missed_punishment", {outcome: "missed"}],
       ["repeated_motif", "repeated", {role: "caused", motif: "abandoned_defender", occurrence: 2}],
       ["support_restored", "support_restored", {piece: "knight"}],
-      ["erosion", "erosion", {own_blunder_plies: []}], ["advantage_run", "conversion", {outcome: "converted", own_mistake_plies: []}],
+      ["erosion", "erosion", {own_mistake_plies: []}], ["advantage_run", "conversion", {outcome: "converted", own_error_plies: []}],
     ] as const;
     for (const [kind, code, facts] of kinds) {
       // A restored defender is spoken only for a piece under attack on this move.

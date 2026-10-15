@@ -49,7 +49,7 @@ export const analyst: CoachPersonality = {
     human_natural_strong: ["Routine in the human-move model's forecast; strong in the engine's, though its own preference differs."],
     book: ["This position is catalogued as {opening}."],
     book_sound: ["Its course so far matches {opening}."],
-    departure: ["From this move on, the game is outside the known opening."],
+    departure: ["From this move on, the game is outside our opening catalogue."],
     recovery: [{ fact: "What changed after {earlier}: the setback is no longer decisive, and play can continue normally.{help}" }],
     punishment: ["At {earlier}, an opportunity opened for {side}; with this move it is used."],
     missed_punishment: ["At {earlier}, an opportunity opened for {side}; after this move it is still untaken."],

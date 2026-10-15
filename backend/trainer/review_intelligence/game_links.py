@@ -1,7 +1,7 @@
 """Relationships require contiguous actual play, never adjacent rows across gaps."""
 
 from trainer.chess_core import evaluation_loss
-from trainer.review_scores import BLUNDER_CP, is_mistake, is_poor
+from trainer.review_scores import is_mistake, is_poor
 
 
 def loss(node):
@@ -14,12 +14,6 @@ def strong(score):
 
 def playable(score):
     return score.outcome() == 1 or (score.kind == "cp" and score.value >= -100)
-
-
-def blunder_sized(node):
-    """A mate given up or allowed, or a loss a Blunder at any rating's threshold."""
-    drop = loss(node)
-    return drop.allows_mate or drop.mate_lost or (drop.cp or 0) >= BLUNDER_CP
 
 
 def good(node):
@@ -79,9 +73,6 @@ def sequential_links(segment, emit, finished, result):
                 between,
                 outcome="winning_chances" if strong(node.after) else "playable_position",
                 opponent_errors=[n.ply for n in between if n.actor != node.actor and mistake(n)],
-                # Only this move restored a playable game when the position before it
-                # was not; usually the opponent's moves since the error already had.
-                restored_by_move=not playable(node.before) and playable(node.after),
             )
             del errors[node.actor]
         if mistake(node) and strong(node.after.negate()):
@@ -107,11 +98,9 @@ def sequential_links(segment, emit, finished, result):
                     concessions,
                     total_conceded_cp=sum(loss(n).cp for n in concessions),
                     net_deterioration_cp=first.before.value - node.after.value,
-                    # Blunder-sized moves of the same side inside the run, which are
-                    # not small concessions themselves.
-                    own_blunder_plies=[
-                        n.ply for n in own if n.ply >= first.ply and blunder_sized(n)
-                    ],
+                    # The side's own Mistake-sized moves since the first concession,
+                    # concessions included: "small" slips are only Inaccuracies.
+                    own_mistake_plies=[n.ply for n in own if n.ply >= first.ply and mistake(n)],
                 )
     for color, run in runs.items():
         finish_run(run, color, emit, finished, result)
@@ -129,8 +118,8 @@ def finish_run(run, color, emit, finished, result):
             threshold="200cp_or_searched_mate",
             reviewed_plies=len(run),
             # The run only keeps the evaluation above the threshold; these are the
-            # side's own Mistake-sized moves inside it.
-            own_mistake_plies=[n.ply for n in run if n.actor == color and mistake(n)],
+            # side's own moves inside it graded Inaccuracy or worse.
+            own_error_plies=[n.ply for n in run if n.actor == color and not good(n)],
         )
 
 

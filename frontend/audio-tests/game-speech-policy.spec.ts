@@ -10,23 +10,24 @@ import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
 const relationshipGames = semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py");
-// The recovery fixtures' last move keeps a game that the opponent's moves since the
-// error had already made playable. Recovery lines credit the move itself ("this move
-// restores a playable position"), so the fixtures as produced are not told...
+// Recovery takes credit this move with restoring the game, which the opponent's
+// moves did; the written line is told and no recovery take plays.
 for (const [name, game] of Object.entries(relationshipGames)) if (name.startsWith("combo-recovery"))
-  test(`${name}: a recovery made by the opponent's moves is not credited to this move`, () => {
-    const ply = game.frames.length - 1, frame = game.frames[ply];
-    const intent = gameIntent({key: name, game, frame, report: frame.report!, ply, expression: "neutral"});
-    expect(game.context!.relationships.some(item => item.kind === "recovery" && item.facts.restored_by_move === false)).toBe(true);
-    expect(intent.claims.some(item => item.code === "recovery")).toBe(false);
+  test(`${name}: a recovery is written but never voiced`, () => {
+    const ply = game.frames.length - 1, frame = game.frames[ply], report = frame.report!;
+    const intent = gameIntent({key: name, game, frame, report, ply, expression: "neutral"});
+    const claimIndex = intent.claims.findIndex(item => item.code === "recovery");
+    expect(claimIndex).toBeGreaterThanOrEqual(0);
+    const utterance = renderDialogue(intent, coaches[0]);
+    expect(utterance.text).toMatch(/playable/);
+    expect(utterance.text).not.toMatch(/\bthis (?:move )?(?:restores|makes|brings|gets)/i);
+    const context: GameSpeechContext = {game, frame, report, ply, intent, utterance};
+    const index = utterance.renderedClaims!.findIndex(item => item.code === "recovery");
+    expect(selectGameRecording({...context, claimIndex: index})).toBeNull();
   });
-// ...and below, as though the move itself restored it.
-const restored = structuredClone(relationshipGames);
-for (const [name, game] of Object.entries(restored)) if (name.startsWith("combo-recovery"))
-  for (const relation of game.context!.relationships) if (relation.kind === "recovery") relation.facts.restored_by_move = true;
 const games = {
   ...semanticFixtures<Record<string, Game>>("review_speech_policy_fixtures.py"),
-  ...restored,
+  ...relationshipGames,
 };
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // Objective explanations that the policy profiles reach while a Maia reading
@@ -40,7 +41,7 @@ const observedFamilies = [
   "sound-sacrifice", "only-playable-move", "only-advantage-resource",
   "positional-rook-open-actual", "positional-rook-semi-open-actual",
   "positional-bishop-pair-actual", "positional-passer-advance-actual", "positional-king-flight-actual",
-  "recovery", "recovery-assisted", "chance-taken", "chance-missed", "support-restored", "advantage-converted",
+  "chance-taken", "chance-missed", "support-restored", "advantage-converted",
 ];
 
 function presentation(name: string, coach = coaches[0], game = structuredClone(games[name])) {
@@ -72,8 +73,11 @@ for (const coach of coaches) {
       const parts = speech.recordingId?.split("+") ?? [];
       expect(parts.every(id => objective.includes(id)), `${name}: ${speech.recordingId}`).toBe(true);
       expect(parts.some(id => /^(?:human-|combo-|combined-)/.test(id))).toBe(false);
-      const lead = claims.findIndex(item => !humanInsightLabels[item.code]);
-      expect(speech.primaryId, name).toBe(lead < 0 ? null : selectGameRecording({...context, claimIndex: lead}));
+      // The lead is the first objective sentence with a take; an unvoiced one (a
+      // recovery) passes it on, and repeated-issue or history lines only follow.
+      const lead = claims.map((item, claimIndex) => humanInsightLabels[item.code] || ["repeated", "history"].includes(item.code)
+        ? null : selectGameRecording({...context, claimIndex})).find(id => id) ?? null;
+      expect(speech.primaryId, name).toBe(lead);
       if (!insight.intent.claims.length || !speech.primaryId) continue;
       observed.add(speech.primaryId);
     }

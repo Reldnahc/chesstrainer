@@ -70,7 +70,8 @@ its grade take instead.
 The evaluation-loss clip, some of whose takes call the cost small, plays only on an
 Inaccuracy; a larger loss passes the lead on or speaks its grade take.
 A forced-mate stage is told once per run of the same side's moves, and an
-erosion run only on a move graded as an error. Takes rotate so that a side's back-to-back
+erosion run only on an Inaccuracy. A recovery is written, never voiced: its takes credit
+this move, and the opponent's moves made the game playable. Takes rotate so that a side's back-to-back
 moves (two plies apart) differ whenever a meaning has three or more takes.
 
 Intent version 5 records the subject as learner, opponent or unknown position.
