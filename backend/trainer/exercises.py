@@ -1,4 +1,4 @@
-from sqlalchemy import delete, select
+from sqlalchemy import select
 
 from trainer.chess_core import Candidate, digest, legal_move, position_key, valid_board
 from trainer.errors import InvalidInput
@@ -28,14 +28,11 @@ def exercise_from_decision(db, decision, settings, scheduler):
             "analysis": decision.before_analysis_id,
         }
     )
-    exercise = db.scalar(select(Exercise).where(Exercise.identity == identity))
-    if exercise:
-        return exercise
-    analysis = db.get(EngineAnalysis, decision.before_analysis_id)
-    candidates = [Candidate.model_validate(c) for c in analysis.candidates]
-    # The decision's search was replaced (a deeper search adopted later): its
-    # exercise under this policy takes the new answers and keeps its schedule.
-    exercise = next(
+    # A decision whose searches were replaced later (a deeper search adopted after
+    # training was built) keeps the exercise it already has: rewriting its answers
+    # would drop answers graded during practice, and an exercise can be shared by
+    # the same mistake in other games. Only a decision without one gets a new one.
+    owned = next(
         (
             row
             for row in db.scalars(
@@ -47,20 +44,23 @@ def exercise_from_decision(db, decision, settings, scheduler):
         ),
         None,
     )
-    if exercise is not None:
-        exercise.identity = identity
-        db.execute(delete(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise.id))
-    else:
-        exercise = Exercise(
-            identity=identity,
-            source="game",
-            decision_id=decision.id,
-            fen=decision.fen,
-            orientation="white" if decision.learner_color else "black",
-            explanation="Compare your choice with the verified continuation after answering.",
-            policy=policy.model_dump(),
-        )
-        db.add(exercise)
+    if owned is not None:
+        return owned
+    exercise = db.scalar(select(Exercise).where(Exercise.identity == identity))
+    if exercise:
+        return exercise
+    analysis = db.get(EngineAnalysis, decision.before_analysis_id)
+    candidates = [Candidate.model_validate(c) for c in analysis.candidates]
+    exercise = Exercise(
+        identity=identity,
+        source="game",
+        decision_id=decision.id,
+        fen=decision.fen,
+        orientation="white" if decision.learner_color else "black",
+        explanation="Compare your choice with the verified continuation after answering.",
+        policy=policy.model_dump(),
+    )
+    db.add(exercise)
     db.flush()
     for index, candidate in enumerate(candidates):
         db.add(

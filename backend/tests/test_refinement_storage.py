@@ -223,7 +223,7 @@ def test_training_decisions_use_the_adopted_refinement(settings, sessions):
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
 
 
-def test_a_refinement_adopted_later_updates_the_decision_and_its_exercise(settings, sessions):
+def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settings, sessions):
     import chess
     from trainer.analysis import analyze_decision
     from trainer.exercises import exercise_from_decision
@@ -293,11 +293,11 @@ def test_a_refinement_adopted_later_updates_the_decision_and_its_exercise(settin
         assert again.id == decision.id
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
         assert again.loss_cp == 285
-        updated = exercise_from_decision(db, again, settings, scheduler)
-        # The same exercise, keeping its schedule, with the deeper search's answers.
-        assert updated.id == exercise.id and db.get(SRSState, exercise.id) is not None
+        kept = exercise_from_decision(db, again, settings, scheduler)
+        # The same exercise and schedule, never a second card: its answers (and any
+        # graded during practice) stay as they were made.
+        assert kept.id == exercise.id and db.get(SRSState, exercise.id) is not None
         answers = db.scalars(
             select(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise.id)
         ).all()
-        assert {answer.uci for answer in answers} == {"d2d4", "e2e4", "f2f3"}
-        assert {answer.analysis_id for answer in answers} == {rows["deep"].id}
+        assert {answer.analysis_id for answer in answers} == {rows["base"].id}
