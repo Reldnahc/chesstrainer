@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePageTitle } from "../PageTitle";
 import { errorMessage, api, read } from "../api";
+import { usePolling } from "../usePolling";
 import type { Game } from "./types";
 
 /** Owns the original game and its persisted review job, never variation state. */
@@ -115,61 +116,53 @@ export function useGameReviewSession(id: string) {
 
   usePageTitle(game ? `${game.white} vs ${game.black}` : null);
 
-  useEffect(() => {
-    if (!running) return;
-    let active = true;
-    let timer: number | undefined;
-    const update = async () => {
-      const version = loadVersion.current;
-      try {
-        const progress = await read(
-          api.GET("/api/games/{game_id}/review", {
-            params: {
-              path: { game_id: id },
-              query: receivedRevision.current === undefined
-                ? { after: receivedPly.current }
-                : { after_revision: receivedRevision.current },
-            },
-          }),
-        );
-        if (!active || version !== loadVersion.current) return;
-        // Advance only over reports received, never a newer progress counter.
-        for (const move of progress.moves)
-          receivedPly.current = Math.max(receivedPly.current, move.ply);
-        // The server cursor includes exactly the updates in this response, including earlier plies.
-        if (progress.revision !== undefined) receivedRevision.current = progress.revision;
-        const reports = new Map(
-          progress.moves.map((move) => [move.ply, move.report]),
-        );
-        setGame((current) =>
-          current
-            ? {
-                ...current,
-                job: progress.job,
-                accuracy: progress.accuracy,
-                review_revision: progress.revision,
-                context: progress.context ?? current.context,
-                history: progress.history ?? current.history,
-                frames: current.frames.map((frame, index) =>
-                  reports.has(index)
-                    ? { ...frame, report: reports.get(index)! }
-                    : frame,
-                ),
-              }
-            : current,
-        );
-      } catch (e) {
-        if (active) setError(errorMessage(e));
-      } finally {
-        if (active) timer = window.setTimeout(update, 750);
-      }
-    };
-    void update();
-    return () => {
-      active = false;
-      window.clearTimeout(timer);
-    };
-  }, [id, running]);
+  // Progress follows the shared polling rules: one pass at a time, paused in hidden tabs,
+  // and backing off while the server is unreachable.
+  usePolling(async (signal) => {
+    const version = loadVersion.current;
+    try {
+      const progress = await read(
+        api.GET("/api/games/{game_id}/review", {
+          params: {
+            path: { game_id: id },
+            query: receivedRevision.current === undefined
+              ? { after: receivedPly.current }
+              : { after_revision: receivedRevision.current },
+          },
+          signal,
+        }),
+      );
+      if (signal.aborted || version !== loadVersion.current) return;
+      // Advance only over reports received, never a newer progress counter.
+      for (const move of progress.moves)
+        receivedPly.current = Math.max(receivedPly.current, move.ply);
+      // The server cursor includes exactly the updates in this response, including earlier plies.
+      if (progress.revision !== undefined) receivedRevision.current = progress.revision;
+      const reports = new Map(
+        progress.moves.map((move) => [move.ply, move.report]),
+      );
+      setGame((current) =>
+        current
+          ? {
+              ...current,
+              job: progress.job,
+              accuracy: progress.accuracy,
+              review_revision: progress.revision,
+              context: progress.context ?? current.context,
+              history: progress.history ?? current.history,
+              frames: current.frames.map((frame, index) =>
+                reports.has(index)
+                  ? { ...frame, report: reports.get(index)! }
+                  : frame,
+              ),
+            }
+          : current,
+      );
+    } catch (e) {
+      if (!signal.aborted) setError(errorMessage(e));
+      throw e;
+    }
+  }, { intervalMs: 750, enabled: running });
 
   return {
     game,

@@ -75,7 +75,9 @@ api.use({
     // A reverse proxy's 502/504 page or an unhandled 500 has no JSON detail.
     const fallback = response.status >= 500 ? SERVER_PROBLEM
       : response.status === 413 ? "That upload is too large for the server."
-      : "Please check the submitted fields.";
+      : response.status === 400 || response.status === 422 ? "Please check the submitted fields."
+      : response.status === 404 ? "That was not found. It may have been removed."
+      : "The server couldn’t handle that request.";
     throw new ApiError(detail ?? fallback, response.status);
   },
   onError({ request, error }) {
@@ -109,14 +111,11 @@ export type Promotion = NonNullable<LegalMove["promotion"]>;
 export type ColdPosition = Schema["ColdPosition"];
 export type Feedback = Schema["ReviewFeedback"];
 export type Job = Schema["Job"];
-export type ChessComImport = Schema["ChessComImportProgress"];
 export type Evidence = Schema["Evidence"];
 export type MoveExplanation = Schema["MoveExplanation"];
 export type PatternFinding = Schema["Finding"];
-export type Coverage = Schema["Coverage"];
 export type Health = Schema["Health"];
 export type PgnImportResult = Schema["PgnImportResult"];
-export type WorkspaceSettings = Schema["WorkspaceSettings"];
 // Roles are a transient UI overlay selected from a finding, not another wire field.
 export type ExplanationFrame = Schema["Frame"] & {
   roles?: Record<string, string[]>;

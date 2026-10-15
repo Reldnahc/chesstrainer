@@ -163,7 +163,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     return <Onboarding key={identity.user.id} onComplete={user => setIdentity(current => current ? { ...current, user } : current)} />;
   return (
     <AccountContext.Provider
-      value={{ user: identity.user, logout, busy, error }}
+      value={{ user: identity.user, logout, busy, error, dismissError: () => setError("") }}
     >
       <div key={identity.user.id}>{children}</div>
     </AccountContext.Provider>

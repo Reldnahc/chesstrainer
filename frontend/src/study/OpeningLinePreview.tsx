@@ -31,6 +31,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   const [color, setColor] = useState<"white" | "black">(courseLine?.color ?? "white");
   const [ply, setPly] = useState(0);
   const [error, setError] = useState("");
+  const [attempt, setAttempt] = useState(0);
   const command = useCommand();
   const busy = !!command.busy;
   const [saved, setSaved] = useState(false);
@@ -46,6 +47,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   }
   useEffect(() => {
     const pending = new AbortController();
+    setError("");
     const selected = catalogueKey
       ? read(api.GET("/api/openings/catalog/{key}", { params: { path: { key: catalogueKey } }, signal: pending.signal }))
       : read(api.GET("/api/openings/course-lines/{course_id}/{line_id}", { params: { path: { course_id: courseLine!.courseId, line_id: courseLine!.lineId }, query: { revision: courseLine!.revision } }, signal: pending.signal }));
@@ -57,7 +59,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
         setColor(preferred => result[`${preferred}_positions`] ? preferred : preferred === "white" ? "black" : "white");
       }).catch(e => { if (!pending.signal.aborted) setError(errorMessage(e)); });
     return () => pending.abort();
-  }, [catalogueKey, courseLine]);
+  }, [catalogueKey, courseLine, attempt]);
   usePageTitle(line?.line.name);
   const selectedStudy = line && studies.find(study => study.source === line.line.source && study.source_key === line.line.source_key && study.source_version === line.line.source_version && study.color === color);
   function enroll() {
@@ -85,7 +87,10 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   });
   // The preview's single coach sentence is shown as the coach says it.
   const spoken = useSelectedCoachSpokenText(recordingId);
-  if (!line) return <section className="panel"><h1>Opening preview</h1>{error ? <UnavailableState>{error}</UnavailableState> : <LoadingState>Loading the selected line…</LoadingState>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
+  // The back link stays mounted (and keeps focus) while the load turns into an error.
+  if (!line) return <section className="panel"><h1>Opening preview</h1>{error
+    ? <UnavailableState actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>{error}</UnavailableState>
+    : <LoadingState>Loading the selected line…</LoadingState>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
   const frame = ply ? line.frames[ply - 1] : null;
   const positions = color === "white" ? line.white_positions : line.black_positions;
   return <ReviewWorkspace
@@ -100,7 +105,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   >
     <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>} voice={voice}
       reaction={{ state: "explaining", key: `${line.line.source_key}:${color}:${!!selectedStudy?.active}` }}
-      actions={<><Button size="compact" variant="primary" disabled={busy || !positions || !!selectedStudy?.active} onClick={enroll}>{selectedStudy?.active ? "Added to study" : selectedStudy ? "Resume recalls" : "Add to study"}<ArrowRight size={16} /></Button>{selectedStudy && <Button size="compact" variant="secondary" disabled={busy} onClick={practice}><Play size={16} />Practice line</Button>}</>}
+      actions={<><Button size="compact" variant="primary" disabled={busy || !positions || !!selectedStudy?.active} onClick={enroll}>{selectedStudy?.active ? "Added to study" : selectedStudy ? "Resume recalls" : "Add to study"}<ArrowRight size={16} /></Button><Reveal axis="inline">{selectedStudy && <Button size="compact" variant="secondary" disabled={busy} onClick={practice}><Play size={16} />Practice line</Button>}</Reveal></>}
     ><p>{spoken ?? (selectedStudy?.active ? "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone." : "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies.")}</p></ReviewCoach>
     {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
     {saved && <Banner tone="success" onDismiss={() => setSaved(false)}>Study saved. Eligible positions are now included in Due.</Banner>}

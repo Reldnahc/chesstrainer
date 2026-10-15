@@ -79,10 +79,12 @@ export function useAnalysisRequests<V>(scope: string) {
     for (const [key, value] of entries) {
       if (cache.current.has(key)) continue;
       cache.current.set(key, value);
+      // A result that arrives another way settles a request for that key that failed.
+      clearFailure(key);
       added = true;
     }
     if (added) changed();
-  }, [changed]);
+  }, [changed, clearFailure]);
   /** Forgets results whose key no longer applies, retiring queued requests. */
   const discard = useCallback((keep: (key: string) => boolean) => {
     retire();

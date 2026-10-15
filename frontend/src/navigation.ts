@@ -355,10 +355,13 @@ function popped(event: PopStateEvent) {
     return;
   }
   let next = entryIndex(event.state);
-  // An in-page #fragment link adds an entry the app did not write; it follows the current one.
   if (next === null) {
-    next = currentIndex + 1;
-    window.history.replaceState({ ...historyState(), [entryKey]: localId(), [indexKey]: next }, "");
+    // An in-page #fragment link adds an entry the app did not write; it follows the current one.
+    // An entry written before entries were numbered (a tab open across an upgrade) precedes every
+    // numbered one, so reaching it is a step back.
+    const legacy = typeof historyState()[entryKey] === "string";
+    next = legacy ? currentIndex - 1 : currentIndex + 1;
+    window.history.replaceState({ ...historyState(), [entryKey]: historyState()[entryKey] ?? localId(), [indexKey]: next }, "");
   }
   // Back or Forward out of a screen with unsaved work asks first, as a link does.
   // Refusing returns to the entry the reader was on, and that return is not a navigation.
@@ -368,6 +371,9 @@ function popped(event: PopStateEvent) {
     return;
   }
   currentIndex = next;
+  // An old address reached through history is rewritten as it was at start-up.
+  const url = canonicalUrl(window.location.href);
+  if (url.href !== window.location.href) window.history.replaceState(historyState(), "", url);
   update();
 }
 

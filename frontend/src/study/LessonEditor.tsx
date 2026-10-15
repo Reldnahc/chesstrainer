@@ -434,31 +434,32 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
             onKeyDown={event => { if (event.key === "Enter") commitStepId(); }} /></Field>
         <Field label="Text"><textarea rows={4} value={step.text ?? ""} onChange={event => setField("text", event.target.value)} /></Field>
 
-        {kind === "demonstration" && <Field label="Moves to play" help="Ordinary notation, such as Nf3 Nc6."
+        {/* Each kind's own fields grow in and collapse out as the kind changes. */}
+        <Reveal>{kind === "demonstration" && <Field label="Moves to play" help="Ordinary notation, such as Nf3 Nc6."
           action={<Button size="compact" variant="secondary" onClick={() => startRecording("show")}><Circle size={16} />Record on the board</Button>}>
           <input value={step.show ?? ""} onChange={event => setField("show", event.target.value)} />
-        </Field>}
-        {kind === "decision" && (step.choices ? <Notice announcement="passive">This decision accepts several moves. Edit its choices in the course file.</Notice> : <>
+        </Field>}</Reveal>
+        <Reveal>{kind === "decision" && (step.choices ? <Notice announcement="passive">This decision accepts several moves. Edit its choices in the course file.</Notice> : <div className="lesson-editor-fields">
           <Field label="Learner's move" action={<Button size="compact" variant="secondary" onClick={() => startRecording("decision")}><Circle size={16} />Record move and reply</Button>}>
             <input value={step.move ?? ""} onChange={event => setField("move", event.target.value)} /></Field>
           <Field label="Opponent's reply" help="Optional."><input value={step.reply ?? ""} onChange={event => setField("reply", event.target.value)} /></Field>
           <Field label="Hint" help="Shown when the learner asks for one."><input value={step.hint ?? ""} onChange={event => setField("hint", event.target.value)} /></Field>
           <Field label="Feedback" help="Shown after the right move."><input value={step.feedback ?? ""} onChange={event => setField("feedback", event.target.value)} /></Field>
-        </>)}
-        {kind === "branch" && <Field label="Side trip starts at" help="The side trip's last step should end the chapter, so the learner returns here.">
+        </div>)}</Reveal>
+        <Reveal>{kind === "branch" && <Field label="Side trip starts at" help="The side trip's last step should end the chapter, so the learner returns here.">
           <select value={step.branch ?? ""} onChange={event => setField("branch", event.target.value)}><option value="">Choose a step</option>{otherSteps.map(item => <option key={item.id} value={item.id}>{item.title} ({item.id})</option>)}</select>
-        </Field>}
-        {kind === "rehearsal" && <Field label="Line to rehearse">
+        </Field>}</Reveal>
+        <Reveal>{kind === "rehearsal" && <Field label="Line to rehearse">
           <select value={step.rehearse ?? ""} onChange={event => setField("rehearse", event.target.value)}>
             <option value="">Choose a line</option>
             {(current.lines ?? []).map(line => <option key={line.id} value={line.id}>{line.title}</option>)}
           </select>
-        </Field>}
-        {kind === "game_excerpt" && <>
+        </Field>}</Reveal>
+        <Reveal>{kind === "game_excerpt" && <div className="lesson-editor-fields">
           <Field label="Source game"><select value={step.game ?? ""} onChange={event => setField("game", event.target.value)}><option value="">Choose a game</option>{(current.games ?? []).map(game => <option key={game.id} value={game.id}>{game.title}</option>)}</select></Field>
           <Field label="From ply"><input type="number" min={0} value={step.from ?? 0} onChange={event => setField("from", Number(event.target.value))} /></Field>
           <Field label="To ply"><input type="number" min={1} value={step.to ?? 1} onChange={event => setField("to", Number(event.target.value))} /></Field>
-        </>}
+        </div>}</Reveal>
 
         <Field label="Then go to">
           <select value={nextValue} onChange={event => setField("next", event.target.value === FOLLOWING ? undefined : event.target.value === END ? null : event.target.value)}>
@@ -476,11 +477,11 @@ export default function LessonEditor({ courseId, revision }: { courseId: string 
             else { delete draft.position; delete draft.fen; }
           })} options={[{ value: "carry", label: "Carries on" }, { value: "own", label: "Its own position" }]} />
         </Field>
-        {(step.position !== undefined || step.fen !== undefined) && <>
+        <Reveal>{(step.position !== undefined || step.fen !== undefined) && <div className="lesson-editor-fields">
           <Field label="Moves from the start" action={<Button size="compact" variant="secondary" onClick={() => startRecording("position")}><Circle size={16} />Record on the board</Button>}>
             <input value={step.position ?? ""} onChange={event => setField("position", event.target.value)} /></Field>
           <Field label="Starting FEN" help="Optional, for an example that does not start from the initial position."><input value={step.fen ?? ""} onChange={event => setField("fen", event.target.value || undefined)} /></Field>
-        </>}
+        </div>}</Reveal>
         <Field label="Highlighted squares" help="Such as e4 d5."><input value={(step.squares ?? []).join(" ")} onChange={event => setField("squares", words(event.target.value).length ? words(event.target.value) : undefined)} /></Field>
         <Field label="Arrows" help="Such as c3-d5 f1-b5."><input value={(step.arrows ?? []).join(" ")} onChange={event => setField("arrows", words(event.target.value).length ? words(event.target.value) : undefined)} /></Field>
       </div>

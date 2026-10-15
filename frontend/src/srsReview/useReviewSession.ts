@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   api,
+  ApiError,
+  errorMessage,
   read,
   type ColdPosition,
   type Feedback,
@@ -11,7 +13,6 @@ import { clearExerciseLink, clearReviewSessionLink, rememberReviewSession } from
 import { useAudioScope } from "../audio/AudioProvider";
 import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { useLatest } from "../useLatest";
-import { errorMessage } from "../api";
 import { PHONE_QUERY } from "../mediaQuery";
 
 /** Owns grading and queues. Focused practice never changes the SRS queue policy. */
@@ -132,7 +133,11 @@ export function useReviewSession({
           if (!focusSkill) await refreshDue(version);
         }
       } catch (e) {
-        if (version === generation.current) setLoadError(errorMessage(e));
+        if (version === generation.current) {
+          // A session link that no longer exists is not asked for again; Try again opens the queue.
+          if (resumeSession && e instanceof ApiError && e.status === 404) lastLoad.current = [id, previous, null];
+          setLoadError(errorMessage(e));
+        }
       } finally {
         if (version === generation.current) setLoading(false);
       }

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 import EvaluationScore from "./EvaluationScore";
 import { positionScore, scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
 import { MOVE_LABELS } from "./moveQuality";
+import { moveNumber } from "./fen";
 
 type Frame = {
   number: number; actor: "white" | "black" | null; san: string;
@@ -80,7 +81,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
     if (commit && ply !== null) onScrubEnd?.(ply);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   };
-  const pointName = (ply: number) => `${frames[ply].number}${frames[ply].actor === "white" ? "." : "..."} ${frames[ply].san}`;
+  const pointName = (ply: number) => `${moveNumber(frames[ply].number, frames[ply].actor === "white" ? "white" : "black")} ${frames[ply].san}`;
   return <section className="game-graph" aria-label="Original-game evaluation">
     <div className="game-graph-heading">
       <div><strong>Game evaluation</strong><span>White<ArrowUp size={11} aria-label="up" role="img" /> · Black<ArrowDown size={11} aria-label="down" role="img" /></span></div>

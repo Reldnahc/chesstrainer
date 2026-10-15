@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { api, read, type Evidence, type Schema } from "./api";
+import { api, errorMessage, read, type Evidence, type Schema } from "./api";
 import Board from "./Board";
 import Button, { IconButton } from "./Button";
 import { scoreText } from "./evaluation";
 import { sideToMove } from "./fen";
 import useModalDialog from "./useModalDialog";
 import { LoadingState } from "./LoadState";
+import Notice from "./Notice";
+import Reveal from "./Reveal";
 export default function EvidenceDialog({
   id,
   onClose,
-  fail,
 }: {
   id: string;
   onClose: () => void;
-  fail: (e: unknown) => void;
 }) {
   const [data, setData] = useState<Evidence | null>(null),
     [audit, setAudit] = useState<Schema["ClassificationAudit"] | null>(null);
   const [rejecting, setRejecting] = useState(false);
+  // The dialog shows its own failures: a page banner would sit behind the modal.
+  const [error, setError] = useState("");
+  const fail = (e: unknown) => setError(errorMessage(e));
   const dialog = useModalDialog(onClose);
   useEffect(() => {
     let active = true;
@@ -28,9 +31,9 @@ export default function EvidenceDialog({
       }),
     )
       .then((value) => { if (active) setData(value); })
-      .catch((e) => { if (active) fail(e); });
+      .catch((e) => { if (active) setError(errorMessage(e)); });
     return () => { active = false; };
-  }, [id, fail]);
+  }, [id]);
   return (
     <dialog
       {...dialog}
@@ -50,6 +53,7 @@ export default function EvidenceDialog({
           <X />
         </IconButton>
       </div>
+      <Reveal>{error && <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>}</Reveal>
       {data ? (
         <div className="evidence-grid">
           <Board
@@ -103,6 +107,7 @@ export default function EvidenceDialog({
                   onClick={() => {
                     if (rejecting) return;
                     setRejecting(true);
+                    setError("");
                     read(
                       api.POST("/api/classification-runs/{run_id}/reject", {
                         params: { path: { run_id: c.run_id } },
@@ -130,7 +135,7 @@ export default function EvidenceDialog({
           </div>
         </div>
       ) : (
-        <LoadingState>Loading evidence…</LoadingState>
+        !error && <LoadingState>Loading evidence…</LoadingState>
       )}
     </dialog>
   );

@@ -80,6 +80,7 @@ test("a Due queue that fails to load offers Try again instead of the study-queue
   await expect(page.getByRole("alert")).toContainText("Couldn’t load your practice.");
   await expect(page.getByRole("heading", { name: "Build your study queue." })).toHaveCount(0);
   await page.getByRole("button", { name: "Try again", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Build your study queue." })).toBeVisible();
-  expect(failures).toBe(2);
+  // The retried queue loads (a position or the start panel, depending on this project's data).
+  await expect.poll(() => failures).toBe(2);
+  await expect(page.getByText("Couldn’t load your practice.")).toHaveCount(0);
 });

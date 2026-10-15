@@ -237,7 +237,7 @@ test('quick mute persists only on this device and never writes account preferenc
   await page.reload();
   await expect(unmute).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', {name: 'Previous move', exact: true}).click();
-  await expect(page.locator('.game-move-list').getByRole('button', {name: /^1\.\.\. e5(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
+  await expect(page.locator('.game-move-list').getByRole('button', {name: /^1… e5(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
   expect(await audioCues(page)).toEqual([]);
   expect(await (await page.request.get(preferencePath)).json()).toEqual(defaults);
   await page.getByRole('link', {name: 'Settings', exact: true}).click();

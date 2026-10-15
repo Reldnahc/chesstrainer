@@ -27,11 +27,13 @@
   grid-template-columns: 1fr;
   transition:
     grid-template-columns var(--motion-base) var(--ease-standard),
-    opacity var(--motion-base) var(--ease-standard);
+    opacity var(--motion-base) var(--ease-standard),
+    margin-inline-start var(--motion-base) var(--ease-standard);
 }
 .reveal[data-axis="inline"][data-open="false"] {
   grid-template-columns: 0fr;
   margin-block-start: 0;
+  margin-inline-start: calc(-1 * var(--reveal-gap, 0px));
 }
 .reveal-clip { min-width: 0; min-height: 0; overflow: clip; overflow-clip-margin: var(--space-1); }
 .reveal[data-axis="inline"] > .reveal-clip { white-space: nowrap; }
@@ -67,7 +69,7 @@
 details[data-animating] { overflow: clip; }
 
 /* Modal dialogs rise in over a fading backdrop and sink out the same way
-   (DialogPresence keeps them mounted while data-closing plays). */
+   (DialogPresence plays a data-closing copy of the dialog as it closes). */
 @keyframes dialog-in {
   from { opacity: 0; scale: 0.97; }
 }
@@ -82,16 +84,19 @@ dialog[open]::backdrop { animation: content-in var(--motion-base) var(--ease-ent
 dialog[open][data-closing] { animation: dialog-out var(--motion-base) var(--ease-standard) forwards; }
 dialog[open][data-closing]::backdrop { animation: backdrop-out var(--motion-base) var(--ease-standard) forwards; }
 
-/* Popovers fade in when shown; popoverMotion.ts fades a copy out when one hides. */
+/* Popovers fade in when shown; usePopoverExit.ts fades a copy out when one hides. */
 [popover]:popover-open { animation: dialog-in var(--motion-fast) var(--ease-enter); }
 [popover]:popover-open::backdrop { animation: content-in var(--motion-fast) var(--ease-enter); }
 [popover].popover-leaving:popover-open { animation: dialog-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
 [popover].popover-leaving:popover-open::backdrop { animation: backdrop-out var(--motion-fast) var(--ease-standard) forwards; pointer-events: none; }
+}
+@layer motion {
 /* A leaving copy (ghost.ts marks it data-ghost) only fades away: its cloned
-   panels must not replay their own entrances while it does. */
+   panels must not replay their own entrances while it does. The motion layer
+   comes last, and !important wins over any entrance in any layer. */
 [data-ghost] *,
 [data-ghost] *::before,
 [data-ghost] *::after {
-  animation: none;
+  animation: none !important;
 }
 }

@@ -116,7 +116,7 @@ export default function ReviewMoves({
                   !branch && cursor.ply === ply ? "step" : undefined
                 }
                 onClick={() => navigate(ply)}
-                aria-label={`${f.number}${f.actor === "white" ? "." : "..."} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}
+                aria-label={`${moveNumber(f.number, f.actor === "white" ? "white" : "black")} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}
               >
                 <span className="game-move-number">
                   {moveNumber(f.number, f.actor === "white" ? "white" : "black")}

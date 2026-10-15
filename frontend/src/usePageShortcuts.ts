@@ -28,18 +28,17 @@ function keydown(event: KeyboardEvent) {
   }
 }
 
-/** Binds page keyboard shortcuts while mounted and enabled. Pass the current
+/** Binds page keyboard shortcuts while mounted. Pass the current
  * handlers each render; registration order (not render order) decides which
  * owner wins a key that more than one binds. */
-export default function usePageShortcuts(shortcuts: Shortcuts, enabled = true) {
+export default function usePageShortcuts(shortcuts: Shortcuts) {
   const layer: Layer = useLatest(shortcuts);
   useEffect(() => {
-    if (!enabled) return;
     layers.push(layer);
     if (layers.length === 1) window.addEventListener("keydown", keydown);
     return () => {
       layers.splice(layers.indexOf(layer), 1);
       if (!layers.length) window.removeEventListener("keydown", keydown);
     };
-  }, [enabled, layer]);
+  }, [layer]);
 }

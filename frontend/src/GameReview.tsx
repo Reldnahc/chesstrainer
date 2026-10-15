@@ -5,12 +5,12 @@ import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
 import ActionLink from "./ActionLink";
 import Pagination from "./Pagination";
-import Notice from "./Notice";
-import Reveal from "./Reveal";
+import Banner from "./Banner";
+import Button from "./Button";
 import EmptyState from "./EmptyState";
 import { gamesPath } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
-import { LoadingState } from "./LoadState";
+import { LoadingState, UnavailableState } from "./LoadState";
 
 export default function GamesScreen({
   page,
@@ -34,8 +34,9 @@ export default function GamesScreen({
     let active = true;
     if (!background.current) {
       setLoading(true);
-      setError("");
+      setItems([]);
     }
+    setError("");
     background.current = false;
     read(api.GET("/api/games", { params: { query: { offset } } }))
       .then((data) => {
@@ -70,13 +71,14 @@ export default function GamesScreen({
   return (
     <>
       <PageTitle title="Your games" documentTitle="Games" />
-      <Reveal>{error && (
-        <Notice announcement="alert" tone="error">
-          {error}
-        </Notice>
-      )}</Reveal>
+      {error && items.length > 0 && <Banner tone="error" onDismiss={() => setError("")}>Couldn’t refresh your games. {error}</Banner>}
       {loading ? (
         <LoadingState>Loading your games…</LoadingState>
+      ) : error && !items.length ? (
+        // A failed load is never "no games": it says so and offers the load again.
+        <UnavailableState actions={<Button variant="secondary" onClick={() => setRevision((value) => value + 1)}>Try again</Button>}>
+          Couldn’t load your games. {error}
+        </UnavailableState>
       ) : !items.length ? (
         <EmptyState title={page > 1
               ? "No games on this page."

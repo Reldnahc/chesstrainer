@@ -103,15 +103,13 @@ function BannerCard({ entry }: { entry: Entry }) {
  * The caller owns the message state; closing (or a confirmation timing out)
  * calls onDismiss.
  */
-export default function Banner({ children, tone = "info", action, onDismiss, persistent }: {
+export default function Banner({ children, tone = "info", action, onDismiss }: {
   children: ReactNode;
   tone?: "info" | "success" | "error";
   /** One command or link, shown before the close button. */
   action?: ReactNode;
   /** Omitted for a banner that stays while its state lasts (a finished game's result); it then has no close button. */
   onDismiss?: () => void;
-  /** Defaults to true for errors and banners with an action; confirmations close themselves. */
-  persistent?: boolean;
 }) {
   const actions = useContext(BannerActions);
   if (!actions) throw new Error("Banner needs a BannerProvider");
@@ -119,17 +117,17 @@ export default function Banner({ children, tone = "info", action, onDismiss, per
   const dismiss = useLatest(onDismiss);
   // Republish only when what the banner shows changes, not on every owner render.
   const published = useRef<{ tone: string; children: ReactNode; action: ReactNode; dismissible: boolean;
-    persistent?: boolean; revision: number } | null>(null);
+    revision: number } | null>(null);
   useLayoutEffect(() => {
     const last = published.current;
     const sameMessage = !!last && last.tone === tone && sameContent(last.children, children);
-    if (sameMessage && sameContent(last.action, action) && last.dismissible === !!onDismiss
-      && last.persistent === persistent) return;
+    if (sameMessage && sameContent(last.action, action) && last.dismissible === !!onDismiss) return;
     const revision = sameMessage ? last.revision : (last?.revision ?? 0) + 1;
-    published.current = { tone, children, action, dismissible: !!onDismiss, persistent, revision };
+    published.current = { tone, children, action, dismissible: !!onDismiss, revision };
     actions.set({ id, revision, tone, message: children, action,
       onDismiss: onDismiss && (() => dismiss.current?.()),
-      persistent: persistent ?? (tone === "error" || !!action) });
+      // Errors and banners with an action stay until closed; confirmations close themselves.
+      persistent: tone === "error" || !!action });
   });
   useLayoutEffect(() => () => {
     published.current = null;

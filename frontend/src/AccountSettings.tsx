@@ -11,9 +11,9 @@ export default function AccountSettings() {
   const session = useAccountSession();
   const [changed, setChanged] = useState(false);
   if (!session) return null;
-  const { user, logout, busy, error } = session;
+  const { user, logout, busy, error, dismissError } = session;
   return (<>
-    {error && <Banner tone="error">{error}</Banner>}
+    {error && <Banner tone="error" onDismiss={dismissError}>{error}</Banner>}
     {changed && <Banner tone="success" onDismiss={() => setChanged(false)}>Password changed. Your other devices are signed out.</Banner>}
     <SettingsSection id="account-settings" title="Account" className="account-settings">
       <p>

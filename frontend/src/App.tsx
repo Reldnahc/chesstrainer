@@ -181,7 +181,6 @@ export default function App() {
         <EvidenceDialog
           id={evidenceId}
           onClose={() => setEvidenceId(null)}
-          fail={fail}
         />
       )}</DialogPresence>
     </>

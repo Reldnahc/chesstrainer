@@ -135,10 +135,10 @@ export default function PlayGame({ id }: { id: string }) {
   };
   return (
     <div className="game-workspace">
-      {session.error && (
-        <Banner tone="error" onDismiss={session.dismissError}
-          action={session.replyFailed ? <Button size="compact" onClick={session.retryReply}>Try again</Button> : undefined}>
-          {session.error}
+      {session.error && <Banner tone="error" onDismiss={session.dismissError}>{session.error}</Banner>}
+      {session.replyError && (
+        <Banner tone="error" action={<Button size="compact" onClick={session.retryReply}>Try again</Button>}>
+          {session.replyError}
         </Banner>
       )}
       {finished && (

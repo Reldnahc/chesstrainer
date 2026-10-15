@@ -11,6 +11,7 @@ export type AccountSession = {
   logout: (all?: boolean) => Promise<void>;
   busy: boolean;
   error: string;
+  dismissError: () => void;
 };
 
 export const AccountContext = createContext<AccountSession | null>(null);

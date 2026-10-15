@@ -39,15 +39,15 @@ test('Back, Forward and refresh restore the game and move without a history entr
   await expect(page).toHaveTitle('Settings · Fieldwork');
   await page.goBack();
   await expect(page).toHaveURL(`/games/${id}?ply=4`);
-  await expect(page.getByRole('button', {name: '2... Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByRole('button', {name: '2… Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
   await page.goBack();
   await expect(page).toHaveURL('/games');
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
   await page.goForward();
-  await expect(page.getByRole('button', {name: '2... Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByRole('button', {name: '2… Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
   expect(documents).toHaveLength(1);
   await page.reload();
-  await expect(page.getByRole('button', {name: '2... Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByRole('button', {name: '2… Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page).toHaveTitle(`Review-history-${info.project.name} vs CoachFixture · Fieldwork`);
   await page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page).toHaveURL('/games');
@@ -76,6 +76,22 @@ test('every screen has a bookmarkable link and clicking the active page adds no 
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL('/games');
   await expect(page.locator('#main-content')).toBeFocused();
+});
+
+test('an entry from before history entries were numbered is rewritten and counted as a step back', async ({page}) => {
+  await page.goto('/play');
+  // A tab open across the upgrade: the previous build wrote only an entry id, at an old address.
+  await page.evaluate(() => history.replaceState({fieldworkEntry: 'legacy-entry'}, '', '/weaknesses?category=outcomes'));
+  const nav = page.getByRole('navigation', {name: 'Main navigation'});
+  await nav.getByRole('link', {name: 'Study', exact: true}).click();
+  await expect(page).toHaveURL('/study');
+  await page.goBack();
+  await expect(page).toHaveURL('/insights?section=outcomes');
+  await expect(nav.getByRole('link', {name: 'Insights', exact: true})).toHaveAttribute('aria-current', 'page');
+  // Its new number places it before the Study entry, so Forward returns there.
+  expect(await page.evaluate(() => history.state.fieldworkIndex)).toBe(0);
+  await page.goForward();
+  await expect(page).toHaveURL('/study');
 });
 
 test('game links support opening a second tab without navigating the first', async ({page}, info) => {
@@ -133,7 +149,7 @@ test('invalid game positions and missing pages give a usable return path', async
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(`/games/${id}?ply=99999`);
-  await expect(page.getByRole('button', {name: '2... Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByRole('button', {name: '2… Qh4#', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page).toHaveURL(`/games/${id}?ply=4`);
   await page.goto(`/games/${id}?ply=-1&page=invalid`);
   await expect(page.locator('.game-board-controls')).toContainText('0 / 4');

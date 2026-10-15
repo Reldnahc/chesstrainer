@@ -128,9 +128,9 @@
   color: #141517;
 }
 .insight-heat--empty { background: transparent; border: 1px dashed #33363c; }
-.insight-heat--good { background: #89ad5d; }
+.insight-heat--good { background: var(--outcome-win); }
 .insight-heat--even { background: #8d939c; }
-.insight-heat--poor { background: #d35f6b; }
+.insight-heat--poor { background: var(--outcome-loss); }
 .insight-heat-legend { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-1-5) var(--space-5); font-size: var(--text-sm); color: var(--muted); }
 .insight-heat-legend li { display: flex; align-items: center; gap: var(--space-2); }
 .insight-heat-legend span { width: 10px; height: 10px; border-radius: 2px; }

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useEffectEvent, useRef, useState, type DependencyList, type ReactNode } from "react";
 import { errorMessage } from "./api";
+import Banner from "./Banner";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
 
@@ -11,6 +12,8 @@ export type Query<T> = {
   pending: boolean;
   /** Loads again. */
   retry: () => void;
+  /** Clears a failed refresh's message; the loaded value stays. */
+  dismiss: () => void;
   /** Replaces the loaded value after a command changed it on the server. */
   setData: (update: T | ((current: T | undefined) => T)) => void;
 };
@@ -47,13 +50,14 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
     // The caller's deps decide when the request is a different one.
   }, [attempt, ...deps]);
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
-  return { data, error, pending, retry, setData: setData as Query<T>["setData"] };
+  const dismiss = useCallback(() => setError(null), []);
+  return { data, error, pending, retry, dismiss, setData: setData as Query<T>["setData"] };
 }
 
 /**
  * A query's content: loading while nothing has arrived, unavailable with "Try
- * again" when the load failed, and the children only once the data is here, so a
- * failed or pending load never reads as an empty one.
+ * again" when the first load failed, and the children only once the data is here,
+ * so a failed or pending load never reads as an empty one.
  */
 export function QueryResult<T>({ query, label, presentation, heading, children }: {
   query: Query<T>;
@@ -63,13 +67,16 @@ export function QueryResult<T>({ query, label, presentation, heading, children }
   heading?: ReactNode;
   children: (data: T) => ReactNode;
 }) {
-  if (query.error)
-    return <UnavailableState presentation={presentation} heading={heading}
-      actions={<Button variant="secondary" onClick={query.retry}>Try again</Button>}>
-      Couldn’t load {label}.
-    </UnavailableState>;
-  if (query.data === undefined) return <LoadingState presentation={presentation} heading={heading}>Loading {label}…</LoadingState>;
-  return children(query.data);
+  const retry = <Button variant="secondary" onClick={query.retry}>Try again</Button>;
+  if (query.data === undefined)
+    return query.error
+      ? <UnavailableState presentation={presentation} heading={heading} actions={retry}>Couldn’t load {label}.</UnavailableState>
+      : <LoadingState presentation={presentation} heading={heading}>Loading {label}…</LoadingState>;
+  // A refresh that fails keeps what already loaded and says so.
+  return <>
+    {query.error && <Banner tone="error" action={retry} onDismiss={query.dismiss}>Couldn’t refresh {label}.</Banner>}
+    {children(query.data)}
+  </>;
 }
 
 /**

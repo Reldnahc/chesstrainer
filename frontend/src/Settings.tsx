@@ -1,3 +1,4 @@
+import Banner from "./Banner";
 import Button from "./Button";
 import Notice from "./Notice";
 import Reveal, { Swap } from "./Reveal";
@@ -59,6 +60,11 @@ export default function SettingsScreen({ fail, section, importSource, restoringS
   return (
     <>
       <PageTitle title="Settings" />
+      {/* Without the engine's health, the import form's engine notice and Deepen wait; say why. */}
+      {health.error && <Banner tone="error" onDismiss={health.dismiss}
+        action={<Button size="compact" variant="secondary" onClick={health.retry}>Try again</Button>}>
+        Couldn’t check the analysis engine. {health.error}
+      </Banner>}
       <SectionNavigation label="Settings sections" current={active}
         items={settingsSections.filter(shown).map(id => ({ id, label: labels[id], href: settingsPath(id) }))} />
       {/* Sections crossfade, and the page height follows, when the tab changes. */}

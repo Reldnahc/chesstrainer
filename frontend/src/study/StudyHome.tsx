@@ -5,10 +5,12 @@ import Banner from "../Banner";
 import Button from "../Button";
 import PageTitle from "../PageTitle";
 import StatList from "../StatList";
+import { plural } from "../format";
 import { studyPaths } from "../navigation";
 import { useQuery } from "../useQuery";
 
-const plural = (count: number | undefined, one: string, many: string) => (count === 1 ? one : many);
+// A label that agrees with a count shown beside it ("Chapter to learn" next to 1).
+const label = (count: number | undefined, one: string, many: string) => (count === 1 ? one : many);
 
 /** Study's overview: what is due, what is left to learn and the puzzles waiting.
  * Each card loads only its own count. */
@@ -41,14 +43,14 @@ export default function StudyHome() {
         <section className="panel study-option">
           <GraduationCap aria-hidden="true" size={22} /><h2>Lessons</h2>
           <p>Learn openings, tactics and the fundamentals, then choose what to remember.</p>
-          <StatList prominence="featured" items={[{ label: plural(chapters, "Chapter to learn", "Chapters to learn"), value: count(chapters) }]} />
+          <StatList prominence="featured" items={[{ label: label(chapters, "Chapter to learn", "Chapters to learn"), value: count(chapters) }]} />
           <ActionLink variant="secondary" href={studyPaths.openings}>Open lessons <ArrowRight size={16} /></ActionLink>
         </section>
         <section className="panel study-option">
           <Puzzle aria-hidden="true" size={22} /><h2>Puzzles</h2>
           <p>{!library ? "Calculation practice from installed collections." : library.available
-            ? `${library.solved_puzzles} ${plural(library.solved_puzzles, "puzzle", "puzzles")} solved.${gamesCount ? ` ${gamesCount} from your own games.` : ""}` : "No puzzle collections are installed yet."}</p>
-          <StatList prominence="featured" items={[{ label: plural(unsolved, "Unsolved puzzle", "Unsolved puzzles"), value: count(unsolved) }]} />
+            ? `${plural(library.solved_puzzles, "puzzle")} solved.${gamesCount ? ` ${gamesCount} from your own games.` : ""}` : "No puzzle collections are installed yet."}</p>
+          <StatList prominence="featured" items={[{ label: label(unsolved, "Unsolved puzzle", "Unsolved puzzles"), value: count(unsolved) }]} />
           <ActionLink variant="secondary" href={studyPaths.puzzles}>{library?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></ActionLink>
         </section>
       </div>

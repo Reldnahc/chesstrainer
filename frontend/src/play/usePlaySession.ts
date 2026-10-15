@@ -387,13 +387,10 @@ export function usePlaySession(id: string) {
   return {
     state,
     game,
-    error: error || replyError || "",
-    /** The bot's reply failed; asking again is safe. */
-    replyFailed: !error && !!replyError,
-    dismissError: () => {
-      setError("");
-      setReplyError(null);
-    },
+    error,
+    /** The bot's reply failed; asking again (retryReply) is safe and the only way on, so it is not dismissed. */
+    replyError,
+    dismissError: () => setError(""),
     moving,
     /** A command (take back, play on, keep playing, go again, resign) is being sent. */
     busy,
