@@ -2,10 +2,14 @@
 
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.human_models.types import HumanEvidence
-from trainer.review_intelligence.types import DifficultyComponents, PracticalAssessment
+from trainer.review_intelligence.types import (
+    PRACTICAL_VERSION,
+    DifficultyComponents,
+    PracticalAssessment,
+)
 from trainer.review_scores import is_near_best, is_poor, strongest_alternative
 
-VERSION = "practical-2"
+VERSION = PRACTICAL_VERSION
 # Coarse gates inspected on the fixed 12-position × 4-rating probe (see docs).
 # These are model-policy descriptions, not calibrated human success rates.
 PREFERRED_POLICY = 0.10

@@ -25,7 +25,7 @@ class HistoricalWeakness(Contract):
 
 
 class CrossGameContext(Contract):
-    version: Literal["cross-game-1"] = VERSION
+    version: Literal[VERSION] = VERSION
     input_digest: str
     scope: Literal["other_saved_games"] = "other_saved_games"
     recurrence_threshold: int

@@ -5,6 +5,8 @@ import chess
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.review_intelligence.event_facts import objective_events, tactical_events
 from trainer.review_intelligence.events_types import (
+    CLOCK_VERSION,
+    EVENTS_VERSION,
     EvidenceReference,
     MoveIntelligence,
     ReviewEvent,
@@ -13,7 +15,7 @@ from trainer.review_intelligence.positional import VERSION as POSITION_VERSION
 from trainer.review_intelligence.positional import positional_events
 from trainer.review_scores import is_poor
 
-VERSION = "move-events-4"
+VERSION = EVENTS_VERSION
 
 
 def semantic_line(line):
@@ -194,7 +196,7 @@ def describe_move(report, practical, context=None):
                     "accompanied_error": is_poor(loss) if objective_refs else None,
                     "causation": "not_inferred",
                 },
-                [pgn, ref("rule", "clock-1", "bands_and_tempo"), *objective_refs],
+                [pgn, ref("rule", CLOCK_VERSION, "bands_and_tempo"), *objective_refs],
             )
         if (
             clock.before_seconds is not None

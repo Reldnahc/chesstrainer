@@ -6,9 +6,13 @@ from pydantic import Field, JsonValue
 
 from trainer.contracts.common import Color, Contract
 
+# Bumped when the saved shape changes; producers import these.
+CLOCK_VERSION = "clock-1"
+EVENTS_VERSION = "move-events-4"
+
 
 class ClockFacts(Contract):
-    version: Literal["clock-1"] = "clock-1"
+    version: Literal[CLOCK_VERSION] = CLOCK_VERSION
     status: Literal["absent", "annotated", "invalid"] = "absent"
     time_control: str | None = None
     control_kind: Literal["increment", "sudden_death", "delay", "staged", "unknown"] = "unknown"
@@ -55,7 +59,7 @@ class ReviewEvent(Contract):
 
 
 class MoveIntelligence(Contract):
-    version: Literal["move-events-4"] = "move-events-4"
+    version: Literal[EVENTS_VERSION] = EVENTS_VERSION
     input_digest: str
     ply: int | None
     events: list[ReviewEvent]

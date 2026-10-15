@@ -11,6 +11,7 @@ from trainer.review_intelligence.game_links import (
     sequential_links,
 )
 from trainer.review_intelligence.game_types import (
+    GAME_CONTEXT_VERSION,
     ContextNode,
     GameContext,
     GameRelationship,
@@ -18,7 +19,7 @@ from trainer.review_intelligence.game_types import (
 )
 from trainer.review_scores import is_mistake
 
-VERSION = "game-context-1"
+VERSION = GAME_CONTEXT_VERSION
 
 
 def game_context(parsed, reports, *, completed=False):

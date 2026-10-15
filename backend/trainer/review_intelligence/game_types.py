@@ -8,6 +8,9 @@ from trainer.chess_core import Score
 from trainer.contracts.common import Color, Contract
 from trainer.review_intelligence.events_types import EvidenceReference
 
+# Bumped when the saved shape changes; game_context.py imports it.
+GAME_CONTEXT_VERSION = "game-context-1"
+
 
 class ContextNode(Contract):
     ply: int
@@ -40,7 +43,7 @@ class TurningPoint(Contract):
 
 
 class GameContext(Contract):
-    version: Literal["game-context-1"] = "game-context-1"
+    version: Literal[GAME_CONTEXT_VERSION] = GAME_CONTEXT_VERSION
     input_digest: str
     complete: bool
     total_plies: int

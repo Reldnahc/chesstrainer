@@ -8,6 +8,7 @@ from trainer.game_review import link_previous_scores
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import GameReview, GameReviewMove, HumanAnalysis, ReviewRefinement
+from trainer.review_intelligence.refinement_plan import VERSION as REFINEMENT_VERSION
 
 
 def touch_report(db, row):
@@ -31,7 +32,7 @@ def effective_report(db, row, task):
     )
     if task:
         report["refinement"] = dict(
-            version="refinement-1",
+            version=REFINEMENT_VERSION,
             task_id=task.id,
             status=task.status,
             triggers=task.triggers,
