@@ -16,7 +16,11 @@ from trainer.chess_core import (
     replay_moves,
     valid_board,
 )
+from trainer.config import Settings
 from trainer.errors import EvidenceIntegrityError
+
+# The classifier's default extension past the settled horizon.
+EXTENSION_PLIES = Settings.model_fields["classification_extension_plies"].default
 
 
 class ContinuationEnd(BaseModel):
@@ -74,7 +78,7 @@ def continuation_end(
     )
 
 
-def settled_delta(boards, color, max_plies=16, extra_plies=16):
+def settled_delta(boards, color, max_plies, extra_plies=EXTENSION_PLIES):
     endpoint = continuation_end(boards, color, max_plies, extra_plies)
     return endpoint.material_delta, endpoint.end_ply
 

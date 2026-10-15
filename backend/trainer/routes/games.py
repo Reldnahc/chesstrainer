@@ -26,7 +26,9 @@ from trainer.game_accuracy import review_accuracy
 from trainer.game_analysis import DEFAULT_RATING, request_review
 from trainer.game_library import mover_rating, pgn_rating, time_control_label
 from trainer.game_review import (
+    PROGRESS_KEYS,
     branch_board,
+    move_frames,
     parsed_game,
     position,
     public_report,
@@ -158,9 +160,7 @@ def create_router(*, settings):
                         "accuracy": review_accuracy(
                             saved[game.id],
                             total=plies,
-                            starting_board=chess.Board(headers["FEN"])
-                            if "FEN" in headers
-                            else chess.Board(),
+                            starting_board=headers.board(),
                             completed=status == JobStatus.COMPLETED,
                         ),
                     }
@@ -206,32 +206,14 @@ def create_router(*, settings):
             )
             saved, revisions = presented.saved, presented.revisions
             reports, context = presented.reports, presented.context
-            frames = [
-                position(board)
-                | {
-                    "san": "Start",
-                    "uci": None,
-                    "number": board.fullmove_number,
-                    "actor": None,
-                    "report": None,
-                }
-            ]
-            for ply, node in enumerate(parsed.mainline(), 1):
-                move = node.move
-                san, number, actor = board.san(move), board.fullmove_number, board.turn
-                board.push(move)
-                frame = position(board) | {
-                    "san": san,
-                    "uci": move.uci(),
-                    "number": number,
-                    "actor": "white" if actor else "black",
-                    "report": reports.get(ply),
-                }
+            nodes = list(parsed.mainline())
+
+            def clock(ply):
                 # The same validated annotation Insights and clock facts read.
-                remaining, _ = clock_annotation(node, "clk")
-                if remaining is not None:
-                    frame["clock"] = remaining
-                frames.append(frame)
+                remaining, _ = clock_annotation(nodes[ply - 1], "clk")
+                return {} if remaining is None else {"clock": remaining}
+
+            frames = move_frames(board, [node.move for node in nodes], reports, extra=clock)
             _, clock_start, _ = clock_control(parsed.headers.get("TimeControl"))
             return {
                 "id": game.id,
@@ -300,29 +282,7 @@ def create_router(*, settings):
                 moves.append(
                     {
                         "ply": ply,
-                        "report": {
-                            key: report[key]
-                            for key in (
-                                "label",
-                                "engine_label",
-                                "opening",
-                                "reason",
-                                "coach",
-                                "best",
-                                "actual",
-                                "white_score",
-                                "depth",
-                                "engine_version",
-                                "board_cues",
-                                "human",
-                                "practical",
-                                "refinement",
-                                "intelligence",
-                                "immediate_reply",
-                                "immediate_recapture",
-                            )
-                            if key in report
-                        },
+                        "report": {key: report[key] for key in PROGRESS_KEYS if key in report},
                     }
                 )
             accuracy = None

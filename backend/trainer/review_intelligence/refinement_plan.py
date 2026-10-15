@@ -2,7 +2,7 @@
 
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.review_intelligence.difficulty import assess_difficulty
-from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, NEAR_BEST_CP
+from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, is_near_best
 
 VERSION = "refinement-1"
 
@@ -52,9 +52,8 @@ def nominate(report):
     if practical.components.only_good_move_at_depth:
         triggers.append((760, "narrow_resource"))
     if (
-        not (loss.mate_lost or loss.allows_mate)
+        is_near_best(loss)
         and not (best.kind == "mate" and best.value == 1)
-        and (loss.cp or 0) <= NEAR_BEST_CP
         and report.get("second_score") is not None
     ):
         gap = evaluation_loss(best, Score.model_validate(report["second_score"]))

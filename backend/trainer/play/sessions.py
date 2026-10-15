@@ -12,7 +12,7 @@ from trainer.game_library import mover_rating
 from trainer.game_review import (
     engine_facts,
     link_previous_scores,
-    position,
+    move_frames,
     public_report,
     review_move,
 )
@@ -133,34 +133,10 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
 
 
 def frames_for(play: PlayGame, learner_name: str) -> list[dict]:
-    board = chess.Board()
     reports = rendered_reports(play, parsed_for(play, learner_name))
-    frames = [
-        position(board)
-        | {
-            "san": "Start",
-            "uci": None,
-            "number": board.fullmove_number,
-            "actor": None,
-            "report": None,
-        }
-    ]
-    for ply, uci in enumerate(play.moves, 1):
-        move = chess.Move.from_uci(uci)
-        san, number, actor = board.san(move), board.fullmove_number, board.turn
-        board.push(move)
-        frames.append(
-            # Play ends a game on a claimable draw, so its last frame does too.
-            position(board, claim_draw=ply == len(play.moves))
-            | {
-                "san": san,
-                "uci": uci,
-                "number": number,
-                "actor": "white" if actor else "black",
-                "report": reports.get(ply),
-            }
-        )
-    return frames
+    moves = [chess.Move.from_uci(uci) for uci in play.moves]
+    # Play ends a game on a claimable draw, so its last frame does too.
+    return move_frames(chess.Board(), moves, reports, claim_draw_at_end=True)
 
 
 def state(play: PlayGame, learner_name: str, reply=None) -> dict:

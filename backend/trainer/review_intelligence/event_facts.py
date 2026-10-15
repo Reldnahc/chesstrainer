@@ -4,6 +4,7 @@ import chess
 
 from trainer.chess_core import Score, evaluation_loss
 from trainer.review_scores import MISTAKE_CP, is_near_best, is_poor
+from trainer.tactical_geometry import SLIDERS
 
 MOVER_CAUSES = {"abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"}
 
@@ -111,12 +112,7 @@ def objective_events(report, practical, emit, evidence, ref):
             evidence + [ref("rule", practical.version, practical.input_digest)],
         )
     sacrifice = report.get("sacrifice")
-    if (
-        not (loss.allows_mate or loss.mate_lost)
-        and (loss.cp or 0) < 50
-        and sacrifice
-        and sacrifice.get("analysis_id")
-    ):
+    if not is_poor(loss) and sacrifice and sacrifice.get("analysis_id"):
         emit(
             "sacrifice",
             "searched",
@@ -244,7 +240,7 @@ def uncovers_attack(fen, uci):
         return False
     actor = board.turn
     board.push(move)
-    for kind in (chess.BISHOP, chess.ROOK, chess.QUEEN):
+    for kind in SLIDERS:
         for square in board.pieces(kind, actor):
             if square == move.to_square:
                 continue

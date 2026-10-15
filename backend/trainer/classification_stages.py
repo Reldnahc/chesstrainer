@@ -10,6 +10,7 @@ from trainer.defensive_probes import hypotheses, verify_defense
 from trainer.diagnosis_types import OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome, make_finding
 from trainer.errors import EvidenceIntegrityError
 from trainer.move_causes import move_causes
+from trainer.tactical_geometry import TACTIC_PLIES
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 
@@ -198,7 +199,7 @@ class LineRules:
     """
 
     settle_plies: int  # Horizon for the settled material endpoint.
-    tactic_plies: int = 8  # Episode bound for the tactic detectors.
+    tactic_plies: int = TACTIC_PLIES  # Episode bound for the tactic detectors.
     # Plies searched for a mating pattern when a mate supports the line; None reads
     # only to the settled endpoint.
     mate_window: int | None = None

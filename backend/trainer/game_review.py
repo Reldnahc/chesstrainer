@@ -150,6 +150,41 @@ def line_evidence(board, candidate, analysis_id, first, previous=None):
     }
 
 
+def move_frames(board, moves, reports, *, claim_draw_at_end=False, extra=None):
+    """The start frame and one frame per move, as game review and Play show them.
+
+    ``reports`` maps ply to its rendered report; ``extra(ply)`` adds fields such
+    as a clock. Play ends a game on a claimable draw, so it asks for its last
+    frame to claim one.
+    """
+    board = board.copy()
+    frames = [
+        position(board)
+        | {
+            "san": "Start",
+            "uci": None,
+            "number": board.fullmove_number,
+            "actor": None,
+            "report": None,
+        }
+    ]
+    for ply, move in enumerate(moves, 1):
+        san, number, actor = board.san(move), board.fullmove_number, board.turn
+        board.push(move)
+        frames.append(
+            position(board, claim_draw=claim_draw_at_end and ply == len(moves))
+            | {
+                "san": san,
+                "uci": move.uci(),
+                "number": number,
+                "actor": "white" if actor else "black",
+                "report": reports.get(ply),
+            }
+            | (extra(ply) if extra else {})
+        )
+    return frames
+
+
 def analyze_move(engine, board, move, previous_score=None):
     before = engine.analyze(board, deep=True, multipv=2)
     candidates = [Candidate.model_validate(c) for c in before.candidates]
@@ -253,6 +288,27 @@ def promote_stronger_played(report):
 
 # Keys public_report derives from a saved engine report. Saved reports keep only
 # engine facts, so a later rule change reaches every saved review and Play game.
+# The report fields review polling sends for each newly saved ply. Board
+# positions were sent once with the game, so witness lines and legal moves stay out.
+PROGRESS_KEYS = (
+    "label",
+    "engine_label",
+    "opening",
+    "reason",
+    "coach",
+    "best",
+    "actual",
+    "white_score",
+    "depth",
+    "engine_version",
+    "board_cues",
+    "human",
+    "practical",
+    "refinement",
+    "intelligence",
+    "immediate_reply",
+    "immediate_recapture",
+)
 PRESENTATION_KEYS = frozenset(
     {
         "immediate_reply",
