@@ -288,6 +288,50 @@ def test_a_failing_level_fit_is_saved_unavailable_and_not_queued_again(settings,
             assert [job.status for job in jobs] == ["completed"]
 
 
+def test_a_book_departure_that_moves_later_in_the_game_is_rendered_again():
+    import chess
+    from review_intelligence_fixtures import move_report
+    from trainer.models import PlayGame
+    from trainer.play.sessions import parsed_for, rendered_reports
+
+    # 3.Nc3 leaves the catalogue; 3...Nf6 4.d4 cxd4 5.Nxd4 g6 transposes into the Dragon.
+    moves = ["e2e4", "c7c5", "g1f3", "d7d6", "b1c3", "g8f6", "d2d4", "c5d4", "f3d4", "g7g6"]
+    board = chess.Board()
+    reports = {}
+    for ply, uci in enumerate(moves, 1):
+        reports[str(ply)] = move_report(board, played=uci)
+        board.push_uci(uci)
+    play = PlayGame(
+        id="dragon-transposition",
+        coach_name="Coach",
+        learner_color=True,
+        opponent_rating=1200,
+        learner_rating=1200,
+        moves=moves[:5],
+        reports={ply: report for ply, report in reports.items() if int(ply) <= 5},
+        status="active",
+    )
+
+    def departures():
+        rendered = rendered_reports(play, parsed_for(play, "Learner"))
+        return [
+            ply
+            for ply, report in rendered.items()
+            if any(
+                event["kind"] == "opening_departure" for event in report["intelligence"]["events"]
+            )
+        ]
+
+    assert departures() == [5]
+    play.moves, play.reports = moves, reports
+    # The game never left the book for good: the cached ply 5 rendering must not say so.
+    assert departures() == []
+    assert all(
+        rendered_reports(play, parsed_for(play, "Learner"))[ply]["label"] == "Book"
+        for ply in (1, 2, 3, 4, 10)
+    )
+
+
 def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
     from trainer.models import PlayGame
     from trainer.play.sessions import frames_for
