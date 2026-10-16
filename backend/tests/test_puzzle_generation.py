@@ -735,8 +735,10 @@ def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings
         class AdoptingMidway(Scripted):
             def __call__(self, board, *, multipv=1):
                 if not self.analysis_ids:
-                    save_outcome(db, task.id, "completed", None, task.report, True)
-                    db.commit()
+                    # The review job adopts in its own session, as the app does.
+                    with sessions() as other:
+                        save_outcome(other, task.id, "completed", None, task.report, True)
+                        other.commit()
                 return super().__call__(board, multipv=multipv)
 
         assert generate_for_game(db, AdoptingMidway(FORK), settings, game)["kept"] == 1

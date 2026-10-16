@@ -445,6 +445,8 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
         )
     )
     with lock:
+        # Another session saves adoptions; re-read rather than trust loaded rows.
+        db.expire_all()
         if _evidence(shown_reports(db, game)) != _evidence(shown):
             # The review adopted a deeper search while this pass ran: leave the game
             # unrecorded so the next run mines what the review shows now.
