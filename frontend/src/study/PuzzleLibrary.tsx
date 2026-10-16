@@ -83,11 +83,9 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
               ? "Each puzzle starts at a moment from one of your games. The game, your opponent and the move you actually played stay hidden until you finish."
               : "Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls."}</p>
             <div className="puzzle-filters">
-              {source === "games" ? <div className="puzzle-filter">
-                <ChoiceGroup label="Goal" showLabel options={PUZZLE_GOALS} value={selection.goal} onChange={(goal) => select({ goal })} />
-              </div> : <div className="puzzle-filter">
-                <ChoiceGroup label="Difficulty" showLabel options={PUZZLE_BANDS} value={selection.band} onChange={(band) => select({ band })} />
-              </div>}
+              {source === "games"
+                ? <ChoiceGroup label="Goal" showLabel options={PUZZLE_GOALS} value={selection.goal} onChange={(goal) => select({ goal })} />
+                : <ChoiceGroup label="Difficulty" showLabel options={PUZZLE_BANDS} value={selection.band} onChange={(band) => select({ band })} />}
               <label className="puzzle-filter">
                 <span>Theme</span>
                 <select value={selection.theme} onChange={(event) => select({ theme: event.target.value })}>
