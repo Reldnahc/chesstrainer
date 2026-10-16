@@ -6,6 +6,13 @@ from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, is_near_best
 
 VERSION = "refinement-1"
 
+# A loss this large is worth a deeper search to confirm, even when a finding
+# already explains it.
+LARGE_CONCESSION_CP = 150
+# A near-best move whose second choice trails by this much may have been the
+# only good move, so the alternatives are searched again.
+CRITICAL_ALTERNATIVE_CP = 120
+
 
 # Triggers whose question is which alternative is best, so refinement searches
 # several candidate moves rather than two.
@@ -45,7 +52,7 @@ def nominate(report):
     triggers = []  # (priority, trigger); BROAD_TRIGGERS also widen the search.
     if loss.allows_mate or loss.mate_lost:
         triggers.append((1000, "mate_transition"))
-    if (loss.cp or 0) >= 150:
+    if (loss.cp or 0) >= LARGE_CONCESSION_CP:
         triggers.append((800 + min(loss.cp, 500) / 10, "large_concession"))
     if report.get("sacrifice"):
         triggers.append((780, "verify_sacrifice"))
@@ -57,7 +64,7 @@ def nominate(report):
         and report.get("second_score") is not None
     ):
         gap = evaluation_loss(best, Score.model_validate(report["second_score"]))
-        if (gap.cp or 0) >= 120 or gap.mate_lost or gap.allows_mate:
+        if (gap.cp or 0) >= CRITICAL_ALTERNATIVE_CP or gap.mate_lost or gap.allows_mate:
             triggers.append((740, "critical_alternative"))
     if practical.best_naturalness == "unusual":
         triggers.append((700, "human_disagreement"))
