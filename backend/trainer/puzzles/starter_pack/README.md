@@ -12,7 +12,7 @@ to 1400, 20% from 1400 to 1800, 15% from 1800 to 2400) with a solver line of at
 most nine plies, so a beginning player meets mostly approachable puzzles while
 harder ones remain available through the difficulty filter. Themes, ratings and
 puzzle links are Lichess's own; Fieldwork adds no claim about pedagogical
-quality or uniqueness beyond legal replay of every line.
+quality. Its uniqueness claim is the engine check below.
 
 `manifest.json` also carries `verification`. The sampled 1,000 rows were first
 checked on 2026-10-02 (`previous`): 28 had a second equally short mate or a
