@@ -376,7 +376,7 @@ function MoveQuality({ data }: { data: Insights }) {
         </tr>)}</tbody>
       </table>
     </div>
-    <p className="small muted insight-note">Move accuracy averages Lichess's per-move score; a game's accuracy weights its moves differently, so the two can differ. The endgame starts at six or fewer pieces besides kings and pawns.</p>
+    <p className="small muted insight-note">Move accuracy averages Lichess's per-move score; a game's accuracy weights its moves differently, so the two can differ. The endgame starts once 26 points of material or fewer are left on the board, counting pawns as 1, knights and bishops 3, rooks 5 and queens 9; before that, moves 1–10 are the opening.</p>
   </Panel>;
 }
 
