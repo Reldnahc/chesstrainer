@@ -174,7 +174,11 @@ generated frontend types narrow `facts` by `kind`. A renamed or retyped fact
 therefore fails where it is produced (a validation error the backend tests
 catch) and in the frontend build, instead of as a missing key in a reader.
 Event identity depends on those facts and references, not selected coach,
-explanation wording or unrelated model updates. The enclosing input digest also
+explanation wording or unrelated model updates. A tactic fact that `move-events-4`
+left out when it did not apply (`opportunity_actor`, `pinned_before`) is now
+always present, as null, and a null one stays out of the identity, so typing the
+facts changed no event id. Any other change to what an event's facts hold bumps
+the version. The enclosing input digest also
 tracks evidence generation and PGN context. Original saved reports/PGNs remain
 the durable sources; reading semantics requires no migration or engine/model.
 

@@ -59,6 +59,23 @@ def saved_transition(fen, move_uci, limitations):
     return board, move
 
 
+# Tactic facts move-events-4 left out when they did not apply. The typed facts
+# now always carry them, as null; a null one stays out of the event's identity,
+# so an event's id is the same as before the facts were typed.
+OMITTED_WHEN_NULL = frozenset({"opportunity_actor", "pinned_before"})
+
+
+def event_identity(event):
+    """The event's id: the version and everything but the id itself."""
+    payload = event.model_dump(mode="json", exclude={"id"})
+    payload["facts"] = {
+        key: value
+        for key, value in payload["facts"].items()
+        if not (value is None and key in OMITTED_WHEN_NULL)
+    }
+    return digest({"version": VERSION, **payload})
+
+
 def event_recorders(events, ply, actor):
     """The `ref` and `emit` callbacks every rule family receives."""
 
@@ -79,8 +96,7 @@ def event_recorders(events, ply, actor):
                 evidence=evidence,
             )
         )
-        identity = digest({"version": VERSION, **event.model_dump(mode="json", exclude={"id"})})
-        events.append(event.model_copy(update={"id": identity}))
+        events.append(event.model_copy(update={"id": event_identity(event)}))
 
     return ref, emit
 
