@@ -173,16 +173,31 @@ def test_an_old_pin_beside_a_mating_attack_it_does_not_change_is_declined():
     assert "pin" not in {skill for skill, _ in recognized(boards)}
 
 
-def test_an_old_pin_that_keeps_a_guard_safe_for_a_quiet_move_is_credited():
-    # The b5 bishop pins the c6 knight, which attacks the e5 rook. Ng5 lands where
-    # the e6 knight attacks, guarded only by that rook: unpinned, ...Nxe5 would
-    # remove the guard and ...Nxg5 would win the knight.
-    boards = line("4k3/8/2n1n3/1B2R3/8/5N2/8/K7 w - - 0 1", "Ng5")
+def test_an_old_pin_that_keeps_a_recapturing_guard_alive_is_credited():
+    # Rg1 pins the g6 pawn, which cannot take the h5 knight; after Qxf6 exf6 that
+    # knight retakes with check and forks (Lichess icvcT).
+    boards = line(
+        "2r3k1/pp1qpp1p/5np1/4Q2N/8/2P2P2/PP5P/2K3R1 w - - 0 1",
+        "Qxf6",
+        "exf6",
+        "Nxf6+",
+        "Kg7",
+        "Nxd7",
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_pinner_leaving_the_line_while_a_rear_piece_keeps_the_pin_uses_it():
+    # Rg5-h5 leaves the g-file, but the g1 rook keeps the g6 pawn pinned, so the
+    # pawn cannot take on h5, where the rook attacks the queen (Lichess b05S8).
+    boards = line(
+        "r4r2/2p2pkp/2npbNp1/6R1/1PP4q/pP6/P2Q1P1P/2K3R1 w - - 0 1", "Rh5", "Kxf6", "Rxh4"
+    )
     assert "pin" in {skill for skill, _ in recognized(boards)}
 
 
 def test_a_guarded_landing_a_cheaper_piece_can_take_is_not_a_pin_exploit():
-    # Qg5 just loses the queen to ...hxg5, guard or not.
+    # Qg5 just loses the queen to ...hxg5; nothing retakes, guard or not.
     boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5")
     assert "pin" not in {skill for skill, _ in recognized(boards)}
 

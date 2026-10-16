@@ -49,13 +49,6 @@ def pin_of(board, square):
     return int(board.pin(piece.color, square)), board.piece_at(pinner)
 
 
-def pin_segment(board, square):
-    """The squares from the pinned piece's king to its pinner, the pinner included."""
-    piece = board.piece_at(square)
-    pinner = absolute_pinner(board, square)
-    return chess.SquareSet(chess.between(board.king(piece.color), pinner)) | {pinner}
-
-
 def pinned_from_start(puzzle, node, square) -> bool:
     """Whether the piece pinned on ``square`` at ``node`` is held by the same pin,
     unmoved, since before the line began. A piece dragged onto the square, or a
@@ -78,21 +71,20 @@ def pin_used(puzzle, square):
     pin line, it threatens the pinned piece (a cheaper attacker, or more attackers
     than defenders), lands where the pinned piece could otherwise capture, or gives
     a single check the pinned piece could otherwise answer by capturing the checker
-    or interposing; or a piece the pinned one would otherwise take guards the square
-    a move lands on while the opponent attacks it. A pin the line never exploits is
-    not its idea."""
+    or interposing; or, when the opponent takes the piece that landed, a guard the
+    pinned piece could otherwise have taken retakes. A pin the line never exploits
+    is not its idea."""
     start = puzzle.mainline[0].board()
     piece = start.piece_at(square)
     pin = pin_of(start, square)
-    segment = pin_segment(start, square)
     for node in puzzle.mainline[1::2]:
         before, board, move = node.parent.board(), node.board(), node.move
         if before.piece_at(square) != piece or pin_of(before, square) != pin:
             return None  # The piece has moved, or the pin is not the same one.
         if move.to_square == square:
             return node
-        if move.from_square in segment or move.to_square in segment:
-            continue  # Moving the pinner, or onto the pin line, only shapes the pin.
+        if move.to_square in before.pin(piece.color, square):
+            continue  # A move along or onto the pin line only shapes the pin itself.
         if board.piece_at(square) != piece or pin_of(board, square) != pin:
             continue
         ray = board.pin(piece.color, square)
@@ -106,21 +98,17 @@ def pin_used(puzzle, square):
         covered = board.attacks(square) & ~ray
         if move.to_square in covered:
             return node
-        # A piece the pinned one would otherwise take guards the square this quiet
-        # move lands on while the opponent attacks it: without the pin the guard
-        # could be taken first. After a check the opponent must answer the check,
-        # so the guard's safety is not the pin's doing.
-        takers = board.attackers(piece.color, move.to_square)
-        cheapest = min((VALUES.get(board.piece_type_at(s), 100) for s in takers), default=None)
+        # The opponent takes the piece that landed, and a guard the pinned piece
+        # could otherwise have taken retakes: the pin kept that guard alive.
+        reply = node.next()
+        retake = reply.next() if reply is not None else None
         if (
-            not board.is_check()
-            and cheapest is not None
-            # Guarded, the landing is safe only if no cheaper piece can take it.
-            and cheapest >= VALUES.get(board.piece_type_at(move.to_square), 100)
-            and any(
-                board.color_at(guard) == puzzle.pov and move.to_square in board.attacks(guard)
-                for guard in covered
-            )
+            reply is not None
+            and retake is not None
+            and reply.move.to_square == move.to_square
+            and node.board().is_capture(reply.move)
+            and retake.move.to_square == move.to_square
+            and retake.move.from_square in covered
         ):
             return node
         checkers = list(board.checkers())
