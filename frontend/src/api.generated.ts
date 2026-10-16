@@ -2080,6 +2080,7 @@ export interface components {
         CourseFileCheck: {
             /** Error */
             error: string | null;
+            location?: components["schemas"]["CourseFileLocation"] | null;
             /** Steps */
             steps: {
                 [key: string]: components["schemas"]["CourseFileStep"];
@@ -2096,6 +2097,13 @@ export interface components {
             hidden: boolean;
             /** Id */
             id: string;
+        };
+        /** CourseFileLocation */
+        CourseFileLocation: {
+            /** Chapter */
+            chapter: string;
+            /** Step */
+            step?: string | null;
         };
         /** CourseFileProblem */
         CourseFileProblem: {

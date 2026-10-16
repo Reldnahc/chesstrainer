@@ -1199,6 +1199,16 @@
             ],
             "title": "Error"
           },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CourseFileLocation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "steps": {
             "additionalProperties": {
               "$ref": "#/components/schemas/CourseFileStep"
@@ -1236,6 +1246,31 @@
           "built_in_restored"
         ],
         "title": "CourseFileDeleted",
+        "type": "object"
+      },
+      "CourseFileLocation": {
+        "additionalProperties": false,
+        "properties": {
+          "chapter": {
+            "title": "Chapter",
+            "type": "string"
+          },
+          "step": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Step"
+          }
+        },
+        "required": [
+          "chapter"
+        ],
+        "title": "CourseFileLocation",
         "type": "object"
       },
       "CourseFileProblem": {
