@@ -451,8 +451,8 @@ Run `npm run format` in `frontend/` to rewrite files before committing.
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It then runs the CSS design-system checks `frontend/scripts/spacing-scale.mjs`,
-`scripts/surfaces.mjs`, `scripts/type-scale.mjs` and `scripts/motion-scale.mjs`
-(see the spacing, surface, type and motion rules in
+`scripts/surfaces.mjs`, `scripts/type-scale.mjs`, `scripts/motion-scale.mjs` and
+`scripts/colour-tokens.mjs` (see the spacing, surface, type, motion and colour rules in
 [UI_COMPONENTS.md](UI_COMPONENTS.md#spacing)), and `scripts/css-layers.mjs`, which
 requires every stylesheet to keep its rules inside a declared cascade layer (see
 [ARCHITECTURE.md](ARCHITECTURE.md#stylesheets)).
