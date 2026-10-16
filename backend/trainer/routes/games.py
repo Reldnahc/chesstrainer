@@ -22,6 +22,7 @@ from trainer.contracts.games import (
     ReviewRequest,
     VariationRequest,
 )
+from trainer.db import read_unit
 from trainer.game_accuracy import review_accuracy
 from trainer.game_analysis import DEFAULT_RATING, request_review
 from trainer.game_library import mover_rating, pgn_rating, time_control_label
@@ -91,6 +92,9 @@ class GameView:
     def __init__(self, sessions, owned):
         self.sessions, self.owned = sessions, owned
 
+    def read(self):
+        return read_unit(self.sessions)
+
 
 def game_view(request: Request, game_id: str):
     app = request.app.state
@@ -126,7 +130,7 @@ def create_router(*, settings):
         offset: int = Query(0, ge=0),
         limit: int = Query(30, ge=1, le=100),
     ):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             rows = db.execute(
                 select(Game, AnalysisJob.status)
                 .outerjoin(GameReview, GameReview.game_id == Game.id)
@@ -172,7 +176,7 @@ def create_router(*, settings):
     @router.get("/api/games/{game_id}/export", response_model=GameExport)
     def game_export(view: ViewedGame, game_id: str):
         # Only what export needs: no reports, review state or legal moves.
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             parsed = parsed_game(game)
             board = parsed.board()
@@ -196,7 +200,7 @@ def create_router(*, settings):
         response_model_exclude_unset=True,
     )
     def game_detail(view: ViewedGame, game_id: str):
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             parsed = parsed_game(game)
             board = parsed.board()
@@ -264,7 +268,7 @@ def create_router(*, settings):
         after: int = Query(0, ge=0),
         after_revision: int | None = Query(None, ge=0),
     ):
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review is None:
@@ -318,7 +322,7 @@ def create_router(*, settings):
         "/api/games/{game_id}/review", response_model=JobStarted, response_model_exclude_unset=True
     )
     def begin_review(workspace: CurrentWorkspace, game_id: str, data: ReviewRequest):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             job = request_review(
                 db,
                 require_game(db, game_id),
@@ -327,7 +331,7 @@ def create_router(*, settings):
                 settings=settings,
                 human_models=workspace.human_models,
             )
-            db.commit()
+            db.flush()
             return {"job_id": job.id, "status": job.status}
 
     @shared_links.route(
@@ -337,7 +341,7 @@ def create_router(*, settings):
         response_model_exclude_unset=True,
     )
     def variation_position(view: ViewedGame, game_id: str, data: VariationRequest):
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
         san = None
@@ -356,7 +360,7 @@ def create_router(*, settings):
         view: ViewedGame, workspace: CurrentWorkspace, game_id: str, data: VariationRequest
     ):
         # Signed-in viewers may analyze a shared game; the engine runs as their account.
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
             parsed = parsed_game(game)

@@ -6,6 +6,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.classification import verified_payload
+from trainer.db import Units
 from trainer.engine import EngineUnavailable, Stockfish
 from trainer.enrichment import enrich_decision, plan_probes
 from trainer.models import (
@@ -47,35 +48,17 @@ def test_bounded_probes_cache_resume_and_preserve_grading(settings, stockfish_pa
         assert client.post("/api/classifications/enrich").json()["job_id"] == job_id
         engine = Stockfish(settings, app.state.sessions)
         try:
-            with app.state.sessions() as db:
-                tasks = plan_probes(db, job_id, settings, engine)
-                assert len(tasks) == 1
+            units = Units(app.state.sessions, app.state.workspaces.local_mutation_lock)
+            tasks = plan_probes(units, job_id, settings, engine)
+            assert len(tasks) == 1
             settings.classification_probe_depth += 1
             with pytest.raises(EngineUnavailable, match="settings changed"):
-                enrich_decision(
-                    app.state.sessions,
-                    tasks[0],
-                    engine,
-                    app.state.workspaces.local_mutation_lock,
-                    lambda: False,
-                )
+                enrich_decision(units, tasks[0], engine, lambda: False)
             settings.classification_probe_depth -= 1
             # Cancel after the first search; it is still in the persistent engine cache.
-            assert not enrich_decision(
-                app.state.sessions,
-                tasks[0],
-                engine,
-                app.state.workspaces.local_mutation_lock,
-                lambda: True,
-            )
+            assert not enrich_decision(units, tasks[0], engine, lambda: True)
             misses = engine.misses
-            assert enrich_decision(
-                app.state.sessions,
-                tasks[0],
-                engine,
-                app.state.workspaces.local_mutation_lock,
-                lambda: False,
-            )
+            assert enrich_decision(units, tasks[0], engine, lambda: False)
             assert engine.hits >= 1 and engine.misses == misses + 1
         finally:
             engine.close()

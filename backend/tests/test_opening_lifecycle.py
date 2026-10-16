@@ -152,11 +152,13 @@ def test_curated_recall_grades_special_moves_for_both_colors(settings, sessions,
         course_enroll(db, settings, provider, "special", color)
         exercise = db.scalar(select(Exercise).where(Exercise.source == "opening"))
         cold = reviews.start_review(db, exercise.id)
+        db.commit()
         assert cold["orientation"] == color and cold["fen"] == board.fen()
         san = board.san(move)
         result = reviews.submit_move(
             db, cold["session_id"], move.uci(), None, FSRSScheduler(settings), settings
         )
+        db.commit()
         board.push(move)
         assert result["completed"] and result["grade"] == "correct"
         assert result["submitted_san"] == san
@@ -208,10 +210,12 @@ def test_queue_filters_stale_opening_sessions_without_per_session_queries(
         stale_id, active_id, due_id = exercise_ids
         for _ in range(stale_sessions):
             reviews.start_review(db, stale_id)
+            db.commit()
             projection.set_active(db, study, False)
             projection.set_active(db, study, True)
             db.commit()
         reviews.start_review(db, active_id)
+        db.commit()
         for exercise_id in (stale_id, active_id):
             db.get(SRSState, exercise_id).due = now() + timedelta(days=1)
         db.commit()
@@ -250,6 +254,7 @@ def test_start_skips_stale_sessions_in_one_query_and_reuses_most_recent_current_
         stale_ids = set()
         for _ in range(25):
             stale_ids.add(reviews.start_review(db, exercise_id)["session_id"])
+            db.commit()
             projection.set_active(db, study, False)
             projection.set_active(db, study, True)
             db.commit()
@@ -264,6 +269,7 @@ def test_start_skips_stale_sessions_in_one_query_and_reuses_most_recent_current_
     try:
         with sessions() as db:
             fresh = reviews.start_review(db, exercise_id)
+            db.commit()
         assert fresh["session_id"] not in stale_ids
         # Includes the new session/snapshot inserts and ownership validation.
         assert len(statements) < 25
@@ -286,6 +292,7 @@ def test_start_skips_stale_sessions_in_one_query_and_reuses_most_recent_current_
     try:
         with sessions() as db:
             resumed = reviews.start_review(db, exercise_id)
+            db.commit()
         assert resumed["session_id"] == latest_id
         assert resumed["review_reason"] == "resume"
         assert len(statements) < 10
@@ -351,6 +358,7 @@ def test_retirement_unchanged_restore_and_material_change_guard_survive_restart(
     with TestClient(restarted) as client:
         with restarted.state.sessions() as db:
             assert retire_existing(db, settings) == 0
+            db.commit()
             card = db.get(OpeningCard, exercise_id)
             assert card.retirement_guard_revision == guard < card.revision
             assert db.get(SRSState, exercise_id).retired_at is None
@@ -418,11 +426,13 @@ def test_saved_source_restores_and_dedicated_practice_resolves_after_provider_di
     with sessions() as db:
         study = course_enroll(db, settings, provider, "a")
         service.toggle(db, study["id"], False)
+        db.commit()
         provider.courses = lambda db: ()
         restored = course_enroll(db, settings, provider, "a")
         assert restored["id"] == study["id"] and restored["line"].moves == ["e2e4", "e7e5"]
         assert db.scalar(select(OpeningStudy)).snapshot == study["line"].model_dump(mode="json")
         practiced = service.practice(db, study["id"], OpeningPracticeStart(request_id="practice"))
+        db.commit()
         practice_id = practiced["id"]
         course_id, revision = practiced["course_id"], practiced["course_revision"]
     with sessions() as db:

@@ -231,6 +231,7 @@ def test_stale_database_revision_cannot_update_progress(sessions):
                 request_id="start", course_id="tiny", course_revision="v1", chapter_id="chapter"
             ),
         )
+        db.commit()
     with sessions() as first, sessions() as stale:
         held = stale.get(StudyLessonSession, initial["id"])
         command(
@@ -239,6 +240,7 @@ def test_stale_database_revision_cannot_update_progress(sessions):
             initial["id"],
             LessonCommand(request_id="one", revision=0, action="move", uci="e2e4"),
         )
+        first.commit()
         assert held.revision == 0
         with pytest.raises(DomainError) as raised:
             command(

@@ -107,7 +107,7 @@ def current(db, session, snapshot):
 
 
 def scheduling_allowed(db, session, snapshot):
-    # The enclosing account mutation lock serializes HTTP enrollment and recall.
+    # The enclosing write unit (the account lock) serializes HTTP enrollment and recall.
     # A conditional write additionally checks fresh authority under SQLite's writer lock.
     changed = db.execute(
         update(OpeningCard)

@@ -82,10 +82,10 @@ def save_audio_preferences(db, value: AudioPreferences):
 
 
 def _save_preferences(db, **values):
-    # Serialize the first insert as well as later updates across concurrent devices.
-    # SQLite's busy timeout handles this short, engine-free transaction.
+    # The caller's write unit serializes the first insert with later updates
+    # across concurrent devices.
     owner = db.info["user_id"]
     changed = db.execute(update(UserPreferences).values(**values)).rowcount
     if not changed:
         db.add(UserPreferences(user_id=owner, **values))
-    db.commit()
+    db.flush()

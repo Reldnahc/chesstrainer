@@ -123,10 +123,13 @@ def test_concurrent_first_save_preserves_audio_coach_and_motion(sessions):
             barrier.wait(timeout=10)
             if preference == "coach":
                 save_coach_preferences(db, CoachPreferences(coach_id="dog-collie", motion="still"))
+                db.commit()
             elif preference == "motion":
                 save_motion_preferences(db, MotionPreferences(motion="natural"))
+                db.commit()
             else:
                 save_audio_preferences(db, AudioPreferences(**SAVED))
+                db.commit()
 
     with ThreadPoolExecutor(max_workers=3) as pool:
         list(pool.map(save, ("coach", "motion", "audio")))

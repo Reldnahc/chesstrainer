@@ -81,7 +81,7 @@ def start_session(db, providers, request):
     current = Position.model_validate(session.state["position"])
     playback = current.frames()[len(start.moves) :]
     result = view(session, providers.topic(course.id), playback)
-    db.commit()
+    db.flush()
     return result
 
 
@@ -124,5 +124,5 @@ def command(db, providers, session_id, request):
             session_id=session.id, request_id=request.request_id, request=payload, response=result
         )
     )
-    db.commit()
+    db.flush()
     return result

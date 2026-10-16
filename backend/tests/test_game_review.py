@@ -301,6 +301,7 @@ def test_an_equally_scored_different_move_is_best():
 def seed(app, pgn='[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'):
     with app.state.sessions() as db:
         import_games(db, "synthetic.pgn", pgn, ["Learner"], None)
+        db.commit()
         return db.scalar(select(Game.id))
 
 

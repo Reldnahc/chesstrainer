@@ -1,3 +1,4 @@
+import threading
 from concurrent.futures import ThreadPoolExecutor
 from typing import get_args
 
@@ -7,7 +8,7 @@ from sqlalchemy import select, text
 from trainer.accounts import COOKIE
 from trainer.api import create_app
 from trainer.contracts.preferences import CoachId, CoachPreferences
-from trainer.db import database, migrate
+from trainer.db import Units, database, migrate
 from trainer.models import UserPreferences
 from trainer.preferences import coach_preferences, save_coach_preferences
 
@@ -149,8 +150,11 @@ def test_retired_coach_writes_are_rejected(settings, retired, replacement):
 
 
 def test_concurrent_first_save_has_one_account_row(sessions):
+    # Both requests of one account, as the server runs them: write units on its lock.
+    units = Units(sessions, threading.RLock())
+
     def save(motion):
-        with sessions() as db:
+        with units.write() as db:
             return save_coach_preferences(db, CoachPreferences(motion=motion))
 
     with ThreadPoolExecutor(max_workers=2) as pool:
