@@ -17,7 +17,7 @@ type CourseJourney = {
 };
 const courses: CourseJourney[] = [
   {
-    id: "italian-black-foundations", revision: "2026-10-v5", color: "black", chapter: "quiet-development",
+    id: "italian-black-foundations", revision: "2026-10-v6", color: "black", chapter: "quiet-development",
     moves: ["e7e5", "b8c6", "f8c5", "g8f6", "d7d6", "e8g8"],
     line: "black-quiet-italian", branches: 5, sourceGame: true,
     branchMoves: {
@@ -29,14 +29,14 @@ const courses: CourseJourney[] = [
     },
   },
   {
-    id: "italian-black-foundations", revision: "2026-10-v5", color: "black", chapter: "quiet-bishop-plan",
+    id: "italian-black-foundations", revision: "2026-10-v6", color: "black", chapter: "quiet-bishop-plan",
     moves: ["a7a5", "c8e6", "f7e6"],
     line: "black-quiet-bishop-plan", branches: 0, sourceGame: false,
     // Rehearsal retains the opening history and automatically plays White's Re1.
     rehearsalAnchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6", "c2c3", "e8g8", "f1e1"],
   },
   {
-    id: "italian-black-foundations", revision: "2026-10-v5", color: "black", chapter: "knight-block",
+    id: "italian-black-foundations", revision: "2026-10-v6", color: "black", chapter: "knight-block",
     moves: ["f6e4", "b4c3", "d7d5", "e8g8"],
     line: "black-knight-block", branches: 2, sourceGame: false,
     branchMoves: {
@@ -127,7 +127,7 @@ const courses: CourseJourney[] = [
     },
   },
   {
-    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-accepted",
+    id: "vienna-gambit", revision: "2026-10-v2", color: "white", chapter: "vienna-accepted",
     moves: ["e2e4", "b1c3", "f2f4", "e4e5", "g1f3", "d2d4", "f1b5", "b5c4", "c1f4", "c4f7", "d1e2", "f3e5", "f4g5", "e5f7"],
     line: "vienna-accepted", branches: 6, sourceGame: false,
     branchMoves: {
@@ -140,7 +140,7 @@ const courses: CourseJourney[] = [
     },
   },
   {
-    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-strike",
+    id: "vienna-gambit", revision: "2026-10-v2", color: "white", chapter: "vienna-strike",
     moves: ["f4e5", "g1f3", "b2c3", "d2d4", "f1d3", "e1g1", "h2h3"],
     line: "vienna-strike", branches: 3, sourceGame: false,
     branchMoves: {
@@ -150,7 +150,7 @@ const courses: CourseJourney[] = [
     },
   },
   {
-    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-declined",
+    id: "vienna-gambit", revision: "2026-10-v2", color: "white", chapter: "vienna-declined",
     moves: ["g1f3", "d2d4", "f3d4", "d1d4", "c1e3", "e1c1"],
     line: "vienna-solid", branches: 3, sourceGame: false,
     branchMoves: {
@@ -160,7 +160,7 @@ const courses: CourseJourney[] = [
     },
   },
   {
-    id: "vienna-gambit", revision: "2026-10-v1", color: "white", chapter: "vienna-second-moves",
+    id: "vienna-gambit", revision: "2026-10-v2", color: "white", chapter: "vienna-second-moves",
     moves: ["f1c4", "d2d3", "g1f3", "e1g1", "h2h3"],
     line: "vienna-second-knights", branches: 3, sourceGame: false,
     branchMoves: {
