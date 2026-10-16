@@ -163,6 +163,9 @@ export function reloading<T>(query: Query<T>): true | undefined {
   return query.pending && query.data !== undefined ? true : undefined;
 }
 
+/** A useCommand's state and actions. */
+export type Command<K = true> = ReturnType<typeof useCommand<K>>;
+
 /**
  * One command at a time: `busy` names the command running (a row's id, or true),
  * `error` holds its failure for the page's banner, and a command still running
