@@ -137,6 +137,8 @@
   grid-area: 1 / 1;
 }
 .history-outcome::after {
+  /* The plain form first, for engines without alternative text. */
+  content: attr(data-labels);
   content: attr(data-labels) / "";
   white-space: pre;
   visibility: hidden;
