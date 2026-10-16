@@ -90,11 +90,14 @@ export function usePolledQuery<T>(load: (signal: AbortSignal) => Promise<T>,
     }
   }, options);
   const refresh = polling.run;
+  // Try again after a failed first read shows the loader again; a refresh banner's
+  // Try again keeps the loaded content in place while it reads.
   const retry = useCallback(() => {
+    quiet.current = false;
     setError(null);
-    setPending(true);
+    setPending(value => value || data === undefined);
     void refresh();
-  }, [refresh]);
+  }, [refresh, data]);
   const dismiss = useCallback(() => {
     quiet.current = true;
     setError(null);
