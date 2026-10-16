@@ -277,19 +277,19 @@ test_lichess_comparison.py covers the comparison.
 
 The sample is 1,000 positives per eligible theme, seed 0, from the full 6,100,952-row export (input SHA256 95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9), with no skipped rows. The v3.1 column is that baseline run; the other two replay the same frozen sample (samples.jsonl SHA256 e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0) through the comparison above. Reports stay in ignored `data/`.
 
-| Theme | v3.1 line detector | Raw upstream recognition | v4 Fieldwork admission |
+| Theme | v3.1 line detector | Raw upstream recognition | v4.2 Fieldwork admission |
 |---|---:|---:|---:|
 | backRankMate | 99.2% | 100.0% | 100.0% |
 | capturingDefender | 63.8% | 100.0% | 78.7% |
-| deflection | 76.7% | 100.0% | 94.8% |
+| deflection | 76.7% | 100.0% | 94.9% |
 | discoveredAttack | 81.4% | 100.0% | 93.8% |
-| discoveredCheck | 65.9% | 74.6% | 66.0% |
+| discoveredCheck | 65.9% | 74.3% | 65.8% |
 | doubleCheck | 94.0% | 100.0% | 94.0% |
 | fork | 71.3% | 100.0% | 98.2% |
 | hangingPiece | 99.2% | 99.9% | 99.2% |
-| pin | 39.7% | 99.9% | 86.1% |
+| pin | 39.7% | 83.0% | 72.2% |
 | promotion | 97.9% | 100.0% | 98.1% |
 | skewer | 87.9% | 100.0% | 92.8% |
 | underPromotion | 97.0% | 98.1% | 98.4% |
 
-The 12,000 incidences have 999 v4 admission disagreements, against 2,260 for v3.1 and 275 for raw upstream. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.
+The 12,000 incidences have 1,139 v4.2 admission disagreements, against 2,260 for v3.1 and 507 for raw upstream. Rule 4.2 settles a line only where no capture is pending; many pin puzzles end with the pinned piece still to be taken, so that gain is no longer assumed and pin agreement fell from 86.1% (raw upstream 99.9%) under 4.1. This is the rule declining an unproven claim, not a detector change. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.
