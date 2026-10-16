@@ -7,8 +7,8 @@ import pytest
 from trainer import game_review
 from trainer.chess_core import Candidate
 from trainer.classification_stages import line_parameters, line_rules
-from trainer.diagnosis_types import PreviousMove
 from trainer.continuations import continuation_end, replay, settled_delta
+from trainer.diagnosis_types import PreviousMove
 
 
 def random_line(seed, plies=40):

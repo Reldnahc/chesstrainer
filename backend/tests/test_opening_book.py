@@ -139,6 +139,6 @@ def test_a_game_leaves_the_catalogue_after_its_last_book_move_not_at_a_gap():
         if context.opening_departure
     }
     assert list(departures) == [11]
-    assert departures[11]["previous_name"] == "Sicilian Defense: Dragon Variation"
+    assert departures[11].previous_name == "Sicilian Defense: Dragon Variation"
     ended_in_book = chess.pgn.read_game(io.StringIO("1. e4 e5 2. Nf3 *"))
     assert book_run(ended_in_book)[1] is None

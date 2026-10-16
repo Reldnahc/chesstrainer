@@ -167,7 +167,8 @@ def classify_decision(units, decision, classifier):
         if run is None or run.status == "completed":
             if run is not None:
                 activate_run(db, run)
-            return run is not None
+            # A result the learner already rejected is not a classification.
+            return run is not None and run.status != "rejected"
         key = run.cache_key
     try:
         output, usage = classifier.classify(payload)
@@ -182,7 +183,7 @@ def classify_decision(units, decision, classifier):
             # Keep immutable runs; current labels follow the latest requested
             # successful classification, including low confidence.
             activate_run(db, run)
-        return True
+            return run.status != "rejected"
     except Exception as exc:
         with units.write() as db:
             run = db.scalar(select(ClassificationRun).where(ClassificationRun.cache_key == key))
@@ -289,8 +290,6 @@ def activate_run(db, run):
     }
     for evidence in rows.values():
         evidence.active = False
-    if result.confidence < LABEL_CONFIDENCE:
-        return
     rejected = db.scalars(
         select(ClassificationRun.response).where(
             ClassificationRun.decision_id == run.decision_id,
@@ -299,11 +298,14 @@ def activate_run(db, run):
             ClassificationRun.response.is_not(None),
         )
     )
-    if any(
+    # An abstention (no labels) carries nothing forward to reject.
+    if _labels(result) and any(
         _labels(Classification.model_validate(earlier)) == _labels(result) for earlier in rejected
     ):
         run.status = "rejected"
         run.error = REJECTED
+        return
+    if result.confidence < LABEL_CONFIDENCE:
         return
     for skill in dict.fromkeys([result.primary_skill, *result.secondary_skills]):
         if skill == UNCLASSIFIED:

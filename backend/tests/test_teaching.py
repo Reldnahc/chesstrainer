@@ -54,13 +54,15 @@ def test_classification_versions_reconcile_and_rejection_preserves_truth(setting
         assert priorities(db, settings) == []
         # The same labels under a new cache key (other rules or evidence) stay rejected.
         classifier.model, classifier.skill = "version-c", "king_safety"
-        assert classify_decision(units, decision_id, classifier)
+        assert not classify_decision(units, decision_id, classifier)
         assert db.scalars(select(SkillEvidence).where(SkillEvidence.active.is_(True))).all() == []
         assert (
-            db.scalar(select(ClassificationRun).where(ClassificationRun.model == "version-c")).status
+            db.scalar(
+                select(ClassificationRun).where(ClassificationRun.model == "version-c")
+            ).status
             == "rejected"
         )
         # Reclassification no longer mutates historical course progression.
-        classifier.model, classifier.confidence = "version-low", 0.2
+        classifier.model, classifier.confidence, classifier.skill = "version-low", 0.2, "fork"
         assert classify_decision(units, decision_id, classifier)
         assert db.scalars(select(SkillEvidence).where(SkillEvidence.active.is_(True))).all() == []
