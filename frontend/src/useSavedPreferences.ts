@@ -37,8 +37,12 @@ export const deviceCacheKey = (name: string, accountId: string | null | undefine
 function readCache<T>(key: string, pick: DeviceCache<T>["pick"]): Partial<T> {
   try {
     const stored: unknown = JSON.parse(localStorage.getItem(key) ?? "null");
-    return stored && typeof stored === "object" ? pick(stored as Partial<Record<keyof T, unknown>>) : {};
-  } catch { return {}; }
+    return stored && typeof stored === "object"
+      ? pick(stored as Partial<Record<keyof T, unknown>>)
+      : {};
+  } catch {
+    return {};
+  }
 }
 
 /** Moves a pre-account device key into the account's cache when that has nothing yet.
@@ -53,7 +57,9 @@ function migrateCache<T>(key: string, cache: DeviceCache<T>) {
     if (!Object.keys(readCache(key, cache.pick)).length && Object.keys(seeded).length)
       localStorage.setItem(key, JSON.stringify(seeded));
     localStorage.removeItem(cache.legacy.key);
-  } catch { /* storage unavailable */ }
+  } catch {
+    /* storage unavailable */
+  }
 }
 
 type Waiter<W> = { value: W; resolve: (result: SaveResult) => void };
@@ -64,7 +70,12 @@ type Waiter<W> = { value: W; resolve: (result: SaveResult) => void };
  * other waiting change, so each field's latest choice wins and none is dropped.
  * Mount inside AccountGate so pending responses cannot cross account changes.
  */
-export function useSavedPreferences<T extends object, W extends Partial<T> = T>({defaults, load, write, deviceCache}: {
+export function useSavedPreferences<T extends object, W extends Partial<T> = T>({
+  defaults,
+  load,
+  write,
+  deviceCache,
+}: {
   defaults: T;
   load: (signal: AbortSignal) => Promise<Partial<T>>;
   write: (value: W) => Promise<Partial<T>>;
@@ -77,7 +88,10 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
   const [initial] = useState(() => {
     if (cacheKey && deviceCache && !guest) migrateCache(cacheKey, deviceCache);
     const remembered = cacheKey && deviceCache ? readCache(cacheKey, deviceCache.pick) : {};
-    return { preferences: { ...defaults, ...remembered }, cached: Object.keys(remembered).length > 0 };
+    return {
+      preferences: { ...defaults, ...remembered },
+      cached: Object.keys(remembered).length > 0,
+    };
   });
   const [preferences, setPreferences] = useState(initial.preferences);
   const [ready, setReady] = useState(false);
@@ -100,13 +114,13 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
     queued.current = null;
     setSaving(false);
     (guest ? Promise.resolve({}) : load(controller.signal))
-      .then((value) => {
+      .then(value => {
         if (version === generation.current) {
           setPreferences({ ...defaults, ...value });
           setReady(true);
         }
       })
-      .catch((error) => {
+      .catch(error => {
         if (!controller.signal.aborted && version === generation.current)
           setError(errorMessage(error));
       });
@@ -118,7 +132,11 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
   }, [revision, defaults, load, guest]);
   useEffect(() => {
     if (!ready || !cacheKey || guest) return;
-    try { localStorage.setItem(cacheKey, JSON.stringify(preferences)); } catch { /* storage unavailable */ }
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify(preferences));
+    } catch {
+      /* storage unavailable */
+    }
   }, [ready, preferences, cacheKey, guest]);
   const drain = useCallback(async () => {
     writing.current = true;
@@ -143,18 +161,33 @@ export function useSavedPreferences<T extends object, W extends Partial<T> = T>(
     writing.current = false;
     setSaving(false);
   }, [latest]);
-  const save = useCallback((value: W) => new Promise<SaveResult>(resolve => {
-    const waiting = queued.current;
-    // A waiting change whose every field this one replaces is never written.
-    const waiters = (waiting?.waiters ?? []).filter(waiter => {
-      const replaced = Object.keys(waiter.value).every(field => field in value);
-      if (replaced) waiter.resolve("superseded");
-      return !replaced;
-    });
-    queued.current = { value: { ...waiting?.value, ...value }, waiters: [...waiters, { value, resolve }] };
-    setSaving(true);
-    setError("");
-    if (!writing.current) void drain();
-  }), [drain]);
-  return {preferences, ready, saving, error, cached: initial.cached, save, retry: () => setRevision(value => value + 1)};
+  const save = useCallback(
+    (value: W) =>
+      new Promise<SaveResult>(resolve => {
+        const waiting = queued.current;
+        // A waiting change whose every field this one replaces is never written.
+        const waiters = (waiting?.waiters ?? []).filter(waiter => {
+          const replaced = Object.keys(waiter.value).every(field => field in value);
+          if (replaced) waiter.resolve("superseded");
+          return !replaced;
+        });
+        queued.current = {
+          value: { ...waiting?.value, ...value },
+          waiters: [...waiters, { value, resolve }],
+        };
+        setSaving(true);
+        setError("");
+        if (!writing.current) void drain();
+      }),
+    [drain],
+  );
+  return {
+    preferences,
+    ready,
+    saving,
+    error,
+    cached: initial.cached,
+    save,
+    retry: () => setRevision(value => value + 1),
+  };
 }

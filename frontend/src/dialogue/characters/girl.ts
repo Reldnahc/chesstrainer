@@ -1,19 +1,30 @@
-import {coachPersonality} from "../personality";
-import {authorTacticalWordings} from "../scopedTacticalWording";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
 export const girlTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Riddle answered: {move} unleashes a {motif} on the spot.",
     played_possible: "{move} plants the seed of a {motif}, if the replies cooperate.",
     allowed_immediate: "Puzzle piece: with {action}, {opponent} springs a {motif}.",
-    allowed_possible: "Somewhere down the line, {opponent} could find a {motif}; the replies get the final say.",
+    allowed_possible:
+      "Somewhere down the line, {opponent} could find a {motif}; the replies get the final say.",
     missed_immediate: "Hint for next time: {best} had a {motif} ready immediately.",
     missed_possible: "{best} could have grown into a {motif}, depending on the replies.",
   },
-  fork: {actual: "One piece now has the {targets} in range together, a fork.", possible: "The {targets} would be attacked, and a lone piece would be aiming at the whole group."},
+  fork: {
+    actual: "One piece now has the {targets} in range together, a fork.",
+    possible:
+      "The {targets} would be attacked, and a lone piece would be aiming at the whole group.",
+  },
   material: "A {gain} may be waiting as the prize, though the replies still get a vote.",
-  capture: {candidate: "Circle this: {capture} would win a {piece}.", followup: "After that, {capture} could pick off a {piece}."},
-  playedCapture: {fact: "{move} sets a {motif} in motion.", consequence: "Follow-up: {capture} wins a {piece}."},
+  capture: {
+    candidate: "Circle this: {capture} would win a {piece}.",
+    followup: "After that, {capture} could pick off a {piece}.",
+  },
+  playedCapture: {
+    fact: "{move} sets a {motif} in motion.",
+    consequence: "Follow-up: {capture} wins a {piece}.",
+  },
 });
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
@@ -29,99 +40,315 @@ export const girlOpeningTemplates = {
   "book-opening-follow-5": ["Step by step, we're still inside {opening}."],
   "book-opening-follow-6": ["Another charted step of {opening}."],
   "book-opening-follow-7": ["Theory from {opening} keeps going."],
-  "book-opening-follow-8": ["Deep inside {opening} still. That's a map pin, not a score for the move."],
+  "book-opening-follow-8": [
+    "Deep inside {opening} still. That's a map pin, not a score for the move.",
+  ],
 } as const;
 
 export const girl = coachPersonality({
-  version: "young-girl-2", maxCharacters: 275, maxClaims: 2,
-  delivery: {pace: "lively", energy: "bright"},
-  behavior: {general: "question-first", praise: "observation-first", correction: "question-first", questionFrequency: "often", directness: 4, emotionalAmplitude: 4, humor: 3, jargon: 1, playerAddress: "occasional", sentenceLength: "mixed", metaphor: "none", signature: "Circle one hidden detail, ask the question it raises, then let the supported answer land."},
+  version: "young-girl-2",
+  maxCharacters: 275,
+  maxClaims: 2,
+  delivery: { pace: "lively", energy: "bright" },
+  behavior: {
+    general: "question-first",
+    praise: "observation-first",
+    correction: "question-first",
+    questionFrequency: "often",
+    directness: 4,
+    emotionalAmplitude: 4,
+    humor: 3,
+    jargon: 1,
+    playerAddress: "occasional",
+    sentenceLength: "mixed",
+    metaphor: "none",
+    signature:
+      "Circle one hidden detail, ask the question it raises, then let the supported answer land.",
+  },
   bible: {
-    temperament: "A sharp, competitive puzzle solver who loves the moment a hidden detail clicks into place.",
-    teaching: "Isolate one concrete detail, ask the question it raises, then show exactly what follows from it.",
+    temperament:
+      "A sharp, competitive puzzle solver who loves the moment a hidden detail clicks into place.",
+    teaching:
+      "Isolate one concrete detail, ask the question it raises, then show exactly what follows from it.",
     rhythm: "A genuine question or a circled detail, the discovery, then its consequence.",
     celebration: "Proud when a subtle resource is found; defensive saves count as much as attacks.",
-    correction: "Curious and competitive about finding the answer, never scolding, with ownership words kept to the learner's own moments.",
-    avoid: "Cutesy language, fake sass, girl-genius stereotypes, questions with invented premises, other coaches' sayings, and emotion that depends on which side moved.",
+    correction:
+      "Curious and competitive about finding the answer, never scolding, with ownership words kept to the learner's own moments.",
+    avoid:
+      "Cutesy language, fake sass, girl-genius stereotypes, questions with invented premises, other coaches' sayings, and emotion that depends on which side moved.",
   },
   templates: {
     ...girlTacticalTemplates,
     ...girlOpeningTemplates,
     allowed_mate: [
-      {question: "Where can the king hide now?", observation: "Spotlight on the king's safety.", fact: "After this move, {opponent} has a mate it can force.", consequence: "{reply}"},
-      {observation: "The king is the detail to circle.", fact: "{opponent} can now drive home a forced checkmate. {reply}", question: "Which earlier move kept the king safe?"},
+      {
+        question: "Where can the king hide now?",
+        observation: "Spotlight on the king's safety.",
+        fact: "After this move, {opponent} has a mate it can force.",
+        consequence: "{reply}",
+      },
+      {
+        observation: "The king is the detail to circle.",
+        fact: "{opponent} can now drive home a forced checkmate. {reply}",
+        question: "Which earlier move kept the king safe?",
+      },
     ],
     missed_mate: [
-      {question: "Which move finished the game?", fact: "X marks the spot: {best} forced mate, and this move takes a detour instead."},
-      {observation: "There was an ending hiding here.", fact: "{best} was a forced mate waiting to happen; this move leaves the finish in the box.", question: "Can you see the mating line?"},
+      {
+        question: "Which move finished the game?",
+        fact: "X marks the spot: {best} forced mate, and this move takes a detour instead.",
+      },
+      {
+        observation: "There was an ending hiding here.",
+        fact: "{best} was a forced mate waiting to happen; this move leaves the finish in the box.",
+        question: "Can you see the mating line?",
+      },
     ],
     tactic_played: [
-      {question: "What does this move set up?", fact: "Riddle answered: following the engine's line, {move} creates a {motif}.", consequence: "{detail}"},
-      {observation: "Circle this one.", fact: "{move} is where the {motif} starts, following the engine's line.", consequence: "{detail}"},
+      {
+        question: "What does this move set up?",
+        fact: "Riddle answered: following the engine's line, {move} creates a {motif}.",
+        consequence: "{detail}",
+      },
+      {
+        observation: "Circle this one.",
+        fact: "{move} is where the {motif} starts, following the engine's line.",
+        consequence: "{detail}",
+      },
     ],
     tactic_allowed: [
-      {question: "Which trick opens up for them?", fact: "Following the engine's line, {opponent} gets a {motif}.", consequence: "{detail}"},
-      {observation: "Plot twist.", fact: "In the engine's line, a {motif} lands in {opponent}'s lap.", consequence: "{detail}", question: "Which reply would you check first?"},
+      {
+        question: "Which trick opens up for them?",
+        fact: "Following the engine's line, {opponent} gets a {motif}.",
+        consequence: "{detail}",
+      },
+      {
+        observation: "Plot twist.",
+        fact: "In the engine's line, a {motif} lands in {opponent}'s lap.",
+        consequence: "{detail}",
+        question: "Which reply would you check first?",
+      },
     ],
     tactic_missed: [
-      {question: "Which move held the {motif}?", fact: "Hint for next time: {best} held a {motif}.", consequence: "{detail}"},
-      {observation: "One for the notebook.", fact: "{best} carried a {motif} for anyone who looked; this move looks elsewhere.", consequence: "{detail}"},
+      {
+        question: "Which move held the {motif}?",
+        fact: "Hint for next time: {best} held a {motif}.",
+        consequence: "{detail}",
+      },
+      {
+        observation: "One for the notebook.",
+        fact: "{best} carried a {motif} for anyone who looked; this move looks elsewhere.",
+        consequence: "{detail}",
+      },
     ],
-    cause_abandoned_defender: [{question: "Who's still on guard duty?", fact: "Spot the gap: {move} walks off with the only unpinned defender {side}'s {piece} on {square} could count on.", consequence: "{opponent} can capture it with {reply}."}],
-    cause_opponent_threat_recognition: [{question: "Rewind one move: what was under attack?", fact: "Rewind: the opponent's preceding move put a target on {side}'s {piece} on {square}, and {move} shrugs it off.", consequence: "{opponent} can capture it with {reply}."}],
-    cause_avoiding_bad_trades: [{question: "Who wins the trade?", fact: "Tally it up: {move} grabs a {captured} but gives up {side}'s {piece}.", consequence: "{opponent} can recapture with {reply}, and the tally tips their way."}],
+    cause_abandoned_defender: [
+      {
+        question: "Who's still on guard duty?",
+        fact: "Spot the gap: {move} walks off with the only unpinned defender {side}'s {piece} on {square} could count on.",
+        consequence: "{opponent} can capture it with {reply}.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        question: "Rewind one move: what was under attack?",
+        fact: "Rewind: the opponent's preceding move put a target on {side}'s {piece} on {square}, and {move} shrugs it off.",
+        consequence: "{opponent} can capture it with {reply}.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        question: "Who wins the trade?",
+        fact: "Tally it up: {move} grabs a {captured} but gives up {side}'s {piece}.",
+        consequence: "{opponent} can recapture with {reply}, and the tally tips their way.",
+      },
+    ],
     sacrifice: [
-      {observation: "Grabbing the bait won't crack this one.", fact: "Swallow the bait, and the searched line shows the sacrifice still paying off."},
-      {question: "Take the material, and then what?", fact: "The searched line says the sacrifice keeps working anyway."},
+      {
+        observation: "Grabbing the bait won't crack this one.",
+        fact: "Swallow the bait, and the searched line shows the sacrifice still paying off.",
+      },
+      {
+        question: "Take the material, and then what?",
+        fact: "The searched line says the sacrifice keeps working anyway.",
+      },
     ],
     only_move: [
-      {observation: "One key, one lock.", fact: "Among the searched moves, every other one was losing, and this kept the position playable."},
-      {question: "Which searched move kept things playable?", fact: "This one did, and nothing else survived; the others were losing."},
+      {
+        observation: "One key, one lock.",
+        fact: "Among the searched moves, every other one was losing, and this kept the position playable.",
+      },
+      {
+        question: "Which searched move kept things playable?",
+        fact: "This one did, and nothing else survived; the others were losing.",
+      },
     ],
-    decisive_resource: [{observation: "One move holds the edge.", fact: "It's the lone searched move that keeps the decisive edge in hand."}],
-    reply_capture: ["First look at the reply: {reply} lets {opponent} take {side}'s {piece}.", {question: "And how do they respond?", fact: "{reply} is the answer, and {side}'s {piece} falls to {opponent}."}],
-    reply_check: [{question: "Which reply comes first for them?", fact: "{opponent} answers with {reply}, a check, so the king's problem comes first."}],
+    decisive_resource: [
+      {
+        observation: "One move holds the edge.",
+        fact: "It's the lone searched move that keeps the decisive edge in hand.",
+      },
+    ],
+    reply_capture: [
+      "First look at the reply: {reply} lets {opponent} take {side}'s {piece}.",
+      {
+        question: "And how do they respond?",
+        fact: "{reply} is the answer, and {side}'s {piece} falls to {opponent}.",
+      },
+    ],
+    reply_check: [
+      {
+        question: "Which reply comes first for them?",
+        fact: "{opponent} answers with {reply}, a check, so the king's problem comes first.",
+      },
+    ],
     alternative: ["The engine would play {best} instead, rated {evaluation} for the mover."],
-    loss: [{question: "How big is the gap?", fact: "Measured against the engine's favorite, {loss} pawns of evaluation."}],
-    best: [{observation: "Checked against the key.", fact: "Strong move, with hardly any value lost."}, {observation: "Clean solve.", fact: "Strong, and the engine struggles to name anything sharper."}],
-    good: [{observation: "Solid answer.", fact: "The engine leans slightly toward another move, but the lion's share of the value stays on the board."}],
-    human_natural_error: [{question: "Why was it tempting?", fact: "Natural, says the human-move model, but the engine has a sharper move, and the reply is where this one gets expensive."}],
-    difficult_defense: [{observation: "The defense was hiding.", fact: "{best} would have held the position; that defense was a real needle in a haystack, according to the human-move model."}],
-    human_challenging: [{observation: "A tough one to spot.", fact: "{best} was a needle in a haystack, by the human-move model's count."}],
-    human_defense_found: [{observation: "Defense cracked!", fact: "{best} held, a defense the human-move model files under really sneaky."}],
-    human_rare: [{observation: "Plot twist!", fact: "Nowhere on the human-move model's shortlist, yet it survives the engine's best reply."}],
-    human_natural_best: [{observation: "Checked against the key.", fact: "The human-move model had it on its shortlist, and the engine's leaderboard has nothing higher."}],
-    human_natural_strong: [{observation: "On the shortlist.", fact: "Shortlisted by the human-move model, and strong by the engine's grading, though the engine keeps one favorite above it."}],
-    mate_win: [{observation: "Puzzle solved!", fact: "Checkmate! Every escape square is gone, and the win is yours."}],
-    mate_loss: [{fact: "Checkmate; your king ran out of squares.", question: "Where could the defense have started?"}],
-    draw: [{fact: "Drawn, so no winner this time.", question: "Which earlier decision is worth a second look?"}],
-    recovery: [{observation: "Back in the game.", fact: "Since that slip at {earlier}, it's a playable game again.{help}"}],
-    repeated: [{observation: "This pattern, once more.", fact: "Count them: {count} times so far, this {motif} problem has shown up in the game."}],
-    retry: [{fact: "Not quite.", question: "What did that move overlook?"}],
-    recovered: [{observation: "Second look, solved!", fact: "{detail}"}],
-    accepted: [{fact: "{detail}", question: "Can you spot that idea next time?"}],
-    explanation: [{observation: "Here's the detail that matters.", fact: "{detail}"}],
-    cold: [{question: "What's the key detail here?", fact: "Scan every corner of the board, then play."}],
-    thinking: [{fact: "Working out the strongest reply to this move…"}],
-    unavailable: [{fact: "The engine hasn't returned enough to explain this position yet, but you're free to poke around the board."}],
-    book: [{observation: "Opening detective mode.", fact: "Case solved: it's {opening}."}],
-    book_sound: [{fact: "Charted territory, known as {opening}."}],
-    departure: [{fact: "Here the game steps past the last charted move of the opening.", question: "What's the plan now?"}],
-    variation: [{observation: "Side path, not the game.", fact: "Down this what-if road: {detail}"}],
-    development: [{observation: "Telltale sign of a good start.", fact: "{lead}brings the {piece} out from where it began."}],
+    loss: [
+      {
+        question: "How big is the gap?",
+        fact: "Measured against the engine's favorite, {loss} pawns of evaluation.",
+      },
+    ],
+    best: [
+      { observation: "Checked against the key.", fact: "Strong move, with hardly any value lost." },
+      {
+        observation: "Clean solve.",
+        fact: "Strong, and the engine struggles to name anything sharper.",
+      },
+    ],
+    good: [
+      {
+        observation: "Solid answer.",
+        fact: "The engine leans slightly toward another move, but the lion's share of the value stays on the board.",
+      },
+    ],
+    human_natural_error: [
+      {
+        question: "Why was it tempting?",
+        fact: "Natural, says the human-move model, but the engine has a sharper move, and the reply is where this one gets expensive.",
+      },
+    ],
+    difficult_defense: [
+      {
+        observation: "The defense was hiding.",
+        fact: "{best} would have held the position; that defense was a real needle in a haystack, according to the human-move model.",
+      },
+    ],
+    human_challenging: [
+      {
+        observation: "A tough one to spot.",
+        fact: "{best} was a needle in a haystack, by the human-move model's count.",
+      },
+    ],
+    human_defense_found: [
+      {
+        observation: "Defense cracked!",
+        fact: "{best} held, a defense the human-move model files under really sneaky.",
+      },
+    ],
+    human_rare: [
+      {
+        observation: "Plot twist!",
+        fact: "Nowhere on the human-move model's shortlist, yet it survives the engine's best reply.",
+      },
+    ],
+    human_natural_best: [
+      {
+        observation: "Checked against the key.",
+        fact: "The human-move model had it on its shortlist, and the engine's leaderboard has nothing higher.",
+      },
+    ],
+    human_natural_strong: [
+      {
+        observation: "On the shortlist.",
+        fact: "Shortlisted by the human-move model, and strong by the engine's grading, though the engine keeps one favorite above it.",
+      },
+    ],
+    mate_win: [
+      {
+        observation: "Puzzle solved!",
+        fact: "Checkmate! Every escape square is gone, and the win is yours.",
+      },
+    ],
+    mate_loss: [
+      {
+        fact: "Checkmate; your king ran out of squares.",
+        question: "Where could the defense have started?",
+      },
+    ],
+    draw: [
+      {
+        fact: "Drawn, so no winner this time.",
+        question: "Which earlier decision is worth a second look?",
+      },
+    ],
+    recovery: [
+      {
+        observation: "Back in the game.",
+        fact: "Since that slip at {earlier}, it's a playable game again.{help}",
+      },
+    ],
+    repeated: [
+      {
+        observation: "This pattern, once more.",
+        fact: "Count them: {count} times so far, this {motif} problem has shown up in the game.",
+      },
+    ],
+    retry: [{ fact: "Not quite.", question: "What did that move overlook?" }],
+    recovered: [{ observation: "Second look, solved!", fact: "{detail}" }],
+    accepted: [{ fact: "{detail}", question: "Can you spot that idea next time?" }],
+    explanation: [{ observation: "Here's the detail that matters.", fact: "{detail}" }],
+    cold: [
+      {
+        question: "What's the key detail here?",
+        fact: "Scan every corner of the board, then play.",
+      },
+    ],
+    thinking: [{ fact: "Working out the strongest reply to this move…" }],
+    unavailable: [
+      {
+        fact: "The engine hasn't returned enough to explain this position yet, but you're free to poke around the board.",
+      },
+    ],
+    book: [{ observation: "Opening detective mode.", fact: "Case solved: it's {opening}." }],
+    book_sound: [{ fact: "Charted territory, known as {opening}." }],
+    departure: [
+      {
+        fact: "Here the game steps past the last charted move of the opening.",
+        question: "What's the plan now?",
+      },
+    ],
+    variation: [
+      { observation: "Side path, not the game.", fact: "Down this what-if road: {detail}" },
+    ],
+    development: [
+      {
+        observation: "Telltale sign of a good start.",
+        fact: "{lead}brings the {piece} out from where it began.",
+      },
+    ],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Circle that file!"],
     uncertain_reason: ["{best} rates higher, but the why stays fuzzy, so we won't guess."],
     punishment: ["Gotcha! A chance from the opponent at {earlier}, cashed in by {side} here."],
-    missed_punishment: ["There was a chance to punish the opponent's {earlier}, and {side} lets it slide here. What would you have played?"],
-    support_restored: ["Problem patched: the {piece} has a defender again, after being left alone at {earlier}."],
+    missed_punishment: [
+      "There was a chance to punish the opponent's {earlier}, and {side} lets it slide here. What would you have played?",
+    ],
+    support_restored: [
+      "Problem patched: the {piece} has a defender again, after being left alone at {earlier}.",
+    ],
     erosion: ["Small concessions keep stacking up since {earlier}, and this is another one."],
-    conversion: ["Edge kept from {earlier} to the final whistle: {side} converted. Nicely finished."],
+    conversion: [
+      "Edge kept from {earlier} to the final whistle: {side} converted. Nicely finished.",
+    ],
     history: ["Heads up: {games} more of your saved games share this {motif} issue."],
-    passed: ["{lead}gives {side} passed pawns on {squares}: their files and the ones beside them hold no enemy pawn to stop them."],
+    passed: [
+      "{lead}gives {side} passed pawns on {squares}: their files and the ones beside them hold no enemy pawn to stop them.",
+    ],
     passer_advance: ["{lead}moves the passed pawn up to {square}, one step closer."],
     isolated: ["{lead}cuts {side}'s pawns on {squares} off from any friendly pawns next door."],
     support: ["{lead}assigns a protector to the {piece} on {square}."],
-    unsupported: ["{lead}leaves the {piece} on {square} with no guard, which by itself doesn't make it a target you can win."],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} with no guard, which by itself doesn't make it a target you can win.",
+    ],
     flights: ["{lead}opens {squares} as a fresh hatch for the king."],
     castle: ["{lead}castles: two king steps to {square}, then the rook vaults across to its side."],
     bishops: ["{lead}removes {side}'s opposite-colored bishop pair."],

@@ -35,7 +35,11 @@ export function speechManifests(): Plugin {
       const runtime = {
         coachId: manifest.coachId,
         voiceId: manifest.voiceId,
-        recordings: manifest.recordings.map(({ id, text, audioPath }: Record<string, string>) => ({ id, text, audioPath })),
+        recordings: manifest.recordings.map(({ id, text, audioPath }: Record<string, string>) => ({
+          id,
+          text,
+          audioPath,
+        })),
       };
       // Still JSON: Vite's JSON plugin turns it into the module.
       return JSON.stringify(runtime);

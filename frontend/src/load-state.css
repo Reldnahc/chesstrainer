@@ -1,55 +1,81 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-.load-state {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  min-width: 0;
-}
-.load-state-message {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  overflow-wrap: anywhere;
-}
-/* A two-by-two board whose squares light clockwise. With motion off it rests as a
+  .load-state {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+  }
+  .load-state-message {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    overflow-wrap: anywhere;
+  }
+  /* A two-by-two board whose squares light clockwise. With motion off it rests as a
    checkerboard (the interface-motion policy removes the animation). */
-.load-state-indicator {
-  display: inline-grid;
-  grid-template-columns: repeat(2, 7px);
-  grid-auto-rows: 7px;
-  gap: var(--space-0-5);
-  flex: none;
-}
-.load-state-indicator > span {
-  border-radius: 1.5px;
-  background: var(--accent);
-  opacity: 0.25;
-  animation: load-state-square var(--motion-loop) var(--ease-standard) infinite;
-}
-.load-state-indicator > span:nth-child(2) { animation-delay: calc(var(--motion-loop) / 4); }
-.load-state-indicator > span:nth-child(4) { animation-delay: calc(var(--motion-loop) / 2); }
-.load-state-indicator > span:nth-child(3) { animation-delay: calc(var(--motion-loop) * 3 / 4); }
-@keyframes load-state-square {
-  0%, 50%, 100% { opacity: 0.25; }
-  15% { opacity: 1; }
-}
-:root[data-interface-motion="still"] .load-state-indicator > span:is(:nth-child(1), :nth-child(4)) { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  :root:not([data-interface-motion="natural"]) .load-state-indicator > span:is(:nth-child(1), :nth-child(4)) { opacity: 1; }
-}
-/* Content kept on screen while its request reloads (QueryReloading). */
-.reloadable { transition: opacity var(--motion-fast) var(--ease-standard); }
-.reloadable[data-reloading] { opacity: 0.55; }
-/* Phone workspaces use smaller body text; loaders on board pages match it, so a
+  .load-state-indicator {
+    display: inline-grid;
+    grid-template-columns: repeat(2, 7px);
+    grid-auto-rows: 7px;
+    gap: var(--space-0-5);
+    flex: none;
+  }
+  .load-state-indicator > span {
+    border-radius: 1.5px;
+    background: var(--accent);
+    opacity: 0.25;
+    animation: load-state-square var(--motion-loop) var(--ease-standard) infinite;
+  }
+  .load-state-indicator > span:nth-child(2) {
+    animation-delay: calc(var(--motion-loop) / 4);
+  }
+  .load-state-indicator > span:nth-child(4) {
+    animation-delay: calc(var(--motion-loop) / 2);
+  }
+  .load-state-indicator > span:nth-child(3) {
+    animation-delay: calc(var(--motion-loop) * 3 / 4);
+  }
+  @keyframes load-state-square {
+    0%,
+    50%,
+    100% {
+      opacity: 0.25;
+    }
+    15% {
+      opacity: 1;
+    }
+  }
+  :root[data-interface-motion="still"]
+    .load-state-indicator
+    > span:is(:nth-child(1), :nth-child(4)) {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root:not([data-interface-motion="natural"])
+      .load-state-indicator
+      > span:is(:nth-child(1), :nth-child(4)) {
+      opacity: 1;
+    }
+  }
+  /* Content kept on screen while its request reloads (QueryReloading). */
+  .reloadable {
+    transition: opacity var(--motion-fast) var(--ease-standard);
+  }
+  .reloadable[data-reloading] {
+    opacity: 0.55;
+  }
+  /* Phone workspaces use smaller body text; loaders on board pages match it, so a
    loader reads the same on every page. */
-@media (max-width: 760px) {
-  .load-state-message { font-size: var(--text-md); }
-}
-.load-state-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
-}
+  @media (max-width: 760px) {
+    .load-state-message {
+      font-size: var(--text-md);
+    }
+  }
+  .load-state-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+  }
 }

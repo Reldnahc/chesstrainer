@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useEffectEvent, useRef, useState, type DependencyList, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useRef,
+  useState,
+  type DependencyList,
+  type ReactNode,
+} from "react";
 import { errorMessage } from "./api";
 import Banner from "./Banner";
 import Button from "./Button";
@@ -27,8 +35,11 @@ export type Query<T> = {
  * the lifecycle is shared (as useSavedPreferences does for preferences).
  * `enabled: false` holds a request the screen does not need yet (a tab not opened).
  */
-export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: DependencyList = [],
-  { enabled = true }: { enabled?: boolean } = {}): Query<T> {
+export function useQuery<T>(
+  load: (signal: AbortSignal) => Promise<T>,
+  deps: DependencyList = [],
+  { enabled = true }: { enabled?: boolean } = {},
+): Query<T> {
   const [data, setData] = useState<T>();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(true);
@@ -41,12 +52,12 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
     setPending(true);
     setError(null);
     run(controller.signal).then(
-      (value) => {
+      value => {
         if (controller.signal.aborted) return;
         setData(() => value);
         setPending(false);
       },
-      (e) => {
+      e => {
         if (controller.signal.aborted) return;
         setError(errorMessage(e));
         setPending(false);
@@ -56,7 +67,7 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
     // The caller's deps decide when the request is a different one.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- the hook's API takes the caller's dependency list, and load is read through an effect event
   }, [attempt, enabled, ...deps]);
-  const retry = useCallback(() => setAttempt((value) => value + 1), []);
+  const retry = useCallback(() => setAttempt(value => value + 1), []);
   const dismiss = useCallback(() => setError(null), []);
   return { data, error, pending, retry, dismiss, setData: setData as Query<T>["setData"] };
 }
@@ -68,13 +79,15 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
  * banner), and once that message is dismissed further failures stay quiet until
  * a read succeeds again. `refresh()` asks for a fresh read after any in flight.
  */
-export function usePolledQuery<T>(load: (signal: AbortSignal) => Promise<T>,
-  options: PollingOptions): Query<T> & { refresh: () => Promise<void> } {
+export function usePolledQuery<T>(
+  load: (signal: AbortSignal) => Promise<T>,
+  options: PollingOptions,
+): Query<T> & { refresh: () => Promise<void> } {
   const [data, setData] = useState<T>();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(true);
   const quiet = useRef(false);
-  const polling = usePolling(async (signal) => {
+  const polling = usePolling(async signal => {
     try {
       const value = await load(signal);
       if (signal.aborted) return;
@@ -110,7 +123,13 @@ export function usePolledQuery<T>(load: (signal: AbortSignal) => Promise<T>,
  * again" when the first load failed, and the children only once the data is here,
  * so a failed or pending load never reads as an empty one.
  */
-export function QueryResult<T>({ query, label, presentation, heading, children }: {
+export function QueryResult<T>({
+  query,
+  label,
+  presentation,
+  heading,
+  children,
+}: {
   query: Query<T>;
   /** What is loading, in the reader's words ("your games"). */
   label: string;
@@ -118,16 +137,28 @@ export function QueryResult<T>({ query, label, presentation, heading, children }
   heading?: ReactNode;
   children: (data: T) => ReactNode;
 }) {
-  const retry = <Button variant="secondary" onClick={query.retry}>Try again</Button>;
+  const retry = (
+    <Button variant="secondary" onClick={query.retry}>
+      Try again
+    </Button>
+  );
   if (query.data === undefined)
-    return query.error
-      ? <UnavailableState presentation={presentation} heading={heading} actions={retry}>Couldn’t load {label}.</UnavailableState>
-      : <LoadingState presentation={presentation} heading={heading}>Loading {label}…</LoadingState>;
+    return query.error ? (
+      <UnavailableState presentation={presentation} heading={heading} actions={retry}>
+        Couldn’t load {label}.
+      </UnavailableState>
+    ) : (
+      <LoadingState presentation={presentation} heading={heading}>
+        Loading {label}…
+      </LoadingState>
+    );
   // A refresh that fails keeps what already loaded and says so.
-  return <>
-    <QueryError query={query} label={label} />
-    {children(query.data)}
-  </>;
+  return (
+    <>
+      <QueryError query={query} label={label} />
+      {children(query.data)}
+    </>
+  );
 }
 
 /**
@@ -138,9 +169,19 @@ export function QueryResult<T>({ query, label, presentation, heading, children }
  */
 export function QueryError<T>({ query, label }: { query: Query<T>; label: string }) {
   if (!query.error) return null;
-  return <Banner tone="error" action={<Button size="compact" variant="secondary" onClick={query.retry}>Try again</Button>} onDismiss={query.dismiss}>
-    {query.data === undefined ? "Couldn’t load" : "Couldn’t refresh"} {label}.
-  </Banner>;
+  return (
+    <Banner
+      tone="error"
+      action={
+        <Button size="compact" variant="secondary" onClick={query.retry}>
+          Try again
+        </Button>
+      }
+      onDismiss={query.dismiss}
+    >
+      {query.data === undefined ? "Couldn’t load" : "Couldn’t refresh"} {label}.
+    </Banner>
+  );
 }
 
 /**
@@ -149,13 +190,21 @@ export function QueryError<T>({ query, label }: { query: Query<T>; label: string
  * that reload. Give the kept content `className="reloadable"` and
  * `data-reloading={reloading(query)}` so it dims until the new result arrives.
  */
-export function QueryReloading<T>({ query, label, className }: {
+export function QueryReloading<T>({
+  query,
+  label,
+  className,
+}: {
   query: Query<T>;
   /** What is loading, in the reader's words, as for QueryResult. */
   label: string;
   className?: string;
 }) {
-  return <Reveal className={className}>{reloading(query) && <LoadingState>Loading {label}…</LoadingState>}</Reveal>;
+  return (
+    <Reveal className={className}>
+      {reloading(query) && <LoadingState>Loading {label}…</LoadingState>}
+    </Reveal>
+  );
 }
 
 /** True while a query that already has a result loads a new one. */
@@ -177,27 +226,33 @@ export function useCommand<K = true>() {
   const [error, setError] = useState("");
   const running = useRef<AbortController | null>(null);
   useEffect(() => () => running.current?.abort(), []);
-  const run = useCallback(async <T,>(key: K, action: (signal: AbortSignal) => Promise<T>,
-    then?: (result: T) => void): Promise<T | undefined> => {
-    if (running.current) return undefined;
-    const controller = new AbortController();
-    running.current = controller;
-    setBusy(() => key);
-    setError("");
-    try {
-      const result = await action(controller.signal);
-      if (!controller.signal.aborted) then?.(result);
-      return controller.signal.aborted ? undefined : result;
-    } catch (e) {
-      if (!controller.signal.aborted) setError(errorMessage(e));
-      return undefined;
-    } finally {
-      if (!controller.signal.aborted) {
-        running.current = null;
-        setBusy(null);
+  const run = useCallback(
+    async <T,>(
+      key: K,
+      action: (signal: AbortSignal) => Promise<T>,
+      then?: (result: T) => void,
+    ): Promise<T | undefined> => {
+      if (running.current) return undefined;
+      const controller = new AbortController();
+      running.current = controller;
+      setBusy(() => key);
+      setError("");
+      try {
+        const result = await action(controller.signal);
+        if (!controller.signal.aborted) then?.(result);
+        return controller.signal.aborted ? undefined : result;
+      } catch (e) {
+        if (!controller.signal.aborted) setError(errorMessage(e));
+        return undefined;
+      } finally {
+        if (!controller.signal.aborted) {
+          running.current = null;
+          setBusy(null);
+        }
       }
-    }
-  }, []);
+    },
+    [],
+  );
   // Errors from work outside run (a poll, a child's command) report here too.
   const fail = useCallback((e: unknown) => setError(errorMessage(e)), []);
   return { busy, error, setError, fail, run, dismiss: useCallback(() => setError(""), []) };
@@ -208,11 +263,18 @@ export function useCommand<K = true>() {
  * error that is not a failed load (QueryResult shows those). Any source with an
  * `error` and a `dismiss` uses it: useCommand, useSessionStart or a session hook.
  */
-export function CommandError({ command, action }: {
+export function CommandError({
+  command,
+  action,
+}: {
   /** Without `dismiss` the banner stays until its source clears it (a reply asked for again). */
   command: { error: string; dismiss?: () => void };
   /** One recovery command shown before the close button. */
   action?: ReactNode;
 }) {
-  return command.error ? <Banner tone="error" action={action} onDismiss={command.dismiss}>{command.error}</Banner> : null;
+  return command.error ? (
+    <Banner tone="error" action={action} onDismiss={command.dismiss}>
+      {command.error}
+    </Banner>
+  ) : null;
 }

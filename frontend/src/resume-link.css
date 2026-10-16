@@ -1,16 +1,26 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-.study-resume {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-4);
-  background: var(--raised);
-  border-radius: 5px;
-  text-decoration: none;
-}
-.study-resume small { color: var(--muted); }
-.study-resume > span { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; overflow-wrap: anywhere; }
-.study-resume > svg { flex: none; }
+  .study-resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--raised);
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  .study-resume small {
+    color: var(--muted);
+  }
+  .study-resume > span {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .study-resume > svg {
+    flex: none;
+  }
 }

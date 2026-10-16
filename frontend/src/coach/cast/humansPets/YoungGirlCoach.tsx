@@ -12,8 +12,15 @@ const look: YouthLook = {
   resting: "hips",
   // Sharp, slightly upturned eyes and one raised brow: she has spotted something.
   face: {
-    shape: "upturned", width: 4.3, height: 0.95, iris: "#3c2618", irisRadius: 2.5,
-    liner: "line", sparkle: true, brows: { weight: 2.4, arch: 0.9, raise: 2.2 }, nose: "button",
+    shape: "upturned",
+    width: 4.3,
+    height: 0.95,
+    iris: "#3c2618",
+    irisRadius: 2.5,
+    liner: "line",
+    sparkle: true,
+    brows: { weight: 2.4, arch: 0.9, raise: 2.2 },
+    nose: "button",
   },
   clothing: (
     <>
@@ -38,12 +45,7 @@ const look: YouthLook = {
         strokeWidth="1.5"
         strokeLinecap="round"
       />
-      <path
-        d="m14 17 7 8m45-8-7 8"
-        stroke="#ce865e"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
+      <path d="m14 17 7 8m45-8-7 8" stroke="#ce865e" strokeWidth="4" strokeLinecap="round" />
     </g>
   ),
   frontHair: (
@@ -66,12 +68,7 @@ const look: YouthLook = {
         fill="none"
         strokeLinecap="round"
       />
-      <path
-        d="m52 19 5 3"
-        stroke="#e1b363"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
+      <path d="m52 19 5 3" stroke="#e1b363" strokeWidth="2.2" strokeLinecap="round" />
     </g>
   ),
 };

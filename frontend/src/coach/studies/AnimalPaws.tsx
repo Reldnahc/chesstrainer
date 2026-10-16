@@ -46,10 +46,7 @@ export default function AnimalPaws({
   return (
     <g>
       {positions.map(([x, y, angle], index) => (
-        <g
-          className={`study-paw study-paw-${index ? "right" : "left"}`}
-          key={index}
-        >
+        <g className={`study-paw study-paw-${index ? "right" : "left"}`} key={index}>
           <g className={`coach-idle-${index ? "rightPaw" : "leftPaw"}`}>
             <path
               d={`M${index ? 69 : 31} 88Q${index ? 82 : 18} 101 ${x} ${y + 4}`}
@@ -71,14 +68,7 @@ export default function AnimalPaws({
                 strokeLinecap="round"
               />
               {pose.paws === "offer" && index === 1 && (
-                <ellipse
-                  cx="0"
-                  cy="0"
-                  rx="3.3"
-                  ry="2.6"
-                  fill={palette.nose}
-                  opacity=".5"
-                />
+                <ellipse cx="0" cy="0" rx="3.3" ry="2.6" fill={palette.nose} opacity=".5" />
               )}
             </g>
           </g>

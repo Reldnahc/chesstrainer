@@ -5,7 +5,8 @@
 import { readFileSync } from "node:fs";
 import { sourceFiles } from "./source-files.mjs";
 
-const PROPERTY = /(?:^|[{;\s])((?:margin|padding)(?:-(?:top|right|bottom|left|block|inline)(?:-(?:start|end))?)?|gap|row-gap|column-gap|--[\w-]*(?:padding|margin|gap)[\w-]*)\s*:\s*([^;}]*)/g;
+const PROPERTY =
+  /(?:^|[{;\s])((?:margin|padding)(?:-(?:top|right|bottom|left|block|inline)(?:-(?:start|end))?)?|gap|row-gap|column-gap|--[\w-]*(?:padding|margin|gap)[\w-]*)\s*:\s*([^;}]*)/g;
 const RAW = /(^|[\s(,])-?(\d*\.?\d+)px\b/g;
 
 // Whole declarations are read, so a value wrapped over several lines is checked too.
@@ -17,7 +18,11 @@ export function violations(css) {
     const [, property, value] = match;
     for (const [, , number] of value.matchAll(RAW)) {
       if (Number(number) > 1)
-        found.push({ line: lineOf(match.index + match[0].indexOf(property)), property, value: value.replace(/\s+/g, " ").trim() });
+        found.push({
+          line: lineOf(match.index + match[0].indexOf(property)),
+          property,
+          value: value.replace(/\s+/g, " ").trim(),
+        });
     }
   }
   return found;

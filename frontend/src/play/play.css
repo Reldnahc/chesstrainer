@@ -1,28 +1,98 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-/* Setup for a game against the coach: one form panel beside the coach's portrait. */
-/* The form keeps a readable width; the coach takes the rest of the row. */
-.play-setup { display: grid; grid-template-columns: minmax(0, 920px) minmax(240px, 1fr); gap: var(--page-gap); align-items: start; }
-.play-setup-coach { display: flex; flex-direction: column; gap: var(--space-4); width: min(100%, 440px); justify-self: center; }
-.play-setup-portrait { width: min(100%, 300px); margin-inline: auto; }
-.play-setup-form { display: grid; gap: var(--space-6); }
-.play-field { display: grid; gap: var(--space-2); }
-.play-strength { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; max-width: 780px; }
-.play-strength input[type="range"] { width: 100%; accent-color: var(--accent); }
-.play-strength output { font-variant-numeric: tabular-nums; font-weight: 650; font-size: var(--text-xl); min-width: 3.5ch; text-align: right; }
-/* Hidden alternatives still size the shared cell. */
-.play-swap { display: grid; }
-.play-swap > * { grid-area: 1 / 1; align-self: start; }
-.play-swap > * { transition: opacity var(--motion-fast) var(--ease-standard), visibility var(--motion-fast) var(--ease-standard); }
-.play-swap > [hidden] { visibility: hidden; opacity: 0; }
-.play-swap > p[hidden] { display: block; }
-.play-course { width: min(100%, 520px); }
-.play-practice-prompt { display: grid; gap: var(--space-1); }
-.play-level { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); align-items: baseline; }
-.play-level strong { font-size: var(--text-4xl); font-weight: 650; }
-@media (max-width: 760px) {
-  .play-setup { grid-template-columns: 1fr; }
-  .play-setup-coach { order: -1; width: 100%; }
-  .play-setup-portrait { width: 160px; margin-inline: auto; }
-}
+  /* Setup for a game against the coach: one form panel beside the coach's portrait. */
+  /* The form keeps a readable width; the coach takes the rest of the row. */
+  .play-setup {
+    display: grid;
+    grid-template-columns: minmax(0, 920px) minmax(240px, 1fr);
+    gap: var(--page-gap);
+    align-items: start;
+  }
+  .play-setup-coach {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    width: min(100%, 440px);
+    justify-self: center;
+  }
+  .play-setup-portrait {
+    width: min(100%, 300px);
+    margin-inline: auto;
+  }
+  .play-setup-form {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .play-field {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .play-strength {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    align-items: center;
+    max-width: 780px;
+  }
+  .play-strength input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+  }
+  .play-strength output {
+    font-variant-numeric: tabular-nums;
+    font-weight: 650;
+    font-size: var(--text-xl);
+    min-width: 3.5ch;
+    text-align: right;
+  }
+  /* Hidden alternatives still size the shared cell. */
+  .play-swap {
+    display: grid;
+  }
+  .play-swap > * {
+    grid-area: 1 / 1;
+    align-self: start;
+  }
+  .play-swap > * {
+    transition:
+      opacity var(--motion-fast) var(--ease-standard),
+      visibility var(--motion-fast) var(--ease-standard);
+  }
+  .play-swap > [hidden] {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .play-swap > p[hidden] {
+    display: block;
+  }
+  .play-course {
+    width: min(100%, 520px);
+  }
+  .play-practice-prompt {
+    display: grid;
+    gap: var(--space-1);
+  }
+  .play-level {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    align-items: baseline;
+  }
+  .play-level strong {
+    font-size: var(--text-4xl);
+    font-weight: 650;
+  }
+  @media (max-width: 760px) {
+    .play-setup {
+      grid-template-columns: 1fr;
+    }
+    .play-setup-coach {
+      order: -1;
+      width: 100%;
+    }
+    .play-setup-portrait {
+      width: 160px;
+      margin-inline: auto;
+    }
+  }
 }

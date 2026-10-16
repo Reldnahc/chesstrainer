@@ -16,23 +16,33 @@ const escaped = /\\u\{?(?:2[1-9b][0-9a-f]{2}|1f[0-9a-f]{3}|fe0[ef])\}?/i;
 
 function files(path) {
   let entries;
-  try { entries = readdirSync(path, { withFileTypes: true }); } catch { return sources.test(path) ? [path] : []; }
-  return entries.flatMap(entry => entry.name === "node_modules" ? [] : files(join(path, entry.name)));
+  try {
+    entries = readdirSync(path, { withFileTypes: true });
+  } catch {
+    return sources.test(path) ? [path] : [];
+  }
+  return entries.flatMap(entry =>
+    entry.name === "node_modules" ? [] : files(join(path, entry.name)),
+  );
 }
 
 export function findTextSymbols() {
   const found = [];
   for (const file of roots.flatMap(root => files(join(frontend, root)))) {
     if (!sources.test(file) || skipped.test(file)) continue;
-    readFileSync(file, "utf8").split(/\r?\n/).forEach((line, index) => {
-      for (const ch of line) {
-        if (pictograph.test(ch) || symbolBlocks.test(ch)) {
-          found.push(`${relative(frontend, file)}:${index + 1} U+${ch.codePointAt(0).toString(16).toUpperCase()} ${ch}`);
+    readFileSync(file, "utf8")
+      .split(/\r?\n/)
+      .forEach((line, index) => {
+        for (const ch of line) {
+          if (pictograph.test(ch) || symbolBlocks.test(ch)) {
+            found.push(
+              `${relative(frontend, file)}:${index + 1} U+${ch.codePointAt(0).toString(16).toUpperCase()} ${ch}`,
+            );
+          }
         }
-      }
-      const escape = line.match(escaped);
-      if (escape) found.push(`${relative(frontend, file)}:${index + 1} escape ${escape[0]}`);
-    });
+        const escape = line.match(escaped);
+        if (escape) found.push(`${relative(frontend, file)}:${index + 1} escape ${escape[0]}`);
+      });
   }
   return found;
 }
@@ -40,7 +50,9 @@ export function findTextSymbols() {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const found = findTextSymbols();
   if (found.length) {
-    console.error(`Characters that can render as emoji; use a lucide icon instead:\n${found.join("\n")}`);
+    console.error(
+      `Characters that can render as emoji; use a lucide icon instead:\n${found.join("\n")}`,
+    );
     process.exit(1);
   }
   console.log("No emoji-capable symbols in interface source.");

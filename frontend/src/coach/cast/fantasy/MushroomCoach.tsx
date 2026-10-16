@@ -5,8 +5,7 @@ import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
 
 function Fronds({ pose }: { pose: AnimalPose }) {
-  const high =
-    pose.paws === "cheeks" || pose.paws === "celebrate" || pose.paws === "pair";
+  const high = pose.paws === "cheeks" || pose.paws === "celebrate" || pose.paws === "pair";
   const offer = pose.paws === "offer";
   const chin = pose.paws === "chin";
   return (
@@ -72,13 +71,7 @@ export default function MushroomCoach({ expression }: CoachArtworkProps) {
           strokeLinecap="round"
           fill="none"
         />
-        <path
-          d="M62 51q2 13 3 23"
-          stroke="#c1ae7e"
-          strokeWidth="1.3"
-          fill="none"
-          opacity=".7"
-        />
+        <path d="M62 51q2 13 3 23" stroke="#c1ae7e" strokeWidth="1.3" fill="none" opacity=".7" />
         <g className="fantasy-cap coach-idle-cap">
           <path
             d="M5 47Q9 17 33 12q16-7 34 2 25 9 28 33-9 13-45 13T5 47Z"
@@ -100,38 +93,31 @@ export default function MushroomCoach({ expression }: CoachArtworkProps) {
             strokeLinecap="round"
             fill="none"
           />
-          <ellipse
-            cx="28"
-            cy="32"
-            rx="7"
-            ry="4.5"
-            transform="rotate(-25 28 32)"
-            fill="#e6d2a7"
-          />
-          <ellipse
-            cx="56"
-            cy="21"
-            rx="9"
-            ry="5"
-            transform="rotate(10 56 21)"
-            fill="#e8d3ac"
-          />
-          <ellipse
-            cx="76"
-            cy="36"
-            rx="6"
-            ry="4"
-            transform="rotate(29 76 36)"
-            fill="#dfc69c"
-          />
+          <ellipse cx="28" cy="32" rx="7" ry="4.5" transform="rotate(-25 28 32)" fill="#e6d2a7" />
+          <ellipse cx="56" cy="21" rx="9" ry="5" transform="rotate(10 56 21)" fill="#e8d3ac" />
+          <ellipse cx="76" cy="36" rx="6" ry="4" transform="rotate(29 76 36)" fill="#dfc69c" />
           <ellipse cx="47" cy="37" rx="3.5" ry="2.5" fill="#dbbb92" />
         </g>
         <g transform="translate(10 38) scale(.8)">
-          <FantasyFace pose={pose} ink="#665340" iris="#9c915b"
+          <FantasyFace
+            pose={pose}
+            ink="#665340"
+            iris="#9c915b"
             speakingMouth={
-              <OrganicSpeechMouth x={50} y={61} width={14} height={8.5}
-                palette={{ cavity: "#665340", outline: "#816348", tongue: "#d59c7a", lip: "#e0cf9f" }}
-                teeth={false} mood={pose.mouth === "concern" ? "concern" : "neutral"} />
+              <OrganicSpeechMouth
+                x={50}
+                y={61}
+                width={14}
+                height={8.5}
+                palette={{
+                  cavity: "#665340",
+                  outline: "#816348",
+                  tongue: "#d59c7a",
+                  lip: "#e0cf9f",
+                }}
+                teeth={false}
+                mood={pose.mouth === "concern" ? "concern" : "neutral"}
+              />
             }
           />
         </g>

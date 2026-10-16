@@ -35,16 +35,11 @@ export function gameReaction({
   // must never leak into an earlier move or a manually explored variation.
   if (explaining) state = "explaining";
   else if (frame?.termination && frame.result === "1/2-1/2") state = "draw";
-  else if (
-    frame?.termination &&
-    (frame.result === "1-0" || frame.result === "0-1")
-  )
-    state =
-      (frame.result === "1-0") === (learner === "white") ? "winning" : "losing";
+  else if (frame?.termination && (frame.result === "1-0" || frame.result === "0-1"))
+    state = (frame.result === "1-0") === (learner === "white") ? "winning" : "losing";
   else if (report) {
     state = quality[report.label];
-    if (frame?.san?.endsWith("+") && ["best", "good", "book"].includes(state))
-      state = "check";
+    if (frame?.san?.endsWith("+") && ["best", "good", "book"].includes(state)) state = "check";
   } else if (error) state = "uncertain";
   else if (pending) state = "thinking";
   return { key, state };
@@ -69,8 +64,7 @@ export function practiceReaction({
   if (busy) state = "thinking";
   else if (error) state = "uncertain";
   else if (feedback?.grade === "revealed") state = "explaining";
-  else if (feedback?.completed)
-    state = hadFailure || position.failed ? "recovered" : "good";
+  else if (feedback?.completed) state = hadFailure || position.failed ? "recovered" : "good";
   else if (mistake) state = "mistake";
   else if (feedback || position.failed) state = "encouraging";
   // Cold SRS only conveys readiness, never hints at an undisclosed tactical theme.

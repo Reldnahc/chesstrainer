@@ -19,13 +19,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AccountGate>
       <AudioProvider>
-      <MotionProvider>
-        <CoachProvider>
-          <BannerProvider>
-            <App />
-          </BannerProvider>
-        </CoachProvider>
-      </MotionProvider>
+        <MotionProvider>
+          <CoachProvider>
+            <BannerProvider>
+              <App />
+            </BannerProvider>
+          </CoachProvider>
+        </MotionProvider>
       </AudioProvider>
     </AccountGate>
   </React.StrictMode>,

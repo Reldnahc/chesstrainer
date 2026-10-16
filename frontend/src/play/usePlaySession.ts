@@ -50,7 +50,9 @@ export function usePlaySession(id: string) {
   const [held, setHeld] = useState<number | null>(null);
   const [turn, setTurn] = useState<Turn>({ movedAt: 0, voiced: false, gradedAt: null });
   // The bot's answer, fetched as soon as the learner's move is saved but shown later.
-  const [pending, setPending] = useState<{ reply: Reply; at: number; learnerPly: number } | null>(null);
+  const [pending, setPending] = useState<{ reply: Reply; at: number; learnerPly: number } | null>(
+    null,
+  );
   const [replyError, setReplyError] = useState<string | null>(null);
   const [replyAttempt, setReplyAttempt] = useState(0);
   const mounted = useRef(false);
@@ -73,28 +75,43 @@ export function usePlaySession(id: string) {
   // A game never comes back from finished. A reply the server answered before a
   // resign can land after it; its active state is stale and is not applied.
   const finished = useRef(false);
-  const seedReports = useCallback((next: PlayState) => {
-    seed(next.frames.flatMap((frame, ply) => (frame.report ? [[String(ply), frame.report as Report] as const] : [])));
-  }, [seed]);
+  const seedReports = useCallback(
+    (next: PlayState) => {
+      seed(
+        next.frames.flatMap((frame, ply) =>
+          frame.report ? [[String(ply), frame.report as Report] as const] : [],
+        ),
+      );
+    },
+    [seed],
+  );
   // The game as saved, opened on its latest position. Commands and replies then
   // replace it (accept); a failed first load offers Try again.
-  const load = useQuery((signal) => read(api.GET("/api/play/{play_id}", { params: { path: { play_id: id } }, signal }))
-    .then((value) => {
-      finished.current = value.status !== "active";
-      seedReports(value);
-      setShown(value.frames.length - 1);
-      setCursor(null);
-      return value;
-    }), [id]);
+  const load = useQuery(
+    signal =>
+      read(api.GET("/api/play/{play_id}", { params: { path: { play_id: id } }, signal })).then(
+        value => {
+          finished.current = value.status !== "active";
+          seedReports(value);
+          setShown(value.frames.length - 1);
+          setCursor(null);
+          return value;
+        },
+      ),
+    [id],
+  );
   const state = load.data ?? null;
   const { setData } = load;
-  const accept = useCallback((next: PlayState) => {
-    if (finished.current && next.status === "active") return false;
-    finished.current = next.status !== "active";
-    setData(next);
-    seedReports(next);
-    return true;
-  }, [setData, seedReports]);
+  const accept = useCallback(
+    (next: PlayState) => {
+      if (finished.current && next.status === "active") return false;
+      finished.current = next.status !== "active";
+      setData(next);
+      seedReports(next);
+      return true;
+    },
+    [setData, seedReports],
+  );
 
   // A learner's move or navigation interrupts; the bot's reply only adds its own.
   const announce = useCallback(
@@ -104,7 +121,7 @@ export function usePlaySession(id: string) {
       if (interrupt) audio.cancel();
       audio.move(san, `${eventId}:board`);
       const navigation = speechNavigationFor(id, `${ply}:`, eventId, true);
-      setSpeechNavigations((current) =>
+      setSpeechNavigations(current =>
         interrupt ? { [navigation.key]: navigation } : { ...current, [navigation.key]: navigation },
       );
     },
@@ -116,7 +133,10 @@ export function usePlaySession(id: string) {
       if (ply < 1) return;
       void requestReport(String(ply), async () => {
         const result = await read(
-          api.POST("/api/play/{play_id}/analyze", { params: { path: { play_id: id } }, body: { ply } }),
+          api.POST("/api/play/{play_id}/analyze", {
+            params: { path: { play_id: id } },
+            body: { ply },
+          }),
         );
         return (result.report as Report | null) ?? null;
       });
@@ -140,22 +160,24 @@ export function usePlaySession(id: string) {
   const lineOver = state?.status === "active" && state.practice?.status === "book_end";
   const choosing = !!deviation || lineOver;
   const botToMove =
-    !!state && state.status === "active" && shown === state.frames.length - 1 && state.frames[shown]?.turn !== learnerColor;
+    !!state &&
+    state.status === "active" &&
+    shown === state.frames.length - 1 &&
+    state.frames[shown]?.turn !== learnerColor;
   useEffect(() => {
     if (!state || !botToMove || replyRequested.current === shown) return;
     replyRequested.current = shown;
     const learnerPly = shown;
     const started = replyGeneration.current;
     read(api.POST("/api/play/{play_id}/reply", { params: { path: { play_id: id } } }))
-      .then((next) => {
+      .then(next => {
         if (!mounted.current || started !== replyGeneration.current || !accept(next)) return;
         if (next.reply && next.reply.ply > learnerPly) {
           setPending({ reply: next.reply, at: Date.now(), learnerPly });
-        }
-        else setShown(next.frames.length - 1);
+        } else setShown(next.frames.length - 1);
         setReplyError(null);
       })
-      .catch((e) => {
+      .catch(e => {
         if (started !== replyGeneration.current) return;
         // Asking again is safe: a repeated request returns the move already chosen.
         replyRequested.current = null;
@@ -165,8 +187,13 @@ export function usePlaySession(id: string) {
 
   // Reveal the reply once the learner's move is graded. A book reply needs no grade.
   const reportOverdue = useDeadline(pending ? pending.at + REPORT_TIMEOUT_MS : null);
-  const revealReady = !!pending && (pending.learnerPly === 0 || pending.reply.source === "book"
-    || !!report(pending.learnerPly) || !!analyses.failure(String(pending.learnerPly)) || reportOverdue);
+  const revealReady =
+    !!pending &&
+    (pending.learnerPly === 0 ||
+      pending.reply.source === "book" ||
+      !!report(pending.learnerPly) ||
+      !!analyses.failure(String(pending.learnerPly)) ||
+      reportOverdue);
   useEffect(() => {
     if (!pending || !revealReady) return;
     const timer = window.setTimeout(() => {
@@ -186,13 +213,19 @@ export function usePlaySession(id: string) {
   const heldGraded = held !== null && graded(held);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- records the voice starting (a change, not its current value) for this turn
-    if (voicePlaying) setTurn((current) => (current.voiced ? current : { ...current, voiced: true }));
+    if (voicePlaying) setTurn(current => (current.voiced ? current : { ...current, voiced: true }));
   }, [voicePlaying]);
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- stamps when the grade first reached the screen, which needs the clock
-    if (heldGraded) setTurn((current) => (current.gradedAt === null ? { ...current, gradedAt: Date.now() } : current));
+    if (heldGraded) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- stamps when the grade first reached the screen, which needs the clock
+      setTurn(current =>
+        current.gradedAt === null ? { ...current, gradedAt: Date.now() } : current,
+      );
+    }
   }, [heldGraded]);
-  const holdShown = useDeadline(held !== null && !turn.voiced && turn.gradedAt !== null ? turn.gradedAt + COACH_HOLD_MS : null);
+  const holdShown = useDeadline(
+    held !== null && !turn.voiced && turn.gradedAt !== null ? turn.gradedAt + COACH_HOLD_MS : null,
+  );
   const holdOverdue = useDeadline(held !== null ? turn.movedAt + REPORT_TIMEOUT_MS : null);
   const said = turn.voiced ? !voicePlaying : holdShown;
   useEffect(() => {
@@ -204,19 +237,25 @@ export function usePlaySession(id: string) {
   const latest = state ? Math.min(shown, state.frames.length - 1) : 0;
   const ply = cursor === null ? latest : Math.max(0, Math.min(cursor, latest));
   const waitingForBot =
-    !!state && state.status === "active" && !choosing && state.frames[latest]?.turn !== state.learner_color;
+    !!state &&
+    state.status === "active" &&
+    !choosing &&
+    state.frames[latest]?.turn !== state.learner_color;
   const learnerToMove =
     !!state && state.status === "active" && !choosing && !waitingForBot && !pending;
   const browsing = ply !== latest;
   // Looking back at a position where it was the learner's move, they may play from there.
   const canRewind =
-    !!state && state.status === "active" && browsing && state.frames[ply]?.turn === state.learner_color;
+    !!state &&
+    state.status === "active" &&
+    browsing &&
+    state.frames[ply]?.turn === state.learner_color;
 
   // Drop everything known about the moves after this ply: they are no longer played.
   function forget(kept: number) {
     replyGeneration.current += 1;
     replyRequested.current = null;
-    discard((key) => Number(key) <= kept);
+    discard(key => Number(key) <= kept);
     audio.cancel();
     setPending(null);
     setHeld(null);
@@ -278,7 +317,7 @@ export function usePlaySession(id: string) {
       setError(errorMessage(e));
       // The reply is asked for again now, so its old failure (and Try again) goes.
       setReplyError(null);
-      setReplyAttempt((value) => value + 1);
+      setReplyAttempt(value => value + 1);
     } finally {
       commandRunning.current = false;
       if (mounted.current) setBusy(false);
@@ -289,13 +328,16 @@ export function usePlaySession(id: string) {
   // Opening practice: answer the off-book prompt.
   const takeBack = () => {
     if (!state || !deviation) return;
-    void command(() => read(api.POST("/api/play/{play_id}/takeback", path)), (next) => {
-      const kept = next.frames.length - 1;
-      forget(kept);
-      accept(next);
-      setShown(kept);
-      setCursor(null);
-    });
+    void command(
+      () => read(api.POST("/api/play/{play_id}/takeback", path)),
+      next => {
+        const kept = next.frames.length - 1;
+        forget(kept);
+        accept(next);
+        setShown(kept);
+        setCursor(null);
+      },
+    );
   };
   // The usual bot answers the move the learner kept.
   const carryOn = () => {
@@ -310,24 +352,33 @@ export function usePlaySession(id: string) {
   const goAgain = () => {
     const practice = state?.practice;
     if (!state || !practice) return;
-    void command(() => read(api.POST("/api/play", {
-      body: {
-        coach_id: state.coach_id as Schema["PlayRequest"]["coach_id"],
-        coach_name: state.coach_name,
-        color: state.learner_color,
-        opponent: state.opponent,
-        rating: state.rating,
-        course_id: practice.course_id,
-      },
-    })), (next) => openPage(playGamePath(next.id)));
+    void command(
+      () =>
+        read(
+          api.POST("/api/play", {
+            body: {
+              coach_id: state.coach_id as Schema["PlayRequest"]["coach_id"],
+              coach_name: state.coach_name,
+              color: state.learner_color,
+              opponent: state.opponent,
+              rating: state.rating,
+              course_id: practice.course_id,
+            },
+          }),
+        ),
+      next => openPage(playGamePath(next.id)),
+    );
   };
   const resign = () => {
     if (!state || state.status !== "active") return;
-    void command(() => read(api.POST("/api/play/{play_id}/resign", path)), (next) => {
-      setPending(null);
-      accept(next);
-      setShown(next.frames.length - 1);
-    });
+    void command(
+      () => read(api.POST("/api/play/{play_id}/resign", path)),
+      next => {
+        setPending(null);
+        accept(next);
+        setShown(next.frames.length - 1);
+      },
+    );
   };
 
   const navigate = useCallback(
@@ -383,7 +434,9 @@ export function usePlaySession(id: string) {
       rating: state.learner_rating,
       white_rating: state.white_rating,
       black_rating: state.black_rating,
-      frames: state.frames.slice(0, latest + 1).map((frame, index) => ({ ...frame, report: reportAt(String(index)) ?? null })),
+      frames: state.frames
+        .slice(0, latest + 1)
+        .map((frame, index) => ({ ...frame, report: reportAt(String(index)) ?? null })),
       job: null,
       accuracy: null,
       context: null,
@@ -425,7 +478,7 @@ export function usePlaySession(id: string) {
     /** The coach's position failed to analyse; Retry asks for that position again. */
     analysisError: coachFailure,
     explaining: explanationKey === `${ply}:`,
-    toggleExplanation: () => setExplanationKey((value) => (value === `${ply}:` ? null : `${ply}:`)),
+    toggleExplanation: () => setExplanationKey(value => (value === `${ply}:` ? null : `${ply}:`)),
     navigate,
     beginScrubbing,
     finishScrubbing,
@@ -447,7 +500,7 @@ export function usePlaySession(id: string) {
       if (commandRunning.current) return;
       replyRequested.current = null;
       setReplyError(null);
-      setReplyAttempt((value) => value + 1);
+      setReplyAttempt(value => value + 1);
     },
   };
 }

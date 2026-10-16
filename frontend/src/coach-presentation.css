@@ -1,545 +1,573 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-/* Coach feedback presentation shared with both development tools. */
-:root {
-  /* Every coach speech bubble shares these, including Play setup's. */
-  --coach-bubble-background: #242d28;
-  --coach-bubble-border: #47554d;
-}
-.review-coach {
-  --coach-height: 136px;
-  --coach-avatar-width: 92.8px;
-  display: grid;
-  grid-template-columns: var(--coach-avatar-width) minmax(0, 1fr);
-  gap: var(--space-2) var(--space-4);
-  align-items: start;
-  flex-shrink: 0;
-}
-.coach-avatar {
-  width: 100%;
-  height: var(--coach-height);
-}
-.coach-portrait {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  min-width: 0;
-}
-.coach-portrait-caption {
-  text-align: center;
-  color: #c1cfc5;
-  font-size: var(--text-xs);
-  line-height: 1.3;
-}
-.coach-best-move {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-0-5);
-  white-space: nowrap;
-}
-.coach-best-move strong {
-  color: #e0e8e2;
-  font: 600 var(--text-sm)/1.3 var(--mono);
-}
-/* Best and the opponent's reply stack under the portrait. The reply takes the
-   board arrow's blue so the two read as one fact. */
-.coach-portrait-caption:has(> .coach-best-reply) {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1-5);
-}
-.coach-best-reply strong {
-  color: #9cc7ff;
-}
-/* A wide portrait (desktop's full-height avatar) leaves too little room below
-   it for two stacked pairs, so each pair shares one line instead. */
-.coach-portrait:has(.coach-best-reply) {
-  container-type: inline-size;
-}
-@container (min-width: 80px) {
-  .coach-portrait-caption:has(> .coach-best-reply) {
+  /* Coach feedback presentation shared with both development tools. */
+  :root {
+    /* Every coach speech bubble shares these, including Play setup's. */
+    --coach-bubble-background: #242d28;
+    --coach-bubble-border: #47554d;
+  }
+  .review-coach {
+    --coach-height: 136px;
+    --coach-avatar-width: 92.8px;
+    display: grid;
+    grid-template-columns: var(--coach-avatar-width) minmax(0, 1fr);
+    gap: var(--space-2) var(--space-4);
+    align-items: start;
+    flex-shrink: 0;
+  }
+  .coach-avatar {
+    width: 100%;
+    height: var(--coach-height);
+  }
+  .coach-portrait {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .coach-portrait-caption {
+    text-align: center;
+    color: #c1cfc5;
+    font-size: var(--text-xs);
+    line-height: 1.3;
+  }
+  .coach-best-move {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: var(--space-0-5);
+    white-space: nowrap;
   }
-  .coach-portrait-caption:has(> .coach-best-reply) > .coach-best-move {
-    flex-direction: row;
-    justify-content: center;
-    align-items: baseline;
+  .coach-best-move strong {
+    color: #e0e8e2;
+    font: 600 var(--text-sm)/1.3 var(--mono);
+  }
+  /* Best and the opponent's reply stack under the portrait. The reply takes the
+   board arrow's blue so the two read as one fact. */
+  .coach-portrait-caption:has(> .coach-best-reply) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
+  }
+  .coach-best-reply strong {
+    color: #9cc7ff;
+  }
+  /* A wide portrait (desktop's full-height avatar) leaves too little room below
+   it for two stacked pairs, so each pair shares one line instead. */
+  .coach-portrait:has(.coach-best-reply) {
+    container-type: inline-size;
+  }
+  @container (min-width: 80px) {
+    .coach-portrait-caption:has(> .coach-best-reply) {
+      gap: var(--space-0-5);
+    }
+    .coach-portrait-caption:has(> .coach-best-reply) > .coach-best-move {
+      flex-direction: row;
+      justify-content: center;
+      align-items: baseline;
+      gap: var(--space-1);
+    }
+  }
+  .coach-speech {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    min-width: 0;
+    display: grid;
+    grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
     gap: var(--space-1);
-  }
-}
-.coach-speech {
-  grid-column: 2;
-  grid-row: 1;
-  position: relative;
-  min-width: 0;
-  display: grid;
-  grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
-  gap: var(--space-1);
-  height: var(--coach-height);
-  border: 1px solid var(--coach-bubble-border);
-  border-radius: 10px;
-  /* The title row centres its content, so a smaller top padding still reads as
+    height: var(--coach-height);
+    border: 1px solid var(--coach-bubble-border);
+    border-radius: 10px;
+    /* The title row centres its content, so a smaller top padding still reads as
      even and leaves the message its two lines above a wrapped footer. */
-  padding: var(--space-2) var(--space-4) var(--space-3);
-  background: var(--coach-bubble-background);
-}
-.review-coach--compact-label .coach-speech {
-  /* Lessons have no evaluation or voice control, so the title row fits the
+    padding: var(--space-2) var(--space-4) var(--space-3);
+    background: var(--coach-bubble-background);
+  }
+  .review-coach--compact-label .coach-speech {
+    /* Lessons have no evaluation or voice control, so the title row fits the
      title and leaves the rest of the fixed bubble to the explanation. */
-  grid-template-rows: auto minmax(0, 1fr);
-}
-.coach-speech::before {
-  content: "";
-  position: absolute;
-  left: -8px;
-  top: 27px;
-  width: 13px;
-  height: 13px;
-  background: var(--coach-bubble-background);
-  border-left: 1px solid var(--coach-bubble-border);
-  border-bottom: 1px solid var(--coach-bubble-border);
-  transform: rotate(45deg);
-}
-.coach-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-2);
-  min-width: 0;
-  font-size: var(--text-md);
-}
-.coach-title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-width: 0;
-}
-.coach-label-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1-5);
-  flex: none;
-}
-.coach-voice-button {
-  flex: none;
-}
-.review-coach .coach-title > strong,
-.review-coach .coach-title > h2 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
-  margin: 0;
-  font-size: inherit;
-  letter-spacing: 0;
-}
-/* fit="content": one short line that never changes (Play setup on phones) fits its
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .coach-speech::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 27px;
+    width: 13px;
+    height: 13px;
+    background: var(--coach-bubble-background);
+    border-left: 1px solid var(--coach-bubble-border);
+    border-bottom: 1px solid var(--coach-bubble-border);
+    transform: rotate(45deg);
+  }
+  .coach-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+    font-size: var(--text-md);
+  }
+  .coach-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .coach-label-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    flex: none;
+  }
+  .coach-voice-button {
+    flex: none;
+  }
+  .review-coach .coach-title > strong,
+  .review-coach .coach-title > h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    margin: 0;
+    font-size: inherit;
+    letter-spacing: 0;
+  }
+  /* fit="content": one short line that never changes (Play setup on phones) fits its
    text instead of the review's fixed height. */
-.review-coach--fit-content .coach-speech {
-  height: auto;
-}
-.review-coach--fit-content .coach-message {
-  min-height: 0;
-  overflow: visible;
-}
-.coach-title > .review-move {
-  flex: none;
-}
-.coach-label .move-badge {
-  font-size: var(--text-lg);
-  font-weight: 650;
-  min-width: 0;
-}
-.coach-label .move-badge b {
-  background: var(--move-color);
-  color: #1c241a;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  flex: 0 0 25px;
-  display: grid;
-  place-items: center;
-  font-size: var(--text-base);
-}
-.coach-rated-move {
-  color: var(--text);
-  line-height: 1.25;
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-.coach-quality-name {
-  text-transform: lowercase;
-}
-.evaluation-score {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  min-width: 7ch;
-  min-height: 30px;
-  padding: var(--space-1) var(--space-2);
-  border-radius: 5px;
-  background: #edf0eb;
-  color: #22272c;
-  font-size: var(--text-lg);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.evaluation-score[data-side="black"] {
-  background: #414a55;
-  color: #fff;
-  box-shadow: inset 0 0 0 1px #84909d;
-}
-.evaluation-score.evaluation-score--compact {
-  font-size: var(--text-base);
-  min-height: 27px;
-}
-.evaluation-score[data-side="unknown"] {
-  background: #353d39;
-  color: #c1cfc5;
-}
-.coach-body {
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-.coach-footer {
-  /* Tucked into the bubble's bottom padding so it costs the explanation as
+  .review-coach--fit-content .coach-speech {
+    height: auto;
+  }
+  .review-coach--fit-content .coach-message {
+    min-height: 0;
+    overflow: visible;
+  }
+  .coach-title > .review-move {
+    flex: none;
+  }
+  .coach-label .move-badge {
+    font-size: var(--text-lg);
+    font-weight: 650;
+    min-width: 0;
+  }
+  .coach-label .move-badge b {
+    background: var(--move-color);
+    color: #1c241a;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    display: grid;
+    place-items: center;
+    font-size: var(--text-base);
+  }
+  .coach-rated-move {
+    color: var(--text);
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .coach-quality-name {
+    text-transform: lowercase;
+  }
+  .evaluation-score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    min-width: 7ch;
+    min-height: 30px;
+    padding: var(--space-1) var(--space-2);
+    border-radius: 5px;
+    background: #edf0eb;
+    color: #22272c;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .evaluation-score[data-side="black"] {
+    background: #414a55;
+    color: #fff;
+    box-shadow: inset 0 0 0 1px #84909d;
+  }
+  .evaluation-score.evaluation-score--compact {
+    font-size: var(--text-base);
+    min-height: 27px;
+  }
+  .evaluation-score[data-side="unknown"] {
+    background: #353d39;
+    color: #c1cfc5;
+  }
+  .coach-body {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .coach-footer {
+    /* Tucked into the bubble's bottom padding so it costs the explanation as
      little height as possible; the compact title row reserves the rest. The
      moves line and the Maia chip share one row when they fit and wrap to two
      when they do not, outside the scrolling message so both stay visible. */
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: var(--space-0-5) var(--space-3);
-  padding-top: var(--space-0-5);
-  flex-shrink: 0;
-  min-height: 16px;
-  margin-bottom: calc(-1 * var(--space-2));
-}
-.coach-footer:has(> .coach-insight:empty:only-child) {
-  display: none;
-}
-.coach-insight {
-  display: flex;
-  justify-content: flex-end;
-  flex: none;
-  max-width: 100%;
-  height: 16px;
-  margin-left: auto;
-}
-.coach-insight:empty {
-  display: none;
-}
-.coach-moves-line {
-  flex: 1 1 auto;
-  min-width: 0;
-  margin: 0;
-  color: #c1cfc5;
-  font-size: var(--text-sm);
-  line-height: 16px;
-  overflow-wrap: anywhere;
-}
-.coach-moves-line strong {
-  color: #f1f5f2;
-  font-weight: 700;
-}
-.coach-message {
-  display: grid;
-  align-content: start;
-  gap: var(--space-2);
-  flex: 1;
-  /* The footer may wrap, but never squeezes the message below two lines. */
-  min-height: 41px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  overscroll-behavior: contain;
-}
-.coach-message:focus-visible {
-  outline: 1px solid #9bb6a5;
-  outline-offset: 2px;
-}
-.coach-message p {
-  color: #e0e8e2;
-  font-size: var(--text-md);
-  line-height: 1.55;
-}
-/* The standalone bubble: Play setup on desktop shows the coach's line above
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: var(--space-0-5) var(--space-3);
+    padding-top: var(--space-0-5);
+    flex-shrink: 0;
+    min-height: 16px;
+    margin-bottom: calc(-1 * var(--space-2));
+  }
+  .coach-footer:has(> .coach-insight:empty:only-child) {
+    display: none;
+  }
+  .coach-insight {
+    display: flex;
+    justify-content: flex-end;
+    flex: none;
+    max-width: 100%;
+    height: 16px;
+    margin-left: auto;
+  }
+  .coach-insight:empty {
+    display: none;
+  }
+  .coach-moves-line {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    color: #c1cfc5;
+    font-size: var(--text-sm);
+    line-height: 16px;
+    overflow-wrap: anywhere;
+  }
+  .coach-moves-line strong {
+    color: #f1f5f2;
+    font-weight: 700;
+  }
+  .coach-message {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    flex: 1;
+    /* The footer may wrap, but never squeezes the message below two lines. */
+    min-height: 41px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    overscroll-behavior: contain;
+  }
+  .coach-message:focus-visible {
+    outline: 1px solid #9bb6a5;
+    outline-offset: 2px;
+  }
+  .coach-message p {
+    color: #e0e8e2;
+    font-size: var(--text-md);
+    line-height: 1.55;
+  }
+  /* The standalone bubble: Play setup on desktop shows the coach's line above
    the portrait, pointing down at it, with the review bubble's label and message.
    (Phones use ReviewCoach with fit="content".) Play's stylesheet only places it. */
-.play-setup-speech {
-  position: relative;
-  display: grid;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-4);
-  background: var(--coach-bubble-background);
-  border: 1px solid var(--coach-bubble-border);
-  border-radius: 10px;
-}
-.play-setup-speech::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: calc(50% - 6.5px);
-  width: 13px;
-  height: 13px;
-  background: var(--coach-bubble-background);
-  border-right: 1px solid var(--coach-bubble-border);
-  border-bottom: 1px solid var(--coach-bubble-border);
-  transform: rotate(45deg);
-}
-.play-setup-speech .coach-label { min-height: var(--coach-label-height); }
-.play-setup-speech .coach-message { min-height: 0; overflow: visible; }
-/* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
-@media (min-width: 761px) {
-  .play-setup-speech { padding: var(--space-4) var(--space-5); }
-  .play-setup-speech .coach-label { font-size: var(--text-lg); }
-  .play-setup-speech .coach-message p { font-size: var(--text-lg); }
-}
-.coach-actions {
-  --coach-action-gap: var(--space-2);
-  grid-column: 2;
-  grid-row: 2;
-  display: flex;
-  align-items: stretch;
-  gap: var(--coach-action-gap);
-  /* Owner decision, 2026-10-12: the coach's actions are 40px tall, a little
+  .play-setup-speech {
+    position: relative;
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-3) var(--space-4);
+    background: var(--coach-bubble-background);
+    border: 1px solid var(--coach-bubble-border);
+    border-radius: 10px;
+  }
+  .play-setup-speech::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: calc(50% - 6.5px);
+    width: 13px;
+    height: 13px;
+    background: var(--coach-bubble-background);
+    border-right: 1px solid var(--coach-bubble-border);
+    border-bottom: 1px solid var(--coach-bubble-border);
+    transform: rotate(45deg);
+  }
+  .play-setup-speech .coach-label {
+    min-height: var(--coach-label-height);
+  }
+  .play-setup-speech .coach-message {
+    min-height: 0;
+    overflow: visible;
+  }
+  /* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
+  @media (min-width: 761px) {
+    .play-setup-speech {
+      padding: var(--space-4) var(--space-5);
+    }
+    .play-setup-speech .coach-label {
+      font-size: var(--text-lg);
+    }
+    .play-setup-speech .coach-message p {
+      font-size: var(--text-lg);
+    }
+  }
+  .coach-actions {
+    --coach-action-gap: var(--space-2);
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    align-items: stretch;
+    gap: var(--coach-action-gap);
+    /* Owner decision, 2026-10-12: the coach's actions are 40px tall, a little
      under the 44px phone target, so they cost the review column less height. */
-  min-height: 40px;
-  min-width: 0;
-}
-.coach-actions > button,
-.coach-actions > .action-control {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: calc((100% - var(--coach-action-gap)) / 2);
-}
-/* A square icon command (such as Back) keeps its own width beside labelled actions. */
-.coach-actions > .action-control.action-control--icon {
-  flex: none;
-  width: var(--touch-target);
-  height: auto;
-}
-.coach-actions {
-  /* The coach bubble's palette for Button's pressed state (Hide why). */
-  --pressed-border: #b8cfc2;
-  --pressed-background: #34483c;
-  --pressed-color: #e8eaee;
-}
-.coach-context {
-  grid-column: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-  min-width: 0;
-  min-height: var(--coach-label-height);
-  color: #c1cfc5;
-  font-size: var(--text-xs);
-}
-.coach-context > span {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.coach-insight .human-insight-trigger {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-1);
-  min-height: 16px;
-  width: auto;
-  max-width: 100%;
-  padding: 0;
-  border-radius: 6px;
-  color: #a9d6e1;
-  font-size: var(--text-xs);
-  font-weight: 500;
-  flex: none;
-  margin-left: auto;
-}
-.human-insight-trigger span {
-  white-space: nowrap;
-  line-height: 13px;
-}
-.human-insight-trigger svg { flex-shrink: 0; }
-.human-insight-trigger:hover { text-decoration: underline; }
-.human-insight-popover {
-  width: min(380px, calc(100vw - 32px));
-  max-height: calc(100dvh - 32px);
-  overflow-y: auto;
-  padding: var(--space-4);
-  margin: auto;
-  border: 1px solid #63786c;
-  border-radius: 12px;
-  background: var(--coach-bubble-background);
-  color: #e0e8e2;
-  box-shadow: 0 12px 48px #0009;
-  font-size: var(--text-base);
-  line-height: 1.5;
-}
-.human-insight-popover::backdrop { background: #0005; }
-.human-insight-popover header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-/* The open popover stacks its header, line, meaning and source. */
-.human-insight-popover:popover-open {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1-5);
-}
-.human-insight-popover > header + * { margin-top: var(--space-1-5); }
-.human-insight-popover h3 { font-size: var(--text-lg); color: #a9d6e1; }
-.human-insight-source {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--space-1-5) var(--space-3);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--coach-bubble-border);
-  font-size: var(--text-sm);
-  color: #b8c9bf;
-}
-.human-insight-source a { display: inline-flex; align-items: center; gap: var(--space-1); color: #a9d6e1; white-space: nowrap; }
-.move-badge {
-  display: inline-flex;
-  gap: var(--space-1-5);
-  align-items: center;
-  font-size: var(--text-xs);
-  white-space: nowrap;
-}
-.move-badge b {
-  display: inline-grid;
-  place-items: center;
-  min-width: 20px;
-  font: var(--text-sm) var(--mono);
-}
-.move-badge--small {
-  font-size: var(--text-2xs);
-}
-.move-badge--inline {
-  gap: .4em;
-  font-size: inherit;
-}
-.move-badge--inline b {
-  min-width: 1.4em;
-  font-size: inherit;
-  line-height: 1;
-}
-.move-star {
-  display: block;
-  flex-shrink: 0;
-}
-.label-brilliant {
-  --move-color: #69d8d0;
-  color: var(--move-color);
-}
-.label-great {
-  --move-color: #87b9ff;
-  color: var(--move-color);
-}
-.label-best,
-.label-good,
-.label-accepted {
-  --move-color: #b8d69b;
-  color: var(--move-color);
-}
-.label-book {
-  --move-color: #d8b487;
-  color: var(--move-color);
-}
-.label-inaccuracy {
-  --move-color: #ecd37f;
-  color: var(--move-color);
-}
-.label-mistake,
-.label-miss,
-.label-retry {
-  --move-color: #ffb17b;
-  color: var(--move-color);
-}
-.label-revealed {
-  --move-color: #b4c5de;
-  color: var(--move-color);
-}
-.label-blunder {
-  --move-color: #ff8993;
-  color: var(--move-color);
-}
-/* The narrow coach (156px tall, small portrait above the actions) on phones, and
+    min-height: 40px;
+    min-width: 0;
+  }
+  .coach-actions > button,
+  .coach-actions > .action-control {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: calc((100% - var(--coach-action-gap)) / 2);
+  }
+  /* A square icon command (such as Back) keeps its own width beside labelled actions. */
+  .coach-actions > .action-control.action-control--icon {
+    flex: none;
+    width: var(--touch-target);
+    height: auto;
+  }
+  .coach-actions {
+    /* The coach bubble's palette for Button's pressed state (Hide why). */
+    --pressed-border: #b8cfc2;
+    --pressed-background: #34483c;
+    --pressed-color: #e8eaee;
+  }
+  .coach-context {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-width: 0;
+    min-height: var(--coach-label-height);
+    color: #c1cfc5;
+    font-size: var(--text-xs);
+  }
+  .coach-context > span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .coach-insight .human-insight-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-1);
+    min-height: 16px;
+    width: auto;
+    max-width: 100%;
+    padding: 0;
+    border-radius: 6px;
+    color: #a9d6e1;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    flex: none;
+    margin-left: auto;
+  }
+  .human-insight-trigger span {
+    white-space: nowrap;
+    line-height: 13px;
+  }
+  .human-insight-trigger svg {
+    flex-shrink: 0;
+  }
+  .human-insight-trigger:hover {
+    text-decoration: underline;
+  }
+  .human-insight-popover {
+    width: min(380px, calc(100vw - 32px));
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+    padding: var(--space-4);
+    margin: auto;
+    border: 1px solid #63786c;
+    border-radius: 12px;
+    background: var(--coach-bubble-background);
+    color: #e0e8e2;
+    box-shadow: 0 12px 48px #0009;
+    font-size: var(--text-base);
+    line-height: 1.5;
+  }
+  .human-insight-popover::backdrop {
+    background: #0005;
+  }
+  .human-insight-popover header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  /* The open popover stacks its header, line, meaning and source. */
+  .human-insight-popover:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
+  }
+  .human-insight-popover > header + * {
+    margin-top: var(--space-1-5);
+  }
+  .human-insight-popover h3 {
+    font-size: var(--text-lg);
+    color: #a9d6e1;
+  }
+  .human-insight-source {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-1-5) var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--coach-bubble-border);
+    font-size: var(--text-sm);
+    color: #b8c9bf;
+  }
+  .human-insight-source a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: #a9d6e1;
+    white-space: nowrap;
+  }
+  .move-badge {
+    display: inline-flex;
+    gap: var(--space-1-5);
+    align-items: center;
+    font-size: var(--text-xs);
+    white-space: nowrap;
+  }
+  .move-badge b {
+    display: inline-grid;
+    place-items: center;
+    min-width: 20px;
+    font: var(--text-sm) var(--mono);
+  }
+  .move-badge--small {
+    font-size: var(--text-2xs);
+  }
+  .move-badge--inline {
+    gap: 0.4em;
+    font-size: inherit;
+  }
+  .move-badge--inline b {
+    min-width: 1.4em;
+    font-size: inherit;
+    line-height: 1;
+  }
+  .move-star {
+    display: block;
+    flex-shrink: 0;
+  }
+  .label-brilliant {
+    --move-color: #69d8d0;
+    color: var(--move-color);
+  }
+  .label-great {
+    --move-color: #87b9ff;
+    color: var(--move-color);
+  }
+  .label-best,
+  .label-good,
+  .label-accepted {
+    --move-color: #b8d69b;
+    color: var(--move-color);
+  }
+  .label-book {
+    --move-color: #d8b487;
+    color: var(--move-color);
+  }
+  .label-inaccuracy {
+    --move-color: #ecd37f;
+    color: var(--move-color);
+  }
+  .label-mistake,
+  .label-miss,
+  .label-retry {
+    --move-color: #ffb17b;
+    color: var(--move-color);
+  }
+  .label-revealed {
+    --move-color: #b4c5de;
+    color: var(--move-color);
+  }
+  .label-blunder {
+    --move-color: #ff8993;
+    color: var(--move-color);
+  }
+  /* The narrow coach (156px tall, small portrait above the actions) on phones, and
    in any column 440px or narrower, which includes the desktop review sidebar.
    CSS cannot share one block between a media and a container condition, so the
    two blocks below hold the same narrow layout; change them together. Only
    phones also shrink the title and the score badge: the desktop sidebar keeps
    desktop text. The coach studio's compact preview is such a column, so it shows
    this same layout. */
-@media (max-width: 760px) {
-  .coach-actions > .action-control.action-control--compact {
-    min-height: 40px;
+  @media (max-width: 760px) {
+    .coach-actions > .action-control.action-control--compact {
+      min-height: 40px;
+    }
+    .review-coach {
+      --coach-height: 156px;
+      --coach-avatar-width: 52.5px;
+      gap: var(--space-2);
+    }
+    .coach-avatar {
+      height: auto;
+    }
+    .coach-portrait {
+      grid-row: 1;
+      padding-top: var(--space-1-5);
+    }
+    .coach-speech {
+      grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
+      padding: var(--space-3);
+    }
+    .coach-label {
+      font-size: var(--text-sm);
+    }
+    .coach-label .move-badge {
+      font-size: var(--text-md);
+    }
+    .coach-actions,
+    .coach-context {
+      grid-column: 1 / -1;
+    }
+    .evaluation-score {
+      min-width: 6ch;
+      font-size: var(--text-lg);
+    }
   }
-  .review-coach {
-    --coach-height: 156px;
-    --coach-avatar-width: 52.5px;
-    gap: var(--space-2);
+  @container (max-width: 440px) {
+    .review-coach {
+      --coach-height: 156px;
+      --coach-avatar-width: 52.5px;
+      gap: var(--space-2);
+    }
+    .coach-avatar {
+      height: auto;
+    }
+    .coach-portrait {
+      grid-row: 1;
+      padding-top: var(--space-1-5);
+    }
+    .coach-speech {
+      grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
+      padding: var(--space-3);
+    }
+    .coach-label .move-badge {
+      font-size: var(--text-md);
+    }
+    .coach-actions,
+    .coach-context {
+      grid-column: 1 / -1;
+    }
   }
-  .coach-avatar {
-    height: auto;
-  }
-  .coach-portrait {
-    grid-row: 1;
-    padding-top: var(--space-1-5);
-  }
-  .coach-speech {
-    grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
-    padding: var(--space-3);
-  }
-  .coach-label {
-    font-size: var(--text-sm);
-  }
-  .coach-label .move-badge {
-    font-size: var(--text-md);
-  }
-  .coach-actions,
-  .coach-context {
-    grid-column: 1 / -1;
-  }
-  .evaluation-score {
-    min-width: 6ch;
-    font-size: var(--text-lg);
-  }
-}
-@container (max-width: 440px) {
-  .review-coach {
-    --coach-height: 156px;
-    --coach-avatar-width: 52.5px;
-    gap: var(--space-2);
-  }
-  .coach-avatar {
-    height: auto;
-  }
-  .coach-portrait {
-    grid-row: 1;
-    padding-top: var(--space-1-5);
-  }
-  .coach-speech {
-    grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
-    padding: var(--space-3);
-  }
-  .coach-label .move-badge {
-    font-size: var(--text-md);
-  }
-  .coach-actions,
-  .coach-context {
-    grid-column: 1 / -1;
-  }
-}
 }

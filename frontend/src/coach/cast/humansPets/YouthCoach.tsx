@@ -36,12 +36,7 @@ export default function YouthCoach({
   const pose: Pose = {
     ...source,
     eye: source.eye + 0.35,
-    gesture:
-      expression === "brilliant"
-        ? look.id === "boy"
-          ? "fist"
-          : "clap"
-        : source.gesture,
+    gesture: expression === "brilliant" ? (look.id === "boy" ? "fist" : "clap") : source.gesture,
     tilt: source.tilt * (look.id === "girl" ? 0.9 : 1),
   };
   const hands = handPoses[pose.gesture];
@@ -74,10 +69,7 @@ export default function YouthCoach({
           {look.backHair}
           <ellipse cx="15.5" cy="43" rx="4.5" ry="6" fill={look.shade} />
           <ellipse cx="64.5" cy="43" rx="4.5" ry="6" fill={look.shade} />
-          <path
-            d="M14 32Q13 5 40 5T66 32v13q0 19-26 24Q14 64 14 45Z"
-            fill={look.skin}
-          />
+          <path d="M14 32Q13 5 40 5T66 32v13q0 19-26 24Q14 64 14 45Z" fill={look.skin} />
           <path
             d="M16 44q1 14 11 19M64 44q-1 14-11 19"
             stroke={look.shade}
@@ -94,8 +86,14 @@ export default function YouthCoach({
             noseColor={look.shade}
             mouthColor={youthMouthColor}
             face={look.face}
-            mouth={<HumanSpeechMouth pose={pose} expression={expression}
-              mouthColor={youthMouthColor} palette={look.speech} />}
+            mouth={
+              <HumanSpeechMouth
+                pose={pose}
+                expression={expression}
+                mouthColor={youthMouthColor}
+                palette={look.speech}
+              />
+            }
           />
           {look.id === "boy" && (
             <g fill="#8c4f39" opacity=".6">
@@ -106,18 +104,8 @@ export default function YouthCoach({
             </g>
           )}
         </HeadRig>
-        <Arm
-          side="left"
-          hand={hands.left}
-          gesture={pose.gesture}
-          {...armColors}
-        />
-        <Arm
-          side="right"
-          hand={hands.right}
-          gesture={pose.gesture}
-          {...armColors}
-        />
+        <Arm side="left" hand={hands.left} gesture={pose.gesture} {...armColors} />
+        <Arm side="right" hand={hands.right} gesture={pose.gesture} {...armColors} />
         {pose.gesture === "book" && (
           <g transform="translate(0 12) scale(.8)">
             <Book color={look.sleeve} />

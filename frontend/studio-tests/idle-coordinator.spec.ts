@@ -1,22 +1,46 @@
 import { expect, test } from "@playwright/test";
-import { createIdleCoordinator, BLINK_INTERVAL_MS, CHANNEL_COOLDOWN_MS, IDLE_STAGGER_MS } from "../src/coach/idleCoordinator";
+import {
+  createIdleCoordinator,
+  BLINK_INTERVAL_MS,
+  CHANNEL_COOLDOWN_MS,
+  IDLE_STAGGER_MS,
+} from "../src/coach/idleCoordinator";
 import { IDLE_GAP_MS, type IdleGesture, type IdleChannel } from "../src/coach/idleModel";
 
-function gesture(id: string, channel: IdleChannel, options: Partial<IdleGesture> = {}): IdleGesture {
+function gesture(
+  id: string,
+  channel: IdleChannel,
+  options: Partial<IdleGesture> = {},
+): IdleGesture {
   const durationMs = options.durationMs ?? 1200;
   return {
-    id, group: "body", tracks: [{ channel, keyframes: `test-${id}`, durationMs }],
-    durationMs, cooldownMs: 0, weight: 1, intensity: "noticeable", ...options,
+    id,
+    group: "body",
+    tracks: [{ channel, keyframes: `test-${id}`, durationMs }],
+    durationMs,
+    cooldownMs: 0,
+    weight: 1,
+    intensity: "noticeable",
+    ...options,
   };
 }
-const blink = gesture("blink", "eyes", { group: "eyes", blink: true, intensity: "quiet", durationMs: 260, cooldownMs: 1000 });
+const blink = gesture("blink", "eyes", {
+  group: "eyes",
+  blink: true,
+  intensity: "quiet",
+  durationMs: 260,
+  cooldownMs: 1000,
+});
 const breath = gesture("breath", "body", { intensity: "quiet" });
 const head = gesture("head", "head");
 const tail = gesture("tail", "tail");
 const middle = () => 0.5;
 
 test("true authored duration determines release and the next quiet gap", () => {
-  const coordinator = createIdleCoordinator([gesture("small", "body", { durationMs: 260, intensity: "quiet" })], { random: middle });
+  const coordinator = createIdleCoordinator(
+    [gesture("small", "body", { durationMs: 260, intensity: "quiet" })],
+    { random: middle },
+  );
   expect(coordinator.snapshot().nextAt).toBe(750);
   expect(coordinator.advance(749).active).toHaveLength(0);
   expect(coordinator.advance(750).started[0].endsAt).toBe(1010);
@@ -41,18 +65,22 @@ test("baseline blinking does not depend on winning the optional random draw", ()
   expect(closures.length).toBeGreaterThan(5);
   expect(closures[0]).toBeLessThanOrEqual(BLINK_INTERVAL_MS[0] + 1200 + IDLE_GAP_MS[1]);
   for (let index = 1; index < closures.length; index++) {
-    expect(closures[index] - closures[index - 1]).toBeGreaterThanOrEqual(260 + BLINK_INTERVAL_MS[0]);
-    expect(closures[index] - closures[index - 1]).toBeLessThanOrEqual(260 + BLINK_INTERVAL_MS[0] + 1200 + IDLE_GAP_MS[1]);
+    expect(closures[index] - closures[index - 1]).toBeGreaterThanOrEqual(
+      260 + BLINK_INTERVAL_MS[0],
+    );
+    expect(closures[index] - closures[index - 1]).toBeLessThanOrEqual(
+      260 + BLINK_INTERVAL_MS[0] + 1200 + IDLE_GAP_MS[1],
+    );
   }
 });
 
 test("compatible channels overlap with a stagger and one gesture of each intensity", () => {
   const coordinator = createIdleCoordinator([head, breath, tail], { random: () => 0 });
   let frame = coordinator.advance(500);
-  expect(frame.started.map((entry) => entry.gesture.id)).toEqual(["head"]);
+  expect(frame.started.map(entry => entry.gesture.id)).toEqual(["head"]);
   expect(frame.nextAt).toBe(500 + IDLE_STAGGER_MS);
   frame = coordinator.advance(frame.nextAt!);
-  expect(frame.started.map((entry) => entry.gesture.id)).toEqual(["breath"]);
+  expect(frame.started.map(entry => entry.gesture.id)).toEqual(["breath"]);
   expect(frame.active).toHaveLength(2);
   expect(frame.nextAt).toBe(1700);
   expect(coordinator.advance(1000).started).toHaveLength(0);
@@ -89,10 +117,13 @@ test("a due blink cannot be indefinitely deferred by optional eye actions", () =
 });
 
 test("a completed compound blink resets the shared eye deadline", () => {
-  const sigh = gesture("sigh", "body", { blink: true, tracks: [
-    { channel: "body", keyframes: "sigh", durationMs: 1200 },
-    { channel: "eyes", keyframes: "close", durationMs: 1000 },
-  ] });
+  const sigh = gesture("sigh", "body", {
+    blink: true,
+    tracks: [
+      { channel: "body", keyframes: "sigh", durationMs: 1200 },
+      { channel: "eyes", keyframes: "close", durationMs: 1000 },
+    ],
+  });
   const coordinator = createIdleCoordinator([sigh, blink], { random: () => 0 });
   expect(coordinator.advance(500).started[0].gesture.id).toBe("sigh");
   const finished = coordinator.advance(1700);
@@ -102,38 +133,50 @@ test("a completed compound blink resets the shared eye deadline", () => {
 });
 
 test("history prevents immediate repetition and A/B/A/B while alternatives are legal", () => {
-  const coordinator = createIdleCoordinator([head, tail, gesture("lean", "body")], { random: () => 0 });
+  const coordinator = createIdleCoordinator([head, tail, gesture("lean", "body")], {
+    random: () => 0,
+  });
   let frame = coordinator.snapshot();
   const played: string[] = [];
   for (let event = 0; event < 30; event++) {
     frame = coordinator.advance(frame.nextAt!);
-    played.push(...frame.started.map((entry) => entry.gesture.id));
+    played.push(...frame.started.map(entry => entry.gesture.id));
   }
   expect(played.length).toBeGreaterThan(10);
-  for (let index = 1; index < played.length; index++) expect(played[index]).not.toBe(played[index - 1]);
+  for (let index = 1; index < played.length; index++)
+    expect(played[index]).not.toBe(played[index - 1]);
   for (let index = 3; index < played.length; index++) {
-    expect(played[index] === played[index - 2] && played[index - 1] === played[index - 3]).toBe(false);
+    expect(played[index] === played[index - 2] && played[index - 1] === played[index - 3]).toBe(
+      false,
+    );
   }
 });
 
 test("low-weight legal gestures still receive a turn with an unlucky random stream", () => {
-  const repertoire = Array.from({ length: 8 }, (_, index) => gesture(`choice-${index}`, "body", { weight: index === 7 ? 0.00001 : 100 }));
+  const repertoire = Array.from({ length: 8 }, (_, index) =>
+    gesture(`choice-${index}`, "body", { weight: index === 7 ? 0.00001 : 100 }),
+  );
   const coordinator = createIdleCoordinator(repertoire, { random: () => 0 });
   let frame = coordinator.snapshot();
   const played = new Set<string>();
   for (let event = 0; event < 160; event++) {
     frame = coordinator.advance(frame.nextAt!);
-    frame.started.forEach((entry) => played.add(entry.gesture.id));
+    frame.started.forEach(entry => played.add(entry.gesture.id));
   }
-  expect(played).toEqual(new Set(repertoire.map((entry) => entry.id)));
+  expect(played).toEqual(new Set(repertoire.map(entry => entry.id)));
 });
 
 test("gesture cooldowns remain binding even when they make the catalogue infeasible", () => {
-  const coordinator = createIdleCoordinator([gesture("rare", "body", { cooldownMs: 5000, intensity: "quiet" })], { random: () => 0 });
+  const coordinator = createIdleCoordinator(
+    [gesture("rare", "body", { cooldownMs: 5000, intensity: "quiet" })],
+    { random: () => 0 },
+  );
   coordinator.advance(500);
   const waiting = coordinator.advance(1700);
   expect(waiting.active).toHaveLength(0);
-  expect(waiting.diagnostics.issues).toContain("Resting repertoire cannot supply a legal idle within the maximum quiet gap.");
+  expect(waiting.diagnostics.issues).toContain(
+    "Resting repertoire cannot supply a legal idle within the maximum quiet gap.",
+  );
   expect(waiting.nextAt).toBe(6700);
   expect(coordinator.advance(6700).started).toHaveLength(1);
 });
@@ -149,7 +192,7 @@ test("suspension aborts tracks, preserves history and freezes cooldowns without 
   expect(resumed.diagnostics.recent).toEqual(["head"]);
   expect(resumed.diagnostics.blinkDueAt).toBe(103000);
   expect(resumed.nextAt).toBe(101100);
-  expect(resumed.diagnostics.cooldowns.find((entry) => entry.id === "head")!.readyAt).toBe(101700);
+  expect(resumed.diagnostics.cooldowns.find(entry => entry.id === "head")!.readyAt).toBe(101700);
   expect(coordinator.advance(101099).started).toHaveLength(0);
   expect(coordinator.advance(101100).started[0].gesture.id).toBe("breath");
 });
@@ -175,24 +218,28 @@ test("a blink due behind an interrupted action resumes after one fresh gap", () 
   expect(resumed.nextAt).toBe(103600);
   expect(coordinator.advance(103599).started).toHaveLength(0);
   const first = coordinator.advance(103600);
-  expect(first.started.map((entry) => entry.gesture.id)).toEqual(["blink"]);
+  expect(first.started.map(entry => entry.gesture.id)).toEqual(["blink"]);
   expect(first.nextAt).toBeGreaterThan(103600);
 });
 
 test("a signature's long cooldown never delays the independent baseline blink", () => {
-  const signature = gesture("signature", "body", { blink: true, cooldownMs: 15000, tracks: [
-    { channel: "body", keyframes: "settle", durationMs: 1200 },
-    { channel: "eyes", keyframes: "blink", durationMs: 260, delayMs: 500 },
-  ] });
+  const signature = gesture("signature", "body", {
+    blink: true,
+    cooldownMs: 15000,
+    tracks: [
+      { channel: "body", keyframes: "settle", durationMs: 1200 },
+      { channel: "eyes", keyframes: "blink", durationMs: 260, delayMs: 500 },
+    ],
+  });
   const coordinator = createIdleCoordinator([signature, blink, breath], { random: () => 0 });
   let frame = coordinator.advance(500);
   expect(frame.started[0].gesture.id).toBe("signature");
   const deadline = 1700 + BLINK_INTERVAL_MS[0];
   while (frame.nextAt! <= deadline + 1200 + IDLE_GAP_MS[1]) {
     frame = coordinator.advance(frame.nextAt!);
-    if (frame.started.some((entry) => entry.gesture.id === "blink")) break;
+    if (frame.started.some(entry => entry.gesture.id === "blink")) break;
   }
-  const baseline = frame.started.find((entry) => entry.gesture.id === "blink");
+  const baseline = frame.started.find(entry => entry.gesture.id === "blink");
   expect(baseline).toBeDefined();
   expect(baseline!.startedAt).toBeGreaterThanOrEqual(deadline);
   expect(baseline!.startedAt).toBeLessThanOrEqual(deadline + 1200 + IDLE_GAP_MS[1]);
@@ -216,8 +263,15 @@ test("empty, malformed and duplicate definitions are safe and diagnosed", () => 
     undefined as unknown as IdleGesture,
     gesture("negative", "body", { durationMs: -5 }),
     gesture("bad-weight", "head", { weight: NaN }),
-    gesture("late-track", "head", { tracks: [{ channel: "head", keyframes: "late", durationMs: 1200, delayMs: 1 }] }),
-    gesture("duplicate-channel", "head", { tracks: [{ channel: "head", keyframes: "a", durationMs: 200 }, { channel: "head", keyframes: "b", durationMs: 200 }] }),
+    gesture("late-track", "head", {
+      tracks: [{ channel: "head", keyframes: "late", durationMs: 1200, delayMs: 1 }],
+    }),
+    gesture("duplicate-channel", "head", {
+      tracks: [
+        { channel: "head", keyframes: "a", durationMs: 200 },
+        { channel: "head", keyframes: "b", durationMs: 200 },
+      ],
+    }),
   ];
   const invalid = createIdleCoordinator(malformed).advance(1000);
   expect(invalid.nextAt).toBeNull();
@@ -230,8 +284,11 @@ test("empty, malformed and duplicate definitions are safe and diagnosed", () => 
 test("seeded extended playback stays live, bounded and repeatable", () => {
   function trace() {
     let seed = 9127;
-    const random = () => ((seed = Math.imul(seed, 1664525) + 1013904223 >>> 0) / 2 ** 32);
-    const coordinator = createIdleCoordinator([blink, breath, head, tail, gesture("hair", "hair")], { random });
+    const random = () => (seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 2 ** 32;
+    const coordinator = createIdleCoordinator(
+      [blink, breath, head, tail, gesture("hair", "hair")],
+      { random },
+    );
     let frame = coordinator.snapshot();
     let quietSince = 0;
     const events: [number, string][] = [];
@@ -247,10 +304,14 @@ test("seeded extended playback stays live, bounded and repeatable", () => {
       }
       expect(frame.nextAt).toBeGreaterThan(next);
       expect(frame.active.length).toBeLessThanOrEqual(2);
-      expect(new Set(frame.active.map((entry) => entry.gesture.intensity)).size).toBe(frame.active.length);
-      const channels = frame.active.flatMap((entry) => entry.gesture.tracks.map((track) => track.channel));
+      expect(new Set(frame.active.map(entry => entry.gesture.intensity)).size).toBe(
+        frame.active.length,
+      );
+      const channels = frame.active.flatMap(entry =>
+        entry.gesture.tracks.map(track => track.channel),
+      );
       expect(new Set(channels).size).toBe(channels.length);
-      frame.started.forEach((entry) => events.push([entry.startedAt, entry.gesture.id]));
+      frame.started.forEach(entry => events.push([entry.startedAt, entry.gesture.id]));
       expect(frame.diagnostics.issues).toEqual([]);
     }
     return events;

@@ -11,11 +11,13 @@ const clamp = (value: number) => Math.max(0, Math.min(1, value));
 
 /** Small PCM summary, shared by replays. Stereo energy never cancels opposite phases. */
 export function createSpeechEnvelope(buffer: AudioBuffer): SpeechEnvelope {
-  const step = Math.max(1, Math.round(buffer.sampleRate * .01));
+  const step = Math.max(1, Math.round(buffer.sampleRate * 0.01));
   const count = Math.ceil(buffer.length / step);
   const energy = new Float32Array(count);
   const brightness = new Float32Array(count);
-  const channels = Array.from({length: buffer.numberOfChannels}, (_, index) => buffer.getChannelData(index));
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, index) =>
+    buffer.getChannelData(index),
+  );
   for (let frame = 0; frame < count; frame++) {
     const start = frame * step;
     const end = Math.min(buffer.length, start + step);
@@ -27,18 +29,23 @@ export function createSpeechEnvelope(buffer: AudioBuffer): SpeechEnvelope {
       for (let index = start; index < end; index++) {
         const sample = samples[index];
         squares += sample * sample;
-        if (index > 0 && (sample >= 0) !== (samples[index - 1] >= 0)) changes++;
+        if (index > 0 && sample >= 0 !== samples[index - 1] >= 0) changes++;
       }
-      if (squares > strongest) { strongest = squares; crossings = changes; }
+      if (squares > strongest) {
+        strongest = squares;
+        crossings = changes;
+      }
     }
     energy[frame] = Math.sqrt(strongest / Math.max(1, end - start));
     // Zero crossings are only a gentle roughness/brightness hint, never a viseme.
-    brightness[frame] = clamp(crossings * buffer.sampleRate / Math.max(1, end - start) / 6000);
+    brightness[frame] = clamp((crossings * buffer.sampleRate) / Math.max(1, end - start) / 6000);
   }
 
-  const voiced = Array.from(energy).filter(value => value > .0012).sort((a, b) => a - b);
-  const reference = voiced[Math.floor(Math.max(0, voiced.length - 1) * .95)] ?? 0;
-  const floor = Math.max(.0012, reference * .055);
+  const voiced = Array.from(energy)
+    .filter(value => value > 0.0012)
+    .sort((a, b) => a - b);
+  const reference = voiced[Math.floor(Math.max(0, voiced.length - 1) * 0.95)] ?? 0;
+  const floor = Math.max(0.0012, reference * 0.055);
   let previousEnergy = 0;
   let previousBrightness = 0;
   for (let frame = 0; frame < count; frame++) {
@@ -49,17 +56,21 @@ export function createSpeechEnvelope(buffer: AudioBuffer): SpeechEnvelope {
       continue;
     }
     const target = Math.sqrt(clamp((raw - floor) / (reference - floor)));
-    previousEnergy += (target - previousEnergy) * (target > previousEnergy ? .65 : .4);
-    previousBrightness += (brightness[frame] - previousBrightness) * .45;
+    previousEnergy += (target - previousEnergy) * (target > previousEnergy ? 0.65 : 0.4);
+    previousBrightness += (brightness[frame] - previousBrightness) * 0.45;
     energy[frame] = previousEnergy;
     brightness[frame] = previousBrightness;
   }
-  return {duration: buffer.duration, stepSeconds: step / buffer.sampleRate, energy, brightness};
+  return { duration: buffer.duration, stepSeconds: step / buffer.sampleRate, energy, brightness };
 }
 
 /** The caller supplies source time, so throttled rendering never accumulates drift. */
-export function readSpeechEnvelope(envelope: SpeechEnvelope, elapsedSeconds: number): SpeechActivity | null {
-  if (!Number.isFinite(elapsedSeconds) || elapsedSeconds < 0 || elapsedSeconds >= envelope.duration) return null;
+export function readSpeechEnvelope(
+  envelope: SpeechEnvelope,
+  elapsedSeconds: number,
+): SpeechActivity | null {
+  if (!Number.isFinite(elapsedSeconds) || elapsedSeconds < 0 || elapsedSeconds >= envelope.duration)
+    return null;
   const frame = elapsedSeconds / envelope.stepSeconds;
   const index = Math.floor(frame);
   const mix = frame - index;
@@ -67,5 +78,9 @@ export function readSpeechEnvelope(envelope: SpeechEnvelope, elapsedSeconds: num
     const current = values[index] ?? 0;
     return current + ((values[index + 1] ?? current) - current) * mix;
   };
-  return {elapsedSeconds, energy: interpolate(envelope.energy), brightness: interpolate(envelope.brightness)};
+  return {
+    elapsedSeconds,
+    energy: interpolate(envelope.energy),
+    brightness: interpolate(envelope.brightness),
+  };
 }

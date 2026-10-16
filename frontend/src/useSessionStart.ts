@@ -22,10 +22,20 @@ export function useSessionStart<Target, Session, K = string>(
   const own = useCommand<K>();
   const command = shared ?? own;
   function start(key: K, target: Target, none?: () => void) {
-    return command.run(key, (signal) => starter(target, signal), (session) => {
-      if (session) navigate(toPath(session));
-      else none?.();
-    });
+    return command.run(
+      key,
+      signal => starter(target, signal),
+      session => {
+        if (session) navigate(toPath(session));
+        else none?.();
+      },
+    );
   }
-  return { busy: command.busy, error: command.error, setError: command.setError, dismiss: command.dismiss, start };
+  return {
+    busy: command.busy,
+    error: command.error,
+    setError: command.setError,
+    dismiss: command.dismiss,
+    start,
+  };
 }

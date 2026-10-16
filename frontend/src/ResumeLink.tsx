@@ -8,9 +8,19 @@ type ResumeLinkProps = ComponentProps<typeof Link> & {
   description: ReactNode;
 };
 
-export default function ResumeLink({ children, description, className, ...props }: ResumeLinkProps) {
-  return <Link {...props} className={["study-resume", className].filter(Boolean).join(" ")}>
-    <span>{children}<small>{description}</small></span>
-    <ArrowRight size={18} aria-hidden="true" />
-  </Link>;
+export default function ResumeLink({
+  children,
+  description,
+  className,
+  ...props
+}: ResumeLinkProps) {
+  return (
+    <Link {...props} className={["study-resume", className].filter(Boolean).join(" ")}>
+      <span>
+        {children}
+        <small>{description}</small>
+      </span>
+      <ArrowRight size={18} aria-hidden="true" />
+    </Link>
+  );
 }

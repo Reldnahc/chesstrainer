@@ -31,7 +31,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     const refresh = () =>
       read(api.GET("/api/auth/me"))
         .then(accept)
-        .catch((e) => setError(errorMessage(e)));
+        .catch(e => setError(errorMessage(e)));
     void refresh();
     return onAuthRequired("account", () => void refresh());
   }, []);
@@ -69,12 +69,22 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     return (
       <main className="workspace-page">
         <LoadingState presentation="panel">Connecting to Fieldwork…</LoadingState>
-        <Reveal>{error && (
-          <Notice announcement="alert" tone="error" appearance="inline"
-            actions={<Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>}>
-            {error}
-          </Notice>
-        )}</Reveal>
+        <Reveal>
+          {error && (
+            <Notice
+              announcement="alert"
+              tone="error"
+              appearance="inline"
+              actions={
+                <Button size="compact" variant="quiet" onClick={() => window.location.reload()}>
+                  Retry
+                </Button>
+              }
+            >
+              {error}
+            </Notice>
+          )}
+        </Reveal>
       </main>
     );
   if (!identity.enabled) return <>{children}</>;
@@ -82,9 +92,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
   const sharedGame = route.screen.kind === "games" && !!route.screen.gameId;
   if (!identity.user && sharedGame && !signingIn)
     return (
-      <GuestContext.Provider value={() => setSigningIn(true)}>
-        {children}
-      </GuestContext.Provider>
+      <GuestContext.Provider value={() => setSigningIn(true)}>{children}</GuestContext.Provider>
     );
   // Administrators decide whether visitors may create their own accounts.
   const creating = signup && !!identity.signups_open;
@@ -95,30 +103,46 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           <p className="eyebrow">FIELDWORK</p>
           <h1>{creating ? "Create your account" : "Welcome back"}</h1>
           <p>Your games and training progress, on every device.</p>
-          <Reveal>{error && (
-            <Notice announcement="alert" tone="error">
-              {error}
-            </Notice>
-          )}</Reveal>
+          <Reveal>
+            {error && (
+              <Notice announcement="alert" tone="error">
+                {error}
+              </Notice>
+            )}
+          </Reveal>
           <form onSubmit={submit}>
             <label>
               Username
-              <UsernameInput autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+              <UsernameInput
+                autoComplete="username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              />
             </label>
             <label>
               Password
               {/* Signing in checks only the length limit; the minimum is for new passwords. */}
-              {creating
-                ? <NewPasswordInput value={password} onChange={(e) => setPassword(e.target.value)} />
-                : <input type="password" autoComplete="current-password" maxLength={PASSWORD_RULES.maxLength} required
-                  value={password} onChange={(e) => setPassword(e.target.value)} />}
+              {creating ? (
+                <NewPasswordInput value={password} onChange={e => setPassword(e.target.value)} />
+              ) : (
+                <input
+                  type="password"
+                  autoComplete="current-password"
+                  maxLength={PASSWORD_RULES.maxLength}
+                  required
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                />
+              )}
             </label>
-            <Reveal>{creating && (
-              <p className="small">
-                Use at least {PASSWORD_RULES.minLength} characters. Your host can reset a forgotten
-                password.
-              </p>
-            )}</Reveal>
+            <Reveal>
+              {creating && (
+                <p className="small">
+                  Use at least {PASSWORD_RULES.minLength} characters. Your host can reset a
+                  forgotten password.
+                </p>
+              )}
+            </Reveal>
             <Button type="submit" variant="primary" disabled={busy}>
               {busy ? "Please wait…" : creating ? "Create account" : "Sign in"}
             </Button>
@@ -131,12 +155,12 @@ export default function AccountGate({ children }: { children: ReactNode }) {
                 setError("");
               }}
             >
-              {signup
-                ? "Already have an account? Sign in"
-                : "New here? Create an account"}
+              {signup ? "Already have an account? Sign in" : "New here? Create an account"}
             </Button>
           ) : (
-            <p className="small">New here? Ask whoever runs this Fieldwork server for an account.</p>
+            <p className="small">
+              New here? Ask whoever runs this Fieldwork server for an account.
+            </p>
           )}
           {signingIn && sharedGame && (
             <Button variant="quiet" disabled={busy} onClick={() => setSigningIn(false)}>
@@ -153,15 +177,31 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           <p className="eyebrow">FIELDWORK</p>
           <h1>Choose a new password</h1>
           <p>Your host gave you a temporary password. Enter it, then choose your own.</p>
-          <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
-          <ChangePasswordForm currentLabel="Temporary password" submitLabel="Save and continue"
-            onChanged={user => setIdentity(current => current ? { ...current, user } : current)} />
-          <Button disabled={busy} onClick={() => logout()}>Sign out</Button>
+          <Reveal>
+            {error && (
+              <Notice announcement="alert" tone="error">
+                {error}
+              </Notice>
+            )}
+          </Reveal>
+          <ChangePasswordForm
+            currentLabel="Temporary password"
+            submitLabel="Save and continue"
+            onChanged={user => setIdentity(current => (current ? { ...current, user } : current))}
+          />
+          <Button disabled={busy} onClick={() => logout()}>
+            Sign out
+          </Button>
         </section>
       </main>
     );
   if (!identity.user.onboarding_completed)
-    return <Onboarding key={identity.user.id} onComplete={user => setIdentity(current => current ? { ...current, user } : current)} />;
+    return (
+      <Onboarding
+        key={identity.user.id}
+        onComplete={user => setIdentity(current => (current ? { ...current, user } : current))}
+      />
+    );
   return (
     <AccountContext.Provider
       value={{ user: identity.user, logout, busy, error, dismissError: () => setError("") }}

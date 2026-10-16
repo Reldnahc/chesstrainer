@@ -4,17 +4,33 @@ import { relativeDue } from "./relativeDue";
 import "./recall-receipt.css";
 
 /** Callers own scheduling conditions and their domain-specific explanations. */
-export default function RecallReceipt({ message, nextDue }: {
+export default function RecallReceipt({
+  message,
+  nextDue,
+}: {
   message?: ReactNode;
   nextDue?: string | null;
 }) {
-  return <div className="review-schedule">
-    <Reveal>{message && <p className="review-due" role="status">
-      {message}
-      {nextDue && <> Next review: <time dateTime={nextDue} title={new Date(nextDue).toLocaleString()}>
-        {/* eslint-disable-next-line react-hooks/purity -- the relative label reads the clock whenever a receipt renders */}
-        {relativeDue(nextDue, Date.now())}
-      </time>.</>}
-    </p>}</Reveal>
-  </div>;
+  return (
+    <div className="review-schedule">
+      <Reveal>
+        {message && (
+          <p className="review-due" role="status">
+            {message}
+            {nextDue && (
+              <>
+                {" "}
+                Next review:{" "}
+                <time dateTime={nextDue} title={new Date(nextDue).toLocaleString()}>
+                  {/* eslint-disable-next-line react-hooks/purity -- the relative label reads the clock whenever a receipt renders */}
+                  {relativeDue(nextDue, Date.now())}
+                </time>
+                .
+              </>
+            )}
+          </p>
+        )}
+      </Reveal>
+    </div>
+  );
 }

@@ -1,40 +1,18 @@
 import { useState } from "react";
 import ChoiceGroup from "../../ChoiceGroup";
 import { CoachCharacter } from "../CoachCharacter";
-import {
-  expressionInfo,
-  expressionIntent,
-  expressions,
-  type CoachExpression,
-} from "../model";
+import { expressionInfo, expressionIntent, expressions, type CoachExpression } from "../model";
 import type { StudioPreview } from "./PreviewPanels";
 
 const groups = [
   { name: "All expressions", states: expressions },
   {
     name: "Good ideas",
-    states: [
-      "brilliant",
-      "great",
-      "best",
-      "good",
-      "book",
-      "check",
-      "winning",
-      "recovered",
-    ],
+    states: ["brilliant", "great", "best", "good", "book", "check", "winning", "recovered"],
   },
   {
     name: "Hard moments",
-    states: [
-      "inaccuracy",
-      "mistake",
-      "blunder",
-      "missed",
-      "losing",
-      "uncertain",
-      "encouraging",
-    ],
+    states: ["inaccuracy", "mistake", "blunder", "missed", "losing", "uncertain", "encouraging"],
   },
   {
     name: "Between moves",
@@ -59,17 +37,13 @@ export default function ExpressionCollection({
         <div>
           <p className="eyebrow">THE WHOLE PERSONALITY</p>
           <h2 id="collection-title">
-            {coach.families.find((direction) => direction.id === family)?.name}{" "}
-            collection
+            {coach.families.find(direction => direction.id === family)?.name} collection
           </h2>
         </div>
         <label>
           Collection
-          <select
-            value={family}
-            onChange={(event) => onFamily(event.target.value)}
-          >
-            {coach.families.map((direction) => (
+          <select value={family} onChange={event => onFamily(event.target.value)}>
+            {coach.families.map(direction => (
               <option value={direction.id} key={direction.id}>
                 {direction.name}
               </option>
@@ -77,10 +51,14 @@ export default function ExpressionCollection({
           </select>
         </label>
       </div>
-      <ChoiceGroup label="Filter expressions" value={group} onChange={setGroup}
-        options={groups.map((item, index) => ({ value: index, label: item.name }))} />
+      <ChoiceGroup
+        label="Filter expressions"
+        value={group}
+        onChange={setGroup}
+        options={groups.map((item, index) => ({ value: index, label: item.name }))}
+      />
       <div className="studio-expression-grid">
-        {groups[group].states.map((state) => (
+        {groups[group].states.map(state => (
           <button
             key={state}
             className="studio-expression"

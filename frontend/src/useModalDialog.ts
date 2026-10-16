@@ -1,4 +1,10 @@
-import { useLayoutEffect, useRef, type KeyboardEvent, type RefObject, type SyntheticEvent } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+  type KeyboardEvent,
+  type RefObject,
+  type SyntheticEvent,
+} from "react";
 
 /** Mount a native modal, then return focus when its owner dismisses it. */
 export default function useModalDialog(
@@ -8,15 +14,12 @@ export default function useModalDialog(
   const ref = useRef<HTMLDialogElement>(null);
   useLayoutEffect(() => {
     const element = ref.current!;
-    const opener = document.activeElement instanceof HTMLElement
-      ? document.activeElement
-      : null;
+    const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     element.showModal();
     return () => {
       element.close();
-      const target = opener?.isConnected && opener !== document.body
-        ? opener
-        : fallbackFocus?.current;
+      const target =
+        opener?.isConnected && opener !== document.body ? opener : fallbackFocus?.current;
       target?.focus({ preventScroll: true });
       if (document.activeElement !== target)
         // eslint-disable-next-line react-hooks/exhaustive-deps -- the fallback is whatever element holds the ref when the dialog closes

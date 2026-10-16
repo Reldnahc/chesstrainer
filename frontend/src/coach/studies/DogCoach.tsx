@@ -30,14 +30,8 @@ export default function DogCoach({ expression, family }: CoachArtworkProps) {
           <g className="study-tail">
             {look === "corgi" ? (
               <>
-                <path
-                  d="M69 110q25-1 25-25 0-9-5-15-13 4-8 19 4 8-15 11Z"
-                  fill={palette.fur}
-                />
-                <path
-                  d="M89 70q-9 3-10 10l14 7q3-10-4-17Z"
-                  fill={palette.muzzle}
-                />
+                <path d="M69 110q25-1 25-25 0-9-5-15-13 4-8 19 4 8-15 11Z" fill={palette.fur} />
+                <path d="M89 70q-9 3-10 10l14 7q3-10-4-17Z" fill={palette.muzzle} />
               </>
             ) : (
               <>
@@ -54,10 +48,7 @@ export default function DogCoach({ expression, family }: CoachArtworkProps) {
                 />
                 {/* Cover the fur contour so it stops at the white tip. */}
                 {look === "collie" && (
-                  <path
-                    d="m94 66 1 14-5-5 1 13-1 4 9 1q2-13-5-27Z"
-                    fill={palette.muzzle}
-                  />
+                  <path d="m94 66 1 14-5-5 1 13-1 4 9 1q2-13-5-27Z" fill={palette.muzzle} />
                 )}
               </>
             )}
@@ -90,10 +81,7 @@ export default function DogCoach({ expression, family }: CoachArtworkProps) {
           </g>
         ) : (
           <>
-            <path
-              d="m29 81 21 6 21-6-5 17-16 11-16-11Z"
-              fill={palette.accent}
-            />
+            <path d="m29 81 21 6 21-6-5 17-16 11-16-11Z" fill={palette.accent} />
             <path
               d="m36 87 14 6 14-6m-14 6v10"
               stroke={palette.muzzle}
@@ -105,11 +93,7 @@ export default function DogCoach({ expression, family }: CoachArtworkProps) {
           </>
         )}
         {pose.paws === "book" && <Book color={palette.accent} />}
-        <AnimalPaws
-          pose={pose}
-          palette={palette}
-          mittens={look === "corgi" || look === "collie"}
-        />
+        <AnimalPaws pose={pose} palette={palette} mittens={look === "corgi" || look === "collie"} />
       </BodyRig>
     </ArtworkSvg>
   );

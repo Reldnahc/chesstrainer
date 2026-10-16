@@ -28,7 +28,7 @@ function collect(suite, file) {
 let testDir;
 for (const report of reports) {
   const parsed = JSON.parse(readFileSync(report, "utf8"));
-  const dirs = new Set(parsed.config.projects.map((project) => project.testDir));
+  const dirs = new Set(parsed.config.projects.map(project => project.testDir));
   if (dirs.size !== 1) throw new Error(`${report} mixes test directories: ${[...dirs].join(", ")}`);
   const [dir] = dirs;
   if (testDir && testDir !== dir) throw new Error(`${report} belongs to ${dir}, not ${testDir}`);
@@ -36,10 +36,15 @@ for (const report of reports) {
   for (const suite of parsed.suites) collect(suite, suite.file);
 }
 const durations = Object.fromEntries(
-  [...totals].sort(([a], [b]) => a.localeCompare(b)).map(([file, { seconds, runs }]) => [
-    path.basename(file), Math.round((seconds / runs.size) * 10) / 10,
-  ]),
+  [...totals]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([file, { seconds, runs }]) => [
+      path.basename(file),
+      Math.round((seconds / runs.size) * 10) / 10,
+    ]),
 );
 const target = path.join(testDir, "durations.json");
 writeFileSync(target, JSON.stringify(durations, null, 1) + "\n");
-console.log(`${Object.keys(durations).length} files recorded in ${path.relative(process.cwd(), target)}`);
+console.log(
+  `${Object.keys(durations).length} files recorded in ${path.relative(process.cwd(), target)}`,
+);

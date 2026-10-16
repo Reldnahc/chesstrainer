@@ -19,7 +19,13 @@ import InsightsScreen from "./InsightsScreen";
 import HomeScreen from "./HomeScreen";
 import EvidenceDialog from "./EvidenceDialog";
 import DialogPresence from "./DialogPresence";
-import { gamesPath, pagePaths, useRoute, useScrollRestoration, type Screen as RouteScreen } from "./navigation";
+import {
+  gamesPath,
+  pagePaths,
+  useRoute,
+  useScrollRestoration,
+  type Screen as RouteScreen,
+} from "./navigation";
 import StudyHome from "./study/StudyHome";
 import LessonsScreen from "./study/LessonsScreen";
 import PuzzleLibrary from "./study/PuzzleLibrary";
@@ -61,7 +67,10 @@ export default function App() {
   const [token, setToken] = useState("");
   const [evidenceId, setEvidenceId] = useState<string | null>(null);
   // A LAN install without its access token asks for it in place of the page.
-  useEffect(() => (guest ? undefined : onAuthRequired("connection", () => setConnection(true))), [guest]);
+  useEffect(
+    () => (guest ? undefined : onAuthRequired("connection", () => setConnection(true))),
+    [guest],
+  );
   // A new page drops the last page's evidence dialog in the render that shows it.
   // Errors belong to the screen that raised them and leave with it.
   const [shownRoute, setShownRoute] = useState(route);
@@ -80,11 +89,7 @@ export default function App() {
       </a>
       <header className="app-header">
         <div className={guest ? "header-inner header-inner--guest" : "header-inner"}>
-          <Link
-            className="brand"
-            href={pagePaths.Home}
-            aria-label="Fieldwork home"
-          >
+          <Link className="brand" href={pagePaths.Home} aria-label="Fieldwork home">
             <img src={appMark} width="34" height="34" alt="" />
             <span className="brand-wordmark">
               fieldwork<span className="brand-sub">Chess training</span>
@@ -95,27 +100,31 @@ export default function App() {
               <LogIn size={17} strokeWidth={1.7} />
               Sign in
             </Button>
-          ) : <nav aria-label="Main navigation">
-            {tabs.map(([name, Icon]) => (
-              <Link
-                key={name}
-                href={name === "Games" && screen.kind === "games" && screen.gameId ? gamesPath(screen.page) : pagePaths[name]}
-                aria-current={tab === name ? "page" : undefined}
-                className={tab === name ? "nav-item active" : "nav-item"}
-              >
-                <Icon size={17} strokeWidth={1.7} />
-                <span>{name}</span>
-              </Link>
-            ))}
-          </nav>}
+          ) : (
+            <nav aria-label="Main navigation">
+              {tabs.map(([name, Icon]) => (
+                <Link
+                  key={name}
+                  href={
+                    name === "Games" && screen.kind === "games" && screen.gameId
+                      ? gamesPath(screen.page)
+                      : pagePaths[name]
+                  }
+                  aria-current={tab === name ? "page" : undefined}
+                  className={tab === name ? "nav-item active" : "nav-item"}
+                >
+                  <Icon size={17} strokeWidth={1.7} />
+                  <span>{name}</span>
+                </Link>
+              ))}
+            </nav>
+          )}
         </div>
       </header>
       <main
         id="main-content"
         tabIndex={-1}
-        className={
-          boardPage(screen) ? "review-page" : "workspace-page"
-        }
+        className={boardPage(screen) ? "review-page" : "workspace-page"}
       >
         <BannerOutlet page={route.href.split("?")[0]} />
         {!connection && !guestSignIn && <WelcomeBack />}
@@ -125,7 +134,7 @@ export default function App() {
             <h1>Connect to your workspace</h1>
             <p>Enter the LAN token configured on your host computer.</p>
             <form
-              onSubmit={(e) => {
+              onSubmit={e => {
                 e.preventDefault();
                 sessionStorage.setItem(LAN_TOKEN_KEY, token);
                 reloadCoachPreferences();
@@ -140,37 +149,40 @@ export default function App() {
                 <input
                   type="password"
                   value={token}
-                  onChange={(e) => setToken(e.target.value)}
+                  onChange={e => setToken(e.target.value)}
                   required
                 />
               </label>
-              <Button type="submit" variant="primary">Connect</Button>
+              <Button type="submit" variant="primary">
+                Connect
+              </Button>
             </form>
           </section>
         ) : (
-          <Screen screen={screen} href={route.href} restoringScroll={route.restoringScroll} onEvidence={setEvidenceId} />
+          <Screen
+            screen={screen}
+            href={route.href}
+            restoringScroll={route.restoringScroll}
+            onEvidence={setEvidenceId}
+          />
         )}
       </main>
       <footer className="app-footer">
         <span>
-          FIELDWORK <span className="footer-divider">/</span> PERSONAL CHESS
-          TRAINING
+          FIELDWORK <span className="footer-divider">/</span> PERSONAL CHESS TRAINING
         </span>
         <span>
           <ShieldCheck size={14} />{" "}
           {guestSignIn
             ? "A game review shared by its owner"
             : account
-            ? "Your library & practice are private to your account"
-            : "Games & practice stay on this computer"}
+              ? "Your library & practice are private to your account"
+              : "Games & practice stay on this computer"}
         </span>
       </footer>
-      <DialogPresence>{evidenceId && (
-        <EvidenceDialog
-          id={evidenceId}
-          onClose={() => setEvidenceId(null)}
-        />
-      )}</DialogPresence>
+      <DialogPresence>
+        {evidenceId && <EvidenceDialog id={evidenceId} onClose={() => setEvidenceId(null)} />}
+      </DialogPresence>
     </>
   );
 }
@@ -178,9 +190,16 @@ export default function App() {
 // Board pages lay out the board and its sidebar; every other screen is a workspace page.
 function boardPage(screen: RouteScreen): boolean {
   switch (screen.kind) {
-    case "due": case "puzzle-session": case "lesson-session": case "line-preview": case "play": return true;
-    case "games": return !!screen.gameId;
-    default: return false;
+    case "due":
+    case "puzzle-session":
+    case "lesson-session":
+    case "line-preview":
+    case "play":
+      return true;
+    case "games":
+      return !!screen.gameId;
+    default:
+      return false;
   }
 }
 
@@ -192,21 +211,44 @@ function screenTitle(screen: RouteScreen): string | null {
 }
 
 /** The one screen a route shows. Screens keyed by address start afresh when it changes. */
-function Screen({ screen, href, restoringScroll, onEvidence }: {
-  screen: RouteScreen; href: string; restoringScroll: boolean;
+function Screen({
+  screen,
+  href,
+  restoringScroll,
+  onEvidence,
+}: {
+  screen: RouteScreen;
+  href: string;
+  restoringScroll: boolean;
   onEvidence: (id: string) => void;
 }) {
   switch (screen.kind) {
     case "home":
       return <HomeScreen />;
     case "due":
-      return <DueScreen key={href} focusSkill={screen.focusSkill} requested={screen.exercise}
-        requestedSession={screen.sessionId} onEvidence={onEvidence} />;
+      return (
+        <DueScreen
+          key={href}
+          focusSkill={screen.focusSkill}
+          requested={screen.exercise}
+          requestedSession={screen.sessionId}
+          onEvidence={onEvidence}
+        />
+      );
     case "study-home":
       return <StudyHome />;
     case "lessons":
-      return <LessonsScreen key={href} section={screen.section} courseId={screen.courseId} revision={screen.revision}
-        query={screen.query} eco={screen.eco} offset={screen.offset} />;
+      return (
+        <LessonsScreen
+          key={href}
+          section={screen.section}
+          courseId={screen.courseId}
+          revision={screen.revision}
+          query={screen.query}
+          eco={screen.eco}
+          offset={screen.offset}
+        />
+      );
     case "puzzles":
       return <PuzzleLibrary key={href} source={screen.source} />;
     case "course-editor":
@@ -216,15 +258,34 @@ function Screen({ screen, href, restoringScroll, onEvidence }: {
     case "lesson-session":
       return <LessonPlayer key={screen.id} sessionId={screen.id} />;
     case "line-preview":
-      return <OpeningLinePreview key={href} catalogueKey={screen.catalogueKey} courseLine={screen.courseLine} />;
+      return (
+        <OpeningLinePreview
+          key={href}
+          catalogueKey={screen.catalogueKey}
+          courseLine={screen.courseLine}
+        />
+      );
     case "play":
       return <PlayScreen key={href} gameId={screen.gameId} from={screen.from} />;
     case "games":
-      return <GamesScreen key={href} page={screen.page} selected={screen.gameId} initialPly={screen.ply} />;
+      return (
+        <GamesScreen
+          key={href}
+          page={screen.page}
+          selected={screen.gameId}
+          initialPly={screen.ply}
+        />
+      );
     case "insights":
       return <InsightsScreen onEvidence={onEvidence} category={screen.section} />;
     case "settings":
-      return <SettingsScreen section={screen.section} importSource={screen.importSource} restoringScroll={restoringScroll} />;
+      return (
+        <SettingsScreen
+          section={screen.section}
+          importSource={screen.importSource}
+          restoringScroll={restoringScroll}
+        />
+      );
     case "not-found":
       return (
         <section className="panel">

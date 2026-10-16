@@ -37,37 +37,63 @@ function GameLibrary({ page }: { page: number }) {
   const offset = (page - 1) * 30;
   // A background sync refreshes the list in place instead of blanking it.
   const [revision, setRevision] = useState(0);
-  const games = useQuery(signal => read(api.GET("/api/games", { signal, params: { query: { offset } } })), [revision]);
-  const refreshed = () => setRevision((value) => value + 1);
+  const games = useQuery(
+    signal => read(api.GET("/api/games", { signal, params: { query: { offset } } })),
+    [revision],
+  );
+  const refreshed = () => setRevision(value => value + 1);
   return (
     <>
       <PageTitle title="Your games" documentTitle="Games" />
-      <QueryResult query={games} label="your games" presentation="panel">{({ items, total }) => <>
-        {!items.length ? (
-          <EmptyState title={page > 1
-                ? "No games on this page."
-                : "Your next insight starts with a game."}
-            actions={page > 1 ? (
-              <ActionLink href={gamesPath()}>
-                Back to your games
-              </ActionLink>
+      <QueryResult query={games} label="your games" presentation="panel">
+        {({ items, total }) => (
+          <>
+            {!items.length ? (
+              <EmptyState
+                title={
+                  page > 1 ? "No games on this page." : "Your next insight starts with a game."
+                }
+                actions={
+                  page > 1 ? (
+                    <ActionLink href={gamesPath()}>Back to your games</ActionLink>
+                  ) : (
+                    <GameSync compact setupLabel="Import games in Settings" onChanged={refreshed} />
+                  )
+                }
+              >
+                {page === 1 && (
+                  <>
+                    Import a PGN or your Chess.com games to review both sides with your local coach.
+                  </>
+                )}
+              </EmptyState>
             ) : (
-              <GameSync compact setupLabel="Import games in Settings" onChanged={refreshed} />
-            )}>
-            {page === 1 && <>Import a PGN or your Chess.com games to review both sides with your local coach.</>}
-          </EmptyState>
-        ) : (
-          <GameHistory items={items} page={page} toolbar={<>
-            <p className="game-library-count"><strong>{total.toLocaleString()}</strong> {pluralWord(total, "game")}</p>
-            <GameSync compact onChanged={refreshed} />
-          </>} />
+              <GameHistory
+                items={items}
+                page={page}
+                toolbar={
+                  <>
+                    <p className="game-library-count">
+                      <strong>{total.toLocaleString()}</strong> {pluralWord(total, "game")}
+                    </p>
+                    <GameSync compact onChanged={refreshed} />
+                  </>
+                }
+              />
+            )}
+            {total > 30 && items.length > 0 && (
+              <Pagination
+                label="Games pages"
+                start={offset + 1}
+                end={Math.min(offset + 30, total)}
+                total={total}
+                previousHref={offset > 0 ? gamesPath(page - 1) : undefined}
+                nextHref={offset + 30 < total ? gamesPath(page + 1) : undefined}
+              />
+            )}
+          </>
         )}
-        {total > 30 && items.length > 0 && (
-          <Pagination label="Games pages" start={offset + 1} end={Math.min(offset + 30, total)} total={total}
-            previousHref={offset > 0 ? gamesPath(page - 1) : undefined}
-            nextHref={offset + 30 < total ? gamesPath(page + 1) : undefined} />
-        )}
-      </>}</QueryResult>
+      </QueryResult>
     </>
   );
 }

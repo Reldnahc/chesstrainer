@@ -12,20 +12,21 @@ const look: YouthLook = {
   resting: "ready",
   // The biggest, roundest eyes in the cast under thick, high brows.
   face: {
-    shape: "round", width: 4.7, height: 1.12, iris: "#6b4426", irisRadius: 2.8,
-    sparkle: true, brows: { weight: 3, arch: 1.3, offset: -0.6 }, nose: "button",
+    shape: "round",
+    width: 4.7,
+    height: 1.12,
+    iris: "#6b4426",
+    irisRadius: 2.8,
+    sparkle: true,
+    brows: { weight: 3, arch: 1.3, offset: -0.6 },
+    nose: "button",
   },
   clothing: (
     <>
       <path d="M12 104V86q0-16 20-17h16q20 1 20 17v18Z" fill="#c6914c" />
       <path d="M29 68q11 9 22 0l5 5q-16 21-32 0Z" fill="#8c643d" />
       <path d="m31 73 9 7 9-7-3 31H34Z" fill="#53797a" />
-      <path
-        d="M33 80v12m14-12v12"
-        stroke="#f0d49e"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
+      <path d="M33 80v12m14-12v12" stroke="#f0d49e" strokeWidth="1.7" strokeLinecap="round" />
       <path d="m23 94 17 4 17-4v10H23Z" fill="#b68143" />
       <path d="m30 96 10 2 10-2" fill="none" stroke="#d6a964" strokeWidth="1" />
       <path d="M13 101h54v3H13Z" fill="#a9763d" />

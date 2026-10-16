@@ -13,7 +13,8 @@ const REDUCED_MOTION_OWNERS = new Set(["src/interface-motion.css", "src/load-sta
 
 const DECLARATION = /(?:^|[{;])\s*((?:transition|animation)(?:-[\w-]+)?)\s*:\s*([^;}]*)/g;
 const RAW_TIME = /(?<![\w-])(\d*\.?\d+)(ms|s)\b/g;
-const RAW_EASING = /(?<![\w-])(ease(?:-in-out|-in|-out)?|linear|step-start|step-end|steps\(|cubic-bezier\(|linear\()(?![\w-])/g;
+const RAW_EASING =
+  /(?<![\w-])(ease(?:-in-out|-in|-out)?|linear|step-start|step-end|steps\(|cubic-bezier\(|linear\()(?![\w-])/g;
 
 export function violations(css) {
   const text = css.replace(/\/\*[\s\S]*?\*\//g, match => match.replace(/[^\n]/g, " "));
@@ -25,7 +26,8 @@ export function violations(css) {
     const line = lineOf(match.index + match[0].indexOf(property));
     const report = reason => found.push({ line, property, value, reason });
     if (property === "animation-name") continue;
-    if ([...value.matchAll(RAW_TIME)].some(([, number]) => Number(number) !== 0)) report("use a --motion-* duration");
+    if ([...value.matchAll(RAW_TIME)].some(([, number]) => Number(number) !== 0))
+      report("use a --motion-* duration");
     if (RAW_EASING.test(value)) report("use an --ease-* curve");
     RAW_EASING.lastIndex = 0;
     if (/^transition(-property)?$/.test(property) && /(?:^|,)\s*all\b/.test(value)) {
@@ -36,7 +38,9 @@ export function violations(css) {
 }
 
 export function reducedMotionQueries(css) {
-  return [...css.matchAll(/prefers-reduced-motion/g)].map(match => css.slice(0, match.index).split("\n").length);
+  return [...css.matchAll(/prefers-reduced-motion/g)].map(
+    match => css.slice(0, match.index).split("\n").length,
+  );
 }
 
 const files = sourceFiles(/\.css$/).filter(file => !COACH.test(file));
@@ -49,7 +53,9 @@ for (const file of files) {
   }
   if (!REDUCED_MOTION_OWNERS.has(file)) {
     for (const line of reducedMotionQueries(css)) {
-      console.error(`${file}:${line}: prefers-reduced-motion — src/interface-motion.css already applies it`);
+      console.error(
+        `${file}:${line}: prefers-reduced-motion — src/interface-motion.css already applies it`,
+      );
       count++;
     }
   }

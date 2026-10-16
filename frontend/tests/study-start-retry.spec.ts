@@ -10,7 +10,10 @@ test("one starter retries an ambiguous command unchanged and creates a new comma
     async (target: string) => ({ target, selection: ++preparations }),
     async body => {
       submitted.push(body);
-      if (loseResponse) { loseResponse = false; throw new Error("Lost response"); }
+      if (loseResponse) {
+        loseResponse = false;
+        throw new Error("Lost response");
+      }
       return body;
     },
   );
@@ -37,12 +40,16 @@ for (const outcome of ["empty", "failure"] as const) {
       },
       async body => {
         submitted.push(body);
-        if (loseResponse) { loseResponse = false; throw new Error("Lost response"); }
+        if (loseResponse) {
+          loseResponse = false;
+          throw new Error("Lost response");
+        }
         return body;
       },
     );
     await expect(start("chapter")).rejects.toThrow("Lost response");
-    if (outcome === "failure") await expect(start("other")).rejects.toThrow("Selection unavailable");
+    if (outcome === "failure")
+      await expect(start("other")).rejects.toThrow("Selection unavailable");
     else await expect(start("other")).resolves.toBeNull();
     const fresh = await start("chapter");
     expect(submitted).toHaveLength(2);
@@ -83,13 +90,17 @@ async function lessonFixture(page: Page, key: string) {
   return response.json() as Promise<{ course_id: string; revision: string }>;
 }
 
-test("retrying a lost chapter start resumes its committed session, while a later start is new", async ({ page }, info) => {
+test("retrying a lost chapter start resumes its committed session, while a later start is new", async ({
+  page,
+}, info) => {
   const fixture = await lessonFixture(page, `start-retry-${info.project.name}`);
   const path = `/study/openings/courses/${fixture.course_id}?revision=${fixture.revision}`;
   await page.goto(path);
   const attempts = await loseFirstStart(page, "/api/study/lesson-sessions");
   await retryStart(page, page.getByRole("button", { name: "Start", exact: true }), attempts);
-  await expect(page.getByRole("heading", { name: "Start from the beginning", exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Start from the beginning", exact: true }),
+  ).toBeVisible();
   await page.getByRole("link", { name: "Chapters", exact: true }).click();
   await page.getByRole("button", { name: "Start", exact: true }).click();
   await expect.poll(() => attempts.length).toBe(3);
@@ -99,29 +110,45 @@ test("retrying a lost chapter start resumes its committed session, while a later
 });
 
 for (const entry of ["preview", "studies"] as const) {
-  test(`retrying lost practice creation from ${entry} reuses the committed session`, async ({ page }, info) => {
+  test(`retrying lost practice creation from ${entry} reuses the committed session`, async ({
+    page,
+  }, info) => {
     const fixture = await lessonFixture(page, `practice-retry-${entry}-${info.project.name}`);
-    const response = await page.request.get(`/api/openings/course-lines/${fixture.course_id}/fixture-main?revision=${fixture.revision}`);
+    const response = await page.request.get(
+      `/api/openings/course-lines/${fixture.course_id}/fixture-main?revision=${fixture.revision}`,
+    );
     expect(response.ok()).toBe(true);
     const { line }: Schema["OpeningLineView"] = await response.json();
-    const enrolled = await page.request.post("/api/opening-studies", { data: {
-      source: line.source, source_key: line.source_key, source_version: line.source_version,
-      course_id: line.course_id, line_id: line.line_id, color: "white",
-    } });
+    const enrolled = await page.request.post("/api/opening-studies", {
+      data: {
+        source: line.source,
+        source_key: line.source_key,
+        source_version: line.source_version,
+        course_id: line.course_id,
+        line_id: line.line_id,
+        color: "white",
+      },
+    });
     expect(enrolled.ok()).toBe(true);
     const study: Schema["OpeningStudyView"] = await enrolled.json();
     try {
-      await page.goto(entry === "preview"
-        ? `/study/openings/courses/${fixture.course_id}/lines/fixture-main?revision=${fixture.revision}`
-        : "/study/openings/studies");
+      await page.goto(
+        entry === "preview"
+          ? `/study/openings/courses/${fixture.course_id}/lines/fixture-main?revision=${fixture.revision}`
+          : "/study/openings/studies",
+      );
       const attempts = await loseFirstStart(page, `/api/opening-studies/${study.id}/practice`);
-      const button = entry === "preview"
-        ? page.getByRole("button", { name: "Practice line", exact: true })
-        : page.getByRole("article", { name: `${study.name} as white`, exact: true })
-          .filter({ has: page.getByRole("button", { name: "Pause recalls", exact: true }) })
-          .getByRole("button", { name: "Practice line", exact: true });
+      const button =
+        entry === "preview"
+          ? page.getByRole("button", { name: "Practice line", exact: true })
+          : page
+              .getByRole("article", { name: `${study.name} as white`, exact: true })
+              .filter({ has: page.getByRole("button", { name: "Pause recalls", exact: true }) })
+              .getByRole("button", { name: "Practice line", exact: true });
       await retryStart(page, button, attempts);
-      await expect(page.getByRole("region", { name: "Lesson position", exact: true })).toBeVisible();
+      await expect(
+        page.getByRole("region", { name: "Lesson position", exact: true }),
+      ).toBeVisible();
     } finally {
       expect((await page.request.delete(`/api/opening-studies/${study.id}`)).ok()).toBe(true);
     }
@@ -129,24 +156,54 @@ for (const entry of ["preview", "studies"] as const) {
 }
 
 for (const entry of ["library", "player"] as const) {
-  test(`retrying lost puzzle creation from ${entry} keeps its selected puzzle and allows a later new puzzle`, async ({ page }, info) => {
-    const fixtureResponse = await page.request.post(`/__test/puzzle-fixture/start-retry-${entry}-${info.project.name}`);
+  test(`retrying lost puzzle creation from ${entry} keeps its selected puzzle and allows a later new puzzle`, async ({
+    page,
+  }, info) => {
+    const fixtureResponse = await page.request.post(
+      `/__test/puzzle-fixture/start-retry-${entry}-${info.project.name}`,
+    );
     expect(fixtureResponse.ok()).toBe(true);
     const fixture: { session_id: string } = await fixtureResponse.json();
     if (entry === "player") {
-      expect((await page.request.post(`/api/puzzle-sessions/${fixture.session_id}/reveal`, { data: {
-        request_id: `reveal-${entry}-${info.project.name}`, revision: 0,
-      } })).ok()).toBe(true);
+      expect(
+        (
+          await page.request.post(`/api/puzzle-sessions/${fixture.session_id}/reveal`, {
+            data: {
+              request_id: `reveal-${entry}-${info.project.name}`,
+              revision: 0,
+            },
+          })
+        ).ok(),
+      ).toBe(true);
     }
     let selections = 0;
-    await page.route("**/api/puzzles/next**", route => { selections++; return route.continue(); });
+    await page.route("**/api/puzzles/next**", route => {
+      selections++;
+      return route.continue();
+    });
     const attempts = await loseFirstStart(page, "/api/puzzle-sessions");
-    await page.goto(entry === "library" ? "/study/puzzles" : `/study/puzzles/sessions/${fixture.session_id}`);
-    await retryStart(page, page.getByRole("button", { name: entry === "library" ? "Start a puzzle" : "Next puzzle", exact: true }), attempts);
+    await page.goto(
+      entry === "library" ? "/study/puzzles" : `/study/puzzles/sessions/${fixture.session_id}`,
+    );
+    await retryStart(
+      page,
+      page.getByRole("button", {
+        name: entry === "library" ? "Start a puzzle" : "Next puzzle",
+        exact: true,
+      }),
+      attempts,
+    );
     expect(selections).toBe(1);
-    expect((await page.request.post(`/api/puzzle-sessions/${attempts[0].sessionId}/reveal`, { data: {
-      request_id: `finish-retry-${entry}-${info.project.name}`, revision: 0,
-    } })).ok()).toBe(true);
+    expect(
+      (
+        await page.request.post(`/api/puzzle-sessions/${attempts[0].sessionId}/reveal`, {
+          data: {
+            request_id: `finish-retry-${entry}-${info.project.name}`,
+            revision: 0,
+          },
+        })
+      ).ok(),
+    ).toBe(true);
     await page.reload();
     await page.getByRole("button", { name: "Next puzzle", exact: true }).click();
     await expect.poll(() => attempts.length).toBe(3);
@@ -157,16 +214,37 @@ for (const entry of ["library", "player"] as const) {
   });
 }
 
-test("practising a study and pausing it share one guard, so two clicks in one frame start only one", async ({ page }) => {
+test("practising a study and pausing it share one guard, so two clicks in one frame start only one", async ({
+  page,
+}) => {
   const study = {
-    id: "guard-study", name: "Guard line", color: "white", active: true, eco: "C50", positions: 4, due_positions: 1,
-    source: "lichess_catalogue", source_key: "guard", source_version: "v1", course_id: null, line_id: null,
+    id: "guard-study",
+    name: "Guard line",
+    color: "white",
+    active: true,
+    eco: "C50",
+    positions: 4,
+    due_positions: 1,
+    source: "lichess_catalogue",
+    source_key: "guard",
+    source_version: "v1",
+    course_id: null,
+    line_id: null,
   } as unknown as Schema["OpeningStudySummary"];
-  await page.route("**/api/opening-studies", route => route.fulfill({ json: {
-    items: [study], active_studies: 1, learning_positions: 4, due_positions: 1,
-  } satisfies Schema["OpeningStudyLibrary"] }));
+  await page.route("**/api/opening-studies", route =>
+    route.fulfill({
+      json: {
+        items: [study],
+        active_studies: 1,
+        learning_positions: 4,
+        due_positions: 1,
+      } satisfies Schema["OpeningStudyLibrary"],
+    }),
+  );
   let release!: () => void;
-  const held = new Promise<void>(resolve => { release = resolve; });
+  const held = new Promise<void>(resolve => {
+    release = resolve;
+  });
   const calls: string[] = [];
   await page.route("**/api/opening-studies/guard-study/**", async route => {
     calls.push(`${route.request().method()} ${new URL(route.request().url()).pathname}`);
@@ -181,7 +259,7 @@ test("practising a study and pausing it share one guard, so two clicks in one fr
   const row = page.getByRole("article", { name: "Guard line as white" });
   await expect(row.getByRole("button", { name: "Pause recalls" })).toBeEnabled();
   // Both clicks land before React re-renders the disabled buttons.
-  await row.evaluate((element) => {
+  await row.evaluate(element => {
     const buttons = [...element.querySelectorAll("button")];
     buttons.find(button => button.textContent?.includes("Practice line"))!.click();
     buttons.find(button => button.textContent?.includes("Pause recalls"))!.click();

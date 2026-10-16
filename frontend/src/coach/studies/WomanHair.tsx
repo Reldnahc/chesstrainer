@@ -1,12 +1,6 @@
 export type WomanLook = "captain" | "analyst" | "spark" | "blonde";
 
-export default function WomanHair({
-  look,
-  front = false,
-}: {
-  look: WomanLook;
-  front?: boolean;
-}) {
+export default function WomanHair({ look, front = false }: { look: WomanLook; front?: boolean }) {
   if (look === "blonde")
     return front ? (
       <g fill="#dcc078">
@@ -29,10 +23,7 @@ export default function WomanHair({
     ) : (
       <g className="study-hair-motion">
         <path d="M17 26q-10 19 3 41l9 2 27-2q10-7 9-28l-5-22Z" fill="#b99b5d" />
-        <path
-          d="M61 44q13 7 4 17 8 6 0 14l-6 4q-11-7-4-15-8-6-1-13Z"
-          fill="#dcc078"
-        />
+        <path d="M61 44q13 7 4 17 8 6 0 14l-6 4q-11-7-4-15-8-6-1-13Z" fill="#dcc078" />
         <path
           d="m58 49 8 7-10 7 9 8-6 5"
           stroke="#b29556"
@@ -55,12 +46,7 @@ export default function WomanHair({
           fill="none"
           strokeLinecap="round"
         />
-        <path
-          d="M17 21Q39 3 63 22"
-          stroke="#ba8b83"
-          strokeWidth="3"
-          fill="none"
-        />
+        <path d="M17 21Q39 3 63 22" stroke="#ba8b83" strokeWidth="3" fill="none" />
       </g>
     ) : (
       <g className="study-hair-motion" fill="#30272b">
@@ -85,16 +71,8 @@ export default function WomanHair({
       </g>
     ) : (
       <g className="study-hair-motion">
-        <path
-          d="M53 16q17-13 21 4 5 11-2 22-6 13 3 24-20-4-15-26 3-13-6-16Z"
-          fill="#322b3a"
-        />
-        <path
-          d="M62 24q9 8 3 25"
-          stroke="#51414f"
-          strokeWidth="2"
-          fill="none"
-        />
+        <path d="M53 16q17-13 21 4 5 11-2 22-6 13 3 24-20-4-15-26 3-13-6-16Z" fill="#322b3a" />
+        <path d="M62 24q9 8 3 25" stroke="#51414f" strokeWidth="2" fill="none" />
         <path d="m59 17 6-3 3 8-7 2Z" fill="#bd8887" />
       </g>
     );

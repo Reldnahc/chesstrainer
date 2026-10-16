@@ -5,7 +5,14 @@ import { dirname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const frontend = join(dirname(fileURLToPath(import.meta.url)), "..");
-const SKIPPED = new Set(["node_modules", "dist", "test-results", "playwright-report", "blob-report", ".vite"]);
+const SKIPPED = new Set([
+  "node_modules",
+  "dist",
+  "test-results",
+  "playwright-report",
+  "blob-report",
+  ".vite",
+]);
 
 function walk(path) {
   return readdirSync(path, { withFileTypes: true }).flatMap(entry => {

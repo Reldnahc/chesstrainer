@@ -3,38 +3,24 @@ import AnimalFace from "./AnimalFace";
 import type { AnimalPose } from "./animalPoses";
 import { dogPalettes, type DogLook } from "./dogLooks";
 
-export default function DogHead({
-  look,
-  pose,
-}: {
-  look: DogLook;
-  pose: AnimalPose;
-}) {
+export default function DogHead({ look, pose }: { look: DogLook; pose: AnimalPose }) {
   const palette = dogPalettes[look];
   const golden = look === "gentle";
   return (
     <HeadRig>
-      {[false, true].map((right) => (
-        <g
-          key={String(right)}
-          transform={right ? "translate(100 0) scale(-1 1)" : undefined}
-        >
+      {[false, true].map(right => (
+        <g key={String(right)} transform={right ? "translate(100 0) scale(-1 1)" : undefined}>
           <g
             transform={`rotate(${(right ? -pose.ears[1] : pose.ears[0]) * (golden ? 0.5 : 0.7)} 25 30)`}
           >
-            <g
-              className={`study-ear-motion study-ear-${right ? "right" : "left"}`}
-            >
+            <g className={`study-ear-motion study-ear-${right ? "right" : "left"}`}>
               {golden ? (
                 <>
                   <path
                     d="M27 19Q8 21 9 48l-2 11 4-2 1 12 4-4q0 8 7 9 12-13 12-30Z"
                     fill={palette.dark}
                   />
-                  <path
-                    d="M24 28q-7 10-8 27l4-3-1 11q10-8 10-29Z"
-                    fill={palette.fur}
-                  />
+                  <path d="M24 28q-7 10-8 27l4-3-1 11q10-8 10-29Z" fill={palette.fur} />
                   <path
                     d="M22 33q-5 11-4 15"
                     stroke={palette.light}
@@ -46,10 +32,7 @@ export default function DogHead({
                 </>
               ) : look === "corgi" ? (
                 <>
-                  <path
-                    d="M16 39Q2 27 7 9q2-10 11-4 14 8 18 24Z"
-                    fill={palette.fur}
-                  />
+                  <path d="M16 39Q2 27 7 9q2-10 11-4 14 8 18 24Z" fill={palette.fur} />
                   <path d="M17 31Q9 22 12 10q10 3 17 19Z" fill="#c98e7b" />
                   <path d="m17 32 5-8 4 7" fill={palette.light} />
                 </>
@@ -64,11 +47,7 @@ export default function DogHead({
                     fill={palette.dark}
                   />
                   <path
-                    d={
-                      right
-                        ? "M16 14q5-8 14-3l4 7-12 14q-6-9-6-18Z"
-                        : "M19 29q-5-10-1-17l11 16Z"
-                    }
+                    d={right ? "M16 14q5-8 14-3l4 7-12 14q-6-9-6-18Z" : "M19 29q-5-10-1-17l11 16Z"}
                     fill={right ? "#525866" : "#987c83"}
                   />
                   <path d="m20 31 4-6 5 6" fill={palette.light} />
@@ -88,12 +67,7 @@ export default function DogHead({
         }
         fill={palette.fur}
       />
-      {golden && (
-        <path
-          d="M30 24q6-11 17-8l2-5 6 5 6-2 8 13q-19-7-39-3Z"
-          fill={palette.light}
-        />
-      )}
+      {golden && <path d="M30 24q6-11 17-8l2-5 6 5 6-2 8 13q-19-7-39-3Z" fill={palette.light} />}
       {look === "gentle" && (
         <>
           <path

@@ -2,30 +2,32 @@ import { useId, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { CoachCharacter } from "../CoachCharacter";
 import { getCoach, selectableCoaches } from "../registry";
-import {
-  expressionIdles,
-  expressionInfo,
-  idlePresentation,
-  type CoachIdle,
-} from "../model";
+import { expressionIdles, expressionInfo, idlePresentation, type CoachIdle } from "../model";
 import type { StudioPreview } from "./PreviewPanels";
 import Button from "../../Button";
 
-function IdleCard({ preview, gesture, index }: {
+function IdleCard({
+  preview,
+  gesture,
+  index,
+}: {
   preview: StudioPreview;
   gesture: CoachIdle;
   index: number;
 }) {
   const [replay, setReplay] = useState(0);
   const descriptionId = useId();
-  const { label, description } = idlePresentation(preview.coach, preview.family, preview.reaction.state, gesture);
+  const { label, description } = idlePresentation(
+    preview.coach,
+    preview.family,
+    preview.reaction.state,
+    gesture,
+  );
   const signature = gesture.startsWith("signature-") && description;
   return (
     <article className="studio-idle-card" data-gesture={gesture}>
       <div className="studio-idle-stage">
-        <span className="studio-size-label">
-          IDLE {String(index + 1).padStart(2, "0")}
-        </span>
+        <span className="studio-size-label">IDLE {String(index + 1).padStart(2, "0")}</span>
         <CoachCharacter
           coach={preview.coach}
           family={preview.family}
@@ -39,13 +41,17 @@ function IdleCard({ preview, gesture, index }: {
       </div>
       <div className="studio-idle-copy">
         <h3>{label}</h3>
-        {signature && <p id={descriptionId} className="studio-idle-description">{description}</p>}
+        {signature && (
+          <p id={descriptionId} className="studio-idle-description">
+            {description}
+          </p>
+        )}
       </div>
       <Button
         aria-label={`Replay idle ${index + 1}: ${label}`}
         aria-describedby={signature ? descriptionId : undefined}
         disabled={preview.motion === "still"}
-        onClick={() => setReplay((value) => value + 1)}
+        onClick={() => setReplay(value => value + 1)}
       >
         <RotateCcw size={14} /> Replay idle
       </Button>
@@ -54,14 +60,9 @@ function IdleCard({ preview, gesture, index }: {
 }
 
 export function IdleVariants({ preview }: { preview: StudioPreview }) {
-  const pool = expressionIdles(
-    preview.coach, preview.family, preview.reaction.state,
-  );
+  const pool = expressionIdles(preview.coach, preview.family, preview.reaction.state);
   return (
-    <section
-      className="studio-idle-grid"
-      aria-label={`${pool.length} expression idle variants`}
-    >
+    <section className="studio-idle-grid" aria-label={`${pool.length} expression idle variants`}>
       {pool.map((gesture, index) => (
         <IdleCard
           key={`${preview.coach.id}:${preview.family}:${preview.reaction.state}:${gesture}`}
@@ -74,7 +75,10 @@ export function IdleVariants({ preview }: { preview: StudioPreview }) {
   );
 }
 
-export function CastComparison({ preview, selected }: {
+export function CastComparison({
+  preview,
+  selected,
+}: {
   preview: StudioPreview;
   selected: string;
 }) {
@@ -82,10 +86,7 @@ export function CastComparison({ preview, selected }: {
   const [replay, setReplay] = useState(0);
   const [natural, setNatural] = useState(false);
   return (
-    <section
-      className="studio-cast-comparison"
-      aria-label="Compare coaches on the same expression"
-    >
+    <section className="studio-cast-comparison" aria-label="Compare coaches on the same expression">
       <div className="studio-section-title">
         <div>
           <p className="eyebrow">SAME MOMENT · DIFFERENT CHARACTER</p>
@@ -93,10 +94,14 @@ export function CastComparison({ preview, selected }: {
         </div>
         <div className="studio-comparison-controls">
           <label className="studio-toggle">
-            <input type="checkbox" checked={natural} onChange={(event) => setNatural(event.target.checked)} />
+            <input
+              type="checkbox"
+              checked={natural}
+              onChange={event => setNatural(event.target.checked)}
+            />
             Comparison idle playback
           </label>
-          <Button onClick={() => setReplay((value) => value + 1)}>
+          <Button onClick={() => setReplay(value => value + 1)}>
             <RotateCcw size={15} /> Replay comparison
           </Button>
         </div>
@@ -107,21 +112,19 @@ export function CastComparison({ preview, selected }: {
           return (
             <article className="studio-comparison-card" key={index}>
               {index === 0 ? (
-                <p className="studio-comparison-selected">
-                  Selected coach · {coach.name}
-                </p>
+                <p className="studio-comparison-selected">Selected coach · {coach.name}</p>
               ) : (
                 <label>
                   Compare coach {index}
                   <select
                     value={coach.id}
-                    onChange={(event) => setComparisons((current) =>
-                      current.map((value, at) =>
-                        at === index - 1 ? event.target.value : value,
-                      ),
-                    )}
+                    onChange={event =>
+                      setComparisons(current =>
+                        current.map((value, at) => (at === index - 1 ? event.target.value : value)),
+                      )
+                    }
                   >
-                    {selectableCoaches.map((option) => (
+                    {selectableCoaches.map(option => (
                       <option value={option.id} key={option.id}>
                         {option.name}
                       </option>

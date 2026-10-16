@@ -1,90 +1,331 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-/* Standalone audio preview layout. Shared controls retain their own styles.
+  /* Standalone audio preview layout. Shared controls retain their own styles.
    Containers own the gaps between their children. */
-.audio-studio {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  max-width: 1420px;
-  margin: 0 auto;
-  padding: var(--space-10) var(--space-10) var(--space-6);
-}
-.audio-studio-content { display: flex; flex-direction: column; gap: var(--space-8); }
-.audio-studio-reviews { display: flex; flex-direction: column; gap: var(--space-10); }
-.audio-studio-heading { position: relative; display: flex; flex-direction: column; gap: var(--space-6); padding-bottom: var(--space-2); }
-.audio-studio-brand { display: flex; align-items: center; gap: var(--space-3); color: var(--accent); font: var(--text-2xs) var(--mono); letter-spacing: 1.5px; }
-.audio-studio-headline { display: flex; flex-direction: column; gap: var(--space-3); }
-.audio-studio-heading h1 { font-size: clamp(var(--text-4xl), 3.2vw, var(--text-6xl)); letter-spacing: -1.4px; }
-.audio-studio-headline > p { max-width: 680px; }
-.audio-studio-badge { position: absolute; top: 0; right: 0; padding: var(--space-2) var(--space-3); color: var(--muted); border: 1px solid var(--line); border-radius: 5px; font: var(--text-2xs) var(--mono); }
-.audio-studio-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: start; gap: var(--space-8); }
-.audio-studio-library { display: flex; flex-direction: column; gap: var(--space-5); }
-.audio-studio-library-head { display: flex; flex-direction: column; gap: var(--space-4); }
-.audio-studio-section-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
-/* Step label over a heading; the top padding keeps the label's former line box. */
-.audio-studio-title { display: grid; gap: var(--space-2); padding-top: var(--space-2); }
-.audio-studio-section-heading h2, .audio-studio-panel h2 { font-size: var(--text-3xl); }
-.audio-studio-step { color: var(--muted); font: var(--text-2xs) var(--mono); letter-spacing: 1.2px; }
-.audio-studio-count { color: var(--accent); font: var(--text-xs) var(--mono); white-space: nowrap; }
-.audio-studio-cue-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--space-5); row-gap: var(--space-1-5); border-top: 1px solid var(--line); padding: var(--space-3) 0; min-width: 0; align-items: stretch; }
-.audio-studio-cue-name { display: flex; flex-direction: column; gap: var(--space-1); align-self: center; }
-.audio-studio-cue-name h3 { font-size: var(--text-base); }
-.audio-studio-cue-name p { font-size: var(--text-xs); line-height: 1.45; }
-.audio-studio-cue-preview { display: flex; align-items: center; gap: var(--space-3); }
-.audio-studio-palette-name { color: var(--muted); font-size: var(--text-sm); }
-.audio-studio-context-controls { grid-column: 1 / -1; display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-2); }
-.audio-studio-context-play { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1-5); }
-.audio-studio-context-description { font-size: var(--text-sm); line-height: 1.5; }
-.audio-studio-source { grid-column: 1 / -1; min-width: 0; max-width: 100%; }
-/* Keeps the room below open source lines. */
-.audio-studio-source[open] { padding-bottom: var(--space-6); }
-.audio-studio-sidebar { display: grid; gap: var(--space-5); }
-/* A card on the shared .panel surface (panel.css); the studio sets its own spacing. */
-.audio-studio-panel { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-5); }
-.audio-studio-panel-heading, .audio-studio-scenario { display: flex; flex-direction: column; gap: var(--space-3); }
-.audio-studio-panel-heading > p, .audio-studio-scenario-description { font-size: var(--text-sm); }
-.audio-studio-panel .audio-studio-scenario-description { min-height: 58px; }
-.audio-studio-scenario > .action-control { width: 100%; }
-.audio-studio-history { padding-block: var(--space-1-5); }
-.audio-studio-details[open] { padding-bottom: var(--space-3); }
-.audio-studio-history summary > span { float: right; font: var(--text-2xs) var(--mono); color: var(--muted); }
-.audio-studio-history p { font-size: var(--text-xs); }
-.audio-studio-history ol { list-style: none; padding: 0; max-height: 360px; overflow-y: auto; }
-.audio-studio-history li { display: grid; grid-template-columns: 85px 1fr; gap: var(--space-1) var(--space-2); padding: var(--space-2) 0; border-top: 1px solid var(--line); font-size: var(--text-xs); }
-.audio-studio-history li > span { display: flex; align-items: center; gap: var(--space-1-5); color: var(--muted); }
-.audio-studio-history li[data-event-type="started"] > span { color: #b9d7c6; }
-.audio-studio-history li > strong { font-weight: 500; }
-.audio-studio-history li > small { grid-column: 2; color: var(--muted); overflow-wrap: anywhere; }
-.audio-studio-speech-note { font-size: var(--text-xs); padding-inline: var(--space-1-5); }
-.audio-studio-footer { border-top: 1px solid var(--line); padding-top: var(--space-4); color: var(--muted); font-size: var(--text-xs); }
-@media (max-width: 1100px) {
-  .audio-studio { padding: var(--space-8) var(--space-6) var(--space-5); }
-  .audio-studio-workspace { gap: var(--space-5); grid-template-columns: minmax(0, 1fr) 260px; }
-  .audio-studio-panel { padding: var(--space-4); }
-}
-@media (max-width: 850px) {
-  .audio-studio-workspace { grid-template-columns: minmax(0, 1fr); }
-  .audio-studio-sidebar { grid-template-columns: 1fr 1fr; align-items: start; }
-}
-@media (max-width: 560px) {
-  .audio-studio { padding: var(--space-5) var(--space-3) max(var(--space-5), env(safe-area-inset-bottom)); }
-  .audio-studio-content { gap: var(--space-6); }
-  .audio-studio-heading { gap: var(--space-5); padding-bottom: var(--space-3); }
-  .audio-studio-brand { font-size: var(--text-2xs); gap: var(--space-2); letter-spacing: .8px; }
-  .audio-studio-badge { position: static; align-self: flex-start; padding: var(--space-1-5) var(--space-2); font-size: var(--text-2xs); }
-  .audio-studio-heading h1 { font-size: var(--text-4xl); letter-spacing: -.8px; max-width: 320px; }
-  .audio-studio-headline > p { font-size: var(--text-md); line-height: 1.6; }
-  .audio-studio-section-heading h2, .audio-studio-panel h2 { font-size: var(--text-2xl); }
-  .audio-studio-step { font-size: var(--text-2xs); letter-spacing: .8px; }
-  .audio-studio-count { font-size: var(--text-2xs); }
-  .audio-studio-cue-row { grid-template-columns: minmax(0, 1fr); }
-  .audio-studio-cue-preview { justify-content: space-between; }
-  .audio-studio-cue-name h3 { flex-shrink: 0; font-size: var(--text-md); }
-  .audio-studio-cue-name p { font-size: var(--text-2xs); }
-  .audio-studio-cue-row { padding-block: var(--space-3); }
-  .audio-studio-sidebar { grid-template-columns: 1fr; }
-  .audio-studio-panel { padding: var(--space-5); }
-  .audio-studio-panel .audio-studio-scenario-description { min-height: 0; }
-}
+  .audio-studio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: var(--space-10) var(--space-10) var(--space-6);
+  }
+  .audio-studio-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  .audio-studio-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+  .audio-studio-heading {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-bottom: var(--space-2);
+  }
+  .audio-studio-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--accent);
+    font: var(--text-2xs) var(--mono);
+    letter-spacing: 1.5px;
+  }
+  .audio-studio-headline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .audio-studio-heading h1 {
+    font-size: clamp(var(--text-4xl), 3.2vw, var(--text-6xl));
+    letter-spacing: -1.4px;
+  }
+  .audio-studio-headline > p {
+    max-width: 680px;
+  }
+  .audio-studio-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--space-2) var(--space-3);
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    font: var(--text-2xs) var(--mono);
+  }
+  .audio-studio-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    align-items: start;
+    gap: var(--space-8);
+  }
+  .audio-studio-library {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .audio-studio-library-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .audio-studio-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  /* Step label over a heading; the top padding keeps the label's former line box. */
+  .audio-studio-title {
+    display: grid;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+  }
+  .audio-studio-section-heading h2,
+  .audio-studio-panel h2 {
+    font-size: var(--text-3xl);
+  }
+  .audio-studio-step {
+    color: var(--muted);
+    font: var(--text-2xs) var(--mono);
+    letter-spacing: 1.2px;
+  }
+  .audio-studio-count {
+    color: var(--accent);
+    font: var(--text-xs) var(--mono);
+    white-space: nowrap;
+  }
+  .audio-studio-cue-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-5);
+    row-gap: var(--space-1-5);
+    border-top: 1px solid var(--line);
+    padding: var(--space-3) 0;
+    min-width: 0;
+    align-items: stretch;
+  }
+  .audio-studio-cue-name {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    align-self: center;
+  }
+  .audio-studio-cue-name h3 {
+    font-size: var(--text-base);
+  }
+  .audio-studio-cue-name p {
+    font-size: var(--text-xs);
+    line-height: 1.45;
+  }
+  .audio-studio-cue-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .audio-studio-palette-name {
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .audio-studio-context-controls {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-top: var(--space-2);
+  }
+  .audio-studio-context-play {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1-5);
+  }
+  .audio-studio-context-description {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+  .audio-studio-source {
+    grid-column: 1 / -1;
+    min-width: 0;
+    max-width: 100%;
+  }
+  /* Keeps the room below open source lines. */
+  .audio-studio-source[open] {
+    padding-bottom: var(--space-6);
+  }
+  .audio-studio-sidebar {
+    display: grid;
+    gap: var(--space-5);
+  }
+  /* A card on the shared .panel surface (panel.css); the studio sets its own spacing. */
+  .audio-studio-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-5);
+  }
+  .audio-studio-panel-heading,
+  .audio-studio-scenario {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .audio-studio-panel-heading > p,
+  .audio-studio-scenario-description {
+    font-size: var(--text-sm);
+  }
+  .audio-studio-panel .audio-studio-scenario-description {
+    min-height: 58px;
+  }
+  .audio-studio-scenario > .action-control {
+    width: 100%;
+  }
+  .audio-studio-history {
+    padding-block: var(--space-1-5);
+  }
+  .audio-studio-details[open] {
+    padding-bottom: var(--space-3);
+  }
+  .audio-studio-history summary > span {
+    float: right;
+    font: var(--text-2xs) var(--mono);
+    color: var(--muted);
+  }
+  .audio-studio-history p {
+    font-size: var(--text-xs);
+  }
+  .audio-studio-history ol {
+    list-style: none;
+    padding: 0;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+  .audio-studio-history li {
+    display: grid;
+    grid-template-columns: 85px 1fr;
+    gap: var(--space-1) var(--space-2);
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--line);
+    font-size: var(--text-xs);
+  }
+  .audio-studio-history li > span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    color: var(--muted);
+  }
+  .audio-studio-history li[data-event-type="started"] > span {
+    color: #b9d7c6;
+  }
+  .audio-studio-history li > strong {
+    font-weight: 500;
+  }
+  .audio-studio-history li > small {
+    grid-column: 2;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  .audio-studio-speech-note {
+    font-size: var(--text-xs);
+    padding-inline: var(--space-1-5);
+  }
+  .audio-studio-footer {
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-4);
+    color: var(--muted);
+    font-size: var(--text-xs);
+  }
+  @media (max-width: 1100px) {
+    .audio-studio {
+      padding: var(--space-8) var(--space-6) var(--space-5);
+    }
+    .audio-studio-workspace {
+      gap: var(--space-5);
+      grid-template-columns: minmax(0, 1fr) 260px;
+    }
+    .audio-studio-panel {
+      padding: var(--space-4);
+    }
+  }
+  @media (max-width: 850px) {
+    .audio-studio-workspace {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .audio-studio-sidebar {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+  @media (max-width: 560px) {
+    .audio-studio {
+      padding: var(--space-5) var(--space-3) max(var(--space-5), env(safe-area-inset-bottom));
+    }
+    .audio-studio-content {
+      gap: var(--space-6);
+    }
+    .audio-studio-heading {
+      gap: var(--space-5);
+      padding-bottom: var(--space-3);
+    }
+    .audio-studio-brand {
+      font-size: var(--text-2xs);
+      gap: var(--space-2);
+      letter-spacing: 0.8px;
+    }
+    .audio-studio-badge {
+      position: static;
+      align-self: flex-start;
+      padding: var(--space-1-5) var(--space-2);
+      font-size: var(--text-2xs);
+    }
+    .audio-studio-heading h1 {
+      font-size: var(--text-4xl);
+      letter-spacing: -0.8px;
+      max-width: 320px;
+    }
+    .audio-studio-headline > p {
+      font-size: var(--text-md);
+      line-height: 1.6;
+    }
+    .audio-studio-section-heading h2,
+    .audio-studio-panel h2 {
+      font-size: var(--text-2xl);
+    }
+    .audio-studio-step {
+      font-size: var(--text-2xs);
+      letter-spacing: 0.8px;
+    }
+    .audio-studio-count {
+      font-size: var(--text-2xs);
+    }
+    .audio-studio-cue-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .audio-studio-cue-preview {
+      justify-content: space-between;
+    }
+    .audio-studio-cue-name h3 {
+      flex-shrink: 0;
+      font-size: var(--text-md);
+    }
+    .audio-studio-cue-name p {
+      font-size: var(--text-2xs);
+    }
+    .audio-studio-cue-row {
+      padding-block: var(--space-3);
+    }
+    .audio-studio-sidebar {
+      grid-template-columns: 1fr;
+    }
+    .audio-studio-panel {
+      padding: var(--space-5);
+    }
+    .audio-studio-panel .audio-studio-scenario-description {
+      min-height: 0;
+    }
+  }
 }

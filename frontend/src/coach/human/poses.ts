@@ -244,6 +244,12 @@ export const handPoses: Record<
 };
 
 /** A coach's own resting body for the calm states; every other expression keeps its shared gesture. */
-export function withRestingGesture(pose: Pose, expression: CoachExpression, resting: Gesture | undefined): Pose {
-  return resting && (expression === "neutral" || expression === "idle") ? { ...pose, gesture: resting } : pose;
+export function withRestingGesture(
+  pose: Pose,
+  expression: CoachExpression,
+  resting: Gesture | undefined,
+): Pose {
+  return resting && (expression === "neutral" || expression === "idle")
+    ? { ...pose, gesture: resting }
+    : pose;
 }

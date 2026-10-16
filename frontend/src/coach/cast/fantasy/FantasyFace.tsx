@@ -32,9 +32,7 @@ export default function FantasyFace({
       {pose.mouth === "smile" && <path d="M43 60q7 7 14 0" />}
       {pose.mouth === "ponder" && <path d="M45 62q5 1 10-2" />}
       {pose.mouth === "concern" && <path d="M43 65q7-6 14 0" />}
-      {pose.mouth === "oh" && (
-        <ellipse cx="50" cy="63" rx="4.3" ry="6" fill={mouthColor} />
-      )}
+      {pose.mouth === "oh" && <ellipse cx="50" cy="63" rx="4.3" ry="6" fill={mouthColor} />}
       {pose.mouth === "grin" && (
         <>
           <path d="M40 58q10 5 20 0-1 13-10 13T40 58Z" fill={mouthColor} />
@@ -46,13 +44,7 @@ export default function FantasyFace({
   );
   return (
     <>
-      <g
-        className="study-brows"
-        stroke={ink}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        fill="none"
-      >
+      <g className="study-brows" stroke={ink} strokeWidth="1.8" strokeLinecap="round" fill="none">
         <path d={pose.brows[0]} />
         <path d={pose.brows[1]} />
       </g>
@@ -66,33 +58,20 @@ export default function FantasyFace({
           <>
             <defs>
               <clipPath id={clip}>
-                {[35, 65].map((x) => (
+                {[35, 65].map(x => (
                   <ellipse key={x} cx={x} cy="43" rx={eyeWidth} ry={pose.eye} />
                 ))}
               </clipPath>
             </defs>
-            {[35, 65].map((x) => (
-              <ellipse
-                key={x}
-                cx={x}
-                cy="43"
-                rx={eyeWidth}
-                ry={pose.eye}
-                fill="#fff9e9"
-              />
+            {[35, 65].map(x => (
+              <ellipse key={x} cx={x} cy="43" rx={eyeWidth} ry={pose.eye} fill="#fff9e9" />
             ))}
             <g clipPath={`url(#${clip})`}>
               <g className="study-gaze">
                 <g transform={`translate(${pose.gaze.join(" ")})`}>
-                  {[35, 65].map((x) => (
+                  {[35, 65].map(x => (
                     <g key={x}>
-                      <ellipse
-                        cx={x}
-                        cy="43"
-                        rx={eyeWidth - 1}
-                        ry={pose.eye}
-                        fill={iris}
-                      />
+                      <ellipse cx={x} cy="43" rx={eyeWidth - 1} ry={pose.eye} fill={iris} />
                       <ellipse
                         cx={x}
                         cy="43"
@@ -126,7 +105,9 @@ export default function FantasyFace({
       >
         {speakingMouth ? (
           <SpeechMouthLayer authored={authoredMouth}>{speakingMouth}</SpeechMouthLayer>
-        ) : authoredMouth}
+        ) : (
+          authoredMouth
+        )}
       </g>
     </>
   );

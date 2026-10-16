@@ -12,13 +12,25 @@ const LOADER = ".load-state";
 function fadeOut(loader: Element, at: DOMRect) {
   const copy = ghostCopy(loader as HTMLElement);
   Object.assign(copy.style, {
-    position: "fixed", top: `${at.top}px`, left: `${at.left}px`, width: `${at.width}px`,
-    margin: "0", pointerEvents: "none", zIndex: "1", animation: "none",
+    position: "fixed",
+    top: `${at.top}px`,
+    left: `${at.left}px`,
+    width: `${at.width}px`,
+    margin: "0",
+    pointerEvents: "none",
+    zIndex: "1",
+    animation: "none",
   });
   document.body.append(copy);
-  const fade = copy.animate([{ opacity: 1 }, { opacity: 0 }],
-    { duration: duration("--motion-base") / 2, easing: easing("--ease-standard"), fill: "forwards" });
-  fade.finished.then(() => copy.remove(), () => copy.remove());
+  const fade = copy.animate([{ opacity: 1 }, { opacity: 0 }], {
+    duration: duration("--motion-base") / 2,
+    easing: easing("--ease-standard"),
+    fill: "forwards",
+  });
+  fade.finished.then(
+    () => copy.remove(),
+    () => copy.remove(),
+  );
 }
 
 // Content stays transparent while the loader fades, then fades in.
@@ -44,7 +56,10 @@ function handOff(records: MutationRecord[]) {
     const anchor = content[0]?.getBoundingClientRect();
     if (anchor) fadeOut(loader, anchor);
     for (const element of content)
-      element.animate(fadeIn, { duration: duration("--motion-base"), easing: easing("--ease-standard") });
+      element.animate(fadeIn, {
+        duration: duration("--motion-base"),
+        easing: easing("--ease-standard"),
+      });
   }
 }
 

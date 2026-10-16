@@ -11,10 +11,13 @@ export const studioTimeout = process.env.CI ? 60_000 : 30_000;
 // CI passes its matrix shard as TEST_SHARD ("2/3"). Each config decides how to
 // split: suites that run fully parallel let Playwright share tests evenly, while
 // the application suite keeps whole files together and balances them by duration.
-export function parseShard(value = process.env.TEST_SHARD): { current: number; total: number } | null {
+export function parseShard(
+  value = process.env.TEST_SHARD,
+): { current: number; total: number } | null {
   if (!value) return null;
   const match = /^([1-9]\d*)\/([1-9]\d*)$/.exec(value);
-  if (!match || Number(match[1]) > Number(match[2])) throw new Error(`TEST_SHARD must look like 1/3, got ${value}`);
+  if (!match || Number(match[1]) > Number(match[2]))
+    throw new Error(`TEST_SHARD must look like 1/3, got ${value}`);
   return { current: Number(match[1]), total: Number(match[2]) };
 }
 
@@ -32,18 +35,30 @@ function estimate(file: string): number {
 
 // Deterministic greedy balance: heaviest files first, each to the lightest shard.
 // Returns the testMatch patterns of one shard, or undefined when not sharding.
-export function balancedShardFiles(testDir: string, ignore: string[] = [], shard = parseShard()): string[] | undefined {
+export function balancedShardFiles(
+  testDir: string,
+  ignore: string[] = [],
+  shard = parseShard(),
+): string[] | undefined {
   if (!shard) return undefined;
   const durations = fileDurations(testDir);
-  const files = readdirSync(testDir).filter((name) => name.endsWith(".spec.ts") && !ignore.includes(name)).sort();
+  const files = readdirSync(testDir)
+    .filter(name => name.endsWith(".spec.ts") && !ignore.includes(name))
+    .sort();
   const weight = (name: string) => durations[name] ?? estimate(path.join(testDir, name));
-  const buckets = Array.from({ length: shard.total }, () => ({ seconds: 0, files: [] as string[] }));
+  const buckets = Array.from({ length: shard.total }, () => ({
+    seconds: 0,
+    files: [] as string[],
+  }));
   for (const name of [...files].sort((a, b) => weight(b) - weight(a) || a.localeCompare(b))) {
-    const bucket = buckets.reduce((lightest, candidate) => (candidate.seconds < lightest.seconds ? candidate : lightest));
+    const bucket = buckets.reduce((lightest, candidate) =>
+      candidate.seconds < lightest.seconds ? candidate : lightest,
+    );
     bucket.seconds += weight(name);
     bucket.files.push(name);
   }
   const chosen = buckets[shard.current - 1].files;
-  if (!chosen.length) throw new Error(`Shard ${shard.current}/${shard.total} has no files: use fewer shards`);
-  return chosen.sort().map((name) => `**/${path.basename(testDir)}/${name}`);
+  if (!chosen.length)
+    throw new Error(`Shard ${shard.current}/${shard.total} has no files: use fewer shards`);
+  return chosen.sort().map(name => `**/${path.basename(testDir)}/${name}`);
 }

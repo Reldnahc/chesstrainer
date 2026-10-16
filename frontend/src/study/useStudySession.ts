@@ -8,12 +8,16 @@ import { errorMessage } from "../api";
  * failed command blocks the next until a reload reconciles the server revision,
  * because a lost response may already have been committed.
  */
-export function useStudySession<S>(id: string, load: (signal: AbortSignal) => Promise<S>, events: {
-  /** Runs as a load or a command starts (stop playback, clear narration). */
-  starting?: (kind: "load" | "command") => void;
-  /** Runs with a freshly loaded session. */
-  loaded?: (session: S) => void;
-} = {}) {
+export function useStudySession<S>(
+  id: string,
+  load: (signal: AbortSignal) => Promise<S>,
+  events: {
+    /** Runs as a load or a command starts (stop playback, clear narration). */
+    starting?: (kind: "load" | "command") => void;
+    /** Runs with a freshly loaded session. */
+    loaded?: (session: S) => void;
+  } = {},
+) {
   const [session, setSession] = useState<S | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -50,8 +54,11 @@ export function useStudySession<S>(id: string, load: (signal: AbortSignal) => Pr
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- opening the session fetches it; reload marks it loading first
     open();
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
-    return () => { generation.current++; request.current?.abort(); };
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
+      generation.current++;
+      request.current?.abort();
+    };
   }, [id]);
 
   /**
@@ -59,8 +66,11 @@ export function useStudySession<S>(id: string, load: (signal: AbortSignal) => Pr
    * response only while it is still the latest; `failed` runs as the error is set.
    * Returns false when another command, a load or an error blocks it.
    */
-  async function run(send: (signal: AbortSignal | undefined) => Promise<S>,
-    applied: (result: S) => void, failed?: () => void): Promise<boolean> {
+  async function run(
+    send: (signal: AbortSignal | undefined) => Promise<S>,
+    applied: (result: S) => void,
+    failed?: () => void,
+  ): Promise<boolean> {
     if (locked.current) return false;
     locked.current = true;
     setBusy(true);

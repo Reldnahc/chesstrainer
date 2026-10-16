@@ -3,11 +3,7 @@ import { ArtworkSvg, BodyRig, HeadRig } from "../../ArtworkRig";
 import type { CoachArtworkProps } from "../../model";
 import AnimalFace, { type AnimalPalette } from "../../studies/AnimalFace";
 import AnimalPaws from "../../studies/AnimalPaws";
-import {
-  animalPoses,
-  tailTransform,
-  type AnimalPose,
-} from "../../studies/animalPoses";
+import { animalPoses, tailTransform, type AnimalPose } from "../../studies/animalPoses";
 import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
 import "../../studies/motion.css";
@@ -64,30 +60,15 @@ export default function PuppyCoach({ expression }: CoachArtworkProps) {
           </g>
         </g>
         <path d="M22 117V101q0-19 28-21 28 2 28 21v16Z" fill={palette.fur} />
-        <path
-          d="M39 83q11 3 22 0l5 17-7 18H41l-7-18Z"
-          fill={palette.muzzle}
-        />
+        <path d="M39 83q11 3 22 0l5 17-7 18H41l-7-18Z" fill={palette.muzzle} />
         <ellipse cx="29" cy="116" rx="13" ry="6" fill={palette.paw} />
         <ellipse cx="71" cy="116" rx="13" ry="6" fill={palette.paw} />
         <HeadRig>
-          {[false, true].map((right) => (
-            <g
-              key={String(right)}
-              transform={
-                right ? "translate(100 0) scale(-1 1)" : undefined
-              }
-            >
-              <g
-                transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 25 31)`}
-              >
-                <g
-                  className={`study-ear-motion study-ear-${right ? "right" : "left"}`}
-                >
-                  <path
-                    d="M28 23Q7 15 7 41l-1 22q1 20 13 17 12-3 11-27Z"
-                    fill="#795540"
-                  />
+          {[false, true].map(right => (
+            <g key={String(right)} transform={right ? "translate(100 0) scale(-1 1)" : undefined}>
+              <g transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 25 31)`}>
+                <g className={`study-ear-motion study-ear-${right ? "right" : "left"}`}>
+                  <path d="M28 23Q7 15 7 41l-1 22q1 20 13 17 12-3 11-27Z" fill="#795540" />
                   <path
                     d="M20 30Q12 37 13 57q0 14 6 15"
                     fill="none"
@@ -99,26 +80,11 @@ export default function PuppyCoach({ expression }: CoachArtworkProps) {
               </g>
             </g>
           ))}
-          <path
-            d="M18 43Q18 13 50 15q32-2 32 28v15Q82 83 50 86 18 83 18 58Z"
-            fill={palette.fur}
-          />
-          <path
-            d="M20 39q1-18 22-22 1 9-6 18-7 10-17 18Z"
-            fill="#8b6044"
-          />
-          <path
-            d="M59 17q20 3 22 22l1 14q-13-1-21-12-6-9-2-24Z"
-            fill="#946544"
-          />
-          <path
-            d="M46 16h8q-5 15 0 27l5 9-18 1 5-10q5-12 0-27Z"
-            fill={palette.muzzle}
-          />
-          <path
-            d="M27 71q23 11 46 0-5 13-23 15-18-2-23-15Z"
-            fill={palette.muzzle}
-          />
+          <path d="M18 43Q18 13 50 15q32-2 32 28v15Q82 83 50 86 18 83 18 58Z" fill={palette.fur} />
+          <path d="M20 39q1-18 22-22 1 9-6 18-7 10-17 18Z" fill="#8b6044" />
+          <path d="M59 17q20 3 22 22l1 14q-13-1-21-12-6-9-2-24Z" fill="#946544" />
+          <path d="M46 16h8q-5 15 0 27l5 9-18 1 5-10q5-12 0-27Z" fill={palette.muzzle} />
+          <path d="M27 71q23 11 46 0-5 13-23 15-18-2-23-15Z" fill={palette.muzzle} />
           <g transform="translate(0 3)">
             <AnimalFace
               pose={pose}
@@ -129,12 +95,7 @@ export default function PuppyCoach({ expression }: CoachArtworkProps) {
           </g>
         </HeadRig>
         <path d="M30 82q20 9 40 0l-1 7q-19 8-38 0Z" fill={palette.accent} />
-        <path
-          d="M33 85q17 7 34 0"
-          fill="none"
-          stroke="#aac0a8"
-          strokeWidth="1"
-        />
+        <path d="M33 85q17 7 34 0" fill="none" stroke="#aac0a8" strokeWidth="1" />
         <circle cx="50" cy="94" r="4.4" fill="#d5b56d" />
         <path
           d="m48 94 1.4 1.3 2.7-3"

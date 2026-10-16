@@ -1,36 +1,83 @@
-import type {ClaimCode} from "./model";
+import type { ClaimCode } from "./model";
 
 /** Each template says only what its named evidence-backed slots establish. Every
  * claim code has one, so no claim can render as nothing. */
 export const neutralTemplates: Readonly<Record<ClaimCode, readonly string[]>> = {
-  allowed_mate: ["This allows a forced checkmate. {reply}", "{opponent} now has a forced mate. {reply}"],
+  allowed_mate: [
+    "This allows a forced checkmate. {reply}",
+    "{opponent} now has a forced mate. {reply}",
+  ],
   // A winning side's {mate} counts the move just played (the bar after it shows one
   // fewer), so these say the move begins it. A losing side's {mate} counts the
   // mating side's moves from here, as the bar does.
   forced_mate_started: ["{move} begins a forced mate in {mate}, whatever {opponent} replies."],
-  forced_mate_continued: ["{move} keeps the forced checkmate going; from this move it is mate in {mate}."],
+  forced_mate_continued: [
+    "{move} keeps the forced checkmate going; from this move it is mate in {mate}.",
+  ],
   forced_mate_slower: ["{move} still begins a forced mate in {mate}, but {best} mated sooner."],
   forced_mate_next: ["{move} leaves {opponent} unable to stop checkmate next move."],
-  forced_mate_hastened: ["The position was already lost to a forced mate; {move} lets it come sooner: {opponent} mates in {mate}."],
-  forced_mate_held: ["The position was already lost to a forced mate; even against the best defence, {opponent} mates in {mate}."],
-  missed_mate: ["{best} kept a forced mate; this move lets that finish go.", "There was a forced finish with {best}. This move loses that mate."],
-  tactic_played: ["{move} finds a {motif} in the engine's continuation. {detail}", "The point of {move} is a {motif}. {detail}"],
-  tactic_allowed: ["This allows {opponent} a {motif} in the strongest continuation. {detail}", "{opponent} has a {motif} in the continuation. {detail}"],
-  tactic_missed: ["{best} had a {motif} that this move misses. {detail}", "The missed idea is a {motif} with {best}. {detail}"],
-  cause_abandoned_defender: ["{move} moves the only unpinned defender of {side}'s {piece} on {square}. {opponent} can reply {reply}, capturing it."],
-  cause_opponent_threat_recognition: ["{move} leaves {side}'s {piece} on {square} under the attack enabled by the opponent's preceding move. {opponent} can reply {reply}, capturing it."],
-  cause_avoiding_bad_trades: ["{move} gives up {side}'s {piece} for a {captured}; {opponent} can recapture with {reply}."],
-  sacrifice: ["The sacrifice stays sound even when it is accepted.", "The offer works even if the opponent accepts it."],
-  only_move: ["This was the only searched move that kept the position playable.", "This held the position; the searched alternatives were losing."],
+  forced_mate_hastened: [
+    "The position was already lost to a forced mate; {move} lets it come sooner: {opponent} mates in {mate}.",
+  ],
+  forced_mate_held: [
+    "The position was already lost to a forced mate; even against the best defence, {opponent} mates in {mate}.",
+  ],
+  missed_mate: [
+    "{best} kept a forced mate; this move lets that finish go.",
+    "There was a forced finish with {best}. This move loses that mate.",
+  ],
+  tactic_played: [
+    "{move} finds a {motif} in the engine's continuation. {detail}",
+    "The point of {move} is a {motif}. {detail}",
+  ],
+  tactic_allowed: [
+    "This allows {opponent} a {motif} in the strongest continuation. {detail}",
+    "{opponent} has a {motif} in the continuation. {detail}",
+  ],
+  tactic_missed: [
+    "{best} had a {motif} that this move misses. {detail}",
+    "The missed idea is a {motif} with {best}. {detail}",
+  ],
+  cause_abandoned_defender: [
+    "{move} moves the only unpinned defender of {side}'s {piece} on {square}. {opponent} can reply {reply}, capturing it.",
+  ],
+  cause_opponent_threat_recognition: [
+    "{move} leaves {side}'s {piece} on {square} under the attack enabled by the opponent's preceding move. {opponent} can reply {reply}, capturing it.",
+  ],
+  cause_avoiding_bad_trades: [
+    "{move} gives up {side}'s {piece} for a {captured}; {opponent} can recapture with {reply}.",
+  ],
+  sacrifice: [
+    "The sacrifice stays sound even when it is accepted.",
+    "The offer works even if the opponent accepts it.",
+  ],
+  only_move: [
+    "This was the only searched move that kept the position playable.",
+    "This held the position; the searched alternatives were losing.",
+  ],
   decisive_resource: ["This was the only searched move that kept the decisive advantage."],
-  reply_capture: ["{opponent} can answer {reply}, capturing {side}'s {piece}.", "The immediate reply is {reply}, taking {side}'s {piece}."],
+  reply_capture: [
+    "{opponent} can answer {reply}, capturing {side}'s {piece}.",
+    "The immediate reply is {reply}, taking {side}'s {piece}.",
+  ],
   reply_check: ["{opponent}'s strongest reply is {reply}, with check."],
   alternative: ["Stockfish prefers {best} ({evaluation} for the mover)."],
-  loss: ["This costs {loss} pawns of evaluation compared with the best move.", "The position is {loss} pawns worse than after the best continuation."],
-  best: ["This stays close to the engine's best continuation.", "This preserves what the engine's best move offered."],
-  good: ["A sound choice that keeps most of the position's value.", "This remains close to the stronger alternatives."],
+  loss: [
+    "This costs {loss} pawns of evaluation compared with the best move.",
+    "The position is {loss} pawns worse than after the best continuation.",
+  ],
+  best: [
+    "This stays close to the engine's best continuation.",
+    "This preserves what the engine's best move offered.",
+  ],
+  good: [
+    "A sound choice that keeps most of the position's value.",
+    "This remains close to the stronger alternatives.",
+  ],
   uncertain_reason: ["{best} is stronger, but I don't have a clear explanation of why yet."],
-  human_natural_error: ["A natural mistake: this is an appealing choice, but the reply makes it costly."],
+  human_natural_error: [
+    "A natural mistake: this is an appealing choice, but the reply makes it costly.",
+  ],
   human_rare: ["Unusual, but strong: this choice holds up against the engine's reply."],
   difficult_defense: ["{best} would have held the position, but it was a hard defense to find."],
   human_challenging: ["{best} was a hard move to find. A useful idea to remember."],
@@ -45,26 +92,38 @@ export const neutralTemplates: Readonly<Record<ClaimCode, readonly string[]>> = 
   missed_punishment: ["The opponent gave {side} a chance at {earlier}, but this lets it slip."],
   repeated: ["This {motif} issue has now appeared {count} times in the reviewed part of the game."],
   support_restored: ["The {piece} has support again after being left unguarded at {earlier}."],
-  erosion: ["This is one of several small concessions since {earlier}; together they worsened the position."],
+  erosion: [
+    "This is one of several small concessions since {earlier}; together they worsened the position.",
+  ],
   conversion: ["{side} kept the advantage from {earlier} all the way to the win."],
   history: ["This {motif} issue also appears in {games} other games in your saved history."],
   development: ["{lead}develops the {piece} from its original square."],
   rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file."],
-  passed: ["{lead}leaves {side} with passed pawns on {squares}; no enemy pawn is ahead on those or neighboring files."],
+  passed: [
+    "{lead}leaves {side} with passed pawns on {squares}; no enemy pawn is ahead on those or neighboring files.",
+  ],
   passer_advance: ["{lead}advances the passed pawn to {square}."],
-  isolated: ["{lead}leaves {side} with isolated pawns on {squares}, with no friendly pawn on a neighboring file."],
+  isolated: [
+    "{lead}leaves {side} with isolated pawns on {squares}, with no friendly pawn on a neighboring file.",
+  ],
   support: ["{lead}gives the {piece} on {square} support."],
-  unsupported: ["{lead}leaves the {piece} on {square} undefended; that alone does not mean it is lost."],
+  unsupported: [
+    "{lead}leaves the {piece} on {square} undefended; that alone does not mean it is lost.",
+  ],
   flights: ["{lead}opens {squares} as a legal flight square for the king."],
   castle: ["{lead}castles the king to {square} and relocates the rook."],
   bishops: ["{lead}removes {side}'s pair of opposite-colored bishops."],
   doubled: ["{lead}leaves {side} with doubled pawns on files {files}."],
   mate_win: ["Checkmate. You finished the attack; the king has no legal escape."],
-  mate_loss: ["Checkmate. Your king has no legal escape. Let's look back for a way to stop the attack."],
+  mate_loss: [
+    "Checkmate. Your king has no legal escape. Let's look back for a way to stop the attack.",
+  ],
   draw: ["The position is drawn. We can look back at the earlier decisions together."],
   cold: ["Tap a piece, then its destination."],
   thinking: ["I'm checking the move and the opponent's strongest reply…"],
-  unavailable: ["You can still explore the board. Engine coaching is unavailable for this position."],
+  unavailable: [
+    "You can still explore the board. Engine coaching is unavailable for this position.",
+  ],
   practice_error: ["I couldn't get a result for that move. You can try again."],
   retry: ["Mistake. Try again."],
   recovered: ["You found it this time. {detail}", "That recovers the idea. {detail}"],
