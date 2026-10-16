@@ -294,10 +294,12 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   itself a Mistake or worse, and the previous position between -150 and +150 becomes
   at least +200, or previous position at most -200 becomes at least -50). Previous scores use the position
   before the opponent's move, normalized to the current mover. A variation move
-  can be the only-move Great but never the capitalizing one: its previous score
-  comes from a search of the position before the opponent's move, and no grade of
-  that move exists in a variation, so no opponent error is established. A sole
-  legal move is not Great.
+  follows the same rule: the position before the opponent's move is searched, and
+  the opponent's move is a Mistake or worse when the position it reached (this
+  move's own root search) concedes a Mistake's loss against that search's best;
+  that search is one ply from the opponent move's own, so a borderline loss can
+  read differently from a saved review. A Play move analysed before the move it answers reads the same search until that
+  move's report is saved and linked. A sole legal move is not Great.
 - Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
   involving the played move, or a winning mate; a non-pawn sacrifice at an
   immediate net material cost; and an explicit native

@@ -872,3 +872,23 @@ def test_only_a_win_in_the_header_keeps_a_repeated_last_frame_live(result, ended
     last = move_frames(board, moves, {}, result=result)[-1]
     assert (last["termination"] == "threefold repetition") is ended
     assert bool(last["legal_moves"]) is not ended
+
+
+@pytest.mark.stockfish
+def test_a_variation_move_capitalizing_on_an_opponent_mistake_is_great(settings, stockfish_path):
+    settings.stockfish_path = stockfish_path
+    app = create_app(settings, workers=False)
+    with TestClient(app) as client:
+        game = seed(app, '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 *')
+        # 2...Qh4?? hangs the queen from a level position; 3.Nxh4 wins it.
+        report = client.post(
+            f"/api/games/{game}/analyze", json={"ply": 3, "moves": ["d8h4", "f3h4"]}
+        ).json()["report"]
+        assert report["previous_mistake"] is True
+        assert report["label"] == "Great"
+        assert "capitalized" in report["reason"]
+        # The opponent's sound move is no error to capitalize on.
+        quiet = client.post(
+            f"/api/games/{game}/analyze", json={"ply": 3, "moves": ["b8c6"]}
+        ).json()["report"]
+        assert quiet["previous_mistake"] is False
