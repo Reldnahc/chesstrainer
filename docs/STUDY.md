@@ -65,14 +65,15 @@ records how the rows were chosen. A pack with a changed file, bad row, duplicate
 or wrong count is refused whole; definitions validate once per process and
 session start uses an indexed lookup.
 
-The bundled starter pack (`starter_pack/`, CC0, 972 puzzles) is weighted toward
+The bundled starter pack (`starter_pack/`, CC0, 943 puzzles) is weighted toward
 lower ratings with solver lines of at most nine plies; its README records the
 sampling. `scripts/build_puzzle_pack.py` rebuilds or enlarges a pack from a
 downloaded dataset under a new version. `PUZZLE_PACK_PATH` adds a larger
 installed pack, whose manifest, hash, rows and count are checked at startup; it is
 engine-verified only if `verify_puzzle_pack.py` was run on it (the manifest's
 `verification` block records that run). The starter pack's recorded run is
-`solution-uniqueness-v1`, which allowed a slower rival mate as a warning. Saved solves keep their own snapshots across
+`solution-uniqueness-v2`, the current rule below, made twice at depth 18 (once
+multi-threaded, once single-threaded); a puzzle either run failed was removed. Saved solves keep their own snapshots across
 pack revisions. Lichess themes and ratings are external labels; Fieldwork makes
 no claim about a puzzle's pedagogical value.
 

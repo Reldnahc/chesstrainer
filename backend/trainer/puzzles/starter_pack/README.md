@@ -1,6 +1,6 @@
 # Lichess starter puzzle pack
 
-`puzzles.csv` holds 972 rows copied unmodified from the public
+`puzzles.csv` holds 943 rows copied unmodified from the public
 [Lichess puzzle database](https://database.lichess.org/#puzzles), which the
 Lichess contributors release under CC0-1.0; the complete dedication is in
 COPYING.txt. `manifest.json` pins the file by SHA-256 and records exactly how
@@ -14,12 +14,18 @@ harder ones remain available through the difficulty filter. Themes, ratings and
 puzzle links are Lichess's own; Fieldwork adds no claim about pedagogical
 quality or uniqueness beyond legal replay of every line.
 
-`manifest.json` also carries `verification`: the sampled 1,000 rows were checked
-with `scripts/verify_puzzle_pack.py` (Stockfish 18, depth 18; solution within
-50 cp of best, alternatives at least 100 cp worse, final payoff at least 150 cp
-or mate). 972 passed; the 28 listed under `removed` had a second equally short
-mate or a near-equal alternative, which this player would wrongly mark as
-failures, and were pruned before pinning the hash.
+`manifest.json` also carries `verification`. The sampled 1,000 rows were first
+checked on 2026-10-02 (`previous`): 28 had a second equally short mate or a
+near-equal alternative and were pruned. On 2026-10-16 the remaining 972 were
+re-checked under the current rule with `scripts/verify_puzzle_pack.py`
+(Stockfish 18, depth 18; solution within 50 cp of best, every alternative at
+least 100 cp worse, under +200 cp and not a mate of any length, also when the
+solution mates; final payoff at least 150 cp or mate). The pack was run twice,
+multi-threaded and single-threaded, because threaded search varies near the
++200 cp line; the 29 puzzles either run failed are listed under `removed`. In
+28 a second move still won by more than two pawns, which this player, accepting
+only the stored move, would mark wrong; in one the line ended only +1.32 ahead.
+943 remain.
 
 `trainer.puzzles.packs` validates the hash and every row once per process. A
 pack is served whole or not at all. To rebuild or enlarge the selection, run
