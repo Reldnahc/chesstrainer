@@ -82,3 +82,27 @@ test('onboarding keeps provider usernames optional and disables both fields duri
     await page.unrouteAll({behavior: 'wait'});
   }
 });
+
+test('the import form holds its username field behind the shared loader, and a failed read leaves it open with Try again', async ({page}) => {
+  let release!: () => void;
+  const held = new Promise<void>(resolve => { release = resolve; });
+  let fail = true;
+  await page.route('**/api/providers/*/sync', async route => {
+    await held;
+    if (fail) return route.fulfill({status: 503, json: {detail: 'Provider status unavailable.'}});
+    return route.fulfill({json: {...syncStatus('chesscom'), username: 'SavedName'}});
+  });
+  await page.goto('/settings?import=chesscom');
+  const form = page.locator('.import-form');
+  const imported = form.getByLabel('Chess.com username', {exact: true});
+  await expect(form.getByRole('status')).toHaveText('Loading your saved username…');
+  await expect(imported).toBeDisabled();
+  release();
+  await expect(form.getByRole('alert')).toHaveText('Couldn’t load your saved username.');
+  await expect(imported).toBeEnabled();
+  fail = false;
+  await form.getByRole('button', {name: 'Try again', exact: true}).click();
+  await expect(imported).toHaveValue('SavedName');
+  await expect(form.getByRole('alert')).toHaveCount(0);
+  await expect(form.getByRole('status')).toHaveCount(0);
+});
