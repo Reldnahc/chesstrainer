@@ -4,10 +4,8 @@ import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS, bookRecordingId, deriveBookPr
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {makeIntent} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {neutralPersonality} from "../src/dialogue/personality";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {neutralPersonality, type CoachPersonality} from "../src/dialogue/personality";
 import {coachPersonalities} from "../src/dialogue/characters";
-import {partner} from "../src/dialogue/characters/partner";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 import {NAMED_OPENING_TAKES} from "../src/audio/speech/falseTakes";
 import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
@@ -205,6 +203,8 @@ for (const coach of openingCoaches) {
       }
     }
     expect([...seen].sort()).toEqual(Object.keys(coach.authored).sort());
+    // Every coach authors all of the opening sentences.
+    expect(Object.keys(coach.authored)).toHaveLength(BOOK_ENTRY_VARIANTS + BOOK_FOLLOW_VARIANTS);
   });
 
   test(`${coach.id} preserves original opening evidence and clones its presentation`, () => {
@@ -314,7 +314,7 @@ test("opening presentation changes factual identity without changing other coach
 });
 
 /** A reviewed move just past the catalogue, carrying only the departure claim. */
-function departureSelection(coach: {id: string; personality: typeof storyteller}) {
+function departureSelection(coach: {id: string; personality: CoachPersonality}) {
   const game = gameWithReports(6), ply = 6, frame = game.frames[ply], report = frame.report!;
   report.opening = null;
   report.label = "Best";
@@ -330,8 +330,8 @@ function departureSelection(coach: {id: string; personality: typeof storyteller}
 }
 
 test("the opening-departure clip plays for every coach, each saying our book ends", () => {
-  expect(departureSelection({id: "classic", personality: storyteller})).toBe("opening-departure");
-  expect(departureSelection({id: "man-partner", personality: partner})).toBe("opening-departure");
+  expect(departureSelection({id: "classic", personality: coachPersonalities.classic})).toBe("opening-departure");
+  expect(departureSelection({id: "man-partner", personality: coachPersonalities["man-partner"]})).toBe("opening-departure");
 });
 
 test("no recorded opening-departure take claims more than our catalogue knows", () => {
