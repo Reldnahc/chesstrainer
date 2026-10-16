@@ -50,8 +50,7 @@ def require_active_review(db, exercise_id):
     if state.retired_at is not None:
         raise InvalidInput("This position is retired and will no longer appear in reviews.")
     exercise = db.get(Exercise, exercise_id)
-    # Only a card set aside because its game's review no longer backs it is refused;
-    # other ineligible game cards (such as the removed lessons' cards) still start.
+    # A game card set aside because its game's review no longer backs it is refused.
     if exercise.source == "game" and not state.eligible and not _backed(db, exercise):
         raise InvalidInput(
             "This position no longer matches its game's review, so it has left the queue."
