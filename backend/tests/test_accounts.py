@@ -345,29 +345,30 @@ def test_account_migration_preserves_existing_learning_history(settings):
             for table in tables
         }
     migrate(engine)
-    # Later migrations dropped the archived lesson tables and their link columns,
-    # and replaced side text, epoch times and the PGN date with one representation
-    # each (their values are checked in test_migrations); classification runs lost
-    # the hosted-model prompt version and token counts.
+    # Columns later migrations removed on purpose, by table; every other saved
+    # value must come through unchanged.
     dropped = {
-        "lesson_item_id",
-        "repertoire_id",
-        "orientation",
-        "color",
-        "created",
-        "expires",
-        "played_on",
-        "chesscom_username",
-        "prompt_version",
-        "input_tokens",
-        "output_tokens",
+        # The archived lesson and repertoire tables and their link columns.
+        "review_sessions": {"lesson_item_id"},
+        "exercises": {"repertoire_id", "orientation"},
+        # One representation per concept (values checked in test_migrations).
+        "opening_studies": {"color"},
+        "opening_recall_snapshots": {"orientation"},
+        "users": {"created", "chesscom_username"},
+        "auth_sessions": {"expires"},
+        "games": {"played_on"},
+        # Hosted-model fields of classification runs.
+        "classification_runs": {"prompt_version", "input_tokens", "output_tokens"},
+        # Replayed board facts nothing read (backend audit 43, 3b3c1b0317ee).
+        "decisions": {"facts"},
     }
     current = set(sqlalchemy.inspect(engine).get_table_names())
     with engine.connect() as connection:
         for table, rows in before.items():
             if table not in current:
                 continue
-            rows = [{k: v for k, v in row.items() if k not in dropped} for row in rows]
+            gone = dropped.get(table, set())
+            rows = [{k: v for k, v in row.items() if k not in gone} for row in rows]
             after = [
                 dict(row)
                 for row in connection.exec_driver_sql(
