@@ -256,3 +256,21 @@ def test_a_skewer_never_marks_the_empty_square_its_attacker_has_yet_to_reach(mis
         assert "attacker" not in cues["roles"]
         assert all(board.piece_at(chess.parse_square(square)) for square in marked)
     assert cues["roles"]["targets"] == ["e4", "e7"]
+
+
+def test_a_skewering_check_keeps_its_attacker_on_the_square_the_move_reached():
+    # 1.Re1+ is itself the skewer: the before-move witness names e1 while it is empty.
+    evidence = line(
+        "8/4q3/8/8/4k3/8/8/R5K1 w - - 0 1",
+        ["a1e1", "e4d3", "e1e7"],
+        [
+            {
+                "frame_ply": 0,
+                "roles": {"attacker": ["e1"], "targets": ["e4", "e7"]},
+                "explanation": "Re1+ skewers the king to the queen behind it.",
+            }
+        ],
+    )
+    cues = review_cues(evidence, mistake=False)
+    assert cues["roles"]["attacker"] == ["e1"]
+    assert cues["roles"]["targets"] == ["e4", "e7"]
