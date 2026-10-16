@@ -163,15 +163,15 @@ export function reloading<T>(query: Query<T>): true | undefined {
   return query.pending && query.data !== undefined ? true : undefined;
 }
 
+/** A useCommand's state and actions. */
+export type Command<K = true> = ReturnType<typeof useCommand<K>>;
+
 /**
  * One command at a time: `busy` names the command running (a row's id, or true),
  * `error` holds its failure for the page's banner, and a command still running
  * when the screen leaves is aborted and changes nothing. `then` runs only when
  * the command finished for a screen that is still there (to navigate or store).
  */
-/** A useCommand's state and actions. */
-export type Command<K = true> = ReturnType<typeof useCommand<K>>;
-
 export function useCommand<K = true>() {
   const [busy, setBusy] = useState<K | null>(null);
   const [error, setError] = useState("");
