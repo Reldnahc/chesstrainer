@@ -222,3 +222,27 @@ def test_the_editor_boards_follow_the_course_position_rule(name):
             choice = step.choices[0] if step.kind == "decision" and step.choices else None
             end = step_result(course, step, choice)
             assert boards[f"{chapter.id}/{step.id}"]["end_fen"] == end.board().fen(), step.id
+
+
+@pytest.mark.parametrize("end", [None, 0, 6, 4, 10_000])
+def test_an_unfinished_game_excerpt_shows_its_start_in_the_editor(end):
+    from pathlib import Path
+
+    data = json.loads(
+        (
+            Path(course_files.__file__).parent / "courses" / "italian-black-foundations.json"
+        ).read_text(encoding="utf-8")
+    )
+    step = next(
+        step
+        for chapter in data["chapters"]
+        for step in chapter["steps"]
+        if step["id"] == "quiet-game"
+    )
+    assert step["from"] == 6
+    if end is None:
+        del step["to"]
+    else:
+        step["to"] = end
+    board = course_files.check(data)["steps"]["quiet-development/quiet-game"]
+    assert board["end_fen"] == board["fen"]

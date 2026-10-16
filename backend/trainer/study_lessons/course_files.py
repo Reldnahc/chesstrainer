@@ -357,21 +357,18 @@ def chapter_record(chapter, known):
         feedback = DEFAULT_FEEDBACK if step.feedback is None else step.feedback
         return [(step.move, step.reply, feedback, target(step, step.next))]
 
-    # The first link into each step, in file order, decides an implied position.
-    incoming = {}
-    for step in chapter.steps:
+    def links(step):
         if kinds[step.id] == "decision":
-            links = [
-                (choice_next, index)
+            return [
+                (choice_next, (step.id, index))
                 for index, (*_, choice_next) in enumerate(decision_choices(step))
             ]
-        else:
-            links = [(target(step, step.next), None)]
-            if kinds[step.id] == "branch":
-                links.insert(0, (step.branch, "branch"))
-        for destination, via in links:
-            if destination is not None and destination in by_id:
-                incoming.setdefault(destination, (step.id, via))
+        found = [(target(step, step.next), (step.id, None))]
+        if kinds[step.id] == "branch":
+            found.insert(0, (step.branch, (step.id, "branch")))
+        return found
+
+    incoming = first_links(chapter.steps, links)
 
     positions, results, resolving = {}, {}, set()
 
@@ -548,9 +545,14 @@ def _editor_end(step, start, known):
             return start
         ends["line"] = _source(known["lines"][step["line_id"]])
     elif kind == "game_excerpt":
-        if step["game_id"] not in known["games"]:
+        game = known["games"].get(step["game_id"])
+        # An excerpt still being written (no end, or one outside the game) shows its start.
+        if game is None:
             return start
-        ends.update(game=_source(known["games"][step["game_id"]]), to_ply=step["to_ply"] or 0)
+        span = (step["from_ply"] or 0, step["to_ply"] or 0)
+        if not span[0] < span[1] <= len(game["moves"]):
+            return start
+        ends.update(game=_source(game), to_ply=span[1])
     elif kind == "demonstration":
         ends["moves"] = step.get("moves", ())
     try:
@@ -691,6 +693,22 @@ def dump(course, topic="opening"):
     return data
 
 
+def first_links(steps, links):
+    """The first link into each step, in file order: it decides a step's implied position.
+
+    ``links(step)`` gives the step's ``(destination, link)`` pairs in order; a branch
+    leads into its branch before its next step. The loader reads a file's records and
+    ``implied_positions`` a loaded course, so each supplies its own links.
+    """
+    ids = {step.id for step in steps}
+    incoming = {}
+    for step in steps:
+        for destination, link in links(step):
+            if destination is not None and destination in ids:
+                incoming.setdefault(destination, link)
+    return incoming
+
+
 def implied_positions(course, chapter):
     """The position the loader would give each step that has none written."""
     order = [step.id for step in chapter.steps]
@@ -698,20 +716,18 @@ def implied_positions(course, chapter):
         step_id: order[index + 1] if index + 1 < len(order) else None
         for index, step_id in enumerate(order)
     }
-    by_id = {step.id: step for step in chapter.steps}
-    incoming = {}
-    for step in chapter.steps:
+
+    def links(step):
         if step.kind == "decision":
-            links = [
+            return [
                 (choice.next_step, step_result(course, step, choice)) for choice in step.choices
             ]
-        else:
-            links = [(step.next_step, step_result(course, step))]
-            if step.kind == "branch":
-                links.insert(0, (step.branch_start, step.position))
-        for destination, result in links:
-            if destination is not None and destination in by_id:
-                incoming.setdefault(destination, result)
+        found = [(step.next_step, step_result(course, step))]
+        if step.kind == "branch":
+            found.insert(0, (step.branch_start, step.position))
+        return found
+
+    incoming = first_links(chapter.steps, links)
     implied = {}
     for step in chapter.steps:
         if step.kind in {"rehearsal", "game_excerpt"}:
