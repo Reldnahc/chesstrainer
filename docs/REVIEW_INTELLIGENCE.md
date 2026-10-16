@@ -319,7 +319,11 @@ claim that other moves are unplayable. Baseline MultiPV=2 does not enumerate eve
 acceptable choice; `alternatives_complete=false` and an explicit limitation
 preserve that distinction. Missing runner-up evidence cannot establish an only
 move. `only_good_move_at_depth` requires a nonlosing best move and a runner-up at
-least 150 cp worse that reaches -150 cp or a losing mate. A missed forced win
+least 150 cp worse that reaches -150 cp or a losing mate. Calling -1.50 losing
+follows the usual convention that ±1.50 is a decisive advantage (the Informator
++− sign), and Stockfish calibrates +1.00 to a 50% win chance in its own play;
+the review's coarser advantage bands (±2.00) only name the evaluation and are
+not this rule. A missed forced win
 while retaining +5 is **not** a sole defensive resource. These are bounded-search
 and rule conclusions, not proof against perfect play.
 

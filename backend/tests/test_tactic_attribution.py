@@ -89,3 +89,24 @@ def test_a_capture_with_check_does_not_make_a_defended_piece_undefended():
     # A defender behind the capturing piece (an x-ray) still defends.
     boards = line("b5k1/8/8/8/R7/7P/3Q2K1/r7 w - - 0 1", "Rxa8+", "Rxa8")
     assert ("missed_tactical_capture", "undefended_capture_gain") not in detected(boards)
+
+
+def test_a_poisoned_capture_followed_by_mate_is_not_a_hanging_piece():
+    # Opera game: 16.Qb8+ Nxb8 17.Rd8#. The queen is undefended, but taking it is mated.
+    board = chess.Board()
+    for san in (
+        "e4 e5 Nf3 d6 d4 Bg4 dxe5 Bxf3 Qxf3 dxe5 Bc4 Nf6 Qb3 Qe7 Nc3 c6 Bg5 b5 Nxb5 cxb5 "
+        "Bxb5+ Nbd7 O-O-O Rd8 Rxd7 Rxd7 Rd1 Qe6 Bxd7+ Nxd7 Qb8+"
+    ).split():
+        board.push_san(san)
+    boards = [board.copy()]
+    for san in ("Nxb8", "Rd8#"):
+        after = boards[-1].copy()
+        after.push_san(san)
+        boards.append(after)
+    assert not {skill for skill, _ in recognized(boards) | detected(boards)} & {
+        "missed_tactical_capture",
+        "hanging_piece",
+    }
+    # Without the mate the same capture still counts.
+    assert ("missed_tactical_capture", "undefended_capture_gain") in detected(boards[:2])
