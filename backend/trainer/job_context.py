@@ -1,9 +1,18 @@
 """The one object a job's steps receive: its account's resources and the host's services."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from trainer.config import Settings
+
+if TYPE_CHECKING:
+    from trainer.game_providers.gateway import ProviderGateway
+    from trainer.human_models.service import HumanModels
+    from trainer.local_classifier import LocalClassifier
+    from trainer.scheduling import FSRSScheduler
 
 
 @dataclass(frozen=True)
@@ -17,7 +26,10 @@ class JobContext:
     nothing else of the runner or the workspace, so no step reaches into either.
 
     ``sessions`` is for the engine and Maia cache rows, which keep sessions of
-    their own; account rows go through ``read()`` and ``write()``.
+    their own; account rows go through ``read()`` and ``write()``. The
+    per-decision helpers (``analyze_decision``, ``classify_decision``,
+    ``enrich_decision``, ``generate_for_game``) take only those units, so a job
+    passes its context and other callers a ``db.Units``.
     """
 
     job_id: str
@@ -27,10 +39,11 @@ class JobContext:
     read: Callable
     write: Callable
     engine_factory: Callable
-    scheduler: object
-    classifier: object
-    human_models: object
-    providers: object
+    scheduler: FSRSScheduler
+    # The local rules by default; tests and tools may pass another classifier.
+    classifier: LocalClassifier
+    human_models: HumanModels | None
+    providers: ProviderGateway
     # Whether this job should stop: the runner is stopping, the job was cancelled
     # or it is no longer this process's to run.
     cancelled: Callable[[], bool]

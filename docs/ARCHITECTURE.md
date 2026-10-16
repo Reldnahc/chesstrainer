@@ -45,7 +45,7 @@ saved game then queues its own analysis job. See
 | site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
 | job_lifecycle.py | Job kinds and statuses as enums, the fetch lane, and every state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
-| jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution dispatched by kind |
+| jobs.py / job_queue.py / job_execution.py / job_context.py | Bounded host workers, scheduling metadata, account-bound job execution dispatched by kind, and the one context every job step receives |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback; `lan.py` holds the host-name and same-origin rules it shares with account mode |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, a durable cache shared across accounts like the engine cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
@@ -347,7 +347,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 - game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
 - review_cues.py: projects saved immediate witnesses into current-board arrows and square roles without new engine searches; skips later witnesses and checks attack geometry with python-chess. Cues are derived when reports are read, so existing reviews need no reanalysis.
 - imports.py / game_providers/: learner resolution, provenance, deduplication and bounded serial public-game download through one provider gateway.
-- jobs.py / job_queue.py / job_execution.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution, bounded worker pools, cancellation and atomic progress.
+- jobs.py / job_queue.py / job_execution.py / job_context.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution through one `JobContext`, bounded worker pools, cancellation and atomic progress.
 - classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence. `classification_stages.py` separates root validation, line outcome admission, defense checks, provenance and abstention reasons; the classifier preserves ordered aggregation and primary-skill selection.
 - weaknesses.py: active weakness priorities with read-only historical attempt statistics; no course generation or progression.
 - reviews.py / explanations.py / scheduling.py / retirement.py: move grading, verified playback, FSRS adapter and persistent retirement.
@@ -371,7 +371,7 @@ sessions, `read()` and `write()` units and Maia models, and the host's settings,
 scheduler, classifier, engine factory, provider gateway and cancellation checks.
 Every job step (pipeline, review, refinement, fetch, level fit) takes that context
 and nothing else of the runner or the workspace; the sync poller takes the
-workspaces and the provider gateway it uses. There
+workspaces, the provider gateway and the settings it uses. There
 is no mutable global/current-account identity. Startup recovers unfinished jobs
 without login or creating per-user runtimes. Shutdown signals all active work,
 drains coordinators and their child pools, then closes the shared engines.

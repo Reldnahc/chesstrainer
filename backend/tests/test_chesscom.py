@@ -1,14 +1,13 @@
-import threading
 import time
 from datetime import date, datetime, timezone
 
 import httpx
 import pytest
+from account_units import job_context
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.api import create_app
-from trainer.db import Units
 from trainer.game_providers.base import ImportCancelled, ProviderError
 from trainer.game_providers.base import ProviderImportRequest as ChessComRequest
 from trainer.game_providers.chesscom import ChessComClient
@@ -65,7 +64,7 @@ def mock_client(settings, responses, seen=None):
 
 
 def fetch(job_id, sessions, settings, client, cancelled=lambda: False):
-    fetch_import(job_id, Units(sessions, threading.Lock()), settings, client, cancelled)
+    fetch_import(job_context(sessions, job_id, settings, cancelled), client)
 
 
 def test_request_validation_defaults_and_month_boundaries(settings):

@@ -87,7 +87,7 @@ class JobExecution:
             provider = db.get(ProviderImport, context.job_id).provider
         # One provider request at a time on the host, through the shared cooldown.
         with context.providers.client(provider) as client:
-            fetch_import(context.job_id, context, context.settings, client, context.cancelled)
+            fetch_import(context, client)
 
         def queue_games(db, job):
             # Poller finds are fresh; manual imports of older games backfill.

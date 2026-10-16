@@ -193,7 +193,7 @@ class JobPipeline:
 
     def run_enrichment(self):
         with self._drain():
-            tasks = plan_probes(self.context, self.job_id, self.settings, self.engine())
+            tasks = plan_probes(self.context, self.engine())
             for task in tasks:
                 if not self.games.submit(self.probe, task):
                     break

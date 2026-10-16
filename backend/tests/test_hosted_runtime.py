@@ -136,8 +136,8 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
                 entered.set()
         assert release.wait(8)
 
-    def fetch(job_id, units, *_args):
-        with units.read() as db:
+    def fetch(context, _client):
+        with context.read() as db:
             assert db.info["user_id"] == alice
             assert db.get(AnalysisJob, "bob-first") is None
         fetched.set()
