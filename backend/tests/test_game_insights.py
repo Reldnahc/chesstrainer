@@ -353,7 +353,7 @@ def test_play_games_keep_their_model_settings_out_of_rating_statistics():
     assert rows and all(rating is None for *_, rating in rows)
 
 
-ENDGAME_FEN = "3r2k1/5ppp/2n5/8/1bB5/5N2/5PPP/3RR1K1 b - - 0 20"
+ENDGAME_FEN = "3r2k1/5pp1/2n5/8/1bB5/5N2/5PP1/3RR1K1 b - - 0 20"
 
 
 def endgame_game(white_after, best_for_mover, result="0-1"):
@@ -498,3 +498,23 @@ def test_the_next_game_counts_by_start_time_for_synced_games():
     daily = synced("c", "09:00:00", "13:00:00")
     daily.started_at -= timedelta(days=1)
     assert tilt([first, daily])["rematches_after_loss"]["games"] == 0
+
+
+def test_insights_phases_use_the_shared_phase_rule():
+    from trainer.chess_core import game_phase
+    from trainer.game_insights import game_facts
+
+    # Six pieces besides kings and pawns, but 50 points of material: a middlegame.
+    fen = "2bqr1k1/pppppppp/8/8/8/8/PPPPPPPP/2BQR1K1 w - - 0 20"
+    pgn = (
+        f'[White "Student"]\n[Black "Rival"]\n[FEN "{fen}"]\n[SetUp "1"]\n'
+        '[Result "*"]\n\n20. a3 a6 *'
+    )
+    game = Game(id="phases", pgn=pgn, learner_color=True, white="Student", black="Rival")
+    facts = game_facts(game)
+    board = chess.Board(fen)
+    assert [row.phase for row in facts.plies] == ["middlegame", "middlegame"]
+    for row, uci in zip(facts.plies, ["a2a3", "a7a6"], strict=True):
+        assert row.phase == game_phase(board)
+        board.push_uci(uci)
+    assert facts.endgame is None

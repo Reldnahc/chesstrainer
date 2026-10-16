@@ -15,7 +15,7 @@ from typing import get_args
 import chess
 import chess.pgn
 
-from trainer.chess_core import DECISIVE_CP, Score, evaluation_loss
+from trainer.chess_core import DECISIVE_CP, Score, evaluation_loss, game_phase
 from trainer.contracts.insights import Speed
 from trainer.game_accuracy import STARTING_CP, accuracy_cp, mover_accuracy
 from trainer.game_library import mover_rating, parsed_game, pgn_rating
@@ -27,7 +27,7 @@ from trainer.play import from_play
 from trainer.review_intelligence.clocks import clock_facts, control
 from trainer.review_scores import MISTAKE_CP
 
-VERSION = "insights-1"
+VERSION = "insights-2"
 SPEEDS = get_args(Speed)
 # Learner-relative thresholds. "Clearly" winning or lost is the review's own
 # decisive score (DECISIVE_CP, three pawns), the same size of swing that makes an
@@ -169,22 +169,6 @@ def termination_of(headers, board, result):
     return "other"
 
 
-def pieces(board):
-    return sum(
-        len(board.pieces(kind, color))
-        for kind in (chess.KNIGHT, chess.BISHOP, chess.ROOK, chess.QUEEN)
-        for color in chess.COLORS
-    )
-
-
-def phase_of(board):
-    """Simple, documented divider: six or fewer pieces is an endgame."""
-    count = pieces(board)
-    if count <= 6:
-        return "endgame"
-    return "opening" if board.fullmove_number <= 10 and count > 10 else "middlegame"
-
-
 def endgame_class(board):
     """Queen, rook and minor-piece endings have only that kind of piece; others are mixed."""
     queens = any(board.pieces(chess.QUEEN, color) for color in chess.COLORS)
@@ -239,7 +223,7 @@ def game_facts(game, scores=None, rating=None):
     for ply, move in enumerate(parsed.mainline_moves(), 1):
         mover_white = board.turn == chess.WHITE
         learner = mover_white == learner_white
-        row = Ply(ply=ply, learner=learner, fullmove=board.fullmove_number, phase=phase_of(board))
+        row = Ply(ply=ply, learner=learner, fullmove=board.fullmove_number, phase=game_phase(board))
         if row.phase == "endgame" and facts.endgame is None:
             facts.endgame, facts.endgame_entry = endgame_class(board), ply
         if book.get(ply, {}).get("name"):
