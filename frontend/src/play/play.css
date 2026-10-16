@@ -25,35 +25,4 @@
   .play-setup-coach { order: -1; width: 100%; }
   .play-setup-portrait { width: 160px; margin-inline: auto; }
 }
-/* The coach's line sits above the portrait in the shared bubble style,
-   pointing down at it. Label and message reuse the review bubble's classes. */
-.play-setup-speech {
-  position: relative;
-  display: grid;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-4);
-  background: var(--coach-bubble-background);
-  border: 1px solid var(--coach-bubble-border);
-  border-radius: 10px;
-}
-.play-setup-speech::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: calc(50% - 6.5px);
-  width: 13px;
-  height: 13px;
-  background: var(--coach-bubble-background);
-  border-right: 1px solid var(--coach-bubble-border);
-  border-bottom: 1px solid var(--coach-bubble-border);
-  transform: rotate(45deg);
-}
-.play-setup-speech .coach-label { min-height: 28px; }
-.play-setup-speech .coach-message { min-height: 0; overflow: visible; }
-/* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
-@media (min-width: 761px) {
-  .play-setup-speech { padding: var(--space-4) var(--space-5); }
-  .play-setup-speech .coach-label { font-size: var(--text-lg); }
-  .play-setup-speech .coach-message p { font-size: var(--text-lg); }
-}
 }

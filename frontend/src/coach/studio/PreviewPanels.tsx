@@ -75,6 +75,7 @@ export function ConceptComparison({
           <Button
             variant="quiet"
             size="compact"
+            spread
             aria-pressed={family === direction.id}
             onClick={() => onFamily(direction.id)}
           >

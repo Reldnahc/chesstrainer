@@ -94,6 +94,12 @@ test("the setup page explains the measured level and starts a live game", async 
   await expect(page).toHaveURL(/\/play\/play1$/);
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.getByRole("button", {name: "Resign"})).toBeVisible();
+  // Resign is a toolbar Button: compact on desktop, narrower 44px target on phones.
+  const resign = page.getByRole("button", {name: "Resign"});
+  const phone = (page.viewportSize()?.width ?? 1440) <= 760;
+  await expect(resign).toHaveCSS("font-size", phone ? "11px" : "12px");
+  await expect(resign).toHaveCSS("padding-left", phone ? "6px" : "12px");
+  expect((await resign.boundingBox())!.height).toBe(phone ? 44 : 36);
   await expect(page.getByRole("button", {name: "Offer draw"})).toHaveCount(0);
   // No accuracy readout is reserved for a game in progress.
   await expect(page.locator(".review-board-meta .game-accuracy")).toHaveCount(0);

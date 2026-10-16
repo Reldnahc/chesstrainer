@@ -154,6 +154,7 @@ export default function ReviewMoves({
                     <Button
                       key={index}
                       size="dense"
+                      mono
                       aria-pressed={
                         branch?.id === b.id && cursor.step === index + 1
                       }
@@ -161,7 +162,7 @@ export default function ReviewMoves({
                     >
                       {san}
                       {report ? (
-                        <MoveBadge label={report.label} />
+                        <MoveBadge size="small" label={report.label} />
                       ) : (
                         <span className="muted" aria-label="Not yet rated">
                           …

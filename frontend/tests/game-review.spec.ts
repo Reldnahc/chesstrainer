@@ -177,6 +177,10 @@ test('book moves appear on the board, coach and branches with original-game accu
   await expect(page.locator('.coach-speech .move-badge')).toContainText('Book', {timeout: 30_000});
   await expect(page.locator('.coach-speech')).toContainText("King's Knight Opening");
   await expect(page.locator('.game-variation-row .label-book svg')).toBeVisible();
+  // Variation badges are MoveBadge's small size; the graph reading is EvaluationScore's compact size.
+  await expect(page.locator('.game-variation-row .move-badge').first()).toHaveCSS('font-size', '10px');
+  await expect(page.locator('.game-graph-reading .evaluation-score')).toHaveCSS('font-size', '14px');
+  await expect(page.locator('.game-graph-reading .evaluation-score')).toHaveCSS('min-height', '27px');
   await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   expect(await table.locator('tbody tr').allTextContents()).toEqual(counts);
   await expect(page.getByLabel('White accuracy', {exact: true}).locator('b')).toHaveText(white);
