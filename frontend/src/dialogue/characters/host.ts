@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {hostTacticalTemplates} from "./scopedTactics";
-import {hostOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const host: CoachPersonality = {
-  version: "host-4", maxCharacters: 310, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const hostTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, look: a {motif} is live.",
+    played_possible: "{move} opens the door to a {motif}, though the replies settle it.",
+    allowed_immediate: "Hold that thought: {opponent} can answer {action}, which brings a {motif}.",
+    allowed_possible: "Later, {opponent} could find a {motif} here; that hangs on the replies.",
+    missed_immediate: "Put {best} next to this move, and the {motif} jumps out.",
+    missed_possible: "With {best}, a {motif} was possible, though the replies would decide.",
+  },
+  fork: {actual: "That's the {targets} hit at once by one piece.", possible: "One piece, and the {targets} would be attacked by it in one go."},
+  material: "There may be a {gain} waiting, though plenty depends on what both sides play next.",
+  capture: {candidate: "With {capture}, the {piece} comes off.", followup: "Play it on, and {capture} might pick off a {piece} down the road."},
+  playedCapture: {fact: "{move} has a {motif} built in.", consequence: "Then {capture} removes the {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const hostOpeningTemplates = {
+  "book-opening-entry-1": ["Standard prep, and it's {opening}."],
+  "book-opening-entry-2": ["That's known material: {opening}."],
+  "book-opening-entry-3": ["A recognized line from prep: {opening}."],
+  "book-opening-follow-1": ["We're still in prep: {opening}."],
+  "book-opening-follow-2": ["{opening} prep, one more move of it."],
+  "book-opening-follow-3": ["The answer's from prep too: {opening}."],
+  "book-opening-follow-4": ["The prep rolls on in {opening}."],
+  "book-opening-follow-5": ["No surprises yet; we're in {opening}."],
+  "book-opening-follow-6": ["Prep still covers this, in {opening}."],
+  "book-opening-follow-7": ["Still the main line of {opening}."],
+  "book-opening-follow-8": ["Main line of {opening}, still; a location, not a grade."],
+} as const;
+
+export const host = coachPersonality({
+  version: "host-4", maxCharacters: 310, maxClaims: 2,
   delivery: {pace: "steady", energy: "warm"},
   behavior: {general: "reaction-first", praise: "reaction-first", correction: "reaction-first",
     questionFrequency: "occasional", directness: 3, emotionalAmplitude: 4, humor: 3, jargon: 3,
@@ -89,4 +119,4 @@ export const host: CoachPersonality = {
     explanation_summary: ["So, the takeaway: {detail}"],
     compatibility: ["Let's work with the explanation we have: {detail}"],
   },
-};
+});

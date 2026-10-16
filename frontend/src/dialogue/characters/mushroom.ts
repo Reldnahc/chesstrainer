@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {mushroomTacticalTemplates} from "./scopedTactics";
-import {mushroomOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const mushroom: CoachPersonality = {
-  version: "mushroom-2", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const mushroomTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Something new appears after {move}: a {motif}.",
+    played_possible: "After {move}, a {motif} is waiting in the position, if the replies allow it.",
+    allowed_immediate: "Something comes loose here: {opponent} can reply with {action}, and there is a {motif}.",
+    allowed_possible: "A {motif} could open up for {opponent} later, depending on the replies.",
+    missed_immediate: "{best} had a {motif} tucked inside it.",
+    missed_possible: "{best} might have held a {motif}, though the replies would still have their say.",
+  },
+  fork: {actual: "One piece is bothering the {targets} at once.", possible: "The {targets} would be attacked together, by one piece."},
+  material: "There may be a {gain} at the end of it, though both sides still have choices to make.",
+  capture: {candidate: "{capture} would pick up a {piece}.", followup: "One way it might unfold is {capture}, picking up a {piece}."},
+  playedCapture: {fact: "Inside {move} is a {motif}.", consequence: "{capture} picks up a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const mushroomOpeningTemplates = {
+  "book-opening-entry-1": ["Someone has walked this way before: this move belongs to {opening}."],
+  "book-opening-entry-2": ["This move already has a name beside it: {opening}."],
+  "book-opening-entry-3": ["Here is a move the opening record recognizes, under {opening}."],
+  "book-opening-follow-1": ["Another familiar step along {opening}."],
+  "book-opening-follow-2": ["The path still has footprints here, in {opening}."],
+  "book-opening-follow-3": ["This one is written down too, in {opening}."],
+  "book-opening-follow-4": ["Still a known step. The record follows along: {opening}."],
+  "book-opening-follow-5": ["The map hasn't run out yet; this move is part of {opening}."],
+  "book-opening-follow-6": ["One more move the opening record has seen before, in {opening}."],
+  "book-opening-follow-7": ["The recorded path keeps winding on through {opening}."],
+  "book-opening-follow-8": ["Still recognized, a little further along {opening}."],
+} as const;
+
+export const mushroom = coachPersonality({
+  version: "mushroom-2", maxCharacters: 270, maxClaims: 2,
   delivery: {pace: "measured", energy: "warm"},
   behavior: {
     general: "observation-first", praise: "observation-first", correction: "question-first",
@@ -115,4 +145,4 @@ export const mushroom: CoachPersonality = {
     explanation_summary: ["The thread to hold on to is this: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});

@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {unicornTacticalTemplates} from "./scopedTactics";
-import {unicornOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const unicorn: CoachPersonality = {
-  version: "unicorn-2", maxCharacters: 275, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const unicornTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a lovely {motif} is woven into the position.",
+    played_possible: "{move} sets the stage for a {motif}, should the replies allow it to bloom.",
+    allowed_immediate: "With {action}, {opponent} has an answer that carries a {motif} along.",
+    allowed_possible: "Later, perhaps, a {motif} could bloom for {opponent}, as the replies decide.",
+    missed_immediate: "{best} carried a {motif} quietly within it.",
+    missed_possible: "With kinder replies, {best} might have blossomed into a {motif}.",
+  },
+  fork: {actual: "A single piece reaches gracefully toward the {targets} at once.", possible: "From a single piece, the {targets} would be attacked in unison."},
+  material: "A {gain} may be waiting at the far end, if the moves still to come unfold that way.",
+  capture: {candidate: "{capture} would neatly claim a {piece}.", followup: "Should the story go that way, {capture} may follow and claim a {piece}."},
+  playedCapture: {fact: "{move} brings a {motif} to life.", consequence: "{capture} claims a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const unicornOpeningTemplates = {
+  "book-opening-entry-1": ["We've stepped into a recognized opening: {opening}."],
+  "book-opening-entry-2": ["A book move, part of {opening}, and a fitting one."],
+  "book-opening-entry-3": ["This move has its own page in the story of {opening}."],
+  "book-opening-follow-1": ["The game moves on in harmony with {opening}."],
+  "book-opening-follow-2": ["And this move belongs to {opening} as well."],
+  "book-opening-follow-3": ["The reply, too, keeps step with {opening}."],
+  "book-opening-follow-4": ["The melody of {opening} flows onward."],
+  "book-opening-follow-5": ["{opening} still recognizes this move."],
+  "book-opening-follow-6": ["{opening} keeps walking alongside the game."],
+  "book-opening-follow-7": ["This step, too, is written into {opening}."],
+  "book-opening-follow-8": ["Once more a move of {opening}. A name in the book tells us where we are, not how well the move was chosen."],
+} as const;
+
+export const unicorn = coachPersonality({
+  version: "unicorn-2", maxCharacters: 275, maxClaims: 2,
   delivery: {pace: "steady", energy: "bright"},
   behavior: {
     general: "reaction-first", praise: "reaction-first", correction: "calm-reset",
@@ -87,4 +117,4 @@ export const unicorn: CoachPersonality = {
     variation: ["A different path, with its own story: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});
