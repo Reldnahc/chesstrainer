@@ -51,11 +51,9 @@ def pin_collected(boards, plies, ply, analysis_id, direction):
             )
 
 
-def discovered_attack(boards, plies, ply, analysis_id, direction):
-    """The move opens a slider's line to a target that slider then takes; with a
-    second threat from the moved piece it is also a double attack."""
-    before, after = boards[ply - 1], boards[ply]
-    move, actor = after.peek(), before.turn
+def opened_lines(before, after, move, actor):
+    """Each unmoved slider of the mover whose line the move opened onto a new valuable
+    target other than the king, as (slider, piece, target, victim)."""
     for slider, piece in after.piece_map().items():
         if (
             piece.color != actor
@@ -71,48 +69,62 @@ def discovered_attack(boards, plies, ply, analysis_id, direction):
                 chess.between(slider, target)
             ):
                 continue
-            collection = None
-            for follow in [p for p in plies if p > ply]:
-                action = boards[follow].peek()
-                if boards[follow - 1].piece_at(slider) != piece:
-                    break
-                if action.from_square == slider:
-                    if action.to_square == target and boards[follow - 1].piece_at(target) == victim:
-                        collection = follow
-                    break
-            if collection is None:
-                continue
-            roles = {
-                "attacker": names([slider]),
-                "blocker": names([move.from_square]),
-                "target": names([target]),
-            }
+            yield slider, piece, target, victim
+
+
+def slider_collection(boards, plies, ply, slider, piece, target, victim):
+    """The later ply where the slider's first move takes the still-present target, if any."""
+    for follow in [p for p in plies if p > ply]:
+        action = boards[follow].peek()
+        if boards[follow - 1].piece_at(slider) != piece:
+            return None
+        if action.from_square == slider:
+            if action.to_square == target and boards[follow - 1].piece_at(target) == victim:
+                return follow
+            return None
+    return None
+
+
+def discovered_attack(boards, plies, ply, analysis_id, direction):
+    """The move opens a slider's line to a target that slider then takes; with a
+    second threat from the moved piece it is also a double attack."""
+    before, after = boards[ply - 1], boards[ply]
+    move, actor = after.peek(), before.turn
+    for slider, piece, target, victim in opened_lines(before, after, move, actor):
+        collection = slider_collection(boards, plies, ply, slider, piece, target, victim)
+        if collection is None:
+            continue
+        roles = {
+            "attacker": names([slider]),
+            "blocker": names([move.from_square]),
+            "target": names([target]),
+        }
+        yield witness(
+            boards,
+            analysis_id,
+            direction,
+            "discovered_attack",
+            [ply, collection],
+            roles,
+            f"{before.san(move)} opens the {chess.piece_name(piece.piece_type)}'s line to the {chess.piece_name(victim.piece_type)} on {chess.square_name(target)}. That target is captured by this piece in the shown continuation.",
+            frame=ply - 1,
+            mechanism="discovered_capture",
+        )
+        other_targets = valuable_targets(after, move.to_square) - {target}
+        if other_targets:
             yield witness(
                 boards,
                 analysis_id,
                 direction,
-                "discovered_attack",
+                "double_attack",
                 [ply, collection],
-                roles,
-                f"{before.san(move)} opens the {chess.piece_name(piece.piece_type)}'s line to the {chess.piece_name(victim.piece_type)} on {chess.square_name(target)}. That target is captured by this piece in the shown continuation.",
-                frame=ply - 1,
-                mechanism="discovered_capture",
+                {
+                    "attackers": names([slider, move.to_square]),
+                    "targets": names(sorted({target, *other_targets})),
+                },
+                f"{before.san(move)} creates threats from two pieces: the moved piece attacks one valuable target while the opened line attacks another. The opened line wins material in the shown continuation.",
+                mechanism="double_attack_collected",
             )
-            other_targets = valuable_targets(after, move.to_square) - {target}
-            if other_targets:
-                yield witness(
-                    boards,
-                    analysis_id,
-                    direction,
-                    "double_attack",
-                    [ply, collection],
-                    {
-                        "attackers": names([slider, move.to_square]),
-                        "targets": names(sorted({target, *other_targets})),
-                    },
-                    f"{before.san(move)} creates threats from two pieces: the moved piece attacks one valuable target while the opened line attacks another. The opened line wins material in the shown continuation.",
-                    mechanism="double_attack_collected",
-                )
 
 
 def deflection(boards, plies, ply, analysis_id, direction):
