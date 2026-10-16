@@ -20,6 +20,7 @@ from typing import get_args
 
 import chess
 import chess.pgn
+import pydantic
 
 from trainer.chess_core import DECISIVE_CP, Score, digest, evaluation_loss, game_phase
 from trainer.contracts.insights import Speed
@@ -304,7 +305,8 @@ def _code_fingerprint():
 # interpreter simply rebuilds them.
 FACTS_FORMAT = (
     f"{VERSION}:marshal-{marshal.version}:py{sys.version_info[0]}.{sys.version_info[1]}"
-    f":code-{_code_fingerprint()}"
+    # PGN, clock and time-control parsing come from python-chess, scores from pydantic.
+    f":chess-{chess.__version__}:pydantic-{pydantic.VERSION}:code-{_code_fingerprint()}"
 )
 _PLY_FIELDS = tuple(item.name for item in fields(Ply))
 _GAME_FIELDS = tuple(item.name for item in fields(GameFacts) if item.name != "plies")

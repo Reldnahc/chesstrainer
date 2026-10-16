@@ -13,8 +13,9 @@ completed original-game reviews and never starts Stockfish. Each game's facts ar
 replayed once and saved in `insight_facts`, compactly (about 1.7 KB for an 80-ply
 game), under a key of everything they are built from: the PGN, players, dates,
 learner colour, rating, the completed review's revision (which a saved report or
-an adopted refinement bumps) and a digest of the application's code and bundled
-data, so an upgrade rebuilds them. A request reads the saved facts back and replays
+an adopted refinement bumps), the python-chess and pydantic versions, and a digest
+of the application's code and bundled data, so an upgrade rebuilds them (the first
+Insights request after it replays the library once). A request reads the saved facts back and replays
 only games whose key changed or whose row cannot be read, saving rebuilt facts
 every 500 games. No library is replayed per request, the facts survive a restart,
 and nothing is held in memory between requests; each request still unpacks the
