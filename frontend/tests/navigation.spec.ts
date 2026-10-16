@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import { expectModifierClickLeftToBrowser } from './modifierClick';
 
 test.beforeEach(async ({page}) => {
@@ -122,43 +122,52 @@ test('without the Navigation API, a step onto an entry from before numbering is 
   }
 });
 
-test('without the Navigation API, the lesson editor keeps unsaved work when Back or Forward after a reload reaches an old entry', async ({page}) => {
-  await page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
+const noNavigationApi = (page: Page) =>
+  page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
+
+/** Reloads a fresh lesson editor whose neighbours are `before` and `after`, and types a draft. */
+async function reloadedEditor(page: Page, before: Record<string, string> | null, after: Record<string, string> | null) {
   await page.goto('/play');
-  await page.evaluate(() => {
-    history.replaceState({fieldworkEntry: 'legacy-before'}, '', '/play');
+  await page.evaluate(([before, after]) => {
+    history.replaceState(before, '', before ? '/play' : '/play#top');
     history.pushState({fieldworkEntry: 'reloaded'}, '', '/settings/courses/editor');
-    history.pushState({fieldworkEntry: 'legacy-after'}, '', '/study');
-  });
+    history.pushState(after, '', after ? '/study' : '/settings/courses/editor#later');
+  }, [before, after] as const);
   await page.goBack();
   await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
   await page.reload();
-  const save = page.getByRole('button', {name: 'Save course'});
-  await expect(save).toBeVisible();
+  await expect(page.getByRole('button', {name: 'Save course'})).toBeVisible();
   const title = page.getByLabel('Title', {exact: true}).first();
   await title.fill('Unsaved draft');
-  const prompts: string[] = [];
-  page.on('dialog', async dialog => {
-    prompts.push(dialog.message());
-    // Stay twice, then leave.
-    if (prompts.length <= 2) await dialog.dismiss();
-    else await dialog.accept();
-  });
-  // Forward and then Back each reach an old entry on a side that cannot be known; refusing
-  // keeps the editor, its draft and its address either way.
-  await page.evaluate(() => history.forward());
-  await expect.poll(() => prompts.length).toBe(1);
-  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
-  await expect(title).toHaveValue('Unsaved draft');
-  await page.evaluate(() => history.back());
-  await expect.poll(() => prompts.length).toBe(2);
-  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
-  await expect(title).toHaveValue('Unsaved draft');
-  // Accepting leaves for the entry the step reached.
-  await page.evaluate(() => history.back());
-  await expect.poll(() => prompts.length).toBe(3);
-  await expect(page).toHaveURL('/study');
-});
+  return title;
+}
+
+for (const step of ['back', 'forward'] as const) {
+  for (const neighbour of ['an old-build entry', 'an unstamped entry'] as const) {
+    test(`without the Navigation API, refusing ${step === 'back' ? 'Back' : 'Forward'} after a reload onto ${neighbour} keeps the lesson editor and its draft`, async ({page}) => {
+      await noNavigationApi(page);
+      const old = neighbour === 'an old-build entry' ? {fieldworkEntry: 'legacy'} : null;
+      const title = await reloadedEditor(page, old, old);
+      const prompts: string[] = [];
+      page.on('dialog', async dialog => {
+        prompts.push(dialog.message());
+        // Stay the first time, then leave.
+        if (prompts.length === 1) await dialog.dismiss();
+        else await dialog.accept();
+      });
+      const go = () => page.evaluate(direction => direction === 'back' ? history.back() : history.forward(), step);
+      await go();
+      await expect.poll(() => prompts.length).toBe(1);
+      // Which side the entry was on cannot be known, and refusing still keeps the editor, its draft and its address.
+      await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+      await expect(title).toHaveValue('Unsaved draft');
+      // The editor came back as a new entry after the one the step reached; Back returns there and leaves.
+      await page.evaluate(() => history.back());
+      await expect.poll(() => prompts.length).toBe(2);
+      await expect(page).not.toHaveURL(/\/settings\/courses\/editor$/);
+    });
+  }
+}
 
 test('game links support opening a second tab without navigating the first', async ({page}, info) => {
   test.skip(info.project.name !== 'desktop', 'Modifier-click is a desktop interaction.');

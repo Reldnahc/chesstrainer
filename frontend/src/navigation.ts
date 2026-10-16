@@ -332,6 +332,16 @@ let lastBrowserIndex: number | undefined;
 // refuses a step whose distance is unknown.
 let shown: { state: unknown; url: string } | null = null;
 let ignoredPop = false;
+// Set by a click on an in-page #fragment link, whose new entry arrives as a popstate
+// with no state; without the Navigation API this is how that step is known to be +1.
+let fragmentClicked = false;
+function clickedFragment(event: MouseEvent) {
+  const link = (event.target as Element | null)?.closest?.("a[href]");
+  if (!(link instanceof HTMLAnchorElement) || event.defaultPrevented) return;
+  const url = new URL(link.href, window.location.href);
+  const here = new URL(window.location.href);
+  fragmentClicked = url.hash !== here.hash && url.origin === here.origin && url.pathname === here.pathname && url.search === here.search;
+}
 const listeners = new Set<() => void>();
 
 /** Rewrites an old address and gives the current entry its identity. Runs once,
@@ -391,9 +401,13 @@ function placeStep(state: unknown): { place: Place; moved: number | null; number
     const sameRun = numbered.run !== "" && numbered.run === current.run;
     return { place: numbered, moved: browserMoved ?? (sameRun ? numbered.index - current.index : null), numbered: true };
   }
-  // An in-page #fragment link adds an entry the app did not write; it follows the current one.
-  if (typeof historyState()[entryKey] !== "string")
-    return { place: following(), moved: 1, numbered: false };
+  if (typeof historyState()[entryKey] !== "string") {
+    // An entry the app did not write: one a #fragment link just added (it follows the
+    // current one), or one an older build left unstamped on either side.
+    const moved = browserMoved ?? (fragmentClicked ? 1 : null);
+    if (moved === null || current.run === "") return { place: { run: localId(), index: 0 }, moved, numbered: false };
+    return { place: { run: current.run, index: current.index + moved }, moved, numbered: false };
+  }
   // An entry written before entries were numbered (a tab open across an upgrade) is
   // placed in the current run by how far the browser moved, where the Navigation API
   // says so. Without it either side of the current entry is possible, so it starts
@@ -415,6 +429,7 @@ function popped(event: PopStateEvent) {
     return;
   }
   const { place, moved, numbered } = placeStep(event.state);
+  fragmentClicked = false;
   // Back or Forward out of a screen with unsaved work asks first, as a link does.
   // Refusing returns to the entry the reader was on, and that return is not a navigation.
   if (leaveGuard && moved !== 0 && !leaveGuard()) {
@@ -447,6 +462,7 @@ function subscribe(listener: () => void) {
   if (listeners.size === 1) {
     window.history.scrollRestoration = "manual";
     window.addEventListener("popstate", popped);
+    document.addEventListener("click", clickedFragment);
     window.addEventListener(navigationEvent, update);
     window.addEventListener("pagehide", persistScroll);
   }
@@ -455,6 +471,7 @@ function subscribe(listener: () => void) {
     if (listeners.size) return;
     window.history.scrollRestoration = "auto";
     window.removeEventListener("popstate", popped);
+    document.removeEventListener("click", clickedFragment);
     window.removeEventListener(navigationEvent, update);
     window.removeEventListener("pagehide", persistScroll);
   };
@@ -498,6 +515,8 @@ function annotate(change: (url: URL) => void) {
   const url = new URL(window.location.href);
   change(url);
   window.history.replaceState(window.history.state, "", url);
+  // A leave guard that puts this page back restores the address as it now reads.
+  remember();
 }
 
 export const rememberReviewSession = (id: string) => annotate((url) => {
