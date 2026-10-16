@@ -8,8 +8,8 @@ keeps the board usable throughout. Maia availability never changes move grades.
 
 Game review complements cold practice. It reviews both colors and arbitrary legal
 variations; a variation creates no Decisions, exercises, weakness evidence or FSRS
-recalls. The game's own review job then trains the learner's moves from the review's
-searches ([Game imports and analysis](GAME_ANALYSIS.md#one-job-per-game)).
+recalls. The game's review job separately trains the learner's own moves from the
+review's searches ([Game imports and analysis](GAME_ANALYSIS.md#one-job-per-game)).
 
 Completed reviews also derive supported [game relationships](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships),
 [owned history](REVIEW_INTELLIGENCE.md#cross-game-context) for individual move explanations.

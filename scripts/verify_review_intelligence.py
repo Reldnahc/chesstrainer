@@ -58,9 +58,11 @@ def inspect_case(detail, plies):
         assert human["status"] == "available", human
         assert human["played"]["probability"] is not None
         assert human["domain"]["calibration"] == "unvalidated"
-        if "human_move_context_mismatch" in practical["limitations"]:
-            # A played move its own stronger search promoted to best no longer matches
-            # the moves the saved policy scored, so the practical view reads none.
+        promoted = report["best"]["uci"] == report["actual"]["uci"] != human["engine_best"]["uci"]
+        if promoted:
+            # Known gap: promote_stronger_played makes the played move best without
+            # realigning the saved human evidence, so the practical view abstains.
+            assert "human_move_context_mismatch" in practical["limitations"]
             assert practical["human_evidence_id"] is None
         else:
             assert practical["human_evidence_id"] == human["evidence_id"]
@@ -134,7 +136,12 @@ def run(output):
         # A game's history (cross-game weaknesses) grows as later games train, so
         # the equality checks compare against every game as the whole corpus left it.
         for item, summary in zip(game_corpus(), summaries, strict=True):
+            first = saved[summary["game_id"]]
             saved[summary["game_id"]] = client.get(f"/api/games/{summary['game_id']}").json()
+            # Only the history may differ from the read right after the game's review.
+            assert {k: v for k, v in first.items() if k != "history"} == {
+                k: v for k, v in saved[summary["game_id"]].items() if k != "history"
+            }
             (output / f"{item['id']}.json").write_text(
                 json.dumps(saved[summary["game_id"]], indent=2), encoding="utf-8"
             )
@@ -151,13 +158,18 @@ def run(output):
         assert counts(app) == original_counts
         # Analyze a legal branch through the actual API, without borrowing PGN clocks/context.
         game = summaries[0]["game_id"]
+        before_branch = counts(app)
         response = client.post(f"/api/games/{game}/analyze", json={"ply": 1, "moves": ["d7d5"]})
         response.raise_for_status()
         branch = response.json()["report"]
         assert branch["human"]["status"] == "available"
         assert branch["intelligence"]["ply"] is None and branch["intelligence"]["clock"] is None
         assert client.get(f"/api/games/{game}").json() == saved[game]
-        original_counts = counts(app)
+        # A variation trains nothing (docs/GAME_REVIEW.md); only shared caches grow.
+        after_branch = counts(app)
+        for table in ("decisions", "exercises", "reviews"):
+            assert after_branch[table] == before_branch[table], table
+        original_counts = after_branch
     # Open with an unusable native path: successful reads/reopens must use durable facts.
     settings.stockfish_path = "must-not-start-on-cached-reopen"
     restarted = create_app(settings, workers=False, start_engine=False)
