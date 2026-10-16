@@ -143,37 +143,31 @@
   background: var(--surface);
   border-bottom: 1px solid var(--line);
 }
-/* The notation header's own dense controls: its tabs and its commands (Next
-   mistake, and whole-game commands such as Export passed in ReviewMoves' actions,
-   which add .game-move-command). They are notation chrome, not ordinary actions. */
-:is(.game-review-tabs button, .game-move-command) {
-  font-size: var(--text-xs);
-  padding: var(--space-1) var(--space-1-5);
-  min-height: 28px;
-  background: transparent;
-  border-color: transparent;
-  gap: var(--space-1);
-}
 .game-move-actions {
   display: flex;
   align-items: center;
   gap: var(--space-1);
 }
-.game-move-command--icon {
-  min-width: 28px;
-  justify-content: center;
-}
+/* Local tabs, not commands: the header's commands (Next mistake, and the
+   whole-game commands passed in ReviewMoves' actions, such as Export) are dense
+   quiet Buttons. */
 .game-review-tabs {
   display: flex;
   gap: var(--space-1);
 }
 .game-review-tabs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 38px;
-  border: 0;
+  padding: var(--space-1) var(--space-1-5);
   border-bottom: 2px solid transparent;
-  border-radius: 0;
   font-size: var(--text-md);
+  font-weight: 500;
   color: var(--muted);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
 }
 .game-review-tabs button[aria-selected="true"] {
   border-bottom-color: var(--accent);
@@ -193,14 +187,20 @@
   gap: 0 var(--space-1);
 }
 .game-move-list button {
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
+  gap: var(--space-2);
   min-width: 0;
   min-height: 29px;
-  border-color: transparent;
+  border: 1px solid transparent;
   border-radius: 3px;
   padding: var(--space-1) var(--space-2);
   font: var(--text-sm) var(--mono);
-  background: transparent;
+  color: #e8eaee;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
 }
 .game-move-list button:nth-child(4n + 3),
 .game-move-list button:nth-child(4n + 4) {
@@ -242,13 +242,10 @@
   color: var(--muted);
   padding-right: var(--space-1-5);
 }
-.game-variation-row button {
+/* Variation moves are dense Buttons in the notation's mono type; the selected
+   move shows Button's pressed state. */
+.game-variation-row .action-control {
   font: var(--text-xs) var(--mono);
-  min-height: 29px;
-  padding: var(--space-1) var(--space-1-5);
-}
-.game-variation-row button[aria-pressed="true"] {
-  border-color: var(--accent);
 }
 .game-variation-row .move-badge {
   font-size: var(--text-2xs);
@@ -545,14 +542,9 @@
   .review-workspace-layout .game-notation {
     margin-bottom: var(--space-3);
   }
-  :is(.game-review-tabs button, .game-move-command),
-  .game-move-list button,
-  .game-variation-row button {
+  .game-review-tabs button,
+  .game-move-list button {
     min-height: var(--touch-target);
-  }
-  /* An icon command is a square phone target too. */
-  .game-move-command--icon {
-    min-width: var(--touch-target);
   }
   .game-graph-verdict {
     display: none;

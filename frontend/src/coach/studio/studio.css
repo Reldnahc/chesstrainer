@@ -93,6 +93,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-3);
 }
+/* Coach tiles are choices, not commands, so they style themselves completely. */
 .studio-cast button {
   display: flex;
   align-items: center;
@@ -105,6 +106,12 @@
   border: 1px solid #424b40;
   border-radius: 12px;
   background: #1c211e;
+  color: #e8eaee;
+  font-size: var(--text-md);
+  font-weight: 500;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
 }
 .studio-cast button:hover {
   background: var(--control-hover);
@@ -152,11 +159,6 @@
   min-width: 140px;
   min-height: 42px;
   background-color: #171d1a;
-}
-.studio-controls button {
-  min-height: 42px;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
 }
 /* As tall as the buttons, so the checkbox centres on them. */
 .studio-controls .studio-reduced {
@@ -315,16 +317,9 @@
   line-height: 1.6;
 }
 .studio-concept > button {
-  display: flex;
   width: 100%;
   justify-content: space-between;
-  padding-inline: 0;
-  color: #cbd9bd;
-  font-size: var(--text-xs);
   margin-top: auto;
-}
-.studio-concept > button[aria-pressed="true"] {
-  color: #ebeedf;
 }
 @media (min-width: 761px) {
   .studio-concept:only-child {
@@ -372,8 +367,6 @@
 }
 .studio-idle-bar button {
   white-space: nowrap;
-  min-height: 42px;
-  font-size: var(--text-sm);
 }
 .studio-idle-grid,
 .studio-comparison-grid {
@@ -429,8 +422,6 @@
   text-align: center;
 }
 .studio-idle-card button {
-  min-height: 42px;
-  font-size: var(--text-sm);
   width: 100%;
   margin-top: auto;
 }
@@ -527,17 +518,29 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: var(--space-3);
 }
+/* Expression tiles are choices, not commands, so they style themselves completely. */
 .studio-expression {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
   min-width: 0;
   padding: var(--space-3) var(--space-3) var(--space-4);
   background: #232923;
   border: 1px solid #3c453c;
   border-radius: 10px;
+  color: #e8eaee;
+  font-size: var(--text-md);
+  font-weight: 500;
   white-space: normal;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+.studio-expression:hover {
+  background: var(--control-hover);
+  border-color: var(--control-hover-border);
 }
 .studio-expression[aria-pressed="true"] {
   border-color: #a0b489;

@@ -9,6 +9,7 @@ import {
   type CoachIdle,
 } from "../model";
 import type { StudioPreview } from "./PreviewPanels";
+import Button from "../../Button";
 
 function IdleCard({ preview, gesture, index }: {
   preview: StudioPreview;
@@ -40,14 +41,14 @@ function IdleCard({ preview, gesture, index }: {
         <h3>{label}</h3>
         {signature && <p id={descriptionId} className="studio-idle-description">{description}</p>}
       </div>
-      <button
+      <Button
         aria-label={`Replay idle ${index + 1}: ${label}`}
         aria-describedby={signature ? descriptionId : undefined}
         disabled={preview.motion === "still"}
         onClick={() => setReplay((value) => value + 1)}
       >
         <RotateCcw size={14} /> Replay idle
-      </button>
+      </Button>
     </article>
   );
 }
@@ -95,9 +96,9 @@ export function CastComparison({ preview, selected }: {
             <input type="checkbox" checked={natural} onChange={(event) => setNatural(event.target.checked)} />
             Comparison idle playback
           </label>
-          <button onClick={() => setReplay((value) => value + 1)}>
+          <Button onClick={() => setReplay((value) => value + 1)}>
             <RotateCcw size={15} /> Replay comparison
-          </button>
+          </Button>
         </div>
       </div>
       <div className="studio-comparison-grid">

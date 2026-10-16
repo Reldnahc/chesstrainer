@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { moveNumber } from "../fen";
 import { ChevronRight } from "lucide-react";
+import Button from "../Button";
 import MoveSymbol from "../MoveSymbol";
 import MoveBadge from "../MoveBadge";
 import ReviewSummary from "./ReviewSummary";
@@ -73,8 +74,9 @@ export default function ReviewMoves({
           ))}
         </div>
         <span className="game-move-actions">
-        <button
-          className="game-move-command"
+        <Button
+          variant="quiet"
+          size="dense"
           hidden={tab !== "moves"}
           onClick={() => {
             const next = game.frames.findIndex(
@@ -90,7 +92,7 @@ export default function ReviewMoves({
           }
         >
           Next mistake <ChevronRight size={14} />
-        </button>
+        </Button>
         {actions}
         </span>
       </div>
@@ -149,8 +151,9 @@ export default function ReviewMoves({
                     b.moves.slice(0, index + 1),
                   )?.report;
                   return (
-                    <button
+                    <Button
                       key={index}
+                      size="dense"
                       aria-pressed={
                         branch?.id === b.id && cursor.step === index + 1
                       }
@@ -164,7 +167,7 @@ export default function ReviewMoves({
                           …
                         </span>
                       )}
-                    </button>
+                    </Button>
                   );
                 })}
               </div>

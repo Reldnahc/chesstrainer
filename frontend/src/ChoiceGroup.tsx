@@ -1,4 +1,5 @@
 import usePhone from "./usePhone";
+import Button from "./Button";
 import "./choice-group.css";
 
 /** Pressed buttons for one local choice. With phone="select", phones show the
@@ -22,7 +23,7 @@ export default function ChoiceGroup<Value extends string | number>({ label, labe
     {options.map(option => <option key={option.value} value={String(option.value)} disabled={option.disabled}>{option.label}</option>)}
   </select>;
   return <div className={size === "compact" ? "choice-group choice-group--compact" : "choice-group"} role="group" {...name}>
-    {options.map(option => <button type="button" key={option.value}
-      aria-pressed={value === option.value} disabled={option.disabled} onClick={() => onChange(option.value)}>{option.label}</button>)}
+    {options.map(option => <Button variant="secondary" size={size} key={option.value}
+      aria-pressed={value === option.value} disabled={option.disabled} onClick={() => onChange(option.value)}>{option.label}</Button>)}
   </div>;
 }
