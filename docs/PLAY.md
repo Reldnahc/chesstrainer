@@ -71,7 +71,7 @@ play, plies 8 to 70), with Stockfish at depth 13 scoring every legal move:
 | Stockfish Skill Level 0 | 56 | 47% | 5% |
 
 Maia's rating dial changes strength smoothly and monotonically across the whole
-range. Stockfish at its weakest is about as accurate on average as Maia at 1800 to
+range. Stockfish at UCI_Elo 1320, its minimum, is about as accurate on average as Maia at 1800 to
 2000, but in a shape no human player has: it finds the best move less often than
 Maia at 1000 (43%) yet loses 300 cp or more least often of all (3%), so it is
 weak through many small, unnatural inaccuracies rather than the occasional real

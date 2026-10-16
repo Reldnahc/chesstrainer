@@ -841,7 +841,7 @@ function Endgames({ data }: { data: Insights }) {
   return (
     <Panel id="endgames" title="Endgames" meta={`${reached} reached`}>
       <Bars
-        label="Endgames where you kept the result the position deserved"
+        label="Endgames where you avoided a loss and kept the result the position deserved"
         max={100}
         unit="%"
         rows={data.endgames
