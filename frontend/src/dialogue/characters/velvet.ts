@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {velvetTacticalTemplates} from "./scopedTactics";
-import {velvetOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const velvet: CoachPersonality = {
-  version: "velvet-4", maxCharacters: 260, maxClaims: 1, tacticalWording: "witness", openingWording: "sequence",
+export const velvetTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "I noticed it after {move}: a {motif}, sitting there on the board.",
+    played_possible: "{move} leaves room for a {motif} later, if the replies let it happen.",
+    allowed_immediate: "{opponent} can answer {action}, and with it comes a {motif}.",
+    allowed_possible: "Further on, the replies may let {opponent} find a {motif}.",
+    missed_immediate: "Inside {best}, quietly, sat a {motif}.",
+    missed_possible: "{best} might have grown into a {motif}, had the replies allowed.",
+  },
+  fork: {actual: "A single piece has the {targets} in its reach at once.", possible: "One piece would do all the watching: the {targets} would be attacked together from it."},
+  material: "Perhaps a {gain} at the end; it may be, but both sides still have moves to choose.",
+  capture: {candidate: "A {piece} is there for {capture} to take.", followup: "Should the moves run that way, {capture} may come next and take a {piece}."},
+  playedCapture: {fact: "{move} hides a {motif}.", consequence: "A {piece} is gone after {capture}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const velvetOpeningTemplates = {
+  "book-opening-entry-1": ["This move is carried in the opening books, in {opening}."],
+  "book-opening-entry-2": ["A move from a known opening, this: {opening}."],
+  "book-opening-entry-3": ["The opening book keeps this move on its pages, under {opening}."],
+  "book-opening-follow-1": ["Still the book's ground: {opening}."],
+  "book-opening-follow-2": ["And this one is known, too, in {opening}."],
+  "book-opening-follow-3": ["For the reply as well, {opening} has a page."],
+  "book-opening-follow-4": ["Still walking the book's path, within {opening}."],
+  "book-opening-follow-5": ["Here too, {opening} has a record of the move."],
+  "book-opening-follow-6": ["{opening} walks along beside us here."],
+  "book-opening-follow-7": ["Known, again: {opening}."],
+  "book-opening-follow-8": ["Known once more, in {opening}. Being in the book says where we are, nothing more."],
+} as const;
+
+export const velvet = coachPersonality({
+  version: "velvet-4", maxCharacters: 260, maxClaims: 1,
   delivery: {pace: "measured", energy: "quiet"},
   behavior: {
     general: "observation-first", praise: "observation-first", correction: "observation-first",
@@ -87,4 +117,4 @@ export const velvet: CoachPersonality = {
     variation: ["A quieter side line, for a moment: {detail}"],
     compatibility: ["As the saved explanation puts it: {detail}"],
   },
-};
+});

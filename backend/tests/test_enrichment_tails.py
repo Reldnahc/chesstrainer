@@ -2,6 +2,7 @@
 
 import threading
 
+from account_units import job_context
 from explanation_fixtures import seed_review
 from sqlalchemy import select
 from trainer.chess_core import Candidate, Score, position_key
@@ -83,7 +84,7 @@ def test_tail_job_cancellation_resume_links_and_preserves_learning(sessions, set
         scheduling = state.card, state.due, state.reviews, state.retired_at
     engine = SavedFixtureEngine(sessions, settings, decision, before, actual)
     units = Units(sessions, threading.Lock())
-    tasks = plan_probes(units, job.id, settings, engine)
+    tasks = plan_probes(job_context(sessions, job.id, settings), engine)
     assert len(tasks) == 1
     assert not enrich_decision(units, tasks[0], engine, lambda: engine.calls >= 3)
     with sessions() as db:

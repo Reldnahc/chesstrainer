@@ -9,6 +9,7 @@ import StatList from "./StatList";
 import { QueryResult, useQuery } from "./useQuery";
 import { focusedPracticePath, insightsPaths, lessonCoursePath, lessonSessionPath, pagePaths, studyPaths } from "./navigation";
 import "./home.css";
+import { plural } from "./format";
 
 const loadDue = (signal: AbortSignal) => read(api.GET("/api/review/count", { signal }));
 const loadGames = (signal: AbortSignal) => read(api.GET("/api/games", { params: { query: { offset: 0, limit: 4 } }, signal }));
@@ -54,7 +55,7 @@ export default function HomeScreen() {
           {data.resume.length ? data.resume.slice(0, 2).map(session => <ResumeLink key={session.id}
             href={lessonSessionPath(session.id, session.course_topic)} description={`Continue · ${session.chapter_title}`}>{session.course_title}</ResumeLink>)
             : data.courses.length ? firstCourses(data.courses).map(course => <ResumeLink key={course.id} href={lessonCoursePath(course.id, course.revision, course.topic)}
-              description={`${course.completed_chapters} of ${course.chapter_count} chapters completed`}>
+              description={`${course.completed_chapters} of ${plural(course.chapter_count, "chapter")} completed`}>
               {course.title}
             </ResumeLink>) : <EmptyState presentation="compact" title="Choose a lesson to study.">
               Learn an opening, a tactic or a fundamental skill.
@@ -88,7 +89,7 @@ export default function HomeScreen() {
           return skills.length ? <>
             <div className="study-resume-list">{skills.map(skill => <ResumeLink key={skill.skill_id}
               href={focusedPracticePath(skill.skill_id)}
-              description={<>{skill.practice_positions} {skill.practice_positions === 1 ? "position" : "positions"} · {skill.independent_games} {skill.independent_games === 1 ? "game" : "games"}{skill.provisional ? " · Early evidence" : ""}</>}>
+              description={<>{plural(skill.practice_positions, "position")} · {plural(skill.independent_games, "game")}{skill.provisional ? " · Early evidence" : ""}</>}>
               {skill.title}
             </ResumeLink>)}</div>
             <p className="small muted">Focused practice leaves your review schedule unchanged.</p>

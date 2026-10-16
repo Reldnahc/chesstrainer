@@ -11,6 +11,7 @@ import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { openingRecallRecording } from "../audio/speech/practiceSelection";
 import { withSessionTake } from "../audio/speech/meaningPools";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
+import { pluralWord } from "../format";
 
 /** Curated recall has repertoire authority, never an objective move grade. */
 export default function OpeningRecallPanel({ session }: { session: ReviewSession }) {
@@ -67,7 +68,7 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
     </ReviewCoach>
     <RecallReceipt {...receipt} />
     <Reveal>{completed && <section className="opening-recall-answers" aria-label="Studied continuations">
-      <h3>Studied {feedback.answers?.length === 1 ? "move" : "moves"}</h3>
+      <h3>Studied {pluralWord(feedback.answers?.length ?? 0, "move")}</h3>
       <p className="review-move">{feedback.answers?.map(answer => answer.san).join(" · ")}</p>
       {feedback.continuations?.map((line, index) => <div className="opening-recall-line" key={`${line.study_id}:${index}`}>
         <h4>{line.name}</h4>

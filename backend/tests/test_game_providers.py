@@ -1,13 +1,12 @@
 import json
-import threading
 from datetime import datetime, timezone
 
 import httpx
 import pytest
+from account_units import job_context
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
-from trainer.db import Units
 from trainer.game_providers.base import ImportCancelled, ProviderError
 from trainer.game_providers.ingest import fetch_import
 from trainer.game_providers.lichess import LichessClient
@@ -62,7 +61,7 @@ def client(settings, rows, seen=None):
 
 def run(job, sessions, settings, remote, cancelled=lambda: False):
     try:
-        fetch_import(job, Units(sessions, threading.Lock()), settings, remote, cancelled)
+        fetch_import(job_context(sessions, job, settings, cancelled), remote)
     finally:
         remote.close()
 

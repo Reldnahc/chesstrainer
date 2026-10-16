@@ -21,6 +21,7 @@ import { lessonCoursePath, lessonSessionPath, openingCataloguePath, openingStudi
 import { createPracticeStarter, setStudyActive } from "./openingApi";
 import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
 import { useSessionStart } from "../useSessionStart";
+import { plural, pluralWord } from "../format";
 
 export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   catalogueKey: string | null;
@@ -100,11 +101,11 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     <CommandError command={command} />
     {saved && <Banner tone="success" onDismiss={() => setSaved(false)}>Study saved. Eligible positions are now included in Due.</Banner>}
     <section className="panel opening-preview-details">
-      <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{side === "white" ? line.white_positions : line.black_positions} decisions</small></label>)}</fieldset>
+      <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{plural(side === "white" ? line.white_positions : line.black_positions, "decision")}</small></label>)}</fieldset>
       <h2>The selected continuation</h2>
       <ContinuationMoves label="Opening continuation" moves={line.frames} numbered selectedIndex={ply - 1} startSelected={!ply}
         onStart={() => seek(0)} onSelect={index => seek(index + 1)} />
-      <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall decisions. This line does not cover every opponent response.</p>
+      <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall {pluralWord(positions, "decision")}. This line does not cover every opponent response.</p>
       <div className="button-row"><ActionLink variant="secondary" href={openingStudiesPath}>My studies</ActionLink>
         <Reveal axis="inline">{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</Reveal></div>
       <SourceLine className="opening-source" text={line.line.source === "lichess_catalogue" ? "Lichess opening catalogue" : "Authored course repertoire line"}

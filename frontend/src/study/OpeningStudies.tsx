@@ -8,6 +8,7 @@ import { lessonSessionPath, openingCataloguePath, studyPaths } from "../navigati
 import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
 import { useSessionStart } from "../useSessionStart";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
+import { plural } from "../format";
 
 type Study = Schema["OpeningStudySummary"];
 // Which command a study row is running, so only that button says it is busy.
@@ -24,7 +25,7 @@ function StudyRow({ study, busy, onPractice, onToggle }: {
     <div>
       <span className="opening-study-status">{study.active ? "Active" : "Paused"} · {study.color === "white" ? "White" : "Black"}{study.eco && ` · ${study.eco}`}</span>
       <h3>{study.name}</h3>
-      <p className="small muted">{study.positions} recall positions · {study.due_positions} due{!study.active && " · History preserved"}</p>
+      <p className="small muted">{plural(study.positions, "recall position")} · {study.due_positions} due{!study.active && " · History preserved"}</p>
     </div>
     <div className="button-row">
       <Button disabled={!!busy} onClick={onPractice}><Play size={15} />{running === "practice" ? "Opening…" : "Practice line"}</Button>

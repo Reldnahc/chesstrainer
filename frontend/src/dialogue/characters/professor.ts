@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {professorTacticalTemplates} from "./scopedTactics";
-import {professorOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const professor: CoachPersonality = {
-  version: "professor-4", maxCharacters: 320, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const professorTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} is played for a {motif}, which is in place as soon as the move is made.",
+    played_possible: "{move} prepares a possible {motif}, though whether it arrives is up to the replies.",
+    allowed_immediate: "{opponent} has {action} as an answer, and the reason that matters is a {motif}.",
+    allowed_possible: "{opponent} may later be able to use a {motif}, if the replies in between allow it.",
+    missed_immediate: "{best} would have brought a {motif} straight away, which is why it's the move to compare.",
+    missed_possible: "{best} could have prepared a {motif}, though it would still have depended on the replies.",
+  },
+  fork: {actual: "One piece attacks the {targets} together, so a single reply may not save them all.", possible: "In that case the {targets} would be attacked together, and one reply might not cover them all."},
+  material: "A {gain} may be possible at the end of it, but only if the later choices on both sides allow it.",
+  capture: {candidate: "That opens the way for {capture}, which would capture a {piece}.", followup: "If play continues that way, {capture} may follow, capturing a {piece}."},
+  playedCapture: {fact: "{move} rests on a {motif}.", consequence: "That is how {capture} comes to capture a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const professorOpeningTemplates = {
+  "book-opening-entry-1": ["This move belongs to {opening}, a line the opening book recognizes."],
+  "book-opening-entry-2": ["{opening} is where the opening book files this move."],
+  "book-opening-entry-3": ["Here the game follows {opening}, so it's on familiar ground for now."],
+  "book-opening-follow-1": ["The next move stays within {opening}."],
+  "book-opening-follow-2": ["Still {opening}, one move further along."],
+  "book-opening-follow-3": ["This reply is also part of {opening}."],
+  "book-opening-follow-4": ["The line of {opening} carries on with this move."],
+  "book-opening-follow-5": ["We remain inside {opening} here."],
+  "book-opening-follow-6": ["This move, too, is part of the recognized sequence in {opening}."],
+  "book-opening-follow-7": ["{opening} lists this move as well."],
+  "book-opening-follow-8": ["Still {opening}. Knowing the line tells us where the game is, which is a different thing from judging the move."],
+} as const;
+
+export const professor = coachPersonality({
+  version: "professor-4", maxCharacters: 320, maxClaims: 2,
   delivery: {pace: "measured", energy: "warm"},
   behavior: {general: "pattern-first", praise: "pattern-first", correction: "pattern-first", questionFrequency: "occasional", directness: 3, emotionalAmplitude: 2, humor: 1, jargon: 3, playerAddress: "occasional", sentenceLength: "connected", metaphor: "none", signature: "Name one principle, ground it in this position, then help the learner retain the connection."},
   bible: {
@@ -91,4 +121,4 @@ export const professor: CoachPersonality = {
     practice_error: ["I didn't get anything back from the analysis on that try. It's fine to play the move again."],
     variation: ["Along this alternative line, {detail}"],
   },
-};
+});

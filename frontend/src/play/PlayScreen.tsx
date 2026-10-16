@@ -19,6 +19,7 @@ import { getCoach } from "../coach/registry";
 import { playGamePath } from "../navigation";
 import PlayGame from "./PlayGame";
 import usePhone from "../usePhone";
+import { plural } from "../format";
 
 type Profile = Schema["PlayProfile"];
 type Opponent = Schema["PlayRequest"]["opponent"];
@@ -134,7 +135,7 @@ function PlaySetup({ from }: { from: string | null }) {
   const fitLine = !profile
     ? "Measuring your level from your games…"
     : profile.status === "ready" && profile.fitted_rating
-      ? `Measured from ${profile.positions} of your own decisions across ${profile.games} imported games${profile.platform_rating ? `, where you were rated ${profile.platform_rating}` : ""}.`
+      ? `Measured from ${profile.positions} of your own decisions across ${plural(profile.games, "imported game")}${profile.platform_rating ? `, where you were rated ${profile.platform_rating}` : ""}.`
       : profile.status === "computing"
         ? "Measuring your level from your imported games. The bot plays at a provisional level until that finishes."
         : profile.status === "no_games"

@@ -634,7 +634,7 @@ def test_parallel_review_preserves_order_history_and_engine_budget(settings, mon
         def close(self):
             self.closed = True
 
-    def analyze(engine, board, move):
+    def analyze(engine, board, move, *, parameters=None):
         nonlocal active, peak
         ply = len(board.move_stack) + 1
         with lock:
@@ -701,7 +701,7 @@ def test_parallel_review_failure_keeps_committed_work_and_closes_engines(setting
         def close(self):
             self.closed = True
 
-    def analyze(engine, board, move):
+    def analyze(engine, board, move, *, parameters=None):
         ply = len(board.move_stack) + 1
         calls.append(ply)
         if failing and ply == 2:

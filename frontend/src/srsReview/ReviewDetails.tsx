@@ -1,6 +1,7 @@
 import { ChevronRight, CircleCheck } from "lucide-react";
 import Button from "../Button";
 import type { ColdPosition, Feedback } from "../api";
+import { plural, pluralWord } from "../format";
 
 export default function ReviewDetails({
   position,
@@ -27,8 +28,7 @@ export default function ReviewDetails({
             <CircleCheck size={20} />
             <div>
               <span>
-                Accepted move
-                {feedback.answers && feedback.answers.length > 1 ? "s" : ""}:{" "}
+                Accepted {pluralWord(feedback.answers?.length || 1, "move")}:{" "}
                 {feedback.answers?.map((a) => a.san).join(", ")}
               </span>
             </div>
@@ -42,7 +42,7 @@ export default function ReviewDetails({
           {feedback.retired && (
             <p className="small">
               Your recall interval reached{" "}
-              {Math.round(feedback.retired_interval_days || 0)} days. This
+              {plural(Math.round(feedback.retired_interval_days || 0), "day")}. This
               position is permanently retired from reviews; your history is
               preserved.
             </p>

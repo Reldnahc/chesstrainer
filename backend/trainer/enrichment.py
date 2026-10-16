@@ -44,11 +44,13 @@ def probe_key(decision, settings, engine):
     )
 
 
-def plan_probes(units, job_id, settings, engine):
+def plan_probes(context, engine):
     """Select decisions worth probing in a read unit; only the task rows are written.
 
-    ``units`` opens the account's ``read()`` and ``write()`` units.
+    ``context`` is the enrichment job's ``JobContext``.
     """
+    job_id, settings = context.job_id, context.settings
+    units = context
     with units.read() as db:
         saved = db.scalars(
             select(ClassificationTask).where(ClassificationTask.job_id == job_id)
