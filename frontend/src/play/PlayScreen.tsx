@@ -160,8 +160,7 @@ function PlaySetup({ from }: { from: string | null }) {
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
           <div className="play-field">
-            <span id="play-mode">Opening</span>
-            <ChoiceGroup label="Opening" labelId="play-mode" value={mode} onChange={setMode}
+            <ChoiceGroup label="Opening" showLabel value={mode} onChange={setMode}
               options={MODES.map(option => ({ ...option, disabled: option.value === "practice" && !courses.length }))} />
             {/* The course picker stays in place, unavailable until practice is chosen, so
                 choosing practice never pushes the rows below it down. */}
@@ -180,8 +179,7 @@ function PlaySetup({ from }: { from: string | null }) {
             </div>
           </div>
           <div className="play-field">
-            <span id="play-opponent">Opponent</span>
-            <ChoiceGroup label="Opponent" labelId="play-opponent" value={shownOpponent} onChange={(value) => {
+            <ChoiceGroup label="Opponent" showLabel value={shownOpponent} onChange={(value) => {
               setOpponent(value);
               if (value === "engine") setLevel("choose");
             }} options={OPPONENTS.map(option => ({ ...option, disabled: option.value === "human" && !humanModel }))} />
@@ -197,9 +195,8 @@ function PlaySetup({ from }: { from: string | null }) {
             </div>
           </div>
           <div className="play-field">
-            <span id="play-strength">Strength</span>
             {/* The engine cannot match a human level; keep the choice visible but unavailable. */}
-            <ChoiceGroup label="Strength" labelId="play-strength" value={shownOpponent === "human" ? level : "choose"} onChange={setLevel}
+            <ChoiceGroup label="Strength" showLabel value={shownOpponent === "human" ? level : "choose"} onChange={setLevel}
               options={LEVELS.map(option => ({ ...option, disabled: shownOpponent !== "human" && option.value === "match" }))} />
             <div className="play-swap">
               <div className="play-level" hidden={!(level === "match" && shownOpponent === "human")}>
@@ -214,8 +211,7 @@ function PlaySetup({ from }: { from: string | null }) {
             </div>
           </div>
           <div className="play-field">
-            <span id="play-color">Your color</span>
-            <ChoiceGroup label="Your color" labelId="play-color" value={shownColor} onChange={setColor}
+            <ChoiceGroup label="Your color" showLabel value={shownColor} onChange={setColor}
               options={COLORS.map(option => ({ ...option, disabled: !!course && option.value !== course.learner_color }))} />
           </div>
           <p className="small muted">
