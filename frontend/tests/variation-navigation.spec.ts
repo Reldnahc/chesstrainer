@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./helpers/browserTest";
 import { expectReturnAction } from "./return-action";
 
 async function openGame(page: Page, suffix: string) {

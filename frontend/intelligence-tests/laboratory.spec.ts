@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { viteFsPath } from "../studio-tests/helpers/viteFsPath";

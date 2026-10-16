@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browserTest";
 import type { Feedback, Schema } from "../src/api";
 import type { AudioPreferences, SoundCue } from "../src/audio/model";
 import { captureAudio, audioCues } from "./helpers/audio";

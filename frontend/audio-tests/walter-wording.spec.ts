@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "../tests/helpers/browserTest";
 import path from "node:path";
 import { openAudioFixturePage } from "./fixtures/openAudioFixture";
 import { viteFsPath } from "../studio-tests/helpers/viteFsPath";

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("lazy and recovered engine use stays available without an endless checking notice", async ({
   page,

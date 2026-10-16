@@ -1,4 +1,4 @@
-import { test, expect, type Request } from "@playwright/test";
+import { test, expect, type Request } from "./helpers/browserTest";
 import { renderDialogue, renderNeutral } from "../src/dialogue/neutral";
 import { claim, makeIntent } from "../src/dialogue/model";
 import { neutralPersonality } from "../src/dialogue/personality";

@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browserTest";
 import type { ColdPosition, Feedback } from "../src/api";
 import { relativeDue } from "../src/srsReview/relativeDue";
 

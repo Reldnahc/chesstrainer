@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "../tests/helpers/browserTest";
 import path from "node:path";
 import type { CoachExpression } from "../src/coach/model";
 import { speechMouthPoses, type SpeechMouthShape } from "../src/coach/speechMouth";

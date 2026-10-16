@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("evaluation scrubs continuously, captures the pointer, and stops on release or cancellation", async ({
   page,

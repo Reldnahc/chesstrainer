@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 // Deliberately independent of the registry: catch omissions, duplicates and
 // reordered groups instead of teaching the test whatever the registry contains.

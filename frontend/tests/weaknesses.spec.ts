@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browserTest";
 import type { Evidence, Schema } from "../src/api";
 
 const categories = (page: Page) => page.getByRole("navigation", { name: "Weakness categories" });

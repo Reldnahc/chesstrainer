@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "../tests/helpers/browserTest";
 import { expressions } from "../src/coach/model";
 
 const characters = [

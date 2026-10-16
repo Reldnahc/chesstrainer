@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browserTest";
 import { humanGames } from "./human-fixtures";
 import type { Game, Report } from "../src/gameReview/types";
 import { gameIntent } from "../src/dialogue/gameIntent";

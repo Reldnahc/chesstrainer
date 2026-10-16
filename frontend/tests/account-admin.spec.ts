@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 
 const sections = (page: Page) => page.getByRole("navigation", { name: "Settings sections" });

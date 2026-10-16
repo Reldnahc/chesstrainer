@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("leaving an SRS session discards its late grading error", async ({ page }, info) => {
   const fixture = await (

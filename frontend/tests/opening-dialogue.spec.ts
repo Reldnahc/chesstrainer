@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 import type { Frame, Game, Report } from "../src/gameReview/types";
 import {
   BOOK_ENTRY_VARIANTS,

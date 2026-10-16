@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 import { speechMouthAt, type SpeechMouthTrack } from "../src/coach/speechMouth";
 import {
   mouthCueTrack,

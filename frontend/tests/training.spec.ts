@@ -1,4 +1,4 @@
-import { test, expect, type Locator, type Page } from "@playwright/test";
+import { test, expect, type Locator, type Page } from "./helpers/browserTest";
 
 // Mobile review scrolls naturally; compare document geometry across feedback,
 // independently of the scrolling needed to tap an action beneath the board.

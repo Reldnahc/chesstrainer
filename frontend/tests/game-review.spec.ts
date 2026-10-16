@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("opening starts once, failures allow retry, pause sticks and reopening resumes", async ({
   page,

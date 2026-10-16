@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("the review exports PGN, the FEN on the board and a GIF of the game", async ({
   page,

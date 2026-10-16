@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./helpers/browserTest";
 
 test.beforeEach(async ({ page }) => {
   await page.route("**/api/jobs", route => route.fulfill({ json: [] }));

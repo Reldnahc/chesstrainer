@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import { expressions } from "../src/coach/model";
 
 test("studio offers four male collections, stable previews and expressive reduced motion", async ({

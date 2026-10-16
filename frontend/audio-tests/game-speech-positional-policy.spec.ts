@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 import type { Game, Report } from "../src/gameReview/types";
 import { semanticFixtures } from "../tests/semantic-fixtures";
 import { gameIntent } from "../src/dialogue/gameIntent";

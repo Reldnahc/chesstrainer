@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import path from "node:path";
 import arjun from "../src/audio/speech/banks/arjun/manifest.json" with { type: "json" };
 import alfie from "../src/audio/speech/banks/alfie/manifest.json" with { type: "json" };

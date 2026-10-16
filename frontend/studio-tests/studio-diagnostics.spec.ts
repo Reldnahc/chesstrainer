@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "../tests/helpers/browserTest";
 import { classicPerformance } from "../src/coach/classic/performance";
 import { IDLE_GAP_MS } from "../src/coach/idleModel";
 

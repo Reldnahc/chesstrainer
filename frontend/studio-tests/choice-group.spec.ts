@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 
 test("expression filters use application choice controls without changing the inspected reaction", async ({
   page,

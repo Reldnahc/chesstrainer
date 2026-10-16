@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "./helpers/browserTest";
 import type { Job, Schema } from "../src/api";
 
 type Motion = Schema["MotionPreferences"]["motion"];

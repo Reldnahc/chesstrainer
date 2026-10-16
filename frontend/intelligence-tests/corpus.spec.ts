@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import { renderCoaches } from "./render-coaches";
 import { exampleIntent, comparisonExamples, writingExamples } from "../intelligence-lab/examples";
 

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 import { gameIntent } from "../src/dialogue/gameIntent";
 import { practiceIntent, explanationIntent } from "../src/dialogue/practiceIntent";
 import { renderDialogue, renderNeutral } from "../src/dialogue/neutral";

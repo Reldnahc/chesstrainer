@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import { findSpeechRelease } from "../src/audio/speech/release";
 
 const RATE = 48000;

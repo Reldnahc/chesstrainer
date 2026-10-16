@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./helpers/browserTest";
 import { expectModifierClickLeftToBrowser } from "./modifierClick";
 
 test.beforeEach(async ({ page }) => {

@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "../tests/helpers/browserTest";
 import { pauseAfterLoad } from "./fixtures/clock";
 import { cueCatalog, paletteCatalog, productionCuePalettes } from "../src/audio/catalog";
 import recordedSources from "../src/audio/assets/sources.json" with { type: "json" };

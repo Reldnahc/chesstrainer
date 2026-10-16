@@ -89,7 +89,25 @@ export function playLeavingCopy(source: HTMLElement, mark: (copy: HTMLElement) =
   copy.inert = true;
   copy.popover = "manual";
   document.body.append(copy);
-  copy.showPopover();
-  const remove = () => copy.remove();
-  afterAnimations(copy, remove);
+  const show = () => {
+    if (!copy.isConnected) return;
+    copy.showPopover();
+    afterAnimations(copy, () => copy.remove());
+  };
+  try {
+    show();
+  } catch (error) {
+    // An auto popover also hides when another one opens, and a popover cannot be
+    // shown during that other show (a microtask still runs inside it): the copy
+    // shows at the start of the next frame, before it is drawn.
+    if (!(error instanceof DOMException && error.name === "InvalidStateError")) throw error;
+    requestAnimationFrame(() => {
+      try {
+        show();
+      } catch (retry) {
+        copy.remove();
+        throw retry;
+      }
+    });
+  }
 }

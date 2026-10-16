@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import { claim, makeIntent } from "../src/dialogue/model";
 import { tacticalClaim } from "../src/dialogue/eventClaims";
 import type { Schema } from "../src/api";

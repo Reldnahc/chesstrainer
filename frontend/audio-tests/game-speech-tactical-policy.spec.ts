@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 import type { Game } from "../src/gameReview/types";
 import { gameReaction } from "../src/coach/reactions";
 import { gameIntent } from "../src/dialogue/gameIntent";

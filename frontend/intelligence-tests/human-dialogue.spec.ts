@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import { humanGames, humanIntent } from "../tests/human-fixtures";
 import { renderCoaches } from "./render-coaches";
 import { humanInsightLabels } from "../src/dialogue/humanClaims";

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("puzzle and opening statistics retain labels, zeroes and shared definition-list layout", async ({
   page,

@@ -1,4 +1,4 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator } from "./helpers/browserTest";
 import type { Job, Schema } from "../src/api";
 
 async function expectPassive(notice: Locator) {

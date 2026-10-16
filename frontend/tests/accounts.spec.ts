@@ -1,4 +1,4 @@
-import { test, expect, type APIResponse, type Page } from "@playwright/test";
+import { test, expect, watchPageErrors, type APIResponse, type Page } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 import { audioCues, captureAudio } from "./helpers/audio";
 
@@ -102,6 +102,7 @@ test("account signup, engine-free sync, second-device login and private library"
   expect(await (await page.request.get("/api/preferences/audio")).json()).toEqual(ownerAudio);
 
   const second = await browser.newContext({ baseURL: "http://127.0.0.1:8766", extraHTTPHeaders });
+  const secondErrors = watchPageErrors(second);
   try {
     const device = await second.newPage();
     await captureAudio(device);
@@ -245,6 +246,7 @@ test("account signup, engine-free sync, second-device login and private library"
   } finally {
     await second.close();
   }
+  secondErrors.check();
 });
 
 for (const connected of [false, true]) {
@@ -423,6 +425,7 @@ test("Study progress and selected coach resume on another device without leaking
   expect(savedPuzzle.history.map(frame => frame.uci)).toEqual(["e2e4", "e7e5"]);
 
   const second = await browser.newContext({ baseURL: "http://127.0.0.1:8766", extraHTTPHeaders });
+  const secondErrors = watchPageErrors(second);
   try {
     const device = await second.newPage();
     await device.goto(lessonPath);
@@ -513,4 +516,5 @@ test("Study progress and selected coach resume on another device without leaking
   } finally {
     await second.close();
   }
+  secondErrors.check();
 });

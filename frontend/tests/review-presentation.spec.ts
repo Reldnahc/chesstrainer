@@ -1,4 +1,4 @@
-import { test, expect, type Locator } from "@playwright/test";
+import { test, expect, type Locator } from "./helpers/browserTest";
 
 const geometry = (locator: Locator) =>
   locator.evaluate(element => {

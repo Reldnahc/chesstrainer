@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 import { viteFsPath } from "./helpers/viteFsPath";
 
 test("Vite filesystem URLs use canonical Linux and Windows paths", () => {

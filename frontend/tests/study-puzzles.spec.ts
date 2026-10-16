@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 

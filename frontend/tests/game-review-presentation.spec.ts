@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./helpers/browserTest";
 import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 
 const walter = (id: string) =>

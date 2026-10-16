@@ -1,4 +1,4 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator } from "./helpers/browserTest";
 
 async function sectionAppearance(navigation: Locator) {
   return navigation.evaluate(element => {

@@ -1,4 +1,4 @@
-import { test, expect, type Locator, type Page } from "@playwright/test";
+import { test, expect, type Locator, type Page } from "../tests/helpers/browserTest";
 import path from "node:path";
 import { viteFsPath } from "./helpers/viteFsPath";
 import { configuredGestures } from "../src/coach/idleGestures";

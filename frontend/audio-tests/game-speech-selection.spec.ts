@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import type { Schema } from "../src/api";
 import type { Game, Position, Report } from "../src/gameReview/types";
 import { gameIntent } from "../src/dialogue/gameIntent";
