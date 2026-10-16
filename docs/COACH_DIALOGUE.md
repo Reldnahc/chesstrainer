@@ -172,7 +172,7 @@ The back-rank, recovery, opening-departure, repeated-issue and Orin draw takes t
 were false were rewritten and re-recorded on Oct 15; each bank's
 `revisions/false-takes-v1.json` (Walter's `bank/revisions/walter-false-takes-v1.json`)
 holds the previous text, the new text and the reason. Orin's fork takes (which
-promised only one target escapes) and the Orin and Tamar castling takes (which
+promised only one target escapes) and the Orin, Tamar, Monty and Reka castling takes (which
 called castling shelter or safety) followed on Oct 16, in `revisions/fork-takes-v1.json`
 and `revisions/castling-safety-v1.json`. A spec checks no recorded take brings
 those claims back. Back-rank takes saying the king is hemmed in or trapped by its
