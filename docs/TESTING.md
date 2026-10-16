@@ -442,6 +442,12 @@ each reports its own failure). An intended exception is written at its line as
 never disable a rule for a whole file. A disable comment that is no longer needed is
 itself reported, so stale exceptions fail the build.
 
+`npm run format:check` runs Prettier ([.prettierrc.json](../frontend/.prettierrc.json):
+100-character lines, double quotes, bare single arrow parameters) over the frontend's
+code and styles; `npm run build` runs it too, so unformatted code fails the build. JSON
+data, Markdown and generated output keep their layout ([.prettierignore](../frontend/.prettierignore)).
+Run `npm run format` in `frontend/` to rewrite files before committing.
+
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It then runs the CSS design-system checks `frontend/scripts/spacing-scale.mjs`,
@@ -533,7 +539,7 @@ intelligence-lab and audio-studio browser tests and their Playwright configs. Th
 browser-test project includes Node 24 declarations for its runner and fixture helpers; fixtures
 must satisfy the same generated API contracts as the application. Both frontend
 checks run as part of `npm run build`, which `frontend/scripts/build.mjs` runs side by
-side with the lint, the style-boundary and symbol checks and the Vite build itself (the build
+side with the lint, the formatting check, the style-boundary and symbol checks and the Vite build itself (the build
 waits only for the API contract check and the public-source archive);
 backend contract tests and the export check run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.
