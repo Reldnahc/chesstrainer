@@ -810,9 +810,15 @@ def test_a_blunder_reason_says_whether_the_mover_stays_winning_or_was_lost():
         "Blunder",
         "This move makes an already lost position much worse.",
     )
+    # Winning and lost are the review's three-pawn bands; -2.50 is worse, not lost.
     assert classify(quality(0, -250), 1500)[1] == (
-        "This move gives away a decisive advantage or allows a severe loss."
+        "This move gives up a large part of the position's value."
     )
+    assert classify(quality(-40, -210), 1000)[1] == (
+        "This move gives up a large part of the position's value."
+    )
+    assert classify(quality(0, -350), 1500)[1] == "This move turns the position into a lost one."
+    assert classify(quality(450, 150), 1500)[1] == "This move gives away a winning advantage."
 
 
 def test_a_promotion_caption_reads_as_one_sentence():
