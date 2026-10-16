@@ -386,8 +386,9 @@ drains coordinators and their child pools, then closes the shared engines.
 
 Within an analysis job, STOCKFISH_WORKERS games run in parallel with independent
 database sessions. Native processes come from the shared engine pool in account
-mode and belong to the job in local mode. The host engine pool, a job's own engines
-and the Maia workers are each a `lazy_pool.LazyPool`: a slot builds its process on
+mode and belong to the job in local mode. The host engine pool, a review job's own
+engines and the Maia workers are each a `lazy_pool.LazyPool` (an analysis job's game
+threads instead keep one engine each, closed when the job ends): a slot builds its process on
 first use and keeps it, and a call that fails discards the process only when the
 failure left it unusable (a Maia worker always; a Stockfish engine once it has
 closed its own process), so the slot starts a fresh one. Moves within a game stay ordered.
