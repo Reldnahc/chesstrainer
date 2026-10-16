@@ -26,7 +26,10 @@ export function normalise(hex) {
 const lineOf = (text, index) => text.slice(0, index).split("\n").length;
 /** Comments, and `url(#id)` references (an SVG id, not a colour), kept as blank space. */
 const blank = text =>
-  text.replace(/\/\*[\s\S]*?\*\/|url\(\s*["']?#[^)]*\)/g, match => match.replace(/[^\n]/g, " "));
+  // A script's // line comment counts too, but not the // inside a URL.
+  text.replace(/\/\*[\s\S]*?\*\/|(?<![:"'`\w\\])\/\/[^\n]*|url\(\s*["']?#[^)]*\)/g, match =>
+    match.replace(/[^\n]/g, " "),
+  );
 
 /** Each literal colour token's value -> its name, from the first definition. */
 export function tokenColours(css) {
@@ -64,7 +67,7 @@ export function colours(text) {
       .map(part => Number(part).toString(16).padStart(2, "0"))
       .join("")}`,
   }));
-  return [...hex, ...rgb];
+  return [...hex, ...rgb].sort((a, b) => a.index - b.index);
 }
 
 /** Colours in `text` that copy a shared one, as { line, colour, use }. */
