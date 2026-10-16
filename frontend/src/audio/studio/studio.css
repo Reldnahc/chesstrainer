@@ -40,7 +40,7 @@
 /* Keeps the room below open source lines. */
 .audio-studio-source[open] { padding-bottom: var(--space-6); }
 .audio-studio-sidebar { display: grid; gap: var(--space-5); }
-/* The shared .panel surface (base.css) as a card; the studio sets its own spacing. */
+/* A card on the shared .panel surface (panel.css); the studio sets its own spacing. */
 .audio-studio-panel { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-5); }
 .audio-studio-panel-heading, .audio-studio-scenario { display: flex; flex-direction: column; gap: var(--space-3); }
 .audio-studio-panel-heading > p, .audio-studio-scenario-description { font-size: var(--text-sm); }
