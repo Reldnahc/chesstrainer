@@ -17,9 +17,11 @@ def job_context(sessions, job_id, settings, cancelled=lambda: False):
     from trainer.job_context import JobContext
 
     units = Units(sessions, threading.RLock())
+    with sessions() as db:
+        user_id = db.info["user_id"]
     return JobContext(
         job_id=job_id,
-        user_id=sessions.kw["info"]["user_id"],
+        user_id=user_id,
         settings=settings,
         sessions=sessions,
         read=units.read,
