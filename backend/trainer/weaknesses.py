@@ -2,11 +2,11 @@
 
 from collections import defaultdict
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS
 from trainer.models import Decision, Exercise, Game, Review, ReviewSession, SkillEvidence, now
-from trainer.practice import focus_queue
+from trainer.practice import focus_queues
 from trainer.taxonomy import SKILLS
 
 # Priority scoring. A decision's severity is its loss in units of SEVERITY_CP,
@@ -91,9 +91,86 @@ def recurrence(pairs, minimum):
     )
 
 
+def _newest_per_decision(db, entity, started, criteria, decision_ids):
+    """(decision id, row) for each decision's newest ``HISTORY`` rows of ``entity``,
+    newest first overall. A skill's newest ``HISTORY`` rows are always among its
+    decisions' newest, so no more are read, however long the history. The ids go
+    in chunks of 500, SQLite's bound on parameters."""
+    rows = []
+    for start in range(0, len(decision_ids), 500):
+        ranked = (
+            select(
+                entity.id,
+                Exercise.decision_id,
+                func.row_number()
+                .over(
+                    partition_by=Exercise.decision_id, order_by=(started.desc(), entity.id.desc())
+                )
+                .label("rank"),
+            )
+            .join(Exercise)
+            .where(*criteria, Exercise.decision_id.in_(decision_ids[start : start + 500]))
+            .subquery()
+        )
+        rows += db.execute(
+            select(ranked.c.decision_id, entity)
+            .join(ranked, ranked.c.id == entity.id)
+            .where(ranked.c.rank <= HISTORY)
+        ).all()
+    return sorted(rows, key=lambda row: (getattr(row[1], started.key), row[1].id), reverse=True)
+
+
+def _latest(rows, key, limit=None):
+    """{key value: its newest ``limit`` rows}, from rows already ordered newest first."""
+    grouped = defaultdict(list)
+    for value, row in rows:
+        for group in key(value):
+            if limit is None or len(grouped[group]) < limit:
+                grouped[group].append(row)
+    return grouped
+
+
 def priorities(db, settings):
     # Weakness rankings are stats, so casual games do not count; their drills remain.
     grouped = active_groups(db, stats_only=True)
+    # Each history is read once for every skill: a decision's reviews and archived
+    # lesson attempts count for every skill labelled on it.
+    skills_of = defaultdict(set)
+    for skill, pairs in grouped.items():
+        for _, decision in pairs:
+            skills_of[decision.id].add(skill)
+    decision_ids = list(skills_of)
+    reviews = _latest(
+        _newest_per_decision(db, Review, Review.created_at, (), decision_ids),
+        skills_of.__getitem__,
+        HISTORY,
+    )
+    lessons = _latest(
+        _newest_per_decision(
+            db,
+            ReviewSession,
+            ReviewSession.started_at,
+            # Archived lesson attempts.
+            (ReviewSession.mode == "lesson", ReviewSession.completed.is_(True)),
+            decision_ids,
+        ),
+        skills_of.__getitem__,
+        HISTORY,
+    )
+    focused_sessions = _latest(
+        db.execute(
+            select(ReviewSession.focus_skill_id, ReviewSession)
+            .where(
+                ReviewSession.mode == "focus",
+                ReviewSession.focus_skill_id.in_(list(grouped)),
+                ReviewSession.completed.is_(True),
+            )
+            .order_by(ReviewSession.started_at.desc())
+        ).all(),
+        lambda skill: [skill],
+        HISTORY,
+    )
+    queues = focus_queues(db, list(grouped))
     result = []
     for skill, pairs in grouped.items():
         # At most one severity contribution per game: correlated blunders are not independent.
@@ -103,37 +180,12 @@ def priorities(db, settings):
             per_game[decision.game_id] = max(
                 per_game[decision.game_id], evidence.confidence * severity(decision, age_days)
             )
-        review_rows = db.scalars(
-            select(Review)
-            .join(Exercise)
-            .where(Exercise.decision_id.in_([d.id for _, d in pairs]))
-            .order_by(Review.created_at.desc())
-            .limit(HISTORY)
-        ).all()
+        review_rows = reviews[skill]
         failures = sum(r.failed or r.revealed for r in review_rows)
         slow = sum(r.response_ms > settings.slow_answer_seconds * 1000 for r in review_rows)
-        practice = db.scalars(
-            select(ReviewSession)
-            .join(Exercise)
-            .where(
-                Exercise.decision_id.in_([d.id for _, d in pairs]),
-                ReviewSession.mode == "lesson",  # Archived lesson attempts.
-                ReviewSession.completed.is_(True),
-            )
-            .order_by(ReviewSession.started_at.desc())
-            .limit(HISTORY)
-        ).all()
+        practice = lessons[skill]
         practice_failures = sum(session.failed or session.revealed for session in practice)
-        focused = db.scalars(
-            select(ReviewSession)
-            .where(
-                ReviewSession.mode == "focus",
-                ReviewSession.focus_skill_id == skill,
-                ReviewSession.completed.is_(True),
-            )
-            .order_by(ReviewSession.started_at.desc())
-            .limit(HISTORY)
-        ).all()
+        focused = focused_sessions[skill]
         score = priority_score(
             per_game.values(),
             foundation=skill in FOUNDATION,
@@ -149,7 +201,7 @@ def priorities(db, settings):
                 "skill_id": skill,
                 "kind": "outcome" if skill in OUTCOME_SKILLS else "mechanism",
                 "cue": CUES.get(skill, ""),
-                "practice_positions": len(focus_queue(db, skill)),
+                "practice_positions": len(queues[skill]),
                 "focused_attempts": len(focused),
                 "focused_failures": sum(s.failed or s.revealed for s in focused),
                 "unique_positions": len({d.position_key for _, d in pairs}),

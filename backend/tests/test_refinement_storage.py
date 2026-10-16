@@ -13,7 +13,7 @@ from trainer.db import database, migrate
 from trainer.errors import NotFound
 from trainer.models import Game, GameReview, GameReviewMove, ReviewRefinement, uid
 from trainer.ownership import account_sessions
-from trainer.review_reports import effective_report
+from trainer.review_reports import reports_for
 
 
 def test_private_task_queries_and_references_cannot_cross_accounts(settings, sessions):
@@ -43,19 +43,31 @@ def test_private_task_queries_and_references_cannot_cross_accounts(settings, ses
 
 def test_same_account_wrong_position_or_generation_is_not_promoted(sessions):
     baseline = {"before_analysis_id": "base", "played_analysis_id": "played", "depth": 16}
-    row = GameReviewMove(game_id="game", ply=1, report=baseline)
-    task = ReviewRefinement(
-        game_id="different",
-        ply=1,
-        adopted=True,
-        status="completed",
-        report={"depth": 22},
-        config={"baseline_ids": ["base", "played"]},
-    )
     with sessions() as db:
-        assert effective_report(db, row, task) == baseline
-        task.game_id, task.config = "game", {"baseline_ids": ["other", "played"]}
-        assert effective_report(db, row, task) == baseline
+        game, other = (
+            Game(fingerprint=key, white="A", black="B", learner_color=True, pgn="*")
+            for key in ("game", "other")
+        )
+        db.add_all([game, other])
+        db.flush()
+        task = ReviewRefinement(
+            game_id=other.id,
+            ply=1,
+            task_key="elsewhere",
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report={"depth": 22},
+            config={"baseline_ids": ["base", "played"]},
+        )
+        db.add(task)
+        db.flush()
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
+        db.flush()
+        assert reports_for(db, game.id)[0] == {1: baseline}
+        task.game_id, task.config = game.id, {"baseline_ids": ["other", "played"]}
+        db.flush()
+        assert reports_for(db, game.id)[0] == {1: baseline}
 
 
 @pytest.mark.pristine_database
@@ -128,7 +140,8 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
 def test_the_game_page_and_library_accuracy_agree_on_the_adopted_report(
     sessions, adopted, status, baseline_ids, refined
 ):
-    # effective_report (Python) and load_accuracy_scores (SQL) state one rule twice.
+    # The game page (reports_for) and library accuracy (load_accuracy_scores)
+    # both read review_reports.adopted, so they cannot disagree.
     from trainer.review_reports import load_accuracy_scores
 
     def score(value):
@@ -161,7 +174,7 @@ def test_the_game_page_and_library_accuracy_agree_on_the_adopted_report(
         row = GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id)
         db.add(row)
         db.commit()
-        page = effective_report(db, row, task)
+        page = reports_for(db, game.id)[0][1]
         library = load_accuracy_scores(db, [game.id])[game.id][1]
         assert library == {
             "white_score": page["white_score"],
@@ -591,3 +604,44 @@ def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_a
         db.commit()
         assert resync_game_cards(db) == (0 if eligible else 1)
         assert db.get(SRSState, exercise.id).eligible is eligible
+
+
+def test_only_the_refinement_the_review_shows_is_reread_and_an_empty_one_is_not_shown(sessions):
+    from trainer.review_reports import stale_adopted
+
+    baseline = {"before_analysis_id": "base", "played_analysis_id": "played", "depth": 16}
+    old_lines = {"actual_line": {"horizon": "an older horizon"}, "depth": 20}
+    with sessions() as db:
+        game = Game(fingerprint="shown", white="A", black="B", learner_color=True, pgn="*")
+        db.add(game)
+        db.flush()
+
+        def refinement(key, report):
+            task = ReviewRefinement(
+                game_id=game.id,
+                ply=1,
+                task_key=key,
+                triggers=[],
+                adopted=True,
+                status="completed",
+                report=report,
+                config={"baseline_ids": ["base", "played"]},
+            )
+            db.add(task)
+            db.flush()
+            return task
+
+        superseded = refinement("superseded", old_lines)
+        newer = refinement("newer", old_lines | {"depth": 24})
+        move = GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=newer.id)
+        db.add(move)
+        db.flush()
+        # Both are adopted and stale, but the review shows only the newer one.
+        assert [task.id for task in stale_adopted(db, game.id, None)] == [newer.id]
+        assert superseded.id != newer.id
+
+        empty = refinement("empty", {})
+        move.refinement_id = empty.id
+        db.flush()
+        assert reports_for(db, game.id)[0][1]["depth"] == 16
+        assert stale_adopted(db, game.id, None) == []

@@ -57,9 +57,19 @@ def create_app(
     puzzle_providers=None,
     lesson_providers=None,
 ):
-    # A real start reads server settings from the database; callers passing their
-    # own Settings (tests, tools) get exactly those.
-    settings = (settings or site_settings.load(Settings())).for_runtime()
+    # A real start brings the database to head, once, and then reads the server
+    # settings it holds; callers passing their own Settings (tests, tools) get
+    # exactly those, and the database is migrated when the app starts.
+    migrated = settings is None
+    if migrated:
+        settings = Settings()
+        engine, _ = database(settings.database_path)
+        try:
+            migrate(engine)
+        finally:
+            engine.dispose()
+        settings = site_settings.load(settings)
+    settings = settings.for_runtime()
     if puzzle_providers is None:
         puzzle_providers = production_providers(settings)
     # Tests and development tools may supply their own courses; a real install
@@ -96,7 +106,8 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app):
         try:
-            migrate(sql_engine)
+            if not migrated:
+                migrate(sql_engine)
             # Before workers and requests start, so no cache row in use can go.
             maintain_shared_caches(sql_engine)
             optimize(sql_engine, opening=True)
