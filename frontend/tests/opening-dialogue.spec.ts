@@ -672,7 +672,7 @@ test("no recorded take repeats the claims the Oct 15 rewrites removed", () => {
     // A fork can sometimes be met with one reply that saves everything.
     [/^tactic-fork-/, /rescue only one|only one of them able/i],
     // Review checks only that castling happened, not that the king is safer.
-    [/^positional-castling-/, /shelter|safety first|king is tucked away/i],
+    [/^positional-castling-/, /shelter|safety first|tucked away/i],
   ];
   for (const bank of registry.banks)
     for (const take of recordedTakes(bank.manifestPath))
