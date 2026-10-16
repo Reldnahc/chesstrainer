@@ -110,3 +110,33 @@ def test_a_poisoned_capture_followed_by_mate_is_not_a_hanging_piece():
     }
     # Without the mate the same capture still counts.
     assert ("missed_tactical_capture", "undefended_capture_gain") in detected(boards[:2])
+
+
+def test_a_pin_the_combination_creates_is_credited_to_it():
+    # ...Qxg2+ drags the rook onto the long diagonal, where the b7 bishop pins it
+    # to the king; ...Re1+ and ...Rxf1# follow (Lichess 04ccX).
+    boards = line(
+        "6k1/pb3p2/6pQ/3q4/8/3Br3/PPP3PP/6RK b - - 2 29", "Qxg2+", "Rxg2", "Re1+", "Bf1", "Rxf1#"
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_existing_pin_the_line_exploits_is_credited():
+    # The rook on d1 already pins the d7 bishop; Rxd6 and Bxd7 win it (Lichess 1mukg).
+    boards = line(
+        "3r3r/2kb1Q1p/p1nb1p2/4p3/4P1B1/8/PpP2PPP/1K1R4 w - - 4 21",
+        "Rxd6",
+        "Kxd6",
+        "Bxd7",
+        "Rxd7",
+        "Qxf6+",
+        "Kc7",
+        "Qxh8",
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_existing_pin_that_stops_the_answer_to_mate_is_credited():
+    # The queen on f8 pins the e8 rook, which could otherwise take on e7 (Lichess SU9uA).
+    boards = line("r1bkrQ2/ppqn2pp/4P3/n7/2B5/5N2/PP3PPP/2KR3R w - - 2 19", "e7#")
+    assert "pin" in {skill for skill, _ in recognized(boards)}
