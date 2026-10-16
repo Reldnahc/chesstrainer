@@ -1,7 +1,7 @@
 import {test, expect} from "@playwright/test";
 import path from "node:path";
 import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
-import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
+import {meanings} from "../src/audio/speech/meaningCatalog";
 import {openAudioFixturePage} from "./fixtures/openAudioFixture";
 import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
 
@@ -37,7 +37,7 @@ test("registered voices resolve their own complete recordings and lazy mouth tra
     expect(bank.otherMissing).toBeNull();
     expect(bank.missingTrack).toBeUndefined();
     for (const record of bank.all) {
-      expect(catalogue.meanings.some(meaning => meaning.id === record.id)).toBe(true);
+      expect(meanings.some(meaning => meaning.id === record.id)).toBe(true);
       expect(record.text.trim()).not.toBe("");
       expect(record.url).toMatch(/\.opus(?:\?|$)/);
     }

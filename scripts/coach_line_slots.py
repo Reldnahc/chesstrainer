@@ -119,7 +119,8 @@ EXTRA_TAKES = [
     ),
 ]
 # Grade takes are numbered per grade (grade-best-1 to -4 today) and play when a move
-# has nothing more specific to say.
+# has nothing more specific to say. Each names its grade in "gradeOf", which is how
+# the frontend's one catalogue parser pools them.
 EXTRA_GRADE_TAKES = {
     "best": "the move is graded Best (the engine's top choice) and there is nothing more specific to say",
     "good": "the move is graded Good (a sound move, not the engine's top choice) and there is nothing more specific to say",
@@ -193,6 +194,7 @@ def slots():
             rows.append(
                 {
                     "id": f"grade-{grade}-{take}",
+                    "gradeOf": grade,
                     "after": f"grade-{grade}-{take - 1}",
                     "set": "takes",
                     "when": when,
@@ -375,7 +377,7 @@ def promote(plan_data):
             family.add(item["id"])
             index += 1
         entry = {"id": row["id"], "group": row["group"]}
-        entry |= {key: row[key] for key in ("colourOf", "takeOf", "side") if key in row}
+        entry |= {key: row[key] for key in ("colourOf", "takeOf", "side", "gradeOf") if key in row}
         meanings.insert(index + 1, entry)
     write(CATALOGUE, catalogue)
     order = [item["id"] for item in meanings]
