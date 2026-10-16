@@ -182,8 +182,9 @@ def classify(report, rating):
 
 
 # Bump when the way a saved line is read or shown changes, so saved lines are
-# read again: 2 is the shared horizon with lines shown to where they settle.
-LINE_READING = 2
+# read again: 2 is the shared horizon with lines shown to where they settle,
+# 3 settles only where no capture is pending.
+LINE_READING = 3
 
 
 def without_reading(horizon):

@@ -2,7 +2,7 @@
 
 ## Classification v4: pinned Lichess recognition
 
-Version 4.1-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
+Version 4.2-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
 
 Recognition and mistake admission are separate. A pin or double check can be present in a line without a settled material outcome. Review can show that factual motif; an active weakness finding still needs Fieldwork's existing engine comparison, material/mate support and relevant episode. Fieldwork's own collection witnesses and independently verified native extensions also run; upstream recognition adds motifs those narrower witnesses miss.
 
@@ -55,7 +55,7 @@ Detectors inspect the bounded connected episode, not arbitrary later tactics. On
 
 All PV moves are replayed and validated by python-chess. Stockfish scores retain explicit centipawn/mate types and the learner's perspective. Already-lost mate positions are not newly labeled allowed mate; retaining a slower mate is not missed mate.
 
-Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, and unchanged last-three material balances. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
+Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, unchanged last-three material balances, and no capture pending: the side to move has no capture or promotion that wins material by static exchange (legal moves only, so pins count), and the saved line's next move is not a capture, promotion or check. Every line reader (review, Play, the practice explanation) shares this endpoint. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
 
 Absolute evaluation does not gate material findings: a player can lose a piece while still winning. Small evaluation preferences and compensated material without the configured evaluation loss do not qualify. Native hypotheses retain their pin and defense checks. An upstream motif tag alone never proves a training-worthy mistake.
 
