@@ -11,6 +11,7 @@ from trainer.engine import EngineReferenceMismatch, EngineUnavailable
 from trainer.game_library import board_before
 from trainer.game_review import analyze_move
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
+from trainer.puzzles.generation import remine_after_refinement
 from trainer.review_intelligence.refinement_plan import BROAD_TRIGGERS, VERSION, plan_key, selection
 from trainer.review_intelligence.refinement_search import (
     QueryBudgetReached,
@@ -167,15 +168,23 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
     except EngineUnavailable:
         status, reason = "unavailable", "engine_unavailable"
     with runner.mutation_lock, runner.sessions() as db:
-        current = db.get(ReviewRefinement, task_id)
-        current.status, current.reason, current.report = status, reason, report
-        current.adopted = adopted and status == "completed"
-        row = db.get(GameReviewMove, (game_id, task.ply))
-        if current.adopted or row.refinement_id is None:
-            row.refinement_id = current.id
-        touch_report(db, row)
-        following = db.get(GameReviewMove, (game_id, task.ply + 1))
-        if current.adopted and following is not None:
-            touch_report(db, following)
+        save_outcome(db, task_id, status, reason, report, adopted)
         db.commit()
     return True
+
+
+def save_outcome(db, task_id, status, reason, report, adopted):
+    """Record one answered question; an adopted answer becomes what the review shows."""
+    current = db.get(ReviewRefinement, task_id)
+    current.status, current.reason, current.report = status, reason, report
+    current.adopted = adopted and status == "completed"
+    row = db.get(GameReviewMove, (current.game_id, current.ply))
+    if current.adopted or row.refinement_id is None:
+        row.refinement_id = current.id
+    touch_report(db, row)
+    following = db.get(GameReviewMove, (current.game_id, current.ply + 1))
+    if current.adopted and following is not None:
+        touch_report(db, following)
+    if current.adopted:
+        # Own-game puzzles are mined from what the review shows, so look again.
+        remine_after_refinement(db, current.game_id)

@@ -630,3 +630,94 @@ def test_goal_themes_use_lichess_ranges(payoff, goal):
     query = PuzzleQuery(source="games", goal="material")
     assert _matches(definition, query) is (goal is not None)
     assert not _matches(definition, PuzzleQuery(source="games", goal="mate"))
+
+
+def refined_fork_review(db, game, before_id, *, adopted=True):
+    """A review of ply 1 whose baseline saw nothing and whose deeper search found the fork."""
+    from trainer.models import AnalysisJob, GameReview, GameReviewMove, ReviewRefinement
+
+    def cp(value):
+        return {"kind": "cp", "value": value, "mate_given": False}
+
+    baseline = {
+        "before_analysis_id": before_id,
+        "played_analysis_id": "played",
+        "depth": 12,
+        "best": {"san": "Ne4", "uci": "c3e4", "score": cp(40)},
+        "actual": {"san": "Ne4", "uci": "c3e4", "score": cp(40)},
+        "actual_line": {"frames": [{"fen": FORK_FEN}]},
+        "second_score": None,
+    }
+    refined = baseline | {
+        "before_analysis_id": "refined-before",
+        "depth": 22,
+        "best": {"san": "Nd5+", "uci": "c3d5", "score": cp(520)},
+        "second_score": cp(40),
+    }
+    job = AnalysisJob(kind="game_review", status="completed")
+    db.add(job)
+    db.flush()
+    db.add(GameReview(game_id=game.id, job_id=job.id, rating=1000))
+    task = ReviewRefinement(
+        game_id=game.id,
+        ply=1,
+        task_key="fork",
+        triggers=[],
+        config={"baseline_ids": [before_id, "played"]},
+        adopted=adopted,
+        status="completed",
+        report=refined,
+    )
+    db.add(task)
+    db.flush()
+    db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
+    db.commit()
+    return task
+
+
+def test_a_decision_saved_before_an_adopted_refinement_gives_way_to_the_review(sessions):
+    from trainer.puzzles.generation import prospects
+
+    with sessions() as db:
+        game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
+        # Training judged ply 1 from the baseline search: nothing to mine there.
+        decision = seed_decision(db, game, 1, "c3e4", [("c3e4", 40)])
+        task = refined_fork_review(db, game, decision.before_analysis_id)
+        [prospect] = prospects(db, game)
+        assert (prospect.ply, prospect.source, prospect.kind, prospect.saved_best_san) == (
+            1,
+            "review",
+            "missed_win",
+            "Nd5+",
+        )
+        # Without the adoption the decision matches what the review shows and stands.
+        task.adopted = False
+        db.commit()
+        assert prospects(db, game) == []
+
+
+def test_adopting_a_refinement_lets_mining_search_the_game_again(sessions):
+    from trainer.models import GamePuzzleSearch
+    from trainer.puzzles.generation import prospects
+    from trainer.review_refinement import save_outcome
+
+    with sessions() as db:
+        game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
+        task = refined_fork_review(db, game, "before", adopted=False)
+        db.add(
+            GamePuzzleSearch(
+                game_id=game.id, generator_version=GENERATOR_VERSION, engine_version="fixture"
+            )
+        )
+        db.commit()
+
+        def searched():
+            return db.scalar(select(GamePuzzleSearch.id).where(GamePuzzleSearch.game_id == game.id))
+
+        save_outcome(db, task.id, "completed", "not_deeper", task.report, False)
+        db.commit()
+        assert searched() is not None
+        save_outcome(db, task.id, "completed", None, task.report, True)
+        db.commit()
+        assert searched() is None
+        assert [p.saved_best_san for p in prospects(db, game)] == ["Nd5+"]

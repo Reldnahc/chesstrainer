@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 import chess
 import chess.pgn
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.orm import aliased
 
 from trainer.chess_core import Score, game_phase, legal_move, position_key, replay_moves
@@ -106,8 +106,22 @@ def _score(payload) -> int:
     return score_int(Score.model_validate(payload))
 
 
-def decision_prospects(db, game):
-    """Candidates from the training pipeline's saved decisions, plus every judged ply."""
+def shown_reports(db, game):
+    """Each reviewed ply's report as the review shows it: refined when a deeper search
+    was adopted, else the baseline."""
+    rows = db.scalars(
+        select(GameReviewMove).where(GameReviewMove.game_id == game.id).order_by(GameReviewMove.ply)
+    )
+    return {row.ply: saved_report(db, row) for row in rows}
+
+
+def decision_prospects(db, game, reports=None):
+    """Candidates from the training pipeline's saved decisions, plus every judged ply.
+
+    A decision saved before the review adopted a deeper search at its ply is stale
+    until training refreshes it, so that ply is left to ``review_prospects``.
+    """
+    reports = shown_reports(db, game) if reports is None else reports
     played_analysis = aliased(EngineAnalysis)
     rows = db.execute(
         select(Decision, EngineAnalysis.candidates, played_analysis.candidates)
@@ -118,6 +132,9 @@ def decision_prospects(db, game):
     )
     found, plies = [], set()
     for decision, candidates, played in rows:
+        report = reports.get(decision.ply)
+        if report is not None and report["before_analysis_id"] != decision.before_analysis_id:
+            continue
         plies.add(decision.ply)
         if not candidates or not played:
             continue
@@ -140,18 +157,15 @@ def decision_prospects(db, game):
     return found, plies
 
 
-def review_prospects(db, game, skip):
+def review_prospects(db, game, skip, reports=None):
     """Candidates from full-game review reports on plies the training pipeline never judged.
 
     The reports are read as the review shows them: refined when a deeper search was adopted.
     """
-    rows = db.scalars(
-        select(GameReviewMove).where(GameReviewMove.game_id == game.id).order_by(GameReviewMove.ply)
-    )
-    for row in rows:
-        if row.ply in skip:
+    reports = shown_reports(db, game) if reports is None else reports
+    for ply, report in reports.items():
+        if ply in skip:
             continue
-        ply, report = row.ply, saved_report(db, row)
         frames = (report.get("actual_line") or {}).get("frames") or []
         if not frames:
             continue
@@ -174,8 +188,9 @@ def review_prospects(db, game, skip):
 
 
 def prospects(db, game) -> list[Prospect]:
-    found, plies = decision_prospects(db, game)
-    found.extend(review_prospects(db, game, plies))
+    reports = shown_reports(db, game)
+    found, plies = decision_prospects(db, game, reports)
+    found.extend(review_prospects(db, game, plies, reports))
     found.sort(key=lambda item: item.ply)
     return found
 
@@ -439,6 +454,20 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
         )
         db.commit()
     return {"candidates": len(found), "kept": kept}
+
+
+def remine_after_refinement(db, game_id):
+    """Let the next mining run search a game again once its review adopts a deeper search.
+
+    Plies already judged keep their verdicts, since each was settled by its own
+    searches; only plies the refined report newly puts forward are searched.
+    """
+    db.execute(
+        delete(GamePuzzleSearch).where(
+            GamePuzzleSearch.game_id == game_id,
+            GamePuzzleSearch.generator_version == GENERATOR_VERSION,
+        )
+    )
 
 
 def _analyzed_games():
