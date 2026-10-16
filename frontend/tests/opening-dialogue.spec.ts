@@ -4,52 +4,8 @@ import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS, bookRecordingId, deriveBookPr
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {makeIntent} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {neutralPersonality} from "../src/dialogue/personality";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {neutralPersonality, type CoachPersonality} from "../src/dialogue/personality";
 import {coachPersonalities} from "../src/dialogue/characters";
-import {velvet} from "../src/dialogue/characters/velvet";
-import {expert} from "../src/dialogue/characters/expert";
-import {captain} from "../src/dialogue/characters/captain";
-import {partner} from "../src/dialogue/characters/partner";
-import {analyst} from "../src/dialogue/characters/analyst";
-import {blonde} from "../src/dialogue/characters/blonde";
-import {youngBoy} from "../src/dialogue/characters/youngBoy";
-import {alienOpeningTemplates} from "../src/dialogue/characters/alien";
-import {analystOpeningTemplates} from "../src/dialogue/characters/analyst";
-import {blondeOpeningTemplates} from "../src/dialogue/characters/blonde";
-import {capybaraOpeningTemplates} from "../src/dialogue/characters/capybara";
-import {captainOpeningTemplates} from "../src/dialogue/characters/captain";
-import {collieOpeningTemplates} from "../src/dialogue/characters/collie";
-import {corgiOpeningTemplates} from "../src/dialogue/characters/corgi";
-import {dragonOpeningTemplates} from "../src/dialogue/characters/dragon";
-import {gorillaOpeningTemplates} from "../src/dialogue/characters/gorilla";
-import {expertOpeningTemplates} from "../src/dialogue/characters/expert";
-import {frogOpeningTemplates} from "../src/dialogue/characters/frog";
-import {hostOpeningTemplates} from "../src/dialogue/characters/host";
-import {livingPawnOpeningTemplates} from "../src/dialogue/characters/livingPawn";
-import {mushroomOpeningTemplates} from "../src/dialogue/characters/mushroom";
-import {partnerOpeningTemplates} from "../src/dialogue/characters/partner";
-import {kittenOpeningTemplates} from "../src/dialogue/characters/kitten";
-import {puppyOpeningTemplates} from "../src/dialogue/characters/puppy";
-import {youngGirlOpeningTemplates} from "../src/dialogue/characters/youngGirl";
-import {professorOpeningTemplates} from "../src/dialogue/characters/professor";
-import {raccoonOpeningTemplates} from "../src/dialogue/characters/raccoon";
-import {robotOpeningTemplates} from "../src/dialogue/characters/robot";
-import {slimeOpeningTemplates} from "../src/dialogue/characters/slime";
-import {storytellerOpeningTemplates} from "../src/dialogue/characters/storyteller";
-import {tuxedoOpeningTemplates} from "../src/dialogue/characters/tuxedo";
-import {unicornOpeningTemplates} from "../src/dialogue/characters/unicorn";
-import {velvetOpeningTemplates} from "../src/dialogue/characters/velvet";
-import {wizardOpeningTemplates} from "../src/dialogue/characters/wizard";
-import {sparkOpeningTemplates} from "../src/dialogue/characters/spark";
-import {youngBoyOpeningTemplates} from "../src/dialogue/characters/youngBoy";
-import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
-import {tuxedo} from "../src/dialogue/characters/tuxedo";
-import {professor} from "../src/dialogue/characters/professor";
-import {collie} from "../src/dialogue/characters/collie";
-import {corgi} from "../src/dialogue/characters/corgi";
-import {host} from "../src/dialogue/characters/host";
-import {spark} from "../src/dialogue/characters/spark";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 import {NAMED_OPENING_TAKES} from "../src/audio/speech/falseTakes";
 import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
@@ -213,38 +169,11 @@ test("a variation never inherits the mainline's opening run", () => {
   expect(deriveBookPresentation({game, ply, frame, report: branchReport, variation: true})).toEqual(value);
 });
 
-const openingCoaches = [
-  {id: "classic", personality: storyteller, authored: storytellerOpeningTemplates},
-  {id: "robot", personality: coachPersonalities.robot, authored: robotOpeningTemplates},
-  {id: "capybara", personality: coachPersonalities.capybara, authored: capybaraOpeningTemplates},
-  {id: "mushroom", personality: coachPersonalities.mushroom, authored: mushroomOpeningTemplates},
-  {id: "ghost", personality: coachPersonalities.ghost, authored: ghostOpeningTemplates},
-  {id: "slime", personality: coachPersonalities.slime, authored: slimeOpeningTemplates},
-  {id: "alien", personality: coachPersonalities.alien, authored: alienOpeningTemplates},
-  {id: "living-pawn", personality: coachPersonalities["living-pawn"], authored: livingPawnOpeningTemplates},
-  {id: "wizard", personality: coachPersonalities.wizard, authored: wizardOpeningTemplates},
-  {id: "cat-tuxedo", personality: tuxedo, authored: tuxedoOpeningTemplates},
-  {id: "raccoon", personality: coachPersonalities.raccoon, authored: raccoonOpeningTemplates},
-  {id: "dog-gentle", personality: professor, authored: professorOpeningTemplates},
-  {id: "cat-kitten", personality: coachPersonalities["cat-kitten"], authored: kittenOpeningTemplates},
-  {id: "dragon", personality: coachPersonalities.dragon, authored: dragonOpeningTemplates},
-  {id: "dog-collie", personality: collie, authored: collieOpeningTemplates},
-  {id: "cat-black", personality: velvet, authored: velvetOpeningTemplates},
-  {id: "dog-corgi", personality: corgi, authored: corgiOpeningTemplates},
-  {id: "unicorn", personality: coachPersonalities.unicorn, authored: unicornOpeningTemplates},
-  {id: "man-expert", personality: expert, authored: expertOpeningTemplates},
-  {id: "frog", personality: coachPersonalities.frog, authored: frogOpeningTemplates},
-  {id: "gorilla", personality: coachPersonalities.gorilla, authored: gorillaOpeningTemplates},
-  {id: "man-partner", personality: partner, authored: partnerOpeningTemplates},
-  {id: "man-host", personality: host, authored: hostOpeningTemplates},
-  {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates},
-  {id: "woman-blonde", personality: blonde, authored: blondeOpeningTemplates},
-  {id: "dog-puppy", personality: coachPersonalities["dog-puppy"], authored: puppyOpeningTemplates},
-  {id: "woman-spark", personality: spark, authored: sparkOpeningTemplates},
-  {id: "human-boy", personality: youngBoy, authored: youngBoyOpeningTemplates},
-  {id: "woman-captain", personality: captain, authored: captainOpeningTemplates},
-  {id: "human-girl", personality: coachPersonalities["human-girl"], authored: youngGirlOpeningTemplates},
-] as const;
+// Every registered coach, read from the one personality table: its opening
+// sentences are the book-opening templates its own file spreads into the personality.
+const openingCoaches = Object.entries(coachPersonalities).map(([id, personality]) => ({id, personality,
+  authored: Object.fromEntries(Object.entries(personality.templates)
+    .filter(([key]) => key.startsWith("book-opening-"))) as Readonly<Record<string, readonly string[]>>}));
 
 function reviewedIntent(game: Game, ply: number) {
   return gameIntent({game, ply, frame: game.frames[ply], report: game.frames[ply].report,
@@ -274,6 +203,8 @@ for (const coach of openingCoaches) {
       }
     }
     expect([...seen].sort()).toEqual(Object.keys(coach.authored).sort());
+    // Every coach authors all of the opening sentences.
+    expect(Object.keys(coach.authored)).toHaveLength(BOOK_ENTRY_VARIANTS + BOOK_FOLLOW_VARIANTS);
   });
 
   test(`${coach.id} preserves original opening evidence and clones its presentation`, () => {
@@ -383,7 +314,7 @@ test("opening presentation changes factual identity without changing other coach
 });
 
 /** A reviewed move just past the catalogue, carrying only the departure claim. */
-function departureSelection(coach: {id: string; personality: typeof storyteller}) {
+function departureSelection(coach: {id: string; personality: CoachPersonality}) {
   const game = gameWithReports(6), ply = 6, frame = game.frames[ply], report = frame.report!;
   report.opening = null;
   report.label = "Best";
@@ -399,8 +330,8 @@ function departureSelection(coach: {id: string; personality: typeof storyteller}
 }
 
 test("the opening-departure clip plays for every coach, each saying our book ends", () => {
-  expect(departureSelection({id: "classic", personality: storyteller})).toBe("opening-departure");
-  expect(departureSelection({id: "man-partner", personality: partner})).toBe("opening-departure");
+  expect(departureSelection({id: "classic", personality: coachPersonalities.classic})).toBe("opening-departure");
+  expect(departureSelection({id: "man-partner", personality: coachPersonalities["man-partner"]})).toBe("opening-departure");
 });
 
 test("no recorded opening-departure take claims more than our catalogue knows", () => {
