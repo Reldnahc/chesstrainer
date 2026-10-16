@@ -302,7 +302,13 @@ shared by the board and the pattern legend). A colour that copies one of these,
 or that another sheet must match, uses the token. One-off artwork and component
 tints may stay literal. The side swatches (the small white/black squares in game
 history, Insights, the game summary and the turn dot) still differ from each
-other; choosing one shared swatch is the owner's call.
+other; choosing one shared swatch is the owner's call, but where a swatch's colour
+equals a token it uses the token. Board arrows take their colours from
+`ARROW_COLOURS` in `boardCues.ts`, named for what the arrow means.
+
+**Check.** `node scripts/colour-tokens.mjs` (part of `npm run test:styles` and
+`npm run build`) rejects a stylesheet colour equal to a foundation token and a
+script colour equal to an arrow colour; coach portrait artwork is not checked.
 
 ## Breakpoints
 
