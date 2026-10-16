@@ -11,7 +11,7 @@
 .audio-setting-volume { display: grid; gap: var(--space-2); }
 .audio-setting-volume label { display: flex; flex-direction: row; justify-content: space-between; }
 .audio-setting-volume output { font-variant-numeric: tabular-nums; color: var(--muted); }
-.audio-setting-volume input { width: 100%; accent-color: var(--accent); min-height: 28px; margin: 0; }
+.audio-setting-volume input { width: 100%; accent-color: var(--accent); min-height: var(--control-height-dense); margin: 0; }
 .audio-setting-preview { flex-wrap: wrap; }
 @media (max-width: 760px) {
   .audio-setting-volume input { min-height: var(--touch-target); }

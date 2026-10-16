@@ -149,6 +149,10 @@ the whole site, enforced by a check.
   to zero margin (as Tailwind's preflight does), and components such as notices,
   load states and pagination have none. The container sets the space between its
   children with `gap`:
+  - The app (`#root`) is a column at least the window's height and `main` takes what
+    the header and footer leave, so a short page keeps the footer at the window's bottom
+    with no restated header or footer height; phone workspaces and board workspaces don't
+    grow, so their footer follows the content.
   - `main.workspace-page` is a column spaced by `--page-gap`, and its top padding is
     the same `--page-gap`: with no visible page header, the first block sits as far
     below the navigation as the blocks sit from each other. Board pages
