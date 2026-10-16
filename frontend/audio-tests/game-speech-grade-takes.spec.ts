@@ -5,10 +5,13 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
-import {GRADE_TAKES, gradeTakeIds, selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {gradeTakeIds, selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {meanings} from "../src/audio/speech/meaningCatalog";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import {humanGames} from "../tests/human-fixtures";
+
+// The fewest takes any grade has; imported extra takes (grade-best-5, ...) join their grade.
+const GRADE_TAKES = 4;
 
 // A ply whose whole line is the generic reading for its grade rotates through
 // that grade's takes; anything specific keeps its own clip.

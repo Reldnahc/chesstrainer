@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { speechMouthAt, type SpeechMouthTrack } from '../src/coach/speechMouth';
-import { mouthCueTrack, walterAlignment, walterAlignmentPreviews, walterOriginalAlignment } from '../src/audio/speech/alignment/previewTracks';
+import { mouthCueTrack, walterAlignment, walterAlignmentPreviews, walterOriginalAlignment } from './fixtures/previewTracks';
 
 const track: SpeechMouthTrack = { durationSeconds: 1, cues: [
   { start: .1, end: .2, shape: 'closed' },
