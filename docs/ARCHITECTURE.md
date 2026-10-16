@@ -155,7 +155,7 @@ its rules in one of the layers:
   and coach presentation.
 - `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,
   the studios' and the lab's own sheets…).
-- `surfaces`: the phone surface policy (sections flatten; see
+- `surfaces`: the phone surface policy (`panel.css`: sections flatten; see
   [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
   padding or border never undoes it. A page that divides flattened panels puts that
   divider in this layer too (`game-insights.css`).
