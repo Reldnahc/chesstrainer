@@ -2,6 +2,7 @@ import Button from "../Button";
 import Notice from "../Notice";
 import Reveal from "../Reveal";
 import type { Game } from "./types";
+import { plural, pluralWord } from "../format";
 
 type ReviewProgressProps = {
   game: Game;
@@ -35,7 +36,7 @@ function progressSection({
       <section className="game-progress" aria-label="Review progress">
         <p role="status">
           {running && game.job
-            ? `Review in progress: ${refining ? `${game.job.refinement_completed}/${game.job.refinement_total} positions investigated` : `${game.job.completed}/${game.job.total} moves reviewed`}`
+            ? `Review in progress: ${refining ? `${game.job.refinement_completed}/${game.job.refinement_total} ${pluralWord(game.job.refinement_total, "position")} investigated` : `${game.job.completed}/${game.job.total} ${pluralWord(game.job.total, "move")} reviewed`}`
             : "This game's review isn't finished yet."}
         </p>
       </section>
@@ -47,10 +48,10 @@ function progressSection({
           <div className="row-between">
             <span>
               {refining && game.job
-                ? `${game.job.refinement_completed}/${game.job.refinement_total} positions investigated`
+                ? `${game.job.refinement_completed}/${game.job.refinement_total} ${pluralWord(game.job.refinement_total, "position")} investigated`
                 : game.job
-                  ? `${game.job.completed}/${game.job.total} moves reviewed`
-                  : `${game.frames.length - 1} moves to review`}
+                  ? `${game.job.completed}/${game.job.total} ${pluralWord(game.job.total, "move")} reviewed`
+                  : `${plural(game.frames.length - 1, "move")} to review`}
             </span>
             {running ? (
               <Button size="compact" disabled={busy || game.job?.cancel_requested} onClick={cancel}>

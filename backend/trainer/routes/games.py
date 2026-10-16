@@ -11,6 +11,7 @@ from sqlalchemy import func, select
 from trainer import job_lifecycle
 from trainer.authz import shared_links
 from trainer.chess_core import Score
+from trainer.classification_stages import line_parameters
 from trainer.contracts.common import JobStarted
 from trainer.contracts.games import (
     GameAnalysis,
@@ -388,6 +389,7 @@ def create_router(*, settings):
                 parsed,
                 board,
                 fallback_rating=rating,
+                parameters=line_parameters(settings),
             )
             mover = not board.turn  # The side that made the analysed move.
             context = move_contexts(parsed).get(data.ply) if not data.moves else None

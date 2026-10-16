@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 import chess
 
 from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, valid_board
+from trainer.config import Settings
 from trainer.continuations import ContinuationEnd, continuation_end, extended_line
 from trainer.defensive_probes import hypotheses, verify_defense
 from trainer.diagnosis_types import OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome, make_finding
@@ -191,45 +192,81 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
 
 @dataclass(frozen=True)
 class LineRules:
-    """How one caller reads a saved line into findings.
+    """How a saved line is read into findings, the one rule for every reader.
 
-    Weaknesses classification, game review and the SRS "Show why" explanation read
-    lines with different horizons and safeguards. The differences are kept as they
-    are, but named here in one place, so agreeing a single rule is one change.
+    Weaknesses classification, game review, Play and the SRS "Show why"
+    explanation read a line to the same horizon, with the same mate window and
+    the same move before it. The horizon is the classifier's line length and
+    extension (Advanced settings). Each reader keeps its own admission gates
+    (the classifier also weighs the alternative line, its loss thresholds and
+    probe tails); the review and the explanation also annotate recognized
+    patterns and order findings for the coach.
     """
 
-    settle_plies: int  # Horizon for the settled material endpoint.
+    settle_plies: int  # Where the settled material endpoint search starts.
+    extension_plies: int  # How far past it an unfinished line may still settle.
     tactic_plies: int = TACTIC_PLIES  # Episode bound for the tactic detectors.
-    # Plies searched for a mating pattern when a mate supports the line; None reads
-    # only to the settled endpoint.
-    mate_window: int | None = None
-    # Review annotations also list recognized patterns up to here that the admitted
-    # findings lack. They bypass ``useful_cause``: an annotation describes the line,
-    # it is never a grading event or a weakness label. None adds none.
-    annotate_plies: int | None = None
+    # Review annotations also list recognized patterns up to the horizon that the
+    # admitted findings lack. They bypass ``useful_cause``: an annotation describes
+    # the line, it is never a grading event or a weakness label.
+    annotate: bool = False
     causes_first: bool = True  # Move causes ahead of tactical findings.
-    previous_to_detectors: bool = False  # The move before, for the learner's own line.
-    previous_to_causes: bool = True
+
+    @property
+    def mate_window(self) -> int:
+        """Plies searched for a mating pattern when a mate supports the line."""
+        return self.settle_plies
+
+    @property
+    def shown_plies(self) -> int:
+        """The farthest ply any reading can reach: the end of the extension."""
+        return self.settle_plies + self.extension_plies
+
+    def shown(self, candidate, end) -> list[str]:
+        """The moves to show for a line read to ``end``: through its settled (or last
+        scanned) ply, where every finding and the material claim rest, or through
+        the mate when the line is a forced mate, within ``shown_plies`` either way."""
+        stop = len(candidate.pv) if candidate.score.kind == "mate" else end
+        return candidate.pv[: min(stop, self.shown_plies)]
 
 
-def classification_rules(parameters):
+LINE_SETTINGS = {
+    "max_plies": "classification_max_plies",
+    "extension_plies": "classification_extension_plies",
+    "tactic_plies": "classification_tactic_plies",
+}
+
+
+def line_parameters(settings=None):
+    """The line horizon from the host's settings, or their defaults."""
+    return {
+        key: getattr(settings, name) if settings else Settings.model_fields[name].default
+        for key, name in LINE_SETTINGS.items()
+    }
+
+
+def line_rules(parameters=None, *, annotate=False, causes_first=True):
+    """The shared rule for ``parameters`` (classifier keys). ``annotate`` and
+    ``causes_first`` change presentation only, never what the line is read to."""
+    parameters = parameters or line_parameters()
     return LineRules(
         settle_plies=parameters["max_plies"],
+        extension_plies=parameters["extension_plies"],
         tactic_plies=parameters["tactic_plies"],
-        mate_window=parameters["max_plies"],
-        previous_to_detectors=True,
+        annotate=annotate,
+        causes_first=causes_first,
     )
 
 
-# Game review's line evidence and the SRS explanation's answer line.
-REVIEW_RULES = LineRules(settle_plies=32, annotate_plies=16)
-EXPLANATION_RULES = LineRules(
-    settle_plies=16,
-    mate_window=16,
-    annotate_plies=16,
-    causes_first=False,
-    previous_to_causes=False,
-)
+def previous_move(board):
+    """The move before ``board`` as line evidence reads it, or None at the start."""
+    if not board.move_stack:
+        return None
+    earlier = board.copy(stack=True)
+    preceding = earlier.pop()
+    return {"fen": earlier.fen(), "uci": preceding.uci()}
+
+
 DIRECTIONS = {1: "missed_opportunity", 2: "allowed_opponent_tactic"}
 
 
@@ -243,11 +280,7 @@ def line_findings(
     allowed tactic that the line shows costs material.
     """
     direction = DIRECTIONS[first]
-    window = (
-        min(len(boards) - 1, rules.mate_window)
-        if mate_supported and rules.mate_window is not None
-        else end
-    )
+    window = min(len(boards) - 1, rules.mate_window) if mate_supported else end
     found = detect_patterns(
         boards,
         first,
@@ -257,19 +290,19 @@ def line_findings(
         material_supported=material_supported,
         mate_supported=mate_supported,
         max_tactic_plies=rules.tactic_plies,
-        previous_move=previous if rules.previous_to_detectors and first == 1 else None,
+        previous_move=previous if first == 1 else None,
     )
-    if rules.annotate_plies is not None:
+    if rules.annotate:
         detailed = {finding.skill_id for finding in found}
         found.extend(
             finding
             for finding in recognized_patterns(
-                boards, first, min(len(boards) - 1, rules.annotate_plies), analysis_id, direction
+                boards, first, min(len(boards) - 1, rules.settle_plies), analysis_id, direction
             )
             if finding.skill_id not in detailed
         )
     if first == 2 and material_supported:
-        caused = move_causes(boards, analysis_id, previous if rules.previous_to_causes else None)
+        caused = move_causes(boards, analysis_id, previous)
         found = caused + found if rules.causes_first else found + caused
     return found
 
@@ -291,7 +324,7 @@ def diagnose_line(
             line.boards,
             line.first,
             line.analysis_id,
-            classification_rules(parameters),
+            line_rules(parameters),
             end=line.endpoint.end_ply,
             material_supported=supports,
             mate_supported=mate_support,

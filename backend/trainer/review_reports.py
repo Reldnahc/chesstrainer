@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from sqlalchemy import and_, case, func, select
 
-from trainer.game_review import link_previous_scores
+from trainer.game_review import lines_current, link_previous_scores
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import GameReview, GameReviewMove, HumanAnalysis, ReviewRefinement
@@ -15,6 +15,22 @@ def touch_report(db, row):
     review = db.get(GameReview, row.game_id)
     review.revision += 1
     row.revision = review.revision
+
+
+def stale_adopted(db, game_id, parameters):
+    """Adopted refinement reports, which the review shows over the baseline,
+    whose lines were read to another horizon than ``parameters``."""
+    return [
+        task
+        for task in db.scalars(
+            select(ReviewRefinement).where(
+                ReviewRefinement.game_id == game_id,
+                ReviewRefinement.adopted.is_(True),
+                ReviewRefinement.status == "completed",
+            )
+        )
+        if task.report and not lines_current(task.report, parameters)
+    ]
 
 
 def saved_report(db, row):

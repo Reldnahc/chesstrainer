@@ -101,7 +101,7 @@ lock, while other accounts have independent locks.
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
 | Home.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
-| study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` are the administrator course tools under Settings → Courses |
+| study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` (its sections in `lessonEditor/`) are the administrator course tools under Settings → Courses; the editor's live check (`course_files.check`) returns the first problem with its chapter and step location (course-file problems carry them on CourseFileError, the course record's own validation raises StepProblem); problems in lines, games or the course itself have none |
 | play/ | Play setup and live games against the coach's bot (`PlayScreen.tsx`, `PlayGame.tsx`, `usePlaySession.ts`), reusing the game review presentation |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
@@ -134,7 +134,7 @@ lock, while other accounts have independent locks.
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Visually hidden page heading and the browser tab title (`usePageTitle`); App sets the route's fallback title first |
-| navigation.ts / Link.tsx | URL routing and normal anchor/modifier-click behavior. Every in-app address is built by a typed builder here (`gameReviewPath`, `settingsPath`, `focusedPracticePath`, `puzzleSourcePath`…). `parseScreen` turns an address into one `Screen` (a discriminated union) without touching history, and App picks the screen with an exhaustive switch. One store owns the history listeners whatever renders the route; `startRouter` rewrites old addresses once before the first render, and `useScrollRestoration` (App only) restores positions and follows a fresh link's anchor until the page settles. `useLeaveGuard` asks before a link, Back, Forward or reload leaves unsaved work: each entry records its place in the session, so a refused Back returns to the entry the reader was on. An unnumbered entry from an older build is placed by the Navigation API where the browser has it, otherwise by which end of the numbered run the step leaves; the first step after loading cannot tell and counts as Back, and a wrong first guess can misplace a later old entry on the other side (only a refused leave-guard step reads the number) |
+| navigation.ts / Link.tsx | URL routing and normal anchor/modifier-click behavior. Every in-app address is built by a typed builder here (`gameReviewPath`, `settingsPath`, `focusedPracticePath`, `puzzleSourcePath`…). `parseScreen` turns an address into one `Screen` (a discriminated union) without touching history, and App picks the screen with an exhaustive switch. One store owns the history listeners whatever renders the route; `startRouter` rewrites old addresses once before the first render, and `useScrollRestoration` (App only) restores positions and follows a fresh link's anchor until the page settles. `useLeaveGuard` asks before a link, Back, Forward or reload leaves unsaved work: each entry records its place (a number within a run of entries numbered one after another), so a refused Back or Forward returns to the entry the reader was on by the exact number of steps. Nothing is guessed: the Navigation API gives the distance where the browser has it; otherwise only two entries of the same run are compared. An entry from an older build reached without the Navigation API (stamped or not; a stateless entry counts as +1 only when this page just followed an in-page #fragment link), and every entry numbered before runs existed, has no known distance; it starts a run of its own, and a refused step onto it puts the guarded page back, at its current address, as a new entry after the one reached, with its unsaved work still on screen. That drops the entries that were ahead, the cost of never guessing |
 | api.ts / api.generated.ts | Same-origin typed OpenAPI client, authentication/error handling and generated request/response contracts |
 
 Existing Board, MoveStatus, ReviewExplanation, ProviderImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
@@ -149,12 +149,13 @@ development tool or a test fixture loads first fixes it. Every stylesheet wraps
 its rules in one of the layers:
 
 - `foundation`: `foundation.css` (tokens, fonts, element defaults and utilities).
-- `shell`: `base.css` (application chrome, `main`, `.panel` and phone typography).
+- `shell`: `base.css` (application chrome, `main`, panel stacking and phone typography) and
+  `panel.css` (the shared `.panel` surface, which the audio studio loads too).
 - `components`: every shared component's sheet, the coach artwork and the review
   and coach presentation.
 - `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,
   the studios' and the lab's own sheets…).
-- `surfaces`: the phone surface policy (sections flatten; see
+- `surfaces`: the phone surface policy (`panel.css`: sections flatten; see
   [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
   padding or border never undoes it. A page that divides flattened panels puts that
   divider in this layer too (`game-insights.css`).
@@ -440,7 +441,7 @@ Classification-only backfills launch no background engines and cannot create/enr
 
 diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py bounds and orders events; verified_motifs.py owns independent capture, fork, promotion, check, pin, skewer, defender-removal and back-rank rules. tactical_geometry.py, combination_patterns.py and move_causes.py retain shared geometry and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
 
-defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.1-lichess-8d9faff6 are separate version boundaries.
+defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.2-lichess-8d9faff6 are separate version boundaries.
 
 Geometric detectors construct findings through `tactical_geometry.witness`, which
 preserves actor, move/frame, square-role and rule-version metadata. Mate/material
@@ -483,9 +484,17 @@ clock abstention; `review_scores` shares Stockfish-only alternative comparisons 
 owns the grade boundaries (`NEAR_BEST_CP`, `INACCURACY_CP`, `MISTAKE_CP`, the Blunder
 thresholds, `GRADE_BOUNDARIES`) and predicates (`is_poor`, `is_near_best`,
 `is_mistake`) every other module reads. Every reading of a saved line into tactical
-findings and move causes goes through `classification_stages.line_findings`, with
-the classifier's, review's and SRS explanation's differing horizons named as
-`LineRules` beside it.
+findings and move causes goes through `classification_stages.line_findings` under
+one `LineRules` (`line_rules`): the classifier, game review, Play and the SRS
+explanation read a line to the same horizon (the classifier's line and extension
+lengths), with the same mate window and the move before it; each keeps its own
+admission gates. The review and the explanation show a line to where it settles
+(or its last scanned ply), where every finding and the material claim rest, or
+through the mate of a forced mate. Saved review lines, adopted refinements
+included, record the `horizon` they were read with; a review whose lines were
+read to another one is requeued when opened and read again from its saved
+candidates without searching them again (its refinement may then pick other
+moves to search), and Play reads old rows again when it renders them.
 ## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for

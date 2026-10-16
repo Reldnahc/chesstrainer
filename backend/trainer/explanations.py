@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, legal_move, position_key, side_name, valid_board
-from trainer.classification_stages import EXPLANATION_RULES, line_findings
+from trainer.classification_stages import line_findings, line_rules, previous_move
 from trainer.continuations import replay, settled_delta
 from trainer.errors import EvidenceIntegrityError, InvalidInput, NotFound
 from trainer.explanation_types import (
@@ -175,7 +175,23 @@ def _engine_summary(board, move, san, score, frames, balance_change, accepted):
     )
 
 
-def _answer_findings(boards, analysis_id, score, delta, end, accepted):
+def shown_line(board, candidate, rules):
+    """The answer line read and shown as game review reads it.
+
+    The line is replayed one board past the horizon, so its last ply sees the saved
+    next move as the classifier does; the frames stop where ``rules.shown`` says,
+    and the summary's material change reads only the boards those frames show.
+    """
+    boards = replay(board, candidate)[: rules.shown_plies + 2]
+    delta, end = settled_delta(
+        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
+    )
+    frames = replay_line(board, rules.shown(candidate, end))
+    change = shown_material_change(boards[: len(frames)], delta, frames[-1].material_change)
+    return boards, delta, end, frames, change
+
+
+def _answer_findings(boards, analysis_id, score, delta, end, accepted, rules, previous):
     """Playback findings for the shown line, from the move the learner must answer for."""
     # These witnesses come from THIS answer's exact line. A classification from
     # the source game would be wrong for a different move made during review.
@@ -190,14 +206,15 @@ def _answer_findings(boards, analysis_id, score, delta, end, accepted):
         boards,
         first,
         analysis_id,
-        EXPLANATION_RULES,
+        rules,
         end=end,
         material_supported=gain is not None and gain >= 1,
         mate_supported=score.kind == "mate" and score.outcome() == (1 if accepted else -1),
+        previous=previous,
     )
 
 
-def explain_review(db, session_id, attempt_id=None, solution=False):
+def explain_review(db, session_id, attempt_id=None, solution=False, parameters=None):
     session = db.get(ReviewSession, session_id)
     if session is None:
         raise NotFound("Review session not found")
@@ -213,10 +230,10 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
     if exercise.source != "game":
         return _curated_explanation(exercise, board, resolved, accepted, san)
     analysis, candidate = _saved_evidence(db, resolved.answer, board, resolved.uci)
-    frames = replay_line(board, candidate.pv)
-    boards = replay(board, candidate)
-    delta, end = settled_delta(boards, board.turn, max_plies=EXPLANATION_RULES.settle_plies)
-    balance_change = shown_material_change(boards, delta, frames[-1].material_change)
+    # The game review's horizon and the move before, so the shown line, the
+    # summary and its findings read as far ahead as the review and the classifier.
+    rules = line_rules(parameters, annotate=True, causes_first=False)
+    boards, delta, end, frames, balance_change = shown_line(board, candidate, rules)
     summary = _engine_summary(board, move, san, candidate.score, frames, balance_change, accepted)
     notes = [
         "This is one Stockfish continuation against strong replies; it does not mean every reply is forced.",
@@ -244,5 +261,14 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         analysis_id=analysis.id,
         engine_version=analysis.engine_version,
         score=candidate.score,
-        findings=_answer_findings(boards, analysis.id, candidate.score, delta, end, accepted),
+        findings=_answer_findings(
+            boards,
+            analysis.id,
+            candidate.score,
+            delta,
+            end,
+            accepted,
+            rules,
+            previous_move(board),
+        ),
     )

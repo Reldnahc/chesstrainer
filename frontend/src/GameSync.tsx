@@ -11,6 +11,7 @@ import { useGameProviders, useServerDraft, type GameProvider } from "./gameProvi
 import { useLatest } from "./useLatest";
 import { usePolling } from "./usePolling";
 import { CommandError, QueryError, QueryResult, useCommand } from "./useQuery";
+import { plural } from "./format";
 
 type Sync = Schema["SyncStatus"];
 type Queue = Schema["AnalysisQueue"];
@@ -42,7 +43,7 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
         <p className="small">Clear the username to disconnect.</p>
       </details>
     </div> : <div key="form">{form}</div>}</Swap>
-    <Reveal>{status?.username && <Notice announcement="status" appearance="inline">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}` : "Ready to check for new games"}</Notice>}</Reveal>
+    <Reveal>{status?.username && <Notice announcement="status" appearance="inline">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${plural(status.imported, "new game")}` : "Ready to check for new games"}</Notice>}</Reveal>
     <Reveal>{status?.error && <Notice announcement="alert" tone="error">{status.error}</Notice>}</Reveal>
     {onImportOlderGames && <div className="connection-actions"><Button variant="secondary" onClick={() => onImportOlderGames(provider.id)}>Import older games</Button></div>}
   </section>;
@@ -51,8 +52,8 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
 function queueSummary(queue: Queue) {
   const waiting = queue.requested + queue.fresh + queue.backfill;
   const parts = [queue.running ? `Analyzing ${queue.running.white} vs ${queue.running.black}.` : ""];
-  if (waiting) parts.push(`${waiting} ${waiting === 1 ? "game" : "games"} waiting (${queue.requested + queue.fresh} recent, ${queue.backfill} older).`);
-  if (!queue.running && !waiting) parts.push(queue.completed ? `All ${queue.completed} ${queue.completed === 1 ? "game" : "games"} analyzed.` : "No games to analyze yet.");
+  if (waiting) parts.push(`${plural(waiting, "game")} waiting (${queue.requested + queue.fresh} recent, ${queue.backfill} older).`);
+  if (!queue.running && !waiting) parts.push(queue.completed ? `All ${plural(queue.completed, "game")} analyzed.` : "No games to analyze yet.");
   if (queue.failed) parts.push(`${queue.failed} could not be analyzed; open the game to retry.`);
   return parts.filter(Boolean).join(" ");
 }

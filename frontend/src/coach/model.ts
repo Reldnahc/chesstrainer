@@ -113,10 +113,11 @@ export type ReactionTiming = Pick<CoachDefinition["animation"], "reactionMs" | "
 export type CoachCollection = Omit<CoachDefinition, "families"> & {
   families: readonly (CoachFamily & { coachId: CoachId; personality: CoachPersonality })[];
 };
-/** Catalog input before each family's performance is resolved from its reaction timing. */
+/** Catalog input before each family's performance is resolved from its reaction
+ * timing and its personality is read from the one table keyed by its coach ID. */
 export type AuthoredCoachCollection = Omit<CoachCollection, "animation" | "families"> & {
   animation: ReactionTiming;
-  families: readonly (Omit<CoachCollection["families"][number], "animation"> & { animation?: ReactionTiming })[];
+  families: readonly (Omit<CoachCollection["families"][number], "animation" | "personality"> & { animation?: ReactionTiming })[];
 };
 export type SelectableCoach = CoachDefinition & {
   id: CoachId;

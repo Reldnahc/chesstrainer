@@ -128,8 +128,16 @@ class CourseFileStep(Contract):
     end_position: str
 
 
+class CourseFileLocation(Contract):
+    # The chapter a problem is in and, when it is inside one step, that step.
+    chapter: str
+    step: str | None = None
+
+
 class CourseFileCheck(Contract):
     error: str | None
+    # Where the problem is, when it is inside a chapter; null for course-wide problems.
+    location: CourseFileLocation | None = None
     # Keyed "chapter-id/step-id".
     steps: dict[str, CourseFileStep]
 

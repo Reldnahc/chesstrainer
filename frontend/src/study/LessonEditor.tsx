@@ -1,8 +1,8 @@
-import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
-import { ArrowDown, ArrowLeft, ArrowUp, Circle, Plus, Save, Square, Trash2 } from "lucide-react";
-import { errorMessage, api, read, type LegalMove, type Promotion, type Schema } from "../api";
+import { ArrowLeft, Save, Square } from "lucide-react";
+import { errorMessage, api, read, type Promotion, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Board from "../Board";
 import Button from "../Button";
@@ -12,104 +12,17 @@ import Notice from "../Notice";
 import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import TurnIndicator from "../TurnIndicator";
-import { courseEditorPath, courseSettingsPath, lessonCoursePath, replaceAddress, useLeaveGuard, type LessonTopic } from "../navigation";
+import { courseEditorPath, courseSettingsPath, lessonCoursePath, replaceAddress, useLeaveGuard } from "../navigation";
 import { sideName, sideToMove, START_FEN } from "../fen";
 import { useLatest } from "../useLatest";
 import { CommandError, QueryResult, useQuery, useCommand } from "../useQuery";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
-
-// The editor edits the readable course file itself (docs/COURSE_FILES.md), so
-// anything it does not show, such as source games, is kept unchanged.
-type Credit = { text: string; url?: string; license?: string };
-type Step = {
-  id: string;
-  title: string;
-  text?: string;
-  fen?: string;
-  position?: string;
-  next?: string | null;
-  show?: string;
-  move?: string;
-  reply?: string;
-  feedback?: string;
-  hint?: string;
-  choices?: { move?: string; next?: string | null; [key: string]: unknown }[];
-  branch?: string;
-  game?: string;
-  from?: number;
-  to?: number;
-  rehearse?: string;
-  squares?: string[];
-  arrows?: string[];
-  [key: string]: unknown;
-};
-type Chapter = { id: string; title: string; entry?: string; steps: Step[]; [key: string]: unknown };
-type Line = { id: string; title: string; moves: string; repertoire?: boolean; eco?: string; fen?: string; position?: string; [key: string]: unknown };
-type Course = {
-  format: string;
-  id: string;
-  revision: string;
-  title: string;
-  description?: string;
-  side: "white" | "black";
-  topic?: LessonTopic;
-  credits: Credit[];
-  lines?: Line[];
-  games?: { id: string; title: string; [key: string]: unknown }[];
-  chapters: Chapter[];
-  [key: string]: unknown;
-};
-type Kind = "explanation" | "demonstration" | "decision" | "branch" | "rehearsal" | "game_excerpt";
-type Check = Schema["CourseFileCheck"];
-type Recording = { field: "show" | "decision" | "position"; fen: string; moves: string; legal: LegalMove[]; turnFen: string };
-
-const KINDS: { value: Kind; label: string; help: string }[] = [
-  { value: "explanation", label: "Explanation", help: "The learner reads the text and continues." },
-  { value: "demonstration", label: "Demonstration", help: "The app plays moves on the board." },
-  { value: "decision", label: "Decision", help: "The learner must find a move; the app answers with a reply." },
-  { value: "branch", label: "Side trip", help: "The learner may enter a side trip and return here." },
-  { value: "rehearsal", label: "Rehearsal", help: "The learner plays a whole line from memory." },
-  { value: "game_excerpt", label: "Game excerpt", help: "Plays part of a source game." },
-];
-const KIND_FIELDS = ["show", "move", "reply", "feedback", "hint", "choices", "branch", "game", "from", "to", "rehearse"];
-// Emptying one of these keeps it as "", so the step keeps its kind while being written.
-const KIND_DEFINING = new Set(["show", "move", "rehearse", "branch", "game"]);
-const FOLLOWING = "__following__";
-const END = "__end__";
-
-function kindOf(step: Step): Kind {
-  if (step.show !== undefined) return "demonstration";
-  if (step.move !== undefined || step.choices !== undefined) return "decision";
-  if (step.branch !== undefined) return "branch";
-  if (step.game !== undefined) return "game_excerpt";
-  if (step.rehearse !== undefined) return "rehearsal";
-  return "explanation";
-}
-
-function newCourse(): Course {
-  return {
-    format: "fieldwork-course-1",
-    id: "new-course",
-    revision: new Date().toLocaleDateString("sv"),
-    title: "New course",
-    description: "",
-    side: "white",
-    topic: "opening",
-    credits: [{ text: "Written by our club." }],
-    lines: [],
-    chapters: [{ id: "chapter-1", title: "Chapter 1", steps: [{ id: "introduction", title: "Introduction", text: "" }] }],
-  };
-}
-
-function uniqueId(base: string, taken: string[]) {
-  let id = base;
-  for (let index = 2; taken.includes(id); index++) id = `${base}-${index}`;
-  return id;
-}
-
-function words(value: string) {
-  return value.split(/[\s,]+/).map(item => item.trim()).filter(Boolean);
-}
+import CourseDetails from "./lessonEditor/CourseDetails";
+import LinesPanel from "./lessonEditor/LinesPanel";
+import { ChapterPanel, StepList } from "./lessonEditor/OutlinePanels";
+import StepPanel from "./lessonEditor/StepPanel";
+import { KIND_DEFINING, KIND_FIELDS, idProblem, kindOf, newCourse, removeStep as unlinkStep, renameStep, uniqueId,
+  type Chapter, type Check, type Course, type Kind, type Recording, type Step } from "./lessonEditor/model";
 
 export default function LessonEditor({ courseId, revision }: { courseId: string | null; revision: string | null }) {
   usePageTitle("Lesson editor");
@@ -147,8 +60,6 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
   // replaces someone else's newer save or an existing course by accident.
   const [base, setBase] = useState<string | null>(opened ? initial.revision : null);
   const [pending, setPending] = useState(false);
-  // The step id being typed; links to the step follow it once it is committed.
-  const [stepId, setStepId] = useState<string | null>(null);
   const edits = useRef(0);
   const recordingRef = useLatest(recording);
   // Bumped when recording starts or stops, so a late answer cannot restart it.
@@ -207,18 +118,6 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
       else draft[field] = value;
     });
   }
-  function renameStep(id: string) {
-    const previous = step!.id;
-    editChapter(draft => {
-      for (const item of draft.steps) {
-        if (item.next === previous) item.next = id;
-        if (item.branch === previous) item.branch = id;
-        for (const choice of item.choices ?? []) if (choice.next === previous) choice.next = id;
-      }
-      if (draft.entry === previous) draft.entry = id;
-      draft.steps[stepIndex].id = id;
-    });
-  }
   function setKind(next: Kind) {
     editStep(draft => {
       for (const field of KIND_FIELDS) delete draft[field];
@@ -229,10 +128,6 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
       if (next === "game_excerpt") Object.assign(draft, { game: current.games?.[0]?.id ?? "", from: 0, to: 1 });
     });
     stopRecording();
-  }
-  function commitStepId() {
-    if (stepId !== null && stepId !== step!.id) renameStep(stepId);
-    setStepId(null);
   }
   function stopRecording() {
     recordingRequest.current += 1;
@@ -262,7 +157,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
   }
   function removeStep() {
     if (chapter!.steps.length === 1) return;
-    editChapter(draft => { draft.steps.splice(stepIndex, 1); });
+    editChapter(draft => unlinkStep(draft, stepIndex));
     selectStep(Math.max(0, stepIndex - 1));
   }
   function addChapter() {
@@ -352,7 +247,6 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
 
   const fen = recording ? recording.turnFen : showEnd ? board?.end_fen : board?.fen;
   const turn = sideToMove(fen ?? START_FEN);
-  const nextValue = step.next === undefined ? FOLLOWING : step.next === null ? END : step.next;
   const arrows = (step.arrows ?? []).map(arrow => {
     const [startSquare, endSquare] = arrow.split("-");
     return { startSquare, endSquare, color: "#f5b56abb" };
@@ -382,157 +276,23 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
     <CommandError command={errors} />
     {notice && <Banner tone="success" onDismiss={() => setNotice("")} action={saved ? <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink> : undefined}>{notice}</Banner>}
 
-    <details className="disclosure lesson-editor-section" open={!opened}>
-      <summary>Course details</summary>
-      <div className="lesson-editor-fields">
-        <Field label="Title"><input value={current.title} onChange={event => change(draft => { draft.title = event.target.value; })} /></Field>
-        <Field label="Course id" help="Lowercase letters, digits and hyphens. Saving under a new id makes a separate course."><input value={current.id} onChange={event => change(draft => { draft.id = event.target.value; })} /></Field>
-        <Field label="Description"><textarea rows={3} value={current.description ?? ""} onChange={event => change(draft => { draft.description = event.target.value; })} /></Field>
-        <Field group label="The learner plays"><ChoiceGroup label="The learner plays" value={current.side} onChange={side => change(draft => { draft.side = side; })} options={[{ value: "white", label: "White" }, { value: "black", label: "Black" }]} /></Field>
-        <Field group label="Study section"><ChoiceGroup label="Study section" value={current.topic ?? "opening"} onChange={topic => change(draft => { draft.topic = topic; })} options={[{ value: "opening", label: "Openings" }, { value: "skills", label: "Fundamentals" }]} /></Field>
-        <Field label="Credit" help="Who wrote the course, shown under its chapters."><input value={current.credits[0]?.text ?? ""} onChange={event => change(draft => { draft.credits[0] = { ...draft.credits[0], text: event.target.value }; })} /></Field>
-        <p className="small muted">Revision {current.revision}. Saving changed content gives the course a new revision, so members keep the version they started.</p>
-      </div>
-    </details>
-
-    <section className="lesson-editor-section" aria-label="Chapters">
-      <h2>Chapters</h2>
-      <ChoiceGroup label="Chapter" value={chapterIndex} onChange={selectChapter} options={current.chapters.map((item, index) => ({ value: index, label: `${index + 1}. ${item.title}` }))} />
-      <div className="lesson-editor-fields">
-        <Field label="Chapter title"><input value={chapter.title} onChange={event => editChapter(draft => { draft.title = event.target.value; })} /></Field>
-        <Field label="Chapter id"><input value={chapter.id} onChange={event => editChapter(draft => { draft.id = event.target.value; })} /></Field>
-      </div>
-      <div className="button-row">
-        <Button size="compact" variant="secondary" onClick={addChapter}><Plus size={16} />Add chapter</Button>
-        <Button size="compact" variant="quiet" disabled={chapterIndex === 0} onClick={() => moveChapter(-1)}><ArrowUp size={16} />Earlier</Button>
-        <Button size="compact" variant="quiet" disabled={chapterIndex === current.chapters.length - 1} onClick={() => moveChapter(1)}><ArrowDown size={16} />Later</Button>
-        <Button size="compact" variant="quiet" disabled={current.chapters.length === 1} onClick={removeChapter}><Trash2 size={16} />Delete chapter</Button>
-      </div>
-    </section>
-
-    <section className="lesson-editor-section" aria-label="Steps">
-      <h2>Steps</h2>
-      <ol className="lesson-editor-steps">{chapter.steps.map((item, index) => <li key={`${index}:${item.id}`}>
-        <button type="button" aria-current={index === stepIndex ? "step" : undefined} onClick={() => selectStep(index)}>
-          <span className="lesson-editor-step-kind">{KINDS.find(option => option.value === kindOf(item))?.label}</span>
-          <span>{item.title || item.id}</span>
-          {problemStep(check?.error, chapter.id, item.id) && <Circle size={10} role="img" aria-label="Has a problem" className="lesson-editor-problem" />}
-        </button>
-      </li>)}</ol>
-      <div className="button-row">
-        <Button size="compact" variant="secondary" onClick={addStep}><Plus size={16} />Add step after</Button>
-        <Button size="compact" variant="quiet" disabled={stepIndex === 0} onClick={() => moveStep(-1)}><ArrowUp size={16} />Earlier</Button>
-        <Button size="compact" variant="quiet" disabled={stepIndex === chapter.steps.length - 1} onClick={() => moveStep(1)}><ArrowDown size={16} />Later</Button>
-        <Button size="compact" variant="quiet" disabled={chapter.steps.length === 1} onClick={removeStep}><Trash2 size={16} />Delete step</Button>
-      </div>
-    </section>
-
-    <section className="lesson-editor-section" aria-label="Selected step">
-      <h2>Step {stepIndex + 1}: {step.title || step.id}</h2>
-      <div className="lesson-editor-fields">
-        <Field label="Kind" help={KINDS.find(option => option.value === kind)?.help}>
-          <select value={kind} onChange={event => setKind(event.target.value as Kind)}>{KINDS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select>
-        </Field>
-        <Field label="Title"><input value={step.title} onChange={event => setField("title", event.target.value)} /></Field>
-        <Field label="Step id" help="Other steps link to this name.">
-          <input value={stepId ?? step.id} onChange={event => setStepId(event.target.value)} onBlur={commitStepId}
-            onKeyDown={event => { if (event.key === "Enter") commitStepId(); }} /></Field>
-        <Field label="Text"><textarea rows={4} value={step.text ?? ""} onChange={event => setField("text", event.target.value)} /></Field>
-
-        {/* Each kind's own fields grow in and collapse out as the kind changes. */}
-        <Reveal>{kind === "demonstration" && <Field label="Moves to play" help="Ordinary notation, such as Nf3 Nc6."
-          action={<Button size="compact" variant="secondary" onClick={() => startRecording("show")}><Circle size={16} />Record on the board</Button>}>
-          <input value={step.show ?? ""} onChange={event => setField("show", event.target.value)} />
-        </Field>}</Reveal>
-        <Reveal>{kind === "decision" && (step.choices ? <Notice announcement="passive">This decision accepts several moves. Edit its choices in the course file.</Notice> : <div className="lesson-editor-fields">
-          <Field label="Learner's move" action={<Button size="compact" variant="secondary" onClick={() => startRecording("decision")}><Circle size={16} />Record move and reply</Button>}>
-            <input value={step.move ?? ""} onChange={event => setField("move", event.target.value)} /></Field>
-          <Field label="Opponent's reply" help="Optional."><input value={step.reply ?? ""} onChange={event => setField("reply", event.target.value)} /></Field>
-          <Field label="Hint" help="Shown when the learner asks for one."><input value={step.hint ?? ""} onChange={event => setField("hint", event.target.value)} /></Field>
-          <Field label="Feedback" help="Shown after the right move."><input value={step.feedback ?? ""} onChange={event => setField("feedback", event.target.value)} /></Field>
-        </div>)}</Reveal>
-        <Reveal>{kind === "branch" && <Field label="Side trip starts at" help="The side trip's last step should end the chapter, so the learner returns here.">
-          <select value={step.branch ?? ""} onChange={event => setField("branch", event.target.value)}><option value="">Choose a step</option>{otherSteps.map(item => <option key={item.id} value={item.id}>{item.title} ({item.id})</option>)}</select>
-        </Field>}</Reveal>
-        <Reveal>{kind === "rehearsal" && <Field label="Line to rehearse">
-          <select value={step.rehearse ?? ""} onChange={event => setField("rehearse", event.target.value)}>
-            <option value="">Choose a line</option>
-            {(current.lines ?? []).map(line => <option key={line.id} value={line.id}>{line.title}</option>)}
-          </select>
-        </Field>}</Reveal>
-        <Reveal>{kind === "game_excerpt" && <div className="lesson-editor-fields">
-          <Field label="Source game"><select value={step.game ?? ""} onChange={event => setField("game", event.target.value)}><option value="">Choose a game</option>{(current.games ?? []).map(game => <option key={game.id} value={game.id}>{game.title}</option>)}</select></Field>
-          <Field label="From ply"><input type="number" min={0} value={step.from ?? 0} onChange={event => setField("from", Number(event.target.value))} /></Field>
-          <Field label="To ply"><input type="number" min={1} value={step.to ?? 1} onChange={event => setField("to", Number(event.target.value))} /></Field>
-        </div>}</Reveal>
-
-        <Field label="Then go to">
-          <select value={nextValue} onChange={event => setField("next", event.target.value === FOLLOWING ? undefined : event.target.value === END ? null : event.target.value)}>
-            <option value={FOLLOWING}>The next step in the list</option>
-            <option value={END}>End the chapter (or return from a side trip)</option>
-            {otherSteps.map(item => <option key={item.id} value={item.id}>{item.title} ({item.id})</option>)}
-          </select>
-        </Field>
-        <Field group label="Starts from" help="Most steps carry on from the step before them.">
-          <ChoiceGroup label="Starts from" value={step.position !== undefined || step.fen !== undefined ? "own" : "carry"} onChange={value => editStep(draft => {
-            if (value === "own") {
-              draft.position = board?.position ?? "";
-              if (board && board.initial_fen !== START_FEN) draft.fen = board.initial_fen;
-            }
-            else { delete draft.position; delete draft.fen; }
-          })} options={[{ value: "carry", label: "Carries on" }, { value: "own", label: "Its own position" }]} />
-        </Field>
-        <Reveal>{(step.position !== undefined || step.fen !== undefined) && <div className="lesson-editor-fields">
-          <Field label="Moves from the start" action={<Button size="compact" variant="secondary" onClick={() => startRecording("position")}><Circle size={16} />Record on the board</Button>}>
-            <input value={step.position ?? ""} onChange={event => setField("position", event.target.value)} /></Field>
-          <Field label="Starting FEN" help="Optional, for an example that does not start from the initial position."><input value={step.fen ?? ""} onChange={event => setField("fen", event.target.value || undefined)} /></Field>
-        </div>}</Reveal>
-        <Field label="Highlighted squares" help="Such as e4 d5."><input value={(step.squares ?? []).join(" ")} onChange={event => setField("squares", words(event.target.value).length ? words(event.target.value) : undefined)} /></Field>
-        <Field label="Arrows" help="Such as c3-d5 f1-b5."><input value={(step.arrows ?? []).join(" ")} onChange={event => setField("arrows", words(event.target.value).length ? words(event.target.value) : undefined)} /></Field>
-      </div>
-    </section>
-
-    <details className="disclosure lesson-editor-section">
-      <summary>Lines to remember ({current.lines?.length ?? 0})</summary>
-      <p className="small muted">Rehearsal steps replay these lines, and members can add them to Due.</p>
-      {(current.lines ?? []).map((line, index) => <div className="lesson-editor-fields lesson-editor-line" key={index}>
-        <Field label="Line title"><input value={line.title} onChange={event => change(draft => { draft.lines![index].title = event.target.value; })} /></Field>
-        <Field label="Line id"><input value={line.id} onChange={event => change(draft => { draft.lines![index].id = event.target.value; })} /></Field>
-        <Field label="Moves" help="From the first move, ending on the learner's move."
-          action={board && <Button size="compact" variant="secondary" onClick={() => change(draft => { draft.lines![index].moves = board.end_position; })}>Use the moves up to the selected step's end</Button>}>
-          <input value={line.moves} onChange={event => change(draft => { draft.lines![index].moves = event.target.value; })} /></Field>
-        <label className="check-row lesson-editor-check"><input type="checkbox" checked={!!line.repertoire} onChange={event => change(draft => { draft.lines![index].repertoire = event.target.checked || undefined; })} />Members can add it to Due</label>
-        <Button size="compact" variant="quiet" onClick={() => change(draft => { draft.lines!.splice(index, 1); })}><Trash2 size={16} />Delete line</Button>
-      </div>)}
-      <Button size="compact" variant="secondary" onClick={() => change(draft => {
-        draft.lines = draft.lines ?? [];
-        draft.lines.push({ id: uniqueId("line", draft.lines.map(item => item.id)), title: "New line", moves: board?.end_position || "e4", repertoire: true });
-      })}><Plus size={16} />Add line</Button>
-    </details>
+    <CourseDetails course={current} change={change} opened={opened} />
+    <ChapterPanel course={current} chapter={chapter} index={chapterIndex} select={selectChapter} editChapter={editChapter}
+      renameChapter={id => {
+        const problem = idProblem(id, current.chapters.filter(item => item !== chapter).map(item => item.id), "chapter");
+        if (problem) errors.setError(problem);
+        else editChapter(draft => { draft.id = id; });
+      }}
+      reorder={{ add: addChapter, move: moveChapter, remove: removeChapter }} />
+    <StepList chapter={chapter} index={stepIndex} check={check} select={selectStep}
+      reorder={{ add: addStep, move: moveStep, remove: removeStep }} />
+    <StepPanel course={current} step={step} number={stepIndex + 1} kind={kind} otherSteps={otherSteps} board={board}
+      setKind={setKind} setField={setField} editStep={editStep} record={startRecording}
+      rename={id => {
+        const problem = idProblem(id, otherSteps.map(item => item.id), "step");
+        if (problem) errors.setError(problem);
+        else editChapter(draft => renameStep(draft, stepIndex, id));
+      }} />
+    <LinesPanel course={current} board={board} change={change} refuse={errors.setError} />
   </ReviewWorkspace>;
-}
-
-/** Whether the check's problem names this step: "Chapter <id>, step <id> ...". */
-function problemStep(error: string | null | undefined, chapterId: string, stepId: string) {
-  return !!error && error.includes(`Chapter ${chapterId}, step ${stepId}`)
-    && !/[\w-]/.test(error.charAt(error.indexOf(`Chapter ${chapterId}, step ${stepId}`) + `Chapter ${chapterId}, step ${stepId}`.length));
-}
-
-/** One labelled control; a group of buttons is named by its own aria-label instead.
- * Help text describes the field's own control through aria-describedby. */
-function Field({ label, help, action, group, children }: { label: string; help?: string; action?: ReactNode; group?: boolean; children: ReactNode }) {
-  const helpId = useId();
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const control = ref.current?.querySelector("input, select, textarea, [role=group]");
-    if (!control) return;
-    if (help) control.setAttribute("aria-describedby", helpId);
-    else control.removeAttribute("aria-describedby");
-  });
-  return <div className="lesson-editor-field" ref={ref}>
-    {group ? <><span className="lesson-editor-label">{label}</span>{children}</>
-      : <label><span className="lesson-editor-label">{label}</span>{children}</label>}
-    {action}
-    {help && <span className="small muted" id={helpId}>{help}</span>}
-  </div>;
 }

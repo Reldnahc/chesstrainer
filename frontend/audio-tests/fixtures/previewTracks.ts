@@ -1,8 +1,8 @@
-import sacrifice from './sound-sacrifice.json' with { type: 'json' };
-import mate from './allowed-mate.json' with { type: 'json' };
-import sacrificeForced from './sound-sacrifice-forced.json' with { type: 'json' };
-import mateForced from './allowed-mate-forced.json' with { type: 'json' };
-import type { SpeechMouthShape, SpeechMouthTrack } from '../../../coach/speechMouth';
+import sacrifice from '../../src/audio/speech/alignment/sound-sacrifice.json' with { type: 'json' };
+import mate from '../../src/audio/speech/alignment/allowed-mate.json' with { type: 'json' };
+import sacrificeForced from '../../src/audio/speech/alignment/sound-sacrifice-forced.json' with { type: 'json' };
+import mateForced from '../../src/audio/speech/alignment/allowed-mate-forced.json' with { type: 'json' };
+import type { SpeechMouthShape, SpeechMouthTrack } from '../../src/coach/speechMouth';
 
 const shapes: Readonly<Record<string, SpeechMouthShape>> = {
   A: 'closed', B: 'consonant', C: 'open', D: 'wide', E: 'round',
@@ -23,7 +23,7 @@ export function mouthCueTrack(input: { metadata: { duration: number }; mouthCues
   return cues.length ? { durationSeconds: input.metadata.duration, cues } : null;
 }
 
-// Development-only imports: generated cue files never enter the application bundle.
+// The saved preview cue files, read only by the lip-sync spec.
 const originalTracks = [sacrifice, mate];
 export const walterAlignmentPreviews = [sacrificeForced, mateForced].map(record => {
   const original = originalTracks.find(candidate => candidate.scriptId === record.scriptId && candidate.voiceId === record.voiceId);
