@@ -39,12 +39,14 @@ def names(squares):
 
 
 def pin_of(board, square):
-    """The pin holding the piece on ``square``: its pinner's square and its line. The
-    king may step along the line; a different pinner or line is a different pin."""
+    """The pin holding the piece on ``square``: its line and its pinner's kind. The
+    king and the pinner may step along the line; another line or another kind of
+    pinner is a different pin."""
     piece = board.piece_at(square)
-    if piece is None:
+    pinner = absolute_pinner(board, square) if piece else None
+    if pinner is None:
         return None, None
-    return absolute_pinner(board, square), int(board.pin(piece.color, square))
+    return int(board.pin(piece.color, square)), board.piece_at(pinner)
 
 
 def pin_segment(board, square):
@@ -108,9 +110,13 @@ def pin_used(puzzle, square):
         # move lands on while the opponent attacks it: without the pin the guard
         # could be taken first. After a check the opponent must answer the check,
         # so the guard's safety is not the pin's doing.
+        takers = board.attackers(piece.color, move.to_square)
+        cheapest = min((VALUES.get(board.piece_type_at(s), 100) for s in takers), default=None)
         if (
             not board.is_check()
-            and board.attackers(piece.color, move.to_square)
+            and cheapest is not None
+            # Guarded, the landing is safe only if no cheaper piece can take it.
+            and cheapest >= VALUES.get(board.piece_type_at(move.to_square), 100)
             and any(
                 board.color_at(guard) == puzzle.pov and move.to_square in board.attacks(guard)
                 for guard in covered
@@ -227,7 +233,9 @@ def witness(theme, rule, context, puzzle, positions) -> MotifWitness | None:
             elif used is not node and capture_target(used.board(), square, actor) is not None:
                 # Name the move that exploits the old pin, not upstream's first move.
                 node, attack = used, capture_target(used.board(), square, actor)
-            if node is not context.get("node"):
+            if node is not context.get("node") or square != context.get(
+                "pinned_square", context.get("square")
+            ):
                 rule, ply = "pin_prevents_attack", positions[id(node)]
                 board, san, plies, frame = node.board(), node.san(), [ply], ply
         roles = {"pinned_defender": names([square]), "king": names([board.king(not actor)])}

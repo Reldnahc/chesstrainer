@@ -174,8 +174,31 @@ def test_an_old_pin_beside_a_mating_attack_it_does_not_change_is_declined():
 
 
 def test_an_old_pin_that_keeps_a_guard_safe_for_a_quiet_move_is_credited():
-    # The b5 bishop pins the c6 knight, which attacks the e5 rook. Qg5 lands where
-    # the h6 pawn attacks, guarded only by that rook: unpinned, ...Nxe5 would remove
-    # the guard and ...hxg5 would follow.
-    boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5")
+    # The b5 bishop pins the c6 knight, which attacks the e5 rook. Ng5 lands where
+    # the e6 knight attacks, guarded only by that rook: unpinned, ...Nxe5 would
+    # remove the guard and ...Nxg5 would win the knight.
+    boards = line("4k3/8/2n1n3/1B2R3/8/5N2/8/K7 w - - 0 1", "Ng5")
     assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_guarded_landing_a_cheaper_piece_can_take_is_not_a_pin_exploit():
+    # Qg5 just loses the queen to ...hxg5, guard or not.
+    boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_sliding_the_pinner_along_its_line_does_not_make_a_new_pin():
+    boards = line("4k3/ppp1ppp1/2n5/1B2R2r/8/8/PPP2PP1/4K2Q w - - 0 1", "Ba4", "a6")
+    found = recognized_patterns(boards, 1, len(boards) - 1, "line", "missed_opportunity")
+    assert "pin" not in {f.skill_id for f in found}
+
+
+def test_a_replacement_pin_witness_names_what_the_pinned_piece_cannot_take():
+    # Upstream's first pin is the old Bb5 pin of c6, which the line never uses;
+    # Re1 creates a new pin of e7, which then cannot capture on d5.
+    from trainer.lichess_patterns import recognize
+
+    boards = line("4k3/4n3/2r5/1B1P4/5N2/8/8/R6K w - - 0 1", "Re1", "Kd8")
+    pins = [w for w in recognize(boards, 1, len(boards) - 1, "line").witnesses if w.theme == "pin"]
+    assert pins and all(w.rule == "pin_prevents_attack" for w in pins)
+    assert pins[0].roles["pinned_defender"] == ["e7"] and "cannot capture" in pins[0].explanation
