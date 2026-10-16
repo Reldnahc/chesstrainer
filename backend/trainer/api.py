@@ -105,6 +105,7 @@ def create_app(
             with maintenance() as db:
                 seed_skills(db)
                 retire_existing(db, settings, enabled_accounts_only=settings.accounts_enabled)
+                db.commit()
             try:
                 if start_engine and not pool:
                     engine.start()

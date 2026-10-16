@@ -121,6 +121,7 @@ def seed(db):
             f'[Termination "{termination}"]\n[Result "{moves.split()[-1]}"]\n\n{moves}'
         )
         import_games(db, "insights.pgn", pgn, ["Student"], None)
+        db.commit()
     games = db.scalars(select(Game).order_by(Game.played_at)).all()
     for index, rows in REVIEWS.items():
         job = AnalysisJob(kind="game_review", status="completed")
@@ -344,14 +345,14 @@ def test_rebuilt_facts_are_saved_as_they_go(settings, monkeypatch):
 
 def test_facts_of_a_game_deleted_meanwhile_are_not_saved(settings):
     from threading import Lock
-    from types import SimpleNamespace
 
+    from trainer.db import Units
     from trainer.models import InsightFacts
     from trainer.routes.insights import save
 
     app = create_app(settings, workers=False, start_engine=False)
     with TestClient(app):
-        workspace = SimpleNamespace(sessions=app.state.sessions, mutation_lock=Lock())
+        workspace = Units(app.state.sessions, Lock())
         save(workspace, [InsightFacts(game_id="gone", key="k", facts=b"")])
         with app.state.sessions() as db:
             assert db.scalar(select(func.count()).select_from(InsightFacts)) == 0
@@ -427,6 +428,7 @@ def test_unrated_games_stay_out_of_insights(settings):
                     f'[Result "{moves.split()[-1]}"]\n\n{moves}'
                 )
                 import_games(db, "rated.pgn", pgn, ["Student"], None)
+                db.commit()
             saved = {game.pgn.split('"')[1]: game.rated for game in db.scalars(select(Game))}
         assert saved == {"Rated Blitz game": True, "Casual Blitz game": False, "Live Chess": None}
         data = client.get("/api/insights").json()

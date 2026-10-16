@@ -39,7 +39,7 @@ const endingLabels: Record<string, string> = {
   insufficient_material: "Insufficient material", fifty_moves: "Fifty-move rule", other: "Other",
 };
 const shapeText: Record<Schema["Shape"]["shape"], [string, string]> = {
-  wire_to_wire: ["Stayed ahead", "Won after going 1.5 up, never back to level and never 1.0 down"],
+  wire_to_wire: ["Stayed ahead", "Won after going 1.5 up, never back to 0.0 or below and never 1.0 down"],
   back_and_forth: ["Back and forth", "The lead changed sides two or more times"],
   unsettled: ["Unsettled", "No clear lead, or a lead that faded without a swing"],
   slipped: ["Let slip", "Clearly winning, then not won"],

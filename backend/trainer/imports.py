@@ -110,7 +110,6 @@ def import_games(
     side: str | None,
     *,
     batch: ImportBatch | None = None,
-    commit: bool = True,
     max_new_games: int | None = None,
     completed_times: dict[str, datetime] | None = None,
     rated: dict[str, bool] | None = None,
@@ -181,10 +180,7 @@ def import_games(
             game.rated = rated[key]
     if not linked and not errors:
         errors.append({"game": 0, "error": "No games found in this PGN"})
-    if commit:
-        db.commit()
-    else:
-        db.flush()
+    db.flush()
     return {
         "import_id": batch.id,
         "imported": imported,

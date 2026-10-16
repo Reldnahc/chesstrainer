@@ -4016,10 +4016,10 @@ export interface components {
             stockfish_analysis_ids: string[];
             /**
              * Version
-             * @default practical-2
+             * @default practical-3
              * @constant
              */
-            version: "practical-2";
+            version: "practical-3";
         };
         /** PracticeCourse */
         PracticeCourse: {

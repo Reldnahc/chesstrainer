@@ -77,7 +77,7 @@ def queue_sync(db, provider, settings, *, min_age=60):
         db.add(
             ProviderImport(job_id=job.id, provider=provider, username=name, **sync_scope(settings))
         )
-    db.commit()
+    db.flush()
     return job
 
 
@@ -90,7 +90,7 @@ def poll(runner, owners):
     connections = {}  # provider -> {username: [(owner, poll_state), ...]}
     for owner in owners:
         try:
-            with runner.workspaces.open(owner) as workspace, workspace.sessions() as db:
+            with runner.workspaces.open(owner) as workspace, workspace.read() as db:
                 for row in db.scalars(
                     select(ProviderConnection).where(ProviderConnection.username != "")
                 ):
@@ -124,11 +124,10 @@ def detect(runner, provider, users):
 
 def record(runner, owner, provider, state, changed):
     with runner.workspaces.open(owner) as workspace:
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             row = db.get(ProviderConnection, (owner, provider))
             if row is None:
                 return
             row.poll_state = state
-            db.commit()
             if changed:
                 queue_sync(db, provider, runner.settings, min_age=0)

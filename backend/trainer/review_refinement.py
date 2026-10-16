@@ -25,8 +25,8 @@ TERMINAL = {"completed", "budget_limited", "unavailable"}
 
 
 def prepare(runner, game_id):
-    # Opening the game can reset the plan, so the plan is written under the account lock.
-    with runner.mutation_lock, runner.sessions() as db:
+    # Opening the game can reset the plan, so the plan is written in a write unit.
+    with runner.write() as db:
         review = db.get(GameReview, game_id)
         baseline = {
             r.ply: r.report
@@ -69,7 +69,6 @@ def prepare(runner, game_id):
             task_ids.append(task.id)
         plan = dict(version=VERSION, key=key, tasks=task_ids, completed=0)
         review.refinement_plan = plan
-        db.commit()
         return plan
 
 
@@ -77,7 +76,7 @@ def run_refinement(runner, job_id, parsed, game_id):
     if not runner.settings.review_refinement_positions or runner.cancelled(job_id):
         return
     plan = prepare(runner, game_id)
-    with runner.sessions() as db:
+    with runner.read() as db:
         pending = [
             task_id
             for task_id in plan["tasks"]
@@ -123,7 +122,7 @@ def run_refinement(runner, job_id, parsed, game_id):
 
 
 def record_progress(runner, game_id, plan):
-    with runner.mutation_lock, runner.sessions() as db:
+    with runner.write() as db:
         statuses = db.scalars(
             select(ReviewRefinement.status).where(ReviewRefinement.id.in_(plan["tasks"]))
         )
@@ -131,12 +130,11 @@ def record_progress(runner, game_id, plan):
         review.refinement_plan = dict(
             review.refinement_plan, completed=sum(status in TERMINAL for status in statuses)
         )
-        db.commit()
 
 
 def refine(runner, job_id, parsed, game_id, task_id, engine):
     """Answer one question; False means the job was cancelled mid-search."""
-    with runner.sessions() as db:
+    with runner.read() as db:
         task = db.get(ReviewRefinement, task_id)
         baseline = db.get(GameReviewMove, (game_id, task.ply)).report
     board = board_before(parsed, task.ply)
@@ -144,7 +142,7 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
     status, reason, report = "completed", None, None
     adopted = False
     try:
-        bounded = RefinementEngine(engine, task, runner.sessions, lambda: runner.cancelled(job_id))
+        bounded = RefinementEngine(engine, task, runner, lambda: runner.cancelled(job_id))
         report = analyze_move(bounded, board, move)
         reason = adoption_reason(baseline, report)
         adopted = reason is None
@@ -167,9 +165,8 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
         status, reason = "unavailable", "incompatible_engine"
     except EngineUnavailable:
         status, reason = "unavailable", "engine_unavailable"
-    with runner.mutation_lock, runner.sessions() as db:
+    with runner.write() as db:
         save_outcome(db, task_id, status, reason, report, adopted)
-        db.commit()
     return True
 
 

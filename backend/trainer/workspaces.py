@@ -8,6 +8,7 @@ from typing import Annotated
 
 from fastapi import Depends, HTTPException, Request
 
+from trainer.db import read_unit, write_unit
 from trainer.ownership import LOCAL_USER_ID, account_sessions
 from trainer.presence import touch
 
@@ -30,6 +31,14 @@ class Workspace:
     shared_engine: object = None
     human_models: object = None
 
+    def read(self):
+        """One snapshot of this account to read; see ``db.read_unit``."""
+        return read_unit(self.sessions)
+
+    def write(self):
+        """The account lock, then one committed transaction; see ``db.write_unit``."""
+        return write_unit(self.mutation_lock, self.sessions)
+
     @cached_property
     def engine(self):
         return (
@@ -42,11 +51,12 @@ class Workspace:
 class Workspaces:
     """Retain locks only while their account has an active request or job.
 
-    Leasing a lock does not acquire it. The account's mutation lock is taken around
-    short writes only, before the session, by requests and background jobs alike:
-    never around engine or Maia work, and never by read-only handlers. Engine and
-    model work reads first, searches outside the lock, then re-checks and writes
-    under it. The variation lock serializes an account's interactive engine searches.
+    Leasing a lock does not acquire it. Requests and background jobs open
+    account work only through ``read()`` and ``write()``: the mutation lock is
+    taken by ``write()`` around short writes, before the session, and never
+    around engine or Maia work. Engine and model work reads first, searches
+    outside both, then re-checks and writes in a ``write()``. The variation lock
+    serializes an account's interactive engine searches.
     """
 
     def __init__(

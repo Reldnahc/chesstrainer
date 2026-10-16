@@ -607,7 +607,7 @@ def lead_changes(game):
 
 
 def kept_lead(values):
-    """Went +LEAD_CP up and never fell back to level or worse after that."""
+    """Went +LEAD_CP up and never fell back to 0.0 or below after that."""
     ahead = next((index for index, value in enumerate(values) if value >= LEAD_CP), None)
     return ahead is not None and all(value > 0 for value in values[ahead:])
 

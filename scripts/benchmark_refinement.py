@@ -14,7 +14,7 @@ from review_benchmark.metrics import machine
 from sqlalchemy import select
 from trainer.chess_core import digest, legal_move
 from trainer.config import Settings
-from trainer.db import database, migrate
+from trainer.db import Units, database, migrate
 from trainer.engine import Stockfish
 from trainer.game_review import analyze_move, classify
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ReviewRefinement
@@ -36,10 +36,12 @@ def run(executable, targeted=False):
         sql_engine, sessions = database(settings.database_path)
         migrate(sql_engine)
         native = Stockfish(settings, sessions)
+        units = Units(sessions, RLock())
         runner = SimpleNamespace(
             settings=settings,
             sessions=sessions,
-            mutation_lock=RLock(),
+            read=units.read,
+            write=units.write,
             engine_factory=Stockfish,
             cancelled=lambda _: False,
         )
