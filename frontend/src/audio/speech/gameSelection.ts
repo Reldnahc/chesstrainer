@@ -417,12 +417,54 @@ function selectMeaning(context: GameSpeechContext): string | null {
     pending,
     error,
     claimIndex = 0,
-    anyCoach = false,
   } = context;
+  if (pending || !frame) return null;
+  const item = renderedClaim(context);
+  if (!item) return null;
+  if (!variation && game.frames[ply]?.fen !== frame.fen) return null;
+  const mode = variation ? "variation" : "game";
+  if (claimIndex === 0 && !report && intent.mode === mode) {
+    const status = statusRecording(context, item);
+    if (status !== undefined) return status;
+  }
+  if (error || !utterance.autoSpeakSuitable) return null;
+  if (intent.mode === "explanation") return explanationRecording(context, item);
+  if (intent.mode !== mode) return null;
+  // Refresh through the existing producer, rather than maintaining a second
+  // interpretation of analysis/context or treating an old utterance as truth.
+  const fresh = gameIntent({
+    game,
+    report,
+    frame,
+    ply,
+    variation,
+    key: "speech-validation",
+    expression: intent.expression,
+  });
+  if (!fresh.claims.some(candidate => same(candidate, item))) return null;
+  if (["mate_win", "mate_loss", "draw"].includes(item.code))
+    return terminalRecording(item, context);
+  if (!report || !reportMatches(report, frame, ply)) return null;
+  const mover = opposite(frame.turn);
+  const event = eventFor(item, report);
+  if (item.code.startsWith("tactic_") || item.code.startsWith("cause_"))
+    return event ? tacticalRecording(item, event, mover, report) : null;
+  if (item.position) return event ? positionalRecording(item, event, mover, report) : null;
+  if (!evidenced(item)) return null;
+  if (item.code === "book" || item.code === "book_sound")
+    return bookRecording(item, report, utterance.coachId);
+  if (event) return eventRecording(item, event, mover, variation);
+  if (relationshipCodes.has(item.code))
+    return relationshipRecording(item, report, mover, game.orientation, variation);
+  return reportRecording(item, report);
+}
+
+/** The rendered claim the context asks to replay, when the utterance, its trace and
+ * the intent agree on it and a coach can voice it; Maia claims are never voiced. */
+function renderedClaim(context: GameSpeechContext): Claim | null {
+  const { frame, intent, utterance, claimIndex = 0, anyCoach = false } = context;
   if (
-    pending ||
-    !frame ||
-    !nonempty(frame.fen) ||
+    !nonempty(frame?.fen) ||
     (!anyCoach && !voicedCoaches.has(utterance.coachId)) ||
     utterance.intentId !== intent.id ||
     !Number.isInteger(claimIndex) ||
@@ -440,147 +482,161 @@ function selectMeaning(context: GameSpeechContext): string | null {
     humanInsightLabels[item.code]
   )
     return null;
-  if (!variation && game.frames[ply]?.fen !== frame.fen) return null;
-  const mode = variation ? "variation" : "game";
-  if (claimIndex === 0 && !report && intent.mode === mode) {
-    // These finite no-report messages are replayable, never automatically spoken.
-    // The exact fresh branch excludes arbitrary legacy compatibility prose.
-    const status = gameIntent({
-      game,
-      frame,
-      ply,
-      variation,
-      error,
-      pending: false,
-      key: "speech-status-validation",
-      expression: intent.expression,
-    });
-    if (!status.claims.some(candidate => same(candidate, item))) return null;
-    if (item.code === "unavailable" && error) return "game-unavailable";
-    if (item.code === "compatibility" && !error)
-      return game.job?.status === "cancelled" ? "game-review-paused" : "game-browse-instructions";
-  }
-  if (error || !utterance.autoSpeakSuitable) return null;
-  if (intent.mode === "explanation") {
-    if (claimIndex !== 0) return null;
-    const explanation = gameIntent({
-      game,
-      report,
-      frame,
-      ply,
-      variation,
-      explaining: true,
-      key: "speech-explanation-validation",
-      expression: intent.expression,
-    });
-    return explanation.claims.some(candidate => same(candidate, item))
-      ? legalReplyRecording(item, context)
-      : null;
-  }
-  if (intent.mode !== mode) return null;
-  // Refresh through the existing producer, rather than maintaining a second
-  // interpretation of analysis/context or treating an old utterance as truth.
-  const fresh = gameIntent({
+  return item;
+}
+
+/** A position without a report. These finite messages are replayable, never
+ * automatically spoken. Null rejects the claim; undefined leaves it to the move
+ * checks (a finished game still speaks its result). */
+function statusRecording(
+  { game, frame, ply, variation = false, error, intent }: GameSpeechContext,
+  item: Claim,
+): string | null | undefined {
+  // The exact fresh branch excludes arbitrary legacy compatibility prose.
+  const status = gameIntent({
+    game,
+    frame,
+    ply,
+    variation,
+    error,
+    pending: false,
+    key: "speech-status-validation",
+    expression: intent.expression,
+  });
+  if (!status.claims.some(candidate => same(candidate, item))) return null;
+  if (item.code === "unavailable" && error) return "game-unavailable";
+  if (item.code === "compatibility" && !error)
+    return game.job?.status === "cancelled" ? "game-review-paused" : "game-browse-instructions";
+  return undefined;
+}
+
+/** The "Show why" explanation of the current board cues, when it is still the one
+ * this position would explain. */
+function explanationRecording(context: GameSpeechContext, item: Claim): string | null {
+  const { game, report, frame, ply, variation = false, intent, claimIndex = 0 } = context;
+  if (claimIndex !== 0) return null;
+  const explanation = gameIntent({
     game,
     report,
     frame,
     ply,
     variation,
-    key: "speech-validation",
+    explaining: true,
+    key: "speech-explanation-validation",
     expression: intent.expression,
   });
-  if (!fresh.claims.some(candidate => same(candidate, item))) return null;
-  if (["mate_win", "mate_loss", "draw"].includes(item.code))
-    return terminalRecording(item, context);
-  if (
-    !report?.intelligence ||
+  return explanation.claims.some(candidate => same(candidate, item))
+    ? legalReplyRecording(item, context)
+    : null;
+}
+
+/** Whether a report's move intelligence belongs to this frame and ply. */
+function reportMatches(report: Report, frame: Position, ply: number): boolean {
+  return !(
+    !report.intelligence ||
     !nonempty(report.intelligence.input_digest) ||
     frame.san !== report.actual.san ||
     (report.board_cues && report.board_cues.fen !== frame.fen) ||
     (report.intelligence.ply !== null && report.intelligence.ply !== ply)
+  );
+}
+
+function bookRecording(item: Claim, report: Report, coachId: string): string | null {
+  if (!report.opening || !nonempty(report.opening.version)) return null;
+  const id = item.opening ? bookRecordingId(item.opening) : "recognized-opening";
+  // Some takes say the opening has a name; our catalogue has none for every position,
+  // and there the coach's next take of the same kind that names nothing plays instead.
+  const voice = coachVoice(coachId);
+  return !nonempty(report.opening.name) && voice
+    ? unnamedBookTake(id, NAMED_OPENING_TAKES[voice] ?? [])
+    : id;
+}
+
+/** A claim from one of the mover's own searched (or opening) events. */
+function eventRecording(
+  item: Claim,
+  event: Event,
+  mover: "white" | "black",
+  variation: boolean,
+): string | null {
+  if (event.actor !== mover) return null;
+  if (item.code === "allowed_mate" || item.code === "missed_mate")
+    return mateRecording(item, event);
+  if (item.code.startsWith("forced_mate_"))
+    return event.kind === "forced_mate" &&
+      event.confidence === "searched" &&
+      searchEvidence(item) &&
+      isForcedMateStage(event.facts.stage) &&
+      item.code === `forced_mate_${event.facts.stage}`
+      ? `forced-mate-${event.facts.stage}`
+      : null;
+  if (item.code === "sacrifice")
+    return event.kind === "sacrifice" &&
+      event.confidence === "searched" &&
+      item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search")
+      ? simpleIds[item.code]
+      : null;
+  if (["only_move", "decisive_resource"].includes(item.code))
+    return event.kind === "critical_resource" &&
+      event.confidence === "searched" &&
+      searchEvidence(item) &&
+      Number(event.facts.only_good_at_depth) > 0
+      ? simpleIds[item.code]
+      : null;
+  if (item.code === "departure")
+    return !variation && event.kind === "opening_departure" ? "opening-departure" : null;
+  return null;
+}
+
+function mateRecording(item: Claim, event: Event): string | null {
+  if (
+    event.kind !== "mate" ||
+    event.confidence !== "searched" ||
+    !searchEvidence(item) ||
+    event.facts.transition !== (item.code === "allowed_mate" ? "allowed" : "missed")
   )
     return null;
-  const mover = opposite(frame.turn);
-  const event = eventFor(item, report);
-  if (item.code.startsWith("tactic_") || item.code.startsWith("cause_"))
-    return event ? tacticalRecording(item, event, mover, report) : null;
-  if (item.position) return event ? positionalRecording(item, event, mover, report) : null;
-  if (!evidenced(item)) return null;
-  if (item.code === "book" || item.code === "book_sound") {
-    if (!report.opening || !nonempty(report.opening.version)) return null;
-    const id = item.opening ? bookRecordingId(item.opening) : "recognized-opening";
-    // Some takes say the opening has a name; our catalogue has none for every position,
-    // and there the coach's next take of the same kind that names nothing plays instead.
-    const voice = coachVoice(utterance.coachId);
-    return !nonempty(report.opening.name) && voice
-      ? unnamedBookTake(id, NAMED_OPENING_TAKES[voice] ?? [])
-      : id;
-  }
-  if (event) {
-    if (event.actor !== mover) return null;
-    if (item.code === "allowed_mate" || item.code === "missed_mate") {
-      if (
-        event.kind !== "mate" ||
-        event.confidence !== "searched" ||
-        !searchEvidence(item) ||
-        event.facts.transition !== (item.code === "allowed_mate" ? "allowed" : "missed")
-      )
-        return null;
-      // Letting the reply itself mate is its own, more urgent line; the general
-      // allowed-mate clip stands in until a coach has recorded it.
-      return item.code === "allowed_mate" && event.facts.mate_in === 1
-        ? ["allowed-mate-next", "allowed-mate"].join(ALTERNATIVE_SEPARATOR)
-        : simpleIds[item.code];
-    }
-    if (item.code.startsWith("forced_mate_"))
-      return event.kind === "forced_mate" &&
-        event.confidence === "searched" &&
-        searchEvidence(item) &&
-        isForcedMateStage(event.facts.stage) &&
-        item.code === `forced_mate_${event.facts.stage}`
-        ? `forced-mate-${event.facts.stage}`
-        : null;
-    if (item.code === "sacrifice")
-      return event.kind === "sacrifice" &&
-        event.confidence === "searched" &&
-        item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search")
-        ? simpleIds[item.code]
-        : null;
-    if (["only_move", "decisive_resource"].includes(item.code))
-      return event.kind === "critical_resource" &&
-        event.confidence === "searched" &&
-        searchEvidence(item) &&
-        Number(event.facts.only_good_at_depth) > 0
-        ? simpleIds[item.code]
-        : null;
-    if (item.code === "departure")
-      return !variation && event.kind === "opening_departure" ? "opening-departure" : null;
+  // Letting the reply itself mate is its own, more urgent line; the general
+  // allowed-mate clip stands in until a coach has recorded it.
+  return item.code === "allowed_mate" && event.facts.mate_in === 1
+    ? ["allowed-mate-next", "allowed-mate"].join(ALTERNATIVE_SEPARATOR)
+    : simpleIds[item.code];
+}
+
+const relationshipCodes = new Set([
+  "recovery",
+  "punishment",
+  "missed_punishment",
+  "repeated",
+  "support_restored",
+  "erosion",
+  "conversion",
+  "history",
+]);
+
+/** A claim linking this learner move to an earlier one, or to saved history. */
+function relationshipRecording(
+  item: Claim,
+  report: Report,
+  mover: "white" | "black",
+  learner: Game["orientation"],
+  variation: boolean,
+): string | null {
+  // Fresh gameIntent above enforces current node generation, actor and relation
+  // endpoint (and supported history); branches never inherit those relationships.
+  if (variation || mover !== learner || !item.sourceIds.length) return null;
+  // Some chance-taken takes say "exactly the right reply" or "takes full
+  // advantage", which a Good move (up to half a pawn short of the best) is not.
+  if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label))
     return null;
-  }
-  if (
-    [
-      "recovery",
-      "punishment",
-      "missed_punishment",
-      "repeated",
-      "support_restored",
-      "erosion",
-      "conversion",
-      "history",
-    ].includes(item.code)
-  ) {
-    // Fresh gameIntent above enforces current node generation, actor and relation
-    // endpoint (and supported history); branches never inherit those relationships.
-    if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
-    // Some chance-taken takes say "exactly the right reply" or "takes full
-    // advantage", which a Good move (up to half a pawn short of the best) is not.
-    if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label))
-      return null;
-    // A move never raises its own evaluation: the opponent's moves did, and no take
-    // credits this move or the learner.
-    if (item.code === "recovery") return item.slots.help ? "recovery-assisted" : "recovery";
-    return simpleIds[item.code];
-  }
+  // A move never raises its own evaluation: the opponent's moves did, and no take
+  // credits this move or the learner.
+  if (item.code === "recovery") return item.slots.help ? "recovery-assisted" : "recovery";
+  return simpleIds[item.code];
+}
+
+/** A claim read straight from the report, with no event behind it. */
+function reportRecording(item: Claim, report: Report): string | null {
   // Several evaluation-loss takes call the cost small ("a little leak"), which
   // is only true of an Inaccuracy. A larger loss leaves it to the next clip or the grade.
   if (item.code === "loss" && report.label !== "Inaccuracy") return null;
