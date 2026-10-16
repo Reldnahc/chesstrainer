@@ -483,8 +483,12 @@ test('Reveal move plays the answer on the main board after a failed counter prev
   await board.locator('[data-square="g1"]').click();
   await board.locator('[data-square="f1"]').click();
   await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
+  // The counter-reply preview speaks through the coach's one live region too.
+  const liveRegions = page.locator('.review-coach').locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]');
+  await expect(liveRegions).toHaveCount(1);
   await page.getByRole('button', {name: 'Try again', exact: true}).click();
   await page.getByRole('button', {name: 'Reveal move', exact: true}).click();
+  await expect(liveRegions).toHaveCount(1);
   await expect(page.getByRole('heading', {name: 'Move revealed.'})).toBeVisible();
   await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
   await expect(board.locator('[data-square="a5"] [data-piece="bQ"]')).toHaveCount(0);
@@ -494,6 +498,9 @@ test('Reveal move plays the answer on the main board after a failed counter prev
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
   const dialog = page.getByRole('region', {name: 'Move explanation'});
   await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
+  // The explanation's coach has one live region as well.
+  await expect(dialog.locator('.explanation-caption')).toBeVisible();
+  await expect(dialog.locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]')).toHaveCount(1);
   await dialog.getByRole('button', {name: 'Back to review'}).click();
   await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
   expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before.reviews + 1);

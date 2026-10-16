@@ -219,7 +219,7 @@ function GameRecallPanel({
           >
             {/* One live region for every feedback state, so a screen reader hears each
                 change once; the coach's line inside it adds no region of its own. */}
-            {session.gradingError || previewFrame ? (
+            {session.gradingError ? (
               <MoveStatus><DialogueText utterance={shown} announce={false} /></MoveStatus>
             ) : feedback?.completed ? (
               <MoveStatus>
@@ -234,6 +234,8 @@ function GameRecallPanel({
                 </p>
                 <DialogueText utterance={shown} announce={false} />
               </MoveStatus>
+            ) : previewFrame ? (
+              <MoveStatus><DialogueText utterance={shown} announce={false} /></MoveStatus>
             ) : (
               <MoveStatus
                 busy={busy}

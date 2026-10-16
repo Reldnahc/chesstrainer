@@ -4,6 +4,7 @@ import { errorMessage, api, read, type ExplanationFrame, type MoveExplanation } 
 import { useAudioScope } from "./audio/AudioProvider";
 import ReviewCoach from "./ReviewCoach";
 import Notice from "./Notice";
+import MoveStatus from "./MoveStatus";
 import Button from "./Button";
 import MovePlaybackControls from "./MovePlaybackControls";
 import usePageShortcuts from "./usePageShortcuts";
@@ -145,13 +146,17 @@ export default function ReviewExplanation({
         badge={data && <strong className="review-move">{data.move_san}</strong>}
         actions={returnControl}
       >
-        {error ? (
-          <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>
-        ) : !data || !frame ? (
-          <p role="status">Loading the saved continuation…</p>
-        ) : (
-          <DialogueText className="explanation-caption" utterance={utterance} />
-        )}
+        {/* One polite region carries loading and then the coach's line, so each change is
+            heard once; a failure is an alert of its own while that region empties. */}
+        {error && <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>}
+        <MoveStatus>
+          {/* Empty, not missing: without children MoveStatus shows its move prompt. */}
+          {error ? <></> : !data || !frame ? (
+            <p>Loading the saved continuation…</p>
+          ) : (
+            <DialogueText className="explanation-caption" utterance={utterance} announce={false} />
+          )}
+        </MoveStatus>
       </ReviewCoach>
       {data && frame && (
         <>
