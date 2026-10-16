@@ -3,19 +3,26 @@
 Everything here is a description of the learner's own saved games. Engine-based
 sections use only completed original-game reviews and say how many games they
 cover; PGN-only sections (results, dates, ratings, clocks, openings) use every
-game in the selection. Nothing is stored: the summary is recomputed per request.
+game in the selection. Each game's facts are saved once per game revision (see
+``pack_facts``); the summary itself is recomputed per request.
 """
 
+import hashlib
+import marshal
 import re
+import sys
+import zlib
 from collections import Counter, defaultdict
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import get_args
 
 import chess
 import chess.pgn
+import pydantic
 
-from trainer.chess_core import DECISIVE_CP, Score, evaluation_loss, game_phase
+from trainer.chess_core import DECISIVE_CP, Score, digest, evaluation_loss, game_phase
 from trainer.contracts.insights import Speed
 from trainer.game_accuracy import STARTING_CP, accuracy_cp, mover_accuracy
 from trainer.game_library import mover_rating, parsed_game, pgn_rating
@@ -270,6 +277,76 @@ def game_facts(game, scores=None, rating=None):
             row.learner_cp = row.before_cp = row.loss_cp = row.accuracy = None
             row.blunder = row.mistake = False
     return facts
+
+
+# --- saved facts -------------------------------------------------------------
+
+
+def _code_fingerprint():
+    """A digest of the application's own code and bundled data (the opening book among
+    them), so saved facts are rebuilt after any upgrade that could change how they
+    are computed, as the per-process cache they replace was on every restart."""
+    package = Path(__file__).resolve().parent
+    files = sorted(
+        path
+        for path in package.rglob("*")
+        if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
+    )
+    sha = hashlib.sha256()
+    for path in files:
+        sha.update(path.relative_to(package).as_posix().encode())
+        sha.update(path.read_bytes())
+    return sha.hexdigest()[:16]
+
+
+# Facts are saved in marshal's compact format: it unpacks about three times faster
+# than JSON, and the rows are this server's own derived data. Its format can change
+# between Python versions, so the version is part of the key and a different
+# interpreter simply rebuilds them.
+FACTS_FORMAT = (
+    f"{VERSION}:marshal-{marshal.version}:py{sys.version_info[0]}.{sys.version_info[1]}"
+    # PGN, clock and time-control parsing come from python-chess, scores from pydantic.
+    f":chess-{chess.__version__}:pydantic-{pydantic.VERSION}:code-{_code_fingerprint()}"
+)
+_PLY_FIELDS = tuple(item.name for item in fields(Ply))
+_GAME_FIELDS = tuple(item.name for item in fields(GameFacts) if item.name != "plies")
+_TIMES = frozenset({"played_at", "started_at"})
+
+
+def facts_key(game, rating, revision, completed):
+    """Everything ``game_facts`` reads, so saved facts are rebuilt whenever it changes."""
+    return digest(
+        {
+            "format": FACTS_FORMAT,
+            "pgn": hashlib.sha256(game.pgn.encode()).hexdigest(),
+            "learner_color": bool(game.learner_color),
+            "players": [game.white, game.black],
+            "played_on": game.played_on,
+            "played_at": game.played_at.isoformat() if game.played_at else None,
+            "rating": rating,
+            # Scores are read only from a completed review, which bumps its
+            # revision whenever a report is saved or a refinement adopted.
+            "review": revision if completed else None,
+        }
+    )
+
+
+def pack_facts(facts):
+    head = tuple(
+        value.isoformat() if name in _TIMES and value is not None else value
+        for name, value in ((name, getattr(facts, name)) for name in _GAME_FIELDS)
+    )
+    plies = tuple(tuple(getattr(row, name) for name in _PLY_FIELDS) for row in facts.plies)
+    return zlib.compress(marshal.dumps((head, plies)))
+
+
+def unpack_facts(blob):
+    head, plies = marshal.loads(zlib.decompress(blob))
+    values = dict(zip(_GAME_FIELDS, head, strict=True))
+    for name in _TIMES:
+        if values[name] is not None:
+            values[name] = datetime.fromisoformat(values[name])
+    return GameFacts(**values, plies=[Ply(*row) for row in plies])
 
 
 # --- aggregation ---------------------------------------------------------------
@@ -530,7 +607,7 @@ def lead_changes(game):
 
 
 def kept_lead(values):
-    """Went +LEAD_CP up and never fell back to level or worse after that."""
+    """Went +LEAD_CP up and never fell back to 0.0 or below after that."""
     ahead = next((index for index, value in enumerate(values) if value >= LEAD_CP), None)
     return ahead is not None and all(value > 0 for value in values[ahead:])
 

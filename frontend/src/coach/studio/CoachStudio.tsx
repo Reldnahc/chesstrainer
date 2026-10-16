@@ -332,7 +332,7 @@ export default function CoachStudio() {
                       </option>
                     ))}
                   </select>
-                  <button
+                  <Button
                     disabled={effectiveMotion === "still"}
                     onClick={() => {
                       setPlaying(false);
@@ -342,7 +342,7 @@ export default function CoachStudio() {
                     }}
                   >
                     Preview idle
-                  </button>
+                  </Button>
                 </section>
                 <IdleVariants preview={preview} />
               </div>

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { usePolling } from "../usePolling";
+import { useState } from "react";
 import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
 import { api, errorMessage, read, type Schema } from "../api";
@@ -9,6 +8,7 @@ import ChoiceGroup from "../ChoiceGroup";
 import Notice from "../Notice";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
+import { QueryResult, usePolledQuery, useQuery } from "../useQuery";
 import CoachAvatar from "../coach/CoachAvatar";
 import ReviewCoach from "../ReviewCoach";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
@@ -58,71 +58,51 @@ function PlaySetup({ from }: { from: string | null }) {
   const phone = usePhone();
   const { preferences } = useCoachPreferences();
   const coach = getCoach(preferences.coach_id);
-  const [profile, setProfile] = useState<Profile | null>(null);
-  // Undefined until the server says whether a game is in progress. The setup waits for
-  // that answer, the practice courses and the measured level, so none of them moves it
-  // after it appears.
-  const [active, setActive] = useState<Schema["PlayState"] | null | undefined>(undefined);
   const [level, setLevel] = useState<(typeof LEVELS)[number]["value"]>("match");
   const [opponent, setOpponent] = useState<Opponent>("human");
   const [rating, setRating] = useState(1200);
   const [color, setColor] = useState<Color>("random");
   const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("free");
-  const [loadedCourses, setCourses] = useState<PracticeCourse[] | undefined>(undefined);
-  const courses = loadedCourses ?? [];
   const [courseId, setCourseId] = useState("");
   const [error, setError] = useState("");
   const [starting, setStarting] = useState(false);
   // The fit runs in the background after imports; poll until it settles. A failed
   // read is reported once and retried with a growing wait rather than given up.
-  const profileFailed = useRef(false);
-  usePolling(async (signal) => {
-    try {
-      const value = await read(api.GET("/api/play/profile", { signal }));
-      if (signal.aborted) return;
-      profileFailed.current = false;
-      setProfile(value);
-    } catch (e) {
-      if (!signal.aborted && !profileFailed.current) setError(errorMessage(e));
-      profileFailed.current = true;
-      throw e;
+  const [measuring, setMeasuring] = useState(true);
+  const profileQuery = usePolledQuery(async (signal) => {
+    const value = await read(api.GET("/api/play/profile", { signal }));
+    if (!signal.aborted) setMeasuring(value.status === "computing");
+    return value;
+  }, { intervalMs: 3000, enabled: measuring });
+  const profile: Profile | null = profileQuery.data ?? null;
+  // The setup waits for the first answer about the level, then stays: a Try again
+  // on the level's banner never hides the form while it reads.
+  const [levelAnswered, setLevelAnswered] = useState(false);
+  if (!levelAnswered && !profileQuery.pending) setLevelAnswered(true);
+  // The setup waits for whether a game is in progress and for the practice
+  // courses (each falls back on failure), and "New game" after a game starts
+  // from that game's settings, so none of them moves the setup after it appears.
+  const setup = useQuery(async (signal) => {
+    const [loadedCourses, active, previous] = await Promise.all([
+      read(api.GET("/api/play/openings", { signal })).then(value => value.courses, (): PracticeCourse[] => []),
+      read(api.GET("/api/play/active", { signal })).then(value => value.game, () => null),
+      from ? read(api.GET("/api/play/{play_id}", { params: { path: { play_id: from } }, signal })).catch(() => undefined) : undefined,
+    ]);
+    if (!signal.aborted) {
+      setCourseId((current) => current || loadedCourses[0]?.id || "");
+      if (previous) {
+        setOpponent(previous.opponent);
+        setRating(previous.rating);
+        setLevel(previous.opponent === "human" && previous.rating === previous.learner_rating ? "match" : "choose");
+        setColor(previous.learner_color);
+        setMode(previous.practice ? "practice" : "free");
+        if (previous.practice) setCourseId(previous.practice.course_id);
+      }
     }
-  }, { intervalMs: 3000, enabled: !profile || profile.status === "computing" });
-  useEffect(() => {
-    let active = true;
-    read(api.GET("/api/play/openings"))
-      .then((value) => {
-        if (!active) return;
-        setCourses(value.courses);
-        setCourseId((current) => current || value.courses[0]?.id || "");
-      })
-      .catch(() => {
-        if (active) setCourses([]);
-      });
-    // "New game" after a game starts from that game's settings.
-    if (from)
-      read(api.GET("/api/play/{play_id}", { params: { path: { play_id: from } } }))
-        .then((previous) => {
-          if (!active) return;
-          setOpponent(previous.opponent);
-          setRating(previous.rating);
-          setLevel(previous.opponent === "human" && previous.rating === previous.learner_rating ? "match" : "choose");
-          setColor(previous.learner_color);
-          setMode(previous.practice ? "practice" : "free");
-          if (previous.practice) setCourseId(previous.practice.course_id);
-        })
-        .catch(() => undefined);
-    read(api.GET("/api/play/active"))
-      .then((value) => {
-        if (active) setActive(value.game);
-      })
-      .catch(() => {
-        if (active) setActive(null);
-      });
-    return () => {
-      active = false;
-    };
+    return { courses: loadedCourses, active };
   }, [from]);
+  const courses = setup.data?.courses ?? [];
+  const active = setup.data?.active ?? null;
   // The coach asks for a game when the page opens: its clip plays when recorded,
   // and the bubble shows the line either way.
   // The page opening is the narration event, raised once the clip can play so
@@ -176,6 +156,8 @@ function PlaySetup({ from }: { from: string | null }) {
     <>
       <PageTitle title={`Play ${coach.name}`} documentTitle="Play" />
       {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+      {profileQuery.error && <Banner tone="error" onDismiss={profileQuery.dismiss}
+        action={<Button variant="secondary" onClick={profileQuery.retry}>Try again</Button>}>Couldn’t load your measured level.</Banner>}
       {active && (
         <section aria-label="Game in progress">
           <Notice announcement="passive" actions={<ActionLink variant="secondary" size="compact" href={playGamePath(active.id)}>
@@ -185,7 +167,8 @@ function PlaySetup({ from }: { from: string | null }) {
           </Notice>
         </section>
       )}
-      {active === undefined || loadedCourses === undefined || (!profile && !error) ? <LoadingState presentation="panel">Loading the game setup…</LoadingState> : (
+      <QueryResult query={setup} label="the game setup" presentation="panel">{() => !levelAnswered
+        ? <LoadingState presentation="panel">Loading the game setup…</LoadingState> : (
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
           <div className="play-field">
@@ -280,7 +263,7 @@ function PlaySetup({ from }: { from: string | null }) {
         </div>
         )}
       </div>
-      )}
+      )}</QueryResult>
     </>
   );
 }

@@ -14,6 +14,7 @@ VERSION = PRACTICAL_VERSION
 # These are model-policy descriptions, not calibrated human success rates.
 PREFERRED_POLICY = 0.10
 UNUSUAL_POLICY = 0.03
+TOP_CHOICES = 3
 
 
 def naturalness(move):
@@ -180,7 +181,9 @@ def assess_difficulty(report):
             }
         )
         nature = base["best_naturalness"]
-        if nature == "preferred":
+        # A best move among the model's top three choices is not a hard find, even in
+        # a diffuse policy where no move reaches the preferred probability.
+        if nature == "preferred" or (human.engine_best and human.engine_best.rank <= TOP_CHOICES):
             base["best_find_difficulty"] = "natural"
         elif nature != "unknown":
             best_sacrifice = (

@@ -79,6 +79,23 @@ def test_natural_mistake_and_rare_strong_move_are_not_contradictions():
     assert assess_difficulty(rare).best_find_difficulty == "challenging"
 
 
+@pytest.mark.parametrize(
+    ("rank", "probability", "expected"),
+    [
+        (1, 0.05, "natural"),  # The model's top choice in a diffuse policy.
+        (2, 0.09, "natural"),  # Its second choice is not a hard find.
+        (3, 0.04, "natural"),
+        (2, None, "natural"),  # A rank-only provider's second choice.
+        (4, 0.06, "challenging"),
+    ],
+)
+def test_a_best_move_among_the_model_top_three_is_never_a_hard_find(rank, probability, expected):
+    assert (
+        assess_difficulty(report(best_rank=rank, probability=probability)).best_find_difficulty
+        == expected
+    )
+
+
 def test_only_move_requires_losing_alternative_not_just_missing_mate():
     data = report(best_rank=10, played_rank=10, probability=0.001)
     data["second_score"]["value"] = -200

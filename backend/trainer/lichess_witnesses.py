@@ -112,6 +112,12 @@ def witness(theme, rule, context, puzzle, positions) -> MotifWitness | None:
         roles = {"promoted_piece": names([move.to_square])}
         text = f"{san} promotes the pawn to a {chess.piece_name(move.promotion)}."
     elif rule == "hanging_piece":
+        # Upstream assumes a puzzle line the solver wins. A capture after which the
+        # capturer is mated in the shown line (Opera game 16...Nxb8 17.Rd8#) is a
+        # poisoned piece, not a hanging one.
+        later = puzzle.mainline[puzzle.mainline.index(node) :]
+        if any(item.board().is_checkmate() and item.board().turn == actor for item in later):
+            return DECLINED
         frame = ply - 1
         roles = {"attacker": names([move.from_square]), "target": names([move.to_square])}
         text = f"{san} captures the undefended piece on {chess.square_name(move.to_square)}."

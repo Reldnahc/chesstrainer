@@ -7,6 +7,7 @@ import {selectableCoaches, getCoach} from "../src/coach/registry";
 import {renderDialogue} from "../src/dialogue/neutral";
 import DialogueText from "../src/dialogue/DialogueText";
 import WritingLab, {CoachComparison} from "./CoachComparison";
+import Button from "../src/Button";
 
 const pipeline = ["Stockfish", "human policy", "practical difficulty", "supported events", "context", "dialogue intent", "selected variant"];
 
@@ -43,16 +44,16 @@ export default function IntelligenceLab() {
     <section className="lab-import" aria-label="Load review evidence">
       <label>Open game-detail JSON <input type="file" accept=".json,application/json" onChange={e => {void open(e.target.files?.[0]); e.target.value = "";}} /></label>
       <details><summary>Paste an API response</summary><label>Game detail JSON<textarea rows={5} value={paste} onChange={e => setPaste(e.target.value)} /></label>
-        <button disabled={!paste.trim()} onClick={() => {generation.current++; accept(paste, "Pasted response");}}>Inspect review</button></details>
+        <Button disabled={!paste.trim()} onClick={() => {generation.current++; accept(paste, "Pasted response");}}>Inspect review</Button></details>
       {error && <p role="alert">{error}</p>}
     </section>
     <details className="lab-writing" open={!game}><summary>Writing examples and full-cast comparison</summary><WritingLab /></details>
     {!game && <p>Save the JSON response from your authenticated <code>/api/games/&#123;id&#125;</code> request, then open it here. Export after the review finishes to inspect refinement, history and move relationships. No PGN is sent anywhere.</p>}
     {game && inspection && <>
       <nav className="lab-controls" aria-label="Evidence position">
-        <button disabled={ply === 0} onClick={() => setPly(p => p - 1)}>Previous</button>
+        <Button disabled={ply === 0} onClick={() => setPly(p => p - 1)}>Previous</Button>
         <label>Position<select aria-label="Position" value={ply} onChange={e => setPly(Number(e.target.value))}>{game.frames.map((f, i) => <option value={i} key={i}>{i} · {f.san} {f.report?.label ?? ""}</option>)}</select></label>
-        <button disabled={ply === game.frames.length - 1} onClick={() => setPly(p => p + 1)}>Next</button>
+        <Button disabled={ply === game.frames.length - 1} onClick={() => setPly(p => p + 1)}>Next</Button>
         <label><input type="checkbox" checked={explaining} onChange={e => setExplaining(e.target.checked)} />Show Why mode</label>
         <label><input type="checkbox" checked={variation} onChange={e => setVariation(e.target.checked)} />Suppress recorded-game context</label>
         <label>Voice<select aria-label="Dialogue coach" value={coachId} onChange={e => setCoachId(e.target.value)}><option value="neutral">Neutral reference</option>{selectableCoaches.map(coach => <option value={coach.id} key={coach.id}>{coach.name}</option>)}</select></label>

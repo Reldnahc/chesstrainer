@@ -7,6 +7,7 @@ import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
 import Reveal from "./Reveal";
 import { useServerDraft } from "./gameProviders";
+import { QueryResult, useQuery } from "./useQuery";
 
 
 export function ProviderImportForm({
@@ -21,21 +22,15 @@ export function ProviderImportForm({
   rememberedUsername?: string;
 }) {
   // The field follows the remembered (or saved) username until the reader edits it.
-  const [savedUsername, setSavedUsername] = useState<string>();
-  const [fetchingUsername, setFetchingUsername] = useState(rememberedUsername === undefined);
   // A remembered username needs no fetch, so the field is ready as soon as one arrives.
-  const loadingUsername = rememberedUsername === undefined && fetchingUsername;
-  const name = useServerDraft(rememberedUsername ?? savedUsername);
+  const fetchUsername = rememberedUsername === undefined;
+  const saved = useQuery(signal => read(api.GET("/api/providers/{provider}/sync", {
+    signal, params: { path: { provider: provider.id } },
+  })), [provider.id], { enabled: fetchUsername });
+  // A failed read leaves the field open to type a username; only a read in flight holds it.
+  const loadingUsername = fetchUsername && saved.data === undefined && saved.pending && !saved.error;
+  const name = useServerDraft(rememberedUsername ?? saved.data?.username);
   const username = name.draft;
-  useEffect(() => {
-    if (rememberedUsername !== undefined) return;
-    let active = true;
-    read(api.GET("/api/providers/{provider}/sync", { params: { path: { provider: provider.id } } }))
-      .then(value => { if (active) setSavedUsername(value.username); })
-      .catch(error => { if (active) fail(error); })
-      .finally(() => { if (active) setFetchingUsername(false); });
-    return () => { active = false; };
-  }, [provider.id, rememberedUsername, fail]);
   const [timeClass, setTimeClass] =
     useState(provider.time_classes.includes("rapid") ? "rapid" : provider.time_classes[0]);
   const [months, setMonths] = useState(3);
@@ -109,6 +104,8 @@ export function ProviderImportForm({
           </select>
         </label>
       </div>
+      <Reveal>{fetchUsername && saved.data === undefined &&
+        <QueryResult query={saved} label="your saved username">{() => null}</QueryResult>}</Reveal>
       <div className="import-options">
         <label>
           Look back

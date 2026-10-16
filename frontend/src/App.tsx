@@ -110,11 +110,7 @@ export default function App() {
                 key={name}
                 href={name === "Games" && screen.kind === "games" && screen.gameId ? gamesPath(screen.page) : pagePaths[name]}
                 aria-current={tab === name ? "page" : undefined}
-                className={
-                  tab === name
-                    ? "button-link nav-item active"
-                    : "button-link nav-item"
-                }
+                className={tab === name ? "nav-item active" : "nav-item"}
               >
                 <Icon size={17} strokeWidth={1.7} />
                 <span>{name}</span>

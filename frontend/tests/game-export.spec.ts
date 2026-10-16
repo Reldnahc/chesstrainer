@@ -7,6 +7,10 @@ test('the review exports PGN, the FEN on the board and a GIF of the game', async
   const open = page.getByRole('button', {name: 'Export game'});
   // Icon only, beside Next mistake, and still there on the Move quality tab.
   await expect(open).toHaveText('');
+  // Both header commands are dense Buttons: 28px on desktop, 44px phone targets.
+  const side = info.project.name === 'mobile' ? 44 : 28;
+  expect(await open.boundingBox()).toMatchObject({width: side, height: side});
+  expect((await page.getByRole('button', {name: 'Next mistake', exact: true}).boundingBox())!.height).toBe(side);
   await page.getByRole('tab', {name: 'Move quality'}).click();
   await expect(open).toBeVisible();
   await page.getByRole('tab', {name: 'Moves'}).click();

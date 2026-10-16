@@ -38,6 +38,8 @@
      border, and the hover fill and border. */
   --control-height: 42px;
   --control-height-compact: 36px;
+  /* Dense controls are chrome sized with the notation tabs (game review). */
+  --control-height-dense: 28px;
   --touch-target: 44px;
   --control-border: #44484f;
   --control-hover: #30343a;
@@ -158,38 +160,19 @@ summary {
 a {
   color: inherit;
 }
-button,
-.button-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  min-height: var(--control-height);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--control-border);
-  border-radius: 6px;
-  background: var(--raised);
-  color: #e8eaee;
-  font-size: var(--text-control);
-  font-weight: 500;
+/* Buttons start bare (as in Tailwind's preflight). Their look comes from one
+   place: Button, IconButton and ActionLink (action-controls.css). The few
+   controls that are not commands (tabs, notation moves, choice tiles) style
+   themselves completely in their own component. */
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
-  transition:
-    background var(--motion-fast) var(--ease-standard),
-    border-color var(--motion-fast) var(--ease-standard),
-    color var(--motion-fast) var(--ease-standard);
-  text-decoration: none;
-}
-button:hover,
-.button-link:hover {
-  background: var(--control-hover);
-  border-color: var(--control-hover-border);
-}
-/* The element rules' display must not defeat the hidden attribute. */
-button[hidden] {
-  display: none;
 }
 button:disabled {
-  opacity: 0.45;
   cursor: default;
 }
 button:focus-visible,

@@ -157,10 +157,12 @@ def test_clear_games_removes_mined_puzzles_and_unlinks_play_games(settings, sess
     with sqlite3.connect(settings.database_path) as db:
         fill(db, "game_puzzle_searches", user_id="local", game_id=game_id)
         fill(db, "game_puzzles", user_id="local", game_id=game_id, decision_id=None)
+        fill(db, "insight_facts", user_id="local", game_id=game_id, facts=b"")
         fill(db, "play_games", id="played", user_id="local", saved_game_id=game_id)
 
     removed = _script().clear_games(settings.database_path, apply=True)
     assert removed["game_puzzles"] == removed["game_puzzle_searches"] == 1
+    assert removed["insight_facts"] == 1
     assert removed["play_games (unlinked)"] == 1
     with sqlite3.connect(settings.database_path) as db:
         assert db.execute("SELECT id, saved_game_id FROM play_games").fetchall() == [
