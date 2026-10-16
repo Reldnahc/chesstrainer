@@ -49,7 +49,7 @@
   border-bottom: 1px solid var(--coach-bubble-border);
   transform: rotate(45deg);
 }
-.play-setup-speech .coach-label { min-height: 28px; }
+.play-setup-speech .coach-label { min-height: var(--coach-label-height); }
 .play-setup-speech .coach-message { min-height: 0; overflow: visible; }
 /* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
 @media (min-width: 761px) {

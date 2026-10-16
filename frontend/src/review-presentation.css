@@ -21,7 +21,9 @@ main.review-page:has(.review-workspace-layout) {
   --review-sidebar-min: 300px;
   display: grid;
   grid-template-columns:
-    minmax(0, var(--review-board-width, calc(100dvh - 130px)))
+    /* ReviewWorkspace measures both sizes before the first paint; the fallbacks
+       only keep the grid valid, so they restate no shell height. */
+    minmax(0, var(--review-board-width, 1fr))
     minmax(var(--review-sidebar-min), 1fr);
   gap: var(--space-5);
   align-items: start;
@@ -73,7 +75,7 @@ main.review-page:has(.review-workspace-layout) {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  height: var(--review-height, calc(100dvh - 84px));
+  height: var(--review-height, auto);
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;

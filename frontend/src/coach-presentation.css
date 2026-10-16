@@ -76,12 +76,12 @@
   position: relative;
   min-width: 0;
   display: grid;
-  grid-template-rows: 28px minmax(0, 1fr);
+  grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
   gap: var(--space-1);
   height: var(--coach-height);
   border: 1px solid var(--coach-bubble-border);
   border-radius: 10px;
-  /* The 28px title row centres its content, so a smaller top padding still reads as
+  /* The title row centres its content, so a smaller top padding still reads as
      even and leaves the message its two lines above a wrapped footer. */
   padding: var(--space-2) var(--space-4) var(--space-3);
   background: var(--coach-bubble-background);
@@ -302,7 +302,7 @@
   justify-content: space-between;
   gap: var(--space-2);
   min-width: 0;
-  min-height: 28px;
+  min-height: var(--coach-label-height);
   color: #c1cfc5;
   font-size: var(--text-xs);
 }
@@ -451,7 +451,7 @@
     padding-top: var(--space-1-5);
   }
   .coach-speech {
-    grid-template-rows: 28px minmax(0, 1fr);
+    grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
     padding: var(--space-3);
   }
   .coach-label {
@@ -483,7 +483,7 @@
     padding-top: var(--space-1-5);
   }
   .coach-speech {
-    grid-template-rows: 28px minmax(0, 1fr);
+    grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
     padding: var(--space-3);
   }
   .coach-label .move-badge {

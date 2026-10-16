@@ -213,7 +213,8 @@ progress::-webkit-progress-value {
 }
 .app-footer {
   width: var(--page-width);
-  margin: auto;
+  /* Centred across; in the app's column it follows the page without vertical slack. */
+  margin-inline: auto;
   padding: var(--space-6) var(--page-inline-padding);
   border-top: 1px solid var(--line);
   display: flex;
