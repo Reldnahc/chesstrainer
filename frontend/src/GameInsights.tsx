@@ -860,7 +860,8 @@ function Endgames({ data }: { data: Insights }) {
           }))}
       />
       <p className="insight-note">
-        Held means the final result was at least as good as the evaluation when the endgame began.
+        Held means the game was not lost and the result was at least as good as the evaluation when
+        the endgame began.
       </p>
     </Panel>
   );

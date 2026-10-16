@@ -800,7 +800,8 @@ def endgames(games):
                 "win" if verdict >= DECISIVE_CP else "loss" if verdict <= -DECISIVE_CP else "draw"
             )
             rank = {"loss": 0, "draw": 1, "win": 2}
-            held += rank[game.result] >= rank[expected]
+            # A loss is never held, even from an endgame entered already lost.
+            held += game.result != "loss" and rank[game.result] >= rank[expected]
         output.append({"kind": kind, "games": len(reached), "held": held})
     return output
 
