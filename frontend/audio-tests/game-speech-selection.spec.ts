@@ -5,7 +5,7 @@ import {gameIntent} from "../src/dialogue/gameIntent";
 import {claim, makeIntent, type ClaimCode} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
-import {distinctOpeners, selectWalterGameRecording, type WalterGameSpeechContext} from "../src/audio/speech/gameSelection";
+import {distinctOpeners, selectGameRecording, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import inventory from "../src/audio/speech/walter-dialogue-inventory.json" with {type: "json"};
 
@@ -16,7 +16,7 @@ const positional = semanticFixtures<{feature: string; code: string; mirrored: bo
 const humans = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
 const replyOnly = semanticFixtures<{report: Report; frame: Position}>("review_speech_fixtures.py");
 
-function context(report: Report, after?: string): WalterGameSpeechContext {
+function context(report: Report, after?: string): GameSpeechContext {
   const detailed = report as Detailed;
   const fen = after ?? detailed.actual_line?.frames[1]?.fen ?? report.board_cues?.fen ?? "6k1/8/8/q7/8/4N3/8/R5K1 b - - 1 1";
   const turn = fen.split(" ")[1] === "w" ? "white" : "black";
@@ -26,11 +26,11 @@ function context(report: Report, after?: string): WalterGameSpeechContext {
   const intent = gameIntent({game, report, frame, ply: 1, key: "test-current-position", expression: "blunder"});
   return {game, frame, report, ply: 1, intent, utterance: renderDialogue(intent, walter)};
 }
-function rerender(current: WalterGameSpeechContext): WalterGameSpeechContext {
+function rerender(current: GameSpeechContext): GameSpeechContext {
   const intent = gameIntent({...current, key: "test-current-position", expression: current.intent.expression});
   return {...current, intent, utterance: renderDialogue(intent, walter)};
 }
-function onlyClaim(current: WalterGameSpeechContext, code: string): WalterGameSpeechContext {
+function onlyClaim(current: GameSpeechContext, code: string): GameSpeechContext {
   const item = current.intent.claims.find(candidate => candidate.code === code)!;
   expect(item).toBeTruthy();
   const intent = {...current.intent, claims: [item]};
@@ -42,13 +42,13 @@ for (const fixture of causal) test(`Walter selects ${fixture.skill} for ${fixtur
   report.intelligence!.events = report.intelligence!.events.filter(event => event.facts.motif === fixture.skill);
   const current = context(report);
   const id = `cause-${fixture.skill.replaceAll("_", "-")}`;
-  expect(selectWalterGameRecording(current)).toBe(id);
+  expect(selectGameRecording(current)).toBe(id);
   expect(inventory.scripts.some(script => script.id === id)).toBe(true);
-  expect(selectWalterGameRecording({...current, variation: true,
+  expect(selectGameRecording({...current, variation: true,
     ...rerender({...current, variation: true})})).toBe(id);
   const changed = structuredClone(current);
   changed.report!.intelligence!.events.find(event => event.facts.motif === fixture.skill)!.actor = fixture.black ? "white" : "black";
-  expect(selectWalterGameRecording(changed)).toBeNull();
+  expect(selectGameRecording(changed)).toBeNull();
 });
 
 for (const fixture of positional) for (const line of ["actual", "alternative"] as const)
@@ -66,15 +66,15 @@ for (const fixture of positional) for (const line of ["actual", "alternative"] a
     }
     const current = onlyClaim(context(report), fixture.code);
     const expected = `positional-${fixture.feature === "bishop_pair" ? "bishop-pair" : "doubled"}-${line}`;
-    expect(selectWalterGameRecording(current)).toBe(expected);
+    expect(selectGameRecording(current)).toBe(expected);
     const malformed = structuredClone(current);
     delete malformed.utterance.renderedClaims![0].position;
-    expect(selectWalterGameRecording(malformed)).toBeNull();
+    expect(selectGameRecording(malformed)).toBeNull();
     const wrongActor = structuredClone(current);
     const source = wrongActor.utterance.renderedClaims![0].sourceIds[0];
     const event = wrongActor.report!.intelligence!.events.find(item => item.id === source)!;
     event.actor = event.actor === "white" ? "black" : "white";
-    expect(selectWalterGameRecording(wrongActor)).toBeNull();
+    expect(selectGameRecording(wrongActor)).toBeNull();
   });
 
 test("selection is exact rendered identity, not highest input priority, trace code or a supported fallback", () => {
@@ -83,16 +83,15 @@ test("selection is exact rendered identity, not highest input priority, trace co
   const intent = {...current.intent, claims: [claim("unrecognized" as ClaimCode, {}, 999), ...current.intent.claims]};
   const output = renderDialogue(intent, walter);
   expect(output.renderedClaims![0]).toEqual(item);
-  expect(selectWalterGameRecording({...current, intent, utterance: output})).toBe("cause-abandoned-defender");
+  expect(selectGameRecording({...current, intent, utterance: output})).toBe("cause-abandoned-defender");
   const unsupported = claim("compatibility", {detail: "A freeform legacy explanation."}, 999);
   const legacyIntent = {...current.intent, claims: [unsupported, ...current.intent.claims]};
-  expect(selectWalterGameRecording({...current, intent: legacyIntent, utterance: renderDialogue(legacyIntent, walter)})).toBeNull();
+  expect(selectGameRecording({...current, intent: legacyIntent, utterance: renderDialogue(legacyIntent, walter)})).toBeNull();
   const changed = structuredClone(current);
   changed.utterance.renderedClaims![0].slots.square = "h8";
-  expect(selectWalterGameRecording(changed)).toBeNull();
-  expect(selectWalterGameRecording({...current, utterance: {...current.utterance, renderedClaims: undefined}})).toBeNull();
-  expect(selectWalterGameRecording({...current, utterance: {...current.utterance, coachId: "cat-kitten"}})).toBeNull();
-  expect(selectWalterGameRecording({...current, utterance: {...current.utterance, intentId: "old-intent"}})).toBeNull();
+  expect(selectGameRecording(changed)).toBeNull();
+  expect(selectGameRecording({...current, utterance: {...current.utterance, renderedClaims: undefined}})).toBeNull();
+  expect(selectGameRecording({...current, utterance: {...current.utterance, intentId: "old-intent"}})).toBeNull();
 });
 
 test("rendered claims snapshot the selected source and slots without aliasing producer state", () => {
@@ -110,15 +109,15 @@ test("rendered claims snapshot the selected source and slots without aliasing pr
 
 test("stale positions, current errors and unresolved position requests remain silent; background refinement does not", () => {
   const current = context(causal[0].report);
-  expect(selectWalterGameRecording({...current, pending: true})).toBeNull();
-  expect(selectWalterGameRecording({...current, error: true})).toBeNull();
-  expect(selectWalterGameRecording({...current, frame: {...current.frame!, fen: "another-position"}})).toBeNull();
-  expect(selectWalterGameRecording({...current, frame: {...current.frame!, san: "Kh2"}})).toBeNull();
+  expect(selectGameRecording({...current, pending: true})).toBeNull();
+  expect(selectGameRecording({...current, error: true})).toBeNull();
+  expect(selectGameRecording({...current, frame: {...current.frame!, fen: "another-position"}})).toBeNull();
+  expect(selectGameRecording({...current, frame: {...current.frame!, san: "Kh2"}})).toBeNull();
   const changed = structuredClone(current);
   changed.report!.intelligence!.ply = 7;
-  expect(selectWalterGameRecording(changed)).toBeNull();
+  expect(selectGameRecording(changed)).toBeNull();
   const background = {...current, game: {...current.game, job: {status: "running"} as Game["job"]}};
-  expect(selectWalterGameRecording(background)).toBe("cause-abandoned-defender");
+  expect(selectGameRecording(background)).toBe("cause-abandoned-defender");
 });
 
 test("terminal checkmate comes from the current board result, never an expression or PGN result alone", () => {
@@ -128,12 +127,12 @@ test("terminal checkmate comes from the current board result, never an expressio
     const game = {...current.game, orientation, frames: [{}, frame] as Game["frames"]};
     const intent = gameIntent({game, frame, ply: 1, key: "mate", expression: orientation === "white" ? "winning" : "losing"});
     const terminal = {...current, game, frame, report: null, intent, utterance: renderDialogue(intent, walter)};
-    expect(selectWalterGameRecording(terminal)).toBe(orientation === "white" ? "mate-finished" : "mate-defense-ended");
-    expect(selectWalterGameRecording({...terminal, frame: {...frame, termination: "resignation"}})).toBeNull();
-    expect(selectWalterGameRecording({...terminal, frame: {...frame, result: "0-1"}})).toBeNull();
-    expect(selectWalterGameRecording({...terminal, frame: {...frame, legal_moves: [{from_square: "a1", to_square: "a2", capture: false, promotion: null}]}})).toBeNull();
+    expect(selectGameRecording(terminal)).toBe(orientation === "white" ? "mate-finished" : "mate-defense-ended");
+    expect(selectGameRecording({...terminal, frame: {...frame, termination: "resignation"}})).toBeNull();
+    expect(selectGameRecording({...terminal, frame: {...frame, result: "0-1"}})).toBeNull();
+    expect(selectGameRecording({...terminal, frame: {...frame, legal_moves: [{from_square: "a1", to_square: "a2", capture: false, promotion: null}]}})).toBeNull();
   }
-  expect(selectWalterGameRecording({...current, game: {...current.game, result: "1-0"}})).toBe("cause-abandoned-defender");
+  expect(selectGameRecording({...current, game: {...current.game, result: "1-0"}})).toBe("cause-abandoned-defender");
 });
 
 test("a Maia claim never selects a recording, even with exact current learner evidence", () => {
@@ -150,9 +149,9 @@ test("a Maia claim never selects a recording, even with exact current learner ev
       current.intent.expression, [item], current.intent.decisions, current.intent.subject);
     const human = {...current, intent, utterance: renderDialogue(intent, walter)};
     expect(human.utterance.renderedClaims!.map(claim => claim.code)).toEqual([item.code]);
-    expect(selectWalterGameRecording(human)).toBeNull();
+    expect(selectGameRecording(human)).toBeNull();
     current.utterance.renderedClaims!.forEach((claim, claimIndex) => {
-      if (claim.code === item.code) expect(selectWalterGameRecording({...current, claimIndex})).toBeNull();
+      if (claim.code === item.code) expect(selectGameRecording({...current, claimIndex})).toBeNull();
     });
     tested++;
   }
@@ -161,12 +160,12 @@ test("a Maia claim never selects a recording, even with exact current learner ev
 
 test("explicit secondary selection cannot narrate hidden claims or context inherited into a variation", () => {
   const current = context(causal[0].report);
-  expect(selectWalterGameRecording({...current, claimIndex: 99})).toBeNull();
-  expect(selectWalterGameRecording({...current, claimIndex: -1})).toBeNull();
+  expect(selectGameRecording({...current, claimIndex: 99})).toBeNull();
+  expect(selectGameRecording({...current, claimIndex: -1})).toBeNull();
   const recovery = claim("recovery", {earlier: "1. e4", help: ""}, 88,
     current.intent.claims[0].evidence, ["old-recovery"]);
   const intent = makeIntent("old-game-context", "recovery", "variation", "recovered", [recovery]);
-  expect(selectWalterGameRecording({...current, variation: true, intent, utterance: renderDialogue(intent, walter)})).toBeNull();
+  expect(selectGameRecording({...current, variation: true, intent, utterance: renderDialogue(intent, walter)})).toBeNull();
 });
 
 test("every tactical recording keeps its exact motif, actor and line role", () => {
@@ -186,13 +185,13 @@ test("every tactical recording keeps its exact motif, actor and line role", () =
         ? {...ref, field: `${role === "missed" ? "best" : "actual"}_line/findings/0`} : ref)};
     report.intelligence!.events = [event];
     const current = context(report);
-    expect(selectWalterGameRecording(current), script.id).toBe(script.id);
+    expect(selectGameRecording(current), script.id).toBe(script.id);
     const wrongActor = structuredClone(current);
     wrongActor.report!.intelligence!.events[0].actor = event.actor === "white" ? "black" : "white";
-    expect(selectWalterGameRecording(rerender(wrongActor)), script.id).toBeNull();
+    expect(selectGameRecording(rerender(wrongActor)), script.id).toBeNull();
     const ambiguous = structuredClone(current);
     ambiguous.report!.intelligence!.events.push(event);
-    expect(selectWalterGameRecording(ambiguous), script.id).toBeNull();
+    expect(selectGameRecording(ambiguous), script.id).toBeNull();
   }
 });
 
@@ -205,11 +204,11 @@ test("same-code rendered claims retain distinct event identity and selected posi
   const current = context(report);
   expect(current.utterance.renderedClaims).toHaveLength(2);
   expect(current.utterance.renderedClaims!.map(item => item.code)).toEqual(["rook_file", "rook_file"]);
-  expect(selectWalterGameRecording(current)).toBe("positional-rook-open-actual");
-  expect(selectWalterGameRecording({...current, claimIndex: 1})).toBe("positional-rook-semi-open-actual");
+  expect(selectGameRecording(current)).toBe("positional-rook-open-actual");
+  expect(selectGameRecording({...current, claimIndex: 1})).toBe("positional-rook-semi-open-actual");
   const mismatch = structuredClone(current);
   mismatch.utterance.renderedClaims![0].sourceIds = ["file-event-1"];
-  expect(selectWalterGameRecording(mismatch)).toBeNull();
+  expect(selectGameRecording(mismatch)).toBeNull();
 });
 
 test("all positional speech branches validate their structured facts and keep alternative wording", () => {
@@ -245,14 +244,14 @@ test("all positional speech branches validate their structured facts and keep al
     }
     const current = onlyClaim(context(report), example.code);
     const id = `positional-${example.name}-${line === "actual" ? "actual" : "alternative"}`;
-    expect(selectWalterGameRecording(current), id).toBe(id);
+    expect(selectGameRecording(current), id).toBe(id);
     expect(inventory.scripts.some(script => script.id === id)).toBe(true);
     const invalid = structuredClone(current);
     invalid.report!.intelligence!.events[0].facts.side = "unknown";
-    expect(selectWalterGameRecording(invalid), id).toBeNull();
+    expect(selectGameRecording(invalid), id).toBeNull();
     const wrongLine = structuredClone(current);
     wrongLine.report!.intelligence!.events[0].facts.uci = "h1h8";
-    expect(selectWalterGameRecording(wrongLine), id).toBeNull();
+    expect(selectGameRecording(wrongLine), id).toBeNull();
   }
 });
 
@@ -270,7 +269,7 @@ test("recorded-game recovery is tied to learner and current node generation", ()
   const told = (value: typeof recovered) => value.intent.claims.some(item => item.code === "recovery");
   expect(told(recovered)).toBe(true);
   // The opponent's errors helped, so the assisted take plays.
-  expect(selectWalterGameRecording(onlyClaim(recovered, "recovery"))).toBe("recovery-assisted");
+  expect(selectGameRecording(onlyClaim(recovered, "recovery"))).toBe("recovery-assisted");
   for (const change of ["actor", "generation", "endpoint"] as const) {
     const changed = structuredClone(current);
     if (change === "actor") changed.game.context!.relationships[0].actor = "black";
@@ -294,7 +293,7 @@ test("the chance-taken clip, some of whose takes call the reply exact, plays onl
         before: changed.report.best.score, after: changed.report.actual.score, evidence, event_ids: []}],
       relationships: [{id: "chance-now", kind: "punishment", actor, plies: [0, 1],
         facts: {outcome: "capitalized"}, evidence, event_ids: []}]};
-    return selectWalterGameRecording(onlyClaim(rerender(changed), "punishment"));
+    return selectGameRecording(onlyClaim(rerender(changed), "punishment"));
   };
   expect(takenWith("Best")).toBe("chance-taken");
   expect(takenWith("Good")).toBeNull();
@@ -312,7 +311,7 @@ test("the repeated-issue clip, whose takes never count occurrences, plays from t
         before: changed.report!.best.score, after: changed.report!.actual.score, evidence, event_ids: []}],
       relationships: [{id: "repeat-now", kind: "repeated_motif", actor, plies: [0, 1],
         facts: {role: "caused", motif: causal[0].skill, occurrence}, evidence, event_ids: []}]};
-    return selectWalterGameRecording(onlyClaim(rerender(changed), "repeated"));
+    return selectGameRecording(onlyClaim(rerender(changed), "repeated"));
   };
   expect(repeatedAt(2)).toBe("repeated-issue");
   expect(repeatedAt(3)).toBe("repeated-issue");
@@ -330,14 +329,14 @@ test("finite no-report status recordings are manual-only and never authorize leg
     const current = {...base, report: null, game, frame, ply: 0, variation, error, intent, utterance: renderDialogue(intent, walter)};
     expect(current.utterance.autoSpeakSuitable).toBe(false);
     const expected = state === "unavailable" ? "game-unavailable" : state === "paused" ? "game-review-paused" : "game-browse-instructions";
-    expect(selectWalterGameRecording(current)).toBe(expected);
-    expect(selectWalterGameRecording({...current, pending: true})).toBeNull();
-    expect(selectWalterGameRecording({...current, report: base.report})).toBeNull();
+    expect(selectGameRecording(current)).toBe(expected);
+    expect(selectGameRecording({...current, pending: true})).toBeNull();
+    expect(selectGameRecording({...current, report: base.report})).toBeNull();
     const altered = structuredClone(current);
     altered.utterance.renderedClaims![0].slots.detail = "Unstructured text is not a fixed status.";
-    expect(selectWalterGameRecording(altered)).toBeNull();
-    if (state === "unavailable") expect(selectWalterGameRecording({...current, error: false})).toBeNull();
-    if (state === "paused") expect(selectWalterGameRecording({...current, game: {...game, job: null}})).toBeNull();
+    expect(selectGameRecording(altered)).toBeNull();
+    if (state === "unavailable") expect(selectGameRecording({...current, error: false})).toBeNull();
+    if (state === "paused") expect(selectGameRecording({...current, game: {...game, job: null}})).toBeNull();
   }
 });
 
@@ -346,21 +345,21 @@ test("Show why speaks a legal reply only when the producer marks the entire curr
   const game = {...context(report).game, frames: [{}, frame] as Game["frames"]};
   const intent = gameIntent({game, report, frame, ply: 1, explaining: true, key: "show-reply", expression: "explaining"});
   const current = {game, report, frame, ply: 1, intent, utterance: renderDialogue(intent, walter)};
-  expect(selectWalterGameRecording(current)).toBe("game-explanation-legal-reply");
-  expect(selectWalterGameRecording({...current, error: true})).toBeNull();
-  expect(selectWalterGameRecording({...current, pending: true})).toBeNull();
-  expect(selectWalterGameRecording({...current, frame: {...frame, legal_moves: []}})).toBeNull();
+  expect(selectGameRecording(current)).toBe("game-explanation-legal-reply");
+  expect(selectGameRecording({...current, error: true})).toBeNull();
+  expect(selectGameRecording({...current, pending: true})).toBeNull();
+  expect(selectGameRecording({...current, frame: {...frame, legal_moves: []}})).toBeNull();
   for (const change of ["legacy", "reply", "fen"] as const) {
     const changed = structuredClone(current);
     if (change === "legacy") delete changed.report.board_cues!.caption_kind;
     if (change === "reply") changed.report.board_cues!.caption_reply_uci = "a1a8";
     if (change === "fen") changed.report.board_cues!.fen = "old-position";
-    expect(selectWalterGameRecording(changed)).toBeNull();
+    expect(selectGameRecording(changed)).toBeNull();
   }
   const finding = context(causal[0].report);
   const findingIntent = gameIntent({...finding, key: "finding-show-why", explaining: true, expression: "explaining"});
   expect(finding.report!.board_cues!.caption_kind).toBeNull();
-  expect(selectWalterGameRecording({...finding, intent: findingIntent, utterance: renderDialogue(findingIntent, walter)})).toBeNull();
+  expect(selectGameRecording({...finding, intent: findingIntent, utterance: renderDialogue(findingIntent, walter)})).toBeNull();
 });
 
 test("a joined pair never repeats the coach's opening catchphrase", () => {
