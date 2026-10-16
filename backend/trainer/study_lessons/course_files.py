@@ -305,7 +305,13 @@ def load(data):
             if isinstance(cause, StepProblem)
             else field_location(record, problem["loc"])
         )
-        raise CourseFileError(problem["msg"].removeprefix("Value error, "), **place) from exc
+        message = problem["msg"].removeprefix("Value error, ")
+        # Name the place in the words too, as the file's own checks do.
+        if place.get("step") is not None:
+            message = f"Chapter {place['chapter']}, step {place['step']}: {message}"
+        elif place:
+            message = f"Chapter {place['chapter']}: {message}"
+        raise CourseFileError(message, **place) from exc
     return course, source.topic
 
 
@@ -572,6 +578,11 @@ def unfinished_steps(data):
             if step.get("rehearse") == "":
                 step.pop("rehearse")
                 problems.append(CourseFileError(f"{where} needs a line to rehearse", **at))
+            if step.get("branch") == "":
+                step.pop("branch")
+                problems.append(
+                    CourseFileError(f"{where} needs a step to start its side trip", **at)
+                )
             if step.get("show") == "":
                 step.pop("show")
                 problems.append(CourseFileError(f"{where} needs at least one move to show", **at))

@@ -151,6 +151,10 @@ def _unreachable(data):
             lambda data: data["chapters"][0]["steps"][2].update(next="intro"),
             {"chapter": "start", "step": "watch"},
         ),
+        (
+            lambda data: data["chapters"][0]["steps"][2].update(branch="", show=None),
+            {"chapter": "start", "step": "watch"},
+        ),
         (lambda data: data.update(side="green"), None),
         (lambda data: data["lines"][0].update(moves="e4 e4"), None),
     ],
@@ -160,6 +164,12 @@ def test_the_editor_check_says_where_a_problem_is(change, location):
     change(data)
     result = course_files.check(data)
     assert result["error"] and result["location"] == location
+
+
+def test_validation_problems_name_their_place_in_words_too():
+    data = sample()
+    data["chapters"][0]["steps"][0]["arrows"] = ["zz"]
+    assert course_files.check(data)["error"].startswith("Chapter start, step intro: ")
 
 
 def test_a_clean_check_has_no_location():
