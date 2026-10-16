@@ -507,7 +507,8 @@ def review_move(
 
     ``board`` stands after the move. Variation analysis and Play build a single
     move's report here, then render it with ``public_report``. Without a saved
-    ``previous_score`` the position before the move is searched for it.
+    ``previous_score`` the position before the move is searched for it, and that
+    search also says whether the opponent's move was a Mistake or worse.
     """
     board = board.copy(stack=True)
     move = board.pop()
@@ -520,9 +521,11 @@ def review_move(
         previous_score = opponent_best.negate()
     report = analyze_move(engine, board, move, previous_score)
     if opponent_best is not None:
-        # Whether the opponent's move was itself a Mistake or worse, as saved reviews
-        # link it, so a variation move can be the capitalizing Great too. The
-        # opponent's move reached this position, whose best score is its result.
+        # Whether the opponent's move was itself a Mistake or worse, by the same
+        # threshold saved reviews link, so a variation move can be the capitalizing
+        # Great too. The opponent's move reached this position, whose best score
+        # stands in for that move's own search (one ply apart, so a borderline
+        # loss can read differently from a saved review).
         opponent_played = Score.model_validate(report["best"]["score"]).negate()
         report["previous_mistake"] = is_mistake(evaluation_loss(opponent_best, opponent_played))
     report["human"] = human_models.evidence(

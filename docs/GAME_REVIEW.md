@@ -293,7 +293,8 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   follows the same rule: the position before the opponent's move is searched, and
   the opponent's move is a Mistake or worse when the position it reached (this
   move's own root search) concedes a Mistake's loss against that search's best. A
-  sole legal move is not Great.
+  Play move analysed before the move it answers reads the same search until that
+  move's report is saved and linked. A sole legal move is not Great.
 - Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
   involving the played move, or a winning mate; a non-pawn sacrifice at an
   immediate net material cost; and an explicit native
