@@ -15,8 +15,9 @@ def test_lichess_adds_pin_exploitation_without_requiring_capture_on_the_pinned_s
     # allowing the queen to use that square. Scores are synthetic contract data.
     payload = evidence(
         "4k3/4n3/8/r6r/8/7Q/8/4R1K1 w - - 0 1",
-        ["h3f5", "a5a8", "f5h5", "e8d8", "h5h3", "d8c7"],
-        ["h3g2", "e8d8", "g2f1", "d8c8"],
+        # Qxh5 wins the rook; Rxe7+ then takes the knight the king left behind.
+        ["h3f5", "a5a8", "f5h5", "e8d8", "h5h3", "d8c7", "e1e7", "c7d6", "e7e2", "d6c5"],
+        ["h3g2", "e8d8", "g2f1", "d8d7"],
         500,
         0,
         black,
