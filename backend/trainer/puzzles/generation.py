@@ -331,7 +331,7 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
 def definition_for(game, prospect: Prospect, root, built: Built, themes) -> PuzzleDefinition:
     you = "White" if game.learner_color else "Black"
     opponent = game.black if game.learner_color else game.white
-    when = game.played_on or "date unknown"
+    when = parsed_game(game).headers.get("Date") or "date unknown"
     attribution = (
         f"Your game as {you} vs {opponent} · {when} · move {(prospect.ply + 1) // 2}. "
         f"You played {prospect.played_san}."

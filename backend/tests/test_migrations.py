@@ -292,3 +292,92 @@ def test_dropping_the_archived_lesson_tables_keeps_their_sessions_and_cards(tmp_
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     assert modes == {"lesson": "lesson", "plain": "review"}
     assert sources == {"x1": "repertoire", "x2": "game"}
+
+
+def test_one_representation_per_concept_keeps_every_value(tmp_path):
+    from datetime import datetime, timezone
+
+    from sqlalchemy.orm import Session
+    from trainer.db import account_sessions
+    from trainer.models import (
+        AnalysisJob,
+        AuthSession,
+        Exercise,
+        OpeningRecallSnapshot,
+        OpeningStudy,
+        ProviderCheckpoint,
+        ProviderImport,
+        User,
+    )
+
+    engine, _ = database(tmp_path / "conventions.sqlite3")
+    upgrade_to(engine, "9d2f6b1e4c83")
+    with engine.begin() as connection:
+        fill(connection, "users", id="u1", username="u1", created=1700000000.25)
+        fill(connection, "auth_sessions", digest="d", user_id="u1", expires=1800000000.0)
+        fill(
+            connection,
+            "games",
+            id="g",
+            user_id="u1",
+            fingerprint="g",
+            pgn='[Date "2024.??.??"]\n\n1. e4 *',
+            played_on="2024.??.??",
+        )
+        for job_id, kind, status in (
+            ("fetch", "chesscom", "queued"),
+            ("import", "provider_import", "completed"),
+            ("teach", "teaching", "queued"),
+            ("review", "game_review", "completed"),
+        ):
+            fill(connection, "analysis_jobs", id=job_id, user_id="u1", kind=kind, status=status)
+        fill(connection, "chesscom_imports", job_id="fetch", user_id="u1", provider="chesscom")
+        fill(connection, "chesscom_archives", job_id="fetch", user_id="u1", url="2024/01")
+        for exercise_id, side in (("white", "white"), ("black", "black")):
+            fill(
+                connection,
+                "exercises",
+                id=exercise_id,
+                user_id="u1",
+                identity=exercise_id,
+                orientation=side,
+            )
+        fill(connection, "opening_studies", id="s", user_id="u1", color="black")
+        fill(connection, "review_sessions", id="rs", user_id="u1", exercise_id="white")
+        fill(
+            connection,
+            "opening_recall_snapshots",
+            session_id="rs",
+            user_id="u1",
+            orientation="white",
+        )
+    upgrade_to(engine, "head")
+    with engine.connect() as connection:
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").first() is None
+    with Session(engine) as db:
+        assert db.get(User, "u1").created_at == datetime(
+            2023, 11, 14, 22, 13, 20, 250000, tzinfo=timezone.utc
+        )
+        assert db.get(AuthSession, "d").expires_at == datetime.fromtimestamp(
+            1800000000, timezone.utc
+        )
+        assert {job.id: (job.kind, job.status) for job in db.query(AnalysisJob)} == {
+            "fetch": ("chesscom_fetch", "queued"),
+            "import": ("provider_fetch", "completed"),
+            "teach": ("retired", "cancelled"),
+            "review": ("game_review", "completed"),
+        }
+        assert db.get(ProviderImport, "fetch").provider == "chesscom"
+        assert db.get(ProviderCheckpoint, ("fetch", "2024/01")) is not None
+        assert {row.id: row.learner_color for row in db.query(Exercise)} == {
+            "white": True,
+            "black": False,
+        }
+        assert db.get(OpeningStudy, "s").learner_color is False
+        assert db.get(OpeningRecallSnapshot, "rs").learner_color is True
+    sessions = account_sessions(engine, "u1")
+    with sessions() as db:
+        db.add(AnalysisJob(kind="no_such_kind"))
+        with pytest.raises(Exception, match="CHECK constraint failed"):
+            db.flush()
+    engine.dispose()

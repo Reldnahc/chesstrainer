@@ -212,7 +212,7 @@ def test_no_provider_configuration_or_paid_job_paths(settings, monkeypatch):
         assert "unused-legacy-test-key" not in str(config)
         assert client.post("/api/course/teaching").status_code == 410
         with client.app.state.sessions() as db:
-            job = AnalysisJob(kind="teaching", status="cancelled")
+            job = AnalysisJob(kind="retired", status="cancelled")
             db.add(job)
             db.commit()
             assert client.post(f"/api/jobs/{job.id}/retry").status_code == 410

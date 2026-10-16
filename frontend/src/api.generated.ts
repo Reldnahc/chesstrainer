@@ -1673,8 +1673,6 @@ export interface components {
         Account: {
             /** Admin */
             admin: boolean;
-            /** Chesscom Username */
-            chesscom_username: string;
             /** Id */
             id: string;
             /** Onboarding Completed */

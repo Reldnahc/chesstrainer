@@ -217,7 +217,7 @@ def game_facts(game, scores=None, rating=None):
         learner_white=learner_white,
         played_at=game.played_at,
         started_at=header_start(parsed) or game.played_at,
-        played_on=game.played_on,
+        played_on=headers.get("Date"),
         result=learner_result(raw_result, learner_white),
         speed=speed_of(time_control, site_of(headers)),
         site=site_of(headers),
@@ -321,7 +321,6 @@ def facts_key(game, rating, revision, completed):
             "pgn": hashlib.sha256(game.pgn.encode()).hexdigest(),
             "learner_color": bool(game.learner_color),
             "players": [game.white, game.black],
-            "played_on": game.played_on,
             "played_at": game.played_at.isoformat() if game.played_at else None,
             "rating": rating,
             # Scores are read only from a completed review, which bumps its
