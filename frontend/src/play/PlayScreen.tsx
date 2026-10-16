@@ -75,6 +75,10 @@ function PlaySetup({ from }: { from: string | null }) {
     return value;
   }, { intervalMs: 3000, enabled: measuring });
   const profile: Profile | null = profileQuery.data ?? null;
+  // The setup waits for the first answer about the level, then stays: a Try again
+  // on the level's banner never hides the form while it reads.
+  const [levelAnswered, setLevelAnswered] = useState(false);
+  if (!levelAnswered && !profileQuery.pending) setLevelAnswered(true);
   // The setup waits for whether a game is in progress and for the practice
   // courses (each falls back on failure), and "New game" after a game starts
   // from that game's settings, so none of them moves the setup after it appears.
@@ -163,7 +167,7 @@ function PlaySetup({ from }: { from: string | null }) {
           </Notice>
         </section>
       )}
-      <QueryResult query={setup} label="the game setup" presentation="panel">{() => profileQuery.pending
+      <QueryResult query={setup} label="the game setup" presentation="panel">{() => !levelAnswered
         ? <LoadingState presentation="panel">Loading the game setup…</LoadingState> : (
       <div className="play-setup">
         <section className="panel play-setup-form" aria-label="Game setup">
