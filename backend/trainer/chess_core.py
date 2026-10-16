@@ -151,6 +151,11 @@ def material(board: chess.Board, color: chess.Color) -> int:
     return sum(len(board.pieces(piece, color)) * value for piece, value in VALUES.items())
 
 
+def material_balance(board: chess.Board, color: chess.Color) -> int:
+    """Color's material minus the other side's (pawn = 1)."""
+    return material(board, color) - material(board, not color)
+
+
 # Material (pawn = 1) at or below which a position counts as an endgame.
 ENDGAME_MATERIAL = 26
 OPENING_MOVES = 10
@@ -212,10 +217,7 @@ def board_facts(board: chess.Board, move: chess.Move, pv: list[str]) -> dict:
             }
         )
     facts["verified_line"] = trace
-    facts["material_balance_change_in_line"] = (
-        material(replay, color)
-        - material(replay, not color)
-        - material(board, color)
-        + material(board, not color)
+    facts["material_balance_change_in_line"] = material_balance(replay, color) - material_balance(
+        board, color
     )
     return facts

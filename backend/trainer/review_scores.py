@@ -59,14 +59,18 @@ def is_only_good_move(best, actual, second):
     )
 
 
+def numeric(score):
+    """A score as centipawns, a mate as 10000 either way. Only for category
+    boundaries; mate remains a separate type in all payloads. (Accuracy uses
+    Lichess's own 1000 and puzzle verification encodes the mate distance; those
+    encodings belong to their calculations.)"""
+    return score.value if score.kind == "cp" else score.outcome() * 10000
+
+
 def is_decisive_swing(best, actual):
     """The mover was not losing (-0.50 or better, or winning by mate) and now is
     (-2.00 or worse, or mated). Mates count, so the review and its events agree."""
-
-    def value(score):
-        return score.value if score.kind == "cp" else score.outcome() * 10000
-
-    return value(best) >= -50 and value(actual) <= -200
+    return numeric(best) >= -50 and numeric(actual) <= -200
 
 
 def blunder_cp(rating):

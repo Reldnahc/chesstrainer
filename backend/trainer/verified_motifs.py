@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 
 import chess
 
-from trainer.chess_core import VALUES, material
+from trainer.chess_core import VALUES, material_balance
 from trainer.diagnosis_types import Finding
 from trainer.tactical_geometry import (
     SLIDERS,
@@ -96,18 +96,9 @@ def mated_in_line(boards, color):
 
 def hanging_capture(event: TacticalEvent) -> None:
     captured = event.before.piece_at(event.move.to_square)
-    gain = (
-        material(event.boards[event.end], event.actor)
-        - material(event.boards[event.end], not event.actor)
-        - material(event.boards[0], event.actor)
-        + material(event.boards[0], not event.actor)
-    )
-    immediate_gain = (
-        material(event.after, event.actor)
-        - material(event.after, not event.actor)
-        - material(event.boards[0], event.actor)
-        + material(event.boards[0], not event.actor)
-    )
+    start = material_balance(event.boards[0], event.actor)
+    gain = material_balance(event.boards[event.end], event.actor) - start
+    immediate_gain = material_balance(event.after, event.actor) - start
     if (
         event.first == event.origin_first
         and captured

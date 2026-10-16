@@ -67,7 +67,7 @@ export default function GameWorkspace({
   const startingReport = !branch && cursor.ply === 0 ? firstReport : null;
   const analysis = usePositionAnalysis({
     id,
-    rating: game?.rating ?? 1000,
+    rating: game?.rating,
     epoch: analysisEpoch,
     root,
     path,
