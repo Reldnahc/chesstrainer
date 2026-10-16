@@ -6,7 +6,7 @@ import { NewPasswordInput, UsernameInput } from "./accountFields";
 import Button from "./Button";
 import { RevealList, Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
-import { QueryResult, useCommand, useQuery } from "./useQuery";
+import { CommandError, QueryResult, useCommand, useQuery } from "./useQuery";
 
 type ManagedAccount = Schema["ManagedAccount"];
 type Pending = { id: string; action: "password" | "delete" } | { id: "new"; action: "add" } | null;
@@ -52,7 +52,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
   <SettingsSection id="settings-accounts" title="Accounts"
     description="Everyone who can sign in to this Fieldwork server. Add members here, or open sign-ups so people can create their own.">
     {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
-    {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
+    <CommandError command={command} />
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Sign-ups</h3>
@@ -97,7 +97,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
       return <div className="settings-tool settings-tool-row" key={account.id}>
         <div>
           <h3>{account.username}{self && " (you)"}</h3>
-          <p>{account.admin ? "Administrator" : "Member"}{account.disabled && " · Disabled"} · Joined {new Date(account.created).toLocaleDateString()}</p>
+          <p>{account.admin ? "Administrator" : "Member"}{account.disabled && " · Disabled"} · Joined {new Date(account.created).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</p>
         </div>
         <Swap className="settings-tool-actions">{resetting
           ? <form className="button-row account-password-form" key="password" onSubmit={event => resetPassword(event, account)}>

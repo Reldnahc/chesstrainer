@@ -1,9 +1,39 @@
-import type { CoachPersonality } from "../personality";
-import { blondeTacticalTemplates } from "./scopedTactics";
-import { blondeOpeningTemplates } from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const blonde: CoachPersonality = {
-  version: "blonde-4", maxCharacters: 295, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const blondeTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Nice and simple: right after {move}, there's a {motif}.",
+    played_possible: "{move} quietly prepares a {motif}, provided the replies allow it.",
+    allowed_immediate: "Plainly put, {opponent} can answer {action}, with a {motif} on the end of it.",
+    allowed_possible: "Down the line, {opponent} could end up with a {motif}, depending on the replies.",
+    missed_immediate: "Tucked into {best} was a {motif}, ready to go.",
+    missed_possible: "Given the right replies, a {motif} could have come out of {best}.",
+  },
+  fork: {actual: "One piece settles on a square that reaches the {targets} together.", possible: "Settle one piece on the right square, and the {targets} would be attacked together by one piece."},
+  material: "A {gain} may be waiting at the end, though plenty can still change along the way.",
+  capture: {candidate: "{capture} is there, and it would win a {piece}.", followup: "Play it on that way, and {capture} might follow, picking off a {piece}."},
+  playedCapture: {fact: "{move} gets a {motif} underway.", consequence: "After that, {capture} gathers in a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const blondeOpeningTemplates = {
+  "book-opening-entry-1": ["With this, the game settles into {opening}."],
+  "book-opening-entry-2": ["Comfortable book territory, under the name {opening}."],
+  "book-opening-entry-3": ["The opening book files this under {opening}."],
+  "book-opening-follow-1": ["Still steadily in {opening}."],
+  "book-opening-follow-2": ["{opening} has this one covered too."],
+  "book-opening-follow-3": ["Even the reply sits inside {opening}."],
+  "book-opening-follow-4": ["The {opening} line rolls along."],
+  "book-opening-follow-5": ["{opening} is familiar with this move as well."],
+  "book-opening-follow-6": ["Still on comfortable {opening} ground."],
+  "book-opening-follow-7": ["{opening} again, nice and familiar."],
+  "book-opening-follow-8": ["More {opening}. Being in the book places the game; it isn't a grade."],
+} as const;
+
+export const blonde = coachPersonality({
+  version: "blonde-4", maxCharacters: 295, maxClaims: 2,
   delivery: { pace: "steady", energy: "warm" },
   behavior: {
     general: "calm-reset", praise: "calm-reset", correction: "calm-reset",
@@ -84,4 +114,4 @@ export const blonde: CoachPersonality = {
     variation: ["Here's how the other line plays out: {detail}"],
     compatibility: ["Here's the explanation available: {detail}"],
   },
-};
+});

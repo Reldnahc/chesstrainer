@@ -248,7 +248,7 @@ recorded tactic/cue/cause meanings and piece subjects) lives in one table,
 `dialogue/tacticalVocabulary.ts`; move grades, poor-move checks and their
 articles live in `moveQuality.ts`.
 
-All thirty coaches' on-screen tactical wording opts into `tacticalWording: "witness"`.
+All thirty coaches' on-screen tactical wording uses `tacticalWording: "witness"`, which `coachPersonality()` gives every coach.
 `eventClaims` attaches derived timing/effect metadata while retaining the original
 claim codes, slots and source references. A line witness that starts on this
 move (root ply 1, with its SAN) or on the opponent's immediate reply (ply 2), with
@@ -263,8 +263,8 @@ absent pin or fork.
 containing moves, motif names, targets and capture nouns. It does not construct
 English setup or detail sentences. `scopedTacticalWording` supplies the neutral
 required-slot contract and assembles static authored templates. Each coach
-authors complete mandatory scope and effect sentences in
-`characters/scopedTactics`; personality is not limited to an optional preface
+authors complete mandatory scope and effect sentences in its own
+`characters/<coach>.ts`; personality is not limited to an optional preface
 around one shared factual sentence. Actual root effects can be factual; opponent
 replies and unplayed alternatives remain prospective.
 Targets on a possible future board are not described as already attacked. A
@@ -285,7 +285,7 @@ is still passed through verbatim rather than edited by guessing at its meaning.
 Derived human-insight intents retain both the actual parent identity and its
 separate wording seed, so this opt-in does not reshuffle other voices' Maia text.
 
-Every coach also opts into `openingWording: "sequence"`. An optional
+Every coach also uses `openingWording: "sequence"`, from the same helper. An optional
 `Claim.opening` comes from `openingPresentation`, while the original `book` or
 `book_sound` code, opening-name slot, evidence, priority and source IDs remain
 unchanged. `bookRecordingId` exposes the same 11 semantic variant IDs to written
@@ -425,7 +425,8 @@ This document is the writing quality gate for both a new character and later
 additions to an existing character's dialogue.
 
 The coach catalogue remains the identity source of truth. Each selectable family
-registers its definition from `frontend/src/dialogue/characters/`. A definition
+registers its definition from `frontend/src/dialogue/characters/`, one file per coach
+listed once in `characters/index.ts` (`coachPersonalities`). A definition
 contains the internal character bible (temperament, teaching, rhythm, celebration,
 correction and boundaries), communication behavior, authored factual forms, a
 compactness budget and provider-neutral delivery metadata. The laboratory displays
@@ -514,15 +515,14 @@ has opted in too: an earnest reaction, then the job a piece did or dropped.
 Ziggy (alien) has followed with all 29 forms, the opening phrases and the full
 claim set: a curious outsider's observation first, then the plain fact, with no
 questions and difficulty always attributed to the human-move model. Orin (wizard) has done the same, with
-his forms in `characters/wizard.ts` and the shared tactic and opening blocks: a
+his forms in `characters/wizard.ts`: a
 short principle or named pattern, its application to the move, then the
 consequence, with restrained approval and no questions.
 Felix (tuxedo cat) has opted in with all 29 forms, the opening phrases and the
 full claim set: the concrete consequence first, then a terse explanation, with
 rare, understated approval, dry humor kept to practical costs, no questions and
 difficulty always attributed to the human-move model.
-Bandit (raccoon) has opted in as well, with its forms in `characters/scopedTactics.ts`
-and `characters/openingSequence.ts`: it spots what is on offer first, says plainly
+Bandit (raccoon) has opted in as well, with its forms in `characters/raccoon.ts`: it spots what is on offer first, says plainly
 why it is there to take, and treats loose pieces and scrappy, effective chess as
 the good stuff, without pretending material is all that matters.
 Alfie (golden retriever) has opted in as well, with his forms in
@@ -532,8 +532,8 @@ Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
 one suspicious detail, asks a quick question, then answers it with the supported
 fact, with delight saved for sneaky tricks and difficulty always attributed to
 the human-move model.
-Ember (dragon) has opted in as well, with its scoped and opening forms in the
-shared `scopedTactics.ts` and `openingSequence.ts` blocks: a firm verdict first,
+Ember (dragon) has opted in as well, with its scoped and opening forms in
+`characters/dragon.ts`: a firm verdict first,
 then the concrete reason and its consequence, with sparing, earned approval for
 forcing play and exact defense and no questions.
 Scout (border collie) has opted in too, with his forms in `characters/collie.ts`:
@@ -543,8 +543,8 @@ Juniper (black cat) has followed in `characters/velvet.ts`:
 a small exposed detail first, a beat, then a gentle conclusion, with the
 occasional first-person "I noticed", soft encouragement and no questions. As a
 one-claim voice, she drops a lower-priority Book recognition like Pip.
-Waffles (corgi) has opted in too, with his forms in the shared tactic and opening
-blocks: a short command or reaction, the consequence, then the next order, in light
+Waffles (corgi) has opted in too, with his forms in `characters/corgi.ts`:
+a short command or reaction, the consequence, then the next order, in light
 field-manual language with no questions and difficulty always credited to the
 human-move model.
 Celeste (unicorn) has followed in `characters/unicorn.ts`: a brief genuine
@@ -555,23 +555,23 @@ Jun (`man-expert`) has opted in as well, in `characters/expert.ts`: the fact,
 its exact consequence and the supported resource, in clipped technical labels
 (absolute pin, theory, net material, flight square), with sparse approval for
 precision, no emotion that depends on which side moved, and no questions.
-Fergus (frog) has opted in too, with his forms in `characters/groundedQuiet.ts`:
+Fergus (frog) has opted in too, with his forms in `characters/frog.ts`:
 one flat report of the fact with a dry, side-neutral tail at most, no questions
 and no exclamation marks.
 Arjun (`man-partner`) has opted in too, in `characters/partner.ts`: an occasional
 genuine question that reveals the mechanism, then the idea, then a comparison of
 candidates side by side, with delight kept for unusual resources and no claim
 beyond the supported line.
-Femi (human host) has opted in too, with his forms in the shared tactic and opening
-blocks: a club analyst's reaction across the table, a "hold that thought" at the problem, then
+Femi (human host) has opted in too, with his forms in `characters/host.ts`:
+a club analyst's reaction across the table, a "hold that thought" at the problem, then
 the concrete reply put on the board, with occasional questions, book moves called
 "prep" or "main line", and difficulty always credited to the human-move model.
 Marisol (`woman-analyst`) has opted in as well, in `characters/analyst.ts`: a
 compact before-and-after observation of exactly what the move changed, then its
 consequence, with the human-move model's and the engine's readings kept apart,
 rare factual approval and no questions.
-Monty (gorilla) has opted in as well, with his forms in `characters/groundedQuiet.ts`
-and the shared tactic and opening blocks: one big concrete problem in plain
+Monty (gorilla) has opted in as well, with his forms in `characters/gorilla.ts`:
+one big concrete problem in plain
 words, the simple reason, then the result, with earnest, sparse approval and no
 questions.
 Ingrid (`woman-blonde`) has opted in too, in `characters/blonde.ts`: a relaxed,
@@ -594,8 +594,8 @@ Tamar (`woman-captain`) has opted in as well, in `characters/captain.ts`: a
 firm verdict, the concrete reason, then one habit to build, with open mentor
 pride kept to the learner's own moves, plain-clip lines that name no owner,
 and no questions.
-Tala (young girl) has opted in as well, with her forms in `characters/groundedHumans.ts`
-and the shared tactic and opening blocks: a genuine question or one circled detail,
+Tala (young girl) has opted in as well, with her forms in `characters/youngGirl.ts`:
+a genuine question or one circled detail,
 the discovery, then its consequence, with competitive curiosity instead of scolding,
 no emotion that depends on which side moved, and ownership words kept to the
 learner's own moments.
@@ -611,8 +611,8 @@ Written opening names remain available without requiring a recording for every
 name, and revisiting a position does not choose a fresh phrase.
 
 These scoped tactical and opening-sequence forms are the starting point for a
-new coach's writing pass. Use `tacticalWording: "witness"` and
-`openingWording: "sequence"` with complete authored templates; do not copy the
+new coach's writing pass. Build the personality with `coachPersonality()` and
+give its file complete authored templates for both; do not copy the
 older cast's repetitive continuation phrases as the quality target. This does
 not authorize converting existing characters without their own writing review.
 

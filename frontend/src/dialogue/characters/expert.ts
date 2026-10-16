@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {expertTacticalTemplates} from "./scopedTactics";
-import {expertOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const expert: CoachPersonality = {
-  version: "expert-4", maxCharacters: 290, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const expertTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "With {move}, a {motif} is in effect immediately.",
+    played_possible: "{move} prepares a {motif}, conditional on the replies.",
+    allowed_immediate: "{opponent} replies {action}, and that executes a {motif}.",
+    allowed_possible: "A {motif} becomes available to {opponent} later, subject to the replies.",
+    missed_immediate: "Unplayed resource: {best}, with an immediate {motif}.",
+    missed_possible: "{best} offered a route to a {motif}, subject to the replies.",
+  },
+  fork: {actual: "Fork: one piece attacks the {targets} simultaneously.", possible: "Projected fork: the {targets} would be attacked in parallel from one square."},
+  material: "Projected net material: a {gain} may be available at the end, pending both sides' choices.",
+  capture: {candidate: "Available capture: {capture}, winning a {piece}.", followup: "If the line runs that way, {capture} may follow, winning a {piece}."},
+  playedCapture: {fact: "{move} executes a {motif}.", consequence: "Material result: {capture}, and the {piece} is gone."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const expertOpeningTemplates = {
+  "book-opening-entry-1": ["Opening theory begins: {opening}."],
+  "book-opening-entry-2": ["Catalogued theory move, {opening}."],
+  "book-opening-entry-3": ["Theory entry on record: {opening}."],
+  "book-opening-follow-1": ["{opening}: theory continues."],
+  "book-opening-follow-2": ["Also catalogued under {opening}."],
+  "book-opening-follow-3": ["The reply is catalogued in {opening} as well."],
+  "book-opening-follow-4": ["Zero deviation so far from {opening}."],
+  "book-opening-follow-5": ["Listed in {opening}."],
+  "book-opening-follow-6": ["The {opening} line holds."],
+  "book-opening-follow-7": ["{opening}, still catalogued."],
+  "book-opening-follow-8": ["Still {opening}. Book status locates the game; it does not evaluate the move."],
+} as const;
+
+export const expert = coachPersonality({
+  version: "expert-4", maxCharacters: 290, maxClaims: 2,
   delivery: {pace: "measured", energy: "quiet"},
   behavior: {general: "minimal", praise: "minimal", correction: "consequence-first",
     questionFrequency: "none", directness: 5, emotionalAmplitude: 2, humor: 0, jargon: 4,
@@ -85,4 +115,4 @@ export const expert: CoachPersonality = {
     variation: ["Side line, for reference: {detail}"],
     compatibility: ["Stored explanation: {detail}"],
   },
-};
+});

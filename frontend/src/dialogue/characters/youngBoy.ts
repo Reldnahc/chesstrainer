@@ -1,9 +1,39 @@
-import type { CoachPersonality } from "../personality";
-import { youngBoyTacticalTemplates } from "./scopedTactics";
-import { youngBoyOpeningTemplates } from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const youngBoy: CoachPersonality = {
-  version: "young-boy-2", maxCharacters: 275, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const youngBoyTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Ooh, look: as soon as {move} lands, there's a {motif}.",
+    played_possible: "{move} gets a {motif} ready for later, as long as the replies let it happen.",
+    allowed_immediate: "Look, {opponent} can answer {action}, and that brings a {motif} with it.",
+    allowed_possible: "Later, depending on the replies, a {motif} might open up for {opponent}.",
+    missed_immediate: "A {motif} was hiding right inside {best}.",
+    missed_possible: "Hmm, {best} had a {motif} tucked away for later, if the replies cooperated.",
+  },
+  fork: {actual: "One piece jumps in and pokes at the {targets} all at once.", possible: "Land one piece on the right spot, and the {targets} would be attacked from a single square."},
+  material: "There may be a {gain} at the end of this, but lots of moves still have to happen first.",
+  capture: {candidate: "Look, {capture} is available, and it would grab a {piece}.", followup: "If the line goes that way, {capture} could come next and snag a {piece}."},
+  playedCapture: {fact: "{move} starts a {motif} rolling.", consequence: "After that, {capture} grabs a {piece} too."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const youngBoyOpeningTemplates = {
+  "book-opening-entry-1": ["And now the game is in {opening}."],
+  "book-opening-entry-2": ["This takes the game into {opening} territory."],
+  "book-opening-entry-3": ["Ooh, the opening book knows this as {opening}."],
+  "book-opening-follow-1": ["More {opening}, and it keeps going."],
+  "book-opening-follow-2": ["Yep, this move is {opening} too."],
+  "book-opening-follow-3": ["Even the reply sticks with {opening}."],
+  "book-opening-follow-4": ["{opening}, again."],
+  "book-opening-follow-5": ["Still cruising in {opening}."],
+  "book-opening-follow-6": ["{opening} isn't done yet."],
+  "book-opening-follow-7": ["Another {opening} move."],
+  "book-opening-follow-8": ["More {opening}. That's just where the game is, not a score for the move."],
+} as const;
+
+export const youngBoy = coachPersonality({
+  version: "young-boy-2", maxCharacters: 275, maxClaims: 2,
   delivery: { pace: "lively", energy: "bright" },
   behavior: {
     general: "reaction-first", praise: "reaction-first", correction: "question-first",
@@ -84,4 +114,4 @@ export const youngBoy: CoachPersonality = {
     variation: ["Okay, here's the other line, move by move: {detail}"],
     compatibility: ["Here's the explanation there is: {detail}"],
   },
-};
+});

@@ -1,3 +1,4 @@
+import threading
 from concurrent.futures import ThreadPoolExecutor
 from typing import get_args
 
@@ -7,7 +8,7 @@ from sqlalchemy import select, text
 from trainer.accounts import COOKIE
 from trainer.api import create_app
 from trainer.contracts.preferences import CoachId, CoachPreferences
-from trainer.db import database, migrate
+from trainer.db import Units, database, migrate
 from trainer.models import UserPreferences
 from trainer.preferences import coach_preferences, save_coach_preferences
 
@@ -149,8 +150,11 @@ def test_retired_coach_writes_are_rejected(settings, retired, replacement):
 
 
 def test_concurrent_first_save_has_one_account_row(sessions):
+    # Both requests of one account, as the server runs them: write units on its lock.
+    units = Units(sessions, threading.RLock())
+
     def save(motion):
-        with sessions() as db:
+        with units.write() as db:
             return save_coach_preferences(db, CoachPreferences(motion=motion))
 
     with ThreadPoolExecutor(max_workers=2) as pool:
@@ -174,7 +178,12 @@ def test_migration_preserves_existing_accounts_and_defaults(settings):
     migrate(engine)
     with engine.connect() as connection:
         after = connection.execute(text("SELECT * FROM users")).mappings().all()
-        assert [{key: row[key] for key in before[0]} for row in after] == before
+        # Later migrations replace the epoch ``created`` and drop the unused
+        # ``chesscom_username``; every other account value stays.
+        kept = [key for key in before[0] if key in after[0]]
+        assert [{key: row[key] for key in kept} for row in after] == [
+            {key: row[key] for key in kept} for row in before
+        ]
         assert all(row["onboarding_completed"] for row in after)
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     with sessions() as db:

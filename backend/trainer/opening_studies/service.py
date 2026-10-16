@@ -2,7 +2,7 @@
 
 from sqlalchemy import func, select
 
-from trainer.chess_core import digest
+from trainer.chess_core import digest, side_name
 from trainer.contracts.opening_studies import OpeningLine
 from trainer.contracts.study_lessons import LessonStart
 from trainer.errors import Conflict, InvalidInput, NotFound
@@ -36,7 +36,7 @@ def enroll_line(db, providers, request, scheduler):
             OpeningStudy.source == request.source,
             OpeningStudy.source_key == request.source_key,
             OpeningStudy.source_version == request.source_version,
-            OpeningStudy.color == request.color,
+            OpeningStudy.learner_color.is_(request.color == "white"),
         )
     )
     if study is not None:
@@ -65,14 +65,14 @@ def enroll_line(db, providers, request, scheduler):
             source_version=line.source_version,
             name=line.name,
             eco=line.eco,
-            color=request.color,
+            learner_color=request.color == "white",
             snapshot=line.model_dump(mode="json"),
         )
         db.add(study)
         db.flush()
         for exercise_id in projection.contribute(db, study, scheduler):
             projection.rebuild(db, exercise_id)
-    db.commit()
+    db.flush()
     return study_view(db, study)
 
 
@@ -95,7 +95,7 @@ def summary(db, study, *, due=None):
         "source_version": study.source_version,
         "name": study.name,
         "eco": study.eco,
-        "color": study.color,
+        "color": side_name(study.learner_color),
         "active": study.active,
         "positions": len(exercise_ids),
         "due_positions": len(exercise_ids & due) if study.active else 0,
@@ -129,7 +129,7 @@ def library(db):
 def toggle(db, study_id, active):
     study = require_study(db, study_id)
     projection.set_active(db, study, active)
-    db.commit()
+    db.flush()
     return study_view(db, study)
 
 
@@ -142,7 +142,7 @@ def practice(db, study_id, request):
             "revision": digest(study.snapshot),
             "title": study.name,
             "description": "Dedicated line rehearsal; your review schedule is unchanged.",
-            "learner_color": study.color,
+            "learner_color": side_name(study.learner_color),
             "attributions": [{"text": f"Selected {line.source} line: {line.name}"}],
             "lines": [
                 {

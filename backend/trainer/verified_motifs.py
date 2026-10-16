@@ -89,6 +89,11 @@ def trade_back(board, move, captured):
     )
 
 
+def mated_in_line(boards, color):
+    """Whether ``color`` is checkmated in any of these line positions."""
+    return any(board.is_checkmate() and board.turn == color for board in boards)
+
+
 def hanging_capture(event: TacticalEvent) -> None:
     captured = event.before.piece_at(event.move.to_square)
     gain = (
@@ -115,6 +120,8 @@ def hanging_capture(event: TacticalEvent) -> None:
         # queen. Later compensation may reduce a real initial material loss.
         and immediate_gain > 0
         and not trade_back(event.before, event.move, captured)
+        # A poisoned capture is no gain: the capturer is mated later in the line.
+        and not mated_in_line(event.boards[event.first :], event.actor)
     ):
         event.add(
             "hanging_piece"

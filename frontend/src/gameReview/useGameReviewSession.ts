@@ -172,7 +172,7 @@ export function useGameReviewSession(id: string) {
     reviewStarting,
     running,
     error,
-    setError,
+    fail: (e: unknown) => setError(errorMessage(e)),
     dismissError: () => setError(""),
     /** Loads the game again after its first load failed. */
     retryLoad: () => {

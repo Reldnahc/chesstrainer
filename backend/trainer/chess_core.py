@@ -11,6 +11,11 @@ from trainer.errors import InvalidInput
 VALUES = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
 
 
+def side_name(white: bool) -> str:
+    """The API's and the digests' word for a side: the database stores the boolean."""
+    return "white" if white else "black"
+
+
 def digest(value: object) -> str:
     return hashlib.sha256(
         json.dumps(value, sort_keys=True, separators=(",", ":")).encode()

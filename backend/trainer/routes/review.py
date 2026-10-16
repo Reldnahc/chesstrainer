@@ -2,6 +2,7 @@
 
 from fastapi import APIRouter
 
+from trainer.classification_stages import line_parameters
 from trainer.contracts.common import SquareMove
 from trainer.contracts.opening_studies import ReviewCount
 from trainer.contracts.review import (
@@ -32,12 +33,12 @@ def create_router(*, settings, scheduler) -> APIRouter:
         "/api/review/queue", response_model=list[ReviewQueueItem], response_model_exclude_unset=True
     )
     def review_queue(workspace: CurrentWorkspace, last_id: str | None = None):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return queue(db, last_id)
 
     @router.get("/api/review/count", response_model=ReviewCount)
     def review_count(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return {"due": due_count(db)}
 
     @router.get(
@@ -46,7 +47,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def focused_queue(workspace: CurrentWorkspace, skill_id: str):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return focus_queue(db, skill_id)
 
     @router.post(
@@ -57,8 +58,10 @@ def create_router(*, settings, scheduler) -> APIRouter:
     def begin_review(
         workspace: CurrentWorkspace, exercise_id: str, focus_skill_id: str | None = None
     ):
-        with workspace.mutation_lock, workspace.sessions() as db:
-            return start_review(db, exercise_id, focus_skill_id=focus_skill_id)
+        with workspace.write() as db:
+            return start_review(
+                db, exercise_id, focus_skill_id=focus_skill_id, parameters=line_parameters(settings)
+            )
 
     @router.get(
         "/api/review/sessions/{session_id}",
@@ -66,8 +69,8 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def resume(workspace: CurrentWorkspace, session_id: str):
-        with workspace.sessions() as db:
-            return resume_review(db, session_id)
+        with workspace.read() as db:
+            return resume_review(db, session_id, line_parameters(settings))
 
     @router.post(
         "/api/review/sessions/{session_id}/move",
@@ -78,16 +81,16 @@ def create_router(*, settings, scheduler) -> APIRouter:
         uci = data.uci
         # Grading an unseen answer is a deep search: it runs before the account lock
         # is taken, so the account's other work never waits on it.
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             search = answer_search(db, session_id, uci)
         graded = None
         if search is not None:
             with workspace.variation_lock:
                 graded = search_answer(workspace.engine, search)
-        with workspace.mutation_lock, workspace.sessions() as db:
-            return submit_move(
-                db, session_id, uci, workspace.engine, scheduler, settings, graded=graded
-            )
+        with workspace.write() as db:
+            # No engine: a search never runs inside the write unit. If the answer
+            # still needs one (the session changed meanwhile), the move is refused.
+            return submit_move(db, session_id, uci, None, scheduler, settings, graded=graded)
 
     @router.post(
         "/api/review/sessions/{session_id}/reveal",
@@ -95,7 +98,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def show_move(workspace: CurrentWorkspace, session_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             return reveal(db, session_id, scheduler, settings)
 
     @router.get("/api/review/sessions/{session_id}/explanation", response_model=MoveExplanation)
@@ -105,7 +108,7 @@ def create_router(*, settings, scheduler) -> APIRouter:
         attempt_id: str | None = None,
         solution: bool = False,
     ):
-        with workspace.sessions() as db:
-            return explain_review(db, session_id, attempt_id, solution)
+        with workspace.read() as db:
+            return explain_review(db, session_id, attempt_id, solution, line_parameters(settings))
 
     return router

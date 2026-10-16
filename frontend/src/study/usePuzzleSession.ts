@@ -1,90 +1,55 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { errorMessage, api, read, type Promotion, type Schema } from "../api";
+import { useRef, useState } from "react";
+import { api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
 import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
+import { useStudySession } from "./useStudySession";
 
 export type PuzzleSession = Schema["PuzzleSessionView"];
 type Frame = PuzzleSession["playback"][number];
 
 /** The server commits the entire turn. Playback never advances the session. */
 export function usePuzzleSession(id: string) {
-  const [session, setSession] = useState<PuzzleSession | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
   const [retryReady, setRetryReady] = useState(false);
   const [feedbackEventId, setFeedbackEventId] = useState<string | null>(null);
-  const generation = useRef(0);
-  const controller = useRef<AbortController | null>(null);
-  const locked = useRef(false);
   // Set when the puzzle loads, before any move can be timed.
   const started = useRef(0);
   const audio = useAudioScope(`puzzle:${id}`);
-  const playback = useStudyPlayback(() => { started.current = performance.now(); }, undefined, audio, session?.fen);
-  const { reset, playing } = playback;
-
-  const load = useCallback(async () => {
-    const version = ++generation.current;
-    controller.current?.abort();
-    const pending = new AbortController();
-    controller.current = pending;
-    locked.current = true;
-    setLoading(true);
-    setFeedbackEventId(null);
-    setError("");
-    reset();
-    try {
-      const result = await read(api.GET("/api/puzzle-sessions/{session_id}", {
-        params: { path: { session_id: id } }, signal: pending.signal,
-      }));
-      if (version !== generation.current) return;
-      setSession(result);
+  const study = useStudySession<PuzzleSession>(id, (signal) => read(api.GET("/api/puzzle-sessions/{session_id}", {
+    params: { path: { session_id: id } }, signal,
+  })), {
+    starting: () => {
+      setFeedbackEventId(null);
+      reset();
+    },
+    loaded: (result) => {
       setRetryReady(false);
       // Opening an untouched puzzle is a fresh narration event; a puzzle
       // restored after moves, feedback or a retry stays silent.
       if (result.status === "active" && !result.failed && !result.feedback && !result.history.length)
         setFeedbackEventId(`open:${id}:${result.revision}`);
       started.current = performance.now();
-    } catch (e) {
-      if (version === generation.current) setError(errorMessage(e));
-    } finally {
-      if (version === generation.current) {
-        locked.current = false;
-        setBusy(false);
-        setLoading(false);
-      }
-    }
-  }, [id, reset]);
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading the session fetches it; load marks it loading first
-    void load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
-    return () => { generation.current++; controller.current?.abort(); };
-  }, [load]);
+    },
+  });
+  const { session, loading, busy, error, run } = study;
+  const playback = useStudyPlayback(() => { started.current = performance.now(); }, undefined, audio, session?.fen);
+  const { reset, playing } = playback;
 
   async function act(uci?: string) {
-    if (!session || locked.current || playing || error || session.status !== "active") return;
-    locked.current = true;
-    setBusy(true);
-    setFeedbackEventId(null);
-    setError("");
-    reset();
-    const version = generation.current;
+    if (!session || playing || error || session.status !== "active") return;
     const request = { request_id: studyRequestId(), revision: session.revision };
-    try {
-      const result = uci
-        ? await read(api.POST("/api/puzzle-sessions/{session_id}/move", {
-            params: { path: { session_id: id } },
-            body: { ...request, uci, elapsed_ms: Math.min(86_400_000, Math.max(0, Math.round(performance.now() - started.current))) },
-            signal: controller.current?.signal,
-          }))
-        : await read(api.POST("/api/puzzle-sessions/{session_id}/reveal", {
-            params: { path: { session_id: id } }, body: request, signal: controller.current?.signal,
-          }));
-      if (version !== generation.current) return;
-      setSession(result);
+    // A lost response may already be committed, or another tab may have moved:
+    // the error blocks another write until reload reconciles the server revision.
+    await run((signal) => uci
+      ? read(api.POST("/api/puzzle-sessions/{session_id}/move", {
+          params: { path: { session_id: id } },
+          body: { ...request, uci, elapsed_ms: Math.min(86_400_000, Math.max(0, Math.round(performance.now() - started.current))) },
+          signal,
+        }))
+      : read(api.POST("/api/puzzle-sessions/{session_id}/reveal", {
+          params: { path: { session_id: id } }, body: request, signal,
+        })), (result) => {
       setFeedbackEventId(`response:${request.request_id}`);
       setRetryReady(false);
       playback.play(result.playback);
@@ -100,13 +65,7 @@ export function usePuzzleSession(id: string) {
         audio.play("retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
       started.current = performance.now();
-    } catch (e) {
-      // A lost response may already be committed, or another tab may have moved.
-      // Block another write until reload reconciles the server revision.
-      if (version === generation.current) setError(errorMessage(e));
-    } finally {
-      if (version === generation.current) { locked.current = false; setBusy(false); }
-    }
+    });
   }
   const retrying = session?.feedback?.grade === "incorrect" && !retryReady;
   return {
@@ -115,7 +74,7 @@ export function usePuzzleSession(id: string) {
     answer: (from: string, to: string, promotion?: Promotion) => act(from + to + (promotion || "")),
     reveal: () => act(),
     retry: () => { audio.cancel(); setFeedbackEventId(null); setRetryReady(true); started.current = performance.now(); },
-    reload: load,
+    reload: study.reload,
     inspect: (selected: Frame) => { if (!busy) { setFeedbackEventId(null); playback.inspect(selected); } },
     inspectStart: () => { if (!busy) { setFeedbackEventId(null); playback.inspectStart(session?.completion?.solution[0]); } },
     replay: () => {

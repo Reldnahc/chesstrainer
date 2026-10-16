@@ -10,7 +10,7 @@ import {isPoorMove, type MoveLabel} from "../../moveQuality";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {capturedPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants, type NamedPieces} from "./pieceVariants";
 import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
-import {meanings} from "./meaningCatalog";
+import {gradeTakes, type GradeTakePool} from "./meaningCatalog";
 import registry from "./banks/registry.json" with {type: "json"};
 import {alwaysFalseTake, coachVoice, NAMED_OPENING_TAKES, SMALL_ERROR_TAKES} from "./falseTakes";
 
@@ -35,7 +35,6 @@ export type GameSpeechContext = {
    * written meaning never silences a move before it is recorded. */
   playable?: (id: string) => boolean;
 };
-export type WalterGameSpeechContext = GameSpeechContext;
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
 type Event = Schema["ReviewEvent"];
 const opposite = (side: "white" | "black") => side === "white" ? "black" : "white";
@@ -164,7 +163,7 @@ function positionalRecording(item: Claim, event: Event, mover: "white" | "black"
   return name ? `positional-${name}-${line}` : null;
 }
 
-function terminalRecording(item: Claim, {frame, game}: WalterGameSpeechContext): string | null {
+function terminalRecording(item: Claim, {frame, game}: GameSpeechContext): string | null {
   if (!frame?.termination || !evidenced(item) || !item.evidence.some(ref => ref.source === "position"
     && ref.id === frame.fen && ref.field === "automatic_outcome")) return null;
   if (item.code === "draw") return frame.result === "1/2-1/2" ? "draw" : null;
@@ -175,7 +174,7 @@ function terminalRecording(item: Claim, {frame, game}: WalterGameSpeechContext):
     ? winner === game.orientation ? "mate-finished" : "mate-defense-ended" : null;
 }
 
-function legalReplyRecording(item: Claim, {frame, report}: WalterGameSpeechContext): string | null {
+function legalReplyRecording(item: Claim, {frame, report}: GameSpeechContext): string | null {
   const cues = report?.board_cues, uci = cues?.caption_reply_uci;
   if (item.code !== "explanation" || !frame || !report || !cues || cues.caption_kind !== "legal_reply"
     || cues.fen !== frame.fen || report.actual.san !== frame.san || !uci || !/^[a-h][1-8][a-h][1-8][qrbn]?$/.test(uci)
@@ -340,7 +339,7 @@ export function selectGameSpeech(context: GameSpeechContext) {
   const unsaid = [lead, lead + 1].flatMap((index, at) => smallErrorTakes(context, at ? secondId : primaryId, index));
   const pooled = (id: string) => withoutTakes(withColoursAndTakes(withPieceVariants(id, pieces), sides, seed, turn), unsaid);
   const mover = context.frame ? opposite(context.frame.turn) : null;
-  const sacrifice = gradeId?.startsWith("grade-brilliant-") && mover
+  const sacrifice = gradeId && gradeTakes("brilliant").includes(gradeId) && mover
     ? context.report?.intelligence?.events.find(event => event.kind === "sacrifice" && event.actor === mover) : undefined;
   const sacrificed = sacrifice && mover ? sacrificedPieces(sacrifice.facts.acceptance_move, context.frame?.fen, mover) : null;
   const variants = {
@@ -436,25 +435,20 @@ function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null 
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 
-/** Takes every grade has; imported extra takes (grade-best-5, ...) join their grade. */
-export const GRADE_TAKES = 4;
-const catalogueIds = meanings.map(item => item.id);
-const gradePools: Readonly<Partial<Record<string, string>>> = {
+const gradePools: Readonly<Partial<Record<string, GradeTakePool>>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
-} satisfies Partial<Record<MoveLabel, string>>;
+} satisfies Partial<Record<MoveLabel, GradeTakePool>>;
 // The generic readings a grade take stands in for. Anything else (a capture,
 // check, tactic, mate, opening or relationship) is specific and keeps its clip.
 const plainCorrection = new Set(["evaluation-loss", "stronger-alternative",
   sequenceRecordingId(["evaluation-loss", "stronger-alternative"])]);
 const plainPraise = new Set(["best-supported-choice", "good-choice"]);
 
+/** A grade's takes, linked to their grade in the meaning catalogue (`gradeOf`). */
 export function gradeTakeIds(label: string): string[] {
   const pool = gradePools[label];
-  if (!pool) return [];
-  const pattern = new RegExp(`^grade-${pool}-(\\d+)$`);
-  const extra = catalogueIds.map(id => Number(pattern.exec(id)?.[1])).filter(take => take > GRADE_TAKES);
-  return Array.from({length: GRADE_TAKES + extra.length}, (_, index) => `grade-${pool}-${index + 1}`);
+  return pool ? [...gradeTakes(pool)] : [];
 }
 
 /** A ply whose whole line is the generic reading for its grade plays one of that
@@ -476,9 +470,4 @@ function gradeTake(context: GameSpeechContext, recordingId: string | null): stri
   const earlier = variation ? 0 : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
   const order = shuffledTakes(ids, variation ? [frame?.fen, label] : [game.id, label], Math.floor(earlier / ids.length));
   return order[earlier % ids.length];
-}
-
-/** Historical Walter-only consumers; new code selects meaning independently of voice. */
-export function selectWalterGameRecording(context: WalterGameSpeechContext): string | null {
-  return context.utterance.coachId === "classic" ? selectGameRecording(context) : null;
 }

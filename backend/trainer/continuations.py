@@ -1,6 +1,8 @@
 """Legal continuation replay and bounded, forward-only material endpoints.
 
-A quiet endpoint describes this finite line. It is not proof that all defenses
+A quiet endpoint is a position where material cannot change at once: no check,
+no capture or promotion just played, and no capture pending. It describes this
+finite line. It is not proof that all defenses
 lose material, or that a sacrifice lacks longer-term compensation.
 """
 
@@ -10,6 +12,7 @@ import chess
 from pydantic import BaseModel
 
 from trainer.chess_core import (
+    VALUES,
     Candidate,
     material,
     position_key,
@@ -26,7 +29,7 @@ EXTENSION_PLIES = Settings.model_fields["classification_extension_plies"].defaul
 class ContinuationEnd(BaseModel):
     end_ply: int
     material_delta: int | None = None
-    reason: Literal["quiet", "too_short", "in_check", "exchange_unfinished"]
+    reason: Literal["quiet", "too_short", "in_check", "exchange_unfinished", "capture_pending"]
     extended_plies: int = 0
     saved_plies: int
 
@@ -39,6 +42,54 @@ def balance(board: chess.Board, color: chess.Color) -> int:
     return material(board, color) - material(board, not color)
 
 
+def _value(board: chess.Board, move: chess.Move) -> int:
+    """Material a move takes, with a promotion's gain over the pawn."""
+    if board.is_en_passant(move):
+        taken = 1
+    else:
+        piece = board.piece_at(move.to_square)
+        taken = VALUES.get(piece.piece_type, 0) if piece else 0
+    return taken + (VALUES[move.promotion] - 1 if move.promotion else 0)
+
+
+def _recapture_gain(board: chess.Board, square: chess.Square) -> int:
+    """What the side to move nets by recapturing on ``square`` with its least
+    valuable legal capturer, and so on, each side free to stop (a legal-move swap)."""
+    captures = [m for m in board.legal_moves if m.to_square == square and board.is_capture(m)]
+    if not captures:
+        return 0
+    move = min(captures, key=lambda m: VALUES.get(board.piece_type_at(m.from_square), 100))
+    gain = _value(board, move)
+    after = board.copy(stack=False)
+    after.push(move)
+    return max(0, gain - _recapture_gain(after, square))
+
+
+def static_exchange(board: chess.Board, move: chess.Move) -> int:
+    """Material the side to move nets by ``move`` if the reply recaptures as well as
+    it can (static exchange evaluation, legal moves only, so pins count)."""
+    after = board.copy(stack=False)
+    after.push(move)
+    return _value(board, move) - _recapture_gain(after, move.to_square)
+
+
+def capture_pending(board: chess.Board, following: chess.Move | None = None) -> bool:
+    """Whether material can still change at once, so the position is not quiet.
+
+    The standard quiet-position test: the side to move has a capture or promotion
+    that wins material by static exchange. The saved line's own next move counts
+    too when it captures, promotes or checks: the engine itself plays on.
+    """
+    if following is not None and (
+        board.is_capture(following) or following.promotion or board.gives_check(following)
+    ):
+        return True
+    return any(
+        (board.is_capture(move) or move.promotion) and static_exchange(board, move) > 0
+        for move in board.legal_moves
+    )
+
+
 def endpoint_reason(boards: list[chess.Board], end: int, color: chess.Color) -> str:
     if end < 3:
         return "too_short"
@@ -49,6 +100,9 @@ def endpoint_reason(boards: list[chess.Board], end: int, color: chess.Color) -> 
         for p in (end - 1, end)
     ):
         return "exchange_unfinished"
+    following = boards[end + 1].peek() if end + 1 < len(boards) else None
+    if capture_pending(boards[end], following):
+        return "capture_pending"
     return "quiet"
 
 

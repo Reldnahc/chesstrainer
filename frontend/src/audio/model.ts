@@ -46,17 +46,6 @@ export type SoundRequest = {
 /** The utterance identity and arbitration fields that playback reads; never its text. */
 export type SpeechUtterance = Pick<CoachUtterance, "id" | "coachId" | "priority" | "interruptible">;
 
-/** A provider prepares a clip elsewhere; playback does not generate speech or choose text. */
-export type PreparedSpeechClip = {
-  utterance: SpeechUtterance;
-  buffer: AudioBuffer;
-  scope: string;
-  eventId?: string;
-  recordingId?: string;
-  /** An explicit Listen command may replace another scope's current narration. */
-  interruptCurrent?: boolean;
-};
-
 /** Approximate speech activity from a recording, not phonemes or recognized words. */
 export type SpeechActivity = {
   elapsedSeconds: number;
@@ -74,8 +63,14 @@ export type SpeechPlayback = {
   read: () => SpeechActivity | null;
 };
 
-/** A bundled recording of an existing utterance; playback never generates speech. */
-export type RecordedSpeechClip = Omit<PreparedSpeechClip, "buffer"> & {
+/** A bundled recording of an existing utterance; playback never generates speech or chooses text. */
+export type RecordedSpeechClip = {
+  utterance: SpeechUtterance;
+  scope: string;
+  eventId?: string;
+  recordingId?: string;
+  /** An explicit Listen command may replace another scope's current narration. */
+  interruptCurrent?: boolean;
   url: string;
   /** Recordings spoken back to back as this one playback (url is the first). */
   sequence?: {urls: readonly string[]; gapSeconds: number};

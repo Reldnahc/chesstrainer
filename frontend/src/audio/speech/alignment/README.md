@@ -1,8 +1,8 @@
 # Automatic lip-sync preview data
 
 Two offline generators use the same existing Walter **Sound sacrifice** and
-**Allowed checkmate** recordings. The audio studio comparison uses identical
-mouth artwork, playback smoothing and audio for both sides. These are development
+**Allowed checkmate** recordings. They are kept as fixtures for the lip-sync spec
+(`frontend/audio-tests/fixtures/previewTracks.ts` reads them). These are development
 experiments, not approved timing for the full voice library. No script, recording
 or individual mouth-cue boundary was manually corrected.
 

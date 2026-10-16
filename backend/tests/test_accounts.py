@@ -29,6 +29,7 @@ def test_disabled_accounts_use_local_workspace_without_exposing_accounts(setting
     alice = Accounts(settings.database_path).create("alice", "testing-password")
     with account_sessions(engine, alice["id"])() as db:
         import_games(db, "private", PGN, [], "white")
+        db.commit()
         private_game = db.scalar(select(Game.id))
     engine.dispose()
 
@@ -244,6 +245,7 @@ def test_database_scope_aggregates_updates_and_references(settings):
     sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
+        db.commit()
         game_id = db.scalar(select(Game.id))
         job = AnalysisJob(kind="classification")
         db.add(job)
@@ -275,6 +277,7 @@ def test_bulk_writes_cannot_cross_accounts(settings):
     sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
+        db.commit()
         game_id = db.scalar(select(Game.id))
     with sb() as db:
         with pytest.raises(ValueError, match="Bulk writes"):
@@ -342,8 +345,19 @@ def test_account_migration_preserves_existing_learning_history(settings):
             for table in tables
         }
     migrate(engine)
-    # Later migrations dropped the archived lesson tables and their link columns.
-    dropped = {"lesson_item_id", "repertoire_id"}
+    # Later migrations dropped the archived lesson tables and their link columns,
+    # and replaced side text, epoch times and the PGN date with one representation
+    # each (their values are checked in test_migrations).
+    dropped = {
+        "lesson_item_id",
+        "repertoire_id",
+        "orientation",
+        "color",
+        "created",
+        "expires",
+        "played_on",
+        "chesscom_username",
+    }
     current = set(sqlalchemy.inspect(engine).get_table_names())
     with engine.connect() as connection:
         for table, rows in before.items():
@@ -356,14 +370,18 @@ def test_account_migration_preserves_existing_learning_history(settings):
                     f'SELECT * FROM "{table}" ORDER BY rowid'
                 ).mappings()
             ]
+            kept = set(rows[0]) if rows else set()
             assert [
                 {
                     k: v
                     for k, v in row.items()
-                    if k not in {"user_id", "played_at", "move_count", "rated"}
+                    if k in kept and k not in {"user_id", "played_at", "move_count", "rated"}
                 }
                 for row in after
-            ] == rows
+            ] == [
+                {k: v for k, v in row.items() if k not in {"played_at", "move_count", "rated"}}
+                for row in rows
+            ]
             assert all(row.get("user_id", "local") == "local" for row in after)
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
         assert (
@@ -730,7 +748,7 @@ def test_a_disabled_account_with_interrupted_analysis_can_still_be_deleted(setti
     accounts = Accounts(settings.database_path)
     friend = accounts.create("friend", "testing-password")
     with Session(engine) as db:
-        db.add(AnalysisJob(user_id=friend["id"], kind="training", status="running"))
+        db.add(AnalysisJob(user_id=friend["id"], kind="game_review", status="running"))
         db.commit()
     accounts.set_disabled(friend, True)
     with pytest.raises(Conflict, match="analysis running"):

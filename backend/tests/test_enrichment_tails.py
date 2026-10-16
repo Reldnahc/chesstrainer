@@ -2,11 +2,13 @@
 
 import threading
 
+from account_units import job_context
 from explanation_fixtures import seed_review
 from sqlalchemy import select
 from trainer.chess_core import Candidate, Score, position_key
 from trainer.classification import verified_payload
 from trainer.continuations import replay
+from trainer.db import Units
 from trainer.enrichment import enrich_decision, plan_probes
 from trainer.local_classifier import LocalClassifier
 from trainer.models import (
@@ -39,7 +41,8 @@ class SavedFixtureEngine:
         key = board.fen()
         if key in self.cached:
             return self.cached[key]
-        pv = ["a5a1", "f7e6"] if board.turn else ["a1a4", "e2d3", "a4a5", "d3e3"]
+        # The played tail wins the loose bishop too, then settles with no capture pending.
+        pv = ["a5a1", "f7e6"] if board.turn else ["a1b2", "e2d3", "b2b4", "d3e3", "g8f7"]
         candidate = Candidate(
             uci=pv[0],
             san=board.san(board.parse_uci(pv[0])),
@@ -81,16 +84,14 @@ def test_tail_job_cancellation_resume_links_and_preserves_learning(sessions, set
         state = db.scalar(select(SRSState))
         scheduling = state.card, state.due, state.reviews, state.retired_at
     engine = SavedFixtureEngine(sessions, settings, decision, before, actual)
-    with sessions() as db:
-        tasks = plan_probes(db, job.id, settings, engine)
+    units = Units(sessions, threading.Lock())
+    tasks = plan_probes(job_context(sessions, job.id, settings), engine)
     assert len(tasks) == 1
-    assert not enrich_decision(
-        sessions, tasks[0], engine, threading.Lock(), lambda: engine.calls >= 3
-    )
+    assert not enrich_decision(units, tasks[0], engine, lambda: engine.calls >= 3)
     with sessions() as db:
         assert db.scalar(select(ClassificationAnalysis)) is None
     assert len(engine.cached) == 1
-    assert enrich_decision(sessions, tasks[0], engine, threading.Lock(), lambda: False)
+    assert enrich_decision(units, tasks[0], engine, lambda: False)
     with sessions() as db:
         probes = db.scalars(select(ClassificationProbe)).all()
         assert len(probes) == 2 and {p.kind for p in probes} == {"tail"}
@@ -109,5 +110,5 @@ def test_tail_job_cancellation_resume_links_and_preserves_learning(sessions, set
         state = db.scalar(select(SRSState))
         assert (state.card, state.due, state.reviews, state.retired_at) == scheduling
     calls = engine.calls
-    assert enrich_decision(sessions, tasks[0], engine, threading.Lock(), lambda: False)
+    assert enrich_decision(units, tasks[0], engine, lambda: False)
     assert engine.calls == calls

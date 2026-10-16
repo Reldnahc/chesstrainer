@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
-import { api, errorMessage, read, type Schema } from "./api";
+import { api, read, type Schema } from "./api";
 import Button from "./Button";
 import Reveal, { Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
-import { QueryResult, useQuery } from "./useQuery";
+import { CommandError, QueryResult, useQuery, useCommand } from "./useQuery";
+import { plural } from "./format";
 
 type Listing = Schema["ServerSettings"];
 type Setting = Schema["ServerSetting"];
@@ -38,7 +39,8 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
   // Number fields keep the typed text until saving, so clearing one does not snap to 0.
   const [draft, setDraft] = useState<Record<string, Value>>({});
   const [busy, setBusy] = useState<"" | "save" | "confirm" | "restart">("");
-  const [error, setError] = useState("");
+  // This screen's failures: fail(e) reports, the shared banner shows them.
+  const errors = useCommand();
   const [notice, setNotice] = useState("");
   // Leaving Settings while waiting for a restart stops the wait, so it never reloads another page.
   const lifetime = useRef<AbortController | null>(null);
@@ -64,11 +66,11 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
     const refused = settings.map(setting => setting.key in draft ? belowExclusiveMinimum(setting, draft[setting.key]) : "").find(Boolean);
     if (refused) {
       setNotice("");
-      setError(refused);
+      errors.setError(refused);
       return;
     }
     setBusy("save");
-    setError("");
+    errors.dismiss();
     try {
       const values = Object.fromEntries(Object.entries(draft).map(([key, value]) => {
         const setting = settings.find(item => item.key === key);
@@ -78,19 +80,19 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
       onSaved(await read(api.PUT("/api/server-settings", { body: { values } })));
       setDraft({});
       setNotice("Saved. Restart the server to apply the changes.");
-    } catch (e) { setError(errorMessage(e)); }
+    } catch (e) { errors.fail(e); }
     finally { setBusy(""); }
   }
   async function restart() {
     setBusy("restart");
-    setError("");
+    errors.dismiss();
     setNotice("");
     const signal = lifetime.current?.signal;
     try {
       await read(api.POST("/api/server/restart"));
     } catch (e) {
       if (signal?.aborted) return;
-      setError(errorMessage(e));
+      errors.fail(e);
       setBusy("");
       return;
     }
@@ -104,7 +106,7 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
       if (boot && boot !== listing.boot_id) { window.location.reload(); return; }
     }
     setBusy("");
-    setError("The server has not come back yet. Check it from the host, then refresh this page.");
+    errors.setError("The server has not come back yet. Check it from the host, then refresh this page.");
   }
   function field(setting: Setting) {
     const value = setting.key in draft ? draft[setting.key] : setting.value;
@@ -136,14 +138,14 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
   return <SettingsSection id="settings-server" title="Server"
     description="Engine, analysis and sync settings for everyone on this server. Saved changes apply when the server restarts.">
     {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    <CommandError command={errors} />
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Restart server</h3>
         <p>{!listing.restart_available
           ? "This server was not started with python -m trainer, so restart it from the host."
           : pending.length
-            ? `${pending.length} saved ${pending.length === 1 ? "change applies" : "changes apply"} after a restart. Analysis in progress stops and resumes afterwards.`
+            ? `${plural(pending.length, "saved change applies", "saved changes apply")} after a restart. Analysis in progress stops and resumes afterwards.`
             : "Analysis in progress stops and resumes afterwards."}</p>
       </div>
       {listing.restart_available && <Swap className="settings-tool-actions">

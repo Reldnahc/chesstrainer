@@ -68,12 +68,20 @@ test('create a curated position, fail once, solve by tapping and retain after re
   await square('g1').click(); await square('f3').click();
   await expect(page.locator('.move-status.retry')).toBeVisible();
   await expect(page.getByRole('button', {name: 'Reveal move'})).toBeVisible();
+  // The coach's feedback is one live region in every state; its line adds none of its own.
+  const liveRegions = page.locator('.review-coach').locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]');
+  await expect(liveRegions).toHaveCount(1);
   await page.reload();
   await expect(page.getByRole('heading', {name: 'Find a good move.'})).toBeVisible();
+  await expect(liveRegions).toHaveCount(1);
+  // The same region stays in place as the feedback changes, so each change is announced.
+  await page.locator('.review-coach .move-status').evaluate(element => { element.dataset.probe = 'kept'; });
   const file = testInfo.project.name === 'mobile' ? 'd' : 'e';
   await square(`${file}2`).click(); await square(`${file}4`).click();
   await expect(page.getByRole('status').filter({hasText: 'This recall stays marked for relearning.'})).toBeVisible();
   await expect(page.getByRole('status').filter({hasText: 'Progress saved.'})).toContainText('Next review:');
+  await expect(liveRegions).toHaveCount(1);
+  await expect(page.locator('.review-coach [data-probe="kept"]')).toContainText(`${file}4`);
   expect(new URL(page.url()).searchParams.has('exercise')).toBe(false);
   const nextQueue = page.waitForResponse(r => r.url().includes('/api/review/queue'));
   await page.reload();
@@ -184,7 +192,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   await expect.poll(() => completedAnalyses(page), {timeout: 30000}).toBeGreaterThan(analyzed);
   await page.screenshot({path: `test-results/${testInfo.project.name}-chesscom-import.png`, fullPage: true});
   await page.getByRole('button', {name: 'Import games', exact: true}).click();
-  await expect(job).toContainText('0 imported · 1 duplicates', {timeout: 30000});
+  await expect(job).toContainText('0 imported · 1 duplicate', {timeout: 30000});
   await expect(job.locator('.badge')).toHaveText('completed', {timeout: 30000});
   // A fetch job only saves games, so it has no analysis progress of its own.
   await expect(job.getByRole('progressbar', {name: 'Analysis progress'})).toHaveCount(0);
@@ -475,8 +483,12 @@ test('Reveal move plays the answer on the main board after a failed counter prev
   await board.locator('[data-square="g1"]').click();
   await board.locator('[data-square="f1"]').click();
   await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
+  // The counter-reply preview speaks through the coach's one live region too.
+  const liveRegions = page.locator('.review-coach').locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]');
+  await expect(liveRegions).toHaveCount(1);
   await page.getByRole('button', {name: 'Try again', exact: true}).click();
   await page.getByRole('button', {name: 'Reveal move', exact: true}).click();
+  await expect(liveRegions).toHaveCount(1);
   await expect(page.getByRole('heading', {name: 'Move revealed.'})).toBeVisible();
   await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
   await expect(board.locator('[data-square="a5"] [data-piece="bQ"]')).toHaveCount(0);
@@ -486,6 +498,9 @@ test('Reveal move plays the answer on the main board after a failed counter prev
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
   const dialog = page.getByRole('region', {name: 'Move explanation'});
   await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
+  // The explanation's coach has one live region as well.
+  await expect(dialog.locator('.explanation-caption')).toBeVisible();
+  await expect(dialog.locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]')).toHaveCount(1);
   await dialog.getByRole('button', {name: 'Back to review'}).click();
   await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
   expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before.reviews + 1);
@@ -711,4 +726,18 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(page).toHaveURL('/insights?section=patterns');
   await expect(weakness).toBeVisible();
   expect(fixture.exercise_id).toBeTruthy();
+});
+
+test('a failed answer check speaks through the coach panel\'s one live region', async ({page}, testInfo) => {
+  const fixture = await (await page.request.post(`/__test/review-explanation-fixture/grading-${testInfo.project.name}`)).json();
+  await page.goto(`/?exercise=${fixture.exercise_id}`);
+  const liveRegions = page.locator('.review-coach').locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]');
+  await expect(liveRegions).toHaveCount(1);
+  await page.locator('.review-coach .move-status').evaluate(element => { element.dataset.probe = 'kept'; });
+  await page.route('**/api/review/sessions/*/move', route => route.fulfill({status: 503, json: {detail: 'Grading is unavailable.'}}));
+  const board = page.getByRole('region', {name: 'Chess position'});
+  await board.locator('[data-square="g1"]').click();
+  await board.locator('[data-square="f1"]').click();
+  await expect(page.locator('.review-coach [data-probe="kept"] [data-utterance]')).toBeVisible();
+  await expect(liveRegions).toHaveCount(1);
 });

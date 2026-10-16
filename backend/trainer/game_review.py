@@ -11,7 +11,12 @@ from trainer.chess_core import (
     legal_move_options,
     mate_horizon,
 )
-from trainer.classification_stages import REVIEW_RULES, line_findings
+from trainer.classification_stages import (
+    line_findings,
+    line_parameters,
+    line_rules,
+    previous_move,
+)
 from trainer.continuations import replay, settled_delta
 from trainer.errors import InvalidInput
 from trainer.explanation_types import replay_line
@@ -39,6 +44,8 @@ from trainer.review_scores import (
 from trainer.search_limits import DEEP, SearchLimits, SearchProfile
 
 VERSION = "game-review-1"
+# The PGN results that say a side won.
+DECISIVE_RESULTS = frozenset({"1-0", "0-1"})
 
 
 def game_outcome(board):
@@ -101,7 +108,12 @@ def classify(report, rating):
             )
         if numeric(best) <= -DECISIVE_CP:
             return "Blunder", "This move makes an already lost position much worse."
-        return "Blunder", "This move gives away a decisive advantage or allows a severe loss."
+        # The review's own bands: winning and lost from three pawns (DECISIVE_CP).
+        if numeric(best) >= DECISIVE_CP:
+            return "Blunder", "This move gives away a winning advantage."
+        if numeric(actual) <= -DECISIVE_CP:
+            return "Blunder", "This move turns the position into a lost one."
+        return "Blunder", "This move gives up a large part of the position's value."
     # Mate distance is not a centipawn loss. Keeping a slower forced win is
     # still good, but cannot qualify for an exceptional or Best label.
     if (
@@ -169,16 +181,41 @@ def classify(report, rating):
     return "Good", "A sound move that keeps the important opportunities intact."
 
 
-def line_evidence(board, candidate, analysis_id, first, previous=None):
-    boards = replay(board, candidate)
-    delta, end = settled_delta(boards, board.turn, max_plies=REVIEW_RULES.settle_plies)
+# Bump when the way a saved line is read or shown changes, so saved lines are
+# read again: 2 is the shared horizon with lines shown to where they settle,
+# 3 settles only where no capture is pending.
+LINE_READING = 3
+
+
+def without_reading(horizon):
+    """Line parameters without the reading version a saved horizon carries."""
+    return {key: value for key, value in horizon.items() if key != "reading"}
+
+
+def line_evidence(board, candidate, analysis_id, first, previous=None, parameters=None):
+    """One line's frames and findings, read to the shared horizon (``line_rules``).
+
+    The frames shown stop where the line settles (or at its last scanned ply),
+    where every finding and the material claim rest, or at the mate of a forced
+    mate, so the line shown and the claims about it look equally far.
+    ``horizon`` records the parameters and the reading rule's version, so a line
+    read another way is read again.
+    """
+    parameters = without_reading(parameters or line_parameters())
+    rules = line_rules(parameters, annotate=True)
+    # One board past the horizon, so the last ply sees the saved next move as the
+    # classifier does; the moves shown are limited by rules.shown.
+    boards = replay(board, candidate)[: rules.shown_plies + 2]
+    delta, end = settled_delta(
+        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
+    )
     gain = delta if first == 1 else -delta if delta is not None else None
     mate = candidate.score.kind == "mate" and candidate.score.outcome() == (1 if first == 1 else -1)
     findings = line_findings(
         boards,
         first,
         analysis_id,
-        REVIEW_RULES,
+        rules,
         end=end,
         material_supported=gain is not None and gain > 0,
         mate_supported=mate,
@@ -186,10 +223,11 @@ def line_evidence(board, candidate, analysis_id, first, previous=None):
     )
     findings = lead_order(findings, first)
     return {
-        "frames": [f.model_dump() for f in replay_line(board, candidate.pv[:32])],
+        "frames": [f.model_dump() for f in replay_line(board, rules.shown(candidate, end))],
         "findings": [f.model_dump() for f in findings],
         "material_delta": delta,
         "settled": delta is not None,
+        "horizon": parameters | {"reading": LINE_READING},
     }
 
 
@@ -216,7 +254,8 @@ def move_frames(board, moves, reports, *, result=None, extra=None):
     imported, unless ``result`` (an imported game's header) says a side won: a
     repetition nobody claimed before a resignation or a lost clock ends nothing.
     """
-    decisive = result not in (None, "", "*", "1/2-1/2")
+    # Only a real win counts: an odd header ("½-½", "1/2", "0-0") ends nothing either.
+    decisive = (result or "").strip() in DECISIVE_RESULTS
     board = board.copy()
     frames = [
         position(board)
@@ -272,7 +311,53 @@ def mated_beyond_horizon(best, actual):
     )
 
 
-def analyze_move(engine, board, move, previous_score=None):
+def review_lines(board, best, actual, best_id, actual_id, poor, parameters=None):
+    """The played and best lines, both read with the move before, as the classifier does."""
+    previous = previous_move(board)
+    actual_line = line_evidence(board, actual, actual_id, 2 if poor else 1, previous, parameters)
+    if actual.uci == best.uci:
+        return actual_line, actual_line
+    return actual_line, line_evidence(board, best, best_id, 1, previous, parameters)
+
+
+def lines_current(report, parameters=None):
+    """Whether a saved report's lines were read to the horizon in force now.
+
+    A report without lines (a bare engine-facts fixture) has nothing to re-read.
+    """
+    horizon = without_reading(parameters or line_parameters()) | {"reading": LINE_READING}
+    return all(
+        report.get(key) is None or report[key].get("horizon") == horizon
+        for key in ("actual_line", "best_line")
+    )
+
+
+def reread_lines(report, board, parameters=None):
+    """A saved report's lines read again from its saved candidates, with no search.
+
+    Reports saved before the shared line rule read their lines to another
+    horizon; this gives them the current one. ``board`` stands before the move.
+    """
+    best = Candidate.model_validate(report["best"])
+    actual = Candidate.model_validate(report["actual"])
+    poor = is_poor(evaluation_loss(best.score, actual.score))
+    actual_line, best_line = review_lines(
+        board,
+        best,
+        actual,
+        report["before_analysis_id"],
+        report["played_analysis_id"],
+        poor,
+        parameters,
+    )
+    return report | {
+        "actual_line": actual_line,
+        "best_line": best_line,
+        "opportunity_missed": bool(missed_opportunity(poor, best_line, actual_line)),
+    }
+
+
+def analyze_move(engine, board, move, previous_score=None, *, parameters=None):
     before, candidates, actual, actual_id = root_comparison(engine, board, move)
     if mated_beyond_horizon(candidates[0].score, actual.score):
         # Either the played move reads mated while the best defence reads only a
@@ -297,13 +382,9 @@ def analyze_move(engine, board, move, previous_score=None):
         actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
     loss = evaluation_loss(best.score, actual.score)
     poor = is_poor(loss)
-    previous = None
-    if board.move_stack:
-        earlier = board.copy(stack=True)
-        preceding = earlier.pop()
-        previous = {"fen": earlier.fen(), "uci": preceding.uci()}
-    actual_line = line_evidence(board, actual, actual_id, 2 if poor else 1, previous)
-    best_line = actual_line if actual.uci == best.uci else line_evidence(board, best, before.id, 1)
+    actual_line, best_line = review_lines(
+        board, best, actual, before.id, actual_id, poor, parameters
+    )
     after = board.copy(stack=True)
     after.push(move)
     # A sacrifice must really offer a non-pawn piece at a net material cost.
@@ -463,7 +544,11 @@ def unpromoted(report):
     root_best = Candidate.model_validate(roots[0])
     loss = evaluation_loss(root_best.score, Score.model_validate(actual["score"]))
     best_line = line_evidence(
-        chess.Board(frames[0]["fen"]), root_best, report["before_analysis_id"], 1
+        chess.Board(frames[0]["fen"]),
+        root_best,
+        report["before_analysis_id"],
+        1,
+        parameters=report["actual_line"].get("horizon"),
     )
     return report | {
         "best": root_best.model_dump(),
@@ -498,22 +583,41 @@ def link_previous_scores(reports: dict) -> dict:
 
 
 def review_move(
-    engine, human_models, sessions, parsed, board, *, fallback_rating, previous_score=None
+    engine,
+    human_models,
+    sessions,
+    parsed,
+    board,
+    *,
+    fallback_rating,
+    previous_score=None,
+    parameters=None,
 ):
     """One move's saved review evidence: the engine report with its Maia evidence.
 
     ``board`` stands after the move. Variation analysis and Play build a single
     move's report here, then render it with ``public_report``. Without a saved
-    ``previous_score`` the position before the move is searched for it.
+    ``previous_score`` the position before the move is searched for it, and that
+    search also says whether the opponent's move was a Mistake or worse.
     """
     board = board.copy(stack=True)
     move = board.pop()
+    opponent_best = None
     if previous_score is None and board.move_stack:
         previous = board.copy(stack=True)
         previous.pop()
         result = engine.analyze(previous, DEEP, multipv=2)
-        previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
-    report = analyze_move(engine, board, move, previous_score)
+        opponent_best = Score.model_validate(result.candidates[0]["score"])
+        previous_score = opponent_best.negate()
+    report = analyze_move(engine, board, move, previous_score, parameters=parameters)
+    if opponent_best is not None:
+        # Whether the opponent's move was itself a Mistake or worse, by the same
+        # threshold saved reviews link, so a variation move can be the capitalizing
+        # Great too. The opponent's move reached this position, whose best score
+        # stands in for that move's own search (one ply apart, so a borderline
+        # loss can read differently from a saved review).
+        opponent_played = Score.model_validate(report["best"]["score"]).negate()
+        report["previous_mistake"] = is_mistake(evaluation_loss(opponent_best, opponent_played))
     report["human"] = human_models.evidence(
         sessions, parsed, board, move.uci(), report["best"]["uci"], fallback_rating
     )

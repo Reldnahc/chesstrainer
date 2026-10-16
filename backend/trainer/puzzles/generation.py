@@ -9,7 +9,6 @@ with its reason, so a game is searched once per generator version and never
 when a page opens. Generation writes no exercise, recall or weakness evidence.
 """
 
-from contextlib import nullcontext
 from dataclasses import dataclass
 
 import chess
@@ -19,7 +18,7 @@ from sqlalchemy.orm import aliased
 
 from trainer.chess_core import Score, game_phase, legal_move, position_key, replay_moves
 from trainer.contracts.puzzles import PuzzleProvenance
-from trainer.game_library import board_before, parsed_game
+from trainer.game_library import board_before, parsed_game, pgn_date
 from trainer.job_lifecycle import JobKind, active_job
 from trainer.lichess_patterns import recognize
 from trainer.models import (
@@ -332,7 +331,7 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
 def definition_for(game, prospect: Prospect, root, built: Built, themes) -> PuzzleDefinition:
     you = "White" if game.learner_color else "Black"
     opponent = game.black if game.learner_color else game.white
-    when = game.played_on or "date unknown"
+    when = pgn_date(game.pgn) or "date unknown"
     attribution = (
         f"Your game as {you} vs {opponent} · {when} · move {(prospect.ply + 1) // 2}. "
         f"You played {prospect.played_san}."
@@ -352,31 +351,37 @@ def definition_for(game, prospect: Prospect, root, built: Built, themes) -> Puzz
     )
 
 
-def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mutation_lock=None):
+def generate_for_game(units, search, settings, game, *, cancelled=lambda: False):
     """Mine one game once per generator version.
 
+    ``units`` opens the account's ``read()`` and ``write()`` units, and ``game``
+    is a Game or its id. Searches run between units, so they hold no lock or
+    connection; each judged candidate is saved in a write unit of its own.
     Returns the candidate and kept counts, or None when the game was already
     searched or the work was cancelled before the search record could be written
     (judged candidates are kept, so a later run resumes where this one stopped).
     """
-    lock = nullcontext() if mutation_lock is None else mutation_lock
-    searched = db.scalar(
-        select(GamePuzzleSearch.id).where(
-            GamePuzzleSearch.game_id == game.id,
-            GamePuzzleSearch.generator_version == GENERATOR_VERSION,
-        )
-    )
-    if searched is not None:
-        return None
-    shown = shown_reports(db, game)
-    found = prospects(db, game, shown)
-    judged = set(
-        db.scalars(
-            select(GamePuzzle.ply).where(
-                GamePuzzle.game_id == game.id, GamePuzzle.generator_version == GENERATOR_VERSION
+    game_id = game if isinstance(game, str) else game.id
+    with units.read() as db:
+        game = db.get(Game, game_id)
+        searched = db.scalar(
+            select(GamePuzzleSearch.id).where(
+                GamePuzzleSearch.game_id == game.id,
+                GamePuzzleSearch.generator_version == GENERATOR_VERSION,
             )
         )
-    )
+        if searched is not None:
+            return None
+        shown = shown_reports(db, game)
+        found = prospects(db, game, shown)
+        judged = set(
+            db.scalars(
+                select(GamePuzzle.ply).where(
+                    GamePuzzle.game_id == game.id,
+                    GamePuzzle.generator_version == GENERATOR_VERSION,
+                )
+            )
+        )
     for prospect in found:
         if prospect.ply in judged:
             continue
@@ -387,13 +392,14 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
         first_search = len(search.analysis_ids)
         built, reason = build_line(search, root, max_plies=settings.puzzle_generation_max_plies)
         if built is not None:
-            duplicate = db.scalar(
-                select(GamePuzzle.id).where(
-                    GamePuzzle.position_key == key,
-                    GamePuzzle.status == "ready",
-                    GamePuzzle.generator_version == GENERATOR_VERSION,
+            with units.read() as db:
+                duplicate = db.scalar(
+                    select(GamePuzzle.id).where(
+                        GamePuzzle.position_key == key,
+                        GamePuzzle.status == "ready",
+                        GamePuzzle.generator_version == GENERATOR_VERSION,
+                    )
                 )
-            )
             if duplicate is not None:
                 built, reason = None, "duplicate_position"
         definition = None
@@ -432,21 +438,19 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
                 "stop": built.stop if built else None,
             },
         )
-        with lock:
+        with units.write() as db:
             db.add(row)
-            db.commit()
-    kept = db.scalar(
-        select(func.count())
-        .select_from(GamePuzzle)
-        .where(
-            GamePuzzle.game_id == game.id,
-            GamePuzzle.generator_version == GENERATOR_VERSION,
-            GamePuzzle.status == "ready",
+    with units.write() as db:
+        kept = db.scalar(
+            select(func.count())
+            .select_from(GamePuzzle)
+            .where(
+                GamePuzzle.game_id == game.id,
+                GamePuzzle.generator_version == GENERATOR_VERSION,
+                GamePuzzle.status == "ready",
+            )
         )
-    )
-    with lock:
-        # Another session saves adoptions; re-read rather than trust loaded rows.
-        db.expire_all()
+        # Another session saves adoptions, and this unit reads them fresh.
         if _evidence(shown_reports(db, game)) != _evidence(shown):
             # The review adopted a deeper search while this pass ran: leave the game
             # unrecorded so the next run mines what the review shows now.
@@ -460,7 +464,6 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
                 kept=kept,
             )
         )
-        db.commit()
     return {"candidates": len(found), "kept": kept}
 
 

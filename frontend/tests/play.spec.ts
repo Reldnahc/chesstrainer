@@ -75,8 +75,9 @@ test("the setup page explains the measured level and starts a live game", async 
   // The invitation loads after the page; until it does the coach is a bare portrait of a
   // different height, so measure once it is in place.
   await expect(page.getByLabel("Walter says")).toBeVisible();
-  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
-    document.querySelector('[aria-labelledby="play-color"]')!.getBoundingClientRect().top + window.scrollY]);
+  const layout = async () => [
+    await page.locator(".play-setup-form").evaluate(form => form.getBoundingClientRect().height),
+    await page.getByRole("group", { name: "Your color", exact: true }).evaluate(group => group.getBoundingClientRect().top + window.scrollY)];
   const before = await layout();
   await page.getByRole("button", {name: "Engine"}).click();
   await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveAttribute("min", "1800");
@@ -376,8 +377,9 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   // Choosing practice enables the course picker in place: the rows below it do not move.
   await expect(page.getByLabel("Walter says")).toBeVisible();
   await expect(page.getByLabel("Course to practice")).toBeDisabled();
-  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
-    document.querySelector('[aria-labelledby="play-opponent"]')!.getBoundingClientRect().top + window.scrollY]);
+  const layout = async () => [
+    await page.locator(".play-setup-form").evaluate(form => form.getBoundingClientRect().height),
+    await page.getByRole("group", { name: "Opponent", exact: true }).evaluate(group => group.getBoundingClientRect().top + window.scrollY)];
   const before = await layout();
   await page.getByRole("button", {name: "Practice an opening"}).click();
   await expect(page.getByLabel("Course to practice")).toBeEnabled();

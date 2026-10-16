@@ -8,8 +8,9 @@ import Notice from "../Notice";
 import Reveal, { RevealList, Swap } from "../Reveal";
 import SettingsSection from "../SettingsSection";
 import { courseEditorPath } from "../navigation";
-import { QueryResult, useCommand, useQuery } from "../useQuery";
+import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
 import { deleteCourseFile, downloadCourseFile, readChosenFile, restoreBuiltInCourse, saveCourseFile, savedMessage } from "./courseFiles";
+import { plural } from "../format";
 
 /** Administrator course management: write, import, export and delete Study courses. */
 export default function CourseSettings() {
@@ -57,12 +58,12 @@ export default function CourseSettings() {
       <input ref={chooser} hidden type="file" accept=".json,application/json" aria-label="Course file" onChange={event => importChosen(event.target.files?.[0])} />
     </div>}>
     {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
-    {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
+    <CommandError command={command} />
     <RevealList>{(library.problems ?? []).map(problem => <Notice key={problem.file} announcement="passive" tone="error">Not loaded: {problem.message}</Notice>)}</RevealList>
     <RevealList>{library.courses.map(course => <div className="settings-tool settings-tool-row" key={course.id}>
       <div>
         <h3>{course.title}</h3>
-        <p>{course.source === "club" ? "Club course" : "Built-in course"} · {course.topic === "skills" ? "Fundamentals" : "Openings"} · {course.chapter_count} {course.chapter_count === 1 ? "chapter" : "chapters"} · revision {course.revision}</p>
+        <p>{course.source === "club" ? "Club course" : "Built-in course"} · {course.topic === "skills" ? "Fundamentals" : "Openings"} · {plural(course.chapter_count, "chapter")} · revision {course.revision}</p>
         <Reveal>{confirming === course.id && <p className="small">{course.source === "club"
           ? "Delete this course file? Members stop seeing it; their progress is kept. A built-in course it replaced comes back."
           : "Delete this built-in course? Members stop seeing it; their progress is kept and returns if you restore it."}</p>}</Reveal>

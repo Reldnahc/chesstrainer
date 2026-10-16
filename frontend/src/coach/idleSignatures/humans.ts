@@ -1,4 +1,5 @@
-import { gesture, track, type IdleTrack } from "../idleModel";
+import { track, type IdleTrack } from "../idleModel";
+import { signature as buildSignature } from "./signature";
 import type { CoachExpression } from "../model";
 import { attentive, concerned, positive, type SignatureCollection, type SignatureGesture } from "./types";
 
@@ -9,14 +10,12 @@ const freeHands: readonly CoachExpression[] = [
 ];
 const reflective = [...attentive, ...concerned];
 
+// The human cast's signatures are attention gestures with one shared timing.
 function signature(
   id: SignatureGesture["id"], label: string, description: string,
   expressions: readonly CoachExpression[], tracks: readonly IdleTrack[],
 ): SignatureGesture {
-  return {
-    ...gesture(id, "attention", tracks, { cooldownMs: 5200, weight: 0.8 }),
-    id, label, description, expressions: [...new Set(expressions)],
-  };
+  return buildSignature(id, "attention", label, description, [...new Set(expressions)], tracks, { cooldownMs: 5200, weight: 0.8 });
 }
 
 export const humanSignatures = {

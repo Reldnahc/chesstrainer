@@ -1,8 +1,10 @@
-import { gesture, track, type IdleGesture, type IdleTrack } from "../idleModel";
+import { track, type IdleGesture, type IdleTrack } from "../idleModel";
+import { signature as buildSignature } from "./signature";
 import type { CoachExpression } from "../model";
 import { attentive, concerned, positive, type SignatureCollection, type SignatureGesture } from "./types";
 import { scifiSignatures } from "./scifi";
 
+// The fantasy cast's signatures share one timing.
 function signature(
   id: SignatureGesture["id"],
   group: IdleGesture["group"],
@@ -12,10 +14,7 @@ function signature(
   tracks: readonly IdleTrack[],
   blink = false,
 ): SignatureGesture {
-  return {
-    ...gesture(id, group, tracks, { cooldownMs: 5600, weight: 1.15, blink }),
-    id, label, description, expressions,
-  };
+  return buildSignature(id, group, label, description, expressions, tracks, { cooldownMs: 5600, weight: 1.15, blink });
 }
 
 const calm = [...new Set([...attentive, ...positive])] as readonly CoachExpression[];

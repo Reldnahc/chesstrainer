@@ -218,10 +218,12 @@ function GameRecallPanel({
               </>
             }
           >
+            {/* One live region for every feedback state, so a screen reader hears each
+                change once; the coach's line inside it adds no region of its own. */}
             {session.gradingError ? (
-              <DialogueText utterance={shown} />
+              <MoveStatus><DialogueText utterance={shown} announce={false} /></MoveStatus>
             ) : feedback?.completed ? (
-              <div role="status" aria-live="polite" aria-atomic="true">
+              <MoveStatus>
                 <p>
                   <strong className="review-move">
                     {feedback.submitted_san ||
@@ -231,12 +233,10 @@ function GameRecallPanel({
                         .join(", ")}
                   </strong>
                 </p>
-                <DialogueText utterance={shown} />
-              </div>
+                <DialogueText utterance={shown} announce={false} />
+              </MoveStatus>
             ) : previewFrame ? (
-              <div role="status" aria-live="polite" aria-atomic="true">
-                <DialogueText utterance={shown} />
-              </div>
+              <MoveStatus><DialogueText utterance={shown} announce={false} /></MoveStatus>
             ) : (
               <MoveStatus
                 busy={busy}

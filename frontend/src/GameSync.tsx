@@ -1,8 +1,7 @@
 import Button from "./Button";
-import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
 import { useRef, useState } from "react";
-import { api, errorMessage, read, type Schema } from "./api";
+import { api, read, type Schema } from "./api";
 import ActionLink from "./ActionLink";
 import { pagePaths } from "./navigation";
 import ProviderUsernameField from "./ProviderUsernameField";
@@ -11,7 +10,8 @@ import Reveal, { Swap } from "./Reveal";
 import { useGameProviders, useServerDraft, type GameProvider } from "./gameProviders";
 import { useLatest } from "./useLatest";
 import { usePolling } from "./usePolling";
-import { QueryResult } from "./useQuery";
+import { CommandError, QueryError, QueryResult, useCommand } from "./useQuery";
+import { plural } from "./format";
 
 type Sync = Schema["SyncStatus"];
 type Queue = Schema["AnalysisQueue"];
@@ -43,7 +43,7 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
         <p className="small">Clear the username to disconnect.</p>
       </details>
     </div> : <div key="form">{form}</div>}</Swap>
-    <Reveal>{status?.username && <Notice announcement="status" appearance="inline">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}` : "Ready to check for new games"}</Notice>}</Reveal>
+    <Reveal>{status?.username && <Notice announcement="status" appearance="inline">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${plural(status.imported, "new game")}` : "Ready to check for new games"}</Notice>}</Reveal>
     <Reveal>{status?.error && <Notice announcement="alert" tone="error">{status.error}</Notice>}</Reveal>
     {onImportOlderGames && <div className="connection-actions"><Button variant="secondary" onClick={() => onImportOlderGames(provider.id)}>Import older games</Button></div>}
   </section>;
@@ -52,8 +52,8 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
 function queueSummary(queue: Queue) {
   const waiting = queue.requested + queue.fresh + queue.backfill;
   const parts = [queue.running ? `Analyzing ${queue.running.white} vs ${queue.running.black}.` : ""];
-  if (waiting) parts.push(`${waiting} ${waiting === 1 ? "game" : "games"} waiting (${queue.requested + queue.fresh} recent, ${queue.backfill} older).`);
-  if (!queue.running && !waiting) parts.push(queue.completed ? `All ${queue.completed} ${queue.completed === 1 ? "game" : "games"} analyzed.` : "No games to analyze yet.");
+  if (waiting) parts.push(`${plural(waiting, "game")} waiting (${queue.requested + queue.fresh} recent, ${queue.backfill} older).`);
+  if (!queue.running && !waiting) parts.push(queue.completed ? `All ${plural(queue.completed, "game")} analyzed.` : "No games to analyze yet.");
   if (queue.failed) parts.push(`${queue.failed} could not be analyzed; open the game to retry.`);
   return parts.filter(Boolean).join(" ");
 }
@@ -78,7 +78,8 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
   const providers = useGameProviders();
   const [statuses, setStatuses] = useState<Record<string, Sync>>({});
   const [checked, setChecked] = useState(false);
-  const [error, setError] = useState("");
+  // This screen's failures: fail(e) reports, the shared banner shows them.
+  const errors = useCommand();
   const [busy, setBusy] = useState(false);
   const callbacks = useLatest({ onChanged, onStatusChange });
   const versions = useRef<Record<string, string>>({});
@@ -119,20 +120,20 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
     if (signal.aborted) return;
     setChecked(true);
     if (firstError) {
-      setError(errorMessage(firstError));
+      errors.fail(firstError);
       throw firstError;
     }
   }, { intervalMs: 15000, enabled: !!providers.data });
   async function refresh() {
     setBusy(true);
-    setError("");
+    errors.dismiss();
     refreshNext.current = true;
     try { await polling.run(); }
     finally { setBusy(false); }
   }
   async function save(provider: string, name: string) {
     setBusy(true);
-    setError("");
+    errors.dismiss();
     edits.current[provider] = (edits.current[provider] || 0) + 1;
     try {
       const saved = await read(api.PUT("/api/providers/{provider}/connection", { params: path(provider), body: { username: name.trim() } }));
@@ -143,7 +144,7 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
       if (saved.username) update(await read(api.POST("/api/providers/{provider}/sync", { params: path(provider) })));
       return true;
     } catch (e) {
-      setError(errorMessage(e));
+      errors.fail(e);
       return false;
     } finally {
       setBusy(false);
@@ -159,8 +160,8 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
   if (compact) return <div className="game-sync-compact">
     {!loading && !connected ? <ActionLink variant="secondary" size="compact" href={pagePaths.Settings} title="Set up game imports in Settings">{setupLabel ?? <><RotateCw size={16} aria-hidden="true" />Update games</>}</ActionLink> : button}
     <Reveal>{syncError && <Notice announcement="alert" tone="error" appearance="inline" className="small">{syncError}</Notice>}</Reveal>
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
-    {providers.error && <Banner tone="error" action={<Button size="compact" onClick={providers.retry}>Try again</Button>}>Couldn’t load game connections.</Banner>}
+    <CommandError command={errors} />
+    <QueryError query={providers} label="game connections" />
   </div>;
   return <section className="game-connections" aria-label="Connected game accounts">
     <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks for new games every minute and analyzes each one automatically, newest first. Older imported games are analyzed after your recent ones. Checks pause after a week without visiting.</p>{connected && button}</div>
@@ -168,6 +169,6 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
     <QueryResult query={providers} label="game connections">{items =>
       <div className="provider-connections">{items.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>}
     </QueryResult>
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    <CommandError command={errors} />
   </section>;
 }

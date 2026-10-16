@@ -4,6 +4,7 @@ import json
 from datetime import datetime, timezone
 
 import pytest
+from account_units import units_for
 from alembic import command
 from alembic.config import Config
 from sqlalchemy import func, select, text
@@ -219,7 +220,7 @@ def test_training_decisions_use_the_adopted_refinement(settings, sessions):
         db.flush()
         db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
         db.commit()
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
 
 
@@ -256,7 +257,7 @@ def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(sett
         db.add(GameReviewMove(game_id=game.id, ply=1, report=report))
         db.commit()
         # No engine is available: nothing may be searched again at other limits.
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         played = db.get(EngineAnalysis, decision.played_analysis_id)
         assert (
             played.candidates[0]["uci"] == "e2e4" and played.candidates[0]["score"]["value"] == 40
@@ -278,7 +279,7 @@ def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(sett
         db.flush()
         db.get(Decision, decision.id).before_analysis_id = other.id
         db.commit()
-        again = analyze_decision(db, None, settings, game, 1, board, move)
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         assert again.played_analysis_id == played.id
         assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 3
 
@@ -325,8 +326,9 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
         db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
         db.commit()
         scheduler = FSRSScheduler(settings)
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         exercise = exercise_from_decision(db, decision, settings, scheduler)
+        db.commit()
         assert decision.meaningful
 
         # A refine request adopts a deeper search after training was built.
@@ -349,11 +351,12 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
         db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
         db.commit()
 
-        again = analyze_decision(db, None, settings, game, 1, board, move)
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         assert again.id == decision.id
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
         assert again.loss_cp == 285
         kept = exercise_from_decision(db, again, settings, scheduler)
+        db.commit()
         # The same exercise and schedule, never a second card: its answers (and any
         # graded during practice) stay as they were made.
         assert kept.id == exercise.id and db.get(SRSState, exercise.id) is not None
@@ -370,6 +373,11 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
         db.add(session)
         db.commit()
         assert answer_search(db, session.id, "g1f3").original.id == rows["base"].id
+        # The card's feedback lists the candidates those answers came from too.
+        from trainer.reviews import feedback
+
+        listed = feedback(db, exercise)["candidates"]
+        assert listed == rows["base"].candidates != rows["deep"].candidates
 
 
 def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(settings, sessions):
@@ -425,8 +433,8 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
             # Deeper, the played move is as good as the best: no longer a mistake.
             "fine": analysis("q-fine", [("d2d4", 45), ("f2f3", 40)]),
             "fine_played": analysis("q-fine-played", [("f2f3", 40)]),
-            # Deeper still, it is a mistake again.
-            "worse": analysis("q-worse", [("d2d4", 45), ("f2f3", -200)]),
+            # Deeper still, it is a mistake again, and the card's answer still holds.
+            "worse": analysis("q-worse", [("d2d4", 45), ("e2e4", 40), ("f2f3", -200)]),
             "worse_played": analysis("q-worse-played", [("f2f3", -200)]),
         }
         db.add_all([game, *rows.values()])
@@ -439,22 +447,26 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
         db.commit()
         scheduler = FSRSScheduler(settings)
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         exercise = exercise_from_decision(db, decision, settings, scheduler)
+        db.commit()
         assert decision.meaningful and db.get(SRSState, exercise.id).eligible
 
         adopt(db, game, "fine", rows["fine"], rows["fine_played"], baseline)
-        again = analyze_decision(db, None, settings, game, 1, board, move)
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert again.id == decision.id and not again.meaningful
         # The card keeps its answers and schedule but leaves the queue, and a
         # direct start is refused too.
         state = db.get(SRSState, exercise.id)
         assert state is not None and not state.eligible
-        with pytest.raises(InvalidInput, match="no longer a mistake"):
+        with pytest.raises(InvalidInput, match="no longer matches its game's review"):
             require_active_review(db, exercise.id)
 
         adopt(db, game, "worse", rows["worse"], rows["worse_played"], baseline)
-        back = analyze_decision(db, None, settings, game, 1, board, move)
+        back = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert back.id == decision.id and back.meaningful
         assert db.get(SRSState, exercise.id).eligible
         require_active_review(db, exercise.id)
@@ -462,14 +474,119 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         # The same mistake in another game shares the card: its meaningful decision
         # puts the card back even while this game's decision is no longer one.
         adopt(db, game, "fine-again", rows["fine"], rows["fine_played"], baseline)
-        analyze_decision(db, None, settings, game, 1, board, move)
+        analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert not db.get(SRSState, exercise.id).eligible
         other = Game(fingerprint="queue-2", white="A", black="B", learner_color=True, pgn="1. f3 *")
         db.add(other)
         db.flush()
         db.add(GameReviewMove(game_id=other.id, ply=1, report=baseline))
         db.commit()
-        shared = analyze_decision(db, None, settings, other, 1, board, move)
+        shared = analyze_decision(units_for(db), None, settings, other, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert shared.meaningful and shared.id != decision.id
         assert exercise_from_decision(db, shared, settings, scheduler).id == exercise.id
+        db.commit()
         assert db.get(SRSState, exercise.id).eligible
+
+
+@pytest.mark.parametrize(
+    ("deeper", "eligible"),
+    [
+        # The card's answer is still within tolerance of the deeper best: it stays.
+        ([("d2d4", 45), ("e2e4", 40), ("f2f3", -240)], True),
+        # The deeper search refutes the card's answer: practice must not drill it.
+        ([("d2d4", 45), ("e2e4", -150), ("f2f3", -240)], False),
+        # The deeper search ranks better moves above it and does not list it.
+        ([("d2d4", 45), ("g1f3", 30), ("f2f3", -240)], False),
+    ],
+)
+def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_answer(
+    settings, sessions, deeper, eligible
+):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.errors import InvalidInput
+    from trainer.exercises import exercise_from_decision
+    from trainer.models import EngineAnalysis, ExerciseAnswer, SRSState
+    from trainer.retirement import require_active_review
+    from trainer.scheduling import FSRSScheduler
+
+    board = chess.Board()
+    move = chess.Move.from_uci("f2f3")
+
+    def analysis(key, scores):
+        return EngineAnalysis(
+            cache_key=key,
+            fen=board.fen(),
+            engine_version="fixture",
+            config={},
+            candidates=[
+                {"uci": uci, "san": board.san(chess.Move.from_uci(uci)), "pv": [uci]}
+                | {"score": {"kind": "cp", "value": value}}
+                for uci, value in scores
+            ],
+        )
+
+    with sessions() as db:
+        game = Game(fingerprint="answer", white="A", black="B", learner_color=True, pgn="1. f3 *")
+        rows = {
+            "base": analysis("a-base", [("e2e4", 40), ("f2f3", -260)]),
+            "base_played": analysis("a-base-played", [("f2f3", -260)]),
+            "deep": analysis("a-deep", deeper),
+            "deep_played": analysis("a-deep-played", [("f2f3", -240)]),
+        }
+        db.add_all([game, *rows.values()])
+        db.flush()
+        baseline = {
+            "before_analysis_id": rows["base"].id,
+            "played_analysis_id": rows["base_played"].id,
+            "depth": 16,
+        }
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
+        db.commit()
+        scheduler = FSRSScheduler(settings)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        exercise = exercise_from_decision(db, decision, settings, scheduler)
+        db.commit()
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="answer",
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report=baseline
+            | {
+                "before_analysis_id": rows["deep"].id,
+                "played_analysis_id": rows["deep_played"].id,
+            },
+            config={"baseline_ids": [rows["base"].id, rows["base_played"].id]},
+        )
+        db.add(task)
+        db.flush()
+        db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
+        db.commit()
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        # Still a mistake either way; the card keeps its answers and schedule.
+        assert again.meaningful
+        assert db.get(SRSState, exercise.id) is not None
+        primary = db.scalar(
+            select(ExerciseAnswer).where(
+                ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
+            )
+        )
+        assert (primary.uci, primary.analysis_id) == ("e2e4", rows["base"].id)
+        assert db.get(SRSState, exercise.id).eligible is eligible
+        if eligible:
+            require_active_review(db, exercise.id)
+        else:
+            with pytest.raises(InvalidInput, match="no longer matches"):
+                require_active_review(db, exercise.id)
+        # A card kept by a decision refreshed before this rule is rechecked at startup.
+        from trainer.analysis import resync_game_cards
+
+        db.get(SRSState, exercise.id).eligible = True
+        db.commit()
+        assert resync_game_cards(db) == (0 if eligible else 1)
+        assert db.get(SRSState, exercise.id).eligible is eligible

@@ -1,4 +1,4 @@
-import type {CoachPersonality} from "../personality";
+import {coachPersonality} from "../personality";
 import {authorTacticalWordings} from "../scopedTacticalWording";
 
 /** Wisp's scoped tactical forms: what is already on the board, what waits for a
@@ -34,8 +34,8 @@ export const ghostOpeningTemplates = {
   "book-opening-follow-8": ["Again, a book move in {opening}."],
 } as const;
 
-export const ghost: CoachPersonality = {
-  version: "ghost-2", maxCharacters: 245, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const ghost = coachPersonality({
+  version: "ghost-2", maxCharacters: 245, maxClaims: 2,
   delivery: {pace: "measured", energy: "quiet"},
   behavior: {
     general: "observation-first", praise: "observation-first", correction: "observation-first",
@@ -147,4 +147,4 @@ export const ghost: CoachPersonality = {
     explanation_summary: ["What remains, when the line is done: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});

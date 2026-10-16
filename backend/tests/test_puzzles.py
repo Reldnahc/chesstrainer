@@ -294,6 +294,7 @@ def test_conditional_revision_write_rejects_stale_database_session(settings):
             stale = second.get(PuzzleSession, state["id"])
             request = PuzzleMove(request_id="first", revision=0, uci=LINE[0])
             command(first, state["id"], request)
+            first.commit()
             assert stale.revision == 0
             with pytest.raises(DomainError) as raised:
                 command(second, state["id"], request.model_copy(update={"request_id": "second"}))

@@ -15,9 +15,6 @@ export type CoachSpeechPresentation = {
   control: ReactNode;
   play: (recordingId?: string) => Promise<void>;
   stop: () => void;
-  consumeAutomatic: (eventId: string | null | undefined) => void;
-  playing: boolean;
-  activeRecordingId?: string;
   /** Whether this recording (or, without one, any) is the one playing; alternatives resolve first. */
   isPlaying: (recordingId?: string) => boolean;
   available: boolean;
@@ -64,13 +61,6 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
   const request = useRef<{id: string; automatic: boolean; scopeKey: string; coachId: string; eventId: typeof automaticEventId} | null>(null);
   const [active, setActive] = useState<{ id: string; eventId: string; track?: SpeechMouthTrack }>();
   const cancelCurrent = useCallback(() => { generation.current++; request.current = null; cancel(); setActive(undefined); }, [cancel]);
-  const consumeAutomatic = useCallback((eventId: typeof automaticEventId) => {
-    if (eventId !== liveRef.current.automaticEventId) return;
-    // A manual choice owns this action even before the passive auto effect runs.
-    seen.current = eventId;
-    pending.current = null;
-    if (request.current?.automatic) cancelCurrent();
-  }, [cancelCurrent, liveRef]);
   const stop = useCallback(() => {
     seen.current = liveRef.current.automaticEventId;
     pending.current = null;
@@ -163,7 +153,7 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
     ? loadedCoachMouthTrack(coachId, observedPlayback.recordingId) : undefined;
   const value: CoachSpeechPresentation = { speech: observedTrack ? observedPlayback ?? undefined : currentPlayback,
     speechTrack: observedTrack ?? active?.track,
-    control: null, play, stop, consumeAutomatic, playing: !!currentPlayback, activeRecordingId: active?.id,
+    control: null, play, stop,
     isPlaying: id => !!currentPlayback && (!id || active?.id === concrete(coachId, id)),
     available: eligible && ready && allowed.length > 0,
     canPlay: id => eligible && ready && !!(concrete(coachId, id) ?? recordingId)

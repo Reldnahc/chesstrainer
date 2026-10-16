@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {robotTacticalTemplates} from "./scopedTactics";
-import {robotOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const robot: CoachPersonality = {
-  version: "robot-3", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const robotTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Position after {move}: a {motif} is present.",
+    played_possible: "Possible pattern after {move}: a {motif}. The replies determine whether it occurs.",
+    allowed_immediate: "Reply available to {opponent}: {action}, with a {motif}.",
+    allowed_possible: "Potential resource for {opponent}: a {motif}. Its occurrence depends on the replies.",
+    missed_immediate: "Unplayed option: {best}. That would leave a {motif}.",
+    missed_possible: "Unplayed option: {best}. A {motif} is possible, depending on the replies.",
+  },
+  fork: {actual: "Attacked together: the {targets}.", possible: "Potential simultaneous targets: the {targets}."},
+  material: "Possible result: a {gain}. Both sides' follow-up choices still matter.",
+  capture: {candidate: "Capture available: {capture} would take a {piece}.", followup: "Possible follow-up: {capture}, taking a {piece}."},
+  playedCapture: {fact: "Pattern associated with {move}: a {motif}.", consequence: "Capture completed: {capture} takes a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const robotOpeningTemplates = {
+  "book-opening-entry-1": ["Opening match: {opening}."],
+  "book-opening-entry-2": ["This move is in the opening record: {opening}."],
+  "book-opening-entry-3": ["Recognized opening move. The entry is {opening}."],
+  "book-opening-follow-1": ["Another opening match: {opening}."],
+  "book-opening-follow-2": ["Sequence status: recognized. Current entry: {opening}."],
+  "book-opening-follow-3": ["Opening recognition continues here: {opening}."],
+  "book-opening-follow-4": ["Next reviewed move, another match: {opening}."],
+  "book-opening-follow-5": ["Recorded opening move confirmed: {opening}."],
+  "book-opening-follow-6": ["This move also matches the opening record: {opening}."],
+  "book-opening-follow-7": ["The sequence continues through a recognized move in {opening}."],
+  "book-opening-follow-8": ["Opening match maintained with this move: {opening}."],
+} as const;
+
+export const robot = coachPersonality({
+  version: "robot-3", maxCharacters: 270, maxClaims: 2,
   delivery: {pace: "steady", energy: "quiet"},
   behavior: {
     general: "pattern-first", praise: "pattern-first", correction: "pattern-first",
@@ -84,4 +114,4 @@ export const robot: CoachPersonality = {
     variation: ["Alternative-line result: {detail}"],
     compatibility: ["Status: {detail}"],
   },
-};
+});

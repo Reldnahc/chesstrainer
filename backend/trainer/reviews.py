@@ -3,8 +3,9 @@ from dataclasses import dataclass
 
 from sqlalchemy import and_, func, or_, select
 
-from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
-from trainer.errors import Gone, InvalidInput, NotFound
+from trainer.chess_core import Candidate, legal_move, legal_move_options, side_name, valid_board
+from trainer.classification_stages import line_parameters
+from trainer.errors import Conflict, Gone, InvalidInput, NotFound
 from trainer.explanation_types import replay_line
 from trainer.explanations import explain_review
 from trainer.imports import decision_board
@@ -50,9 +51,11 @@ def _with_current_opening_authority(statement):
     )
 
 
-def explanation_brief(db, session_id, attempt_id=None, solution=False, include_reply=False):
+def explanation_brief(
+    db, session_id, attempt_id=None, solution=False, include_reply=False, parameters=None
+):
     try:
-        explanation = explain_review(db, session_id, attempt_id, solution)
+        explanation = explain_review(db, session_id, attempt_id, solution, parameters)
         result = {
             "explanation_summary": explanation.summary,
             "explanation_summary_kind": explanation.summary_kind,
@@ -160,7 +163,7 @@ def open_session(db, session_id):
     return session
 
 
-def start_review(db, exercise_id, *, focus_skill_id=None):
+def start_review(db, exercise_id, *, focus_skill_id=None, parameters=None):
     exercise = review_exercise(db, exercise_id)
     require_active_review(db, exercise_id)
     if focus_skill_id is not None:
@@ -192,7 +195,7 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         db.flush()
         if exercise.source == "opening":
             opening_recall.snapshot_session(db, existing, exercise)
-        db.commit()
+        db.flush()
     state = db.get(SRSState, exercise_id)
     reason = (
         "resume"
@@ -203,10 +206,10 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         if state.due > now()
         else card_phase(state.card)
     )
-    return review_position(db, existing, reason=reason)
+    return review_position(db, existing, reason=reason, parameters=parameters)
 
 
-def review_position(db, session, *, reason="resume"):
+def review_position(db, session, *, reason="resume", parameters=None):
     exercise = db.get(Exercise, session.exercise_id)
     state = db.get(SRSState, exercise.id)
     snapshot = opening_recall.get_snapshot(db, session)
@@ -216,7 +219,7 @@ def review_position(db, session, *, reason="resume"):
         "last_attempt_id": session.last_attempt_id,
         "exercise_id": exercise.id,
         "fen": fen,
-        "orientation": snapshot.orientation if snapshot else exercise.orientation,
+        "orientation": side_name(snapshot.learner_color if snapshot else exercise.learner_color),
         "failed": session.failed,
         "review_reason": reason,
         "previous_reviews": state.reviews,
@@ -233,13 +236,15 @@ def review_position(db, session, *, reason="resume"):
                 else opening_recall.STALE_PROMPT
             )
     if session.completed:
-        result.update(completed=True, feedback=completed_feedback(db, exercise, session))
+        result.update(
+            completed=True, feedback=completed_feedback(db, exercise, session, parameters)
+        )
     return result
 
 
-def resume_review(db, session_id):
+def resume_review(db, session_id, parameters=None):
     session = open_session(db, session_id)
-    return review_position(db, session)
+    return review_position(db, session, parameters=parameters)
 
 
 def record_once(db, session, scheduler, settings, response_ms):
@@ -298,7 +303,8 @@ def feedback(db, exercise, session=None):
         result.update(opening_recall.feedback(db, exercise, session, snapshot))
     if exercise.decision_id:
         decision = db.get(Decision, exercise.decision_id)
-        analysis = db.get(EngineAnalysis, decision.before_analysis_id)
+        # The candidates the card's answers were graded from, not a later search.
+        analysis = card_search(db, exercise, decision)
         game = db.get(Game, decision.game_id)
         result.update(
             {
@@ -312,7 +318,7 @@ def feedback(db, exercise, session=None):
     return result
 
 
-def completed_feedback(db, exercise, session):
+def completed_feedback(db, exercise, session, parameters=None):
     snapshot = opening_recall.get_snapshot(db, session)
     board = valid_board(snapshot.fen if snapshot else exercise.fen)
     result = {"completed": True, "grade": "already_recorded", **feedback(db, exercise, session)}
@@ -334,12 +340,12 @@ def completed_feedback(db, exercise, session):
                 reveal_frame=frame.model_dump(),
                 submitted_san=frame.san,
             )
-            result.update(explanation_brief(db, session.id, solution=True))
+            result.update(explanation_brief(db, session.id, solution=True, parameters=parameters))
     elif session.last_attempt_id:
         attempt = db.get(Attempt, session.last_attempt_id)
         frame = replay_line(board, [attempt.uci])[1]
         result.update(attempt_id=attempt.id, fen=frame.fen, submitted_san=frame.san)
-        result.update(explanation_brief(db, session.id, attempt.id))
+        result.update(explanation_brief(db, session.id, attempt.id, parameters=parameters))
     return result
 
 
@@ -368,22 +374,29 @@ def answer_search(db, session_id, uci):
     if db.get(ExerciseAnswer, (exercise.id, move.uci())) is not None:
         return None
     decision = db.get(Decision, exercise.decision_id)
-    # Graded against the search the exercise's own answers came from: a decision
-    # refreshed by a later refinement keeps its earlier exercise, and one card
-    # never mixes two engine references.
+    return AnswerSearch(
+        uci=move.uci(),
+        san=board.san(move),
+        board=decision_board(db.get(Game, decision.game_id), decision.ply),
+        original=card_search(db, exercise, decision),
+        policy=exercise.policy,
+    )
+
+
+def card_search(db, exercise, decision):
+    """The engine search a game card's answers were graded from.
+
+    A decision refreshed by a later refinement keeps its earlier card, so the card
+    is graded, and lists its candidates, from the search its answers came from:
+    one card never mixes two engine references.
+    """
     primary = db.scalar(
         select(ExerciseAnswer).where(
             ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
         )
     )
     reference = primary.analysis_id if primary and primary.analysis_id else None
-    return AnswerSearch(
-        uci=move.uci(),
-        san=board.san(move),
-        board=decision_board(db.get(Game, decision.game_id), decision.ply),
-        original=db.get(EngineAnalysis, reference or decision.before_analysis_id),
-        policy=exercise.policy,
-    )
+    return db.get(EngineAnalysis, reference or decision.before_analysis_id)
 
 
 def search_answer(engine, search):
@@ -407,11 +420,13 @@ def search_answer(engine, search):
 
 def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None):
     """Record one answer. ``graded`` is ``search_answer``'s result for an unseen answer,
-    searched before the account lock was taken; without it the search runs here."""
+    searched before the write unit opened; without it the search runs here, with
+    ``engine``. Requests pass no engine, so an answer that still needs a search is
+    refused with a conflict instead of searching under the account lock."""
     session = open_session(db, session_id)
     exercise = db.get(Exercise, session.exercise_id)
     if session.completed:
-        return completed_feedback(db, exercise, session)
+        return completed_feedback(db, exercise, session, line_parameters(settings))
     snapshot = opening_recall.get_snapshot(db, session)
     if not snapshot:
         require_active_review(db, exercise.id)
@@ -429,6 +444,8 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     )
     if answer is None and exercise.source == "game":
         if graded is None or graded["uci"] != uci:
+            if engine is None:
+                raise Conflict("This answer needs a fresh search; try the move again.")
             graded = search_answer(engine, answer_search(db, session_id, uci))
         answer = ExerciseAnswer(exercise_id=exercise.id, **graded)
         db.add(answer)
@@ -442,11 +459,17 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     if grade in {"failure", "inaccuracy"}:
         session.failed = True
         record_once(db, session, scheduler, settings, elapsed)
-        db.commit()
+        db.flush()
         result = {
             "completed": False,
             "attempt_id": attempt.id,
-            **explanation_brief(db, session.id, attempt.id, include_reply=True),
+            **explanation_brief(
+                db,
+                session.id,
+                attempt.id,
+                include_reply=True,
+                parameters=line_parameters(settings),
+            ),
             "grade": grade,
             "fen": fen,
             "practice_only": session.mode == "focus",
@@ -475,11 +498,11 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     session.completed_at = now()
     record_once(db, session, scheduler, settings, elapsed)
     board.push(move)
-    db.commit()
+    db.flush()
     result = {
         "completed": True,
         "attempt_id": attempt.id,
-        **explanation_brief(db, session.id, attempt.id),
+        **explanation_brief(db, session.id, attempt.id, parameters=line_parameters(settings)),
         "grade": grade,
         "fen": board.fen(),
         "message": "Practice saved. Your review schedule is unchanged."
@@ -540,11 +563,11 @@ def reveal(db, session_id, scheduler, settings):
             review.revealed = True
         session.completed = True
         session.completed_at = now()
-        db.commit()
+        db.flush()
     result = {
         "completed": True,
         "grade": "revealed",
-        **explanation_brief(db, session.id, solution=True),
+        **explanation_brief(db, session.id, solution=True, parameters=line_parameters(settings)),
         **feedback(db, exercise, session),
         "fen": frame.fen,
         "reveal_frame": frame.model_dump(),

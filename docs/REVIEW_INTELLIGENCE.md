@@ -103,11 +103,18 @@ played move from the root search's own lines, the decision compares it there too
 through a saved restricted view of that search (same limits, that move first),
 never a new search at other limits. An exercise already made
 from it keeps its answers and schedule (rewriting them would drop answers graded in
-practice, and the same mistake in other games can share the exercise); only a
-decision without one gets a new one from the deeper search. While the decision is
-no longer a mistake its card is ineligible, so it leaves the Due queue and focused
-practice and cannot be started directly, unless another meaningful decision shares
-its position; a later search that makes it a mistake again puts the card back.
+practice, and the same mistake in other games can share the exercise); the card
+grades unseen moves against, and lists the candidates of, the search its answers
+came from, never the decision's newer one (the evidence dialog and the played-line
+facts stay decision-level, matching the game review). Only a decision without one
+gets a new one from the deeper search. While the decision is no longer a mistake,
+or its current search no longer grades the card's primary answer correct or
+acceptable (judged inside that search, never against scores from another depth,
+so a search that does not list the answer cannot vouch for it and the card waits
+even when the answer might be within tolerance), its card is ineligible: it leaves the Due queue and
+focused practice and cannot be started directly, unless another meaningful
+decision on its position still supports it. A later search that backs it again
+puts the card back, and startup rechecks every game card the same way.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original
@@ -296,7 +303,7 @@ score/prose changes. Cold SRS still excludes all review-intelligence fields.
 
 ## Practical difficulty and human naturalness
 
-`review_intelligence/difficulty.py` derives `practical-2` from saved Stockfish and
+`review_intelligence/difficulty.py` derives `practical-3` from saved Stockfish and
 human evidence. It performs no search, changes no grades, and uses no coach
 identity. Full-game and variation reports expose the same typed assessment.
 Legacy Stockfish-only reports retain structural facts and explicitly abstain
@@ -319,7 +326,11 @@ claim that other moves are unplayable. Baseline MultiPV=2 does not enumerate eve
 acceptable choice; `alternatives_complete=false` and an explicit limitation
 preserve that distinction. Missing runner-up evidence cannot establish an only
 move. `only_good_move_at_depth` requires a nonlosing best move and a runner-up at
-least 150 cp worse that reaches -150 cp or a losing mate. A missed forced win
+least 150 cp worse that reaches -150 cp or a losing mate. Calling -1.50 losing
+follows the usual convention that ±1.50 is a decisive advantage (the Informator
++− sign), and Stockfish calibrates +1.00 to a 50% win chance in its own play.
+The decisive-swing rule and the advantage bands use -2.00 instead, a stricter
+bar for calling a move's own result lost; only-move evidence uses -1.50. A missed forced win
 while retaining +5 is **not** a sole defensive resource. These are bounded-search
 and rule conclusions, not proof against perfect play.
 
@@ -344,7 +355,9 @@ in diffuse policies from being called dominant, and avoids treating a rank just
 outside top three as rare. This is a heuristic interpretation, **not an empirical
 finding about player success**. Thresholds/version are explicit and boundary-tested.
 
-Preferred best moves receive the natural band. Other modeled moves are
+Preferred best moves, and any best move among the model's top three choices,
+receive the natural band: a move the model ranks second at 9% is not a hard find,
+nor is its top choice in a diffuse policy. Other modeled moves are
 challenging; difficult additionally requires unusual model policy and an actual
 supported tactical horizon of at least three plies, a verified sacrifice of that
 best move, or the narrow defensive resource. Rarity alone cannot earn difficult.

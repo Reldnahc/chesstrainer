@@ -121,6 +121,7 @@ def seed(db):
             f'[Termination "{termination}"]\n[Result "{moves.split()[-1]}"]\n\n{moves}'
         )
         import_games(db, "insights.pgn", pgn, ["Student"], None)
+        db.commit()
     games = db.scalars(select(Game).order_by(Game.played_at)).all()
     for index, rows in REVIEWS.items():
         job = AnalysisJob(kind="game_review", status="completed")
@@ -226,9 +227,9 @@ def test_library_insights_from_saved_games(settings, monkeypatch):
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0
 
 
-def test_each_game_is_replayed_once_and_the_cache_is_bounded(settings, monkeypatch):
+def test_each_game_is_replayed_once_until_it_or_its_review_changes(settings, monkeypatch):
     from trainer import game_insights
-    from trainer.recent_cache import RecentCache
+    from trainer.models import GameReview, InsightFacts
     from trainer.routes import insights
 
     built = []
@@ -238,34 +239,165 @@ def test_each_game_is_replayed_once_and_the_cache_is_bounded(settings, monkeypat
         return game_insights.game_facts(game, *args)
 
     monkeypatch.setattr(insights, "game_facts", counted)
-    monkeypatch.setattr(insights, "_facts", RecentCache(10))
     app = create_app(settings, workers=False, start_engine=False)
     with TestClient(app) as client:
         with app.state.sessions() as db:
-            seed(db)
+            ids = seed(db)
         first = client.get("/api/insights").json()
         assert len(built) == 3
         # A filter change or a repeat replays nothing while the reviews are unchanged.
         assert client.get("/api/insights?speed=blitz").json()["games"] == 2
         assert client.get("/api/insights").json() == first
         assert len(built) == 3
+        with app.state.sessions() as db:
+            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
+            # A saved report or an adopted refinement bumps the review's revision.
+            db.get(GameReview, ids[0]).revision += 1
+            db.commit()
+        built.clear()
+        assert client.get("/api/insights").json() == first
+        assert built == [ids[0]]
 
-        # A library larger than the cache reuses what it holds: hits are read
-        # before misses are stored, so a miss never evicts a game still to come.
-        monkeypatch.setattr(insights, "_facts", RecentCache(2))
-        built.clear()
+    # Saved facts outlive the process: a restarted server replays nothing.
+    built.clear()
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
         assert client.get("/api/insights").json() == first
-        assert len(built) == 3
-        built.clear()
+    assert built == []
+
+
+def test_saved_facts_read_back_exactly(sessions):
+    from dataclasses import fields, replace
+    from datetime import datetime, timedelta, timezone
+
+    from trainer.game_insights import game_facts, pack_facts, unpack_facts
+    from trainer.review_reports import load_accuracy_scores
+
+    def same(left, right):
+        # Equal values of the same types: dataclass equality alone takes True for 1.
+        assert left == right
+        for item in fields(left):
+            a, b = getattr(left, item.name), getattr(right, item.name)
+            if item.name == "plies":
+                for row_a, row_b in zip(a, b, strict=True):
+                    same(row_a, row_b)
+            else:
+                assert type(a) is type(b), item.name
+                if isinstance(a, datetime):
+                    assert a.utcoffset() == b.utcoffset()
+
+    with sessions() as db:
+        ids = seed(db)
+        scores = load_accuracy_scores(db, ids)
+        built = [game_facts(db.get(Game, game_id), scores.get(game_id), 1000) for game_id in ids]
+    assert any(facts.reviewed for facts in built) and any(facts.clocked for facts in built)
+    offset = timezone(timedelta(hours=-5))
+    for facts in built:
+        for when in (
+            facts.played_at,
+            datetime(2025, 3, 1, 9, 30, 15, 123456, tzinfo=offset),
+            datetime(2025, 3, 1, 9, 30),
+            None,
+        ):
+            variant = replace(facts, played_at=when, started_at=when)
+            same(unpack_facts(pack_facts(variant)), variant)
+
+
+def test_damaged_saved_facts_are_rebuilt(settings):
+    from trainer.models import InsightFacts
+
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            seed(db)
+        first = client.get("/api/insights").json()
+        with app.state.sessions() as db:
+            for row in db.scalars(select(InsightFacts)):
+                row.facts = b"not saved facts"
+            db.commit()
         assert client.get("/api/insights").json() == first
-        assert len(built) == 1
-    assert insights.FACTS_CACHE_SIZE <= 6000
+        with app.state.sessions() as db:
+            assert all(row.facts != b"not saved facts" for row in db.scalars(select(InsightFacts)))
+
+
+def test_rebuilt_facts_are_saved_as_they_go(settings, monkeypatch):
+    from trainer.models import InsightFacts
+    from trainer.routes import insights
+
+    saved = []
+    original = insights.save
+
+    def counted(workspace, rows):
+        saved.append(len(rows))
+        original(workspace, rows)
+
+    monkeypatch.setattr(insights, "SAVE_EVERY", 2)
+    monkeypatch.setattr(insights, "save", counted)
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            seed(db)
+        client.get("/api/insights")
+        with app.state.sessions() as db:
+            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
+    assert saved == [2, 1]
+
+
+def test_facts_of_a_game_deleted_meanwhile_are_not_saved(settings):
+    from threading import Lock
+
+    from trainer.db import Units
+    from trainer.models import InsightFacts
+    from trainer.routes.insights import save
+
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app):
+        workspace = Units(app.state.sessions, Lock())
+        save(workspace, [InsightFacts(game_id="gone", key="k", facts=b"")])
+        with app.state.sessions() as db:
+            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 0
+
+
+def test_facts_key_follows_everything_the_facts_read():
+    from datetime import UTC, datetime
+    from types import SimpleNamespace
+
+    from trainer.game_insights import facts_key
+
+    game = SimpleNamespace(
+        pgn="1. e4 *",
+        learner_color=True,
+        white="A",
+        black="B",
+        played_on="2025-01-01",
+        played_at=None,
+    )
+    base = facts_key(game, 1500, 3, True)
+    assert facts_key(game, 1500, 3, True) == base
+    # An unfinished review's revision does not matter; its scores are not read.
+    assert facts_key(game, 1500, 3, False) == facts_key(game, 1500, 4, False)
+    for changed in (
+        facts_key(game, 1600, 3, True),
+        facts_key(game, 1500, 4, True),
+        facts_key(game, 1500, 3, False),
+        facts_key(SimpleNamespace(**{**vars(game), "pgn": "1. d4 *"}), 1500, 3, True),
+        facts_key(SimpleNamespace(**{**vars(game), "learner_color": False}), 1500, 3, True),
+        facts_key(SimpleNamespace(**{**vars(game), "black": "C"}), 1500, 3, True),
+        facts_key(SimpleNamespace(**{**vars(game), "white": "C"}), 1500, 3, True),
+        facts_key(
+            SimpleNamespace(**{**vars(game), "played_at": datetime(2025, 1, 1, tzinfo=UTC)}),
+            1500,
+            3,
+            True,
+        ),
+    ):
+        assert changed != base
 
 
 def test_facts_keep_no_per_instance_dictionary():
     from trainer.game_insights import game_facts
 
-    # Cached for the life of the process: slots keep each ply small.
+    # Every request unpacks a library's facts: slots keep each ply small.
     pgn = '[White "Student"]\n[Black "Rival"]\n[Result "*"]\n\n1. e4 e5 *'
     facts = game_facts(Game(id="slots", pgn=pgn, learner_color=True, white="Student"))
     assert not hasattr(facts, "__dict__")
@@ -295,6 +427,7 @@ def test_unrated_games_stay_out_of_insights(settings):
                     f'[Result "{moves.split()[-1]}"]\n\n{moves}'
                 )
                 import_games(db, "rated.pgn", pgn, ["Student"], None)
+                db.commit()
             saved = {game.pgn.split('"')[1]: game.rated for game in db.scalars(select(Game))}
         assert saved == {"Rated Blitz game": True, "Casual Blitz game": False, "Live Chess": None}
         data = client.get("/api/insights").json()

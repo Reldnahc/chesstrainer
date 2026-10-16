@@ -1,9 +1,9 @@
 import json
-import threading
 from datetime import datetime, timezone
 
 import httpx
 import pytest
+from account_units import job_context
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
@@ -61,7 +61,7 @@ def client(settings, rows, seen=None):
 
 def run(job, sessions, settings, remote, cancelled=lambda: False):
     try:
-        fetch_import(job, sessions, settings, remote, cancelled, threading.Lock())
+        fetch_import(job_context(sessions, job, settings, cancelled), remote)
     finally:
         remote.close()
 

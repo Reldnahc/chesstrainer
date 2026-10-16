@@ -111,6 +111,8 @@ class ReviewLine(Contract):
     findings: list[Finding]
     material_delta: int | None
     settled: bool
+    # The line parameters it was read with; absent on lines saved before them.
+    horizon: dict[str, int] | None = None
 
 
 class SacrificeEvidence(Contract):

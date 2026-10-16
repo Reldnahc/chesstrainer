@@ -7,6 +7,7 @@ import Pagination from "../Pagination";
 import EmptyState from "../EmptyState";
 import { navigate, openingCataloguePath } from "../navigation";
 import { QueryReloading, QueryResult, reloading, useQuery } from "../useQuery";
+import { plural } from "../format";
 
 const PAGE = 50;
 
@@ -35,7 +36,7 @@ export default function OpeningCatalogue({ query, eco, offset }: { query: string
     </form>
     <QueryReloading query={catalogue} label="opening lines" />
     <QueryResult query={catalogue} label="opening lines">{(lines) => <div className="opening-catalogue-results reloadable" data-reloading={reloading(catalogue)}>
-      <p className="small muted">{lines.total} matching {lines.total === 1 ? "line" : "lines"}</p>
+      <p className="small muted">{plural(lines.total, "matching line")}</p>
       {lines.items.length
         ? <div className="opening-results">{lines.items.map(line => <CatalogueLine key={line.source_key} line={line} />)}</div>
         : <EmptyState presentation="compact">No opening lines match this search.</EmptyState>}

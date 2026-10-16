@@ -143,12 +143,6 @@ main.review-page {
   flex-direction: column;
   gap: var(--panel-gap, var(--space-4));
 }
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: var(--panel-padding);
-}
 .panel > .action-control {
   align-self: flex-start;
 }
@@ -362,24 +356,6 @@ main.review-page {
   }
   :where(.workspace-page) .form-panel > .action-control--primary {
     width: 100%;
-  }
-}
-}
-@layer surfaces {
-/* Phones flatten sections: a panel keeps its surface only when it opts in
-   with .panel--card (docs/UI_COMPONENTS.md#surfaces). Dialogs float, so
-   they keep theirs. A divider separates neighbouring flat sections. This is a
-   policy over every page's panels, so its layer sits above components and pages. */
-@media (max-width: 760px) {
-  .panel:not(dialog):not(.panel--card) {
-    padding: 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-  }
-  .panel:not(dialog):not(.panel--card) + .panel:not(dialog):not(.panel--card) {
-    padding-top: var(--page-gap);
-    border-top: 1px solid var(--line);
   }
 }
 }

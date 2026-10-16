@@ -5,9 +5,11 @@ from datetime import date, datetime, timezone
 import chess.pgn
 from sqlalchemy import (
     JSON,
+    CheckConstraint,
     DateTime,
     ForeignKey,
     Index,
+    LargeBinary,
     MetaData,
     Text,
     TypeDecorator,
@@ -16,6 +18,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.sqlite import insert as sqlite_insert
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+
+from trainer.job_kinds import JobKind, JobStatus, allowed
 
 
 def now() -> datetime:
@@ -56,10 +60,10 @@ def uid() -> str:
     return uuid.uuid4().hex
 
 
-# New indexes, checks, foreign keys and primary keys get predictable names that
-# migrations can refer to. Unique constraints are left out: the existing ones
-# were named by hand or not at all, and renaming them would rebuild each table
-# (engine_analyses included) at the next start. Name a new one explicitly.
+# Every index and constraint gets a predictable name that migrations can refer
+# to; revision eb978e634f57 rebuilt the older tables so theirs carry these names
+# too. Unique constraints are named by ``unique`` below rather than here: older
+# revisions create unnamed ones and drop them by the names they gave them.
 NAMING_CONVENTION = {
     "ix": "ix_%(column_0_label)s",
     "ck": "ck_%(table_name)s_%(constraint_name)s",
@@ -68,22 +72,27 @@ NAMING_CONVENTION = {
 }
 
 
+def unique(table, *columns):
+    """A unique constraint named as ``uq_<table>_<columns>``, like every other one."""
+    return UniqueConstraint(*columns, name=f"uq_{table}_{'_'.join(columns)}")
+
+
 class Base(DeclarativeBase):
     metadata = MetaData(naming_convention=NAMING_CONVENTION)
 
 
 class User(Base):
     __tablename__ = "users"
+    __table_args__ = (unique("users", "username"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    username: Mapped[str] = mapped_column(unique=True)
+    username: Mapped[str] = mapped_column()
     password: Mapped[str]
     admin: Mapped[bool] = mapped_column(default=False)
     disabled: Mapped[bool] = mapped_column(default=False)
-    chesscom_username: Mapped[str] = mapped_column(default="")
     onboarding_completed: Mapped[bool] = mapped_column(default=False, server_default="0")
     # Set by an administrator's reset; the account must choose its own password next.
     password_change_required: Mapped[bool] = mapped_column(default=False, server_default="0")
-    created: Mapped[float]
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
     # Polling pauses after a week without requests; see trainer.presence.
     last_seen_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     away_since: Mapped[datetime | None] = mapped_column(UTCDateTime())
@@ -93,7 +102,7 @@ class AuthSession(Base):
     __tablename__ = "auth_sessions"
     digest: Mapped[str] = mapped_column(primary_key=True)
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    expires: Mapped[float]
+    expires_at: Mapped[datetime] = mapped_column(UTCDateTime())
 
 
 class SiteSetting(Base):
@@ -135,7 +144,7 @@ class Game(Owned, Base):
     # The library lists an account's games newest first; the unique constraint
     # already leads with user_id, so the column needs no index of its own.
     __table_args__ = (
-        UniqueConstraint("user_id", "fingerprint"),
+        unique("games", "user_id", "fingerprint"),
         Index("ix_games_user_id_played_at", "user_id", "played_at", "created_at", "id"),
     )
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
@@ -145,7 +154,8 @@ class Game(Owned, Base):
     black: Mapped[str]
     learner_color: Mapped[bool]
     pgn: Mapped[str] = mapped_column(Text)
-    played_on: Mapped[str | None]
+    # When the game ended, in UTC. The PGN's own Date text, which may be partial
+    # ("2024.??.??"), is read from ``pgn`` (``game_library.pgn_date``).
     played_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     # Mainline half-moves, saved at insert so the library never replays PGNs.
     move_count: Mapped[int] = mapped_column(default=mainline_plies)
@@ -175,12 +185,14 @@ class AnalysisJob(Owned, Base):
     __table_args__ = (
         Index("ix_analysis_jobs_user_id_status", "user_id", "status"),
         Index("ix_analysis_jobs_claim", "status", "kind", "priority", "created_at"),
+        CheckConstraint(allowed("kind", JobKind), name="kind"),
+        CheckConstraint(allowed("status", JobStatus), name="status"),
     )
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    kind: Mapped[str]  # trainer.job_lifecycle.JobKind
+    kind: Mapped[str]  # trainer.job_kinds.JobKind
     import_id: Mapped[str | None] = mapped_column(ForeignKey("game_imports.id"), index=True)
-    status: Mapped[str] = mapped_column(default="queued")  # JobStatus
+    status: Mapped[str] = mapped_column(default=JobStatus.QUEUED)  # JobStatus
     games_total: Mapped[int] = mapped_column(default=0)
     games_processed: Mapped[int] = mapped_column(default=0)
     positions_triaged: Mapped[int] = mapped_column(default=0)
@@ -196,7 +208,7 @@ class AnalysisJob(Owned, Base):
 
 
 class ProviderImport(Owned, Base):
-    __tablename__ = "chesscom_imports"
+    __tablename__ = "provider_imports"
     job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), primary_key=True)
     provider: Mapped[str] = mapped_column(default="chesscom", server_default="chesscom")
     username: Mapped[str]
@@ -217,16 +229,11 @@ class ProviderImport(Owned, Base):
 
 
 class ProviderCheckpoint(Owned, Base):
-    __tablename__ = "chesscom_archives"
-    job_id: Mapped[str] = mapped_column(ForeignKey("chesscom_imports.job_id"), primary_key=True)
+    __tablename__ = "provider_checkpoints"
+    job_id: Mapped[str] = mapped_column(ForeignKey("provider_imports.job_id"), primary_key=True)
     url: Mapped[str] = mapped_column(primary_key=True)
     games_selected: Mapped[int]
     fetched_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
-
-
-# Stable physical tables and aliases preserve existing jobs and offline tools.
-ChessComImport = ProviderImport
-ChessComArchive = ProviderCheckpoint
 
 
 class ProviderConnection(Owned, Base):
@@ -240,8 +247,9 @@ class ProviderConnection(Owned, Base):
 
 class EngineAnalysis(Base):
     __tablename__ = "engine_analyses"
+    __table_args__ = (unique("engine_analyses", "cache_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    cache_key: Mapped[str] = mapped_column(unique=True)
+    cache_key: Mapped[str] = mapped_column()
     fen: Mapped[str]
     engine_version: Mapped[str]
     config: Mapped[dict] = mapped_column(JSON)
@@ -251,8 +259,9 @@ class EngineAnalysis(Base):
 
 class GameReview(Owned, Base):
     __tablename__ = "game_reviews"
+    __table_args__ = (unique("game_reviews", "job_id"),)
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
-    job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), unique=True)
+    job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"))
     rating: Mapped[int]
     revision: Mapped[int] = mapped_column(default=0, server_default="0")
     refinement_plan: Mapped[dict | None] = mapped_column(JSON)
@@ -260,7 +269,7 @@ class GameReview(Owned, Base):
 
 class ReviewRefinement(Owned, Base):
     __tablename__ = "review_refinements"
-    __table_args__ = (UniqueConstraint("user_id", "task_key"),)
+    __table_args__ = (unique("review_refinements", "user_id", "task_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
     ply: Mapped[int]
@@ -284,8 +293,9 @@ class HumanAnalysis(Base):
     """
 
     __tablename__ = "human_analyses"
+    __table_args__ = (unique("human_analyses", "cache_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    cache_key: Mapped[str] = mapped_column(unique=True)
+    cache_key: Mapped[str] = mapped_column()
     request: Mapped[dict] = mapped_column(JSON)
     policy: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
@@ -354,7 +364,7 @@ class PlayProfile(Owned, Base):
 
 class Decision(Owned, Base):
     __tablename__ = "decisions"
-    __table_args__ = (UniqueConstraint("game_id", "ply"),)
+    __table_args__ = (unique("decisions", "game_id", "ply"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
     ply: Mapped[int]
@@ -385,7 +395,7 @@ class ClassificationAnalysis(Owned, Base):
     """Supplemental engine evidence; never replaces exercise grading evidence."""
 
     __tablename__ = "classification_analyses"
-    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
+    __table_args__ = (unique("classification_analyses", "user_id", "cache_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"), index=True)
     cache_key: Mapped[str]
@@ -399,7 +409,7 @@ class ClassificationProbe(Owned, Base):
     """Immutable tail/defense evidence attached to a completed classification supplement."""
 
     __tablename__ = "classification_probes"
-    __table_args__ = (UniqueConstraint("classification_analysis_id", "query_key"),)
+    __table_args__ = (unique("classification_probes", "classification_analysis_id", "query_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     classification_analysis_id: Mapped[str] = mapped_column(
         ForeignKey("classification_analyses.id"), index=True
@@ -421,7 +431,7 @@ class ClassificationTask(Owned, Base):
 
 class ClassificationRun(Owned, Base):
     __tablename__ = "classification_runs"
-    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
+    __table_args__ = (unique("classification_runs", "user_id", "cache_key"),)
     provider: Mapped[str] = mapped_column(default="legacy_llm", server_default="legacy_llm")
     version: Mapped[str] = mapped_column(default="legacy", server_default="legacy")
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
@@ -442,7 +452,7 @@ class ClassificationRun(Owned, Base):
 
 class SkillEvidence(Owned, Base):
     __tablename__ = "skill_evidence"
-    __table_args__ = (UniqueConstraint("decision_id", "skill_id"),)
+    __table_args__ = (unique("skill_evidence", "decision_id", "skill_id"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"), index=True)
     skill_id: Mapped[str] = mapped_column(ForeignKey("skills.id"), index=True)
@@ -454,13 +464,13 @@ class SkillEvidence(Owned, Base):
 
 class Exercise(Owned, Base):
     __tablename__ = "exercises"
-    __table_args__ = (UniqueConstraint("user_id", "identity"),)
+    __table_args__ = (unique("exercises", "user_id", "identity"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     identity: Mapped[str]
     source: Mapped[str]
     decision_id: Mapped[str | None] = mapped_column(ForeignKey("decisions.id"), index=True)
     fen: Mapped[str]
-    orientation: Mapped[str]
+    learner_color: Mapped[bool]  # True when the learner plays White, as everywhere.
     explanation: Mapped[str] = mapped_column(Text, default="")
     policy: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
@@ -497,7 +507,7 @@ class SRSState(Owned, Base):
 class ReviewSession(Owned, Base):
     __tablename__ = "review_sessions"
     last_attempt_id: Mapped[str | None] = mapped_column(
-        ForeignKey("exercise_attempts.id", use_alter=True, name="fk_review_sessions_last_attempt")
+        ForeignKey("exercise_attempts.id", use_alter=True)
     )
     # "review" (scheduled recall), "focus" (skill practice) or "lesson" (an attempt
     # from the removed lessons, kept as archived history).
@@ -524,8 +534,9 @@ class Attempt(Owned, Base):
 
 class Review(Owned, Base):
     __tablename__ = "reviews"
+    __table_args__ = (unique("reviews", "session_id"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"), unique=True)
+    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"))
     exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
     rating: Mapped[str]
     response_ms: Mapped[int]
@@ -539,7 +550,7 @@ class Review(Owned, Base):
 
 class PuzzleSession(Owned, Base):
     __tablename__ = "puzzle_sessions"
-    __table_args__ = (UniqueConstraint("user_id", "request_id"),)
+    __table_args__ = (unique("puzzle_sessions", "user_id", "request_id"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     request_id: Mapped[str]
     provider_id: Mapped[str]
@@ -559,7 +570,7 @@ class PuzzleSession(Owned, Base):
 
 class PuzzleAttempt(Owned, Base):
     __tablename__ = "puzzle_attempts"
-    __table_args__ = (UniqueConstraint("session_id", "request_id"),)
+    __table_args__ = (unique("puzzle_attempts", "session_id", "request_id"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     session_id: Mapped[str] = mapped_column(ForeignKey("puzzle_sessions.id"), index=True)
     request_id: Mapped[str]
@@ -572,11 +583,21 @@ class PuzzleAttempt(Owned, Base):
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 
+class InsightFacts(Owned, Base):
+    """One game's Insights facts, saved so a library is replayed once, not per request."""
+
+    __tablename__ = "insight_facts"
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    # What the facts were built from (game_insights.facts_key); a mismatch rebuilds them.
+    key: Mapped[str]
+    facts: Mapped[bytes] = mapped_column(LargeBinary)
+
+
 class GamePuzzleSearch(Owned, Base):
     """One generator pass over a game, recorded even when nothing qualified."""
 
     __tablename__ = "game_puzzle_searches"
-    __table_args__ = (UniqueConstraint("user_id", "game_id", "generator_version"),)
+    __table_args__ = (unique("game_puzzle_searches", "user_id", "game_id", "generator_version"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
     generator_version: Mapped[str]
@@ -590,7 +611,7 @@ class GamePuzzle(Owned, Base):
     """A verified line mined from one of the account's games, or why it was set aside."""
 
     __tablename__ = "game_puzzles"
-    __table_args__ = (UniqueConstraint("user_id", "game_id", "ply", "generator_version"),)
+    __table_args__ = (unique("game_puzzles", "user_id", "game_id", "ply", "generator_version"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
     ply: Mapped[int]
@@ -607,7 +628,7 @@ class GamePuzzle(Owned, Base):
 
 class StudyLessonSession(Owned, Base):
     __tablename__ = "study_lesson_sessions"
-    __table_args__ = (UniqueConstraint("user_id", "request_id"),)
+    __table_args__ = (unique("study_lesson_sessions", "user_id", "request_id"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     request_id: Mapped[str]
     course_id: Mapped[str]
@@ -627,7 +648,7 @@ class StudyLessonSession(Owned, Base):
 
 class StudyLessonCommand(Owned, Base):
     __tablename__ = "study_lesson_commands"
-    __table_args__ = (UniqueConstraint("session_id", "request_id"),)
+    __table_args__ = (unique("study_lesson_commands", "session_id", "request_id"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     session_id: Mapped[str] = mapped_column(ForeignKey("study_lesson_sessions.id"), index=True)
     request_id: Mapped[str]
@@ -638,7 +659,9 @@ class StudyLessonCommand(Owned, Base):
 
 class StudyLessonProgress(Owned, Base):
     __tablename__ = "study_lesson_progress"
-    __table_args__ = (UniqueConstraint("user_id", "course_id", "course_revision", "chapter_id"),)
+    __table_args__ = (
+        unique("study_lesson_progress", "user_id", "course_id", "course_revision", "chapter_id"),
+    )
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     course_id: Mapped[str]
     course_revision: Mapped[str]
@@ -653,7 +676,9 @@ class StudyLessonProgress(Owned, Base):
 class OpeningStudy(Owned, Base):
     __tablename__ = "opening_studies"
     __table_args__ = (
-        UniqueConstraint("user_id", "source", "source_key", "source_version", "color"),
+        unique(
+            "opening_studies", "user_id", "source", "source_key", "source_version", "learner_color"
+        ),
     )
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     source: Mapped[str]
@@ -661,7 +686,7 @@ class OpeningStudy(Owned, Base):
     source_version: Mapped[str]
     name: Mapped[str]
     eco: Mapped[str | None]
-    color: Mapped[str]
+    learner_color: Mapped[bool]
     snapshot: Mapped[dict] = mapped_column(JSON)
     active: Mapped[bool] = mapped_column(default=True)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
@@ -693,7 +718,7 @@ class OpeningRecallSnapshot(Owned, Base):
     session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"), primary_key=True)
     answer_revision: Mapped[int]
     fen: Mapped[str]
-    orientation: Mapped[str]
+    learner_color: Mapped[bool]
     answers: Mapped[list] = mapped_column(JSON)
     studies: Mapped[list] = mapped_column(JSON)
     non_scheduling_reason: Mapped[str | None]

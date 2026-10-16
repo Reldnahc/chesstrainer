@@ -32,10 +32,6 @@
             "title": "Admin",
             "type": "boolean"
           },
-          "chesscom_username": {
-            "title": "Chesscom Username",
-            "type": "string"
-          },
           "id": {
             "title": "Id",
             "type": "string"
@@ -57,7 +53,6 @@
           "id",
           "username",
           "admin",
-          "chesscom_username",
           "onboarding_completed",
           "password_change_required"
         ],
@@ -1199,6 +1194,16 @@
             ],
             "title": "Error"
           },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CourseFileLocation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "steps": {
             "additionalProperties": {
               "$ref": "#/components/schemas/CourseFileStep"
@@ -1236,6 +1241,31 @@
           "built_in_restored"
         ],
         "title": "CourseFileDeleted",
+        "type": "object"
+      },
+      "CourseFileLocation": {
+        "additionalProperties": false,
+        "properties": {
+          "chapter": {
+            "title": "Chapter",
+            "type": "string"
+          },
+          "step": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Step"
+          }
+        },
+        "required": [
+          "chapter"
+        ],
+        "title": "CourseFileLocation",
         "type": "object"
       },
       "CourseFileProblem": {
@@ -7228,8 +7258,8 @@
             "type": "array"
           },
           "version": {
-            "const": "practical-2",
-            "default": "practical-2",
+            "const": "practical-3",
+            "default": "practical-3",
             "title": "Version",
             "type": "string"
           }
@@ -8949,6 +8979,20 @@
             },
             "title": "Frames",
             "type": "array"
+          },
+          "horizon": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Horizon"
           },
           "material_delta": {
             "anyOf": [

@@ -4,6 +4,7 @@ import copy
 
 import chess
 import pytest
+from account_units import units_for
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 from trainer.api import create_app
@@ -119,10 +120,11 @@ def test_mate_transitions(black, kind):
 @pytest.mark.parametrize("black", [False, True])
 def test_promotion(black):
     result, _ = LocalClassifier().classify(
+        # The king is near enough to win the pawn once White delays promoting.
         evidence(
-            "6k1/P7/8/8/8/8/8/6K1 w - - 0 1",
-            ["a7a8q", "g8f7", "a8a1", "f7e6"],
-            ["g1f2", "g8f7", "f2e3", "f7e6"],
+            "8/P1k5/8/8/8/8/8/6K1 w - - 0 1",
+            ["a7a8q", "c7d7", "a8a1", "d7e6"],
+            ["g1f2", "c7b7", "f2e3", "b7a7", "e3d4", "a7b6"],
             800,
             0,
             black,
@@ -179,15 +181,18 @@ def test_local_cache_rejection_and_backfill_preserve_srs(settings):
             state = db.get(SRSState, fixture["exercise_id"])
             saved = state.card, state.due, state.reviews, state.retired_at, state.eligible
             classifier = LocalClassifier(settings)
-            assert classify_decision(db, decision, classifier)
-            assert classify_decision(db, decision, classifier)
+            db.commit()
+            units = units_for(db)
+            assert classify_decision(units, decision, classifier)
+            assert classify_decision(units, decision, classifier)
             runs = db.scalars(select(ClassificationRun)).all()
             assert len(runs) == 1 and runs[0].provider == "local_rules"
             assert runs[0].response["primary_skill"] == "unclassified"  # Short fixture PV.
             reject_run(db, runs[0].id)
-            assert not classify_decision(db, decision, classifier)
+            db.commit()
+            assert not classify_decision(units, decision, classifier)
             settings.classification_max_plies = 6
-            assert classify_decision(db, decision, LocalClassifier(settings))
+            assert classify_decision(units, decision, LocalClassifier(settings))
             assert len(db.scalars(select(ClassificationRun)).all()) == 2
         job_id = client.post("/api/classifications/retry").json()["job_id"]
         app.state.runner.run_job(job_id)
@@ -208,7 +213,7 @@ def test_no_provider_configuration_or_paid_job_paths(settings, monkeypatch):
         assert "unused-legacy-test-key" not in str(config)
         assert client.post("/api/course/teaching").status_code == 410
         with client.app.state.sessions() as db:
-            job = AnalysisJob(kind="teaching", status="cancelled")
+            job = AnalysisJob(kind="retired", status="cancelled")
             db.add(job)
             db.commit()
             assert client.post(f"/api/jobs/{job.id}/retry").status_code == 410

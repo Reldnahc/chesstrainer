@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { plural, shortDate } from "./format";
+import { plural, shortDate, pluralWord } from "./format";
 import { OutcomeBadge } from "./GameHistory";
 import { ChartColumn } from "lucide-react";
 import { api, read, type Schema } from "./api";
@@ -39,7 +39,7 @@ const endingLabels: Record<string, string> = {
   insufficient_material: "Insufficient material", fifty_moves: "Fifty-move rule", other: "Other",
 };
 const shapeText: Record<Schema["Shape"]["shape"], [string, string]> = {
-  wire_to_wire: ["Stayed ahead", "Won after going 1.5 up, never back to level and never 1.0 down"],
+  wire_to_wire: ["Stayed ahead", "Won after going 1.5 up, never back to 0.0 or below and never 1.0 down"],
   back_and_forth: ["Back and forth", "The lead changed sides two or more times"],
   unsettled: ["Unsettled", "No clear lead, or a lead that faded without a swing"],
   slipped: ["Let slip", "Clearly winning, then not won"],
@@ -277,14 +277,14 @@ function Openings({ data }: { data: Insights }) {
         </tbody>
       </table>
     </div>
-    <p className="small muted insight-note">Openings are named from the bundled Lichess opening list. Score counts a draw as half a win; move accuracy comes from reviewed games only.{rest > 0 ? ` ${plural(rest, "opening")} with a single game are not shown.` : ""}</p>
+    <p className="small muted insight-note">Openings are named from the bundled Lichess opening list. Score counts a draw as half a win; move accuracy comes from reviewed games only.{rest > 0 ? ` ${plural(rest, "opening with a single game is", "openings with a single game are")} not shown.` : ""}</p>
   </Panel>;
 }
 
 function Theory({ data }: { data: Insights }) {
   const { theory } = data;
   if (!theory.reviewed_games) return null;
-  return <Panel id="theory" title="Leaving the opening book" meta={`${theory.costly_exits}/${theory.exits} exits`}>
+  return <Panel id="theory" title="Leaving the opening book" meta={`${theory.costly_exits}/${theory.exits} ${pluralWord(theory.exits, "exit")}`}>
     <Lead>{theory.costly_exits
       ? <>In {plural(theory.costly_exits, "reviewed game")}, your first move out of book cost a pawn or more: on average <strong>{pawns(theory.average_cost_cp)}</strong> around move {fixed(theory.average_exit_move, 0)}.</>
       : theory.exits ? <>None of your {plural(theory.exits, "move")} out of the opening book cost a pawn or more.</>
@@ -335,7 +335,7 @@ function Shapes({ data }: { data: Insights }) {
   if (!total) return null;
   const common = [...data.shapes].sort((a, b) => b.games - a.games)[0];
   return <Panel id="shapes" title="Game shapes" meta={plural(total, "reviewed game")}>
-    <Lead>Your most common shape is <strong>{shapeText[common.shape][0].toLowerCase()}</strong>: {common.games} of {total} games, {recordText(common)}.</Lead>
+    <Lead>Your most common shape is <strong>{shapeText[common.shape][0].toLowerCase()}</strong>: {common.games} of {plural(total, "game")}, {recordText(common)}.</Lead>
     <ul className="insight-shapes">
       {data.shapes.map(shape => <li key={shape.shape}>
         <ShapeIcon shape={shape.shape} />
@@ -394,7 +394,7 @@ function Tilt({ data }: { data: Insights }) {
 
 function Clock({ data }: { data: Insights }) {
   const { clock } = data;
-  return <Panel id="clock" title="Clock" meta={`clocks in ${clock.clocked_games}/${data.games} games`}>
+  return <Panel id="clock" title="Clock" meta={`clocks in ${clock.clocked_games}/${data.games} ${pluralWord(data.games, "game")}`}>
     {clock.clocked_games ? <>
       <Lead>You were short of time in <strong>{clock.time_trouble_games} of {plural(clock.clocked_games, "clocked game")}</strong> ({percent(clock.time_trouble_games, clock.clocked_games)}%): 30 seconds or less, or a tenth of your starting time.</Lead>
       <StatList items={clock.think_seconds.map(bucket => ({ label: `Average think, moves ${bucket.label}`, value: fixed(bucket.seconds, 0, "s") }))} />
@@ -458,11 +458,9 @@ function InsightsView({ data, speed, setSpeed, days, setDays, query }: {
   const reviewed = data.reviewed_games > 0;
   return <div className="insights" data-reloading={reloading(query)}>
     <div className="insight-toolbar">
-      {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
-        <ChoiceGroup label="Speed" labelId="insight-speed" size="compact" value={speed} onChange={setSpeed} phone="select"
-          options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
-      <div className="insight-filter"><span id="insight-period">Period</span>
-        <ChoiceGroup label="Period" labelId="insight-period" size="compact" value={days} onChange={setDays} options={periods} phone="select" /></div>
+      {speeds.length > 2 && <ChoiceGroup label="Speed" showLabel size="compact" value={speed} onChange={setSpeed} phone="select"
+        options={speeds.map(value => ({ value, label: speedLabels[value] }))} />}
+      <ChoiceGroup label="Period" showLabel size="compact" value={days} onChange={setDays} options={periods} phone="select" />
       <QueryReloading query={query} label="your insights" className="insight-refreshing" />
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
@@ -480,7 +478,7 @@ function InsightsView({ data, speed, setSpeed, days, setDays, query }: {
         {lines.length ? <ul className="insight-headlines">{lines.map(line => <li key={line}>{line}</li>)}</ul>
           : <p className="insight-headlines-empty">Review more games to see engine-based patterns here.</p>}
         {data.reviewed_games < data.games && <p className="small muted insight-note">
-          Results, dates, ratings, clocks and openings use every game. Evaluation-based panels use the {data.reviewed_games} reviewed {data.reviewed_games === 1 ? "game" : "games"}; <Link href={gamesPath()}>review more games</Link> to sharpen them.
+          Results, dates, ratings, clocks and openings use every game. Evaluation-based panels use the {plural(data.reviewed_games, "reviewed game")}; <Link href={gamesPath()}>review more games</Link> to sharpen them.
         </p>}
       </section>
       <InsightGroup id="results" title="Results">

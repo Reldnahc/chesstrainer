@@ -1,10 +1,13 @@
 {
   "cards": {
-    "src/study/LessonLibrary.tsx": "tap-target: each course card is one link to the course"
+    "src/study/LessonLibrary.tsx": "tap-target: each course card is one link to the course",
+    "src/audio/studio/AudioStudio.tsx": "development studio: keeps its framed sections on phones, where its controls are reviewed",
+    "src/audio/studio/StudioReviewPanel.tsx": "development studio: keeps its framed sections on phones, where its controls are reviewed",
+    "src/audio/studio/StudioTransport.tsx": "development studio: keeps its framed sections on phones, where its controls are reviewed"
   },
   "surfaces": {
     "src/action-controls.css": { ".action-control": "control" },
-    "src/base.css": { ".panel": "section", ".badge": "control" },
+    "src/base.css": { ".badge": "control" },
     "src/board.css": { ".board-quality": "board", ".board-shell": "board", ".promotion": "overlay" },
     "src/coach-presentation.css": { ".coach-speech": "status", ".human-insight-popover": "overlay", ".play-setup-speech": "status" },
     "src/coach/settings.css": { ".coach-option": "control" },
@@ -14,9 +17,10 @@
     "src/game-review.css": { ".game-eval-bar": "board", ".game-notation": "section", ".game-move-list button": "control", ".game-graph": "section", ".game-summary-side i": "swatch" },
     "src/imports.css": { ".upload-zone": "control" },
     "src/notice.css": { ".notice--panel": "status", ".notice--banner": "status" },
+    "src/panel.css": { ".panel": "section" },
     "src/section-navigation.css": { ".section-navigation": "navigation" },
     "src/srs-review.css": { ".practice-panel": "section", ".answer-feedback": "status" },
-    "src/study/study.css": { ".lesson-chapters li": "section", ".opening-study": "section", ".opening-color label": "control", ".lesson-editor-steps button": "control" },
+    "src/study/study.css": { ".lesson-chapters li": "section", ".opening-study": "section", ".lesson-editor-steps button": "control" },
     "src/turn-indicator.css": { ".turn-dot": "swatch" }
   }
 }
