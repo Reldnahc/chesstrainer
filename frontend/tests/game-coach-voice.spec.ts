@@ -3,7 +3,7 @@ import {humanGames} from "./human-fixtures";
 import type {Game, Report} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {expert} from "../src/dialogue/characters/expert";
 import {coachPersonalities} from "../src/dialogue/characters";
 import type {DialogueCharacter} from "../src/dialogue/personality";
@@ -135,7 +135,7 @@ test("a game against the coach greets with its own line only before the first mo
 // later (backend output for 30...Nc2+ in the position below,
 // the same shape as the reviewed 30...Nf5+ that was voiced as a fork).
 type Witness = {id: string; motif: string; plies: number[]; roles?: Record<string, string[]>};
-function reviewedTactics(witnesses: Witness[], coach: DialogueCharacter = {id: "classic", personality: storyteller}) {
+function reviewedTactics(witnesses: Witness[], coach: DialogueCharacter = {id: "classic", personality: classic}) {
   const fen = "rnbk1b2/pp4pp/1q1p4/3p4/3n4/2P1K1PP/PP6/3R4 b - - 0 30";
   const sans = ["Nc2+", "Kf3", "Qe3+", "Kg2", "Qe2+", "Kh1", "Qxd1+"];
   const score = {kind: "mate" as const, value: -7, mate_given: false};
@@ -299,7 +299,7 @@ test("a chance-taken take calling the error small sits out after a blunder", () 
   expect(afterBlunder.takes).not.toContain("chance-taken");
   expect(afterBlunder.takes).toEqual(expect.arrayContaining(["chance-taken-2", "chance-taken-3", "chance-taken-4"]));
   // Walter's takes say nothing of size, so all of them stay.
-  expect(punishedError("Blunder", {id: "classic", personality: storyteller}).takes).toContain("chance-taken");
+  expect(punishedError("Blunder", {id: "classic", personality: classic}).takes).toContain("chance-taken");
 });
 
 test("a recovery plays the assisted take after the other side's Mistakes", () => {
@@ -309,5 +309,5 @@ test("a recovery plays the assisted take after the other side's Mistakes", () =>
   const fergus = {id: "frog", personality: coachPersonalities.frog};
   expect(punishedError("Mistake", fergus, recovery(false)).primaryId).toBe("recovery");
   expect(punishedError("Mistake", fergus, recovery(true)).primaryId).toBe("recovery-assisted");
-  expect(punishedError("Mistake", {id: "classic", personality: storyteller}, recovery(true)).primaryId).toBe("recovery-assisted");
+  expect(punishedError("Mistake", {id: "classic", personality: classic}, recovery(true)).primaryId).toBe("recovery-assisted");
 });

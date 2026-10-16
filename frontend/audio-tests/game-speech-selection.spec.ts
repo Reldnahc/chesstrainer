@@ -4,13 +4,13 @@ import type {Game, Position, Report} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {claim, makeIntent, type ClaimCode} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {distinctOpeners, selectGameRecording, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import inventory from "../src/audio/speech/walter-dialogue-inventory.json" with {type: "json"};
 
 type Detailed = Schema["GameReviewReport"];
-const walter = {id: "classic", personality: storyteller};
+const walter = {id: "classic", personality: classic};
 const causal = semanticFixtures<{skill: string; black: boolean; report: Detailed}[]>("review_cause_fixtures.py");
 const positional = semanticFixtures<{feature: string; code: string; mirrored: boolean; alternative: Detailed; actual: Detailed}[]>("review_position_fixtures.py");
 const humans = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");

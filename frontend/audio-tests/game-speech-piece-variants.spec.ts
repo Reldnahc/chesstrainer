@@ -4,7 +4,7 @@ import type {ExplanationFrame, MoveExplanation, PatternFinding} from "../src/api
 import {gameReaction} from "../src/coach/reactions";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {explanationFindingRecording, explanationFrameRecording} from "../src/audio/speech/practiceSelection";
 import {capturedPieces, pieceOn, withPieceVariant, withPieceVariants, withSquares} from "../src/audio/speech/pieceVariants";
@@ -16,7 +16,7 @@ import {openAudioFixturePage} from "./fixtures/openAudioFixture";
 import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
 import path from "node:path";
 
-const coach = {id: "classic", personality: storyteller};
+const coach = {id: "classic", personality: classic};
 
 function speech(game: Game) {
   const ply = game.frames.length - 1, frame = game.frames[ply], report = frame.report as Report;

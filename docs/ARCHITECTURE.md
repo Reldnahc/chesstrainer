@@ -100,24 +100,24 @@ lock, while other accounts have independent locks.
 | Module in frontend/src | Responsibility |
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
-| Home.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
+| HomeScreen.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
 | study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` (its sections in `lessonEditor/`) are the administrator course tools under Settings → Courses; the editor's live check (`course_files.check`) returns the first problem with its chapter and step location (course-file problems carry them on CourseFileError, the course record's own validation raises StepProblem); problems in lines, games or the course itself have none |
 | play/ | Play setup and live games against the coach's bot (`PlayScreen.tsx`, `PlayGame.tsx`, `usePlaySession.ts`), reusing the game review presentation |
-| Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
+| DueScreen.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
-| GameReview.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
-| Weaknesses.tsx / GameInsights.tsx | Insights page: shared section navigation (Overview / Weaknesses, with weakness categories as subsections); GameInsights renders the Overview panels over `/api/insights` with shared choices, statistics and load states |
+| GamesScreen.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
+| InsightsScreen.tsx / GameInsights.tsx | Insights page: shared section navigation (Overview / Weaknesses, with weakness categories as subsections); GameInsights renders the Overview panels over `/api/insights` with shared choices, statistics and load states |
 | ReviewCoach.tsx | Common portrait with optional caption, speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
 | gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
 | gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |
 | gameReview/useAnalysisRequests.ts | The analysis request core shared by game review and Play: serial queue, dedupe, cache, failures kept per key, and generation/mounted checks before sending |
 | gameReview/usePositionAnalysis.ts | Game review's use of that core: per-history keys and the browsing debounce |
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
-| Import.tsx | Import source selection, PGN form and job polling/actions |
+| ImportSettings.tsx | Import source selection, PGN form and job polling/actions |
 | useQuery.tsx / usePolling.ts / useDeadline.ts | Shared request lifecycles. `useQuery` loads, aborts and retries one screen request, and `QueryResult` shows loading, unavailable-with-Try-again or the data (a failed refresh keeps the data and shows an error banner), so a failed or pending load never reads as empty. `useCommand` runs one command at a time, aborted if the screen leaves, and `CommandError`/`QueryError` are the one way a failure is shown (see UI_COMPONENTS). `useSessionStart` starts and opens a study or Play session; `study/useStudySession.ts` is the lesson and puzzle session machine. `usePolledQuery` gives a polled request the same shape for QueryResult (import jobs, Play's profile). `usePolling` (the analysis queue, provider statuses, game review progress, and under usePolledQuery) repeats a task one pass at a time, pauses in hidden tabs, backs off after failures, and lets an explicit refresh wait for the pass in flight. `useDeadline` is one timer to a deadline. Screens keep their own requests; only the lifecycle is shared |
 | gameProviders.ts | The registered game providers, fetched once per page load for every screen that lists them, and `useServerDraft` for fields that follow the server until edited |
-| Settings.tsx / SettingsSection.tsx | URL-addressable Settings sections, shared section layout, account/preferences and classification job controls |
+| SettingsScreen.tsx / SettingsSection.tsx | URL-addressable Settings sections, shared section layout, account/preferences and classification job controls |
 | accountContext.ts | The signed-in account, guest and administrator hooks, with no UI imports, so preference hooks and development tools never pull in the sign-in screens. `AccountGate.tsx` provides the contexts and owns the sign-in, onboarding and forced password screens |
 | AccountSettings.tsx / AccountAdmin.tsx / ChangePasswordForm.tsx / accountFields.tsx | Settings → Account for members, the administrator account list, password changes (including the forced change after an administrator reset), and the shared username and new-password rules |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |

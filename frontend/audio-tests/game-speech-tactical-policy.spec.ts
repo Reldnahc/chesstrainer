@@ -4,7 +4,7 @@ import {gameReaction} from "../src/coach/reactions";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {robot} from "../src/dialogue/characters/robot";
 import {repeatsLead, selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {sequenceRecordingId} from "../src/audio/speech/sequence";
@@ -18,7 +18,7 @@ const shownCodes: Record<string, string> = {"human-natural-error": "human_natura
   "human-hard-defense-found": "human_defense_found", "human-natural-best": "human_natural_best",
   "human-natural-strong": "human_natural_strong"};
 
-for (const coach of [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}]) {
+for (const coach of [{id: "classic", personality: classic}, {id: "robot", personality: robot}]) {
   for (const [key, game] of Object.entries(games)) {
     test(`${coach.id}: ${key} survives real tactical evidence and speaks only the objective line`, () => {
       const [objectiveId, shown] = key.split(":");

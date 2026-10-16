@@ -4,7 +4,7 @@ import {gameIntent} from "../src/dialogue/gameIntent";
 import {gameReaction} from "../src/coach/reactions";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {robot} from "../src/dialogue/characters/robot";
 import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS, bookRecordingId, deriveBookPresentation} from "../src/dialogue/openingPresentation";
 import {selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
@@ -13,7 +13,7 @@ import {semanticFixtures} from "../tests/semantic-fixtures";
 const games = semanticFixtures<Record<string, Game>>("review_speech_opening_fixtures.py");
 const departure = {primaryId: "opening-departure", recordingId: "opening-departure"};
 const states = ["hard-find", "unusual-strong", "natural-best", "natural-strong", "hard-defense-found"];
-const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
+const coaches = [{id: "classic", personality: classic}, {id: "robot", personality: robot}];
 // The Maia reading each fixture state shows in its badge; none is ever voiced.
 const shownCodes: Record<string, string> = {"hard-find": "human_challenging", "unusual-strong": "human_rare",
   "natural-best": "human_natural_best", "natural-strong": "human_natural_strong", "hard-defense-found": "human_defense_found"};

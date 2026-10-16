@@ -339,7 +339,7 @@ A checkmate frame in a practice or Show why line plays `mate-finished` only when
 learner (the exercise's orientation) delivers the mate; when the other side mates,
 it plays `mate-defense-ended`, as a game's final position does.
 
-Walter (`classic`, `storyteller.ts`) and Rivet (`robot`, `robot.ts`) are the current
+Walter (`classic`, `classic.ts`) and Rivet (`robot`, `robot.ts`) are the current
 production references for this complete path. Both use the scoped tactical and
 opening-sequence contracts described above, as every coach now does, and all
 thirty coaches have registered voice banks. A cast audition or saved provider
@@ -426,7 +426,10 @@ additions to an existing character's dialogue.
 
 The coach catalogue remains the identity source of truth. Each selectable family
 registers its definition from `frontend/src/dialogue/characters/`, one file per coach
-listed once in `characters/index.ts` (`coachPersonalities`). A definition
+listed once in `characters/index.ts` (`coachPersonalities`). Each file is named for its
+coach ID after the family (`dog-gentle` is `gentle.ts`, `classic` is `classic.ts`), so
+no mapping is needed; a personality's `version` keeps its original name because
+stored dialogue refers to it. A definition
 contains the internal character bible (temperament, teaching, rhythm, celebration,
 correction and boundaries), communication behavior, authored factual forms, a
 compactness budget and provider-neutral delivery metadata. The laboratory displays
@@ -526,7 +529,7 @@ Bandit (raccoon) has opted in as well, with its forms in `characters/raccoon.ts`
 why it is there to take, and treats loose pieces and scrappy, effective chess as
 the good stuff, without pretending material is all that matters.
 Alfie (golden retriever) has opted in as well, with his forms in
-`characters/professor.ts`: a short principle, this position's fact, then one
+`characters/gentle.ts`: a short principle, this position's fact, then one
 connection to keep, explaining the mechanism patiently when correcting.
 Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
 one suspicious detail, asks a quick question, then answers it with the supported
@@ -539,7 +542,7 @@ forcing play and exact defense and no questions.
 Scout (border collie) has opted in too, with his forms in `characters/collie.ts`:
 a quick pattern call, the concrete fact, then one short task to train it, with
 no questions.
-Juniper (black cat) has followed in `characters/velvet.ts`:
+Juniper (black cat) has followed in `characters/black.ts`:
 a small exposed detail first, a beat, then a gentle conclusion, with the
 occasional first-person "I noticed", soft encouragement and no questions. As a
 one-claim voice, she drops a lower-priority Book recognition like Pip.
@@ -585,7 +588,7 @@ Réka (`woman-spark`) has opted in too, in `characters/spark.ts`: a quick reacti
 the pattern, the tactical punchline, then its supported consequence, with her own
 "eyes up" warning, "repertoire" for book moves, delight such as "Zing!" kept for
 the learner's own clips, and difficulty credited to the human-move model.
-Mateo (`human-boy`) has opted in as well, in `characters/youngBoy.ts`: a short
+Mateo (`human-boy`) has opted in as well, in `characters/boy.ts`: a short
 burst of excitement aimed at the tactic itself, sometimes a "wait" or "look at
 this", then one plain, complete chess fact, with an occasional question whose
 answer is on the board. His cheering and sympathy stay on the player's own
@@ -594,7 +597,7 @@ Tamar (`woman-captain`) has opted in as well, in `characters/captain.ts`: a
 firm verdict, the concrete reason, then one habit to build, with open mentor
 pride kept to the learner's own moves, plain-clip lines that name no owner,
 and no questions.
-Tala (young girl) has opted in as well, with her forms in `characters/youngGirl.ts`:
+Tala (young girl) has opted in as well, with her forms in `characters/girl.ts`:
 a genuine question or one circled detail,
 the discovery, then its consequence, with competitive curiosity instead of scolding,
 no emotion that depends on which side moved, and ownership words kept to the

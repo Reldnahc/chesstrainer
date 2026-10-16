@@ -14,7 +14,7 @@ import { createRoot } from "react-dom/client";
 import { LoadingState, UnavailableState } from "/src/LoadState.tsx";
 import Button from "/src/Button.tsx";
 import ActionLink from "/src/ActionLink.tsx";
-import ReviewScreen from "/src/Review.tsx";
+import DueScreen from "/src/DueScreen.tsx";
 import GameWorkspace from "/src/gameReview/GameWorkspace.tsx";
 import EvidenceDialog from "/src/EvidenceDialog.tsx";
 import LessonPlayer from "/src/study/LessonPlayer.tsx";
@@ -37,8 +37,8 @@ function Fixture() {
   else if (view === "preview") contents = <OpeningLinePreview catalogueKey="loading-fixture" courseLine={null} />;
   else if (view === "course-preview") contents = <OpeningLinePreview catalogueKey={null} courseLine={{courseId: "loading-fixture", lineId: "line", revision: "fixture-v1"}} />;
   else if (view === "game") contents = <GameWorkspace id="loading-fixture" initialPly={0} libraryHref="/games?page=3" />;
-  else if (view === "review") contents = <ReviewScreen requested={null} focusSkill={null} fail={fail} onEvidence={() => {}} />;
-  else if (view === "evidence") contents = <><button onClick={() => setEvidence(true)}>Open evidence</button>{evidence && <EvidenceDialog id="loading-fixture" onClose={() => setEvidence(false)} fail={fail} />}</>;
+  else if (view === "review") contents = <DueScreen requested={null} focusSkill={null} onEvidence={() => {}} />;
+  else if (view === "evidence") contents = <><button onClick={() => setEvidence(true)}>Open evidence</button>{evidence && <EvidenceDialog id="loading-fixture" onClose={() => setEvidence(false)} />}</>;
   else contents = <>
     <div data-testid="compact"><LoadingState>Loading a small detail…</LoadingState></div>
     <div data-testid="panel"><LoadingState presentation="panel">Loading the full page…</LoadingState></div>

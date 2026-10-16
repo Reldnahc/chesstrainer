@@ -2,10 +2,10 @@ import {test, expect, type Request} from "@playwright/test";
 import {renderDialogue, renderNeutral} from "../src/dialogue/neutral";
 import {claim, makeIntent} from "../src/dialogue/model";
 import {neutralPersonality} from "../src/dialogue/personality";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {analyst} from "../src/dialogue/characters/analyst";
 
-const story = {id: "classic", personality: storyteller};
+const story = {id: "classic", personality: classic};
 const quiet = {id: "woman-analyst", personality: analyst};
 
 test("personality changes language and delivery without changing factual intensity or evidence", () => {

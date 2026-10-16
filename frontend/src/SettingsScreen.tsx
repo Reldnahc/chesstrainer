@@ -4,7 +4,7 @@ import Reveal, { Swap } from "./Reveal";
 import { useState } from "react";
 import { api, read } from "./api";
 import PageTitle from "./PageTitle";
-import ImportSettings from "./Import";
+import ImportSettings from "./ImportSettings";
 import AccountSettings from "./AccountSettings";
 import { useAccount, useAdministrator } from "./accountContext";
 import CoachSettings from "./coach/CoachSettings";

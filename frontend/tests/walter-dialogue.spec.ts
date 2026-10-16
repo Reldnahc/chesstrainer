@@ -3,7 +3,7 @@ import type {Schema} from "../src/api";
 import {tacticalClaim} from "../src/dialogue/eventClaims";
 import {claim, makeIntent, type Claim} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
@@ -12,7 +12,7 @@ import {semanticFixtures} from "./semantic-fixtures";
 import {humanInsightIntent} from "../src/dialogue/humanClaims";
 import {tacticalPresentation} from "../src/dialogue/tacticalTemplates";
 
-const walter = {id: "classic", personality: storyteller};
+const walter = {id: "classic", personality: classic};
 const ref = {source: "stockfish" as const, id: "search", field: "actual_line/findings/0"};
 function event(role = "played", changes: Schema["ReviewEvent"]["facts"] = {}): Schema["ReviewEvent"] {
   const ply = role === "allowed" ? 2 : 1;
@@ -142,7 +142,7 @@ test("capture descriptions preserve actual, alternative, reply and uncertain tim
 test("Walter's opponent facts get accurate timing without personal praise", () => {
   const output = render(build(event()), "opponent");
   expect(output.text).toContain("king on h7 and queen on e4 are attacked together");
-  expect(output.trace.variants[0].source).toBe(storyteller.version);
+  expect(output.trace.variants[0].source).toBe(classic.version);
   expect(output.trace.composition?.strategy).toBe("minimal");
   expect(output.text).not.toMatch(/you|well judged|nicely|worth noticing|continuation/i);
 });
@@ -151,7 +151,7 @@ test("scope cannot be hidden in optional character framing or discarded by a cus
   const item = build(event("missed"));
   const intent = makeIntent("scope-guard", "missed", "game", "missed", [item]);
   const code = tacticalPresentation(item)!.code;
-  const unsafe = {id: "unsafe", personality: {...storyteller, templates: {[code]: [
+  const unsafe = {id: "unsafe", personality: {...classic, templates: {[code]: [
     {fact: "The {targets} would be attacked together.", observation: "With {best}, there would be a {motif}."},
   ]}}};
   const output = renderDialogue(intent, unsafe);

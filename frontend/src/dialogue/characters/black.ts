@@ -1,7 +1,7 @@
 import {coachPersonality} from "../personality";
 import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const velvetTacticalTemplates = authorTacticalWordings({
+export const blackTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "I noticed it after {move}: a {motif}, sitting there on the board.",
     played_possible: "{move} leaves room for a {motif} later, if the replies let it happen.",
@@ -18,7 +18,7 @@ export const velvetTacticalTemplates = authorTacticalWordings({
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
  * Neither recognition nor a consecutive run says that these moves were good. */
-export const velvetOpeningTemplates = {
+export const blackOpeningTemplates = {
   "book-opening-entry-1": ["This move is carried in the opening books, in {opening}."],
   "book-opening-entry-2": ["A move from a known opening, this: {opening}."],
   "book-opening-entry-3": ["The opening book keeps this move on its pages, under {opening}."],
@@ -32,7 +32,7 @@ export const velvetOpeningTemplates = {
   "book-opening-follow-8": ["Known once more, in {opening}. Being in the book says where we are, nothing more."],
 } as const;
 
-export const velvet = coachPersonality({
+export const black = coachPersonality({
   version: "velvet-4", maxCharacters: 260, maxClaims: 1,
   delivery: {pace: "measured", energy: "quiet"},
   behavior: {
@@ -50,8 +50,8 @@ export const velvet = coachPersonality({
     avoid: "Melodrama, mystery clichés, cat jokes, questions, silence that withholds useful facts, other coaches' sayings, or naturalness and difficulty not credited to the human-move model.",
   },
   templates: {
-    ...velvetTacticalTemplates,
-    ...velvetOpeningTemplates,
+    ...blackTacticalTemplates,
+    ...blackOpeningTemplates,
     allowed_mate: [{observation: "This is the hard one.", fact: "From this point, checkmate is forced for {opponent}. {reply}"}],
     missed_mate: [{observation: "Mate was there.", fact: "{best} would have forced it, and this move steps past the finish."}],
     tactic_played: [
