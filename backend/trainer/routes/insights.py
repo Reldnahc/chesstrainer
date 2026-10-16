@@ -1,22 +1,57 @@
-"""Read-only library insights over saved games and completed reviews."""
+"""Library insights over saved games and completed reviews."""
 
 from fastapi import APIRouter, Query
 from sqlalchemy import select
 
 from trainer.contracts.insights import Insights, SpeedFilter
-from trainer.game_insights import game_facts, summarize
+from trainer.game_insights import facts_key, game_facts, pack_facts, summarize, unpack_facts
 from trainer.job_lifecycle import JobStatus
-from trainer.models import AnalysisJob, Game, GameReview
-from trainer.recent_cache import RecentCache
+from trainer.models import AnalysisJob, Game, GameReview, InsightFacts
 from trainer.review_reports import load_accuracy_scores
 from trainer.workspaces import CurrentWorkspace
 
-# Per-game facts for every account's library; ids are unique across accounts.
-# A reviewed 80-ply game's facts take about 17 KB (measured with tracemalloc), so
-# the bound keeps the cache near 100 MB. A larger library replays only the games
-# beyond the bound on each request, about 7 ms each.
-FACTS_CACHE_SIZE = 6000
-_facts = RecentCache(FACTS_CACHE_SIZE)
+
+def library_facts(workspace):
+    """Every counted game's facts. A game is replayed only when it or its review has
+    changed since its facts were saved; otherwise they are read back from its row, so
+    no library is replayed per request and nothing is held in memory between them."""
+    with workspace.sessions() as db:
+        rows = db.execute(
+            select(
+                Game,
+                AnalysisJob.status,
+                GameReview.rating,
+                GameReview.revision,
+                InsightFacts.key,
+                InsightFacts.facts,
+            )
+            .outerjoin(GameReview, GameReview.game_id == Game.id)
+            .outerjoin(AnalysisJob, AnalysisJob.id == GameReview.job_id)
+            .outerjoin(InsightFacts, InsightFacts.game_id == Game.id)
+            .where(Game.counts_in_stats())
+        ).all()
+        facts, stale = [], []
+        for index, (game, status, rating, revision, saved_key, saved) in enumerate(rows):
+            completed = status == JobStatus.COMPLETED
+            key = facts_key(game, rating, revision, completed)
+            if key == saved_key:
+                facts.append(unpack_facts(saved))
+            else:
+                facts.append(None)
+                stale.append((index, game, rating, completed, key))
+        scores = load_accuracy_scores(db, [item[1].id for item in stale if item[3]])
+        rebuilt = []
+        for index, game, rating, completed, key in stale:
+            built = game_facts(game, scores.get(game.id) if completed else None, rating)
+            facts[index] = built
+            rebuilt.append(InsightFacts(game_id=game.id, key=key, facts=pack_facts(built)))
+    if rebuilt:
+        # Insert or replace: another request may have saved the same game meanwhile.
+        with workspace.mutation_lock, workspace.sessions() as db:
+            for row in rebuilt:
+                db.merge(row)
+            db.commit()
+    return facts
 
 
 def create_router():
@@ -30,40 +65,6 @@ def create_router():
         # Minutes east of UTC, so weekday and time-of-day use the viewer's clock.
         offset: int = Query(0, ge=-840, le=840),
     ):
-        with workspace.sessions() as db:
-            rows = db.execute(
-                select(Game, AnalysisJob.status, GameReview.rating, GameReview.revision)
-                .outerjoin(GameReview, GameReview.game_id == Game.id)
-                .outerjoin(AnalysisJob, AnalysisJob.id == GameReview.job_id)
-                .where(Game.counts_in_stats())
-            ).all()
-            # A game's facts change only with its review (every saved or adopted
-            # report bumps the revision), so each is replayed once per revision.
-            keyed = [
-                (
-                    (game.id, game.learner_color, game.played_at, revision, rating, status),
-                    game,
-                    status == JobStatus.COMPLETED,
-                    rating,
-                )
-                for game, status, rating, revision in rows
-            ]
-            # Every hit is taken before any miss is stored, so a library larger
-            # than the cache still reuses what the cache holds instead of each new
-            # entry evicting one this request is about to read.
-            cached = {key: value for key, *_ in keyed if (value := _facts.get(key)) is not None}
-            saved = load_accuracy_scores(
-                db,
-                [game.id for key, game, completed, _ in keyed if completed and key not in cached],
-            )
-            facts = [
-                cached[key]
-                if key in cached
-                else _facts.put(
-                    key, game_facts(game, saved.get(game.id) if completed else None, rating)
-                )
-                for key, game, completed, rating in keyed
-            ]
-        return summarize(facts, speed=speed, days=days, offset_minutes=offset)
+        return summarize(library_facts(workspace), speed=speed, days=days, offset_minutes=offset)
 
     return router

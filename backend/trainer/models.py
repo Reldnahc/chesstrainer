@@ -8,6 +8,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Index,
+    LargeBinary,
     MetaData,
     Text,
     TypeDecorator,
@@ -570,6 +571,16 @@ class PuzzleAttempt(Owned, Base):
     elapsed_ms: Mapped[int]
     response: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
+
+
+class InsightFacts(Owned, Base):
+    """One game's Insights facts, saved so a library is replayed once, not per request."""
+
+    __tablename__ = "insight_facts"
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    # What the facts were built from (game_insights.facts_key); a mismatch rebuilds them.
+    key: Mapped[str]
+    facts: Mapped[bytes] = mapped_column(LargeBinary)
 
 
 class GamePuzzleSearch(Owned, Base):

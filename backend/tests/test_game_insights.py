@@ -226,9 +226,9 @@ def test_library_insights_from_saved_games(settings, monkeypatch):
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0
 
 
-def test_each_game_is_replayed_once_and_the_cache_is_bounded(settings, monkeypatch):
+def test_each_game_is_replayed_once_until_it_or_its_review_changes(settings, monkeypatch):
     from trainer import game_insights
-    from trainer.recent_cache import RecentCache
+    from trainer.models import GameReview, InsightFacts
     from trainer.routes import insights
 
     built = []
@@ -238,28 +238,70 @@ def test_each_game_is_replayed_once_and_the_cache_is_bounded(settings, monkeypat
         return game_insights.game_facts(game, *args)
 
     monkeypatch.setattr(insights, "game_facts", counted)
-    monkeypatch.setattr(insights, "_facts", RecentCache(10))
     app = create_app(settings, workers=False, start_engine=False)
     with TestClient(app) as client:
         with app.state.sessions() as db:
-            seed(db)
+            ids = seed(db)
         first = client.get("/api/insights").json()
         assert len(built) == 3
         # A filter change or a repeat replays nothing while the reviews are unchanged.
         assert client.get("/api/insights?speed=blitz").json()["games"] == 2
         assert client.get("/api/insights").json() == first
         assert len(built) == 3
+        with app.state.sessions() as db:
+            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
+            # A saved report or an adopted refinement bumps the review's revision.
+            db.get(GameReview, ids[0]).revision += 1
+            db.commit()
+        built.clear()
+        assert client.get("/api/insights").json() == first
+        assert built == [ids[0]]
 
-        # A library larger than the cache reuses what it holds: hits are read
-        # before misses are stored, so a miss never evicts a game still to come.
-        monkeypatch.setattr(insights, "_facts", RecentCache(2))
-        built.clear()
+    # Saved facts outlive the process: a restarted server replays nothing.
+    built.clear()
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
         assert client.get("/api/insights").json() == first
-        assert len(built) == 3
-        built.clear()
-        assert client.get("/api/insights").json() == first
-        assert len(built) == 1
-    assert insights.FACTS_CACHE_SIZE <= 6000
+    assert built == []
+
+
+def test_saved_facts_read_back_exactly():
+    from trainer.game_insights import game_facts, pack_facts, unpack_facts
+
+    for game, scores in (
+        endgame_game([350, -400, -400, -400], [-350, 350, 400, -400]),
+        endgame_game([-350, -400, -400, -400], [350, -350, 400, -400], result="1/2-1/2"),
+    ):
+        for facts in (game_facts(game, scores), game_facts(game)):
+            assert unpack_facts(pack_facts(facts)) == facts
+
+
+def test_facts_key_follows_everything_the_facts_read():
+    from types import SimpleNamespace
+
+    from trainer.game_insights import facts_key
+
+    game = SimpleNamespace(
+        pgn="1. e4 *",
+        learner_color=True,
+        white="A",
+        black="B",
+        played_on="2025-01-01",
+        played_at=None,
+    )
+    base = facts_key(game, 1500, 3, True)
+    assert facts_key(game, 1500, 3, True) == base
+    # An unfinished review's revision does not matter; its scores are not read.
+    assert facts_key(game, 1500, 3, False) == facts_key(game, 1500, 4, False)
+    for changed in (
+        facts_key(game, 1600, 3, True),
+        facts_key(game, 1500, 4, True),
+        facts_key(game, 1500, 3, False),
+        facts_key(SimpleNamespace(**{**vars(game), "pgn": "1. d4 *"}), 1500, 3, True),
+        facts_key(SimpleNamespace(**{**vars(game), "learner_color": False}), 1500, 3, True),
+        facts_key(SimpleNamespace(**{**vars(game), "black": "C"}), 1500, 3, True),
+    ):
+        assert changed != base
 
 
 def test_facts_keep_no_per_instance_dictionary():

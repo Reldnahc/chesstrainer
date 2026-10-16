@@ -56,6 +56,7 @@ STEPS = (
         " OR decision_id IN (SELECT id FROM temp.clear_decisions)",
     ),
     ("game_puzzle_searches", "game_id IN (SELECT id FROM temp.clear_games)"),
+    ("insight_facts", "game_id IN (SELECT id FROM temp.clear_games)"),
     ("decisions", "id IN (SELECT id FROM temp.clear_decisions)"),
     ("game_review_moves", "game_id IN (SELECT id FROM temp.clear_games)"),
     (
