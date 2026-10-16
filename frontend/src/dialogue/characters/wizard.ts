@@ -339,7 +339,7 @@ export const wizard = coachPersonality({
       "Checkmate, and your king is left without a legal escape. The lesson lies earlier, in the moment the defense could still have held.",
     ],
     draw: [
-      "A drawn game. Neither side could force more, and the turning points are still worth study.",
+      "A drawn game, and a draw keeps its lessons as surely as a win. The choices along the way repay study.",
     ],
     cold: ["Study the position before you act, and only then decide on a move."],
     thinking: ["Weighing the move against the strongest reply before drawing any lesson…"],
