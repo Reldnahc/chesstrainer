@@ -76,7 +76,6 @@ def seed_review(db, settings, black=False, key="explanation", spare_pawn=False):
         loss_cp=1400,
         meaningful=True,
         deep=True,
-        facts={},
     )
     db.add(decision)
     db.flush()

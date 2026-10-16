@@ -14,6 +14,7 @@ import { coachPersonalities } from "../src/dialogue/characters";
 import { selectGameRecording, unnamedBookTake } from "../src/audio/speech/gameSelection";
 import { NAMED_OPENING_TAKES } from "../src/audio/speech/falseTakes";
 import registry from "../src/audio/speech/banks/registry.json" with { type: "json" };
+import { reviewEvent, witness } from "./helpers/reviewEvents";
 import { readFileSync } from "node:fs";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -442,23 +443,27 @@ for (const coach of openingCoaches) {
         report.engine_label = "Blunder";
         report.actual = { ...report.actual, score: { ...score, value: -320 } };
         if (correction === "tactic")
-          report.intelligence!.events.push({
-            id: "allowed-pin",
-            kind: "tactic",
-            actor: game.frames[ply].turn,
-            confidence: "line_witness",
-            importance: 94,
-            facts: {
-              role: "allowed",
-              motif: "pin",
-              plies: [2],
-              frame_ply: 2,
-              witness: [{ ply: 2, san: "Bb4" }],
-            },
-            evidence: [
-              { source: "stockfish", id: "reply-search", field: "actual_line/findings/0", ply },
-            ],
-          });
+          report.intelligence!.events.push(
+            reviewEvent(
+              "tactic",
+              {
+                role: "allowed",
+                motif: "pin",
+                plies: [2],
+                frame_ply: 2,
+                witness: [witness(2, "Bb4")],
+              },
+              {
+                id: "allowed-pin",
+                actor: game.frames[ply].turn,
+                confidence: "line_witness",
+                importance: 94,
+                evidence: [
+                  { source: "stockfish", id: "reply-search", field: "actual_line/findings/0", ply },
+                ],
+              },
+            ),
+          );
         const intent = reviewedIntent(game, ply);
         const book = intent.claims.find(item => item.code === "book_sound")!;
         expect(book).toMatchObject({
@@ -563,18 +568,20 @@ function departureSelection(coach: { id: string; personality: CoachPersonality }
   report.opening = null;
   report.label = "Best";
   report.intelligence!.events = [
-    {
-      id: "departure",
-      kind: "opening_departure",
-      actor: "black",
-      confidence: "annotation",
-      importance: 20,
-      facts: { catalogue: catalogueVersion },
-      evidence: [
-        { source: "pgn", id: "pgn-digest", field: "mainline/move" },
-        { source: "book", id: catalogueVersion, field: "first_unmatched_continuation" },
-      ],
-    },
+    reviewEvent(
+      "opening_departure",
+      { catalogue: catalogueVersion },
+      {
+        id: "departure",
+        actor: "black",
+        confidence: "annotation",
+        importance: 20,
+        evidence: [
+          { source: "pgn", id: "pgn-digest", field: "mainline/move" },
+          { source: "book", id: catalogueVersion, field: "first_unmatched_continuation" },
+        ],
+      },
+    ),
   ];
   const intent = gameIntent({ game, ply, frame, report, key: "departure", expression: "best" });
   const claim = intent.claims.find(item => item.code === "departure")!;

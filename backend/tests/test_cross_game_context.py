@@ -3,6 +3,7 @@
 import pytest
 from lesson_fixtures import seed_lesson
 from review_cause_fixtures import CAUSES, cause_report
+from review_intelligence_fixtures import tactic_event
 from sqlalchemy import select
 from test_game_context import reviewed
 from trainer.accounts import Accounts
@@ -15,13 +16,7 @@ from trainer.weaknesses import priorities
 
 def current_evidence(ply=1, role="missed"):
     _, reports, context = reviewed([0] * 8)
-    reports[ply]["intelligence"]["events"].append(
-        {
-            "kind": "tactic",
-            "id": "current-fork",
-            "facts": {"motif": "fork", "role": role},
-        }
-    )
+    reports[ply]["intelligence"]["events"].append(tactic_event("current-fork", role=role))
     return reports, context
 
 

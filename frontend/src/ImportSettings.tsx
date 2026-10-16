@@ -218,7 +218,8 @@ export default function ImportSettings({
       if (mounted.current) setBusy(false);
     }
   }
-  const activity = (jobsQuery.data ?? []).filter(job => job.kind !== "teaching");
+  // Jobs of removed features (teaching, for one) are history, not import activity.
+  const activity = (jobsQuery.data ?? []).filter(job => job.kind !== "retired");
   const activeJobs = activity.filter(isActive);
   const finishedJobs = activity.filter(job => !isActive(job));
   const hiddenHistoryCount = Math.max(0, finishedJobs.length - recentHistoryLimit);

@@ -4,7 +4,7 @@ from copy import deepcopy
 
 import pytest
 from review_cause_fixtures import CAUSES, cause_report
-from review_intelligence_fixtures import move_report
+from review_intelligence_fixtures import move_report, support_event, tactic_event
 from test_review_clocks import game
 from trainer.game_review import public_report
 from trainer.review_intelligence.game_context import game_context
@@ -41,14 +41,14 @@ def test_mistake_missed_punishment_recovery_preserves_actor_and_evidence():
     parsed, reports, context = reviewed([-300, 0, 0])
     missed = links(context, "punishment")[0]
     assert missed.actor == "black" and missed.plies == [1, 2]
-    assert missed.facts["outcome"] == "missed"
+    assert missed.facts.outcome == "missed"
     recovery = links(context, "recovery")[0]
     assert recovery.actor == "white" and recovery.plies == [1, 2, 3]
-    assert recovery.facts["opponent_errors"] == [2]
+    assert recovery.facts.opponent_errors == [2]
     assert {e.ply for e in recovery.evidence if e.source == "stockfish"} == {1, 2, 3}
     assert context == game_context(parsed, reports, completed=True)
     _, _, punished = reviewed([-300, -300, -300])
-    assert links(punished, "punishment")[0].facts["outcome"] == "capitalized"
+    assert links(punished, "punishment")[0].facts.outcome == "capitalized"
     assert not links(punished, "recovery")
 
 
@@ -56,9 +56,9 @@ def test_recovery_records_the_opponent_errors_that_helped():
     # Black's error at ply 2 made the game playable again; White's ply 3 kept it.
     _, _, context = reviewed([-300, 0, 0])
     recovery = links(context, "recovery")[0]
-    assert recovery.plies[-1] == 3 and recovery.facts["opponent_errors"] == [2]
+    assert recovery.plies[-1] == 3 and recovery.facts.opponent_errors == [2]
     # A move never raises its own evaluation, so no fact credits this move alone.
-    assert "restored_by_move" not in recovery.facts
+    assert "restored_by_move" not in recovery.facts.model_dump()
 
 
 def test_partial_benefit_is_not_described_as_completely_missed():
@@ -92,12 +92,12 @@ def test_only_sustained_reviewed_advantage_and_matching_result_can_be_converted(
     parsed, reports, context = reviewed([300] * 8, initial=300, result="1-0")
     run = links(context, "advantage_run")[0]
     assert run.actor == "white" and run.plies == list(range(1, 9))
-    assert run.facts["outcome"] == "converted" and run.facts["result_source"] == "pgn"
-    assert links(game_context(parsed, reports), "advantage_run")[0].facts["outcome"] == "maintained"
+    assert run.facts.outcome == "converted" and run.facts.result_source == "pgn"
+    assert links(game_context(parsed, reports), "advantage_run")[0].facts.outcome == "maintained"
     assert (
-        links(reviewed([300] * 8, initial=300, result="1/2-1/2")[2], "advantage_run")[0].facts[
-            "outcome"
-        ]
+        links(reviewed([300] * 8, initial=300, result="1/2-1/2")[2], "advantage_run")[
+            0
+        ].facts.outcome
         == "maintained"
     )
     assert not links(reviewed([300, 300, 0, 0])[2], "advantage_run")
@@ -105,39 +105,39 @@ def test_only_sustained_reviewed_advantage_and_matching_result_can_be_converted(
 
 def test_an_advantage_run_lists_the_sides_own_errors_inside_it():
     context = reviewed([300] * 8, initial=300, result="1-0")[2]
-    assert links(context, "advantage_run")[0].facts["own_error_plies"] == []
+    assert links(context, "advantage_run")[0].facts.own_error_plies == []
     # White drops four pawns at ply 3 but stays above +2.00, so the run still converts.
     context = reviewed([900, 900, 500, 500, 500, 500, 500, 500], initial=900, result="1-0")[2]
     run = links(context, "advantage_run")[0]
-    assert run.facts["outcome"] == "converted" and run.plies == list(range(1, 9))
-    assert run.facts["own_error_plies"] == [3]
+    assert run.facts.outcome == "converted" and run.plies == list(range(1, 9))
+    assert run.facts.own_error_plies == [3]
     # Inaccuracies count too: 0.90 given back at plies 3 and 7 is not "no slip".
     context = reviewed([900, 900, 810, 810, 810, 810, 720, 720], initial=900, result="1-0")[2]
-    assert links(context, "advantage_run")[0].facts["own_error_plies"] == [3, 7]
+    assert links(context, "advantage_run")[0].facts.own_error_plies == [3, 7]
 
 
 def test_several_small_concessions_need_net_deterioration_not_just_badges():
     context = reviewed([400, 400, 300, 300, 200, 200, 100, 100], initial=500)[2]
     erosion = links(context, "erosion")[0]
     assert erosion.actor == "white" and erosion.plies == [1, 3, 5]
-    assert erosion.facts["net_deterioration_cp"] == 300
+    assert erosion.facts.net_deterioration_cp == 300
     assert not links(reviewed([400, 500, 400, 500, 400, 500, 400, 500], initial=500)[2], "erosion")
     # Each of these concessions is a full pawn, a Mistake.
-    assert erosion.facts["own_mistake_plies"] == [1, 3, 5]
+    assert erosion.facts.own_mistake_plies == [1, 3, 5]
 
 
 def test_erosion_lists_the_sides_own_mistakes_since_its_first_concession():
     # Four 0.60 concessions: small slips, no Mistake among them.
     context = reviewed([500, 500, 440, 440, 380, 380, 320, 320], initial=560)[2]
     erosion = links(context, "erosion")[-1]
-    assert erosion.plies == [1, 3, 5, 7] and erosion.facts["own_mistake_plies"] == []
+    assert erosion.plies == [1, 3, 5, 7] and erosion.facts.own_mistake_plies == []
     # The last concession is 1.40, a Mistake.
     context = reviewed([500, 500, 440, 440, 380, 380, 240, 240], initial=560)[2]
-    assert links(context, "erosion")[-1].facts["own_mistake_plies"] == [7]
+    assert links(context, "erosion")[-1].facts.own_mistake_plies == [7]
     # A separate three-pawn drop at ply 3 between concessions at 1, 5 and 7.
     context = reviewed([900, 900, 600, 600, 500, 500, 400, 400], initial=1000)[2]
     erosion = links(context, "erosion")[0]
-    assert erosion.plies == [1, 5, 7] and 3 in erosion.facts["own_mistake_plies"]
+    assert erosion.plies == [1, 5, 7] and 3 in erosion.facts.own_mistake_plies
 
 
 def test_repeated_motif_uses_player_role_and_unique_plies_not_duplicate_detectors():
@@ -149,13 +149,13 @@ def test_repeated_motif_uses_player_role_and_unique_plies_not_duplicate_detector
         (5, "alternative"),
         (7, "played"),
     ]:
-        event = {"id": f"fork-{ply}", "kind": "tactic", "facts": {"motif": "fork", "role": role}}
+        event = tactic_event(f"fork-{ply}", role=role)
         reports[ply]["intelligence"]["events"] += [event, deepcopy(event)]
     context = game_context(parsed, reports, completed=True)
     repeated = links(context, "repeated_motif")
     assert len(repeated) == 1
     assert repeated[0].actor == "white" and repeated[0].plies == [1, 3]
-    assert repeated[0].facts["occurrence"] == 2
+    assert repeated[0].facts.occurrence == 2
     assert repeated[0].event_ids == ["fork-1", "fork-3"]
 
 
@@ -169,40 +169,30 @@ def test_repeated_causes_belong_to_the_responsible_player(skill, black):
     for ply in [*own, opponent]:
         source = public_report(cause_report(skill, black if ply in own else not black), 1000)
         event = next(
-            e for e in source["intelligence"]["events"] if e["facts"].get("motif") == skill
+            e
+            for e in source["intelligence"]["events"]
+            if e["kind"] == "tactic" and e["facts"]["motif"] == skill
         )
         event["id"] = f"{event['id']}:{ply}"
         reports[ply]["intelligence"]["events"] += [event, deepcopy(event)]
     repeated = links(game_context(parsed, reports, completed=True), "repeated_motif")
     assert len(repeated) == 1
     assert repeated[0].actor == mover and repeated[0].plies == own
-    assert repeated[0].facts["role"] == "caused"
-    assert repeated[0].facts["occurrence"] == 2
+    assert repeated[0].facts.role == "caused"
+    assert repeated[0].facts.occurrence == 2
 
 
 def test_actual_development_and_return_restore_a_concrete_knights_support():
     _, _, context = reviewed([0] * 8, line="1. e4 e5 2. Nf3 Nc6 3. Ng5 a6 4. Nh3 Nf6")
     restored = links(context, "support_restored")
-    assert any(r.plies == [5, 7] and r.facts["target"] == "h3" for r in restored)
+    assert any(r.plies == [5, 7] and r.facts.target == "h3" for r in restored)
 
 
 def test_support_relationship_does_not_match_an_unrelated_same_type():
     parsed, reports, _ = reviewed([0] * 8)
     for ply, before, after in [(3, ["g2"], []), (5, [], ["g2"])]:
         reports[ply]["intelligence"]["events"].append(
-            dict(
-                id=f"support-{ply}",
-                kind="positional",
-                facts=dict(
-                    feature="piece_support",
-                    line="actual",
-                    side="white",
-                    target="f3",
-                    piece="knight",
-                    before=before,
-                    after=after,
-                ),
-            )
+            support_event(f"support-{ply}", "white", "f3", "knight", before, after)
         )
     context = game_context(parsed, reports, completed=True)
     assert links(context, "support_restored")[0].event_ids == ["support-3", "support-5"]

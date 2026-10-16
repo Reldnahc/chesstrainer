@@ -230,16 +230,15 @@ def enrich_decision(units, task, engine, cancelled):
                 db.add(
                     ClassificationProbe(
                         classification_analysis_id=supplement.id,
-                        **{
-                            key: probe[key]
-                            for key in (
+                        **probe.model_dump(
+                            include={
                                 "root_analysis_id",
                                 "analysis_id",
                                 "kind",
                                 "at_ply",
                                 "query_key",
-                            )
-                        },
+                            }
+                        ),
                     )
                 )
     log.info(

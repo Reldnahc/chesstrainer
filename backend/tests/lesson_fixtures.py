@@ -84,7 +84,6 @@ def seed_lesson(db, settings, count=8, offset=0, skills=None):
             loss_cp=500,
             meaningful=True,
             deep=True,
-            facts={},
         )
         db.add(decision)
         db.flush()

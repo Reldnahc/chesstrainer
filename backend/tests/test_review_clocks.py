@@ -97,7 +97,7 @@ def test_opening_departure_is_once_and_never_invented_for_a_setup_position():
     departures = [context for context in contexts.values() if context.opening_departure]
     assert len(departures) == 1
     assert departures[0].ply == 23
-    assert departures[0].opening_departure["previous_book_ply"] == 22
+    assert departures[0].opening_departure.previous_book_ply == 22
     parsed = game(
         "1. e4 *", extra=f'[SetUp "1"]\n[FEN "{chess.STARTING_FEN.replace("0 1", "0 5")}"]'
     )

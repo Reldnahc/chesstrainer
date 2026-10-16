@@ -70,7 +70,6 @@ def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
                         loss_cp=200,
                         meaningful=True,
                         deep=True,
-                        facts={"verified_line": []},
                     )
                 )
         db.commit()

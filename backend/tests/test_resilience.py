@@ -83,7 +83,6 @@ def decision(sessions):
             played_analysis_id=analysis.id,
             loss_cp=200,
             meaningful=True,
-            facts={"verified_line": []},
         )
         db.add(item)
         db.commit()

@@ -152,7 +152,6 @@ test("skill evidence, targeted practice and disabled positions remain usable on 
       loss_cp: 100,
       allows_mate: false,
       mate_lost: false,
-      facts: {},
       candidates: [
         {
           uci: "g2g4",

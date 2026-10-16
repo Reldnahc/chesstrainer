@@ -5,7 +5,14 @@ from sqlalchemy import select, update
 
 from trainer.chess_core import digest, position_key, valid_board
 from trainer.continuations import ContinuationEnd
-from trainer.diagnosis_types import Finding, Outcome
+from trainer.defensive_probes import DefenseCheck
+from trainer.diagnosis_types import (
+    Finding,
+    Outcome,
+    PreviousMove,
+    ProbeRecord,
+    evidence_probes,
+)
 from trainer.errors import EvidenceIntegrityError, NotFound
 from trainer.imports import decision_board
 from trainer.models import (
@@ -28,7 +35,7 @@ class Classification(BaseModel):
     model_config = ConfigDict(extra="forbid")
     parameters: dict[str, int] = Field(default_factory=dict)
     continuations: dict[str, ContinuationEnd] = Field(default_factory=dict)
-    defense_checks: list[dict] = Field(default_factory=list)
+    defense_checks: list[DefenseCheck] = Field(default_factory=list)
     findings: list[Finding] = Field(default_factory=list)
     outcomes: list[Outcome] = Field(default_factory=list)
     abstention_reasons: list[str] = Field(default_factory=list)
@@ -53,22 +60,25 @@ class Classification(BaseModel):
         return list(dict.fromkeys(value))
 
 
+REJECTED = "Rejected by the learner as unsupported; excluded from current diagnosis."
+
+
 def probe_record(kind, root_analysis_id, at_ply, query_key, analysis):
     """One engine probe as the classifier reads it, from its saved engine analysis.
 
     The same record is built when a probe is planned and when its evidence is
     reloaded, so a classification sees identical evidence either way.
     """
-    return {
-        "kind": kind,
-        "root_analysis_id": root_analysis_id,
-        "at_ply": at_ply,
-        "query_key": query_key,
-        "analysis_id": analysis.id,
-        "fen": analysis.fen,
-        "config": analysis.config,
-        "candidate": analysis.candidates[0],
-    }
+    return ProbeRecord(
+        kind=kind,
+        root_analysis_id=root_analysis_id,
+        at_ply=at_ply,
+        query_key=query_key,
+        analysis_id=analysis.id,
+        fen=analysis.fen,
+        config=analysis.config,
+        candidate=analysis.candidates[0],
+    )
 
 
 def verified_payload(db, decision):
@@ -80,7 +90,7 @@ def verified_payload(db, decision):
             raise EvidenceIntegrityError("Source game does not match decision position")
         if source.move_stack:
             move = source.pop()
-            previous = {"fen": source.fen(), "uci": move.uci()}
+            previous = PreviousMove(fen=source.fen(), uci=move.uci()).model_dump()
     supplement = db.scalar(
         select(ClassificationAnalysis)
         .where(ClassificationAnalysis.decision_id == decision.id)
@@ -120,7 +130,7 @@ def verified_payload(db, decision):
         "evidence_ids": [before.id, played.id],
         "user_move": {"uci": decision.move_uci, "san": decision.move_san},
         "previous_move": previous,
-        "probes": probes,
+        "probes": [probe.model_dump(mode="json") for probe in probes],
         "best_candidates": before.candidates,
         "played_candidate": played.candidates[0],
         "loss": {
@@ -128,7 +138,6 @@ def verified_payload(db, decision):
             "mate_lost": decision.mate_lost,
             "allows_mate": decision.allows_mate,
         },
-        "deterministic_facts": decision.facts,
         "available_skill_ids": list(SKILLS),
     }
 
@@ -157,7 +166,8 @@ def classify_decision(units, decision, classifier):
         if run is None or run.status == "completed":
             if run is not None:
                 activate_run(db, run)
-            return run is not None
+            # A result the learner already rejected is not a classification.
+            return run is not None and run.status != "rejected"
         key = run.cache_key
     try:
         output = classifier.classify(payload)
@@ -170,7 +180,7 @@ def classify_decision(units, decision, classifier):
             # Keep immutable runs; current labels follow the latest requested
             # successful classification, including low confidence.
             activate_run(db, run)
-        return True
+            return run.status != "rejected"
     except Exception as exc:
         with units.write() as db:
             run = db.scalar(select(ClassificationRun).where(ClassificationRun.cache_key == key))
@@ -236,7 +246,7 @@ def _validated(output, decision, classifier, payload):
     labels = set([result.primary_skill, *result.secondary_skills]) - {UNCLASSIFIED}
     if labels != {f.skill_id for f in result.findings}:
         raise EvidenceIntegrityError("Classification labels lack matching findings")
-    probes = {p["analysis_id"] for p in payload.get("probes", [])}
+    probes = {probe.analysis_id for probe in evidence_probes(payload)}
     for finding in result.findings:
         if finding.analysis_id not in payload["evidence_ids"]:
             raise EvidenceIntegrityError("Finding references unrelated analysis")
@@ -256,8 +266,16 @@ def label_explanation(result, skill):
 LABEL_CONFIDENCE = 0.7
 
 
+def _labels(result):
+    return {result.primary_skill, *result.secondary_skills} - {UNCLASSIFIED}
+
+
 def activate_run(db, run):
-    """Make a completed run's labels the decision's current labels, and only those."""
+    """Make a completed run's labels the decision's current labels, and only those.
+
+    A run whose labels the learner already rejected for this decision, in a run
+    with other evidence or rules, is rejected too rather than revived.
+    """
     result = Classification.model_validate(run.response)
     rows = {
         e.skill_id: e
@@ -267,6 +285,21 @@ def activate_run(db, run):
     }
     for evidence in rows.values():
         evidence.active = False
+    rejected = db.scalars(
+        select(ClassificationRun.response).where(
+            ClassificationRun.decision_id == run.decision_id,
+            ClassificationRun.status == "rejected",
+            ClassificationRun.id != run.id,
+            ClassificationRun.response.is_not(None),
+        )
+    )
+    # An abstention (no labels) carries nothing forward to reject.
+    if _labels(result) and any(
+        _labels(Classification.model_validate(earlier)) == _labels(result) for earlier in rejected
+    ):
+        run.status = "rejected"
+        run.error = REJECTED
+        return
     if result.confidence < LABEL_CONFIDENCE:
         return
     for skill in dict.fromkeys([result.primary_skill, *result.secondary_skills]):
@@ -292,7 +325,7 @@ def reject_run(db, run_id):
     if run is None:
         raise NotFound("Classification run not found")
     run.status = "rejected"
-    run.error = "Rejected by the learner as unsupported; excluded from current diagnosis."
+    run.error = REJECTED
     db.execute(
         update(SkillEvidence)
         .where(SkillEvidence.classification_run_id == run_id)

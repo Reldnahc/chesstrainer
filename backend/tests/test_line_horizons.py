@@ -8,6 +8,7 @@ from trainer import game_review
 from trainer.chess_core import Candidate
 from trainer.classification_stages import line_parameters, line_rules
 from trainer.continuations import continuation_end, replay, settled_delta
+from trainer.diagnosis_types import PreviousMove
 
 
 def random_line(seed, plies=40):
@@ -84,7 +85,7 @@ def test_both_review_lines_read_the_move_before(monkeypatch):
     game_review.review_lines(board, best, played, "b", "a", True)
     before = board.copy(stack=True)
     last = before.pop()
-    expected = {"fen": before.fen(), "uci": last.uci()}
+    expected = PreviousMove(fen=before.fen(), uci=last.uci())
     assert seen == [expected, expected]
 
 

@@ -203,7 +203,7 @@ availability after a game.
 Manual imports fetch older games; there is no analysis choice. Their games join
 the same queue behind games the poller found. Opening a game whose review has not started,
 failed or was paused starts it at the front of the queue. Interactive exploration analyzes the position
-you visit. The HTTP import APIs ignore a legacy `analyze` field.
+you visit. The HTTP import APIs ignore a legacy `analyze` field and reject any other unknown field (HTTP 422).
 
 ## Configuration
 

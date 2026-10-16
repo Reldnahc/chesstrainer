@@ -178,6 +178,13 @@ def test_generic_api_connections_and_fetch_jobs_never_start_engine(settings):
         )
         assert response.status_code == 202
         job = response.json()["job_id"]
+        # Like every request contract, an unknown field is rejected, not ignored.
+        assert (
+            api.post(
+                "/api/imports/provider/lichess", json={"username": "learner", "colour": "white"}
+            ).status_code
+            == 422
+        )
         assert (
             api.post(
                 "/api/imports/provider/lichess",

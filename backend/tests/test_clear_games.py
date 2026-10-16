@@ -82,7 +82,6 @@ def test_clear_games_removes_game_data_and_keeps_everything_else(settings, sessi
             played_analysis_id=game_analysis.id,
             loss_cp=200,
             meaningful=True,
-            facts={"verified_line": []},
         )
         db.add(decision)
         db.commit()

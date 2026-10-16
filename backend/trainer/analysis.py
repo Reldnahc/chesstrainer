@@ -1,6 +1,6 @@
 from sqlalchemy import select, update
 
-from trainer.chess_core import Candidate, board_facts, digest, evaluation_loss, position_key
+from trainer.chess_core import Candidate, digest, evaluation_loss, position_key
 from trainer.models import (
     Decision,
     EngineAnalysis,
@@ -68,7 +68,6 @@ def analyze_decision(units, engine, settings, game, ply, board, move):
         decision.allows_mate = loss.allows_mate
         decision.meaningful = meaningful
         decision.deep = deep
-        decision.facts = board_facts(board, move, actual.pv)
         if existing and not meaningful:
             # No longer a mistake: its labels stop counting as weakness evidence.
             db.execute(

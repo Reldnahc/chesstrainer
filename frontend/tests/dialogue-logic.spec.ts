@@ -7,25 +7,27 @@ import { neutralTemplates } from "../src/dialogue/templates";
 import { claim, makeIntent, stableKey, type ClaimCode } from "../src/dialogue/model";
 import { positionalClaim } from "../src/dialogue/eventClaims";
 import type { Game, Position, Report } from "../src/gameReview/types";
-import type { ColdPosition, ExplanationFrame, Schema } from "../src/api";
+import type {
+  ColdPosition,
+  ExplanationFrame,
+  ReviewEvent,
+  ReviewEventOf,
+  Schema,
+} from "../src/api";
+import {
+  gameRelationship,
+  positionalEvent,
+  reviewEvent,
+  witness,
+  type GameRelationship,
+} from "./helpers/reviewEvents";
 import { semanticFixtures } from "./semantic-fixtures";
 import { positionalClaims } from "./positional-claims";
 import { humanGames, humanIntent } from "./human-fixtures";
 
 const ref = { source: "stockfish" as const, id: "search", field: "root" };
-const event = (
-  kind: Schema["ReviewEvent"]["kind"],
-  facts: Schema["ReviewEvent"]["facts"],
-): Schema["ReviewEvent"] => ({
-  id: `event-${kind}`,
-  actor: "white",
-  confidence: "searched",
-  importance: 75,
-  kind,
-  facts,
-  evidence: [ref],
-});
-const report = (events: Schema["ReviewEvent"][] = []): Report => ({
+const event = reviewEvent;
+const report = (events: ReviewEvent[] = []): Report => ({
   label: "Blunder",
   engine_label: "Blunder",
   actual: {
@@ -250,21 +252,18 @@ test("a capture taken straight back is an even trade, not a reply that wins mate
 });
 
 test("a missed tactic that starts on this move outranks one that appears later in the line", () => {
-  const tactic = (id: string, motif: string, plies: number[]): Schema["ReviewEvent"] => ({
-    id,
-    actor: "white",
-    confidence: "line_witness",
-    importance: 75,
-    kind: "tactic",
-    evidence: [ref],
-    facts: {
-      motif,
-      role: "missed",
-      plies,
-      frame_ply: plies[0],
-      witness: plies.map(ply => ({ ply, san: ply === 1 ? "d4" : "Nxc4" })),
-    },
-  });
+  const tactic = (id: string, motif: string, plies: number[]) =>
+    reviewEvent(
+      "tactic",
+      {
+        motif,
+        role: "missed",
+        plies,
+        frame_ply: plies[0],
+        witness: plies.map(ply => witness(ply, ply === 1 ? "d4" : "Nxc4")),
+      },
+      { id, confidence: "line_witness" },
+    );
   const value = {
     ...report([tactic("later", "removing_defender", [3, 5]), tactic("now", "fork", [1, 3])]),
     label: "Inaccuracy",
@@ -338,17 +337,7 @@ test("recorded relationships need the matching node and never follow a variation
       },
     ],
     turning_points: [],
-    relationships: [
-      {
-        id: "recovery",
-        kind: "recovery",
-        actor: "white",
-        plies: [0, 1],
-        event_ids: [],
-        facts: { opponent_errors: [0] },
-        evidence: [ref],
-      },
-    ],
+    relationships: [gameRelationship("recovery", { opponent_errors: [0] })],
   };
   const full = { ...args, game: { ...game, context }, report: value };
   expect(renderNeutral(gameIntent(full)).text).toMatch(/playable.*opponent's errors/i);
@@ -366,19 +355,8 @@ test("recorded relationships need the matching node and never follow a variation
 
 test("game-context relationships are told only where their wording holds", () => {
   const value = report();
-  const relation = (
-    kind: Schema["GameRelationship"]["kind"],
-    facts: Schema["GameRelationship"]["facts"],
-  ) => ({
-    id: kind,
-    kind,
-    actor: "white" as const,
-    plies: [0, 1],
-    event_ids: [],
-    facts,
-    evidence: [ref],
-  });
-  const codes = (relationships: Schema["GameRelationship"][], label: Report["label"] = "Mistake") =>
+  const relation = gameRelationship;
+  const codes = (relationships: GameRelationship[], label: Report["label"] = "Mistake") =>
     gameIntent({
       ...args,
       report: { ...value, label },
@@ -428,9 +406,6 @@ test("game-context relationships are told only where their wording holds", () =>
   expect(
     codes([relation("advantage_run", { outcome: "converted", own_error_plies: [5] })], "Best"),
   ).not.toContain("conversion");
-  expect(codes([relation("advantage_run", { outcome: "converted" })], "Best")).not.toContain(
-    "conversion",
-  );
 });
 
 test("book is recognition, positive findings teach and arbitrary structure is not a cause", () => {
@@ -443,8 +418,7 @@ test("book is recognition, positive findings teach and arbitrary structure is no
   // The Book badge decides: no correction for a recognised move.
   expect(text).not.toContain("3.00 pawns");
   expect(text).not.toMatch(/recognition|does not mean|quality grade|sound/);
-  const fact = event("positional", {
-    feature: "rook_file",
+  const fact = positionalEvent("rook_file", {
     line: "actual",
     side: "black",
     after: "open",
@@ -455,7 +429,12 @@ test("book is recognition, positive findings teach and arbitrary structure is no
       makeIntent("key", "best", "game", "best", [positionalClaim(fact, "exd5", "Nf3")!]),
     ).text,
   ).toContain("black's rook");
-  expect(positionalClaim(event("positional", { feature: "bad_bishop" }), "e4", "d4")).toBeNull();
+  // A feature this frontend does not know yet (a newer backend) is not told.
+  const unknown = {
+    ...positionalEvent("bishop_pair"),
+    facts: { ...positionalEvent("bishop_pair").facts, feature: "bad_bishop" },
+  } as unknown as ReviewEventOf<"positional">;
+  expect(positionalClaim(unknown, "e4", "d4")).toBeNull();
   const best = {
     ...report([event("critical_resource", { purpose: "defense", difficult: true })]),
     label: "Great",

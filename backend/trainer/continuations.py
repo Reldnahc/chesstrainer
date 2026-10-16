@@ -138,16 +138,16 @@ def extended_line(board, candidate, analysis_id, probes):
     boards = replay(board, candidate)
     pv = list(candidate.pv)
     for probe in sorted(
-        (p for p in probes if p["kind"] == "tail" and p["root_analysis_id"] == analysis_id),
-        key=lambda p: p["at_ply"],
+        (p for p in probes if p.kind == "tail" and p.root_analysis_id == analysis_id),
+        key=lambda p: p.at_ply,
     ):
-        if probe["at_ply"] != len(pv) or position_key(valid_board(probe["fen"])) != position_key(
+        if probe.at_ply != len(pv) or position_key(valid_board(probe.fen)) != position_key(
             boards[-1]
         ):
             raise EvidenceIntegrityError(
                 "Continuation probe does not match its saved parent endpoint"
             )
-        extra = Candidate.model_validate(probe["candidate"])
+        extra = Candidate.model_validate(probe.candidate)
         continuation = replay(boards[-1], extra)
         boards.extend(continuation[1:])
         pv.extend(extra.pv)

@@ -55,7 +55,6 @@ class Evidence(Contract):
     loss_cp: int | None
     mate_lost: bool
     allows_mate: bool
-    facts: dict[str, JsonValue]
     candidates: list[Candidate]
     classifications: list[EvidenceClassification]
 

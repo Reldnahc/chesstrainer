@@ -1,11 +1,11 @@
-import type { ExplanationFrame, MoveExplanation, PatternFinding, Schema } from "../../api";
+import type { ExplanationFrame, MoveExplanation, PatternFinding, ReviewEventOf } from "../../api";
 import { object, strings } from "../../dialogue/eventClaims";
 import { findingSubjects, tacticSubjects } from "../../dialogue/tacticalVocabulary";
 import { meanings } from "./meaningCatalog";
 import { ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR } from "./sequence";
 
 type Side = "white" | "black";
-type Event = Schema["ReviewEvent"];
+type Tactic = ReviewEventOf<"tactic">;
 
 // A piece variant names the one piece its meaning is about ("the pinned knight")
 // instead of a generic "piece". The catalogue lists every piece that can occur.
@@ -202,7 +202,7 @@ function subject(
 }
 
 /** The subject piece of a game-review tactic, from its witness roles and pieces. */
-export function tacticPieces(event: Event): NamedPieces | null {
+export function tacticPieces(event: Tactic): NamedPieces | null {
   const f = event.facts,
     kind = tacticSubjects[String(f.motif)],
     pieces = object(f.pieces);
@@ -213,7 +213,7 @@ export function tacticPieces(event: Event): NamedPieces | null {
 }
 
 /** The two checking pieces of a double attack that is a double check ("knight-rook"). */
-export function doubleCheckPieces(event: Event): NamedPieces | null {
+export function doubleCheckPieces(event: Tactic): NamedPieces | null {
   const f = event.facts,
     pieces = object(f.pieces);
   if (event.actor !== "white" && event.actor !== "black") return null;

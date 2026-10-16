@@ -73,7 +73,6 @@ def create_router(*, settings, classifier) -> APIRouter:
                 "loss_cp": decision.loss_cp,
                 "mate_lost": decision.mate_lost,
                 "allows_mate": decision.allows_mate,
-                "facts": decision.facts,
                 "candidates": db.get(EngineAnalysis, decision.before_analysis_id).candidates,
                 "classifications": [
                     {

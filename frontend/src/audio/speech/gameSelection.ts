@@ -1,4 +1,4 @@
-import type { Schema } from "../../api";
+import type { ReviewEvent, ReviewEventOf } from "../../api";
 import type { Game, Position, Report } from "../../gameReview/types";
 import { gameIntent } from "../../dialogue/gameIntent";
 import { humanInsightLabels } from "../../dialogue/humanClaims";
@@ -56,7 +56,7 @@ export type GameSpeechContext = {
   playable?: (id: string) => boolean;
 };
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
-type Event = Schema["ReviewEvent"];
+type Event = ReviewEvent;
 const opposite = (side: "white" | "black") => (side === "white" ? "black" : "white");
 const nonempty = (value: unknown): value is string =>
   typeof value === "string" && value.trim().length > 0;
@@ -146,11 +146,11 @@ function tacticalRecording(
   mover: "white" | "black",
   report: Report,
 ): string | null {
-  const f = event.facts,
-    role = f.role,
-    motif = String(f.motif);
   if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item))
     return null;
+  const f = event.facts,
+    role = f.role,
+    motif = f.motif;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
   const poor = isPoorMove(report.label);
   if (
@@ -236,10 +236,10 @@ function positionalRecording(
   mover: "white" | "black",
   report: Report,
 ): string | null {
+  if (event.kind !== "positional") return null;
   const f = event.facts,
     line = item.position?.line;
   if (
-    event.kind !== "positional" ||
     event.confidence !== "board_fact" ||
     event.actor !== mover ||
     !searchEvidence(item) ||
@@ -662,7 +662,8 @@ export function selectGameSpeech(context: GameSpeechContext) {
   const sacrifice =
     gradeId && gradeTakes("brilliant").includes(gradeId) && mover
       ? context.report?.intelligence?.events.find(
-          event => event.kind === "sacrifice" && event.actor === mover,
+          (event): event is ReviewEventOf<"sacrifice"> =>
+            event.kind === "sacrifice" && event.actor === mover,
         )
       : undefined;
   const sacrificed =
@@ -772,7 +773,8 @@ export function repeatsLead(lead: string, second: string, secondCode: string): b
 /** The side whose pawns, rook or piece a selected positional clip is about. */
 function positionalSide(context: GameSpeechContext): Side | null {
   const item = context.utterance.renderedClaims?.[context.claimIndex ?? 0];
-  const side = item && context.report ? eventFor(item, context.report)?.facts.side : null;
+  const event = item && context.report ? eventFor(item, context.report) : undefined;
+  const side = event?.kind === "positional" ? event.facts.side : null;
   return side === "white" || side === "black" ? side : null;
 }
 
@@ -788,14 +790,15 @@ function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null 
   const event = eventFor(item, context.report);
   if (!event) return null;
   if (id.startsWith("positional-")) {
-    if (typeof event.facts.piece !== "string") return null;
+    if (event.kind !== "positional" || !("piece" in event.facts)) return null;
     // Support facts name the played piece's square; an alternative's piece stands elsewhere.
-    const target = event.facts.target;
+    const target = event.facts.feature === "piece_support" ? event.facts.target : null;
     return {
       pieces: [event.facts.piece],
       ...(id.endsWith("-actual") && square(target) ? { square: target } : {}),
     };
   }
+  if (event.kind !== "tactic") return null;
   if (id === DOUBLE_CHECK) return doubleCheckPieces(event);
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }

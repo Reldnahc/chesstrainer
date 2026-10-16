@@ -45,7 +45,7 @@ saved game then queues its own analysis job. See
 | site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
 | cascade.py | What a delete takes with it, read from the models' foreign keys: an account's tables, and everything that refers to removed games (`scripts/clear_games.py`) |
-| job_kinds.py | Job kinds and statuses as enums, the values the `analysis_jobs` CHECK constraints accept |
+| job_kinds.py | Job kinds and statuses as enums, the values the `analysis_jobs` CHECK constraints accept; the API's `Job.kind` and `status` are typed from them |
 | job_lifecycle.py | The fetch lane and every job state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
 | jobs.py / job_queue.py / job_execution.py / job_context.py | Bounded host workers, scheduling metadata, account-bound job execution dispatched by kind, and the one context every job step receives |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback; `lan.py` holds the host-name and same-origin rules it shares with account mode |
@@ -347,7 +347,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 
 ## Domain boundaries
 
-- chess_core.py: python-chess rules, legal-position identity, deterministic facts, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
+- chess_core.py: python-chess rules, legal-position identity, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
 - engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
 - policy.py: configurable move acceptance over verified scores.
 - play/bot.py / play/level.py / play/sessions.py: human-like move choice from the shared human policy with engine veto rules by rating, the measured level fit over imported games, and game-session state whose finished games are imported like any other game. See [Play](PLAY.md).
@@ -561,7 +561,7 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
 | review_refinements | Account-owned deeper searches planned for chosen plies of a completed review, with their status, reason and the refined report that may be adopted |
 | human_analyses | Shared Maia policy cache, unique by versioned key (see below) |
-| decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
+| decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/deep/meaningful flags |
 | skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
 | classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
 | exercises, exercise_tags, exercise_answers | Game/manual practice and archived repertoire exercises, normalized answers/tags, policy snapshots and verification references |

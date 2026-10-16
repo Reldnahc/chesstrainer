@@ -134,7 +134,7 @@ def _render_key(play, ply, report, context=None):
     departure = context.opening_departure if context else None
     return (
         tuple(play.moves[:ply]),
-        tuple(sorted(departure.items())) if departure else None,
+        tuple(sorted(departure.model_dump().items())) if departure else None,
         tuple(sorted((report.get("previous_score") or {}).items())),
         # The capitalizing Great reads it, and linking replaces it once the
         # predecessor's own report is saved.
