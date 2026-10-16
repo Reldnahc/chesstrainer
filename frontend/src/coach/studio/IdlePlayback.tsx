@@ -1,5 +1,6 @@
 import { ArrowRight, RotateCcw } from "lucide-react";
 import type { CoachPerformanceSnapshot } from "../performanceDiagnostics";
+import Button from "../../Button";
 
 type Props = {
   natural: boolean;
@@ -118,10 +119,10 @@ export default function IdlePlayback({
               <input type="number" min="0" max="4294967295" step="1" value={seed}
                 onChange={(event) => onSeed(event.target.value)} />
             </label>
-            <button disabled={!validSeed} onClick={onRestart}
+            <Button size="compact" disabled={!validSeed} onClick={onRestart}
               title="Apply this seed and restart enabled idle previews without replaying the reaction.">
               <RotateCcw size={14} /> Restart idle sequence
-            </button>
+            </Button>
             <span>{appliedSeed === undefined ? "Random playback" : `Seed ${appliedSeed}`}</span>
           </div>
           <MotionDiagnostics snapshot={snapshot} />

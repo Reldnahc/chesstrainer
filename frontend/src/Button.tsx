@@ -3,7 +3,7 @@ import "./action-controls.css";
 
 export type ActionStyle = {
   variant?: "default" | "primary" | "secondary" | "quiet" | "return";
-  size?: "ordinary" | "compact";
+  size?: "ordinary" | "compact" | "dense";
   className?: string;
 };
 

@@ -9,7 +9,7 @@ import EvaluationBar from "../EvaluationBar";
 import { ARROW_COLOURS, cueArrows, cuesFor, moveSquares, uciArrow } from "../boardCues";
 import ActionLink from "../ActionLink";
 import { LoadingState, UnavailableState } from "../LoadState";
-import Button from "../Button";
+import Button, { IconButton } from "../Button";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
@@ -236,10 +236,10 @@ export default function GameWorkspace({
           exploration={exploration}
           getAnalysis={analysis.get}
           actions={
-            <button className="game-move-command game-move-command--icon" aria-label="Export game" title="Export PGN, FEN or GIF"
+            <IconButton variant="quiet" size="dense" aria-label="Export game" title="Export PGN, FEN or GIF"
               onClick={() => setExporting(true)}>
               <Share size={14} />
-            </button>
+            </IconButton>
           }
           progress={
             <ReviewProgress

@@ -1,7 +1,7 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
 /* The studio owns its page layout; application navigation and settings styles
-   must not affect character previews. Shared controls stay in foundation.css. */
+   must not affect character previews. Shared controls come from their components. */
 .studio-page {
   --studio-page-width: 80%;
   --studio-inline-padding: var(--space-5);
@@ -28,7 +28,6 @@
     font-size: var(--text-md);
     line-height: 1.5;
   }
-  .studio-page button:not(.action-control),
   .studio-page summary { min-height: var(--touch-target); }
   .studio-page label { gap: var(--space-1-5); }
 }

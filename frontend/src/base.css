@@ -70,13 +70,23 @@
   align-items: center;
   flex: 1;
 }
+/* Navigation destinations are links styled here, not buttons. */
 .nav-item {
   position: relative;
-  border: 0;
-  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--control-height);
+  border-radius: 6px;
   color: var(--muted);
   padding: var(--space-3) var(--space-4);
   font-size: var(--text-md);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
 }
 .nav-item:hover {
   background: #25272c;
@@ -137,7 +147,7 @@ main.review-page {
   border-radius: 8px;
   padding: var(--panel-padding);
 }
-.panel > :is(.action-control, .button-link, button) {
+.panel > .action-control {
   align-self: flex-start;
 }
 .form-panel {
@@ -356,9 +366,6 @@ progress::-webkit-progress-value {
   }
   .workspace-page p {
     line-height: 1.5;
-  }
-  .workspace-page button:not(.action-control) {
-    min-height: var(--touch-target);
   }
   .workspace-page .form-panel {
     gap: var(--space-4);
