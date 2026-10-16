@@ -546,8 +546,9 @@ def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_a
         db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
         db.commit()
         scheduler = FSRSScheduler(settings)
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         exercise = exercise_from_decision(db, decision, settings, scheduler)
+        db.commit()
         task = ReviewRefinement(
             game_id=game.id,
             ply=1,
@@ -566,7 +567,7 @@ def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_a
         db.flush()
         db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
         db.commit()
-        again = analyze_decision(db, None, settings, game, 1, board, move)
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         # Still a mistake either way; the card keeps its answers and schedule.
         assert again.meaningful
         assert db.get(SRSState, exercise.id) is not None
