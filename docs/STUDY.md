@@ -151,7 +151,15 @@ analysis IDs, engine, depth and thresholds; `game_puzzle_searches` records one
 search per game and version, including games where nothing qualified. The
 account-bound `GamePuzzleProvider` serves ready rows of the current version, so
 ownership filtering hides other accounts' puzzles and existing sessions keep
-their snapshots when a later generator version supersedes a row.
+their snapshots when a later generator version supersedes a row. Puzzles mined
+before the mate step rule changed were judged again from their saved step scores
+by migration `9d2f6b1e4c83`: a line whose first or second step is now ambiguous
+became an abstention, and one ambiguous later on was removed, as were abstentions
+for lines that ran too long or missed their payoff (they may have run past such a
+step), so later puzzle searches (the From your games backfill, which takes the
+newest unsearched games first) mine those plies again under the same keys. Until
+then they are missing from the library and its solved count; results and retries
+carry over by key, and an open session finishes on its snapshot.
 
 Generation runs in two places. When `PUZZLE_GENERATION` is true, each analysis
 job mines a game right after its decisions commit, on the same engine. `POST
