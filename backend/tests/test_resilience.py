@@ -265,6 +265,38 @@ def test_backup_round_trip_has_no_secrets(settings, sessions, tmp_path):
         backup.restore_backup(archive, destination)
 
 
+def test_backups_from_before_the_rename_still_restore(settings, sessions, tmp_path):
+    import json
+    import sqlite3
+    import zipfile
+
+    spec = importlib.util.spec_from_file_location("backup", Path("scripts/backup.py"))
+    backup = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(backup)
+    with sessions() as db:
+        manual_exercise(db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white")
+    archive = backup.export_backup(tmp_path / "backup.zip", settings)
+    with zipfile.ZipFile(archive) as contents:
+        assert json.loads(contents.read("manifest.json"))["application"] == "fieldwork"
+        entries = {name: contents.read(name) for name in contents.namelist()}
+
+    def rewritten(application):
+        path = tmp_path / f"{application}.zip"
+        with zipfile.ZipFile(path, "w") as copy:
+            for name, data in entries.items():
+                if name == "manifest.json":
+                    data = json.dumps({"format": 1, "application": application})
+                copy.writestr(name, data)
+        return path
+
+    destination = tmp_path / "legacy.sqlite3"
+    backup.restore_backup(rewritten("local-chess-trainer"), destination)
+    with sqlite3.connect(destination) as db:
+        assert db.execute("SELECT COUNT(*) FROM exercises").fetchone()[0] == 1
+    with pytest.raises(ValueError, match="Unsupported backup format"):
+        backup.restore_backup(rewritten("another-app"), tmp_path / "other.sqlite3")
+
+
 def test_unavailable_unknown_move_does_not_fail_recall(settings, sessions, decision):
     from trainer.engine import EngineUnavailable
     from trainer.exercises import exercise_from_decision
