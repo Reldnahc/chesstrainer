@@ -105,6 +105,13 @@ def review_cues(line, *, mistake=False):
                         square = played.to_square
                     elif witness.piece_at(square) != current.piece_at(square):
                         continue
+                # The cue draws the current position: a square a piece has yet to
+                # reach (a skewering piece's destination) is marked only as the
+                # shown reply's landing square, never as an empty square.
+                elif current.piece_at(square) is None and not (
+                    show_reply and square == reply.to_square
+                ):
+                    continue
                 visible.append(chess.square_name(square))
             if visible:
                 roles[role] = visible
