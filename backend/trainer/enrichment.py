@@ -97,7 +97,7 @@ def _probe_candidates(db, settings, engine, classifier):
         ):
             continue
         try:
-            result, _ = classifier.classify(verified_payload(db, decision))
+            result = classifier.classify(verified_payload(db, decision))
         except (ValueError, NotFound) as exc:
             # One decision with inconsistent saved evidence must not stop planning
             # for the rest of the account.
@@ -230,16 +230,15 @@ def enrich_decision(units, task, engine, cancelled):
                 db.add(
                     ClassificationProbe(
                         classification_analysis_id=supplement.id,
-                        **{
-                            key: probe[key]
-                            for key in (
+                        **probe.model_dump(
+                            include={
                                 "root_analysis_id",
                                 "analysis_id",
                                 "kind",
                                 "at_ply",
                                 "query_key",
-                            )
-                        },
+                            }
+                        ),
                     )
                 )
     log.info(

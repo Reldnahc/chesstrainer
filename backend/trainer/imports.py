@@ -1,11 +1,12 @@
 import io
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 
 import chess
 import chess.pgn
 from sqlalchemy import select
 
+from trainer import timeutil
 from trainer.chess_core import digest, valid_board
 from trainer.errors import InvalidInput, NotFound
 from trainer.game_library import board_before, parsed_game
@@ -86,7 +87,7 @@ def played_at(game):
         headers.get("UTCDate", headers.get("Date", "")) + " " + headers.get("UTCTime", "00:00:00")
     )
     try:
-        return datetime.strptime(value, "%Y.%m.%d %H:%M:%S").replace(tzinfo=timezone.utc)
+        return timeutil.as_utc(datetime.strptime(value, "%Y.%m.%d %H:%M:%S"))
     except ValueError:
         return None
 

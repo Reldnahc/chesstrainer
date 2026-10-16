@@ -42,7 +42,7 @@ def game(pgn=PGN, *, end=100, speed="rapid", rules="chess", black=False):
 
 def source_job(sessions, **params):
     with sessions() as db:
-        job = AnalysisJob(kind="chesscom_fetch", status="running")
+        job = AnalysisJob(kind="provider_fetch", status="running")
         db.add(job)
         db.flush()
         request = ChessComRequest(**{"username": "learner", "months": 0, **params})
@@ -437,7 +437,7 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
         )
 
     with TestClient(create_app(settings, provider_factories={"chesscom": factory})) as client:
-        assert client.get("/api/health").json()["classification_available"]
+        assert "classification_available" not in client.get("/api/health").json()
         job_id = client.post(
             "/api/imports/provider/chesscom", json={"username": "learner", "months": 0}
         ).json()["job_id"]

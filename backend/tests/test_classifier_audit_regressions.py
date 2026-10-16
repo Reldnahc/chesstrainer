@@ -7,7 +7,7 @@ from trainer.local_classifier import LocalClassifier
 
 @pytest.mark.parametrize("black", [False, True])
 def test_undefended_queen_is_still_hanging_after_partial_compensation(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "6k1/8/8/q7/1B6/2P5/8/Q5K1 w - - 0 1",
             ["b4a5", "g8f7", "a5b4", "f7e6"],
@@ -22,7 +22,7 @@ def test_undefended_queen_is_still_hanging_after_partial_compensation(black):
 
 @pytest.mark.parametrize("black", [False, True])
 def test_equal_queen_trade_then_lost_knight_is_not_a_hung_queen(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "4k3/4q3/8/8/1N6/8/8/4Q1K1 w - - 0 1",
             ["b4d3", "e7e1", "d3e1", "e8d7", "g1f2", "d7d6"],
@@ -51,7 +51,7 @@ def test_equal_queen_trade_then_lost_knight_is_not_a_hung_queen(black):
 
 @pytest.mark.parametrize("black", [False, True])
 def test_free_queen_then_pawn_cleanup_is_not_defender_removal(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "6k1/6q1/8/3P4/3Q4/8/6P1/6K1 w - - 0 1",
             ["d4f4", "g8h8", "f4f1", "h8h7"],
@@ -66,7 +66,7 @@ def test_free_queen_then_pawn_cleanup_is_not_defender_removal(black):
 
 @pytest.mark.parametrize("black", [False, True])
 def test_checking_capture_can_deflect_the_king_from_its_rook(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "6rk/8/1q4r1/8/8/8/P4RP1/6K1 b - - 0 1",
             ["g6g2", "g1h1", "b6f2", "a2a3", "h8h7"],
@@ -81,7 +81,7 @@ def test_checking_capture_can_deflect_the_king_from_its_rook(black):
 
 @pytest.mark.parametrize("black", [False, True])
 def test_defender_still_on_its_file_is_pinned_not_deflected(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "4r3/5k2/8/6Q1/4n3/3P4/8/6K1 w - - 0 1",
             ["g5d5", "e8e6", "d3e4", "f7g6", "d5d3", "g6h6"],
@@ -97,7 +97,7 @@ def test_defender_still_on_its_file_is_pinned_not_deflected(black):
 
 @pytest.mark.parametrize("black", [False, True])
 def test_pinned_queen_is_traced_through_its_legal_capture(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "5bk1/8/2n5/8/8/2Q5/8/4K3 b - - 0 1",
             ["f8b4", "c3b4", "c6b4", "e1d2", "g8f7", "d2c3"],
@@ -120,6 +120,6 @@ def test_opponents_interposition_makes_a_previously_pinned_capture_available():
         -400,
     )
     payload["previous_move"] = {"fen": "3q1bk1/8/5n2/6B1/4N3/8/8/6K1 b - - 0 1", "uci": "f8e7"}
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     finding = next(f for f in result.findings if f.skill_id == "opponent_threat_recognition")
     assert "breaks a relative pin" in finding.explanation

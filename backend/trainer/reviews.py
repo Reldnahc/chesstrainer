@@ -312,7 +312,6 @@ def feedback(db, exercise, session=None):
                 "source": f"{game.white} — {game.black}",
                 "played_san": decision.move_san,
                 "candidates": analysis.candidates,
-                "facts": decision.facts,
             }
         )
     return result

@@ -194,7 +194,6 @@ def seed_decision(db, game, ply, played, before, *, meaningful=True):
         loss_cp=max(0, before[0][1] - scores[played]),
         meaningful=meaningful,
         deep=True,
-        facts={},
     )
     db.add(decision)
     db.commit()

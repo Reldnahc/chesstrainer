@@ -1,8 +1,8 @@
-import type { Schema } from "../api";
+import type { ReviewEventOf } from "../api";
 import { claim, type Claim, type ClaimCode } from "./model";
 import { words } from "./tacticalVocabulary";
 
-type Event = Schema["ReviewEvent"];
+type Tactic = ReviewEventOf<"tactic">;
 export const object = (value: unknown): Record<string, unknown> =>
   value && typeof value === "object" && !Array.isArray(value)
     ? (value as Record<string, unknown>)
@@ -13,7 +13,11 @@ export { words };
 const join = (items: string[]) =>
   items.length === 2 ? `${items[0]} and ${items[1]}` : items.join(", ");
 
-export function positionalClaim(event: Event, move: string, best: string): Claim | null {
+export function positionalClaim(
+  event: ReviewEventOf<"positional">,
+  move: string,
+  best: string,
+): Claim | null {
   const f = event.facts;
   if (f.line !== "actual" && f.line !== "best") return null;
   const alternative = f.line === "best";
@@ -75,7 +79,7 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
  * with the move's SAN, and its reference board is the position just before or after
  * it. The written timing ("After Nf3, there is a fork") and the recorded tactic
  * clips both use this one rule. */
-export function tacticStartsHere(event: Event, move: string, best: string): boolean {
+export function tacticStartsHere(event: Tactic, move: string, best: string): boolean {
   const f = event.facts,
     role = String(f.role),
     expectedPly = role === "allowed" ? 2 : 1;
@@ -96,7 +100,7 @@ export function tacticStartsHere(event: Event, move: string, best: string): bool
 }
 
 export function tacticalClaim(
-  event: Event,
+  event: Tactic,
   move: string,
   best: string,
   opponent: string,
@@ -183,7 +187,7 @@ export function tacticalClaim(
   };
 }
 
-function causalClaim(event: Event, move: string): Claim | null {
+function causalClaim(event: Tactic, move: string): Claim | null {
   const f = event.facts,
     roles = object(f.roles),
     pieces = object(f.pieces);

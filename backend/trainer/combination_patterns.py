@@ -5,6 +5,7 @@ import chess
 from trainer.tactical_geometry import (
     SLIDERS,
     absolute_pinner,
+    attacker_collection,
     defenders,
     effective_attacks,
     names,
@@ -72,27 +73,16 @@ def opened_lines(before, after, move, actor):
             yield slider, piece, target, victim
 
 
-def slider_collection(boards, plies, ply, slider, piece, target, victim):
-    """The later ply where the slider's first move takes the still-present target, if any."""
-    for follow in [p for p in plies if p > ply]:
-        action = boards[follow].peek()
-        if boards[follow - 1].piece_at(slider) != piece:
-            return None
-        if action.from_square == slider:
-            if action.to_square == target and boards[follow - 1].piece_at(target) == victim:
-                return follow
-            return None
-    return None
-
-
 def discovered_attack(boards, plies, ply, analysis_id, direction):
     """The move opens a slider's line to a target that slider then takes; with a
     second threat from the moved piece it is also a double attack."""
     before, after = boards[ply - 1], boards[ply]
     move, actor = after.peek(), before.turn
     for slider, piece, target, victim in opened_lines(before, after, move, actor):
-        collection = slider_collection(boards, plies, ply, slider, piece, target, victim)
-        if collection is None:
+        collection = attacker_collection(
+            boards, slider, piece, [p for p in plies if p > ply], {target}
+        )
+        if collection is None or boards[collection - 1].piece_at(target) != victim:
             continue
         roles = {
             "attacker": names([slider]),

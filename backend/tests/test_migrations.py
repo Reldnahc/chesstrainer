@@ -408,7 +408,7 @@ def test_one_representation_per_concept_keeps_every_value(tmp_path):
             1800000000, timezone.utc
         )
         assert {job.id: (job.kind, job.status) for job in db.query(AnalysisJob)} == {
-            "fetch": ("chesscom_fetch", "queued"),
+            "fetch": ("provider_fetch", "queued"),
             "import": ("provider_fetch", "completed"),
             "teach": ("retired", "cancelled"),
             "trained": ("analysis", "running"),
@@ -503,4 +503,37 @@ def test_an_unexpected_side_stops_the_upgrade_and_changes_nothing(tmp_path):
     with pytest.raises(ValueError, match=r"exercises\.orientation holds \['White'\]"):
         upgrade_to(engine, "head")
     assert version(engine) == "9d2f6b1e4c83"
+    engine.dispose()
+
+
+def test_legacy_fetch_kind_and_book_field_take_their_current_shapes(tmp_path):
+    import json
+
+    from sqlalchemy.exc import IntegrityError
+
+    engine, _ = database(tmp_path / "legacy.sqlite3")
+    upgrade_to(engine, "eb978e634f57")
+    with engine.begin() as db:
+        fill(
+            db, "analysis_jobs", id="fetch", user_id="local", kind="chesscom_fetch", status="queued"
+        )
+        old = {"status": "deviated", "deviation": {"ply": 3, "book_uci": ["e2e4", "d2d4"]}}
+        current = {"status": "deviated", "deviation": {"ply": 3}, "book_moves": ["g1f3"]}
+        for game_id, practice in (("old", old), ("current", current)):
+            fill(db, "play_games", id=game_id, user_id="local", practice=json.dumps(practice))
+    upgrade_to(engine, "head")
+    with engine.connect() as db:
+        assert db.exec_driver_sql("SELECT kind FROM analysis_jobs").scalar() == "provider_fetch"
+        practices = dict(db.exec_driver_sql("SELECT id, practice FROM play_games").all())
+        with pytest.raises(IntegrityError):
+            db.exec_driver_sql(
+                "INSERT INTO analysis_jobs (id, user_id, kind, status) "
+                "VALUES ('x', 'local', 'chesscom_fetch', 'queued')"
+            )
+    assert json.loads(practices["old"]) == {
+        "status": "deviated",
+        "deviation": {"ply": 3},
+        "book_moves": ["e2e4", "d2d4"],
+    }
+    assert json.loads(practices["current"]) == current
     engine.dispose()

@@ -151,6 +151,11 @@ def material(board: chess.Board, color: chess.Color) -> int:
     return sum(len(board.pieces(piece, color)) * value for piece, value in VALUES.items())
 
 
+def material_balance(board: chess.Board, color: chess.Color) -> int:
+    """Color's material minus the other side's (pawn = 1)."""
+    return material(board, color) - material(board, not color)
+
+
 # Material (pawn = 1) at or below which a position counts as an endgame.
 ENDGAME_MATERIAL = 26
 OPENING_MOVES = 10
@@ -170,52 +175,3 @@ def replay_moves(board: chess.Board, ucis) -> list[chess.Board]:
         following.push(legal_move(following, uci))
         boards.append(following)
     return boards
-
-
-def board_facts(board: chess.Board, move: chess.Move, pv: list[str]) -> dict:
-    color = board.turn
-    facts = {
-        "side_to_move": "white" if color else "black",
-        "move_number": board.fullmove_number,
-        "in_check": board.is_check(),
-        "capture": board.is_capture(move),
-        "gives_check": board.gives_check(move),
-        "castling_move": board.is_castling(move),
-        "castling_rights": board.has_castling_rights(color),
-        "material_before": {
-            "learner": material(board, color),
-            "opponent": material(board, not color),
-        },
-        "attacked_undefended": [
-            chess.square_name(sq)
-            for sq, p in board.piece_map().items()
-            if p.color == color
-            and p.piece_type != chess.KING
-            and board.is_attacked_by(not color, sq)
-            and not board.is_attacked_by(color, sq)
-        ],
-        "phase": game_phase(board),
-    }
-    replay = board.copy()
-    trace = []
-    for uci in pv:
-        next_move = legal_move(replay, uci)
-        san = replay.san(next_move)
-        replay.push(next_move)
-        trace.append(
-            {
-                "uci": uci,
-                "san": san,
-                "learner_material": material(replay, color),
-                "opponent_material": material(replay, not color),
-                "checkmate": replay.is_checkmate(),
-            }
-        )
-    facts["verified_line"] = trace
-    facts["material_balance_change_in_line"] = (
-        material(replay, color)
-        - material(replay, not color)
-        - material(board, color)
-        + material(board, not color)
-    )
-    return facts

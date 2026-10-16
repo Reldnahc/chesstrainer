@@ -7,9 +7,9 @@ from trainer.review_intelligence.event_facts import objective_events, tactical_e
 from trainer.review_intelligence.events_types import (
     CLOCK_VERSION,
     EVENTS_VERSION,
+    REVIEW_EVENT,
     EvidenceReference,
     MoveIntelligence,
-    ReviewEvent,
 )
 from trainer.review_intelligence.positional import VERSION as POSITION_VERSION
 from trainer.review_intelligence.positional import positional_events
@@ -66,22 +66,21 @@ def event_recorders(events, ply, actor):
         return EvidenceReference(source=kind, id=identifier, field=field, ply=ply)
 
     def emit(kind, confidence, importance, facts, evidence, mover=actor):
-        payload = dict(
-            kind=kind,
-            actor=mover,
-            confidence=confidence,
-            importance=importance,
-            facts=facts,
-            evidence=evidence,
+        # Validated against the kind's typed facts (events_types), so a producer
+        # that drifts from the contract fails here rather than in a reader.
+        event = REVIEW_EVENT.validate_python(
+            dict(
+                id="",
+                kind=kind,
+                actor=mover,
+                confidence=confidence,
+                importance=importance,
+                facts=facts,
+                evidence=evidence,
+            )
         )
-        identity = digest(
-            {
-                "version": VERSION,
-                **payload,
-                "evidence": [item.model_dump() for item in evidence],
-            }
-        )
-        events.append(ReviewEvent(id=identity, **payload))
+        identity = digest({"version": VERSION, **event.model_dump(mode="json", exclude={"id"})})
+        events.append(event.model_copy(update={"id": identity}))
 
     return ref, emit
 
@@ -206,12 +205,12 @@ def opening_departure_event(context, emit, ref):
         "opening_departure",
         "annotation",
         20,
-        context.opening_departure,
+        context.opening_departure.model_dump(),
         [
             ref("pgn", context.pgn_digest, "mainline/move"),
             ref(
                 "book",
-                context.opening_departure["catalogue"],
+                context.opening_departure.catalogue,
                 "first_unmatched_continuation",
             ),
         ],

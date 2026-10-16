@@ -5,6 +5,7 @@ import { gameReaction } from "../src/coach/reactions";
 import { renderDialogue, renderNeutral } from "../src/dialogue/neutral";
 import { neutralPersonality } from "../src/dialogue/personality";
 import type { Game } from "../src/gameReview/types";
+import { gameRelationship, positionalEvent, reviewEvent } from "./helpers/reviewEvents";
 
 const games = semanticFixtures<Game[]>("review_perspective_fixtures.py");
 const opposite = (color: "white" | "black") => (color === "white" ? "black" : "white");
@@ -145,19 +146,26 @@ for (const game of games) {
 
   test(`${learner} relationships and history cannot become the opponent's coaching journey`, () => {
     const kinds = [
-      ["recovery", "recovery", {}],
-      ["punishment", "punishment", { outcome: "capitalized" }],
-      ["punishment", "missed_punishment", { outcome: "missed" }],
+      ["recovery", gameRelationship("recovery")],
+      ["punishment", gameRelationship("punishment", { outcome: "capitalized" })],
+      ["missed_punishment", gameRelationship("punishment", { outcome: "missed" })],
       [
-        "repeated_motif",
         "repeated",
-        { role: "caused", motif: "abandoned_defender", occurrence: 2 },
+        gameRelationship("repeated_motif", {
+          role: "caused",
+          motif: "abandoned_defender",
+          occurrence: 2,
+        }),
       ],
-      ["support_restored", "support_restored", { piece: "knight" }],
-      ["erosion", "erosion", { own_mistake_plies: [] }],
-      ["advantage_run", "conversion", { outcome: "converted", own_error_plies: [] }],
+      ["support_restored", gameRelationship("support_restored", { piece: "knight" })],
+      ["erosion", gameRelationship("erosion", { own_mistake_plies: [] })],
+      [
+        "conversion",
+        gameRelationship("advantage_run", { outcome: "converted", own_error_plies: [] }),
+      ],
     ] as const;
-    for (const [kind, code, facts] of kinds) {
+    for (const [code, relation] of kinds) {
+      const kind = relation.kind;
       // A restored defender is spoken only for a piece under attack on this move.
       const frames: Game["frames"] =
         kind !== "support_restored"
@@ -173,15 +181,16 @@ for (const game of games) {
                         ...frame.report!.intelligence!,
                         events: [
                           ...frame.report!.intelligence!.events,
-                          {
-                            id: "restored-support",
-                            kind: "positional",
-                            actor: learner,
-                            confidence: "board_fact",
-                            importance: 50,
-                            evidence: recovery.evidence,
-                            facts: { feature: "piece_support", attacked: true },
-                          },
+                          positionalEvent(
+                            "piece_support",
+                            { attacked: true },
+                            {
+                              id: "restored-support",
+                              actor: learner,
+                              importance: 50,
+                              evidence: recovery.evidence,
+                            },
+                          ),
                         ],
                       },
                     },
@@ -194,7 +203,19 @@ for (const game of games) {
       const modified: Game = {
         ...game,
         frames,
-        context: { ...game.context!, relationships: [{ ...recovery, kind, facts, event_ids }] },
+        context: {
+          ...game.context!,
+          relationships: [
+            {
+              ...relation,
+              id: recovery.id,
+              actor: recovery.actor,
+              plies: recovery.plies,
+              evidence: recovery.evidence,
+              event_ids,
+            },
+          ],
+        },
         history: {
           version: "cross-game-1",
           input_digest: "history",
@@ -238,15 +259,11 @@ for (const game of games) {
     report.label = report.engine_label = "Brilliant";
     report.opening = null;
     report.intelligence!.events = [
-      {
-        id: "resource",
-        actor: learner,
-        kind: "critical_resource",
-        confidence: "searched",
-        importance: 90,
-        evidence: recovery.evidence,
-        facts: { purpose: "defense", difficult: true },
-      },
+      reviewEvent(
+        "critical_resource",
+        { purpose: "defense", difficult: true },
+        { id: "resource", actor: learner, importance: 90, evidence: recovery.evidence },
+      ),
     ];
     const saved = JSON.stringify(modified);
     const intent = intentAt(modified, ply);

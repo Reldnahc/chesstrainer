@@ -11,7 +11,6 @@ class EngineHealth(Contract):
     engine_available: bool | None
     engine_error: str | None
     engine_version: str | None
-    classification_available: bool
 
 
 class Health(EngineHealth):

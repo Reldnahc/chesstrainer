@@ -70,7 +70,6 @@ def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
                         loss_cp=200,
                         meaningful=True,
                         deep=True,
-                        facts={"verified_line": []},
                     )
                 )
         db.commit()
@@ -103,7 +102,7 @@ class BlockingClassifier(FixtureClassifierBase):
                 secondary_skills=[],
                 confidence=0.2,
                 explanation="Scheduling fixture.",
-            ), {}
+            )
         finally:
             with self.lock:
                 self.active -= 1

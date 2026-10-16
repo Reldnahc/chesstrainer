@@ -3,10 +3,10 @@
 import json
 import re
 import time
-from datetime import datetime, timezone
 
 import httpx
 
+from trainer import timeutil
 from trainer.game_providers.base import (
     ProviderBatch,
     ProviderError,
@@ -39,7 +39,7 @@ class ChessComClient:
         rate limited and an unchanged archive answers 304 with no body.
         Returns {username: (changed, new_state)}.
         """
-        month = datetime.now(timezone.utc).strftime("%Y/%m")
+        month = timeutil.now().strftime("%Y/%m")
         results = {}
         for name in usernames:
             state = states.get(name) or {}

@@ -20,10 +20,11 @@ cache hit worth keeping for a while even though nothing references it.
 import logging
 import re
 import sqlite3
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 
 from sqlalchemy.exc import DBAPIError
 
+from trainer import timeutil
 from trainer.db import immediate_transaction
 
 log = logging.getLogger(__name__)
@@ -80,9 +81,9 @@ def sweep_shared_caches(db, *, older_than=UNUSED_FOR):
     try:
         age, cutoff = "", ()
         if older_than is not None:
-            # UTCDateTime stores naive UTC text, which sorts by time.
-            stamp = datetime.now(timezone.utc).replace(tzinfo=None) - older_than
-            age, cutoff = " WHERE created_at IS NULL OR created_at < ?", (stamp.isoformat(" "),)
+            # Compared as the text UTCDateTime stores, which sorts by time.
+            stamp = timeutil.stored_text(timeutil.now() - older_than)
+            age, cutoff = " WHERE created_at IS NULL OR created_at < ?", (stamp,)
         for cache in SHARED_CACHES:
             db.execute(
                 f"INSERT OR IGNORE INTO temp.cache_sweep SELECT id FROM {cache}{age}", cutoff

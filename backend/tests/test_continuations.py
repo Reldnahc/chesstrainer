@@ -55,12 +55,12 @@ def test_classification_records_endpoints_and_extension_budget(settings):
     # The knight leaves the corner on a square the king does not attack, so the
     # line settles once the rook capture is two plies old.
     best = ["b5c7", "e8d7", "c7a8", "d7d6", "a8b6", "d6c6"]
-    result, _ = LocalClassifier(settings).classify(evidence(FEN, best, ACTUAL))
+    result = LocalClassifier(settings).classify(evidence(FEN, best, ACTUAL))
     assert result.continuations["best"].end_ply == 5
     assert result.continuations["best"].extended_plies == 1
     assert result.continuations["best"].material_delta == 5
     settings.classification_extension_plies = 0
-    limited, _ = LocalClassifier(settings).classify(evidence(FEN, best, ACTUAL))
+    limited = LocalClassifier(settings).classify(evidence(FEN, best, ACTUAL))
     assert not limited.outcomes and "continuation_unsettled" in limited.abstention_reasons
 
 

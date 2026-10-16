@@ -14,7 +14,7 @@ from trainer.classification_stages import (
     read_lines,
 )
 from trainer.config import Settings
-from trainer.diagnosis_types import RULE_VERSION
+from trainer.diagnosis_types import RULE_VERSION, evidence_probes
 from trainer.taxonomy import UNCLASSIFIED
 
 
@@ -55,7 +55,7 @@ class LocalClassifier:
             found.extend(result.findings)
             outcomes.extend(result.outcomes)
             defense_checks.extend(result.defense_checks)
-        attach_provenance(found, outcomes, evidence.get("probes", []))
+        attach_provenance(found, outcomes, evidence_probes(evidence))
         skills = list(dict.fromkeys(f.skill_id for f in found))
         return Classification(
             decision_id=evidence["decision_id"],
@@ -70,4 +70,4 @@ class LocalClassifier:
             confidence=1.0 if skills else 0.0,
             explanation=" ".join(f.explanation for f in found)
             or "The engine found a meaningful difference, but the saved lines do not establish a specific material or mating consequence.",
-        ), {}
+        )

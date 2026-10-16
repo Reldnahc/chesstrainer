@@ -39,7 +39,6 @@ async function fixtures(page: Page) {
   await page.route("**/api/health", route =>
     route.fulfill({
       json: {
-        classification_available: true,
         database: "presentation-fixture",
         engine_available: true,
         engine_error: null,

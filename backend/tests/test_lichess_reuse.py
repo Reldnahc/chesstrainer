@@ -9,6 +9,7 @@ from pathlib import Path
 import chess
 import pytest
 from trainer._vendor.lichess_puzzler import cook
+from trainer.diagnosis_types import PreviousMove
 from trainer.lichess_patterns import THEME_RULES, line_input, recognize
 from trainer.lichess_witnesses import record
 
@@ -154,11 +155,13 @@ def test_explicit_previous_move_is_validated():
         1,
         len(boards) - 1,
         "context",
-        previous_move={"fen": fen, "uci": moves.split()[0]},
+        previous_move=PreviousMove(fen=fen, uci=moves.split()[0]),
     )
     assert "fork" in result.themes and not result.skipped
     with pytest.raises(ValueError, match="Previous move"):
-        recognize(boards, 1, len(boards) - 1, "context", previous_move={"fen": fen, "uci": "d7c6"})
+        recognize(
+            boards, 1, len(boards) - 1, "context", previous_move=PreviousMove(fen=fen, uci="d7c6")
+        )
 
 
 def test_bounds_and_inconsistent_board_states_are_rejected():

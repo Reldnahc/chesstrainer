@@ -1,7 +1,7 @@
 import { test, expect } from "../tests/helpers/browserTest";
 import { claim, makeIntent } from "../src/dialogue/model";
 import { tacticalClaim } from "../src/dialogue/eventClaims";
-import type { Schema } from "../src/api";
+import { reviewEvent, witness } from "../tests/helpers/reviewEvents";
 import { renderCoaches } from "./render-coaches";
 import { humanInsightIntent } from "../src/dialogue/humanClaims";
 
@@ -151,25 +151,25 @@ test("opted-in voices adopt scoped dialogue while the remaining cast keeps the s
   page,
 }) => {
   await page.goto("/");
-  for (const role of ["played", "allowed", "missed"]) {
+  for (const role of ["played", "allowed", "missed"] as const) {
     const ply = role === "allowed" ? 2 : 1;
-    const event: Schema["ReviewEvent"] = {
-      id: "fork",
-      actor: "white",
-      kind: "tactic",
-      confidence: "line_witness",
-      importance: 75,
-      evidence: [{ source: "stockfish", id: "search", field: "actual_line/findings/0" }],
-      facts: {
+    const event = reviewEvent(
+      "tactic",
+      {
         role,
         motif: "fork",
         plies: [ply],
         frame_ply: ply,
-        witness: [{ ply, san: "Ng5+" }],
+        witness: [witness(ply, "Ng5+")],
         roles: { targets: ["h7", "e4"] },
         pieces: { h7: { color: "black", piece: "king" }, e4: { color: "black", piece: "queen" } },
       },
-    };
+      {
+        id: "fork",
+        confidence: "line_witness",
+        evidence: [{ source: "stockfish", id: "search", field: "actual_line/findings/0" }],
+      },
+    );
     const item = tacticalClaim(event, "Ng5+", "Ng5+", "White")!;
     const { tactic: _tactic, ...original } = item;
     const oldIntent = makeIntent("cast", "best", "game", "best", [original]);
