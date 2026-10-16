@@ -39,6 +39,8 @@ from trainer.review_scores import (
 from trainer.search_limits import DEEP, SearchLimits, SearchProfile
 
 VERSION = "game-review-1"
+# The PGN results that say a side won.
+DECISIVE_RESULTS = frozenset({"1-0", "0-1"})
 
 
 def game_outcome(board):
@@ -216,7 +218,8 @@ def move_frames(board, moves, reports, *, result=None, extra=None):
     imported, unless ``result`` (an imported game's header) says a side won: a
     repetition nobody claimed before a resignation or a lost clock ends nothing.
     """
-    decisive = result not in (None, "", "*", "1/2-1/2")
+    # Only a real win counts: an odd header ("½-½", "1/2", "0-0") ends nothing either.
+    decisive = (result or "").strip() in DECISIVE_RESULTS
     board = board.copy()
     frames = [
         position(board)
