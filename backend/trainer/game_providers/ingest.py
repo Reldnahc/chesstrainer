@@ -13,8 +13,10 @@ from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, ImportBatch, ImportGame, ProviderCheckpoint, ProviderImport
 
 
-def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancelled, mutation_lock):
-    with sessions() as db:
+def fetch_import(context, client: GameProviderClient):
+    """Fetch the provider import of ``context``, the fetch job's ``JobContext``."""
+    job_id, units, cancelled = context.job_id, context, context.cancelled
+    with units.write() as db:
         request = db.get(ProviderImport, job_id)
         job = db.get(AnalysisJob, job_id)
         if request.fetch_completed:
@@ -33,8 +35,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
             db.add(batch)
             db.flush()
             job.import_id = batch.id
-            db.commit()
-    with sessions() as db:
+    with units.read() as db:
         completed = set(
             db.scalars(select(ProviderCheckpoint.url).where(ProviderCheckpoint.job_id == job_id))
         )
@@ -42,7 +43,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
         for batch in batches:
             url = batch.key
             check_cancel(cancelled)
-            with sessions() as db:
+            with units.read() as db:
                 request = db.get(ProviderImport, job_id)
                 used = request.games_fetched if sync else request.games_imported
                 if used >= limit:
@@ -110,7 +111,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                             rated[key] = game["rated"]
             check_cancel(cancelled)
             # Import and archive checkpoint commit together; restart cannot double-count a month.
-            with mutation_lock, sessions() as db:
+            with units.write() as db:
                 request = db.get(ProviderImport, job_id)
                 job = db.get(AnalysisJob, job_id)
                 processed = 0
@@ -125,7 +126,6 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                         [username],
                         None,
                         batch=db.get(ImportBatch, job.import_id),
-                        commit=False,
                         max_new_games=remaining,
                         completed_times=completed_times,
                         rated=rated,
@@ -157,10 +157,8 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                             games_selected=processed if key == url else 0,
                         )
                     )
-                db.commit()
-                if (request.games_fetched if sync else request.games_imported) >= limit:
-                    break
+            if (request.games_fetched if sync else request.games_imported) >= limit:
+                break
     check_cancel(cancelled)
-    with sessions() as db:
+    with units.write() as db:
         db.get(ProviderImport, job_id).fetch_completed = True
-        db.commit()

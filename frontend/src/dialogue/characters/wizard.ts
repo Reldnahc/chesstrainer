@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {wizardTacticalTemplates} from "./scopedTactics";
-import {wizardOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const wizard: CoachPersonality = {
-  version: "wizard-2", maxCharacters: 290, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const wizardTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "With {move}, a familiar pattern takes its place on the board: a {motif}.",
+    played_possible: "{move} prepares a {motif}, though the replies will decide whether the pattern completes.",
+    allowed_immediate: "{opponent} can answer with {action}, and the pattern waiting there is a {motif}.",
+    allowed_possible: "A {motif} may later become available to {opponent}; whether the pattern forms depends on the replies.",
+    missed_immediate: "The pattern lay in {best}: a {motif}.",
+    missed_possible: "{best} might have led to a {motif}, had the replies allowed the pattern to form.",
+  },
+  fork: {actual: "The {targets} fall under a single attacker, the fork in its plainest form.", possible: "From one square, the {targets} would be attacked at once."},
+  material: "A {gain} may be waiting where the pattern ends, though both sides still have moves to choose.",
+  capture: {candidate: "{capture} would take a {piece} from the board.", followup: "Should play continue that way, {capture} may follow, collecting a {piece}."},
+  playedCapture: {fact: "The pattern behind {move} is a {motif}.", consequence: "{capture} lifts a {piece} from the board."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const wizardOpeningTemplates = {
+  "book-opening-entry-1": ["The opening literature records this move under {opening}."],
+  "book-opening-entry-2": ["This move is in the book, and the position belongs to {opening}."],
+  "book-opening-entry-3": ["This move is written into the theory of {opening}."],
+  "book-opening-follow-1": ["The literature continues: {opening}."],
+  "book-opening-follow-2": ["Another page of {opening}."],
+  "book-opening-follow-3": ["The reply, too, is recorded theory in {opening}."],
+  "book-opening-follow-4": ["Still on the well-trodden road of {opening}."],
+  "book-opening-follow-5": ["{opening} continues along its recorded path."],
+  "book-opening-follow-6": ["The book keeps an entry for this move as well, in {opening}."],
+  "book-opening-follow-7": ["Still within the recorded theory of {opening}."],
+  "book-opening-follow-8": ["Another recorded move of {opening}. Its place in the book is a matter of record, not a verdict."],
+} as const;
+
+export const wizard = coachPersonality({
+  version: "wizard-2", maxCharacters: 290, maxClaims: 2,
   delivery: {pace: "measured", energy: "warm"},
   behavior: {
     general: "pattern-first", praise: "pattern-first", correction: "pattern-first",
@@ -133,4 +163,4 @@ export const wizard: CoachPersonality = {
     variation: ["A side line worth examining: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});

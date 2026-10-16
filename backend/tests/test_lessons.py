@@ -49,8 +49,10 @@ def test_lesson_routes_and_old_attempts_are_archived(settings, completed):
             # Offline/domain callers cannot bypass the HTTP archive guard either.
             with pytest.raises(Gone, match="archived"):
                 reveal(db, session_id, FSRSScheduler(settings), settings)
+                db.commit()
             with pytest.raises(Gone, match="archived"):
                 submit_move(db, session_id, "e1d1", None, FSRSScheduler(settings), settings)
+                db.commit()
         # An ordinary review of the same position is a separate usable session.
         position = client.post(f"/api/review/{exercise_id}/start").json()
         assert position["session_id"] != session_id
@@ -100,6 +102,7 @@ def test_lesson_release_migration_preserves_scheduling_and_history(settings, ses
             moves=["e2e4"],
             orientation="white",
         )
+        db.commit()
         db.get(SRSState, unrelated.id).eligible = False
         db.commit()
         unrelated_id = unrelated.id

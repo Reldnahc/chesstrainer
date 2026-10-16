@@ -63,6 +63,7 @@ def test_castling_projection_and_recall_share_legal_move_identity(
         assert contribution.move_uci == canonical
         assert list(db.scalars(select(ExerciseAnswer.uci))) == [canonical]
         started = reviews.start_review(db, exercise.id)
+        db.commit()
         saved = db.get(OpeningRecallSnapshot, started["session_id"])
         assert saved.studies[0]["line"] == source
         result = reviews.submit_move(
@@ -73,6 +74,7 @@ def test_castling_projection_and_recall_share_legal_move_identity(
             FSRSScheduler(settings),
             settings,
         )
+        db.commit()
         board = chess.Board(exercise.fen)
         board.push_uci(canonical)
         assert result["completed"] and result["grade"] == "correct"
@@ -92,6 +94,7 @@ def test_existing_alias_snapshot_accepts_canonical_castle_without_rewriting_it(
         course_enroll(db, settings, castle_course(color, alias), "0", color)
         exercise = db.scalar(select(Exercise).where(Exercise.source == "opening"))
         started = reviews.start_review(db, exercise.id)
+        db.commit()
         snapshot = db.get(OpeningRecallSnapshot, started["session_id"])
         snapshot.answers = [row | {"uci": alias} for row in snapshot.answers]
         if duplicate:
@@ -104,6 +107,7 @@ def test_existing_alias_snapshot_accepts_canonical_castle_without_rewriting_it(
         result = reviews.submit_move(
             db, started["session_id"], canonical, None, FSRSScheduler(settings), settings
         )
+        db.commit()
         assert result["completed"] and result["grade"] == "correct"
         assert result["answers"] == [{"uci": canonical, "san": original[0]["san"], "primary": True}]
         assert db.get(OpeningRecallSnapshot, started["session_id"]).answers == original

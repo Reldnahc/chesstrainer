@@ -37,7 +37,7 @@ def create_router():
         }
 
     def queue_sync(workspace, provider):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             if queue(db, provider, workspace.settings) is None:
                 raise HTTPException(422, f"Save your {get_provider(provider).name} username first.")
             return status(db, *connection(db, provider), provider)
@@ -65,7 +65,7 @@ def create_router():
     @router.get("/api/providers/{provider}/sync", response_model=SyncStatus)
     def provider_status(provider: str, workspace: CurrentWorkspace):
         validated(provider)
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return status(db, *connection(db, provider), provider)
 
     @router.post("/api/providers/{provider}/sync", status_code=202, response_model=SyncStatus)
@@ -86,14 +86,14 @@ def create_router():
             )
         except ValueError as exc:
             raise HTTPException(422, "Enter a valid chess username.") from exc
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             key = (db.info["user_id"], provider)
             saved = db.get(ProviderConnection, key)
             if saved:
                 saved.username = name
             else:
                 db.add(ProviderConnection(provider=provider, username=name))
-            db.commit()
+            db.flush()
             return status(db, *connection(db, provider), provider)
 
     return router

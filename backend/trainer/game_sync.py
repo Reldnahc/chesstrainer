@@ -77,20 +77,21 @@ def queue_sync(db, provider, settings, *, min_age=60):
         db.add(
             ProviderImport(job_id=job.id, provider=provider, username=name, **sync_scope(settings))
         )
-    db.commit()
+    db.flush()
     return job
 
 
-def poll(runner, owners):
+def poll(workspaces, providers, settings, owners):
     """One polling round: ask each provider what changed, then sync only those.
 
-    Provider traffic stays serial under the runner's host-wide provider lock,
-    and a provider that rate limited us is skipped until its cooldown ends.
+    ``workspaces`` opens each owner's account and ``providers`` is the host's
+    provider gateway: traffic stays serial under its host-wide lock, and a
+    provider that rate limited us is skipped until its cooldown ends.
     """
     connections = {}  # provider -> {username: [(owner, poll_state), ...]}
     for owner in owners:
         try:
-            with runner.workspaces.open(owner) as workspace, workspace.sessions() as db:
+            with workspaces.open(owner) as workspace, workspace.read() as db:
                 for row in db.scalars(
                     select(ProviderConnection).where(ProviderConnection.username != "")
                 ):
@@ -100,35 +101,34 @@ def poll(runner, owners):
             log.exception("sync_poll_failed", extra={"user_id": owner})
     for provider, users in connections.items():
         try:
-            changes = detect(runner, provider, users)
+            changes = detect(providers, provider, users)
         except Exception:
             log.exception("sync_change_check_failed", extra={"provider": provider})
             continue
         for name, (changed, state) in changes.items():
             for owner, _previous in users[name]:
                 try:
-                    record(runner, owner, provider, state, changed)
+                    record(workspaces, settings, owner, provider, state, changed)
                 except Exception:
                     log.exception("sync_poll_failed", extra={"user_id": owner})
 
 
-def detect(runner, provider, users):
+def detect(providers, provider, users):
     """What changed for each player; nothing while the provider cools down."""
     states = {name: owned[0][1] for name, owned in users.items()}
     try:
-        with runner.providers.client(provider) as client:
+        with providers.client(provider) as client:
             return client.changed(list(users), states)
     except ProviderCoolingDown:
         return {}
 
 
-def record(runner, owner, provider, state, changed):
-    with runner.workspaces.open(owner) as workspace:
-        with workspace.mutation_lock, workspace.sessions() as db:
+def record(workspaces, settings, owner, provider, state, changed):
+    with workspaces.open(owner) as workspace:
+        with workspace.write() as db:
             row = db.get(ProviderConnection, (owner, provider))
             if row is None:
                 return
             row.poll_state = state
-            db.commit()
             if changed:
-                queue_sync(db, provider, runner.settings, min_age=0)
+                queue_sync(db, provider, settings, min_age=0)

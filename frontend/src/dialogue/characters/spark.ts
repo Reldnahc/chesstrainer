@@ -1,9 +1,39 @@
-import type { CoachPersonality } from "../personality";
-import { sparkTacticalTemplates } from "./scopedTactics";
-import { sparkOpeningTemplates } from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const spark: CoachPersonality = {
-  version: "spark-4", maxCharacters: 280, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const sparkTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Spicy: right away, {move} unleashes a {motif}.",
+    played_possible: "{move} loads a {motif}, replies permitting.",
+    allowed_immediate: "Eyes up: {opponent} can answer {action}, and a {motif} snaps shut.",
+    allowed_possible: "Eyes up for later: a {motif} could spring for {opponent}, replies permitting.",
+    missed_immediate: "{best} had a {motif} loaded and ready to fire.",
+    missed_possible: "{best} might have loaded a {motif}, with the replies still to say their piece.",
+  },
+  fork: {actual: "One landing, and the {targets} are all in the crosshairs.", possible: "One landing, and the {targets} would be attacked in the same breath."},
+  material: "A {gain} may be up for grabs, with both sides still holding cards.",
+  capture: {candidate: "Snap: {capture}, and that {piece} is history.", followup: "Further down the road, {capture} could gobble a {piece}."},
+  playedCapture: {fact: "{move} lights the fuse on a {motif}.", consequence: "Next, {capture} swallows the {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const sparkOpeningTemplates = {
+  "book-opening-entry-1": ["Repertoire time, courtesy of {opening}."],
+  "book-opening-entry-2": ["Straight out of the repertoire, {opening}."],
+  "book-opening-entry-3": ["A repertoire line with a name: {opening}."],
+  "book-opening-follow-1": ["{opening}, and the repertoire rolls on."],
+  "book-opening-follow-2": ["Another rehearsed move from {opening}."],
+  "book-opening-follow-3": ["The reply is on script too, still {opening}."],
+  "book-opening-follow-4": ["{opening} keeps flowing."],
+  "book-opening-follow-5": ["No detours yet; this is {opening}."],
+  "book-opening-follow-6": ["The script covers this, in {opening}."],
+  "book-opening-follow-7": ["Cruising the main road of {opening}."],
+  "book-opening-follow-8": ["Still {opening}: a pin on the map, not a verdict on the move."],
+} as const;
+
+export const spark = coachPersonality({
+  version: "spark-4", maxCharacters: 280, maxClaims: 2,
   delivery: { pace: "lively", energy: "bright" },
   behavior: {
     general: "reaction-first", praise: "reaction-first", correction: "reaction-first",
@@ -84,4 +114,4 @@ export const spark: CoachPersonality = {
     variation: ["Follow this road: {detail}"],
     compatibility: ["Here's the gist: {detail}"],
   },
-};
+});

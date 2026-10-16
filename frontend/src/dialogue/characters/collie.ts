@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {collieTacticalTemplates} from "./scopedTactics";
-import {collieOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const collie: CoachPersonality = {
-  version: "collie-5", maxCharacters: 295, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const collieTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} sets a {motif} on the board right now.",
+    played_possible: "{move} lines up a {motif} that may come, subject to the replies.",
+    allowed_immediate: "{opponent} gets {action}, and with it a {motif}.",
+    allowed_possible: "{opponent} may set up a {motif} later, replies permitting.",
+    missed_immediate: "{best} would have put a {motif} on the board at once.",
+    missed_possible: "{best} could have set the stage for a {motif}, depending on the answers.",
+  },
+  fork: {actual: "The {targets} are now under attack together from one piece.", possible: "The {targets} would be attacked by one piece in a single move."},
+  material: "A {gain} may be on offer, but only if both sides play it out that way.",
+  capture: {candidate: "{capture} could then snap off a {piece}.", followup: "Next in line could be {capture}, taking a {piece}."},
+  playedCapture: {fact: "{move} sets off a {motif}.", consequence: "{capture} nets a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const collieOpeningTemplates = {
+  "book-opening-entry-1": ["Book move, logged: this is {opening}."],
+  "book-opening-entry-2": ["Opening identified as {opening}."],
+  "book-opening-entry-3": ["Recognized line on the board: {opening}."],
+  "book-opening-follow-1": ["Next move, still {opening}."],
+  "book-opening-follow-2": ["{opening}, next move on record."],
+  "book-opening-follow-3": ["Reply logged in {opening} as well."],
+  "book-opening-follow-4": ["On track with {opening}."],
+  "book-opening-follow-5": ["Another step of {opening} confirmed."],
+  "book-opening-follow-6": ["Theory holds: still {opening}."],
+  "book-opening-follow-7": ["{opening} again on this move."],
+  "book-opening-follow-8": ["Still tracking {opening}. That locates the game and says nothing about the move's value."],
+} as const;
+
+export const collie = coachPersonality({
+  version: "collie-5", maxCharacters: 295, maxClaims: 2,
   delivery: {pace: "steady", energy: "bright"},
   behavior: {general: "pattern-first", praise: "pattern-first", correction: "pattern-first", questionFrequency: "none", directness: 5, emotionalAmplitude: 4, humor: 1, jargon: 4, playerAddress: "direct", sentenceLength: "short", metaphor: "none", signature: "Identify the supported pattern, give it a study task, and move directly to execution."},
   bible: {
@@ -91,4 +121,4 @@ export const collie: CoachPersonality = {
     practice_error: ["That try produced nothing. Go again with the move."],
     variation: ["Side line, run on its own: {detail}"],
   },
-};
+});

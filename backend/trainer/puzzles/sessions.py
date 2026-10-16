@@ -277,9 +277,7 @@ def start_session(db, providers, request):
     )
     db.add(session)
     db.flush()
-    result = session_view(db, session)
-    db.commit()
-    return result
+    return session_view(db, session)
 
 
 def command(db, session_id, request, *, reveal=False):
@@ -348,5 +346,5 @@ def command(db, session_id, request, *, reveal=False):
             response=result,
         )
     )
-    db.commit()
+    db.flush()
     return result

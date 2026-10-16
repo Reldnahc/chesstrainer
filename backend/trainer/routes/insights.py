@@ -19,7 +19,7 @@ def library_facts(workspace):
     """Every counted game's facts. A game is replayed only when it, its review or the
     code has changed since its facts were saved; otherwise they are read back from its
     row, so no library is replayed per request and nothing is kept between them."""
-    with workspace.sessions() as db:
+    with workspace.read() as db:
         rows = db.execute(
             select(
                 Game,
@@ -48,14 +48,15 @@ def library_facts(workspace):
             if unpacked is None:
                 stale.append((index, game, rating, completed, key))
         scores = load_accuracy_scores(db, [item[1].id for item in stale if item[3]])
-        rebuilt = []
-        for index, game, rating, completed, key in stale:
-            built = game_facts(game, scores.get(game.id) if completed else None, rating)
-            facts[index] = built
-            rebuilt.append(InsightFacts(game_id=game.id, key=key, facts=pack_facts(built)))
-            if len(rebuilt) >= SAVE_EVERY:
-                save(workspace, rebuilt)
-                rebuilt = []
+    # The replay holds no snapshot; each batch is saved in a write unit of its own.
+    rebuilt = []
+    for index, game, rating, completed, key in stale:
+        built = game_facts(game, scores.get(game.id) if completed else None, rating)
+        facts[index] = built
+        rebuilt.append(InsightFacts(game_id=game.id, key=key, facts=pack_facts(built)))
+        if len(rebuilt) >= SAVE_EVERY:
+            save(workspace, rebuilt)
+            rebuilt = []
     save(workspace, rebuilt)
     return facts
 
@@ -63,14 +64,13 @@ def library_facts(workspace):
 def save(workspace, rows):
     if not rows:
         return
-    with workspace.mutation_lock, workspace.sessions() as db:
+    with workspace.write() as db:
         # A game deleted since it was read has nothing left to describe.
         present = set(db.scalars(select(Game.id).where(Game.id.in_([row.game_id for row in rows]))))
         for row in rows:
             if row.game_id in present:
                 # Insert or replace: another request may have saved the same game meanwhile.
                 db.merge(row)
-        db.commit()
 
 
 def create_router():

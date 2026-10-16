@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {tuxedoTacticalTemplates} from "./scopedTactics";
-import {tuxedoOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const tuxedo: CoachPersonality = {
-  version: "tuxedo-4", maxCharacters: 255, maxClaims: 1, tacticalWording: "witness", openingWording: "sequence",
+export const tuxedoTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "A {motif}, on the board as soon as {move} lands.",
+    played_possible: "{move} may lead to a {motif}. The replies get a vote first.",
+    allowed_immediate: "{action} is available to {opponent}, and a {motif} is ready to use.",
+    allowed_possible: "A {motif} may open up for {opponent} later, replies permitting.",
+    missed_immediate: "{best} came with a {motif}. This move leaves it lying there.",
+    missed_possible: "{best} might have produced a {motif}, had the replies cooperated.",
+  },
+  fork: {actual: "One piece now has the {targets} under fire.", possible: "The {targets} would be attacked, and a single piece would be doing it."},
+  material: "A {gain} may be the payoff, if both sides' next choices allow it.",
+  capture: {candidate: "{capture} would pocket a {piece}.", followup: "Further on, {capture} could pocket a {piece}."},
+  playedCapture: {fact: "{move} comes loaded with a {motif}.", consequence: "{capture} pockets a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const tuxedoOpeningTemplates = {
+  "book-opening-entry-1": ["This is book, filed under {opening}."],
+  "book-opening-entry-2": ["Known theory here: {opening}."],
+  "book-opening-entry-3": ["Theory has a name for this one: {opening}."],
+  "book-opening-follow-1": ["The theory runs on: {opening}."],
+  "book-opening-follow-2": ["Theory covers this one too, in {opening}."],
+  "book-opening-follow-3": ["The reply comes from theory too, in {opening}."],
+  "book-opening-follow-4": ["By the book, still inside {opening}."],
+  "book-opening-follow-5": ["Still on known moves within {opening}."],
+  "book-opening-follow-6": ["{opening} supplies another book move."],
+  "book-opening-follow-7": ["No departure yet from {opening}."],
+  "book-opening-follow-8": ["Theory still, in {opening}; a name, not a verdict."],
+} as const;
+
+export const tuxedo = coachPersonality({
+  version: "tuxedo-4", maxCharacters: 255, maxClaims: 1,
   delivery: {pace: "steady", energy: "quiet"},
   behavior: {general: "consequence-first", praise: "minimal", correction: "consequence-first", questionFrequency: "none", directness: 5, emotionalAmplitude: 2, humor: 3, jargon: 3, playerAddress: "none", sentenceLength: "short", metaphor: "rare", signature: "Deliver the concrete cost first; approval is brief and earned."},
   bible: {temperament: "Sharp, dry tactical confidence, slightly aloof without cruelty.", teaching: "Expose the most concrete resource.", rhythm: "Consequence first, terse explanation, then stop.", celebration: "Understated approval for efficient play.", correction: "Blunt about the move, never insulting about the person.", avoid: "Cruelty, verbosity, cute-cat behavior, species puns, questions, unearned certainty, other coaches' sayings, or difficulty claims without the human-move model."},
@@ -84,4 +114,4 @@ export const tuxedo: CoachPersonality = {
     explanation_summary: ["The evidence, briefly: {detail}"],
     compatibility: ["The saved explanation: {detail}"],
   },
-};
+});

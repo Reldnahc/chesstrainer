@@ -45,6 +45,7 @@ def seed_history(db):
             '[WhiteElo "637"]\n[BlackElo "630"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
         )
         import_games(db, "synthetic.pgn", pgn, ["Student"], None)
+        db.commit()
     games = db.scalars(select(Game).order_by(Game.played_at.desc())).all()
     for index, game in enumerate(games[:3]):
         job = AnalysisJob(kind="game_review", status="completed" if index < 2 else "cancelled")
@@ -144,6 +145,7 @@ def test_missing_metadata_black_learner_and_odd_move_count(settings):
                 ["Student"],
                 None,
             )
+            db.commit()
         item = client.get("/api/games").json()["items"][0]
         assert item["learner_color"] == "black"
         assert item["white_rating"] is None and item["black_rating"] == 630
@@ -173,6 +175,7 @@ def test_player_bars_show_only_valid_clock_annotations(settings):
                 ["Student"],
                 None,
             )
+            db.commit()
             game_id = db.scalar(select(Game.id))
         frames = client.get(f"/api/games/{game_id}").json()["frames"]
         assert frames[1]["clock"] == 298

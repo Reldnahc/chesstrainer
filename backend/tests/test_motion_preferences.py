@@ -87,8 +87,10 @@ def test_concurrent_first_save_preserves_both_preferences(sessions):
         with sessions() as db:
             if coach:
                 save_coach_preferences(db, CoachPreferences(coach_id="dog-collie", motion="still"))
+                db.commit()
             else:
                 save_motion_preferences(db, MotionPreferences(motion="natural"))
+                db.commit()
 
     with ThreadPoolExecutor(max_workers=2) as pool:
         list(pool.map(save, (True, False)))

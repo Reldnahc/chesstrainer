@@ -121,19 +121,19 @@ belong to shared lifecycle code. Still must retain an expressive static face.
 ## 3. Write the character before recording
 
 Use [Character writing](COACH_DIALOGUE.md#character-writing) and [the dialogue contract](COACH_DIALOGUE.md).
-Register a `CoachPersonality` with its bible, communication behavior, factual
-templates, claim/length budget and delivery metadata in the character's catalogue
-entry. Reuse the shared intent/projection/composition pipeline. Do not implement a
+Write a `CoachPersonality` with its bible, communication behavior, factual
+templates, claim/length budget and delivery metadata in the character's own file
+under `dialogue/characters/`, and register it once in `characters/index.ts`. Reuse the shared intent/projection/composition pipeline. Do not implement a
 second evidence-to-English generator in the character or audio code.
 
 Walter's `characters/storyteller.ts` and Rivet's `characters/robot.ts` are current
-examples. Their `tacticalWording: "witness"` and `openingWording: "sequence"`
-options are deliberate opt-ins; every current coach now enables both. A new
-character needs its own complete authored forms through
-`characters/scopedTactics.ts` / `scopedTacticalWording.ts` and
-`characters/openingSequence.ts` before enabling those options. Enabling a flag
-alone does not supply distinctive prose; do not copy another coach's forms merely
-because they compile.
+examples. Every coach has one file in `characters/` holding its scoped tactical
+forms (`authorTacticalWordings`), its opening-sequence sentences and its
+personality, built with `coachPersonality()`, which gives every coach
+`tacticalWording: "witness"` and `openingWording: "sequence"`. A new character's
+file therefore needs its own complete authored forms for both before it is
+registered in `characters/index.ts` (`coachPersonalities`, the one table both coach
+catalogues read). Do not copy another coach's forms merely because they compile.
 
 Preserve required slots and qualifications in mandatory factual fragments.
 Positional alternatives remain hypothetical. A mover's abandoned defender is not
@@ -171,7 +171,7 @@ one that does not is silenced for its voice in `falseTakes.ts` and listed under
 shown as coach dialogue, so the catalogue has no `human-*` or objective/Maia
 combination meanings, and per-move clock observations are not spoken. The
 catalogue has 337 meanings, among them 11 varied opening
-meanings, the grade takes, seven forced-mate meanings (mate in one allowed, and
+meanings, the grade takes (each linked to its grade by `gradeOf`), seven forced-mate meanings (mate in one allowed, and
 a move that starts, keeps, slows, finishes next move, hastens or holds out
 against a forced mate), 79 alternative takes (`takeOf`), 20
 colour-specific positional lines (`colourOf`), the game-review opener, the picker

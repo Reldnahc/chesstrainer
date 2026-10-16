@@ -11,8 +11,9 @@ class QueryBudgetReached(RuntimeError):
 
 
 class RefinementEngine:
-    def __init__(self, native, task, sessions, cancelled):
-        self.native, self.task, self.sessions, self.cancelled = native, task, sessions, cancelled
+    def __init__(self, native, task, units, cancelled):
+        """``units`` opens the account's ``read()`` and ``write()`` units."""
+        self.native, self.task, self.units, self.cancelled = native, task, units, cancelled
         self.queries = list(task.queries)
 
     def analyze(self, board, profile=TRIAGE, *, root_moves=None, multipv=None):
@@ -24,7 +25,7 @@ class RefinementEngine:
         key = digest({"context": engine_context(board), "roots": root_moves, "multipv": count})
         saved = next((row for row in self.queries if row["key"] == key), None)
         if saved:
-            with self.sessions() as db:
+            with self.units.read() as db:
                 result = db.get(EngineAnalysis, saved["analysis_id"])
                 if result is not None:
                     return result
@@ -60,11 +61,8 @@ class RefinementEngine:
                 "question": "restricted_alternative" if root_moves else "root_comparison",
             }
         )
-        # No account lock: only the running refinement writes its own task's query
-        # log, and opening the game resets only tasks that are not running.
-        with self.sessions() as db:
+        with self.units.write() as db:
             db.get(ReviewRefinement, self.task.id).queries = list(self.queries)
-            db.commit()
         return result
 
 

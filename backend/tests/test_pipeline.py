@@ -3,6 +3,7 @@ import io
 import chess
 import chess.pgn
 import pytest
+from account_units import units_for
 from classifier_fixtures import FixtureClassifierBase, findings_for
 from pydantic import ValidationError
 from sqlalchemy import func, select
@@ -53,9 +54,11 @@ class MockClassifier(FixtureClassifierBase):
 def test_multi_import_dedupe_and_learner(sessions):
     with sessions() as db:
         result = import_games(db, "test.pgn", PGN + "\n" + PGN, ["learner"], None)
+        db.commit()
         assert result["imported"] == 1 and result["duplicates"] == 1
         assert db.scalar(select(func.count()).select_from(Game)) == 1
         ambiguous = import_games(db, "test.pgn", PGN, [], None)
+        db.commit()
         assert ambiguous["errors"] and not ambiguous["imported"]
         assert len(list(learner_decisions(db.scalar(select(Game))))) == 2
     parsed = chess.pgn.read_game(io.StringIO(PGN))
@@ -71,20 +74,25 @@ def test_real_engine_vertical_slice_and_persistence(settings, sessions, stockfis
     try:
         with sessions() as db:
             seed_skills(db)
+            db.commit()
             import_games(db, "fools-mate.pgn", PGN, ["Learner"], None)
+            db.commit()
             game = db.scalar(select(Game))
+            units = units_for(db)
             meaningful = []
             for ply, board, move in learner_decisions(game):
-                decision = analyze_decision(db, lambda: engine, settings, game, ply, board, move)
+                decision = analyze_decision(units, lambda: engine, settings, game, ply, board, move)
                 if decision.meaningful:
                     meaningful.append(decision)
-                    assert classify_decision(db, decision, LocalClassifier(settings))
-                    exercise = exercise_from_decision(db, decision, settings, scheduler)
+                    assert classify_decision(units, decision, LocalClassifier(settings))
+                    with units.write() as unit:
+                        exercise = exercise_from_decision(unit, decision, settings, scheduler)
             assert meaningful
             assert any(d.allows_mate for d in meaningful)
             weaknesses = priorities(db, settings)
             assert weaknesses and weaknesses[0]["provisional"]
             cold = start_review(db, exercise.id)
+            db.commit()
             assert not {"answers", "candidates", "source", "explanation"}.intersection(cold)
             answer = db.scalar(
                 select(ExerciseAnswer).where(
@@ -92,8 +100,10 @@ def test_real_engine_vertical_slice_and_persistence(settings, sessions, stockfis
                 )
             )
             graded = submit_move(db, cold["session_id"], answer.uci, engine, scheduler, settings)
+            db.commit()
             assert graded["completed"] and graded["grade"] == "correct"
             exercise_id = exercise.id
+            db.commit()
         with sessions() as fresh:
             assert fresh.get(SRSState, exercise_id).reviews == 1
             assert fresh.scalar(select(func.count()).select_from(Review)) == 1
@@ -106,19 +116,27 @@ def test_first_failure_and_reveal_schedule_once(settings, sessions):
     scheduler = FSRSScheduler(settings)
     with sessions() as db:
         exercise = manual_exercise(db, scheduler, chess.STARTING_FEN, ["e2e4"], "white")
+        db.commit()
         cold = start_review(db, exercise.id)
+        db.commit()
         with pytest.raises(ValueError):
             submit_move(db, cold["session_id"], "e2e5", None, scheduler, settings)
+            db.commit()
         assert db.get(SRSState, exercise.id).reviews == 0
         result = submit_move(db, cold["session_id"], "d2d4", None, scheduler, settings)
+        db.commit()
         assert not result["completed"] and "answers" not in result
         submit_move(db, cold["session_id"], "g1f3", None, scheduler, settings)
+        db.commit()
         assert start_review(db, exercise.id)["session_id"] == cold["session_id"]
+        db.commit()
         submit_move(db, cold["session_id"], "e2e4", None, scheduler, settings)
+        db.commit()
         assert db.get(SRSState, exercise.id).reviews == 1
         assert db.scalar(select(Review)).rating == "Again"
         assert db.scalar(select(Review)).failed
         reveal(db, cold["session_id"], scheduler, settings)
+        db.commit()
         assert db.scalar(select(func.count()).select_from(Review)) == 1
 
 
@@ -146,8 +164,11 @@ def test_a_castling_alias_is_graded_and_saved_as_the_canonical_move(settings, se
         exercise = manual_exercise(
             db, scheduler, "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", ["e1g1"], "white"
         )
+        db.commit()
         cold = start_review(db, exercise.id)
+        db.commit()
         # An API client may send castling as the king taking its rook.
         result = submit_move(db, cold["session_id"], "e1h1", None, scheduler, settings)
+        db.commit()
         assert result["completed"] and result["grade"] != "failure"
         assert db.scalar(select(Attempt.uci)) == "e1g1"

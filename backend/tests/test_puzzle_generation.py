@@ -2,6 +2,7 @@
 
 import chess
 import pytest
+from account_units import units_for
 from fastapi.testclient import TestClient
 from job_fixtures import queue_import_analysis
 from sqlalchemy import select
@@ -150,6 +151,7 @@ class FakeEngine:
 
 def seed_game(db, fen, moves, **headers):
     result = import_games(db, "fixture.pgn", pgn(fen, moves, **headers), ["me"], None)
+    db.commit()
     assert result["imported"] == 1, result
     return db.scalar(select(Game).order_by(Game.created_at.desc(), Game.id.desc()))
 
@@ -375,10 +377,16 @@ def test_generate_once_per_game_and_serve_only_ready_lines(settings, sessions):
         game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
         seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
         seed_decision(db, game, 3, "e1d2", [("e1d2", 10), ("e1e2", 5)], meaningful=False)
-        assert generate_for_game(db, Scripted(FORK), settings, game, cancelled=lambda: True) is None
+        assert (
+            generate_for_game(units_for(db), Scripted(FORK), settings, game, cancelled=lambda: True)
+            is None
+        )
         assert db.scalar(select(GamePuzzleSearch)) is None
-        assert generate_for_game(db, Scripted(FORK), settings, game) == {"candidates": 1, "kept": 1}
-        assert generate_for_game(db, Scripted(FORK), settings, game) is None
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
+            "candidates": 1,
+            "kept": 1,
+        }
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, game) is None
         row = db.scalar(select(GamePuzzle))
         assert row.status == "ready" and row.kind == "missed_win" and row.reason is None
         assert row.evidence["decisions"][0]["san"] == "Nd5+" and row.evidence["saved_unique_first"]
@@ -399,7 +407,10 @@ def test_generate_once_per_game_and_serve_only_ready_lines(settings, sessions):
         twin = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2", black="someone-else")
         seed_decision(db, twin, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
         assert unsearched_games(db, 10) == [twin.id]
-        assert generate_for_game(db, Scripted(FORK), settings, twin) == {"candidates": 1, "kept": 0}
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, twin) == {
+            "candidates": 1,
+            "kept": 0,
+        }
         assert db.scalar(select(GamePuzzle.reason).where(GamePuzzle.game_id == twin.id)) == (
             "duplicate_position"
         )
@@ -439,6 +450,7 @@ def test_analysis_jobs_mine_new_games_and_the_backfill_job_mines_the_rest(settin
     with TestClient(app) as client:
         with app.state.sessions() as db:
             imported = import_games(db, "f.pgn", pgn(FORK_FEN, "1. Ne4 Kd7 2. Kd2"), ["me"], None)
+            db.commit()
             job_id = queue_import_analysis(db, imported)
         app.state.runner.run_job(job_id)
         with app.state.sessions() as db:
@@ -513,7 +525,7 @@ def test_own_game_puzzles_are_private_to_the_account(settings):
         with app.state.workspaces.open(alice_id) as workspace, workspace.sessions() as db:
             game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
             seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
-            assert generate_for_game(db, Scripted(FORK), settings, game) == {
+            assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
                 "candidates": 1,
                 "kept": 1,
             }
@@ -731,6 +743,7 @@ def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings
         game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
         decision = seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
         task = refined_fork_review(db, game, decision.before_analysis_id, adopted=False)
+        db.commit()
 
         class AdoptingMidway(Scripted):
             def __call__(self, board, *, multipv=1):
@@ -741,11 +754,126 @@ def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings
                         other.commit()
                 return super().__call__(board, multipv=multipv)
 
-        assert generate_for_game(db, AdoptingMidway(FORK), settings, game)["kept"] == 1
+        assert generate_for_game(units_for(db), AdoptingMidway(FORK), settings, game)["kept"] == 1
         assert db.scalar(select(GamePuzzleSearch.id)) is None
         # The next pass re-reads the review; the judged ply keeps its verdict.
-        assert generate_for_game(db, Scripted(FORK), settings, game) == {
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
             "candidates": 1,
             "kept": 1,
         }
         assert db.scalar(select(GamePuzzleSearch.id)) is not None
+
+
+def test_stored_puzzles_are_judged_again_by_the_current_mate_rival_rule(settings):
+    import json
+
+    from test_migrations import fill, upgrade_to
+    from trainer.db import database, migrate
+
+    def steps(*pairs):
+        return {"decisions": [{"san": "x", "score": s, "rival": r} for s, r in pairs]}
+
+    engine, _ = database(settings.database_path)
+    upgrade_to(engine, "5e81c0d4a7b9")
+    with engine.begin() as db:
+        fill(db, "users", id="other", username="other")
+        games = {
+            "kept": "local",
+            "early": "local",
+            "late": "local",
+            "long": "local",
+            "old": "local",
+            "theirs": "other",
+        }
+        for game, user in games.items():
+            fill(db, "games", id=game, user_id=user, fingerprint=game)
+            fill(
+                db,
+                "game_puzzle_searches",
+                id=f"search-{game}",
+                user_id=user,
+                game_id=game,
+                generator_version="games-v1" if game == "old" else "games-v2",
+                kept=2 if game == "early" else 1,
+            )
+
+        def puzzle(game, ply, evidence, status="ready", reason=None, version="games-v2"):
+            fill(
+                db,
+                "game_puzzles",
+                id=f"puzzle-{game}-{ply}",
+                user_id=games[game],
+                game_id=game,
+                ply=ply,
+                decision_id=None,
+                generator_version=version,
+                status=status,
+                reason=reason,
+                definition=json.dumps({"key": f"{game}:{ply}"}),
+                evidence=json.dumps(evidence),
+            )
+
+        # A mate whose rival does not win stays unique.
+        puzzle("kept", 1, steps(("+400", "-20"), ("#2", "+90"), ("#1", None)))
+        # The second step's rival wins a rook: never a puzzle under the rule.
+        puzzle("early", 1, steps(("+400", "-20"), ("#3", "+500")))
+        puzzle("early", 3, steps(("#4", "+250"), ("#3", None)))
+        # The third step's rival still wins: the line is cut there by a new search.
+        puzzle("late", 1, steps(("+400", "-20"), ("+600", "+50"), ("#2", "+500")))
+        # A line that ran too long may have run past such a step.
+        puzzle("long", 1, {"decisions": []}, status="abstained", reason="too_long")
+        # Other generator versions are left alone.
+        puzzle("old", 1, steps(("+400", "-20"), ("#3", "+500")), version="games-v1")
+        # Another account's affected puzzle is judged in its own account.
+        puzzle("theirs", 1, steps(("+400", "-20"), ("#3", "+500")))
+        fill(db, "puzzle_sessions", id="session", user_id="local", puzzle_key="early:1")
+    migrate(engine)
+    with engine.connect() as db:
+        puzzles = {
+            row[0]: row[1:]
+            for row in db.exec_driver_sql(
+                "SELECT id, status, reason, definition IS NOT NULL FROM game_puzzles"
+            )
+        }
+        searches = dict(db.exec_driver_sql("SELECT game_id, kept FROM game_puzzle_searches").all())
+        sessions = db.exec_driver_sql("SELECT puzzle_key FROM puzzle_sessions").all()
+    assert puzzles == {
+        "puzzle-kept-1": ("ready", None, 1),
+        "puzzle-early-1": ("abstained", "ambiguous #3 vs +500", 1),
+        "puzzle-early-3": ("abstained", "ambiguous #4 vs +250", 1),
+        "puzzle-old-1": ("ready", None, 1),
+        "puzzle-theirs-1": ("abstained", "ambiguous #3 vs +500", 1),
+    }
+    # The late and long games are searched again; abstentions lower the others' counts.
+    assert searches == {"kept": 1, "early": 0, "old": 1, "theirs": 0}
+    assert sessions == [("early:1",)]
+    engine.dispose()
+
+
+def test_the_mate_rival_migration_reads_scores_and_judges_like_the_generator():
+    import importlib.util
+    from pathlib import Path
+
+    from trainer.puzzles.verification import describe, rival_verdict
+
+    path = Path("migrations/versions/9d2f6b1e4c83_game_puzzle_mate_rivals.py")
+    spec = importlib.util.spec_from_file_location("mate_rivals", path)
+    migration = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(migration)
+    scores = [
+        MATE_SCORE - 1,
+        MATE_SCORE - 7,
+        -MATE_SCORE + 3,
+        650,
+        200,
+        199,
+        90,
+        0,
+        -40,
+    ]
+    for solution in scores:
+        assert migration._score(describe(solution)) == solution
+        for rival in scores:
+            assert migration._unique(solution, rival) == (
+                rival_verdict(solution, rival) == "unique"
+            )

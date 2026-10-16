@@ -11,8 +11,9 @@ import ResumeLink from "../ResumeLink";
 import SectionNavigation from "../SectionNavigation";
 import SourceLine from "../SourceLine";
 import StatList from "../StatList";
-import { navigate, puzzleSessionPath, puzzleSourcePath, studyPaths, type PuzzleSource } from "../navigation";
-import { QueryResult, useCommand, useQuery } from "../useQuery";
+import { puzzleSessionPath, puzzleSourcePath, studyPaths, type PuzzleSource } from "../navigation";
+import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
+import { useSessionStart } from "../useSessionStart";
 import { shortDate } from "../format";
 import { PUZZLE_BANDS, PUZZLE_GOALS, createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel, savePuzzleSelection, type PuzzleMode, type PuzzleSelection } from "./puzzleApi";
 
@@ -23,8 +24,7 @@ type Generation = NonNullable<Schema["PuzzleLibrary"]["generation"]>;
 export default function PuzzleLibrary({ source }: { source: PuzzleSource | null }) {
   const library = useQuery((signal) => read(api.GET("/api/puzzles", { signal })));
   const [selection, setSelection] = useState<PuzzleSelection>(loadPuzzleSelection);
-  const [startNextPuzzle] = useState(createPuzzleStarter);
-  const start = useCommand<PuzzleMode>();
+  const start = useSessionStart(createPuzzleStarter, (session) => puzzleSessionPath(session.id));
   const search = useCommand();
   const [notice, setNotice] = useState("");
   function select(changes: Partial<PuzzleSelection>) {
@@ -35,12 +35,9 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
   function begin(mode: PuzzleMode) {
     const target: PuzzleSelection = { ...selection, mode, source: source || undefined };
     select({ mode });
-    void start.run(mode, (signal) => startNextPuzzle(target, signal), (session) => {
-      if (session) navigate(puzzleSessionPath(session.id));
-      else start.setError(mode === "retry"
+    void start.start(mode, target, () => start.setError(mode === "retry"
         ? "No revealed or failed puzzles match these choices. Solve some first, or widen the difficulty and theme."
-        : "No puzzles match these choices yet. Try another difficulty or theme.");
-    });
+        : "No puzzles match these choices yet. Try another difficulty or theme."));
   }
   function generate() {
     void search.run(true, () => read(api.POST("/api/puzzles/generate")), () => {
@@ -49,11 +46,11 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
     });
   }
   const gamesCount = library.data?.generation?.puzzles ?? 0;
-  const error = start.error || search.error;
   return <>
     <PageTitle title="Puzzles" />
     <div className="study-page">
-      {error && <Banner tone="error" onDismiss={() => { start.dismiss(); search.dismiss(); }}>{error}</Banner>}
+      <CommandError command={start} />
+      <CommandError command={search} />
       <SectionNavigation label="Puzzle sources" current={source ?? "all"} items={[
         { id: "all", label: "All puzzles", href: puzzleSourcePath() },
         { id: "generic", label: "Collection", href: puzzleSourcePath("generic") },

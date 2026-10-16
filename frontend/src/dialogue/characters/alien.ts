@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {alienTacticalTemplates} from "./scopedTactics";
-import {alienOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const alien: CoachPersonality = {
-  version: "alien-2", maxCharacters: 280, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const alienTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a {motif} stands on the board.",
+    played_possible: "After {move}, a {motif} becomes possible later, if the replies permit it.",
+    allowed_immediate: "{opponent} has an answer in {action}, and it brings a {motif}.",
+    allowed_possible: "A {motif} may open for {opponent} later, depending on the replies.",
+    missed_immediate: "{best} contained a {motif}.",
+    missed_possible: "{best} held the possibility of a {motif}, if the replies had cooperated.",
+  },
+  fork: {actual: "A single piece now has the {targets} under attack.", possible: "The {targets} would be attacked simultaneously."},
+  material: "A {gain} may be the outcome, though each side still has choices first.",
+  capture: {candidate: "With {capture}, a {piece} would fall.", followup: "One line of play goes on with {capture}, removing a {piece}."},
+  playedCapture: {fact: "{move} contains a {motif}.", consequence: "{capture} removes a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const alienOpeningTemplates = {
+  "book-opening-entry-1": ["The catalogue has a name for this move: {opening}."],
+  "book-opening-entry-2": ["Opening theory gives this move a name: {opening}."],
+  "book-opening-entry-3": ["This move appears in the opening catalogue as {opening}."],
+  "book-opening-follow-1": ["Still within opening theory: {opening}."],
+  "book-opening-follow-2": ["The catalogue follows this move too, under {opening}."],
+  "book-opening-follow-3": ["Opening theory knew this one as well: {opening}."],
+  "book-opening-follow-4": ["The theoretical line continues: {opening}."],
+  "book-opening-follow-5": ["Charted ground still, in {opening}."],
+  "book-opening-follow-6": ["Once more, a move with an entry under {opening}."],
+  "book-opening-follow-7": ["The game keeps tracing the documented line of {opening}."],
+  "book-opening-follow-8": ["Deeper into {opening}, a move theory accounts for."],
+} as const;
+
+export const alien = coachPersonality({
+  version: "alien-2", maxCharacters: 280, maxClaims: 2,
   delivery: {pace: "measured", energy: "quiet"},
   behavior: {
     general: "observation-first", praise: "observation-first", correction: "observation-first",
@@ -126,4 +156,4 @@ export const alien: CoachPersonality = {
     practice_error: ["That attempt produced no result. Try once more."],
     variation: ["In this side line: {detail}"],
   },
-};
+});

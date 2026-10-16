@@ -1,13 +1,12 @@
-import { useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
-import Banner from "../Banner";
 import Button from "../Button";
 import EmptyState from "../EmptyState";
 import StatList from "../StatList";
-import { lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
-import { QueryResult, useCommand, useQuery } from "../useQuery";
+import { lessonSessionPath, openingCataloguePath, studyPaths } from "../navigation";
+import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
+import { useSessionStart } from "../useSessionStart";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
 
 type Study = Schema["OpeningStudySummary"];
@@ -39,16 +38,17 @@ function StudyRow({ study, busy, onPractice, onToggle }: {
 export default function OpeningStudies() {
   const library = useQuery((signal) => read(api.GET("/api/opening-studies", { signal })));
   const command = useCommand<Busy>();
-  const [practiceStudy] = useState(createPracticeStarter);
-  const practice = (study: Study) => void command.run({ id: study.id, command: "practice" },
-    (signal) => practiceStudy(study.id, signal), (session) => { if (session) navigate(lessonSessionPath(session.id)); });
+  // Practice and pause share one guard, so only one command runs at a time.
+  const starting = useSessionStart(createPracticeStarter, (session) => lessonSessionPath(session.id), command);
+  const busy = command.busy;
+  const practice = (study: Study) => void starting.start({ id: study.id, command: "practice" }, study.id);
   const toggle = (study: Study) => void command.run({ id: study.id, command: "toggle" }, async (signal) => {
     await setStudyActive(study.id, !study.active, signal);
     return read(api.GET("/api/opening-studies", { signal }));
   }, library.setData);
   return <section className="panel opening-studies">
     <div className="opening-management-heading"><div><h2>Your selected lines</h2><p className="small muted">Rehearse one line here. Due accepts the combined moves from your active studies.</p></div><ActionLink variant="secondary" href={openingCataloguePath()}>Browse catalogue<ArrowRight size={16} /></ActionLink></div>
-    {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
+    <CommandError command={command} />
     <QueryResult query={library} label="your studies">{(library) => <>
       {!!library.items.length && <StatList items={[
         { label: "Active studies", value: library.active_studies },
@@ -57,7 +57,7 @@ export default function OpeningStudies() {
       ]} />}
       {library.items.length
         ? <div className="opening-study-list">{library.items.map((study) =>
-          <StudyRow key={study.id} study={study} busy={command.busy} onPractice={() => practice(study)} onToggle={() => toggle(study)} />)}</div>
+          <StudyRow key={study.id} study={study} busy={busy} onPractice={() => practice(study)} onToggle={() => toggle(study)} />)}</div>
         : <EmptyState presentation="compact">No lines selected yet. Preview a catalogue or course line to add it to your study.</EmptyState>}
       {!!library.due_positions && <ActionLink variant="primary" href={studyPaths.due}>Review due positions<ArrowRight size={16} /></ActionLink>}
     </>}</QueryResult>

@@ -135,7 +135,10 @@ def _render_key(play, ply, report, context=None):
     return (
         tuple(play.moves[:ply]),
         tuple(sorted(departure.items())) if departure else None,
-        report.get("previous_score") is not None,
+        tuple(sorted((report.get("previous_score") or {}).items())),
+        # The capitalizing Great reads it, and linking replaces it once the
+        # predecessor's own report is saved.
+        report.get("previous_mistake"),
         report.get("before_analysis_id"),
         report.get("played_analysis_id"),
         human.get("status"),
@@ -223,7 +226,6 @@ def finish(db, play: PlayGame, result: str, termination: str, learner_name: str)
         pgn,
         [],
         "white" if learner_is_white(play) else "black",
-        commit=False,
     )
     saved = db.scalar(
         select(ImportGame.game_id).where(ImportGame.import_id == outcome["import_id"])

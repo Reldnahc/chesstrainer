@@ -8,7 +8,7 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {repeatsLead, selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {sequenceRecordingId} from "../src/audio/speech/sequence";
-import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
+import {meanings as catalogue} from "../src/audio/speech/meaningCatalog";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
 const games = semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py");
@@ -58,7 +58,7 @@ for (const coach of [{id: "classic", personality: storyteller}, {id: "robot", pe
 }
 
 test("tactical producer proof keeps its role and shown Maia-state fixtures", () => {
-  const keys = Object.keys(games), meanings = new Set(catalogue.meanings.map(item => item.id));
+  const keys = Object.keys(games), meanings = new Set(catalogue.map(item => item.id));
   expect(keys).toHaveLength(62);
   expect(new Set(keys).size).toBe(62);
   for (const key of keys) {

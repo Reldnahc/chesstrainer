@@ -5,7 +5,7 @@ from sqlalchemy import and_, func, or_, select
 
 from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
 from trainer.classification_stages import line_parameters
-from trainer.errors import Gone, InvalidInput, NotFound
+from trainer.errors import Conflict, Gone, InvalidInput, NotFound
 from trainer.explanation_types import replay_line
 from trainer.explanations import explain_review
 from trainer.imports import decision_board
@@ -195,7 +195,7 @@ def start_review(db, exercise_id, *, focus_skill_id=None, parameters=None):
         db.flush()
         if exercise.source == "opening":
             opening_recall.snapshot_session(db, existing, exercise)
-        db.commit()
+        db.flush()
     state = db.get(SRSState, exercise_id)
     reason = (
         "resume"
@@ -303,7 +303,8 @@ def feedback(db, exercise, session=None):
         result.update(opening_recall.feedback(db, exercise, session, snapshot))
     if exercise.decision_id:
         decision = db.get(Decision, exercise.decision_id)
-        analysis = db.get(EngineAnalysis, decision.before_analysis_id)
+        # The candidates the card's answers were graded from, not a later search.
+        analysis = card_search(db, exercise, decision)
         game = db.get(Game, decision.game_id)
         result.update(
             {
@@ -373,22 +374,29 @@ def answer_search(db, session_id, uci):
     if db.get(ExerciseAnswer, (exercise.id, move.uci())) is not None:
         return None
     decision = db.get(Decision, exercise.decision_id)
-    # Graded against the search the exercise's own answers came from: a decision
-    # refreshed by a later refinement keeps its earlier exercise, and one card
-    # never mixes two engine references.
+    return AnswerSearch(
+        uci=move.uci(),
+        san=board.san(move),
+        board=decision_board(db.get(Game, decision.game_id), decision.ply),
+        original=card_search(db, exercise, decision),
+        policy=exercise.policy,
+    )
+
+
+def card_search(db, exercise, decision):
+    """The engine search a game card's answers were graded from.
+
+    A decision refreshed by a later refinement keeps its earlier card, so the card
+    is graded, and lists its candidates, from the search its answers came from:
+    one card never mixes two engine references.
+    """
     primary = db.scalar(
         select(ExerciseAnswer).where(
             ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
         )
     )
     reference = primary.analysis_id if primary and primary.analysis_id else None
-    return AnswerSearch(
-        uci=move.uci(),
-        san=board.san(move),
-        board=decision_board(db.get(Game, decision.game_id), decision.ply),
-        original=db.get(EngineAnalysis, reference or decision.before_analysis_id),
-        policy=exercise.policy,
-    )
+    return db.get(EngineAnalysis, reference or decision.before_analysis_id)
 
 
 def search_answer(engine, search):
@@ -412,7 +420,9 @@ def search_answer(engine, search):
 
 def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None):
     """Record one answer. ``graded`` is ``search_answer``'s result for an unseen answer,
-    searched before the account lock was taken; without it the search runs here."""
+    searched before the write unit opened; without it the search runs here, with
+    ``engine``. Requests pass no engine, so an answer that still needs a search is
+    refused with a conflict instead of searching under the account lock."""
     session = open_session(db, session_id)
     exercise = db.get(Exercise, session.exercise_id)
     if session.completed:
@@ -434,6 +444,8 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     )
     if answer is None and exercise.source == "game":
         if graded is None or graded["uci"] != uci:
+            if engine is None:
+                raise Conflict("This answer needs a fresh search; try the move again.")
             graded = search_answer(engine, answer_search(db, session_id, uci))
         answer = ExerciseAnswer(exercise_id=exercise.id, **graded)
         db.add(answer)
@@ -447,7 +459,7 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     if grade in {"failure", "inaccuracy"}:
         session.failed = True
         record_once(db, session, scheduler, settings, elapsed)
-        db.commit()
+        db.flush()
         result = {
             "completed": False,
             "attempt_id": attempt.id,
@@ -486,7 +498,7 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     session.completed_at = now()
     record_once(db, session, scheduler, settings, elapsed)
     board.push(move)
-    db.commit()
+    db.flush()
     result = {
         "completed": True,
         "attempt_id": attempt.id,
@@ -551,7 +563,7 @@ def reveal(db, session_id, scheduler, settings):
             review.revealed = True
         session.completed = True
         session.completed_at = now()
-        db.commit()
+        db.flush()
     result = {
         "completed": True,
         "grade": "revealed",

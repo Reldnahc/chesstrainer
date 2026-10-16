@@ -10,7 +10,7 @@ import Button from "../Button";
 import FlipBoardButton from "../FlipBoardButton";
 import MovePlaybackControls from "../MovePlaybackControls";
 import { LoadingState } from "../LoadState";
-import { QueryResult } from "../useQuery";
+import { CommandError, QueryResult } from "../useQuery";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import { pawnsText, positionScore, startingScore } from "../evaluation";
 import EvaluationBar from "../EvaluationBar";
@@ -149,12 +149,9 @@ export default function PlayGame({ id }: { id: string }) {
   };
   return (
     <div className="game-workspace">
-      {session.error && <Banner tone="error" onDismiss={session.dismissError}>{session.error}</Banner>}
-      {session.replyError && (
-        <Banner tone="error" action={<Button size="compact" disabled={session.busy} onClick={session.retryReply}>Try again</Button>}>
-          {session.replyError}
-        </Banner>
-      )}
+      <CommandError command={{ error: session.error, dismiss: session.dismissError }} />
+      <CommandError command={{ error: session.replyError ?? "" }}
+        action={<Button size="compact" disabled={session.busy} onClick={session.retryReply}>Try again</Button>} />
       {stoodIn > 0 && state.fallback_elo != null && (
         <Banner tone="info">
           {stoodIn} of {bot}'s moves came from Stockfish at Elo {state.fallback_elo}, because the human move model was unavailable.

@@ -6,7 +6,6 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from threading import RLock
 from time import perf_counter
-from types import SimpleNamespace
 
 import chess.pgn
 from review_benchmark.corpus import board_for, load_corpus
@@ -14,10 +13,12 @@ from review_benchmark.metrics import machine
 from sqlalchemy import select
 from trainer.chess_core import digest, legal_move
 from trainer.config import Settings
-from trainer.db import database, migrate
+from trainer.db import Units, database, migrate
 from trainer.engine import Stockfish
 from trainer.game_review import analyze_move, classify
+from trainer.job_context import JobContext
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ReviewRefinement
+from trainer.ownership import LOCAL_USER_ID
 from trainer.review_refinement import run_refinement
 from trainer.review_reports import load_game_reports
 
@@ -36,13 +37,7 @@ def run(executable, targeted=False):
         sql_engine, sessions = database(settings.database_path)
         migrate(sql_engine)
         native = Stockfish(settings, sessions)
-        runner = SimpleNamespace(
-            settings=settings,
-            sessions=sessions,
-            mutation_lock=RLock(),
-            engine_factory=Stockfish,
-            cancelled=lambda _: False,
-        )
+        units = Units(sessions, RLock())
         try:
             for item in corpus["positions"]:
                 board = board_for(item)
@@ -70,7 +65,22 @@ def run(executable, targeted=False):
                     db.add(GameReviewMove(game_id=game.id, ply=ply, report=baseline))
                     db.commit()
                 start = perf_counter()
-                run_refinement(runner, job.id, parsed, game.id)
+                context = JobContext(
+                    job_id=job.id,
+                    user_id=LOCAL_USER_ID,
+                    settings=settings,
+                    sessions=sessions,
+                    read=units.read,
+                    write=units.write,
+                    engine_factory=Stockfish,
+                    scheduler=None,
+                    classifier=None,
+                    human_models=None,
+                    providers=None,
+                    cancelled=lambda: False,
+                    stopping=lambda: False,
+                )
+                run_refinement(context, parsed, game.id)
                 seconds = perf_counter() - start
                 with sessions() as db:
                     reports, _ = load_game_reports(db, game.id)

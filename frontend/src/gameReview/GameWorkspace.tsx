@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Banner from "../Banner";
+import { CommandError } from "../useQuery";
 import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -40,14 +40,14 @@ export default function GameWorkspace({
     reviewStarting,
     running,
     error,
-    setError,
+    fail,
     dismissError,
     retryLoad,
     start,
     cancel,
     analysisEpoch,
   } = session;
-  const exploration = useGameExploration(id, initialPly, game, setError);
+  const exploration = useGameExploration(id, initialPly, game, { fail, dismiss: dismissError });
   const [exporting, setExporting] = useState(false);
   const {
     cursor,
@@ -151,7 +151,7 @@ export default function GameWorkspace({
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
-      {error && <Banner tone="error" onDismiss={dismissError}>{error}</Banner>}
+      <CommandError command={{ error, dismiss: dismissError }} />
       <ReviewWorkspace
         boardLabel="Game board and navigation"
         aboveBoard={

@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {dragonTacticalTemplates} from "./scopedTactics";
-import {dragonOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const dragon: CoachPersonality = {
-  version: "dragon-2", maxCharacters: 260, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const dragonTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} delivers a {motif}, and it stands on the board now.",
+    played_possible: "{move} prepares a {motif}; the replies decide if it ever arrives.",
+    allowed_immediate: "{opponent} has {action} in reply, and with it a {motif}.",
+    allowed_possible: "This gives {opponent} a possible {motif} later; the replies will settle it.",
+    missed_immediate: "{best} had a {motif} ready, and this move declines it.",
+    missed_possible: "{best} could have built toward a {motif}, replies permitting.",
+  },
+  fork: {actual: "The {targets} now sit under one piece's attack.", possible: "From a single square, the {targets} would be attacked by that one piece."},
+  material: "A {gain} may be there in the end, but the remaining choices on both sides decide that.",
+  capture: {candidate: "{capture} is there, and a {piece} would fall to it.", followup: "If play runs that way, a {piece} falls to {capture}."},
+  playedCapture: {fact: "{move} is built on a {motif}.", consequence: "A {piece} falls to {capture}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const dragonOpeningTemplates = {
+  "book-opening-entry-1": ["The opening is known to theory: {opening}."],
+  "book-opening-entry-2": ["This move stands in established theory, as {opening}."],
+  "book-opening-entry-3": ["This move carries a name in theory: {opening}. A name is not a plan."],
+  "book-opening-follow-1": ["Theory still holds here: {opening}."],
+  "book-opening-follow-2": ["Another established move in {opening}."],
+  "book-opening-follow-3": ["The game keeps to the theory of {opening}."],
+  "book-opening-follow-4": ["Still within the known lines of {opening}."],
+  "book-opening-follow-5": ["{opening} continues, move for move."],
+  "book-opening-follow-6": ["The established line runs on: {opening}."],
+  "book-opening-follow-7": ["Theory has not run out yet in {opening}."],
+  "book-opening-follow-8": ["One more move that theory already knows, in {opening}."],
+} as const;
+
+export const dragon = coachPersonality({
+  version: "dragon-2", maxCharacters: 260, maxClaims: 2,
   delivery: {pace: "steady", energy: "warm"},
   behavior: {
     general: "mentor-first", praise: "mentor-first", correction: "mentor-first",
@@ -118,4 +148,4 @@ export const dragon: CoachPersonality = {
     practice_error: ["No result came back. Submit it once more."],
     variation: ["Consider the other branch: {detail}"],
   },
-};
+});

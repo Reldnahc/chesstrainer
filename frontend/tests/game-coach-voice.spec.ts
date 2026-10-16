@@ -5,7 +5,7 @@ import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {expert} from "../src/dialogue/characters/expert";
-import {newCastPersonalities} from "../src/dialogue/characters/newCast";
+import {coachPersonalities} from "../src/dialogue/characters";
 import type {DialogueCharacter} from "../src/dialogue/personality";
 
 import {captureSpeech, speechActivity} from "./helpers/speech";
@@ -290,7 +290,7 @@ function punishedError(label: string, coach: DialogueCharacter,
 
 test("a chance-taken take calling the error small sits out after a blunder", () => {
   // Celeste's base take says the opponent's move "held a small gift".
-  const celeste = {id: "unicorn", personality: newCastPersonalities.unicorn};
+  const celeste = {id: "unicorn", personality: coachPersonalities.unicorn};
   const afterMistake = punishedError("Mistake", celeste);
   expect(afterMistake.primaryId).toBe("chance-taken");
   expect(afterMistake.takes).toContain("chance-taken");
@@ -306,7 +306,7 @@ test("a recovery plays the assisted take after the other side's Mistakes", () =>
   // The learner's earlier Qd8 is reused as the setback; Qxd8 is the move after which it is playable again.
   const recovery = (help: boolean) => ({kind: "recovery", plies: [1, 3], code: "recovery",
     facts: {outcome: "playable_position", opponent_errors: help ? [2] : []}});
-  const fergus = {id: "frog", personality: newCastPersonalities.frog};
+  const fergus = {id: "frog", personality: coachPersonalities.frog};
   expect(punishedError("Mistake", fergus, recovery(false)).primaryId).toBe("recovery");
   expect(punishedError("Mistake", fergus, recovery(true)).primaryId).toBe("recovery-assisted");
   expect(punishedError("Mistake", {id: "classic", personality: storyteller}, recovery(true)).primaryId).toBe("recovery-assisted");

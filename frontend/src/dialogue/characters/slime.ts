@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {slimeTacticalTemplates} from "./scopedTactics";
-import {slimeOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const slime: CoachPersonality = {
-  version: "slime-2", maxCharacters: 240, maxClaims: 1, tacticalWording: "witness", openingWording: "sequence",
+export const slimeTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a {motif} is right there on the board.",
+    played_possible: "After {move}, a {motif} could come along, if the replies allow it.",
+    allowed_immediate: "Now {opponent} can answer with {action}, and there's a {motif} in it.",
+    allowed_possible: "{opponent} might get a {motif} later on, if the replies go that way.",
+    missed_immediate: "{best} would have had a {motif} ready.",
+    missed_possible: "{best} could have led to a {motif}, if the replies allowed it.",
+  },
+  fork: {actual: "That's the {targets} attacked in one go.", possible: "The {targets} would be attacked in one go."},
+  material: "There may be a {gain} in it, though both sides still have moves to choose.",
+  capture: {candidate: "{capture} would grab a {piece}.", followup: "One way it could go: {capture}, grabbing a {piece}."},
+  playedCapture: {fact: "The trick with {move} is a {motif}.", consequence: "{capture} grabs a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const slimeOpeningTemplates = {
+  "book-opening-entry-1": ["This one's in the opening book: {opening}."],
+  "book-opening-entry-2": ["We've a name for this opening: {opening}."],
+  "book-opening-entry-3": ["This move comes straight from the opening book. It's part of {opening}."],
+  "book-opening-follow-1": ["Still in the book, still {opening}."],
+  "book-opening-follow-2": ["And another known move, in {opening}."],
+  "book-opening-follow-3": ["On we go, still following {opening}."],
+  "book-opening-follow-4": ["The book's got this one too: {opening}."],
+  "book-opening-follow-5": ["Yep, this move's listed too, in {opening}."],
+  "book-opening-follow-6": ["The opening book keeps up with us here: {opening}."],
+  "book-opening-follow-7": ["Still on the known track with {opening}."],
+  "book-opening-follow-8": ["Another move straight out of {opening}."],
+} as const;
+
+export const slime = coachPersonality({
+  version: "slime-2", maxCharacters: 240, maxClaims: 1,
   delivery: {pace: "lively", energy: "bright"},
   behavior: {
     general: "reaction-first", praise: "reaction-first", correction: "reaction-first",
@@ -108,4 +138,4 @@ export const slime: CoachPersonality = {
     variation: ["Trying this other line: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});

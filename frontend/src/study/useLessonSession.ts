@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { errorMessage, api, read, type Promotion, type Schema } from "../api";
+import { useRef, useState } from "react";
+import { api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
 import { FEEDBACK_CUE_DELAY_MS } from "../audio/model";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
+import { useStudySession } from "./useStudySession";
 import { lessonRecording } from "../audio/speech/practiceSelection";
 import { withSessionTake } from "../audio/speech/meaningPools";
 
@@ -15,10 +16,6 @@ export type LessonSpeech = { eventId: string; recordingId: string | null };
 const LESSON_MOVE_INTERVAL_MS = 1200;
 
 export function useLessonSession(id: string) {
-  const [session, setSession] = useState<LessonSession | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
   const [speech, setSpeech] = useState<LessonSpeech | null>(null);
   // A demonstration goes straight on to the next step; its own step stays on
   // screen while its moves play.
@@ -26,52 +23,25 @@ export function useLessonSession(id: string) {
   const speechEvents = useRef(0);
   // How often each clip has played this session, so its takes take turns.
   const plays = useRef(new Map<string, number>());
-  const generation = useRef(0);
-  const request = useRef<AbortController | null>(null);
-  const locked = useRef(false);
   const audio = useAudioScope(`lesson:${id}`);
+  const study = useStudySession<LessonSession>(id, (signal) => read(api.GET("/api/study/lesson-sessions/{session_id}", {
+    params: { path: { session_id: id } }, signal,
+  })), {
+    starting: (kind) => {
+      if (kind === "load") setSpeech(null);
+      reset();
+    },
+  });
+  const { session, loading, busy, error, run } = study;
   const playback = useStudyPlayback(undefined, LESSON_MOVE_INTERVAL_MS, audio, session?.fen);
   const { reset } = playback;
-  const load = useCallback(async () => {
-    const version = ++generation.current;
-    request.current?.abort();
-    const controller = new AbortController();
-    request.current = controller;
-    locked.current = true;
-    setLoading(true);
-    setError("");
-    setSpeech(null);
-    reset();
-    try {
-      const result = await read(api.GET("/api/study/lesson-sessions/{session_id}", {
-        params: { path: { session_id: id } }, signal: controller.signal,
-      }));
-      if (generation.current === version) setSession(result);
-    } catch (e) { if (generation.current === version) setError(errorMessage(e)); }
-    finally {
-      if (generation.current === version) { locked.current = false; setLoading(false); setBusy(false); }
-    }
-  }, [id, reset]);
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading the session fetches it; load marks it loading first
-    void load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- bumping the latest generation is meant to invalidate every request in flight
-    return () => { generation.current++; request.current?.abort(); };
-  }, [load]);
   async function command(action: LessonAction, extra?: { uci?: string; ply?: number }) {
     const navigatingGame = !!session?.game && (action === "game_seek" || action === "close_game");
-    if (!session || locked.current || (playback.playing && !navigatingGame) || error || !session.actions.includes(action)) return;
-    locked.current = true;
-    setBusy(true);
-    const version = generation.current;
-    reset();
-    try {
-      const result = await read(api.POST("/api/study/lesson-sessions/{session_id}/command", {
-        params: { path: { session_id: id } }, signal: request.current?.signal,
-        body: { action, ...extra, revision: session.revision, request_id: studyRequestId() },
-      }));
-      if (generation.current !== version) return;
-      setSession(result);
+    if (!session || (playback.playing && !navigatingGame) || error || !session.actions.includes(action)) return;
+    await run((signal) => read(api.POST("/api/study/lesson-sessions/{session_id}/command", {
+      params: { path: { session_id: id } }, signal,
+      body: { action, ...extra, revision: session.revision, request_id: studyRequestId() },
+    })), (result) => {
       setPlayingStep(action === "continue" && session.step.kind === "demonstration" && result.step.id !== session.step.id
         && result.playback.length ? session.step : null);
       const clip = lessonRecording({ action, before: session, after: result });
@@ -92,18 +62,11 @@ export function useLessonSession(id: string) {
       } else if (action === "move" && result.feedback?.kind === "incorrect") {
         audio.play("retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
       }
-    } catch (e) {
-      // A command may have committed despite a lost response. Reconcile first.
-      if (generation.current === version) {
-        setError(errorMessage(e));
-        setSpeech({ eventId: `lesson:${++speechEvents.current}:error`, recordingId: "lesson-error" });
-      }
-    } finally {
-      if (generation.current === version) { locked.current = false; setBusy(false); }
-    }
+    // A command may have committed despite a lost response; reload reconciles it.
+    }, () => setSpeech({ eventId: `lesson:${++speechEvents.current}:error`, recordingId: "lesson-error" }));
   }
   return {
-    session, loading, busy, error, command, reload: load, playback, speech,
+    session, loading, busy, error, command, reload: study.reload, playback, speech,
     playingStep: playback.playing ? playingStep : null,
     disabled: busy || playback.playing || !!error,
     gameNavigationDisabled: busy || !!error,

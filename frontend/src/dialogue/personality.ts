@@ -40,15 +40,23 @@ export type CoachPersonality = {
   bible: CharacterBible;
   maxCharacters: number;
   maxClaims: 1 | 2;
-  /** Opt in to scope derived from exact tactical witnesses; original claims stay intact. */
+  /** Scope derived from exact tactical witnesses; original claims stay intact. Every
+   * coach has it (`coachPersonality`); only the neutral fallback leaves it out. */
   tacticalWording?: "witness";
-  /** Opt in to recorded-opening sequence meanings without changing book quality. */
+  /** Recorded-opening sequence meanings, without changing book quality. Every coach
+   * has it (`coachPersonality`); only the neutral fallback leaves it out. */
   openingWording?: "sequence";
   behavior?: CommunicationBehavior;
   delivery: {pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright"};
   /** Curated restatements of validated claims. No scoring or evidence selection. */
   templates: Readonly<Partial<Record<string, readonly ClaimWording[]>>>;
 };
+
+/** Every coach scopes tactical claims to their witnesses and speaks recorded
+ * openings as a sequence; a coach's file supplies the rest. */
+export function coachPersonality(personality: Omit<CoachPersonality, "tacticalWording" | "openingWording">): CoachPersonality {
+  return {...personality, tacticalWording: "witness", openingWording: "sequence"};
+}
 
 export const neutralPersonality: CoachPersonality = {
   version: "neutral-1",
