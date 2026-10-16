@@ -12,7 +12,7 @@ from trainer.job_kinds import JobKind, JobStatus
 from trainer.models import AnalysisJob
 
 # Fetches run in their own lane, so imports never wait behind analysis.
-FETCH_KINDS = frozenset({JobKind.SYNC, JobKind.CHESSCOM_FETCH, JobKind.PROVIDER_FETCH})
+FETCH_KINDS = frozenset({JobKind.SYNC, JobKind.PROVIDER_FETCH})
 ACTIVE = (JobStatus.QUEUED, JobStatus.RUNNING)
 RETRYABLE = (JobStatus.FAILED, JobStatus.CANCELLED)
 PROGRESS = (

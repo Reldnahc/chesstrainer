@@ -12,8 +12,10 @@ from trainer.chess_core import VALUES, material_balance
 from trainer.diagnosis_types import Finding
 from trainer.tactical_geometry import (
     SLIDERS,
+    attacker_collection,
     defender_capture_is_worthwhile,
     names,
+    new_targets,
     recapturers,
     valuable_targets,
     witness,
@@ -132,19 +134,17 @@ def collected_fork(event: TacticalEvent) -> None:
         m.to_square == event.move.to_square and event.after.is_capture(m)
         for m in event.after.legal_moves
     )
-    collection = None
-    for follow in range(event.first + 2, event.witness_end + 1, 2):
-        following = event.boards[follow].peek()
-        if following.from_square == event.move.to_square:
-            if following.to_square in targets and event.boards[follow - 1].is_capture(following):
-                collection = follow
-            break
-        if event.boards[follow].piece_at(event.move.to_square) != event.piece:
-            break
+    collection = attacker_collection(
+        event.boards,
+        event.move.to_square,
+        event.piece,
+        range(event.first + 2, event.witness_end + 1, 2),
+        targets,
+    )
     if (
         event.piece.piece_type != chess.KING
         and len(targets) >= 2
-        and not targets <= set(event.before.attacks(event.move.from_square))
+        and new_targets(event.before, event.move.from_square, targets)
         and not can_take
         and collection
     ):

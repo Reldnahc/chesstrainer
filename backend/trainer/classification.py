@@ -20,7 +20,6 @@ from trainer.models import (
 )
 from trainer.taxonomy import SKILLS, TAXONOMY_VERSION, UNCLASSIFIED
 
-PROMPT_VERSION = "1"
 SCHEMA_VERSION = "3"
 log = logging.getLogger(__name__)
 
@@ -161,14 +160,12 @@ def classify_decision(units, decision, classifier):
             return run is not None
         key = run.cache_key
     try:
-        output, usage = classifier.classify(payload)
+        output = classifier.classify(payload)
         with units.write() as db:
             run = db.scalar(select(ClassificationRun).where(ClassificationRun.cache_key == key))
             result = _validated(output, decision, classifier, payload)
             run.response = result.model_dump()
             run.confidence = result.confidence
-            run.input_tokens = usage.get("input_tokens", 0)
-            run.output_tokens = usage.get("output_tokens", 0)
             run.status, run.error, run.created_at = "completed", None, now()
             # Keep immutable runs; current labels follow the latest requested
             # successful classification, including low confidence.
@@ -201,7 +198,6 @@ def _start_run(db, decision, classifier, payload):
             "parameters": classifier.parameters,
             "version": classifier.version,
             "model": classifier.model,
-            "prompt": PROMPT_VERSION,
             "schema": SCHEMA_VERSION,
             "taxonomy": TAXONOMY_VERSION,
         }
@@ -219,7 +215,6 @@ def _start_run(db, decision, classifier, payload):
             version=classifier.version,
             model=classifier.model,
             schema_version=SCHEMA_VERSION,
-            prompt_version=PROMPT_VERSION,
             status="running",
         )
         db.add(run)

@@ -33,33 +33,64 @@ def first_duplicate(items):
     return None
 
 
+# The one rule for where a lesson step starts and where it leaves the board. The
+# course model (step_start, step_result), the course-file loader's implied positions
+# and the editor's boards all read positions through these two functions. ``line``
+# and ``game`` are anything with a ``position`` (a Position) and ``moves`` (UCI).
+
+
+def start_of(kind, position, *, line=None, game=None, from_ply=0):
+    """Where a step starts: a rehearsal at its line's start, a game excerpt at its
+    game after ``from_ply`` half-moves, any other step at its own ``position``."""
+    if kind == "rehearsal":
+        return line.position
+    if kind == "game_excerpt":
+        return game.position.after(game.moves[:from_ply])
+    return position
+
+
+def end_of(kind, start, *, moves=(), choice=None, line=None, game=None, to_ply=0):
+    """Where a step leaves the board from ``start``: after a demonstration's
+    ``moves``, a decision's ``choice`` (its move and reply, a sequence of UCI), a
+    rehearsal's whole line or a game excerpt's game up to ``to_ply``; an
+    explanation, a branch or a decision without a choice stays where it started."""
+    if kind == "demonstration":
+        return start.after(moves)
+    if kind == "decision":
+        return start if choice is None else start.after(choice)
+    if kind == "rehearsal":
+        return line.position.after(line.moves)
+    if kind == "game_excerpt":
+        return game.position.after(game.moves[:to_ply])
+    return start
+
+
 def step_start(course, step):
-    """Where a rehearsal or game excerpt begins: its line, or its game at ``from_ply``."""
-    if step.kind == "rehearsal":
-        return course.line(step.line_id).position
-    if step.kind == "game_excerpt":
-        game = course.game(step.game_id)
-        return game.position.after(game.moves[: step.from_ply])
-    return step.position
+    """Where a step of a loaded course starts."""
+    return start_of(
+        step.kind,
+        step.position,
+        line=course.line(step.line_id) if step.kind == "rehearsal" else None,
+        game=course.game(step.game_id) if step.kind == "game_excerpt" else None,
+        from_ply=getattr(step, "from_ply", 0),
+    )
 
 
 def step_result(course, step, choice=None):
-    """Where a step leaves the board: after its moves, or after ``choice`` and its reply.
+    """Where a step of a loaded course leaves the board, after ``choice`` for a decision.
 
     The validator and the course-file writer both read positions through this,
     so a course always saves to a file that loads back to the same positions.
     """
-    if step.kind == "demonstration":
-        return step.position.after(step.moves)
-    if step.kind == "decision":
-        return step.position if choice is None else step.position.after((choice.uci, *choice.reply))
-    if step.kind == "rehearsal":
-        line = course.line(step.line_id)
-        return line.position.after(line.moves)
-    if step.kind == "game_excerpt":
-        game = course.game(step.game_id)
-        return game.position.after(game.moves[: step.to_ply])
-    return step.position
+    return end_of(
+        step.kind,
+        step.position,
+        moves=getattr(step, "moves", ()),
+        choice=None if choice is None else (choice.uci, *choice.reply),
+        line=course.line(step.line_id) if step.kind == "rehearsal" else None,
+        game=course.game(step.game_id) if step.kind == "game_excerpt" else None,
+        to_ply=getattr(step, "to_ply", 0),
+    )
 
 
 def validate_course(course):

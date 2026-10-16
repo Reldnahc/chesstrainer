@@ -120,6 +120,6 @@ def test_uploads_and_imports_fetch_then_queue_backfill_analysis(settings):
         )
         assert fetched.json()["job_id"] == analyzed.json()["job_id"]
         jobs = client.get("/api/jobs").json()
-        assert [job["kind"] for job in jobs] == ["chesscom_fetch"]
+        assert [job["kind"] for job in jobs] == ["provider_fetch"]
         # Uploads and manual imports are older-game backfill, behind polled games.
         assert client.get("/api/analysis/queue").json()["backfill"] == 1

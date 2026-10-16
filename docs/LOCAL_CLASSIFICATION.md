@@ -27,7 +27,7 @@ The vendored [Lichess puzzler](https://github.com/ornicar/lichess-puzzler) tagge
 | `tactical_patterns.py` | Applies Fieldwork's connected-episode and outcome admission boundaries |
 | `verified_patterns.py` | Keeps Fieldwork's own detailed collection witnesses and independently verified extensions |
 
-Changing the classifier version invalidates classification cache identities while historical responses stay readable. Missing pre-position context skips upstream hanging-piece recognition rather than supplying a null setup move. Saved games are not reclassified on startup; use **Settings > Advanced > Classify saved games** after deploying a new version.
+Changing the classifier version, schema or taxonomy invalidates classification cache identities while historical responses stay readable. A learner's rejection holds for the identity it was made on, so classifying a decision again after such a change can bring back labels the learner rejected. Migration 3d591d63bd55 changed every identity once in the same way, by taking the old hosted-model prompt version out of the key. Missing pre-position context skips upstream hanging-piece recognition rather than supplying a null setup move. Saved games are not reclassified on startup; use **Settings > Advanced > Classify saved games** after deploying a new version.
 
 ## Outcomes, patterns and practice cues
 

@@ -41,7 +41,7 @@ COMBINATIONS = [
 @pytest.mark.parametrize("skill,fen,best,actual,plies", COMBINATIONS)
 def test_connected_combination_witnesses(skill, fen, best, actual, plies, black):
     payload = evidence(fen, best, actual, 800, 0, black)
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     finding = next(f for f in result.findings if f.skill_id == skill)
     assert finding.plies == plies
     assert finding.actor == ("black" if black else "white")
@@ -51,7 +51,7 @@ def test_connected_combination_witnesses(skill, fen, best, actual, plies, black)
 
 @pytest.mark.parametrize("black", [False, True])
 def test_quiet_gap_prevents_attributing_a_later_fork(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "r7/3k4/8/1N6/8/8/8/6K1 w - - 0 1",
             ["g1h2", "d7e8", "b5c7", "e8d7", "c7a8", "d7c6", "a8c7", "c6b6"],
@@ -76,7 +76,7 @@ def test_abandoned_defender_and_opponents_previous_threat(black):
     if black:
         previous = previous.mirror()
     payload["previous_move"] = {"fen": previous.fen(), "uci": "b4a4" if black else "b5a5"}
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     found = {f.skill_id: f for f in result.findings}
     assert {"abandoned_defender", "opponent_threat_recognition"} <= found.keys()
     assert found["abandoned_defender"].frame_ply == 0
@@ -86,20 +86,20 @@ def test_abandoned_defender_and_opponents_previous_threat(black):
 
 def test_extra_defender_and_existing_attack_are_not_new_causes():
     payload = evidence(CAUSE_FEN.replace("2N5", "1BN5"), CAUSE_BEST, CAUSE_ACTUAL, 900, -500)
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     assert "abandoned_defender" not in {f.skill_id for f in result.findings}
     payload = evidence(CAUSE_FEN, CAUSE_BEST, CAUSE_ACTUAL, 900, -500)
     payload["previous_move"] = {
         "fen": "6k1/8/q7/8/8/8/2N5/R5K1 b - - 0 1",
         "uci": "a6a5",
     }
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     assert "opponent_threat_recognition" not in {f.skill_id for f in result.findings}
 
 
 @pytest.mark.parametrize("black", [False, True])
 def test_bad_trade_counts_actual_capture_and_recapture(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "3r2k1/8/8/3p4/8/8/8/3R2K1 w - - 0 1",
             ["g1h2", "g8h7", "h2g3", "h7g6"],

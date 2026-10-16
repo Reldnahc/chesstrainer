@@ -96,7 +96,7 @@ def test_tail_job_cancellation_resume_links_and_preserves_learning(sessions, set
         probes = db.scalars(select(ClassificationProbe)).all()
         assert len(probes) == 2 and {p.kind for p in probes} == {"tail"}
         payload = verified_payload(db, db.get(Decision, decision.id))
-        result, _ = LocalClassifier(settings).classify(payload)
+        result = LocalClassifier(settings).classify(payload)
         assert result.outcomes and all(
             result.continuations[p.root_analysis_id].material_delta is not None for p in probes
         )

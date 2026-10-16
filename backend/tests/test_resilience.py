@@ -48,7 +48,7 @@ class FixtureClassifier(FixtureClassifierBase):
             confidence=self.confidence,
             explanation="Verified mate threat.",
             findings=findings_for(evidence, "king_safety"),
-        ), {"input_tokens": 10, "output_tokens": 5}
+        )
 
 
 @pytest.fixture

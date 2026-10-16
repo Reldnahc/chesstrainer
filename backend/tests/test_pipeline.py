@@ -48,7 +48,7 @@ class MockClassifier(FixtureClassifierBase):
             confidence=0.9,
             explanation="The verified continuation allows a mating attack.",
             findings=findings_for(evidence, "king_safety"),
-        ), {}
+        )
 
 
 def test_multi_import_dedupe_and_learner(sessions):

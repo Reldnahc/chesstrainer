@@ -13,6 +13,7 @@ reaches ``from``. ``next`` defaults to the following step in the chapter.
 """
 
 import copy
+from types import SimpleNamespace
 from typing import Literal
 
 import chess
@@ -21,7 +22,7 @@ from pydantic import ConfigDict, Field, ValidationError
 from trainer.contracts.common import Contract
 from trainer.errors import InvalidInput
 from trainer.study_lessons.content import CourseDefinition, Position
-from trainer.study_lessons.validation import StepProblem, step_result, step_start
+from trainer.study_lessons.validation import StepProblem, end_of, start_of, step_result, step_start
 
 FORMAT = "fieldwork-course-1"
 DEFAULT_FEEDBACK = "That is a move taught in this lesson."
@@ -318,9 +319,9 @@ def load(data):
 def chapter_record(chapter, known):
     """Resolve one chapter of a course file into course records.
 
-    This reads the file's own SAN records before any course exists, so it cannot
-    share ``validation.step_result``; ``dump`` proves after every save that the
-    two agree, by loading the written file back.
+    This reads the file's own SAN records before any course exists, so it turns
+    them into UCI here and then places each step by ``validation.start_of`` and
+    ``end_of``, the same rule the loaded course and the editor's boards use.
     """
     where = f"Chapter {chapter.id}"
 
@@ -356,21 +357,18 @@ def chapter_record(chapter, known):
         feedback = DEFAULT_FEEDBACK if step.feedback is None else step.feedback
         return [(step.move, step.reply, feedback, target(step, step.next))]
 
-    # The first link into each step, in file order, decides an implied position.
-    incoming = {}
-    for step in chapter.steps:
+    def links(step):
         if kinds[step.id] == "decision":
-            links = [
-                (choice_next, index)
+            return [
+                (choice_next, (step.id, index))
                 for index, (*_, choice_next) in enumerate(decision_choices(step))
             ]
-        else:
-            links = [(target(step, step.next), None)]
-            if kinds[step.id] == "branch":
-                links.insert(0, (step.branch, "branch"))
-        for destination, via in links:
-            if destination is not None and destination in by_id:
-                incoming.setdefault(destination, (step.id, via))
+        found = [(target(step, step.next), (step.id, None))]
+        if kinds[step.id] == "branch":
+            found.insert(0, (step.branch, (step.id, "branch")))
+        return found
+
+    incoming = first_links(chapter.steps, links)
 
     positions, results, resolving = {}, {}, set()
 
@@ -391,15 +389,13 @@ def chapter_record(chapter, known):
                 raise CourseFileError(
                     f"{label} rehearses an unknown line {step.rehearse}", **at(step_id)
                 )
-            found = (line["position"]["initial_fen"], line["position"]["moves"])
+            found = _pair(start_of("rehearsal", None, line=_source(line)))
         elif kinds[step_id] == "game_excerpt":
             game = known["games"].get(step.game)
             if game is None:
                 raise CourseFileError(f"{label} shows an unknown game {step.game}", **at(step_id))
-            start = step.from_ply or 0
-            found = (
-                game["position"]["initial_fen"],
-                (*game["position"]["moves"], *game["moves"][:start]),
+            found = _pair(
+                start_of("game_excerpt", None, game=_source(game), from_ply=step.from_ply or 0)
             )
         elif step_id == entry:
             found = (chess.STARTING_FEN, ())
@@ -419,23 +415,23 @@ def chapter_record(chapter, known):
         fen, history = position_of(step_id)
         step, kind = by_id[step_id], kinds[step_id]
         label = f"{where}, step {step_id}"
+        start, ends = Position(initial_fen=fen, moves=history), {}
         if kind == "demonstration":
-            history = (*history, *san_moves(label, step.show, fen, history, at(step_id)))
+            ends["moves"] = san_moves(label, step.show, fen, history, at(step_id))
         elif kind == "decision" and via is not None:
             move, reply, *_ = decision_choices(step)[via]
             played = san_moves(label, move, fen, history, at(step_id))
-            history = (*history, *played)
-            history = (*history, *san_moves(label, reply, fen, history, at(step_id)))
-        elif kind == "rehearsal":
-            line = known["lines"].get(step.rehearse)
-            if line is not None:
-                history = (*line["position"]["moves"], *line["moves"])
-        elif kind == "game_excerpt":
-            game = known["games"].get(step.game)
-            if game is not None:
-                history = (*game["position"]["moves"], *game["moves"][: step.to_ply or 0])
-        results[(step_id, via)] = (fen, history)
-        return fen, history
+            answer = san_moves(label, reply, fen, (*history, *played), at(step_id))
+            ends["choice"] = (*played, *answer)
+        elif kind == "rehearsal" and step.rehearse in known["lines"]:
+            ends["line"] = _source(known["lines"][step.rehearse])
+        elif kind == "game_excerpt" and step.game in known["games"]:
+            ends.update(game=_source(known["games"][step.game]), to_ply=step.to_ply or 0)
+        elif kind in ("rehearsal", "game_excerpt"):
+            # An unknown line or game is reported where the step's own position resolves.
+            kind = "explanation"
+        results[(step_id, via)] = _pair(end_of(kind, start, **ends))
+        return results[(step_id, via)]
 
     steps = []
     for step in chapter.steps:
@@ -508,33 +504,15 @@ def check(data):
             start = Position(**step["position"]) if _legal(step["position"]) else None
             if start is None:
                 continue
-            board = start.board()
-            end = board.copy()
-            if step["kind"] == "decision" and step["choices"]:
-                choice = step["choices"][0]
-                played = (choice["uci"], *choice["reply"])
-            elif step["kind"] == "rehearsal" and step["line_id"] in known["lines"]:
-                played = known["lines"][step["line_id"]]["moves"]
-            elif step["kind"] == "game_excerpt" and step["game_id"] in known["games"]:
-                game = known["games"][step["game_id"]]["moves"]
-                played = game[step["from_ply"] : step["to_ply"] or 0]
-            else:
-                played = step.get("moves", ())
-            try:
-                for uci in played:
-                    end.push_uci(uci)
-            except ValueError:
-                end = board.copy()
-            reached = (
-                *start.moves,
-                *(move.uci() for move in end.move_stack[len(board.move_stack) :]),
-            )
+            # The board each step leaves, by the same rule as the course itself; a
+            # decision shows its first choice, the answer the step is written around.
+            end = _editor_end(step, start, known)
             steps[f"{chapter.id}/{step['id']}"] = dict(
-                fen=board.fen(),
+                fen=start.board().fen(),
                 initial_fen=start.initial_fen,
                 position=san_text(Position(initial_fen=start.initial_fen), start.moves),
-                end_fen=end.fen(),
-                end_position=san_text(Position(initial_fen=start.initial_fen), reached),
+                end_fen=end.board().fen(),
+                end_position=san_text(Position(initial_fen=start.initial_fen), end.moves),
             )
     if problem is None:
         try:
@@ -544,6 +522,43 @@ def check(data):
     if problem is None:
         return dict(error=None, location=None, steps=steps)
     return dict(error=str(problem), location=problem.location(), steps=steps)
+
+
+def _source(record):
+    """A line or game record from ``sources``, as the start and end rules read it."""
+    return SimpleNamespace(position=Position(**record["position"]), moves=tuple(record["moves"]))
+
+
+def _pair(position):
+    return position.initial_fen, position.moves
+
+
+def _editor_end(step, start, known):
+    """Where a chapter record's step leaves the board, or ``start`` while it cannot
+    be played out yet: a missing line or game, or a move still being written."""
+    kind, ends = step["kind"], {}
+    if kind == "decision" and step["choices"]:
+        choice = step["choices"][0]
+        ends["choice"] = (choice["uci"], *choice["reply"])
+    elif kind == "rehearsal":
+        if step["line_id"] not in known["lines"]:
+            return start
+        ends["line"] = _source(known["lines"][step["line_id"]])
+    elif kind == "game_excerpt":
+        game = known["games"].get(step["game_id"])
+        # An excerpt still being written (no end, or one outside the game) shows its start.
+        if game is None:
+            return start
+        span = (step["from_ply"] or 0, step["to_ply"] or 0)
+        if not span[0] < span[1] <= len(game["moves"]):
+            return start
+        ends.update(game=_source(game), to_ply=span[1])
+    elif kind == "demonstration":
+        ends["moves"] = step.get("moves", ())
+    try:
+        return end_of(kind, start, **ends)
+    except (ValueError, ValidationError):
+        return start
 
 
 def unfinished_steps(data):
@@ -678,6 +693,22 @@ def dump(course, topic="opening"):
     return data
 
 
+def first_links(steps, links):
+    """The first link into each step, in file order: it decides a step's implied position.
+
+    ``links(step)`` gives the step's ``(destination, link)`` pairs in order; a branch
+    leads into its branch before its next step. The loader reads a file's records and
+    ``implied_positions`` a loaded course, so each supplies its own links.
+    """
+    ids = {step.id for step in steps}
+    incoming = {}
+    for step in steps:
+        for destination, link in links(step):
+            if destination is not None and destination in ids:
+                incoming.setdefault(destination, link)
+    return incoming
+
+
 def implied_positions(course, chapter):
     """The position the loader would give each step that has none written."""
     order = [step.id for step in chapter.steps]
@@ -685,20 +716,18 @@ def implied_positions(course, chapter):
         step_id: order[index + 1] if index + 1 < len(order) else None
         for index, step_id in enumerate(order)
     }
-    by_id = {step.id: step for step in chapter.steps}
-    incoming = {}
-    for step in chapter.steps:
+
+    def links(step):
         if step.kind == "decision":
-            links = [
+            return [
                 (choice.next_step, step_result(course, step, choice)) for choice in step.choices
             ]
-        else:
-            links = [(step.next_step, step_result(course, step))]
-            if step.kind == "branch":
-                links.insert(0, (step.branch_start, step.position))
-        for destination, result in links:
-            if destination is not None and destination in by_id:
-                incoming.setdefault(destination, result)
+        found = [(step.next_step, step_result(course, step))]
+        if step.kind == "branch":
+            found.insert(0, (step.branch_start, step.position))
+        return found
+
+    incoming = first_links(chapter.steps, links)
     implied = {}
     for step in chapter.steps:
         if step.kind in {"rehearsal", "game_excerpt"}:

@@ -66,7 +66,6 @@ function weaknesses(
   ],
 ): Schema["Weaknesses"] {
   return {
-    classification_available: true,
     unclassified: 0,
     skills,
     coverage: {

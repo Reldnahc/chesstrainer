@@ -74,7 +74,6 @@ def create_router(*, settings) -> APIRouter:
 
     def queue_provider(workspace, data, provider):
         # Fetch only; each new game then queues its own backfill analysis.
-        kind = JobKind.CHESSCOM_FETCH if provider == "chesscom" else JobKind.PROVIDER_FETCH
         same_query = select(ProviderImport.job_id).where(
             ProviderImport.provider == provider,
             ProviderImport.username == data.username,
@@ -85,7 +84,7 @@ def create_router(*, settings) -> APIRouter:
             ProviderImport.end_date == data.end_date,
         )
         with workspace.write() as db:
-            job, created = ensure_job(db, kind, AnalysisJob.id.in_(same_query))
+            job, created = ensure_job(db, JobKind.PROVIDER_FETCH, AnalysisJob.id.in_(same_query))
             if created:
                 db.add(ProviderImport(job_id=job.id, provider=provider, **data.model_dump()))
             db.flush()

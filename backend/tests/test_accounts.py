@@ -347,7 +347,8 @@ def test_account_migration_preserves_existing_learning_history(settings):
     migrate(engine)
     # Later migrations dropped the archived lesson tables and their link columns,
     # and replaced side text, epoch times and the PGN date with one representation
-    # each (their values are checked in test_migrations).
+    # each (their values are checked in test_migrations); classification runs lost
+    # the hosted-model prompt version and token counts.
     dropped = {
         "lesson_item_id",
         "repertoire_id",
@@ -357,6 +358,9 @@ def test_account_migration_preserves_existing_learning_history(settings):
         "expires",
         "played_on",
         "chesscom_username",
+        "prompt_version",
+        "input_tokens",
+        "output_tokens",
     }
     current = set(sqlalchemy.inspect(engine).get_table_names())
     with engine.connect() as connection:

@@ -1,10 +1,10 @@
 """The HTTP side every provider client shares: one client setup and one rate-limit rule."""
 
-from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 
 import httpx
 
+from trainer import timeutil
 from trainer.game_providers.base import ProviderRateLimited
 
 
@@ -28,7 +28,7 @@ def retry_after(response, default=None):
     except ValueError:
         pass
     try:
-        return max(0.0, (parsedate_to_datetime(value) - datetime.now(timezone.utc)).total_seconds())
+        return max(0.0, (parsedate_to_datetime(value) - timeutil.now()).total_seconds())
     except (TypeError, ValueError):
         return default
 
