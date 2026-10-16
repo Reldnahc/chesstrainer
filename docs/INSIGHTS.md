@@ -8,16 +8,19 @@ including `?category=outcomes`, and `/games/insights` redirect without an extra
 history entry.
 
 **Insights → Overview** (`/insights`) summarizes patterns across the learner's
-saved games. It is read-only: `GET /api/insights` computes everything from saved
-PGNs and completed original-game reviews, stores nothing in the database and
-never starts Stockfish. Each game's facts are kept in memory per review revision,
-so a request replays only games whose review changed; filters are applied to
-those facts on every request. The cache holds at most 6,000 games across all
-accounts (`FACTS_CACHE_SIZE` in `routes/insights.py`): a reviewed 80-ply game's
-facts take about 17 KB, so it stays near 100 MB. A library larger than that
-replays only the games beyond the bound on each request (about 7 ms each); the
-games already cached are read before any new one is stored, so the new entries
-never evict games the same request still needs. Filters choose a speed (from the speeds present) and a
+saved games. `GET /api/insights` computes everything from saved PGNs and
+completed original-game reviews and never starts Stockfish. Each game's facts are
+replayed once and saved in `insight_facts`, compactly (about 1.7 KB for an 80-ply
+game), under a key of everything they are built from: the PGN, players, dates,
+learner colour, rating, the completed review's revision (which a saved report or
+an adopted refinement bumps), the python-chess and pydantic versions, and a digest
+of the application's code and bundled data, so an upgrade rebuilds them (the first
+Insights request after it replays the library once). A request reads the saved facts back and replays
+only games whose key changed or whose row cannot be read, saving rebuilt facts
+every 500 games. No library is replayed per request, the facts survive a restart,
+and nothing is held in memory between requests; each request still unpacks the
+library's facts while it summarizes them (about 15 KB per game). Filters are
+applied to those facts on every request. Filters choose a speed (from the speeds present) and a
 period (all time, 30, 90 or 365 days); weekday and time of day use the viewer's
 UTC offset.
 
