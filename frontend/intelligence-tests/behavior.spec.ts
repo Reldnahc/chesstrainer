@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import path from "node:path";
 import { renderDialogue } from "../src/dialogue/neutral";
 import { claim, makeIntent } from "../src/dialogue/model";

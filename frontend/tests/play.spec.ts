@@ -1,5 +1,5 @@
 import juniperScript from "../src/audio/speech/banks/juniper/scripts.json" with { type: "json" };
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./helpers/browserTest";
 
 // A live game against the coach's bot, served by mocked play endpoints so the
 // spec needs no engine or human model. Board moves come from the server's frames.

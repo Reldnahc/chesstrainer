@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 
 test("device motion changes keep the studio controls and every portrait synchronized", async ({
   page,

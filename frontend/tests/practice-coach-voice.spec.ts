@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browserTest";
 import { captureSpeech, speechActivity } from "./helpers/speech";
 
 const studies = new WeakMap<Page, string[]>();

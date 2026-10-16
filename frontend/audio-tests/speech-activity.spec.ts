@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import { createSpeechEnvelope, readSpeechEnvelope } from "../src/audio/speech/activity";
 
 function pcm(channels: Float32Array[], sampleRate = 10000): AudioBuffer {

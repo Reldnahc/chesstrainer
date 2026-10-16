@@ -1,4 +1,4 @@
-import { test, expect, type Locator } from "@playwright/test";
+import { test, expect, type Locator } from "./helpers/browserTest";
 import { negateScore, positionScore, scoreSummary, scoreText } from "../src/evaluation";
 
 const geometry = (locator: Locator) =>

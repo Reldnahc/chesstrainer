@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./helpers/browserTest";
 import { audioCues, captureAudio, clearAudio } from "./helpers/audio";
 
 test("game review plays explicit moves through the audio service and keeps graph dragging quiet", async ({

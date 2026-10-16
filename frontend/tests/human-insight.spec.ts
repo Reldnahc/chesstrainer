@@ -1,4 +1,4 @@
-import { test, expect, type Request } from "@playwright/test";
+import { test, expect, type Request } from "./helpers/browserTest";
 import { renderNeutral } from "../src/dialogue/neutral";
 import { humanGames, humanIntent } from "./human-fixtures";
 import { humanInsightExplanation, humanSourceNotes } from "../src/dialogue/humanClaims";

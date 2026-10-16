@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 import { gameReaction, practiceReaction } from "../src/coach/reactions";
 import { classicPerformance } from "../src/coach/classic/performance";
 import {

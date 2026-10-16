@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "../tests/helpers/browserTest";
 import path from "node:path";
 import type { AudioPreferences } from "../src/audio/model";
 import { defaultAudioPreferences } from "../src/audio/model";

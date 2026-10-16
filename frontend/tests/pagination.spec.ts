@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("Games pages use destinations, thirty-item ranges and disabled boundaries", async ({
   page,

@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./helpers/browserTest";
 import { expectModifierClickLeftToBrowser } from "./modifierClick";
 
 test("primary and secondary destination actions share geometry and preserve keyboard navigation", async ({

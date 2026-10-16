@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../tests/helpers/browserTest";
 import path from "node:path";
 import registry from "../src/audio/speech/banks/registry.json" with { type: "json" };
 import { meanings } from "../src/audio/speech/meaningCatalog";

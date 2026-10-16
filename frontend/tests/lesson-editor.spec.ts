@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browserTest";
 
 async function openNewCourse(page: Page) {
   await page.goto("/settings/courses/editor");

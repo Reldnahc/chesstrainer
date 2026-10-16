@@ -1,5 +1,5 @@
 import { openAudioFixturePage } from "./fixtures/openAudioFixture";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 import path from "node:path";
 import type { CoachDefinition } from "../src/coach/model";
 import { viteFsPath } from "../studio-tests/helpers/viteFsPath";

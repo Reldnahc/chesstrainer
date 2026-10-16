@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 import path from "node:path";
 import { viteFsPath } from "./helpers/viteFsPath";
 

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("piece and interface motion saves independently and follows the device only by default", async ({
   page,

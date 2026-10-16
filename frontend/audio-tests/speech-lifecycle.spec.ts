@@ -1,5 +1,5 @@
 import { openAudioFixturePage } from "./fixtures/openAudioFixture";
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "../tests/helpers/browserTest";
 import path from "node:path";
 import type { SpeechActivity, SpeechPlayback } from "../src/audio/model";
 import type { CoachMotion } from "../src/coach/model";

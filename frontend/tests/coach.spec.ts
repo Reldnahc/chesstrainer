@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 const walterGreeting = walterBank.recordings.find(
   record => record.id === "game-review-opened",

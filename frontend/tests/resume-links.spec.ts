@@ -1,4 +1,4 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 import { expectModifierClickLeftToBrowser } from "./modifierClick";
 

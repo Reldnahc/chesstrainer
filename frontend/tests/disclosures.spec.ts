@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./helpers/browserTest";
 import type { Job } from "../src/api";
 
 test("native connection and history disclosures support keyboard and touch without losing open state on refresh", async ({

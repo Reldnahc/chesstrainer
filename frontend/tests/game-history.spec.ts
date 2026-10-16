@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 
 test("history aligns players, results and accuracy with compact metadata and working review links", async ({
   page,
