@@ -84,6 +84,20 @@
 }
 .action-control--icon.action-control--compact { width: var(--control-height-compact); height: var(--control-height-compact); }
 .action-control--icon.action-control--dense { width: var(--control-height-dense); height: var(--control-height-dense); }
+/* A toggle that is on (aria-pressed). A surface with its own palette, such as
+   the coach bubble, sets the three tokens instead of writing its own rule. */
+.action-control[aria-pressed="true"],
+.action-control[aria-pressed="true"]:hover {
+  background: var(--pressed-background, var(--raised));
+  border-color: var(--pressed-border, var(--accent));
+  color: var(--pressed-color, var(--accent));
+}
+.action-control.action-control--quiet[aria-pressed="true"],
+.action-control.action-control--quiet[aria-pressed="true"]:hover {
+  background: transparent;
+  border-color: transparent;
+  color: var(--pressed-color, var(--accent));
+}
 .action-control:disabled {
   opacity: 0.45;
   cursor: default;

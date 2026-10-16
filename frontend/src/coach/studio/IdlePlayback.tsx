@@ -119,7 +119,7 @@ export default function IdlePlayback({
               <input type="number" min="0" max="4294967295" step="1" value={seed}
                 onChange={(event) => onSeed(event.target.value)} />
             </label>
-            <Button disabled={!validSeed} onClick={onRestart}
+            <Button size="compact" disabled={!validSeed} onClick={onRestart}
               title="Apply this seed and restart enabled idle previews without replaying the reaction.">
               <RotateCcw size={14} /> Restart idle sequence
             </Button>

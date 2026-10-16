@@ -5,13 +5,7 @@
   flex-wrap: wrap;
   gap: var(--space-2);
 }
-/* Options are secondary Buttons (action-controls.css); the chosen one is marked. */
-.choice-group .action-control[aria-pressed="true"],
-.choice-group .action-control[aria-pressed="true"]:hover {
-  background: var(--raised);
-  border-color: var(--accent);
-  color: var(--accent);
-}
+/* Options are secondary Buttons; the chosen one shows Button's pressed state. */
 /* The compact row keeps the ordinary type and its 36px height on phones,
    beside the toolbar it sits in. */
 .choice-group--compact .action-control.action-control--compact {

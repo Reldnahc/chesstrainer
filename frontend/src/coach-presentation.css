@@ -289,9 +289,11 @@
   width: var(--touch-target);
   height: auto;
 }
-.coach-actions button[aria-pressed="true"] {
-  border-color: #b8cfc2;
-  background: #34483c;
+.coach-actions {
+  /* The coach bubble's palette for Button's pressed state (Hide why). */
+  --pressed-border: #b8cfc2;
+  --pressed-background: #34483c;
+  --pressed-color: #e8eaee;
 }
 .coach-context {
   grid-column: 2;

@@ -160,9 +160,6 @@
   min-height: 42px;
   background-color: #171d1a;
 }
-.studio-controls button {
-  font-size: var(--text-sm);
-}
 /* As tall as the buttons, so the checkbox centres on them. */
 .studio-controls .studio-reduced {
   display: flex;
@@ -320,16 +317,9 @@
   line-height: 1.6;
 }
 .studio-concept > button {
-  display: flex;
   width: 100%;
   justify-content: space-between;
-  padding-inline: 0;
-  color: #cbd9bd;
-  font-size: var(--text-xs);
   margin-top: auto;
-}
-.studio-concept > button[aria-pressed="true"] {
-  color: #ebeedf;
 }
 @media (min-width: 761px) {
   .studio-concept:only-child {
@@ -377,7 +367,6 @@
 }
 .studio-idle-bar button {
   white-space: nowrap;
-  font-size: var(--text-sm);
 }
 .studio-idle-grid,
 .studio-comparison-grid {
@@ -433,7 +422,6 @@
   text-align: center;
 }
 .studio-idle-card button {
-  font-size: var(--text-sm);
   width: 100%;
   margin-top: auto;
 }
@@ -546,6 +534,13 @@
   font-size: var(--text-md);
   font-weight: 500;
   white-space: normal;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+.studio-expression:hover {
+  background: var(--control-hover);
+  border-color: var(--control-hover-border);
 }
 .studio-expression[aria-pressed="true"] {
   border-color: #a0b489;

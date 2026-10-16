@@ -98,11 +98,11 @@ function PromotionDialog({ board, promotion, onChoose, onClose }: {
         ] as const)
           .filter(([value]) => promotion.choices.includes(value))
           .map(([value, name]) => (
-            <Button key={value} onClick={() => onChoose(value)}>
+            <Button size="compact" key={value} onClick={() => onChoose(value)}>
               {name}
             </Button>
           ))}
-        <Button onClick={onClose}>Cancel</Button>
+        <Button size="compact" onClick={onClose}>Cancel</Button>
       </div>
     </dialog>
   );
