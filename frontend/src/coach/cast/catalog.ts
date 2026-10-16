@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import { expressions, type AuthoredCoachCollection, type CoachArtworkProps, type CoachGroup } from "../model";
 import { reactionTiming } from "../motionVocabulary";
-import { newCastPersonalities } from "../../dialogue/characters/newCast";
+import { coachPersonalities } from "../../dialogue/characters";
 import YoungBoyCoach from "./humansPets/YoungBoyCoach";
 import YoungGirlCoach from "./humansPets/YoungGirlCoach";
 import PuppyCoach from "./humansPets/PuppyCoach";
@@ -22,7 +22,7 @@ import LivingPawnCoach from "./scifi/LivingPawnCoach";
 
 type CastEntry = {
   // Only coaches with an authored personality can join the cast.
-  id: keyof typeof newCastPersonalities;
+  id: keyof typeof coachPersonalities;
   name: string;
   group: CoachGroup;
   description: string;
@@ -133,6 +133,6 @@ export const newCoachCollections: readonly AuthoredCoachCollection[] = cast.map(
     name: coach.name,
     description: coach.description,
     character: coach.character,
-    personality: newCastPersonalities[coach.id],
+    personality: coachPersonalities[coach.id],
   }],
 }));
