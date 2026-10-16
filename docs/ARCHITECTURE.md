@@ -50,6 +50,7 @@ saved game then queues its own analysis job. See
 | jobs.py / job_queue.py / job_execution.py / job_context.py | Bounded host workers, scheduling metadata, account-bound job execution dispatched by kind, and the one context every job step receives |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback; `lan.py` holds the host-name and same-origin rules it shares with account mode |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
+| engine_pool.py / lazy_pool.py | The host-wide Stockfish budget leased per call, on the same lazily built, discard-on-failure pool as the Maia workers |
 | human_models/ | Versioned human-policy contracts, domain provenance, a durable cache shared across accounts like the engine cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
 | routes/workspace.py | Health, effective settings, account-owned coach/interface preferences and statistics |
@@ -385,7 +386,9 @@ drains coordinators and their child pools, then closes the shared engines.
 
 Within an analysis job, STOCKFISH_WORKERS games run in parallel with independent
 database sessions. Native processes come from the shared engine pool in account
-mode and belong to the job in local mode. Moves within a game stay ordered.
+mode and belong to the job in local mode. The engine pool and the Maia workers are
+one `lazy_pool.LazyPool` each: a slot builds its process on first use and keeps it,
+and a call that fails discards that process so the slot starts a fresh one. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.

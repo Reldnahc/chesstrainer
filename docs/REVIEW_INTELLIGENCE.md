@@ -73,7 +73,7 @@ accordingly. Depth can finish a search early. This is a budget, not a latency
 promise. Questions are independent, so they run in parallel on
 min(STOCKFISH_WORKERS, ENGINE_SLOTS) engines, the same count the baseline pass
 uses; per-query limits, threads and hash do not change, only wall-clock time.
-There is no unbounded executor or account-specific native pool: the baseline's searches, these questions and analysis jobs all run on `work_pool.WorkPool`, which bounds running and waiting work and stops taking work once the job is cancelled.
+There is no unbounded executor or account-specific native pool: the baseline's searches, these questions and an analysis job's games and classifications all run on `work_pool.WorkPool`, which bounds running and waiting work and stops taking work once the job is cancelled. The job runner itself is not a task pool: it keeps one long-lived thread per job worker (`jobs.JobRunner`), each taking the next eligible job, plus the sync poller. The engines and Maia workers those tasks use come from `lazy_pool.LazyPool`.
 
 Pause interrupts an active extra search or a wait for a slot/cache lock. Startup
 and engine teardown retain the native transport's bounded timeouts. Partial
