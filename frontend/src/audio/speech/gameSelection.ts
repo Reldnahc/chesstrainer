@@ -436,7 +436,8 @@ function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null 
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 
-/** Takes every grade has; imported extra takes (grade-best-5, ...) join their grade. */
+/** The fewest takes any grade has; imported extra takes (grade-best-5, ...) join
+ * their grade. Specs rely on it; the pools themselves come from the catalogue. */
 export const GRADE_TAKES = 4;
 const gradePools: Readonly<Partial<Record<string, GradeTakePool>>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
