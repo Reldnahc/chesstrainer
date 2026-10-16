@@ -11,10 +11,15 @@ generator recorded them) is judged again under the current rule, with no engine:
   definition and evidence, and its game's search count drops by one.
 - A later ambiguous step is where the generator now stops the line, which needs a
   fresh payoff search: the row is removed and its game's search record with it,
-  so the next puzzle search mines that ply again under the same puzzle key.
+  so a later puzzle search mines that ply again under the same puzzle key.
+- An abstention for a line that ran too long or missed its payoff may have run
+  past such a step, where the line now stops and may qualify. Its saved evidence
+  cannot tell, so it is removed the same way and mined again.
 
-Puzzle sessions keep their snapshots and history is keyed by puzzle key, so no
-progress is lost.
+Puzzle sessions keep their snapshots and history is keyed by puzzle key, so
+results and retries carry over. Until a removed ply is mined again it is missing
+from the library and its solved count, as a removed pack's puzzles are; a session
+already open on an affected puzzle finishes on its old snapshot.
 """
 
 import sqlalchemy as sa
@@ -82,6 +87,25 @@ def upgrade():
         sa.column("generator_version", sa.String()),
         sa.column("kept", sa.Integer()),
     )
+
+    def search_of(user_id, game_id):
+        return (
+            (searches.c.user_id == user_id)
+            & (searches.c.game_id == game_id)
+            & (searches.c.generator_version == VERSION)
+        )
+
+    def mine_again(row_id, user_id, game_id):
+        db.execute(puzzles.delete().where(puzzles.c.id == row_id))
+        db.execute(searches.delete().where(search_of(user_id, game_id)))
+
+    for row_id, user_id, game_id, reason in db.execute(
+        sa.select(puzzles.c.id, puzzles.c.user_id, puzzles.c.game_id, puzzles.c.reason).where(
+            puzzles.c.status == "abstained", puzzles.c.generator_version == VERSION
+        )
+    ).all():
+        if reason == "too_long" or (reason or "").startswith("payoff"):
+            mine_again(row_id, user_id, game_id)
     rows = db.execute(
         sa.select(puzzles.c.id, puzzles.c.user_id, puzzles.c.game_id, puzzles.c.evidence).where(
             puzzles.c.status == "ready", puzzles.c.generator_version == VERSION
@@ -92,11 +116,7 @@ def upgrade():
         if found is None:
             continue
         index, step = found
-        search = (
-            (searches.c.user_id == user_id)
-            & (searches.c.game_id == game_id)
-            & (searches.c.generator_version == VERSION)
-        )
+        search = search_of(user_id, game_id)
         if index < 2:
             db.execute(
                 puzzles.update()
@@ -105,8 +125,7 @@ def upgrade():
             )
             db.execute(searches.update().where(search).values(kept=searches.c.kept - 1))
         else:
-            db.execute(puzzles.delete().where(puzzles.c.id == row_id))
-            db.execute(searches.delete().where(search))
+            mine_again(row_id, user_id, game_id)
 
 
 def downgrade():
