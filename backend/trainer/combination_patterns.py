@@ -5,6 +5,7 @@ import chess
 from trainer.tactical_geometry import (
     SLIDERS,
     absolute_pinner,
+    attacker_collection,
     defenders,
     effective_attacks,
     names,
@@ -71,16 +72,10 @@ def discovered_attack(boards, plies, ply, analysis_id, direction):
                 chess.between(slider, target)
             ):
                 continue
-            collection = None
-            for follow in [p for p in plies if p > ply]:
-                action = boards[follow].peek()
-                if boards[follow - 1].piece_at(slider) != piece:
-                    break
-                if action.from_square == slider:
-                    if action.to_square == target and boards[follow - 1].piece_at(target) == victim:
-                        collection = follow
-                    break
-            if collection is None:
+            collection = attacker_collection(
+                boards, slider, piece, [p for p in plies if p > ply], {target}
+            )
+            if collection is None or boards[collection - 1].piece_at(target) != victim:
                 continue
             roles = {
                 "attacker": names([slider]),
