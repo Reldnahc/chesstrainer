@@ -68,12 +68,20 @@ test('create a curated position, fail once, solve by tapping and retain after re
   await square('g1').click(); await square('f3').click();
   await expect(page.locator('.move-status.retry')).toBeVisible();
   await expect(page.getByRole('button', {name: 'Reveal move'})).toBeVisible();
+  // The coach's feedback is one live region in every state; its line adds none of its own.
+  const liveRegions = page.locator('.review-coach').locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]');
+  await expect(liveRegions).toHaveCount(1);
   await page.reload();
   await expect(page.getByRole('heading', {name: 'Find a good move.'})).toBeVisible();
+  await expect(liveRegions).toHaveCount(1);
+  // The same region stays in place as the feedback changes, so each change is announced.
+  await page.locator('.review-coach .move-status').evaluate(element => { element.dataset.probe = 'kept'; });
   const file = testInfo.project.name === 'mobile' ? 'd' : 'e';
   await square(`${file}2`).click(); await square(`${file}4`).click();
   await expect(page.getByRole('status').filter({hasText: 'This recall stays marked for relearning.'})).toBeVisible();
   await expect(page.getByRole('status').filter({hasText: 'Progress saved.'})).toContainText('Next review:');
+  await expect(liveRegions).toHaveCount(1);
+  await expect(page.locator('.review-coach [data-probe="kept"]')).toContainText(`${file}4`);
   expect(new URL(page.url()).searchParams.has('exercise')).toBe(false);
   const nextQueue = page.waitForResponse(r => r.url().includes('/api/review/queue'));
   await page.reload();
