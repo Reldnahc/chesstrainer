@@ -7,7 +7,9 @@ import { resolveMotion, type MotionPreference } from "./motion";
 /** MotionProvider's resolved choice, or the device setting before it is known. */
 export function motionAllowed() {
   const choice = document.documentElement.dataset.interfaceMotion as MotionPreference | undefined;
-  return resolveMotion(choice ?? "system", window.matchMedia(REDUCED_MOTION_QUERY).matches) === "natural";
+  return (
+    resolveMotion(choice ?? "system", window.matchMedia(REDUCED_MOTION_QUERY).matches) === "natural"
+  );
 }
 
 function token(name: string) {
@@ -16,7 +18,8 @@ function token(name: string) {
 
 /** A --motion-* token in milliseconds; the build may rewrite 250ms as .25s. */
 export function duration(name: string) {
-  const time = token(name), value = parseFloat(time) || 0;
+  const time = token(name),
+    value = parseFloat(time) || 0;
   return time.endsWith("ms") ? value : time.endsWith("s") ? value * 1000 : value;
 }
 

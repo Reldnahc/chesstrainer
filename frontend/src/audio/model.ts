@@ -1,14 +1,19 @@
 import type { CoachUtterance } from "../dialogue/model";
 
 export const soundCues = [
-  "move", "capture", "castle", "promotion", "check", "mate", "correct", "retry",
+  "move",
+  "capture",
+  "castle",
+  "promotion",
+  "check",
+  "mate",
+  "correct",
+  "retry",
   "complete",
 ] as const;
-export type SoundCue = typeof soundCues[number];
-export const soundPalettes = [
-  "tabletop", "soft-objects", "retry-muted-tongue",
-] as const;
-export type SoundPalette = typeof soundPalettes[number];
+export type SoundCue = (typeof soundCues)[number];
+export const soundPalettes = ["tabletop", "soft-objects", "retry-muted-tongue"] as const;
+export type SoundPalette = (typeof soundPalettes)[number];
 export type SoundCategory = "board" | "practice";
 export type AudioPreferences = {
   enabled: boolean;
@@ -18,7 +23,11 @@ export type AudioPreferences = {
   voice: "off" | "manual" | "automatic";
 };
 export const defaultAudioPreferences: AudioPreferences = {
-  enabled: true, volume: .35, board: true, practice: true, voice: "automatic",
+  enabled: true,
+  volume: 0.35,
+  board: true,
+  practice: true,
+  voice: "automatic",
 };
 
 /** Only pass server-supplied SAN for an accepted/displayed move. No board inference. */
@@ -73,6 +82,6 @@ export type RecordedSpeechClip = {
   interruptCurrent?: boolean;
   url: string;
   /** Recordings spoken back to back as this one playback (url is the first). */
-  sequence?: {urls: readonly string[]; gapSeconds: number};
+  sequence?: { urls: readonly string[]; gapSeconds: number };
   delayMs?: number;
 };

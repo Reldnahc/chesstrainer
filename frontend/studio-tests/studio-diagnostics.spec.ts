@@ -38,22 +38,25 @@ async function expectQuiet(page: Page, avatar: Locator, durationMs: number) {
 
 async function collectStarts(page: Page, avatar: Locator, count = 8, diagnostics?: Locator) {
   const starts: string[] = [];
-  let previous = (await avatar.getAttribute("data-idles") ?? "").split(" ").filter(Boolean);
-  const readFrame = () => avatar.evaluate((element, observeDiagnostics) => {
-    const region = observeDiagnostics
-      ? element.ownerDocument.querySelector('[aria-label="Motion diagnostics"]')
-      : null;
-    return {
-      idles: element.getAttribute("data-idles") ?? "",
-      phase: element.getAttribute("data-phase"),
-      diagnostics: region ? {
-        active: region.getAttribute("data-active"),
-        expression: region.getAttribute("data-expression"),
-        paused: region.getAttribute("data-paused"),
-        nextMs: region.getAttribute("data-next-ms"),
-      } : null,
-    };
-  }, Boolean(diagnostics));
+  let previous = ((await avatar.getAttribute("data-idles")) ?? "").split(" ").filter(Boolean);
+  const readFrame = () =>
+    avatar.evaluate((element, observeDiagnostics) => {
+      const region = observeDiagnostics
+        ? element.ownerDocument.querySelector('[aria-label="Motion diagnostics"]')
+        : null;
+      return {
+        idles: element.getAttribute("data-idles") ?? "",
+        phase: element.getAttribute("data-phase"),
+        diagnostics: region
+          ? {
+              active: region.getAttribute("data-active"),
+              expression: region.getAttribute("data-expression"),
+              paused: region.getAttribute("data-paused"),
+              nextMs: region.getAttribute("data-next-ms"),
+            }
+          : null,
+      };
+    }, Boolean(diagnostics));
   // This is a bounded virtual-time observation window, not a real-time sleep.
   // Recording starts rather than expecting one exact primitive keeps the test
   // valid when character repertoires are expanded.
@@ -67,11 +70,15 @@ async function collectStarts(page: Page, avatar: Locator, count = 8, diagnostics
       frame = await readFrame();
     }
     const active = frame.idles.split(" ").filter(Boolean);
-    for (const id of active.filter((id) => !previous.includes(id))) starts.push(id);
+    for (const id of active.filter(id => !previous.includes(id))) starts.push(id);
     previous = active;
     expect(frame.phase).toBe("rest");
     if (diagnostics) {
-      expect(frame.diagnostics).toMatchObject({ active: frame.idles, expression: "brilliant", paused: "" });
+      expect(frame.diagnostics).toMatchObject({
+        active: frame.idles,
+        expression: "brilliant",
+        paused: "",
+      });
       expect(frame.diagnostics?.nextMs).toMatch(/^\d+$/);
       const nextMs = Number(frame.diagnostics?.nextMs);
       expect(Number.isFinite(nextMs)).toBe(true);
@@ -82,11 +89,15 @@ async function collectStarts(page: Page, avatar: Locator, count = 8, diagnostics
   return starts.slice(0, count);
 }
 
-test("sustained idle playback is opt-in and keeps cycling without replaying the reaction", async ({ page }) => {
+test("sustained idle playback is opt-in and keeps cycling without replaying the reaction", async ({
+  page,
+}) => {
   const avatar = await openStudio(page);
   const natural = page.getByRole("checkbox", { name: "Natural idle playback", exact: true });
   await expect(natural).not.toBeChecked();
-  await expect(page.getByRole("checkbox", { name: "Comparison idle playback", exact: true })).not.toBeChecked();
+  await expect(
+    page.getByRole("checkbox", { name: "Comparison idle playback", exact: true }),
+  ).not.toBeChecked();
   const take = await avatar.getAttribute("data-take");
   await expectQuiet(page, avatar, 6 * IDLE_GAP_MS[1]);
   await natural.check();
@@ -102,7 +113,9 @@ test("sustained idle playback is opt-in and keeps cycling without replaying the 
   await expect(avatar).toHaveAttribute("data-take", take!);
 });
 
-test("comparison playback is independent of the selected portrait's natural playback", async ({ page }) => {
+test("comparison playback is independent of the selected portrait's natural playback", async ({
+  page,
+}) => {
   const selected = await openStudio(page);
   const natural = page.getByRole("checkbox", { name: "Natural idle playback", exact: true });
   const comparison = page.getByRole("checkbox", { name: "Comparison idle playback", exact: true });
@@ -127,12 +140,16 @@ test("comparison playback is independent of the selected portrait's natural play
   await expectQuiet(page, compared, 3 * IDLE_GAP_MS[1]);
 });
 
-test("diagnostics follow the real portrait and seeded restarts reproduce idles without a new reaction", async ({ page }) => {
+test("diagnostics follow the real portrait and seeded restarts reproduce idles without a new reaction", async ({
+  page,
+}) => {
   const avatar = await openStudio(page);
   await page.getByRole("checkbox", { name: "Natural idle playback", exact: true }).check();
   await page.getByRole("checkbox", { name: "Show motion diagnostics", exact: true }).check();
   const diagnostics = page.getByRole("region", { name: "Motion diagnostics", exact: true });
-  await expect(page.getByRole("spinbutton", { name: "Playback seed", exact: true })).toHaveValue("1729");
+  await expect(page.getByRole("spinbutton", { name: "Playback seed", exact: true })).toHaveValue(
+    "1729",
+  );
   const take = await avatar.getAttribute("data-take");
   const restart = page.getByRole("button", { name: "Restart idle sequence", exact: true });
 
@@ -151,7 +168,9 @@ test("diagnostics follow the real portrait and seeded restarts reproduce idles w
   expect(await run()).toEqual(first);
 });
 
-test("Still pauses the diagnostic coordinator and the portrait even with playback enabled", async ({ page }) => {
+test("Still pauses the diagnostic coordinator and the portrait even with playback enabled", async ({
+  page,
+}) => {
   const avatar = await openStudio(page);
   await page.getByRole("checkbox", { name: "Natural idle playback", exact: true }).check();
   await page.getByRole("checkbox", { name: "Show motion diagnostics", exact: true }).check();
@@ -167,5 +186,5 @@ test("Still pauses the diagnostic coordinator and the portrait even with playbac
   await expect(diagnostics).toHaveAttribute("data-active", "");
   await expectQuiet(page, avatar, 10 * IDLE_GAP_MS[1]);
   await expect(avatar).toHaveAttribute("data-take", take!);
-  expect(await avatar.evaluate((element) => element.getAnimations({ subtree: true }).length)).toBe(0);
+  expect(await avatar.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
 });

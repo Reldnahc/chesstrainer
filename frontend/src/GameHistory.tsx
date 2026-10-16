@@ -10,22 +10,43 @@ export type HistoryItem = Schema["GameHistoryItem"];
 
 // The PGN's own date when it has a complete one, else the day it was played on the site.
 function gameDate(item: HistoryItem) {
-  const day = /^\d{4}\.\d{2}\.\d{2}$/.test(item.played_on || "") ? pgnDate(item.played_on) : pgnDate(item.played_at?.slice(0, 10));
+  const day = /^\d{4}\.\d{2}\.\d{2}$/.test(item.played_on || "")
+    ? pgnDate(item.played_on)
+    : pgnDate(item.played_at?.slice(0, 10));
   return day ? { iso: day.iso, label: shortDate(day.iso)! } : null;
 }
 
 export type Outcome = "win" | "loss" | "draw" | "unknown";
-export const OUTCOME_LABELS: Record<Outcome, string> = { win: "Won", loss: "Lost", draw: "Draw", unknown: "—" };
+export const OUTCOME_LABELS: Record<Outcome, string> = {
+  win: "Won",
+  loss: "Lost",
+  draw: "Draw",
+  unknown: "—",
+};
 
 // Every outcome label, one per line: the badge reserves the widest of them, so all
 // badges are one width wherever they appear, whatever font draws them.
 const OUTCOME_SIZER = Object.values(OUTCOME_LABELS).join("\n");
 
 /** A game's result from the learner's side, in the shared outcome colours. */
-export function OutcomeBadge({ outcome, title, children }: { outcome: Outcome; title?: string; children?: ReactNode }) {
-  return <span className={`history-outcome outcome-${outcome}`} title={title} data-labels={OUTCOME_SIZER}>
-    <span className="history-outcome-label">{children ?? OUTCOME_LABELS[outcome]}</span>
-  </span>;
+export function OutcomeBadge({
+  outcome,
+  title,
+  children,
+}: {
+  outcome: Outcome;
+  title?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <span
+      className={`history-outcome outcome-${outcome}`}
+      title={title}
+      data-labels={OUTCOME_SIZER}
+    >
+      <span className="history-outcome-label">{children ?? OUTCOME_LABELS[outcome]}</span>
+    </span>
+  );
 }
 
 function historyResult(item: HistoryItem) {
@@ -34,8 +55,7 @@ function historyResult(item: HistoryItem) {
     "0-1": ["0", "1"],
     "1/2-1/2": ["½", "½"],
   };
-  const winner =
-    item.result === "1-0" ? "white" : item.result === "0-1" ? "black" : null;
+  const winner = item.result === "1-0" ? "white" : item.result === "0-1" ? "black" : null;
   const outcome: Outcome =
     item.result === "1/2-1/2"
       ? "draw"
@@ -64,25 +84,44 @@ function historyResult(item: HistoryItem) {
 }
 
 function HistoryPlayers({ item, scores }: { item: HistoryItem; scores?: string[] }) {
-  return <span className="history-players">
-    {(["white", "black"] as const).map((color, index) => <span key={color}
-      className={`history-player history-line ${item.learner_color === color ? "is-learner" : ""}`}>
-      <span className={`history-color ${color}`} title={color === "white" ? "White pieces" : "Black pieces"} />
-      <strong title={item[color]}>{item[color]}</strong>
-      <span className="history-rating">{item[`${color}_rating`] != null ? `(${item[`${color}_rating`]})` : ""}</span>
-      {scores && <span className="history-player-score">{scores[index]}</span>}
-    </span>)}
-  </span>;
+  return (
+    <span className="history-players">
+      {(["white", "black"] as const).map((color, index) => (
+        <span
+          key={color}
+          className={`history-player history-line ${item.learner_color === color ? "is-learner" : ""}`}
+        >
+          <span
+            className={`history-color ${color}`}
+            title={color === "white" ? "White pieces" : "Black pieces"}
+          />
+          <strong title={item[color]}>{item[color]}</strong>
+          <span className="history-rating">
+            {item[`${color}_rating`] != null ? `(${item[`${color}_rating`]})` : ""}
+          </span>
+          {scores && <span className="history-player-score">{scores[index]}</span>}
+        </span>
+      ))}
+    </span>
+  );
 }
 
 function HistoryMetadata({ item, date }: { item: HistoryItem; date: ReturnType<typeof gameDate> }) {
-  return <span className="history-meta">
-    <span className="history-time" title={item.time_control_label || "Time control unknown"}>
-      <Clock3 size={19} aria-hidden="true" /><span>{item.time_control_label || "—"}</span>
+  return (
+    <span className="history-meta">
+      <span className="history-time" title={item.time_control_label || "Time control unknown"}>
+        <Clock3 size={19} aria-hidden="true" />
+        <span>{item.time_control_label || "—"}</span>
+      </span>
+      <span className="history-moves">
+        {item.move_count ?? "—"}
+        <span className="history-mobile-label"> moves</span>
+      </span>
+      <span className="history-date">
+        {date ? <time dateTime={date.iso}>{date.label}</time> : <span title="Date unknown">—</span>}
+      </span>
     </span>
-    <span className="history-moves">{item.move_count ?? "—"}<span className="history-mobile-label"> moves</span></span>
-    <span className="history-date">{date ? <time dateTime={date.iso}>{date.label}</time> : <span title="Date unknown">—</span>}</span>
-  </span>;
+  );
 }
 
 export default function GameHistory({
@@ -99,19 +138,24 @@ export default function GameHistory({
 }) {
   const compact = presentation === "compact";
   return (
-    <section className={`game-library${compact ? " game-library--compact" : ""}`} aria-label="Game history">
+    <section
+      className={`game-library${compact ? " game-library--compact" : ""}`}
+      aria-label="Game history"
+    >
       {!compact && toolbar && <div className="game-library-toolbar">{toolbar}</div>}
-      {!compact && <div className="game-library-heading" aria-hidden="true">
-        <span className="history-time">Time</span>
-        <span className="history-players">Players</span>
-        <span className="history-result">Result</span>
-        <span className="history-accuracy">Accuracy</span>
-        <span className="history-moves">Moves</span>
-        <span className="history-date">Date</span>
-        <span />
-      </div>}
+      {!compact && (
+        <div className="game-library-heading" aria-hidden="true">
+          <span className="history-time">Time</span>
+          <span className="history-players">Players</span>
+          <span className="history-result">Result</span>
+          <span className="history-accuracy">Accuracy</span>
+          <span className="history-moves">Moves</span>
+          <span className="history-date">Date</span>
+          <span />
+        </div>
+      )}
       <ul className="game-library-list">
-        {items.map((item) => {
+        {items.map(item => {
           const result = historyResult(item),
             date = gameDate(item);
           const action =
@@ -138,16 +182,18 @@ export default function GameHistory({
           const player = (name: string, rating: number | null | undefined) =>
             `${name}${rating ? `, rated ${rating}` : ", rating unknown"}`;
           let reviewNote = `${reviewLabel}.`;
-          if (accuracy) reviewNote = `Accuracy: White ${accuracy.white.toFixed(1)}, Black ${accuracy.black.toFixed(1)}.`;
+          if (accuracy)
+            reviewNote = `Accuracy: White ${accuracy.white.toFixed(1)}, Black ${accuracy.black.toFixed(1)}.`;
           else if (item.status === "completed") reviewNote = "Accuracy unavailable.";
-          const description = [
-            `White: ${player(item.white, item.white_rating)}`,
-            `Black: ${player(item.black, item.black_rating)}`,
-            result.description,
-            item.time_control_label || "Time control unknown",
-            item.move_count == null ? "Unknown moves" : plural(item.move_count, "move"),
-            date?.label || "Date unknown",
-          ].join(". ") + `. ${reviewNote}`;
+          const description =
+            [
+              `White: ${player(item.white, item.white_rating)}`,
+              `Black: ${player(item.black, item.black_rating)}`,
+              result.description,
+              item.time_control_label || "Time control unknown",
+              item.move_count == null ? "Unknown moves" : plural(item.move_count, "move"),
+              date?.label || "Date unknown",
+            ].join(". ") + `. ${reviewNote}`;
           return (
             <li key={item.id}>
               <Link
@@ -157,62 +203,82 @@ export default function GameHistory({
                 aria-describedby={`history-${item.id}`}
               >
                 <HistoryPlayers item={item} scores={compact ? result.scores : undefined} />
-                {compact ? <>
-                  <span className="history-recent-details">
-                    <OutcomeBadge outcome={result.outcome} title={result.description}>
-                      {result.outcome === "unknown" ? result.description : result.label}
-                    </OutcomeBadge>
-                    <HistoryMetadata item={item} date={date} />
-                    {item.status === "completed" && <span className="history-recent-accuracy">
-                      <span>Accuracy</span>
-                      {accuracy ? (["white", "black"] as const).map(color => <span className="history-recent-side" key={color}>
-                        <span className={`history-color ${color}`} title={color === "white" ? "White accuracy" : "Black accuracy"} />
-                        <AccuracyReadout color={color} accuracy={accuracy} complete presentation="history" />
-                      </span>) : <span>Unavailable</span>}
-                    </span>}
-                    <span className="history-recent-action">{["running", "queued"].includes(item.status) ? reviewLabel : action}<ChevronRight size={15} aria-hidden="true" /></span>
-                  </span>
-                </> : <><span className="history-result" title={result.description}>
-                  <span className="history-scores">
-                    {result.scores.map((score, i) => (
-                      <span className="history-line" key={i}>
-                        {score}
+                {compact ? (
+                  <>
+                    <span className="history-recent-details">
+                      <OutcomeBadge outcome={result.outcome} title={result.description}>
+                        {result.outcome === "unknown" ? result.description : result.label}
+                      </OutcomeBadge>
+                      <HistoryMetadata item={item} date={date} />
+                      {item.status === "completed" && (
+                        <span className="history-recent-accuracy">
+                          <span>Accuracy</span>
+                          {accuracy ? (
+                            (["white", "black"] as const).map(color => (
+                              <span className="history-recent-side" key={color}>
+                                <span
+                                  className={`history-color ${color}`}
+                                  title={color === "white" ? "White accuracy" : "Black accuracy"}
+                                />
+                                <AccuracyReadout
+                                  color={color}
+                                  accuracy={accuracy}
+                                  complete
+                                  presentation="history"
+                                />
+                              </span>
+                            ))
+                          ) : (
+                            <span>Unavailable</span>
+                          )}
+                        </span>
+                      )}
+                      <span className="history-recent-action">
+                        {["running", "queued"].includes(item.status) ? reviewLabel : action}
+                        <ChevronRight size={15} aria-hidden="true" />
                       </span>
-                    ))}
-                  </span>
-                  <OutcomeBadge outcome={result.outcome} />
-                </span>
-                <span
-                  className="history-accuracy"
-                  title={
-                    accuracy
-                      ? "Original-game accuracy, White then Black"
-                      : item.status === "completed"
-                        ? "Accuracy unavailable"
-                        : action
-                  }
-                >
-                  {accuracy || item.status === "completed" ? (
-                    (["white", "black"] as const).map((color) => (
-                      <AccuracyReadout
-                        key={color}
-                        color={color}
-                        accuracy={accuracy}
-                        complete={item.status === "completed"}
-                        presentation="history"
-                      />
-                    ))
-                  ) : (
-                    <span className="history-review-action">{reviewLabel}</span>
-                  )}
-                </span>
-                <HistoryMetadata item={item} date={date} />
-                <ChevronRight
-                  className="history-open"
-                  size={17}
-                  aria-hidden="true"
-                />
-                </>}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="history-result" title={result.description}>
+                      <span className="history-scores">
+                        {result.scores.map((score, i) => (
+                          <span className="history-line" key={i}>
+                            {score}
+                          </span>
+                        ))}
+                      </span>
+                      <OutcomeBadge outcome={result.outcome} />
+                    </span>
+                    <span
+                      className="history-accuracy"
+                      title={
+                        accuracy
+                          ? "Original-game accuracy, White then Black"
+                          : item.status === "completed"
+                            ? "Accuracy unavailable"
+                            : action
+                      }
+                    >
+                      {accuracy || item.status === "completed" ? (
+                        (["white", "black"] as const).map(color => (
+                          <AccuracyReadout
+                            key={color}
+                            color={color}
+                            accuracy={accuracy}
+                            complete={item.status === "completed"}
+                            presentation="history"
+                          />
+                        ))
+                      ) : (
+                        <span className="history-review-action">{reviewLabel}</span>
+                      )}
+                    </span>
+                    <HistoryMetadata item={item} date={date} />
+                    <ChevronRight className="history-open" size={17} aria-hidden="true" />
+                  </>
+                )}
                 <span id={`history-${item.id}`} className="sr-only">
                   {description}
                 </span>

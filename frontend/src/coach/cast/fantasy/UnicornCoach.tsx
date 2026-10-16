@@ -14,21 +14,15 @@ function UnicornMouth({ mouth }: { mouth: AnimalPose["mouth"] }) {
     concern: "M44 70q6-2 12 0",
   };
   return mouth === "oh" ? (
-    <path
-      d="M46.5 69Q50 67.5 53.5 69Q50 72.5 46.5 69Z"
-      fill="currentColor"
-      strokeWidth="1"
-    />
+    <path d="M46.5 69Q50 67.5 53.5 69Q50 72.5 46.5 69Z" fill="currentColor" strokeWidth="1" />
   ) : (
     <path d={seams[mouth]} strokeWidth="1.4" />
   );
 }
 
 function Hooves({ pose }: { pose: AnimalPose }) {
-  const lifted =
-    pose.paws === "cheeks" || pose.paws === "celebrate" || pose.paws === "pair";
-  const rightY =
-    pose.paws === "chin" ? 77 : pose.paws === "offer" ? 84 : lifted ? 73 : 109;
+  const lifted = pose.paws === "cheeks" || pose.paws === "celebrate" || pose.paws === "pair";
+  const rightY = pose.paws === "chin" ? 77 : pose.paws === "offer" ? 84 : lifted ? 73 : 109;
   const leftY = lifted ? 73 : 109;
   return (
     <g fill="none" strokeLinecap="round">
@@ -89,17 +83,10 @@ export default function UnicornCoach({ expression }: CoachArtworkProps) {
             strokeLinecap="round"
           />
         </g>
-        {[false, true].map((right) => (
-          <g
-            key={String(right)}
-            transform={right ? "translate(100 0) scale(-1 1)" : undefined}
-          >
-            <g
-              transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 28 33)`}
-            >
-              <g
-                className={`study-ear-motion study-ear-${right ? "right" : "left"}`}
-              >
+        {[false, true].map(right => (
+          <g key={String(right)} transform={right ? "translate(100 0) scale(-1 1)" : undefined}>
+            <g transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 28 33)`}>
+              <g className={`study-ear-motion study-ear-${right ? "right" : "left"}`}>
                 <path d="M23 35Q13 25 19 10q14 6 15 23Z" fill="#e6dfe4" />
                 <path d="M24 29q-6-8-3-12 7 5 8 13Z" fill="#bc9fb9" />
               </g>
@@ -112,12 +99,7 @@ export default function UnicornCoach({ expression }: CoachArtworkProps) {
           stroke="#c7bdcc"
           strokeWidth="1.2"
         />
-        <path
-          d="M46 30 52 4l7 28Z"
-          fill="#e5c781"
-          stroke="#b8a16b"
-          strokeWidth="1"
-        />
+        <path d="M46 30 52 4l7 28Z" fill="#e5c781" stroke="#b8a16b" strokeWidth="1" />
         <path d="m49 18 6 3m-8 6 10 3" stroke="#b79b6e" strokeWidth="1.1" />
         <g className="study-hair-motion">
           <path d="M26 32q6-20 26-14-4 9-14 16l-5 9-5-4 4-9Z" fill="#b399c9" />
@@ -137,9 +119,15 @@ export default function UnicornCoach({ expression }: CoachArtworkProps) {
           mouthColor="#9b808e"
           kind="bright"
           speakingMouth={
-            <OrganicSpeechMouth x={50} y={69} width={14} height={3.8}
+            <OrganicSpeechMouth
+              x={50}
+              y={69}
+              width={14}
+              height={3.8}
               palette={{ cavity: "#806575", outline: "#9b808e" }}
-              teeth={false} tongue={false} />
+              teeth={false}
+              tongue={false}
+            />
           }
           mouth={
             <g color="#9b808e">
@@ -148,10 +136,7 @@ export default function UnicornCoach({ expression }: CoachArtworkProps) {
           }
           muzzle={
             <>
-              <path
-                d="M33 56q17-7 34 0 8 8 2 16-19 12-38 0-6-8 2-16Z"
-                fill="#e0d1d9"
-              />
+              <path d="M33 56q17-7 34 0 8 8 2 16-19 12-38 0-6-8 2-16Z" fill="#e0d1d9" />
               <ellipse
                 cx="39"
                 cy="60"

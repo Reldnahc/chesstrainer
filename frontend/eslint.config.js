@@ -8,19 +8,44 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import reactHooks from "eslint-plugin-react-hooks";
 
-const reactSources = ["src/**/*.{ts,tsx}", "coach-studio/**/*.{ts,tsx}", "intelligence-lab/**/*.{ts,tsx}", "audio-studio/**/*.{ts,tsx}",
+const reactSources = [
+  "src/**/*.{ts,tsx}",
+  "coach-studio/**/*.{ts,tsx}",
+  "intelligence-lab/**/*.{ts,tsx}",
+  "audio-studio/**/*.{ts,tsx}",
   // Test fixtures that render components.
-  "audio-tests/fixtures/**/*.{ts,tsx}", "studio-tests/fixtures/**/*.{ts,tsx}"];
+  "audio-tests/fixtures/**/*.{ts,tsx}",
+  "studio-tests/fixtures/**/*.{ts,tsx}",
+];
 
 export default tseslint.config(
   // Generated output and reports (the frontend entries in ../.gitignore) and the generated API types.
-  { ignores: ["dist/**", "audio-studio-dist/**", "*-results*/**", "playwright-report/**", "blob-report/**", "playwright/.cache/**", "node_modules/**", "src/api.generated.ts"] },
+  {
+    ignores: [
+      "dist/**",
+      "audio-studio-dist/**",
+      "*-results*/**",
+      "playwright-report/**",
+      "blob-report/**",
+      "playwright/.cache/**",
+      "node_modules/**",
+      "src/api.generated.ts",
+    ],
+  },
   js.configs.recommended,
   tseslint.configs.recommended,
   {
     rules: {
       // A leading underscore marks a value that is deliberately unused.
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
     },
   },
   {
@@ -33,7 +58,14 @@ export default tseslint.config(
     // Promise misuse needs type information: a promise nobody awaits or handles, or one
     // passed where a plain callback is expected (whose rejection nobody would see).
     // Event-handler attributes may be async; each handler reports its own failures.
-    files: [...reactSources, "tests/**/*.ts", "audio-tests/**/*.ts", "studio-tests/**/*.ts", "intelligence-tests/**/*.ts", "type-tests/**/*.ts"],
+    files: [
+      ...reactSources,
+      "tests/**/*.ts",
+      "audio-tests/**/*.ts",
+      "studio-tests/**/*.ts",
+      "intelligence-tests/**/*.ts",
+      "type-tests/**/*.ts",
+    ],
     languageOptions: {
       parserOptions: {
         project: ["./tsconfig.json", "./tsconfig.browser-tests.json", "./tsconfig.contracts.json"],
@@ -42,7 +74,10 @@ export default tseslint.config(
     },
     rules: {
       "@typescript-eslint/no-floating-promises": "error",
-      "@typescript-eslint/no-misused-promises": ["error", { checksVoidReturn: { attributes: false } }],
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        { checksVoidReturn: { attributes: false } },
+      ],
     },
   },
   {
@@ -52,6 +87,9 @@ export default tseslint.config(
   {
     // Compile-time contract checks: each statement exists only to be type-checked.
     files: ["type-tests/**/*.ts"],
-    rules: { "@typescript-eslint/no-unused-expressions": "off", "@typescript-eslint/no-floating-promises": "off" },
+    rules: {
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/no-floating-promises": "off",
+    },
   },
 );

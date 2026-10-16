@@ -1,85 +1,149 @@
-import {expect, test} from "@playwright/test";
-import type {Game} from "../src/gameReview/types";
-import {gameIntent} from "../src/dialogue/gameIntent";
-import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
-import {renderDialogue} from "../src/dialogue/neutral";
-import {classic} from "../src/dialogue/characters/classic";
-import {robot} from "../src/dialogue/characters/robot";
-import {gameReaction} from "../src/coach/reactions";
-import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
-import {semanticFixtures} from "../tests/semantic-fixtures";
+import { expect, test } from "@playwright/test";
+import type { Game } from "../src/gameReview/types";
+import { gameIntent } from "../src/dialogue/gameIntent";
+import { humanInsightIntent, humanInsightLabels } from "../src/dialogue/humanClaims";
+import { renderDialogue } from "../src/dialogue/neutral";
+import { classic } from "../src/dialogue/characters/classic";
+import { robot } from "../src/dialogue/characters/robot";
+import { gameReaction } from "../src/coach/reactions";
+import {
+  selectGameRecording,
+  selectGameSpeech,
+  type GameSpeechContext,
+} from "../src/audio/speech/gameSelection";
+import { semanticFixtures } from "../tests/semantic-fixtures";
 
-const relationshipGames = semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py");
+const relationshipGames = semanticFixtures<Record<string, Game>>(
+  "review_speech_relationship_fixtures.py",
+);
 // A move never raises its own evaluation, so neither the written line nor the
 // recorded take credits this move; the take names the opponent's help when the
 // line does.
-for (const [name, game] of Object.entries(relationshipGames)) if (name.startsWith("combo-recovery"))
-  test(`${name}: a recovery is written and voiced without crediting the move`, () => {
-    const ply = game.frames.length - 1, frame = game.frames[ply], report = frame.report!;
-    const intent = gameIntent({key: name, game, frame, report, ply, expression: "neutral"});
-    const claimIndex = intent.claims.findIndex(item => item.code === "recovery");
-    expect(claimIndex).toBeGreaterThanOrEqual(0);
-    const utterance = renderDialogue(intent, coaches[0]);
-    expect(utterance.text).toMatch(/playable/);
-    expect(utterance.text).not.toMatch(/\bthis (?:move )?(?:restores|makes|brings|gets)/i);
-    const context: GameSpeechContext = {game, frame, report, ply, intent, utterance};
-    const index = utterance.renderedClaims!.findIndex(item => item.code === "recovery");
-    const claim = utterance.renderedClaims![index];
-    expect(selectGameRecording({...context, claimIndex: index}))
-      .toBe(claim.slots.help ? "recovery-assisted" : "recovery");
-  });
+for (const [name, game] of Object.entries(relationshipGames))
+  if (name.startsWith("combo-recovery"))
+    test(`${name}: a recovery is written and voiced without crediting the move`, () => {
+      const ply = game.frames.length - 1,
+        frame = game.frames[ply],
+        report = frame.report!;
+      const intent = gameIntent({ key: name, game, frame, report, ply, expression: "neutral" });
+      const claimIndex = intent.claims.findIndex(item => item.code === "recovery");
+      expect(claimIndex).toBeGreaterThanOrEqual(0);
+      const utterance = renderDialogue(intent, coaches[0]);
+      expect(utterance.text).toMatch(/playable/);
+      expect(utterance.text).not.toMatch(/\bthis (?:move )?(?:restores|makes|brings|gets)/i);
+      const context: GameSpeechContext = { game, frame, report, ply, intent, utterance };
+      const index = utterance.renderedClaims!.findIndex(item => item.code === "recovery");
+      const claim = utterance.renderedClaims![index];
+      expect(selectGameRecording({ ...context, claimIndex: index })).toBe(
+        claim.slots.help ? "recovery-assisted" : "recovery",
+      );
+    });
 const games = {
   ...semanticFixtures<Record<string, Game>>("review_speech_policy_fixtures.py"),
   ...relationshipGames,
 };
-const coaches = [{id: "classic", personality: classic}, {id: "robot", personality: robot}];
+const coaches = [
+  { id: "classic", personality: classic },
+  { id: "robot", personality: robot },
+];
 // Objective explanations that the policy profiles reach while a Maia reading
 // is also available. Each speaks its own objective line; Maia is never voiced.
 // (Their poorly graded first moves are Book moves, which the badge lets name the
 // opening instead of an evaluation loss.)
 const observedFamilies = [
-  "allowed-mate-next|allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
-  "cause-abandoned-defender", "cause-opponent-threat-recognition", "cause-avoiding-bad-trades",
-  "tactic-fork-played", "tactic-pin-played", "tactic-fork-allowed", "tactic-skewer-allowed", "tactic-fork-missed",
-  "sound-sacrifice", "only-playable-move", "only-advantage-resource",
-  "positional-rook-open-actual", "positional-rook-semi-open-actual",
-  "positional-bishop-pair-actual", "positional-passer-advance-actual", "positional-king-flight-actual",
-  "chance-taken", "chance-missed", "support-restored", "advantage-converted",
+  "allowed-mate-next|allowed-mate",
+  "missed-mate",
+  "immediate-capture",
+  "recognized-opening",
+  "cause-abandoned-defender",
+  "cause-opponent-threat-recognition",
+  "cause-avoiding-bad-trades",
+  "tactic-fork-played",
+  "tactic-pin-played",
+  "tactic-fork-allowed",
+  "tactic-skewer-allowed",
+  "tactic-fork-missed",
+  "sound-sacrifice",
+  "only-playable-move",
+  "only-advantage-resource",
+  "positional-rook-open-actual",
+  "positional-rook-semi-open-actual",
+  "positional-bishop-pair-actual",
+  "positional-passer-advance-actual",
+  "positional-king-flight-actual",
+  "chance-taken",
+  "chance-missed",
+  "support-restored",
+  "advantage-converted",
 ];
 
 function presentation(name: string, coach = coaches[0], game = structuredClone(games[name])) {
-  const ply = game.frames.length - 1, frame = game.frames[ply], report = frame.report!;
-  const reaction = gameReaction({key: name, frame, report, learner: game.orientation,
-    explaining: false, error: false, pending: false});
-  const intent = gameIntent({key: name, game, frame, report, ply, expression: reaction.state});
-  const context: GameSpeechContext = {game, frame, report, ply, intent, utterance: renderDialogue(intent, coach)};
-  const child = humanInsightIntent(gameIntent({key: name, game, frame, report, ply, expression: reaction.state, human: true}));
-  const insight = {intent: child, utterance: renderDialogue(child, coach)};
-  return {context, insight};
+  const ply = game.frames.length - 1,
+    frame = game.frames[ply],
+    report = frame.report!;
+  const reaction = gameReaction({
+    key: name,
+    frame,
+    report,
+    learner: game.orientation,
+    explaining: false,
+    error: false,
+    pending: false,
+  });
+  const intent = gameIntent({ key: name, game, frame, report, ply, expression: reaction.state });
+  const context: GameSpeechContext = {
+    game,
+    frame,
+    report,
+    ply,
+    intent,
+    utterance: renderDialogue(intent, coach),
+  };
+  const child = humanInsightIntent(
+    gameIntent({ key: name, game, frame, report, ply, expression: reaction.state, human: true }),
+  );
+  const insight = { intent: child, utterance: renderDialogue(child, coach) };
+  return { context, insight };
 }
 
 for (const coach of coaches) {
   test(`${coach.id}: coherent policy profiles show all seven insights and never voice one`, () => {
-    const observed = new Set<string>(), shown = new Set<string>();
+    const observed = new Set<string>(),
+      shown = new Set<string>();
     for (const name of Object.keys(games)) {
-      const {context, insight} = presentation(name, coach);
+      const { context, insight } = presentation(name, coach);
       for (const item of insight.utterance.renderedClaims ?? []) shown.add(item.code);
       const claims = context.utterance.renderedClaims!;
       // Maia lives only in the badge and popup, never in the coach's line.
-      expect(claims.some(item => humanInsightLabels[item.code]), name).toBe(false);
-      const objective = claims.map((item, claimIndex) => {
-        const id = selectGameRecording({...context, claimIndex});
-        if (humanInsightLabels[item.code]) expect(id, `${name}: Maia claim ${item.code}`).toBeNull();
-        return id;
-      }).filter((id): id is string => !!id);
+      expect(
+        claims.some(item => humanInsightLabels[item.code]),
+        name,
+      ).toBe(false);
+      const objective = claims
+        .map((item, claimIndex) => {
+          const id = selectGameRecording({ ...context, claimIndex });
+          if (humanInsightLabels[item.code])
+            expect(id, `${name}: Maia claim ${item.code}`).toBeNull();
+          return id;
+        })
+        .filter((id): id is string => !!id);
       const speech = selectGameSpeech(context);
       const parts = speech.recordingId?.split("+") ?? [];
-      expect(parts.every(id => objective.includes(id)), `${name}: ${speech.recordingId}`).toBe(true);
+      expect(
+        parts.every(id => objective.includes(id)),
+        `${name}: ${speech.recordingId}`,
+      ).toBe(true);
       expect(parts.some(id => /^(?:human-|combo-|combined-)/.test(id))).toBe(false);
       // The lead is the first objective sentence with a take; an unvoiced one (a
       // recovery) passes it on, and repeated-issue or history lines only follow.
-      const lead = claims.map((item, claimIndex) => humanInsightLabels[item.code] || ["repeated", "history"].includes(item.code)
-        ? null : selectGameRecording({...context, claimIndex})).find(id => id) ?? null;
+      const lead =
+        claims
+          .map((item, claimIndex) =>
+            humanInsightLabels[item.code] || ["repeated", "history"].includes(item.code)
+              ? null
+              : selectGameRecording({ ...context, claimIndex }),
+          )
+          .find(id => id) ?? null;
       expect(speech.primaryId, name).toBe(lead);
       if (!insight.intent.claims.length || !speech.primaryId) continue;
       observed.add(speech.primaryId);
@@ -90,14 +154,21 @@ for (const coach of coaches) {
 
   // The bubble's recorded objective sentences play back to back; Maia adds nothing.
   const plain = (context: GameSpeechContext) => {
-    const first = selectGameRecording(context), second = selectGameRecording({...context, claimIndex: 1});
+    const first = selectGameRecording(context),
+      second = selectGameRecording({ ...context, claimIndex: 1 });
     // A cause clip already names the capture, so neither capture clip joins it.
-    const repeats = !!first?.startsWith("cause-") && !!second && ["tactic-hanging-piece-", "immediate-capture"].some(id => second.startsWith(id));
+    const repeats =
+      !!first?.startsWith("cause-") &&
+      !!second &&
+      ["tactic-hanging-piece-", "immediate-capture"].some(id => second.startsWith(id));
     return first && second && !repeats ? `${first}+${second}` : first;
   };
 
   test(`${coach.id}: the selected defense insight is shown while the objective line speaks alone`, () => {
-    const {context, insight} = presentation("cause-abandoned_defender-white-narrow-preferred-unusual", coach);
+    const { context, insight } = presentation(
+      "cause-abandoned_defender-white-narrow-preferred-unusual",
+      coach,
+    );
     expect(context.intent.claims.some(item => humanInsightLabels[item.code])).toBe(false);
     expect(insight.intent.claims.map(item => item.code)).toEqual(["difficult_defense"]);
     expect(selectGameSpeech(context).primaryId).toBe("cause-abandoned-defender");
@@ -105,30 +176,41 @@ for (const coach of coaches) {
   });
 
   test(`${coach.id}: a back-rank mating witness keeps the higher mate explanation`, () => {
-    for (const role of ["allowed", "missed"]) for (const profile of ["preferred", "preferred-unusual"]) {
-      const {context} = presentation(`back-rank-${role}-narrow-${profile}`, coach);
-      expect(context.report!.intelligence!.events).toEqual(expect.arrayContaining([
-        expect.objectContaining({kind: "tactic", facts: expect.objectContaining({motif: "back_rank", role})}),
-      ]));
-      // These witnesses let the reply itself mate, which has its own line.
-      expect(selectGameRecording(context)).toBe(role === "allowed" ? "allowed-mate-next|allowed-mate" : "missed-mate");
-      expect(selectGameSpeech(context).recordingId).toBe(plain(context));
-    }
+    for (const role of ["allowed", "missed"])
+      for (const profile of ["preferred", "preferred-unusual"]) {
+        const { context } = presentation(`back-rank-${role}-narrow-${profile}`, coach);
+        expect(context.report!.intelligence!.events).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              kind: "tactic",
+              facts: expect.objectContaining({ motif: "back_rank", role }),
+            }),
+          ]),
+        );
+        // These witnesses let the reply itself mate, which has its own line.
+        expect(selectGameRecording(context)).toBe(
+          role === "allowed" ? "allowed-mate-next|allowed-mate" : "missed-mate",
+        );
+        expect(selectGameSpeech(context).recordingId).toBe(plain(context));
+      }
   });
 
   test(`${coach.id}: a meaning the coach cannot say yet passes the lead on instead of silencing the move`, () => {
-    const {context} = presentation("back-rank-allowed-narrow-preferred", coach);
+    const { context } = presentation("back-rank-allowed-narrow-preferred", coach);
     const lead = selectGameRecording(context)!;
     expect(lead).toBeTruthy();
-    const without = selectGameSpeech({...context, playable: id => id !== lead});
+    const without = selectGameSpeech({ ...context, playable: id => id !== lead });
     expect(without.primaryId).not.toBe(lead);
-    const next = context.utterance.renderedClaims!.slice(1).map((_, index) =>
-      selectGameRecording({...context, claimIndex: index + 1})).find(id => id && id !== lead) ?? null;
+    const next =
+      context.utterance
+        .renderedClaims!.slice(1)
+        .map((_, index) => selectGameRecording({ ...context, claimIndex: index + 1 }))
+        .find(id => id && id !== lead) ?? null;
     expect(without.primaryId).toBe(next);
   });
 
   test(`${coach.id}: late unavailable policy removes the chip without changing the objective speech`, () => {
-    const {context} = presentation("cause-abandoned_defender-white-preferred", coach);
+    const { context } = presentation("cause-abandoned_defender-white-preferred", coach);
     const fallback = plain(context);
     context.report!.human!.status = "unavailable";
     expect(selectGameSpeech(context).recordingId).toBe(fallback);
@@ -145,8 +227,13 @@ for (const coach of coaches) {
     expect(opponent.insight.intent.claims).toEqual([]);
     expect(selectGameSpeech(opponent.context).recordingId).toBe(plain(opponent.context));
     const parent = original.context;
-    const intent = gameIntent({...parent, key: "branch", variation: true, expression: parent.intent.expression});
-    const branch = {...parent, variation: true, intent, utterance: renderDialogue(intent, coach)};
+    const intent = gameIntent({
+      ...parent,
+      key: "branch",
+      variation: true,
+      expression: parent.intent.expression,
+    });
+    const branch = { ...parent, variation: true, intent, utterance: renderDialogue(intent, coach) };
     expect(selectGameSpeech(branch).recordingId).toBe(plain(branch));
   });
 }

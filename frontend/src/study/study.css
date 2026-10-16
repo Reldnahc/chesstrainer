@@ -1,116 +1,491 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-.study-page { display: flex; flex-direction: column; gap: var(--page-gap); }
-.study-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
-.study-option { display: grid; grid-template-rows: subgrid; grid-row: span 5; align-items: start; justify-items: start; gap: var(--space-3); }
-.study-option > svg { color: var(--accent); }
-.study-option > .action-control { grid-row: 5; margin-top: auto; }
-.study-option .study-count { font-size: var(--text-5xl); font-weight: 650; color: #f3f0eb; }
-.study-count span { display: block; font-size: var(--text-md); font-weight: 400; color: var(--muted); }
-.study-due { border-color: #705044; }
-.study-resume-list { display: flex; flex-direction: column; gap: var(--space-2); }
-.puzzle-player-heading { display: flex; gap: var(--space-3); align-items: center; width: 100%; }
-.puzzle-player-heading h1 { flex: 1; }
-.puzzle-start .puzzle-filters { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); align-items: start; }
-.puzzle-filter { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; font-size: inherit; }
-/* The Theme select's label reads like a ChoiceGroup's visible label beside it:
+  .study-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-gap);
+  }
+  .study-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+  .study-option {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+    align-items: start;
+    justify-items: start;
+    gap: var(--space-3);
+  }
+  .study-option > svg {
+    color: var(--accent);
+  }
+  .study-option > .action-control {
+    grid-row: 5;
+    margin-top: auto;
+  }
+  .study-option .study-count {
+    font-size: var(--text-5xl);
+    font-weight: 650;
+    color: #f3f0eb;
+  }
+  .study-count span {
+    display: block;
+    font-size: var(--text-md);
+    font-weight: 400;
+    color: var(--muted);
+  }
+  .study-due {
+    border-color: #705044;
+  }
+  .study-resume-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .puzzle-player-heading {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    width: 100%;
+  }
+  .puzzle-player-heading h1 {
+    flex: 1;
+  }
+  .puzzle-start .puzzle-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-8);
+    align-items: start;
+  }
+  .puzzle-filter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+    font-size: inherit;
+  }
+  /* The Theme select's label reads like a ChoiceGroup's visible label beside it:
    the row's own size (not the small form-label size) in bold. */
-.puzzle-filter > span { font-weight: 600; }
-.puzzle-filter select { min-width: 240px; max-width: 100%; }
-.puzzle-history { padding: var(--space-4); }
-.puzzle-history h2 { font-size: var(--text-lg); }
-.lesson-course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-5); }
-.lesson-course-card { align-items: start; text-decoration: none; --panel-gap: var(--space-3); transition: border-color var(--motion-fast) var(--ease-standard); }
-.lesson-course-card > svg { color: var(--accent); }
-.lesson-course-card:hover { border-color: var(--accent); }
-.lesson-course-card > span { display: flex; justify-content: space-between; width: 100%; margin-top: auto; padding-top: var(--space-3); color: var(--muted); font-size: var(--text-md); }
-.lesson-course-title { display: flex; align-items: start; gap: var(--space-4); }
-/* Optical alignment with the title's first line. */
-.lesson-course-title > svg { color: var(--accent); flex: none; position: relative; top: var(--space-0-5); }
-.lesson-course-title > div { display: grid; gap: var(--space-2); min-width: 0; }
-.lesson-course-title span { font-size: var(--text-md); }
-.lesson-course-title p { max-width: 84ch; }
-.lesson-chapters { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
-.lesson-chapters li { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); background: var(--raised); border: 1px solid var(--line); border-radius: 6px; }
-.lesson-chapters li > div { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; flex: 1; }
-.lesson-chapters h3 { font-size: var(--text-lg); }
-.lesson-chapters .muted { font-size: var(--text-sm); }
-.lesson-chapters button { flex: none; }
-.lesson-chapter-number { display: grid; place-items: center; flex: 0 0 28px; width: 28px; height: 28px; font-family: var(--mono); color: var(--accent); }
-.lesson-attributions { display: flex; flex-direction: column; gap: var(--space-2); border-top: 1px solid var(--line); padding-top: var(--space-3); }
-.lesson-attributions h3 { font-size: var(--text-sm); color: var(--muted); }
-.lesson-context { padding: var(--space-5); --panel-gap: var(--space-2); }
-.lesson-context h2 { font-size: var(--text-lg); }
-.lesson-feedback { padding-top: var(--space-1-5); border-top: 1px solid #47554d; }
-.lesson-feedback.incorrect { color: #ffd1a7; }
-.lesson-feedback.correct { color: #c4e4a8; }
-.lesson-board-controls { display: flex; align-items: center; justify-content: space-between; gap: var(--space-1-5); }
-.opening-search { display: flex; align-items: end; gap: var(--space-3); }
-.opening-search label:first-child { flex: 1; }
-.opening-search label:nth-child(2) { width: 90px; }
-.opening-search label { min-width: 0; }
-.opening-search button { flex: none; }
-.opening-catalogue-results { display: flex; flex-direction: column; gap: inherit; min-width: 0; }
-.opening-results { display: flex; flex-direction: column; }
-.opening-result { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-1); text-decoration: none; border-top: 1px solid var(--line); transition: background var(--motion-fast) var(--ease-standard); }
-.opening-result:hover { background: var(--raised); }
-.opening-result > span:nth-child(2) { display: flex; flex-direction: column; gap: var(--space-1-5); flex: 1; min-width: 0; }
-.opening-result strong { font-size: var(--text-base); }
-.opening-result small { color: var(--muted); font-size: var(--text-xs); }
-.opening-eco { flex: 0 0 40px; text-align: center; font: var(--text-sm) var(--mono); color: var(--accent); }
-.opening-result > svg { flex: none; }
-.opening-management-heading { display: flex; gap: var(--space-5); justify-content: space-between; align-items: start; }
-.opening-management-heading > div { display: flex; flex-direction: column; gap: var(--space-2); }
-.opening-management-heading > .action-control { flex: none; }
-.opening-study-list { display: flex; flex-direction: column; gap: var(--space-3); }
-.opening-study { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); border: 1px solid var(--line); padding: var(--space-4); border-radius: 6px; }
-.opening-study > div:first-child { display: flex; flex-direction: column; gap: var(--space-1-5); }
-.opening-study h3 { font-size: var(--text-lg); }
-.opening-study-status { color: var(--muted); font-size: var(--text-xs); }
-.opening-study .button-row { flex: none; }
-.opening-preview-details { padding: var(--space-5); }
-.opening-preview-details h2 { font-size: var(--text-lg); }
-.lesson-repertoire-lines { display: flex; flex-direction: column; gap: var(--space-2); border-top: 1px solid var(--line); padding-top: var(--space-4); }
-.lesson-repertoire-lines h3 { font-size: var(--text-lg); }
-@media (max-width: 760px) {
-  .study-options { grid-template-columns: 1fr; gap: var(--space-3); }
-  .study-option { display: flex; flex-direction: column; grid-row: auto; }
-  .puzzle-start .puzzle-filters { gap: var(--space-3); }
-  .puzzle-filter, .puzzle-filter select, .puzzle-filters > .choice-field { width: 100%; }
-  .puzzle-start .button-row button { flex: 1; }
-  /* Flat on phones: chapter and study rows are divided, not boxed. */
-  .lesson-chapters { gap: 0; }
-  .lesson-chapters li { gap: var(--space-2); padding: var(--space-3) 0; background: transparent; border: 0; border-radius: 0; border-top: 1px solid var(--line); }
-  .opening-study-list { gap: 0; }
-  .opening-study { padding: var(--space-3) 0; border: 0; border-radius: 0; border-top: 1px solid var(--line); }
-  .opening-search { flex-wrap: wrap; }
-  .opening-search button { width: 100%; }
-  .opening-management-heading, .opening-study { flex-direction: column; align-items: stretch; gap: var(--space-3); }
-  .opening-study .button-row button { flex: 1; }
-}
-/* Back link, title and Save on one row: the title shortens so Save always fits. */
-.lesson-editor-heading { flex: 1; min-width: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--space-2); }
-.lesson-editor-heading h1 { font-size: var(--text-2xl); }
-/* Open details sections use the shared details spacing; plain sections stack
+  .puzzle-filter > span {
+    font-weight: 600;
+  }
+  .puzzle-filter select {
+    min-width: 240px;
+    max-width: 100%;
+  }
+  .puzzle-history {
+    padding: var(--space-4);
+  }
+  .puzzle-history h2 {
+    font-size: var(--text-lg);
+  }
+  .lesson-course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--space-5);
+  }
+  .lesson-course-card {
+    align-items: start;
+    text-decoration: none;
+    --panel-gap: var(--space-3);
+    transition: border-color var(--motion-fast) var(--ease-standard);
+  }
+  .lesson-course-card > svg {
+    color: var(--accent);
+  }
+  .lesson-course-card:hover {
+    border-color: var(--accent);
+  }
+  .lesson-course-card > span {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+    padding-top: var(--space-3);
+    color: var(--muted);
+    font-size: var(--text-md);
+  }
+  .lesson-course-title {
+    display: flex;
+    align-items: start;
+    gap: var(--space-4);
+  }
+  /* Optical alignment with the title's first line. */
+  .lesson-course-title > svg {
+    color: var(--accent);
+    flex: none;
+    position: relative;
+    top: var(--space-0-5);
+  }
+  .lesson-course-title > div {
+    display: grid;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .lesson-course-title span {
+    font-size: var(--text-md);
+  }
+  .lesson-course-title p {
+    max-width: 84ch;
+  }
+  .lesson-chapters {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .lesson-chapters li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .lesson-chapters li > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+    flex: 1;
+  }
+  .lesson-chapters h3 {
+    font-size: var(--text-lg);
+  }
+  .lesson-chapters .muted {
+    font-size: var(--text-sm);
+  }
+  .lesson-chapters button {
+    flex: none;
+  }
+  .lesson-chapter-number {
+    display: grid;
+    place-items: center;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    font-family: var(--mono);
+    color: var(--accent);
+  }
+  .lesson-attributions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-3);
+  }
+  .lesson-attributions h3 {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .lesson-context {
+    padding: var(--space-5);
+    --panel-gap: var(--space-2);
+  }
+  .lesson-context h2 {
+    font-size: var(--text-lg);
+  }
+  .lesson-feedback {
+    padding-top: var(--space-1-5);
+    border-top: 1px solid #47554d;
+  }
+  .lesson-feedback.incorrect {
+    color: #ffd1a7;
+  }
+  .lesson-feedback.correct {
+    color: #c4e4a8;
+  }
+  .lesson-board-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-1-5);
+  }
+  .opening-search {
+    display: flex;
+    align-items: end;
+    gap: var(--space-3);
+  }
+  .opening-search label:first-child {
+    flex: 1;
+  }
+  .opening-search label:nth-child(2) {
+    width: 90px;
+  }
+  .opening-search label {
+    min-width: 0;
+  }
+  .opening-search button {
+    flex: none;
+  }
+  .opening-catalogue-results {
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+    min-width: 0;
+  }
+  .opening-results {
+    display: flex;
+    flex-direction: column;
+  }
+  .opening-result {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-1);
+    text-decoration: none;
+    border-top: 1px solid var(--line);
+    transition: background var(--motion-fast) var(--ease-standard);
+  }
+  .opening-result:hover {
+    background: var(--raised);
+  }
+  .opening-result > span:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
+    flex: 1;
+    min-width: 0;
+  }
+  .opening-result strong {
+    font-size: var(--text-base);
+  }
+  .opening-result small {
+    color: var(--muted);
+    font-size: var(--text-xs);
+  }
+  .opening-eco {
+    flex: 0 0 40px;
+    text-align: center;
+    font: var(--text-sm) var(--mono);
+    color: var(--accent);
+  }
+  .opening-result > svg {
+    flex: none;
+  }
+  .opening-management-heading {
+    display: flex;
+    gap: var(--space-5);
+    justify-content: space-between;
+    align-items: start;
+  }
+  .opening-management-heading > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .opening-management-heading > .action-control {
+    flex: none;
+  }
+  .opening-study-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .opening-study {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    border: 1px solid var(--line);
+    padding: var(--space-4);
+    border-radius: 6px;
+  }
+  .opening-study > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
+  }
+  .opening-study h3 {
+    font-size: var(--text-lg);
+  }
+  .opening-study-status {
+    color: var(--muted);
+    font-size: var(--text-xs);
+  }
+  .opening-study .button-row {
+    flex: none;
+  }
+  .opening-preview-details {
+    padding: var(--space-5);
+  }
+  .opening-preview-details h2 {
+    font-size: var(--text-lg);
+  }
+  .lesson-repertoire-lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-4);
+  }
+  .lesson-repertoire-lines h3 {
+    font-size: var(--text-lg);
+  }
+  @media (max-width: 760px) {
+    .study-options {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+    .study-option {
+      display: flex;
+      flex-direction: column;
+      grid-row: auto;
+    }
+    .puzzle-start .puzzle-filters {
+      gap: var(--space-3);
+    }
+    .puzzle-filter,
+    .puzzle-filter select,
+    .puzzle-filters > .choice-field {
+      width: 100%;
+    }
+    .puzzle-start .button-row button {
+      flex: 1;
+    }
+    /* Flat on phones: chapter and study rows are divided, not boxed. */
+    .lesson-chapters {
+      gap: 0;
+    }
+    .lesson-chapters li {
+      gap: var(--space-2);
+      padding: var(--space-3) 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      border-top: 1px solid var(--line);
+    }
+    .opening-study-list {
+      gap: 0;
+    }
+    .opening-study {
+      padding: var(--space-3) 0;
+      border: 0;
+      border-radius: 0;
+      border-top: 1px solid var(--line);
+    }
+    .opening-search {
+      flex-wrap: wrap;
+    }
+    .opening-search button {
+      width: 100%;
+    }
+    .opening-management-heading,
+    .opening-study {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-3);
+    }
+    .opening-study .button-row button {
+      flex: 1;
+    }
+  }
+  /* Back link, title and Save on one row: the title shortens so Save always fits. */
+  .lesson-editor-heading {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .lesson-editor-heading h1 {
+    font-size: var(--text-2xl);
+  }
+  /* Open details sections use the shared details spacing; plain sections stack
    their heading and fields, with extra room above the heading. */
-section.lesson-editor-section { display: grid; gap: var(--space-3); padding-top: var(--space-2); }
-.lesson-editor-section h2 { font-size: var(--text-lg); }
-.lesson-editor-fields { display: grid; gap: var(--space-3); }
-.lesson-editor-field { display: grid; gap: var(--space-1-5); }
-.lesson-editor-field > label { display: grid; gap: var(--space-1-5); }
-.lesson-editor-field > .action-control { justify-self: start; }
-.lesson-editor-label { font-size: var(--text-md); font-weight: 600; }
-.lesson-editor-field input:not([type="checkbox"]), .lesson-editor-field textarea, .lesson-editor-field select { width: 100%; }
-.lesson-editor-steps { display: grid; gap: var(--space-1); padding: 0; list-style: none; }
-.lesson-editor-steps button { display: flex; align-items: center; justify-content: flex-start; gap: var(--space-3); width: 100%; min-height: var(--touch-target); padding: var(--space-1-5) var(--space-3); border: 1px solid var(--line); border-radius: 8px; background: var(--raised); color: inherit; text-align: left; font: inherit; cursor: pointer; }
-.lesson-editor-steps button[aria-current] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
-.lesson-editor-step-kind { flex: none; width: 104px; color: var(--muted); font-size: var(--text-sm); }
-.lesson-editor-problem { flex: none; margin-left: auto; color: var(--accent); fill: currentColor; }
-.lesson-editor-line { padding-block: var(--space-3); border-top: 1px solid var(--line); }
-.check-row.lesson-editor-check { align-items: center; gap: var(--space-2); min-height: var(--touch-target); }
-.course-settings-group { margin-top: var(--space-4); color: var(--muted); font-size: var(--text-base); }
-/* Beside Back, Show move and Hint on a phone, Main line needs its full width for the label. */
-@media (max-width: 760px) {
-  .lesson-branch-return svg { display: none; }
-}
+  section.lesson-editor-section {
+    display: grid;
+    gap: var(--space-3);
+    padding-top: var(--space-2);
+  }
+  .lesson-editor-section h2 {
+    font-size: var(--text-lg);
+  }
+  .lesson-editor-fields {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .lesson-editor-field {
+    display: grid;
+    gap: var(--space-1-5);
+  }
+  .lesson-editor-field > label {
+    display: grid;
+    gap: var(--space-1-5);
+  }
+  .lesson-editor-field > .action-control {
+    justify-self: start;
+  }
+  .lesson-editor-label {
+    font-size: var(--text-md);
+    font-weight: 600;
+  }
+  .lesson-editor-field input:not([type="checkbox"]),
+  .lesson-editor-field textarea,
+  .lesson-editor-field select {
+    width: 100%;
+  }
+  .lesson-editor-steps {
+    display: grid;
+    gap: var(--space-1);
+    padding: 0;
+    list-style: none;
+  }
+  .lesson-editor-steps button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-3);
+    width: 100%;
+    min-height: var(--touch-target);
+    padding: var(--space-1-5) var(--space-3);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--raised);
+    color: inherit;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+  }
+  .lesson-editor-steps button[aria-current] {
+    border-color: var(--accent);
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  .lesson-editor-step-kind {
+    flex: none;
+    width: 104px;
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .lesson-editor-problem {
+    flex: none;
+    margin-left: auto;
+    color: var(--accent);
+    fill: currentColor;
+  }
+  .lesson-editor-line {
+    padding-block: var(--space-3);
+    border-top: 1px solid var(--line);
+  }
+  .check-row.lesson-editor-check {
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--touch-target);
+  }
+  .course-settings-group {
+    margin-top: var(--space-4);
+    color: var(--muted);
+    font-size: var(--text-base);
+  }
+  /* Beside Back, Show move and Hint on a phone, Main line needs its full width for the label. */
+  @media (max-width: 760px) {
+    .lesson-branch-return svg {
+      display: none;
+    }
+  }
 }

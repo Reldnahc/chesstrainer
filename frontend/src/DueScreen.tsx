@@ -10,7 +10,6 @@ import { useReviewSession } from "./srsReview/useReviewSession";
 import { useReviewPlayback } from "./srsReview/useReviewPlayback";
 import { CommandError, useCommand } from "./useQuery";
 
-
 export default function DueScreen({
   requested,
   requestedSession,
@@ -26,10 +25,8 @@ export default function DueScreen({
   const errors = useCommand();
   const session = useReviewSession({ requested, requestedSession, focusSkill, fail: errors.fail });
   const playback = useReviewPlayback(session.feedback, session.audio, session.feedbackEventId);
-  const { position, due, loading, busy, feedback, submittedMove, done } =
-    session;
-  const { explaining, explanationFrame, preview, previewFrame, mistakeCue } =
-    playback;
+  const { position, due, loading, busy, feedback, submittedMove, done } = session;
+  const { explaining, explanationFrame, preview, previewFrame, mistakeCue } = playback;
   function answer(from: string, to: string, promotion?: Promotion) {
     if (preview || explaining) return;
     playback.beginAttempt();
@@ -63,10 +60,7 @@ export default function DueScreen({
       <h1>Your move.</h1>
       {focusSkill && <span className="sr-only">FOCUSED PRACTICE</span>}
       <span className="review-session-count">
-        <b>{done}</b>{" "}
-        <span>
-          {focusSkill ? "practiced this session" : "reviewed this session"}
-        </span>
+        <b>{done}</b> <span>{focusSkill ? "practiced this session" : "reviewed this session"}</span>
       </span>
     </>
   );
@@ -100,11 +94,7 @@ export default function DueScreen({
                           ? `${sideName(sideToMove(position.fen))} to move`
                           : "Your next move starts here"}
                 </TurnIndicator>
-                <span>
-                  {position
-                    ? `${due} IN QUEUE`
-                    : "NO POSITION LOADED"}
-                </span>
+                <span>{position ? `${due} IN QUEUE` : "NO POSITION LOADED"}</span>
               </div>
             }
             belowBoard={
@@ -122,9 +112,7 @@ export default function DueScreen({
                 fen={
                   explanationFrame?.fen ||
                   previewFrame?.fen ||
-                  (feedback?.completed && feedback.fen
-                    ? feedback.fen
-                    : position?.fen || START_FEN)
+                  (feedback?.completed && feedback.fen ? feedback.fen : position?.fen || START_FEN)
                 }
                 roles={explanationFrame?.roles}
                 quality={quality}
@@ -133,19 +121,11 @@ export default function DueScreen({
                   explanationFrame?.highlights ||
                   previewFrame?.highlights ||
                   feedback?.reveal_frame?.highlights ||
-                  (feedback?.completed && moveUci
-                    ? moveSquares(moveUci)
-                    : [])
+                  (feedback?.completed && moveUci ? moveSquares(moveUci) : [])
                 }
                 orientation={position?.orientation || "white"}
                 legalMoves={position?.legal_moves}
-                disabled={
-                  !position ||
-                  busy ||
-                  feedback?.completed ||
-                  !!preview ||
-                  explaining
-                }
+                disabled={!position || busy || feedback?.completed || !!preview || explaining}
                 onMove={answer}
               />
             }

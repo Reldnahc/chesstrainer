@@ -10,7 +10,15 @@ function externalSource(url?: string | null) {
   }
 }
 
-export default function SourceLine({ text, license, licenseUrl, revision, url, linkLabel = "View source", className = "" }: {
+export default function SourceLine({
+  text,
+  license,
+  licenseUrl,
+  revision,
+  url,
+  linkLabel = "View source",
+  className = "",
+}: {
   text: string;
   license?: string | null;
   licenseUrl?: string | null;
@@ -21,8 +29,32 @@ export default function SourceLine({ text, license, licenseUrl, revision, url, l
 }) {
   const href = externalSource(url);
   const licenseHref = externalSource(licenseUrl);
-  return <p className={`source-line ${className}`.trim()}>
-    {text}{license && <> · {licenseHref ? <a href={licenseHref} target="_blank" rel="noopener noreferrer">{license}</a> : license}</>}{revision && <> · Revision {revision}</>}
-    {href && <> · <a href={href} target="_blank" rel="noopener noreferrer">{linkLabel}</a></>}
-  </p>;
+  return (
+    <p className={`source-line ${className}`.trim()}>
+      {text}
+      {license && (
+        <>
+          {" "}
+          ·{" "}
+          {licenseHref ? (
+            <a href={licenseHref} target="_blank" rel="noopener noreferrer">
+              {license}
+            </a>
+          ) : (
+            license
+          )}
+        </>
+      )}
+      {revision && <> · Revision {revision}</>}
+      {href && (
+        <>
+          {" "}
+          ·{" "}
+          <a href={href} target="_blank" rel="noopener noreferrer">
+            {linkLabel}
+          </a>
+        </>
+      )}
+    </p>
+  );
 }

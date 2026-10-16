@@ -11,7 +11,7 @@ export default function CoachPicker({
 }) {
   return (
     <section className="studio-cast" aria-label="Choose a coach to preview">
-      {selectableCoaches.map((coach) => (
+      {selectableCoaches.map(coach => (
         <button
           key={coach.id}
           aria-label={`Preview ${coach.name}`}
@@ -28,7 +28,8 @@ export default function CoachPicker({
           <span>
             <strong>{coach.name}</strong>
             <small>
-              {coach.expressions.length} expressions · {availableIdles(coach).length} idle performances
+              {coach.expressions.length} expressions · {availableIdles(coach).length} idle
+              performances
             </small>
           </span>
         </button>

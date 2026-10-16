@@ -30,7 +30,13 @@ function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachE
                       <circle r="2" fill="#f3f0cb" className="study-eye-glint" />
                     </>
                   ) : closedEyes ? (
-                    <path d="M-6 0q6-6 12 0" stroke={color} strokeWidth="2.8" strokeLinecap="round" fill="none" />
+                    <path
+                      d="M-6 0q6-6 12 0"
+                      stroke={color}
+                      strokeWidth="2.8"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
                   ) : alarm ? (
                     <>
                       <rect x="-2" y="-7" width="4" height="8" rx="1" fill={color} />
@@ -38,8 +44,22 @@ function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachE
                     </>
                   ) : (
                     <>
-                      <rect x="-5.5" y={-6 * pose.eye} width="11" height={12 * pose.eye} rx="3" fill={color} transform={`rotate(${pose.brows[index] * 0.45})`} />
-                      <path className="study-eye-glint" d="M-3-3h2" stroke="#fff9d9" strokeWidth="1.2" strokeLinecap="round" />
+                      <rect
+                        x="-5.5"
+                        y={-6 * pose.eye}
+                        width="11"
+                        height={12 * pose.eye}
+                        rx="3"
+                        fill={color}
+                        transform={`rotate(${pose.brows[index] * 0.45})`}
+                      />
+                      <path
+                        className="study-eye-glint"
+                        d="M-3-3h2"
+                        stroke="#fff9d9"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                      />
                     </>
                   )}
                 </g>
@@ -49,21 +69,31 @@ function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachE
           </g>
         </g>
       ))}
-      <SpeechMouthLayer authored={<g stroke={color} fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        {pose.mouth === "round" ? (
-          <rect x="45" y="63" width="10" height="9" rx="2" />
-        ) : pose.mouth === "grin" ? (
-          <path d="M39 62v4l4 5h14l4-5v-4M45 65h10" />
-        ) : pose.mouth === "concern" ? (
-          <path d="M41 69v-3l3-3h12l3 3v3" />
-        ) : pose.mouth === "wince" ? (
-          <path d="m41 67 4-3 5 4 5-4 4 3" />
-        ) : pose.mouth === "flat" ? (
-          <path d="M41 67h18" />
-        ) : (
-          <path d="m41 65 3 4h12l3-4" />
-        )}
-      </g>}>
+      <SpeechMouthLayer
+        authored={
+          <g
+            stroke={color}
+            fill="none"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {pose.mouth === "round" ? (
+              <rect x="45" y="63" width="10" height="9" rx="2" />
+            ) : pose.mouth === "grin" ? (
+              <path d="M39 62v4l4 5h14l4-5v-4M45 65h10" />
+            ) : pose.mouth === "concern" ? (
+              <path d="M41 69v-3l3-3h12l3 3v3" />
+            ) : pose.mouth === "wince" ? (
+              <path d="m41 67 4-3 5 4 5-4 4 3" />
+            ) : pose.mouth === "flat" ? (
+              <path d="M41 67h18" />
+            ) : (
+              <path d="m41 65 3 4h12l3-4" />
+            )}
+          </g>
+        }
+      >
         <RobotSpeechMouth color={color} />
       </SpeechMouthLayer>
     </>
@@ -74,7 +104,7 @@ export default function RobotCoach({ expression }: CoachArtworkProps) {
   const original = castPoses[expression];
   const pose = {
     ...original,
-    hands: expression === "brilliant" ? "resolve" as const : original.hands,
+    hands: expression === "brilliant" ? ("resolve" as const) : original.hands,
   };
   const screen = useId();
   const status = expression === "blunder" || expression === "mistake" ? "#e9a385" : "#a4d9c3";
@@ -95,7 +125,13 @@ export default function RobotCoach({ expression }: CoachArtworkProps) {
         <path d="M52 101h6m-6 5h4" stroke="#c5d6c2" strokeWidth="1.5" strokeLinecap="round" />
         <HeadRig>
           <g className="cast-antenna coach-idle-antenna">
-            <path d="M50 21V12l7-5" fill="none" stroke="#849da1" strokeWidth="3" strokeLinecap="round" />
+            <path
+              d="M50 21V12l7-5"
+              fill="none"
+              stroke="#849da1"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
             <circle cx="59" cy="6" r="4" fill={status} />
             <circle cx="58" cy="5" r="1.2" fill="#e9f1d6" />
           </g>
@@ -103,10 +139,20 @@ export default function RobotCoach({ expression }: CoachArtworkProps) {
           <rect x="80" y="39" width="11" height="21" rx="4" fill="#7d8e8e" />
           <path d="M12 43v13m76-13v13" stroke="#b8c4b7" strokeWidth="2" strokeLinecap="round" />
           <rect x="17" y="20" width="66" height="60" rx="18" fill="#c9c7b4" />
-          <path d="M23 38V34q0-9 12-9h29" fill="none" stroke="#ece2cc" strokeWidth="2.5" strokeLinecap="round" />
+          <path
+            d="M23 38V34q0-9 12-9h29"
+            fill="none"
+            stroke="#ece2cc"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
           <rect x="22" y="29" width="56" height="46" rx="12" fill="#243840" />
           <RobotDisplay pose={pose} expression={expression} />
-          <defs><clipPath id={screen}><rect x="22" y="29" width="56" height="46" rx="12" /></clipPath></defs>
+          <defs>
+            <clipPath id={screen}>
+              <rect x="22" y="29" width="56" height="46" rx="12" />
+            </clipPath>
+          </defs>
           <g clipPath={`url(#${screen})`}>
             <g className="cast-scanline">
               <path d="M24 39h52" stroke="#d4efce" strokeWidth="1.5" />
@@ -118,8 +164,22 @@ export default function RobotCoach({ expression }: CoachArtworkProps) {
         </HeadRig>
         {pose.hands === "book" && (
           <g>
-            <rect x="28" y="91" width="44" height="24" rx="3" fill="#334b56" stroke="#8eabad" strokeWidth="2" />
-            <path d="M34 97h16m-16 5h30m-30 5h23" stroke="#a8d8c7" strokeWidth="2" strokeLinecap="round" />
+            <rect
+              x="28"
+              y="91"
+              width="44"
+              height="24"
+              rx="3"
+              fill="#334b56"
+              stroke="#8eabad"
+              strokeWidth="2"
+            />
+            <path
+              d="M34 97h16m-16 5h30m-30 5h23"
+              stroke="#a8d8c7"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
           </g>
         )}
         <CastHands pose={pose.hands} skin="#c9c7b4" sleeve="#758b8b" joint="#d9c598" />

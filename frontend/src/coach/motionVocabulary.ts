@@ -87,7 +87,10 @@ type MotionDirection = Omit<CoachMotionProfile, "id"> & {
 // Rig compatibility and signature emotion eligibility are resolved at playback.
 export const motionDirections = {
   classic: {
-    style: "reassuring", amplitude: 1, gaze: 1, settle: 1,
+    style: "reassuring",
+    amplitude: 1,
+    gaze: 1,
+    settle: 1,
     pools: {
       brilliant: ["blink", "twinkle", "nod", "lean-in"],
       blunder: ["slow-blink", "sigh", "glasses", "look-down"],
@@ -95,30 +98,48 @@ export const motionDirections = {
     },
   },
   "man-host": {
-    style: "buoyant", amplitude: 1.05, gaze: 1, settle: 1.1,
+    style: "buoyant",
+    amplitude: 1.05,
+    gaze: 1,
+    settle: 1.1,
     pools: { explaining: ["glance", "nod", "lean-in", "posture-reset"] },
   },
   "man-expert": {
-    style: "deliberate", amplitude: 0.62, gaze: 0.8, settle: 0.7,
+    style: "deliberate",
+    amplitude: 0.62,
+    gaze: 0.8,
+    settle: 0.7,
     pools: { brilliant: ["slow-blink", "nod", "look-down", "posture-reset"] },
   },
   "man-partner": {
-    style: "curious", amplitude: 0.9, gaze: 1.15, settle: 0.85,
+    style: "curious",
+    amplitude: 0.9,
+    gaze: 1.15,
+    settle: 0.85,
     pools: { great: ["blink", "head-tilt", "lean-in", "nod"] },
   },
   "woman-captain": {
-    style: "deliberate", amplitude: 1, gaze: 0.95, settle: 1.15,
+    style: "deliberate",
+    amplitude: 1,
+    gaze: 0.95,
+    settle: 1.15,
     pools: { encouraging: ["blink", "nod", "lean-in", "posture-reset"] },
   },
   "woman-analyst": {
-    style: "measured", amplitude: 0.55, gaze: 0.65, settle: 0.65,
+    style: "measured",
+    amplitude: 0.55,
+    gaze: 0.65,
+    settle: 0.65,
     pools: {
       book: ["slow-blink", "look-down", "glasses", "head-tilt"],
       thinking: ["slow-blink", "look-down", "breathe", "glasses"],
     },
   },
   "woman-spark": {
-    style: "buoyant", amplitude: 1.15, gaze: 1.25, settle: 1.1,
+    style: "buoyant",
+    amplitude: 1.15,
+    gaze: 1.25,
+    settle: 1.1,
     pools: {
       neutral: ["blink", "scan", "lean-in", "hair"],
       good: ["blink", "nod", "head-tilt", "hair"],
@@ -126,25 +147,37 @@ export const motionDirections = {
     },
   },
   "woman-blonde": {
-    style: "reassuring", amplitude: 0.85, gaze: 0.9, settle: 0.95,
+    style: "reassuring",
+    amplitude: 0.85,
+    gaze: 0.9,
+    settle: 0.95,
     pools: {
       idle: ["slow-blink", "head-tilt", "breathe", "hair"],
       encouraging: ["slow-blink", "nod", "breathe", "hair"],
     },
   },
   "human-boy": {
-    style: "buoyant", amplitude: 1.18, gaze: 1.2, settle: 1.2,
+    style: "buoyant",
+    amplitude: 1.18,
+    gaze: 1.2,
+    settle: 1.2,
     pools: { thinking: ["blink", "scan", "lean-in", "head-tilt"] },
   },
   "human-girl": {
-    style: "curious", amplitude: 1.05, gaze: 1.25, settle: 1.05,
+    style: "curious",
+    amplitude: 1.05,
+    gaze: 1.25,
+    settle: 1.05,
     pools: {
       brilliant: ["blink", "twinkle", "head-tilt", "lean-in"],
       check: ["blink", "scan", "lean-in", "posture-reset"],
     },
   },
   "dog-gentle": {
-    style: "reassuring", amplitude: 0.7, gaze: 0.7, settle: 0.85,
+    style: "reassuring",
+    amplitude: 0.7,
+    gaze: 0.7,
+    settle: 0.85,
     pools: {
       neutral: ["slow-blink", "glance", "breathe", "ears"],
       good: ["slow-blink", "nod", "breathe", "tail"],
@@ -152,7 +185,10 @@ export const motionDirections = {
     },
   },
   "dog-corgi": {
-    style: "buoyant", amplitude: 1.2, gaze: 1.05, settle: 1.2,
+    style: "buoyant",
+    amplitude: 1.2,
+    gaze: 1.05,
+    settle: 1.2,
     pools: {
       neutral: ["ears", "posture-reset", "nod", "glance"],
       brilliant: ["ears", "tail", "nod", "lean-in"],
@@ -161,7 +197,10 @@ export const motionDirections = {
     },
   },
   "dog-collie": {
-    style: "deliberate", amplitude: 1, gaze: 1.25, settle: 0.95,
+    style: "deliberate",
+    amplitude: 1,
+    gaze: 1.25,
+    settle: 0.95,
     pools: {
       neutral: ["ears", "scan", "lean-in", "posture-reset"],
       thinking: ["ears", "scan", "look-down", "head-tilt"],
@@ -169,7 +208,10 @@ export const motionDirections = {
     },
   },
   "dog-puppy": {
-    style: "buoyant", amplitude: 1.2, gaze: 1.1, settle: 1.2,
+    style: "buoyant",
+    amplitude: 1.2,
+    gaze: 1.1,
+    settle: 1.2,
     pools: {
       neutral: ["blink", "ears", "head-tilt", "tail"],
       brilliant: ["ears", "tail", "lean-in", "twinkle"],
@@ -178,7 +220,10 @@ export const motionDirections = {
     },
   },
   "cat-tuxedo": {
-    style: "measured", amplitude: 0.65, gaze: 0.85, settle: 0.65,
+    style: "measured",
+    amplitude: 0.65,
+    gaze: 0.85,
+    settle: 0.65,
     pools: {
       neutral: ["slow-blink", "glance", "head-tilt", "tail"],
       brilliant: ["slow-blink", "nod", "head-tilt", "tail"],
@@ -186,7 +231,10 @@ export const motionDirections = {
     },
   },
   "cat-black": {
-    style: "measured", amplitude: 0.55, gaze: 0.8, settle: 0.75,
+    style: "measured",
+    amplitude: 0.55,
+    gaze: 0.8,
+    settle: 0.75,
     pools: {
       idle: ["slow-blink", "glance", "breathe", "tail"],
       thinking: ["slow-blink", "look-down", "head-tilt", "ears"],
@@ -194,7 +242,10 @@ export const motionDirections = {
     },
   },
   "cat-kitten": {
-    style: "curious", amplitude: 1.15, gaze: 1.3, settle: 1.1,
+    style: "curious",
+    amplitude: 1.15,
+    gaze: 1.3,
+    settle: 1.1,
     pools: {
       neutral: ["blink", "ears", "scan", "head-tilt"],
       brilliant: ["blink", "ears", "tail", "twinkle"],
@@ -202,11 +253,17 @@ export const motionDirections = {
     },
   },
   gorilla: {
-    style: "deliberate", amplitude: 0.65, gaze: 0.75, settle: 1.05,
+    style: "deliberate",
+    amplitude: 0.65,
+    gaze: 0.75,
+    settle: 1.05,
     pools: { brilliant: ["slow-blink", "nod", "breathe", "posture-reset"] },
   },
   raccoon: {
-    style: "curious", amplitude: 1.05, gaze: 1.25, settle: 1,
+    style: "curious",
+    amplitude: 1.05,
+    gaze: 1.25,
+    settle: 1,
     pools: {
       neutral: ["blink", "scan", "ears", "head-tilt"],
       brilliant: ["blink", "lean-in", "tail", "nod"],
@@ -214,7 +271,10 @@ export const motionDirections = {
     },
   },
   frog: {
-    style: "measured", amplitude: 0.32, gaze: 0.45, settle: 0.55,
+    style: "measured",
+    amplitude: 0.32,
+    gaze: 0.45,
+    settle: 0.55,
     pools: {
       neutral: ["blink", "breathe", "head-tilt", "glance"],
       brilliant: ["blink", "nod", "breathe", "posture-reset"],
@@ -222,45 +282,72 @@ export const motionDirections = {
     },
   },
   capybara: {
-    style: "reassuring", amplitude: 0.4, gaze: 0.5, settle: 0.8,
+    style: "reassuring",
+    amplitude: 0.4,
+    gaze: 0.5,
+    settle: 0.8,
     pools: { brilliant: ["slow-blink", "nod", "breathe", "head-tilt"] },
   },
   unicorn: {
-    style: "buoyant", amplitude: 0.95, gaze: 1, settle: 0.9,
+    style: "buoyant",
+    amplitude: 0.95,
+    gaze: 1,
+    settle: 0.9,
     pools: { encouraging: ["slow-blink", "nod", "head-tilt", "lean-in"] },
   },
   wizard: {
-    style: "measured", amplitude: 0.65, gaze: 0.7, settle: 0.8,
+    style: "measured",
+    amplitude: 0.65,
+    gaze: 0.7,
+    settle: 0.8,
     pools: {
       book: ["slow-blink", "look-down", "glasses", "head-tilt"],
       thinking: ["scan", "look-down", "glasses", "breathe"],
     },
   },
   slime: {
-    style: "buoyant", amplitude: 1.2, gaze: 1, settle: 1.3,
+    style: "buoyant",
+    amplitude: 1.2,
+    gaze: 1,
+    settle: 1.3,
     pools: { good: ["blink", "nod", "breathe", "posture-reset"] },
   },
   dragon: {
-    style: "deliberate", amplitude: 0.9, gaze: 0.8, settle: 1.15,
+    style: "deliberate",
+    amplitude: 0.9,
+    gaze: 0.8,
+    settle: 1.15,
     pools: { brilliant: ["slow-blink", "nod", "lean-in", "posture-reset"] },
   },
   ghost: {
-    style: "measured", amplitude: 0.45, gaze: 0.65, settle: 0.6,
+    style: "measured",
+    amplitude: 0.45,
+    gaze: 0.65,
+    settle: 0.6,
     pools: { check: ["slow-blink", "scan", "look-down", "lean-in"] },
   },
   mushroom: {
-    style: "curious", amplitude: 0.6, gaze: 0.65, settle: 0.85,
+    style: "curious",
+    amplitude: 0.6,
+    gaze: 0.65,
+    settle: 0.85,
     pools: {
       brilliant: ["slow-blink", "head-tilt", "nod", "breathe"],
       neutral: ["slow-blink", "head-tilt", "glance", "breathe"],
     },
   },
   alien: {
-    style: "curious", amplitude: 0.75, gaze: 1.4, settle: 0.6,
+    style: "curious",
+    amplitude: 0.75,
+    gaze: 1.4,
+    settle: 0.6,
     pools: { brilliant: ["scan", "head-tilt", "lean-in", "posture-reset"] },
   },
   robot: {
-    style: "deliberate", amplitude: 0.65, gaze: 1.2, settle: 0.65,
+    style: "deliberate",
+    amplitude: 0.65,
+    gaze: 1.2,
+    settle: 0.65,
     pools: {
       neutral: ["scan", "head-tilt", "look-down", "posture-reset"],
       brilliant: ["scan", "nod", "lean-in", "posture-reset"],
@@ -269,7 +356,10 @@ export const motionDirections = {
     },
   },
   "living-pawn": {
-    style: "deliberate", amplitude: 1.05, gaze: 0.95, settle: 1.15,
+    style: "deliberate",
+    amplitude: 1.05,
+    gaze: 0.95,
+    settle: 1.15,
     pools: {
       neutral: ["blink", "lean-in", "nod", "posture-reset"],
       brilliant: ["blink", "nod", "lean-in", "posture-reset"],
@@ -279,23 +369,43 @@ export const motionDirections = {
 } satisfies Record<CoachId, MotionDirection>;
 
 const affirmingStates: readonly CoachExpression[] = [
-  "brilliant", "great", "best", "good", "winning", "encouraging", "recovered",
+  "brilliant",
+  "great",
+  "best",
+  "good",
+  "winning",
+  "encouraging",
+  "recovered",
 ];
 const reflectiveStates: readonly CoachExpression[] = [
-  "neutral", "idle", "book", "thinking", "uncertain", "explaining", "draw",
+  "neutral",
+  "idle",
+  "book",
+  "thinking",
+  "uncertain",
+  "explaining",
+  "draw",
 ];
 const sharedRestingChoices: CoachIdlePool = [
-  "blink", "breathe", "double-blink", "glance-right", "tilt-right", "weight-shift",
+  "blink",
+  "breathe",
+  "double-blink",
+  "glance-right",
+  "tilt-right",
+  "weight-shift",
 ];
 
 export function coachPerformance(
   coachId: string,
   base: ReactionTiming,
 ): CoachDefinition["animation"] {
-  const direction: MotionDirection = (
-    motionDirections as Partial<Record<string, MotionDirection>>
-  )[coachId] ?? {
-    style: "reassuring", amplitude: 1, gaze: 1, settle: 1,
+  const direction: MotionDirection = (motionDirections as Partial<Record<string, MotionDirection>>)[
+    coachId
+  ] ?? {
+    style: "reassuring",
+    amplitude: 1,
+    gaze: 1,
+    settle: 1,
   };
   const pools: Pools = {
     ...expressionPools,
@@ -311,7 +421,8 @@ export function coachPerformance(
       ...sharedRestingChoices,
       ...(affirming || reflectiveStates.includes(state) ? ["look-up" as const] : []),
       ...(affirming ? ["nod-twice" as const] : []),
-      "signature-a", "signature-b",
+      "signature-a",
+      "signature-b",
     ];
     pools[state] = [...new Set([...pools[state], ...additions])];
   }

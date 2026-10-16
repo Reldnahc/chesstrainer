@@ -1,5 +1,5 @@
-import {fileURLToPath} from "node:url";
-import {defineConfig} from "vite";
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { devRecordingAssets, speechManifests } from "./vite.shared";
 
@@ -8,6 +8,7 @@ export default defineConfig({
   root: fileURLToPath(new URL("./intelligence-lab", import.meta.url)),
   // Keep concurrent app/studio dependency optimization from invalidating lab modules.
   cacheDir: fileURLToPath(new URL("./node_modules/.vite-intelligence", import.meta.url)),
-  plugins: [react(), devRecordingAssets(), speechManifests()], publicDir: false,
-  server: {host: "127.0.0.1", port: 5175, strictPort: true},
+  plugins: [react(), devRecordingAssets(), speechManifests()],
+  publicDir: false,
+  server: { host: "127.0.0.1", port: 5175, strictPort: true },
 });

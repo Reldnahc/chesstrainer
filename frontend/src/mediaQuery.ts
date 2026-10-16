@@ -26,7 +26,7 @@ function store(query: string, fallback: boolean): Store {
   };
   const change = (event: MediaQueryListEvent) => publish(event.matches);
   const created: Store = {
-    subscribe: (listener) => {
+    subscribe: listener => {
       listeners.add(listener);
       if (listeners.size === 1) {
         media?.addEventListener("change", change);

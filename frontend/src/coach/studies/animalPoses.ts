@@ -185,10 +185,7 @@ export const animalPoses: Record<CoachExpression, AnimalPose> = {
   draw: pose({ tilt: -2, eye: 4, ears: [-8, 8], paws: "pair", mouth: "smile" }),
 };
 
-export function animalPose(
-  expression: CoachExpression,
-  quiet: boolean,
-): AnimalPose {
+export function animalPose(expression: CoachExpression, quiet: boolean): AnimalPose {
   const original = animalPoses[expression];
   return quiet
     ? {
@@ -197,11 +194,7 @@ export function animalPose(
         eye: original.eye * 0.9,
         tail: original.tail * 0.6,
         paws:
-          expression === "blunder"
-            ? "chin"
-            : expression === "brilliant"
-              ? "offer"
-              : original.paws,
+          expression === "blunder" ? "chin" : expression === "brilliant" ? "offer" : original.paws,
       }
     : original;
 }

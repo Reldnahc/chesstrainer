@@ -1,118 +1,176 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-.weakness-content { display: flex; flex-direction: column; gap: var(--space-6); }
-.weakness-section { display: flex; flex-direction: column; gap: var(--space-5); }
-.weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
-.weakness-section-heading h2 { font-size: var(--text-2xl); }
-.weakness-section-heading > span { flex-shrink: 0; }
-.weakness-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5);
-}
-.weakness { display: flex; flex-direction: column; gap: var(--space-5); min-width: 0; }
-.weakness-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3) var(--space-4); }
-.weakness-heading h3 { font-size: var(--text-2xl); overflow-wrap: anywhere; }
-/* Every cue fits two lines at 64ch. Reserving both keeps cards the same height
-   whichever category is showing, whether or not this card's cue wraps. */
-.weakness-cue { color: #d4d8de; max-width: 64ch; min-height: 2lh; }
-.weakness-practice { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); margin-top: auto; }
-.weakness-practice strong { color: #d4d8de; font-weight: 500; font-variant-numeric: tabular-nums; }
-.weakness-evidence { border-top: 1px solid var(--line); padding-top: var(--space-2); }
-.weakness-practice-note { font-size: var(--text-sm); }
-/* The dialog's surface, backdrop and phone sheet are dialog.css's. */
-.evidence-dialog {
-  width: 100%;
-  max-width: 1080px;
-}
-.evidence-dialog[open] {
-  gap: var(--space-6);
-}
-.evidence-dialog > .row-between > div,
-.evidence-grid > div:last-child,
-.interpretation {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-.evidence-dialog > .row-between > div {
-  gap: var(--space-1-5);
-}
-.interpretation {
-  align-items: flex-start;
-  gap: var(--space-2);
-}
-.evidence-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-8);
-  align-items: start;
-}
-.candidate {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  border-bottom: 1px solid var(--line);
-  padding: 0 0 var(--space-3);
-  gap: var(--space-2);
-  font-size: var(--text-md);
-}
-.candidate code {
-  grid-column: span 2;
-  font-size: var(--text-xs);
-  color: var(--muted);
-  overflow-wrap: anywhere;
-}
-.interpretation {
-  border-left: 2px solid var(--accent);
-  padding-left: var(--space-4);
-}
-.audit {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  background: #121416;
-  padding: var(--space-4);
-  font-size: var(--text-xs);
-}
-.evidence-dialog > .row-between {
-  position: sticky;
-  /* Pinned at the dialog's top edge, over its own top padding. */
-  top: calc(-1 * var(--dialog-padding-top, var(--panel-padding)));
-  z-index: 2;
-  background: var(--surface);
-  padding-block: var(--space-3);
-}
-.evidence-grid > * {
-  min-width: 0;
-}
-.evidence-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  max-height: 220px;
-  overflow-y: auto;
-  padding: var(--space-1-5);
-  margin-inline: calc(-1 * var(--space-1-5));
-}
-@media (max-width: 1000px) {
-  .weakness-list { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 760px) {
-  .evidence-grid {
-    grid-template-columns: minmax(0, 1fr);
+  .weakness-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .weakness-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .weakness-section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
     gap: var(--space-4);
   }
-  .weakness-list { gap: var(--space-4); }
-  .weakness-section-heading { gap: var(--space-3); }
-  .weakness-practice { align-items: stretch; }
-  .evidence-dialog h2 {
-    font-size: var(--text-xl);
+  .weakness-section-heading h2 {
+    font-size: var(--text-2xl);
   }
-  .evidence-dialog > .row-between .eyebrow {
-    display: none;
+  .weakness-section-heading > span {
+    flex-shrink: 0;
   }
-  .evidence-grid > .board-shell {
-    width: min(100%, 400px);
-    margin: auto;
+  .weakness-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
   }
-}
+  .weakness {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-width: 0;
+  }
+  .weakness-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-4);
+  }
+  .weakness-heading h3 {
+    font-size: var(--text-2xl);
+    overflow-wrap: anywhere;
+  }
+  /* Every cue fits two lines at 64ch. Reserving both keeps cards the same height
+   whichever category is showing, whether or not this card's cue wraps. */
+  .weakness-cue {
+    color: #d4d8de;
+    max-width: 64ch;
+    min-height: 2lh;
+  }
+  .weakness-practice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-top: auto;
+  }
+  .weakness-practice strong {
+    color: #d4d8de;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  .weakness-evidence {
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-2);
+  }
+  .weakness-practice-note {
+    font-size: var(--text-sm);
+  }
+  /* The dialog's surface, backdrop and phone sheet are dialog.css's. */
+  .evidence-dialog {
+    width: 100%;
+    max-width: 1080px;
+  }
+  .evidence-dialog[open] {
+    gap: var(--space-6);
+  }
+  .evidence-dialog > .row-between > div,
+  .evidence-grid > div:last-child,
+  .interpretation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .evidence-dialog > .row-between > div {
+    gap: var(--space-1-5);
+  }
+  .interpretation {
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+  .candidate {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    border-bottom: 1px solid var(--line);
+    padding: 0 0 var(--space-3);
+    gap: var(--space-2);
+    font-size: var(--text-md);
+  }
+  .candidate code {
+    grid-column: span 2;
+    font-size: var(--text-xs);
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  .interpretation {
+    border-left: 2px solid var(--accent);
+    padding-left: var(--space-4);
+  }
+  .audit {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: #121416;
+    padding: var(--space-4);
+    font-size: var(--text-xs);
+  }
+  .evidence-dialog > .row-between {
+    position: sticky;
+    /* Pinned at the dialog's top edge, over its own top padding. */
+    top: calc(-1 * var(--dialog-padding-top, var(--panel-padding)));
+    z-index: 2;
+    background: var(--surface);
+    padding-block: var(--space-3);
+  }
+  .evidence-grid > * {
+    min-width: 0;
+  }
+  .evidence-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    max-height: 220px;
+    overflow-y: auto;
+    padding: var(--space-1-5);
+    margin-inline: calc(-1 * var(--space-1-5));
+  }
+  @media (max-width: 1000px) {
+    .weakness-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 760px) {
+    .evidence-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-4);
+    }
+    .weakness-list {
+      gap: var(--space-4);
+    }
+    .weakness-section-heading {
+      gap: var(--space-3);
+    }
+    .weakness-practice {
+      align-items: stretch;
+    }
+    .evidence-dialog h2 {
+      font-size: var(--text-xl);
+    }
+    .evidence-dialog > .row-between .eyebrow {
+      display: none;
+    }
+    .evidence-grid > .board-shell {
+      width: min(100%, 400px);
+      margin: auto;
+    }
+  }
 }

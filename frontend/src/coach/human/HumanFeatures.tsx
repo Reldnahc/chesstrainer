@@ -49,7 +49,13 @@ export type HumanFaceStyle = {
 };
 
 const smiling: readonly CoachExpression[] = [
-  "brilliant", "great", "best", "good", "winning", "recovered", "encouraging",
+  "brilliant",
+  "great",
+  "best",
+  "good",
+  "winning",
+  "recovered",
+  "encouraging",
 ];
 const noses = {
   hook: "M39 43q-2 7 1 7h2",
@@ -91,22 +97,28 @@ export default function HumanFeatures({
   const rx = face.width ?? 4.2;
   const ry = pose.eye * (face.height ?? 1);
   const shaped = !!face.shape && face.shape !== "round";
-  const outlines = [30, 50].map((cx) => eyeOutline(cx, rx, ry, face.shape));
-  const whites = [30, 50].map((cx, i) => shaped
-    ? <path key={cx} d={outlines[i].path} />
-    : <ellipse key={cx} cx={cx} cy="42" rx={rx} ry={ry} />);
+  const outlines = [30, 50].map(cx => eyeOutline(cx, rx, ry, face.shape));
+  const whites = [30, 50].map((cx, i) =>
+    shaped ? (
+      <path key={cx} d={outlines[i].path} />
+    ) : (
+      <ellipse key={cx} cx={cx} cy="42" rx={rx} ry={ry} />
+    ),
+  );
   // Lids rest at their authored depth and clear completely by the widest (shocked) eyes.
   const lid = (face.lid ?? 0) * Math.max(0, Math.min(1, (5.1 - pose.eye) / 1.3));
   const smileLids = !!face.smileLids && smiling.includes(expression);
   const irisRadius = face.irisRadius ?? 2.4;
   const pupil = face.iris ? irisRadius * 0.62 : 2;
   const brow = face.brows;
-  const browTransform = (cx: number, side: -1 | 1) => brow && [
-    `translate(${cx} 31)`,
-    `rotate(${(brow.angle ?? 0) * -side})`,
-    `scale(${brow.width ?? 1} ${brow.arch ?? 1})`,
-    `translate(${-cx} ${-31 + (brow.offset ?? 0) - (side === 1 ? brow.raise ?? 0 : 0)})`,
-  ].join(" ");
+  const browTransform = (cx: number, side: -1 | 1) =>
+    brow &&
+    [
+      `translate(${cx} 31)`,
+      `rotate(${(brow.angle ?? 0) * -side})`,
+      `scale(${brow.width ?? 1} ${brow.arch ?? 1})`,
+      `translate(${-cx} ${-31 + (brow.offset ?? 0) - (side === 1 ? (brow.raise ?? 0) : 0)})`,
+    ].join(" ");
   return (
     <>
       {pose.blush && (
@@ -128,25 +140,23 @@ export default function HumanFeatures({
         </g>
       </g>
       {face.creases && !closedEyes && (
-        <g className="coach-eye-creases" fill="none" stroke={face.creases} strokeWidth=".7" strokeLinecap="round" opacity=".7">
+        <g
+          className="coach-eye-creases"
+          fill="none"
+          stroke={face.creases}
+          strokeWidth=".7"
+          strokeLinecap="round"
+          opacity=".7"
+        >
           <path d={`M${30 - rx - 1.2} 40.6q-1.4 1.6 0 3.4`} />
           <path d={`M${50 + rx + 1.2} 40.6q1.4 1.6 0 3.4`} />
         </g>
       )}
       <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
         {closedEyes ? (
-          <g
-            fill="none"
-            stroke="#393c42"
-            strokeWidth="1.7"
-            strokeLinecap="round"
-          >
-            <path
-              d={expression === "mistake" ? "M26 42q4 3 8-1" : "M26 43q4-5 8 0"}
-            />
-            <path
-              d={expression === "mistake" ? "M46 41q4 4 8 1" : "M46 43q4-5 8 0"}
-            />
+          <g fill="none" stroke="#393c42" strokeWidth="1.7" strokeLinecap="round">
+            <path d={expression === "mistake" ? "M26 42q4 3 8-1" : "M26 43q4-5 8 0"} />
+            <path d={expression === "mistake" ? "M46 41q4 4 8 1" : "M46 43q4-5 8 0"} />
           </g>
         ) : (
           <>
@@ -157,7 +167,7 @@ export default function HumanFeatures({
             <g clipPath={`url(#${eyeClip})`}>
               <g className="coach-gaze">
                 <g transform={`translate(${pose.gaze.join(" ")})`}>
-                  {[30, 50].map((cx) => (
+                  {[30, 50].map(cx => (
                     <g key={cx}>
                       {face.iris && <circle cx={cx} cy="42" r={irisRadius} fill={face.iris} />}
                       <ellipse
@@ -175,28 +185,49 @@ export default function HumanFeatures({
               </g>
               {lid > 0 && (
                 <g fill={face.skin}>
-                  {[30, 50].map((cx) => (
-                    <rect key={cx} x={cx - rx - 1} y={41 - ry * 2} width={rx * 2 + 2} height={ry + 1 + ry * 2 * lid} />
+                  {[30, 50].map(cx => (
+                    <rect
+                      key={cx}
+                      x={cx - rx - 1}
+                      y={41 - ry * 2}
+                      width={rx * 2 + 2}
+                      height={ry + 1 + ry * 2 * lid}
+                    />
                   ))}
                 </g>
               )}
               {smileLids && (
                 <g fill={face.skin}>
-                  {[30, 50].map((cx) => (
-                    <path key={cx} d={`M${cx - rx - 1} ${42 + ry + 1}Q${cx} ${42 + ry * 0.5} ${cx + rx + 1} ${42 + ry + 1}Z`} />
+                  {[30, 50].map(cx => (
+                    <path
+                      key={cx}
+                      d={`M${cx - rx - 1} ${42 + ry + 1}Q${cx} ${42 + ry * 0.5} ${cx + rx + 1} ${42 + ry + 1}Z`}
+                    />
                   ))}
                 </g>
               )}
             </g>
             {lid > 0 && (
               <g stroke="#393c42" strokeWidth="1.1" strokeLinecap="round">
-                {[30, 50].map((cx) => <path key={cx} d={`M${cx - rx + 0.3} ${42 - ry + ry * 2 * lid}h${rx * 2 - 0.6}`} />)}
+                {[30, 50].map(cx => (
+                  <path
+                    key={cx}
+                    d={`M${cx - rx + 0.3} ${42 - ry + ry * 2 * lid}h${rx * 2 - 0.6}`}
+                  />
+                ))}
               </g>
             )}
             {face.liner && (
-              <g fill="none" stroke="#2c272a" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round">
+              <g
+                fill="none"
+                stroke="#2c272a"
+                strokeWidth="1.1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 {outlines.map((outline, i) => {
-                  const upper = shaped ? outline.upper
+                  const upper = shaped
+                    ? outline.upper
                     : `M${outline.inner} 42A${rx} ${ry} 0 0 ${i} ${outline.outer} 42`;
                   const flick = face.liner === "flick" ? `l${outline.outward * 1.6} -1.4` : "";
                   return <path key={i} d={upper + flick} />;
@@ -204,16 +235,31 @@ export default function HumanFeatures({
               </g>
             )}
             {face.lash && (
-              <path d="m25 41-1.3-1m30 1 1.3-1" stroke={browColor} strokeWidth="1.1" strokeLinecap="round" />
+              <path
+                d="m25 41-1.3-1m30 1 1.3-1"
+                stroke={browColor}
+                strokeWidth="1.1"
+                strokeLinecap="round"
+              />
             )}
             {face.crease && (
               <g fill="none" stroke={face.crease} strokeWidth=".8" strokeLinecap="round">
-                {[30, 50].map((cx) => <path key={cx} d={`M${cx - rx + 0.6} ${42 - ry - 1.3}q${rx - 0.6}-2 ${rx * 2 - 1.2} 0`} />)}
+                {[30, 50].map(cx => (
+                  <path
+                    key={cx}
+                    d={`M${cx - rx + 0.6} ${42 - ry - 1.3}q${rx - 0.6}-2 ${rx * 2 - 1.2} 0`}
+                  />
+                ))}
               </g>
             )}
             {smileLids && (
               <g fill="none" stroke="#393c42" strokeWidth=".7" opacity=".5">
-                {[30, 50].map((cx) => <path key={cx} d={`M${cx - rx} ${42 + ry * 0.75}Q${cx} ${42 + ry * 0.4} ${cx + rx} ${42 + ry * 0.75}`} />)}
+                {[30, 50].map(cx => (
+                  <path
+                    key={cx}
+                    d={`M${cx - rx} ${42 + ry * 0.75}Q${cx} ${42 + ry * 0.4} ${cx + rx} ${42 + ry * 0.75}`}
+                  />
+                ))}
               </g>
             )}
           </>
@@ -230,12 +276,7 @@ export default function HumanFeatures({
       />
       {mouth ?? <HumanMouth pose={pose} expression={expression} mouthColor={mouthColor} />}
       {glasses && (
-        <g
-          className="coach-glasses"
-          fill="none"
-          stroke="#393c42"
-          strokeWidth="2.2"
-        >
+        <g className="coach-glasses" fill="none" stroke="#393c42" strokeWidth="2.2">
           <rect x="22" y="35" width="15" height="13" rx="4.5" />
           <rect x="43" y="35" width="15" height="13" rx="4.5" />
           <path d="M37 40q3-2 6 0M17 37l5 2m36 0 5-2" />
@@ -254,33 +295,31 @@ export default function HumanFeatures({
 
 // Shared authored expression, also used as the exact resting fallback by an
 // articulated mouth. A speaking coach supplies its own geometry through the slot.
-export function HumanMouth({ pose, expression, mouthColor = "#75473e" }: {
+export function HumanMouth({
+  pose,
+  expression,
+  mouthColor = "#75473e",
+}: {
   pose: Pose;
   expression: CoachExpression;
   mouthColor?: string;
 }) {
-  return <g className="coach-mouth">
-    <path
-      d={pose.mouth}
-      fill={mouthColor}
-      stroke={mouthColor}
-      strokeWidth=".65"
-      strokeLinejoin="round"
-    />
-    {pose.open &&
-      [
-        "brilliant",
-        "great",
-        "winning",
-        "recovered",
-        "encouraging",
-        "explaining",
-      ].includes(expression) && (
-        <path d="M34 56q6 2 12 0l-1 3H35Z" fill="#fff7e8" />
-      )}
-    {pose.open &&
-      ["brilliant", "winning", "recovered"].includes(expression) && (
+  return (
+    <g className="coach-mouth">
+      <path
+        d={pose.mouth}
+        fill={mouthColor}
+        stroke={mouthColor}
+        strokeWidth=".65"
+        strokeLinejoin="round"
+      />
+      {pose.open &&
+        ["brilliant", "great", "winning", "recovered", "encouraging", "explaining"].includes(
+          expression,
+        ) && <path d="M34 56q6 2 12 0l-1 3H35Z" fill="#fff7e8" />}
+      {pose.open && ["brilliant", "winning", "recovered"].includes(expression) && (
         <path d="M36 65q4-3 8 0-4 3-8 0" fill="#d58c7e" />
       )}
-  </g>;
+    </g>
+  );
 }

@@ -18,7 +18,10 @@ export default function ReviewMoves({
 }: {
   game: Game;
   /** Game review passes its exploration; a live game passes its own cursor and navigation. */
-  exploration: Pick<GameExploration, "cursor" | "branch" | "branches" | "navigate" | "selectBranch">;
+  exploration: Pick<
+    GameExploration,
+    "cursor" | "branch" | "branches" | "navigate" | "selectBranch"
+  >;
   getAnalysis: (root: number, path: string[]) => Analysis | undefined;
   progress: ReactNode;
   /** Whole-game commands beside Next mistake, shown on both tabs. */
@@ -38,14 +41,13 @@ export default function ReviewMoves({
     const row = button.getBoundingClientRect(),
       pane = list.getBoundingClientRect();
     if (row.top < pane.top) list.scrollTop -= pane.top - row.top;
-    else if (row.bottom > pane.bottom)
-      list.scrollTop += row.bottom - pane.bottom;
+    else if (row.bottom > pane.bottom) list.scrollTop += row.bottom - pane.bottom;
   }, [cursor.ply, inBranch, tab]);
   return (
     <section className="game-notation" aria-label="Moves and move quality">
       <div className="game-move-heading">
         <div className="game-review-tabs" role="tablist" aria-label="Game review details">
-          {(["moves", "quality"] as const).map((value) => (
+          {(["moves", "quality"] as const).map(value => (
             <button
               key={value}
               id={`${id}-${value}-tab`}
@@ -55,12 +57,18 @@ export default function ReviewMoves({
               aria-controls={`${id}-${value}-panel`}
               tabIndex={tab === value ? 0 : -1}
               onClick={() => setTab(value)}
-              onKeyDown={(event) => {
+              onKeyDown={event => {
                 if (event.altKey || event.ctrlKey || event.metaKey) return;
-                const next = event.key === "Home" ? "moves"
-                  : event.key === "End" ? "quality"
-                    : event.key === "ArrowLeft" || event.key === "ArrowRight"
-                      ? value === "moves" ? "quality" : "moves" : null;
+                const next =
+                  event.key === "Home"
+                    ? "moves"
+                    : event.key === "End"
+                      ? "quality"
+                      : event.key === "ArrowLeft" || event.key === "ArrowRight"
+                        ? value === "moves"
+                          ? "quality"
+                          : "moves"
+                        : null;
                 if (!next) return;
                 event.preventDefault();
                 // Tabs own these keys; don't also step the board's global shortcut.
@@ -74,26 +82,22 @@ export default function ReviewMoves({
           ))}
         </div>
         <span className="game-move-actions">
-        <Button
-          variant="quiet"
-          size="dense"
-          hidden={tab !== "moves"}
-          onClick={() => {
-            const next = game.frames.findIndex(
-              (f, i) => i > cursor.ply && f.report && isPoorMove(f.report.label),
-            );
-            const first = game.frames.findIndex(
-              (f) => f.report && isPoorMove(f.report.label),
-            );
-            if (next >= 0 || first >= 0) navigate(next >= 0 ? next : first);
-          }}
-          disabled={
-            !game.frames.some((f) => f.report && isPoorMove(f.report.label))
-          }
-        >
-          Next mistake <ChevronRight size={14} />
-        </Button>
-        {actions}
+          <Button
+            variant="quiet"
+            size="dense"
+            hidden={tab !== "moves"}
+            onClick={() => {
+              const next = game.frames.findIndex(
+                (f, i) => i > cursor.ply && f.report && isPoorMove(f.report.label),
+              );
+              const first = game.frames.findIndex(f => f.report && isPoorMove(f.report.label));
+              if (next >= 0 || first >= 0) navigate(next >= 0 ? next : first);
+            }}
+            disabled={!game.frames.some(f => f.report && isPoorMove(f.report.label))}
+          >
+            Next mistake <ChevronRight size={14} />
+          </Button>
+          {actions}
         </span>
       </div>
       {progress}
@@ -111,13 +115,11 @@ export default function ReviewMoves({
             return (
               <button
                 key={ply}
-                ref={(element) => {
+                ref={element => {
                   if (element) moveButtons.current.set(ply, element);
                   else moveButtons.current.delete(ply);
                 }}
-                aria-current={
-                  !branch && cursor.ply === ply ? "step" : undefined
-                }
+                aria-current={!branch && cursor.ply === ply ? "step" : undefined}
                 onClick={() => navigate(ply)}
                 aria-label={`${moveNumber(f.number, f.actor === "white" ? "white" : "black")} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}
               >
@@ -140,24 +142,19 @@ export default function ReviewMoves({
         {!!branches.length && (
           <details className="disclosure game-variations" open>
             <summary>Variations ({branches.length})</summary>
-            {branches.map((b) => (
+            {branches.map(b => (
               <div key={b.id} className="game-variation-row">
                 <span>
                   #{b.id} · ply {b.root}
                 </span>
                 {b.sans.map((san, index) => {
-                  const report = getAnalysis(
-                    b.root,
-                    b.moves.slice(0, index + 1),
-                  )?.report;
+                  const report = getAnalysis(b.root, b.moves.slice(0, index + 1))?.report;
                   return (
                     <Button
                       key={index}
                       size="dense"
                       mono
-                      aria-pressed={
-                        branch?.id === b.id && cursor.step === index + 1
-                      }
+                      aria-pressed={branch?.id === b.id && cursor.step === index + 1}
                       onClick={() => selectBranch(b, index + 1)}
                     >
                       {san}

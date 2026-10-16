@@ -22,7 +22,10 @@ import type { CoachPerformanceSnapshot } from "./performanceDiagnostics";
 import "./coach.css";
 
 // Idle bookkeeping changes the wrapper's channel styles, not the SVG tree.
-const CharacterArtwork = memo(function CharacterArtwork({ Artwork, ...props }: CoachArtworkProps & {
+const CharacterArtwork = memo(function CharacterArtwork({
+  Artwork,
+  ...props
+}: CoachArtworkProps & {
   Artwork: ComponentType<CoachArtworkProps>;
 }) {
   return <Artwork {...props} />;
@@ -64,7 +67,16 @@ export function CoachCharacter({
   const requested = resolveExpression(coach, reaction.state);
   // Destructured so the lint rules see the ref apart from the rendered values.
   const {
-    ref, expression, face, animated, phase, micro, take, motion: performedMotion, idles, idleStyle: idleTracks,
+    ref,
+    expression,
+    face,
+    animated,
+    phase,
+    micro,
+    take,
+    motion: performedMotion,
+    idles,
+    idleStyle: idleTracks,
   } = usePerformance({
     reaction: { ...reaction, state: requested },
     identity: `${coach.id}:${direction}`,
@@ -79,10 +91,14 @@ export function CoachCharacter({
     onPerformance,
   });
   const Artwork = coach.Artwork;
-  useSpeechPerformance(ref, speech,
+  useSpeechPerformance(
+    ref,
+    speech,
     animated && supportsSpeech(coach, direction) && speech?.coachId === coach.id,
-    `${coach.id}:${direction}`, speechTrack,
-    supportsSpeech(coach, direction) ? previewSpeechShape : undefined);
+    `${coach.id}:${direction}`,
+    speechTrack,
+    supportsSpeech(coach, direction) ? previewSpeechShape : undefined,
+  );
   const profile = animation.motionProfile;
   const idleStyle = {
     ...idleTracks,
@@ -111,12 +127,7 @@ export function CoachCharacter({
       title={`${coach.name} · ${expressionInfo[expression].label}`}
     >
       <CoachFaceProvider value={face}>
-        <CharacterArtwork
-          Artwork={Artwork}
-          key={take}
-          expression={expression}
-          family={direction}
-        />
+        <CharacterArtwork Artwork={Artwork} key={take} expression={expression} family={direction} />
       </CoachFaceProvider>
     </div>
   );

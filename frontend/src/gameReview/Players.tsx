@@ -80,11 +80,7 @@ export function PlayerRow({
           {name}
         </strong>
         {accuracy !== undefined && (
-          <AccuracyReadout
-            color={color}
-            accuracy={accuracy}
-            complete={complete}
-          />
+          <AccuracyReadout color={color} accuracy={accuracy} complete={complete} />
         )}
       </div>
       <span className="game-player-status" title={status}>

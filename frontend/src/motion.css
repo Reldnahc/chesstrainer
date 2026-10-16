@@ -1,17 +1,17 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-/* Account animation preference controls. */
-.motion-controls {
-  display: grid;
-  gap: var(--space-4);
-}
-.motion-preference {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1-5);
-}
-.motion-preference + .motion-preference {
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--line);
-}
+  /* Account animation preference controls. */
+  .motion-controls {
+    display: grid;
+    gap: var(--space-4);
+  }
+  .motion-preference {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
+  }
+  .motion-preference + .motion-preference {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
 }

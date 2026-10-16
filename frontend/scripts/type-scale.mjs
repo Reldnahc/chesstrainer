@@ -18,7 +18,12 @@ export function violations(css) {
     // In a shorthand only the size before any "/line-height" counts; px line heights are not sizes.
     const size = property === "font" ? value.split("/")[0] : value;
     for (const [, , number, unit] of size.matchAll(RAW)) {
-      found.push({ line: lineOf(match.index + match[0].indexOf(property)), property, value: value.replace(/\s+/g, " ").trim(), raw: `${number}${unit}` });
+      found.push({
+        line: lineOf(match.index + match[0].indexOf(property)),
+        property,
+        value: value.replace(/\s+/g, " ").trim(),
+        raw: `${number}${unit}`,
+      });
     }
   }
   return found;

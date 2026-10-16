@@ -1,11 +1,14 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-.pagination > span { font-size: var(--text-sm); color: var(--muted); }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .pagination > span {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
 }

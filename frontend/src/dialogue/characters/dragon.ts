@@ -1,5 +1,5 @@
-import {coachPersonality} from "../personality";
-import {authorTacticalWordings} from "../scopedTacticalWording";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
 export const dragonTacticalTemplates = authorTacticalWordings({
   scope: {
@@ -10,10 +10,20 @@ export const dragonTacticalTemplates = authorTacticalWordings({
     missed_immediate: "{best} had a {motif} ready, and this move declines it.",
     missed_possible: "{best} could have built toward a {motif}, replies permitting.",
   },
-  fork: {actual: "The {targets} now sit under one piece's attack.", possible: "From a single square, the {targets} would be attacked by that one piece."},
-  material: "A {gain} may be there in the end, but the remaining choices on both sides decide that.",
-  capture: {candidate: "{capture} is there, and a {piece} would fall to it.", followup: "If play runs that way, a {piece} falls to {capture}."},
-  playedCapture: {fact: "{move} is built on a {motif}.", consequence: "A {piece} falls to {capture}."},
+  fork: {
+    actual: "The {targets} now sit under one piece's attack.",
+    possible: "From a single square, the {targets} would be attacked by that one piece.",
+  },
+  material:
+    "A {gain} may be there in the end, but the remaining choices on both sides decide that.",
+  capture: {
+    candidate: "{capture} is there, and a {piece} would fall to it.",
+    followup: "If play runs that way, a {piece} falls to {capture}.",
+  },
+  playedCapture: {
+    fact: "{move} is built on a {motif}.",
+    consequence: "A {piece} falls to {capture}.",
+  },
 });
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
@@ -33,118 +43,281 @@ export const dragonOpeningTemplates = {
 } as const;
 
 export const dragon = coachPersonality({
-  version: "dragon-2", maxCharacters: 260, maxClaims: 2,
-  delivery: {pace: "steady", energy: "warm"},
+  version: "dragon-2",
+  maxCharacters: 260,
+  maxClaims: 2,
+  delivery: { pace: "steady", energy: "warm" },
   behavior: {
-    general: "mentor-first", praise: "mentor-first", correction: "mentor-first",
-    questionFrequency: "none", directness: 5, emotionalAmplitude: 3,
-    humor: 1, jargon: 3, playerAddress: "direct", sentenceLength: "mixed", metaphor: "rare",
-    signature: "Give a firm judgment, justify it with the concrete consequence, and demand care rather than offering easy praise.",
+    general: "mentor-first",
+    praise: "mentor-first",
+    correction: "mentor-first",
+    questionFrequency: "none",
+    directness: 5,
+    emotionalAmplitude: 3,
+    humor: 1,
+    jargon: 3,
+    playerAddress: "direct",
+    sentenceLength: "mixed",
+    metaphor: "rare",
+    signature:
+      "Give a firm judgment, justify it with the concrete consequence, and demand care rather than offering easy praise.",
   },
   bible: {
-    temperament: "A proud strategist with high standards; capable defense earns as much respect as an attack.",
-    teaching: "Make the verdict clear, then show the supported tactical or strategic cost that earns it.",
-    rhythm: "Decisive opening judgments followed by full, exact explanations; no timid qualifiers around established facts.",
-    celebration: "Strong approval used sparingly for real resources, especially sound sacrifices and exact defense.",
-    correction: "Hold the move to a high standard without attacking the player. State the consequence and a concrete review task.",
-    avoid: "Cruelty, pathetic or weak-player insults, fire jokes, automatic praise, unsupported initiative claims, questions, or declaring all searched moves exhaustive.",
+    temperament:
+      "A proud strategist with high standards; capable defense earns as much respect as an attack.",
+    teaching:
+      "Make the verdict clear, then show the supported tactical or strategic cost that earns it.",
+    rhythm:
+      "Decisive opening judgments followed by full, exact explanations; no timid qualifiers around established facts.",
+    celebration:
+      "Strong approval used sparingly for real resources, especially sound sacrifices and exact defense.",
+    correction:
+      "Hold the move to a high standard without attacking the player. State the consequence and a concrete review task.",
+    avoid:
+      "Cruelty, pathetic or weak-player insults, fire jokes, automatic praise, unsupported initiative claims, questions, or declaring all searched moves exhaustive.",
   },
   templates: {
     ...dragonTacticalTemplates,
     ...dragonOpeningTemplates,
     allowed_mate: [
-      {reaction: "The defense fails here.", fact: "Fatal: {opponent} now has checkmate by force.", consequence: "{reply}", takeaway: "Find the move where the king's cover gave way."},
-      {fact: "From here, mate is forced for {opponent}. {reply}", takeaway: "A king's safety is checked before every move, not after."},
+      {
+        reaction: "The defense fails here.",
+        fact: "Fatal: {opponent} now has checkmate by force.",
+        consequence: "{reply}",
+        takeaway: "Find the move where the king's cover gave way.",
+      },
+      {
+        fact: "From here, mate is forced for {opponent}. {reply}",
+        takeaway: "A king's safety is checked before every move, not after.",
+      },
     ],
     missed_mate: [
-      {reaction: "A forced finish existed, and it was let go.", fact: "The forced mate ran through {best}, and this move abandons it."},
-      {fact: "Mate by force ran through {best}. Here that finish is thrown away.", takeaway: "When the enemy king is trapped, calculate every check to the end."},
+      {
+        reaction: "A forced finish existed, and it was let go.",
+        fact: "The forced mate ran through {best}, and this move abandons it.",
+      },
+      {
+        fact: "Mate by force ran through {best}. Here that finish is thrown away.",
+        takeaway: "When the enemy king is trapped, calculate every check to the end.",
+      },
     ],
     tactic_played: [
-      {reaction: "This move has teeth.", fact: "{move} is armed with a {motif} in the engine's line.", consequence: "{detail}"},
-      {fact: "{move} hits hard because of a {motif}. {detail}", takeaway: "Know exactly why it works, so you can do it again."},
+      {
+        reaction: "This move has teeth.",
+        fact: "{move} is armed with a {motif} in the engine's line.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "{move} hits hard because of a {motif}. {detail}",
+        takeaway: "Know exactly why it works, so you can do it again.",
+      },
     ],
     tactic_allowed: [
-      {reaction: "That reply cannot be waved away.", fact: "With best play, a {motif} is waiting for {opponent}.", consequence: "{detail}"},
-      {fact: "{opponent} is given a {motif} by this. {detail}", takeaway: "Your calculation is not finished until the opponent's best answer is in it."},
+      {
+        reaction: "That reply cannot be waved away.",
+        fact: "With best play, a {motif} is waiting for {opponent}.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "{opponent} is given a {motif} by this. {detail}",
+        takeaway: "Your calculation is not finished until the opponent's best answer is in it.",
+      },
     ],
     tactic_missed: [
-      {reaction: "There was more on the board than this.", fact: "This move misses the {motif} that {best} offered.", consequence: "{detail}"},
-      {fact: "The {motif} with {best} goes unused. {detail}", takeaway: "Look at the forcing moves first, every time."},
+      {
+        reaction: "There was more on the board than this.",
+        fact: "This move misses the {motif} that {best} offered.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "The {motif} with {best} goes unused. {detail}",
+        takeaway: "Look at the forcing moves first, every time.",
+      },
     ],
     cause_abandoned_defender: [
-      {reaction: "Every defender has a duty.", fact: "{side}'s {piece} on {square} leaned on only one unpinned defender, and {move} removes it.", consequence: "{opponent} can win it outright with {reply}."},
-      {fact: "{move} abandons {side}'s {piece} on {square} by moving its only unpinned defender.", consequence: "{opponent} can take it at once: {reply}.", takeaway: "Know what a piece protects before you move it."},
+      {
+        reaction: "Every defender has a duty.",
+        fact: "{side}'s {piece} on {square} leaned on only one unpinned defender, and {move} removes it.",
+        consequence: "{opponent} can win it outright with {reply}.",
+      },
+      {
+        fact: "{move} abandons {side}'s {piece} on {square} by moving its only unpinned defender.",
+        consequence: "{opponent} can take it at once: {reply}.",
+        takeaway: "Know what a piece protects before you move it.",
+      },
     ],
     cause_opponent_threat_recognition: [
-      {reaction: "The threat was already on the board.", fact: "{move} ignores the attack on {side}'s {piece} on {square}, set up by the opponent's preceding move.", consequence: "{opponent} can punish that with {reply}.", takeaway: "Check what the last move threatens before you make your own."},
+      {
+        reaction: "The threat was already on the board.",
+        fact: "{move} ignores the attack on {side}'s {piece} on {square}, set up by the opponent's preceding move.",
+        consequence: "{opponent} can punish that with {reply}.",
+        takeaway: "Check what the last move threatens before you make your own.",
+      },
     ],
     cause_avoiding_bad_trades: [
-      {reaction: "Count an exchange to its last capture.", fact: "With {move}, {side}'s {piece} goes for a mere {captured}.", consequence: "{opponent} can recapture at once with {reply}."},
+      {
+        reaction: "Count an exchange to its last capture.",
+        fact: "With {move}, {side}'s {piece} goes for a mere {captured}.",
+        consequence: "{opponent} can recapture at once with {reply}.",
+      },
     ],
     sacrifice: [
-      {reaction: "A bold offer, and a sound one.", fact: "Take the material, and in the searched line the offer is justified."},
-      {fact: "Accept it, and the searched line still backs the idea.", takeaway: "Material given for a real reason is not material wasted."},
+      {
+        reaction: "A bold offer, and a sound one.",
+        fact: "Take the material, and in the searched line the offer is justified.",
+      },
+      {
+        fact: "Accept it, and the searched line still backs the idea.",
+        takeaway: "Material given for a real reason is not material wasted.",
+      },
     ],
     only_move: [
-      {reaction: "Exact defense. I respect that.", fact: "This held; every other searched move lost."},
-      {fact: "Every other searched move was losing; this one held.", takeaway: "Defending like that is a skill, not luck."},
+      {
+        reaction: "Exact defense. I respect that.",
+        fact: "This held; every other searched move lost.",
+      },
+      {
+        fact: "Every other searched move was losing; this one held.",
+        takeaway: "Defending like that is a skill, not luck.",
+      },
     ],
-    decisive_resource: ["The decisive advantage lived or died on this move, and it lived. Every other searched move let it slip."],
+    decisive_resource: [
+      "The decisive advantage lived or died on this move, and it lived. Every other searched move let it slip.",
+    ],
     best: [
-      {reaction: "Correctly played.", fact: "A strong move, and it gives up almost nothing of the position's value."},
+      {
+        reaction: "Correctly played.",
+        fact: "A strong move, and it gives up almost nothing of the position's value.",
+      },
       "Strong, and that is the standard: keep the position's value and give the opponent nothing.",
     ],
-    good: ["Sound, not best. The bulk of the position's value survives.", "A sound move; it gives away only a little. Not the sharpest, but sound."],
+    good: [
+      "Sound, not best. The bulk of the position's value survives.",
+      "A sound move; it gives away only a little. Not the sharpest, but sound.",
+    ],
     loss: [
-      {fact: "Against the best move, the price is {loss} pawns of evaluation.", takeaway: "Find what the reply exploits, and you will know the cost."},
+      {
+        fact: "Against the best move, the price is {loss} pawns of evaluation.",
+        takeaway: "Find what the reply exploits, and you will know the cost.",
+      },
       "{loss} pawns of evaluation separate this from the best move. That gap is the price of this choice.",
     ],
-    alternative: ["The stronger choice was {best}, at {evaluation} for the mover. Set it beside the move that was played."],
-    reply_capture: ["{reply} is ready for {opponent}, and it takes {side}'s {piece}. That capture belongs in your calculation."],
-    reply_check: ["{reply} is {opponent}'s strongest answer, and it gives check. A check must always be calculated."],
-    uncertain_reason: ["{best} was the stronger move, and I cannot yet say why with certainty. I will not invent a reason."],
-    human_natural_error: ["The human-move model calls this a natural choice, and the reply punishes it all the same. A natural move still has to be a correct one."],
-    human_challenging: ["The human-move model rates {best} hard to find. Hard resources are exactly the ones worth studying."],
-    human_defense_found: ["The position held because {best} was found, a defense the human-move model grades hard to find. That earns my respect."],
-    difficult_defense: ["{best} would have held, though the human-move model rates it a hard defense to find. Master that kind of move."],
-    human_rare: ["The human-move model rarely expects this move, yet it is strong against the engine's reply. It stands on its merit."],
-    human_natural_best: ["The human-move model calls it natural, and the engine ranks it best. Here the obvious move is also the right one."],
-    human_natural_strong: ["A natural move by the human-move model, and a strong one. It gives up almost nothing against the best line."],
+    alternative: [
+      "The stronger choice was {best}, at {evaluation} for the mover. Set it beside the move that was played.",
+    ],
+    reply_capture: [
+      "{reply} is ready for {opponent}, and it takes {side}'s {piece}. That capture belongs in your calculation.",
+    ],
+    reply_check: [
+      "{reply} is {opponent}'s strongest answer, and it gives check. A check must always be calculated.",
+    ],
+    uncertain_reason: [
+      "{best} was the stronger move, and I cannot yet say why with certainty. I will not invent a reason.",
+    ],
+    human_natural_error: [
+      "The human-move model calls this a natural choice, and the reply punishes it all the same. A natural move still has to be a correct one.",
+    ],
+    human_challenging: [
+      "The human-move model rates {best} hard to find. Hard resources are exactly the ones worth studying.",
+    ],
+    human_defense_found: [
+      "The position held because {best} was found, a defense the human-move model grades hard to find. That earns my respect.",
+    ],
+    difficult_defense: [
+      "{best} would have held, though the human-move model rates it a hard defense to find. Master that kind of move.",
+    ],
+    human_rare: [
+      "The human-move model rarely expects this move, yet it is strong against the engine's reply. It stands on its merit.",
+    ],
+    human_natural_best: [
+      "The human-move model calls it natural, and the engine ranks it best. Here the obvious move is also the right one.",
+    ],
+    human_natural_strong: [
+      "A natural move by the human-move model, and a strong one. It gives up almost nothing against the best line.",
+    ],
     book: ["Theory calls this {opening}. Know the position, not only the name."],
-    book_sound: ["Established theory: {opening}. Theory ends sooner or later; understanding has to carry on."],
-    departure: ["Our opening lore ends at this move. From now on the position is judged on its own terms."],
-    recovery: ["A playable position is restored after the error at {earlier}.{help}", "The damage from {earlier} is repaired; the position is playable again. That is fighting back.{help}"],
-    repeated: ["In the reviewed game, the {motif} issue has now come up {count} times. That is a pattern, and patterns get fixed."],
+    book_sound: [
+      "Established theory: {opening}. Theory ends sooner or later; understanding has to carry on.",
+    ],
+    departure: [
+      "Our opening lore ends at this move. From now on the position is judged on its own terms.",
+    ],
+    recovery: [
+      "A playable position is restored after the error at {earlier}.{help}",
+      "The damage from {earlier} is repaired; the position is playable again. That is fighting back.{help}",
+    ],
+    repeated: [
+      "In the reviewed game, the {motif} issue has now come up {count} times. That is a pattern, and patterns get fixed.",
+    ],
     history: ["{games} other saved games carry this {motif} issue too. Give it dedicated work."],
-    support_restored: ["Unguarded since {earlier}, the {piece} is protected again. Keep count of its defenders."],
-    punishment: ["{side} was offered a chance at {earlier}, and this move takes it. That is how an error should be answered."],
-    missed_punishment: ["{side} was offered a chance at {earlier}, and this move lets it go. Go back and find what was there."],
-    erosion: ["Since {earlier}, one small concession after another has worn the position down. No single one decided it; together they did real damage."],
-    conversion: ["The advantage {side} won by {earlier} was kept to the very end. Converting cleanly is a skill in itself."],
-    development: ["{lead}develops the {piece}, and it leaves its original square for good work. Account for where it stands now."],
-    rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Know what that file offers the rook."],
-    passed: ["{lead}leaves {side} with passed pawns on {squares}; their paths and the neighboring files ahead are free of enemy pawns."],
+    support_restored: [
+      "Unguarded since {earlier}, the {piece} is protected again. Keep count of its defenders.",
+    ],
+    punishment: [
+      "{side} was offered a chance at {earlier}, and this move takes it. That is how an error should be answered.",
+    ],
+    missed_punishment: [
+      "{side} was offered a chance at {earlier}, and this move lets it go. Go back and find what was there.",
+    ],
+    erosion: [
+      "Since {earlier}, one small concession after another has worn the position down. No single one decided it; together they did real damage.",
+    ],
+    conversion: [
+      "The advantage {side} won by {earlier} was kept to the very end. Converting cleanly is a skill in itself.",
+    ],
+    development: [
+      "{lead}develops the {piece}, and it leaves its original square for good work. Account for where it stands now.",
+    ],
+    rook_file: [
+      "{lead}leaves {side}'s rook on a {kind} {file}-file. Know what that file offers the rook.",
+    ],
+    passed: [
+      "{lead}leaves {side} with passed pawns on {squares}; their paths and the neighboring files ahead are free of enemy pawns.",
+    ],
     passer_advance: ["{lead}advances the passed pawn to {square}, one step nearer promotion."],
-    isolated: ["{lead}isolates {side}'s pawns on {squares}, with the files on both sides empty of friendly pawns."],
+    isolated: [
+      "{lead}isolates {side}'s pawns on {squares}, with the files on both sides empty of friendly pawns.",
+    ],
     support: ["{lead}covers the {piece} on {square}; it is no longer alone."],
-    unsupported: ["{lead}strands the {piece} on {square}; nothing guards it now. That alone does not lose it; calculate the capture before you decide."],
+    unsupported: [
+      "{lead}strands the {piece} on {square}; nothing guards it now. That alone does not lose it; calculate the capture before you decide.",
+    ],
     flights: ["{lead}gives the king a legal flight square on {squares}."],
     castle: ["{lead}castles the king to {square}; the rook swings over beside it."],
-    bishops: ["{lead}costs {side} the bishop pair; the opposite-colored bishops are no longer together."],
-    doubled: ["{lead}doubles up {side}'s pawns; files {files} are affected. Two pawns on one file cannot guard each other."],
-    mate_win: ["Checkmate; the attack is finished and the king is out of moves.", "Mate, and every square is shut. A finish worth respecting."],
-    mate_loss: ["Mate against your king; every square is shut. Return to the defense and find where it gave way."],
+    bishops: [
+      "{lead}costs {side} the bishop pair; the opposite-colored bishops are no longer together.",
+    ],
+    doubled: [
+      "{lead}doubles up {side}'s pawns; files {files} are affected. Two pawns on one file cannot guard each other.",
+    ],
+    mate_win: [
+      "Checkmate; the attack is finished and the king is out of moves.",
+      "Mate, and every square is shut. A finish worth respecting.",
+    ],
+    mate_loss: [
+      "Mate against your king; every square is shut. Return to the defense and find where it gave way.",
+    ],
     draw: ["A draw. A result does not grade the moves; review them anyway."],
-    retry: ["That one fails. Recalculate the reply and try again.", "Not good enough yet. Test a different move against the reply."],
+    retry: [
+      "That one fails. Recalculate the reply and try again.",
+      "Not good enough yet. Test a different move against the reply.",
+    ],
     recovered: ["Corrected, as it should be. {detail}", "Found on the second attempt. {detail}"],
     accepted: ["Keep the reason clear. {detail}", "The move stands on this: {detail}"],
-    explanation: ["Follow the line to its consequence. {detail}", "This is the concrete point. {detail}"],
+    explanation: [
+      "Follow the line to its consequence. {detail}",
+      "This is the concrete point. {detail}",
+    ],
     explanation_summary: ["The verdict, in short: {detail}"],
     compatibility: ["{detail}"],
-    cold: ["Study the board first, then commit.", "Choose your move once you have studied the board."],
+    cold: [
+      "Study the board first, then commit.",
+      "Choose your move once you have studied the board.",
+    ],
     thinking: ["Measuring this move against the most forceful reply…"],
-    unavailable: ["No engine coaching is available for this position. Explore the board, but do not mistake an untested idea for proof."],
+    unavailable: [
+      "No engine coaching is available for this position. Explore the board, but do not mistake an untested idea for proof.",
+    ],
     practice_error: ["No result came back. Submit it once more."],
     variation: ["Consider the other branch: {detail}"],
   },

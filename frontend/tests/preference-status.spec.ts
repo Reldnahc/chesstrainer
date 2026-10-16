@@ -2,12 +2,18 @@ import { expect, test } from "@playwright/test";
 
 function gate() {
   let release!: () => void;
-  const waiting = new Promise<void>(resolve => { release = resolve; });
+  const waiting = new Promise<void>(resolve => {
+    release = resolve;
+  });
   return { waiting, release };
 }
 
-test("preference status shares loading and saving presentation without mixing each field's saved state", async ({ page }) => {
-  const load = gate(), coachSave = gate(), motionSave = gate();
+test("preference status shares loading and saving presentation without mixing each field's saved state", async ({
+  page,
+}) => {
+  const load = gate(),
+    coachSave = gate(),
+    motionSave = gate();
   let coach = { coach_id: "classic", motion: "system" };
   let motion = { motion: "system" };
   await page.route("**/api/preferences/coach", async route => {
@@ -64,7 +70,10 @@ test("preference status shares loading and saving presentation without mixing ea
     await expect(heading).toBeEmpty();
     // The field stays usable while it saves; its group is marked busy instead.
     await expect(coachField).toBeEnabled();
-    await expect(page.locator(".motion-preference").filter({ has: coachField })).toHaveAttribute("aria-busy", "true");
+    await expect(page.locator(".motion-preference").filter({ has: coachField })).toHaveAttribute(
+      "aria-busy",
+      "true",
+    );
     await expect(motionStatus).toBeEmpty();
     await expect(motionField).toBeEnabled();
     coachSave.release();
@@ -75,7 +84,10 @@ test("preference status shares loading and saving presentation without mixing ea
     await motionField.selectOption("still");
     await expect(motionStatus).toHaveText("Saving…");
     await expect(motionField).toBeEnabled();
-    await expect(page.locator(".motion-preference").filter({ has: motionField })).toHaveAttribute("aria-busy", "true");
+    await expect(page.locator(".motion-preference").filter({ has: motionField })).toHaveAttribute(
+      "aria-busy",
+      "true",
+    );
     await expect(coachStatus).toHaveText("Saved");
     motionSave.release();
     await expect(motionStatus).toHaveText("Saved");
@@ -93,16 +105,22 @@ test("preference status shares loading and saving presentation without mixing ea
   }
 });
 
-test("preference errors retain heading and field retry actions and recover through the existing providers", async ({ page }) => {
-  const retryCoach = gate(), retryMotion = gate();
-  let failCoach = true, failMotion = true;
+test("preference errors retain heading and field retry actions and recover through the existing providers", async ({
+  page,
+}) => {
+  const retryCoach = gate(),
+    retryMotion = gate();
+  let failCoach = true,
+    failMotion = true;
   await page.route("**/api/preferences/coach", async route => {
-    if (failCoach) return route.fulfill({ status: 503, json: { detail: "Coach preferences unavailable" } });
+    if (failCoach)
+      return route.fulfill({ status: 503, json: { detail: "Coach preferences unavailable" } });
     await retryCoach.waiting;
     await route.fulfill({ json: { coach_id: "classic", motion: "system" } });
   });
   await page.route("**/api/preferences/motion", async route => {
-    if (failMotion) return route.fulfill({ status: 503, json: { detail: "Motion preferences unavailable" } });
+    if (failMotion)
+      return route.fulfill({ status: 503, json: { detail: "Motion preferences unavailable" } });
     await retryMotion.waiting;
     await route.fulfill({ json: { motion: "system" } });
   });
@@ -112,12 +130,21 @@ test("preference errors retain heading and field retry actions and recover throu
     const heading = page.locator(".coach-preference-status");
     const coachStatus = page.locator(".coach-motion-preference-status");
     const motionStatus = page.locator(".motion-preference-status");
-    for (const status of [heading, coachStatus]) await expect(status).toContainText("Coach preferences unavailable");
+    for (const status of [heading, coachStatus])
+      await expect(status).toContainText("Coach preferences unavailable");
     await expect(motionStatus).toContainText("Motion preferences unavailable");
-    await expect(heading.getByRole("button", { name: "Reload preferences", exact: true })).toHaveAttribute("type", "button");
-    await expect(coachStatus.getByRole("button", { name: "Reload coach motion preferences", exact: true })).toBeVisible();
-    await expect(motionStatus.getByRole("button", { name: "Reload motion preferences", exact: true })).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await expect(
+      heading.getByRole("button", { name: "Reload preferences", exact: true }),
+    ).toHaveAttribute("type", "button");
+    await expect(
+      coachStatus.getByRole("button", { name: "Reload coach motion preferences", exact: true }),
+    ).toBeVisible();
+    await expect(
+      motionStatus.getByRole("button", { name: "Reload motion preferences", exact: true }),
+    ).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
     failCoach = false;
     await heading.getByRole("button", { name: "Reload preferences", exact: true }).click();
     await expect(heading).toHaveText("Loading…");
@@ -129,7 +156,9 @@ test("preference errors retain heading and field retry actions and recover throu
     await expect(coachStatus).toHaveText("Still · device setting");
 
     failMotion = false;
-    await motionStatus.getByRole("button", { name: "Reload motion preferences", exact: true }).click();
+    await motionStatus
+      .getByRole("button", { name: "Reload motion preferences", exact: true })
+      .click();
     await expect(motionStatus).toHaveText("Loading…");
     await expect(page.getByLabel("Piece & interface motion", { exact: true })).toBeDisabled();
     retryMotion.release();

@@ -1,34 +1,42 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-/* The studio owns its page layout; application navigation and settings styles
+  /* The studio owns its page layout; application navigation and settings styles
    must not affect character previews. Shared controls come from their components. */
-.studio-page {
-  --studio-page-width: 80%;
-  --studio-inline-padding: var(--space-5);
-  width: var(--studio-page-width);
-  margin: auto;
-  padding: var(--space-10) var(--studio-inline-padding) var(--space-16);
-}
-@media (max-width: 1440px) {
-  .studio-page { --studio-page-width: 100%; }
-}
-@media (max-width: 1100px) {
-  .studio-page { padding-block: var(--space-8) var(--space-10); }
-}
-@media (max-width: 760px) {
   .studio-page {
-    --studio-inline-padding: var(--space-3);
-    min-height: 0;
-    padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
+    --studio-page-width: 80%;
+    --studio-inline-padding: var(--space-5);
+    width: var(--studio-page-width);
+    margin: auto;
+    padding: var(--space-10) var(--studio-inline-padding) var(--space-16);
   }
-  .studio-page h2 {
-    font-size: var(--text-xl);
+  @media (max-width: 1440px) {
+    .studio-page {
+      --studio-page-width: 100%;
+    }
   }
-  .studio-page p {
-    font-size: var(--text-md);
-    line-height: 1.5;
+  @media (max-width: 1100px) {
+    .studio-page {
+      padding-block: var(--space-8) var(--space-10);
+    }
   }
-  .studio-page summary { min-height: var(--touch-target); }
-  .studio-page label { gap: var(--space-1-5); }
-}
+  @media (max-width: 760px) {
+    .studio-page {
+      --studio-inline-padding: var(--space-3);
+      min-height: 0;
+      padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
+    }
+    .studio-page h2 {
+      font-size: var(--text-xl);
+    }
+    .studio-page p {
+      font-size: var(--text-md);
+      line-height: 1.5;
+    }
+    .studio-page summary {
+      min-height: var(--touch-target);
+    }
+    .studio-page label {
+      gap: var(--space-1-5);
+    }
+  }
 }

@@ -22,7 +22,9 @@ const groupLabels: Record<string, string> = {
 export const walterBankScripts: readonly WalterScript[] = manifest.recordings.map(record => ({
   id: `bank-${record.id}`,
   recordingId: record.id,
-  label: record.id.replace(/^(?:explanation-|positional-|tactic-|srs-)/, "").replaceAll("-", " ")
+  label: record.id
+    .replace(/^(?:explanation-|positional-|tactic-|srs-)/, "")
+    .replaceAll("-", " ")
     .replace(/^./, first => first.toUpperCase()),
   category: groupLabels[record.group],
   writtenText: record.text,

@@ -17,5 +17,5 @@ export type CoachPerformanceSnapshot = {
 
 export function seededIdleRandom(seed: number) {
   let state = seed >>> 0;
-  return () => ((state = (Math.imul(state, 1664525) + 1013904223) >>> 0) / 2 ** 32);
+  return () => (state = (Math.imul(state, 1664525) + 1013904223) >>> 0) / 2 ** 32;
 }

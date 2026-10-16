@@ -1,7 +1,13 @@
 import type { ReactNode } from "react";
 
 export default function SettingsSection({
-  id, title, description, actions, stackActions = false, className = "", children,
+  id,
+  title,
+  description,
+  actions,
+  stackActions = false,
+  className = "",
+  children,
 }: {
   id: string;
   title: string;
@@ -13,8 +19,17 @@ export default function SettingsSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className={["panel settings-section", stackActions && "settings-section--stacked-actions", className].filter(Boolean).join(" ")}
-      aria-labelledby={`${id}-title`}>
+    <section
+      id={id}
+      className={[
+        "panel settings-section",
+        stackActions && "settings-section--stacked-actions",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-labelledby={`${id}-title`}
+    >
       <div className="settings-section-heading">
         <div>
           <h2 id={`${id}-title`}>{title}</h2>

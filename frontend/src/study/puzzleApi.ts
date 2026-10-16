@@ -32,7 +32,12 @@ const BAND_RATINGS: Record<PuzzleBand, { min?: number; max?: number }> = {
   middle: { min: 1200, max: 1799 },
   harder: { min: 1800 },
 };
-export const DEFAULT_PUZZLE_SELECTION: PuzzleSelection = { band: "any", goal: "", theme: "", mode: "new" };
+export const DEFAULT_PUZZLE_SELECTION: PuzzleSelection = {
+  band: "any",
+  goal: "",
+  theme: "",
+  mode: "new",
+};
 const STORAGE_KEY = "puzzle-selection";
 
 /** The last chosen difficulty, goal, theme and mode for this tab, so Next puzzle keeps them. */
@@ -42,7 +47,7 @@ export function loadPuzzleSelection(): PuzzleSelection {
     if (!saved || typeof saved !== "object") return DEFAULT_PUZZLE_SELECTION;
     const { band, goal, theme, mode } = saved as Record<string, unknown>;
     return {
-      band: typeof band === "string" && band in BAND_RATINGS ? band as PuzzleBand : "any",
+      band: typeof band === "string" && band in BAND_RATINGS ? (band as PuzzleBand) : "any",
       goal: goal === "mate" || goal === "material" ? goal : "",
       theme: typeof theme === "string" && /^[A-Za-z0-9_]{0,50}$/.test(theme) ? theme : "",
       mode: mode === "retry" ? "retry" : "new",
@@ -55,7 +60,9 @@ export function savePuzzleSelection(selection: PuzzleSelection) {
   try {
     const { band, goal, theme, mode } = selection;
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ band, goal, theme, mode }));
-  } catch { /* Private browsing or blocked storage only loses the convenience. */ }
+  } catch {
+    /* Private browsing or blocked storage only loses the convenience. */
+  }
 }
 
 export function puzzleQuery(selection: PuzzleSelection) {
@@ -84,7 +91,8 @@ export function puzzleThemeLabel(theme: string) {
 
 export function createPuzzleStarter() {
   return retryableStart(
-    (selection: PuzzleSelection, signal) => read(api.GET("/api/puzzles/next", { params: { query: puzzleQuery(selection) }, signal })),
+    (selection: PuzzleSelection, signal) =>
+      read(api.GET("/api/puzzles/next", { params: { query: puzzleQuery(selection) }, signal })),
     (body, signal) => read(api.POST("/api/puzzle-sessions", { body, signal })),
   );
 }

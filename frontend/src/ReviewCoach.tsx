@@ -53,13 +53,25 @@ export default function ReviewCoach({
     if (messageResetKey !== undefined && message.current) message.current.scrollTop = 0;
   }, [messageResetKey]);
   return (
-    <section className={["review-coach", compactLabel && "review-coach--compact-label", fit === "content" && "review-coach--fit-content"].filter(Boolean).join(" ")}
-      aria-label="Chess coach">
+    <section
+      className={[
+        "review-coach",
+        compactLabel && "review-coach--compact-label",
+        fit === "content" && "review-coach--fit-content",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-label="Chess coach"
+    >
       <div className="coach-portrait">
-        {character ?? <CoachAvatar reaction={reaction} speech={voice?.speech ?? speech} speechTrack={voice?.speechTrack} />}
-        {portraitCaption && (
-          <div className="coach-portrait-caption">{portraitCaption}</div>
+        {character ?? (
+          <CoachAvatar
+            reaction={reaction}
+            speech={voice?.speech ?? speech}
+            speechTrack={voice?.speechTrack}
+          />
         )}
+        {portraitCaption && <div className="coach-portrait-caption">{portraitCaption}</div>}
       </div>
       <div className="coach-speech">
         <div className="coach-label">
@@ -67,18 +79,23 @@ export default function ReviewCoach({
             {badge}
             {title}
           </div>
-          {(evaluation || voice?.available) && <div className="coach-label-actions">{voice?.control}{evaluation}</div>}
+          {(evaluation || voice?.available) && (
+            <div className="coach-label-actions">
+              {voice?.control}
+              {evaluation}
+            </div>
+          )}
         </div>
         <div className="coach-body">
-          <div
-            ref={message}
-            className="coach-message"
-            tabIndex={0}
-            aria-label="Coach explanation"
-          >
+          <div ref={message} className="coach-message" tabIndex={0} aria-label="Coach explanation">
             {children}
           </div>
-          {(detail || insight) && <div className="coach-footer">{detail}{insight && <div className="coach-insight">{insight}</div>}</div>}
+          {(detail || insight) && (
+            <div className="coach-footer">
+              {detail}
+              {insight && <div className="coach-insight">{insight}</div>}
+            </div>
+          )}
         </div>
       </div>
       {actions && <div className="coach-actions">{actions}</div>}

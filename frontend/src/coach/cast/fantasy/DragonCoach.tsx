@@ -36,10 +36,7 @@ function DragonArms({ pose }: { pose: AnimalPose }) {
   return (
     <>
       {[left, right].map(([x, y, angle], index) => (
-        <g
-          key={index}
-          className={`study-paw study-paw-${index ? "right" : "left"}`}
-        >
+        <g key={index} className={`study-paw study-paw-${index ? "right" : "left"}`}>
           <path
             d={`M${index ? 73 : 27} 96Q${index ? 84 : 16} 100 ${x} ${y + 3}`}
             fill="none"
@@ -51,12 +48,7 @@ function DragonArms({ pose }: { pose: AnimalPose }) {
             <g transform={index ? "scale(-1 1)" : undefined}>
               <path d="M-6 7q-2-6-1-11 1-5 7-5t7 5q1 5-1 11Z" fill="#418e7c" />
               <path d="m-5-4 1-4 2 4m2-1 1-4 2 4m1 1 1-3 1 4" fill="#e4d09b" />
-              <path
-                d="M-3 4h6"
-                stroke="#6eab8a"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
+              <path d="M-3 4h6" stroke="#6eab8a" strokeWidth="1.5" strokeLinecap="round" />
             </g>
           </g>
         </g>
@@ -83,26 +75,13 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
       style={vars}
     >
       <BodyRig>
-        {[false, true].map((right) => (
-          <g
-            key={String(right)}
-            transform={right ? "translate(100 0) scale(-1 1)" : undefined}
-          >
-            <g
-              transform={`rotate(${openWings ? 9 : tucked ? -12 : -2} 28 103)`}
-            >
-              <g
-                className={`fantasy-wing fantasy-wing-${right ? "right" : "left"}`}
-              >
+        {[false, true].map(right => (
+          <g key={String(right)} transform={right ? "translate(100 0) scale(-1 1)" : undefined}>
+            <g transform={`rotate(${openWings ? 9 : tucked ? -12 : -2} 28 103)`}>
+              <g className={`fantasy-wing fantasy-wing-${right ? "right" : "left"}`}>
                 <g className="coach-idle-wings">
-                  <path
-                    d="M28 106Q7 102 5 81L4 57q18 8 28 29Z"
-                    fill="#254f4e"
-                  />
-                  <path
-                    d="M8 64q14 9 19 23l-1 14q-3-12-12-10 1-9-6-12Z"
-                    fill="#b17669"
-                  />
+                  <path d="M28 106Q7 102 5 81L4 57q18 8 28 29Z" fill="#254f4e" />
+                  <path d="M8 64q14 9 19 23l-1 14q-3-12-12-10 1-9-6-12Z" fill="#b17669" />
                   <path
                     d="M8 64q9 16 18 36M13 81l10 13"
                     stroke="#734e51"
@@ -124,43 +103,25 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
           strokeWidth="1.5"
         />
         <HeadRig>
-          <path
-            d="M29 29Q16 17 22 4q3 13 15 17Zm42 0Q84 17 78 4q-3 13-15 17Z"
-            fill="#d7c58e"
-          />
+          <path d="M29 29Q16 17 22 4q3 13 15 17Zm42 0Q84 17 78 4q-3 13-15 17Z" fill="#d7c58e" />
           <path
             d="M29 25q-8-8-7-15m49 15q8-8 7-15"
             stroke="#a59c73"
             strokeWidth="1.5"
             fill="none"
           />
-          {[false, true].map((right) => (
-            <g
-              key={String(right)}
-              transform={
-                right ? "translate(100 0) scale(-1 1)" : undefined
-              }
-            >
-              <g
-                transform={`rotate(${pose.ears[right ? 1 : 0] * 0.5} 24 40)`}
-              >
-                <g
-                  className={`study-ear-motion study-ear-${right ? "right" : "left"}`}
-                >
+          {[false, true].map(right => (
+            <g key={String(right)} transform={right ? "translate(100 0) scale(-1 1)" : undefined}>
+              <g transform={`rotate(${pose.ears[right ? 1 : 0] * 0.5} 24 40)`}>
+                <g className={`study-ear-motion study-ear-${right ? "right" : "left"}`}>
                   <path d="M28 36 11 26l2 13-4 5 15 8Z" fill="#367d70" />
                   <path d="m23 38-8-6 2 9-3 3 10 3Z" fill="#b17b6c" />
                 </g>
               </g>
             </g>
           ))}
-          <path
-            d="M21 40q0-21 29-24 29 3 29 24l-2 23q-5 21-27 24-22-3-27-24Z"
-            fill="#438a77"
-          />
-          <path
-            d="m50 17-6 10 6 6 6-6Zm-9 17 9 7 9-7-9 2Z"
-            fill="#82b28b"
-          />
+          <path d="M21 40q0-21 29-24 29 3 29 24l-2 23q-5 21-27 24-22-3-27-24Z" fill="#438a77" />
+          <path d="m50 17-6 10 6 6 6-6Zm-9 17 9 7 9-7-9 2Z" fill="#82b28b" />
           <path d="m24 58-5 5 7 1m50-6 5 5-7 1" fill="#2d6b60" />
           <g
             className="study-brows"
@@ -175,7 +136,7 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
           <g className="animal-eyes coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
             <defs>
               <clipPath id={eyeMask}>
-                {[35, 65].map((x) => (
+                {[35, 65].map(x => (
                   <ellipse key={x} cx={x} cy="43" rx="7" ry={pose.eye} />
                 ))}
               </clipPath>
@@ -190,7 +151,7 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
               />
             ) : (
               <>
-                {[35, 65].map((x) => (
+                {[35, 65].map(x => (
                   <ellipse
                     key={x}
                     cx={x}
@@ -205,7 +166,7 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
                 <g clipPath={`url(#${eyeMask})`}>
                   <g className="study-gaze">
                     <g transform={`translate(${pose.gaze.join(" ")})`}>
-                      {[35, 65].map((x) => (
+                      {[35, 65].map(x => (
                         <g key={x}>
                           <ellipse
                             cx={x}
@@ -229,10 +190,7 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
               </>
             )}
           </g>
-          <path
-            d="M31 57q2-9 10-7h18q8-2 10 7l4 10q0 13-23 14-23-1-23-14Z"
-            fill="#88aa7d"
-          />
+          <path d="M31 57q2-9 10-7h18q8-2 10 7l4 10q0 13-23 14-23-1-23-14Z" fill="#88aa7d" />
           <path
             d="M38 58q2-3 4-1m16 0q2-2 4 1"
             stroke="#426853"
@@ -241,45 +199,49 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
             fill="none"
           />
           {/* Authored fangs sit outside the muzzle transform; hide them with the old mouth. */}
-          <SpeechMouthLayer authored={
-            <>
-              <g
-                className="study-muzzle"
-                stroke="#365748"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                fill="none"
-              >
-                {pose.mouth === "smile" && <path d="M34 68q16 11 32-1" />}
-                {pose.mouth === "ponder" && <path d="M39 71q10 3 21-2" />}
-                {pose.mouth === "concern" && <path d="M37 74q13-7 26 0" />}
-                {pose.mouth === "oh" && (
-                  <ellipse cx="50" cy="70" rx="7" ry="7" fill="#3c5149" />
+          <SpeechMouthLayer
+            authored={
+              <>
+                <g
+                  className="study-muzzle"
+                  stroke="#365748"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  fill="none"
+                >
+                  {pose.mouth === "smile" && <path d="M34 68q16 11 32-1" />}
+                  {pose.mouth === "ponder" && <path d="M39 71q10 3 21-2" />}
+                  {pose.mouth === "concern" && <path d="M37 74q13-7 26 0" />}
+                  {pose.mouth === "oh" && <ellipse cx="50" cy="70" rx="7" ry="7" fill="#3c5149" />}
+                  {pose.mouth === "grin" && (
+                    <path d="M34 66q16 7 32 0-3 14-16 14T34 66Z" fill="#3c5149" />
+                  )}
+                </g>
+                {(pose.mouth === "grin" || pose.mouth === "smile") && (
+                  <path d="m36 69 4 6 2-4m16 0 2 4 4-6" fill="#f0e2b8" />
                 )}
-                {pose.mouth === "grin" && (
-                  <path
-                    d="M34 66q16 7 32 0-3 14-16 14T34 66Z"
-                    fill="#3c5149"
-                  />
-                )}
-              </g>
-              {(pose.mouth === "grin" || pose.mouth === "smile") && (
-                <path d="m36 69 4 6 2-4m16 0 2 4 4-6" fill="#f0e2b8" />
-              )}
-            </>
-          }>
+              </>
+            }
+          >
             <g className="study-muzzle">
-              <OrganicSpeechMouth x={50} y={68} width={28} height={10}
-                palette={{ cavity: "#3c5149", outline: "#365748", teeth: "#f0e2b8", tongue: "#b88678", lip: "#88aa7d" }}
-                teeth={false} fangs />
+              <OrganicSpeechMouth
+                x={50}
+                y={68}
+                width={28}
+                height={10}
+                palette={{
+                  cavity: "#3c5149",
+                  outline: "#365748",
+                  teeth: "#f0e2b8",
+                  tongue: "#b88678",
+                  lip: "#88aa7d",
+                }}
+                teeth={false}
+                fangs
+              />
             </g>
           </SpeechMouthLayer>
-          <path
-            d="m29 48-3 4m45-4 3 4"
-            stroke="#79ab87"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
+          <path d="m29 48-3 4m45-4 3 4" stroke="#79ab87" strokeWidth="2" strokeLinecap="round" />
         </HeadRig>
         {pose.paws === "book" && <Book color="#976752" />}
         <DragonArms pose={pose} />

@@ -28,8 +28,7 @@ function progressSection({
 }: ReviewProgressProps) {
   const refining = game.job?.phase === "refinement";
   // The session keeps polling background refinement; interruptions still expose recovery.
-  if (!game.job?.error && (game.job?.status === "completed" || (refining && running)))
-    return null;
+  if (!game.job?.error && (game.job?.status === "completed" || (refining && running))) return null;
   // A shared game shows where its owner's review stands, without owner controls.
   if (game.read_only)
     return (
@@ -58,7 +57,12 @@ function progressSection({
                 Pause review
               </Button>
             ) : (
-              <Button size="compact" variant="primary" disabled={busy || reviewStarting} onClick={start}>
+              <Button
+                size="compact"
+                variant="primary"
+                disabled={busy || reviewStarting}
+                onClick={start}
+              >
                 {reviewStarting
                   ? "Starting review…"
                   : !game.job || game.job.status === "failed"
@@ -77,7 +81,9 @@ function progressSection({
           {running && (
             <p role="status">
               {game.job?.cancel_requested
-                ? refining ? "Pausing investigation…" : "Finishing active moves…"
+                ? refining
+                  ? "Pausing investigation…"
+                  : "Finishing active moves…"
                 : game.job?.status === "queued"
                   ? "Review queued. You can explore while you wait."
                   : refining
@@ -87,7 +93,13 @@ function progressSection({
           )}
         </>
       )}
-      <Reveal>{game.job?.error && <Notice announcement="alert" tone="error" appearance="inline" className="small">{game.job.error}</Notice>}</Reveal>
+      <Reveal>
+        {game.job?.error && (
+          <Notice announcement="alert" tone="error" appearance="inline" className="small">
+            {game.job.error}
+          </Notice>
+        )}
+      </Reveal>
     </section>
   );
 }

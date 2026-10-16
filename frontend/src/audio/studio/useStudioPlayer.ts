@@ -1,7 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AudioEngine, type AudioEvent } from "../engine";
 import { cueCatalog, paletteCatalog } from "../catalog";
-import type { RecordedSpeechClip, SoundCue, SoundPalette, SpeechPlayback, SpeechUtterance } from "../model";
+import type {
+  RecordedSpeechClip,
+  SoundCue,
+  SoundPalette,
+  SpeechPlayback,
+  SpeechUtterance,
+} from "../model";
 import type { AuditionScenario } from "./scenarios";
 
 export type StudioSpeechPlayback = {
@@ -22,13 +28,16 @@ export type StudioSpeechRequest = {
   recordingId?: string;
 };
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";
-const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => item.id === palette)?.label ?? "";
+const paletteLabel = (palette?: SoundPalette) =>
+  paletteCatalog.find(item => item.id === palette)?.label ?? "";
 
 /** One development player shared by sound, voice and coach-inspector auditions. */
 export function useStudioPlayer() {
   const [volume, setVolume] = useState(35);
   const [muted, setMuted] = useState(false);
-  const [events, setEvents] = useState<(AudioEvent & { traceId: number; coachName?: string })[]>([]);
+  const [events, setEvents] = useState<(AudioEvent & { traceId: number; coachName?: string })[]>(
+    [],
+  );
   const [status, setStatus] = useState("Ready when you are. Press Play to start listening.");
   const [error, setError] = useState("");
   const [speechPlayback, setSpeechPlayback] = useState<StudioSpeechPlayback>({ state: "idle" });
@@ -42,40 +51,62 @@ export function useStudioPlayer() {
 
   useEffect(() => {
     let mounted = true;
-    const engine = new AudioEngine({ onSpeechPlayback(playback) {
-      if (mounted) setSpeaking(playback);
-    }, onEvent(event) {
-      if (!mounted) return;
-      setEvents(previous => [...previous.slice(-79), { ...event, coachName: speechRef.current.coachName, traceId: ++traceRef.current }]);
-      if (event.type === "started") setStatus(event.bus === "speech" ? `${speechRef.current.coachName ?? "Coach"} · Voice preview` : `${cueLabel(event.cue)} · ${paletteLabel(event.palette)}`);
-      const pending = contextSpeechRef.current;
-      if (pending?.moveEventId === event.eventId) {
-        if (event.type === "started") {
-          // Measure the pause from audible movement, not an unpredictable download.
-          contextSpeechRef.current = null;
-          engine.playRecordedSpeech(pending.clip);
-        } else if (["cancelled", "suppressed", "error"].includes(event.type)) {
-          contextSpeechRef.current = null;
-          speechRef.current = { state: "idle" };
-          setSpeechPlayback({ state: "idle" });
+    const engine = new AudioEngine({
+      onSpeechPlayback(playback) {
+        if (mounted) setSpeaking(playback);
+      },
+      onEvent(event) {
+        if (!mounted) return;
+        setEvents(previous => [
+          ...previous.slice(-79),
+          { ...event, coachName: speechRef.current.coachName, traceId: ++traceRef.current },
+        ]);
+        if (event.type === "started")
+          setStatus(
+            event.bus === "speech"
+              ? `${speechRef.current.coachName ?? "Coach"} · Voice preview`
+              : `${cueLabel(event.cue)} · ${paletteLabel(event.palette)}`,
+          );
+        const pending = contextSpeechRef.current;
+        if (pending?.moveEventId === event.eventId) {
+          if (event.type === "started") {
+            // Measure the pause from audible movement, not an unpredictable download.
+            contextSpeechRef.current = null;
+            engine.playRecordedSpeech(pending.clip);
+          } else if (["cancelled", "suppressed", "error"].includes(event.type)) {
+            contextSpeechRef.current = null;
+            speechRef.current = { state: "idle" };
+            setSpeechPlayback({ state: "idle" });
+          }
         }
-      }
-      if (event.bus === "speech" && event.eventId === speechRef.current.eventId) {
-        if (event.type === "started") setSpeechPlayback({ ...speechRef.current, state: "playing" });
-        if (["ended", "cancelled", "suppressed", "error"].includes(event.type)) setSpeechPlayback({ state: "idle" });
-      }
-      if (event.type === "error") {
-        setStatus("Playback unavailable. Ready to retry.");
-        setError("This sound could not play. Try it again or check that audio is available in your browser.");
-      }
-      if (event.type === "suppressed" && event.reason === "muted") setStatus("Muted. Unmute to hear your next preview.");
-      if (event.type === "suppressed" && event.reason === "gesture-blocked") {
-        setStatus("Playback unavailable. Ready to retry.");
-        setError("Audio is unavailable or blocked by the browser. Press Play again to retry.");
-      }
-    } });
+        if (event.bus === "speech" && event.eventId === speechRef.current.eventId) {
+          if (event.type === "started")
+            setSpeechPlayback({ ...speechRef.current, state: "playing" });
+          if (["ended", "cancelled", "suppressed", "error"].includes(event.type))
+            setSpeechPlayback({ state: "idle" });
+        }
+        if (event.type === "error") {
+          setStatus("Playback unavailable. Ready to retry.");
+          setError(
+            "This sound could not play. Try it again or check that audio is available in your browser.",
+          );
+        }
+        if (event.type === "suppressed" && event.reason === "muted")
+          setStatus("Muted. Unmute to hear your next preview.");
+        if (event.type === "suppressed" && event.reason === "gesture-blocked") {
+          setStatus("Playback unavailable. Ready to retry.");
+          setError("Audio is unavailable or blocked by the browser. Press Play again to retry.");
+        }
+      },
+    });
     engine.setReady(true);
-    engine.setPreferences({ enabled: true, volume: .35, board: true, practice: true, voice: "manual" });
+    engine.setPreferences({
+      enabled: true,
+      volume: 0.35,
+      board: true,
+      practice: true,
+      voice: "manual",
+    });
     engineRef.current = engine;
     const pauseScenario = () => {
       if (document.visibilityState !== "hidden") return;
@@ -105,7 +136,13 @@ export function useStudioPlayer() {
       timersRef.current.forEach(clearTimeout);
       timersRef.current = [];
     }
-    engineRef.current?.setPreferences({ enabled: true, volume: volume / 100, board: true, practice: true, voice: "manual" });
+    engineRef.current?.setPreferences({
+      enabled: true,
+      volume: volume / 100,
+      board: true,
+      practice: true,
+      voice: "manual",
+    });
   }, [volume]);
   useEffect(() => {
     if (muted) {
@@ -145,7 +182,12 @@ export function useStudioPlayer() {
   async function playCue(cue: SoundCue, palette: SoundPalette) {
     const audition = await begin();
     if (!audition) return;
-    audition.engine.play({ cue, palette, scope: audition.scope, eventId: `${audition.scope}:${cue}` });
+    audition.engine.play({
+      cue,
+      palette,
+      scope: audition.scope,
+      eventId: `${audition.scope}:${cue}`,
+    });
   }
 
   async function playScenario(item: AuditionScenario) {
@@ -156,12 +198,14 @@ export function useStudioPlayer() {
       engine.play({ ...step, scope, eventId: `${scope}:${index}` });
     }
     if (item.skipAfterMs !== undefined && !muted && volume > 0) {
-      timersRef.current.push(setTimeout(() => {
-        if (take !== takeRef.current) return;
-        engine.cancel(scope);
-        engine.play({ cue: "move", scope: `${scope}:next`, eventId: `${scope}:next:move` });
-        setStatus("Jumped ahead. Feedback from the previous position was cancelled.");
-      }, item.skipAfterMs));
+      timersRef.current.push(
+        setTimeout(() => {
+          if (take !== takeRef.current) return;
+          engine.cancel(scope);
+          engine.play({ cue: "move", scope: `${scope}:next`, eventId: `${scope}:next:move` });
+          setStatus("Jumped ahead. Feedback from the previous position was cancelled.");
+        }, item.skipAfterMs),
+      );
     }
   }
 
@@ -169,21 +213,47 @@ export function useStudioPlayer() {
     const audition = await begin();
     if (!audition) return;
     const { engine, scope } = audition;
-    const {voiceId, scriptId, coachName, voiceName, utterance} = request;
+    const { voiceId, scriptId, coachName, voiceName, utterance } = request;
     const eventId = `${scope}:speech:${voiceId}:${scriptId}`;
-    speechRef.current = { state: "loading", voiceId, scriptId, coachName, coachId: utterance.coachId, eventId };
+    speechRef.current = {
+      state: "loading",
+      voiceId,
+      scriptId,
+      coachName,
+      coachId: utterance.coachId,
+      eventId,
+    };
     setSpeechPlayback(speechRef.current);
     setStatus(`Loading ${coachName} · ${voiceName}…`);
-    const recording = { url: request.url, utterance, recordingId: request.recordingId,
-      scope, eventId, delayMs: inContext ? 350 : 0 };
+    const recording = {
+      url: request.url,
+      utterance,
+      recordingId: request.recordingId,
+      scope,
+      eventId,
+      delayMs: inContext ? 350 : 0,
+    };
     if (inContext) {
       contextSpeechRef.current = { moveEventId: `${scope}:move`, clip: recording };
       engine.play({ cue: "move", scope, eventId: `${scope}:move` });
     } else engine.playRecordedSpeech(recording);
   }
 
-  return {volume, setVolume, muted, setMuted, events, status, error, speechPlayback, speaking,
-    stop, playCue, playScenario, playSpeech};
+  return {
+    volume,
+    setVolume,
+    muted,
+    setMuted,
+    events,
+    status,
+    error,
+    speechPlayback,
+    speaking,
+    stop,
+    playCue,
+    playScenario,
+    playSpeech,
+  };
 }
 
 export type StudioPlayer = ReturnType<typeof useStudioPlayer>;

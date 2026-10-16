@@ -7,7 +7,9 @@
 import { readFileSync } from "node:fs";
 import { sourceFiles } from "./source-files.mjs";
 
-const ORDER = readFileSync(new URL("../src/layers.css", import.meta.url), "utf8").match(/@layer\s+([^;{]+);/);
+const ORDER = readFileSync(new URL("../src/layers.css", import.meta.url), "utf8").match(
+  /@layer\s+([^;{]+);/,
+);
 const LAYERS = ORDER ? ORDER[1].split(",").map(name => name.trim()) : [];
 const STATEMENT = `@layer ${LAYERS.join(", ")};`;
 // The canonical order, and the application entry, which holds only imports.
@@ -16,16 +18,25 @@ const EXEMPT = new Set(["src/layers.css", "src/styles.css"]);
 export function problems(css) {
   const text = css.replace(/\/\*[\s\S]*?\*\//g, "");
   const found = [];
-  let index = 0, ordered = false, rules = false;
+  let index = 0,
+    ordered = false,
+    rules = false;
   while (index < text.length) {
     const rest = text.slice(index);
     const space = /^\s+/.exec(rest);
-    if (space) { index += space[0].length; continue; }
+    if (space) {
+      index += space[0].length;
+      continue;
+    }
     const statement = /^@(import|charset)\b[^;]*;/.exec(rest);
-    if (statement) { index += statement[0].length; continue; }
+    if (statement) {
+      index += statement[0].length;
+      continue;
+    }
     const order = /^@layer\s+[^;{]+;/.exec(rest);
     if (order) {
-      if (order[0].replace(/\s+/g, " ") !== STATEMENT) found.push(`order "${order[0]}" differs from src/layers.css`);
+      if (order[0].replace(/\s+/g, " ") !== STATEMENT)
+        found.push(`order "${order[0]}" differs from src/layers.css`);
       if (rules) found.push("the layer order must come before the first layer block");
       ordered = true;
       index += order[0].length;
@@ -38,7 +49,8 @@ export function problems(css) {
     }
     if (!LAYERS.includes(block[1])) found.push(`unknown layer "${block[1]}"`);
     rules = true;
-    let depth = 1, end = index + block[0].length;
+    let depth = 1,
+      end = index + block[0].length;
     for (; end < text.length && depth; end++) {
       if (text[end] === "{") depth++;
       else if (text[end] === "}") depth--;
@@ -54,10 +66,14 @@ if (!LAYERS.length) {
   process.exit(1);
 }
 const files = sourceFiles(/\.css$/).filter(file => !EXEMPT.has(file));
-const failures = files.flatMap(file => problems(readFileSync(file, "utf8")).map(problem => `${file}: ${problem}`));
+const failures = files.flatMap(file =>
+  problems(readFileSync(file, "utf8")).map(problem => `${file}: ${problem}`),
+);
 if (failures.length) {
   console.error(`Stylesheets must open with "${STATEMENT}" and wrap their rules in those layers:`);
   for (const failure of failures) console.error(`  ${failure}`);
   process.exit(1);
 }
-console.log(`Cascade layers: ${files.length} stylesheets declare the layer order and keep their rules in it.`);
+console.log(
+  `Cascade layers: ${files.length} stylesheets declare the layer order and keep their rules in it.`,
+);

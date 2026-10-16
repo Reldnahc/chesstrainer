@@ -1,5 +1,5 @@
-import {coachPersonality} from "../personality";
-import {authorTacticalWordings} from "../scopedTacticalWording";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
 export const analystTacticalTemplates = authorTacticalWordings({
   scope: {
@@ -10,10 +10,19 @@ export const analystTacticalTemplates = authorTacticalWordings({
     missed_immediate: "With {best}, a {motif} would have been on the board.",
     missed_possible: "With {best}, a {motif} could have followed, subject to the replies.",
   },
-  fork: {actual: "One piece now stands against the {targets} at once.", possible: "One piece, one square, and the {targets} would be attacked together from there."},
+  fork: {
+    actual: "One piece now stands against the {targets} at once.",
+    possible: "One piece, one square, and the {targets} would be attacked together from there.",
+  },
   material: "A {gain} may be the end result, though both sides still have choices before then.",
-  capture: {candidate: "If {capture} is played, a {piece} comes off the board.", followup: "If the line continues that way, {capture} may be next, taking a {piece}."},
-  playedCapture: {fact: "{move} has brought a {motif} into the position.", consequence: "After {capture}, a {piece} is gone."},
+  capture: {
+    candidate: "If {capture} is played, a {piece} comes off the board.",
+    followup: "If the line continues that way, {capture} may be next, taking a {piece}.",
+  },
+  playedCapture: {
+    fact: "{move} has brought a {motif} into the position.",
+    consequence: "After {capture}, a {piece} is gone.",
+  },
 });
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
@@ -29,87 +38,198 @@ export const analystOpeningTemplates = {
   "book-opening-follow-5": ["{opening} has this move too."],
   "book-opening-follow-6": ["So far, {opening} is unchanged."],
   "book-opening-follow-7": ["Again, {opening}."],
-  "book-opening-follow-8": ["Still {opening}. Being there locates the game; its quality is a matter for the engine."],
+  "book-opening-follow-8": [
+    "Still {opening}. Being there locates the game; its quality is a matter for the engine.",
+  ],
 } as const;
 
 export const analyst = coachPersonality({
-  version: "analyst-5", maxCharacters: 245, maxClaims: 2,
+  version: "analyst-5",
+  maxCharacters: 245,
+  maxClaims: 2,
   delivery: { pace: "measured", energy: "quiet" },
   behavior: {
-    general: "observation-first", praise: "minimal", correction: "observation-first",
-    questionFrequency: "none", directness: 4, emotionalAmplitude: 1,
-    humor: 0, jargon: 4, playerAddress: "none", sentenceLength: "short",
-    metaphor: "none", signature: "Identify precisely what changed, then its consequence; keep uncertainty beside the claim.",
+    general: "observation-first",
+    praise: "minimal",
+    correction: "observation-first",
+    questionFrequency: "none",
+    directness: 4,
+    emotionalAmplitude: 1,
+    humor: 0,
+    jargon: 4,
+    playerAddress: "none",
+    sentenceLength: "short",
+    metaphor: "none",
+    signature:
+      "Identify precisely what changed, then its consequence; keep uncertainty beside the claim.",
   },
   bible: {
-    temperament: "A restrained observer who notices exactly what a move changed and keeps the visible change apart from the searched conclusion.",
-    teaching: "Observation, then consequence: what is different now, and what follows. Qualifications sit beside the claim they limit.",
+    temperament:
+      "A restrained observer who notices exactly what a move changed and keeps the visible change apart from the searched conclusion.",
+    teaching:
+      "Observation, then consequence: what is different now, and what follows. Qualifications sit beside the claim they limit.",
     rhythm: "Compact before-and-after statements with no emotional lead-in or motivational ending.",
-    celebration: "Rare, precise approval for the actual resource, stated as a fact rather than a cheer.",
-    correction: "Name the changed fact without drama or personal judgment, and without sympathy or alarm that depends on which side moved.",
-    avoid: "Exclamation marks, motivational filler, invented certainty, clipped engine-output labels, other coaches' sayings, or naturalness and difficulty asserted without the human-move model behind them.",
+    celebration:
+      "Rare, precise approval for the actual resource, stated as a fact rather than a cheer.",
+    correction:
+      "Name the changed fact without drama or personal judgment, and without sympathy or alarm that depends on which side moved.",
+    avoid:
+      "Exclamation marks, motivational filler, invented certainty, clipped engine-output labels, other coaches' sayings, or naturalness and difficulty asserted without the human-move model behind them.",
   },
   templates: {
     ...analystTacticalTemplates,
     ...analystOpeningTemplates,
-    allowed_mate: [{ fact: "What has changed is decisive: {opponent} now has a forced checkmate.", consequence: "{reply}" }],
-    missed_mate: [{ fact: "Before this move, {best} forced mate.", consequence: "After it, that mate no longer exists." }],
-    tactic_played: [{ fact: "After {move}, the searched line contains a {motif}.", consequence: "{detail}" }],
-    tactic_allowed: [{ fact: "A {motif} has become available to {opponent} in the strongest line.", consequence: "{detail}" }],
-    tactic_missed: [{ fact: "The {motif} lay in {best}, and it is absent after this move.", consequence: "{detail}" }],
-    cause_abandoned_defender: [{ fact: "Before {move}, the only unpinned defender of {side}'s {piece} on {square} was in place; after it, that defender has moved elsewhere.", consequence: "{opponent} can capture it with {reply}." }],
-    cause_opponent_threat_recognition: [{ fact: "The attack on {side}'s {piece} on {square} began with the opponent's preceding move, and after {move} it is still there.", consequence: "{opponent} can capture it with {reply}." }],
-    cause_avoiding_bad_trades: [{ fact: "With {move}, {side}'s {piece} has been traded against a {captured}.", consequence: "{opponent} can recapture with {reply}." }],
-    sacrifice: [{ fact: "Material has been offered, and the acceptance search still supports the idea." }],
-    only_move: [{ fact: "Of the searched moves, this is the one after which the position is still playable.", consequence: "Each of the others loses it." }],
-    decisive_resource: ["After this searched move the decisive advantage is intact; after every other one, it is gone."],
+    allowed_mate: [
+      {
+        fact: "What has changed is decisive: {opponent} now has a forced checkmate.",
+        consequence: "{reply}",
+      },
+    ],
+    missed_mate: [
+      {
+        fact: "Before this move, {best} forced mate.",
+        consequence: "After it, that mate no longer exists.",
+      },
+    ],
+    tactic_played: [
+      { fact: "After {move}, the searched line contains a {motif}.", consequence: "{detail}" },
+    ],
+    tactic_allowed: [
+      {
+        fact: "A {motif} has become available to {opponent} in the strongest line.",
+        consequence: "{detail}",
+      },
+    ],
+    tactic_missed: [
+      {
+        fact: "The {motif} lay in {best}, and it is absent after this move.",
+        consequence: "{detail}",
+      },
+    ],
+    cause_abandoned_defender: [
+      {
+        fact: "Before {move}, the only unpinned defender of {side}'s {piece} on {square} was in place; after it, that defender has moved elsewhere.",
+        consequence: "{opponent} can capture it with {reply}.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        fact: "The attack on {side}'s {piece} on {square} began with the opponent's preceding move, and after {move} it is still there.",
+        consequence: "{opponent} can capture it with {reply}.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        fact: "With {move}, {side}'s {piece} has been traded against a {captured}.",
+        consequence: "{opponent} can recapture with {reply}.",
+      },
+    ],
+    sacrifice: [
+      { fact: "Material has been offered, and the acceptance search still supports the idea." },
+    ],
+    only_move: [
+      {
+        fact: "Of the searched moves, this is the one after which the position is still playable.",
+        consequence: "Each of the others loses it.",
+      },
+    ],
+    decisive_resource: [
+      "After this searched move the decisive advantage is intact; after every other one, it is gone.",
+    ],
     reply_capture: ["After {reply}, {opponent} has taken {side}'s {piece}."],
     reply_check: ["The reply that changes the most is {reply}: {opponent} gives check."],
     alternative: ["Set beside this: {best}, whose evaluation for the mover is {evaluation}."],
     loss: [{ fact: "Against the best line, the evaluation has dropped by {loss} pawns." }],
     best: [{ fact: "Strong; the searched alternatives would change very little." }],
-    good: [{ fact: "Sound; most of the position's value is unchanged, though the engine prefers another move." }],
-    uncertain_reason: ["The engine values {best} more highly. Why is not yet established, and no reason is assumed."],
-    human_natural_error: [{ fact: "Routine in the human-move model's forecast; the reply is where its cost appears." }],
-    human_rare: ["An unlikely move in the human-move model's forecast. After the engine's reply, it still holds."],
+    good: [
+      {
+        fact: "Sound; most of the position's value is unchanged, though the engine prefers another move.",
+      },
+    ],
+    uncertain_reason: [
+      "The engine values {best} more highly. Why is not yet established, and no reason is assumed.",
+    ],
+    human_natural_error: [
+      { fact: "Routine in the human-move model's forecast; the reply is where its cost appears." },
+    ],
+    human_rare: [
+      "An unlikely move in the human-move model's forecast. After the engine's reply, it still holds.",
+    ],
     difficult_defense: ["{best} would have held; the human-move model rarely picks that defense."],
     human_challenging: [{ fact: "The human-move model rates {best} difficult to locate." }],
-    human_defense_found: [{ fact: "After {best}, the position was still intact; the human-move model forecasts that defense as a rare find.", consequence: "It was found." }],
-    human_natural_best: ["Routine in the human-move model's forecast and unimproved upon in the engine's search: the two readings coincide."],
-    human_natural_strong: ["Routine in the human-move model's forecast; strong in the engine's, though its own preference differs."],
+    human_defense_found: [
+      {
+        fact: "After {best}, the position was still intact; the human-move model forecasts that defense as a rare find.",
+        consequence: "It was found.",
+      },
+    ],
+    human_natural_best: [
+      "Routine in the human-move model's forecast and unimproved upon in the engine's search: the two readings coincide.",
+    ],
+    human_natural_strong: [
+      "Routine in the human-move model's forecast; strong in the engine's, though its own preference differs.",
+    ],
     book: ["This position is catalogued as {opening}."],
     book_sound: ["Its course so far matches {opening}."],
     departure: ["From this move on, the game is outside our opening catalogue."],
-    recovery: [{ fact: "What changed after {earlier}: the disadvantage is gone, and play can continue normally.{help}" }],
+    recovery: [
+      {
+        fact: "What changed after {earlier}: the disadvantage is gone, and play can continue normally.{help}",
+      },
+    ],
     punishment: ["At {earlier}, an opportunity opened for {side}; with this move it is used."],
-    missed_punishment: ["At {earlier}, an opportunity opened for {side}; after this move it is still untaken."],
+    missed_punishment: [
+      "At {earlier}, an opportunity opened for {side}; after this move it is still untaken.",
+    ],
     repeated: ["Count of the {motif} issue in the reviewed segment so far: {count}."],
     support_restored: ["The {piece} lacked a guard at {earlier}; now a guard is back."],
-    erosion: ["Since {earlier}, concessions have been piling up in small steps, this move among them. Together they have changed the position."],
+    erosion: [
+      "Since {earlier}, concessions have been piling up in small steps, this move among them. Together they have changed the position.",
+    ],
     conversion: ["The advantage {side} held at {earlier} did not change hands before the win."],
     history: ["Outside this game, {games} saved games show the {motif} issue too."],
     development: [{ fact: "{lead}moves the {piece} for the first time, so it is developed now." }],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file."],
-    passed: ["{lead}leaves {side} with passed pawns on {squares}. Ahead of them, neither their files nor the adjacent ones hold an enemy pawn."],
+    passed: [
+      "{lead}leaves {side} with passed pawns on {squares}. Ahead of them, neither their files nor the adjacent ones hold an enemy pawn.",
+    ],
     passer_advance: ["{lead}moves the passed pawn on, so it now stands on {square}."],
-    isolated: ["{lead}leaves {side}'s pawns on {squares} isolated; the neighboring files no longer hold a friendly pawn."],
+    isolated: [
+      "{lead}leaves {side}'s pawns on {squares} isolated; the neighboring files no longer hold a friendly pawn.",
+    ],
     support: ["{lead}gives the {piece} on {square} a defender it did not have before."],
-    unsupported: ["{lead}leaves the {piece} on {square} without a defender. Whether it can be won is a further question."],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} without a defender. Whether it can be won is a further question.",
+    ],
     flights: ["{lead}opens {squares} as a legal square for the king."],
     castle: ["{lead}castles: the king has moved to {square}, the rook to its side."],
-    bishops: ["{lead}ends {side}'s bishop pair, so only one square color is covered by a bishop now."],
+    bishops: [
+      "{lead}ends {side}'s bishop pair, so only one square color is covered by a bishop now.",
+    ],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}."],
     mate_win: [{ fact: "Checkmate. Every move for the opposing king is now illegal." }],
-    mate_loss: [{ fact: "Checkmate. Your king has no legal escape.", takeaway: "The useful comparison lies earlier." }],
+    mate_loss: [
+      {
+        fact: "Checkmate. Your king has no legal escape.",
+        takeaway: "The useful comparison lies earlier.",
+      },
+    ],
     draw: ["A draw. The result is fixed; the earlier choices remain open to review."],
-    retry: [{ fact: "That attempt leaves the problem unsolved.", takeaway: "Look again at what the last move changed." }],
+    retry: [
+      {
+        fact: "That attempt leaves the problem unsolved.",
+        takeaway: "Look again at what the last move changed.",
+      },
+    ],
     recovered: [{ fact: "The correction works. {detail}" }],
     accepted: [{ fact: "What the line establishes: {detail}" }],
     explanation: [{ fact: "What changes: {detail}" }],
     explanation_summary: ["The supported conclusion: {detail}"],
     cold: ["Look at the position as it stands, then choose a move."],
     thinking: ["Checking what the move changes against the best reply…"],
-    unavailable: ["There is not enough engine analysis for this position, so nothing is explained here. The board remains open for exploration."],
+    unavailable: [
+      "There is not enough engine analysis for this position, so nothing is explained here. The board remains open for exploration.",
+    ],
     practice_error: ["No result was returned. The move can be tried again."],
     variation: ["In this variation: {detail}"],
     compatibility: ["The available explanation: {detail}"],

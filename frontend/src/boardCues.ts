@@ -21,18 +21,31 @@ export const ARROW_COLOURS = {
 } as const;
 
 /** The two squares a UCI move highlights: where it started and where it landed. */
-export const moveSquares = (uci: string | null | undefined): string[] => (uci ? [uci.slice(0, 2), uci.slice(2, 4)] : []);
+export const moveSquares = (uci: string | null | undefined): string[] =>
+  uci ? [uci.slice(0, 2), uci.slice(2, 4)] : [];
 
 /** One arrow along a UCI move. */
-export const uciArrow = (uci: string, color: string): Arrow => ({ startSquare: uci.slice(0, 2), endSquare: uci.slice(2, 4), color });
+export const uciArrow = (uci: string, color: string): Arrow => ({
+  startSquare: uci.slice(0, 2),
+  endSquare: uci.slice(2, 4),
+  color,
+});
 
 /** A report's board cues, only while the board shows the position they were made for. */
-export const cuesFor = (report: Report | null | undefined, frame: { fen: string } | null | undefined): Cues | null =>
+export const cuesFor = (
+  report: Report | null | undefined,
+  frame: { fen: string } | null | undefined,
+): Cues | null =>
   report?.board_cues && report.board_cues.fen === frame?.fen ? report.board_cues : null;
 
 /** Show why's arrows in their named colours. */
 export const cueArrows = (cues: Cues): Arrow[] =>
-  cues.arrows.map((arrow) => ({
+  cues.arrows.map(arrow => ({
     ...arrow,
-    color: arrow.kind === "move" ? ARROW_COLOURS.move : arrow.kind === "reply" ? ARROW_COLOURS.reply : ARROW_COLOURS.threat,
+    color:
+      arrow.kind === "move"
+        ? ARROW_COLOURS.move
+        : arrow.kind === "reply"
+          ? ARROW_COLOURS.reply
+          : ARROW_COLOURS.threat,
   }));

@@ -2,67 +2,105 @@ import { test, expect, type Page } from "@playwright/test";
 import { expectReturnAction } from "./return-action";
 
 async function openGame(page: Page, suffix: string) {
-  const { id } = await (await page.request.post(`/__test/game-review-fixture/variation-nav-${suffix}`)).json();
+  const { id } = await (
+    await page.request.post(`/__test/game-review-fixture/variation-nav-${suffix}`)
+  ).json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   // Navigation uses real legal positions; engine work is irrelevant to this check.
-  await page.route(`**/api/games/${id}/review`, route => route.fulfill({json: {job_id: "navigation", status: "completed"}}));
-  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  await page.route(`**/api/games/${id}/review`, route =>
+    route.fulfill({ json: { job_id: "navigation", status: "completed" } }),
+  );
+  await page.route(`**/api/games/${id}/analyze`, route =>
+    route.fulfill({ json: { report: null, score: null, best_move: null } }),
+  );
   await page.goto(`/games/${id}?ply=2`);
-  await expect(page.getByText("Original game", {exact: true})).toBeVisible();
+  await expect(page.getByText("Original game", { exact: true })).toBeVisible();
   const play = async (uci: string) => {
     await page.locator(`.board-shell [data-square="${uci.slice(0, 2)}"]`).click();
     await page.locator(`.board-shell [data-square="${uci.slice(2, 4)}"]`).click();
-    await expect(page.getByText("Exploring a variation", {exact: true})).toBeVisible();
+    await expect(page.getByText("Exploring a variation", { exact: true })).toBeVisible();
     await expect(page.locator(".game-variation-row button[aria-pressed=true]")).toContainText(
       uci === "e2e4" ? "e4" : "Nc6",
     );
   };
   const onMainline = async (ply: number) => {
-    await expect(page.getByText("Original game", {exact: true})).toBeVisible();
-    await expect(page.getByRole("button", {name: "Return to game", exact: true})).toHaveCount(0);
+    await expect(page.getByText("Original game", { exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Return to game", exact: true })).toHaveCount(0);
     await expect(page).toHaveURL(new RegExp(`/games/${id}${ply ? `\\?ply=${ply}` : ""}$`));
-    if (ply > 0) await expect(page.locator(".game-move-list button[aria-current=step]")).toHaveAccessibleName(
-      new RegExp(` ${game.frames[ply].san}(,|$)`),
-    );
+    if (ply > 0)
+      await expect(page.locator(".game-move-list button[aria-current=step]")).toHaveAccessibleName(
+        new RegExp(` ${game.frames[ply].san}(,|$)`),
+      );
   };
-  return {id, game, play, onMainline};
+  return { id, game, play, onMainline };
 }
 
-test("variation return is a prominent coach action and restores the original position", async ({page}, info) => {
-  const {id, game, play, onMainline} = await openGame(page, `return-${info.project.name}`);
+test("variation return is a prominent coach action and restores the original position", async ({
+  page,
+}, info) => {
+  const { id, game, play, onMainline } = await openGame(page, `return-${info.project.name}`);
   await page.evaluate(() => document.fonts.ready);
   const boardWidth = (await page.locator(".board-shell").boundingBox())!.width;
   const actionsHeight = (await page.locator(".coach-actions").boundingBox())!.height;
   const actionsWidth = (await page.locator(".coach-actions").boundingBox())!.width;
-  const originalWhy = (await page.getByRole("button", {name: "Show why", exact: true}).boundingBox())!;
+  const originalWhy = (await page
+    .getByRole("button", { name: "Show why", exact: true })
+    .boundingBox())!;
   expect(originalWhy.width).toBeCloseTo((actionsWidth - 8) / 2, 1);
   if (info.project.name === "desktop") {
-    const centers = await page.getByRole("group", {name: "Game navigation"}).evaluate(controls => {
-      const row = controls.getBoundingClientRect();
-      const first = controls.querySelector('[aria-label="Start of game"]')!.getBoundingClientRect();
-      const last = controls.querySelector('[aria-label="Last move"]')!.getBoundingClientRect();
-      const mute = controls.querySelector('[aria-label="Mute sound on this device"]')!.getBoundingClientRect();
-      return {row: (row.left + row.right) / 2, moves: (first.left + last.right) / 2, right: row.right, muteRight: mute.right};
-    });
+    const centers = await page
+      .getByRole("group", { name: "Game navigation" })
+      .evaluate(controls => {
+        const row = controls.getBoundingClientRect();
+        const first = controls
+          .querySelector('[aria-label="Start of game"]')!
+          .getBoundingClientRect();
+        const last = controls.querySelector('[aria-label="Last move"]')!.getBoundingClientRect();
+        const mute = controls
+          .querySelector('[aria-label="Mute sound on this device"]')!
+          .getBoundingClientRect();
+        return {
+          row: (row.left + row.right) / 2,
+          moves: (first.left + last.right) / 2,
+          right: row.right,
+          muteRight: mute.right,
+        };
+      });
     expect(Math.abs(centers.row - centers.moves)).toBeLessThan(1);
     expect(Math.abs(centers.right - centers.muteRight)).toBeLessThan(1);
   }
   await play("e2e4");
-  const back = page.getByRole("button", {name: "Return to game", exact: true});
+  const back = page.getByRole("button", { name: "Return to game", exact: true });
   await expectReturnAction(back);
-  await expect(page.locator(".coach-actions").getByRole("button", {name: "Return to game"})).toBeVisible();
-  await expect(page.getByRole("group", {name: "Game navigation"}).getByRole("button", {name: "Return to game"})).toHaveCount(0);
+  await expect(
+    page.locator(".coach-actions").getByRole("button", { name: "Return to game" }),
+  ).toBeVisible();
+  await expect(
+    page
+      .getByRole("group", { name: "Game navigation" })
+      .getByRole("button", { name: "Return to game" }),
+  ).toHaveCount(0);
   const layout = await back.evaluate(button => {
     const bounds = button.getBoundingClientRect();
     const actions = button.closest(".coach-actions")!;
     const why = actions.querySelector("button[aria-pressed]")!.getBoundingClientRect();
-    const speech = button.closest(".review-coach")!.querySelector(".coach-speech")!.getBoundingClientRect();
+    const speech = button
+      .closest(".review-coach")!
+      .querySelector(".coach-speech")!
+      .getBoundingClientRect();
     return {
-      width: bounds.width, height: bounds.height, top: bounds.top,
-      actionsHeight: actions.getBoundingClientRect().height, speechBottom: speech.bottom,
-      whyTop: why.top, whyHeight: why.height, whyWidth: why.width, gap: bounds.left - why.right,
+      width: bounds.width,
+      height: bounds.height,
+      top: bounds.top,
+      actionsHeight: actions.getBoundingClientRect().height,
+      speechBottom: speech.bottom,
+      whyTop: why.top,
+      whyHeight: why.height,
+      whyWidth: why.width,
+      gap: bounds.left - why.right,
       color: getComputedStyle(button).backgroundColor,
-      secondaryColor: getComputedStyle(actions.querySelector("button[aria-pressed]")!).backgroundColor,
+      secondaryColor: getComputedStyle(actions.querySelector("button[aria-pressed]")!)
+        .backgroundColor,
     };
   });
   expect(layout.top).toBeGreaterThanOrEqual(layout.speechBottom);
@@ -77,16 +115,22 @@ test("variation return is a prominent coach action and restores the original pos
   expect(layout.color).not.toBe(layout.secondaryColor);
   expect((await page.locator(".board-shell").boundingBox())!.width).toBe(boardWidth);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.locator(".review-coach").screenshot({path: `test-results/variation-return-${info.project.name}.png`});
+  await page
+    .locator(".review-coach")
+    .screenshot({ path: `test-results/variation-return-${info.project.name}.png` });
   if (info.project.name === "mobile") {
-    await page.setViewportSize({width: 320, height: 700});
-    const why = (await page.getByRole("button", {name: "Show why", exact: true}).boundingBox())!;
+    await page.setViewportSize({ width: 320, height: 700 });
+    const why = (await page.getByRole("button", { name: "Show why", exact: true }).boundingBox())!;
     const returning = (await back.boundingBox())!;
     expect(returning.y).toBe(why.y);
     expect(returning.x).toBe(why.x + why.width + 8);
     expect((await page.locator(".coach-actions").boundingBox())!.height).toBe(actionsHeight);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.locator(".review-coach").screenshot({path: "test-results/variation-return-small-phone.png"});
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await page
+      .locator(".review-coach")
+      .screenshot({ path: "test-results/variation-return-small-phone.png" });
   }
   await back.click();
   await onMainline(2);
@@ -95,17 +139,20 @@ test("variation return is a prominent coach action and restores the original pos
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
 });
 
-test("backward navigation exits a variation when it reaches the original branch point", async ({page}, info) => {
-  const {play, onMainline} = await openGame(page, `back-${info.project.name}`);
+test("backward navigation exits a variation when it reaches the original branch point", async ({
+  page,
+}, info) => {
+  const { play, onMainline } = await openGame(page, `back-${info.project.name}`);
   await play("e2e4");
   await play("b8c6");
   for (const input of ["button", "keyboard"]) {
     await page.locator(".game-variation-row button").last().click();
-    const previous = () => input === "button"
-      ? page.getByRole("button", {name: "Previous move", exact: true}).click()
-      : page.keyboard.press("ArrowLeft");
+    const previous = () =>
+      input === "button"
+        ? page.getByRole("button", { name: "Previous move", exact: true }).click()
+        : page.keyboard.press("ArrowLeft");
     await previous();
-    await expect(page.getByText("Exploring a variation", {exact: true})).toBeVisible();
+    await expect(page.getByText("Exploring a variation", { exact: true })).toBeVisible();
     await expect(page.locator(".game-variation-row button[aria-pressed=true]")).toContainText("e4");
     await previous();
     await onMainline(2);
@@ -114,12 +161,14 @@ test("backward navigation exits a variation when it reaches the original branch 
   }
 });
 
-test("start of variation exits to the branch point, then start of game reaches ply zero", async ({page}, info) => {
-  const {play, onMainline} = await openGame(page, `first-${info.project.name}`);
+test("start of variation exits to the branch point, then start of game reaches ply zero", async ({
+  page,
+}, info) => {
+  const { play, onMainline } = await openGame(page, `first-${info.project.name}`);
   await play("e2e4");
   await play("b8c6");
-  const toBranch = page.getByRole("button", {name: "Start of variation", exact: true});
-  const first = page.getByRole("button", {name: "Start of game", exact: true});
+  const toBranch = page.getByRole("button", { name: "Start of variation", exact: true });
+  const first = page.getByRole("button", { name: "Start of game", exact: true });
   await expect(first).toHaveCount(0);
   await expect(toBranch).toBeEnabled();
   await toBranch.click();
@@ -133,8 +182,8 @@ test("start of variation exits to the branch point, then start of game reaches p
   await expect(page.locator('.board-shell [data-square="f2"] [data-piece="wP"]')).toHaveCount(1);
   await expect(page.locator('.board-shell [data-square="e7"] [data-piece="bP"]')).toHaveCount(1);
   await expect(first).toBeDisabled();
-  await expect(page.getByRole("button", {name: "Previous move", exact: true})).toBeDisabled();
-  await page.getByRole("button", {name: "Next move", exact: true}).click();
+  await expect(page.getByRole("button", { name: "Previous move", exact: true })).toBeDisabled();
+  await page.getByRole("button", { name: "Next move", exact: true }).click();
   await onMainline(1);
   await expect(first).toBeEnabled();
   await first.click();

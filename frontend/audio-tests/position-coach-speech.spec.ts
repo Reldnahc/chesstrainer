@@ -1,31 +1,44 @@
-import {expect, test, type Page} from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
-import {defaultAudioPreferences} from "../src/audio/model";
-import type {Game} from "../src/gameReview/types";
-import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
-import {semanticFixtures} from "../tests/semantic-fixtures";
-import {openAudioFixturePage} from "./fixtures/openAudioFixture";
-import type {FakeSpeechAudio} from "./fixtures/fakeSpeechAudio";
-import type {PositionCoachSpeechHarness, PositionCoachSpeechSelection, PositionCoachSpeechState} from "./fixtures/positionCoachSpeechRuntime";
+import { defaultAudioPreferences } from "../src/audio/model";
+import type { Game } from "../src/gameReview/types";
+import { viteFsPath } from "../studio-tests/helpers/viteFsPath";
+import { semanticFixtures } from "../tests/semantic-fixtures";
+import { openAudioFixturePage } from "./fixtures/openAudioFixture";
+import type { FakeSpeechAudio } from "./fixtures/fakeSpeechAudio";
+import type {
+  PositionCoachSpeechHarness,
+  PositionCoachSpeechSelection,
+  PositionCoachSpeechState,
+} from "./fixtures/positionCoachSpeechRuntime";
 
-type HarnessWindow = Window & {positionCoachSpeech: PositionCoachSpeechHarness; fakeSpeechAudio: FakeSpeechAudio};
+type HarnessWindow = Window & {
+  positionCoachSpeech: PositionCoachSpeechHarness;
+  fakeSpeechAudio: FakeSpeechAudio;
+};
 const games = semanticFixtures<Record<string, Game>>("review_speech_combination_fixtures.py");
 const enrichedGame = games["cause-abandoned_defender-white"];
 const BASE = "cause-abandoned-defender";
 // The lead clip names the defender when the coach recorded its piece variant.
 const LEAD = `${BASE}(?:-(?:knight|bishop|rook|queen))?`;
-const region = (page: Page) => page.getByRole("region", {name: "Chess coach", exact: true});
-const chip = (page: Page) => region(page).getByRole("button", {name: "Maia: Natural mistake", exact: true});
-const bubble = (page: Page) => region(page).getByLabel("Coach explanation", {exact: true}).locator("[data-utterance]");
+const region = (page: Page) => page.getByRole("region", { name: "Chess coach", exact: true });
+const chip = (page: Page) =>
+  region(page).getByRole("button", { name: "Maia: Natural mistake", exact: true });
+const bubble = (page: Page) =>
+  region(page).getByLabel("Coach explanation", { exact: true }).locator("[data-utterance]");
 
 // Coaches never speak a Maia reading: speech is the bubble's objective line(s) only.
 const objectiveOnly = new RegExp(`^${LEAD}(?:[+](?!human-|combo-|combined-)[a-z0-9-]+)?$`);
 
 function withoutHuman(game: Game): Game {
-  const current = structuredClone(game), report = current.frames[1].report!;
+  const current = structuredClone(game),
+    report = current.frames[1].report!;
   report.human = null;
   report.practical = null;
-  if (report.intelligence) report.intelligence.events = report.intelligence.events.filter(event => event.kind !== "human_contrast");
+  if (report.intelligence)
+    report.intelligence.events = report.intelligence.events.filter(
+      event => event.kind !== "human_contrast",
+    );
   // The harness derives both PositionCoach.report and PositionCoach.frame from
   // this same game frame, so a late update cannot leave either source stale.
   return current;
@@ -35,36 +48,46 @@ async function state(page: Page): Promise<PositionCoachSpeechState> {
   return JSON.parse((await page.getByTestId("position-coach-speech-state").textContent())!);
 }
 async function update(page: Page, patch: Partial<PositionCoachSpeechSelection>) {
-  await page.evaluate(patch => (window as unknown as HarnessWindow).positionCoachSpeech.update(patch), patch);
-  if (patch.speechEventId) await expect.poll(() => state(page).then(value => value.speechEventId)).toBe(patch.speechEventId);
+  await page.evaluate(
+    patch => (window as unknown as HarnessWindow).positionCoachSpeech.update(patch),
+    patch,
+  );
+  if (patch.speechEventId)
+    await expect
+      .poll(() => state(page).then(value => value.speechEventId))
+      .toBe(patch.speechEventId);
 }
 async function counts(page: Page) {
   return page.evaluate(() => {
     const audio = (window as unknown as HarnessWindow).fakeSpeechAudio;
-    return {starts: audio.starts(), stops: audio.stops()};
+    return { starts: audio.starts(), stops: audio.stops() };
   });
 }
 async function tick(page: Page, duration: number) {
-  for (let remaining = duration; remaining > 0; remaining -= 50) await page.clock.runFor(Math.min(remaining, 50));
+  for (let remaining = duration; remaining > 0; remaining -= 50)
+    await page.clock.runFor(Math.min(remaining, 50));
 }
 
 async function inspectPreparedInsight(page: Page) {
   const current = await state(page);
   await chip(page).click();
-  const dialog = page.getByRole("dialog", {name: "Maia insight", exact: true});
+  const dialog = page.getByRole("dialog", { name: "Maia insight", exact: true });
   const explanation = dialog.locator("[data-utterance]");
   await expect(explanation).toHaveAttribute("data-intent", current.humanIntentId);
   await expect(explanation).toHaveAttribute("data-utterance", current.humanUtteranceId);
   await expect(explanation).toHaveAttribute("data-dialogue-coach", current.coachId);
   await expect(explanation).toHaveText(current.humanText);
-  await dialog.getByRole("button", {name: "Close insight", exact: true}).click();
+  await dialog.getByRole("button", { name: "Close insight", exact: true }).click();
 }
 
 async function recordingUrl(page: Page, coachId: string, recordingId: string) {
-  const url = await page.evaluate(async ({root, coachId, recordingId}) => {
-    const {coachRecording} = await import(`${root}/src/audio/speech/voiceBank.ts`);
-    return coachRecording(coachId, recordingId)?.url;
-  }, {root: viteFsPath(path.resolve(".")), coachId, recordingId});
+  const url = await page.evaluate(
+    async ({ root, coachId, recordingId }) => {
+      const { coachRecording } = await import(`${root}/src/audio/speech/voiceBank.ts`);
+      return coachRecording(coachId, recordingId)?.url;
+    },
+    { root: viteFsPath(path.resolve(".")), coachId, recordingId },
+  );
   expect(url, "the selected coach must provide this exact recording").toBeTruthy();
   return new URL(url!, page.url()).href;
 }
@@ -72,33 +95,49 @@ async function recordingUrl(page: Page, coachId: string, recordingId: string) {
 async function mount(page: Page, coachId: "classic" | "robot", game: Game) {
   await page.clock.install();
   await page.clock.pauseAt(new Date());
-  const assets: string[] = [], writes: string[] = [];
-  page.on("request", request => {if (request.method() !== "GET") writes.push(request.url());});
-  await page.route("**/api/preferences/audio", route => route.fulfill({json: {...defaultAudioPreferences, voice: "automatic"}}));
-  await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: coachId, motion: "natural"}}));
+  const assets: string[] = [],
+    writes: string[] = [];
+  page.on("request", request => {
+    if (request.method() !== "GET") writes.push(request.url());
+  });
+  await page.route("**/api/preferences/audio", route =>
+    route.fulfill({ json: { ...defaultAudioPreferences, voice: "automatic" } }),
+  );
+  await page.route("**/api/preferences/coach", route =>
+    route.fulfill({ json: { coach_id: coachId, motion: "natural" } }),
+  );
   await page.route(/\.opus(?:\?.*)?$/, route => {
     if (route.request().resourceType() !== "fetch") return route.fallback();
     assets.push(route.request().url());
-    return route.fulfill({contentType: "audio/mpeg", body: Buffer.from([1, 2, 3, 4])});
+    return route.fulfill({ contentType: "audio/mpeg", body: Buffer.from([1, 2, 3, 4]) });
   });
   await openAudioFixturePage(page);
-  await page.evaluate(async ({root, game}) => {
-    const {installFakeSpeechAudio} = await import(`${root}/audio-tests/fixtures/fakeSpeechAudio.ts`);
-    const {mountPositionCoachSpeech} = await import(`${root}/audio-tests/fixtures/positionCoachSpeechRuntime.tsx`);
-    const target = window as unknown as HarnessWindow;
-    target.fakeSpeechAudio = installFakeSpeechAudio();
-    target.positionCoachSpeech = mountPositionCoachSpeech(game);
-  }, {root: viteFsPath(path.resolve(".")), game});
+  await page.evaluate(
+    async ({ root, game }) => {
+      const { installFakeSpeechAudio } = await import(
+        `${root}/audio-tests/fixtures/fakeSpeechAudio.ts`
+      );
+      const { mountPositionCoachSpeech } = await import(
+        `${root}/audio-tests/fixtures/positionCoachSpeechRuntime.tsx`
+      );
+      const target = window as unknown as HarnessWindow;
+      target.fakeSpeechAudio = installFakeSpeechAudio();
+      target.positionCoachSpeech = mountPositionCoachSpeech(game);
+    },
+    { root: viteFsPath(path.resolve(".")), game },
+  );
   await expect(region(page)).toBeVisible();
   await expect.poll(() => state(page).then(value => value.ready)).toBe(true);
   await expect.poll(() => state(page).then(value => value.coachId)).toBe(coachId);
   await expect(bubble(page)).toHaveAttribute("data-utterance", (await state(page)).utteranceId);
-  await page.getByRole("button", {name: "Unlock audio", exact: true}).click();
-  return {assets, writes};
+  await page.getByRole("button", { name: "Unlock audio", exact: true }).click();
+  return { assets, writes };
 }
 
 for (const coachId of ["classic", "robot"] as const) {
-  test(`${coachId}: a visible Maia chip leaves the real PositionCoach response objective only`, async ({page}) => {
+  test(`${coachId}: a visible Maia chip leaves the real PositionCoach response objective only`, async ({
+    page,
+  }) => {
     const fixture = await mount(page, coachId, enrichedGame);
     const initial = await state(page);
     // Maia reaches only the chip; the coach's own intent never carries it.
@@ -107,48 +146,52 @@ for (const coachId of ["classic", "robot"] as const) {
     expect(initial.renderedCodes.some(code => code.startsWith("human_"))).toBe(false);
     await expect(chip(page)).toBeVisible();
     await inspectPreparedInsight(page);
-    expect(await counts(page)).toEqual({starts: 0, stops: 0});
+    expect(await counts(page)).toEqual({ starts: 0, stops: 0 });
 
-    await update(page, {speechEventId: "position-coach:arrival"});
+    await update(page, { speechEventId: "position-coach:arrival" });
     await tick(page, 250);
     await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(objectiveOnly);
     const parts = (await state(page)).observed!.split("+");
     expect((await state(page)).observedCoach).toBe(coachId);
     await tick(page, 1000);
-    expect(await counts(page)).toEqual({starts: 1, stops: 0});
-    expect(fixture.assets.sort()).toEqual((await Promise.all(parts.map(id => recordingUrl(page, coachId, id)))).sort());
+    expect(await counts(page)).toEqual({ starts: 1, stops: 0 });
+    expect(fixture.assets.sort()).toEqual(
+      (await Promise.all(parts.map(id => recordingUrl(page, coachId, id)))).sort(),
+    );
     expect(fixture.writes).toEqual([]);
   });
 
-  test(`${coachId}: late Maia preserves the current objective recording and explicit replay stays objective`, async ({page}) => {
+  test(`${coachId}: late Maia preserves the current objective recording and explicit replay stays objective`, async ({
+    page,
+  }) => {
     const fixture = await mount(page, coachId, withoutHuman(enrichedGame));
     await expect(chip(page)).toHaveCount(0);
-    await update(page, {speechEventId: "position-coach:before-human"});
+    await update(page, { speechEventId: "position-coach:before-human" });
     await tick(page, 250);
     // The plain bubble's recorded sentences play back to back as one playback.
     await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(objectiveOnly);
     const plain = (await state(page)).observed!;
     const urls = await Promise.all(plain.split("+").map(id => recordingUrl(page, coachId, id)));
     expect((await state(page)).observedCoach).toBe(coachId);
-    expect(await counts(page)).toEqual({starts: 1, stops: 0});
+    expect(await counts(page)).toEqual({ starts: 1, stops: 0 });
 
-    await update(page, {game: enrichedGame});
+    await update(page, { game: enrichedGame });
     await expect(chip(page)).toBeVisible();
     await expect(bubble(page)).toHaveAttribute("data-utterance", (await state(page)).utteranceId);
     expect((await state(page)).renderedCodes.some(code => code.startsWith("human_"))).toBe(false);
     await inspectPreparedInsight(page);
     await tick(page, 1000);
-    expect(await counts(page)).toEqual({starts: 1, stops: 0});
+    expect(await counts(page)).toEqual({ starts: 1, stops: 0 });
     expect((await state(page)).observed).toBe(plain);
 
     await page.evaluate(() => (window as unknown as HarnessWindow).fakeSpeechAudio.finish());
     await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
-    await region(page).getByRole("button", {name: "Listen to coach", exact: true}).click();
+    await region(page).getByRole("button", { name: "Listen to coach", exact: true }).click();
     // Replay speaks the enriched bubble's own objective sentences, never the Maia reading.
     await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(objectiveOnly);
     const replay = (await state(page)).observed!;
     expect((await state(page)).observedCoach).toBe(coachId);
-    urls.push(...await Promise.all(replay.split("+").map(id => recordingUrl(page, coachId, id))));
+    urls.push(...(await Promise.all(replay.split("+").map(id => recordingUrl(page, coachId, id)))));
     await tick(page, 500);
     expect((await counts(page)).starts).toBe(2);
     expect(fixture.assets.every(url => urls.includes(url))).toBe(true);
@@ -158,30 +201,46 @@ for (const coachId of ["classic", "robot"] as const) {
 }
 
 for (const coachId of ["classic", "robot"] as const) {
-  for (const [reading, game] of [["with Maia", enrichedGame], ["without Maia", withoutHuman(enrichedGame)]] as const)
-    test(`${coachId}: one move shows one Listen control ${reading}`, async ({page}) => {
+  for (const [reading, game] of [
+    ["with Maia", enrichedGame],
+    ["without Maia", withoutHuman(enrichedGame)],
+  ] as const)
+    test(`${coachId}: one move shows one Listen control ${reading}`, async ({ page }) => {
       await mount(page, coachId, game);
-      expect((await state(page)).renderedCodes).toEqual(["cause_abandoned_defender", expect.any(String)]);
+      expect((await state(page)).renderedCodes).toEqual([
+        "cause_abandoned_defender",
+        expect.any(String),
+      ]);
       await expect(chip(page)).toHaveCount(reading === "with Maia" ? 1 : 0);
-      await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(1);
-      await expect(region(page).getByRole("button", {name: "Listen to additional explanation"})).toHaveCount(0);
+      await expect(region(page).getByRole("button", { name: /^Listen/ })).toHaveCount(1);
+      await expect(
+        region(page).getByRole("button", { name: "Listen to additional explanation" }),
+      ).toHaveCount(0);
     });
 }
 
-test("classic: two recorded sentences play back to back as one playback behind one Stop", async ({page}) => {
+test("classic: two recorded sentences play back to back as one playback behind one Stop", async ({
+  page,
+}) => {
   // A cause clip plays alone (its capture sentence would repeat it), so the pair is the mate line and its book sentence.
   const fixture = await mount(page, "classic", withoutHuman(games["allowed-mate-natural"]));
-  const listen = region(page).getByRole("button", {name: /^Listen/});
+  const listen = region(page).getByRole("button", { name: /^Listen/ });
   await expect(listen).toHaveCount(1);
   await listen.click();
-  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^allowed-mate(?:-next)?[+]/);
+  await expect
+    .poll(() => state(page).then(value => value.observed))
+    .toMatch(/^allowed-mate(?:-next)?[+]/);
   const [first, second] = (await state(page)).observed!.split("+");
   await tick(page, 500);
-  expect(await counts(page)).toEqual({starts: 1, stops: 0});
-  expect(fixture.assets.sort()).toEqual([await recordingUrl(page, "classic", first),
-    await recordingUrl(page, "classic", second)].sort());
-  await region(page).getByRole("button", {name: "Stop coach voice", exact: true}).click();
+  expect(await counts(page)).toEqual({ starts: 1, stops: 0 });
+  expect(fixture.assets.sort()).toEqual(
+    [
+      await recordingUrl(page, "classic", first),
+      await recordingUrl(page, "classic", second),
+    ].sort(),
+  );
+  await region(page).getByRole("button", { name: "Stop coach voice", exact: true }).click();
   await tick(page, 500);
-  expect(await counts(page)).toEqual({starts: 1, stops: 1});
-  await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(1);
+  expect(await counts(page)).toEqual({ starts: 1, stops: 1 });
+  await expect(region(page).getByRole("button", { name: /^Listen/ })).toHaveCount(1);
 });

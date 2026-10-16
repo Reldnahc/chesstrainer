@@ -21,19 +21,9 @@ export default function ClassicCoach({ expression }: CoachArtworkProps) {
       focusable="false"
       style={vars}
     >
-      <g
-        className="coach-accents"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
+      <g className="coach-accents" fill="none" strokeLinecap="round" strokeLinejoin="round">
         {pose.accent === "stars" && (
-          <g
-            className="coach-stars"
-            fill="#f3d59b"
-            stroke="#f3d59b"
-            strokeWidth=".7"
-          >
+          <g className="coach-stars" fill="#f3d59b" stroke="#f3d59b" strokeWidth=".7">
             <path d="m9 22 1.8 4.8L16 29l-5.2 1.6L9 36l-1.7-5.4L2 29l5.3-2.2Z" />
             <path d="m69 9 1.4 4.2L75 15l-4.6 1.5L69 21l-1.5-4.5L63 15l4.5-1.8Z" />
             <path d="m74 43 1 2.8 3 1.2-3 1-1 3-1-3-3-1 3-1.2Z" />
@@ -51,12 +41,7 @@ export default function ClassicCoach({ expression }: CoachArtworkProps) {
           </g>
         )}
         {pose.accent === "check" && (
-          <path
-            className="coach-check-accent"
-            d="m9 36-5 5 5 5"
-            stroke="#bdcac4"
-            strokeWidth="2"
-          />
+          <path className="coach-check-accent" d="m9 36-5 5 5 5" stroke="#bdcac4" strokeWidth="2" />
         )}
       </g>
       <g className="coach-body-motion">
@@ -64,26 +49,15 @@ export default function ClassicCoach({ expression }: CoachArtworkProps) {
           <path d="M9 103V83Q10 66 29 66H51Q70 66 71 83V103Z" fill="#5d7770" />
           <path d="M40 83v20" stroke="#526b65" strokeWidth="1.2" />
           <path d="m29 68 11 15 11-15-3-10H32Z" fill="#eab18a" />
-          <path
-            d="m27 69 13 14-9 10-10-20m32-4L40 83l9 10 10-20"
-            fill="#91aa9d"
-          />
-          <path
-            d="m29 73 11 10 11-10"
-            fill="none"
-            stroke="#b3c4b7"
-            strokeWidth=".8"
-          />
+          <path d="m27 69 13 14-9 10-10-20m32-4L40 83l9 10 10-20" fill="#91aa9d" />
+          <path d="m29 73 11 10 11-10" fill="none" stroke="#b3c4b7" strokeWidth=".8" />
           <g className="coach-head-motion">
             <g className="coach-head-idle">
               <g className="coach-head-pose">
                 <ellipse cx="17" cy="43" rx="4" ry="7" fill="#eab18a" />
                 <ellipse cx="63" cy="43" rx="4" ry="7" fill="#eab18a" />
                 <ellipse cx="40" cy="39" rx="24" ry="29" fill="#f2c5a0" />
-                <path
-                  d="M16 37Q8 5 35 6Q67 0 65 39L57 29Q43 33 29 19L22 38Z"
-                  fill="#dad4ca"
-                />
+                <path d="M16 37Q8 5 35 6Q67 0 65 39L57 29Q43 33 29 19L22 38Z" fill="#dad4ca" />
                 <path
                   d="M21 17Q27 8 38 10M47 10q10 0 14 10"
                   fill="none"
@@ -104,8 +78,11 @@ export default function ClassicCoach({ expression }: CoachArtworkProps) {
                     strokeLinecap="round"
                   />
                 </g>
-                <HumanFeatures pose={pose} expression={expression}
-                  mouth={<WalterSpeechMouth pose={pose} expression={expression} />} />
+                <HumanFeatures
+                  pose={pose}
+                  expression={expression}
+                  mouth={<WalterSpeechMouth pose={pose} expression={expression} />}
+                />
               </g>
             </g>
           </g>
@@ -119,10 +96,7 @@ export default function ClassicCoach({ expression }: CoachArtworkProps) {
                 stroke="#7f7055"
                 strokeWidth="1"
               />
-              <path
-                d="M26 77q8 0 14 4 6-4 14-4v16q-8 0-14 4-6-4-14-4Z"
-                fill="#eadbc0"
-              />
+              <path d="M26 77q8 0 14 4 6-4 14-4v16q-8 0-14 4-6-4-14-4Z" fill="#eadbc0" />
               <path
                 d="M40 82v14M29 83l7 2m-7 3 7 2m8-5 7-2m-7 7 7-2"
                 stroke="#b8a68c"

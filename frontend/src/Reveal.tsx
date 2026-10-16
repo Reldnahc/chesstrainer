@@ -1,6 +1,13 @@
 import {
-  Children, Fragment, isValidElement, useLayoutEffect, useReducer, useRef,
-  type Key, type ReactElement, type ReactNode,
+  Children,
+  Fragment,
+  isValidElement,
+  useLayoutEffect,
+  useReducer,
+  useRef,
+  type Key,
+  type ReactElement,
+  type ReactNode,
 } from "react";
 import { afterAnimations, ghostCopy } from "./ghost";
 import { useInterfaceMotion } from "./MotionProvider";
@@ -20,11 +27,18 @@ const present = (children: ReactNode) =>
   children !== null && children !== undefined && children !== false && children !== "";
 
 /** Merges the current keyed children with items still closing, in a stable order. */
-function usePresence(children: ReactNode, { animateFirst, settled = true, exit = true }: {
-  animateFirst: boolean;
-  settled?: boolean;
-  exit?: boolean;
-}) {
+function usePresence(
+  children: ReactNode,
+  {
+    animateFirst,
+    settled = true,
+    exit = true,
+  }: {
+    animateFirst: boolean;
+    settled?: boolean;
+    exit?: boolean;
+  },
+) {
   const motion = useInterfaceMotion();
   const [, refresh] = useReducer((value: number) => value + 1, 0);
   // The committed list; each render derives its own list from it and commits that
@@ -43,8 +57,13 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
   const animate = motion !== "still";
   const make = (node: ReactElement): Entry => {
     const before = previous.get(node.key!);
-    const phase = !before ? (arrivals.current && animate ? "entering" : "open")
-      : before.phase === "closing" ? "open" : before.phase;
+    const phase = !before
+      ? arrivals.current && animate
+        ? "entering"
+        : "open"
+      : before.phase === "closing"
+        ? "open"
+        : before.phase;
     return { key: node.key!, node, phase, ghost: undefined };
   };
   const merged: Entry[] = [];
@@ -70,7 +89,8 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
     entries.current = merged;
     if (settled) arrivals.current = true;
     for (const key of left.current)
-      if (!merged.some(entry => entry.key === key && entry.phase === "closing")) left.current.delete(key);
+      if (!merged.some(entry => entry.key === key && entry.phase === "closing"))
+        left.current.delete(key);
     let opened = false;
     for (const entry of merged) {
       const element = elements.current.get(entry.key);
@@ -85,12 +105,16 @@ function usePresence(children: ReactNode, { animateFirst, settled = true, exit =
       } else if (entry.phase === "closing" && !element.dataset.leaving) {
         element.dataset.leaving = "true";
         // A cancelled close means the item came back, so it stays.
-        afterAnimations(element, () => {
-          const latest = entries.current.find(item => item.key === entry.key);
-          if (latest?.phase !== "closing") return;
-          left.current.add(entry.key);
-          refresh();
-        }, () => {});
+        afterAnimations(
+          element,
+          () => {
+            const latest = entries.current.find(item => item.key === entry.key);
+            if (latest?.phase !== "closing") return;
+            left.current.add(entry.key);
+            refresh();
+          },
+          () => {},
+        );
       }
     }
     if (opened) refresh();
@@ -112,31 +136,64 @@ function collapseGap(element: HTMLElement) {
   let gap = 0;
   if (parent && parent.childElementCount > 1) {
     const style = getComputedStyle(parent);
-    gap = parseFloat(style.display.includes("flex") && style.flexDirection.startsWith("row") ? style.columnGap : style.rowGap) || 0;
+    gap =
+      parseFloat(
+        style.display.includes("flex") && style.flexDirection.startsWith("row")
+          ? style.columnGap
+          : style.rowGap,
+      ) || 0;
   }
   const value = `${gap}px`;
-  if (element.style.getPropertyValue("--reveal-gap") !== value) element.style.setProperty("--reveal-gap", value);
+  if (element.style.getPropertyValue("--reveal-gap") !== value)
+    element.style.setProperty("--reveal-gap", value);
 }
 
-function Item({ entry, className, axis }: {
+function Item({
+  entry,
+  className,
+  axis,
+}: {
   entry: ReturnType<typeof usePresence>[number];
   className?: string;
   axis?: "block" | "inline";
 }) {
   const { ref, phase, ghost, node } = entry;
   const open = phase === "open";
-  return <div ref={ref} className={["reveal", className].filter(Boolean).join(" ")}
-    data-open={open} data-axis={axis} inert={phase === "closing" || undefined}
-    aria-hidden={phase === "closing" || undefined}>
-    {/* Distinct keys, so content that comes back mounts fresh beside no leftover copy. */}
-    {ghost
-      ? <div key="ghost" className="reveal-clip" data-ghost="" ref={clip => { if (clip && !clip.firstChild) clip.append(...ghost.childNodes); }} />
-      : <div key="live" className="reveal-clip">{node}</div>}
-  </div>;
+  return (
+    <div
+      ref={ref}
+      className={["reveal", className].filter(Boolean).join(" ")}
+      data-open={open}
+      data-axis={axis}
+      inert={phase === "closing" || undefined}
+      aria-hidden={phase === "closing" || undefined}
+    >
+      {/* Distinct keys, so content that comes back mounts fresh beside no leftover copy. */}
+      {ghost ? (
+        <div
+          key="ghost"
+          className="reveal-clip"
+          data-ghost=""
+          ref={clip => {
+            if (clip && !clip.firstChild) clip.append(...ghost.childNodes);
+          }}
+        />
+      ) : (
+        <div key="live" className="reveal-clip">
+          {node}
+        </div>
+      )}
+    </div>
+  );
 }
 
 /** `<Reveal>{error && <Notice …/>}</Reveal>`: one conditional block grows in and collapses out. */
-export default function Reveal({ children, className, axis, exit = true }: {
+export default function Reveal({
+  children,
+  className,
+  axis,
+  exit = true,
+}: {
   children: ReactNode;
   className?: string;
   /** `inline` grows from zero width, for a control appearing in a row. */
@@ -144,15 +201,29 @@ export default function Reveal({ children, className, axis, exit = true }: {
   /** false removes the content at once when it goes, e.g. a live region cleared to re-announce. */
   exit?: boolean;
 }) {
-  const entries = usePresence(present(children) ? <Fragment key="reveal">{children}</Fragment> : null, { animateFirst: true, exit });
-  return <>{entries.map(entry => <Item key={entry.key} entry={entry} className={className} axis={axis} />)}</>;
+  const entries = usePresence(
+    present(children) ? <Fragment key="reveal">{children}</Fragment> : null,
+    { animateFirst: true, exit },
+  );
+  return (
+    <>
+      {entries.map(entry => (
+        <Item key={entry.key} entry={entry} className={className} axis={axis} />
+      ))}
+    </>
+  );
 }
 
 /**
  * Keyed rows that grow in when added and collapse when removed. Rows present
  * when the list first settles (its data has loaded) appear with the page.
  */
-export function RevealList({ children, settled = true, className, exit = true }: {
+export function RevealList({
+  children,
+  settled = true,
+  className,
+  exit = true,
+}: {
   children: ReactNode;
   settled?: boolean;
   className?: string;
@@ -160,7 +231,13 @@ export function RevealList({ children, settled = true, className, exit = true }:
   exit?: boolean;
 }) {
   const entries = usePresence(children, { animateFirst: false, settled, exit });
-  return <>{entries.map(entry => <Item key={entry.key} entry={entry} className={className} />)}</>;
+  return (
+    <>
+      {entries.map(entry => (
+        <Item key={entry.key} entry={entry} className={className} />
+      ))}
+    </>
+  );
 }
 
 /**
@@ -168,13 +245,21 @@ export function RevealList({ children, settled = true, className, exit = true }:
  * the new one opens over it, so the size morphs and the content crossfades.
  * `inline` animates width for swaps inside a row of controls.
  */
-export function Swap({ children, axis = "block", className }: {
+export function Swap({
+  children,
+  axis = "block",
+  className,
+}: {
   children: ReactNode;
   axis?: "block" | "inline";
   className?: string;
 }) {
   const entries = usePresence(children, { animateFirst: false });
-  return <div className={["reveal-swap", className].filter(Boolean).join(" ")}>
-    {entries.map(entry => <Item key={entry.key} entry={entry} axis={axis} />)}
-  </div>;
+  return (
+    <div className={["reveal-swap", className].filter(Boolean).join(" ")}>
+      {entries.map(entry => (
+        <Item key={entry.key} entry={entry} axis={axis} />
+      ))}
+    </div>
+  );
 }

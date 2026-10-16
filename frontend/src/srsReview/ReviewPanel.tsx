@@ -31,9 +31,11 @@ type ReviewPanelProps = {
 };
 
 export default function ReviewPanel(props: ReviewPanelProps) {
-  return props.session.position?.opening
-    ? <OpeningRecallPanel session={props.session} />
-    : <GameRecallPanel {...props} />;
+  return props.session.position?.opening ? (
+    <OpeningRecallPanel session={props.session} />
+  ) : (
+    <GameRecallPanel {...props} />
+  );
 }
 
 function GameRecallPanel({
@@ -58,44 +60,82 @@ function GameRecallPanel({
     explanationOpener,
     openExplanation,
   } = playback;
-  const reaction = position ? practiceReaction({position, feedback, busy, mistake: mistakeCue,
-    hadFailure: session.hadFailure, error: !!session.gradingError}) : {key: "practice-empty", state: "neutral" as const};
-  const utterance = useDialogue(position ? practiceIntent({position, feedback, frame: previewFrame,
-    hadFailure: session.hadFailure, expression: reaction.state, error: !!session.gradingError})
-    : makeIntent("practice-empty", "neutral", "practice", "neutral", [claim("cold")]));
-  const recordingId = practiceRecording({position, feedback, frame: previewFrame, error: !!session.gradingError});
+  const reaction = position
+    ? practiceReaction({
+        position,
+        feedback,
+        busy,
+        mistake: mistakeCue,
+        hadFailure: session.hadFailure,
+        error: !!session.gradingError,
+      })
+    : { key: "practice-empty", state: "neutral" as const };
+  const utterance = useDialogue(
+    position
+      ? practiceIntent({
+          position,
+          feedback,
+          frame: previewFrame,
+          hadFailure: session.hadFailure,
+          expression: reaction.state,
+          error: !!session.gradingError,
+        })
+      : makeIntent("practice-empty", "neutral", "practice", "neutral", [claim("cold")]),
+  );
+  const recordingId = practiceRecording({
+    position,
+    feedback,
+    frame: previewFrame,
+    error: !!session.gradingError,
+  });
   // Generic one-sentence states show the coach's spoken line. A frame annotation
   // or explanation summary names concrete moves and material the spoken line
   // leaves out, so those stay written.
   // A grading error keeps its written sentence, which a paraphrase can change.
-  const spoken = useSelectedCoachSpokenText(session.gradingError ? null : !feedback
-    || recordingId?.startsWith("srs-fallback-") ? recordingId : null);
-  const shown = spoken ? {...utterance, text: spoken, speechText: spoken} : utterance;
+  const spoken = useSelectedCoachSpokenText(
+    session.gradingError
+      ? null
+      : !feedback || recordingId?.startsWith("srs-fallback-")
+        ? recordingId
+        : null,
+  );
+  const shown = spoken ? { ...utterance, text: spoken, speechText: spoken } : utterance;
   const voice = useCoachSpeech({
     scopeKey: `practice:${position?.session_id}:${feedback?.attempt_id ?? "cold"}:${preview ?? "position"}:${previewFrame?.fen ?? ""}:${recordingId}`,
     recordingId,
     ready: !!position && !busy && !session.loading && !explaining,
     // Counter-reply previews settle before speaking one primary description.
-    automaticEventId: session.gradingError ? null
-      : !feedback ? session.openEventId
-      : feedback.grade !== "revealed"
-      && session.feedbackEventId !== dismissedSpeechEvent
-      && (feedback.completed || preview === "reply" || !feedback.counter_reply)
-      ? session.feedbackEventId : null,
+    automaticEventId: session.gradingError
+      ? null
+      : !feedback
+        ? session.openEventId
+        : feedback.grade !== "revealed" &&
+            session.feedbackEventId !== dismissedSpeechEvent &&
+            (feedback.completed || preview === "reply" || !feedback.counter_reply)
+          ? session.feedbackEventId
+          : null,
   });
-  const receipt = feedback?.completed && feedback.retired
-    ? { message: "Progress saved. Retired from future reviews." }
-    : feedback?.completed && feedback.next_due
-      ? {
-        message: <>Progress saved.{(position?.failed || session.hadFailure || feedback.grade === "revealed")
-          && " This recall stays marked for relearning."}</>,
-        nextDue: feedback.next_due,
-      }
-      : {};
+  const receipt =
+    feedback?.completed && feedback.retired
+      ? { message: "Progress saved. Retired from future reviews." }
+      : feedback?.completed && feedback.next_due
+        ? {
+            message: (
+              <>
+                Progress saved.
+                {(position?.failed || session.hadFailure || feedback.grade === "revealed") &&
+                  " This recall stays marked for relearning."}
+              </>
+            ),
+            nextDue: feedback.next_due,
+          }
+        : {};
   return (
     <div
       ref={practicePanel}
-      className={!explaining && !position ? "practice-panel practice-panel--start" : "practice-panel"}
+      className={
+        !explaining && !position ? "practice-panel practice-panel--start" : "practice-panel"
+      }
       style={explaining ? { minHeight: explanationMinHeight } : undefined}
     >
       {explaining && position ? (
@@ -109,7 +149,13 @@ function GameRecallPanel({
           onClose={closeExplanation}
         />
       ) : !position && session.loadError ? (
-        <UnavailableState actions={<Button variant="secondary" onClick={() => void session.retryLoad()}>Try again</Button>}>
+        <UnavailableState
+          actions={
+            <Button variant="secondary" onClick={() => void session.retryLoad()}>
+              Try again
+            </Button>
+          }
+        >
           Couldn’t load your practice. {session.loadError}
         </UnavailableState>
       ) : !position ? (
@@ -132,20 +178,24 @@ function GameRecallPanel({
             </p>
           </div>
           <div className="practice-actions">
-            {!focusSkill && <ActionLink variant="primary" spread href={studyPaths.openings}>Study openings <ArrowRight size={17} /></ActionLink>}
+            {!focusSkill && (
+              <ActionLink variant="primary" spread href={studyPaths.openings}>
+                Study openings <ArrowRight size={17} />
+              </ActionLink>
+            )}
             <ActionLink
               variant={focusSkill ? "primary" : "secondary"}
               spread={!!focusSkill}
               href={focusSkill ? studyPaths.due : pagePaths.Settings}
             >
-              {focusSkill ? "Return to mixed review" : "Import games"}{" "}
-              <ArrowRight size={17} />
+              {focusSkill ? "Return to mixed review" : "Import games"} <ArrowRight size={17} />
             </ActionLink>
           </div>
           <div className="aside-note">
             <ShieldCheck size={19} />
             <p>
-              {focusSkill ? "Practice useful decisions from your own games, with feedback grounded in saved chess analysis."
+              {focusSkill
+                ? "Practice useful decisions from your own games, with feedback grounded in saved chess analysis."
                 : "Due combines your selected opening recall with useful decisions from your games."}
             </p>
           </div>
@@ -168,37 +218,27 @@ function GameRecallPanel({
                     : "Find a good move."}
               </h2>
             }
-            badge={
-              !busy && feedbackLabel ? (
-                <MoveBadge label={feedbackLabel} />
-              ) : undefined
-            }
+            badge={!busy && feedbackLabel ? <MoveBadge label={feedbackLabel} /> : undefined}
             actions={
               <>
                 {feedback?.completed ? (
-                  <Button
-                    size="compact"
-                    variant="primary"
-                    disabled={busy}
-                    onClick={next}
-                  >
+                  <Button size="compact" variant="primary" disabled={busy} onClick={next}>
                     Next position <ArrowRight size={17} />
                   </Button>
                 ) : preview ? (
-                  <Button size="compact" variant="primary" onClick={() => {
-                    setDismissedSpeechEvent(session.feedbackEventId);
-                    voice.stop();
-                    retry();
-                  }}>
+                  <Button
+                    size="compact"
+                    variant="primary"
+                    onClick={() => {
+                      setDismissedSpeechEvent(session.feedbackEventId);
+                      voice.stop();
+                      retry();
+                    }}
+                  >
                     Try again
                   </Button>
                 ) : (
-                  <Button
-                    size="compact"
-                    variant="secondary"
-                    disabled={busy}
-                    onClick={show}
-                  >
+                  <Button size="compact" variant="secondary" disabled={busy} onClick={show}>
                     Reveal move
                   </Button>
                 )}
@@ -221,22 +261,26 @@ function GameRecallPanel({
             {/* One live region for every feedback state, so a screen reader hears each
                 change once; the coach's line inside it adds no region of its own. */}
             {session.gradingError ? (
-              <MoveStatus><DialogueText utterance={shown} announce={false} /></MoveStatus>
+              <MoveStatus>
+                <DialogueText utterance={shown} announce={false} />
+              </MoveStatus>
             ) : feedback?.completed ? (
               <MoveStatus>
                 <p>
                   <strong className="review-move">
                     {feedback.submitted_san ||
                       feedback.answers
-                        ?.filter((a) => a.primary)
-                        .map((a) => a.san)
+                        ?.filter(a => a.primary)
+                        .map(a => a.san)
                         .join(", ")}
                   </strong>
                 </p>
                 <DialogueText utterance={shown} announce={false} />
               </MoveStatus>
             ) : previewFrame ? (
-              <MoveStatus><DialogueText utterance={shown} announce={false} /></MoveStatus>
+              <MoveStatus>
+                <DialogueText utterance={shown} announce={false} />
+              </MoveStatus>
             ) : (
               <MoveStatus
                 busy={busy}
