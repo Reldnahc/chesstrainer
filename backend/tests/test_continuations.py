@@ -1,6 +1,6 @@
 import chess
 import pytest
-from test_local_classifier import evidence
+from test_local_classifier import ACTUAL, FEN, evidence
 from trainer.chess_core import Candidate, valid_board
 from trainer.continuations import continuation_end, replay
 from trainer.local_classifier import LocalClassifier
@@ -52,10 +52,32 @@ def test_check_promotion_and_short_line_have_explicit_reasons():
 def test_classification_records_endpoints_and_extension_budget(settings):
     settings.classification_max_plies = 4
     settings.classification_extension_plies = 2
-    result, _ = LocalClassifier(settings).classify(evidence())
+    # The knight leaves the corner on a square the king does not attack, so the
+    # line settles once the rook capture is two plies old.
+    best = ["b5c7", "e8d7", "c7a8", "d7d6", "a8b6", "d6c6"]
+    result, _ = LocalClassifier(settings).classify(evidence(FEN, best, ACTUAL))
     assert result.continuations["best"].end_ply == 5
     assert result.continuations["best"].extended_plies == 1
     assert result.continuations["best"].material_delta == 5
     settings.classification_extension_plies = 0
-    limited, _ = LocalClassifier(settings).classify(evidence())
+    limited, _ = LocalClassifier(settings).classify(evidence(FEN, best, ACTUAL))
     assert not limited.outcomes and "continuation_unsettled" in limited.abstention_reasons
+
+
+def test_static_exchange_counts_recaptures_and_pins():
+    from trainer.continuations import capture_pending, static_exchange
+
+    # A pawn defended by a pawn is an equal trade; an undefended one is won.
+    defended = chess.Board("4k3/8/2p5/3p4/4P3/8/8/4K3 w - - 0 1")
+    assert static_exchange(defended, chess.Move.from_uci("e4d5")) == 0
+    loose = chess.Board("4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1")
+    assert static_exchange(loose, chess.Move.from_uci("e4d5")) == 1
+    assert capture_pending(loose) and not capture_pending(defended)
+    # A pinned defender does not defend: the knight on c6 cannot retake on e5.
+    pinned = chess.Board("4k3/8/2n5/1B2p3/8/8/8/4R1K1 w - - 0 1")
+    assert static_exchange(pinned, chess.Move.from_uci("e1e5")) == 1
+    # The saved line's own next move counts when it captures or checks.
+    start = chess.Board()
+    assert not capture_pending(start, chess.Move.from_uci("e2e4"))
+    check = chess.Board("4k3/8/8/8/8/8/8/R3K3 w - - 0 1")
+    assert capture_pending(check, chess.Move.from_uci("a1a8"))

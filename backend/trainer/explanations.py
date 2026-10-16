@@ -175,6 +175,22 @@ def _engine_summary(board, move, san, score, frames, balance_change, accepted):
     )
 
 
+def shown_line(board, candidate, rules):
+    """The answer line read and shown as game review reads it.
+
+    The line is replayed one board past the horizon, so its last ply sees the saved
+    next move as the classifier does; the frames stop where ``rules.shown`` says,
+    and the summary's material change reads only the boards those frames show.
+    """
+    boards = replay(board, candidate)[: rules.shown_plies + 2]
+    delta, end = settled_delta(
+        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
+    )
+    frames = replay_line(board, rules.shown(candidate, end))
+    change = shown_material_change(boards[: len(frames)], delta, frames[-1].material_change)
+    return boards, delta, end, frames, change
+
+
 def _answer_findings(boards, analysis_id, score, delta, end, accepted, rules, previous):
     """Playback findings for the shown line, from the move the learner must answer for."""
     # These witnesses come from THIS answer's exact line. A classification from
@@ -217,12 +233,7 @@ def explain_review(db, session_id, attempt_id=None, solution=False, parameters=N
     # The game review's horizon and the move before, so the shown line, the
     # summary and its findings read as far ahead as the review and the classifier.
     rules = line_rules(parameters, annotate=True, causes_first=False)
-    boards = replay(board, candidate)[: rules.shown_plies + 1]
-    delta, end = settled_delta(
-        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
-    )
-    frames = replay_line(board, rules.shown(candidate, end))
-    balance_change = shown_material_change(boards, delta, frames[-1].material_change)
+    boards, delta, end, frames, balance_change = shown_line(board, candidate, rules)
     summary = _engine_summary(board, move, san, candidate.score, frames, balance_change, accepted)
     notes = [
         "This is one Stockfish continuation against strong replies; it does not mean every reply is forced.",
