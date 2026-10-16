@@ -679,8 +679,10 @@ loading, code hashes, model hashes and typed policies are checked before use.
 
 The shared `human_analyses` table stores full policy facts and requests. It has
 no owner, like the Stockfish cache: when two members import the same game, the
-second review reuses the first one's predictions. `scripts/clear_games.py` keeps
-rows another account's review still references.
+second review reuses the first one's predictions. Rows nothing references are
+swept at startup once they are 30 days old, and `scripts/clear_games.py` keeps
+rows anything left in the database still references
+(see [ARCHITECTURE.md](ARCHITECTURE.md)).
 Cache identity covers full root/history/final position, mover, both actual PGN
 ratings or explicit fallbacks, source/time-control domain, provider, model and
 checkpoint revision, adapter revision, device, precision, Torch version, thread

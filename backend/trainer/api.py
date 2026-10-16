@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from sqlalchemy.orm import sessionmaker
 
 from trainer import site_settings
+from trainer.cache_maintenance import maintain_shared_caches
 from trainer.config import Settings
 from trainer.contracts.accounts import Identity
 from trainer.db import database, migrate, optimize
@@ -95,6 +96,8 @@ def create_app(
     async def lifespan(app):
         try:
             migrate(sql_engine)
+            # Before workers and requests start, so no cache row in use can go.
+            maintain_shared_caches(sql_engine)
             optimize(sql_engine, opening=True)
             # Startup maintenance runs once for the database. Administrative
             # sessions never reach HTTP handlers or job execution.
