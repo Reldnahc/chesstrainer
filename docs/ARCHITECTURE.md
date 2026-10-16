@@ -160,7 +160,9 @@ its rules in one of the layers:
 - `surfaces`: the phone surface policy (`panel.css`: sections flatten; see
   [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
   padding or border never undoes it. A page that divides flattened panels puts that
-  divider in this layer too (`game-insights.css`).
+  divider in this layer too (`game-insights.css`). The `.small` caption sits here as
+  well (`foundation.css`), so a caption overrides any page's or component's
+  paragraph type without `!important`.
 - `motion`: `interface-motion.css`, the Still policy over everything but coaches.
 
 A component's rule therefore beats the shell's at any specificity, and a page's
