@@ -54,7 +54,7 @@ export function StudioReviewPanel({id, className, playback, title, description, 
   id: string; className: string; playback: string; title: ReactNode; description: ReactNode;
   controls: ReactNode; preview: ReactNode;
 }) {
-  return <section className={`voice-audition ${className}`} aria-labelledby={`${id}-heading`} data-playback={playback}>
+  return <section className={`panel panel--card voice-audition ${className}`} aria-labelledby={`${id}-heading`} data-playback={playback}>
     <header className="voice-audition-heading">
       <h2 id={`${id}-heading`}>{title}</h2>
       <p>{description}</p>
