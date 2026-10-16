@@ -24,8 +24,9 @@ export default function MoveStatus({busy = false, failed = false, text, children
   const checking = busy && waiting;
   return <div role="status" aria-live="polite" aria-atomic="true" className={`move-status${children != null ? ' move-status-rich' : ''}${failed && !checking ? ' retry' : ''}`}>
     {/* Each new message crossfades over the reserved area instead of snapping. */}
-    <Swap><span key={checking ? 'checking' : children != null ? 'rich' : `${failed}:${text ?? ''}`} className="move-status-text">
+    {/* A div, since rich content holds paragraphs. */}
+    <Swap><div key={checking ? 'checking' : children != null ? 'rich' : `${failed}:${text ?? ''}`} className="move-status-text">
       {checking ? 'Checking your move...' : children ?? (failed ? <><RotateCcw size={15} aria-hidden="true"/><span>{text || 'Mistake. Try again.'}</span></> : text || 'Tap a piece, then its destination.')}
-    </span></Swap>
+    </div></Swap>
   </div>;
 }
