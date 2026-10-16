@@ -296,7 +296,7 @@ score/prose changes. Cold SRS still excludes all review-intelligence fields.
 
 ## Practical difficulty and human naturalness
 
-`review_intelligence/difficulty.py` derives `practical-2` from saved Stockfish and
+`review_intelligence/difficulty.py` derives `practical-3` from saved Stockfish and
 human evidence. It performs no search, changes no grades, and uses no coach
 identity. Full-game and variation reports expose the same typed assessment.
 Legacy Stockfish-only reports retain structural facts and explicitly abstain
@@ -344,7 +344,9 @@ in diffuse policies from being called dominant, and avoids treating a rank just
 outside top three as rare. This is a heuristic interpretation, **not an empirical
 finding about player success**. Thresholds/version are explicit and boundary-tested.
 
-Preferred best moves receive the natural band. Other modeled moves are
+Preferred best moves, and any best move among the model's top three choices,
+receive the natural band: a move the model ranks second at 9% is not a hard find,
+nor is its top choice in a diffuse policy. Other modeled moves are
 challenging; difficult additionally requires unusual model policy and an actual
 supported tactical horizon of at least three plies, a verified sacrifice of that
 best move, or the narrow defensive resource. Rarity alone cannot earn difficult.
