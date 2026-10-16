@@ -1,5 +1,5 @@
 import type { CoachArtworkProps } from "../../model";
-import { OrganicSpeechMouth } from "../../SpeechMouthLayer";
+import { OrganicSpeechMouth, speechMood, speechMoodRules } from "../../SpeechMouthLayer";
 import { animalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
@@ -51,7 +51,7 @@ export default function SlimeCoach({ expression }: CoachArtworkProps) {
             speakingMouth={
               <OrganicSpeechMouth x={50} y={61} width={18} height={7.5}
                 palette={{ cavity: "#244c42", outline: "#356953", tongue: "#a4ddae", lip: "#76cba6" }}
-                teeth={false} mood={pose.mouth === "concern" ? "concern" : "neutral"} />
+                teeth={false} mood={speechMood(pose.mouth, speechMoodRules.calm)} />
             }
           />
           <g fill="#e5bfa0" opacity=".65">

@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import type { CoachExpression } from "../../model";
 
 export type CastHands = "rest" | "offer" | "lift" | "brace" | "chin" | "resolve" | "balance" | "book";
@@ -49,14 +48,6 @@ export const castPoses: Record<CoachExpression, CastPose> = {
   explaining: p({ tilt: 3, eye: 0.9, gaze: [-0.5, 0], brows: [-8, 0], mouth: "smile", hands: "offer" }),
   draw: p({ tilt: -1, eye: 0.8, mouth: "smile", hands: "balance" }),
 };
-
-export function poseStyle(pose: CastPose, temperament = 1): CSSProperties {
-  return {
-    "--study-tilt": `${pose.tilt * temperament}deg`,
-    "--study-lift": `${pose.lift * temperament}px`,
-    "--study-temperament": temperament,
-  } as CSSProperties;
-}
 
 export const mouthPaths: Record<CastMouth, string> = {
   smile: "M43 65q7 6 14 0",

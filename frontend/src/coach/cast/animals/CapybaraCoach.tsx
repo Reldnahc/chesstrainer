@@ -3,7 +3,7 @@ import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
 import { AnimalBrows, AnimalEyes, AnimalFrame, AnimalHead } from "./AnimalParts";
 import AnimalHands from "./AnimalHands";
-import {OrganicSpeechMouth, SpeechMouthLayer} from "../../SpeechMouthLayer";
+import {OrganicSpeechMouth, SpeechMouthLayer, speechMood, speechMoodRules} from "../../SpeechMouthLayer";
 
 const emphasis: Partial<Record<CoachExpression, Partial<AnimalPose>>> = {
   neutral: { eye: 2.7, mouth: "smile" },
@@ -36,7 +36,7 @@ function CapybaraMouth({ pose }: { pose: AnimalPose }) {
         {pose.mouth === "oh" && <ellipse cx="56" cy="69" rx="5" ry="5.5" fill="#684c3e" />}
         </>}>
           <OrganicSpeechMouth x={56} y={64} width={25} height={8} teeth={false}
-            mood={pose.mouth === "concern" ? "concern" : "neutral"}
+            mood={speechMood(pose.mouth, speechMoodRules.calm)}
             palette={{cavity: "#684c3e", outline: "#654c3b", tongue: "#ab7f66"}}
             interior={<g className="organic-speech-teeth capybara-speech-incisors" fill="#f4e3c4" stroke="none">
               <path d="M-4 0h8l-.7 5h-6.6Z" />

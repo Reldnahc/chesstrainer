@@ -1,14 +1,9 @@
-import type { CSSProperties } from "react";
-import { ArtworkSvg, BodyRig, HeadRig } from "../ArtworkRig";
 import type { CoachArtworkProps } from "../model";
 import ClassicCoach from "../classic/ClassicCoach";
-import HumanFeatures, { type HumanFaceStyle } from "../human/HumanFeatures";
-import HumanSpeechMouth from "../human/HumanSpeechMouth";
-import Arm from "../human/Arm";
-import { poses, handPoses, withRestingGesture, type Gesture } from "../human/poses";
+import HumanFigure from "../human/HumanFigure";
+import type { HumanFaceStyle } from "../human/HumanFeatures";
+import { poses, withRestingGesture, type Gesture } from "../human/poses";
 import ManHair, { type ManLook } from "./ManHair";
-import Accents from "./Accents";
-import Book from "./Book";
 import "./motion.css";
 
 const palettes = {
@@ -85,23 +80,14 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
     ...source,
     tilt: source.tilt * (look === "expert" ? 0.7 : 1),
   };
-  const hands = handPoses[pose.gesture];
-  const vars = {
-    "--study-tilt": `${pose.tilt}deg`,
-    "--study-lift": `${pose.lift}px`,
-    "--study-temperament":
-      look === "expert" ? 0.7 : look === "partner" ? 1.05 : 0.9,
-  } as CSSProperties;
   return (
-    <ArtworkSvg
-      viewBox="-6 -8 92 115"
+    <HumanFigure
       className={`coach-artwork study-artwork study-human study-man study-${look}`}
-      style={vars}
-    >
-      <g transform="translate(-6 -8) scale(.92)">
-        <Accents expression={expression} />
-      </g>
-      <BodyRig>
+      expression={expression}
+      pose={pose}
+      temperament={look === "expert" ? 0.7 : look === "partner" ? 1.05 : 0.9}
+      body={
+        <>
         <path d="M8 103V84Q9 67 28 67h24q19 0 20 17v19Z" fill={color.coat} />
         <path d="m29 68 11 17 11-17-4-9H33Z" fill={color.shade} />
         <path d="M28 72q12 14 24 0l5 31H23Z" fill={color.shirt} />
@@ -149,79 +135,58 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
             ))}
           </g>
         )}
-        <HeadRig>
-          <ellipse cx="17" cy="43" rx="3.8" ry="6.5" fill={color.shade} />
-          <ellipse cx="63" cy="43" rx="3.8" ry="6.5" fill={color.shade} />
-          <path
-            d={
-              look === "host"
-                ? "M17 34Q16 12 40 12t23 22v19q-2 20-23 21-21-1-23-21Z"
-                : look === "expert"
-                  ? "M17 33q0-21 23-21t23 21v17Q61 70 40 74 19 70 17 50Z"
-                  : "M18 34q-1-22 22-22t22 22v17Q60 72 40 76 20 72 18 51Z"
-            }
-            fill={color.skin}
-          />
-          <ManHair look={look} />
-          {look === "host" && (
-            <g fill={color.hair}>
-              <g className="human-speech-jaw">
-                <path d="M17 49 23 54l2 9q15 10 30 0l2-9 6-5v4q-2 20-23 21-21-1-23-21Z" />
-              </g>
-              <path d="M29 54q6-4 11 0 5-4 11 0l-1 3q-6-1-10-2-4 1-10 2Z" />
-            </g>
-          )}
-          {look === "expert" && (
-            <g
-              fill="none"
-              stroke={color.shade}
-              strokeWidth=".9"
-              strokeLinecap="round"
-            >
-              <path d="m23 48 4 1m26 0 4-1" />
-              <g className="human-speech-jaw">
-                <path d="M28 65q12 8 24 0" />
-              </g>
-            </g>
-          )}
-          {look === "partner" && (
-            <g fill={color.hair}>
-              <g className="human-speech-jaw">
-                <path d="M18 48 23 51l3 12 6 4q8 4 16 0l6-4 3-12 5-3v3Q60 72 40 76 20 72 18 51Z" />
-              </g>
-              <path d="M29 55q3-5 11-2 8-3 11 2l-2 3q-6-3-9-3-3 0-9 3Z" />
-            </g>
-          )}
-          <HumanFeatures
-            pose={pose}
-            expression={expression}
-            browColor={color.hair}
-            noseColor={color.nose}
-            mouthColor={color.mouth}
-            glasses={false}
-            face={color.face}
-            mouth={<HumanSpeechMouth pose={pose} expression={expression}
-              mouthColor={color.mouth} palette={color.speech} />}
-          />
-        </HeadRig>
-        <Arm
-          side="left"
-          hand={hands.left}
-          gesture={pose.gesture}
-          {...color}
+        </>
+      }
+      head={
+        <>
+        <ellipse cx="17" cy="43" rx="3.8" ry="6.5" fill={color.shade} />
+        <ellipse cx="63" cy="43" rx="3.8" ry="6.5" fill={color.shade} />
+        <path
+          d={
+            look === "host"
+              ? "M17 34Q16 12 40 12t23 22v19q-2 20-23 21-21-1-23-21Z"
+              : look === "expert"
+                ? "M17 33q0-21 23-21t23 21v17Q61 70 40 74 19 70 17 50Z"
+                : "M18 34q-1-22 22-22t22 22v17Q60 72 40 76 20 72 18 51Z"
+          }
+          fill={color.skin}
         />
-        <Arm
-          side="right"
-          hand={hands.right}
-          gesture={pose.gesture}
-          {...color}
-        />
-        {pose.gesture === "book" && (
-          <g transform="translate(0 12) scale(.8)">
-            <Book color={color.coat} />
+        <ManHair look={look} />
+        {look === "host" && (
+          <g fill={color.hair}>
+            <g className="human-speech-jaw">
+              <path d="M17 49 23 54l2 9q15 10 30 0l2-9 6-5v4q-2 20-23 21-21-1-23-21Z" />
+            </g>
+            <path d="M29 54q6-4 11 0 5-4 11 0l-1 3q-6-1-10-2-4 1-10 2Z" />
           </g>
         )}
-      </BodyRig>
-    </ArtworkSvg>
+        {look === "expert" && (
+          <g
+            fill="none"
+            stroke={color.shade}
+            strokeWidth=".9"
+            strokeLinecap="round"
+          >
+            <path d="m23 48 4 1m26 0 4-1" />
+            <g className="human-speech-jaw">
+              <path d="M28 65q12 8 24 0" />
+            </g>
+          </g>
+        )}
+        {look === "partner" && (
+          <g fill={color.hair}>
+            <g className="human-speech-jaw">
+              <path d="M18 48 23 51l3 12 6 4q8 4 16 0l6-4 3-12 5-3v3Q60 72 40 76 20 72 18 51Z" />
+            </g>
+            <path d="M29 55q3-5 11-2 8-3 11 2l-2 3q-6-3-9-3-3 0-9 3Z" />
+          </g>
+        )}
+        </>
+      }
+      features={{ browColor: color.hair, noseColor: color.nose, mouthColor: color.mouth, face: color.face }}
+      speech={{ mouthColor: color.mouth, palette: color.speech }}
+      arms={color}
+      bookColor={color.coat}
+    />
   );
 }

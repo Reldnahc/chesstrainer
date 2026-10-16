@@ -1,13 +1,8 @@
-import type { CSSProperties } from "react";
-import { ArtworkSvg, BodyRig, HeadRig } from "../ArtworkRig";
 import type { CoachArtworkProps } from "../model";
-import HumanFeatures, { type HumanFaceStyle } from "../human/HumanFeatures";
-import HumanSpeechMouth from "../human/HumanSpeechMouth";
-import Arm from "../human/Arm";
-import { poses, handPoses, withRestingGesture, type Gesture, type Pose } from "../human/poses";
+import HumanFigure from "../human/HumanFigure";
+import type { HumanFaceStyle } from "../human/HumanFeatures";
+import { poses, withRestingGesture, type Gesture, type Pose } from "../human/poses";
 import WomanHair, { type WomanLook } from "./WomanHair";
-import Accents from "./Accents";
-import Book from "./Book";
 import "./motion.css";
 
 const palettes = {
@@ -106,23 +101,14 @@ export default function WomanCoach({ expression, family }: CoachArtworkProps) {
         ? poses.great.mouth
         : source.mouth,
   };
-  const hands = handPoses[pose.gesture];
-  const vars = {
-    "--study-tilt": `${pose.tilt}deg`,
-    "--study-lift": `${pose.lift}px`,
-    "--study-temperament":
-      look === "analyst" ? 0.6 : look === "spark" ? 1.15 : 0.9,
-  } as CSSProperties;
   return (
-    <ArtworkSvg
-      viewBox="-6 -8 92 115"
+    <HumanFigure
       className={`coach-artwork study-artwork study-human study-woman study-${look}`}
-      style={vars}
-    >
-      <g transform="translate(-6 -8) scale(.92)">
-        <Accents expression={expression} />
-      </g>
-      <BodyRig>
+      expression={expression}
+      pose={pose}
+      temperament={look === "analyst" ? 0.6 : look === "spark" ? 1.15 : 0.9}
+      body={
+        <>
         <path d="M9 103V84Q11 67 28 67h24q18 0 20 17v19Z" fill={color.coat} />
         <path d="m28 68 12 18 12-18-6-9H34Z" fill={color.skin} />
         <path
@@ -156,44 +142,25 @@ export default function WomanCoach({ expression, family }: CoachArtworkProps) {
             <path d="M49 91h10v8H49Z" fill="#608396" />
           </g>
         )}
-        <HeadRig>
-          <WomanHair look={look} />
-          <ellipse cx="17" cy="43" rx="3.6" ry="6.3" fill={color.shade} />
-          <ellipse cx="63" cy="43" rx="3.6" ry="6.3" fill={color.shade} />
-          <path d={color.head} fill={color.skin} />
-          <WomanHair look={look} front />
-          <circle cx="17.4" cy="50" r="2.1" fill="#e8c276" />
-          <circle cx="62.6" cy="50" r="2.1" fill="#e8c276" />
-          <HumanFeatures
-            pose={pose}
-            expression={expression}
-            browColor={color.hair}
-            glasses={false}
-            face={color.face}
-            mouth={<HumanSpeechMouth pose={pose} expression={expression}
-              mouthColor={womanMouthColor} palette={color.speech} />}
-          />
-          {look === "analyst" && <CatEyeGlasses />}
-        </HeadRig>
-        <Arm
-          side="left"
-          hand={hands.left}
-          gesture={pose.gesture}
-          {...color}
-        />
-        <Arm
-          side="right"
-          hand={hands.right}
-          gesture={pose.gesture}
-          {...color}
-        />
-        {pose.gesture === "book" && (
-          <g transform="translate(0 12) scale(.8)">
-            <Book color={color.coat} />
-          </g>
-        )}
-      </BodyRig>
-    </ArtworkSvg>
+        </>
+      }
+      head={
+        <>
+        <WomanHair look={look} />
+        <ellipse cx="17" cy="43" rx="3.6" ry="6.3" fill={color.shade} />
+        <ellipse cx="63" cy="43" rx="3.6" ry="6.3" fill={color.shade} />
+        <path d={color.head} fill={color.skin} />
+        <WomanHair look={look} front />
+        <circle cx="17.4" cy="50" r="2.1" fill="#e8c276" />
+        <circle cx="62.6" cy="50" r="2.1" fill="#e8c276" />
+        </>
+      }
+      overFeatures={look === "analyst" && <CatEyeGlasses />}
+      features={{ browColor: color.hair, face: color.face }}
+      speech={{ mouthColor: womanMouthColor, palette: color.speech }}
+      arms={color}
+      bookColor={color.coat}
+    />
   );
 }
 

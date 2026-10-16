@@ -1,5 +1,5 @@
-import { useId, type CSSProperties, type ReactNode } from "react";
-import { ArtworkSvg, BodyRig } from "../../ArtworkRig";
+import { useId, type ReactNode } from "react";
+import { StudyFrame } from "../../ArtworkRig";
 import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachExpression } from "../../model";
 import type { AnimalPose } from "../../studies/animalPoses";
@@ -21,20 +21,15 @@ export function AnimalFrame({
   children: ReactNode;
 }) {
   return (
-    <ArtworkSvg
-      viewBox="0 0 100 125"
+    <StudyFrame
       className={`coach-artwork study-artwork cast-${name}`}
-      style={
-        {
-          "--study-tilt": `${pose.tilt}deg`,
-          "--study-lift": `${pose.lift}px`,
-          "--study-temperament": temperament,
-        } as CSSProperties
-      }
+      tilt={pose.tilt}
+      lift={pose.lift}
+      temperament={temperament}
+      accents={<Accents expression={expression} />}
     >
-      <Accents expression={expression} />
-      <BodyRig>{children}</BodyRig>
-    </ArtworkSvg>
+      {children}
+    </StudyFrame>
   );
 }
 

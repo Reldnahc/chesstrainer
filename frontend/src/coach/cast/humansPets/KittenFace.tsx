@@ -1,7 +1,7 @@
 import type { AnimalPalette } from "../../studies/AnimalFace";
 import type { AnimalPose } from "../../studies/animalPoses";
 import { AnimalEyes } from "../animals/AnimalParts";
-import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
+import { OrganicSpeechMouth, SpeechMouthLayer, speechMood, speechMoodRules } from "../../SpeechMouthLayer";
 
 export default function KittenFace({ pose, palette }: { pose: AnimalPose; palette: AnimalPalette }) {
   return (
@@ -28,7 +28,7 @@ export default function KittenFace({ pose, palette }: { pose: AnimalPose; palett
         )}
         </>}>
           <OrganicSpeechMouth x={50} y={74} width={12} height={8}
-            mood={pose.mouth === "concern" || pose.mouth === "oh" ? "concern" : pose.mouth === "ponder" ? "neutral" : "smile"}
+            mood={speechMood(pose.mouth, speechMoodRules.animal)}
             palette={{cavity: "#78545b", outline: palette.nose, tongue: "#d6979b"}}
             teeth={false} />
         </SpeechMouthLayer>
