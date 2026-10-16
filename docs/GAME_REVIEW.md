@@ -258,7 +258,8 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   not see equally far (a restricted root searches a narrower tree), so a mate of any
   length seen by one search may lie just beyond the other's horizon. When the best
   move mates and the played move's search reads only +3.00 or better, the review
-  searches the played move again at depth 22 (2 seconds) before grading: a move
+  searches the played move again at the review refinement's limits (Refinement depth
+  and time in Advanced → Server, depth 22 and 2 seconds by default) before grading: a move
   that still mates is graded as a slower mate (Good), and one that really gives the
   mate up stays a Miss. When either side is mated while the other reads only -3.00
   or worse (the played move mated against a lost best defence, or the best defence

@@ -30,6 +30,7 @@ from trainer.game_library import mover_rating, pgn_rating, time_control_label
 from trainer.game_review import (
     PROGRESS_KEYS,
     branch_board,
+    mate_horizon_limits,
     move_frames,
     parsed_game,
     position,
@@ -390,6 +391,7 @@ def create_router(*, settings):
                 board,
                 fallback_rating=rating,
                 parameters=line_parameters(settings),
+                mate_limits=mate_horizon_limits(settings),
             )
             mover = not board.turn  # The side that made the analysed move.
             context = move_contexts(parsed).get(data.ply) if not data.moves else None

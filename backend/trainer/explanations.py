@@ -5,8 +5,7 @@ from dataclasses import dataclass
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, legal_move, position_key, side_name, valid_board
-from trainer.classification_stages import line_findings, line_rules, previous_move
-from trainer.continuations import replay, settled_delta
+from trainer.classification_stages import line_findings, line_rules, previous_move, read_line
 from trainer.errors import EvidenceIntegrityError, InvalidInput, NotFound
 from trainer.explanation_types import (
     NO_SOLUTION,
@@ -178,14 +177,11 @@ def _engine_summary(board, move, san, score, frames, balance_change, accepted):
 def shown_line(board, candidate, rules):
     """The answer line read and shown as game review reads it.
 
-    The line is replayed one board past the horizon, so its last ply sees the saved
-    next move as the classifier does; the frames stop where ``rules.shown`` says,
-    and the summary's material change reads only the boards those frames show.
+    The line is read as ``read_line`` reads it; the frames stop where
+    ``rules.shown`` says, and the summary's material change reads only the boards
+    those frames show.
     """
-    boards = replay(board, candidate)[: rules.shown_plies + 2]
-    delta, end = settled_delta(
-        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
-    )
+    boards, delta, end = read_line(board, candidate, rules)
     frames = replay_line(board, rules.shown(candidate, end))
     change = shown_material_change(boards[: len(frames)], delta, frames[-1].material_change)
     return boards, delta, end, frames, change

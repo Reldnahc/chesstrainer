@@ -97,7 +97,7 @@ def detect_line(line: PuzzleLine) -> Detection:
             boards, line.solver, params["max_plies"], params["extension_plies"]
         )
         end = endpoint.end_ply
-        delta = continuations.balance(boards[end], line.solver) - continuations.balance(
+        delta = chess_core.material_balance(boards[end], line.solver) - chess_core.material_balance(
             boards[0], line.solver
         )
         material_supported = delta >= params["min_material"]

@@ -17,6 +17,7 @@ from trainer.contracts.play import (
     PlyRequest,
     PracticeCourses,
 )
+from trainer.game_review import mate_horizon_limits
 from trainer.models import PlayGame, User
 from trainer.play.book import (
     book_moves,
@@ -58,6 +59,7 @@ def create_router(
 ) -> APIRouter:
     router = APIRouter()
     horizon = line_parameters(settings)
+    mate_limits = mate_horizon_limits(settings)
 
     def view(play, name, reply=None):
         # Saved Play reports are rendered with the host's line horizon.
@@ -260,6 +262,7 @@ def create_router(
                     data.ply,
                     name,
                     parameters=horizon,
+                    mate_limits=mate_limits,
                 )
             with workspace.write() as db:
                 play = require_play(db, play_id)

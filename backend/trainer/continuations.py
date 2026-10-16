@@ -14,7 +14,7 @@ from pydantic import BaseModel
 from trainer.chess_core import (
     VALUES,
     Candidate,
-    material,
+    material_balance,
     position_key,
     replay_moves,
     valid_board,
@@ -36,10 +36,6 @@ class ContinuationEnd(BaseModel):
 
 def replay(board: chess.Board, candidate: Candidate) -> list[chess.Board]:
     return replay_moves(board, candidate.pv)
-
-
-def balance(board: chess.Board, color: chess.Color) -> int:
-    return material(board, color) - material(board, not color)
 
 
 def _value(board: chess.Board, move: chess.Move) -> int:
@@ -95,7 +91,7 @@ def endpoint_reason(boards: list[chess.Board], end: int, color: chess.Color) -> 
         return "too_short"
     if boards[end].is_check():
         return "in_check"
-    if len({balance(b, color) for b in boards[end - 2 : end + 1]}) != 1 or any(
+    if len({material_balance(b, color) for b in boards[end - 2 : end + 1]}) != 1 or any(
         boards[p - 1].is_capture(boards[p].peek()) or boards[p].peek().promotion
         for p in (end - 1, end)
     ):
@@ -123,7 +119,7 @@ def continuation_end(
             break
     return ContinuationEnd(
         end_ply=end,
-        material_delta=balance(boards[end], color) - balance(boards[0], color)
+        material_delta=material_balance(boards[end], color) - material_balance(boards[0], color)
         if reason == "quiet"
         else None,
         reason=reason,

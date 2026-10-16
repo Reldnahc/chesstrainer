@@ -233,18 +233,15 @@
   .insight-split-loss {
     background: var(--outcome-loss);
   }
+  /* Rows share the list's columns, so counts and percentages line up at any width. */
   .insight-legend {
     list-style: none;
     padding: 0;
     display: grid;
-    gap: var(--space-1-5);
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    gap: var(--space-1-5) var(--space-2);
     font-size: var(--text-md);
     color: #d4d8de;
-  }
-  /* Rows share the list's columns, so counts and percentages line up at any width. */
-  .insight-legend {
-    grid-template-columns: auto minmax(0, 1fr) auto auto;
-    column-gap: var(--space-2);
   }
   .insight-legend li {
     display: grid;
@@ -339,7 +336,7 @@
     height: 36px;
     border-radius: 4px;
     font: var(--text-sm) var(--mono);
-    color: #141517;
+    color: var(--page-background);
   }
   .insight-heat--empty {
     background: transparent;
@@ -415,10 +412,10 @@
     font: var(--text-md) var(--mono);
   }
   .insight-up {
-    color: #c0dda1;
+    color: var(--outcome-win-text);
   }
   .insight-down {
-    color: #ff9ca4;
+    color: var(--outcome-loss-text);
   }
 
   .insight-table-scroll {
@@ -471,10 +468,10 @@
     vertical-align: -1px;
   }
   .insight-side--white {
-    background: #eceef1;
+    background: var(--text);
   }
   .insight-side--black {
-    background: #141517;
+    background: var(--page-background);
   }
   .insight-score {
     display: inline-block;

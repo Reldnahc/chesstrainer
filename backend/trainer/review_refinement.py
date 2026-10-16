@@ -10,7 +10,7 @@ from trainer.chess_core import digest, legal_move
 from trainer.classification_stages import line_parameters
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
 from trainer.game_library import board_before
-from trainer.game_review import analyze_move
+from trainer.game_review import analyze_move, mate_horizon_limits
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
 from trainer.puzzles.generation import remine_after_refinement
 from trainer.review_intelligence.refinement_plan import BROAD_TRIGGERS, VERSION, plan_key, selection
@@ -146,7 +146,13 @@ def refine(context, parsed, game_id, task_id, engine):
     adopted = False
     try:
         bounded = RefinementEngine(engine, task, context, context.cancelled)
-        report = analyze_move(bounded, board, move, parameters=line_parameters(context.settings))
+        report = analyze_move(
+            bounded,
+            board,
+            move,
+            parameters=line_parameters(context.settings),
+            mate_limits=mate_horizon_limits(context.settings),
+        )
         reason = adoption_reason(baseline, report)
         adopted = reason is None
         # Compare a plausible human alternative only if the finite

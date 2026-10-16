@@ -110,3 +110,116 @@ def test_a_poisoned_capture_followed_by_mate_is_not_a_hanging_piece():
     }
     # Without the mate the same capture still counts.
     assert ("missed_tactical_capture", "undefended_capture_gain") in detected(boards[:2])
+
+
+def test_a_pin_the_combination_creates_is_credited_to_it():
+    # ...Qxg2+ drags the rook onto the long diagonal, where the b7 bishop pins it
+    # to the king; ...Re1+ and ...Rxf1# follow (Lichess 04ccX).
+    boards = line(
+        "6k1/pb3p2/6pQ/3q4/8/3Br3/PPP3PP/6RK b - - 2 29", "Qxg2+", "Rxg2", "Re1+", "Bf1", "Rxf1#"
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_existing_pin_the_line_exploits_is_credited():
+    # The queen on f7 already pins the d7 bishop to the king on c7; the line goes
+    # on to take it with Bxd7 (Lichess 1mukg).
+    boards = line(
+        "3r3r/2kb1Q1p/p1nb1p2/4p3/4P1B1/8/PpP2PPP/1K1R4 w - - 4 21",
+        "Rxd6",
+        "Kxd6",
+        "Bxd7",
+        "Rxd7",
+        "Qxf6+",
+        "Kc7",
+        "Qxh8",
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_existing_pin_that_stops_the_answer_to_mate_is_credited():
+    # The queen on f8 pins the e8 rook, which could otherwise take on e7 (Lichess SU9uA).
+    boards = line("r1bkrQ2/ppqn2pp/4P3/n7/2B5/5N2/PP3PPP/2KR3R w - - 2 19", "e7#")
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_new_pin_along_another_line_is_the_lines_own():
+    # Be6 pins f7 at the start; after Kg7 that pin is gone and Qxc7 pins f7 along
+    # the seventh rank, so fxe6 is impossible (Lichess 4GRBz).
+    boards = line(
+        "6k1/2rr1p1p/4BQp1/1q6/p7/2R4P/P4PP1/6K1 w - - 0 1", "Rxc7", "Rxc7", "Qd8+", "Kg7", "Qxc7"
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_moving_the_pinner_along_its_line_does_not_exploit_an_old_pin():
+    # Finding 13's position: Ba4 only slides the pinning bishop back.
+    boards = line("4k3/ppp1ppp1/2n5/1B2R2r/8/8/PPP2PP1/4K2Q w - - 0 1", "Qxh5", "a6", "Ba4", "b6")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_pinned_piece_cannot_answer_a_double_check():
+    # Bg6+ is double check: only a king move answers, so the pinned d7 knight's
+    # interposition square is irrelevant and its old pin is not exploited.
+    boards = line("4k3/3n4/5R2/1B6/4B3/8/8/4R1K1 w - - 0 1", "Bg6+", "Kd8")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_old_pin_beside_a_mating_attack_it_does_not_change_is_declined():
+    # The g3 rook pins the g6 pawn, which attacks the h5 rook; but after the checks
+    # Black must answer them, so Qh6+ Kg8 Qh7# mates with or without the pin
+    # (Lichess Y7ACL).
+    boards = line("2r2r2/2p2pk1/p3pqp1/1p5R/1P1P4/P5RP/3Q1P2/6K1 w - - 1 28", "Qh6+", "Kg8", "Qh7#")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_old_pin_that_keeps_a_recapturing_guard_alive_is_credited():
+    # Rg1 pins the g6 pawn, which cannot take the h5 knight; after Qxf6 exf6 that
+    # knight retakes with check and forks (Lichess icvcT).
+    boards = line(
+        "2r3k1/pp1qpp1p/5np1/4Q2N/8/2P2P2/PP5P/2K3R1 w - - 0 1",
+        "Qxf6",
+        "exf6",
+        "Nxf6+",
+        "Kg7",
+        "Nxd7",
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_pinner_leaving_the_line_while_a_rear_piece_keeps_the_pin_uses_it():
+    # Rg5-h5 leaves the g-file, but the g1 rook keeps the g6 pawn pinned, so the
+    # pawn cannot take on h5, where the rook attacks the queen (Lichess b05S8).
+    boards = line(
+        "r4r2/2p2pkp/2npbNp1/6R1/1PP4q/pP6/P2Q1P1P/2K3R1 w - - 0 1", "Rh5", "Kxf6", "Rxh4"
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_guarded_landing_a_cheaper_piece_can_take_is_not_a_pin_exploit():
+    # Qg5 just loses the queen to ...hxg5; nothing retakes, guard or not.
+    boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_sliding_the_pinner_along_its_line_does_not_make_a_new_pin():
+    boards = line("4k3/ppp1ppp1/2n5/1B2R2r/8/8/PPP2PP1/4K2Q w - - 0 1", "Ba4", "a6")
+    found = recognized_patterns(boards, 1, len(boards) - 1, "line", "missed_opportunity")
+    assert "pin" not in {f.skill_id for f in found}
+
+
+def test_a_replacement_pin_witness_names_what_the_pinned_piece_cannot_take():
+    # Upstream's first pin is the old Bb5 pin of c6, which the line never uses;
+    # Re1 creates a new pin of e7, which then cannot capture on d5.
+    from trainer.lichess_patterns import recognize
+
+    boards = line("4k3/4n3/2r5/1B1P4/5N2/8/8/R6K w - - 0 1", "Re1", "Kd8")
+    pins = [w for w in recognize(boards, 1, len(boards) - 1, "line").witnesses if w.theme == "pin"]
+    assert pins and all(w.rule == "pin_prevents_attack" for w in pins)
+    assert pins[0].roles["pinned_defender"] == ["e7"] and "cannot capture" in pins[0].explanation
+
+
+def test_a_retake_after_losing_the_queen_is_not_a_pin_exploit():
+    # Qg5 hxg5 Rxg5 gives the queen for a pawn; the guard's retake is no idea.
+    boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5", "hxg5", "Rxg5")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}

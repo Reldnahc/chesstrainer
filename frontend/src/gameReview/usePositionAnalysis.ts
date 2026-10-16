@@ -3,7 +3,7 @@ import { api, read } from "../api";
 import type { Analysis } from "./types";
 import { useAnalysisRequests } from "./useAnalysisRequests";
 
-const cacheKey = (root: number, path: string[], rating: number) =>
+const cacheKey = (root: number, path: string[], rating: number | undefined) =>
   `${root}:${path.join(",")}@${rating}`;
 
 /** Serializes played moves; only browsing is debounced. Cache keys include history. */
@@ -17,7 +17,8 @@ export function usePositionAnalysis({
   browse,
 }: {
   id: string;
-  rating: number;
+  /** The game's rating, unknown until the game loads; nothing is requested before then. */
+  rating: number | undefined;
   epoch: number;
   root: number;
   path: string[];

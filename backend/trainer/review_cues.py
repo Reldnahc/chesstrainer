@@ -98,13 +98,24 @@ def review_cues(line, *, mistake=False):
             visible = []
             for name in squares:
                 square = chess.parse_square(name)
-                # A before-move witness can mention the vacated origin or a
-                # captured piece. Project only the mover, never the victim.
+                # A before-move witness can mention the vacated origin, the empty
+                # square the move goes to (a skewering check names it before the
+                # piece stands there) or a captured piece. Project only the mover,
+                # never the victim.
                 if finding["frame_ply"] == 0:
                     if square == played.from_square:
                         square = played.to_square
+                    elif square == played.to_square and witness.piece_at(square) is None:
+                        pass
                     elif witness.piece_at(square) != current.piece_at(square):
                         continue
+                # The cue draws the current position: a square a piece has yet to
+                # reach (a skewering piece's destination) is marked only as the
+                # shown reply's landing square, never as an empty square.
+                elif current.piece_at(square) is None and not (
+                    show_reply and square == reply.to_square
+                ):
+                    continue
                 visible.append(chess.square_name(square))
             if visible:
                 roles[role] = visible
