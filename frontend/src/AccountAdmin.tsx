@@ -97,7 +97,7 @@ export default function AccountAdmin({ selfId }: { selfId: string }) {
       return <div className="settings-tool settings-tool-row" key={account.id}>
         <div>
           <h3>{account.username}{self && " (you)"}</h3>
-          <p>{account.admin ? "Administrator" : "Member"}{account.disabled && " · Disabled"} · Joined {new Date(account.created).toLocaleDateString()}</p>
+          <p>{account.admin ? "Administrator" : "Member"}{account.disabled && " · Disabled"} · Joined {new Date(account.created).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</p>
         </div>
         <Swap className="settings-tool-actions">{resetting
           ? <form className="button-row account-password-form" key="password" onSubmit={event => resetPassword(event, account)}>

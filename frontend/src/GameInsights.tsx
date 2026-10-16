@@ -277,14 +277,14 @@ function Openings({ data }: { data: Insights }) {
         </tbody>
       </table>
     </div>
-    <p className="small muted insight-note">Openings are named from the bundled Lichess opening list. Score counts a draw as half a win; move accuracy comes from reviewed games only.{rest > 0 ? ` ${plural(rest, "opening")} with a single game are not shown.` : ""}</p>
+    <p className="small muted insight-note">Openings are named from the bundled Lichess opening list. Score counts a draw as half a win; move accuracy comes from reviewed games only.{rest > 0 ? ` ${plural(rest, "opening with a single game is", "openings with a single game are")} not shown.` : ""}</p>
   </Panel>;
 }
 
 function Theory({ data }: { data: Insights }) {
   const { theory } = data;
   if (!theory.reviewed_games) return null;
-  return <Panel id="theory" title="Leaving the opening book" meta={`${theory.costly_exits}/${theory.exits} exits`}>
+  return <Panel id="theory" title="Leaving the opening book" meta={`${theory.costly_exits}/${theory.exits} ${pluralWord(theory.exits, "exit")}`}>
     <Lead>{theory.costly_exits
       ? <>In {plural(theory.costly_exits, "reviewed game")}, your first move out of book cost a pawn or more: on average <strong>{pawns(theory.average_cost_cp)}</strong> around move {fixed(theory.average_exit_move, 0)}.</>
       : theory.exits ? <>None of your {plural(theory.exits, "move")} out of the opening book cost a pawn or more.</>

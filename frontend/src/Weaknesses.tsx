@@ -10,7 +10,7 @@ import { QueryResult, useQuery } from "./useQuery";
 import ActionLink from "./ActionLink";
 import { focusedPracticePath, insightsPaths, settingsPath, type InsightsSection } from "./navigation";
 import GameInsights from "./GameInsights";
-import { plural } from "./format";
+import { plural, pluralWord } from "./format";
 
 function WeaknessCard({ skill, onEvidence }: {
   skill: Schema["SkillPriority"];
@@ -30,7 +30,7 @@ function WeaknessCard({ skill, onEvidence }: {
     ]} />
     <div className="weakness-practice">
       {skill.focused_attempts > 0 && <p className="small">
-        <strong>{skill.focused_attempts - skill.focused_failures} / {skill.focused_attempts}</strong> clean solves in recent focused practice
+        <strong>{skill.focused_attempts - skill.focused_failures} / {skill.focused_attempts}</strong> clean {pluralWord(skill.focused_attempts, "solve")} in recent focused practice
       </p>}
       {skill.practice_positions ? <ActionLink variant="secondary"
         href={focusedPracticePath(skill.skill_id)}>
