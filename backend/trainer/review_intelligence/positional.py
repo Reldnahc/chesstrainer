@@ -44,14 +44,12 @@ def rook_file(board, square, color):
     return "semi_open" if board.pieces_mask(chess.PAWN, not color) & mask else "open"
 
 
-def position_changes(board, move, unmoved_minors=None):
-    """Legal immediate transition only. `unmoved_minors` requires complete PGN history."""
-    if not board.is_valid() or move not in board.legal_moves:
-        return []
-    after, mover = board.copy(stack=False), board.turn
-    after.push(move)
-    changes = []
+def relocated(square, move, color, mover):
+    """Where the `color` piece on `square` stands after `move`."""
+    return move.to_square if color == mover and square == move.from_square else square
 
+
+def change_recorder(changes):
     def emit(feature, color, before_value, after_value, squares=(), **details):
         changes.append(
             dict(
@@ -64,16 +62,26 @@ def position_changes(board, move, unmoved_minors=None):
             )
         )
 
+    return emit
+
+
+def development_change(board, move, unmoved_minors, emit):
+    if unmoved_minors is None or move.from_square not in unmoved_minors:
+        return
     piece = board.piece_at(move.from_square)
-    if unmoved_minors is not None and move.from_square in unmoved_minors:
-        emit(
-            "first_development",
-            mover,
-            chess.square_name(move.from_square),
-            chess.square_name(move.to_square),
-            [move.from_square, move.to_square],
-            piece=chess.piece_name(piece.piece_type),
-        )
+    emit(
+        "first_development",
+        board.turn,
+        chess.square_name(move.from_square),
+        chess.square_name(move.to_square),
+        [move.from_square, move.to_square],
+        piece=chess.piece_name(piece.piece_type),
+    )
+
+
+def king_shelter_change(board, after, move, emit):
+    """Castling, or a pawn move beside a castled-side king that opens a flight square."""
+    mover = board.turn
     if board.is_castling(move):
         king = after.king(mover)
         shield = after.pieces(chess.PAWN, mover) & after.attacks(king)
@@ -85,111 +93,140 @@ def position_changes(board, move, unmoved_minors=None):
             [king, *shield],
             adjacent_pawns=names(sorted(shield)),
         )
-    elif (
-        piece.piece_type == chess.PAWN
+        return
+    if not (
+        board.piece_at(move.from_square).piece_type == chess.PAWN
         and chess.square_rank(board.king(mover)) == (0 if mover else 7)
         and chess.square_file(board.king(mover)) in {1, 2, 6, 7}
         and not board.is_check()
         and not after.is_check()
     ):
-        before_flights, after_flights = flight_squares(board, mover), flight_squares(after, mover)
-        opened = after_flights - before_flights
-        if opened:
+        return
+    before_flights, after_flights = flight_squares(board, mover), flight_squares(after, mover)
+    opened = after_flights - before_flights
+    if opened:
+        emit(
+            "king_flights",
+            mover,
+            names(sorted(before_flights)),
+            names(sorted(after_flights)),
+            opened,
+            opened=names(sorted(opened)),
+            king=chess.square_name(after.king(mover)),
+        )
+
+
+def pawn_structure_changes(board, after, move, color, emit):
+    mover = board.turn
+    before_pawns, after_pawns = pawn_features(board, color), pawn_features(after, color)
+    for feature in ("passed_pawns", "isolated_pawns"):
+        old, new = before_pawns[feature], after_pawns[feature]
+        mapped = {relocated(s, move, color, mover) for s in old}
+        if mapped != new:
             emit(
-                "king_flights",
-                mover,
-                names(sorted(before_flights)),
-                names(sorted(after_flights)),
-                opened,
-                opened=names(sorted(opened)),
-                king=chess.square_name(after.king(mover)),
+                feature,
+                color,
+                names(sorted(old)),
+                names(sorted(new)),
+                old | new,
+                added=names(sorted(new - mapped)),
+                removed=names(sorted(mapped - new)),
+            )
+    old, new = before_pawns["doubled_files"], after_pawns["doubled_files"]
+    if old != new:
+        # `added` is what this move doubled; a pair broken up elsewhere
+        # leaves an older doubled file in `after` that the move did not make.
+        emit(
+            "doubled_files",
+            color,
+            [chess.FILE_NAMES[f] for f in sorted(old)],
+            [chess.FILE_NAMES[f] for f in sorted(new)],
+            added=[chess.FILE_NAMES[f] for f in sorted(new - old)],
+            removed=[chess.FILE_NAMES[f] for f in sorted(old - new)],
+        )
+    if color == mover and move.from_square in before_pawns["passed_pawns"] and not move.promotion:
+        emit(
+            "passed_pawn_advance",
+            color,
+            chess.square_name(move.from_square),
+            chess.square_name(move.to_square),
+            [move.from_square, move.to_square],
+        )
+
+
+def rook_file_changes(board, after, move, color, emit):
+    if board.is_castling(move) and color == board.turn:
+        return  # King/rook relocation is already represented by castling.
+    for square in sorted(board.pieces(chess.ROOK, color)):
+        target = relocated(square, move, color, board.turn)
+        if after.piece_at(target) != chess.Piece(chess.ROOK, color):
+            continue
+        old, new = rook_file(board, square, color), rook_file(after, target, color)
+        if old != new:
+            emit(
+                "rook_file",
+                color,
+                old,
+                new,
+                [target],
+                file=chess.FILE_NAMES[chess.square_file(target)],
             )
 
+
+def piece_support_changes(board, after, move, color, emit):
+    """A piece other than a pawn or king that gains its first or loses its last defender."""
+    if board.is_castling(move) and color == board.turn:
+        return
+    for square, current in sorted(board.piece_map().items()):
+        if current.color != color or current.piece_type in {chess.PAWN, chess.KING}:
+            continue
+        target = relocated(square, move, color, board.turn)
+        if after.piece_at(target) != current:
+            continue
+        old, new = defenders(board, square, color), defenders(after, target, color)
+        if bool(old) != bool(new):
+            emit(
+                "piece_support",
+                color,
+                names(sorted(old)),
+                names(sorted(new)),
+                [target],
+                piece=chess.piece_name(current.piece_type),
+                target=chess.square_name(target),
+                attacked=bool(defenders(after, target, not color)),
+            )
+
+
+def bishop_pair_change(board, after, move, color, emit):
+    before_bishops, after_bishops = (
+        len(board.pieces(chess.BISHOP, color)),
+        len(after.pieces(chess.BISHOP, color)),
+    )
+    opposite_colors = {
+        bool(chess.BB_SQUARES[s] & chess.BB_LIGHT_SQUARES)
+        for s in board.pieces(chess.BISHOP, color)
+    } == {False, True}
+    if before_bishops == 2 and after_bishops == 1 and opposite_colors:
+        emit("bishop_pair", color, 2, 1, after.pieces(chess.BISHOP, color))
+
+
+# Rules applied to each side in turn, in this order; all compare the same two boards.
+SIDE_RULES = (pawn_structure_changes, rook_file_changes, piece_support_changes, bishop_pair_change)
+
+
+def position_changes(board, move, unmoved_minors=None):
+    """Legal immediate transition only. `unmoved_minors` requires complete PGN history."""
+    if not board.is_valid() or move not in board.legal_moves:
+        return []
+    after = board.copy(stack=False)
+    after.push(move)
+    changes = []
+    emit = change_recorder(changes)
+    development_change(board, move, unmoved_minors, emit)
+    king_shelter_change(board, after, move, emit)
     for color in chess.COLORS:
-        before_pawns, after_pawns = pawn_features(board, color), pawn_features(after, color)
-        for feature in ("passed_pawns", "isolated_pawns"):
-            old, new = before_pawns[feature], after_pawns[feature]
-            mapped = {
-                move.to_square if color == mover and s == move.from_square else s for s in old
-            }
-            if mapped != new:
-                emit(
-                    feature,
-                    color,
-                    names(sorted(old)),
-                    names(sorted(new)),
-                    old | new,
-                    added=names(sorted(new - mapped)),
-                    removed=names(sorted(mapped - new)),
-                )
-        old, new = before_pawns["doubled_files"], after_pawns["doubled_files"]
-        if old != new:
-            # `added` is what this move doubled; a pair broken up elsewhere
-            # leaves an older doubled file in `after` that the move did not make.
-            emit(
-                "doubled_files",
-                color,
-                [chess.FILE_NAMES[f] for f in sorted(old)],
-                [chess.FILE_NAMES[f] for f in sorted(new)],
-                added=[chess.FILE_NAMES[f] for f in sorted(new - old)],
-                removed=[chess.FILE_NAMES[f] for f in sorted(old - new)],
-            )
-        if (
-            color == mover
-            and move.from_square in before_pawns["passed_pawns"]
-            and not move.promotion
-        ):
-            emit(
-                "passed_pawn_advance",
-                color,
-                chess.square_name(move.from_square),
-                chess.square_name(move.to_square),
-                [move.from_square, move.to_square],
-            )
-        for square in sorted(board.pieces(chess.ROOK, color)):
-            target = move.to_square if color == mover and square == move.from_square else square
-            if board.is_castling(move) and color == mover:
-                continue  # King/rook relocation is already represented by castling.
-            if after.piece_at(target) != chess.Piece(chess.ROOK, color):
-                continue
-            old, new = rook_file(board, square, color), rook_file(after, target, color)
-            if old != new:
-                emit(
-                    "rook_file",
-                    color,
-                    old,
-                    new,
-                    [target],
-                    file=chess.FILE_NAMES[chess.square_file(target)],
-                )
-        for square, current in sorted(board.piece_map().items()):
-            if current.color != color or current.piece_type in {chess.PAWN, chess.KING}:
-                continue
-            target = move.to_square if color == mover and square == move.from_square else square
-            if after.piece_at(target) != current or (board.is_castling(move) and color == mover):
-                continue
-            old, new = defenders(board, square, color), defenders(after, target, color)
-            if bool(old) != bool(new):
-                emit(
-                    "piece_support",
-                    color,
-                    names(sorted(old)),
-                    names(sorted(new)),
-                    [target],
-                    piece=chess.piece_name(current.piece_type),
-                    target=chess.square_name(target),
-                    attacked=bool(defenders(after, target, not color)),
-                )
-        before_bishops, after_bishops = (
-            len(board.pieces(chess.BISHOP, color)),
-            len(after.pieces(chess.BISHOP, color)),
-        )
-        opposite_colors = {
-            bool(chess.BB_SQUARES[s] & chess.BB_LIGHT_SQUARES)
-            for s in board.pieces(chess.BISHOP, color)
-        } == {False, True}
-        if before_bishops == 2 and after_bishops == 1 and opposite_colors:
-            emit("bishop_pair", color, 2, 1, after.pieces(chess.BISHOP, color))
+        for rule in SIDE_RULES:
+            rule(board, after, move, color, emit)
     return changes
 
 
