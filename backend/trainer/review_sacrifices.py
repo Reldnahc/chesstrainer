@@ -3,7 +3,7 @@
 import chess
 
 from trainer.chess_core import Score, material_balance, valid_board
-from trainer.review_scores import numeric
+from trainer.review_scores import HOLDING_CP, numeric
 
 
 def is_sacrifice_offer(board, move, capture):
@@ -93,7 +93,7 @@ def supported_sacrifice(report):
         return False
 
     def sound(value):
-        return numeric(value) >= -50
+        return numeric(value) >= HOLDING_CP
 
     return (
         sound(score)

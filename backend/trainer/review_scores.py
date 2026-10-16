@@ -13,6 +13,13 @@ BLUNDER_CP_LOW_RATED = 300  # Below that rating, an ordinary pawn loss is not a 
 BLUNDER_RATING = 1200
 GRADE_BOUNDARIES = (INACCURACY_CP, MISTAKE_CP, BLUNDER_CP, BLUNDER_CP_LOW_RATED)
 
+# Evaluation bands the rules read, in the mover's centipawns.
+HOLDING_CP = -50  # At least this: not losing (-0.50 or better).
+LEVEL_CP = 150  # Strictly inside plus or minus this: roughly level.
+CLEAR_EDGE_CP = 200  # At least this: clearly better; at most -CLEAR_EDGE_CP: clearly worse.
+LOSING_ALTERNATIVE_CP = -150  # At most this: a runner-up that loses.
+ONLY_GOOD_GAP_CP = 150  # At least this between best and runner-up for an only move.
+
 
 def mate_changed(loss):
     return loss.allows_mate or loss.mate_lost
@@ -41,9 +48,11 @@ def is_only_good(best, second):
     evidence both read this.
     """
     gap = evaluation_loss(best, second)
-    safe_best = best.outcome() == 1 or (best.kind == "cp" and best.value >= -50)
-    losing_second = second.outcome() == -1 or (second.kind == "cp" and second.value <= -150)
-    return safe_best and losing_second and (mate_changed(gap) or (gap.cp or 0) >= 150)
+    safe_best = best.outcome() == 1 or (best.kind == "cp" and best.value >= HOLDING_CP)
+    losing_second = second.outcome() == -1 or (
+        second.kind == "cp" and second.value <= LOSING_ALTERNATIVE_CP
+    )
+    return safe_best and losing_second and (mate_changed(gap) or (gap.cp or 0) >= ONLY_GOOD_GAP_CP)
 
 
 def is_only_good_move(best, actual, second):
@@ -55,7 +64,7 @@ def is_only_good_move(best, actual, second):
     return (
         second is not None
         and is_only_good(best, second)
-        and (actual.outcome() == 1 or (actual.kind == "cp" and actual.value >= -50))
+        and (actual.outcome() == 1 or (actual.kind == "cp" and actual.value >= HOLDING_CP))
     )
 
 
@@ -70,7 +79,7 @@ def numeric(score):
 def is_decisive_swing(best, actual):
     """The mover was not losing (-0.50 or better, or winning by mate) and now is
     (-2.00 or worse, or mated). Mates count, so the review and its events agree."""
-    return numeric(best) >= -50 and numeric(actual) <= -200
+    return numeric(best) >= HOLDING_CP and numeric(actual) <= -CLEAR_EDGE_CP
 
 
 def blunder_cp(rating):

@@ -32,7 +32,10 @@ from trainer.review_sacrifices import (
     supported_sacrifice,
 )
 from trainer.review_scores import (
+    CLEAR_EDGE_CP,
+    HOLDING_CP,
     INACCURACY_CP,
+    LEVEL_CP,
     MISTAKE_CP,
     NEAR_BEST_CP,
     blunder_cp,
@@ -151,8 +154,14 @@ def classify(report, rating):
             previous is not None
             and report.get("previous_mistake") is True
             and (
-                (-150 < numeric(Score.model_validate(previous)) < 150 and numeric(actual) >= 200)
-                or (numeric(Score.model_validate(previous)) <= -200 and numeric(actual) >= -50)
+                (
+                    -LEVEL_CP < numeric(Score.model_validate(previous)) < LEVEL_CP
+                    and numeric(actual) >= CLEAR_EDGE_CP
+                )
+                or (
+                    numeric(Score.model_validate(previous)) <= -CLEAR_EDGE_CP
+                    and numeric(actual) >= HOLDING_CP
+                )
             )
         )
         if only_good:
@@ -397,12 +406,12 @@ def analyze_move(engine, board, move, previous_score=None, *, parameters=None, m
         c.score.kind == "mate" and c.score.outcome() == 1 for c in alternatives
     )
     already_winning_without_sacrifice = not only_mate and any(
-        numeric(c.score) >= 300 for c in alternatives
+        numeric(c.score) >= DECISIVE_CP for c in alternatives
     )
     if (
         board.legal_moves.count() > 1
         and not poor
-        and numeric(actual.score) >= -50
+        and numeric(actual.score) >= HOLDING_CP
         and not already_winning_without_sacrifice
     ):
         if has_sacrifice_support(board, actual.score, actual_line):
@@ -414,7 +423,7 @@ def analyze_move(engine, board, move, previous_score=None, *, parameters=None, m
             for capture in captures[:2]:
                 tested = engine.analyze(after, DEEP, root_moves=[capture.uci()], multipv=1)
                 response = Candidate.model_validate(tested.candidates[0])
-                if numeric(response.score.negate()) >= -50:
+                if numeric(response.score.negate()) >= HOLDING_CP:
                     sacrifice = {
                         "capture": capture.uci(),
                         "analysis_id": tested.id,
