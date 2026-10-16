@@ -103,11 +103,18 @@ played move from the root search's own lines, the decision compares it there too
 through a saved restricted view of that search (same limits, that move first),
 never a new search at other limits. An exercise already made
 from it keeps its answers and schedule (rewriting them would drop answers graded in
-practice, and the same mistake in other games can share the exercise); only a
-decision without one gets a new one from the deeper search. While the decision is
-no longer a mistake its card is ineligible, so it leaves the Due queue and focused
-practice and cannot be started directly, unless another meaningful decision shares
-its position; a later search that makes it a mistake again puts the card back.
+practice, and the same mistake in other games can share the exercise); the card
+grades unseen moves against, and lists the candidates of, the search its answers
+came from, never the decision's newer one (the evidence dialog and the played-line
+facts stay decision-level, matching the game review). Only a decision without one
+gets a new one from the deeper search. While the decision is no longer a mistake,
+or its current search no longer grades the card's primary answer correct or
+acceptable (judged inside that search, never against scores from another depth,
+so a search that does not list the answer cannot vouch for it and the card waits
+even when the answer might be within tolerance), its card is ineligible: it leaves the Due queue and
+focused practice and cannot be started directly, unless another meaningful
+decision on its position still supports it. A later search that backs it again
+puts the card back, and startup rechecks every game card the same way.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original

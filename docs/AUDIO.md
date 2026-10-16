@@ -491,7 +491,9 @@ binds a coach and voice to its manifest; `voiceBank.ts` resolves that coach's lo
 recordings and lazily loads only its compact mouth tracks. Unknown coaches and
 missing meanings stay silent, without borrowing another character's voice.
 `speech/meanings.json` names shared semantic recording IDs independently of their
-per-character scripts. The default `prepare_coach_voice_bank.py --check` validates
+per-character scripts. The frontend reads it only through `meaningCatalog.ts`, one
+typed parser whose links (`variantOf`, `colourOf`, `takeOf`, `gradeOf`) every
+selector, studio and spec uses. The default `prepare_coach_voice_bank.py --check` validates
 all registered banks, their meaning/group membership and approved voice identity;
 an explicit `--manifest` remains available for preparing an unregistered bank.
 

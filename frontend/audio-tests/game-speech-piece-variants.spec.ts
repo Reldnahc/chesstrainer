@@ -8,7 +8,7 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {explanationFindingRecording, explanationFrameRecording} from "../src/audio/speech/practiceSelection";
 import {capturedPieces, pieceOn, withPieceVariant, withPieceVariants, withSquares} from "../src/audio/speech/pieceVariants";
-import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
+import {meanings, type Meaning} from "../src/audio/speech/meaningCatalog";
 import planned from "../src/audio/speech/planned-meanings.json" with {type: "json"};
 import {withColourAndTakes} from "../src/audio/speech/meaningPools";
 import {semanticFixtures} from "../tests/semantic-fixtures";
@@ -16,8 +16,6 @@ import {openAudioFixturePage} from "./fixtures/openAudioFixture";
 import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
 import path from "node:path";
 
-type Meaning = {id: string; group: string; variantOf?: string; pieces?: string[]};
-const meanings = catalogue.meanings as Meaning[];
 const coach = {id: "classic", personality: storyteller};
 
 function speech(game: Game) {
@@ -123,9 +121,9 @@ test("positional support and development name the knight their boards move or gu
   }
 });
 
-type Pooled = {id: string; colourOf?: string; takeOf?: string; side?: "white" | "black"};
+type Pooled = Pick<Meaning, "id" | "colourOf" | "takeOf" | "side">;
 test("colour lines lead and takes share turns only once their lines are imported", () => {
-  const pooled = catalogue.meanings as Pooled[], ids = new Set(pooled.map(item => item.id));
+  const pooled: readonly Pooled[] = meanings, ids = new Set(pooled.map(item => item.id));
   for (const item of pooled.filter(item => item.colourOf)) {
     const chain = withColourAndTakes(item.colourOf!, item.side, ["game", 1]).split("|");
     expect(chain[0]).toBe(item.id);

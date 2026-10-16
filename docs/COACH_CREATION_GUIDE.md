@@ -171,7 +171,7 @@ one that does not is silenced for its voice in `falseTakes.ts` and listed under
 shown as coach dialogue, so the catalogue has no `human-*` or objective/Maia
 combination meanings, and per-move clock observations are not spoken. The
 catalogue has 337 meanings, among them 11 varied opening
-meanings, the grade takes, seven forced-mate meanings (mate in one allowed, and
+meanings, the grade takes (each linked to its grade by `gradeOf`), seven forced-mate meanings (mate in one allowed, and
 a move that starts, keeps, slows, finishes next move, hastens or holds out
 against a forced mate), 79 alternative takes (`takeOf`), 20
 colour-specific positional lines (`colourOf`), the game-review opener, the picker
