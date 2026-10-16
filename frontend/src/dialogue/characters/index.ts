@@ -31,9 +31,9 @@ import {wizard} from "./wizard";
 import {youngBoy} from "./youngBoy";
 import {youngGirl} from "./youngGirl";
 
-/** The one registration of every coach's personality, one file per coach. Both
- * coach catalogues read it, so a coach without a personality is a type error
- * rather than a neutral fallback. */
+/** The one registration of every coach's personality, one file per coach. It must
+ * cover every coach ID, and both coach catalogues read it, so a coach without a
+ * personality is a type error rather than a neutral fallback. */
 export const coachPersonalities = {
   classic: storyteller, "man-host": host, "man-expert": expert, "man-partner": partner,
   "woman-captain": captain, "woman-analyst": analyst, "woman-spark": spark, "woman-blonde": blonde,
@@ -41,4 +41,4 @@ export const coachPersonalities = {
   "human-boy": youngBoy, "human-girl": youngGirl, "dog-puppy": puppy, "cat-kitten": kitten,
   alien, unicorn, gorilla, robot, wizard, slime, dragon, ghost, raccoon, frog, capybara,
   mushroom, "living-pawn": livingPawn,
-} as const satisfies Partial<Record<CoachId, CoachPersonality>>;
+} as const satisfies Record<CoachId, CoachPersonality>;

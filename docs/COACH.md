@@ -392,7 +392,8 @@ these are the contracts each new character must satisfy.
 
 `model.ts` defines the character contract. `studies/catalog.ts` and `cast/catalog.ts` supply the
 collections, stable character IDs, names, descriptions, supported states, fallback
-maps, families, personalities, capabilities, reaction timing and artwork components.
+maps, families, capabilities, reaction timing and artwork components; each family's
+personality comes from `dialogue/characters/index.ts` (`coachPersonalities`).
 Catalogs author only reaction timing (`ReactionTiming`; Walter's
 `classic/performance.ts`, everyone else's shared `reactionTiming` in
 `motionVocabulary.ts`); `coachPerformance` supplies every idle pool.

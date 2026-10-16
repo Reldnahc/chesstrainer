@@ -121,9 +121,9 @@ belong to shared lifecycle code. Still must retain an expressive static face.
 ## 3. Write the character before recording
 
 Use [Character writing](COACH_DIALOGUE.md#character-writing) and [the dialogue contract](COACH_DIALOGUE.md).
-Register a `CoachPersonality` with its bible, communication behavior, factual
-templates, claim/length budget and delivery metadata in the character's catalogue
-entry. Reuse the shared intent/projection/composition pipeline. Do not implement a
+Write a `CoachPersonality` with its bible, communication behavior, factual
+templates, claim/length budget and delivery metadata in the character's own file
+under `dialogue/characters/`, and register it once in `characters/index.ts`. Reuse the shared intent/projection/composition pipeline. Do not implement a
 second evidence-to-English generator in the character or audio code.
 
 Walter's `characters/storyteller.ts` and Rivet's `characters/robot.ts` are current
