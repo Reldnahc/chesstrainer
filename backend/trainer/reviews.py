@@ -298,7 +298,8 @@ def feedback(db, exercise, session=None):
         result.update(opening_recall.feedback(db, exercise, session, snapshot))
     if exercise.decision_id:
         decision = db.get(Decision, exercise.decision_id)
-        analysis = db.get(EngineAnalysis, decision.before_analysis_id)
+        # The candidates the card's answers were graded from, not a later search.
+        analysis = card_search(db, exercise, decision)
         game = db.get(Game, decision.game_id)
         result.update(
             {
@@ -368,22 +369,29 @@ def answer_search(db, session_id, uci):
     if db.get(ExerciseAnswer, (exercise.id, move.uci())) is not None:
         return None
     decision = db.get(Decision, exercise.decision_id)
-    # Graded against the search the exercise's own answers came from: a decision
-    # refreshed by a later refinement keeps its earlier exercise, and one card
-    # never mixes two engine references.
+    return AnswerSearch(
+        uci=move.uci(),
+        san=board.san(move),
+        board=decision_board(db.get(Game, decision.game_id), decision.ply),
+        original=card_search(db, exercise, decision),
+        policy=exercise.policy,
+    )
+
+
+def card_search(db, exercise, decision):
+    """The engine search a game card's answers were graded from.
+
+    A decision refreshed by a later refinement keeps its earlier card, so the card
+    is graded, and lists its candidates, from the search its answers came from:
+    one card never mixes two engine references.
+    """
     primary = db.scalar(
         select(ExerciseAnswer).where(
             ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
         )
     )
     reference = primary.analysis_id if primary and primary.analysis_id else None
-    return AnswerSearch(
-        uci=move.uci(),
-        san=board.san(move),
-        board=decision_board(db.get(Game, decision.game_id), decision.ply),
-        original=db.get(EngineAnalysis, reference or decision.before_analysis_id),
-        policy=exercise.policy,
-    )
+    return db.get(EngineAnalysis, reference or decision.before_analysis_id)
 
 
 def search_answer(engine, search):

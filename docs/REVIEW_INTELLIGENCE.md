@@ -103,8 +103,10 @@ played move from the root search's own lines, the decision compares it there too
 through a saved restricted view of that search (same limits, that move first),
 never a new search at other limits. An exercise already made
 from it keeps its answers and schedule (rewriting them would drop answers graded in
-practice, and the same mistake in other games can share the exercise); only a
-decision without one gets a new one from the deeper search. While the decision is
+practice, and the same mistake in other games can share the exercise); the card
+grades unseen moves against, and lists the candidates of, the search its answers
+came from, never the decision's newer one. Only a decision without one gets a new
+one from the deeper search. While the decision is
 no longer a mistake its card is ineligible, so it leaves the Due queue and focused
 practice and cannot be started directly, unless another meaningful decision shares
 its position; a later search that makes it a mistake again puts the card back.

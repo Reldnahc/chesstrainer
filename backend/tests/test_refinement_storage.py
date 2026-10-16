@@ -370,6 +370,11 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
         db.add(session)
         db.commit()
         assert answer_search(db, session.id, "g1f3").original.id == rows["base"].id
+        # The card's feedback lists the candidates those answers came from too.
+        from trainer.reviews import feedback
+
+        listed = feedback(db, exercise)["candidates"]
+        assert listed == rows["base"].candidates != rows["deep"].candidates
 
 
 def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(settings, sessions):
