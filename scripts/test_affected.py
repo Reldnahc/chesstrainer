@@ -139,7 +139,14 @@ def main(argv=None):
     if any(suite in BUILT_SUITES for suite in plan["suites"]):
         failed = report([step("build", [NPM, "run", "build"], FRONTEND)])
     elif plan["build"]:
-        failed = report([step("types", [NPM, "run", "test:types"], FRONTEND)])
+        # No suite needs the built app, but its lint and formatting checks still apply.
+        failed = report(
+            [
+                step("types", [NPM, "run", "test:types"], FRONTEND),
+                step("lint", [NPM, "run", "lint"], FRONTEND),
+                step("format", [NPM, "run", "format:check"], FRONTEND),
+            ]
+        )
     suites = [s for s in plan["suites"] if not (failed and s in BUILT_SUITES)]
 
     # Then the backend tests, every browser suite and the static checks run at once:

@@ -1,6 +1,7 @@
 // Production build: the independent checks run side by side instead of in series.
-// Type checks, lint, formatting, style boundaries and symbol checks share nothing with the Vite build,
-// which only needs the API contract check and the public-source archive first.
+// Type checks, lint, formatting, style boundaries and symbol checks share nothing with
+// the Vite build, which only needs the API contract check and the public-source archive
+// first.
 import { spawn } from "node:child_process";
 
 const stages = {

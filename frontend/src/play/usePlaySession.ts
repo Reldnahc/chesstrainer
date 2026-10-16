@@ -216,11 +216,12 @@ export function usePlaySession(id: string) {
     if (voicePlaying) setTurn(current => (current.voiced ? current : { ...current, voiced: true }));
   }, [voicePlaying]);
   useEffect(() => {
-    if (heldGraded)
+    if (heldGraded) {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- stamps when the grade first reached the screen, which needs the clock
       setTurn(current =>
         current.gradedAt === null ? { ...current, gradedAt: Date.now() } : current,
       );
+    }
   }, [heldGraded]);
   const holdShown = useDeadline(
     held !== null && !turn.voiced && turn.gradedAt !== null ? turn.gradedAt + COACH_HOLD_MS : null,
