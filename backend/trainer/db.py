@@ -35,9 +35,12 @@ def database(path: Path, timeout=30, *, pooled=True):
     @event.listens_for(engine, "connect")
     def configure_sqlite(connection, _):
         cursor = connection.cursor()
-        # Takes effect only in a new, empty file (or at a VACUUM): space freed by
-        # deletes can then be given back without rewriting the whole database.
-        cursor.execute("PRAGMA auto_vacuum=INCREMENTAL")
+        # A new, empty file starts in incremental auto-vacuum mode, so space freed
+        # by deletes can be given back without rewriting the whole database. Only
+        # then: on a file already in that mode the pragma waits for the write lock,
+        # so every new connection would queue behind any writer.
+        if not cursor.execute("PRAGMA page_count").fetchone()[0]:
+            cursor.execute("PRAGMA auto_vacuum=INCREMENTAL")
         cursor.execute("PRAGMA foreign_keys=ON")
         cursor.execute("PRAGMA journal_mode=WAL")
         cursor.execute(f"PRAGMA busy_timeout={int(timeout * 1000)}")

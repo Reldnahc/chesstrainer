@@ -14,6 +14,7 @@ from trainer.cache_maintenance import (
     reclaim_space,
     sweep_shared_caches,
 )
+from trainer.db import database
 from trainer.imports import import_games
 from trainer.models import Game, uid
 
@@ -170,6 +171,19 @@ def test_a_failed_maintenance_does_not_stop_the_server(settings, sql_engine, mon
     with TestClient(create_app(settings, workers=False)) as client:
         assert client.get("/api/health").status_code == 200
     assert "Shared cache maintenance failed" in caplog.text
+
+
+def test_a_new_connection_does_not_wait_for_another_writer(settings, sql_engine):
+    writer = sqlite3.connect(settings.database_path, isolation_level=None)
+    writer.execute("BEGIN IMMEDIATE")
+    try:
+        engine, _ = database(settings.database_path, timeout=0.1)
+        with engine.connect() as connection:
+            assert connection.exec_driver_sql("PRAGMA auto_vacuum").scalar() == INCREMENTAL
+        engine.dispose()
+    finally:
+        writer.execute("ROLLBACK")
+        writer.close()
 
 
 def test_the_server_sweeps_before_it_serves(settings, sql_engine):
