@@ -1,14 +1,15 @@
 import { useState } from "react";
 import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
-import { api, errorMessage, read, type Schema } from "../api";
+import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ChoiceGroup from "../ChoiceGroup";
 import Notice from "../Notice";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
-import { QueryResult, usePolledQuery, useQuery } from "../useQuery";
+import { CommandError, QueryResult, usePolledQuery, useQuery } from "../useQuery";
+import { useSessionStart } from "../useSessionStart";
 import CoachAvatar from "../coach/CoachAvatar";
 import ReviewCoach from "../ReviewCoach";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
@@ -16,7 +17,7 @@ import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { PLAY_INVITATION } from "../audio/speech/voiceBank";
 import { useCoachPreferences } from "../coach/CoachProvider";
 import { getCoach } from "../coach/registry";
-import { navigate, playGamePath } from "../navigation";
+import { playGamePath } from "../navigation";
 import PlayGame from "./PlayGame";
 import usePhone from "../usePhone";
 
@@ -64,8 +65,8 @@ function PlaySetup({ from }: { from: string | null }) {
   const [color, setColor] = useState<Color>("random");
   const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("free");
   const [courseId, setCourseId] = useState("");
-  const [error, setError] = useState("");
-  const [starting, setStarting] = useState(false);
+  const starting = useSessionStart(() => (body: Schema["PlayRequest"], signal?: AbortSignal) =>
+    read(api.POST("/api/play", { body, signal })), (game) => playGamePath(game.id));
   // The fit runs in the background after imports; poll until it settles. A failed
   // read is reported once and retried with a growing wait rather than given up.
   const [measuring, setMeasuring] = useState(true);
@@ -125,23 +126,11 @@ function PlaySetup({ from }: { from: string | null }) {
   const picked = courses.find((item) => item.id === courseId) ?? null;
   const course = mode === "practice" ? picked : null;
   const shownColor: Color = course ? course.learner_color : color;
-  async function start() {
-    setStarting(true);
-    setError("");
-    try {
-      const game = await read(
-        api.POST("/api/play", {
-          body: {
-            coach_id: coach.id, coach_name: coach.name, color: shownColor, opponent: shownOpponent, rating: chosen,
-            ...(course ? { course_id: course.id } : {}),
-          },
-        }),
-      );
-      navigate(playGamePath(game.id));
-    } catch (e) {
-      setError(errorMessage(e));
-      setStarting(false);
-    }
+  function start() {
+    void starting.start("play", {
+      coach_id: coach.id, coach_name: coach.name, color: shownColor, opponent: shownOpponent, rating: chosen,
+      ...(course ? { course_id: course.id } : {}),
+    });
   }
   const fitLine = !profile
     ? "Measuring your level from your games…"
@@ -155,7 +144,7 @@ function PlaySetup({ from }: { from: string | null }) {
   return (
     <>
       <PageTitle title={`Play ${coach.name}`} documentTitle="Play" />
-      {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+      <CommandError command={starting} />
       {profileQuery.error && <Banner tone="error" onDismiss={profileQuery.dismiss}
         action={<Button variant="secondary" onClick={profileQuery.retry}>Try again</Button>}>Couldn’t load your measured level.</Banner>}
       {active && (
@@ -234,8 +223,8 @@ function PlaySetup({ from }: { from: string | null }) {
             {coach.name} comments on every move as you play, with the evaluation and the graph, like a review of a game in progress. {coach.name} answers as soon as your move is graded.
           </p>
           <div className="button-row">
-            <Button variant="primary" onClick={start} disabled={starting}>
-              {starting ? "Starting…" : `Play ${coach.name}`}
+            <Button variant="primary" onClick={start} disabled={!!starting.busy}>
+              {starting.busy ? "Starting…" : `Play ${coach.name}`}
             </Button>
           </div>
         </section>

@@ -182,5 +182,20 @@ export function useCommand<K = true>() {
       }
     }
   }, []);
-  return { busy, error, setError, run, dismiss: useCallback(() => setError(""), []) };
+  // Errors from work outside run (a poll, a child's command) report here too.
+  const fail = useCallback((e: unknown) => setError(errorMessage(e)), []);
+  return { busy, error, setError, fail, run, dismiss: useCallback(() => setError(""), []) };
+}
+
+/**
+ * The page's error banner for a command's failure: the one way a screen shows an
+ * error that is not a failed load (QueryResult shows those). Any source with an
+ * `error` and a `dismiss` uses it: useCommand, useSessionStart or a session hook.
+ */
+export function CommandError({ command, action }: {
+  command: { error: string; dismiss: () => void };
+  /** One recovery command shown before the close button. */
+  action?: ReactNode;
+}) {
+  return command.error ? <Banner tone="error" action={action} onDismiss={command.dismiss}>{command.error}</Banner> : null;
 }
