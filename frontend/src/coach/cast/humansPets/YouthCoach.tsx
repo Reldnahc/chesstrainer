@@ -33,12 +33,7 @@ export default function YouthCoach({
   const pose: Pose = {
     ...source,
     eye: source.eye + 0.35,
-    gesture:
-      expression === "brilliant"
-        ? look.id === "boy"
-          ? "fist"
-          : "clap"
-        : source.gesture,
+    gesture: expression === "brilliant" ? (look.id === "boy" ? "fist" : "clap") : source.gesture,
     tilt: source.tilt * (look.id === "girl" ? 0.9 : 1),
   };
   return (
@@ -59,10 +54,7 @@ export default function YouthCoach({
           {look.backHair}
           <ellipse cx="15.5" cy="43" rx="4.5" ry="6" fill={look.shade} />
           <ellipse cx="64.5" cy="43" rx="4.5" ry="6" fill={look.shade} />
-          <path
-            d="M14 32Q13 5 40 5T66 32v13q0 19-26 24Q14 64 14 45Z"
-            fill={look.skin}
-          />
+          <path d="M14 32Q13 5 40 5T66 32v13q0 19-26 24Q14 64 14 45Z" fill={look.skin} />
           <path
             d="M16 44q1 14 11 19M64 44q-1 14-11 19"
             stroke={look.shade}
@@ -83,7 +75,12 @@ export default function YouthCoach({
           </g>
         )
       }
-      features={{ browColor: look.hair, noseColor: look.shade, mouthColor: youthMouthColor, face: look.face }}
+      features={{
+        browColor: look.hair,
+        noseColor: look.shade,
+        mouthColor: youthMouthColor,
+        face: look.face,
+      }}
       speech={{ mouthColor: youthMouthColor, palette: look.speech }}
       arms={{ skin: look.skin, shade: look.shade, sleeve: look.sleeve, cuff: look.cuff }}
       bookColor={look.sleeve}

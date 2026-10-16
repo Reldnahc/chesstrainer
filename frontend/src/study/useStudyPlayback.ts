@@ -23,7 +23,7 @@ export function useStudyPlayback(
   const motion = useInterfaceMotion();
   const playing = motion === "natural" && frames.length > 0;
   const frame = playing ? frames[index] || null : inspection?.frame || null;
-  const fen = playing ? index < 0 ? frames[0].before_fen : frame?.after_fen : inspection?.fen;
+  const fen = playing ? (index < 0 ? frames[0].before_fen : frame?.after_fen) : inspection?.fen;
   useEffect(() => {
     if (!frames.length) return;
     if (motion === "still") {
@@ -37,8 +37,10 @@ export function useStudyPlayback(
       if (index + 1 < frames.length) {
         sound.current?.move(frames[index + 1].san, `playback:${run}:${index + 1}`);
         setIndex(value => value + 1);
+      } else {
+        setFrames([]);
+        finish.current?.();
       }
-      else { setFrames([]); finish.current?.(); }
     }, intervalMs);
     return () => window.clearTimeout(timer);
   }, [frames, index, motion, intervalMs, finish, sound]);
@@ -48,21 +50,33 @@ export function useStudyPlayback(
     setFrames([]);
     setInspection(null);
   }, [sound]);
-  const play = useCallback((next: Frame[], fromStart = false) => {
-    sound.current?.cancel();
-    const run = ++playbackId.current;
-    // Still motion collapses a committed continuation into its final position.
-    // Play only that visible move; the hidden intermediate frames stay silent.
-    if (!fromStart && next.length) {
-      const firstVisible = motion === "still" ? next.length - 1 : 0;
-      sound.current?.move(next[firstVisible].san, `playback:${run}:${firstVisible}`);
-    }
-    setInspection(motion === "still" && fromStart && next.length ? { fen: next[0].before_fen, frame: null } : null);
-    setIndex(fromStart ? -1 : 0);
-    setFrames(next);
-  }, [motion, sound]);
+  const play = useCallback(
+    (next: Frame[], fromStart = false) => {
+      sound.current?.cancel();
+      const run = ++playbackId.current;
+      // Still motion collapses a committed continuation into its final position.
+      // Play only that visible move; the hidden intermediate frames stay silent.
+      if (!fromStart && next.length) {
+        const firstVisible = motion === "still" ? next.length - 1 : 0;
+        sound.current?.move(next[firstVisible].san, `playback:${run}:${firstVisible}`);
+      }
+      setInspection(
+        motion === "still" && fromStart && next.length
+          ? { fen: next[0].before_fen, frame: null }
+          : null,
+      );
+      setIndex(fromStart ? -1 : 0);
+      setFrames(next);
+    },
+    [motion, sound],
+  );
   return {
-    frame, fen, playing, motion, play, reset,
+    frame,
+    fen,
+    playing,
+    motion,
+    play,
+    reset,
     inspect: (selected: Frame) => {
       if (playing) return;
       sound.current?.cancel();
@@ -76,7 +90,8 @@ export function useStudyPlayback(
     inspectStart: (first?: Frame) => {
       if (playing || !first) return;
       sound.current?.cancel();
-      if (first.before_fen !== (inspection?.fen || settledFen)) sound.current?.play("move", `inspect:${++playbackId.current}`);
+      if (first.before_fen !== (inspection?.fen || settledFen))
+        sound.current?.play("move", `inspect:${++playbackId.current}`);
       setInspection({ fen: first.before_fen, frame: null });
     },
   };

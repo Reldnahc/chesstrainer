@@ -9,21 +9,28 @@ const running = new WeakMap<HTMLDetailsElement, Animation>();
 
 function closedHeight(details: HTMLDetailsElement, summary: HTMLElement) {
   const style = getComputedStyle(details);
-  return summary.offsetHeight + ["paddingTop", "paddingBottom", "borderTopWidth", "borderBottomWidth"]
-    .reduce((total, side) => total + (parseFloat(style[side as keyof CSSStyleDeclaration] as string) || 0), 0);
+  return (
+    summary.offsetHeight +
+    ["paddingTop", "paddingBottom", "borderTopWidth", "borderBottomWidth"].reduce(
+      (total, side) =>
+        total + (parseFloat(style[side as keyof CSSStyleDeclaration] as string) || 0),
+      0,
+    )
+  );
 }
 
 function toggle(details: HTMLDetailsElement, summary: HTMLElement) {
-  const opening = !details.open || running.has(details) && details.dataset.animating === "closing";
+  const opening =
+    !details.open || (running.has(details) && details.dataset.animating === "closing");
   const start = details.getBoundingClientRect().height;
   running.get(details)?.cancel();
   details.open = true;
   const end = opening ? details.getBoundingClientRect().height : closedHeight(details, summary);
   details.dataset.animating = opening ? "opening" : "closing";
-  const animation = details.animate(
-    [{ height: `${start}px` }, { height: `${end}px` }],
-    { duration: duration("--motion-base"), easing: easing("--ease-standard") },
-  );
+  const animation = details.animate([{ height: `${start}px` }, { height: `${end}px` }], {
+    duration: duration("--motion-base"),
+    easing: easing("--ease-standard"),
+  });
   running.set(details, animation);
   animation.onfinish = () => {
     running.delete(details);
@@ -40,7 +47,12 @@ export function installDisclosureMotion() {
     if (event.defaultPrevented || !(event.target instanceof Element)) return;
     const summary = event.target.closest("summary");
     const details = summary?.parentElement;
-    if (!summary || !(details instanceof HTMLDetailsElement) || details.querySelector(":scope > summary") !== summary) return;
+    if (
+      !summary ||
+      !(details instanceof HTMLDetailsElement) ||
+      details.querySelector(":scope > summary") !== summary
+    )
+      return;
     // A control inside the summary does its own job instead of toggling.
     const control = event.target.closest("a, button, input, select, textarea, label");
     if (control && summary.contains(control)) return;

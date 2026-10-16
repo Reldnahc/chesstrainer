@@ -19,8 +19,10 @@ export default function CoachSettings() {
   const selected = getCoach(choice.value);
   // Choosing a coach plays its introduction once the choice is saved. A coach
   // without a recorded introduction stays silent; voice Off or mute also wins.
-  const voice = useCoachSpeech({ scopeKey: "settings:coach-introduction",
-    manualRecordingIds: [COACH_INTRODUCTION] });
+  const voice = useCoachSpeech({
+    scopeKey: "settings:coach-introduction",
+    manualRecordingIds: [COACH_INTRODUCTION],
+  });
   const requested = useRef<CoachId | null>(null);
   const [introduce, setIntroduce] = useState<CoachId | null>(null);
   async function change(value: CoachId) {
@@ -45,48 +47,51 @@ export default function CoachSettings() {
       id="coach-settings"
       title="Your coach"
       className="coach-settings"
-      description={<><strong>{selected.name}:</strong> {selected.description}</>}
+      description={
+        <>
+          <strong>{selected.name}:</strong> {selected.description}
+        </>
+      }
       actions={
-        <PreferenceStatus className="coach-preference-status" placement="heading"
-          ready={ready} saving={saving} error={error} saved={saved}
-          retry={retry} retryLabel="Reload preferences" />
+        <PreferenceStatus
+          className="coach-preference-status"
+          placement="heading"
+          ready={ready}
+          saving={saving}
+          error={error}
+          saved={saved}
+          retry={retry}
+          retryLabel="Reload preferences"
+        />
       }
     >
       <fieldset disabled={!ready} className="coach-options">
         <legend className="sr-only">Choose your coach</legend>
-        {selectableCoaches.map((coach) => (
-            <label
-              key={coach.id}
-              className="coach-option"
-              title={coach.description}
-            >
-              <CoachCharacter
-                coach={coach}
-                reaction={{ state: "neutral", key: "settings" }}
-                motion={
-                  ready && selected.id === coach.id
-                    ? motion
-                    : "still"
-                }
-                idle={selected.id === coach.id}
-                label={`${coach.name} portrait`}
-                speech={selected.id === coach.id ? voice.speech : undefined}
-                speechTrack={selected.id === coach.id ? voice.speechTrack : undefined}
-              />
-              <strong>{coach.name}</strong>
-              <span className="coach-option-description sr-only" id={`coach-description-${coach.id}`}>
-                {coach.description}
-              </span>
-              <input
-                type="radio"
-                name="coach"
-                aria-label={coach.name}
-                aria-describedby={`coach-description-${coach.id}`}
-                value={coach.id}
-                checked={selected.id === coach.id}
-                onChange={() => change(coach.id)}
-              />
-            </label>
+        {selectableCoaches.map(coach => (
+          <label key={coach.id} className="coach-option" title={coach.description}>
+            <CoachCharacter
+              coach={coach}
+              reaction={{ state: "neutral", key: "settings" }}
+              motion={ready && selected.id === coach.id ? motion : "still"}
+              idle={selected.id === coach.id}
+              label={`${coach.name} portrait`}
+              speech={selected.id === coach.id ? voice.speech : undefined}
+              speechTrack={selected.id === coach.id ? voice.speechTrack : undefined}
+            />
+            <strong>{coach.name}</strong>
+            <span className="coach-option-description sr-only" id={`coach-description-${coach.id}`}>
+              {coach.description}
+            </span>
+            <input
+              type="radio"
+              name="coach"
+              aria-label={coach.name}
+              aria-describedby={`coach-description-${coach.id}`}
+              value={coach.id}
+              checked={selected.id === coach.id}
+              onChange={() => change(coach.id)}
+            />
+          </label>
         ))}
       </fieldset>
     </SettingsSection>

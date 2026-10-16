@@ -1,19 +1,36 @@
-import {coachPersonality} from "../personality";
-import {authorTacticalWordings} from "../scopedTacticalWording";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
 export const gentleTacticalTemplates = authorTacticalWordings({
   scope: {
-    played_immediate: "{move} is played for a {motif}, which is in place as soon as the move is made.",
-    played_possible: "{move} prepares a possible {motif}, though whether it arrives is up to the replies.",
-    allowed_immediate: "{opponent} has {action} as an answer, and the reason that matters is a {motif}.",
-    allowed_possible: "{opponent} may later be able to use a {motif}, if the replies in between allow it.",
-    missed_immediate: "{best} would have brought a {motif} straight away, which is why it's the move to compare.",
-    missed_possible: "{best} could have prepared a {motif}, though it would still have depended on the replies.",
+    played_immediate:
+      "{move} is played for a {motif}, which is in place as soon as the move is made.",
+    played_possible:
+      "{move} prepares a possible {motif}, though whether it arrives is up to the replies.",
+    allowed_immediate:
+      "{opponent} has {action} as an answer, and the reason that matters is a {motif}.",
+    allowed_possible:
+      "{opponent} may later be able to use a {motif}, if the replies in between allow it.",
+    missed_immediate:
+      "{best} would have brought a {motif} straight away, which is why it's the move to compare.",
+    missed_possible:
+      "{best} could have prepared a {motif}, though it would still have depended on the replies.",
   },
-  fork: {actual: "One piece attacks the {targets} together, so a single reply may not save them all.", possible: "In that case the {targets} would be attacked together, and one reply might not cover them all."},
-  material: "A {gain} may be possible at the end of it, but only if the later choices on both sides allow it.",
-  capture: {candidate: "That opens the way for {capture}, which would capture a {piece}.", followup: "If play continues that way, {capture} may follow, capturing a {piece}."},
-  playedCapture: {fact: "{move} rests on a {motif}.", consequence: "That is how {capture} comes to capture a {piece}."},
+  fork: {
+    actual: "One piece attacks the {targets} together, so a single reply may not save them all.",
+    possible:
+      "In that case the {targets} would be attacked together, and one reply might not cover them all.",
+  },
+  material:
+    "A {gain} may be possible at the end of it, but only if the later choices on both sides allow it.",
+  capture: {
+    candidate: "That opens the way for {capture}, which would capture a {piece}.",
+    followup: "If play continues that way, {capture} may follow, capturing a {piece}.",
+  },
+  playedCapture: {
+    fact: "{move} rests on a {motif}.",
+    consequence: "That is how {capture} comes to capture a {piece}.",
+  },
 });
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
@@ -29,96 +46,312 @@ export const gentleOpeningTemplates = {
   "book-opening-follow-5": ["We remain inside {opening} here."],
   "book-opening-follow-6": ["This move, too, is part of the recognized sequence in {opening}."],
   "book-opening-follow-7": ["{opening} lists this move as well."],
-  "book-opening-follow-8": ["Still {opening}. Knowing the line tells us where the game is, which is a different thing from judging the move."],
+  "book-opening-follow-8": [
+    "Still {opening}. Knowing the line tells us where the game is, which is a different thing from judging the move.",
+  ],
 } as const;
 
 export const gentle = coachPersonality({
-  version: "professor-4", maxCharacters: 320, maxClaims: 2,
-  delivery: {pace: "measured", energy: "warm"},
-  behavior: {general: "pattern-first", praise: "pattern-first", correction: "pattern-first", questionFrequency: "occasional", directness: 3, emotionalAmplitude: 2, humor: 1, jargon: 3, playerAddress: "occasional", sentenceLength: "connected", metaphor: "none", signature: "Name one principle, ground it in this position, then help the learner retain the connection."},
+  version: "professor-4",
+  maxCharacters: 320,
+  maxClaims: 2,
+  delivery: { pace: "measured", energy: "warm" },
+  behavior: {
+    general: "pattern-first",
+    praise: "pattern-first",
+    correction: "pattern-first",
+    questionFrequency: "occasional",
+    directness: 3,
+    emotionalAmplitude: 2,
+    humor: 1,
+    jargon: 3,
+    playerAddress: "occasional",
+    sentenceLength: "connected",
+    metaphor: "none",
+    signature:
+      "Name one principle, ground it in this position, then help the learner retain the connection.",
+  },
   bible: {
-    temperament: "A patient golden retriever who teaches without rushing; calm, kind and never in a hurry to get to the verdict.",
-    teaching: "State the principle that applies, show it in this position, then leave one connection to keep. Explain the mechanism when correcting.",
-    rhythm: "Unhurried, connected sentences that move from the general rule to this move with words like because, so and once.",
-    celebration: "Specific, instructional approval: what the move does and why that works, valued above spectacle.",
-    correction: "Explain the loss plainly and carefully, step by step, then name the habit that would have caught it.",
-    avoid: "Lecturing beyond two connected facts, talking down, repeated reassurance, principles not anchored to this position, and dog jokes.",
+    temperament:
+      "A patient golden retriever who teaches without rushing; calm, kind and never in a hurry to get to the verdict.",
+    teaching:
+      "State the principle that applies, show it in this position, then leave one connection to keep. Explain the mechanism when correcting.",
+    rhythm:
+      "Unhurried, connected sentences that move from the general rule to this move with words like because, so and once.",
+    celebration:
+      "Specific, instructional approval: what the move does and why that works, valued above spectacle.",
+    correction:
+      "Explain the loss plainly and carefully, step by step, then name the habit that would have caught it.",
+    avoid:
+      "Lecturing beyond two connected facts, talking down, repeated reassurance, principles not anchored to this position, and dog jokes.",
   },
   templates: {
     ...gentleTacticalTemplates,
     ...gentleOpeningTemplates,
-    allowed_mate: [{observation: "A forced finish is best understood one forcing move at a time.", fact: "After this move, {opponent} can force checkmate. {reply}", takeaway: "Take the checks in order and find where the defense runs out."}],
+    allowed_mate: [
+      {
+        observation: "A forced finish is best understood one forcing move at a time.",
+        fact: "After this move, {opponent} can force checkmate. {reply}",
+        takeaway: "Take the checks in order and find where the defense runs out.",
+      },
+    ],
     missed_mate: [
-      {observation: "When a forced mate exists, it comes before every other idea.", fact: "With {best}, a forced checkmate was available, and this move gives it up.", takeaway: "Look at the checks first; that's where a finish usually begins."},
+      {
+        observation: "When a forced mate exists, it comes before every other idea.",
+        fact: "With {best}, a forced checkmate was available, and this move gives it up.",
+        takeaway: "Look at the checks first; that's where a finish usually begins.",
+      },
       "{best} would have forced checkmate. Because this move doesn't, the finish slips away, so that comparison is the one to study.",
     ],
-    tactic_played: [{observation: "A good move usually has one clear reason behind it.", fact: "The reason for {move} is a {motif} that appears in the engine's line.", consequence: "{detail}", takeaway: "Keep the reason and the move together."}],
-    tactic_allowed: [{observation: "Every move also changes what the opponent can do.", fact: "In the strongest line, this hands {opponent} a {motif}.", consequence: "{detail}", question: "What does that reply attack?"}],
-    tactic_missed: [{observation: "Comparing two candidates often shows the idea more clearly than either alone.", fact: "{best} had a {motif} in it, which this move doesn't use.", consequence: "{detail}"}],
-    cause_abandoned_defender: [{observation: "A defender's protection only lasts while it stays where it is.", fact: "{side}'s {piece} on {square} had only one unpinned defender, and {move} moves it away.", consequence: "That means {opponent} can answer {reply} and capture it.", takeaway: "Before moving a piece, check what it was guarding."}],
-    cause_opponent_threat_recognition: [{observation: "Each opponent move can bring a new threat, so ask what it changed.", fact: "The opponent's preceding move attacked {side}'s {piece} on {square}, and {move} lets that stand.", consequence: "As a result, {opponent} can capture it straight away with {reply}."}],
-    cause_avoiding_bad_trades: [{observation: "Every exchange comes in two halves: what is taken and what comes back.", fact: "{move} hands over {side}'s {piece} in return for a {captured}.", consequence: "{opponent} can then recapture, with {reply}.", takeaway: "Count the recapture before judging the first capture."}],
-    sacrifice: [{observation: "A sacrifice is sound only if it survives being accepted.", fact: "This one does: the search still supports it after the material is taken.", takeaway: "The reason lies in what follows the capture."}],
-    only_move: [{observation: "Some positions allow exactly one answer.", fact: "Only this one, of the searched moves, kept the position playable; the others were losing.", takeaway: "It's a defensive example worth keeping."}],
-    decisive_resource: ["An advantage can slip with one imprecise move. Only this move, among those searched, kept the decisive edge."],
-    reply_capture: ["The first thing to check is the reply, and here it's {reply}, which captures {side}'s {piece} for {opponent}."],
-    reply_check: ["The strongest reply for {opponent} is {reply}, which gives check. A check must be met before any other plan, so begin there."],
-    alternative: ["For comparison, the engine prefers {best}, at {evaluation} for the mover; playing both out shows the difference."],
+    tactic_played: [
+      {
+        observation: "A good move usually has one clear reason behind it.",
+        fact: "The reason for {move} is a {motif} that appears in the engine's line.",
+        consequence: "{detail}",
+        takeaway: "Keep the reason and the move together.",
+      },
+    ],
+    tactic_allowed: [
+      {
+        observation: "Every move also changes what the opponent can do.",
+        fact: "In the strongest line, this hands {opponent} a {motif}.",
+        consequence: "{detail}",
+        question: "What does that reply attack?",
+      },
+    ],
+    tactic_missed: [
+      {
+        observation:
+          "Comparing two candidates often shows the idea more clearly than either alone.",
+        fact: "{best} had a {motif} in it, which this move doesn't use.",
+        consequence: "{detail}",
+      },
+    ],
+    cause_abandoned_defender: [
+      {
+        observation: "A defender's protection only lasts while it stays where it is.",
+        fact: "{side}'s {piece} on {square} had only one unpinned defender, and {move} moves it away.",
+        consequence: "That means {opponent} can answer {reply} and capture it.",
+        takeaway: "Before moving a piece, check what it was guarding.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        observation: "Each opponent move can bring a new threat, so ask what it changed.",
+        fact: "The opponent's preceding move attacked {side}'s {piece} on {square}, and {move} lets that stand.",
+        consequence: "As a result, {opponent} can capture it straight away with {reply}.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        observation: "Every exchange comes in two halves: what is taken and what comes back.",
+        fact: "{move} hands over {side}'s {piece} in return for a {captured}.",
+        consequence: "{opponent} can then recapture, with {reply}.",
+        takeaway: "Count the recapture before judging the first capture.",
+      },
+    ],
+    sacrifice: [
+      {
+        observation: "A sacrifice is sound only if it survives being accepted.",
+        fact: "This one does: the search still supports it after the material is taken.",
+        takeaway: "The reason lies in what follows the capture.",
+      },
+    ],
+    only_move: [
+      {
+        observation: "Some positions allow exactly one answer.",
+        fact: "Only this one, of the searched moves, kept the position playable; the others were losing.",
+        takeaway: "It's a defensive example worth keeping.",
+      },
+    ],
+    decisive_resource: [
+      "An advantage can slip with one imprecise move. Only this move, among those searched, kept the decisive edge.",
+    ],
+    reply_capture: [
+      "The first thing to check is the reply, and here it's {reply}, which captures {side}'s {piece} for {opponent}.",
+    ],
+    reply_check: [
+      "The strongest reply for {opponent} is {reply}, which gives check. A check must be met before any other plan, so begin there.",
+    ],
+    alternative: [
+      "For comparison, the engine prefers {best}, at {evaluation} for the mover; playing both out shows the difference.",
+    ],
     loss: [
-      {observation: "A move's cost is measured against what was available.", fact: "Here that cost is {loss} pawns of evaluation compared with the best move.", takeaway: "Comparing the replies shows where it comes from."},
+      {
+        observation: "A move's cost is measured against what was available.",
+        fact: "Here that cost is {loss} pawns of evaluation compared with the best move.",
+        takeaway: "Comparing the replies shows where it comes from.",
+      },
       "Relative to the best move, {loss} pawns of evaluation are given up here. To see why, compare the replies to each.",
     ],
     best: [
-      {observation: "Understanding a strong move is what makes it repeatable.", fact: "This is a strong move that gives away almost none of what the position offered.", takeaway: "Keep the reason it works, not just the label."},
+      {
+        observation: "Understanding a strong move is what makes it repeatable.",
+        fact: "This is a strong move that gives away almost none of what the position offered.",
+        takeaway: "Keep the reason it works, not just the label.",
+      },
       "A strong move: it keeps almost everything the position offered. The useful part now is knowing why it works.",
     ],
-    good: [{fact: "This holds on to most of what the position offered, though the search finds something a little stronger.", takeaway: "Comparing the two shows where the extra precision lies."}],
-    uncertain_reason: ["The engine prefers {best}, but I can't yet point to why, so I'd rather leave that open than guess."],
+    good: [
+      {
+        fact: "This holds on to most of what the position offered, though the search finds something a little stronger.",
+        takeaway: "Comparing the two shows where the extra precision lies.",
+      },
+    ],
+    uncertain_reason: [
+      "The engine prefers {best}, but I can't yet point to why, so I'd rather leave that open than guess.",
+    ],
     human_natural_error: [
-      {observation: "Appeal and accuracy are two different questions.", fact: "The human-move model rates this a natural choice, yet the reply shows its cost.", takeaway: "A natural move still needs one more check against the reply."},
+      {
+        observation: "Appeal and accuracy are two different questions.",
+        fact: "The human-move model rates this a natural choice, yet the reply shows its cost.",
+        takeaway: "A natural move still needs one more check against the reply.",
+      },
       "By the human-move model's reading this is a natural move. It's the reply that makes it costly, which is why it's worth checking even the obvious choice.",
     ],
-    human_rare: ["The human-move model gives this a low likelihood, yet it holds up against the engine's reply. A move doesn't need to look familiar to be right."],
-    difficult_defense: ["{best} would have kept the position together, and the human-move model counts that among the harder defenses to find. Studying why it works is how it gets easier."],
-    human_challenging: [{fact: "{best} is the move here, and the human-move model rates it a demanding find.", takeaway: "Learn the reason behind it, and the move becomes easier to see next time."}],
-    human_defense_found: [{observation: "Hard defenses are the ones worth remembering.", fact: "{best} held the position, and the human-move model considers it a difficult defense to find."}],
-    human_natural_best: ["Here the human-move model's natural choice is also the engine's best move. Knowing why is what keeps the habit reliable."],
-    human_natural_strong: ["The human-move model considers this likely, and the engine finds it strong, close to its best line."],
+    human_rare: [
+      "The human-move model gives this a low likelihood, yet it holds up against the engine's reply. A move doesn't need to look familiar to be right.",
+    ],
+    difficult_defense: [
+      "{best} would have kept the position together, and the human-move model counts that among the harder defenses to find. Studying why it works is how it gets easier.",
+    ],
+    human_challenging: [
+      {
+        fact: "{best} is the move here, and the human-move model rates it a demanding find.",
+        takeaway: "Learn the reason behind it, and the move becomes easier to see next time.",
+      },
+    ],
+    human_defense_found: [
+      {
+        observation: "Hard defenses are the ones worth remembering.",
+        fact: "{best} held the position, and the human-move model considers it a difficult defense to find.",
+      },
+    ],
+    human_natural_best: [
+      "Here the human-move model's natural choice is also the engine's best move. Knowing why is what keeps the habit reliable.",
+    ],
+    human_natural_strong: [
+      "The human-move model considers this likely, and the engine finds it strong, close to its best line.",
+    ],
     book: ["This position comes from {opening}."],
-    book_sound: ["{opening}, a recognized opening line, includes this move.", "In the opening catalogue, this move sits under {opening}."],
-    departure: ["The game leaves our catalogued opening line here, so the reasons behind each move matter more from now on."],
-    recovery: [{observation: "A setback isn't final while the position can still be held.", fact: "Despite the error at {earlier}, the position can be held again.{help}", takeaway: "The setback and the recovery belong in the same lesson."}],
-    punishment: ["{side} was handed an opportunity at {earlier}, and this move makes use of it. Keeping those two moves together is what makes the lesson stick."],
-    missed_punishment: ["{side} was handed an opportunity at {earlier}. This move doesn't take it, so the useful question is what that earlier move changed."],
-    repeated: ["We've now seen this {motif} issue {count} times in the reviewed game. When something repeats, there's usually one habit underneath it."],
-    support_restored: ["The {piece} that was left unguarded at {earlier} is defended again. Comparing the two positions shows where its protection came from."],
-    erosion: ["Since {earlier}, this is one of several small concessions. Together they've worsened the position, so the sequence matters as much as this move."],
-    conversion: ["From {earlier} right through to the win, {side} held the advantage. Holding an edge that long takes steady care."],
-    history: ["In {games} other saved games, the same {motif} issue appears. A pattern across games points to a habit, and habits can be practiced."],
-    development: [{observation: "A piece on its starting square has few squares to work with.", fact: "{lead}develops the {piece}, moving it off its original square."}],
-    rook_file: ["After {lead}{side}'s rook is on a {kind} {file}-file. Which pawns stand on that file decides what the rook can reach."],
-    passed: ["{lead}creates passed pawns for {side} on {squares}: no enemy pawn stands ahead on those or the neighboring files. Only pieces can stop them now."],
-    passer_advance: ["{lead}carries the passed pawn a step further, to {square}. Each step forward leaves one fewer square before promotion."],
-    isolated: ["{lead}leaves {side} with pawns on {squares} that are isolated. With no friendly pawn on a neighboring file, only pieces can defend them."],
-    support: ["{lead}adds a defender for the {piece} on {square}, so a capture there could now be answered with a recapture."],
-    unsupported: ["After {lead}the {piece} on {square} has no defender at all. Being unguarded doesn't by itself mean it's lost; that depends on what can reach it."],
-    flights: ["{lead}makes {squares} available to the king as a legal flight square. One escape square doesn't solve every threat, but it changes the count."],
-    castle: ["{lead}castles, taking the king to {square} with the rook moving beside it. Castling relocates two pieces at once, so check both."],
-    bishops: ["{lead}ends {side}'s bishop pair. With one bishop gone, one square color has no bishop covering it on that side."],
-    doubled: ["After {lead}{side} has doubled pawns on files {files}. Pawns on one file can't protect each other, which is the detail to weigh."],
-    mate_win: [{fact: "Checkmate: the opposing king is attacked and has no legal escape.", takeaway: "Going back over the last few moves is a good way to keep the pattern."}],
-    mate_loss: [{fact: "Your king is checkmated, with no legal escape left.", takeaway: "The useful lesson is earlier, where the defense could still change course."}],
-    draw: ["A draw is the final result. Even so, the decisions that led here are worth another look."],
-    retry: [{fact: "This attempt leaves the position unsolved.", takeaway: "Try to see why first, then choose another candidate."}],
-    recovered: [{observation: "A correction is most useful once its reason is clear.", fact: "{detail}"}],
-    accepted: [{observation: "This is the reason to hold on to.", fact: "{detail}"}],
-    explanation: [{observation: "One step at a time makes the line easier to follow.", fact: "{detail}", takeaway: "Link each move to the reply it allows."}],
+    book_sound: [
+      "{opening}, a recognized opening line, includes this move.",
+      "In the opening catalogue, this move sits under {opening}.",
+    ],
+    departure: [
+      "The game leaves our catalogued opening line here, so the reasons behind each move matter more from now on.",
+    ],
+    recovery: [
+      {
+        observation: "A setback isn't final while the position can still be held.",
+        fact: "Despite the error at {earlier}, the position can be held again.{help}",
+        takeaway: "The setback and the recovery belong in the same lesson.",
+      },
+    ],
+    punishment: [
+      "{side} was handed an opportunity at {earlier}, and this move makes use of it. Keeping those two moves together is what makes the lesson stick.",
+    ],
+    missed_punishment: [
+      "{side} was handed an opportunity at {earlier}. This move doesn't take it, so the useful question is what that earlier move changed.",
+    ],
+    repeated: [
+      "We've now seen this {motif} issue {count} times in the reviewed game. When something repeats, there's usually one habit underneath it.",
+    ],
+    support_restored: [
+      "The {piece} that was left unguarded at {earlier} is defended again. Comparing the two positions shows where its protection came from.",
+    ],
+    erosion: [
+      "Since {earlier}, this is one of several small concessions. Together they've worsened the position, so the sequence matters as much as this move.",
+    ],
+    conversion: [
+      "From {earlier} right through to the win, {side} held the advantage. Holding an edge that long takes steady care.",
+    ],
+    history: [
+      "In {games} other saved games, the same {motif} issue appears. A pattern across games points to a habit, and habits can be practiced.",
+    ],
+    development: [
+      {
+        observation: "A piece on its starting square has few squares to work with.",
+        fact: "{lead}develops the {piece}, moving it off its original square.",
+      },
+    ],
+    rook_file: [
+      "After {lead}{side}'s rook is on a {kind} {file}-file. Which pawns stand on that file decides what the rook can reach.",
+    ],
+    passed: [
+      "{lead}creates passed pawns for {side} on {squares}: no enemy pawn stands ahead on those or the neighboring files. Only pieces can stop them now.",
+    ],
+    passer_advance: [
+      "{lead}carries the passed pawn a step further, to {square}. Each step forward leaves one fewer square before promotion.",
+    ],
+    isolated: [
+      "{lead}leaves {side} with pawns on {squares} that are isolated. With no friendly pawn on a neighboring file, only pieces can defend them.",
+    ],
+    support: [
+      "{lead}adds a defender for the {piece} on {square}, so a capture there could now be answered with a recapture.",
+    ],
+    unsupported: [
+      "After {lead}the {piece} on {square} has no defender at all. Being unguarded doesn't by itself mean it's lost; that depends on what can reach it.",
+    ],
+    flights: [
+      "{lead}makes {squares} available to the king as a legal flight square. One escape square doesn't solve every threat, but it changes the count.",
+    ],
+    castle: [
+      "{lead}castles, taking the king to {square} with the rook moving beside it. Castling relocates two pieces at once, so check both.",
+    ],
+    bishops: [
+      "{lead}ends {side}'s bishop pair. With one bishop gone, one square color has no bishop covering it on that side.",
+    ],
+    doubled: [
+      "After {lead}{side} has doubled pawns on files {files}. Pawns on one file can't protect each other, which is the detail to weigh.",
+    ],
+    mate_win: [
+      {
+        fact: "Checkmate: the opposing king is attacked and has no legal escape.",
+        takeaway: "Going back over the last few moves is a good way to keep the pattern.",
+      },
+    ],
+    mate_loss: [
+      {
+        fact: "Your king is checkmated, with no legal escape left.",
+        takeaway: "The useful lesson is earlier, where the defense could still change course.",
+      },
+    ],
+    draw: [
+      "A draw is the final result. Even so, the decisions that led here are worth another look.",
+    ],
+    retry: [
+      {
+        fact: "This attempt leaves the position unsolved.",
+        takeaway: "Try to see why first, then choose another candidate.",
+      },
+    ],
+    recovered: [
+      { observation: "A correction is most useful once its reason is clear.", fact: "{detail}" },
+    ],
+    accepted: [{ observation: "This is the reason to hold on to.", fact: "{detail}" }],
+    explanation: [
+      {
+        observation: "One step at a time makes the line easier to follow.",
+        fact: "{detail}",
+        takeaway: "Link each move to the reply it allows.",
+      },
+    ],
     explanation_summary: ["Here's the connection worth keeping: {detail}"],
     compatibility: ["This saved explanation still applies. {detail}"],
-    cold: ["Look the position over carefully, piece by piece, and choose your move when it's clear."],
+    cold: [
+      "Look the position over carefully, piece by piece, and choose your move when it's clear.",
+    ],
     thinking: ["Working through the reply before drawing any conclusion…"],
-    unavailable: [{fact: "There isn't enough from the engine for me to explain this position properly.", takeaway: "Exploring it by moving the pieces is still worthwhile."}],
-    practice_error: ["I didn't get anything back from the analysis on that try. It's fine to play the move again."],
+    unavailable: [
+      {
+        fact: "There isn't enough from the engine for me to explain this position properly.",
+        takeaway: "Exploring it by moving the pieces is still worthwhile.",
+      },
+    ],
+    practice_error: [
+      "I didn't get anything back from the analysis on that try. It's fine to play the move again.",
+    ],
     variation: ["Along this alternative line, {detail}"],
   },
 });

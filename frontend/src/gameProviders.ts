@@ -8,7 +8,7 @@ export type GameProvider = Schema["GameProvider"];
 // serves every screen that lists them; a failure is asked again next time.
 let providers: Promise<GameProvider[]> | null = null;
 export function loadGameProviders(signal?: AbortSignal): Promise<GameProvider[]> {
-  providers ??= read(api.GET("/api/game-providers")).catch((error) => {
+  providers ??= read(api.GET("/api/game-providers")).catch(error => {
     providers = null;
     throw error;
   });

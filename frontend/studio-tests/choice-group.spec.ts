@@ -1,10 +1,17 @@
 import { expect, test } from "@playwright/test";
 
-test("expression filters use application choice controls without changing the inspected reaction", async ({ page }) => {
+test("expression filters use application choice controls without changing the inspected reaction", async ({
+  page,
+}) => {
   await page.goto("/?coach=classic&family=storyteller&expression=brilliant");
   const filters = page.getByRole("group", { name: "Filter expressions", exact: true });
   const expression = page.getByRole("combobox", { name: "Expression", exact: true });
-  await expect(filters.getByRole("button")).toHaveText(["All expressions", "Good ideas", "Hard moments", "Between moves"]);
+  await expect(filters.getByRole("button")).toHaveText([
+    "All expressions",
+    "Good ideas",
+    "Hard moments",
+    "Between moves",
+  ]);
   await expect(expression).toHaveValue("brilliant");
   const collection = page.locator(".studio-expression-grid");
 
@@ -29,7 +36,9 @@ test("expression filters use application choice controls without changing the in
   await expect(collection.getByRole("button")).toHaveCount(20);
   await collection.getByRole("button", { name: "Inspect Blunder", exact: true }).click();
   await expect(expression).toHaveValue("blunder");
-  await expect(filters.getByRole("button", { name: "All expressions", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(
+    filters.getByRole("button", { name: "All expressions", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
 
   await page.setViewportSize({ width: 320, height: 700 });
   await filters.scrollIntoViewIfNeeded();

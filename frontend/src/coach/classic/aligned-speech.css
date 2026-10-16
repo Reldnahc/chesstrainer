@@ -1,74 +1,105 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-/* This opt-in articulation leaves the original energy-driven artwork untouched.
+  /* This opt-in articulation leaves the original energy-driven artwork untouched.
    Its eight controls are smoothed by the shared playback clock, not CSS loops. */
-.walter-aligned-mouth {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 140ms ease-out, visibility 0s 140ms;
-  --walter-aligned-open: clamp(0, var(--speech-open, 0), 1);
-  --walter-aligned-round: clamp(0, var(--speech-round, 0), 1);
-  --walter-aligned-width-input: clamp(0, var(--speech-width, .58), 1);
-  --walter-aligned-width: calc((.45 + var(--walter-aligned-width-input) * .8) * (1 - var(--walter-aligned-round)) + (.18 + var(--walter-aligned-width-input) * .5) * var(--walter-aligned-round));
-  --walter-aligned-height: clamp(0, calc(var(--walter-aligned-open) * (1 + var(--walter-aligned-round) * .7)), 1);
-  --walter-aligned-teeth: clamp(0, var(--speech-teeth, 0), 1);
-  --walter-aligned-bite: clamp(0, var(--speech-bite, 0), 1);
-  --walter-aligned-tongue: clamp(0, var(--speech-tongue, 0), 1);
-  --walter-aligned-press: clamp(0, var(--speech-press, 0), 1);
-}
+  .walter-aligned-mouth {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 140ms ease-out,
+      visibility 0s 140ms;
+    --walter-aligned-open: clamp(0, var(--speech-open, 0), 1);
+    --walter-aligned-round: clamp(0, var(--speech-round, 0), 1);
+    --walter-aligned-width-input: clamp(0, var(--speech-width, 0.58), 1);
+    --walter-aligned-width: calc(
+      (0.45 + var(--walter-aligned-width-input) * 0.8) * (1 - var(--walter-aligned-round)) +
+        (0.18 + var(--walter-aligned-width-input) * 0.5) * var(--walter-aligned-round)
+    );
+    --walter-aligned-height: clamp(
+      0,
+      calc(var(--walter-aligned-open) * (1 + var(--walter-aligned-round) * 0.7)),
+      1
+    );
+    --walter-aligned-teeth: clamp(0, var(--speech-teeth, 0), 1);
+    --walter-aligned-bite: clamp(0, var(--speech-bite, 0), 1);
+    --walter-aligned-tongue: clamp(0, var(--speech-tongue, 0), 1);
+    --walter-aligned-press: clamp(0, var(--speech-press, 0), 1);
+  }
 
-.coach-avatar[data-coach="classic"][data-family="storyteller"][data-speaking="true"][data-articulation="aligned"] {
-  .walter-speech-mouth { display: none; }
-  .walter-aligned-mouth { opacity: 1; visibility: visible; transition-delay: 0s; }
-  .walter-aligned-aperture {
-    /* A paused interpolation samples the smoothed audio control, never a loop.
+  .coach-avatar[data-coach="classic"][data-family="storyteller"][data-speaking="true"][data-articulation="aligned"] {
+    .walter-speech-mouth {
+      display: none;
+    }
+    .walter-aligned-mouth {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+    .walter-aligned-aperture {
+      /* A paused interpolation samples the smoothed audio control, never a loop.
        Fill, lip outline and the teeth's clip share this exact contour. */
-    animation: walter-aligned-round-contour 1s linear both paused;
-    animation-delay: calc(var(--walter-aligned-round) * -1s);
+      animation: walter-aligned-round-contour 1s linear both paused;
+      animation-delay: calc(var(--walter-aligned-round) * -1s);
+    }
+    .walter-speech-jaw {
+      transform: translateY(calc(clamp(0, var(--speech-jaw, 0), 1) * 1.25px));
+    }
   }
-  .walter-speech-jaw {
-    transform: translateY(calc(clamp(0, var(--speech-jaw, 0), 1) * 1.25px));
+
+  @keyframes walter-aligned-round-contour {
+    from {
+      d: var(--walter-aligned-contour);
+    }
+    to {
+      d: path(
+        "M33 62.5 C33 57.1667 47 57.1667 47 62.5 C47 64.7091 43.866 66.5 40 66.5 C36.134 66.5 33 64.7091 33 62.5Z"
+      );
+    }
   }
-}
 
-@keyframes walter-aligned-round-contour {
-  from { d: var(--walter-aligned-contour); }
-  to { d: path("M33 62.5 C33 57.1667 47 57.1667 47 62.5 C47 64.7091 43.866 66.5 40 66.5 C36.134 66.5 33 64.7091 33 62.5Z"); }
-}
+  /* Holding a sound shape in the studio is static, even with motion set to Still. */
+  .coach-avatar[data-speech-preview="true"] .walter-aligned-aperture {
+    animation: walter-aligned-round-contour 1s linear both paused !important;
+    animation-delay: calc(var(--walter-aligned-round) * -1s) !important;
+  }
 
-/* Holding a sound shape in the studio is static, even with motion set to Still. */
-.coach-avatar[data-speech-preview="true"] .walter-aligned-aperture {
-  animation: walter-aligned-round-contour 1s linear both paused !important;
-  animation-delay: calc(var(--walter-aligned-round) * -1s) !important;
-}
+  .walter-aligned-aperture {
+    transform-box: view-box;
+    transform-origin: 40px 58.5px;
+    transform: scale(var(--walter-aligned-width), var(--walter-aligned-height));
+  }
 
-.walter-aligned-aperture {
-  transform-box: view-box;
-  transform-origin: 40px 58.5px;
-  transform: scale(var(--walter-aligned-width), var(--walter-aligned-height));
-}
+  .walter-aligned-closed {
+    transform-box: view-box;
+    transform-origin: 40px 58.5px;
+    transform: scaleX(var(--walter-aligned-width));
+    opacity: clamp(0, calc(1 - var(--walter-aligned-open) * 12), 1);
+  }
 
-.walter-aligned-closed {
-  transform-box: view-box;
-  transform-origin: 40px 58.5px;
-  transform: scaleX(var(--walter-aligned-width));
-  opacity: clamp(0, calc(1 - var(--walter-aligned-open) * 12), 1);
-}
+  .walter-aligned-lip-line {
+    stroke-width: calc(0.9px + var(--walter-aligned-press) * 0.35px);
+  }
 
-.walter-aligned-lip-line {
-  stroke-width: calc(.9px + var(--walter-aligned-press) * .35px);
-}
+  .walter-aligned-pressure {
+    opacity: var(--walter-aligned-press);
+  }
+  .walter-aligned-opening {
+    opacity: clamp(0, calc(var(--walter-aligned-open) * 12), 1);
+  }
+  .walter-aligned-teeth {
+    opacity: var(--walter-aligned-teeth);
+  }
+  .walter-aligned-lip-bite {
+    opacity: var(--walter-aligned-bite);
+  }
+  .walter-aligned-tongue-tip {
+    opacity: var(--walter-aligned-tongue);
+  }
 
-.walter-aligned-pressure { opacity: var(--walter-aligned-press); }
-.walter-aligned-opening { opacity: clamp(0, calc(var(--walter-aligned-open) * 12), 1); }
-.walter-aligned-teeth { opacity: var(--walter-aligned-teeth); }
-.walter-aligned-lip-bite { opacity: var(--walter-aligned-bite); }
-.walter-aligned-tongue-tip { opacity: var(--walter-aligned-tongue); }
-
-/* The broad floor follows the bottom; the L tongue tip reaches toward the upper
+  /* The broad floor follows the bottom; the L tongue tip reaches toward the upper
    teeth. Neither tongue nor teeth stretch with the aperture. */
-.walter-aligned-tongue-floor {
-  transform: translateY(calc((var(--walter-aligned-height) - 1) * 6.5px));
-  opacity: clamp(0, calc((var(--walter-aligned-height) - .4) * .65), .4);
-}
+  .walter-aligned-tongue-floor {
+    transform: translateY(calc((var(--walter-aligned-height) - 1) * 6.5px));
+    opacity: clamp(0, calc((var(--walter-aligned-height) - 0.4) * 0.65), 0.4);
+  }
 }

@@ -5,7 +5,12 @@ import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
 import { CastHands } from "./CastHands";
 import { castPoses, mouthPaths } from "./poses";
-import { OrganicSpeechMouth, SpeechMouthLayer, speechMood, speechMoodRules } from "../../SpeechMouthLayer";
+import {
+  OrganicSpeechMouth,
+  SpeechMouthLayer,
+  speechMood,
+  speechMoodRules,
+} from "../../SpeechMouthLayer";
 import "../../studies/motion.css";
 import "./scifi.css";
 
@@ -35,27 +40,61 @@ export default function LivingPawnCoach({ expression }: CoachArtworkProps) {
           <path d="M34 56h32l3 6-4 6H35l-4-6Z" fill="#d4c49e" />
           <path d="M33 59h34" stroke="#f4e7c9" strokeWidth="2" strokeLinecap="round" />
           <circle cx="50" cy="35" r="23" fill="#e9dfbf" />
-          <path d="M29 38c3 14 12 21 24 20 9-1 17-7 20-17-4 7-10 11-19 11-12 0-20-6-25-14Z" fill="#ccb995" opacity=".75" />
-          <path d="M33 27q4-9 15-10" stroke="#fbf1d8" strokeWidth="3" strokeLinecap="round" fill="none" />
+          <path
+            d="M29 38c3 14 12 21 24 20 9-1 17-7 20-17-4 7-10 11-19 11-12 0-20-6-25-14Z"
+            fill="#ccb995"
+            opacity=".75"
+          />
+          <path
+            d="M33 27q4-9 15-10"
+            stroke="#fbf1d8"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
+          />
           <g stroke="#807763" strokeWidth="2" strokeLinecap="round" fill="none">
             <path d="M34 27q5-2 9 0" transform={`rotate(${pose.brows[0]} 39 27)`} />
             <path d="M57 27q4-2 9 0" transform={`rotate(${pose.brows[1]} 61 27)`} />
           </g>
           <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
             {closedEyes ? (
-              <path d="M35 35q5-6 10 0m10 0q5-6 10 0" stroke="#3f5359" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+              <path
+                d="M35 35q5-6 10 0m10 0q5-6 10 0"
+                stroke="#3f5359"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+              />
             ) : (
               <g className="study-gaze">
                 <g transform={`translate(${pose.gaze.join(" ")})`}>
-                  {([40, 60] as const).map((x) => (
+                  {([40, 60] as const).map(x => (
                     <g key={x}>
                       {bright ? (
                         <path d={`m${x} 29 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z`} fill="#4d767b" />
                       ) : (
                         <>
-                          <ellipse cx={x} cy="35" rx={startled ? 5 : 4.2} ry={5 * pose.eye} fill="#fff8e3" />
-                          <ellipse cx={x} cy="35" rx={startled ? 2.1 : 2.6} ry={Math.min(4, 4 * pose.eye)} fill="#3f5359" />
-                          <circle cx={x - 0.8} cy="34" r="0.9" fill="#fff9e7" className="study-eye-glint" />
+                          <ellipse
+                            cx={x}
+                            cy="35"
+                            rx={startled ? 5 : 4.2}
+                            ry={5 * pose.eye}
+                            fill="#fff8e3"
+                          />
+                          <ellipse
+                            cx={x}
+                            cy="35"
+                            rx={startled ? 2.1 : 2.6}
+                            ry={Math.min(4, 4 * pose.eye)}
+                            fill="#3f5359"
+                          />
+                          <circle
+                            cx={x - 0.8}
+                            cy="34"
+                            r="0.9"
+                            fill="#fff9e7"
+                            className="study-eye-glint"
+                          />
                         </>
                       )}
                     </g>
@@ -65,16 +104,40 @@ export default function LivingPawnCoach({ expression }: CoachArtworkProps) {
             )}
           </g>
           <g transform="translate(0 -17)">
-            <SpeechMouthLayer authored={<>
-              <path d={mouthPaths[pose.mouth]} fill={pose.mouth === "grin" || pose.mouth === "round" ? "#665348" : "none"} stroke="#665348" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#fff8df" />}
-            </>}>
-              <OrganicSpeechMouth x={50} y={64} width={18} height={8}
+            <SpeechMouthLayer
+              authored={
+                <>
+                  <path
+                    d={mouthPaths[pose.mouth]}
+                    fill={pose.mouth === "grin" || pose.mouth === "round" ? "#665348" : "none"}
+                    stroke="#665348"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#fff8df" />}
+                </>
+              }
+            >
+              <OrganicSpeechMouth
+                x={50}
+                y={64}
+                width={18}
+                height={8}
                 mood={speechMood(pose.mouth, speechMoodRules.scifi)}
-                palette={{cavity: "#665348", outline: "#665348", teeth: "#fff8df", tongue: "#c1a080", lip: "#baab8d"}} />
+                palette={{
+                  cavity: "#665348",
+                  outline: "#665348",
+                  teeth: "#fff8df",
+                  tongue: "#c1a080",
+                  lip: "#baab8d",
+                }}
+              />
             </SpeechMouthLayer>
           </g>
-          {(expression === "encouraging" || expression === "good") && <path d="M33 43h3m28 0h3" stroke="#c79780" strokeWidth="2" strokeLinecap="round" />}
+          {(expression === "encouraging" || expression === "good") && (
+            <path d="M33 43h3m28 0h3" stroke="#c79780" strokeWidth="2" strokeLinecap="round" />
+          )}
         </HeadRig>
         {pose.hands === "book" && <Book color="#84968a" />}
         <CastHands pose={pose.hands} skin="#e9dfbf" sleeve="#cdbd97" shoulderSpread={14} />

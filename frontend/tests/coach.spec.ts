@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
-const walterGreeting = walterBank.recordings.find(record => record.id === "game-review-opened")!.text;
+const walterGreeting = walterBank.recordings.find(
+  record => record.id === "game-review-opened",
+)!.text;
 
 test("the app offers coach selection without an expression viewer route", async ({ page }) => {
   await page.goto("/settings?section=coach");
@@ -15,7 +17,9 @@ test("the app offers coach selection without an expression viewer route", async 
   await expect(page).toHaveURL(/\/games$/);
 });
 
-test("coach motion follows the device by default and saved overrides survive reload", async ({ page }) => {
+test("coach motion follows the device by default and saved overrides survive reload", async ({
+  page,
+}) => {
   await page.request.put("/api/preferences/coach", {
     data: { coach_id: "classic", motion: "system" },
   });
@@ -39,9 +43,16 @@ test("coach motion follows the device by default and saved overrides survive rel
     await expect(motion).toHaveValue("natural");
     await expect(portrait).toHaveAttribute("data-motion", "natural");
     await portrait.scrollIntoViewIfNeeded();
-    await expect.poll(() => portrait.evaluate(element =>
-      element.getAnimations({ subtree: true }).filter(animation => animation.playState === "running").length,
-    )).toBeGreaterThan(0);
+    await expect
+      .poll(() =>
+        portrait.evaluate(
+          element =>
+            element
+              .getAnimations({ subtree: true })
+              .filter(animation => animation.playState === "running").length,
+        ),
+      )
+      .toBeGreaterThan(0);
     await expect(motionStatus).toBeEmpty();
 
     await motion.selectOption("still");
@@ -50,7 +61,9 @@ test("coach motion follows the device by default and saved overrides survive rel
     await page.reload();
     await expect(motion).toHaveValue("still");
     await expect(portrait).toHaveAttribute("data-motion", "still");
-    expect(await portrait.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
+    expect(
+      await portrait.evaluate(element => element.getAnimations({ subtree: true }).length),
+    ).toBe(0);
 
     await motion.selectOption("system");
     await expect(motionStatus).toHaveText("Saved");
@@ -67,7 +80,9 @@ test("coach motion follows the device by default and saved overrides survive rel
   }
 });
 
-test("coach motion resynchronizes after device changes while the settings page is unmounted", async ({ page }) => {
+test("coach motion resynchronizes after device changes while the settings page is unmounted", async ({
+  page,
+}) => {
   await page.request.put("/api/preferences/coach", {
     data: { coach_id: "classic", motion: "system" },
   });
@@ -82,27 +97,33 @@ test("coach motion resynchronizes after device changes while the settings page i
     await expect(page.locator(".coach-avatar")).toHaveCount(0);
     await page.emulateMedia({ reducedMotion });
     await page.getByRole("link", { name: "Settings", exact: true }).click();
-    await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
-    await expect(selected).toHaveAttribute("data-motion", reducedMotion === "reduce" ? "still" : "natural");
-    await expect(motionStatus).toHaveText(reducedMotion === "reduce" ? "Still · device setting" : "");
+    await page
+      .getByRole("navigation", { name: "Settings sections" })
+      .getByRole("link", { name: "Coach & animations", exact: true })
+      .click();
+    await expect(selected).toHaveAttribute(
+      "data-motion",
+      reducedMotion === "reduce" ? "still" : "natural",
+    );
+    await expect(motionStatus).toHaveText(
+      reducedMotion === "reduce" ? "Still · device setting" : "",
+    );
   }
 });
 
-test("game navigation and SRS attempts drive the real shared coach", async ({
-  page,
-}, info) => {
+test("game navigation and SRS attempts drive the real shared coach", async ({ page }, info) => {
   test.setTimeout(60_000);
   const { id } = await (
-    await page.request.post(
-      `/__test/game-review-fixture/coach-${info.project.name}`,
-    )
+    await page.request.post(`/__test/game-review-fixture/coach-${info.project.name}`)
   ).json();
   await page.goto(`/games/${id}?ply=3`);
   const avatar = page.locator(".review-coach .coach-avatar");
   await expect(avatar).toHaveAttribute("data-expression", "blunder", {
     timeout: 30000,
   });
-  await expect(page.locator(".game-summary caption")).toContainText("Complete game", {timeout: 30000});
+  await expect(page.locator(".game-summary caption")).toContainText("Complete game", {
+    timeout: 30000,
+  });
   await page.getByRole("button", { name: "Last move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "losing");
   await expect(page.locator(".coach-message")).toContainText(/checkmate|king has no escape/i);
@@ -111,11 +132,9 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   await expect(avatar).toHaveAttribute("data-expression", "neutral");
   // Returning to the start shows the coach's recorded greeting again, not the move prompt.
   await expect(page.locator(".coach-message")).toContainText(walterGreeting);
-  await expect(page.getByRole("region", {name: "Game story"})).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "Game story" })).toHaveCount(0);
   const fixture = await (
-    await page.request.post(
-      `/__test/review-explanation-fixture/coach-${info.project.name}`,
-    )
+    await page.request.post(`/__test/review-explanation-fixture/coach-${info.project.name}`)
   ).json();
   await page.goto(`/?exercise=${fixture.exercise_id}`);
   await expect(avatar).toHaveAttribute("data-expression", "neutral");
@@ -144,8 +163,10 @@ test("choosing a coach saves only the coach and leaves coach motion alone", asyn
   });
   const writes: string[] = [];
   let release = () => {};
-  const held = new Promise<void>(resolve => { release = resolve; });
-  await page.route("**/api/preferences/coach", async (route) => {
+  const held = new Promise<void>(resolve => {
+    release = resolve;
+  });
+  await page.route("**/api/preferences/coach", async route => {
     if (route.request().method() === "GET") return route.continue();
     writes.push(`${route.request().method()} ${route.request().postData()}`);
     await held;
@@ -162,7 +183,10 @@ test("choosing a coach saves only the coach and leaves coach motion alone", asyn
     await expect(page.locator(".coach-preference-status")).toHaveText("Saving…");
     await expect(page.locator(".coach-options")).toBeEnabled();
     await expect(motion).toBeEnabled();
-    await expect(page.locator(".coach-motion-preference-status")).toHaveAttribute("data-state", "idle");
+    await expect(page.locator(".coach-motion-preference-status")).toHaveAttribute(
+      "data-state",
+      "idle",
+    );
     release();
     await expect(page.locator(".coach-preference-status")).toHaveText("Saved");
     expect(writes).toEqual([`PATCH ${JSON.stringify({ coach_id: "dog-collie" })}`]);
@@ -177,15 +201,13 @@ test("choosing a coach saves only the coach and leaves coach motion alone", asyn
   }
 });
 
-test("preference failures keep the last saved choice and allow recovery", async ({
-  page,
-}) => {
+test("preference failures keep the last saved choice and allow recovery", async ({ page }) => {
   await page.request.put("/api/preferences/coach", {
     data: { coach_id: "classic", motion: "natural" },
   });
   let failLoad = true;
   let failSave = true;
-  await page.route("**/api/preferences/coach", async (route) => {
+  await page.route("**/api/preferences/coach", async route => {
     const reading = route.request().method() === "GET";
     if ((reading && failLoad) || (!reading && failSave)) {
       if (reading) failLoad = false;
@@ -193,9 +215,7 @@ test("preference failures keep the last saved choice and allow recovery", async 
       return route.fulfill({
         status: 503,
         json: {
-          detail: reading
-            ? "Preferences unavailable"
-            : "Preference was not saved",
+          detail: reading ? "Preferences unavailable" : "Preference was not saved",
         },
       });
     }
@@ -209,10 +229,13 @@ test("preference failures keep the last saved choice and allow recovery", async 
     await expect(status).toContainText("Preferences unavailable");
     await expect(motionStatus).toContainText("Preferences unavailable");
     await expect(motion).toBeDisabled();
-    await expect(
-      page.locator(".coach-option:has(input:checked) .coach-avatar"),
-    ).toHaveAttribute("data-motion", "still");
-    await page.getByRole("button", { name: "Reload coach motion preferences", exact: true }).click();
+    await expect(page.locator(".coach-option:has(input:checked) .coach-avatar")).toHaveAttribute(
+      "data-motion",
+      "still",
+    );
+    await page
+      .getByRole("button", { name: "Reload coach motion preferences", exact: true })
+      .click();
     await expect(motion).toBeEnabled();
     await expect(motion).toHaveValue("natural");
     const cat = page.getByRole("radio", { name: "Juniper", exact: true });
@@ -221,9 +244,10 @@ test("preference failures keep the last saved choice and allow recovery", async 
     await expect(motionStatus).not.toContainText("Preference was not saved");
     await expect(cat).not.toBeChecked();
     await expect(motion).toHaveValue("natural");
-    expect(
-      await (await page.request.get("/api/preferences/coach")).json(),
-    ).toEqual({ coach_id: "classic", motion: "natural" });
+    expect(await (await page.request.get("/api/preferences/coach")).json()).toEqual({
+      coach_id: "classic",
+      motion: "natural",
+    });
     await cat.click();
     await expect(cat).toBeChecked();
     await expect(motion).toBeEnabled();
@@ -244,42 +268,37 @@ test("preference failures keep the last saved choice and allow recovery", async 
   }
 });
 
-test("connecting with a LAN token restores preferences without a page reload", async ({
-  page,
-}) => {
+test("connecting with a LAN token restores preferences without a page reload", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.route("**/api/preferences/motion", (route) =>
+  await page.route("**/api/preferences/motion", route =>
     route.request().headers().authorization === "Bearer coach-test-token"
       ? route.fulfill({ json: { motion: "natural" } })
       : route.fulfill({ status: 401, json: { detail: "LAN token required" } }),
   );
-  await page.route("**/api/preferences/coach", (route) =>
+  await page.route("**/api/preferences/coach", route =>
     route.request().headers().authorization === "Bearer coach-test-token"
       ? route.fulfill({ json: { coach_id: "classic", motion: "still" } })
       : route.fulfill({ status: 401, json: { detail: "LAN token required" } }),
   );
   await page.goto("/settings?section=coach");
-  await expect(
-    page.getByRole("heading", { name: "Connect to your workspace" }),
-  ).toBeVisible();
-  await page
-    .getByLabel("Access token", { exact: true })
-    .fill("coach-test-token");
+  await expect(page.getByRole("heading", { name: "Connect to your workspace" })).toBeVisible();
+  await page.getByLabel("Access token", { exact: true }).fill("coach-test-token");
   await page.getByRole("button", { name: "Connect", exact: true }).click();
   const motion = page.getByLabel("Coach motion", { exact: true });
   await expect(motion).toBeEnabled();
   await expect(motion).toHaveValue("still");
-  await expect(page.getByLabel("Piece & interface motion", {exact: true})).toHaveValue("natural");
+  await expect(page.getByLabel("Piece & interface motion", { exact: true })).toHaveValue("natural");
   await expect(page.locator("html")).toHaveAttribute("data-interface-motion", "natural");
-  await expect(
-    page.locator(".coach-option:has(input:checked) .coach-avatar"),
-  ).toHaveAttribute("data-motion", "still");
-  await expect(
-    page.getByRole("button", { name: "Reload preferences" }),
-  ).toHaveCount(0);
+  await expect(page.locator(".coach-option:has(input:checked) .coach-avatar")).toHaveAttribute(
+    "data-motion",
+    "still",
+  );
+  await expect(page.getByRole("button", { name: "Reload preferences" })).toHaveCount(0);
 });
 
-test("a device's pre-account coach and motion choices seed this account's caches once", async ({ page }) => {
+test("a device's pre-account coach and motion choices seed this account's caches once", async ({
+  page,
+}) => {
   // The saved preferences never arrive, so the page starts from what the device remembers.
   // Held from the first load too: a response landing after the clear below would fill
   // the account's caches before the old keys could seed them.
@@ -294,10 +313,24 @@ test("a device's pre-account coach and motion choices seed this account's caches
   await page.reload();
   // Before its preference loads, the interface moves only when the device remembers a choice.
   await expect(page.locator("html")).toHaveAttribute("data-interface-motion", "natural");
-  expect(await page.evaluate(() => {
-    const cached = (name: string) => Object.keys(localStorage).filter(key => key.startsWith(`fieldwork.${name}:`))
-      .map(key => JSON.parse(localStorage.getItem(key)!) as unknown);
-    return {coach: cached("coach"), motion: cached("interface-motion"),
-      legacy: [localStorage.getItem("fieldwork:coach-id"), localStorage.getItem("fieldwork.interface-motion")]};
-  })).toEqual({ coach: [{ coach_id: "robot" }], motion: [{ motion: "natural" }], legacy: [null, null] });
+  expect(
+    await page.evaluate(() => {
+      const cached = (name: string) =>
+        Object.keys(localStorage)
+          .filter(key => key.startsWith(`fieldwork.${name}:`))
+          .map(key => JSON.parse(localStorage.getItem(key)!) as unknown);
+      return {
+        coach: cached("coach"),
+        motion: cached("interface-motion"),
+        legacy: [
+          localStorage.getItem("fieldwork:coach-id"),
+          localStorage.getItem("fieldwork.interface-motion"),
+        ],
+      };
+    }),
+  ).toEqual({
+    coach: [{ coach_id: "robot" }],
+    motion: [{ motion: "natural" }],
+    legacy: [null, null],
+  });
 });

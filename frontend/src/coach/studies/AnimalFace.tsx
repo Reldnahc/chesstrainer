@@ -1,6 +1,11 @@
 import { useId } from "react";
 import { useEyeClosure } from "../CoachFaceContext";
-import { OrganicSpeechMouth, SpeechMouthLayer, speechMood, speechMoodRules } from "../SpeechMouthLayer";
+import {
+  OrganicSpeechMouth,
+  SpeechMouthLayer,
+  speechMood,
+  speechMoodRules,
+} from "../SpeechMouthLayer";
 import type { AnimalPose } from "./animalPoses";
 
 export type AnimalPalette = {
@@ -48,50 +53,29 @@ export default function AnimalFace({
       </g>
       <g className="animal-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
         {closedEyes ? (
-          <g
-            stroke={palette.lid ?? "#302b29"}
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          >
-            {xs.map((x) => (
-              <path
-                key={x}
-                d={`M${x - 5} 44q5 ${pose.mouth === "concern" ? 5 : -7} 10 0`}
-              />
+          <g stroke={palette.lid ?? "#302b29"} strokeWidth="2" fill="none" strokeLinecap="round">
+            {xs.map(x => (
+              <path key={x} d={`M${x - 5} 44q5 ${pose.mouth === "concern" ? 5 : -7} 10 0`} />
             ))}
           </g>
         ) : (
           <>
             <defs>
               <clipPath id={mask}>
-                {xs.map((x) => (
+                {xs.map(x => (
                   <ellipse key={x} cx={x} cy="43" rx={eyeWidth} ry={eye} />
                 ))}
               </clipPath>
             </defs>
-            {xs.map((x) => (
-              <ellipse
-                key={x}
-                cx={x}
-                cy="43"
-                rx={eyeWidth}
-                ry={eye}
-                fill="#fff5de"
-              />
+            {xs.map(x => (
+              <ellipse key={x} cx={x} cy="43" rx={eyeWidth} ry={eye} fill="#fff5de" />
             ))}
             <g clipPath={`url(#${mask})`}>
               <g className="study-gaze">
                 <g transform={`translate(${gaze.join(" ")})`}>
-                  {xs.map((x) => (
+                  {xs.map(x => (
                     <g key={x}>
-                      <ellipse
-                        cx={x}
-                        cy="43"
-                        rx={dog ? 4.6 : 4.9}
-                        ry={eye}
-                        fill={palette.iris}
-                      />
+                      <ellipse cx={x} cy="43" rx={dog ? 4.6 : 4.9} ry={eye} fill={palette.iris} />
                       <ellipse
                         cx={x}
                         cy="43"
@@ -123,17 +107,11 @@ export default function AnimalFace({
       </g>
       {dog ? (
         <path
-          d={
-            muzzleShape ??
-            "M32 57q0-10 11-10h14q11 0 11 10v5Q65 77 50 77 35 77 32 62Z"
-          }
+          d={muzzleShape ?? "M32 57q0-10 11-10h14q11 0 11 10v5Q65 77 50 77 35 77 32 62Z"}
           fill={palette.muzzle}
         />
       ) : (
-        <path
-          d="M35 54q1-8 15-4 14-4 15 4 2 13-15 15-17-2-15-15Z"
-          fill={palette.muzzle}
-        />
+        <path d="M35 54q1-8 15-4 14-4 15 4 2 13-15 15-17-2-15-15Z" fill={palette.muzzle} />
       )}
       <g
         className="study-muzzle"
@@ -150,44 +128,62 @@ export default function AnimalFace({
         )}
         {dog && <path d="m46 53 5-.4" stroke="#a5917f" strokeWidth="1.2" />}
         <path d={`M50 ${noseY + 2}v4`} />
-        <SpeechMouthLayer className={dog ? "pet-speech-mouth dog-speech-mouth" : "pet-speech-mouth cat-speech-mouth"} authored={<>
-        {pose.mouth === "smile" && (
-          <path
-            d={`M${dog ? 39 : 41} ${noseY + 7}q5 5 ${dog ? 11 : 9} -1 5 6 ${dog ? 11 : 9} 1`}
-          />
-        )}
-        {pose.mouth === "grin" && (
-          <>
-            <path
-              d={`M${dog ? 38 : 40} ${noseY + 7}q${dog ? 12 : 10} 5 ${dog ? 24 : 20} 0-1 13-${dog ? 12 : 10} 13-${dog ? 11 : 9}-1-${dog ? 12 : 10}-13Z`}
-              fill="#5b3630"
-              stroke={palette.lip ?? "none"}
-            />
-            <path
-              d={`M45 ${noseY + 14}q5-4 10 0v4q-5 7-10 0Z`}
-              fill="#dc8e89"
-              stroke="none"
-            />
-            <path d={`M50 ${noseY + 16}v3`} stroke="#b76d6d" strokeWidth=".6" />
-          </>
-        )}
-        {pose.mouth === "oh" && (
-          <ellipse
-            cx="50"
-            cy={noseY + 11}
-            rx={dog ? 4.5 : 3.8}
-            ry="5.5"
-            fill="#5b3630"
-            stroke={palette.lip ?? "none"}
-          />
-        )}
-        {pose.mouth === "concern" && <path d={`M42 ${noseY + 12}q8-5 16 0`} />}
-        {pose.mouth === "ponder" && <path d={`M44 ${noseY + 9}q5 2 11-2`} />}
-        </>}>
-          <OrganicSpeechMouth x={50} y={dog ? 64 : 61} width={dog ? 22 : 15} height={dog ? 11 : 8.5}
+        <SpeechMouthLayer
+          className={
+            dog ? "pet-speech-mouth dog-speech-mouth" : "pet-speech-mouth cat-speech-mouth"
+          }
+          authored={
+            <>
+              {pose.mouth === "smile" && (
+                <path
+                  d={`M${dog ? 39 : 41} ${noseY + 7}q5 5 ${dog ? 11 : 9} -1 5 6 ${dog ? 11 : 9} 1`}
+                />
+              )}
+              {pose.mouth === "grin" && (
+                <>
+                  <path
+                    d={`M${dog ? 38 : 40} ${noseY + 7}q${dog ? 12 : 10} 5 ${dog ? 24 : 20} 0-1 13-${dog ? 12 : 10} 13-${dog ? 11 : 9}-1-${dog ? 12 : 10}-13Z`}
+                    fill="#5b3630"
+                    stroke={palette.lip ?? "none"}
+                  />
+                  <path
+                    d={`M45 ${noseY + 14}q5-4 10 0v4q-5 7-10 0Z`}
+                    fill="#dc8e89"
+                    stroke="none"
+                  />
+                  <path d={`M50 ${noseY + 16}v3`} stroke="#b76d6d" strokeWidth=".6" />
+                </>
+              )}
+              {pose.mouth === "oh" && (
+                <ellipse
+                  cx="50"
+                  cy={noseY + 11}
+                  rx={dog ? 4.5 : 3.8}
+                  ry="5.5"
+                  fill="#5b3630"
+                  stroke={palette.lip ?? "none"}
+                />
+              )}
+              {pose.mouth === "concern" && <path d={`M42 ${noseY + 12}q8-5 16 0`} />}
+              {pose.mouth === "ponder" && <path d={`M44 ${noseY + 9}q5 2 11-2`} />}
+            </>
+          }
+        >
+          <OrganicSpeechMouth
+            x={50}
+            y={dog ? 64 : 61}
+            width={dog ? 22 : 15}
+            height={dog ? 11 : 8.5}
             mood={speechMood(pose.mouth, speechMoodRules.animal)}
-            palette={{cavity: "#5b3630", outline: palette.lip ?? palette.nose, teeth: "#fff3dc", tongue: "#dc8e89"}}
-            teeth={false} fangs={dog} />
+            palette={{
+              cavity: "#5b3630",
+              outline: palette.lip ?? palette.nose,
+              teeth: "#fff3dc",
+              tongue: "#dc8e89",
+            }}
+            teeth={false}
+            fangs={dog}
+          />
         </SpeechMouthLayer>
       </g>
       {!dog && (

@@ -9,7 +9,10 @@ import HumanSpeechMouth, { type HumanSpeechPalette } from "./HumanSpeechMouth";
 import { handPoses, type Pose } from "./poses";
 
 type ArmColors = { skin: string; shade: string; sleeve: string; cuff: string };
-type FeatureColors = Pick<ComponentProps<typeof HumanFeatures>, "browColor" | "noseColor" | "mouthColor" | "face">;
+type FeatureColors = Pick<
+  ComponentProps<typeof HumanFeatures>,
+  "browColor" | "noseColor" | "mouthColor" | "face"
+>;
 
 /** The shared human figure: frame, accents, body, head with its features and
  * speaking mouth, both arms and the book. Each coach supplies its own clothing,
@@ -64,8 +67,14 @@ export default function HumanFigure({
           expression={expression}
           glasses={false}
           {...features}
-          mouth={<HumanSpeechMouth pose={pose} expression={expression}
-            mouthColor={speech.mouthColor} palette={speech.palette} />}
+          mouth={
+            <HumanSpeechMouth
+              pose={pose}
+              expression={expression}
+              mouthColor={speech.mouthColor}
+              palette={speech.palette}
+            />
+          }
         />
         {overFeatures}
       </HeadRig>

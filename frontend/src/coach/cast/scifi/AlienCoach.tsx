@@ -6,7 +6,12 @@ import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
 import { CastHands } from "./CastHands";
 import { castPoses, mouthPaths } from "./poses";
-import { OrganicSpeechMouth, SpeechMouthLayer, speechMood, speechMoodRules } from "../../SpeechMouthLayer";
+import {
+  OrganicSpeechMouth,
+  SpeechMouthLayer,
+  speechMood,
+  speechMoodRules,
+} from "../../SpeechMouthLayer";
 import "../../studies/motion.css";
 import "./scifi.css";
 
@@ -33,9 +38,22 @@ export default function AlienCoach({ expression }: CoachArtworkProps) {
       <path d="m39 105 4-4 4 4-4 4Z" fill="#b7d8b8" />
       <HeadRig>
         <path d="M18 40 9 34q-2 14 13 20m60-14 9-6q2 14-13 20" fill="#76a992" />
-        <path d="M17 36C16 17 30 9 50 9s34 8 33 27C81 59 62 81 50 82 38 81 19 59 17 36Z" fill="#92c9ad" />
-        <path d="M25 30Q29 15 48 16" stroke="#c3e3c9" strokeWidth="3" strokeLinecap="round" fill="none" />
-        <path d="M24 54q9 15 26 20 17-5 26-20-10 25-26 28-16-3-26-28Z" fill="#7caf98" opacity=".5" />
+        <path
+          d="M17 36C16 17 30 9 50 9s34 8 33 27C81 59 62 81 50 82 38 81 19 59 17 36Z"
+          fill="#92c9ad"
+        />
+        <path
+          d="M25 30Q29 15 48 16"
+          stroke="#c3e3c9"
+          strokeWidth="3"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M24 54q9 15 26 20 17-5 26-20-10 25-26 28-16-3-26-28Z"
+          fill="#7caf98"
+          opacity=".5"
+        />
         <g stroke="#4b7e70" strokeWidth="2" strokeLinecap="round" fill="none">
           <g className="cast-alien-brow-idle coach-idle-brows">
             <path d="M26 34q8-3 15 1" transform={`rotate(${pose.brows[0]} 34 34)`} />
@@ -45,11 +63,21 @@ export default function AlienCoach({ expression }: CoachArtworkProps) {
         <g transform={`translate(0 ${47 * (1 - pose.eye)}) scale(1 ${pose.eye})`}>
           <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
             {closedEyes ? (
-              <path d="M25 47q8-8 17 3m16 0q9-11 17-3" stroke="#283d46" strokeWidth="2.8" strokeLinecap="round" fill="none" />
+              <path
+                d="M25 47q8-8 17 3m16 0q9-11 17-3"
+                stroke="#283d46"
+                strokeWidth="2.8"
+                strokeLinecap="round"
+                fill="none"
+              />
             ) : (
               <>
                 <path d={eyes} fill="#263b47" />
-                <defs><clipPath id={clip}><path d={eyes} /></clipPath></defs>
+                <defs>
+                  <clipPath id={clip}>
+                    <path d={eyes} />
+                  </clipPath>
+                </defs>
                 <g clipPath={`url(#${clip})`}>
                   <g className="study-gaze">
                     <g transform={`translate(${pose.gaze.join(" ")})`}>
@@ -69,15 +97,39 @@ export default function AlienCoach({ expression }: CoachArtworkProps) {
           </g>
         </g>
         <path d="M47 59h1m4 0h1" stroke="#598b78" strokeWidth="1.8" strokeLinecap="round" />
-        <SpeechMouthLayer authored={<>
-          <path d={mouthPaths[pose.mouth]} fill={pose.mouth === "grin" || pose.mouth === "round" ? "#344c4c" : "none"} stroke="#344c4c" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-          {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#e0eacd" />}
-        </>}>
-          <OrganicSpeechMouth x={50} y={65} width={19} height={9}
+        <SpeechMouthLayer
+          authored={
+            <>
+              <path
+                d={mouthPaths[pose.mouth]}
+                fill={pose.mouth === "grin" || pose.mouth === "round" ? "#344c4c" : "none"}
+                stroke="#344c4c"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#e0eacd" />}
+            </>
+          }
+        >
+          <OrganicSpeechMouth
+            x={50}
+            y={65}
+            width={19}
+            height={9}
             mood={speechMood(pose.mouth, speechMoodRules.scifi)}
-            palette={{cavity: "#344c4c", outline: "#344c4c", teeth: "#e0eacd", tongue: "#8bbba6", lip: "#72a28b"}} />
+            palette={{
+              cavity: "#344c4c",
+              outline: "#344c4c",
+              teeth: "#e0eacd",
+              tongue: "#8bbba6",
+              lip: "#72a28b",
+            }}
+          />
         </SpeechMouthLayer>
-        {expression === "brilliant" && <path d="m17 68 3 3m60 0 3-3" stroke="#a8d7bd" strokeWidth="2" strokeLinecap="round" />}
+        {expression === "brilliant" && (
+          <path d="m17 68 3 3m60 0 3-3" stroke="#a8d7bd" strokeWidth="2" strokeLinecap="round" />
+        )}
       </HeadRig>
       {pose.hands === "book" && <Book color="#7a6c96" />}
       <CastHands pose={pose.hands} skin="#92c9ad" sleeve="#536770" />

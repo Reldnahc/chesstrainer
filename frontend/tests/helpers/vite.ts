@@ -38,7 +38,11 @@ function freePort(): Promise<number> {
  */
 export async function isolatedServer() {
   return {
-    cacheDir: path.join(frontend, "node_modules", `.vite-spec-${process.env.TEST_PARALLEL_INDEX ?? 0}`),
+    cacheDir: path.join(
+      frontend,
+      "node_modules",
+      `.vite-spec-${process.env.TEST_PARALLEL_INDEX ?? 0}`,
+    ),
     server: { host: "127.0.0.1", port: await freePort(), strictPort: true, watch: null },
     optimizeDeps: { noDiscovery: true, include: DEPENDENCIES },
   };

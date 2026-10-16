@@ -7,4 +7,8 @@ import "../src/board.css";
 import "../src/interface-motion.css";
 import "./lab.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<React.StrictMode><IntelligenceLab /></React.StrictMode>);
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <IntelligenceLab />
+  </React.StrictMode>,
+);

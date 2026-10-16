@@ -17,17 +17,27 @@ export async function expectModifierClickLeftToBrowser(page: Page, link: Locator
   // Registered on window after the app's own handlers, so it sees whether the
   // app cancelled the click before cancelling the browser's tab itself.
   await page.evaluate(() => {
-    const seen = window as unknown as { modifierClicks: { href: string | null; cancelled: boolean }[] };
+    const seen = window as unknown as {
+      modifierClicks: { href: string | null; cancelled: boolean }[];
+    };
     seen.modifierClicks = [];
-    addEventListener("click", event => {
-      const anchor = event.target instanceof Element ? event.target.closest("a") : null;
-      seen.modifierClicks.push({ href: anchor?.getAttribute("href") ?? null, cancelled: event.defaultPrevented });
-      event.preventDefault();
-    }, { once: true });
+    addEventListener(
+      "click",
+      event => {
+        const anchor = event.target instanceof Element ? event.target.closest("a") : null;
+        seen.modifierClicks.push({
+          href: anchor?.getAttribute("href") ?? null,
+          cancelled: event.defaultPrevented,
+        });
+        event.preventDefault();
+      },
+      { once: true },
+    );
   });
   await link.click({ modifiers: ["ControlOrMeta"] });
-  expect(await page.evaluate(() => (window as unknown as { modifierClicks: unknown[] }).modifierClicks))
-    .toEqual([{ href, cancelled: false }]);
+  expect(
+    await page.evaluate(() => (window as unknown as { modifierClicks: unknown[] }).modifierClicks),
+  ).toEqual([{ href, cancelled: false }]);
   await expect(page).toHaveURL(before);
   expect(page.context().pages()).toEqual([page]);
 }

@@ -84,30 +84,42 @@ test.beforeAll(async () => {
   server = await createServer({
     configFile: false,
     root: path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
-    plugins: [react(), devRecordingAssets(), {
-      name: "modal-contract-fixture",
-      resolveId(id) {
-        if (id === "/modal-contract.tsx") return "\0modal-contract.tsx";
-      },
-      async load(id) {
-        if (id === "\0modal-contract.tsx")
-          return (await transformWithEsbuild(harness, "modal-contract.tsx", { loader: "tsx", jsx: "automatic" })).code;
-      },
-      configureServer(vite) {
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises -- the handler catches every failure and passes it to next
-        vite.middlewares.use("/__modal-contract", async (_request, response, next) => {
-          try {
-            const html = await vite.transformIndexHtml("/__modal-contract", `<!doctype html>
+    plugins: [
+      react(),
+      devRecordingAssets(),
+      {
+        name: "modal-contract-fixture",
+        resolveId(id) {
+          if (id === "/modal-contract.tsx") return "\0modal-contract.tsx";
+        },
+        async load(id) {
+          if (id === "\0modal-contract.tsx")
+            return (
+              await transformWithEsbuild(harness, "modal-contract.tsx", {
+                loader: "tsx",
+                jsx: "automatic",
+              })
+            ).code;
+        },
+        configureServer(vite) {
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises -- the handler catches every failure and passes it to next
+          vite.middlewares.use("/__modal-contract", async (_request, response, next) => {
+            try {
+              const html = await vite.transformIndexHtml(
+                "/__modal-contract",
+                `<!doctype html>
               <html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
-              <body><div id="root"></div><script type="module" src="/modal-contract.tsx"></script></body></html>`);
-            response.setHeader("Content-Type", "text/html");
-            response.end(html);
-          } catch (error) {
-            next(error);
-          }
-        });
+              <body><div id="root"></div><script type="module" src="/modal-contract.tsx"></script></body></html>`,
+              );
+              response.setHeader("Content-Type", "text/html");
+              response.end(html);
+            } catch (error) {
+              next(error);
+            }
+          });
+        },
       },
-    }],
+    ],
     ...(await isolatedServer()),
   });
   await server.listen();
@@ -125,18 +137,38 @@ test.beforeEach(async ({ page }) => {
   pageErrors.set(page, errors);
   page.on("pageerror", error => errors.push(error));
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.route("**/api/evidence/modal-fixture", route => route.fulfill({ json: {
-    fen: "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
-    played_san: "a8=N", loss_cp: 0, allows_mate: false, mate_lost: false,
-    candidates: [{ san: "a8=N", score: { kind: "cp", value: 0 }, pv: ["a7a8n"] }],
-    classifications: [{ skill: "promotion", provider: "local_rules", run_id: "modal-audit", explanation: "Promotion fixture." }],
-  } }));
+  await page.route("**/api/evidence/modal-fixture", route =>
+    route.fulfill({
+      json: {
+        fen: "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
+        played_san: "a8=N",
+        loss_cp: 0,
+        allows_mate: false,
+        mate_lost: false,
+        candidates: [{ san: "a8=N", score: { kind: "cp", value: 0 }, pv: ["a7a8n"] }],
+        classifications: [
+          {
+            skill: "promotion",
+            provider: "local_rules",
+            run_id: "modal-audit",
+            explanation: "Promotion fixture.",
+          },
+        ],
+      },
+    }),
+  );
   await page.goto(`${origin}__modal-contract`);
   await expect(page.locator(".board-shell")).toBeVisible();
 });
 
-async function updateFixture(page: Page, action: "disable" | "position" | "unmount" | "restricted" | "reset") {
-  await page.evaluate(detail => window.dispatchEvent(new CustomEvent("modal-fixture-update", { detail })), action);
+async function updateFixture(
+  page: Page,
+  action: "disable" | "position" | "unmount" | "restricted" | "reset",
+) {
+  await page.evaluate(
+    detail => window.dispatchEvent(new CustomEvent("modal-fixture-update", { detail })),
+    action,
+  );
 }
 
 async function choosePromotion(page: Page) {
@@ -170,26 +202,35 @@ async function tabTo(page: Page, direction: "Tab" | "Shift+Tab", target: Locator
       if (active instanceof HTMLDialogElement && active.matches(":modal")) return "dialog";
       return null;
     });
-    if (nativeStop === "chrome")
-      expect(await page.evaluate(() => document.hasFocus())).toBe(false);
+    if (nativeStop === "chrome") expect(await page.evaluate(() => document.hasFocus())).toBe(false);
     else if (nativeStop === "dialog")
-      expect(await page.evaluate(() => {
-        const active = document.activeElement!;
-        return active.scrollHeight > active.clientHeight;
-      })).toBe(true);
+      expect(
+        await page.evaluate(() => {
+          const active = document.activeElement!;
+          return active.scrollHeight > active.clientHeight;
+        }),
+      ).toBe(true);
     else break;
     await page.keyboard.press(direction);
   }
   await expect(target).toBeFocused();
 }
 
-test("promotion is a native modal with contained focus and Escape restores the board", async ({ page }) => {
+test("promotion is a native modal with contained focus and Escape restores the board", async ({
+  page,
+}) => {
   const dialog = await choosePromotion(page);
-  expect(await dialog.evaluate(element => element instanceof HTMLDialogElement && element.matches(":modal"))).toBe(true);
+  expect(
+    await dialog.evaluate(
+      element => element instanceof HTMLDialogElement && element.matches(":modal"),
+    ),
+  ).toBe(true);
   const first = dialog.getByRole("button", { name: "Queen", exact: true });
   const last = dialog.getByRole("button", { name: "Cancel", exact: true });
   await expect(first).toBeFocused();
-  await page.getByRole("button", { name: "After board", exact: true }).evaluate(element => element.focus());
+  await page
+    .getByRole("button", { name: "After board", exact: true })
+    .evaluate(element => element.focus());
   await expect(first).toBeFocused();
   await tabTo(page, "Shift+Tab", last);
   await tabTo(page, "Tab", first);
@@ -207,7 +248,9 @@ test("promotion is a native modal with contained focus and Escape restores the b
   await expect(page.locator(".board-shell")).toBeFocused();
 });
 
-test("promotion offers only server choices and submits every underpromotion once", async ({ page }) => {
+test("promotion offers only server choices and submits every underpromotion once", async ({
+  page,
+}) => {
   await updateFixture(page, "restricted");
   const restricted = await choosePromotion(page);
   await expect(restricted.getByRole("button")).toHaveText(["Rook", "Knight", "Cancel"]);
@@ -216,7 +259,10 @@ test("promotion offers only server choices and submits every underpromotion once
   await expect(page.getByTestId("moves")).toHaveText("a7a8n");
   await expect(page.locator(".board-shell")).toBeFocused();
   await updateFixture(page, "reset");
-  for (const [name, expected] of [["Bishop", "a7a8n,a7a8b"], ["Rook", "a7a8n,a7a8b,a7a8r"]]) {
+  for (const [name, expected] of [
+    ["Bishop", "a7a8n,a7a8b"],
+    ["Rook", "a7a8n,a7a8b,a7a8r"],
+  ]) {
     const dialog = await choosePromotion(page);
     await dialog.getByRole("button", { name, exact: true }).click();
     await expect(dialog).toHaveCount(0);
@@ -225,17 +271,21 @@ test("promotion offers only server choices and submits every underpromotion once
   }
 });
 
-test("promotion owns game shortcuts until dismissal and remains inside the viewport", async ({ page }, info) => {
+test("promotion owns game shortcuts until dismissal and remains inside the viewport", async ({
+  page,
+}, info) => {
   await page.getByRole("button", { name: "Toggle explanation" }).click();
   await expect(page.getByTestId("explanation")).toHaveText("open");
   const dialog = await choosePromotion(page);
   const expectBoardPlacement = async () => {
     const phone = page.viewportSize()!.width <= 760;
-    await expect.poll(async () => {
-      const box = (await dialog.boundingBox())!;
-      const board = (await page.locator(".board-shell").boundingBox())!;
-      return Math.abs(box.x - (board.x + board.width * (phone ? 0.03 : 0.08)));
-    }).toBeLessThan(2);
+    await expect
+      .poll(async () => {
+        const box = (await dialog.boundingBox())!;
+        const board = (await page.locator(".board-shell").boundingBox())!;
+        return Math.abs(box.x - (board.x + board.width * (phone ? 0.03 : 0.08)));
+      })
+      .toBeLessThan(2);
     const box = (await dialog.boundingBox())!;
     const board = (await page.locator(".board-shell").boundingBox())!;
     expect(box.y).toBeCloseTo(board.y + board.height * (phone ? 0.2 : 0.25), 0);
@@ -261,8 +311,13 @@ test("promotion owns game shortcuts until dismissal and remains inside the viewp
   await expect(page.getByTestId("ply")).toHaveText("2");
 });
 
-test("drag promotion opens after release and accepts its first underpromotion click", async ({ page }, info) => {
-  test.skip(info.project.name !== "desktop", "The touch board uses the tap promotion contract above.");
+test("drag promotion opens after release and accepts its first underpromotion click", async ({
+  page,
+}, info) => {
+  test.skip(
+    info.project.name !== "desktop",
+    "The touch board uses the tap promotion contract above.",
+  );
   await dragToPromotion(page);
   const hasOpener = await page.evaluate(() => {
     const active = document.activeElement;
@@ -277,7 +332,9 @@ test("drag promotion opens after release and accepts its first underpromotion cl
   await dialog.getByRole("button", { name: "Knight", exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await expect(page.getByTestId("moves")).toHaveText("a7a8n");
-  await expect(page.locator(hasOpener ? '[data-modal-opener="true"]' : ".board-shell")).toBeFocused();
+  await expect(
+    page.locator(hasOpener ? '[data-modal-opener="true"]' : ".board-shell"),
+  ).toBeFocused();
 });
 
 for (const action of ["disable", "position", "unmount"] as const) {
@@ -296,15 +353,27 @@ for (const action of ["disable", "position", "unmount"] as const) {
 }
 
 for (const action of ["disable", "position", "unmount"] as const) {
-  test(`a pending drag promotion never opens after board inputs ${action}`, async ({ page }, info) => {
-    test.skip(info.project.name !== "desktop", "The touch board uses the tap promotion contract above.");
+  test(`a pending drag promotion never opens after board inputs ${action}`, async ({
+    page,
+  }, info) => {
+    test.skip(
+      info.project.name !== "desktop",
+      "The touch board uses the tap promotion contract above.",
+    );
     await dragToPromotion(page);
     // Commit the caller's update immediately after the real drop, before the
     // chooser's brief delay used to outlast dnd-kit's click suppression.
     await page.evaluate(detail => {
-      window.addEventListener("pointerup", () => {
-        window.setTimeout(() => window.dispatchEvent(new CustomEvent("modal-fixture-update", { detail })), 0);
-      }, { once: true });
+      window.addEventListener(
+        "pointerup",
+        () => {
+          window.setTimeout(
+            () => window.dispatchEvent(new CustomEvent("modal-fixture-update", { detail })),
+            0,
+          );
+        },
+        { once: true },
+      );
     }, action);
     await page.mouse.up();
     await page.waitForTimeout(150);
@@ -316,15 +385,24 @@ for (const action of ["disable", "position", "unmount"] as const) {
   });
 }
 
-test("evidence contains focus, keeps its board read-only and restores its opener on both close paths", async ({ page }, info) => {
+test("evidence contains focus, keeps its board read-only and restores its opener on both close paths", async ({
+  page,
+}, info) => {
   const opener = page.getByRole("button", { name: "Open evidence", exact: true });
   await page.getByRole("button", { name: "Toggle explanation" }).click();
   await opener.click();
   const dialog = page.getByRole("dialog", { name: "Decision evidence" });
   await expect(dialog).toBeVisible();
-  expect(await dialog.evaluate(element => element instanceof HTMLDialogElement && element.matches(":modal"))).toBe(true);
+  expect(
+    await dialog.evaluate(
+      element => element instanceof HTMLDialogElement && element.matches(":modal"),
+    ),
+  ).toBe(true);
   const close = dialog.getByRole("button", { name: "Close evidence", exact: true });
-  const reject = dialog.getByRole("button", { name: "Reject unsupported classification", exact: true });
+  const reject = dialog.getByRole("button", {
+    name: "Reject unsupported classification",
+    exact: true,
+  });
   await expect(reject).toBeVisible();
   await page.screenshot({ path: info.outputPath("evidence.png") });
   await expect(close).toBeFocused();
@@ -351,6 +429,6 @@ test("evidence contains focus, keeps its board read-only and restores its opener
   await expect(page.getByTestId("ply")).toHaveText("0");
 });
 
-test.afterEach(async ({page}) => {
+test.afterEach(async ({ page }) => {
   expect(pageErrors.get(page) ?? [], "uncaught page errors").toEqual([]);
 });

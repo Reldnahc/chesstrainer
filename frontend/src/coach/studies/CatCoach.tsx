@@ -67,41 +67,18 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
         </g>
       </g>
       <path d="M23 117V93q0-21 27-21t27 21v24Z" fill={palette.fur} />
-      <path
-        d="M32 76q18 9 36 0l-3 16-6-3-9 18-9-18-6 3Z"
-        fill={palette.muzzle}
-      />
+      <path d="M32 76q18 9 36 0l-3 16-6-3-9 18-9-18-6 3Z" fill={palette.muzzle} />
       <HeadRig>
-        {[false, true].map((right) => (
-          <g
-            key={String(right)}
-            transform={
-              right ? "translate(100 0) scale(-1 1)" : undefined
-            }
-          >
-            <g
-              transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 25 31)`}
-            >
-              <g
-                className={`study-ear-motion study-ear-${right ? "right" : "left"}`}
-              >
+        {[false, true].map(right => (
+          <g key={String(right)} transform={right ? "translate(100 0) scale(-1 1)" : undefined}>
+            <g transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 25 31)`}>
+              <g className={`study-ear-motion study-ear-${right ? "right" : "left"}`}>
                 <path
-                  d={
-                    look === "black"
-                      ? "M17 36 11 3q14 3 22 26Z"
-                      : "M15 36 9 5q16 1 26 22Z"
-                  }
+                  d={look === "black" ? "M17 36 11 3q14 3 22 26Z" : "M15 36 9 5q16 1 26 22Z"}
                   fill={palette.fur}
                 />
-                <path
-                  d="m17 29-3-14q9 1 15 12Z"
-                  fill={look === "black" ? "#786674" : "#a87d7b"}
-                />
-                <path
-                  d="m17 29 4-6 5 8"
-                  fill={palette.muzzle}
-                  opacity=".65"
-                />
+                <path d="m17 29-3-14q9 1 15 12Z" fill={look === "black" ? "#786674" : "#a87d7b"} />
+                <path d="m17 29 4-6 5 8" fill={palette.muzzle} opacity=".65" />
               </g>
             </g>
           </g>
@@ -124,10 +101,7 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
           />
         )}
         {look === "tuxedo" && (
-          <path
-            d="M48 30q-5 13-10 19l-3 9q15 16 30 0l-3-9Q54 37 52 30Z"
-            fill={palette.muzzle}
-          />
+          <path d="M48 30q-5 13-10 19l-3 9q15 16 30 0l-3-9Q54 37 52 30Z" fill={palette.muzzle} />
         )}
         <AnimalFace pose={pose} palette={palette} />
       </HeadRig>
@@ -140,11 +114,7 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
         opacity=".65"
       />
       {pose.paws === "book" && <Book color={palette.accent} />}
-      <AnimalPaws
-        pose={pose}
-        palette={palette}
-        mittens={look === "tuxedo"}
-      />
+      <AnimalPaws pose={pose} palette={palette} mittens={look === "tuxedo"} />
     </StudyFrame>
   );
 }

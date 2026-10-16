@@ -6,7 +6,9 @@ import type { SignatureGesture } from "./types";
 
 // Every coach has its two signature gestures; a missing coach is a type error.
 export const allSignatures: Readonly<Record<CoachId, readonly SignatureGesture[]>> = {
-  ...humanSignatures, ...animalSignatures, ...unusualSignatures,
+  ...humanSignatures,
+  ...animalSignatures,
+  ...unusualSignatures,
 } satisfies Record<CoachId, readonly SignatureGesture[]>;
 
 export function signatureFor(coachId: string, id: string, expression: CoachExpression) {

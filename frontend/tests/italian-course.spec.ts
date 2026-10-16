@@ -13,15 +13,22 @@ test.beforeEach(async ({ page }) => {
   expect(preferences.ok()).toBe(true);
   savedMotion.set(page, await preferences.json());
   enrolled.set(page, []);
-  expect((await page.request.put("/api/preferences/motion", { data: { motion: "still" } })).ok()).toBe(true);
+  expect(
+    (await page.request.put("/api/preferences/motion", { data: { motion: "still" } })).ok(),
+  ).toBe(true);
 });
 test.afterEach(async ({ page }) => {
-  for (const id of enrolled.get(page) || []) expect((await page.request.delete(`/api/opening-studies/${id}`)).ok()).toBe(true);
-  expect((await page.request.put("/api/preferences/motion", { data: savedMotion.get(page) })).ok()).toBe(true);
+  for (const id of enrolled.get(page) || [])
+    expect((await page.request.delete(`/api/opening-studies/${id}`)).ok()).toBe(true);
+  expect(
+    (await page.request.put("/api/preferences/motion", { data: savedMotion.get(page) })).ok(),
+  ).toBe(true);
 });
 
 async function course(page: Page): Promise<Schema["LessonCourseView"]> {
-  const response = await page.request.get(`/api/study/courses/${courseId}?revision=${courseRevision}`);
+  const response = await page.request.get(
+    `/api/study/courses/${courseId}?revision=${courseRevision}`,
+  );
   expect(response.ok()).toBe(true);
   return response.json();
 }
@@ -35,8 +42,14 @@ async function start(page: Page, chapterId: string) {
   const chapter = content.chapters.find(item => item.id === chapterId)!;
   expect(chapter).toBeTruthy();
   await page.goto(coursePath);
-  const row = page.locator(".lesson-chapters li").filter({ has: page.getByRole("heading", { name: chapter.title, exact: true }) });
-  const pending = page.waitForResponse(response => new URL(response.url()).pathname === "/api/study/lesson-sessions" && response.request().method() === "POST");
+  const row = page
+    .locator(".lesson-chapters li")
+    .filter({ has: page.getByRole("heading", { name: chapter.title, exact: true }) });
+  const pending = page.waitForResponse(
+    response =>
+      new URL(response.url()).pathname === "/api/study/lesson-sessions" &&
+      response.request().method() === "POST",
+  );
   await row.getByRole("button", { name: /^(Start|Revisit)$/ }).click();
   const response = await pending;
   expect(response.ok()).toBe(true);
@@ -46,14 +59,18 @@ async function start(page: Page, chapterId: string) {
   return session;
 }
 async function command(page: Page, label: string) {
-  const pending = page.waitForResponse(response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"));
+  const pending = page.waitForResponse(
+    response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"),
+  );
   await page.getByRole("button", { name: label, exact: true }).click();
   const response = await pending;
   expect(response.ok()).toBe(true);
   return response.json() as Promise<Schema["LessonSessionView"]>;
 }
 async function move(page: Page, uci: string) {
-  const pending = page.waitForResponse(response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"));
+  const pending = page.waitForResponse(
+    response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"),
+  );
   await page.locator(`.board-shell [data-square="${uci.slice(0, 2)}"]`).click();
   await page.locator(`.board-shell [data-square="${uci.slice(2, 4)}"]`).click();
   const response = await pending;
@@ -70,28 +87,49 @@ async function studyIds(page: Page) {
 }
 
 for (const motion of ["still", "natural"] as const) {
-  test(`first lesson drags show legal destinations after instructions with ${motion} motion`, async ({ page }) => {
-    expect((await page.request.put("/api/preferences/motion", { data: { motion } })).ok()).toBe(true);
+  test(`first lesson drags show legal destinations after instructions with ${motion} motion`, async ({
+    page,
+  }) => {
+    expect((await page.request.put("/api/preferences/motion", { data: { motion } })).ok()).toBe(
+      true,
+    );
     await start(page, "quiet-development");
     await command(page, "Continue");
     let position = await command(page, "Play continuation");
     const board = page.locator(".board-shell");
     for (const uci of ["g1f3", "f1c4"]) {
       if (uci !== "g1f3") position = await command(page, "Continue");
-      await expect(page.getByRole("heading", { name: position.step.title, exact: true })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: position.step.title, exact: true }),
+      ).toBeVisible();
       const source = board.locator(`[data-square="${uci.slice(0, 2)}"]`);
       const target = board.locator(`[data-square="${uci.slice(2, 4)}"]`);
       await source.scrollIntoViewIfNeeded();
-      const from = (await source.boundingBox())!, to = (await target.boundingBox())!;
-      const expected = position.legal_moves.filter(move => move.from_square === uci.slice(0, 2)).map(move => move.to_square).sort();
+      const from = (await source.boundingBox())!,
+        to = (await target.boundingBox())!;
+      const expected = position.legal_moves
+        .filter(move => move.from_square === uci.slice(0, 2))
+        .map(move => move.to_square)
+        .sort();
       expect(expected.length).toBeGreaterThan(1);
       await expect(board.locator("[data-legal-destination]")).toHaveCount(0);
       await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
       await page.mouse.down();
       try {
         await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 12 });
-        await expect.poll(() => board.locator("[data-legal-destination]").evaluateAll(markers => markers.map(marker => marker.getAttribute("data-legal-destination")).sort())).toEqual(expected);
-        const pending = page.waitForResponse(response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"));
+        await expect
+          .poll(() =>
+            board
+              .locator("[data-legal-destination]")
+              .evaluateAll(markers =>
+                markers.map(marker => marker.getAttribute("data-legal-destination")).sort(),
+              ),
+          )
+          .toEqual(expected);
+        const pending = page.waitForResponse(
+          response =>
+            response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"),
+        );
         await page.mouse.up();
         const response = await pending;
         expect(response.ok()).toBe(true);
@@ -105,7 +143,9 @@ for (const motion of ["still", "natural"] as const) {
   });
 }
 
-test("the real Italian course teaches a quiet line, returns from its alternative, rehearses and enrolls only on request", async ({ page }, info) => {
+test("the real Italian course teaches a quiet line, returns from its alternative, rehearses and enrolls only on request", async ({
+  page,
+}, info) => {
   const before = await studyIds(page);
   const session = await start(page, "quiet-development");
   expect(session.course_revision).toBe(courseRevision);
@@ -125,7 +165,15 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   await command(page, "Explore alternative");
   const alternative = await command(page, "Play the move");
   expect(alternative.playback.map(frame => frame.uci)).toEqual(["c6d4"]);
-  for (const [index, [uci, reply]] of ([["f3d4", "e5d4"], ["e1g1", "f8c5"], ["c4f7", "e8f7"], ["d1h5", "f7f8"], ["h5c5", null]] as const).entries()) {
+  for (const [index, [uci, reply]] of (
+    [
+      ["f3d4", "e5d4"],
+      ["e1g1", "f8c5"],
+      ["c4f7", "e8f7"],
+      ["d1h5", "f7f8"],
+      ["h5c5", null],
+    ] as const
+  ).entries()) {
     if (index) await command(page, "Continue");
     const played = await move(page, uci);
     expect(played.playback.map(frame => frame.uci)).toEqual(reply ? [uci, reply] : [uci]);
@@ -164,22 +212,37 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   expect(completed.status).toBe("completed");
   expect(completed.failed).toBe(false);
   expect(completed.assisted).toBe(false);
-  await expect(page.getByRole("heading", { name: "Chapter completed.", exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Chapter completed.", exact: true }),
+  ).toBeVisible();
   await page.reload();
-  await expect(page.getByRole("heading", { name: "Chapter completed.", exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Chapter completed.", exact: true }),
+  ).toBeVisible();
   expect((await saved(page, session.id)).revision).toBe(completed.revision);
   expect(await studyIds(page)).toEqual(before);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({ path: `test-results/italian-course-${info.project.name}.png`, fullPage: true });
+  await page.screenshot({
+    path: `test-results/italian-course-${info.project.name}.png`,
+    fullPage: true,
+  });
 
   await page.getByRole("link", { name: "Choose a chapter", exact: true }).click();
   const content = await course(page);
   const repertoire = content.lines.find(line => line.id === "quiet-italian")!;
   expect(repertoire.repertoire).toBe(true);
-  await page.getByRole("region", { name: "Course recall lines" }).locator(`a[href="/study/openings/courses/${courseId}/lines/${repertoire.id}?revision=${courseRevision}"]`).click();
+  await page
+    .getByRole("region", { name: "Course recall lines" })
+    .locator(
+      `a[href="/study/openings/courses/${courseId}/lines/${repertoire.id}?revision=${courseRevision}"]`,
+    )
+    .click();
   // Projects share one account. The second run can restore the same pinned study.
   const add = page.getByRole("button", { name: /^(Add to study|Resume recalls)$/ });
-  const pending = page.waitForResponse(response => response.url().includes("/api/opening-studies") && response.request().method() === "POST");
+  const pending = page.waitForResponse(
+    response =>
+      response.url().includes("/api/opening-studies") && response.request().method() === "POST",
+  );
   await add.click();
   const response = await pending;
   expect(response.ok()).toBe(true);
@@ -191,21 +254,40 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   await expect(page.getByRole("button", { name: "Added to study", exact: true })).toBeDisabled();
 });
 
-test("full-game controls interrupt Mason-Lasker playback without waiting for its timer", async ({ page }) => {
+test("full-game controls interrupt Mason-Lasker playback without waiting for its timer", async ({
+  page,
+}) => {
   let session = await start(page, "finish-development");
   for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
-    const label = session.actions.includes("show_move") ? "Show move"
-      : session.step.kind === "demonstration" && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue";
+    const label = session.actions.includes("show_move")
+      ? "Show move"
+      : session.step.kind === "demonstration" && session.step.phase === "ready"
+        ? session.step.plies === 1
+          ? "Play the move"
+          : "Play continuation"
+        : "Continue";
     session = await command(page, label);
   }
   expect(session.step.kind).toBe("game_excerpt");
   const excerpt = await command(page, "Play continuation");
-  const boardPieces = () => page.locator('.board-shell [data-square] [data-piece]').evaluateAll(pieces => pieces.map(piece => `${piece.closest('[data-square]')!.getAttribute('data-square')}:${piece.getAttribute('data-piece')}`).sort());
+  const boardPieces = () =>
+    page
+      .locator(".board-shell [data-square] [data-piece]")
+      .evaluateAll(pieces =>
+        pieces
+          .map(
+            piece =>
+              `${piece.closest("[data-square]")!.getAttribute("data-square")}:${piece.getAttribute("data-piece")}`,
+          )
+          .sort(),
+      );
   const anchorPieces = await boardPieces();
   const opened = await command(page, "Explore full game");
   expect(opened.game?.title).toContain("Mason–Lasker");
   await command(page, "From the beginning");
-  expect((await page.request.put("/api/preferences/motion", { data: { motion: "natural" } })).ok()).toBe(true);
+  expect(
+    (await page.request.put("/api/preferences/motion", { data: { motion: "natural" } })).ok(),
+  ).toBe(true);
   await page.reload();
   await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
   await page.clock.install();
@@ -217,14 +299,22 @@ test("full-game controls interrupt Mason-Lasker playback without waiting for its
   const first = await command(page, "Next game move");
   expect(first.game?.ply).toBe(1);
   await expect(page.locator(".coach-title")).toHaveText(first.game!.title);
-  await expect(page.locator(".coach-message")).toHaveText("Explore the full game. Return to the lesson whenever you’re ready.");
+  await expect(page.locator(".coach-message")).toHaveText(
+    "Explore the full game. Return to the lesson whenever you’re ready.",
+  );
   await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
   expect((await command(page, "Next game move")).game?.ply).toBe(2);
   expect((await command(page, "Previous game move")).game?.ply).toBe(1);
   // The arrow keys drive the same game playback as its buttons.
-  for (const [key, ply] of [["ArrowRight", 2], ["ArrowLeft", 1]] as const) {
+  for (const [key, ply] of [
+    ["ArrowRight", 2],
+    ["ArrowLeft", 1],
+  ] as const) {
     await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
-    const pending = page.waitForResponse(response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"));
+    const pending = page.waitForResponse(
+      response =>
+        response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"),
+    );
     await page.keyboard.press(key);
     expect(((await (await pending).json()) as Schema["LessonSessionView"]).game?.ply).toBe(ply);
   }
@@ -252,15 +342,22 @@ test("full-game controls interrupt Mason-Lasker playback without waiting for its
   expect((await saved(page, session.id)).revision).toBe(returned.revision);
 });
 
-test("full-game seeking keeps the coach and controls steady while serializing requests", async ({ page }, info) => {
+test("full-game seeking keeps the coach and controls steady while serializing requests", async ({
+  page,
+}, info) => {
   const preference = await page.request.get("/api/preferences/coach");
   expect(preference.ok()).toBe(true);
   const originalCoach: Schema["CoachPreferences"] = await preference.json();
   try {
     let session = await start(page, "finish-development");
     for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
-      const label = session.actions.includes("show_move") ? "Show move"
-        : session.step.kind === "demonstration" && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue";
+      const label = session.actions.includes("show_move")
+        ? "Show move"
+        : session.step.kind === "demonstration" && session.step.phase === "ready"
+          ? session.step.plies === 1
+            ? "Play the move"
+            : "Play continuation"
+          : "Continue";
       session = await command(page, label);
     }
     expect(session.step.kind).toBe("game_excerpt");
@@ -268,8 +365,16 @@ test("full-game seeking keeps the coach and controls steady while serializing re
     const opened = await command(page, "Explore full game");
     expect(opened.game?.title).toContain("Mason–Lasker");
     await command(page, "From the beginning");
-    expect((await page.request.put("/api/preferences/motion", { data: { motion: "natural" } })).ok()).toBe(true);
-    expect((await page.request.put("/api/preferences/coach", { data: { coach_id: "classic", motion: "natural" } })).ok()).toBe(true);
+    expect(
+      (await page.request.put("/api/preferences/motion", { data: { motion: "natural" } })).ok(),
+    ).toBe(true);
+    expect(
+      (
+        await page.request.put("/api/preferences/coach", {
+          data: { coach_id: "classic", motion: "natural" },
+        })
+      ).ok(),
+    ).toBe(true);
     await page.reload();
     const next = page.getByRole("button", { name: "Next game move", exact: true });
     const previous = page.getByRole("button", { name: "Previous game move", exact: true });
@@ -288,17 +393,33 @@ test("full-game seeking keeps the coach and controls steady while serializing re
     // Let the initial reaction dwell and hover transition settle before recording
     // the in-range state; the next request must preserve this same performance.
     await page.clock.runFor(200);
-    await expect.poll(() => next.evaluate(element => element.getAnimations().filter(animation => animation.playState === "running").length)).toBe(0);
-    const portrait = () => avatar.evaluate(element => ({
-      requested: element.getAttribute("data-requested"),
-      expression: element.getAttribute("data-expression"),
-      take: element.getAttribute("data-take"),
-    }));
-    const buttons = () => page.locator(".move-playback-controls button, .coach-actions button").evaluateAll(elements => elements.map(element => {
-      const style = getComputedStyle(element);
-      const rect = element.getBoundingClientRect();
-      return { opacity: style.opacity, background: style.backgroundColor, width: rect.width, height: rect.height };
-    }));
+    await expect
+      .poll(() =>
+        next.evaluate(
+          element =>
+            element.getAnimations().filter(animation => animation.playState === "running").length,
+        ),
+      )
+      .toBe(0);
+    const portrait = () =>
+      avatar.evaluate(element => ({
+        requested: element.getAttribute("data-requested"),
+        expression: element.getAttribute("data-expression"),
+        take: element.getAttribute("data-take"),
+      }));
+    const buttons = () =>
+      page.locator(".move-playback-controls button, .coach-actions button").evaluateAll(elements =>
+        elements.map(element => {
+          const style = getComputedStyle(element);
+          const rect = element.getBoundingClientRect();
+          return {
+            opacity: style.opacity,
+            background: style.backgroundColor,
+            width: rect.width,
+            height: rect.height,
+          };
+        }),
+      );
     const originalPortrait = await portrait();
     expect(originalPortrait.requested).toBe("explaining");
     expect(originalPortrait.expression).toBe("explaining");
@@ -307,12 +428,18 @@ test("full-game seeking keeps the coach and controls steady while serializing re
     const artwork = await avatar.locator("svg").first().elementHandle();
     expect(artwork).not.toBeNull();
     // Viewport captures: a full-page capture resizes the phone viewport and drops hover.
-    await page.screenshot({ path: `test-results/italian-game-steady-before-${info.project.name}.png` });
+    await page.screenshot({
+      path: `test-results/italian-game-steady-before-${info.project.name}.png`,
+    });
 
     let release!: () => void;
-    const gate = new Promise<void>(resolve => { release = resolve; });
+    const gate = new Promise<void>(resolve => {
+      release = resolve;
+    });
     let entered!: () => void;
-    const requested = new Promise<void>(resolve => { entered = resolve; });
+    const requested = new Promise<void>(resolve => {
+      entered = resolve;
+    });
     const operations: Promise<void>[] = [];
     let requests = 0;
     const pattern = `**/api/study/lesson-sessions/${session.id}/command`;
@@ -333,17 +460,29 @@ test("full-game seeking keeps the coach and controls steady while serializing re
       await next.click();
       await requested;
       await expect(next).toBeDisabled();
-      await expect(page.getByRole("button", { name: "Return to lesson", exact: true })).toBeDisabled();
+      await expect(
+        page.getByRole("button", { name: "Return to lesson", exact: true }),
+      ).toBeDisabled();
       await page.clock.runFor(500);
-      await page.screenshot({ path: `test-results/italian-game-steady-pending-${info.project.name}.png` });
+      await page.screenshot({
+        path: `test-results/italian-game-steady-pending-${info.project.name}.png`,
+      });
       expect.soft(await buttons()).toEqual(originalButtons);
       expect.soft(await portrait()).toEqual(originalPortrait);
-      expect.soft(await artwork!.evaluate(element => element === document.querySelector(".coach-avatar svg"))).toBe(true);
+      expect
+        .soft(
+          await artwork!.evaluate(
+            element => element === document.querySelector(".coach-avatar svg"),
+          ),
+        )
+        .toBe(true);
       // Dispatch bypasses the browser's disabled-button behavior to exercise the
       // synchronous request guard, including when pending uses aria-disabled.
       await next.dispatchEvent("click");
       expect(requests).toBe(1);
-      const response = page.waitForResponse(value => value.url().endsWith(`/lesson-sessions/${session.id}/command`));
+      const response = page.waitForResponse(value =>
+        value.url().endsWith(`/lesson-sessions/${session.id}/command`),
+      );
       release();
       const completed = await response;
       expect(completed.ok()).toBe(true);
@@ -353,11 +492,19 @@ test("full-game seeking keeps the coach and controls steady while serializing re
       await expect(next).toBeEnabled();
       await expect(previous).toBeEnabled();
       await expect(beginning).toBeEnabled();
-      await expect(page.getByRole("button", { name: "Return to lesson", exact: true })).toBeEnabled();
+      await expect(
+        page.getByRole("button", { name: "Return to lesson", exact: true }),
+      ).toBeEnabled();
       await page.clock.runFor(150);
       expect.soft(await buttons()).toEqual(originalButtons);
       expect.soft(await portrait()).toEqual(originalPortrait);
-      expect.soft(await artwork!.evaluate(element => element === document.querySelector(".coach-avatar svg"))).toBe(true);
+      expect
+        .soft(
+          await artwork!.evaluate(
+            element => element === document.querySelector(".coach-avatar svg"),
+          ),
+        )
+        .toBe(true);
       expect(requests).toBe(1);
       expect((await saved(page, session.id)).game?.ply).toBe(2);
     } finally {
@@ -371,7 +518,9 @@ test("full-game seeking keeps the coach and controls steady while serializing re
     await expect(beginning).toBeDisabled();
     await expect(next).toBeEnabled();
   } finally {
-    expect((await page.request.put("/api/preferences/coach", { data: originalCoach })).ok()).toBe(true);
+    expect((await page.request.put("/api/preferences/coach", { data: originalCoach })).ok()).toBe(
+      true,
+    );
   }
 });
 
@@ -385,12 +534,19 @@ const sourcedGames: Record<string, string> = {
 };
 
 for (const [chapterId, gameTitle] of Object.entries(sourcedGames)) {
-  test(`the ${chapterId} chapter shows its sourced game passage with an exact return from full-game playback`, async ({ page }, info) => {
+  test(`the ${chapterId} chapter shows its sourced game passage with an exact return from full-game playback`, async ({
+    page,
+  }, info) => {
     let session = await start(page, chapterId);
     // Walk authored guidance to its real game passage; no fixture curriculum.
     for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 30; steps++) {
-      const label = session.actions.includes("show_move") ? "Show move"
-        : session.step.kind === "demonstration" && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue";
+      const label = session.actions.includes("show_move")
+        ? "Show move"
+        : session.step.kind === "demonstration" && session.step.phase === "ready"
+          ? session.step.plies === 1
+            ? "Play the move"
+            : "Play continuation"
+          : "Continue";
       session = await command(page, label);
     }
     expect(session.step.kind).toBe("game_excerpt");
@@ -400,7 +556,9 @@ for (const [chapterId, gameTitle] of Object.entries(sourcedGames)) {
     const opened = await command(page, "Explore full game");
     expect(opened.game?.attributions.length).toBeGreaterThan(0);
     expect(opened.game!.title).toBe(gameTitle);
-    await expect(page.locator(".lesson-attributions")).toContainText(opened.game!.attributions[0].text);
+    await expect(page.locator(".lesson-attributions")).toContainText(
+      opened.game!.attributions[0].text,
+    );
     const beginning = await command(page, "From the beginning");
     expect(beginning.game?.ply).toBe(0);
     await command(page, "Next game move");
@@ -410,11 +568,15 @@ for (const [chapterId, gameTitle] of Object.entries(sourcedGames)) {
     const returned = await command(page, "Return to lesson");
     expect(returned.history).toEqual(excerpt.history);
     expect(returned.fen).toBe(excerpt.fen);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `test-results/italian-${chapterId}-${info.project.name}.png`, fullPage: true });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await page.screenshot({
+      path: `test-results/italian-${chapterId}-${info.project.name}.png`,
+      fullPage: true,
+    });
   });
 }
-
 
 const continuationChapters: {
   id: string;
@@ -428,9 +590,13 @@ const continuationChapters: {
     anchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "g8f6"],
     moves: ["d2d3", "e4d5", "e1g1", "f1e1"],
     branchMoves: {
-      "two-knights-h6-castle": "e1g1", "two-knights-h6-prepare": "c2c3",
-      "two-knights-d6-attack": "f3g5", "two-knights-d6-take": "g5e6", "two-knights-d6-pawn": "c4e6",
-      "two-knights-check-block": "c2c3", "two-knights-check-castle": "e1g1",
+      "two-knights-h6-castle": "e1g1",
+      "two-knights-h6-prepare": "c2c3",
+      "two-knights-d6-attack": "f3g5",
+      "two-knights-d6-take": "g5e6",
+      "two-knights-d6-pawn": "c4e6",
+      "two-knights-check-block": "c2c3",
+      "two-knights-check-castle": "e1g1",
     },
     branches: 3,
   },
@@ -439,14 +605,39 @@ const continuationChapters: {
     anchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6"],
     moves: ["c2c3", "f1e1", "c4b3", "b1d2", "d2f1", "c1e3", "f1e3"],
     branchMoves: {
-      "pin-question": "h2h3", "pin-support": "b1d2",
-      "capture-break": "e4d5", "win-center-pawn": "f3e5", "recover-knight": "e1e5", "save-bishop": "b3c2",
+      "pin-question": "h2h3",
+      "pin-support": "b1d2",
+      "capture-break": "e4d5",
+      "win-center-pawn": "f3e5",
+      "recover-knight": "e1e5",
+      "save-bishop": "b3c2",
     },
     branches: 3,
   },
   {
     id: "central-break",
-    anchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6", "c2c3", "e8g8", "f1e1", "a7a6", "c4b3", "c5a7", "b1d2", "h7h6", "d2f1", "f8e8"],
+    anchor: [
+      "e2e4",
+      "e7e5",
+      "g1f3",
+      "b8c6",
+      "f1c4",
+      "f8c5",
+      "d2d3",
+      "g8f6",
+      "e1g1",
+      "d7d6",
+      "c2c3",
+      "e8g8",
+      "f1e1",
+      "a7a6",
+      "c4b3",
+      "c5a7",
+      "b1d2",
+      "h7h6",
+      "d2f1",
+      "f8e8",
+    ],
     moves: ["f1g3", "d3d4", "b3e6", "c3d4", "c1e3"],
     branchMoves: { "answer-active-break": "d4e5", "centralize-under-pressure": "f3d4" },
     branches: 1,
@@ -454,7 +645,9 @@ const continuationChapters: {
 ];
 
 for (const content of continuationChapters) {
-  test(`${content.id} teaches the continuation and counterplay before anchored recall`, async ({ page }) => {
+  test(`${content.id} teaches the continuation and counterplay before anchored recall`, async ({
+    page,
+  }) => {
     // Each chapter walk includes every side trip.
     test.setTimeout(90_000);
     const before = await studyIds(page);
@@ -478,7 +671,11 @@ for (const content of continuationChapters) {
         explored.add(session.step.id);
         branchAnchor = session;
         session = await command(page, "Explore alternative");
-      } else if (session.branch && !session.actions.includes("continue") && !session.actions.includes("move")) {
+      } else if (
+        session.branch &&
+        !session.actions.includes("continue") &&
+        !session.actions.includes("move")
+      ) {
         expect(branchAnchor).not.toBeNull();
         const terminal = session;
         await page.reload();
@@ -496,7 +693,15 @@ for (const content of continuationChapters) {
         if (session.branch) attemptedBranches.add(session.step.id);
         session = await move(page, uci);
       } else {
-        session = await command(page, ["demonstration", "game_excerpt"].includes(session.step.kind) && session.step.phase === "ready" ? (session.step.plies === 1 ? "Play the move" : "Play continuation") : "Continue");
+        session = await command(
+          page,
+          ["demonstration", "game_excerpt"].includes(session.step.kind) &&
+            session.step.phase === "ready"
+            ? session.step.plies === 1
+              ? "Play the move"
+              : "Play continuation"
+            : "Continue",
+        );
       }
     }
     expect(decisions).toBe(mainMoves.length);

@@ -1,18 +1,38 @@
-import type {Schema} from "../../api";
-import type {Game, Position, Report} from "../../gameReview/types";
-import {gameIntent} from "../../dialogue/gameIntent";
-import {humanInsightLabels} from "../../dialogue/humanClaims";
-import {object, strings, tacticStartsHere} from "../../dialogue/eventClaims";
-import {isForcedMateStage, type Claim, type ClaimCode, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
-import {causeMotifs, recordedTacticMotifs} from "../../dialogue/tacticalVocabulary";
-import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS, bookRecordingId} from "../../dialogue/openingPresentation";
-import {isPoorMove, type MoveLabel} from "../../moveQuality";
-import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
-import {capturedPieces, doubleCheckPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants, type NamedPieces} from "./pieceVariants";
-import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
-import {gradeTakes, type GradeTakePool} from "./meaningCatalog";
-import registry from "./banks/registry.json" with {type: "json"};
-import {alwaysFalseTake, coachVoice, NAMED_OPENING_TAKES, SMALL_ERROR_TAKES} from "./falseTakes";
+import type { Schema } from "../../api";
+import type { Game, Position, Report } from "../../gameReview/types";
+import { gameIntent } from "../../dialogue/gameIntent";
+import { humanInsightLabels } from "../../dialogue/humanClaims";
+import { object, strings, tacticStartsHere } from "../../dialogue/eventClaims";
+import {
+  isForcedMateStage,
+  type Claim,
+  type ClaimCode,
+  type CoachUtterance,
+  type DialogueIntent,
+} from "../../dialogue/model";
+import { causeMotifs, recordedTacticMotifs } from "../../dialogue/tacticalVocabulary";
+import {
+  BOOK_ENTRY_VARIANTS,
+  BOOK_FOLLOW_VARIANTS,
+  bookRecordingId,
+} from "../../dialogue/openingPresentation";
+import { isPoorMove, type MoveLabel } from "../../moveQuality";
+import { ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId } from "./sequence";
+import {
+  capturedPieces,
+  doubleCheckPieces,
+  hasPieceVariants,
+  pieceVariantId,
+  sacrificedPieces,
+  tacticPieces,
+  withPieceVariant,
+  withPieceVariants,
+  type NamedPieces,
+} from "./pieceVariants";
+import { shuffledTakes, withColoursAndTakes, type Side } from "./meaningPools";
+import { gradeTakes, type GradeTakePool } from "./meaningCatalog";
+import registry from "./banks/registry.json" with { type: "json" };
+import { alwaysFalseTake, coachVoice, NAMED_OPENING_TAKES, SMALL_ERROR_TAKES } from "./falseTakes";
 
 export type GameSpeechContext = {
   game: Game;
@@ -37,33 +57,66 @@ export type GameSpeechContext = {
 };
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
 type Event = Schema["ReviewEvent"];
-const opposite = (side: "white" | "black") => side === "white" ? "black" : "white";
-const nonempty = (value: unknown): value is string => typeof value === "string" && value.trim().length > 0;
-const square = (value: unknown): value is string => typeof value === "string" && /^[a-h][1-8]$/.test(value);
-const files = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0)
-  && value.every(f => typeof f === "string" && /^[a-h]$/.test(f));
-const squares = (value: unknown, allowEmpty = false) => Array.isArray(value) && (allowEmpty || value.length > 0) && value.every(square);
+const opposite = (side: "white" | "black") => (side === "white" ? "black" : "white");
+const nonempty = (value: unknown): value is string =>
+  typeof value === "string" && value.trim().length > 0;
+const square = (value: unknown): value is string =>
+  typeof value === "string" && /^[a-h][1-8]$/.test(value);
+const files = (value: unknown, allowEmpty = false) =>
+  Array.isArray(value) &&
+  (allowEmpty || value.length > 0) &&
+  value.every(f => typeof f === "string" && /^[a-h]$/.test(f));
+const squares = (value: unknown, allowEmpty = false) =>
+  Array.isArray(value) && (allowEmpty || value.length > 0) && value.every(square);
 /** Whether a SAN move promotes a pawn ("e8=Q", "bxa8=N+"). */
 const promotes = (san: unknown) => typeof san === "string" && san.includes("=");
 function same(a: unknown, b: unknown): boolean {
   if (a === b) return true;
-  if (!a || !b || typeof a !== "object" || typeof b !== "object" || Array.isArray(a) !== Array.isArray(b)) return false;
-  const left = Object.entries(a), right = Object.entries(b);
-  return left.length === right.length && left.every(([key, value]) => Object.hasOwn(b, key) && same(value, (b as Record<string, unknown>)[key]));
+  if (
+    !a ||
+    !b ||
+    typeof a !== "object" ||
+    typeof b !== "object" ||
+    Array.isArray(a) !== Array.isArray(b)
+  )
+    return false;
+  const left = Object.entries(a),
+    right = Object.entries(b);
+  return (
+    left.length === right.length &&
+    left.every(
+      ([key, value]) => Object.hasOwn(b, key) && same(value, (b as Record<string, unknown>)[key]),
+    )
+  );
 }
-const evidenced = (item: Claim) => item.evidence.length > 0 && item.evidence.every(ref => nonempty(ref.id) && nonempty(ref.field));
-const searchEvidence = (item: Claim) => evidenced(item) && item.evidence.some(ref => ref.source === "stockfish");
+const evidenced = (item: Claim) =>
+  item.evidence.length > 0 && item.evidence.every(ref => nonempty(ref.id) && nonempty(ref.field));
+const searchEvidence = (item: Claim) =>
+  evidenced(item) && item.evidence.some(ref => ref.source === "stockfish");
 
 // Keys are claim codes; validation above has already chosen which may read here.
 const simpleIds: Readonly<Record<string, string>> = {
-  allowed_mate: "allowed-mate", missed_mate: "missed-mate", sacrifice: "sound-sacrifice",
-  only_move: "only-playable-move", decisive_resource: "only-advantage-resource",
-  reply_capture: "immediate-capture", reply_check: "reply-check", alternative: "stronger-alternative",
-  loss: "evaluation-loss", best: "best-supported-choice", good: "good-choice",
-  book: "recognized-opening", book_sound: "recognized-opening",
-  departure: "opening-departure", punishment: "chance-taken", missed_punishment: "chance-missed",
-  repeated: "repeated-issue", support_restored: "support-restored", erosion: "gradual-erosion",
-  conversion: "advantage-converted", history: "saved-history-recurrence",
+  allowed_mate: "allowed-mate",
+  missed_mate: "missed-mate",
+  sacrifice: "sound-sacrifice",
+  only_move: "only-playable-move",
+  decisive_resource: "only-advantage-resource",
+  reply_capture: "immediate-capture",
+  reply_check: "reply-check",
+  alternative: "stronger-alternative",
+  loss: "evaluation-loss",
+  best: "best-supported-choice",
+  good: "good-choice",
+  book: "recognized-opening",
+  book_sound: "recognized-opening",
+  departure: "opening-departure",
+  punishment: "chance-taken",
+  missed_punishment: "chance-missed",
+  repeated: "repeated-issue",
+  support_restored: "support-restored",
+  erosion: "gradual-erosion",
+  conversion: "advantage-converted",
+  history: "saved-history-recurrence",
 } satisfies Partial<Record<ClaimCode, string>>;
 const followOnly = new Set(["history", "repeated"]);
 
@@ -75,7 +128,7 @@ export function unnamedBookTake(id: string, named: readonly string[]): string | 
   if (!match || !named.includes(id)) return id;
   const count = match[1] === "entry" ? BOOK_ENTRY_VARIANTS : BOOK_FOLLOW_VARIANTS;
   for (let step = 1; step < count; step += 1) {
-    const next = `book-opening-${match[1]}-${(Number(match[2]) - 1 + step) % count + 1}`;
+    const next = `book-opening-${match[1]}-${((Number(match[2]) - 1 + step) % count) + 1}`;
     if (!named.includes(next)) return next;
   }
   return null;
@@ -87,36 +140,78 @@ function eventFor(item: Claim, report: Report): Event | undefined {
   return matches.length === 1 && same(matches[0].evidence, item.evidence) ? matches[0] : undefined;
 }
 
-function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", report: Report): string | null {
-  const f = event.facts, role = f.role, motif = String(f.motif);
-  if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item)) return null;
+function tacticalRecording(
+  item: Claim,
+  event: Event,
+  mover: "white" | "black",
+  report: Report,
+): string | null {
+  const f = event.facts,
+    role = f.role,
+    motif = String(f.motif);
+  if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item))
+    return null;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
   const poor = isPoorMove(report.label);
-  if ((role === "played" && poor) || (["allowed", "caused", "missed"].includes(String(role)) && !poor)) return null;
+  if (
+    (role === "played" && poor) ||
+    (["allowed", "caused", "missed"].includes(String(role)) && !poor)
+  )
+    return null;
   const source = role === "missed" ? "best" : "actual";
-  if (!item.evidence.some(ref => ref.source === "stockfish" && ref.field.startsWith(`${source}_line/findings/`))
-    || !item.evidence.some(ref => ref.source === "rule" && ref.field === "verified_witness")
-    || !Array.isArray(f.plies) || !f.plies.length || !f.plies.every(ply => typeof ply === "number" && Number.isInteger(ply) && ply >= 1)
-    || !Array.isArray(f.witness) || f.witness.length !== f.plies.length
-    || !same(f.witness.map(frame => object(frame).ply), f.plies)
-    || !["verified_line", "engine_mate", "engine_defense"].includes(String(f.verification))) return null;
+  if (
+    !item.evidence.some(
+      ref => ref.source === "stockfish" && ref.field.startsWith(`${source}_line/findings/`),
+    ) ||
+    !item.evidence.some(ref => ref.source === "rule" && ref.field === "verified_witness") ||
+    !Array.isArray(f.plies) ||
+    !f.plies.length ||
+    !f.plies.every(ply => typeof ply === "number" && Number.isInteger(ply) && ply >= 1) ||
+    !Array.isArray(f.witness) ||
+    f.witness.length !== f.plies.length ||
+    !same(
+      f.witness.map(frame => object(frame).ply),
+      f.plies,
+    ) ||
+    !["verified_line", "engine_mate", "engine_defense"].includes(String(f.verification))
+  )
+    return null;
   if (role === "caused") {
-    if (!causeMotifs.has(motif) || item.code !== `cause_${motif}` || event.actor !== mover
-      || f.opportunity_actor !== opposite(mover) || f.frame_ply !== 0 || !same(f.plies, [1, 2])) return null;
-    const witness = f.witness.map(object), first = witness.find(frame => frame.ply === 1), reply = witness.find(frame => frame.ply === 2);
-    if (!nonempty(reply?.capture) || reply?.san !== item.slots.reply || first?.san !== report.actual.san) return null;
+    if (
+      !causeMotifs.has(motif) ||
+      item.code !== `cause_${motif}` ||
+      event.actor !== mover ||
+      f.opportunity_actor !== opposite(mover) ||
+      f.frame_ply !== 0 ||
+      !same(f.plies, [1, 2])
+    )
+      return null;
+    const witness = f.witness.map(object),
+      first = witness.find(frame => frame.ply === 1),
+      reply = witness.find(frame => frame.ply === 2);
+    if (
+      !nonempty(reply?.capture) ||
+      reply?.san !== item.slots.reply ||
+      first?.san !== report.actual.san
+    )
+      return null;
     return `cause-${motif.replaceAll("_", "-")}`;
   }
-  if (!["played", "allowed", "missed"].includes(String(role)) || item.code !== `tactic_${role}`
-    || event.actor !== (role === "allowed" ? opposite(mover) : mover)
-    || (role === "missed" && report.actual.uci === report.best.uci)) return null;
+  if (
+    !["played", "allowed", "missed"].includes(String(role)) ||
+    item.code !== `tactic_${role}` ||
+    event.actor !== (role === "allowed" ? opposite(mover) : mover) ||
+    (role === "missed" && report.actual.uci === report.best.uci)
+  )
+    return null;
   // Every tactic recording says this move (or the reply it allows) is the
   // motif. A witness that starts later in the line, such as a fork three moves
   // after a double check, is only a possibility from here, never this move's tactic.
   // A back-rank witness is the mate that ends the line, so the move that starts
   // that mating line (such as a decoy check) is the back-rank idea.
   const opening = object(f.witness[0]);
-  if (motif !== "back_rank" && !tacticStartsHere(event, report.actual.san, report.best.san)) return null;
+  if (motif !== "back_rank" && !tacticStartsHere(event, report.actual.san, report.best.san))
+    return null;
   // Promotion clips describe a pawn still on its way to the last rank. When the
   // witnessed move is itself the promotion they are false, and the grade speaks.
   if (motif === "promotion_awareness" && promotes(opening.san)) return null;
@@ -129,73 +224,152 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   if (motif === "double_attack" && Array.isArray(object(f.roles).king))
     return role === "played" && /[+#]$/.test(report.actual.san) ? DOUBLE_CHECK : null;
   if (recordedTacticMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
-  if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
+  if (motif === "missed_tactical_capture" && role !== "allowed")
+    return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
   return null;
 }
 
-function positionalRecording(item: Claim, event: Event, mover: "white" | "black", report: Report): string | null {
-  const f = event.facts, line = item.position?.line;
-  if (event.kind !== "positional" || event.confidence !== "board_fact" || event.actor !== mover
-    || !searchEvidence(item) || !["white", "black"].includes(String(f.side))
-    || !item.evidence.some(ref => ref.source === "position" && ref.field === "immediate_transition")
-    || !line || f.line !== (line === "actual" ? "actual" : "best")
-    || f.uci !== report[line === "actual" ? "actual" : "best"].uci
-    || item.position?.move !== report[line === "actual" ? "actual" : "best"].san
-    || (line === "alternative" && report.actual.uci === report.best.uci)
-    || (item.slots.side !== undefined && item.slots.side !== f.side)) return null;
+function positionalRecording(
+  item: Claim,
+  event: Event,
+  mover: "white" | "black",
+  report: Report,
+): string | null {
+  const f = event.facts,
+    line = item.position?.line;
+  if (
+    event.kind !== "positional" ||
+    event.confidence !== "board_fact" ||
+    event.actor !== mover ||
+    !searchEvidence(item) ||
+    !["white", "black"].includes(String(f.side)) ||
+    !item.evidence.some(ref => ref.source === "position" && ref.field === "immediate_transition") ||
+    !line ||
+    f.line !== (line === "actual" ? "actual" : "best") ||
+    f.uci !== report[line === "actual" ? "actual" : "best"].uci ||
+    item.position?.move !== report[line === "actual" ? "actual" : "best"].san ||
+    (line === "alternative" && report.actual.uci === report.best.uci) ||
+    (item.slots.side !== undefined && item.slots.side !== f.side)
+  )
+    return null;
   let name: string | null = null;
   switch (f.feature) {
     case "first_development":
-      if (["bishop", "knight"].includes(String(f.piece)) && f.side === mover && square(f.before) && square(f.after)
-        && item.evidence.some(ref => ref.source === "pgn" && ref.field === "original_minor_piece_history")) name = "development";
+      if (
+        ["bishop", "knight"].includes(String(f.piece)) &&
+        f.side === mover &&
+        square(f.before) &&
+        square(f.after) &&
+        item.evidence.some(
+          ref => ref.source === "pgn" && ref.field === "original_minor_piece_history",
+        )
+      )
+        name = "development";
       break;
     case "rook_file":
       // The semi-open takes say the file stays usable ("still", "remain"); a file that
       // was open and became half-open is a change the takes do not describe.
-      if (files([f.file]) && ["open", "semi_open"].includes(String(f.after))
-        && !(f.after === "semi_open" && f.before === "open")) name = f.after === "open" ? "rook-open" : "rook-semi-open";
+      if (
+        files([f.file]) &&
+        ["open", "semi_open"].includes(String(f.after)) &&
+        !(f.after === "semi_open" && f.before === "open")
+      )
+        name = f.after === "open" ? "rook-open" : "rook-semi-open";
       break;
-    case "passed_pawns": if (squares(f.added)) name = "passed"; break;
-    case "isolated_pawns": if (squares(f.added)) name = "isolated"; break;
+    case "passed_pawns":
+      if (squares(f.added)) name = "passed";
+      break;
+    case "isolated_pawns":
+      if (squares(f.added)) name = "isolated";
+      break;
     case "passed_pawn_advance":
       // The takes count one step; a pawn's double step is not "one square closer".
-      if (f.side === mover && square(f.before) && square(f.after) && String(f.uci).length === 4
-        && Math.abs(Number(String(f.after)[1]) - Number(String(f.before)[1])) === 1) name = "passer-advance";
+      if (
+        f.side === mover &&
+        square(f.before) &&
+        square(f.after) &&
+        String(f.uci).length === 4 &&
+        Math.abs(Number(String(f.after)[1]) - Number(String(f.before)[1])) === 1
+      )
+        name = "passer-advance";
       break;
     case "piece_support":
-      if (square(f.target) && ["knight", "bishop", "rook", "queen"].includes(String(f.piece))
-        && squares(f.before, true) && squares(f.after, true)) {
+      if (
+        square(f.target) &&
+        ["knight", "bishop", "rook", "queen"].includes(String(f.piece)) &&
+        squares(f.before, true) &&
+        squares(f.after, true)
+      ) {
         if (!strings(f.before).length && strings(f.after).length) name = "support";
         if (strings(f.before).length && !strings(f.after).length) name = "unsupported";
       }
       break;
     // The takes speak of one new flight square.
-    case "king_flights": if (f.side === mover && squares(f.opened) && strings(f.opened).length === 1) name = "king-flight"; break;
-    case "castling": if (f.side === mover && square(f.before) && square(f.after)) name = "castling"; break;
-    case "bishop_pair": if (f.side === opposite(mover) && f.before === 2 && f.after === 1) name = "bishop-pair"; break;
-    case "doubled_files": if (files(f.before, true) && files(f.after) && files(f.added)) name = "doubled"; break;
+    case "king_flights":
+      if (f.side === mover && squares(f.opened) && strings(f.opened).length === 1)
+        name = "king-flight";
+      break;
+    case "castling":
+      if (f.side === mover && square(f.before) && square(f.after)) name = "castling";
+      break;
+    case "bishop_pair":
+      if (f.side === opposite(mover) && f.before === 2 && f.after === 1) name = "bishop-pair";
+      break;
+    case "doubled_files":
+      if (files(f.before, true) && files(f.after) && files(f.added)) name = "doubled";
+      break;
   }
   return name ? `positional-${name}-${line}` : null;
 }
 
-function terminalRecording(item: Claim, {frame, game}: GameSpeechContext): string | null {
-  if (!frame?.termination || !evidenced(item) || !item.evidence.some(ref => ref.source === "position"
-    && ref.id === frame.fen && ref.field === "automatic_outcome")) return null;
+function terminalRecording(item: Claim, { frame, game }: GameSpeechContext): string | null {
+  if (
+    !frame?.termination ||
+    !evidenced(item) ||
+    !item.evidence.some(
+      ref => ref.source === "position" && ref.id === frame.fen && ref.field === "automatic_outcome",
+    )
+  )
+    return null;
   if (item.code === "draw") return frame.result === "1/2-1/2" ? "draw" : null;
-  if (frame.termination !== "checkmate" || !["1-0", "0-1"].includes(frame.result ?? "") || frame.legal_moves.length) return null;
+  if (
+    frame.termination !== "checkmate" ||
+    !["1-0", "0-1"].includes(frame.result ?? "") ||
+    frame.legal_moves.length
+  )
+    return null;
   const winner = frame.result === "1-0" ? "white" : "black";
   if (frame.turn === winner) return null;
   return item.code === (winner === game.orientation ? "mate_win" : "mate_loss")
-    ? winner === game.orientation ? "mate-finished" : "mate-defense-ended" : null;
+    ? winner === game.orientation
+      ? "mate-finished"
+      : "mate-defense-ended"
+    : null;
 }
 
-function legalReplyRecording(item: Claim, {frame, report}: GameSpeechContext): string | null {
-  const cues = report?.board_cues, uci = cues?.caption_reply_uci;
-  if (item.code !== "explanation" || !frame || !report || !cues || cues.caption_kind !== "legal_reply"
-    || cues.fen !== frame.fen || report.actual.san !== frame.san || !uci || !/^[a-h][1-8][a-h][1-8][qrbn]?$/.test(uci)
-    || report.immediate_reply?.uci !== uci || !frame.legal_moves.some(move => move.from_square === uci.slice(0, 2)
-      && move.to_square === uci.slice(2, 4) && (move.promotion ?? "") === uci.slice(4))) return null;
+function legalReplyRecording(item: Claim, { frame, report }: GameSpeechContext): string | null {
+  const cues = report?.board_cues,
+    uci = cues?.caption_reply_uci;
+  if (
+    item.code !== "explanation" ||
+    !frame ||
+    !report ||
+    !cues ||
+    cues.caption_kind !== "legal_reply" ||
+    cues.fen !== frame.fen ||
+    report.actual.san !== frame.san ||
+    !uci ||
+    !/^[a-h][1-8][a-h][1-8][qrbn]?$/.test(uci) ||
+    report.immediate_reply?.uci !== uci ||
+    !frame.legal_moves.some(
+      move =>
+        move.from_square === uci.slice(0, 2) &&
+        move.to_square === uci.slice(2, 4) &&
+        (move.promotion ?? "") === uci.slice(4),
+    )
+  )
+    return null;
   return "game-explanation-legal-reply";
 }
 
@@ -203,8 +377,19 @@ function legalReplyRecording(item: Claim, {frame, report}: GameSpeechContext): s
  * in for a move, a variation, an error or a result. A live game against the
  * coach greets with its own line, once, before any move has been played;
  * returning to the start of a game already under way stays quiet. */
-export function selectGameOpener({ply, variation = false, report, frame, error, live}: {
-  ply: number; variation?: boolean; report?: Report | null; frame?: Position | null; error?: boolean;
+export function selectGameOpener({
+  ply,
+  variation = false,
+  report,
+  frame,
+  error,
+  live,
+}: {
+  ply: number;
+  variation?: boolean;
+  report?: Report | null;
+  frame?: Position | null;
+  error?: boolean;
   live?: "new" | "underway";
 }): string | null {
   if (ply !== 0 || variation || report || error || !frame || frame.termination) return null;
@@ -221,41 +406,100 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
 }
 
 function selectMeaning(context: GameSpeechContext): string | null {
-  const {game, report, frame, ply, variation = false, intent, utterance, pending, error, claimIndex = 0, anyCoach = false} = context;
-  if (pending || !frame || !nonempty(frame.fen) || (!anyCoach && !voicedCoaches.has(utterance.coachId))
-    || utterance.intentId !== intent.id
-    || !Number.isInteger(claimIndex) || claimIndex < 0) return null;
-  const item = utterance.renderedClaims?.[claimIndex], trace = utterance.trace.variants[claimIndex];
-  if (!item || !trace || trace.code !== item.code || !same(trace.sourceIds, item.sourceIds)
-    || !intent.claims.some(candidate => same(candidate, item)) || humanInsightLabels[item.code]) return null;
+  const {
+    game,
+    report,
+    frame,
+    ply,
+    variation = false,
+    intent,
+    utterance,
+    pending,
+    error,
+    claimIndex = 0,
+    anyCoach = false,
+  } = context;
+  if (
+    pending ||
+    !frame ||
+    !nonempty(frame.fen) ||
+    (!anyCoach && !voicedCoaches.has(utterance.coachId)) ||
+    utterance.intentId !== intent.id ||
+    !Number.isInteger(claimIndex) ||
+    claimIndex < 0
+  )
+    return null;
+  const item = utterance.renderedClaims?.[claimIndex],
+    trace = utterance.trace.variants[claimIndex];
+  if (
+    !item ||
+    !trace ||
+    trace.code !== item.code ||
+    !same(trace.sourceIds, item.sourceIds) ||
+    !intent.claims.some(candidate => same(candidate, item)) ||
+    humanInsightLabels[item.code]
+  )
+    return null;
   if (!variation && game.frames[ply]?.fen !== frame.fen) return null;
   const mode = variation ? "variation" : "game";
   if (claimIndex === 0 && !report && intent.mode === mode) {
     // These finite no-report messages are replayable, never automatically spoken.
     // The exact fresh branch excludes arbitrary legacy compatibility prose.
-    const status = gameIntent({game, frame, ply, variation, error, pending: false,
-      key: "speech-status-validation", expression: intent.expression});
+    const status = gameIntent({
+      game,
+      frame,
+      ply,
+      variation,
+      error,
+      pending: false,
+      key: "speech-status-validation",
+      expression: intent.expression,
+    });
     if (!status.claims.some(candidate => same(candidate, item))) return null;
     if (item.code === "unavailable" && error) return "game-unavailable";
-    if (item.code === "compatibility" && !error) return game.job?.status === "cancelled"
-      ? "game-review-paused" : "game-browse-instructions";
+    if (item.code === "compatibility" && !error)
+      return game.job?.status === "cancelled" ? "game-review-paused" : "game-browse-instructions";
   }
   if (error || !utterance.autoSpeakSuitable) return null;
   if (intent.mode === "explanation") {
     if (claimIndex !== 0) return null;
-    const explanation = gameIntent({game, report, frame, ply, variation, explaining: true,
-      key: "speech-explanation-validation", expression: intent.expression});
-    return explanation.claims.some(candidate => same(candidate, item)) ? legalReplyRecording(item, context) : null;
+    const explanation = gameIntent({
+      game,
+      report,
+      frame,
+      ply,
+      variation,
+      explaining: true,
+      key: "speech-explanation-validation",
+      expression: intent.expression,
+    });
+    return explanation.claims.some(candidate => same(candidate, item))
+      ? legalReplyRecording(item, context)
+      : null;
   }
   if (intent.mode !== mode) return null;
   // Refresh through the existing producer, rather than maintaining a second
   // interpretation of analysis/context or treating an old utterance as truth.
-  const fresh = gameIntent({game, report, frame, ply, variation, key: "speech-validation", expression: intent.expression});
+  const fresh = gameIntent({
+    game,
+    report,
+    frame,
+    ply,
+    variation,
+    key: "speech-validation",
+    expression: intent.expression,
+  });
   if (!fresh.claims.some(candidate => same(candidate, item))) return null;
-  if (["mate_win", "mate_loss", "draw"].includes(item.code)) return terminalRecording(item, context);
-  if (!report?.intelligence || !nonempty(report.intelligence.input_digest) || frame.san !== report.actual.san
-    || (report.board_cues && report.board_cues.fen !== frame.fen)
-    || (report.intelligence.ply !== null && report.intelligence.ply !== ply)) return null;
+  if (["mate_win", "mate_loss", "draw"].includes(item.code))
+    return terminalRecording(item, context);
+  if (
+    !report?.intelligence ||
+    !nonempty(report.intelligence.input_digest) ||
+    frame.san !== report.actual.san ||
+    (report.board_cues && report.board_cues.fen !== frame.fen) ||
+    (report.intelligence.ply !== null && report.intelligence.ply !== ply)
+  )
+    return null;
   const mover = opposite(frame.turn);
   const event = eventFor(item, report);
   if (item.code.startsWith("tactic_") || item.code.startsWith("cause_"))
@@ -268,34 +512,70 @@ function selectMeaning(context: GameSpeechContext): string | null {
     // Some takes say the opening has a name; our catalogue has none for every position,
     // and there the coach's next take of the same kind that names nothing plays instead.
     const voice = coachVoice(utterance.coachId);
-    return !nonempty(report.opening.name) && voice ? unnamedBookTake(id, NAMED_OPENING_TAKES[voice] ?? []) : id;
+    return !nonempty(report.opening.name) && voice
+      ? unnamedBookTake(id, NAMED_OPENING_TAKES[voice] ?? [])
+      : id;
   }
   if (event) {
     if (event.actor !== mover) return null;
     if (item.code === "allowed_mate" || item.code === "missed_mate") {
-      if (event.kind !== "mate" || event.confidence !== "searched" || !searchEvidence(item)
-        || event.facts.transition !== (item.code === "allowed_mate" ? "allowed" : "missed")) return null;
+      if (
+        event.kind !== "mate" ||
+        event.confidence !== "searched" ||
+        !searchEvidence(item) ||
+        event.facts.transition !== (item.code === "allowed_mate" ? "allowed" : "missed")
+      )
+        return null;
       // Letting the reply itself mate is its own, more urgent line; the general
       // allowed-mate clip stands in until a coach has recorded it.
-      return item.code === "allowed_mate" && event.facts.mate_in === 1 ? ["allowed-mate-next", "allowed-mate"].join(ALTERNATIVE_SEPARATOR) : simpleIds[item.code];
+      return item.code === "allowed_mate" && event.facts.mate_in === 1
+        ? ["allowed-mate-next", "allowed-mate"].join(ALTERNATIVE_SEPARATOR)
+        : simpleIds[item.code];
     }
-    if (item.code.startsWith("forced_mate_")) return event.kind === "forced_mate" && event.confidence === "searched"
-      && searchEvidence(item) && isForcedMateStage(event.facts.stage) && item.code === `forced_mate_${event.facts.stage}`
-      ? `forced-mate-${event.facts.stage}` : null;
-    if (item.code === "sacrifice") return event.kind === "sacrifice" && event.confidence === "searched"
-      && item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search") ? simpleIds[item.code] : null;
-    if (["only_move", "decisive_resource"].includes(item.code)) return event.kind === "critical_resource" && event.confidence === "searched"
-      && searchEvidence(item) && Number(event.facts.only_good_at_depth) > 0 ? simpleIds[item.code] : null;
-    if (item.code === "departure") return !variation && event.kind === "opening_departure" ? "opening-departure" : null;
+    if (item.code.startsWith("forced_mate_"))
+      return event.kind === "forced_mate" &&
+        event.confidence === "searched" &&
+        searchEvidence(item) &&
+        isForcedMateStage(event.facts.stage) &&
+        item.code === `forced_mate_${event.facts.stage}`
+        ? `forced-mate-${event.facts.stage}`
+        : null;
+    if (item.code === "sacrifice")
+      return event.kind === "sacrifice" &&
+        event.confidence === "searched" &&
+        item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search")
+        ? simpleIds[item.code]
+        : null;
+    if (["only_move", "decisive_resource"].includes(item.code))
+      return event.kind === "critical_resource" &&
+        event.confidence === "searched" &&
+        searchEvidence(item) &&
+        Number(event.facts.only_good_at_depth) > 0
+        ? simpleIds[item.code]
+        : null;
+    if (item.code === "departure")
+      return !variation && event.kind === "opening_departure" ? "opening-departure" : null;
     return null;
   }
-  if (["recovery", "punishment", "missed_punishment", "repeated", "support_restored", "erosion", "conversion", "history"].includes(item.code)) {
+  if (
+    [
+      "recovery",
+      "punishment",
+      "missed_punishment",
+      "repeated",
+      "support_restored",
+      "erosion",
+      "conversion",
+      "history",
+    ].includes(item.code)
+  ) {
     // Fresh gameIntent above enforces current node generation, actor and relation
     // endpoint (and supported history); branches never inherit those relationships.
     if (variation || mover !== game.orientation || !item.sourceIds.length) return null;
     // Some chance-taken takes say "exactly the right reply" or "takes full
     // advantage", which a Good move (up to half a pawn short of the best) is not.
-    if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label)) return null;
+    if (item.code === "punishment" && !["Best", "Great", "Brilliant"].includes(report.label))
+      return null;
     // A move never raises its own evaluation: the opponent's moves did, and no take
     // credits this move or the learner.
     if (item.code === "recovery") return item.slots.help ? "recovery-assisted" : "recovery";
@@ -306,8 +586,11 @@ function selectMeaning(context: GameSpeechContext): string | null {
   if (item.code === "loss" && report.label !== "Inaccuracy") return null;
   // Source-backed event codes must not bypass their validation when an event ID
   // is absent or ambiguous. Only these direct report claims have no event ID.
-  return ["reply_capture", "reply_check", "alternative", "loss", "best", "good"].includes(item.code)
-    && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
+  return ["reply_capture", "reply_check", "alternative", "loss", "best", "good"].includes(
+    item.code,
+  ) && searchEvidence(item)
+    ? (simpleIds[item.code] ?? null)
+    : null;
 }
 
 /** A move has exactly one coach clip. Maia sentences add nothing to it: the
@@ -319,60 +602,92 @@ function selectMeaning(context: GameSpeechContext): string | null {
  * limit are not evidence boundaries. */
 export function selectGameSpeech(context: GameSpeechContext) {
   const claims = context.utterance.renderedClaims ?? [];
-  let lead = -1, primaryId: string | null = null;
+  let lead = -1,
+    primaryId: string | null = null;
   for (let index = 0; index < claims.length && !primaryId; index++) {
     // "This issue also appears..." only follows the sentence that names the issue.
     if (humanInsightLabels[claims[index].code] || followOnly.has(claims[index].code)) continue;
-    const id = selectGameRecording({...context, claimIndex: index});
+    const id = selectGameRecording({ ...context, claimIndex: index });
     primaryId = id && (context.playable?.(id) ?? true) ? id : null;
     if (primaryId || lead < 0) lead = index;
   }
-  let recordingId = primaryId, secondId: string | null = null;
+  let recordingId = primaryId,
+    secondId: string | null = null;
   const second = claims[lead + 1];
-  if (primaryId && second && !humanInsightLabels[second.code] && ["game", "variation"].includes(context.intent.mode)) {
-    secondId = selectGameRecording({...context, claimIndex: lead + 1});
+  if (
+    primaryId &&
+    second &&
+    !humanInsightLabels[second.code] &&
+    ["game", "variation"].includes(context.intent.mode)
+  ) {
+    secondId = selectGameRecording({ ...context, claimIndex: lead + 1 });
     if (secondId && !(context.playable?.(secondId) ?? true)) secondId = null;
     if (secondId && repeatsLead(primaryId, secondId, claims[lead + 1].code)) secondId = null;
-    if (secondId && secondId !== primaryId) recordingId = sequenceRecordingId([primaryId, secondId]);
+    if (secondId && secondId !== primaryId)
+      recordingId = sequenceRecordingId([primaryId, secondId]);
     else secondId = null;
   }
   const gradeId = gradeTake(context, recordingId);
   // Each sentence and grade take may also name its piece; the generic line stays the fallback.
   // The bubble also writes where a named piece stands; the squares key the variant that names it.
-  const pieces = new Map<string, readonly string[]>(), sides = new Map<string, Side>(), squares = new Map<string, string>();
+  const pieces = new Map<string, readonly string[]>(),
+    sides = new Map<string, Side>(),
+    squares = new Map<string, string>();
   const nameSquare = (id: string, named: NamedPieces | null) => {
     const variant = pieceVariantId(id, named?.pieces);
     if (variant && named?.square) squares.set(variant, named.square);
   };
-  for (const [index, id] of [[lead, primaryId], [lead + 1, secondId]] as const) {
-    const named = id && hasPieceVariants(id) ? gamePieces({...context, claimIndex: index}, id) : null;
+  for (const [index, id] of [
+    [lead, primaryId],
+    [lead + 1, secondId],
+  ] as const) {
+    const named =
+      id && hasPieceVariants(id) ? gamePieces({ ...context, claimIndex: index }, id) : null;
     if (id && named) pieces.set(id, named.pieces);
     if (id) nameSquare(id, named);
-    const side = id?.startsWith("positional-") ? positionalSide({...context, claimIndex: index}) : null;
+    const side = id?.startsWith("positional-")
+      ? positionalSide({ ...context, claimIndex: index })
+      : null;
     if (id && side) sides.set(id, side);
   }
   // Colour lines and extra takes join once imported; the seed keeps a replayed ply on its take.
-  const seed = context.variation ? [context.frame?.fen] : [context.game.id], turn = context.variation ? 0 : context.ply;
-  const unsaid = [lead, lead + 1].flatMap((index, at) => smallErrorTakes(context, at ? secondId : primaryId, index));
-  const pooled = (id: string) => withoutTakes(withColoursAndTakes(withPieceVariants(id, pieces), sides, seed, turn), unsaid);
+  const seed = context.variation ? [context.frame?.fen] : [context.game.id],
+    turn = context.variation ? 0 : context.ply;
+  const unsaid = [lead, lead + 1].flatMap((index, at) =>
+    smallErrorTakes(context, at ? secondId : primaryId, index),
+  );
+  const pooled = (id: string) =>
+    withoutTakes(withColoursAndTakes(withPieceVariants(id, pieces), sides, seed, turn), unsaid);
   const mover = context.frame ? opposite(context.frame.turn) : null;
-  const sacrifice = gradeId && gradeTakes("brilliant").includes(gradeId) && mover
-    ? context.report?.intelligence?.events.find(event => event.kind === "sacrifice" && event.actor === mover) : undefined;
-  const sacrificed = sacrifice && mover ? sacrificedPieces(sacrifice.facts.acceptance_move, context.frame?.fen, mover) : null;
+  const sacrifice =
+    gradeId && gradeTakes("brilliant").includes(gradeId) && mover
+      ? context.report?.intelligence?.events.find(
+          event => event.kind === "sacrifice" && event.actor === mover,
+        )
+      : undefined;
+  const sacrificed =
+    sacrifice && mover
+      ? sacrificedPieces(sacrifice.facts.acceptance_move, context.frame?.fen, mover)
+      : null;
   const variants = {
     recordingId: recordingId && pooled(recordingId),
     primaryId: primaryId && pooled(primaryId),
-    ...(gradeId ? {gradeId: withPieceVariant(gradeId, sacrificed?.pieces)} : {}),
+    ...(gradeId ? { gradeId: withPieceVariant(gradeId, sacrificed?.pieces) } : {}),
     squares,
   };
   if (gradeId) nameSquare(gradeId, sacrificed);
-  return {recordingId, primaryId, ...(gradeId ? {gradeId} : {}), variants};
+  return { recordingId, primaryId, ...(gradeId ? { gradeId } : {}), variants };
 }
 
 /** The chance-taken takes this coach may not say for this move: those calling the
  * opponent's error small, unless it was graded Inaccuracy or Mistake. */
-function smallErrorTakes(context: GameSpeechContext, id: string | null, claimIndex: number): readonly string[] {
-  const voice = coachVoice(context.utterance.coachId), takes = voice ? SMALL_ERROR_TAKES[voice] : undefined;
+function smallErrorTakes(
+  context: GameSpeechContext,
+  id: string | null,
+  claimIndex: number,
+): readonly string[] {
+  const voice = coachVoice(context.utterance.coachId),
+    takes = voice ? SMALL_ERROR_TAKES[voice] : undefined;
   if (!takes || id !== "chance-taken") return [];
   const source = context.utterance.renderedClaims?.[claimIndex]?.sourceIds[0];
   const relation = context.game.context?.relationships.find(item => item.id === source);
@@ -384,8 +699,15 @@ function smallErrorTakes(context: GameSpeechContext, id: string | null, claimInd
  * other takes, which the coach plays (or its script shows) instead. */
 function withoutTakes(chain: string, ids: readonly string[]): string {
   if (!ids.length) return chain;
-  return chain.split(SEQUENCE_SEPARATOR).map(part =>
-    part.split(ALTERNATIVE_SEPARATOR).filter(id => !ids.includes(id)).join(ALTERNATIVE_SEPARATOR)).join(SEQUENCE_SEPARATOR);
+  return chain
+    .split(SEQUENCE_SEPARATOR)
+    .map(part =>
+      part
+        .split(ALTERNATIVE_SEPARATOR)
+        .filter(id => !ids.includes(id))
+        .join(ALTERNATIVE_SEPARATOR),
+    )
+    .join(SEQUENCE_SEPARATOR);
 }
 
 /** A line's opening catchphrase: the words before its first punctuation, when
@@ -397,34 +719,54 @@ function opener(text: string | null | undefined): string | null {
 
 /** A line's catchphrases: its opener and any short "Label:" that starts a later sentence. */
 function catchphrases(text: string | null | undefined): Set<string> {
-  const found = new Set<string>(), first = opener(text);
+  const found = new Set<string>(),
+    first = opener(text);
   if (first) found.add(first);
-  for (const match of text?.matchAll(/[.!?]\s+([A-Z][\w']*(?: [\w']+){0,2}):/g) ?? []) found.add(match[1].toLowerCase());
+  for (const match of text?.matchAll(/[.!?]\s+([A-Z][\w']*(?: [\w']+){0,2}):/g) ?? [])
+    found.add(match[1].toLowerCase());
   return found;
 }
 
 /** A joined pair whose second line keeps only takes whose catchphrases differ from
  * the first line's take. With no such recorded take, the first line plays alone. */
-export function distinctOpeners(id: string, text: (id: string) => string | null | undefined): string {
+export function distinctOpeners(
+  id: string,
+  text: (id: string) => string | null | undefined,
+): string {
   const parts = id.split(SEQUENCE_SEPARATOR);
-  const first = parts.length === 2 ? parts[0].split(ALTERNATIVE_SEPARATOR).find(alt => text(alt)) : undefined;
+  const first =
+    parts.length === 2 ? parts[0].split(ALTERNATIVE_SEPARATOR).find(alt => text(alt)) : undefined;
   const used = first ? catchphrases(text(first)) : new Set<string>();
   if (!used.size) return id;
-  const second = parts[1].split(ALTERNATIVE_SEPARATOR).filter(alt => ![...catchphrases(text(alt))].some(phrase => used.has(phrase)));
-  return second.some(alt => text(alt)) ? [parts[0], second.join(ALTERNATIVE_SEPARATOR)].join(SEQUENCE_SEPARATOR) : parts[0];
+  const second = parts[1]
+    .split(ALTERNATIVE_SEPARATOR)
+    .filter(alt => ![...catchphrases(text(alt))].some(phrase => used.has(phrase)));
+  return second.some(alt => text(alt))
+    ? [parts[0], second.join(ALTERNATIVE_SEPARATOR)].join(SEQUENCE_SEPARATOR)
+    : parts[0];
 }
 
 /** A second sentence that only restates the lead, or that refers back to an issue
  * the lead does not name, is left out: the lead then plays alone. */
 export function repeatsLead(lead: string, second: string, secondCode: string): boolean {
-  const names = ["cause-", "tactic-", "allowed-mate", "missed-mate"].some(prefix => lead.startsWith(prefix));
+  const names = ["cause-", "tactic-", "allowed-mate", "missed-mate"].some(prefix =>
+    lead.startsWith(prefix),
+  );
   // "This issue also appears..." needs a lead that names the issue.
   if (followOnly.has(secondCode)) return !names;
   // Cause, hanging-piece and mate clips already say what the reply takes.
-  if (["cause-", "tactic-hanging-piece-allowed", "allowed-mate"].some(prefix => lead.startsWith(prefix))
-    && (second.startsWith("immediate-capture") || second.startsWith("tactic-hanging-piece-"))) return true;
+  if (
+    ["cause-", "tactic-hanging-piece-allowed", "allowed-mate"].some(prefix =>
+      lead.startsWith(prefix),
+    ) &&
+    (second.startsWith("immediate-capture") || second.startsWith("tactic-hanging-piece-"))
+  )
+    return true;
   // A missed tactic or mate already points at the better move.
-  return (lead.startsWith("missed-mate") || /^tactic-.*-missed/.test(lead)) && second.startsWith("stronger-alternative");
+  return (
+    (lead.startsWith("missed-mate") || /^tactic-.*-missed/.test(lead)) &&
+    second.startsWith("stronger-alternative")
+  );
 }
 
 /** The side whose pawns, rook or piece a selected positional clip is about. */
@@ -438,29 +780,43 @@ function positionalSide(context: GameSpeechContext): Side | null {
 function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null {
   const item = context.utterance.renderedClaims?.[context.claimIndex ?? 0];
   if (!item || !context.report) return null;
-  if (item.code === "support_restored") return typeof item.slots.piece === "string" ? {pieces: [item.slots.piece]} : null;
+  if (item.code === "support_restored")
+    return typeof item.slots.piece === "string" ? { pieces: [item.slots.piece] } : null;
   // The immediate reply's frame records what it captures and where.
-  if (item.code === "reply_capture") return context.report.immediate_reply ? capturedPieces(context.report.immediate_reply) : null;
+  if (item.code === "reply_capture")
+    return context.report.immediate_reply ? capturedPieces(context.report.immediate_reply) : null;
   const event = eventFor(item, context.report);
   if (!event) return null;
   if (id.startsWith("positional-")) {
     if (typeof event.facts.piece !== "string") return null;
     // Support facts name the played piece's square; an alternative's piece stands elsewhere.
     const target = event.facts.target;
-    return {pieces: [event.facts.piece], ...(id.endsWith("-actual") && square(target) ? {square: target} : {})};
+    return {
+      pieces: [event.facts.piece],
+      ...(id.endsWith("-actual") && square(target) ? { square: target } : {}),
+    };
   }
   if (id === DOUBLE_CHECK) return doubleCheckPieces(event);
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 
 const gradePools: Readonly<Partial<Record<string, GradeTakePool>>> = {
-  Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
-  Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
+  Brilliant: "brilliant",
+  Great: "great",
+  Best: "best",
+  Good: "good",
+  Inaccuracy: "inaccuracy",
+  Mistake: "mistake",
+  Miss: "miss",
+  Blunder: "blunder",
 } satisfies Partial<Record<MoveLabel, GradeTakePool>>;
 // The generic readings a grade take stands in for. Anything else (a capture,
 // check, tactic, mate, opening or relationship) is specific and keeps its clip.
-const plainCorrection = new Set(["evaluation-loss", "stronger-alternative",
-  sequenceRecordingId(["evaluation-loss", "stronger-alternative"])]);
+const plainCorrection = new Set([
+  "evaluation-loss",
+  "stronger-alternative",
+  sequenceRecordingId(["evaluation-loss", "stronger-alternative"]),
+]);
 const plainPraise = new Set(["best-supported-choice", "good-choice"]);
 
 /** A grade's takes, linked to their grade in the meaning catalogue (`gradeOf`). */
@@ -477,15 +833,29 @@ export function gradeTakeIds(label: string): string[] {
  * variation has no move history and takes its position's first take. The caller
  * falls back to the generic reading while a coach has no take recorded. */
 function gradeTake(context: GameSpeechContext, recordingId: string | null): string | undefined {
-  const {game, report, frame, ply, variation = false} = context, label = report?.label;
+  const { game, report, frame, ply, variation = false } = context,
+    label = report?.label;
   // A reviewed move whose sentences have no clip at all still speaks its grade. A
   // legacy report without move intelligence keeps showing its own written coaching.
-  if (!label || !gradePools[label] || (recordingId
-    ? !(isPoorMove(label) ? plainCorrection : plainPraise).has(recordingId) : !report?.intelligence)) return;
+  if (
+    !label ||
+    !gradePools[label] ||
+    (recordingId
+      ? !(isPoorMove(label) ? plainCorrection : plainPraise).has(recordingId)
+      : !report?.intelligence)
+  )
+    return;
   // Takes a coach has not recorded yet sit out, so every turn plays a take.
-  const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
+  const all = gradeTakeIds(label),
+    recorded = all.filter(id => context.playable?.(id) ?? true);
   const ids = recorded.length ? recorded : all;
-  const earlier = variation ? 0 : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
-  const order = shuffledTakes(ids, variation ? [frame?.fen, label] : [game.id, label], Math.floor(earlier / ids.length));
+  const earlier = variation
+    ? 0
+    : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
+  const order = shuffledTakes(
+    ids,
+    variation ? [frame?.fen, label] : [game.id, label],
+    Math.floor(earlier / ids.length),
+  );
   return order[earlier % ids.length];
 }

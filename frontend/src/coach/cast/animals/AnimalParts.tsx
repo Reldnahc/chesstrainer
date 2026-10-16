@@ -61,14 +61,8 @@ export function AnimalEyes({
   return (
     <g className="animal-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
       {closedEyes ? (
-        <g
-          className="study-gaze"
-          fill="none"
-          stroke={lid}
-          strokeWidth="2"
-          strokeLinecap="round"
-        >
-          {xs.map((x) => (
+        <g className="study-gaze" fill="none" stroke={lid} strokeWidth="2" strokeLinecap="round">
+          {xs.map(x => (
             <path
               key={x}
               d={`M${x - width} ${y}q${width} ${pose.mouth === "concern" ? 4 : -4} ${width * 2} 0`}
@@ -79,18 +73,18 @@ export function AnimalEyes({
         <>
           <defs>
             <clipPath id={mask}>
-              {xs.map((x) => (
+              {xs.map(x => (
                 <ellipse key={x} cx={x} cy={y} rx={width} ry={height} />
               ))}
             </clipPath>
           </defs>
-          {xs.map((x) => (
+          {xs.map(x => (
             <ellipse key={x} cx={x} cy={y} rx={width} ry={height} fill="#fff4dc" />
           ))}
           <g clipPath={`url(#${mask})`}>
             <g className="study-gaze">
               <g transform={`translate(${pose.gaze.join(" ")})`}>
-                {xs.map((x) => (
+                {xs.map(x => (
                   <g key={x}>
                     <ellipse
                       cx={x}
@@ -118,7 +112,7 @@ export function AnimalEyes({
               </g>
             </g>
           </g>
-          {xs.map((x) => (
+          {xs.map(x => (
             <path
               key={x}
               d={`M${x - width} ${y}q${width} ${-height * 1.7} ${width * 2} 0`}
@@ -134,7 +128,11 @@ export function AnimalEyes({
   );
 }
 
-export function AnimalBrows({ pose, color, weight = 2.4 }: {
+export function AnimalBrows({
+  pose,
+  color,
+  weight = 2.4,
+}: {
   pose: AnimalPose;
   color: string;
   weight?: number;

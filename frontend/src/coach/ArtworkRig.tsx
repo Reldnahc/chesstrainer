@@ -12,13 +12,7 @@ export function ArtworkSvg({
   children: ReactNode;
 }) {
   return (
-    <svg
-      viewBox={viewBox}
-      className={className}
-      style={style}
-      aria-hidden="true"
-      focusable="false"
-    >
+    <svg viewBox={viewBox} className={className} style={style} aria-hidden="true" focusable="false">
       {children}
     </svg>
   );

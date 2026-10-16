@@ -20,8 +20,10 @@ const MAX_BACKOFF = 8;
  * already in flight, so an explicit refresh after a change is never answered by
  * a response that started before it.
  */
-export function usePolling(task: (signal: AbortSignal) => Promise<unknown>,
-  { intervalMs, enabled = true, pauseWhenHidden = true, backoffOnError = true }: PollingOptions) {
+export function usePolling(
+  task: (signal: AbortSignal) => Promise<unknown>,
+  { intervalMs, enabled = true, pauseWhenHidden = true, backoffOnError = true }: PollingOptions,
+) {
   const latest = useLatest(task);
   const lifetime = useRef<AbortController | null>(null);
   const flight = useRef<Promise<void> | null>(null);
@@ -40,13 +42,20 @@ export function usePolling(task: (signal: AbortSignal) => Promise<unknown>,
   const pass = useCallback((): Promise<void> => {
     const signal = lifetime.current?.signal;
     if (!signal || signal.aborted) return Promise.resolve();
-    const current: Promise<void> = latest.current(signal).then(
-      () => { failures.current = 0; },
-      // Leaving the screen aborts a pass; that is not the server failing.
-      () => { if (!signal.aborted) failures.current += 1; },
-    ).finally(() => {
-      if (flight.current === current) flight.current = null;
-    });
+    const current: Promise<void> = latest
+      .current(signal)
+      .then(
+        () => {
+          failures.current = 0;
+        },
+        // Leaving the screen aborts a pass; that is not the server failing.
+        () => {
+          if (!signal.aborted) failures.current += 1;
+        },
+      )
+      .finally(() => {
+        if (flight.current === current) flight.current = null;
+      });
     flight.current = current;
     return current;
   }, [latest]);
@@ -61,7 +70,8 @@ export function usePolling(task: (signal: AbortSignal) => Promise<unknown>,
     let stopped = false;
     let ticking = false;
     let timer: number | undefined;
-    const delay = () => intervalMs * (backoffOnError ? Math.min(MAX_BACKOFF, 2 ** failures.current) : 1);
+    const delay = () =>
+      intervalMs * (backoffOnError ? Math.min(MAX_BACKOFF, 2 ** failures.current) : 1);
     const tick = async () => {
       window.clearTimeout(timer);
       if (stopped || ticking || (pauseWhenHidden && document.hidden)) return;

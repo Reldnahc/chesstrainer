@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
 import { expectModifierClickLeftToBrowser } from "./modifierClick";
 
-test("primary and secondary destination actions share geometry and preserve keyboard navigation", async ({ page }) => {
+test("primary and secondary destination actions share geometry and preserve keyboard navigation", async ({
+  page,
+}) => {
   await page.goto("/study");
   const primary = page.getByRole("link", { name: "Start studying", exact: true });
   const secondary = page.getByRole("link", { name: "Open lessons", exact: true });
@@ -23,16 +25,44 @@ test("primary and secondary destination actions share geometry and preserve keyb
 test("Update games uses identical link and command sizing", async ({ page }) => {
   let connected = false;
   // Update games sits in the library's header row, so the list needs a game.
-  await page.route("**/api/games?offset=*", route => route.fulfill({ json: { total: 1, items: [{
-    id: "action-fixture", white: "ActionFixture", black: "Opponent", white_rating: null, black_rating: null,
-    learner_color: "white", result: "1-0", status: "not_started", move_count: 20, played_on: null,
-    played_at: null, time_control: null, time_control_label: null, accuracy: null,
-  }] } }));
-  await page.route("**/api/providers/*/sync", route => route.fulfill({ json: {
-    provider: new URL(route.request().url()).pathname.split("/")[3],
-    username: connected ? "ActionFixture" : "", status: "not_started",
-    checked_at: null, imported: 0, job_id: null, error: null,
-  } }));
+  await page.route("**/api/games?offset=*", route =>
+    route.fulfill({
+      json: {
+        total: 1,
+        items: [
+          {
+            id: "action-fixture",
+            white: "ActionFixture",
+            black: "Opponent",
+            white_rating: null,
+            black_rating: null,
+            learner_color: "white",
+            result: "1-0",
+            status: "not_started",
+            move_count: 20,
+            played_on: null,
+            played_at: null,
+            time_control: null,
+            time_control_label: null,
+            accuracy: null,
+          },
+        ],
+      },
+    }),
+  );
+  await page.route("**/api/providers/*/sync", route =>
+    route.fulfill({
+      json: {
+        provider: new URL(route.request().url()).pathname.split("/")[3],
+        username: connected ? "ActionFixture" : "",
+        status: "not_started",
+        checked_at: null,
+        imported: 0,
+        job_id: null,
+        error: null,
+      },
+    }),
+  );
   await page.goto("/games");
   const setup = page.getByRole("link", { name: "Update games", exact: true });
   await expect(setup).toBeVisible();
@@ -53,7 +83,10 @@ test("shared command buttons remain commands and import forms still submit", asy
   const imports: { method: string; body: string }[] = [];
   await page.route("**/api/jobs", route => route.fulfill({ json: [] }));
   await page.route("**/api/imports", route => {
-    imports.push({ method: route.request().method(), body: route.request().postDataBuffer()!.toString() });
+    imports.push({
+      method: route.request().method(),
+      body: route.request().postDataBuffer()!.toString(),
+    });
     return route.fulfill({ status: 422, json: { detail: "Import action fixture reached" } });
   });
   await page.goto("/settings");
@@ -62,21 +95,35 @@ test("shared command buttons remain commands and import forms still submit", asy
   await open.click();
   // This test exercises command/submit semantics. Import animation coverage
   // lives separately; wait for the expanding clip before targeting its footer.
-  await expect.poll(() => page.locator(".import-form").evaluate(element =>
-    element.getAnimations({ subtree: true }).filter(animation => animation.playState === "running").length,
-  )).toBe(0);
+  await expect
+    .poll(() =>
+      page
+        .locator(".import-form")
+        .evaluate(
+          element =>
+            element
+              .getAnimations({ subtree: true })
+              .filter(animation => animation.playState === "running").length,
+        ),
+    )
+    .toBe(0);
   const close = page.getByRole("button", { name: "Close import form", exact: true });
   await expect(close).toHaveAttribute("type", "button");
   await page.getByRole("button", { name: "Paste PGN text", exact: true }).click();
   const submit = page.getByRole("button", { name: "Import games", exact: true });
   await expect(submit).toHaveAttribute("type", "submit");
   await expect(submit).toBeDisabled();
-  await page.getByLabel("PGN", { exact: true }).fill('[White "Fixture"]\n[Black "Opponent"]\n\n1. e4 e5 *');
+  await page
+    .getByLabel("PGN", { exact: true })
+    .fill('[White "Fixture"]\n[Black "Opponent"]\n\n1. e4 e5 *');
   await page.getByLabel("Your username(s)").fill("Fixture");
   await expect(submit).toBeEnabled();
   const [response] = await Promise.all([
-    page.waitForResponse(response => new URL(response.url()).pathname === "/api/imports"
-      && response.request().method() === "POST"),
+    page.waitForResponse(
+      response =>
+        new URL(response.url()).pathname === "/api/imports" &&
+        response.request().method() === "POST",
+    ),
     submit.click(),
   ]);
   expect(response.status()).toBe(422);
@@ -91,6 +138,10 @@ test("shared command buttons remain commands and import forms still submit", asy
 test("action links retain desktop modifier clicks", async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "Modifier click is a desktop interaction.");
   await page.goto("/study");
-  await expectModifierClickLeftToBrowser(page, page.getByRole("link", { name: "Open lessons", exact: true }), "/study/openings");
+  await expectModifierClickLeftToBrowser(
+    page,
+    page.getByRole("link", { name: "Open lessons", exact: true }),
+    "/study/openings",
+  );
   await expect(page).toHaveURL("/study");
 });

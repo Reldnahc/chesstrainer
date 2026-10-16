@@ -1,15 +1,15 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-.continuation-moves {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1-5);
-}
-/* Compact mono Buttons at the ordinary 13px: the component's own move size. */
-.continuation-moves .action-control.action-control--compact {
-  font-size: var(--text-md);
-}
-.continuation-moves .action-control[aria-current="step"] {
-  border-color: var(--accent);
-}
+  .continuation-moves {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1-5);
+  }
+  /* Compact mono Buttons at the ordinary 13px: the component's own move size. */
+  .continuation-moves .action-control.action-control--compact {
+    font-size: var(--text-md);
+  }
+  .continuation-moves .action-control[aria-current="step"] {
+    border-color: var(--accent);
+  }
 }

@@ -1,141 +1,284 @@
-import {test, expect} from "@playwright/test";
-import {gameIntent} from "../src/dialogue/gameIntent";
-import {practiceIntent, explanationIntent} from "../src/dialogue/practiceIntent";
-import {renderDialogue, renderNeutral} from "../src/dialogue/neutral";
-import {neutralPersonality} from "../src/dialogue/personality";
-import {neutralTemplates} from "../src/dialogue/templates";
-import {claim, makeIntent, stableKey, type ClaimCode} from "../src/dialogue/model";
-import {positionalClaim} from "../src/dialogue/eventClaims";
-import type {Game, Position, Report} from "../src/gameReview/types";
-import type {ColdPosition, ExplanationFrame, Schema} from "../src/api";
-import {semanticFixtures} from "./semantic-fixtures";
-import {positionalClaims} from "./positional-claims";
-import {humanGames, humanIntent} from "./human-fixtures";
+import { test, expect } from "@playwright/test";
+import { gameIntent } from "../src/dialogue/gameIntent";
+import { practiceIntent, explanationIntent } from "../src/dialogue/practiceIntent";
+import { renderDialogue, renderNeutral } from "../src/dialogue/neutral";
+import { neutralPersonality } from "../src/dialogue/personality";
+import { neutralTemplates } from "../src/dialogue/templates";
+import { claim, makeIntent, stableKey, type ClaimCode } from "../src/dialogue/model";
+import { positionalClaim } from "../src/dialogue/eventClaims";
+import type { Game, Position, Report } from "../src/gameReview/types";
+import type { ColdPosition, ExplanationFrame, Schema } from "../src/api";
+import { semanticFixtures } from "./semantic-fixtures";
+import { positionalClaims } from "./positional-claims";
+import { humanGames, humanIntent } from "./human-fixtures";
 
-const ref = {source: "stockfish" as const, id: "search", field: "root"};
-const event = (kind: Schema["ReviewEvent"]["kind"], facts: Schema["ReviewEvent"]["facts"]): Schema["ReviewEvent"] =>
-  ({id: `event-${kind}`, actor: "white", confidence: "searched", importance: 75, kind, facts, evidence: [ref]});
-const report = (events: Schema["ReviewEvent"][] = []): Report => ({label: "Blunder", engine_label: "Blunder",
-  actual: {uci: "e2e4", san: "e4", depth: 16, pv: ["e2e4"], score: {kind: "cp", value: -250, mate_given: false}},
-  best: {uci: "d2d4", san: "d4", depth: 16, pv: ["d2d4"], score: {kind: "cp", value: 50, mate_given: false}},
-  opening: null, board_cues: null, coach: "", reason: "Synthetic evaluation loss", depth: 16, engine_version: "test",
-  white_score: {kind: "cp", value: -250, mate_given: false},
-  intelligence: {version: "move-events-4", input_digest: "facts", ply: 1, events, clock: null, limitations: []},
+const ref = { source: "stockfish" as const, id: "search", field: "root" };
+const event = (
+  kind: Schema["ReviewEvent"]["kind"],
+  facts: Schema["ReviewEvent"]["facts"],
+): Schema["ReviewEvent"] => ({
+  id: `event-${kind}`,
+  actor: "white",
+  confidence: "searched",
+  importance: 75,
+  kind,
+  facts,
+  evidence: [ref],
 });
-const game = {frames: [{}, {number: 1, san: "e4", actor: "white"}], orientation: "white"} as Game;
-const frame = {turn: "black", fen: "position"} as Position;
-const args = {game, frame, key: "game:1:", ply: 1, expression: "blunder" as const};
+const report = (events: Schema["ReviewEvent"][] = []): Report => ({
+  label: "Blunder",
+  engine_label: "Blunder",
+  actual: {
+    uci: "e2e4",
+    san: "e4",
+    depth: 16,
+    pv: ["e2e4"],
+    score: { kind: "cp", value: -250, mate_given: false },
+  },
+  best: {
+    uci: "d2d4",
+    san: "d4",
+    depth: 16,
+    pv: ["d2d4"],
+    score: { kind: "cp", value: 50, mate_given: false },
+  },
+  opening: null,
+  board_cues: null,
+  coach: "",
+  reason: "Synthetic evaluation loss",
+  depth: 16,
+  engine_version: "test",
+  white_score: { kind: "cp", value: -250, mate_given: false },
+  intelligence: {
+    version: "move-events-4",
+    input_digest: "facts",
+    ply: 1,
+    events,
+    clock: null,
+    limitations: [],
+  },
+});
+const game = {
+  frames: [{}, { number: 1, san: "e4", actor: "white" }],
+  orientation: "white",
+} as Game;
+const frame = { turn: "black", fen: "position" } as Position;
+const args = { game, frame, key: "game:1:", ply: 1, expression: "blunder" as const };
 
-const positionFixtures = semanticFixtures<{feature: string; code: string; mirrored: boolean; alternative: Schema["GameReviewReport"]; actual: Schema["GameReviewReport"]}[]>("review_position_fixtures.py");
-for (const fixture of positionFixtures) test(`${fixture.feature} preserves actual versus unplayed consequences (${fixture.mirrored ? "mirror" : "original"})`, () => {
-  for (const kind of ["actual", "alternative"] as const) {
-    const value = fixture[kind];
-    const turn = value.actual_line!.frames[1].fen.split(" ")[1] === "w" ? "white" : "black";
-    const intent = gameIntent({...args, frame: {...frame, turn}, report: value});
-    const item = intent.claims.find(c => c.code === fixture.code)!;
-    // The mover's own doubled pawns after the better move are its drawback, so they never explain the error.
-    if (kind === "alternative" && fixture.feature === "doubled_files") {
-      expect(item).toBeUndefined();
-      continue;
+const positionFixtures = semanticFixtures<
+  {
+    feature: string;
+    code: string;
+    mirrored: boolean;
+    alternative: Schema["GameReviewReport"];
+    actual: Schema["GameReviewReport"];
+  }[]
+>("review_position_fixtures.py");
+for (const fixture of positionFixtures)
+  test(`${fixture.feature} preserves actual versus unplayed consequences (${fixture.mirrored ? "mirror" : "original"})`, () => {
+    for (const kind of ["actual", "alternative"] as const) {
+      const value = fixture[kind];
+      const turn = value.actual_line!.frames[1].fen.split(" ")[1] === "w" ? "white" : "black";
+      const intent = gameIntent({ ...args, frame: { ...frame, turn }, report: value });
+      const item = intent.claims.find(c => c.code === fixture.code)!;
+      // The mover's own doubled pawns after the better move are its drawback, so they never explain the error.
+      if (kind === "alternative" && fixture.feature === "doubled_files") {
+        expect(item).toBeUndefined();
+        continue;
+      }
+      expect(item).toBeTruthy();
+      // Isolate one selected claim to prove its language even if a compact bubble
+      // omits this lower-priority fact in favor of another supported consequence.
+      const text = renderNeutral({ ...intent, claims: [item] }).text;
+      expect(text).toContain(
+        kind === "alternative"
+          ? value.best.san
+          : fixture.feature === "doubled_files"
+            ? "doubled"
+            : "bishops",
+      );
+      if (kind === "alternative") expect(text).toContain(`${value.best.san} would `);
+      else expect(text).not.toMatch(/would|unplayed|instead/);
+      expect(text).toContain(fixture.mirrored ? "black" : "white");
     }
-    expect(item).toBeTruthy();
-    // Isolate one selected claim to prove its language even if a compact bubble
-    // omits this lower-priority fact in favor of another supported consequence.
-    const text = renderNeutral({...intent, claims: [item]}).text;
-    expect(text).toContain(kind === "alternative" ? value.best.san : fixture.feature === "doubled_files" ? "doubled" : "bishops");
-    if (kind === "alternative") expect(text).toContain(`${value.best.san} would `);
-    else expect(text).not.toMatch(/would|unplayed|instead/);
-    expect(text).toContain(fixture.mirrored ? "black" : "white");
-  }
-});
+  });
 
 test("every positional claim carries branch scope that personality wording cannot discard", () => {
-  for (const line of ["actual", "best"] as const) for (const item of positionalClaims(line)) {
-    expect(item).toBeTruthy();
-    expect(item.position).toEqual({line: line === "actual" ? "actual" : "alternative", move: line === "actual" ? "played" : "alternative"});
-    const intent = makeIntent("grammar", "mistake", "game", "mistake", [item]);
-    const character = {id: "unsafe-override", personality: {...neutralPersonality, version: "branch-safety-test", templates: {[item.code]: ["This already happened on the actual board."]}}};
-    const rendered = renderDialogue(intent, character);
-    const text = rendered.text;
-    if (line === "best") {
-      expect(text).toMatch(/^alternative would /);
-      expect(text).not.toContain("already happened");
-      expect(rendered.trace.variants[0].source).toBe("positional-conditional-1");
-    } else {
-      // Actual-move customization still has to carry the mandatory facts. An
-      // empty assertion is no longer a valid custom form under the slot guard.
-      expect(text).toBe(renderNeutral(intent).text);
-      expect(rendered.trace.variants[0].source).toBe("neutral-1");
+  for (const line of ["actual", "best"] as const)
+    for (const item of positionalClaims(line)) {
+      expect(item).toBeTruthy();
+      expect(item.position).toEqual({
+        line: line === "actual" ? "actual" : "alternative",
+        move: line === "actual" ? "played" : "alternative",
+      });
+      const intent = makeIntent("grammar", "mistake", "game", "mistake", [item]);
+      const character = {
+        id: "unsafe-override",
+        personality: {
+          ...neutralPersonality,
+          version: "branch-safety-test",
+          templates: { [item.code]: ["This already happened on the actual board."] },
+        },
+      };
+      const rendered = renderDialogue(intent, character);
+      const text = rendered.text;
+      if (line === "best") {
+        expect(text).toMatch(/^alternative would /);
+        expect(text).not.toContain("already happened");
+        expect(rendered.trace.variants[0].source).toBe("positional-conditional-1");
+      } else {
+        // Actual-move customization still has to carry the mandatory facts. An
+        // empty assertion is no longer a valid custom form under the slot guard.
+        expect(text).toBe(renderNeutral(intent).text);
+        expect(rendered.trace.variants[0].source).toBe("neutral-1");
+      }
+      const valid = {
+        ...character,
+        personality: {
+          ...character.personality,
+          templates: {
+            [item.code]: [`Verified actual consequence: ${neutralTemplates[item.code][0]}`],
+          },
+        },
+      };
+      const validOutput = renderDialogue(intent, valid);
+      if (line === "best") {
+        expect(validOutput.text).toMatch(/^alternative would /);
+        expect(validOutput.text).not.toContain("Verified actual consequence");
+        expect(validOutput.trace.variants[0].source).toBe("positional-conditional-1");
+      } else {
+        expect(validOutput.text).toContain("Verified actual consequence: played");
+        expect(validOutput.trace.variants[0].source).toBe("branch-safety-test");
+      }
     }
-    const valid = {...character, personality: {...character.personality,
-      templates: {[item.code]: [`Verified actual consequence: ${neutralTemplates[item.code][0]}`]}}};
-    const validOutput = renderDialogue(intent, valid);
-    if (line === "best") {
-      expect(validOutput.text).toMatch(/^alternative would /);
-      expect(validOutput.text).not.toContain("Verified actual consequence");
-      expect(validOutput.trace.variants[0].source).toBe("positional-conditional-1");
-    } else {
-      expect(validOutput.text).toContain("Verified actual consequence: played");
-      expect(validOutput.trace.variants[0].source).toBe("branch-safety-test");
-    }
-  }
-  const unsupported = {...positionalClaims("best")[0], code: "future_feature" as ClaimCode};
-  const fallback = renderNeutral(makeIntent("unknown", "mistake", "game", "mistake", [unsupported]));
+  const unsupported = { ...positionalClaims("best")[0], code: "future_feature" as ClaimCode };
+  const fallback = renderNeutral(
+    makeIntent("unknown", "mistake", "game", "mistake", [unsupported]),
+  );
   expect(fallback.trace.variants).toEqual([]);
 });
 
 test("forced-mate lines count the winning move itself and the mating side's moves after a losing one", () => {
   // From 8/8/4k3/8/8/8/1R6/R5K1 w, Ra6+ is a saved mate in 5; the bar after it reads M4.
-  const line = (code: ClaimCode) => renderNeutral(makeIntent(`mate-${code}`, "best", "game", "best",
-    [claim(code, {move: "Ra6+", best: "Rb6+", opponent: "Black", mate: 5}, 97)])).text;
-  expect(line("forced_mate_started")).toBe("Ra6+ begins a forced mate in 5, whatever Black replies.");
-  expect(line("forced_mate_continued")).toBe("Ra6+ keeps the forced checkmate going; from this move it is mate in 5.");
-  expect(line("forced_mate_slower")).toBe("Ra6+ still begins a forced mate in 5, but Rb6+ mated sooner.");
-  expect(line("forced_mate_held")).toBe("The position was already lost to a forced mate; even against the best defence, Black mates in 5.");
+  const line = (code: ClaimCode) =>
+    renderNeutral(
+      makeIntent(`mate-${code}`, "best", "game", "best", [
+        claim(code, { move: "Ra6+", best: "Rb6+", opponent: "Black", mate: 5 }, 97),
+      ]),
+    ).text;
+  expect(line("forced_mate_started")).toBe(
+    "Ra6+ begins a forced mate in 5, whatever Black replies.",
+  );
+  expect(line("forced_mate_continued")).toBe(
+    "Ra6+ keeps the forced checkmate going; from this move it is mate in 5.",
+  );
+  expect(line("forced_mate_slower")).toBe(
+    "Ra6+ still begins a forced mate in 5, but Rb6+ mated sooner.",
+  );
+  expect(line("forced_mate_held")).toBe(
+    "The position was already lost to a forced mate; even against the best defence, Black mates in 5.",
+  );
 });
 
 test("semantic dialogue names supported tactics, replies and exact severity without inventing causes", () => {
-  const tactic = event("tactic", {role: "allowed", motif: "fork", roles: {targets: ["e4", "h7"]},
-    pieces: {e4: {piece: "queen", color: "white"}, h7: {piece: "king", color: "white"}}});
+  const tactic = event("tactic", {
+    role: "allowed",
+    motif: "fork",
+    roles: { targets: ["e4", "h7"] },
+    pieces: { e4: { piece: "queen", color: "white" }, h7: { piece: "king", color: "white" } },
+  });
   tactic.actor = "black";
-  const intent = gameIntent({...args, report: report([tactic])});
+  const intent = gameIntent({ ...args, report: report([tactic]) });
   expect(renderNeutral(intent).text).toMatch(/queen on e4 and king on h7/);
   expect(intent.claims[0].sourceIds).toEqual([tactic.id]);
-  const plain = renderNeutral(gameIntent({...args, report: report()})).text;
+  const plain = renderNeutral(gameIntent({ ...args, report: report() })).text;
   expect(plain).toContain("3.00 pawns");
   expect(plain).not.toMatch(/weak square|bad bishop|king safety|fork/);
   const withReply = report();
-  withReply.immediate_reply = {san: "Nxe4", capture: "pawn", gives_check: false} as ExplanationFrame;
-  expect(renderNeutral(gameIntent({...args, report: withReply})).text).toContain("White's pawn");
+  withReply.immediate_reply = {
+    san: "Nxe4",
+    capture: "pawn",
+    gives_check: false,
+  } as ExplanationFrame;
+  expect(renderNeutral(gameIntent({ ...args, report: withReply })).text).toContain("White's pawn");
 });
 
 test("a capture taken straight back is an even trade, not a reply that wins material", () => {
   const traded = report();
-  traded.immediate_reply = {san: "Bxe6", capture: "bishop", gives_check: false, material_change: -3} as ExplanationFrame;
-  traded.immediate_recapture = {san: "fxe6", capture: "bishop", gives_check: false, material_change: 0} as ExplanationFrame;
-  expect(gameIntent({...args, report: traded}).claims.some(c => c.code === "reply_capture")).toBe(false);
+  traded.immediate_reply = {
+    san: "Bxe6",
+    capture: "bishop",
+    gives_check: false,
+    material_change: -3,
+  } as ExplanationFrame;
+  traded.immediate_recapture = {
+    san: "fxe6",
+    capture: "bishop",
+    gives_check: false,
+    material_change: 0,
+  } as ExplanationFrame;
+  expect(gameIntent({ ...args, report: traded }).claims.some(c => c.code === "reply_capture")).toBe(
+    false,
+  );
   // A reply that only recaptures what the move just took is even already.
   const recapture = report();
-  recapture.immediate_reply = {san: "Bxd2", capture: "bishop", gives_check: false, material_change: 0} as ExplanationFrame;
-  expect(gameIntent({...args, report: recapture}).claims.some(c => c.code === "reply_capture")).toBe(false);
+  recapture.immediate_reply = {
+    san: "Bxd2",
+    capture: "bishop",
+    gives_check: false,
+    material_change: 0,
+  } as ExplanationFrame;
+  expect(
+    gameIntent({ ...args, report: recapture }).claims.some(c => c.code === "reply_capture"),
+  ).toBe(false);
   const lost = report();
-  lost.immediate_reply = {san: "Nxb5", capture: "queen", gives_check: false, material_change: -9} as ExplanationFrame;
-  lost.immediate_recapture = {san: "Nxb5", capture: "knight", gives_check: false, material_change: -6} as ExplanationFrame;
-  expect(gameIntent({...args, report: lost}).claims.some(c => c.code === "reply_capture")).toBe(true);
+  lost.immediate_reply = {
+    san: "Nxb5",
+    capture: "queen",
+    gives_check: false,
+    material_change: -9,
+  } as ExplanationFrame;
+  lost.immediate_recapture = {
+    san: "Nxb5",
+    capture: "knight",
+    gives_check: false,
+    material_change: -6,
+  } as ExplanationFrame;
+  expect(gameIntent({ ...args, report: lost }).claims.some(c => c.code === "reply_capture")).toBe(
+    true,
+  );
 });
 
 test("a missed tactic that starts on this move outranks one that appears later in the line", () => {
-  const tactic = (id: string, motif: string, plies: number[]): Schema["ReviewEvent"] => ({id, actor: "white",
-    confidence: "line_witness", importance: 75, kind: "tactic", evidence: [ref],
-    facts: {motif, role: "missed", plies, frame_ply: plies[0], witness: plies.map(ply => ({ply, san: ply === 1 ? "d4" : "Nxc4"}))}});
-  const value = {...report([tactic("later", "removing_defender", [3, 5]), tactic("now", "fork", [1, 3])]),
-    label: "Inaccuracy", engine_label: "Inaccuracy"} as Report;
-  const claims = [...gameIntent({...args, report: value}).claims].sort((a, b) => b.priority - a.priority);
+  const tactic = (id: string, motif: string, plies: number[]): Schema["ReviewEvent"] => ({
+    id,
+    actor: "white",
+    confidence: "line_witness",
+    importance: 75,
+    kind: "tactic",
+    evidence: [ref],
+    facts: {
+      motif,
+      role: "missed",
+      plies,
+      frame_ply: plies[0],
+      witness: plies.map(ply => ({ ply, san: ply === 1 ? "d4" : "Nxc4" })),
+    },
+  });
+  const value = {
+    ...report([tactic("later", "removing_defender", [3, 5]), tactic("now", "fork", [1, 3])]),
+    label: "Inaccuracy",
+    engine_label: "Inaccuracy",
+  } as Report;
+  const claims = [...gameIntent({ ...args, report: value }).claims].sort(
+    (a, b) => b.priority - a.priority,
+  );
   expect(claims[0].sourceIds).toEqual(["now"]);
 });
 
 test("human naturalness does not become a population claim or override the grade", () => {
-  const game = humanGames.natural_error, value = game.frames[1].report!;
+  const game = humanGames.natural_error,
+    value = game.frames[1].report!;
   const intent = humanIntent(game);
   expect(intent.purpose).toBe("book");
   expect(value.engine_label).toBe("Blunder");
@@ -148,116 +291,273 @@ test("human naturalness does not become a population claim or override the grade
 });
 
 test("a mate explanation names the immediate check once without suppressing a separate reply", () => {
-  const value = report([event("mate", {transition: "allowed"})]);
-  value.immediate_reply = {san: "Qh4#", capture: null, gives_check: true} as ExplanationFrame;
-  const intent = gameIntent({...args, report: value});
-  expect(intent.claims.find(c => c.code === "allowed_mate")?.slots.reply).toBe("Black's strongest reply is Qh4#.");
+  const value = report([event("mate", { transition: "allowed" })]);
+  value.immediate_reply = { san: "Qh4#", capture: null, gives_check: true } as ExplanationFrame;
+  const intent = gameIntent({ ...args, report: value });
+  expect(intent.claims.find(c => c.code === "allowed_mate")?.slots.reply).toBe(
+    "Black's strongest reply is Qh4#.",
+  );
   expect(intent.claims.some(c => c.code === "reply_check")).toBe(false);
   expect(renderNeutral(intent).text.match(/Qh4#/g)).toHaveLength(1);
 
   // A missed mate describes an unplayed alternative, so the actual opponent's
   // checking reply remains a distinct supported fact.
-  const missed = {...value, intelligence: {...value.intelligence!, events: [event("mate", {transition: "missed"})]}};
-  expect(gameIntent({...args, report: missed}).claims.find(c => c.code === "reply_check")?.slots.reply).toBe("Qh4#");
-  const ordinary = {...value, intelligence: {...value.intelligence!, events: []}};
-  expect(gameIntent({...args, report: ordinary}).claims.find(c => c.code === "reply_check")?.slots.reply).toBe("Qh4#");
+  const missed = {
+    ...value,
+    intelligence: { ...value.intelligence!, events: [event("mate", { transition: "missed" })] },
+  };
+  expect(
+    gameIntent({ ...args, report: missed }).claims.find(c => c.code === "reply_check")?.slots.reply,
+  ).toBe("Qh4#");
+  const ordinary = { ...value, intelligence: { ...value.intelligence!, events: [] } };
+  expect(
+    gameIntent({ ...args, report: ordinary }).claims.find(c => c.code === "reply_check")?.slots
+      .reply,
+  ).toBe("Qh4#");
 });
 
 test("recorded relationships need the matching node and never follow a variation", () => {
   const value = report();
-  const context: NonNullable<Game["context"]> = {version: "game-context-1", complete: false,
-    input_digest: "context", total_plies: 1, missing_plies: [], limitations: [], biggest_swing_ply: null,
-    nodes: [{ply: 1, actor: "white", before: value.best.score, after: value.actual.score,
-      event_ids: [], input_digest: "facts", evidence: [ref]}], turning_points: [],
-    relationships: [{id: "recovery", kind: "recovery", actor: "white", plies: [0, 1],
-      event_ids: [], facts: {opponent_errors: [0]}, evidence: [ref]}]};
-  const full = {...args, game: {...game, context}, report: value};
+  const context: NonNullable<Game["context"]> = {
+    version: "game-context-1",
+    complete: false,
+    input_digest: "context",
+    total_plies: 1,
+    missing_plies: [],
+    limitations: [],
+    biggest_swing_ply: null,
+    nodes: [
+      {
+        ply: 1,
+        actor: "white",
+        before: value.best.score,
+        after: value.actual.score,
+        event_ids: [],
+        input_digest: "facts",
+        evidence: [ref],
+      },
+    ],
+    turning_points: [],
+    relationships: [
+      {
+        id: "recovery",
+        kind: "recovery",
+        actor: "white",
+        plies: [0, 1],
+        event_ids: [],
+        facts: { opponent_errors: [0] },
+        evidence: [ref],
+      },
+    ],
+  };
+  const full = { ...args, game: { ...game, context }, report: value };
   expect(renderNeutral(gameIntent(full)).text).toMatch(/playable.*opponent's errors/i);
   expect(gameIntent(full).expression).toBe("recovered");
-  expect(renderNeutral(gameIntent({...full, variation: true})).text).not.toMatch(/playable|recovered|opponent's errors/);
-  const stale = {...context, nodes: []};
-  expect(gameIntent({...full, game: {...game, context: stale}}).claims.some(c => c.code === "recovery")).toBe(false);
+  expect(renderNeutral(gameIntent({ ...full, variation: true })).text).not.toMatch(
+    /playable|recovered|opponent's errors/,
+  );
+  const stale = { ...context, nodes: [] };
+  expect(
+    gameIntent({ ...full, game: { ...game, context: stale } }).claims.some(
+      c => c.code === "recovery",
+    ),
+  ).toBe(false);
 });
 
 test("game-context relationships are told only where their wording holds", () => {
   const value = report();
-  const relation = (kind: Schema["GameRelationship"]["kind"], facts: Schema["GameRelationship"]["facts"]) =>
-    ({id: kind, kind, actor: "white" as const, plies: [0, 1], event_ids: [], facts, evidence: [ref]});
-  const codes = (relationships: Schema["GameRelationship"][], label: Report["label"] = "Mistake") => gameIntent({...args,
-    report: {...value, label}, game: {...game, context: {version: "game-context-1", complete: true, input_digest: "context",
-      total_plies: 1, missing_plies: [], limitations: [], biggest_swing_ply: null, turning_points: [],
-      nodes: [{ply: 1, actor: "white", before: value.best.score, after: value.actual.score, event_ids: [], input_digest: "facts",
-        evidence: [ref]}], relationships}}}).claims.map(c => c.code);
+  const relation = (
+    kind: Schema["GameRelationship"]["kind"],
+    facts: Schema["GameRelationship"]["facts"],
+  ) => ({
+    id: kind,
+    kind,
+    actor: "white" as const,
+    plies: [0, 1],
+    event_ids: [],
+    facts,
+    evidence: [ref],
+  });
+  const codes = (relationships: Schema["GameRelationship"][], label: Report["label"] = "Mistake") =>
+    gameIntent({
+      ...args,
+      report: { ...value, label },
+      game: {
+        ...game,
+        context: {
+          version: "game-context-1",
+          complete: true,
+          input_digest: "context",
+          total_plies: 1,
+          missing_plies: [],
+          limitations: [],
+          biggest_swing_ply: null,
+          turning_points: [],
+          nodes: [
+            {
+              ply: 1,
+              actor: "white",
+              before: value.best.score,
+              after: value.actual.score,
+              event_ids: [],
+              input_digest: "facts",
+              evidence: [ref],
+            },
+          ],
+          relationships,
+        },
+      },
+    }).claims.map(c => c.code);
   // A recovery is written in neutral words ("playable again"), never crediting the move.
-  expect(codes([relation("recovery", {opponent_errors: []})], "Best")).toContain("recovery");
+  expect(codes([relation("recovery", { opponent_errors: [] })], "Best")).toContain("recovery");
   // An erosion run is "small concessions" only on an Inaccuracy, with no Mistake of
   // the side's own since its first concession.
-  expect(codes([relation("erosion", {own_mistake_plies: []})], "Inaccuracy")).toContain("erosion");
-  expect(codes([relation("erosion", {own_mistake_plies: []})], "Mistake")).not.toContain("erosion");
-  expect(codes([relation("erosion", {own_mistake_plies: [3]})], "Inaccuracy")).not.toContain("erosion");
+  expect(codes([relation("erosion", { own_mistake_plies: [] })], "Inaccuracy")).toContain(
+    "erosion",
+  );
+  expect(codes([relation("erosion", { own_mistake_plies: [] })], "Mistake")).not.toContain(
+    "erosion",
+  );
+  expect(codes([relation("erosion", { own_mistake_plies: [3] })], "Inaccuracy")).not.toContain(
+    "erosion",
+  );
   // A conversion is told as clean only with no Inaccuracy or worse of the side's own inside the run.
-  expect(codes([relation("advantage_run", {outcome: "converted", own_error_plies: []})], "Best")).toContain("conversion");
-  expect(codes([relation("advantage_run", {outcome: "converted", own_error_plies: [5]})], "Best")).not.toContain("conversion");
-  expect(codes([relation("advantage_run", {outcome: "converted"})], "Best")).not.toContain("conversion");
+  expect(
+    codes([relation("advantage_run", { outcome: "converted", own_error_plies: [] })], "Best"),
+  ).toContain("conversion");
+  expect(
+    codes([relation("advantage_run", { outcome: "converted", own_error_plies: [5] })], "Best"),
+  ).not.toContain("conversion");
+  expect(codes([relation("advantage_run", { outcome: "converted" })], "Best")).not.toContain(
+    "conversion",
+  );
 });
 
 test("book is recognition, positive findings teach and arbitrary structure is not a cause", () => {
   const value = report();
-  value.opening = {name: "Bongcloud", version: "openings"} as Report["opening"];
+  value.opening = { name: "Bongcloud", version: "openings" } as Report["opening"];
   value.label = "Book";
-  const intent = gameIntent({...args, report: value});
+  const intent = gameIntent({ ...args, report: value });
   const text = renderNeutral(intent).text;
   expect(text).toContain("Bongcloud");
   // The Book badge decides: no correction for a recognised move.
   expect(text).not.toContain("3.00 pawns");
   expect(text).not.toMatch(/recognition|does not mean|quality grade|sound/);
-  const fact = event("positional", {feature: "rook_file", line: "actual", side: "black", after: "open", file: "d"});
-  expect(renderNeutral(makeIntent("key", "best", "game", "best", [positionalClaim(fact, "exd5", "Nf3")!])).text).toContain("black's rook");
-  expect(positionalClaim(event("positional", {feature: "bad_bishop"}), "e4", "d4")).toBeNull();
-  const best = {...report([event("critical_resource", {purpose: "defense", difficult: true})]), label: "Great", engine_label: "Great"} as Report;
-  expect(renderNeutral(gameIntent({...args, report: best})).text).toMatch(/only searched move|searched alternatives/);
+  const fact = event("positional", {
+    feature: "rook_file",
+    line: "actual",
+    side: "black",
+    after: "open",
+    file: "d",
+  });
+  expect(
+    renderNeutral(
+      makeIntent("key", "best", "game", "best", [positionalClaim(fact, "exd5", "Nf3")!]),
+    ).text,
+  ).toContain("black's rook");
+  expect(positionalClaim(event("positional", { feature: "bad_bishop" }), "e4", "d4")).toBeNull();
+  const best = {
+    ...report([event("critical_resource", { purpose: "defense", difficult: true })]),
+    label: "Great",
+    engine_label: "Great",
+  } as Report;
+  expect(renderNeutral(gameIntent({ ...args, report: best })).text).toMatch(
+    /only searched move|searched alternatives/,
+  );
 });
 
 test("deterministic variants survive reordering and leave evidence untouched", () => {
-  const input = {...args, report: report()};
+  const input = { ...args, report: report() };
   const saved = JSON.stringify(input);
   const first = renderNeutral(gameIntent(input));
   expect(renderNeutral(gameIntent(JSON.parse(saved)))).toEqual(first);
   expect(JSON.stringify(input)).toBe(saved);
-  expect(stableKey({a: 1, b: 2})).toBe(stableKey({b: 2, a: 1}));
+  expect(stableKey({ a: 1, b: 2 })).toBe(stableKey({ b: 2, a: 1 }));
   expect(first.text.length).toBeLessThanOrEqual(290);
-  const broken = renderNeutral(makeIntent("bad", "uncertain", "game", "uncertain", [claim("missing" as ClaimCode), claim("reply_capture")]));
+  const broken = renderNeutral(
+    makeIntent("bad", "uncertain", "game", "uncertain", [
+      claim("missing" as ClaimCode),
+      claim("reply_capture"),
+    ]),
+  );
   expect(broken.text).not.toContain("{");
   expect(broken.text).toContain("don't have a clear explanation");
 });
 
 test("cold SRS ignores poisoned future feedback and exposes no tactical or historical hints", () => {
-  const position = {session_id: "cold", failed: false, motif: "fork", best: "Nf3", explanation_summary: "win a queen"} as unknown as ColdPosition;
-  const preview = {fen: "fen", annotation: "Fork the queen with Nf3"} as ExplanationFrame;
-  const cold = {position, feedback: null, frame: preview, hadFailure: false, expression: "neutral" as const};
+  const position = {
+    session_id: "cold",
+    failed: false,
+    motif: "fork",
+    best: "Nf3",
+    explanation_summary: "win a queen",
+  } as unknown as ColdPosition;
+  const preview = { fen: "fen", annotation: "Fork the queen with Nf3" } as ExplanationFrame;
+  const cold = {
+    position,
+    feedback: null,
+    frame: preview,
+    hadFailure: false,
+    expression: "neutral" as const,
+  };
   expect(renderNeutral(practiceIntent(cold)).text).toBe("Tap a piece, then its destination.");
-  const result = practiceIntent({...cold, feedback: {completed: true, grade: "good", attempt_id: "attempt", explanation_summary: "The knight forks king and queen."}, frame: null, hadFailure: true, expression: "recovered"});
+  const result = practiceIntent({
+    ...cold,
+    feedback: {
+      completed: true,
+      grade: "good",
+      attempt_id: "attempt",
+      explanation_summary: "The knight forks king and queen.",
+    },
+    frame: null,
+    hadFailure: true,
+    expression: "recovered",
+  });
   expect(renderNeutral(result).text).toContain("knight forks");
   expect(result.purpose).toBe("recovery");
   expect(result.autoSpeakSuitable).toBe(false);
-  const explanation = explanationIntent("attempt", {analysis_id: "saved-search", authority: "stockfish", summary: "The fork wins material."} as Schema["MoveExplanation"], preview, 1);
+  const explanation = explanationIntent(
+    "attempt",
+    {
+      analysis_id: "saved-search",
+      authority: "stockfish",
+      summary: "The fork wins material.",
+    } as Schema["MoveExplanation"],
+    preview,
+    1,
+  );
   expect(explanation.claims[0].evidence[0].id).toBe("saved-search");
 });
 
 test("delivery severity stays independent of bubble claim ordering and uncertain output stays quiet", () => {
-  const book = makeIntent("opening", "book", "game", "book", [claim("book_sound", {opening: "Opening"}, 96)]);
-  const brilliant = makeIntent("sacrifice", "brilliant", "game", "brilliant", [claim("sacrifice", {}, 90)]);
-  const inaccuracy = makeIntent("slip", "inaccuracy", "game", "inaccuracy", [claim("loss", {loss: "0.65"}, 82)]);
-  const blunder = makeIntent("error", "blunder", "game", "blunder", [claim("loss", {loss: "4.10"}, 82)]);
-  const mate = makeIntent("mate-in-book", "book", "game", "book", [claim("allowed_mate", {opponent: "Black"}, 100)]);
+  const book = makeIntent("opening", "book", "game", "book", [
+    claim("book_sound", { opening: "Opening" }, 96),
+  ]);
+  const brilliant = makeIntent("sacrifice", "brilliant", "game", "brilliant", [
+    claim("sacrifice", {}, 90),
+  ]);
+  const inaccuracy = makeIntent("slip", "inaccuracy", "game", "inaccuracy", [
+    claim("loss", { loss: "0.65" }, 82),
+  ]);
+  const blunder = makeIntent("error", "blunder", "game", "blunder", [
+    claim("loss", { loss: "4.10" }, 82),
+  ]);
+  const mate = makeIntent("mate-in-book", "book", "game", "book", [
+    claim("allowed_mate", { opponent: "Black" }, 100),
+  ]);
   expect(book.priority).toBeLessThan(brilliant.priority);
   expect(book.intensity).toBeLessThan(inaccuracy.intensity);
   expect(inaccuracy.intensity).toBeLessThan(blunder.intensity);
   expect(blunder.intensity).toBeLessThan(mate.intensity);
   expect(book.interruptible).toBe(true);
   expect(mate.interruptible).toBe(false);
-  expect(makeIntent("opening", "book", "game", "book", [claim("book_sound", {opening: "Opening"}, 1)]).intensity).toBe(book.intensity);
-  const unavailable = makeIntent("failed", "uncertain", "variation", "uncertain", [claim("unavailable")]);
+  expect(
+    makeIntent("opening", "book", "game", "book", [claim("book_sound", { opening: "Opening" }, 1)])
+      .intensity,
+  ).toBe(book.intensity);
+  const unavailable = makeIntent("failed", "uncertain", "variation", "uncertain", [
+    claim("unavailable"),
+  ]);
   expect(unavailable.autoSpeakSuitable).toBe(false);
   expect(renderNeutral(mate).intensity).toBe(mate.intensity);
 });

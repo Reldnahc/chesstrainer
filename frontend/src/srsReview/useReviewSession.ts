@@ -52,17 +52,22 @@ export function useReviewSession({
   // A queue or card that failed to load is the panel's own state, with Try again,
   // never "Build your study queue".
   const [loadError, setLoadError] = useState<string | null>(null);
-  const lastLoad = useRef<[string | null | undefined, string | null | undefined, string | null | undefined]>([null, null, null]);
+  const lastLoad = useRef<
+    [string | null | undefined, string | null | undefined, string | null | undefined]
+  >([null, null, null]);
 
-  const refreshDue = useCallback(async (version: number) => {
-    try {
-      const count = await read(api.GET("/api/review/count"));
-      if (version === generation.current) setDue(count.due);
-    } catch {
-      if (version === generation.current)
-        fail(new Error("Could not refresh the due count. Your saved work is unchanged."));
-    }
-  }, [fail]);
+  const refreshDue = useCallback(
+    async (version: number) => {
+      try {
+        const count = await read(api.GET("/api/review/count"));
+        if (version === generation.current) setDue(count.due);
+      } catch {
+        if (version === generation.current)
+          fail(new Error("Could not refresh the due count. Your saved work is unchanged."));
+      }
+    },
+    [fail],
+  );
 
   const load = useCallback(
     async (id?: string | null, previous?: string | null, resumeSession?: string | null) => {
@@ -80,8 +85,7 @@ export function useReviewSession({
       setSubmittedMove(null);
       setHadFailure(false);
       setGradingError(null);
-      if (window.matchMedia(PHONE_QUERY).matches)
-        window.scrollTo({ top: 0, behavior: "instant" });
+      if (window.matchMedia(PHONE_QUERY).matches) window.scrollTo({ top: 0, behavior: "instant" });
       try {
         if (focusSkill && !practiceBatch.current) {
           const batch = await read(
@@ -93,29 +97,31 @@ export function useReviewSession({
           practiceBatch.current = batch;
         }
         const queue = focusSkill
-          ? (practiceBatch.current || []).filter(
-              (item) => !practiced.current.has(item.exercise_id),
-            )
-          : await read(api.GET("/api/review/queue", {
+          ? (practiceBatch.current || []).filter(item => !practiced.current.has(item.exercise_id))
+          : await read(
+              api.GET("/api/review/queue", {
                 params: { query: { last_id: previous || undefined } },
-              }));
+              }),
+            );
         if (version !== generation.current) return;
         if (focusSkill) setDue(queue.length);
         const next = id || queue[0]?.exercise_id;
         const result = resumeSession
-          ? await read(api.GET("/api/review/sessions/{session_id}", {
-              params: { path: { session_id: resumeSession } },
-            }))
-          : next
           ? await read(
-              api.POST("/api/review/{exercise_id}/start", {
-                params: {
-                  path: { exercise_id: next },
-                  query: { focus_skill_id: focusSkill || undefined },
-                },
+              api.GET("/api/review/sessions/{session_id}", {
+                params: { path: { session_id: resumeSession } },
               }),
             )
-          : null;
+          : next
+            ? await read(
+                api.POST("/api/review/{exercise_id}/start", {
+                  params: {
+                    path: { exercise_id: next },
+                    query: { focus_skill_id: focusSkill || undefined },
+                  },
+                }),
+              )
+            : null;
         if (version === generation.current) {
           setPosition(result);
           if (result?.opening) {
@@ -126,7 +132,12 @@ export function useReviewSession({
             setHadFailure(result.failed);
           }
           // Restored attempts and cards with saved feedback stay Listen-only.
-          if (result && !resumeSession && !result.feedback && (result.failed || !coldOpened.current)) {
+          if (
+            result &&
+            !resumeSession &&
+            !result.feedback &&
+            (result.failed || !coldOpened.current)
+          ) {
             coldOpened.current = true;
             openFor.current = result.session_id;
           }
@@ -173,7 +184,7 @@ export function useReviewSession({
   function recordCompletion(exerciseId: string, countsAsReview: boolean) {
     practiced.current.add(exerciseId);
     if (!position?.opening) clearExerciseLink();
-    if (countsAsReview) setDone((value) => value + 1);
+    if (countsAsReview) setDone(value => value + 1);
     if (focusSkill) setDue(value => Math.max(0, value - 1));
     setLast(exerciseId);
   }
@@ -199,7 +210,9 @@ export function useReviewSession({
       const san = result.submitted_san || result.attempt_frame?.san;
       audio.moveOr(san, `${eventId}:board`);
       if (result.grade !== "revealed") {
-        audio.play(result.completed ? "correct" : "retry", `${eventId}:feedback`, { delayMs: FEEDBACK_CUE_DELAY_MS });
+        audio.play(result.completed ? "correct" : "retry", `${eventId}:feedback`, {
+          delayMs: FEEDBACK_CUE_DELAY_MS,
+        });
       }
       setFeedback(result);
       setFeedbackEventId(eventId);

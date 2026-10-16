@@ -1,124 +1,151 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-/* Shared application actions; containers own placement and available width. */
-.action-control {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--control-border);
-  border-radius: 6px;
-  background: var(--raised);
-  color: #e8eaee;
-  font-weight: 500;
-  line-height: 1.2;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    background var(--motion-fast) var(--ease-standard),
-    border-color var(--motion-fast) var(--ease-standard),
-    color var(--motion-fast) var(--ease-standard);
-}
-.action-control.action-control--ordinary {
-  min-height: var(--control-height);
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  font-size: var(--text-md);
-}
-.action-control:is(.action-control--compact, .action-control--toolbar) {
-  min-height: var(--control-height-compact);
-  gap: var(--space-1-5);
-  padding: var(--space-1-5) var(--space-3);
-  font-size: var(--text-sm);
-}
-.action-control.action-control--dense {
-  min-height: var(--control-height-dense);
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-1-5);
-  font-size: var(--text-xs);
-}
-.action-control > svg { flex-shrink: 0; }
-.action-control:hover {
-  background: var(--control-hover);
-  border-color: var(--control-hover-border);
-}
-.action-control.action-control--primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #191a1c;
-  font-weight: 600;
-}
-.action-control.action-control--primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-}
-.action-control.action-control--secondary { background: transparent; }
-.action-control.action-control--secondary:hover { background: var(--control-hover); }
-.action-control.action-control--return {
-  background: #b5a0f2;
-  border-color: #cfbfff;
-  color: #211437;
-  font-weight: 700;
-}
-.action-control.action-control--return:hover {
-  background: #cfbfff;
-  border-color: #e3d9ff;
-}
-.action-control.action-control--quiet {
-  background: transparent;
-  border-color: transparent;
-  color: var(--muted);
-  justify-content: flex-start;
-  padding-inline: 0;
-}
-.action-control.action-control--mono { font-family: var(--mono); }
-.action-control.action-control--spread { justify-content: space-between; }
-.action-control.action-control--quiet:hover {
-  background: transparent;
-  border-color: transparent;
-  color: #fff;
-}
-.action-control.action-control--icon {
-  flex: none;
-  width: var(--control-height);
-  height: var(--control-height);
-  padding: 0;
-  justify-content: center;
-}
-.action-control--icon:is(.action-control--compact, .action-control--toolbar) { width: var(--control-height-compact); height: var(--control-height-compact); }
-.action-control--icon.action-control--dense { width: var(--control-height-dense); height: var(--control-height-dense); }
-/* A toggle that is on (aria-pressed). A surface with its own palette, such as
-   the coach bubble, sets the three tokens instead of writing its own rule. */
-.action-control[aria-pressed="true"],
-.action-control[aria-pressed="true"]:hover {
-  background: var(--pressed-background, var(--raised));
-  border-color: var(--pressed-border, var(--accent));
-  color: var(--pressed-color, var(--accent));
-}
-.action-control.action-control--quiet[aria-pressed="true"],
-.action-control.action-control--quiet[aria-pressed="true"]:hover {
-  background: transparent;
-  border-color: transparent;
-  color: var(--pressed-color, var(--accent));
-}
-.action-control:disabled {
-  opacity: 0.45;
-  cursor: default;
-}
-.action-control[hidden] { display: none; }
-@media (max-width: 760px) {
-  .action-control.action-control--ordinary,
-  .action-control.action-control--compact,
-  .action-control.action-control--dense,
-  .action-control.action-control--toolbar { min-height: var(--touch-target); }
-  /* A toolbar Button is compact on desktop and narrower on phones, so a full
-     row of board controls fits beside the move buttons (Play's Resign and New game). */
-  .action-control.action-control--toolbar {
+  /* Shared application actions; containers own placement and available width. */
+  .action-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--control-border);
+    border-radius: 6px;
+    background: var(--raised);
+    color: #e8eaee;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background var(--motion-fast) var(--ease-standard),
+      border-color var(--motion-fast) var(--ease-standard),
+      color var(--motion-fast) var(--ease-standard);
+  }
+  .action-control.action-control--ordinary {
+    min-height: var(--control-height);
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-md);
+  }
+  .action-control:is(.action-control--compact, .action-control--toolbar) {
+    min-height: var(--control-height-compact);
+    gap: var(--space-1-5);
+    padding: var(--space-1-5) var(--space-3);
+    font-size: var(--text-sm);
+  }
+  .action-control.action-control--dense {
+    min-height: var(--control-height-dense);
     gap: var(--space-1);
-    padding: var(--space-1-5);
+    padding: var(--space-1) var(--space-1-5);
     font-size: var(--text-xs);
   }
-  .action-control--quiet.action-control--toolbar { padding-inline: 0; }
-  .action-control--icon.action-control--toolbar { padding: 0; }
-  .action-control.action-control--icon { width: var(--touch-target); height: var(--touch-target); }
-}
+  .action-control > svg {
+    flex-shrink: 0;
+  }
+  .action-control:hover {
+    background: var(--control-hover);
+    border-color: var(--control-hover-border);
+  }
+  .action-control.action-control--primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #191a1c;
+    font-weight: 600;
+  }
+  .action-control.action-control--primary:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+  .action-control.action-control--secondary {
+    background: transparent;
+  }
+  .action-control.action-control--secondary:hover {
+    background: var(--control-hover);
+  }
+  .action-control.action-control--return {
+    background: #b5a0f2;
+    border-color: #cfbfff;
+    color: #211437;
+    font-weight: 700;
+  }
+  .action-control.action-control--return:hover {
+    background: #cfbfff;
+    border-color: #e3d9ff;
+  }
+  .action-control.action-control--quiet {
+    background: transparent;
+    border-color: transparent;
+    color: var(--muted);
+    justify-content: flex-start;
+    padding-inline: 0;
+  }
+  .action-control.action-control--mono {
+    font-family: var(--mono);
+  }
+  .action-control.action-control--spread {
+    justify-content: space-between;
+  }
+  .action-control.action-control--quiet:hover {
+    background: transparent;
+    border-color: transparent;
+    color: #fff;
+  }
+  .action-control.action-control--icon {
+    flex: none;
+    width: var(--control-height);
+    height: var(--control-height);
+    padding: 0;
+    justify-content: center;
+  }
+  .action-control--icon:is(.action-control--compact, .action-control--toolbar) {
+    width: var(--control-height-compact);
+    height: var(--control-height-compact);
+  }
+  .action-control--icon.action-control--dense {
+    width: var(--control-height-dense);
+    height: var(--control-height-dense);
+  }
+  /* A toggle that is on (aria-pressed). A surface with its own palette, such as
+   the coach bubble, sets the three tokens instead of writing its own rule. */
+  .action-control[aria-pressed="true"],
+  .action-control[aria-pressed="true"]:hover {
+    background: var(--pressed-background, var(--raised));
+    border-color: var(--pressed-border, var(--accent));
+    color: var(--pressed-color, var(--accent));
+  }
+  .action-control.action-control--quiet[aria-pressed="true"],
+  .action-control.action-control--quiet[aria-pressed="true"]:hover {
+    background: transparent;
+    border-color: transparent;
+    color: var(--pressed-color, var(--accent));
+  }
+  .action-control:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .action-control[hidden] {
+    display: none;
+  }
+  @media (max-width: 760px) {
+    .action-control.action-control--ordinary,
+    .action-control.action-control--compact,
+    .action-control.action-control--dense,
+    .action-control.action-control--toolbar {
+      min-height: var(--touch-target);
+    }
+    /* A toolbar Button is compact on desktop and narrower on phones, so a full
+     row of board controls fits beside the move buttons (Play's Resign and New game). */
+    .action-control.action-control--toolbar {
+      gap: var(--space-1);
+      padding: var(--space-1-5);
+      font-size: var(--text-xs);
+    }
+    .action-control--quiet.action-control--toolbar {
+      padding-inline: 0;
+    }
+    .action-control--icon.action-control--toolbar {
+      padding: 0;
+    }
+    .action-control.action-control--icon {
+      width: var(--touch-target);
+      height: var(--touch-target);
+    }
+  }
 }

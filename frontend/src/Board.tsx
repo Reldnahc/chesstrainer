@@ -1,4 +1,9 @@
-import { Chessboard, defaultArrowOptions, type Arrow, type PieceHandlerArgs } from "react-chessboard";
+import {
+  Chessboard,
+  defaultArrowOptions,
+  type Arrow,
+  type PieceHandlerArgs,
+} from "react-chessboard";
 import {
   useCallback,
   useEffect,
@@ -25,11 +30,23 @@ type MarkColor = "red" | "green" | "yellow" | "blue";
 type Modifiers = { altKey: boolean; shiftKey: boolean; ctrlKey: boolean; metaKey: boolean };
 const DRAWN_ARROWS = {
   ...defaultArrowOptions,
-  colors: { default: "#ffaa00", shift: "#4caf50", ctrl: "#f44336", alt: "#2f80ed", meta: "#f44336" },
+  colors: {
+    default: "#ffaa00",
+    shift: "#4caf50",
+    ctrl: "#f44336",
+    alt: "#2f80ed",
+    meta: "#f44336",
+  },
 };
 // The library resolves arrow modifiers in this order too.
 function markColor(keys: Modifiers): MarkColor {
-  return keys.altKey ? "blue" : keys.shiftKey ? "green" : keys.ctrlKey || keys.metaKey ? "yellow" : "red";
+  return keys.altKey
+    ? "blue"
+    : keys.shiftKey
+      ? "green"
+      : keys.ctrlKey || keys.metaKey
+        ? "yellow"
+        : "red";
 }
 
 // react-chessboard's default arrow opacity.
@@ -45,14 +62,21 @@ function arrowFades(boardId: string, arrows: Arrow[]) {
     if (!match) return arrow;
     const opacity = (ARROW_OPACITY * Number.parseInt(match[2], 16)) / 255;
     // The library draws the given arrows first, in order, and names each head after its index.
-    rules.push(`.board-shell path[marker-end="url(#${boardId}-arrowhead-${index}-${arrow.startSquare}-${arrow.endSquare})"]`
-      + `{opacity:${opacity.toFixed(3)}}`);
+    rules.push(
+      `.board-shell path[marker-end="url(#${boardId}-arrowhead-${index}-${arrow.startSquare}-${arrow.endSquare})"]` +
+        `{opacity:${opacity.toFixed(3)}}`,
+    );
     return { ...arrow, color: `#${match[1]}` };
   });
   return { opaque, style: rules.join("") };
 }
 
-function PromotionDialog({ board, promotion, onChoose, onClose }: {
+function PromotionDialog({
+  board,
+  promotion,
+  onChoose,
+  onClose,
+}: {
   board: RefObject<HTMLDivElement | null>;
   promotion: PromotionChoice;
   onChoose: (value: Promotion) => void;
@@ -90,19 +114,23 @@ function PromotionDialog({ board, promotion, onChoose, onClose }: {
     <dialog {...dialog} aria-label="Choose promotion" className="promotion">
       <h3>Promote to</h3>
       <div className="button-row">
-        {([
-          ["q", "Queen"],
-          ["r", "Rook"],
-          ["b", "Bishop"],
-          ["n", "Knight"],
-        ] as const)
+        {(
+          [
+            ["q", "Queen"],
+            ["r", "Rook"],
+            ["b", "Bishop"],
+            ["n", "Knight"],
+          ] as const
+        )
           .filter(([value]) => promotion.choices.includes(value))
           .map(([value, name]) => (
             <Button size="compact" key={value} onClick={() => onChoose(value)}>
               {name}
             </Button>
           ))}
-        <Button size="compact" onClick={onClose}>Cancel</Button>
+        <Button size="compact" onClick={onClose}>
+          Cancel
+        </Button>
       </div>
     </dialog>
   );
@@ -162,37 +190,32 @@ export default function Board({
     if (interactiveRef.current) setSelected(square);
   }, []);
   const moves =
-    interactive && selected
-      ? legalMoves.filter((move) => move.from_square === selected)
-      : [];
-  const destinations = new Map(moves.map((move) => [move.to_square, move]));
-  const selectable = (square: string) =>
-    legalMoves.some((move) => move.from_square === square);
+    interactive && selected ? legalMoves.filter(move => move.from_square === selected) : [];
+  const destinations = new Map(moves.map(move => [move.to_square, move]));
+  const selectable = (square: string) => legalMoves.some(move => move.from_square === square);
   function choose(from: string, to: string, fromDrop = false) {
     if (!interactive) return;
     setSelected(null);
     // Only display/submit moves supplied by the server. Grading revalidates them.
-    const matches = legalMoves.filter(
-      (move) => move.from_square === from && move.to_square === to,
-    );
+    const matches = legalMoves.filter(move => move.from_square === from && move.to_square === to);
     if (!matches.length) return;
-    const choices = matches.flatMap((move) =>
-      move.promotion ? [move.promotion] : [],
-    );
+    const choices = matches.flatMap(move => (move.promotion ? [move.promotion] : []));
     if (choices.length) {
       // Dnd-kit suppresses document clicks for 50 ms after a drag. Present the
       // actionable dialog after that guard ends, so its first click is not lost.
       if (fromDrop)
-        promotionTimer.current = window.setTimeout(
-          () => setPromotion({ from, to, choices }),
-          70,
-        );
+        promotionTimer.current = window.setTimeout(() => setPromotion({ from, to, choices }), 70);
       else setPromotion({ from, to, choices });
     } else onMove?.(from, to);
   }
   return (
-    <div ref={board} tabIndex={-1} className="board-shell" data-feedback={feedback}
-      onContextMenu={(event) => event.preventDefault()}>
+    <div
+      ref={board}
+      tabIndex={-1}
+      className="board-shell"
+      data-feedback={feedback}
+      onContextMenu={event => event.preventDefault()}
+    >
       {fades.style && <style>{fades.style}</style>}
       <Chessboard
         options={{
@@ -225,9 +248,7 @@ export default function Board({
                 .map(([role]) => role.replaceAll("_", " "))
                 .join(", ")}
               data-pattern-square={
-                Object.values(roles).some((squares) => squares.includes(square))
-                  ? square
-                  : undefined
+                Object.values(roles).some(squares => squares.includes(square)) ? square : undefined
               }
               data-mark={marks[square]}
               className={`board-square-content${interactive && selected === square ? " selected" : ""}${highlights.includes(square) ? " playback-highlight" : ""}${Object.entries(
@@ -245,9 +266,7 @@ export default function Board({
                 <span
                   key={fen + quality.label}
                   className={`board-quality label-${quality.label.toLowerCase()}`}
-                  aria-label={
-                    quality.accessibleLabel || `Move rating: ${quality.label}`
-                  }
+                  aria-label={quality.accessibleLabel || `Move rating: ${quality.label}`}
                 >
                   <MoveSymbol label={quality.label} />
                 </span>
@@ -269,7 +288,8 @@ export default function Board({
             return false;
           },
           onSquareMouseDown: ({ square }, event) => {
-            if (event.button === 0) setMarks((current) => (Object.keys(current).length ? {} : current));
+            if (event.button === 0)
+              setMarks(current => (Object.keys(current).length ? {} : current));
             if (event.button === 2) rightPress.current = square;
           },
           onSquareMouseUp: ({ square }, event) => {
@@ -278,7 +298,9 @@ export default function Board({
             rightPress.current = null;
             if (pressed !== square) return;
             const color = markColor(event);
-            setMarks(({ [square]: previous, ...rest }) => (previous === color ? rest : { ...rest, [square]: color }));
+            setMarks(({ [square]: previous, ...rest }) =>
+              previous === color ? rest : { ...rest, [square]: color },
+            );
           },
           onSquareClick: ({ square }) => {
             if (!interactive) return;
@@ -288,17 +310,19 @@ export default function Board({
           },
         }}
       />
-      <DialogPresence>{promotion && (
-        <PromotionDialog
-          board={board}
-          promotion={promotion}
-          onChoose={(value) => {
-            onMove?.(promotion.from, promotion.to, value);
-            setPromotion(null);
-          }}
-          onClose={() => setPromotion(null)}
-        />
-      )}</DialogPresence>
+      <DialogPresence>
+        {promotion && (
+          <PromotionDialog
+            board={board}
+            promotion={promotion}
+            onChoose={value => {
+              onMove?.(promotion.from, promotion.to, value);
+              setPromotion(null);
+            }}
+            onClose={() => setPromotion(null)}
+          />
+        )}
+      </DialogPresence>
     </div>
   );
 }

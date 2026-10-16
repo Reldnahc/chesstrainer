@@ -26,14 +26,8 @@ export default function ManHair({ look }: { look: ManLook }) {
   if (look === "expert")
     return (
       <g>
-        <path
-          d="M16 37Q10 10 33 9q24-7 32 15l-2 14-5-8-1-10Q38 33 23 25l-2 13Z"
-          fill="#424247"
-        />
-        <path
-          d="M17 28q0 5 4 10l2-13-4-2Zm43-3-2-5v11l5 7 1-11Z"
-          fill="#b1ada2"
-        />
+        <path d="M16 37Q10 10 33 9q24-7 32 15l-2 14-5-8-1-10Q38 33 23 25l-2 13Z" fill="#424247" />
+        <path d="M17 28q0 5 4 10l2-13-4-2Zm43-3-2-5v11l5 7 1-11Z" fill="#b1ada2" />
         <path
           d="M25 19q11 4 24-4m-19 6q11 0 19-5"
           fill="none"

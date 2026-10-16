@@ -1,7 +1,14 @@
 import type { DialogueIntent } from "./model";
 
-export type ResponseStrategy = "reaction-first" | "consequence-first" | "observation-first" |
-  "question-first" | "pattern-first" | "mentor-first" | "calm-reset" | "minimal";
+export type ResponseStrategy =
+  | "reaction-first"
+  | "consequence-first"
+  | "observation-first"
+  | "question-first"
+  | "pattern-first"
+  | "mentor-first"
+  | "calm-reset"
+  | "minimal";
 export type CommunicationBehavior = {
   general: ResponseStrategy;
   praise: ResponseStrategy;
@@ -18,14 +25,16 @@ export type CommunicationBehavior = {
 };
 
 /** Facts survive every composition. Optional teaching cues contain no unique facts. */
-export type ClaimWording = string | {
-  fact: string;
-  consequence?: string;
-  observation?: string;
-  reaction?: string;
-  question?: string;
-  takeaway?: string;
-};
+export type ClaimWording =
+  | string
+  | {
+      fact: string;
+      consequence?: string;
+      observation?: string;
+      reaction?: string;
+      question?: string;
+      takeaway?: string;
+    };
 
 export type CharacterBible = {
   temperament: string;
@@ -47,25 +56,35 @@ export type CoachPersonality = {
    * has it (`coachPersonality`); only the neutral fallback leaves it out. */
   openingWording?: "sequence";
   behavior?: CommunicationBehavior;
-  delivery: {pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright"};
+  delivery: { pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright" };
   /** Curated restatements of validated claims. No scoring or evidence selection. */
   templates: Readonly<Partial<Record<string, readonly ClaimWording[]>>>;
 };
 
 /** Every coach scopes tactical claims to their witnesses and speaks recorded
  * openings as a sequence; a coach's file supplies the rest. */
-export function coachPersonality(personality: Omit<CoachPersonality, "tacticalWording" | "openingWording">): CoachPersonality {
-  return {...personality, tacticalWording: "witness", openingWording: "sequence"};
+export function coachPersonality(
+  personality: Omit<CoachPersonality, "tacticalWording" | "openingWording">,
+): CoachPersonality {
+  return { ...personality, tacticalWording: "witness", openingWording: "sequence" };
 }
 
 export const neutralPersonality: CoachPersonality = {
   version: "neutral-1",
-  bible: {temperament: "Plain and attentive.", teaching: "Explain the supported consequence.",
-    rhythm: "One fact, then a useful connection.", celebration: "Credit the specific idea.",
-    correction: "State the consequence without judging the player.", avoid: "Invented causes, personal assumptions or calibrated population claims."},
-  maxCharacters: 290, maxClaims: 2, delivery: {pace: "steady", energy: "quiet"}, templates: {},
+  bible: {
+    temperament: "Plain and attentive.",
+    teaching: "Explain the supported consequence.",
+    rhythm: "One fact, then a useful connection.",
+    celebration: "Credit the specific idea.",
+    correction: "State the consequence without judging the player.",
+    avoid: "Invented causes, personal assumptions or calibrated population claims.",
+  },
+  maxCharacters: 290,
+  maxClaims: 2,
+  delivery: { pace: "steady", energy: "quiet" },
+  templates: {},
 };
 
-export type DialogueCharacter = {id: string; personality?: CoachPersonality};
+export type DialogueCharacter = { id: string; personality?: CoachPersonality };
 // The type intentionally gives personality no game/report, provider, or account handle.
 export type PersonalityInput = Readonly<DialogueIntent>;

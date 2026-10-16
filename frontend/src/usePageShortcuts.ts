@@ -3,7 +3,17 @@ import { useLatest } from "./useLatest";
 
 /** The application's page-level keys (letters in lower case). Element-level
  * keys (tabs, graph points) stop propagation, so they never also reach these. */
-export type ShortcutKey = "ArrowLeft" | "ArrowRight" | "ArrowUp" | "ArrowDown" | "Home" | "End" | "Escape" | "a" | "d" | "x";
+export type ShortcutKey =
+  | "ArrowLeft"
+  | "ArrowRight"
+  | "ArrowUp"
+  | "ArrowDown"
+  | "Home"
+  | "End"
+  | "Escape"
+  | "a"
+  | "d"
+  | "x";
 export type Shortcuts = Partial<Record<ShortcutKey, () => void>>;
 
 type Layer = { current: Shortcuts };
@@ -14,7 +24,11 @@ function keydown(event: KeyboardEvent) {
   // Modal choices and native popovers own Escape and focus navigation. A leaving
   // copy of one (ghost.ts) is only a picture fading out, so it does not count.
   if (document.querySelector(":modal, :popover-open:not([data-ghost])")) return;
-  if (event.target instanceof Element && event.target.closest("input,select,textarea,[contenteditable=true]")) return;
+  if (
+    event.target instanceof Element &&
+    event.target.closest("input,select,textarea,[contenteditable=true]")
+  )
+    return;
   // The most recently opened owner of a key handles it, so a panel opened over
   // the page (the practice continuation) takes the keys while it is open.
   const key = (event.key.length === 1 ? event.key.toLowerCase() : event.key) as ShortcutKey;

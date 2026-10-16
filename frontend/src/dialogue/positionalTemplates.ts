@@ -1,13 +1,15 @@
-import type {Claim} from "./model";
+import type { Claim } from "./model";
 
 // Base predicates only: the shared renderer owns the named move and conditional
 // tense. Actual-board personality templates cannot override hypothetical scope.
 const predicates: Readonly<Record<string, string>> = {
   development: "develop the {piece} from its original square.",
   rook_file: "leave {side}'s rook on a {kind} {file}-file.",
-  passed: "leave {side} with passed pawns on {squares}; no enemy pawn would be ahead on those or neighboring files.",
+  passed:
+    "leave {side} with passed pawns on {squares}; no enemy pawn would be ahead on those or neighboring files.",
   passer_advance: "advance the passed pawn to {square}.",
-  isolated: "leave {side} with isolated pawns on {squares}, with no friendly pawn on a neighboring file.",
+  isolated:
+    "leave {side} with isolated pawns on {squares}, with no friendly pawn on a neighboring file.",
   support: "give the {piece} on {square} support.",
   unsupported: "leave the {piece} on {square} undefended; that alone would not mean it was lost.",
   flights: "open {squares} as a legal flight square for the king.",

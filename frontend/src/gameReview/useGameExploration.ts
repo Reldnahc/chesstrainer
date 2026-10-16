@@ -15,8 +15,13 @@ export type SpeechNavigation = {
 };
 
 /** A navigation the coach may narrate once: the game and user action identify the event. */
-export function speechNavigationFor(gameId: string, key: string, action: number, awaitAnalysis: boolean): SpeechNavigation {
-  return {key, eventId: `${gameId}:${action}`, awaitAnalysis};
+export function speechNavigationFor(
+  gameId: string,
+  key: string,
+  action: number,
+  awaitAnalysis: boolean,
+): SpeechNavigation {
+  return { key, eventId: `${gameId}:${action}`, awaitAnalysis };
 }
 
 /** Owns variation history and navigation without mutating the original game. */
@@ -54,7 +59,7 @@ export function useGameExploration(
   const cursor = game
     ? { ...selection, ply: Math.min(selection.ply, game.frames.length - 1) }
     : selection;
-  const branch = branches.find((b) => b.id === cursor.branch);
+  const branch = branches.find(b => b.id === cursor.branch);
   const path = branch ? branch.moves.slice(0, cursor.step) : [];
   const root = branch ? branch.root : cursor.ply;
   const key = `${root}:${path.join(",")}`;
@@ -88,7 +93,12 @@ export function useGameExploration(
   const opened = useRef<string | null>(null);
   const greetOpening = useEffectEvent(() => {
     if (selection.ply === 0 && selection.branch === null && actionVersion.current === 0)
-      setSpeechNavigation({key: "0:", eventId: `${id}:open`, awaitAnalysis: false, opening: true});
+      setSpeechNavigation({
+        key: "0:",
+        eventId: `${id}:open`,
+        awaitAnalysis: false,
+        opening: true,
+      });
   });
   useEffect(() => {
     if (gameId === null || opened.current === gameId) return;
@@ -102,7 +112,8 @@ export function useGameExploration(
   // Read once per key: the key already names root and path, and a held
   // position arriving later must not restart the request.
   const branchRequest = useEffectEvent(() =>
-    branchPosition?.key === key ? null : { ply: root, moves: path });
+    branchPosition?.key === key ? null : { ply: root, moves: path },
+  );
   const failBranch = useEffectEvent((e: unknown) => fail(e));
 
   useEffect(() => {
@@ -119,19 +130,23 @@ export function useGameExploration(
         body,
       }),
     )
-      .then((value) => {
+      .then(value => {
         if (!active || !mounted.current || activeKey.current !== key) return;
         setBranchPosition({ key, value });
         const pending = pendingNavigation.current;
-        if (pending?.key === key && pending.eventId === requestAction && pending.eventId === actionVersion.current) {
+        if (
+          pending?.key === key &&
+          pending.eventId === requestAction &&
+          pending.eventId === actionVersion.current
+        ) {
           pendingNavigation.current = null;
           audio.advance(pending.forward, value.san, `${pending.eventId}:board`);
         }
       })
-      .catch((e) => {
+      .catch(e => {
         if (!active || !mounted.current || activeKey.current !== key) return;
         if (pendingNavigation.current?.eventId === requestAction) pendingNavigation.current = null;
-        setSpeechNavigation(value => value?.eventId === `${id}:${requestAction}` ? null : value);
+        setSpeechNavigation(value => (value?.eventId === `${id}:${requestAction}` ? null : value));
         failBranch(e);
       });
     return () => {
@@ -154,7 +169,11 @@ export function useGameExploration(
     if (changed) {
       const eventId = beginAction();
       if (!options?.silent) {
-        audio.advance(!branch && next === cursor.ply + 1, game.frames[next].san, `${eventId}:board`);
+        audio.advance(
+          !branch && next === cursor.ply + 1,
+          game.frames[next].san,
+          `${eventId}:board`,
+        );
         // A mainline visit speaks only the explanation available on arrival.
         // A later background review update is not a new navigation event.
         setSpeechNavigation(speechNavigationFor(id, nextKey, eventId, false));
@@ -184,8 +203,9 @@ export function useGameExploration(
     if (activeKey.current !== nextKey) {
       const eventId = beginAction();
       setSpeechNavigation(speechNavigationFor(id, nextKey, eventId, true));
-      const forward = branch?.id === selected.id && next === cursor.step + 1
-        || !branch && selected.root === cursor.ply && next === 1;
+      const forward =
+        (branch?.id === selected.id && next === cursor.step + 1) ||
+        (!branch && selected.root === cursor.ply && next === 1);
       // The last complete position can display immediately. Other variation
       // steps keep the old board visible until their guarded request succeeds.
       if (branchPosition?.key === nextKey) {
@@ -204,19 +224,14 @@ export function useGameExploration(
   usePageShortcuts({ Escape: escape });
 
   function addBranch(moves: string[], sans: string[]) {
-    const existing = branches.find(
-      (b) => b.root === root && b.moves.join() === moves.join(),
-    );
-    const extending =
-      !existing && branch && cursor.step === branch.moves.length;
+    const existing = branches.find(b => b.root === root && b.moves.join() === moves.join());
+    const extending = !existing && branch && cursor.step === branch.moves.length;
     const branchId = existing?.id ?? (extending ? branch.id : nextId.current++);
     const returnPly = branch?.returnPly ?? cursor.ply;
     const updated = { id: branchId, root, moves, sans, returnPly };
     if (extending || existing)
-      setBranches((values) =>
-        values.map((b) => (b.id === branchId ? updated : b)),
-      );
-    else setBranches((values) => [...values, updated]);
+      setBranches(values => values.map(b => (b.id === branchId ? updated : b)));
+    else setBranches(values => [...values, updated]);
     setCursor({ ply: root, branch: branchId, step: moves.length });
   }
   async function play(from: string, to: string, promotion?: string) {
@@ -237,13 +252,10 @@ export function useGameExploration(
           body: { ply: root, moves },
         }),
       );
-      if (!mounted.current || activeKey.current !== requestKey || actionVersion.current !== eventId) return null;
-      if (!next.san)
-        throw new Error("The server returned a variation without its move.");
-      addBranch(moves, [
-        ...(branch ? branch.sans.slice(0, cursor.step) : []),
-        next.san,
-      ]);
+      if (!mounted.current || activeKey.current !== requestKey || actionVersion.current !== eventId)
+        return null;
+      if (!next.san) throw new Error("The server returned a variation without its move.");
+      addBranch(moves, [...(branch ? branch.sans.slice(0, cursor.step) : []), next.san]);
       const nextKey = `${root}:${moves.join(",")}`;
       activeKey.current = nextKey;
       setBranchPosition({ key: nextKey, value: next });
@@ -283,8 +295,7 @@ export function useGameExploration(
     step,
     returnToGame,
     play,
-    flip: () =>
-      setOrientation((value) => (value === "white" ? "black" : "white")),
+    flip: () => setOrientation(value => (value === "white" ? "black" : "white")),
     beginScrubbing: () => {
       beginAction();
       scrubOrigin.current = activeKey.current;
@@ -298,8 +309,7 @@ export function useGameExploration(
         setSpeechNavigation(speechNavigationFor(id, activeKey.current, eventId, false));
       }
     },
-    toggleExplanation: () =>
-      setExplanationKey((value) => (value === key ? null : key)),
+    toggleExplanation: () => setExplanationKey(value => (value === key ? null : key)),
     selectBranch,
   };
 }

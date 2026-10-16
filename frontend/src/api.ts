@@ -12,7 +12,10 @@ export function setAccountSession(enabled: boolean, token?: string | null) {
 export const LAN_TOKEN_KEY = "lan-token";
 /** The server needs a sign-in (accounts) or an access token (LAN connection). */
 export type AuthRequirement = "account" | "connection";
-const authEvents: Record<AuthRequirement, string> = { account: "account-required", connection: "connection-required" };
+const authEvents: Record<AuthRequirement, string> = {
+  account: "account-required",
+  connection: "connection-required",
+};
 
 /** Calls `handler` whenever a response says this kind of authentication is needed. */
 export function onAuthRequired(kind: AuthRequirement, handler: () => void): () => void {
@@ -23,7 +26,10 @@ const authRequired = (kind: AuthRequirement) => window.dispatchEvent(new Event(a
 
 /** A failed API response. The message is written for the reader; the status is for callers. */
 export class ApiError extends Error {
-  constructor(message: string, readonly status: number) {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
     super(message);
     this.name = "ApiError";
   }
@@ -41,7 +47,8 @@ function detailOf(result: unknown): string | null {
   if (typeof detail === "string") return detail;
   if (Array.isArray(detail)) {
     const first: unknown = detail[0];
-    if (first && typeof first === "object" && "msg" in first && typeof first.msg === "string") return first.msg;
+    if (first && typeof first === "object" && "msg" in first && typeof first.msg === "string")
+      return first.msg;
   }
   return null;
 }
@@ -73,16 +80,22 @@ api.use({
       authRequired("account");
     }
     // A reverse proxy's 502/504 page or an unhandled 500 has no JSON detail.
-    const fallback = response.status >= 500 ? SERVER_PROBLEM
-      : response.status === 413 ? "That upload is too large for the server."
-      : response.status === 400 || response.status === 422 ? "Please check the submitted fields."
-      : response.status === 404 ? "That was not found. It may have been removed."
-      : "The server couldn’t handle that request.";
+    const fallback =
+      response.status >= 500
+        ? SERVER_PROBLEM
+        : response.status === 413
+          ? "That upload is too large for the server."
+          : response.status === 400 || response.status === 422
+            ? "Please check the submitted fields."
+            : response.status === 404
+              ? "That was not found. It may have been removed."
+              : "The server couldn’t handle that request.";
     throw new ApiError(detail ?? fallback, response.status);
   },
   onError({ request, error }) {
     // A cancelled request keeps its own error, so callers can tell it apart.
-    if (request.signal.aborted || (error instanceof DOMException && error.name === "AbortError")) return;
+    if (request.signal.aborted || (error instanceof DOMException && error.name === "AbortError"))
+      return;
     return new ApiError(UNREACHABLE, 0);
   },
 });
@@ -90,8 +103,7 @@ api.use({
 /** Unwrap the endpoint's inferred success type; callers cannot supply a substitute. */
 export async function read<T>(request: Promise<{ data?: T }>): Promise<T> {
   const { data } = await request;
-  if (data === undefined)
-    throw new Error("The server returned an empty response.");
+  if (data === undefined) throw new Error("The server returned an empty response.");
   return data;
 }
 

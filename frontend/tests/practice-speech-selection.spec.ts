@@ -1,235 +1,603 @@
 import { expect, test } from "@playwright/test";
 import { readFileSync } from "node:fs";
-import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../src/api";
+import type {
+  ColdPosition,
+  ExplanationFrame,
+  Feedback,
+  MoveExplanation,
+  PatternFinding,
+  Schema,
+} from "../src/api";
 import { meanings } from "../src/audio/speech/meaningCatalog";
-import { explanationCueRecording, explanationFindingRecording, explanationFrameRecording, explanationNoteRecording,
-  explanationSummaryRecording, lessonRecording, openingRecallRecording, practiceRecording, puzzleRecording } from "../src/audio/speech/practiceSelection";
+import {
+  explanationCueRecording,
+  explanationFindingRecording,
+  explanationFrameRecording,
+  explanationNoteRecording,
+  explanationSummaryRecording,
+  lessonRecording,
+  openingRecallRecording,
+  practiceRecording,
+  puzzleRecording,
+} from "../src/audio/speech/practiceSelection";
 
-const inventory = JSON.parse(readFileSync(new URL("../src/audio/speech/bank/manifest.json", import.meta.url), "utf8")) as {recordings: {id: string}[]};
+const inventory = JSON.parse(
+  readFileSync(new URL("../src/audio/speech/bank/manifest.json", import.meta.url), "utf8"),
+) as { recordings: { id: string }[] };
 const bank = new Set(inventory.recordings.map(recording => recording.id));
 const frame = (overrides: Partial<ExplanationFrame> = {}): ExplanationFrame => ({
-  fen: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1", uci: "e2e4", san: "e4", annotation: "Saved move.", highlights: [], material_change: 0,
-  capture: null, gives_check: false, facts_version: 1, promotion: null, castling: false, checkmate: false,
-  escaped_check: false, ...overrides,
+  fen: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+  uci: "e2e4",
+  san: "e4",
+  annotation: "Saved move.",
+  highlights: [],
+  material_change: 0,
+  capture: null,
+  gives_check: false,
+  facts_version: 1,
+  promotion: null,
+  castling: false,
+  checkmate: false,
+  escaped_check: false,
+  ...overrides,
 });
-const position: ColdPosition = {exercise_id: "exercise", session_id: "session", failed: false, fen: "cold",
-  last_attempt_id: null, legal_moves: [], orientation: "white", practice_only: false, previous_reviews: 0, review_reason: "new"};
-const feedback = (overrides: Partial<Feedback> = {}): Feedback => ({completed: true, grade: "accepted", attempt_id: "attempt", ...overrides});
+const position: ColdPosition = {
+  exercise_id: "exercise",
+  session_id: "session",
+  failed: false,
+  fen: "cold",
+  last_attempt_id: null,
+  legal_moves: [],
+  orientation: "white",
+  practice_only: false,
+  previous_reviews: 0,
+  review_reason: "new",
+};
+const feedback = (overrides: Partial<Feedback> = {}): Feedback => ({
+  completed: true,
+  grade: "accepted",
+  attempt_id: "attempt",
+  ...overrides,
+});
 const explanation = (overrides: Partial<MoveExplanation> = {}): MoveExplanation => ({
-  version: "1", attempt_id: "attempt", authority: "stockfish", accepted: true, move_uci: "e2e4", move_san: "e4",
-  summary: "Saved summary.", notes: [], frames: [frame({uci: null}), frame()], orientation: "white", analysis_id: "analysis", ...overrides,
+  version: "1",
+  attempt_id: "attempt",
+  authority: "stockfish",
+  accepted: true,
+  move_uci: "e2e4",
+  move_san: "e4",
+  summary: "Saved summary.",
+  notes: [],
+  frames: [frame({ uci: null }), frame()],
+  orientation: "white",
+  analysis_id: "analysis",
+  ...overrides,
 });
 const finding = (overrides: Partial<PatternFinding> = {}): PatternFinding => ({
-  actor: "white", analysis_id: "analysis", direction: "missed_opportunity", explanation: "Saved witness.",
-  frame_ply: 1, moves: ["e2e4"], plies: [1], rule_id: "verified", skill_id: "fork", squares: ["e4"],
-  verification: "verified_line", cue: "Saved cue.", mechanism: "fork_collected", cue_key: "fork", ...overrides,
+  actor: "white",
+  analysis_id: "analysis",
+  direction: "missed_opportunity",
+  explanation: "Saved witness.",
+  frame_ply: 1,
+  moves: ["e2e4"],
+  plies: [1],
+  rule_id: "verified",
+  skill_id: "fork",
+  squares: ["e4"],
+  verification: "verified_line",
+  cue: "Saved cue.",
+  mechanism: "fork_collected",
+  cue_key: "fork",
+  ...overrides,
 });
 
 test("all twenty recorded frame combinations use explicit replay facts and retain combined meaning", () => {
-  const selected = [explanationFrameRecording(frame({uci: null}), 0, "white")];
-  for (const capture of [null, "pawn"]) for (const promotion of [null, "queen"]) {
-    for (const ending of ["ordinary", "check", "mate", "escape"] as const) {
-      const id = explanationFrameRecording(frame({capture, promotion, gives_check: ending === "check" || ending === "mate",
-        checkmate: ending === "mate", escaped_check: ending === "escape"}), 1, "white");
-      const expected = !capture && !promotion && ending === "mate" ? "mate-finished"
-        : `explanation-frame-${capture ? "capture" : "quiet"}-${promotion ? "promotion" : "move"}-${ending}`;
-      // A captured pawn names itself first; nothing but a piece stands on the promotion rank.
-      expect(id).toBe(capture && !promotion ? `${expected}-pawn|${expected}` : expected);
-      selected.push(expected);
+  const selected = [explanationFrameRecording(frame({ uci: null }), 0, "white")];
+  for (const capture of [null, "pawn"])
+    for (const promotion of [null, "queen"]) {
+      for (const ending of ["ordinary", "check", "mate", "escape"] as const) {
+        const id = explanationFrameRecording(
+          frame({
+            capture,
+            promotion,
+            gives_check: ending === "check" || ending === "mate",
+            checkmate: ending === "mate",
+            escaped_check: ending === "escape",
+          }),
+          1,
+          "white",
+        );
+        const expected =
+          !capture && !promotion && ending === "mate"
+            ? "mate-finished"
+            : `explanation-frame-${capture ? "capture" : "quiet"}-${promotion ? "promotion" : "move"}-${ending}`;
+        // A captured pawn names itself first; nothing but a piece stands on the promotion rank.
+        expect(id).toBe(capture && !promotion ? `${expected}-pawn|${expected}` : expected);
+        selected.push(expected);
+      }
     }
-  }
   for (const ending of ["ordinary", "check", "mate"] as const) {
-    selected.push(explanationFrameRecording(frame({castling: true, gives_check: ending !== "ordinary", checkmate: ending === "mate"}), 1, "white"));
+    selected.push(
+      explanationFrameRecording(
+        frame({ castling: true, gives_check: ending !== "ordinary", checkmate: ending === "mate" }),
+        1,
+        "white",
+      ),
+    );
   }
   expect(selected).toHaveLength(20);
   for (const id of selected) expect(bank.has(id!)).toBe(true);
-  expect(explanationFrameRecording(frame({facts_version: null, san: "Qxh8#", annotation: "Checkmate!"}), 1, "white")).toBeNull();
-  expect(explanationFrameRecording(frame({castling: true, capture: "pawn"}), 1, "white")).toBeNull();
-  expect(explanationFrameRecording(frame({uci: null}), 1, "white")).toBeNull();
+  expect(
+    explanationFrameRecording(
+      frame({ facts_version: null, san: "Qxh8#", annotation: "Checkmate!" }),
+      1,
+      "white",
+    ),
+  ).toBeNull();
+  expect(
+    explanationFrameRecording(frame({ castling: true, capture: "pawn" }), 1, "white"),
+  ).toBeNull();
+  expect(explanationFrameRecording(frame({ uci: null }), 1, "white")).toBeNull();
 });
 
 test("a quiet checkmate credits the learner only when the learner mates", () => {
   // After 1.f3 e5, the line 2.g4 Qh4# shows why g4 falls short: Black mates White.
-  const qh4 = frame({san: "Qh4#", uci: "d8h4", fen: "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-    gives_check: true, checkmate: true});
+  const qh4 = frame({
+    san: "Qh4#",
+    uci: "d8h4",
+    fen: "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+    gives_check: true,
+    checkmate: true,
+  });
   expect(explanationFrameRecording(qh4, 2, "white")).toBe("mate-defense-ended");
   expect(explanationFrameRecording(qh4, 2, "black")).toBe("mate-finished");
-  for (const learner of ["white", "black"] as const) expect(bank.has(explanationFrameRecording(qh4, 2, learner)!)).toBe(true);
+  for (const learner of ["white", "black"] as const)
+    expect(bank.has(explanationFrameRecording(qh4, 2, learner)!)).toBe(true);
   // A summary frame and a practice preview frame use the exercise's learner the same way.
-  expect(explanationSummaryRecording(explanation({summary_kind: "frame", summary_frame_index: 1,
-    frames: [frame({uci: null}), qh4]}))).toBe("mate-defense-ended");
-  expect(practiceRecording({position: {...position, orientation: "black"}, feedback: feedback({completed: false}),
-    frame: {...qh4, annotation: "Checkmate."}})).toBe("mate-finished");
+  expect(
+    explanationSummaryRecording(
+      explanation({
+        summary_kind: "frame",
+        summary_frame_index: 1,
+        frames: [frame({ uci: null }), qh4],
+      }),
+    ),
+  ).toBe("mate-defense-ended");
+  expect(
+    practiceRecording({
+      position: { ...position, orientation: "black" },
+      feedback: feedback({ completed: false }),
+      frame: { ...qh4, annotation: "Checkmate." },
+    }),
+  ).toBe("mate-finished");
 });
 
 test("cold practice cannot borrow future frames or reveal an answer", () => {
-  expect(practiceRecording({position, feedback: null, frame: frame({checkmate: true})})).toBe("srs-cold");
-  expect(practiceRecording({position: {...position, failed: true}, feedback: null})).toBe("srs-retry");
-  expect(practiceRecording({position, feedback: feedback(), error: true})).toBe("srs-practice-error");
+  expect(practiceRecording({ position, feedback: null, frame: frame({ checkmate: true }) })).toBe(
+    "srs-cold",
+  );
+  expect(practiceRecording({ position: { ...position, failed: true }, feedback: null })).toBe(
+    "srs-retry",
+  );
+  expect(practiceRecording({ position, feedback: feedback(), error: true })).toBe(
+    "srs-practice-error",
+  );
 });
 
 test("practice summaries follow producer identity, never matching legacy or arbitrary English", () => {
-  expect(practiceRecording({position, feedback: feedback({explanation_summary: "A forced mate.", explanation_summary_kind: "mate_for_mover"})})).toBe("srs-summary-mate-for-mover");
-  expect(practiceRecording({position, feedback: feedback({explanation_summary: "A forced mate."})})).toBeNull();
-  expect(practiceRecording({position, feedback: feedback({message: "Good move."})})).toBeNull();
-  expect(practiceRecording({position, feedback: feedback({message: "Good move.", message_kind: "good_move"})})).toBe("srs-fallback-good");
-  expect(practiceRecording({position, feedback: feedback({message: "Good move.", message_kind: "good_move", grade: "revealed"})})).toBeNull();
-  expect(practiceRecording({position, feedback: feedback({explanation_summary: "Legacy authored teaching", message: "Good move.", message_kind: "good_move"})})).toBeNull();
-  expect(practiceRecording({position, feedback: feedback({completed: false}), frame: frame({capture: "rook", gives_check: true})}))
-    .toBe("explanation-frame-capture-move-check-rook|explanation-frame-capture-move-check");
-  expect(practiceRecording({position, feedback: feedback({completed: false})})).toBe("srs-retry");
-  expect(practiceRecording({position, feedback: feedback()})).toBe("srs-fallback-study");
+  expect(
+    practiceRecording({
+      position,
+      feedback: feedback({
+        explanation_summary: "A forced mate.",
+        explanation_summary_kind: "mate_for_mover",
+      }),
+    }),
+  ).toBe("srs-summary-mate-for-mover");
+  expect(
+    practiceRecording({ position, feedback: feedback({ explanation_summary: "A forced mate." }) }),
+  ).toBeNull();
+  expect(practiceRecording({ position, feedback: feedback({ message: "Good move." }) })).toBeNull();
+  expect(
+    practiceRecording({
+      position,
+      feedback: feedback({ message: "Good move.", message_kind: "good_move" }),
+    }),
+  ).toBe("srs-fallback-good");
+  expect(
+    practiceRecording({
+      position,
+      feedback: feedback({ message: "Good move.", message_kind: "good_move", grade: "revealed" }),
+    }),
+  ).toBeNull();
+  expect(
+    practiceRecording({
+      position,
+      feedback: feedback({
+        explanation_summary: "Legacy authored teaching",
+        message: "Good move.",
+        message_kind: "good_move",
+      }),
+    }),
+  ).toBeNull();
+  expect(
+    practiceRecording({
+      position,
+      feedback: feedback({ completed: false }),
+      frame: frame({ capture: "rook", gives_check: true }),
+    }),
+  ).toBe("explanation-frame-capture-move-check-rook|explanation-frame-capture-move-check");
+  expect(practiceRecording({ position, feedback: feedback({ completed: false }) })).toBe(
+    "srs-retry",
+  );
+  expect(practiceRecording({ position, feedback: feedback() })).toBe("srs-fallback-study");
 });
 
 test("explanation summaries preserve authority and exact summary frame", () => {
-  for (const kind of ["mate_for_mover", "mate_against_mover", "material_gain", "material_loss", "engine_accepted", "engine_rejected"] as const)
-    expect(bank.has(explanationSummaryRecording(explanation({summary_kind: kind}))!)).toBe(true);
-  expect(explanationSummaryRecording(explanation({summary_kind: "curated_accepted"}))).toBeNull();
-  expect(explanationSummaryRecording(explanation({authority: "curated", summary_kind: "curated_accepted"}))).toBe("srs-summary-curated-accepted");
-  expect(explanationSummaryRecording(explanation({summary_kind: "frame", summary_frame_index: 1,
-    frames: [frame({uci: null}), frame({promotion: "queen", checkmate: true})]}))).toBe("explanation-frame-quiet-promotion-mate");
-  expect(explanationSummaryRecording(explanation({summary_kind: "frame", summary_frame_index: 20}))).toBeNull();
+  for (const kind of [
+    "mate_for_mover",
+    "mate_against_mover",
+    "material_gain",
+    "material_loss",
+    "engine_accepted",
+    "engine_rejected",
+  ] as const)
+    expect(bank.has(explanationSummaryRecording(explanation({ summary_kind: kind }))!)).toBe(true);
+  expect(explanationSummaryRecording(explanation({ summary_kind: "curated_accepted" }))).toBeNull();
+  expect(
+    explanationSummaryRecording(
+      explanation({ authority: "curated", summary_kind: "curated_accepted" }),
+    ),
+  ).toBe("srs-summary-curated-accepted");
+  expect(
+    explanationSummaryRecording(
+      explanation({
+        summary_kind: "frame",
+        summary_frame_index: 1,
+        frames: [frame({ uci: null }), frame({ promotion: "queen", checkmate: true })],
+      }),
+    ),
+  ).toBe("explanation-frame-quiet-promotion-mate");
+  expect(
+    explanationSummaryRecording(explanation({ summary_kind: "frame", summary_frame_index: 20 })),
+  ).toBeNull();
 });
 
 test("selected finding and cue require the same analysis, witness moves and displayed frame", () => {
   const item = finding();
-  const data = explanation({findings: [item]});
+  const data = explanation({ findings: [item] });
   expect(explanationFindingRecording(data, item, 1)).toBe("explanation-finding-fork-collected");
   expect(explanationCueRecording(data, item, 1)).toBe("explanation-cue-fork");
   expect(explanationFindingRecording(data, item, 0)).toBeNull();
-  expect(explanationFindingRecording({...data, analysis_id: "different"}, item, 1)).toBeNull();
-  expect(explanationFindingRecording({...data, frames: [frame({uci: null}), frame({uci: "d2d4"})]}, item, 1)).toBeNull();
-  expect(explanationFindingRecording(data, {...item}, 1)).toBeNull();
-  for (const patch of [{mechanism: null}, {mechanism: "previous_threat"}] as const) {
+  expect(explanationFindingRecording({ ...data, analysis_id: "different" }, item, 1)).toBeNull();
+  expect(
+    explanationFindingRecording(
+      { ...data, frames: [frame({ uci: null }), frame({ uci: "d2d4" })] },
+      item,
+      1,
+    ),
+  ).toBeNull();
+  expect(explanationFindingRecording(data, { ...item }, 1)).toBeNull();
+  for (const patch of [{ mechanism: null }, { mechanism: "previous_threat" }] as const) {
     const legacy = finding(patch);
-    expect(explanationFindingRecording(explanation({findings: [legacy]}), legacy, 1)).toBeNull();
+    expect(explanationFindingRecording(explanation({ findings: [legacy] }), legacy, 1)).toBeNull();
   }
-  const legacy = finding({cue_key: null});
-  expect(explanationCueRecording(explanation({findings: [legacy]}), legacy, 1)).toBeNull();
+  const legacy = finding({ cue_key: null });
+  expect(explanationCueRecording(explanation({ findings: [legacy] }), legacy, 1)).toBeNull();
 });
 
 test("every supported finding mechanism maps to its full recorded meaning, including game-bank aliases", () => {
-  const mechanisms: NonNullable<PatternFinding["mechanism"]>[] = ["fork_recognized", "fork_collected", "pin_prevents_capture", "pin_restricts_escape",
-    "pin_defenders_no_recapture", "pin_collected", "skewer_collected", "king_skewer_collected", "defender_captured", "sole_defender_captured",
-    "deflection", "deflection_collected", "discovered_capture", "discovered_check", "double_check", "double_attack_collected",
-    "promotion_material_retained", "undefended_capture", "undefended_capture_gain", "back_rank_mate", "abandoned_defender", "unfavorable_exchange",
-    "relative_pin_released"];
+  const mechanisms: NonNullable<PatternFinding["mechanism"]>[] = [
+    "fork_recognized",
+    "fork_collected",
+    "pin_prevents_capture",
+    "pin_restricts_escape",
+    "pin_defenders_no_recapture",
+    "pin_collected",
+    "skewer_collected",
+    "king_skewer_collected",
+    "defender_captured",
+    "sole_defender_captured",
+    "deflection",
+    "deflection_collected",
+    "discovered_capture",
+    "discovered_check",
+    "double_check",
+    "double_attack_collected",
+    "promotion_material_retained",
+    "undefended_capture",
+    "undefended_capture_gain",
+    "back_rank_mate",
+    "abandoned_defender",
+    "unfavorable_exchange",
+    "relative_pin_released",
+  ];
   for (const mechanism of mechanisms) {
-    const item = finding({mechanism});
-    const id = explanationFindingRecording(explanation({findings: [item]}), item, 1);
+    const item = finding({ mechanism });
+    const id = explanationFindingRecording(explanation({ findings: [item] }), item, 1);
     expect(bank.has(id!), mechanism).toBe(true);
   }
   // The promoting move itself never plays a clip about a pawn still on its way.
-  const promotion = finding({mechanism: "promotion", skill_id: "promotion_awareness", moves: ["e2e4"]});
-  expect(explanationFindingRecording(explanation({findings: [promotion]}), promotion, 1)).toBeNull();
+  const promotion = finding({
+    mechanism: "promotion",
+    skill_id: "promotion_awareness",
+    moves: ["e2e4"],
+  });
+  expect(
+    explanationFindingRecording(explanation({ findings: [promotion] }), promotion, 1),
+  ).toBeNull();
 });
 
 test("notes need producer note identities; unstructured notes remain silent", () => {
-  const notes = ["curated_authority", "strong_replies", "material_scope", "no_simple_reason", "saved_policy"] as const;
-  const data = explanation({notes: notes.map(() => "Visible note"), note_kinds: [...notes]});
+  const notes = [
+    "curated_authority",
+    "strong_replies",
+    "material_scope",
+    "no_simple_reason",
+    "saved_policy",
+  ] as const;
+  const data = explanation({ notes: notes.map(() => "Visible note"), note_kinds: [...notes] });
   notes.forEach((_, i) => expect(bank.has(explanationNoteRecording(data, i)!)).toBe(true));
-  expect(explanationNoteRecording({...data, note_kinds: []}, 0)).toBeNull();
+  expect(explanationNoteRecording({ ...data, note_kinds: [] }, 0)).toBeNull();
   expect(explanationNoteRecording(data, 6)).toBeNull();
 });
 
 test("all supported teaching cues retain their selected finding's explicit cue identity", () => {
-  for (const skill_id of ["hanging_piece", "missed_tactical_capture", "fork", "pin", "skewer", "removing_defender",
-    "discovered_attack", "double_attack", "back_rank", "promotion_awareness", "abandoned_defender", "avoiding_bad_trades", "deflection"]) {
-    const item = finding({skill_id, cue_key: skill_id});
-    expect(bank.has(explanationCueRecording(explanation({findings: [item]}), item, 1)!)).toBe(true);
+  for (const skill_id of [
+    "hanging_piece",
+    "missed_tactical_capture",
+    "fork",
+    "pin",
+    "skewer",
+    "removing_defender",
+    "discovered_attack",
+    "double_attack",
+    "back_rank",
+    "promotion_awareness",
+    "abandoned_defender",
+    "avoiding_bad_trades",
+    "deflection",
+  ]) {
+    const item = finding({ skill_id, cue_key: skill_id });
+    expect(bank.has(explanationCueRecording(explanation({ findings: [item] }), item, 1)!)).toBe(
+      true,
+    );
   }
-  const mismatched = finding({skill_id: "pin", cue_key: "fork"});
-  expect(explanationCueRecording(explanation({findings: [mismatched]}), mismatched, 1)).toBeNull();
+  const mismatched = finding({ skill_id: "pin", cue_key: "fork" });
+  expect(
+    explanationCueRecording(explanation({ findings: [mismatched] }), mismatched, 1),
+  ).toBeNull();
   // The promotion cues count the pawn's remaining squares; on the promoting move there are none.
-  const promoting = finding({skill_id: "promotion_awareness", cue_key: "promotion_awareness", mechanism: "promotion", moves: ["e7e8q"]});
-  expect(explanationCueRecording(explanation({findings: [promoting]}), promoting, 1)).toBeNull();
-  const retained = {...promoting, mechanism: "promotion_material_retained" as const};
-  expect(explanationCueRecording(explanation({findings: [retained]}), retained, 1)).toBeNull();
+  const promoting = finding({
+    skill_id: "promotion_awareness",
+    cue_key: "promotion_awareness",
+    mechanism: "promotion",
+    moves: ["e7e8q"],
+  });
+  expect(explanationCueRecording(explanation({ findings: [promoting] }), promoting, 1)).toBeNull();
+  const retained = { ...promoting, mechanism: "promotion_material_retained" as const };
+  expect(explanationCueRecording(explanation({ findings: [retained] }), retained, 1)).toBeNull();
 });
 
 test("opening recall keeps repertoire authority, changed-study rejection and reveal distinct", () => {
-  const opening = {...position, opening: {color: "white" as const, names: ["Line"], prompt: "Recall", revision: 1}};
-  const select = (result: Feedback | null, failed = false, error = false) => openingRecallRecording({position: opening, feedback: result, failed, error});
+  const opening = {
+    ...position,
+    opening: { color: "white" as const, names: ["Line"], prompt: "Recall", revision: 1 },
+  };
+  const select = (result: Feedback | null, failed = false, error = false) =>
+    openingRecallRecording({ position: opening, feedback: result, failed, error });
   expect(select(null)).toBe("opening-recall-cold-single");
-  expect(openingRecallRecording({position: {...opening, opening: {...opening.opening, names: ["First", "Second"]}}, feedback: null, failed: false, error: false})).toBe("opening-recall-cold-multiple");
+  expect(
+    openingRecallRecording({
+      position: { ...opening, opening: { ...opening.opening, names: ["First", "Second"] } },
+      feedback: null,
+      failed: false,
+      error: false,
+    }),
+  ).toBe("opening-recall-cold-multiple");
   expect(select(null, true)).toBe("opening-recall-retry-fallback");
   expect(select(feedback())).toBe("opening-recall-accepted");
-  expect(select(feedback({grade: "revealed"}))).toBe("opening-recall-revealed");
+  expect(select(feedback({ grade: "revealed" }))).toBe("opening-recall-revealed");
   for (const suffix of ["", "_changed", "_retired"] as const) {
-    expect(select(feedback({completed: false, message: "Written feedback", message_kind: `opening_rejected${suffix}`})))
-      .toBe(`opening-recall-rejected${suffix.replaceAll("_", "-")}`);
+    expect(
+      select(
+        feedback({
+          completed: false,
+          message: "Written feedback",
+          message_kind: `opening_rejected${suffix}`,
+        }),
+      ),
+    ).toBe(`opening-recall-rejected${suffix.replaceAll("_", "-")}`);
   }
-  expect(select(feedback({completed: false, message: "This move is outside the opening moves you selected to study. Try again."}))).toBeNull();
+  expect(
+    select(
+      feedback({
+        completed: false,
+        message: "This move is outside the opening moves you selected to study. Try again.",
+      }),
+    ),
+  ).toBeNull();
   expect(select(feedback(), false, true)).toBe("srs-practice-error");
 });
 
 test("puzzle guidance distinguishes all eight fixed states without inferring objective chess quality", () => {
-  const session: Schema["PuzzleSessionView"] = {id: "puzzle", revision: 1, source: "generic", status: "active", current_step: 0,
-    failed: false, feedback: null, fen: "cold", history: [], legal_moves: [], orientation: "white", playback: [], completion: null};
-  const select = (value = session, flags = {}) => puzzleRecording({session: value, error: false, playing: false, retrying: false, ...flags});
+  const session: Schema["PuzzleSessionView"] = {
+    id: "puzzle",
+    revision: 1,
+    source: "generic",
+    status: "active",
+    current_step: 0,
+    failed: false,
+    feedback: null,
+    fen: "cold",
+    history: [],
+    legal_moves: [],
+    orientation: "white",
+    playback: [],
+    completion: null,
+  };
+  const select = (value = session, flags = {}) =>
+    puzzleRecording({ session: value, error: false, playing: false, retrying: false, ...flags });
   expect(select()).toBe("puzzle-cold");
-  expect(select(session, {error: true})).toBe("puzzle-error");
-  expect(select(session, {playing: true})).toBe("puzzle-playback");
-  expect(select(session, {retrying: true})).toBe("puzzle-rejected");
-  expect(select({...session, feedback: {grade: "correct", submitted_san: "e4"}})).toBe("puzzle-next-move");
-  expect(select({...session, status: "solved"})).toBe("puzzle-solved-clean");
-  expect(select({...session, status: "solved", failed: true})).toBe("puzzle-solved-after-retry");
-  expect(select({...session, status: "revealed"})).toBe("puzzle-revealed");
+  expect(select(session, { error: true })).toBe("puzzle-error");
+  expect(select(session, { playing: true })).toBe("puzzle-playback");
+  expect(select(session, { retrying: true })).toBe("puzzle-rejected");
+  expect(select({ ...session, feedback: { grade: "correct", submitted_san: "e4" } })).toBe(
+    "puzzle-next-move",
+  );
+  expect(select({ ...session, status: "solved" })).toBe("puzzle-solved-clean");
+  expect(select({ ...session, status: "solved", failed: true })).toBe("puzzle-solved-after-retry");
+  expect(select({ ...session, status: "revealed" })).toBe("puzzle-revealed");
 });
 
 test("each lesson command picks at most one generic prompt from its own action and result", () => {
   // Extra takes of a meaning share its selection; only the base meanings are counted.
-  const lessonIds = new Set(meanings.filter(meaning => meaning.group === "lessons" && !meaning.takeOf).map(meaning => meaning.id));
-  const step: Schema["LessonStepView"] = {id: "step", kind: "decision", phase: "ready", text: "Authored step text.", title: "Step",
-    annotations: {squares: [], arrows: []} as unknown as Schema["LessonStepView"]["annotations"]};
-  const before: Schema["LessonSessionView"] = {id: "lesson", revision: 1, status: "active", actions: ["move", "hint", "show_move"],
-    assisted: false, branch: null, chapter_id: "chapter", chapter_title: "Chapter", course_id: "course", course_revision: "1",
-    course_title: "Course", course_topic: "opening", failed: false, feedback: null, fen: "start", game: null, history: [], legal_moves: [],
-    orientation: "white", playback: [], step};
+  const lessonIds = new Set(
+    meanings
+      .filter(meaning => meaning.group === "lessons" && !meaning.takeOf)
+      .map(meaning => meaning.id),
+  );
+  const step: Schema["LessonStepView"] = {
+    id: "step",
+    kind: "decision",
+    phase: "ready",
+    text: "Authored step text.",
+    title: "Step",
+    annotations: { squares: [], arrows: [] } as unknown as Schema["LessonStepView"]["annotations"],
+  };
+  const before: Schema["LessonSessionView"] = {
+    id: "lesson",
+    revision: 1,
+    status: "active",
+    actions: ["move", "hint", "show_move"],
+    assisted: false,
+    branch: null,
+    chapter_id: "chapter",
+    chapter_title: "Chapter",
+    course_id: "course",
+    course_revision: "1",
+    course_title: "Course",
+    course_topic: "opening",
+    failed: false,
+    feedback: null,
+    fen: "start",
+    game: null,
+    history: [],
+    legal_moves: [],
+    orientation: "white",
+    playback: [],
+    step,
+  };
   const frame = {} as Schema["PuzzleFrame"];
-  const select = (action: Schema["LessonCommand"]["action"], after: Partial<Schema["LessonSessionView"]>, from = before) =>
-    lessonRecording({action, before: from, after: {...from, revision: from.revision + 1, ...after}});
+  const select = (
+    action: Schema["LessonCommand"]["action"],
+    after: Partial<Schema["LessonSessionView"]>,
+    from = before,
+  ) =>
+    lessonRecording({
+      action,
+      before: from,
+      after: { ...from, revision: from.revision + 1, ...after },
+    });
   const selected = [
-    select("move", {feedback: {kind: "incorrect", text: "Try again."}}),
-    select("move", {feedback: {kind: "correct", text: "That is the move in this line."}, playback: [frame]}),
-    select("show_move", {feedback: {kind: "revealed", text: "The lesson plays e4."}}),
-    select("continue", {playback: [frame, frame], actions: []}),
-    select("continue", {step: {...step, kind: "rehearsal"}}),
-    select("enter_branch", {branch: {title: "Alternative"} as Schema["LessonSessionView"]["branch"]}),
-    select("move", {status: "completed", feedback: {kind: "correct", text: "Done."}}),
-    select("open_game", {game: {ply: 0} as Schema["LessonSessionView"]["game"]}),
+    select("move", { feedback: { kind: "incorrect", text: "Try again." } }),
+    select("move", {
+      feedback: { kind: "correct", text: "That is the move in this line." },
+      playback: [frame],
+    }),
+    select("show_move", { feedback: { kind: "revealed", text: "The lesson plays e4." } }),
+    select("continue", { playback: [frame, frame], actions: [] }),
+    select("continue", { step: { ...step, kind: "rehearsal" } }),
+    select("enter_branch", {
+      branch: { title: "Alternative" } as Schema["LessonSessionView"]["branch"],
+    }),
+    select("move", { status: "completed", feedback: { kind: "correct", text: "Done." } }),
+    select("open_game", { game: { ply: 0 } as Schema["LessonSessionView"]["game"] }),
   ];
-  expect(selected).toEqual(["lesson-wrong-move", "lesson-correct-move", "lesson-move-revealed", "lesson-guided-playback",
-    "lesson-rehearsal-prompt", "lesson-branch-entered", "lesson-chapter-complete", "lesson-game-opened"]);
+  expect(selected).toEqual([
+    "lesson-wrong-move",
+    "lesson-correct-move",
+    "lesson-move-revealed",
+    "lesson-guided-playback",
+    "lesson-rehearsal-prompt",
+    "lesson-branch-entered",
+    "lesson-chapter-complete",
+    "lesson-game-opened",
+  ]);
   for (const id of [...selected, "lesson-error"]) expect(lessonIds.has(id!)).toBe(true);
   expect(lessonIds.size).toBe(9);
   // Hints, authored step text, game navigation and reveal-completions stay written.
-  expect(select("hint", {feedback: {kind: "hint", text: "Look at the centre."}})).toBeNull();
+  expect(select("hint", { feedback: { kind: "hint", text: "Look at the centre." } })).toBeNull();
   expect(select("continue", {})).toBeNull();
   // A single demonstrated move is not introduced as a continuation.
-  expect(select("continue", {playback: [frame], actions: []})).toBeNull();
-  const inGame = {...before, game: {ply: 3} as Schema["LessonSessionView"]["game"], actions: ["game_seek", "close_game"] as Schema["LessonSessionView"]["actions"]};
+  expect(select("continue", { playback: [frame], actions: [] })).toBeNull();
+  const inGame = {
+    ...before,
+    game: { ply: 3 } as Schema["LessonSessionView"]["game"],
+    actions: ["game_seek", "close_game"] as Schema["LessonSessionView"]["actions"],
+  };
   expect(select("game_seek", {}, inGame)).toBeNull();
-  expect(select("show_move", {status: "completed", feedback: {kind: "revealed", text: "The lesson plays e4."}})).toBe("lesson-move-revealed");
-  expect(select("continue", {status: "completed"}, {...before, status: "completed"})).toBeNull();
+  expect(
+    select("show_move", {
+      status: "completed",
+      feedback: { kind: "revealed", text: "The lesson plays e4." },
+    }),
+  ).toBe("lesson-move-revealed");
+  expect(
+    select("continue", { status: "completed" }, { ...before, status: "completed" }),
+  ).toBeNull();
 });
 
 test("pin-escape takes are not voiced for a piece that cannot move along its pin line", () => {
   // A bishop pinned on the e-file cannot move at all; its take says it may move along the line.
-  const onFile = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["e7"], king: ["e8"], attacker: ["e1"], target: ["e7"]}});
-  const data = explanation({findings: [onFile], frames: [frame({uci: null}), frame({fen: "4k3/4b3/8/8/8/8/8/4R1K1 b - - 0 1"})]});
+  const onFile = finding({
+    mechanism: "pin_restricts_escape",
+    roles: { pinned_defender: ["e7"], king: ["e8"], attacker: ["e1"], target: ["e7"] },
+  });
+  const data = explanation({
+    findings: [onFile],
+    frames: [frame({ uci: null }), frame({ fen: "4k3/4b3/8/8/8/8/8/4R1K1 b - - 0 1" })],
+  });
   expect(explanationFindingRecording(data, onFile, 1)).toBeNull();
-  const onDiagonal = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["g7"], king: ["h8"], attacker: ["b2"], target: ["g7"]}});
-  const diagonal = explanation({findings: [onDiagonal], frames: [frame({uci: null}), frame({fen: "7k/6b1/8/8/8/8/1B6/K7 b - - 0 1"})]});
-  expect(explanationFindingRecording(diagonal, onDiagonal, 1)).toContain("explanation-finding-pin-restricts-escape");
+  const onDiagonal = finding({
+    mechanism: "pin_restricts_escape",
+    roles: { pinned_defender: ["g7"], king: ["h8"], attacker: ["b2"], target: ["g7"] },
+  });
+  const diagonal = explanation({
+    findings: [onDiagonal],
+    frames: [frame({ uci: null }), frame({ fen: "7k/6b1/8/8/8/8/1B6/K7 b - - 0 1" })],
+  });
+  expect(explanationFindingRecording(diagonal, onDiagonal, 1)).toContain(
+    "explanation-finding-pin-restricts-escape",
+  );
   // A pawn pinned along its rank or a diagonal cannot push; one pinned on its file can.
-  const onRank = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d5"], king: ["h5"], attacker: ["a5"], target: ["d5"]}});
-  const rank = explanation({findings: [onRank], frames: [frame({uci: null}), frame({fen: "8/8/8/R2p3k/8/8/8/K7 b - - 0 1"})]});
+  const onRank = finding({
+    mechanism: "pin_restricts_escape",
+    roles: { pinned_defender: ["d5"], king: ["h5"], attacker: ["a5"], target: ["d5"] },
+  });
+  const rank = explanation({
+    findings: [onRank],
+    frames: [frame({ uci: null }), frame({ fen: "8/8/8/R2p3k/8/8/8/K7 b - - 0 1" })],
+  });
   expect(explanationFindingRecording(rank, onRank, 1)).toBeNull();
-  const onDiagonalPawn = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["e6"], king: ["g8"], attacker: ["c4"], target: ["e6"]}});
-  const diagonalPawn = explanation({findings: [onDiagonalPawn], frames: [frame({uci: null}), frame({fen: "6k1/8/4p3/8/2B5/8/8/4K3 b - - 0 1"})]});
+  const onDiagonalPawn = finding({
+    mechanism: "pin_restricts_escape",
+    roles: { pinned_defender: ["e6"], king: ["g8"], attacker: ["c4"], target: ["e6"] },
+  });
+  const diagonalPawn = explanation({
+    findings: [onDiagonalPawn],
+    frames: [frame({ uci: null }), frame({ fen: "6k1/8/4p3/8/2B5/8/8/4K3 b - - 0 1" })],
+  });
   expect(explanationFindingRecording(diagonalPawn, onDiagonalPawn, 1)).toBeNull();
-  const pawnOnFile = finding({mechanism: "pin_restricts_escape", roles: {pinned_defender: ["d6"], king: ["d8"], attacker: ["d1"], target: ["d6"]}});
-  const file = explanation({findings: [pawnOnFile], frames: [frame({uci: null}), frame({fen: "3k4/8/3p4/8/8/8/8/K2R4 b - - 0 1"})]});
-  expect(explanationFindingRecording(file, pawnOnFile, 1)).toContain("explanation-finding-pin-restricts-escape");
+  const pawnOnFile = finding({
+    mechanism: "pin_restricts_escape",
+    roles: { pinned_defender: ["d6"], king: ["d8"], attacker: ["d1"], target: ["d6"] },
+  });
+  const file = explanation({
+    findings: [pawnOnFile],
+    frames: [frame({ uci: null }), frame({ fen: "3k4/8/3p4/8/8/8/8/K2R4 b - - 0 1" })],
+  });
+  expect(explanationFindingRecording(file, pawnOnFile, 1)).toContain(
+    "explanation-finding-pin-restricts-escape",
+  );
 });

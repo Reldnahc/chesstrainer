@@ -3,7 +3,7 @@ import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
 import { AnimalEyes, AnimalFrame, AnimalHead } from "./AnimalParts";
 import AnimalHands from "./AnimalHands";
-import {OrganicSpeechMouth, SpeechMouthLayer} from "../../SpeechMouthLayer";
+import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
 
 // Broad, open eyes keep Fergus attentive; their height still distinguishes
 // relaxed attention from delight or surprise without changing his quiet pose.
@@ -34,17 +34,40 @@ const emphasis: Record<CoachExpression, Partial<AnimalPose>> = {
 // (the throat's top edge, y = 54 + 34t(1 - t)), so every mouth starts on it.
 function FrogMouth({ pose }: { pose: AnimalPose }) {
   return (
-    <g className="study-muzzle" stroke="#425d3b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <SpeechMouthLayer authored={<>
-      {pose.mouth === "ponder" && <path d="M29 59.1Q50 65.9 71 59.1" fill="none" />}
-      {pose.mouth === "smile" && <path d="M26.5 57Q27.5 59 29 59.1Q50 65.9 71 59.1Q72.5 59 73.5 57" fill="none" />}
-      {pose.mouth === "concern" && <path d="M27 61.5Q27.8 59.4 29 59.1Q50 65.9 71 59.1Q72.2 59.4 73 61.5" fill="none" />}
-      {pose.mouth === "grin" && <path d="M29 59.1Q50 65.9 71 59.1Q64 74 50 74T29 59.1Z" fill="#526345" />}
-      {pose.mouth === "oh" && <ellipse cx="50" cy="64" rx="5.5" ry="7" fill="#526345" />}
-      </>}>
-        <OrganicSpeechMouth x={50} y={59.1} width={42} height={12} teeth={false} tongue={false}
+    <g
+      className="study-muzzle"
+      stroke="#425d3b"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <SpeechMouthLayer
+        authored={
+          <>
+            {pose.mouth === "ponder" && <path d="M29 59.1Q50 65.9 71 59.1" fill="none" />}
+            {pose.mouth === "smile" && (
+              <path d="M26.5 57Q27.5 59 29 59.1Q50 65.9 71 59.1Q72.5 59 73.5 57" fill="none" />
+            )}
+            {pose.mouth === "concern" && (
+              <path d="M27 61.5Q27.8 59.4 29 59.1Q50 65.9 71 59.1Q72.2 59.4 73 61.5" fill="none" />
+            )}
+            {pose.mouth === "grin" && (
+              <path d="M29 59.1Q50 65.9 71 59.1Q64 74 50 74T29 59.1Z" fill="#526345" />
+            )}
+            {pose.mouth === "oh" && <ellipse cx="50" cy="64" rx="5.5" ry="7" fill="#526345" />}
+          </>
+        }
+      >
+        <OrganicSpeechMouth
+          x={50}
+          y={59.1}
+          width={42}
+          height={12}
+          teeth={false}
+          tongue={false}
           curve={2.3}
-          palette={{cavity: "#526345", outline: "#425d3b"}} />
+          palette={{ cavity: "#526345", outline: "#425d3b" }}
+        />
       </SpeechMouthLayer>
       <path d="m27 58.6 2-1m42 0 2 1" fill="none" opacity=".6" />
     </g>
@@ -54,18 +77,59 @@ function FrogMouth({ pose }: { pose: AnimalPose }) {
 export default function FrogCoach({ expression }: CoachArtworkProps) {
   const pose: AnimalPose = { ...animalPose(expression, true), ...emphasis[expression] };
   return (
-    <AnimalFrame name="frog" expression={expression} pose={pose} temperament={.38}>
+    <AnimalFrame name="frog" expression={expression} pose={pose} temperament={0.38}>
       <path d="M31 91Q16 83 10 96q-6 14 13 20h54q19-6 13-20-6-13-21-5Z" fill="#618859" />
-      <path d="M30 92Q22 87 17 96m53-4q8-5 13 4" fill="none" stroke="#87a365" strokeWidth="2" strokeLinecap="round" />
+      <path
+        d="M30 92Q22 87 17 96m53-4q8-5 13 4"
+        fill="none"
+        stroke="#87a365"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
       <path d="M24 98q1-28 26-29t26 29l-5 18H29Z" fill="#83a56a" />
       <path d="M36 84q14-10 28 0l5 29H31Z" fill="#d9d8a0" />
-      <path d="m16 112-7 5 12-1 2 4 7-5m54-3 7 5-12-1-2 4-7-5" fill="#83a56a" stroke="#496e46" strokeWidth="1" strokeLinejoin="round" />
+      <path
+        d="m16 112-7 5 12-1 2 4 7-5m54-3 7 5-12-1-2 4-7-5"
+        fill="#83a56a"
+        stroke="#496e46"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
       <AnimalHead>
-        <path d="M15 40Q12 14 29 14q17 0 19 24h4q2-24 19-24 17 0 14 26l3 9q7 27-38 30T12 49Z" fill="#83a56a" />
-        <path d="M19 32q0-13 11-13 10 0 13 14m14 0q3-14 13-14 11 0 11 13" fill="none" stroke="#aac188" strokeWidth="3" strokeLinecap="round" />
-        <path className="cast-frog-throat" d="M17 54q33 17 66 0 0 24-33 26-33-2-33-26Z" fill="#d9d8a0" />
-        <AnimalEyes pose={pose} xs={[29, 71]} y={35} width={10.6} height={pose.eye} iris="#c3ad58" pupilWidth={4.5} lid="#46623d" />
-        <g className="study-brows" transform="translate(0 -7)" stroke="#527648" strokeWidth="2" fill="none" strokeLinecap="round">
+        <path
+          d="M15 40Q12 14 29 14q17 0 19 24h4q2-24 19-24 17 0 14 26l3 9q7 27-38 30T12 49Z"
+          fill="#83a56a"
+        />
+        <path
+          d="M19 32q0-13 11-13 10 0 13 14m14 0q3-14 13-14 11 0 11 13"
+          fill="none"
+          stroke="#aac188"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <path
+          className="cast-frog-throat"
+          d="M17 54q33 17 66 0 0 24-33 26-33-2-33-26Z"
+          fill="#d9d8a0"
+        />
+        <AnimalEyes
+          pose={pose}
+          xs={[29, 71]}
+          y={35}
+          width={10.6}
+          height={pose.eye}
+          iris="#c3ad58"
+          pupilWidth={4.5}
+          lid="#46623d"
+        />
+        <g
+          className="study-brows"
+          transform="translate(0 -7)"
+          stroke="#527648"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+        >
           <path d={pose.brows[0]} transform="translate(-6 0)" />
           <path d={pose.brows[1]} transform="translate(6 0)" />
         </g>
@@ -75,8 +139,10 @@ export default function FrogCoach({ expression }: CoachArtworkProps) {
         </g>
         <FrogMouth pose={pose} />
         <g fill="#618651" opacity=".75">
-          <circle cx="18" cy="47" r="1.5" /><circle cx="23" cy="50" r="1" />
-          <circle cx="82" cy="47" r="1.5" /><circle cx="77" cy="50" r="1" />
+          <circle cx="18" cy="47" r="1.5" />
+          <circle cx="23" cy="50" r="1" />
+          <circle cx="82" cy="47" r="1.5" />
+          <circle cx="77" cy="50" r="1" />
         </g>
       </AnimalHead>
       {pose.paws === "book" && <Book color="#667c57" />}

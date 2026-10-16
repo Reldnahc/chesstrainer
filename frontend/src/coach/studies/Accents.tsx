@@ -1,10 +1,6 @@
 import type { CoachExpression } from "../model";
 
-export default function Accents({
-  expression,
-}: {
-  expression: CoachExpression;
-}) {
+export default function Accents({ expression }: { expression: CoachExpression }) {
   return (
     <g className="study-accents" fill="none" strokeLinecap="round">
       {(expression === "brilliant" || expression === "winning") && (

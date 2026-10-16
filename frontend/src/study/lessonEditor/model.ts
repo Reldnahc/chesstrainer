@@ -26,8 +26,23 @@ export type Step = {
   arrows?: string[];
   [key: string]: unknown;
 };
-export type Chapter = { id: string; title: string; entry?: string; steps: Step[]; [key: string]: unknown };
-export type Line = { id: string; title: string; moves: string; repertoire?: boolean; eco?: string; fen?: string; position?: string; [key: string]: unknown };
+export type Chapter = {
+  id: string;
+  title: string;
+  entry?: string;
+  steps: Step[];
+  [key: string]: unknown;
+};
+export type Line = {
+  id: string;
+  title: string;
+  moves: string;
+  repertoire?: boolean;
+  eco?: string;
+  fen?: string;
+  position?: string;
+  [key: string]: unknown;
+};
 export type Course = {
   format: string;
   id: string;
@@ -42,22 +57,49 @@ export type Course = {
   chapters: Chapter[];
   [key: string]: unknown;
 };
-export type Kind = "explanation" | "demonstration" | "decision" | "branch" | "rehearsal" | "game_excerpt";
+export type Kind =
+  "explanation" | "demonstration" | "decision" | "branch" | "rehearsal" | "game_excerpt";
 export type Check = Schema["CourseFileCheck"];
 export type StepBoard = Schema["CourseFileStep"];
-export type Recording = { field: "show" | "decision" | "position"; fen: string; moves: string; legal: LegalMove[]; turnFen: string };
+export type Recording = {
+  field: "show" | "decision" | "position";
+  fen: string;
+  moves: string;
+  legal: LegalMove[];
+  turnFen: string;
+};
 /** Applies one edit to a copy of the course. */
 export type Change = (update: (draft: Course) => void) => void;
 
 export const KINDS: { value: Kind; label: string; help: string }[] = [
   { value: "explanation", label: "Explanation", help: "The learner reads the text and continues." },
   { value: "demonstration", label: "Demonstration", help: "The app plays moves on the board." },
-  { value: "decision", label: "Decision", help: "The learner must find a move; the app answers with a reply." },
-  { value: "branch", label: "Side trip", help: "The learner may enter a side trip and return here." },
+  {
+    value: "decision",
+    label: "Decision",
+    help: "The learner must find a move; the app answers with a reply.",
+  },
+  {
+    value: "branch",
+    label: "Side trip",
+    help: "The learner may enter a side trip and return here.",
+  },
   { value: "rehearsal", label: "Rehearsal", help: "The learner plays a whole line from memory." },
   { value: "game_excerpt", label: "Game excerpt", help: "Plays part of a source game." },
 ];
-export const KIND_FIELDS = ["show", "move", "reply", "feedback", "hint", "choices", "branch", "game", "from", "to", "rehearse"];
+export const KIND_FIELDS = [
+  "show",
+  "move",
+  "reply",
+  "feedback",
+  "hint",
+  "choices",
+  "branch",
+  "game",
+  "from",
+  "to",
+  "rehearse",
+];
 // Emptying one of these keeps it as "", so the step keeps its kind while being written.
 export const KIND_DEFINING = new Set(["show", "move", "rehearse", "branch", "game"]);
 
@@ -81,7 +123,13 @@ export function newCourse(): Course {
     topic: "opening",
     credits: [{ text: "Written by our club." }],
     lines: [],
-    chapters: [{ id: "chapter-1", title: "Chapter 1", steps: [{ id: "introduction", title: "Introduction", text: "" }] }],
+    chapters: [
+      {
+        id: "chapter-1",
+        title: "Chapter 1",
+        steps: [{ id: "introduction", title: "Introduction", text: "" }],
+      },
+    ],
   };
 }
 
@@ -92,7 +140,10 @@ export function uniqueId(base: string, taken: string[]) {
 }
 
 export function words(value: string) {
-  return value.split(/[\s,]+/).map(item => item.trim()).filter(Boolean);
+  return value
+    .split(/[\s,]+/)
+    .map(item => item.trim())
+    .filter(Boolean);
 }
 
 /** Renames a step and every link to it in its chapter: `next`, a side trip's start,

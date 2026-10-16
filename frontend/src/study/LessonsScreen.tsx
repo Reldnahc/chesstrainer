@@ -1,6 +1,11 @@
 import PageTitle from "../PageTitle";
 import SectionNavigation from "../SectionNavigation";
-import { openingCataloguePath, openingStudiesPath, studyPaths, type OpeningSection } from "../navigation";
+import {
+  openingCataloguePath,
+  openingStudiesPath,
+  studyPaths,
+  type OpeningSection,
+} from "../navigation";
 import LessonLibrary from "./LessonLibrary";
 import OpeningCatalogue from "./OpeningCatalogue";
 import OpeningStudies from "./OpeningStudies";
@@ -14,7 +19,14 @@ const sections: { id: OpeningSection; label: string; href: string; title: string
 
 /** Study's Lessons section: opening and fundamentals courses beside the opening
  * catalogue and the learner's own studies. A course page drops the section tray. */
-export default function LessonsScreen({ section, courseId, revision, query, eco, offset }: {
+export default function LessonsScreen({
+  section,
+  courseId,
+  revision,
+  query,
+  eco,
+  offset,
+}: {
   section: OpeningSection;
   courseId: string | null;
   revision: string | null;
@@ -22,13 +34,28 @@ export default function LessonsScreen({ section, courseId, revision, query, eco,
   eco: string;
   offset: number;
 }) {
-  return <>
-    <PageTitle title="Lessons" documentTitle={sections.find((item) => item.id === section)!.title} />
-    <div className="study-page">
-      {!courseId && <SectionNavigation label="Lesson sections" current={section} items={sections} />}
-      {section === "catalogue" ? <OpeningCatalogue query={query} eco={eco} offset={offset} />
-        : section === "studies" ? <OpeningStudies />
-        : <LessonLibrary topic={section === "fundamentals" ? "skills" : "opening"} courseId={courseId} revision={revision} />}
-    </div>
-  </>;
+  return (
+    <>
+      <PageTitle
+        title="Lessons"
+        documentTitle={sections.find(item => item.id === section)!.title}
+      />
+      <div className="study-page">
+        {!courseId && (
+          <SectionNavigation label="Lesson sections" current={section} items={sections} />
+        )}
+        {section === "catalogue" ? (
+          <OpeningCatalogue query={query} eco={eco} offset={offset} />
+        ) : section === "studies" ? (
+          <OpeningStudies />
+        ) : (
+          <LessonLibrary
+            topic={section === "fundamentals" ? "skills" : "opening"}
+            courseId={courseId}
+            revision={revision}
+          />
+        )}
+      </div>
+    </>
+  );
 }

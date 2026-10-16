@@ -12,7 +12,9 @@ declare global {
   }
 }
 
-test("queued visibility changes use the latest position without replaying consumed reactions", async ({ page }) => {
+test("queued visibility changes use the latest position without replaying consumed reactions", async ({
+  page,
+}) => {
   // Hold real browser observations for one portrait so both scroll directions
   // arrive in one callback, as they can when rendering is busy.
   await page.addInitScript(() => {
@@ -51,9 +53,12 @@ test("queued visibility changes use the latest position without replaying consum
   const avatar = page.locator(".studio-expert .coach-avatar");
   const replay = page.getByRole("button", { name: "Replay reaction", exact: true });
   const note = page.locator(".studio-note");
-  const observations = () => page.evaluate(() =>
-    window.coachVisibilityBatch.entries.map((entry) => entry.isIntersecting));
-  const hold = () => page.evaluate(() => { window.coachVisibilityBatch.hold = true; });
+  const observations = () =>
+    page.evaluate(() => window.coachVisibilityBatch.entries.map(entry => entry.isIntersecting));
+  const hold = () =>
+    page.evaluate(() => {
+      window.coachVisibilityBatch.hold = true;
+    });
   const flush = () => page.evaluate(() => window.coachVisibilityBatch.flush());
   const delivered = () => page.evaluate(() => window.coachVisibilityBatch.delivered);
 
@@ -78,8 +83,11 @@ test("queued visibility changes use the latest position without replaying consum
   await expect(avatar).toHaveAttribute("data-phase", "reaction");
   await flush();
   await expect(avatar).toHaveAttribute("data-phase", "reaction");
-  expect(await avatar.evaluate((element) =>
-    element.getAnimations({ subtree: true }).some((animation) => animation.playState === "running"))).toBe(true);
+  expect(
+    await avatar.evaluate(element =>
+      element.getAnimations({ subtree: true }).some(animation => animation.playState === "running"),
+    ),
+  ).toBe(true);
   await page.clock.runFor(2000);
   await expect(avatar).toHaveAttribute("data-phase", "rest");
 
@@ -98,7 +106,7 @@ test("queued visibility changes use the latest position without replaying consum
   await expect.poll(observations).toEqual([true, false]);
   await flush();
   await expect(avatar).toHaveAttribute("data-phase", "rest");
-  expect(await avatar.evaluate((element) => element.getAnimations({ subtree: true }).length)).toBe(0);
+  expect(await avatar.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
 
   await avatar.scrollIntoViewIfNeeded();
   await expect(avatar).toBeInViewport();

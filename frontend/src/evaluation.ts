@@ -5,9 +5,7 @@ type Side = "white" | "black";
 export function scoreSide(score: Score | null | undefined) {
   if (!score) return "unknown";
   if (score.kind === "cp" && score.value === 0) return "equal";
-  return score.value > 0 || (score.kind === "mate" && score.mate_given)
-    ? "white"
-    : "black";
+  return score.value > 0 || (score.kind === "mate" && score.mate_given) ? "white" : "black";
 }
 
 /** A score from the other side's view. A delivered mate (M0) keeps its winner
@@ -19,7 +17,8 @@ export function negateScore(score: Score): Score {
 }
 
 type ScoredPosition = {
-  termination?: string | null; result?: string | null;
+  termination?: string | null;
+  result?: string | null;
   /** The side that played the move into this position. */
   actor?: Side | null;
   /** The side to move in this position. */
@@ -38,16 +37,29 @@ type ScoredPosition = {
  *
  * A board the rules have ended reads its result: checkmate is M0 for the winner,
  * and a draw (stalemate, insufficient material, repetition) is equal. */
-export function positionScore(score: Score | null | undefined,
-  position?: ScoredPosition | null, source: "move" | "position" = "move"): Score | null {
-  if (position?.termination === "checkmate" && (position.result === "1-0" || position.result === "0-1"))
+export function positionScore(
+  score: Score | null | undefined,
+  position?: ScoredPosition | null,
+  source: "move" | "position" = "move",
+): Score | null {
+  if (
+    position?.termination === "checkmate" &&
+    (position.result === "1-0" || position.result === "0-1")
+  )
     return { kind: "mate", value: 0, mate_given: position.result === "1-0" };
   if (position?.termination && position.result === "1/2-1/2")
     return { kind: "cp", value: 0, mate_given: false };
   if (!score) return null;
-  const mover = position?.actor ?? (position?.turn ? (position.turn === "white" ? "black" : "white") : null);
-  if (source === "position" || score.kind !== "mate" || score.value === 0 || !mover
-    || (score.value > 0) !== (mover === "white")) return score;
+  const mover =
+    position?.actor ?? (position?.turn ? (position.turn === "white" ? "black" : "white") : null);
+  if (
+    source === "position" ||
+    score.kind !== "mate" ||
+    score.value === 0 ||
+    !mover ||
+    score.value > 0 !== (mover === "white")
+  )
+    return score;
   const value = score.value - Math.sign(score.value);
   return { kind: "mate", value, mate_given: value === 0 && mover === "white" };
 }
@@ -59,7 +71,9 @@ export function whitePerspective(score: Score, turn: "white" | "black"): Score {
 
 /** The starting position's score: the first move's report holds the best play
  * from it, scored for the side to move there. */
-export function startingScore(frames: readonly { turn: "white" | "black"; report?: { best: { score: Score } } | null }[]): Score | null {
+export function startingScore(
+  frames: readonly { turn: "white" | "black"; report?: { best: { score: Score } } | null }[],
+): Score | null {
   const first = frames[1]?.report;
   return first && frames[0] ? whitePerspective(first.best.score, frames[0].turn) : null;
 }
@@ -73,9 +87,8 @@ export function pawnsText(cp: number): string {
 export function scoreText(score: Score | null | undefined, decimals: 1 | 2 = 2) {
   if (!score) return "—";
   const sign = scoreSide(score) === "black" ? "−" : "+";
-  const pawns = decimals === 1
-    ? Math.round(Math.abs(score.value) / 10) / 10
-    : Math.abs(score.value) / 100;
+  const pawns =
+    decimals === 1 ? Math.round(Math.abs(score.value) / 10) / 10 : Math.abs(score.value) / 100;
   if (score.kind === "mate") return `${sign}M${Math.abs(score.value)}`;
   // A score that rounds to nothing favours neither side: 0.0, never −0.0 or +0.0.
   return `${pawns === 0 ? "" : sign}${pawns.toFixed(decimals)}`;
