@@ -81,7 +81,7 @@ export const expert = coachPersonality({
     book: ["Opening theory: {opening}."],
     book_sound: ["Catalogued in {opening}."],
     departure: ["Our catalogue stops here. It has no prepared line from this point."],
-    recovery: [{fact: "Repair completed. The error at {earlier} no longer leaves the position lost.{help}"}],
+    recovery: [{fact: "Repair completed. The deficit from {earlier} has been erased.{help}"}],
     punishment: ["{side} converts the opportunity conceded at {earlier}."],
     missed_punishment: ["The opportunity conceded to {side} at {earlier} goes unconverted."],
     repeated: ["Recurrence count for this {motif} issue in the reviewed segment: {count}."],

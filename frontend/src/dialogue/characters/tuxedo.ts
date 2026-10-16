@@ -79,7 +79,7 @@ export const tuxedo = coachPersonality({
     book: ["This opening is catalogued: {opening}."],
     book_sound: ["Theory, filed under {opening}.", "On file in theory: {opening}."],
     departure: ["Our book runs out here. Calculation from now on."],
-    recovery: ["The setback at {earlier} no longer leaves a losing position.{help}", "Since the setback at {earlier}, the position has become playable again.{help}"],
+    recovery: ["The damage from {earlier} has been quietly undone.{help}", "Since the setback at {earlier}, the position has become playable again.{help}"],
     repeated: ["The {motif} issue, again: it has shown up {count} times in the reviewed game. A pattern worth addressing."],
     mate_win: ["Checkmate, and nothing left to negotiate.", "Mate, and every square the king had is gone."],
     mate_loss: ["Mate. The king had nowhere left, and the defense needed an answer earlier."],
