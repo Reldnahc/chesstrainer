@@ -145,3 +145,34 @@ def test_play_renders_old_rows_to_the_configured_horizon():
     parameters = line_parameters() | {"max_plies": 4, "extension_plies": 0}
     rendered = rendered_reports(play, parsed_for(play, "Learner"), parameters)
     assert all(game_review.lines_current(report, parameters) for report in rendered.values())
+
+
+def test_review_and_classifier_agree_at_the_last_ply_of_a_long_line():
+    # A line longer than the horizon whose next saved move is an equal rook trade:
+    # every reader sees that move, so none settles at the horizon's last ply.
+    board = chess.Board("3rk3/8/8/8/8/8/8/3RK3 w - - 0 1")
+    pv = ["e1e2", "e8e7", "e2e1", "e7e8", "d1d8", "e8d8"]
+    candidate = Candidate.model_validate(
+        {"uci": pv[0], "san": "Ke2", "pv": pv, "score": {"kind": "cp", "value": 0}}
+    )
+    parameters = line_parameters() | {"max_plies": 4, "extension_plies": 0}
+    review = game_review.line_evidence(board, candidate, "a", 1, parameters=parameters)
+    classifier = continuation_end(replay(board, candidate), board.turn, 4, 0)
+    assert classifier.reason == "capture_pending"
+    assert review["material_delta"] == classifier.material_delta is None
+
+
+def test_the_practice_summary_reads_only_the_shown_boards():
+    # Unsettled at a 4-ply horizon: the last shown move takes a rook that is
+    # retaken next, so the summary must not claim the rook as lost.
+    from trainer.explanations import shown_line
+
+    board = chess.Board("3rk3/p7/8/8/8/8/1P6/3RK3 w - - 0 1")
+    pv = ["b2b3", "a7a6", "b3b4", "d8d1", "e1d1", "e8e7"]
+    candidate = Candidate.model_validate(
+        {"uci": pv[0], "san": "b3", "pv": pv, "score": {"kind": "cp", "value": 0}}
+    )
+    rules = line_rules(line_parameters() | {"max_plies": 4, "extension_plies": 0})
+    _, delta, _, frames, change = shown_line(board, candidate, rules)
+    assert delta is None and len(frames) - 1 == 4
+    assert change == 0

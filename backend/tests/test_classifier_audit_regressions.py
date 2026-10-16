@@ -25,7 +25,7 @@ def test_equal_queen_trade_then_lost_knight_is_not_a_hung_queen(black):
     result, _ = LocalClassifier().classify(
         evidence(
             "4k3/4q3/8/8/1N6/8/8/4Q1K1 w - - 0 1",
-            ["b4d5", "e8d8", "g1h1", "d8c8"],
+            ["b4d3", "e7e1", "d3e1", "e8d7", "g1f2", "d7d6"],
             [
                 "e1e7",
                 "e8e7",
@@ -70,7 +70,7 @@ def test_checking_capture_can_deflect_the_king_from_its_rook(black):
         evidence(
             "6rk/8/1q4r1/8/8/8/P4RP1/6K1 b - - 0 1",
             ["g6g2", "g1h1", "b6f2", "a2a3", "h8h7"],
-            ["h8h7", "g1f1", "h7h8", "f1e1"],
+            ["h8h7", "g1f1", "h7h8", "a2a3"],
             900,
             0,
             black,
@@ -85,7 +85,7 @@ def test_defender_still_on_its_file_is_pinned_not_deflected(black):
         evidence(
             "4r3/5k2/8/6Q1/4n3/3P4/8/6K1 w - - 0 1",
             ["g5d5", "e8e6", "d3e4", "f7g6", "d5d3", "g6h6"],
-            ["g5h4", "f7g8", "h4h3", "g8f7"],
+            ["g5h4", "e4f6", "h4h3", "f7g7"],
             200,
             0,
             black,
@@ -101,7 +101,7 @@ def test_pinned_queen_is_traced_through_its_legal_capture(black):
         evidence(
             "5bk1/8/2n5/8/8/2Q5/8/4K3 b - - 0 1",
             ["f8b4", "c3b4", "c6b4", "e1d2", "g8f7", "d2c3"],
-            ["g8f7", "c3c4", "f7g6", "c4d4"],
+            ["c6e7", "e1f2", "g8f7", "f2g3"],
             800,
             0,
             black,
@@ -115,7 +115,7 @@ def test_opponents_interposition_makes_a_previously_pinned_capture_available():
     payload = evidence(
         "3q2k1/4b3/5n2/6B1/4N3/8/8/6K1 w - - 0 1",
         ["g5f6", "e7f6", "g1f2", "g8f7"],
-        ["g1f2", "f6e4", "f2e3", "g8f7", "e3f3", "f7e6"],
+        ["g1f2", "f6e4", "f2e3", "e4g5", "e3f4", "g8f7"],
         0,
         -400,
     )

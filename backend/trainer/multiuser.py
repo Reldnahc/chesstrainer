@@ -4,7 +4,6 @@ import ipaddress
 import secrets
 import threading
 import time
-from datetime import datetime, timezone
 
 from fastapi import HTTPException, Request, Response
 from fastapi.responses import JSONResponse
@@ -294,7 +293,6 @@ def configure_accounts(app, settings):
                     **row,
                     "admin": bool(row["admin"]),
                     "disabled": bool(row["disabled"]),
-                    "created": datetime.fromtimestamp(row["created"], timezone.utc),
                 }
                 for row in accounts.listing()
             ],

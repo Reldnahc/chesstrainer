@@ -25,7 +25,7 @@ import pydantic
 from trainer.chess_core import DECISIVE_CP, Score, digest, evaluation_loss, game_phase
 from trainer.contracts.insights import Speed
 from trainer.game_accuracy import STARTING_CP, accuracy_cp, mover_accuracy
-from trainer.game_library import mover_rating, parsed_game, pgn_rating
+from trainer.game_library import mover_rating, parsed_game, pgn_date, pgn_rating
 from trainer.game_review import blunder_kind
 from trainer.imports import played_at as header_start
 from trainer.models import now as current_time
@@ -217,7 +217,7 @@ def game_facts(game, scores=None, rating=None):
         learner_white=learner_white,
         played_at=game.played_at,
         started_at=header_start(parsed) or game.played_at,
-        played_on=game.played_on,
+        played_on=headers.get("Date"),
         result=learner_result(raw_result, learner_white),
         speed=speed_of(time_control, site_of(headers)),
         site=site_of(headers),
@@ -321,7 +321,9 @@ def facts_key(game, rating, revision, completed):
             "pgn": hashlib.sha256(game.pgn.encode()).hexdigest(),
             "learner_color": bool(game.learner_color),
             "players": [game.white, game.black],
-            "played_on": game.played_on,
+            # The value the dropped games.played_on column held, so saved facts
+            # keep their keys across that migration.
+            "played_on": pgn_date(game.pgn),
             "played_at": game.played_at.isoformat() if game.played_at else None,
             "rating": rating,
             # Scores are read only from a completed review, which bumps its

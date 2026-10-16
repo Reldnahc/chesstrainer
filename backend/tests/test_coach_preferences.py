@@ -178,7 +178,12 @@ def test_migration_preserves_existing_accounts_and_defaults(settings):
     migrate(engine)
     with engine.connect() as connection:
         after = connection.execute(text("SELECT * FROM users")).mappings().all()
-        assert [{key: row[key] for key in before[0]} for row in after] == before
+        # Later migrations replace the epoch ``created`` and drop the unused
+        # ``chesscom_username``; every other account value stays.
+        kept = [key for key in before[0] if key in after[0]]
+        assert [{key: row[key] for key in kept} for row in after] == [
+            {key: row[key] for key in kept} for row in before
+        ]
         assert all(row["onboarding_completed"] for row in after)
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     with sessions() as db:

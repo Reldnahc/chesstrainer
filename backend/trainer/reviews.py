@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 from sqlalchemy import and_, func, or_, select
 
-from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
+from trainer.chess_core import Candidate, legal_move, legal_move_options, side_name, valid_board
 from trainer.classification_stages import line_parameters
 from trainer.errors import Conflict, Gone, InvalidInput, NotFound
 from trainer.explanation_types import replay_line
@@ -219,7 +219,7 @@ def review_position(db, session, *, reason="resume", parameters=None):
         "last_attempt_id": session.last_attempt_id,
         "exercise_id": exercise.id,
         "fen": fen,
-        "orientation": snapshot.orientation if snapshot else exercise.orientation,
+        "orientation": side_name(snapshot.learner_color if snapshot else exercise.learner_color),
         "failed": session.failed,
         "review_reason": reason,
         "previous_reviews": state.reviews,

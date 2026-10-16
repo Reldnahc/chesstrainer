@@ -101,7 +101,7 @@ lock, while other accounts have independent locks.
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
 | Home.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
-| study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` are the administrator course tools under Settings → Courses |
+| study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` (its sections in `lessonEditor/`) are the administrator course tools under Settings → Courses; the editor's live check (`course_files.check`) returns the first problem with its chapter and step location (course-file problems carry them on CourseFileError, the course record's own validation raises StepProblem); problems in lines, games or the course itself have none |
 | play/ | Play setup and live games against the coach's bot (`PlayScreen.tsx`, `PlayGame.tsx`, `usePlaySession.ts`), reusing the game review presentation |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
@@ -149,12 +149,13 @@ development tool or a test fixture loads first fixes it. Every stylesheet wraps
 its rules in one of the layers:
 
 - `foundation`: `foundation.css` (tokens, fonts, element defaults and utilities).
-- `shell`: `base.css` (application chrome, `main`, `.panel` and phone typography).
+- `shell`: `base.css` (application chrome, `main`, panel stacking and phone typography) and
+  `panel.css` (the shared `.panel` surface, which the audio studio loads too).
 - `components`: every shared component's sheet, the coach artwork and the review
   and coach presentation.
 - `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,
   the studios' and the lab's own sheets…).
-- `surfaces`: the phone surface policy (sections flatten; see
+- `surfaces`: the phone surface policy (`panel.css`: sections flatten; see
   [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
   padding or border never undoes it. A page that divides flattened panels puts that
   divider in this layer too (`game-insights.css`).
@@ -440,7 +441,7 @@ Classification-only backfills launch no background engines and cannot create/enr
 
 diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py bounds and orders events; verified_motifs.py owns independent capture, fork, promotion, check, pin, skewer, defender-removal and back-rank rules. tactical_geometry.py, combination_patterns.py and move_causes.py retain shared geometry and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
 
-defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.1-lichess-8d9faff6 are separate version boundaries.
+defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.2-lichess-8d9faff6 are separate version boundaries.
 
 Geometric detectors construct findings through `tactical_geometry.witness`, which
 preserves actor, move/frame, square-role and rule-version metadata. Mate/material
@@ -537,7 +538,7 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 
 The shared `engine_analyses` and `human_analyses` caches are swept at startup, before job workers and requests run (`trainer/cache_maintenance.py`). A row goes when it is more than 30 days old and its id appears nowhere else in the database: not in any string column, and not as a string or object key inside any JSON value, so reports, findings and Play reports keep the rows they name without a list of known columns. Startup is the one moment no job holds a cache id it has read but not yet saved, so a row in use cannot be deleted under it; younger unreferenced rows stay as cache hits. New database files use incremental auto-vacuum, and the sweep gives freed pages back to the disk each time, checkpointing and truncating the WAL so the space does not stay in the `-wal` file until shutdown. A failed sweep or reclaim is logged and retried at the next start rather than stopping the server. An older file is rebuilt once with `VACUUM`, in incremental mode, when a quarter of it is free; the container keeps SQLite's temporary files in `/data` (`SQLITE_TMPDIR`) because that copy can be larger than `/tmp`.
 
-Every upgrade, from the server start or from `alembic upgrade head`, runs through `db.migration_connection`: foreign keys off on that connection, one `BEGIN IMMEDIATE` transaction that SQLite rather than pysqlite controls (so DDL rolls back too), and a `foreign_key_check` before commit. A failed revision leaves the schema and `alembic_version` exactly as they were. A database that is already current is not touched. Revision ids come from `alembic revision`, never typed by hand, and `models.NAMING_CONVENTION` names new indexes, checks and foreign keys (name a new unique constraint explicitly).
+Every upgrade, from the server start or from `alembic upgrade head`, runs through `db.migration_connection`: foreign keys off on that connection, one `BEGIN IMMEDIATE` transaction that SQLite rather than pysqlite controls (so DDL rolls back too), and a `foreign_key_check` before commit. A failed revision leaves the schema and `alembic_version` exactly as they were. A database that is already current is not touched. Revision ids come from `alembic revision`, never typed by hand, `models.NAMING_CONVENTION` names every index, check, foreign key and primary key, and `models.unique` names each unique constraint the same way (`uq_<table>_<columns>`); revision `eb978e634f57` rebuilt the older tables so every constraint carries these names (that one upgrade needs free disk about twice the database's size). One representation per concept: a side is a `learner_color` boolean (True for White, converted to `"white"`/`"black"` only at the API and in identity digests), every time is a `UTCDateTime`, a game's PGN Date text is read from its PGN, and job kinds and statuses are `job_kinds.JobKind`/`JobStatus`, enforced by CHECK constraints (`retired` marks jobs of removed features, kept as history).
 
 ### Current and archival relationships
 
@@ -548,7 +549,7 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | provider_connections | Account-owned provider usernames and the poller's change markers (`poll_state`) |
 | game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts, unique fingerprints and the nullable `rated` flag (statistics skip only games known to be unrated) |
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
-| chesscom_imports, chesscom_archives | Query/filter settings, download diagnostics and per-job archive checkpoints |
+| provider_imports, provider_checkpoints | Query/filter settings, download diagnostics and per-job archive checkpoints, for every provider |
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
 | play_games, play_profiles | Account-owned games against the coach's bot (moves, saved per-ply reports, result, the saved library game) and the measured level fit with its evidence size |
 | game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |

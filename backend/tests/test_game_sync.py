@@ -7,7 +7,7 @@ from test_accounts import ORIGIN, signup
 from trainer.api import create_app
 from trainer.game_analysis import FRESH, REQUESTED
 from trainer.game_providers.chesscom import ChessComClient
-from trainer.models import AnalysisJob, ChessComImport, EngineAnalysis, Game, ImportBatch
+from trainer.models import AnalysisJob, EngineAnalysis, Game, ImportBatch, ProviderImport
 
 
 def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_engine(settings):
@@ -68,7 +68,7 @@ def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_eng
         )
         sessions = app.state.workspaces.sessions(identity["user"]["id"])
         with sessions() as db:
-            db.get(ChessComImport, job["job_id"]).max_games = 2
+            db.get(ProviderImport, job["job_id"]).max_games = 2
             db.commit()
         assert app.state.runner.claim() is None
         assert app.state.runner.claim(sync_only=True) == job["job_id"]
@@ -87,7 +87,7 @@ def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_eng
             db.commit()
         client.post("/api/providers/chesscom/sync", headers=headers)
         with sessions() as db:
-            db.get(ChessComImport, job["job_id"]).max_games = 2
+            db.get(ProviderImport, job["job_id"]).max_games = 2
             db.commit()
         app.state.runner.run_job(job["job_id"])
         assert client.get("/api/games").json()["total"] == 2  # No creeping backfill of old games.

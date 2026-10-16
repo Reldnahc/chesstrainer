@@ -121,7 +121,7 @@ export default function AudioStudio() {
           </section>
 
           <aside className="audio-studio-sidebar">
-            <section className="audio-studio-panel" aria-labelledby="scenario-heading">
+            <section className="panel panel--card audio-studio-panel" aria-labelledby="scenario-heading">
               <header className="audio-studio-panel-heading">
                 <div className="audio-studio-title"><span className="audio-studio-step">02 / IN CONTEXT</span><h2 id="scenario-heading">Hear the flow</h2></div>
                 <p>Uses the same sound mapping and player as the application.</p>
@@ -135,7 +135,7 @@ export default function AudioStudio() {
               </div>
             </section>
 
-            <section className="audio-studio-panel audio-studio-history" aria-label="Playback history">
+            <section className="panel panel--card audio-studio-panel audio-studio-history" aria-label="Playback history">
               <details className="disclosure audio-studio-details">
                 <summary>Playback history <span>{history.filter(event => event.type === "started").length} played</span></summary>
                 <p>Live events from the shared audio player.</p>

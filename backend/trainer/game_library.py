@@ -1,9 +1,21 @@
 """Display metadata from saved PGNs; no engine or remote profile requests."""
 
 import io
+import re
 from math import isfinite
 
 import chess.pgn
+
+DATE_TAG = re.compile(r'^\[Date "([^"]*)"\]', re.MULTILINE)
+
+
+def pgn_date(pgn):
+    """The PGN's own Date tag, as written (it may be partial, "2024.??.??"), or None.
+
+    Read from the text, so a caller that only needs the date parses nothing.
+    """
+    found = DATE_TAG.search(pgn or "")
+    return found.group(1) if found else None
 
 
 def parsed_game(game):

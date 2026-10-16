@@ -71,8 +71,8 @@ STEPS = (
         " OR import_id IN (SELECT id FROM temp.clear_imports)",
     ),
     ("games", "id IN (SELECT id FROM temp.clear_games)"),
-    ("chesscom_archives", "job_id IN (SELECT id FROM temp.clear_jobs)"),
-    ("chesscom_imports", "job_id IN (SELECT id FROM temp.clear_jobs)"),
+    ("provider_checkpoints", "job_id IN (SELECT id FROM temp.clear_jobs)"),
+    ("provider_imports", "job_id IN (SELECT id FROM temp.clear_jobs)"),
     ("analysis_jobs", "id IN (SELECT id FROM temp.clear_jobs)"),
     ("game_imports", "id IN (SELECT id FROM temp.clear_imports)"),
 )
