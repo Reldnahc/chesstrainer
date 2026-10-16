@@ -1,6 +1,6 @@
 import {test, expect} from "@playwright/test";
 import {AudioEngine, type AudioDriver, type AudioEvent, type AudioEngineOptions} from "../src/audio/engine";
-import {cueForMove, defaultAudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCue, type SoundPalette, type SpeechPlayback} from "../src/audio/model";
+import {cueForMove, defaultAudioPreferences, type RecordedSpeechClip, type SoundCue, type SoundPalette, type SpeechPlayback} from "../src/audio/model";
 
 class Gain {
   value = 1;
@@ -97,25 +97,28 @@ function fixture(options: Pick<AudioEngineOptions, "onEvent" | "onSpeechPlayback
 }
 async function flush() { for (let i = 0; i < 8; i++) await Promise.resolve(); }
 const move = (eventId: string, scope = "board") => ({cue: "move" as const, eventId, scope});
-function speech(id: string, priority = 50, interruptible = true): PreparedSpeechClip {
-  return {scope: "coach", buffer: {} as AudioBuffer,
-    utterance: {id, coachId: "", priority, interruptible}};
+function speech(id: string, priority = 50, interruptible = true, url = "/audio/walter/welcome.wav"): RecordedSpeechClip {
+  return {scope: "coach", url, utterance: {id, coachId: "", priority, interruptible}};
 }
 function recording(id: string, options: Partial<RecordedSpeechClip> = {}): RecordedSpeechClip {
-  return {scope: "coach", url: "/audio/walter/welcome.wav", utterance: speech(id).utterance, ...options};
+  return {...speech(id), ...options};
+}
+/** Serve the recording at `url` from `pending`, and every other one at once. */
+function holding(f: ReturnType<typeof fixture>, url: string, pending: Promise<ArrayBuffer>) {
+  f.load(asked => asked === url ? pending : Promise.resolve(new ArrayBuffer(8)));
 }
 
-test("voice Off suppresses prepared and recorded speech while board sounds remain enabled", async () => {
+test("voice Off suppresses speech while board sounds remain enabled", async () => {
   const f = fixture();
   await f.engine.unlock();
   f.engine.setPreferences({...defaultAudioPreferences, voice: "off"});
-  f.engine.playPreparedSpeech(speech("prepared-off"));
-  f.engine.playRecordedSpeech(recording("recorded-off"));
+  f.engine.playRecordedSpeech(recording("speech-off"));
+  f.engine.playRecordedSpeech(recording("recorded-off", {url: "/audio/walter/other.wav"}));
   f.engine.play(move("board-still-on"));
   await flush();
   expect(f.started()).toEqual(["board-still-on"]);
   expect(f.events.filter(event => event.type === "suppressed").map(event => [event.eventId, event.reason]))
-    .toEqual([["prepared-off", "voice-disabled"], ["recorded-off", "voice-disabled"]]);
+    .toEqual([["speech-off", "voice-disabled"], ["recorded-off", "voice-disabled"]]);
   expect(f.loads).toHaveLength(1);
   expect(f.loads[0]).toContain("move.wav");
 });
@@ -125,7 +128,8 @@ test("turning voice Off cancels active and queued speech without cancelling effe
   await f.engine.unlock();
   f.engine.play(move("board-active"));
   await flush();
-  f.engine.playPreparedSpeech(speech("speech-active"));
+  f.engine.playRecordedSpeech(recording("speech-active"));
+  await flush();
   f.engine.playRecordedSpeech(recording("speech-delayed", {delayMs: 500}));
   f.engine.setPreferences({...defaultAudioPreferences, voice: "off"});
   expect(f.events.filter(event => event.type === "cancelled").map(event => [event.eventId, event.reason]))
@@ -496,14 +500,15 @@ test("hidden tabs disconnect playing and retiring voices before the context can 
   f.engine.dispose();
 });
 
-test("prepared speech uses utterance identity, priority, interruption and a separate ducking bus", async () => {
+test("speech uses utterance identity, priority, interruption and a separate ducking bus", async () => {
   const f = fixture();
   await f.engine.unlock();
-  f.engine.playPreparedSpeech(speech("ordinary"));
+  f.engine.playRecordedSpeech(speech("ordinary"));
+  await flush();
   expect(f.context.gains[1].gain.value).toBe(.3);
-  f.engine.playPreparedSpeech(speech("lower", 30));
-  f.engine.playPreparedSpeech(speech("important", 90, false));
-  f.engine.playPreparedSpeech(speech("cannot-interrupt", 100));
+  f.engine.playRecordedSpeech(speech("lower", 30));
+  f.engine.playRecordedSpeech(speech("important", 90, false));
+  f.engine.playRecordedSpeech(speech("cannot-interrupt", 100));
   f.engine.play(move("board"));
   await flush();
   expect(f.started()).toEqual(["ordinary", "important", "board"]);
@@ -512,7 +517,8 @@ test("prepared speech uses utterance identity, priority, interruption and a sepa
   f.engine.cancel("coach");
   expect(f.context.gains[1].gain.value).toBe(1);
   expect(f.events.some(event => event.eventId === "board" && event.type === "cancelled")).toBe(false);
-  f.engine.playPreparedSpeech(speech("important", 90, false));
+  f.engine.playRecordedSpeech(speech("important", 90, false));
+  await flush();
   expect(f.started()).toHaveLength(3);
   expect(JSON.stringify(f.events)).not.toContain("Visible coaching text");
   f.engine.dispose();
@@ -521,7 +527,8 @@ test("prepared speech uses utterance identity, priority, interruption and a sepa
 test("natural completion removes speech ducking and a throwing observer cannot break playback", async () => {
   const f = fixture();
   await f.engine.unlock();
-  f.engine.playPreparedSpeech(speech("natural"));
+  f.engine.playRecordedSpeech(speech("natural"));
+  await flush();
   f.context.sources[0].finish();
   expect(f.context.gains[1].gain.value).toBe(1);
   expect(f.events.find(event => event.type === "ended")?.eventId).toBe("natural");
@@ -538,7 +545,9 @@ test("speech eases its final sound out on the source clock instead of stopping a
   const line = Array.from({length: 48000}, (_, index) => Math.sin(index * Math.PI * 2 * 220 / 48000)
     * (index >= 4800 && index < 33600 ? .3 : index >= 33600 && index < 38400 ? .3 * 10 ** (-25 / 20) : 0));
   const buffer = pcm(48000, line);
-  f.engine.playPreparedSpeech({...speech("released"), buffer});
+  f.context.decode = async () => buffer;
+  f.engine.playRecordedSpeech(speech("released"));
+  await flush();
   const schedule = f.context.gains[3].gain.schedule;
   expect(schedule).toHaveLength(17);
   expect(schedule[0]).toEqual(["set", 1, 3.7]);
@@ -551,12 +560,15 @@ test("speech eases its final sound out on the source clock instead of stopping a
   f.engine.play(move("board"));
   await flush();
   expect(f.context.gains[4].gain.schedule).toEqual([]);
-  f.engine.playPreparedSpeech({...speech("silent"), buffer: pcm(48000, new Array(4800).fill(0))});
+  const silent = pcm(48000, new Array(4800).fill(0));
+  f.context.decode = async () => silent;
+  f.engine.playRecordedSpeech(speech("silent", 50, true, "/audio/walter/silent.wav"));
+  await flush();
   expect(f.context.gains[5].gain.schedule).toEqual([]);
   f.engine.dispose();
 });
 
-test("recordings remain gesture-lazy and share utterance deduplication with prepared speech", async () => {
+test("recordings remain gesture-lazy and deduplicate by utterance identity", async () => {
   const f = fixture();
   const buffer = {} as AudioBuffer;
   f.context.decode = async () => buffer;
@@ -567,7 +579,7 @@ test("recordings remain gesture-lazy and share utterance deduplication with prep
   f.engine.playRecordedSpeech(recording("blocked"));
   f.engine.playRecordedSpeech(recording("accepted"));
   await flush();
-  f.engine.playPreparedSpeech(speech("accepted"));
+  f.engine.playRecordedSpeech(speech("accepted"));
   expect(f.started()).toEqual(["accepted"]);
   expect(f.context.sources[0].buffer).toBe(buffer);
   expect(f.context.gains[1].gain.value).toBe(.3);
@@ -583,14 +595,15 @@ test("recordings remain gesture-lazy and share utterance deduplication with prep
 test("delayed recordings claim speech only when due and cancel before downloading", async () => {
   const f = fixture();
   const fetched = deferred<ArrayBuffer>();
-  f.load(() => fetched.promise);
+  holding(f, "/audio/walter/next.wav", fetched.promise);
   await f.engine.unlock();
-  f.engine.playPreparedSpeech(speech("current"));
-  f.engine.playRecordedSpeech(recording("next", {delayMs: 250}));
-  expect(f.loads).toEqual([]);
+  f.engine.playRecordedSpeech(speech("current"));
+  await flush();
+  f.engine.playRecordedSpeech(recording("next", {delayMs: 250, url: "/audio/walter/next.wav"}));
+  expect(f.loads).toEqual(["/audio/walter/welcome.wav"]);
   expect(f.context.sources[0].stops).toEqual([]);
   f.tick();
-  expect(f.loads).toHaveLength(1);
+  expect(f.loads).toHaveLength(2);
   expect(f.context.sources[0].stops).toHaveLength(1);
   expect(f.context.gains[1].gain.value).toBe(1); // Loading speech does not duck effects.
   fetched.resolve(new ArrayBuffer(8));
@@ -602,7 +615,7 @@ test("delayed recordings claim speech only when due and cancel before downloadin
   f.engine.cancel("later");
   f.tick();
   await flush();
-  expect(f.loads).toHaveLength(1);
+  expect(f.loads).toHaveLength(2);
   expect(f.started()).toEqual(["current", "next"]);
   f.engine.dispose();
 });
@@ -709,40 +722,43 @@ test("recording failures release speech priority and allow a new event to retry 
     expect(() => f.tick()).not.toThrow();
     await flush();
     expect(f.events.find(event => event.type === "error")?.eventId).toBe("failed");
-    f.engine.playPreparedSpeech(speech("lower-after-failure", 10));
-    expect(f.started()).toEqual(["lower-after-failure"]);
-    f.context.sources[0].finish();
     f.load(async () => new ArrayBuffer(8));
     f.context.decode = async () => ({} as AudioBuffer);
+    f.engine.playRecordedSpeech(speech("lower-after-failure", 10, true, "/audio/walter/lower.wav"));
+    await flush();
+    expect(f.started()).toEqual(["lower-after-failure"]);
+    f.context.sources[0].finish();
     f.engine.playRecordedSpeech({...clip, delayMs: 0});
-    expect(f.loads).toHaveLength(1); // Failed action identities are still consumed.
+    expect(f.loads).toHaveLength(2); // Failed action identities are still consumed.
     f.engine.playRecordedSpeech({...clip, eventId: "retry", delayMs: 0});
     await flush();
-    expect(f.loads).toHaveLength(2);
+    expect(f.loads).toHaveLength(3);
     expect(f.started()).toEqual(["lower-after-failure", "retry"]);
     f.engine.dispose();
   }
 });
 
-test("prepared and loading recorded speech share priority and interruption rules", async () => {
+test("playing and still-loading speech share priority and interruption rules", async () => {
   const f = fixture();
   const fetched = deferred<ArrayBuffer>();
-  f.load(() => fetched.promise);
+  holding(f, "/audio/walter/loading.wav", fetched.promise);
   await f.engine.unlock();
-  f.engine.playPreparedSpeech(speech("protected", 50, false));
+  f.engine.playRecordedSpeech(speech("protected", 50, false, "/audio/walter/protected.wav"));
+  await flush();
   f.engine.playRecordedSpeech(recording("cannot-interrupt", {utterance: speech("cannot-interrupt", 100).utterance}));
-  expect(f.loads).toEqual([]);
+  expect(f.loads).toEqual(["/audio/walter/protected.wav"]);
   f.engine.cancel("coach");
-  f.engine.playRecordedSpeech(recording("loading", {utterance: speech("loading", 70).utterance}));
+  f.engine.playRecordedSpeech(speech("loading", 70, true, "/audio/walter/loading.wav"));
   f.engine.playRecordedSpeech(recording("lower-recording", {url: "/audio/walter/other.wav"}));
-  f.engine.playPreparedSpeech(speech("lower-prepared", 60));
-  expect(f.loads).toHaveLength(1);
+  f.engine.playRecordedSpeech(speech("lower-protected", 60, true, "/audio/walter/protected.wav"));
+  expect(f.loads).toHaveLength(2);
   expect(f.context.gains[1].gain.value).toBe(1);
-  f.engine.playPreparedSpeech(speech("urgent", 90, false));
+  f.engine.playRecordedSpeech(speech("urgent", 90, false, "/audio/walter/protected.wav"));
+  await flush();
   fetched.resolve(new ArrayBuffer(8));
   await flush();
   expect(f.started()).toEqual(["protected", "urgent"]);
-  for (const eventId of ["cannot-interrupt", "lower-recording", "lower-prepared"]) {
+  for (const eventId of ["cannot-interrupt", "lower-recording", "lower-protected"]) {
     expect(f.events.find(event => event.eventId === eventId && event.type === "suppressed")?.reason).toBe("priority");
   }
   expect(f.events.find(event => event.eventId === "loading" && event.type === "cancelled")?.reason).toBe("replaced");
@@ -777,9 +793,9 @@ function voicedBuffer() {
     getChannelData: () => { reads++; return samples; }} as unknown as AudioBuffer;
   return {buffer, reads: () => reads};
 }
-function voicedSpeech(id: string, buffer: AudioBuffer): PreparedSpeechClip {
-  const clip = speech(id);
-  return {...clip, buffer, utterance: {...clip.utterance, coachId: "classic"}};
+function voicedSpeech(id: string, url = "/audio/walter/welcome.wav"): RecordedSpeechClip {
+  const clip = speech(id, 50, true, url);
+  return {...clip, utterance: {...clip.utterance, coachId: "classic"}};
 }
 
 test("explicit speech replaces a noninterruptible higher-priority voice across scopes, leaving effects alone", async () => {
@@ -788,17 +804,20 @@ test("explicit speech replaces a noninterruptible higher-priority voice across s
   await f.engine.unlock();
   f.engine.play(move("board"));
   await flush();
-  f.engine.playPreparedSpeech({...voicedSpeech("primary", buffer),
-    utterance: {...voicedSpeech("primary", buffer).utterance, priority: 100, interruptible: false}});
-  f.engine.playPreparedSpeech({...voicedSpeech("automatic-secondary", buffer), scope: "insight"});
+  f.context.decode = async () => buffer;
+  f.engine.playRecordedSpeech({...voicedSpeech("primary"),
+    utterance: {...voicedSpeech("primary").utterance, priority: 100, interruptible: false}});
+  await flush();
+  f.engine.playRecordedSpeech({...voicedSpeech("automatic-secondary"), scope: "insight"});
   expect(f.started()).toEqual(["board", "primary"]);
   expect(f.events.at(-1)).toMatchObject({eventId: "automatic-secondary", type: "suppressed", reason: "priority"});
-  f.engine.playPreparedSpeech({...voicedSpeech("manual-secondary", buffer), scope: "insight", interruptCurrent: true});
+  f.engine.playRecordedSpeech({...voicedSpeech("manual-secondary"), scope: "insight", interruptCurrent: true});
+  await flush();
   expect(f.started()).toEqual(["board", "primary", "manual-secondary"]);
   expect(f.context.sources[0].stops).toEqual([]);
   expect(f.context.sources[1].stops).toHaveLength(1);
-  f.engine.playPreparedSpeech({...voicedSpeech("automatic-again", buffer),
-    utterance: {...voicedSpeech("automatic-again", buffer).utterance, priority: 10}});
+  f.engine.playRecordedSpeech({...voicedSpeech("automatic-again"),
+    utterance: {...voicedSpeech("automatic-again").utterance, priority: 10}});
   expect(f.events.at(-1)).toMatchObject({eventId: "automatic-again", type: "suppressed", reason: "priority"});
 });
 
@@ -806,11 +825,12 @@ test("explicit recorded speech waits for usable audio and a cancelled or failed 
   const f = fixture();
   const {buffer} = voicedBuffer();
   const pending = deferred<ArrayBuffer>();
-  f.load(() => pending.promise);
+  holding(f, "/audio/walter/welcome.wav", pending.promise);
   f.context.decode = async () => buffer;
   await f.engine.unlock();
-  f.engine.playPreparedSpeech({...voicedSpeech("primary", buffer),
-    utterance: {...voicedSpeech("primary", buffer).utterance, priority: 100, interruptible: false}});
+  f.engine.playRecordedSpeech({...voicedSpeech("primary", "/audio/walter/primary.wav"),
+    utterance: {...voicedSpeech("primary").utterance, priority: 100, interruptible: false}});
+  await flush();
   f.engine.playRecordedSpeech({...recording("cancelled-manual"), scope: "insight", interruptCurrent: true});
   expect(f.context.sources[0].stops).toEqual([]);
   f.engine.cancel("insight");
@@ -823,9 +843,13 @@ test("explicit recorded speech waits for usable audio and a cancelled or failed 
   await flush();
   expect(f.events.at(-1)).toMatchObject({eventId: "failed-manual", type: "error"});
   expect(f.context.sources[0].stops).toEqual([]);
-  f.engine.playPreparedSpeech({...speech("invalid-prepared"), interruptCurrent: true});
-  expect(f.events.at(-1)).toMatchObject({eventId: "invalid-prepared", type: "error"});
+  f.load(async () => new ArrayBuffer(8));
+  f.context.decode = async () => ({} as AudioBuffer);
+  f.engine.playRecordedSpeech({...recording("invalid-manual", {url: "/audio/walter/invalid.wav"}), interruptCurrent: true});
+  await flush();
+  expect(f.events.at(-1)).toMatchObject({eventId: "invalid-manual", type: "error"});
   expect(f.context.sources[0].stops).toEqual([]);
+  f.context.decode = async () => buffer;
   f.engine.playRecordedSpeech({...recording("ready-manual"), scope: "insight", interruptCurrent: true});
   await flush();
   expect(f.started()).toEqual(["primary", "ready-manual"]);
@@ -836,11 +860,12 @@ test("a stale manual recording cannot replace newer speech even after the newer 
   const f = fixture();
   const {buffer} = voicedBuffer();
   const pending = deferred<ArrayBuffer>();
-  f.load(() => pending.promise);
+  holding(f, "/audio/walter/welcome.wav", pending.promise);
   f.context.decode = async () => buffer;
   await f.engine.unlock();
   f.engine.playRecordedSpeech({...recording("old-manual"), interruptCurrent: true});
-  f.engine.playPreparedSpeech({...voicedSpeech("new-manual", buffer), scope: "insight", interruptCurrent: true});
+  f.engine.playRecordedSpeech({...voicedSpeech("new-manual", "/audio/walter/new.wav"), scope: "insight", interruptCurrent: true});
+  await flush();
   f.context.sources[0].finish();
   pending.resolve(new ArrayBuffer(8));
   await flush();
@@ -848,18 +873,19 @@ test("a stale manual recording cannot replace newer speech even after the newer 
   expect(f.events.at(-1)).toMatchObject({eventId: "old-manual", type: "cancelled", reason: "replaced"});
 });
 
-test("speech playback retains caller recording identity across prepared and decoded clips", async () => {
+test("speech playback retains caller recording identity across clips", async () => {
   const playbacks: (SpeechPlayback | null)[] = [];
   const f = fixture({onSpeechPlayback: playback => playbacks.push(playback)});
   const {buffer} = voicedBuffer();
   await f.engine.unlock();
-  f.engine.playPreparedSpeech({...voicedSpeech("prepared", buffer), recordingId: "walter:first"});
-  const prepared = playbacks.at(-1)!;
-  expect(prepared).toMatchObject({recordingId: "walter:first", utteranceId: "prepared", eventId: "prepared"});
   f.context.decode = async () => buffer;
+  f.engine.playRecordedSpeech({...voicedSpeech("first", "/audio/walter/first.wav"), recordingId: "walter:first"});
+  await flush();
+  const first = playbacks.at(-1)!;
+  expect(first).toMatchObject({recordingId: "walter:first", utteranceId: "first", eventId: "first"});
   f.engine.playRecordedSpeech({...recording("decoded"), recordingId: "walter:second"});
   await flush();
-  expect(prepared.read()).toBeNull();
+  expect(first.read()).toBeNull();
   expect(playbacks.at(-1)).toMatchObject({recordingId: "walter:second", utteranceId: "decoded", eventId: "decoded"});
   f.engine.cancel("coach");
   expect(playbacks.at(-1)).toBeNull();
@@ -871,7 +897,9 @@ test("speech activity starts on the source clock, follows real time and stays se
   const pcm = voicedBuffer();
   expect(playbacks).toEqual([]);
   await f.engine.unlock();
-  f.engine.playPreparedSpeech(voicedSpeech("spoken", pcm.buffer));
+  f.context.decode = async () => pcm.buffer;
+  f.engine.playRecordedSpeech(voicedSpeech("spoken"));
+  await flush();
   const playback = playbacks[0]!;
   expect(playback).toMatchObject({scope: "coach", eventId: "spoken", utteranceId: "spoken", coachId: "classic"});
   expect(playback.read()).toEqual({elapsedSeconds: 0, energy: 0, brightness: 0});
@@ -901,7 +929,9 @@ test("speech envelopes and releases are cached per buffer, and envelopes are ski
   const pcm = voicedBuffer();
   const plain = fixture();
   await plain.engine.unlock();
-  plain.engine.playPreparedSpeech(voicedSpeech("without-observer", pcm.buffer));
+  plain.context.decode = async () => pcm.buffer;
+  plain.engine.playRecordedSpeech(voicedSpeech("without-observer"));
+  await flush();
   expect(pcm.reads()).toBe(1); // The release only.
   plain.engine.dispose();
   const f = fixture({onSpeechPlayback: () => {}});
@@ -910,8 +940,10 @@ test("speech envelopes and releases are cached per buffer, and envelopes are ski
   f.engine.play(move("effect"));
   await flush();
   expect(pcm.reads()).toBe(1);
-  f.engine.playPreparedSpeech(voicedSpeech("first", pcm.buffer));
-  f.engine.playPreparedSpeech(voicedSpeech("replay", pcm.buffer));
+  f.engine.playRecordedSpeech(voicedSpeech("first"));
+  await flush();
+  f.engine.playRecordedSpeech(voicedSpeech("replay"));
+  await flush();
   expect(pcm.reads()).toBe(3); // One release and one envelope, both reused by the replay.
   f.engine.dispose();
 });
@@ -927,7 +959,10 @@ test("every speech terminal gate invalidates the exact handle before notifying l
       current = playback;
     }});
     await f.engine.unlock();
-    f.engine.playPreparedSpeech(voicedSpeech(mode, voicedBuffer().buffer));
+    const {buffer} = voicedBuffer();
+    f.context.decode = async () => buffer;
+    f.engine.playRecordedSpeech(voicedSpeech(mode));
+    await flush();
     const handle = current! as SpeechPlayback;
     f.context.currentTime = 3.3;
     expect(handle.read()!.energy, mode).toBeGreaterThan(0);
@@ -971,9 +1006,12 @@ test("replacement invalidates the old playback and its late ended callback canno
   const f = fixture({onSpeechPlayback: playback => playbacks.push(playback)});
   await f.engine.unlock();
   const pcm = voicedBuffer();
-  f.engine.playPreparedSpeech(voicedSpeech("old", pcm.buffer));
+  f.context.decode = async () => pcm.buffer;
+  f.engine.playRecordedSpeech(voicedSpeech("old"));
+  await flush();
   const old = playbacks[0]!;
-  f.engine.playPreparedSpeech(voicedSpeech("new", pcm.buffer));
+  f.engine.playRecordedSpeech(voicedSpeech("new"));
+  await flush();
   const current = playbacks[2]!;
   expect(playbacks).toEqual([old, null, current]);
   f.context.sources[0].finish();
@@ -994,7 +1032,10 @@ test("reentrant start cancellation cannot publish an already stopped handle", as
       if (observer === "speech" && playback) f.engine.cancel("coach");
     }});
     await f.engine.unlock();
-    f.engine.playPreparedSpeech(voicedSpeech(observer, voicedBuffer().buffer));
+    const {buffer} = voicedBuffer();
+    f.context.decode = async () => buffer;
+    f.engine.playRecordedSpeech(voicedSpeech(observer));
+    await flush();
     if (observer === "event") expect(playbacks).toEqual([]);
     else {
       expect(playbacks).toHaveLength(2);
@@ -1013,12 +1054,15 @@ test("a newer play requested during cancellation owns the speech slot", async ()
     playbacks.push(playback);
     if (playback === null && !replacing) {
       replacing = true;
-      f.engine.playPreparedSpeech(voicedSpeech("newest", pcm.buffer));
+      f.engine.playRecordedSpeech(voicedSpeech("newest"));
     }
   }});
   await f.engine.unlock();
-  f.engine.playPreparedSpeech(voicedSpeech("old", pcm.buffer));
-  f.engine.playPreparedSpeech(voicedSpeech("superseded", pcm.buffer));
+  f.context.decode = async () => pcm.buffer;
+  f.engine.playRecordedSpeech(voicedSpeech("old"));
+  await flush();
+  f.engine.playRecordedSpeech(voicedSpeech("superseded"));
+  await flush();
   expect(f.started()).toEqual(["old", "newest"]);
   expect(playbacks.map(playback => playback?.eventId ?? null)).toEqual(["old", null, "newest"]);
   f.context.sources[0].finish();
@@ -1036,11 +1080,15 @@ test("failed source starts and throwing speech observers preserve optional audio
     source.start = () => { throw new Error("Audio unavailable"); };
     return source;
   };
-  f.engine.playPreparedSpeech(voicedSpeech("failed", voicedBuffer().buffer));
+  const {buffer} = voicedBuffer();
+  f.context.decode = async () => buffer;
+  f.engine.playRecordedSpeech(voicedSpeech("failed"));
+  await flush();
   expect(playbacks).toEqual([]);
   expect(f.started()).toEqual([]);
   f.context.createBufferSource = create;
-  f.engine.playPreparedSpeech(voicedSpeech("success", voicedBuffer().buffer));
+  f.engine.playRecordedSpeech(voicedSpeech("success"));
+  await flush();
   expect(f.started()).toEqual(["success"]);
   expect(playbacks[0]!.eventId).toBe("success");
   f.context.sources[1].finish();
@@ -1054,7 +1102,10 @@ test("reentrant disposal from the speech terminal callback disconnects the retir
     if (!playback) f.engine.dispose();
   }});
   await f.engine.unlock();
-  f.engine.playPreparedSpeech(voicedSpeech("dispose-at-stop", voicedBuffer().buffer));
+  const {buffer} = voicedBuffer();
+  f.context.decode = async () => buffer;
+  f.engine.playRecordedSpeech(voicedSpeech("dispose-at-stop"));
+  await flush();
   f.engine.stopAll();
   expect(f.context.state).toBe("closed");
   expect(f.context.sources.filter(source => source.connected)).toEqual([]);

@@ -72,7 +72,7 @@ before an attempt or reveal permits feedback.
 
 ## Ownership and lifecycle
 
-- `frontend/src/audio/model.ts` owns semantic cue, preference and prepared-speech
+- `frontend/src/audio/model.ts` owns semantic cue, preference and recorded-speech
   types. `cueForMove` interprets canonical server SAN, not FEN or local chess rules.
   Speech playback reads only an utterance's identity, coach, priority and
   interruptibility (`SpeechUtterance`), never its text. `FEEDBACK_CUE_DELAY_MS`
@@ -344,7 +344,7 @@ is recast as an objective Best move.
 
 ### Playback and cancellation
 
-`PreparedSpeechClip` and `playRecordedSpeech` use the existing cancellable speech
+`playRecordedSpeech` (a `RecordedSpeechClip`) uses the existing cancellable speech
 bus, with priority/interruptibility and quieter effects while narration plays.
 The shared `useCoachSpeech` adapter submits only the current supported recording.
 A game-review move has exactly one coach playback and one Listen/Stop control.
@@ -498,8 +498,9 @@ all registered banks, their meaning/group membership and approved voice identity
 an explicit `--manifest` remains available for preparing an unregistered bank.
 
 Engine tests cover cue precedence, mute/categories, activation failure, duplicates,
-delayed and stale decoding, cancellation, hidden tabs, bounded voices, prepared
-speech and disposal. Browser tests observe actual Web Audio source starts and
+delayed and stale decoding, cancellation, hidden tabs, bounded voices, speech
+priority and interruption, and disposal, all through the recorded-speech path the
+app uses (there is no test-only playback entry point). Browser tests observe actual Web Audio source starts and
 cover the production preference/session/navigation paths without production test
 globals. Studio tests exercise all approved assets, source coverage, context timing and cancellation.
 Run the affected application/account suites alongside the dedicated audio suite
