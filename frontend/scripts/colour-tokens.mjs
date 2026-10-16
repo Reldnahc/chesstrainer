@@ -93,10 +93,10 @@ const report = (file, found) => {
 for (const file of sourceFiles(/^src\/.*\.(?:css|tsx?)$/)) {
   if (COACH_ARTWORK.test(file)) continue;
   const text = blank(readFileSync(file, "utf8"));
-  // Scripts may copy a token or an arrow colour; the owners define their own.
+  // Any sheet or script may copy a token or an arrow colour; the owners define their own.
   const shared = new Map([
     ...(file === TOKENS_FILE ? [] : tokens),
-    ...(file === ARROWS_FILE || file.endsWith(".css") ? [] : arrows),
+    ...(file === ARROWS_FILE ? [] : arrows),
   ]);
   report(file, copies(text, shared));
 }
