@@ -2,7 +2,7 @@
 
 import chess
 
-from trainer.chess_core import Score, material, valid_board
+from trainer.chess_core import Score, material_balance, valid_board
 
 
 def is_sacrifice_offer(board, move, capture):
@@ -30,7 +30,7 @@ def is_sacrifice_offer(board, move, capture):
         return False
 
     def balance(position):
-        return material(position, board.turn) - material(position, not board.turn)
+        return material_balance(position, board.turn)
 
     baseline = balance(board)
     accepted = after.copy(stack=False)
