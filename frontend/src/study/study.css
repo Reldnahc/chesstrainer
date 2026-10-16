@@ -12,8 +12,10 @@
 .puzzle-player-heading { display: flex; gap: var(--space-3); align-items: center; width: 100%; }
 .puzzle-player-heading h1 { flex: 1; }
 .puzzle-start .puzzle-filters { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); align-items: start; }
-.puzzle-filter { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
-.puzzle-filter > span { font-size: var(--text-md); color: var(--muted); }
+.puzzle-filter { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; font-size: inherit; }
+/* The Theme select's label reads like a ChoiceGroup's visible label beside it:
+   the row's own size (not the small form-label size) in bold. */
+.puzzle-filter > span { font-weight: 600; }
 .puzzle-filter select { min-width: 240px; max-width: 100%; }
 .puzzle-history { padding: var(--space-4); }
 .puzzle-history h2 { font-size: var(--text-lg); }
@@ -69,20 +71,13 @@
 .opening-study .button-row { flex: none; }
 .opening-preview-details { padding: var(--space-5); }
 .opening-preview-details h2 { font-size: var(--text-lg); }
-.opening-color { margin: 0; border: 0; padding: 0; display: flex; gap: var(--space-3); }
-/* A legend sits outside the fieldset's flex layout, so it pads itself. */
-.opening-color legend { padding: 0 0 var(--space-3); font-size: var(--text-md); }
-.opening-color label { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: var(--space-1) var(--space-2); padding: var(--space-3); border: 1px solid var(--line); border-radius: 6px; flex: 1; cursor: pointer; }
-.opening-color label:has(:checked) { border-color: var(--accent); }
-.opening-color input { width: 20px; height: 20px; min-height: 20px; padding: 0; margin: 0; }
-.opening-color small { grid-column: 2; color: var(--muted); font-size: var(--text-xs); }
 .lesson-repertoire-lines { display: flex; flex-direction: column; gap: var(--space-2); border-top: 1px solid var(--line); padding-top: var(--space-4); }
 .lesson-repertoire-lines h3 { font-size: var(--text-lg); }
 @media (max-width: 760px) {
   .study-options { grid-template-columns: 1fr; gap: var(--space-3); }
   .study-option { display: flex; flex-direction: column; grid-row: auto; }
   .puzzle-start .puzzle-filters { gap: var(--space-3); }
-  .puzzle-filter, .puzzle-filter select { width: 100%; }
+  .puzzle-filter, .puzzle-filter select, .puzzle-filters > .choice-field { width: 100%; }
   .puzzle-start .button-row button { flex: 1; }
   /* Flat on phones: chapter and study rows are divided, not boxed. */
   .lesson-chapters { gap: 0; }

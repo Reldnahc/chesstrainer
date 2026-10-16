@@ -458,11 +458,9 @@ function InsightsView({ data, speed, setSpeed, days, setDays, query }: {
   const reviewed = data.reviewed_games > 0;
   return <div className="insights" data-reloading={reloading(query)}>
     <div className="insight-toolbar">
-      {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
-        <ChoiceGroup label="Speed" labelId="insight-speed" size="compact" value={speed} onChange={setSpeed} phone="select"
-          options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
-      <div className="insight-filter"><span id="insight-period">Period</span>
-        <ChoiceGroup label="Period" labelId="insight-period" size="compact" value={days} onChange={setDays} options={periods} phone="select" /></div>
+      {speeds.length > 2 && <ChoiceGroup label="Speed" showLabel size="compact" value={speed} onChange={setSpeed} phone="select"
+        options={speeds.map(value => ({ value, label: speedLabels[value] }))} />}
+      <ChoiceGroup label="Period" showLabel size="compact" value={days} onChange={setDays} options={periods} phone="select" />
       <QueryReloading query={query} label="your insights" className="insight-refreshing" />
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
