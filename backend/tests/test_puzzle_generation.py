@@ -721,3 +721,29 @@ def test_adopting_a_refinement_lets_mining_search_the_game_again(sessions):
         db.commit()
         assert searched() is None
         assert [p.saved_best_san for p in prospects(db, game)] == ["Nd5+"]
+
+
+def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings, sessions):
+    from trainer.models import GamePuzzleSearch
+    from trainer.review_refinement import save_outcome
+
+    with sessions() as db:
+        game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
+        decision = seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
+        task = refined_fork_review(db, game, decision.before_analysis_id, adopted=False)
+
+        class AdoptingMidway(Scripted):
+            def __call__(self, board, *, multipv=1):
+                if not self.analysis_ids:
+                    save_outcome(db, task.id, "completed", None, task.report, True)
+                    db.commit()
+                return super().__call__(board, multipv=multipv)
+
+        assert generate_for_game(db, AdoptingMidway(FORK), settings, game)["kept"] == 1
+        assert db.scalar(select(GamePuzzleSearch.id)) is None
+        # The next pass re-reads the review; the judged ply keeps its verdict.
+        assert generate_for_game(db, Scripted(FORK), settings, game) == {
+            "candidates": 1,
+            "kept": 1,
+        }
+        assert db.scalar(select(GamePuzzleSearch.id)) is not None

@@ -118,8 +118,9 @@ def shown_reports(db, game):
 def decision_prospects(db, game, reports=None):
     """Candidates from the training pipeline's saved decisions, plus every judged ply.
 
-    A decision saved before the review adopted a deeper search at its ply is stale
-    until training refreshes it, so that ply is left to ``review_prospects``.
+    A decision that no longer matches the report the review shows at its ply (saved
+    by triage before the review, or before an adopted deeper search) is stale until
+    training refreshes it, so that ply is left to ``review_prospects``.
     """
     reports = shown_reports(db, game) if reports is None else reports
     played_analysis = aliased(EngineAnalysis)
@@ -187,8 +188,8 @@ def review_prospects(db, game, skip, reports=None):
         )
 
 
-def prospects(db, game) -> list[Prospect]:
-    reports = shown_reports(db, game)
+def prospects(db, game, reports=None) -> list[Prospect]:
+    reports = shown_reports(db, game) if reports is None else reports
     found, plies = decision_prospects(db, game, reports)
     found.extend(review_prospects(db, game, plies, reports))
     found.sort(key=lambda item: item.ply)
@@ -367,7 +368,8 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
     )
     if searched is not None:
         return None
-    found = prospects(db, game)
+    shown = shown_reports(db, game)
+    found = prospects(db, game, shown)
     judged = set(
         db.scalars(
             select(GamePuzzle.ply).where(
@@ -443,6 +445,10 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
         )
     )
     with lock:
+        if _evidence(shown_reports(db, game)) != _evidence(shown):
+            # The review adopted a deeper search while this pass ran: leave the game
+            # unrecorded so the next run mines what the review shows now.
+            return {"candidates": len(found), "kept": kept}
         db.add(
             GamePuzzleSearch(
                 game_id=game.id,
@@ -454,6 +460,10 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
         )
         db.commit()
     return {"candidates": len(found), "kept": kept}
+
+
+def _evidence(reports):
+    return {ply: report["before_analysis_id"] for ply, report in reports.items()}
 
 
 def remine_after_refinement(db, game_id):

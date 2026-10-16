@@ -112,8 +112,9 @@ a deeper search (already judged plies keep their verdicts). Candidates come from
 evidence the analysis job already saved: a training decision, or a full-game
 review move on a ply the training pipeline never judged. Review moves are read as
 the review shows them, the adopted refinement when a deeper search replaced the
-baseline, and a decision saved before that adoption gives way to the review move
-until training refreshes it. In each case the learner was to move, and the best
+baseline, and a decision that no longer matches the report the review shows (saved
+before the review, or before an adoption) gives way to the review move until
+training refreshes it. In each case the learner was to move, and the best
 move was a forced mate the learner did not play, or the best move kept at least
 +150 cp and the learner gave up at least 150 cp. Defensive resources are not
 mined yet. Nothing is searched when a page opens.
