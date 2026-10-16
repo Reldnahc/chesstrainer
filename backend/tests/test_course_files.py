@@ -102,6 +102,36 @@ def test_unreachable_step_needs_its_own_position():
         course_files.load(data)
 
 
+def _unreachable(data):
+    data["chapters"][0]["steps"][2]["next"] = None
+    data["chapters"][0]["steps"].insert(3, {"id": "aside", "title": "Aside", "text": "Unlinked.", "next": None})
+
+
+@pytest.mark.parametrize(
+    ("change", "location"),
+    [
+        (lambda data: data["chapters"][0]["steps"][1].update(move="e5"), {"chapter": "start", "step": "push"}),
+        (lambda data: data["chapters"][0]["steps"][1].update(move=""), {"chapter": "start", "step": "push"}),
+        (lambda data: data["chapters"][0]["steps"][3].update(rehearse="other"), {"chapter": "start", "step": "again"}),
+        (lambda data: data["chapters"][0]["steps"][2].update(game="g"), {"chapter": "start", "step": "watch"}),
+        (lambda data: data["chapters"][0]["steps"][0].update(colour="red"), {"chapter": "start", "step": "intro"}),
+        (lambda data: data["chapters"][0]["steps"][2].update(id="intro"), {"chapter": "start", "step": None}),
+        (_unreachable, {"chapter": "start", "step": "aside"}),
+        (lambda data: data.update(side="green"), None),
+        (lambda data: data["lines"][0].update(moves="e4 e4"), None),
+    ],
+)
+def test_the_editor_check_says_where_a_problem_is(change, location):
+    data = sample()
+    change(data)
+    result = course_files.check(data)
+    assert result["error"] and result["location"] == location
+
+
+def test_a_clean_check_has_no_location():
+    assert course_files.check(sample())["location"] is None
+
+
 # Lines whose last catalogued position is shallower than the code they carry.
 # COURSE_SOURCES.md records why each code is right.
 ECO_BEYOND_CATALOGUE = {
