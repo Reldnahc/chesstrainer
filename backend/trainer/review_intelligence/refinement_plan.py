@@ -1,6 +1,7 @@
 """Finite nominations from baseline facts only; refined outputs never nominate themselves."""
 
 from trainer.chess_core import Score, digest, evaluation_loss
+from trainer.game_review import promote_stronger_played
 from trainer.review_intelligence.difficulty import assess_difficulty
 from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, is_near_best
 
@@ -66,7 +67,10 @@ def nominate(report):
         gap = evaluation_loss(best, Score.model_validate(report["second_score"]))
         if (gap.cp or 0) >= CRITICAL_ALTERNATIVE_CP or gap.mate_lost or gap.allows_mate:
             triggers.append((740, "critical_alternative"))
-    if practical.best_naturalness == "unusual":
+    # Human evidence scores the move shown as best, a promoted played move included.
+    shown = promote_stronger_played(report)
+    human_view = practical if shown is report else assess_difficulty(shown)
+    if human_view.best_naturalness == "unusual":
         triggers.append((700, "human_disagreement"))
     if (loss.cp or 0) >= MISTAKE_CP and not report["actual_line"]["findings"]:
         triggers.append((680, "unexplained_concession"))

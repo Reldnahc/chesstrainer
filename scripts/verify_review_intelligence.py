@@ -58,14 +58,10 @@ def inspect_case(detail, plies):
         assert human["status"] == "available", human
         assert human["played"]["probability"] is not None
         assert human["domain"]["calibration"] == "unvalidated"
-        promoted = report["best"]["uci"] == report["actual"]["uci"] != human["engine_best"]["uci"]
-        if promoted:
-            # Known gap: promote_stronger_played makes the played move best without
-            # realigning the saved human evidence, so the practical view abstains.
-            assert "human_move_context_mismatch" in practical["limitations"]
-            assert practical["human_evidence_id"] is None
-        else:
-            assert practical["human_evidence_id"] == human["evidence_id"]
+        # The evidence scores the move shown as best, a promoted played move included.
+        # Real Maia policies are complete, so the shown best is always in them.
+        assert human["engine_best"]["uci"] == report["best"]["uci"]
+        assert practical["human_evidence_id"] == human["evidence_id"]
         grades[report["label"]] += 1
         difficulties[practical["best_find_difficulty"]] += 1
         domains[human["domain"]["alignment"]] += 1

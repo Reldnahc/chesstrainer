@@ -1,5 +1,6 @@
 """Finite, resumable optional investigation after every baseline move is saved."""
 
+from functools import partial
 from threading import Event
 
 from sqlalchemy import select
@@ -19,7 +20,7 @@ from trainer.review_intelligence.refinement_search import (
     RefinementEngine,
     adoption_reason,
 )
-from trainer.review_reports import touch_report
+from trainer.review_reports import aligned_human, saved_policy, touch_report
 from trainer.search_limits import EngineCancelled
 from trainer.work_pool import WorkPool
 
@@ -30,15 +31,18 @@ def prepare(context, game_id):
     # Opening the game can reset the plan, so the plan is written in a write unit.
     with context.write() as db:
         review = db.get(GameReview, game_id)
-        baseline = {
-            r.ply: r.report
-            for r in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game_id))
-        }
+        rows = db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game_id)).all()
+        baseline = {r.ply: r.report for r in rows}
         key = plan_key(baseline, context.settings)
         if review.refinement_plan and review.refinement_plan["key"] == key:
             return review.refinement_plan
         task_ids = []
-        for ply, triggers in selection(baseline, context.settings):
+        # Nomination reads the human evidence for the move the review shows as best.
+        shown = {
+            r.ply: aligned_human(r.report, partial(saved_policy, db, r.human_analysis_id))
+            for r in rows
+        }
+        for ply, triggers in selection(shown, context.settings):
             report = baseline[ply]
             original = db.get(EngineAnalysis, report["before_analysis_id"])
             if original is None:

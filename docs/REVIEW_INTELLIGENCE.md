@@ -92,6 +92,15 @@ Completed evidence is adopted only with the same engine and at least baseline
 depth for the actual/best/root comparisons. A deeper report that finds the played
 move stronger than its best is adopted too; presentation promotes the played
 move, as it does for a baseline report.
+Human evidence always scores the move shown as best (`game_review.shown_best_uci`):
+a new review, a variation and a Play move ask for the promoted move from the start,
+and a saved report whose best moved since (an adopted refinement, or a promotion
+saved before that) is scored again from its saved policy with no inference
+(`review_reports.aligned_human`, which game review, saved Play games and refinement
+planning all read through), so the practical view and the human lines describe the
+move on the board. Because the practical view digests the human evidence, a
+promoted ply of a review saved before this rule gets new event ids, and its human
+contrast events, the first time it is shown again.
 Budget exhaustion or unavailable/incompatible engines leaves the baseline usable.
 An optional human-alternative query failure cannot discard a completed root
 comparison. Diagnostics retain why an investigation was not adopted.

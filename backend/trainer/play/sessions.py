@@ -1,8 +1,11 @@
 """State of a game against the coach's bot, and its hand-off into the game library."""
 
+from functools import partial
+
 import chess
 import chess.pgn
 from sqlalchemy import select
+from sqlalchemy.orm import object_session
 
 from trainer.chess_core import Score
 from trainer.classification_stages import line_parameters
@@ -39,6 +42,7 @@ from trainer.play.book import (
 from trainer.play.bot import engine_move, human_move, seeded
 from trainer.recent_cache import RecentCache
 from trainer.review_intelligence.context import move_contexts
+from trainer.review_reports import aligned_human, saved_policy
 
 
 def board_for(play: PlayGame, upto: int | None = None) -> chess.Board:
@@ -148,6 +152,10 @@ def _render_key(play, ply, report, context=None):
     )
 
 
+def human_id(report):
+    return (report.get("human") or {}).get("evidence_id")
+
+
 def rendered_reports(play: PlayGame, parsed, parameters=None) -> dict[int, dict]:
     """Saved engine facts rendered with the current rules, exactly as game review does."""
     saved = link_previous_scores(
@@ -156,6 +164,7 @@ def rendered_reports(play: PlayGame, parsed, parameters=None) -> dict[int, dict]
     if not saved:
         return {}
     contexts = move_contexts(parsed)
+    db = object_session(play)
     starting = parsed.board().turn
     horizon = parameters or line_parameters()
     known = _rendered.get(play.id) or {}
@@ -169,6 +178,8 @@ def rendered_reports(play: PlayGame, parsed, parameters=None) -> dict[int, dict]
                 # Saved before the shared line horizon, or under another one: read
                 # its lines again from the saved candidates, once per render key.
                 report = reread_lines(report, board_for(play, ply - 1), horizon)
+            # Human evidence scores the move shown as best, as game review reads it.
+            report = aligned_human(report, partial(saved_policy, db, human_id(report)))
             color = starting if ply % 2 else not starting
             rendered = public_report(
                 report,

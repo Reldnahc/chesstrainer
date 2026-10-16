@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from sqlalchemy import and_, case, func, select
 
-from trainer.game_review import lines_current, link_previous_scores
+from trainer.game_review import lines_current, link_previous_scores, shown_best_uci
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import GameReview, GameReviewMove, HumanAnalysis, ReviewRefinement
@@ -104,20 +104,37 @@ def effective_report(db, row, task, belongs, shown):
     human = baseline.get("human")
     if human:
         report["human"] = dict(human)
-        if report["best"]["uci"] != baseline["best"]["uci"]:
-            cached = db.get(HumanAnalysis, row.human_analysis_id) if row.human_analysis_id else None
-            if cached:
-                report["human"] = HumanEvidence.model_validate(
-                    human
-                    | policy_summary(
-                        HumanPolicy.model_validate(cached.policy),
-                        report["actual"]["uci"],
-                        report["best"]["uci"],
-                    )
-                ).model_dump(mode="json")
-            else:
-                report["human"]["engine_best"] = None
+        report = aligned_human(report, lambda: saved_policy(db, row.human_analysis_id))
     return report
+
+
+def saved_policy(db, evidence_id):
+    """The saved Maia policy behind ``evidence_id``, or None without a session or row."""
+    cached = db.get(HumanAnalysis, evidence_id) if db is not None and evidence_id else None
+    return cached.policy if cached else None
+
+
+def aligned_human(report, cached_policy):
+    """``report`` with its human evidence scoring the move shown as best.
+
+    A refinement that changed the best move, or a played move promoted by its own
+    stronger search (in reports saved before that was scored at the source), is
+    scored again from the saved policy, with no inference. ``cached_policy()``
+    returns that policy (or None) and runs only when the evidence names another
+    move. Game review, Play and refinement planning all read human evidence
+    through this.
+    """
+    human = report.get("human")
+    if not human or human.get("status") != "available":
+        return report
+    best = shown_best_uci(report)
+    if (human.get("engine_best") or {}).get("uci") == best:
+        return report
+    policy = cached_policy()
+    if policy is None:
+        return report | {"human": dict(human, engine_best=None)}
+    summary = policy_summary(HumanPolicy.model_validate(policy), report["actual"]["uci"], best)
+    return report | {"human": HumanEvidence.model_validate(human | summary).model_dump(mode="json")}
 
 
 def load_game_reports(db, game_id):
