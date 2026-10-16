@@ -1,0 +1,14 @@
+# Code and styles only. Data (JSON voice banks, alignment, manifests, fixtures) and
+# prose (Markdown) keep their authored layout.
+**/*.json
+**/*.md
+# Generated output and reports (the frontend entries in ../.gitignore).
+dist/
+audio-studio-dist/
+*-results*/
+playwright-report/
+blob-report/
+playwright/.cache/
+node_modules/
+# Generated API types (scripts/api-types.mjs writes them).
+src/api.generated.ts
