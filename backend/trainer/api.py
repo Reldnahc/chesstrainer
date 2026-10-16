@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from sqlalchemy.orm import sessionmaker
 
 from trainer import site_settings
+from trainer.analysis import resync_game_cards
 from trainer.cache_maintenance import maintain_shared_caches
 from trainer.config import Settings
 from trainer.contracts.accounts import Identity
@@ -105,6 +106,7 @@ def create_app(
             with maintenance() as db:
                 seed_skills(db)
                 retire_existing(db, settings, enabled_accounts_only=settings.accounts_enabled)
+                resync_game_cards(db)
             try:
                 if start_engine and not pool:
                     engine.start()

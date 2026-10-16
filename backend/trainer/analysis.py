@@ -84,10 +84,33 @@ def sync_card_eligibility(db, decision):
         select(SRSState, Exercise)
         .join(Exercise, Exercise.id == SRSState.exercise_id)
         .join(Decision, Decision.id == Exercise.decision_id)
-        .where(Decision.position_key == decision.position_key, Exercise.source == "game")
+        .where(
+            Decision.position_key == decision.position_key,
+            Decision.user_id == decision.user_id,
+            Exercise.source == "game",
+        )
     ).all()
     for state, exercise in rows:
         state.eligible = card_is_backed(db, exercise)
+
+
+def resync_game_cards(db):
+    """Recheck every game card against its position's current decisions, once at
+    startup, so cards kept by decisions refreshed before this rule (or by any path
+    that does not refresh them) follow it too. No engine work: the decisions'
+    saved searches already hold everything the check reads."""
+    changed = 0
+    rows = db.execute(
+        select(SRSState, Exercise)
+        .join(Exercise, Exercise.id == SRSState.exercise_id)
+        .where(Exercise.source == "game", Exercise.decision_id.is_not(None))
+    ).all()
+    for state, exercise in rows:
+        backed = card_is_backed(db, exercise)
+        if state.eligible != backed:
+            state.eligible, changed = backed, changed + 1
+    db.commit()
+    return changed
 
 
 def card_is_backed(db, exercise):
@@ -98,7 +121,9 @@ def card_is_backed(db, exercise):
         return True
     decisions = db.scalars(
         select(Decision).where(
-            Decision.position_key == made_from.position_key, Decision.meaningful.is_(True)
+            Decision.position_key == made_from.position_key,
+            Decision.user_id == exercise.user_id,
+            Decision.meaningful.is_(True),
         )
     ).all()
     return any(supports_card(db, decision, exercise) for decision in decisions)
@@ -107,8 +132,8 @@ def card_is_backed(db, exercise):
 def supports_card(db, decision, exercise):
     """Whether ``decision``'s current search still grades the card's primary answer
     correct or acceptable. The answer is judged inside that one search, never
-    against scores from another depth; a search that does not list it has ranked
-    better moves above it, so it no longer supports it."""
+    against scores from another depth, so a search that does not list it cannot
+    vouch for it: the card waits, set aside, until a search that does backs it."""
     primary = db.scalar(
         select(ExerciseAnswer).where(
             ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)

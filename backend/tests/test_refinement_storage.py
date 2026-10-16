@@ -572,3 +572,10 @@ def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_a
         else:
             with pytest.raises(InvalidInput, match="no longer matches"):
                 require_active_review(db, exercise.id)
+        # A card kept by a decision refreshed before this rule is rechecked at startup.
+        from trainer.analysis import resync_game_cards
+
+        db.get(SRSState, exercise.id).eligible = True
+        db.commit()
+        assert resync_game_cards(db) == (0 if eligible else 1)
+        assert db.get(SRSState, exercise.id).eligible is eligible

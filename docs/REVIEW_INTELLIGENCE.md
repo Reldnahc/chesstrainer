@@ -109,11 +109,12 @@ came from, never the decision's newer one (the evidence dialog and the played-li
 facts stay decision-level, matching the game review). Only a decision without one
 gets a new one from the deeper search. While the decision is no longer a mistake,
 or its current search no longer grades the card's primary answer correct or
-acceptable (judged inside that search; a search that does not list the answer has
-ranked better moves above it), its card is ineligible: it leaves the Due queue and
+acceptable (judged inside that search, never against scores from another depth,
+so a search that does not list the answer cannot vouch for it and the card waits
+even when the answer might be within tolerance), its card is ineligible: it leaves the Due queue and
 focused practice and cannot be started directly, unless another meaningful
 decision on its position still supports it. A later search that backs it again
-puts the card back.
+puts the card back, and startup rechecks every game card the same way.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original
