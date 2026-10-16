@@ -150,11 +150,8 @@ export default function PlayGame({ id }: { id: string }) {
   return (
     <div className="game-workspace">
       <CommandError command={{ error: session.error, dismiss: session.dismissError }} />
-      {session.replyError && (
-        <Banner tone="error" action={<Button size="compact" disabled={session.busy} onClick={session.retryReply}>Try again</Button>}>
-          {session.replyError}
-        </Banner>
-      )}
+      <CommandError command={{ error: session.replyError ?? "" }}
+        action={<Button size="compact" disabled={session.busy} onClick={session.retryReply}>Try again</Button>} />
       {stoodIn > 0 && state.fallback_elo != null && (
         <Banner tone="info">
           {stoodIn} of {bot}'s moves came from Stockfish at Elo {state.fallback_elo}, because the human move model was unavailable.

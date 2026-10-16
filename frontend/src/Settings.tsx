@@ -42,9 +42,19 @@ export default function SettingsScreen({ section, importSource, restoringScroll 
   const shown = (id: SettingsTab) => (id !== "account" || !!account) && (id !== "courses" || administrator);
   const active = shown(section) ? section : "imports";
   const [message, setMessage] = useState("");
-  // Settings' commands and the import section's report their failures here.
+  // Training tools' commands, and the import section's failures, each with their own banner.
   const command = useCommand<"classify" | "deepen">();
+  const importErrors = useCommand();
   const busy = command.busy;
+  // A failure belongs to the section (and import source) it happened in: another
+  // one drops it in the render that shows it.
+  const place = `${active}:${importSource ?? ""}`;
+  const [shownPlace, setShownPlace] = useState(place);
+  if (shownPlace !== place) {
+    setShownPlace(place);
+    command.dismiss();
+    importErrors.dismiss();
+  }
   function classify(enrich = false) {
     setMessage("");
     void command.run(enrich ? "deepen" : "classify",
@@ -55,13 +65,14 @@ export default function SettingsScreen({ section, importSource, restoringScroll 
     <>
       <PageTitle title="Settings" />
       <CommandError command={command} />
+      <CommandError command={importErrors} />
       {/* Without the engine's health, the import form's engine notice and Deepen wait; say why. */}
       <QueryError query={health} label="the analysis engine's status" />
       <SectionNavigation label="Settings sections" current={active}
         items={settingsSections.filter(shown).map(id => ({ id, label: labels[id], href: settingsPath(id) }))} />
       {/* Sections crossfade, and the page height follows, when the tab changes. */}
       <Swap><div className="settings-content" key={active}>
-        {active === "imports" && <ImportSettings health={health.data ?? null} fail={command.fail} importSource={importSource} restoringScroll={restoringScroll}
+        {active === "imports" && <ImportSettings health={health.data ?? null} fail={importErrors.fail} importSource={importSource} restoringScroll={restoringScroll}
           onImportSourceChange={source => navigate(settingsPath("imports", { importSource: source ?? undefined }))} />}
         {active === "coach" && <><MotionSettings /><CoachSettings /></>}
         {active === "sound" && <AudioSettings />}

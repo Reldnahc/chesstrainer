@@ -15,7 +15,7 @@ import TurnIndicator from "../TurnIndicator";
 import { courseEditorPath, courseSettingsPath, lessonCoursePath, replaceAddress, useLeaveGuard, type LessonTopic } from "../navigation";
 import { sideName, sideToMove, START_FEN } from "../fen";
 import { useLatest } from "../useLatest";
-import { CommandError, QueryResult, useQuery } from "../useQuery";
+import { CommandError, QueryResult, useQuery, useCommand } from "../useQuery";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 // The editor edits the readable course file itself (docs/COURSE_FILES.md), so
@@ -138,7 +138,8 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
   const [dirty, setDirty] = useState(!opened);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
-  const [error, setError] = useState("");
+  // This screen's failures: fail(e) reports, the shared banner shows them.
+  const errors = useCommand();
   const [recording, setRecording] = useState<Recording | null>(null);
   const [showEnd, setShowEnd] = useState(false);
   const [saved, setSaved] = useState<Schema["CourseFileSaved"] | null>(null);
@@ -193,7 +194,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
     });
     edits.current += 1;
     setDirty(true);
-    setError("");
+    errors.dismiss();
     setNotice("");
     setSaved(null);
   }
@@ -288,15 +289,15 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
   }
   async function record(field: Recording["field"]) {
     const request = ++recordingRequest.current;
-    setError("");
+    errors.dismiss();
     const fen = field === "position" ? (step!.fen || START_FEN) : board?.fen;
-    if (!fen) { setError("Fix the problem above first, so this step has a board to start from."); return; }
+    if (!fen) { errors.setError("Fix the problem above first, so this step has a board to start from."); return; }
     try {
       const result = await play(fen, "");
       // Another step was selected, or recording stopped, while the server answered.
       if (recordingRequest.current !== request) return;
       setRecording({ field, fen, moves: "", legal: result.legal_moves, turnFen: result.fen });
-    } catch (e) { if (recordingRequest.current === request) setError(errorMessage(e)); }
+    } catch (e) { if (recordingRequest.current === request) errors.fail(e); }
   }
   async function recordMove(from: string, to: string, promotion?: Promotion) {
     const recording = recordingRef.current;
@@ -320,7 +321,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
         if (reply) { setRecording(null); return; }
       }
       setRecording(next);
-    } catch (e) { setError(errorMessage(e)); }
+    } catch (e) { errors.fail(e); }
     finally { setPending(false); }
   }
   function startRecording(field: Recording["field"]) {
@@ -333,7 +334,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
   async function save() {
     if (saving) return;
     setSaving(true);
-    setError("");
+    errors.dismiss();
     const sent = edits.current;
     try {
       const result = await saveCourseFile(current, base === null ? { create: true } : { base_revision: base });
@@ -345,7 +346,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
       setNotice(savedMessage(result));
       // A reload opens what was saved, including a new course after its first save.
       replaceAddress(courseEditorPath(result.id, result.revision));
-    } catch (e) { setError(errorMessage(e)); }
+    } catch (e) { errors.fail(e); }
     finally { setSaving(false); }
   }
 
@@ -376,10 +377,9 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
     <Reveal>{checking && !check ? <Notice announcement="status">Checking the course…</Notice>
       : check?.error ? <Notice announcement="status" tone="error">{check.error}</Notice>
       : check && <Notice announcement="status" tone="success">The course loads without problems.</Notice>}</Reveal>
-    {checkError && <Banner tone="error" action={<Button size="compact" onClick={() => setCheckAttempt(attempt => attempt + 1)}>Try again</Button>}>
-      Couldn’t check the course: {checkError}
-    </Banner>}
-    <CommandError command={{ error, dismiss: () => setError("") }} />
+    <CommandError command={{ error: checkError && `Couldn’t check the course: ${checkError}` }}
+      action={<Button size="compact" onClick={() => setCheckAttempt(attempt => attempt + 1)}>Try again</Button>} />
+    <CommandError command={errors} />
     {notice && <Banner tone="success" onDismiss={() => setNotice("")} action={saved ? <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink> : undefined}>{notice}</Banner>}
 
     <details className="disclosure lesson-editor-section" open={!opened}>

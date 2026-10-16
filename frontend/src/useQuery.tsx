@@ -138,7 +138,7 @@ export function QueryResult<T>({ query, label, presentation, heading, children }
  */
 export function QueryError<T>({ query, label }: { query: Query<T>; label: string }) {
   if (!query.error) return null;
-  return <Banner tone="error" action={<Button variant="secondary" onClick={query.retry}>Try again</Button>} onDismiss={query.dismiss}>
+  return <Banner tone="error" action={<Button size="compact" variant="secondary" onClick={query.retry}>Try again</Button>} onDismiss={query.dismiss}>
     {query.data === undefined ? "Couldn’t load" : "Couldn’t refresh"} {label}.
   </Banner>;
 }
@@ -206,7 +206,8 @@ export function useCommand<K = true>() {
  * `error` and a `dismiss` uses it: useCommand, useSessionStart or a session hook.
  */
 export function CommandError({ command, action }: {
-  command: { error: string; dismiss: () => void };
+  /** Without `dismiss` the banner stays until its source clears it (a reply asked for again). */
+  command: { error: string; dismiss?: () => void };
   /** One recovery command shown before the close button. */
   action?: ReactNode;
 }) {

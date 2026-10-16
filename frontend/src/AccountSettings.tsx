@@ -1,10 +1,10 @@
-import { CommandError } from "./useQuery";
 import { useState } from "react";
 import { useAccountSession } from "./accountContext";
 import Banner from "./Banner";
 import Button from "./Button";
 import ChangePasswordForm from "./ChangePasswordForm";
 import SettingsSection from "./SettingsSection";
+import { CommandError } from "./useQuery";
 
 /** Settings, Account section, for a signed-in member: who they are, signing out, and
  * their password. Results are page banners, like the rest of Settings. */
