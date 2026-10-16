@@ -10,11 +10,15 @@ from trainer.models import AnalysisJob, Game, GameReview, InsightFacts
 from trainer.review_reports import load_accuracy_scores
 from trainer.workspaces import CurrentWorkspace
 
+# Rebuilt facts are saved in batches, so a long first build keeps its progress for
+# any request that arrives meanwhile or after an interruption.
+SAVE_EVERY = 500
+
 
 def library_facts(workspace):
-    """Every counted game's facts. A game is replayed only when it or its review has
-    changed since its facts were saved; otherwise they are read back from its row, so
-    no library is replayed per request and nothing is held in memory between them."""
+    """Every counted game's facts. A game is replayed only when it, its review or the
+    code has changed since its facts were saved; otherwise they are read back from its
+    row, so no library is replayed per request and nothing is kept between them."""
     with workspace.sessions() as db:
         rows = db.execute(
             select(
@@ -34,10 +38,14 @@ def library_facts(workspace):
         for index, (game, status, rating, revision, saved_key, saved) in enumerate(rows):
             completed = status == JobStatus.COMPLETED
             key = facts_key(game, rating, revision, completed)
+            unpacked = None
             if key == saved_key:
-                facts.append(unpack_facts(saved))
-            else:
-                facts.append(None)
+                try:
+                    unpacked = unpack_facts(saved)
+                except Exception:  # A damaged row is rebuilt rather than failing Insights.
+                    unpacked = None
+            facts.append(unpacked)
+            if unpacked is None:
                 stale.append((index, game, rating, completed, key))
         scores = load_accuracy_scores(db, [item[1].id for item in stale if item[3]])
         rebuilt = []
@@ -45,13 +53,24 @@ def library_facts(workspace):
             built = game_facts(game, scores.get(game.id) if completed else None, rating)
             facts[index] = built
             rebuilt.append(InsightFacts(game_id=game.id, key=key, facts=pack_facts(built)))
-    if rebuilt:
-        # Insert or replace: another request may have saved the same game meanwhile.
-        with workspace.mutation_lock, workspace.sessions() as db:
-            for row in rebuilt:
-                db.merge(row)
-            db.commit()
+            if len(rebuilt) >= SAVE_EVERY:
+                save(workspace, rebuilt)
+                rebuilt = []
+    save(workspace, rebuilt)
     return facts
+
+
+def save(workspace, rows):
+    if not rows:
+        return
+    with workspace.mutation_lock, workspace.sessions() as db:
+        # A game deleted since it was read has nothing left to describe.
+        present = set(db.scalars(select(Game.id).where(Game.id.in_([row.game_id for row in rows]))))
+        for row in rows:
+            if row.game_id in present:
+                # Insert or replace: another request may have saved the same game meanwhile.
+                db.merge(row)
+        db.commit()
 
 
 def create_router():

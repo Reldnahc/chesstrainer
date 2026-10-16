@@ -15,6 +15,7 @@ import zlib
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field, fields
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import get_args
 
 import chess
@@ -279,11 +280,32 @@ def game_facts(game, scores=None, rating=None):
 
 # --- saved facts -------------------------------------------------------------
 
+
+def _code_fingerprint():
+    """A digest of the application's own code and bundled data (the opening book among
+    them), so saved facts are rebuilt after any upgrade that could change how they
+    are computed, as the per-process cache they replace was on every restart."""
+    package = Path(__file__).resolve().parent
+    files = sorted(
+        path
+        for path in package.rglob("*")
+        if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
+    )
+    sha = hashlib.sha256()
+    for path in files:
+        sha.update(path.relative_to(package).as_posix().encode())
+        sha.update(path.read_bytes())
+    return sha.hexdigest()[:16]
+
+
 # Facts are saved in marshal's compact format: it unpacks about three times faster
 # than JSON, and the rows are this server's own derived data. Its format can change
 # between Python versions, so the version is part of the key and a different
 # interpreter simply rebuilds them.
-FACTS_FORMAT = f"{VERSION}:marshal-{marshal.version}:py{sys.version_info[0]}.{sys.version_info[1]}"
+FACTS_FORMAT = (
+    f"{VERSION}:marshal-{marshal.version}:py{sys.version_info[0]}.{sys.version_info[1]}"
+    f":code-{_code_fingerprint()}"
+)
 _PLY_FIELDS = tuple(item.name for item in fields(Ply))
 _GAME_FIELDS = tuple(item.name for item in fields(GameFacts) if item.name != "plies")
 _TIMES = frozenset({"played_at", "started_at"})

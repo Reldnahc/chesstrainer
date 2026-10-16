@@ -265,18 +265,100 @@ def test_each_game_is_replayed_once_until_it_or_its_review_changes(settings, mon
     assert built == []
 
 
-def test_saved_facts_read_back_exactly():
-    from trainer.game_insights import game_facts, pack_facts, unpack_facts
+def test_saved_facts_read_back_exactly(sessions):
+    from dataclasses import fields, replace
+    from datetime import datetime, timedelta, timezone
 
-    for game, scores in (
-        endgame_game([350, -400, -400, -400], [-350, 350, 400, -400]),
-        endgame_game([-350, -400, -400, -400], [350, -350, 400, -400], result="1/2-1/2"),
-    ):
-        for facts in (game_facts(game, scores), game_facts(game)):
-            assert unpack_facts(pack_facts(facts)) == facts
+    from trainer.game_insights import game_facts, pack_facts, unpack_facts
+    from trainer.review_reports import load_accuracy_scores
+
+    def same(left, right):
+        # Equal values of the same types: dataclass equality alone takes True for 1.
+        assert left == right
+        for item in fields(left):
+            a, b = getattr(left, item.name), getattr(right, item.name)
+            if item.name == "plies":
+                for row_a, row_b in zip(a, b, strict=True):
+                    same(row_a, row_b)
+            else:
+                assert type(a) is type(b), item.name
+                if isinstance(a, datetime):
+                    assert a.utcoffset() == b.utcoffset()
+
+    with sessions() as db:
+        ids = seed(db)
+        scores = load_accuracy_scores(db, ids)
+        built = [game_facts(db.get(Game, game_id), scores.get(game_id), 1000) for game_id in ids]
+    assert any(facts.reviewed for facts in built) and any(facts.clocked for facts in built)
+    offset = timezone(timedelta(hours=-5))
+    for facts in built:
+        for when in (
+            facts.played_at,
+            datetime(2025, 3, 1, 9, 30, 15, 123456, tzinfo=offset),
+            datetime(2025, 3, 1, 9, 30),
+            None,
+        ):
+            variant = replace(facts, played_at=when, started_at=when)
+            same(unpack_facts(pack_facts(variant)), variant)
+
+
+def test_damaged_saved_facts_are_rebuilt(settings):
+    from trainer.models import InsightFacts
+
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            seed(db)
+        first = client.get("/api/insights").json()
+        with app.state.sessions() as db:
+            for row in db.scalars(select(InsightFacts)):
+                row.facts = b"not saved facts"
+            db.commit()
+        assert client.get("/api/insights").json() == first
+        with app.state.sessions() as db:
+            assert all(row.facts != b"not saved facts" for row in db.scalars(select(InsightFacts)))
+
+
+def test_rebuilt_facts_are_saved_as_they_go(settings, monkeypatch):
+    from trainer.models import InsightFacts
+    from trainer.routes import insights
+
+    saved = []
+    original = insights.save
+
+    def counted(workspace, rows):
+        saved.append(len(rows))
+        original(workspace, rows)
+
+    monkeypatch.setattr(insights, "SAVE_EVERY", 2)
+    monkeypatch.setattr(insights, "save", counted)
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            seed(db)
+        client.get("/api/insights")
+        with app.state.sessions() as db:
+            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
+    assert saved == [2, 1]
+
+
+def test_facts_of_a_game_deleted_meanwhile_are_not_saved(settings):
+    from threading import Lock
+    from types import SimpleNamespace
+
+    from trainer.models import InsightFacts
+    from trainer.routes.insights import save
+
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app):
+        workspace = SimpleNamespace(sessions=app.state.sessions, mutation_lock=Lock())
+        save(workspace, [InsightFacts(game_id="gone", key="k", facts=b"")])
+        with app.state.sessions() as db:
+            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 0
 
 
 def test_facts_key_follows_everything_the_facts_read():
+    from datetime import UTC, datetime
     from types import SimpleNamespace
 
     from trainer.game_insights import facts_key
@@ -300,6 +382,14 @@ def test_facts_key_follows_everything_the_facts_read():
         facts_key(SimpleNamespace(**{**vars(game), "pgn": "1. d4 *"}), 1500, 3, True),
         facts_key(SimpleNamespace(**{**vars(game), "learner_color": False}), 1500, 3, True),
         facts_key(SimpleNamespace(**{**vars(game), "black": "C"}), 1500, 3, True),
+        facts_key(SimpleNamespace(**{**vars(game), "white": "C"}), 1500, 3, True),
+        facts_key(SimpleNamespace(**{**vars(game), "played_on": "2025-01-02"}), 1500, 3, True),
+        facts_key(
+            SimpleNamespace(**{**vars(game), "played_at": datetime(2025, 1, 1, tzinfo=UTC)}),
+            1500,
+            3,
+            True,
+        ),
     ):
         assert changed != base
 
@@ -307,7 +397,7 @@ def test_facts_key_follows_everything_the_facts_read():
 def test_facts_keep_no_per_instance_dictionary():
     from trainer.game_insights import game_facts
 
-    # Cached for the life of the process: slots keep each ply small.
+    # Every request unpacks a library's facts: slots keep each ply small.
     pgn = '[White "Student"]\n[Black "Rival"]\n[Result "*"]\n\n1. e4 e5 *'
     facts = game_facts(Game(id="slots", pgn=pgn, learner_color=True, white="Student"))
     assert not hasattr(facts, "__dict__")
