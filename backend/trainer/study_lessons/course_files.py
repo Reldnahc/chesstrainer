@@ -21,7 +21,7 @@ from pydantic import ConfigDict, Field, ValidationError
 from trainer.contracts.common import Contract
 from trainer.errors import InvalidInput
 from trainer.study_lessons.content import CourseDefinition, Position
-from trainer.study_lessons.validation import step_result, step_start
+from trainer.study_lessons.validation import StepProblem, step_result, step_start
 
 FORMAT = "fieldwork-course-1"
 DEFAULT_FEEDBACK = "That is a move taught in this lesson."
@@ -207,22 +207,38 @@ def parse(data):
     except ValidationError as exc:
         problem = exc.errors()[0]
         place = " → ".join(str(part) for part in problem["loc"])
-        raise CourseFileError(f"{place}: {problem['msg']}", **field_location(data, problem["loc"])) from exc
+        raise CourseFileError(
+            f"{place}: {problem['msg']}", **field_location(data, problem["loc"])
+        ) from exc
 
 
 def field_location(data, loc):
-    """The chapter and step ids a validation problem's path points into, when it does."""
+    """The chapter and step ids a validation problem's path points into, when it does.
+
+    Works on a course file (``chapters``/``steps``) and on its course record, and
+    stops at the last level that has an id.
+    """
     loc = tuple(loc)
-    try:
-        if len(loc) >= 2 and loc[0] == "chapters" and isinstance(loc[1], int):
-            chapter = data["chapters"][loc[1]]
-            place = dict(chapter=str(chapter["id"]))
-            if len(loc) >= 4 and loc[2] == "steps" and isinstance(loc[3], int):
-                place["step"] = str(chapter["steps"][loc[3]]["id"])
-            return place
-    except (KeyError, IndexError, TypeError):
-        pass
-    return {}
+
+    def item(container, key, index):
+        try:
+            value = container[key][index]
+        except (KeyError, IndexError, TypeError):
+            return None, None
+        ident = value.get("id") if isinstance(value, dict) else None
+        return value, (str(ident) if ident is not None else None)
+
+    if len(loc) < 2 or loc[0] != "chapters" or not isinstance(loc[1], int):
+        return {}
+    chapter, chapter_id = item(data, "chapters", loc[1])
+    if chapter_id is None:
+        return {}
+    place = dict(chapter=chapter_id)
+    if len(loc) >= 4 and loc[2] == "steps" and isinstance(loc[3], int):
+        _, step_id = item(chapter, "steps", loc[3])
+        if step_id is not None:
+            place["step"] = step_id
+    return place
 
 
 def sources(source):
@@ -283,7 +299,13 @@ def load(data):
         course = CourseDefinition.model_validate(record)
     except ValidationError as exc:
         problem = exc.errors()[0]
-        raise CourseFileError(problem["msg"].removeprefix("Value error, ")) from exc
+        cause = (problem.get("ctx") or {}).get("error")
+        place = (
+            dict(chapter=cause.chapter, step=cause.step)
+            if isinstance(cause, StepProblem)
+            else field_location(record, problem["loc"])
+        )
+        raise CourseFileError(problem["msg"].removeprefix("Value error, "), **place) from exc
     return course, source.topic
 
 
@@ -301,7 +323,8 @@ def chapter_record(chapter, known):
 
     order = [step.id for step in chapter.steps]
     if len(set(order)) != len(order):
-        raise CourseFileError(f"{where} has two steps with the same id", chapter=chapter.id)
+        duplicate = next(step_id for index, step_id in enumerate(order) if step_id in order[:index])
+        raise CourseFileError(f"{where} has two steps with the same id", **at(duplicate))
     following = {
         step_id: order[index + 1] if index + 1 < len(order) else None
         for index, step_id in enumerate(order)
@@ -359,7 +382,9 @@ def chapter_record(chapter, known):
         elif kinds[step_id] == "rehearsal":
             line = known["lines"].get(step.rehearse)
             if line is None:
-                raise CourseFileError(f"{label} rehearses an unknown line {step.rehearse}", **at(step_id))
+                raise CourseFileError(
+                    f"{label} rehearses an unknown line {step.rehearse}", **at(step_id)
+                )
             found = (line["position"]["initial_fen"], line["position"]["moves"])
         elif kinds[step_id] == "game_excerpt":
             game = known["games"].get(step.game)
@@ -375,7 +400,9 @@ def chapter_record(chapter, known):
         elif step_id in incoming:
             found = result_of(*incoming[step_id])
         else:
-            raise CourseFileError(f"{label} cannot be reached, so it needs its own position", **at(step_id))
+            raise CourseFileError(
+                f"{label} cannot be reached, so it needs its own position", **at(step_id)
+            )
         resolving.discard(step_id)
         positions[step_id] = found
         return found
@@ -425,13 +452,17 @@ def chapter_record(chapter, known):
                     raise CourseFileError(f"{label} needs the learner's move", **at(step.id))
                 answer = san_moves(label, reply, fen, (*history, *played), at(step.id))
                 if len(played) != 1 or len(answer) > 1:
-                    raise CourseFileError(f"{label}: a decision is one move and one reply", **at(step.id))
+                    raise CourseFileError(
+                        f"{label}: a decision is one move and one reply", **at(step.id)
+                    )
                 choices.append(
                     dict(uci=played[0], reply=answer, next_step=choice_next, feedback=feedback)
                 )
             record.update(choices=choices, hint=step.hint, next_step=None)
             if step.next != "__following__" and step.choices is not None:
-                raise CourseFileError(f"{label}: with choices, next belongs to each choice", **at(step.id))
+                raise CourseFileError(
+                    f"{label}: with choices, next belongs to each choice", **at(step.id)
+                )
         else:
             record["next_step"] = target(step, step.next)
             if kind == "demonstration":
@@ -526,7 +557,14 @@ def unfinished_steps(data):
             if not isinstance(step, dict):
                 continue
             where = f"Chapter {chapter.get('id')}, step {step.get('id')}"
-            at = dict(chapter=str(chapter.get("id")), step=str(step.get("id")))
+            at = (
+                dict(
+                    chapter=str(chapter["id"]),
+                    step=str(step["id"]) if step.get("id") is not None else None,
+                )
+                if chapter.get("id") is not None
+                else {}
+            )
             if step.get("move") == "" and "choices" not in step:
                 for field in ("move", "reply", "hint", "feedback"):
                     step.pop(field, None)

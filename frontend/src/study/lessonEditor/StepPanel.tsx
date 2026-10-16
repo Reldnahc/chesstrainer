@@ -36,7 +36,7 @@ export default function StepPanel({ course, step, number, kind, otherSteps, boar
       <Field label="Title"><input value={step.title} onChange={event => setField("title", event.target.value)} /></Field>
       {/* Links to the step follow its id once it is committed, never per keystroke. */}
       <Field label="Step id" help="Other steps link to this name.">
-        <CommittedInput key={step.id} value={step.id} onCommit={rename} /></Field>
+        <CommittedInput value={step.id} onCommit={rename} /></Field>
       <Field label="Text"><textarea rows={4} value={step.text ?? ""} onChange={event => setField("text", event.target.value)} /></Field>
 
       {/* Each kind's own fields grow in and collapse out as the kind changes. */}

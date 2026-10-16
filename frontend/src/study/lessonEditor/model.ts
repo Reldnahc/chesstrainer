@@ -109,6 +109,35 @@ export function renameStep(chapter: Chapter, index: number, id: string) {
   chapter.steps[index].id = id;
 }
 
+/** Why an id cannot be used, or null: it must be set and not name another item. */
+export function idProblem(id: string, taken: string[], label: string) {
+  if (!id.trim()) return `A ${label} needs an id.`;
+  if (taken.includes(id)) return `Another ${label} already uses the id ${id}.`;
+  return null;
+}
+
+/** Deletes a step, and every link to it then carries on to the next step in the
+ * list (a side trip or the chapter's entry is cleared), so nothing names a step
+ * that no longer exists. */
+export function removeStep(chapter: Chapter, index: number) {
+  const gone = chapter.steps[index].id;
+  chapter.steps.splice(index, 1);
+  for (const item of chapter.steps) {
+    if (item.next === gone) delete item.next;
+    if (item.branch === gone) item.branch = "";
+    for (const choice of item.choices ?? []) if (choice.next === gone) delete choice.next;
+  }
+  if (chapter.entry === gone) delete chapter.entry;
+}
+
+/** Deletes a line; rehearsal steps that replayed it are left asking for a line. */
+export function removeLine(course: Course, index: number) {
+  const gone = course.lines![index].id;
+  course.lines!.splice(index, 1);
+  for (const chapter of course.chapters)
+    for (const step of chapter.steps) if (step.rehearse === gone) step.rehearse = "";
+}
+
 /** Renames a line and every rehearsal step, in any chapter, that replays it. */
 export function renameLine(course: Course, index: number, id: string) {
   const previous = course.lines![index].id;

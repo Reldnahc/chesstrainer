@@ -21,9 +21,16 @@ export default function Field({ label, help, action, group, children }: { label:
 
 /** A text field whose value is committed when it is left or Enter is pressed, for
  * ids other parts of the course link to, so a name typed on the way never counts.
- * Key it by what it edits, so a draft never carries over to another item. */
+ * A refused name (taken or empty) is handled by `onCommit`; the field shows the id again. */
 export function CommittedInput({ value, onCommit }: { value: string; onCommit: (value: string) => void }) {
   const [draft, setDraft] = useState<string | null>(null);
+  // A new value from outside (a commit, another item) replaces an unfinished draft,
+  // without remounting the field, so Enter keeps focus.
+  const [shown, setShown] = useState(value);
+  if (shown !== value) {
+    setShown(value);
+    setDraft(null);
+  }
   function commit() {
     if (draft !== null && draft !== value) onCommit(draft);
     setDraft(null);

@@ -45,3 +45,33 @@ test('renaming a step or a line takes effect when the id is committed, and links
   await expect(step.getByLabel('Line to rehearse')).toHaveValue('main-line');
   await expect(page.getByText('The course loads without problems.')).toBeVisible();
 });
+
+test('a course-wide problem marks no step, a taken id is refused, and deleting a linked step leaves no dangling link', async ({page}) => {
+  const step = await openNewCourse(page);
+  const steps = page.getByRole('region', {name: 'Steps'});
+  // A problem in a line, not a step, marks no step.
+  await page.getByText(/Lines to remember/).click();
+  await page.getByRole('button', {name: 'Add line'}).click();
+  const moves = page.getByLabel('Moves', {exact: true});
+  await moves.fill('e4 e4');
+  await expect(page.getByText(/e4 is not a legal move/)).toBeVisible();
+  await expect(steps.getByRole('img', {name: 'Has a problem'})).toHaveCount(0);
+  await moves.fill('e4');
+  await expect(page.getByText('The course loads without problems.')).toBeVisible();
+  // A step cannot take another step's id: the rename is refused and links stay put.
+  await steps.getByRole('button', {name: 'Add step after'}).click();
+  const id = step.getByLabel('Step id');
+  await id.fill('introduction');
+  await id.press('Enter');
+  await expect(page.getByRole('alert')).toContainText('Another step already uses the id introduction.');
+  await expect(id).toHaveValue('step');
+  await expect(id).toBeFocused();
+  // Deleting a step that another links to leaves the link carrying on instead of naming it.
+  await steps.getByRole('button', {name: /Introduction/}).click();
+  await step.getByLabel('Then go to').selectOption({label: 'New step (step)'});
+  await steps.getByRole('button', {name: /New step/}).click();
+  await steps.getByRole('button', {name: 'Delete step'}).click();
+  await expect(steps.getByRole('listitem')).toHaveCount(1);
+  await expect(step.getByLabel('Then go to')).toHaveValue('__following__');
+  await expect(page.getByText('The course loads without problems.')).toBeVisible();
+});

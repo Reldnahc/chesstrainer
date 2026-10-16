@@ -1,18 +1,20 @@
 import { ArrowDown, ArrowUp, Circle, Plus, Trash2 } from "lucide-react";
 import Button from "../../Button";
 import ChoiceGroup from "../../ChoiceGroup";
-import Field from "./Field";
+import Field, { CommittedInput } from "./Field";
 import { KINDS, hasProblem, kindOf, type Chapter, type Check, type Course } from "./model";
 
 type Reorder = { add: () => void; move: (offset: number) => void; remove: () => void };
 
 /** The chapter picker, the selected chapter's title and id, and adding, moving and deleting chapters. */
-export function ChapterPanel({ course, chapter, index, select, editChapter, reorder }: {
+export function ChapterPanel({ course, chapter, index, select, editChapter, renameChapter, reorder }: {
   course: Course;
   chapter: Chapter;
   index: number;
   select: (index: number) => void;
   editChapter: (update: (draft: Chapter) => void) => void;
+  /** Gives the chapter a new id, or says why it cannot have it. */
+  renameChapter: (id: string) => void;
   reorder: Reorder;
 }) {
   return <section className="lesson-editor-section" aria-label="Chapters">
@@ -20,7 +22,7 @@ export function ChapterPanel({ course, chapter, index, select, editChapter, reor
     <ChoiceGroup label="Chapter" value={index} onChange={select} options={course.chapters.map((item, position) => ({ value: position, label: `${position + 1}. ${item.title}` }))} />
     <div className="lesson-editor-fields">
       <Field label="Chapter title"><input value={chapter.title} onChange={event => editChapter(draft => { draft.title = event.target.value; })} /></Field>
-      <Field label="Chapter id"><input value={chapter.id} onChange={event => editChapter(draft => { draft.id = event.target.value; })} /></Field>
+      <Field label="Chapter id"><CommittedInput value={chapter.id} onCommit={renameChapter} /></Field>
     </div>
     <div className="button-row">
       <Button size="compact" variant="secondary" onClick={reorder.add}><Plus size={16} />Add chapter</Button>

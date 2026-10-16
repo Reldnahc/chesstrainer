@@ -21,7 +21,7 @@ import CourseDetails from "./lessonEditor/CourseDetails";
 import LinesPanel from "./lessonEditor/LinesPanel";
 import { ChapterPanel, StepList } from "./lessonEditor/OutlinePanels";
 import StepPanel from "./lessonEditor/StepPanel";
-import { KIND_DEFINING, KIND_FIELDS, kindOf, newCourse, renameStep, uniqueId,
+import { KIND_DEFINING, KIND_FIELDS, idProblem, kindOf, newCourse, removeStep as unlinkStep, renameStep, uniqueId,
   type Chapter, type Check, type Course, type Kind, type Recording, type Step } from "./lessonEditor/model";
 
 export default function LessonEditor({ courseId, revision }: { courseId: string | null; revision: string | null }) {
@@ -157,7 +157,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
   }
   function removeStep() {
     if (chapter!.steps.length === 1) return;
-    editChapter(draft => { draft.steps.splice(stepIndex, 1); });
+    editChapter(draft => unlinkStep(draft, stepIndex));
     selectStep(Math.max(0, stepIndex - 1));
   }
   function addChapter() {
@@ -278,12 +278,21 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
 
     <CourseDetails course={current} change={change} opened={opened} />
     <ChapterPanel course={current} chapter={chapter} index={chapterIndex} select={selectChapter} editChapter={editChapter}
+      renameChapter={id => {
+        const problem = idProblem(id, current.chapters.filter(item => item !== chapter).map(item => item.id), "chapter");
+        if (problem) errors.setError(problem);
+        else editChapter(draft => { draft.id = id; });
+      }}
       reorder={{ add: addChapter, move: moveChapter, remove: removeChapter }} />
     <StepList chapter={chapter} index={stepIndex} check={check} select={selectStep}
       reorder={{ add: addStep, move: moveStep, remove: removeStep }} />
     <StepPanel course={current} step={step} number={stepIndex + 1} kind={kind} otherSteps={otherSteps} board={board}
       setKind={setKind} setField={setField} editStep={editStep} record={startRecording}
-      rename={id => editChapter(draft => renameStep(draft, stepIndex, id))} />
-    <LinesPanel course={current} board={board} change={change} />
+      rename={id => {
+        const problem = idProblem(id, otherSteps.map(item => item.id), "step");
+        if (problem) errors.setError(problem);
+        else editChapter(draft => renameStep(draft, stepIndex, id));
+      }} />
+    <LinesPanel course={current} board={board} change={change} refuse={errors.setError} />
   </ReviewWorkspace>;
 }
