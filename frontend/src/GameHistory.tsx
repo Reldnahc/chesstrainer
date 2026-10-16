@@ -135,7 +135,19 @@ export default function GameHistory({
                     ? "Queued"
                     : "Review";
           const accuracy = item.status === "completed" ? item.accuracy : null;
-          const description = `White: ${item.white}${item.white_rating ? `, rated ${item.white_rating}` : ", rating unknown"}. Black: ${item.black}${item.black_rating ? `, rated ${item.black_rating}` : ", rating unknown"}. ${result.description}. ${item.time_control_label || "Time control unknown"}. ${item.move_count == null ? "Unknown moves" : plural(item.move_count, "move")}. ${date?.label || "Date unknown"}. ${accuracy ? `Accuracy: White ${accuracy.white.toFixed(1)}, Black ${accuracy.black.toFixed(1)}.` : item.status === "completed" ? "Accuracy unavailable." : `${reviewLabel}.`}`;
+          const player = (name: string, rating: number | null | undefined) =>
+            `${name}${rating ? `, rated ${rating}` : ", rating unknown"}`;
+          let reviewNote = `${reviewLabel}.`;
+          if (accuracy) reviewNote = `Accuracy: White ${accuracy.white.toFixed(1)}, Black ${accuracy.black.toFixed(1)}.`;
+          else if (item.status === "completed") reviewNote = "Accuracy unavailable.";
+          const description = [
+            `White: ${player(item.white, item.white_rating)}`,
+            `Black: ${player(item.black, item.black_rating)}`,
+            result.description,
+            item.time_control_label || "Time control unknown",
+            item.move_count == null ? "Unknown moves" : plural(item.move_count, "move"),
+            date?.label || "Date unknown",
+          ].join(". ") + `. ${reviewNote}`;
           return (
             <li key={item.id}>
               <Link

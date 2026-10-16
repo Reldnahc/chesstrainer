@@ -27,6 +27,18 @@ function ChapterRow({ chapter, index, busy, onStart }: {
   </li>;
 }
 
+/** The course's lines a learner may add to scheduled recall, if it has any. */
+function RecallLines({ course }: { course: Course }) {
+  const lines = course.lines.filter(line => line.repertoire);
+  if (!lines.length) return null;
+  return <section className="lesson-repertoire-lines" aria-label="Course recall lines">
+    <h3>Keep these lines in memory</h3>
+    <p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>
+    {lines.map(line => <ResumeLink key={line.id} href={courseLinePath(course.id, line.id, course.revision, course.learner_color)}
+      description="Preview and add to study">{line.title}</ResumeLink>)}
+  </section>;
+}
+
 function CourseCard({ course, topic }: { course: CourseSummary; topic: LessonTopic }) {
   return <Link className="panel panel--card lesson-course-card" href={lessonCoursePath(course.id, course.revision, topic)}>
     <BookOpen size={22} aria-hidden="true" />
@@ -81,7 +93,7 @@ function CoursePage({ topic, courseId, revision }: { topic: LessonTopic; courseI
       </header>
       <ol className="lesson-chapters">{course.chapters.map((chapter, index) =>
         <ChapterRow key={chapter.id} chapter={chapter} index={index} busy={start.busy} onStart={() => begin(chapter.id)} />)}</ol>
-      {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <ResumeLink href={courseLinePath(course.id, line.id, course.revision, course.learner_color)} key={line.id} description="Preview and add to study">{line.title}</ResumeLink>)}</section>}
+      <RecallLines course={course} />
       <LessonAttribution attributions={course.attributions} />
       <Button className="lesson-course-download" size="compact" variant="quiet" disabled={!!downloading.busy} onClick={download}><Download size={16} />Download course file</Button>
     </>}</QueryResult>
