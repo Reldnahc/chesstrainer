@@ -40,6 +40,8 @@
   --control-height-compact: 36px;
   /* Dense controls are chrome sized with the notation tabs (game review). */
   --control-height-dense: 28px;
+  /* The coach bubble's title row (name, badge, mute), as tall as its dense controls. */
+  --coach-label-height: var(--control-height-dense);
   --touch-target: 44px;
   --control-border: #44484f;
   --control-hover: #30343a;
@@ -184,11 +186,6 @@ summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
-/* A caption overrides the type of whatever it marks, including phone body text. */
-.small {
-  font-size: var(--text-caption) !important;
-  line-height: 1.65 !important;
-}
 .muted {
   color: var(--muted);
 }
@@ -244,6 +241,20 @@ p {
   font: var(--text-label) var(--mono);
   letter-spacing: 1.3px;
   color: var(--muted);
+}
+progress {
+  width: 100%;
+  height: 4px;
+  accent-color: var(--accent);
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+progress::-webkit-progress-bar {
+  background: #373b42;
+}
+progress::-webkit-progress-value {
+  background: var(--accent);
 }
 label {
   display: flex;
@@ -323,5 +334,15 @@ dd {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+}
+@layer surfaces {
+/* A caption overrides the type of whatever it marks, including a page's or a
+   component's own paragraph type (phone body text, panels, the coach bubble).
+   It sits in the policy layer above every page instead of using !important; a
+   component that sets its own caption type does not add .small (Insights' notes). */
+.small {
+  font-size: var(--text-caption);
+  line-height: 1.65;
 }
 }

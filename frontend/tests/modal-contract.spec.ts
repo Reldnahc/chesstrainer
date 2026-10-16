@@ -9,11 +9,12 @@ import { isolatedServer } from "./helpers/vite";
 // Real production components in a small browser fixture allow changes to board
 // inputs while a modal is open, without coupling these contracts to an engine.
 const harness = `
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Board from "/src/Board.tsx";
 import EvidenceDialog from "/src/EvidenceDialog.tsx";
 import MovePlaybackControls from "/src/MovePlaybackControls.tsx";
+import { errorMessage } from "/src/api.ts";
 import { useGameExploration } from "/src/gameReview/useGameExploration.ts";
 import "/src/foundation.css";
 import "/src/base.css";
@@ -34,8 +35,9 @@ function Fixture() {
   const [moves, setMoves] = useState([]);
   const [evidence, setEvidence] = useState(false);
   const [error, setError] = useState("");
-  const fail = useCallback(value => setError(String(value)), []);
-  const exploration = useGameExploration("modal-fixture", 1, game, fail);
+  // The page's error channel, as game review passes it: fail reports, dismiss clears.
+  const errors = useMemo(() => ({fail: value => setError(errorMessage(value)), dismiss: () => setError("")}), []);
+  const exploration = useGameExploration("modal-fixture", 1, game, errors);
   useEffect(() => {
     const update = event => {
       if (event.detail === "disable") setDisabled(true);
@@ -69,7 +71,7 @@ function Fixture() {
       legalMoves={choices.map(promotion => ({from_square: "a7", to_square: "a8", promotion, capture: false}))}
       onMove={(from, to, promotion) => setMoves(values => [...values, from + to + promotion])} />}
     <button>After board</button>
-    {evidence && <EvidenceDialog id="modal-fixture" onClose={() => setEvidence(false)} fail={fail} />}
+    {evidence && <EvidenceDialog id="modal-fixture" onClose={() => setEvidence(false)} />}
   </div>;
 }
 createRoot(document.getElementById("root")).render(<React.StrictMode><Fixture /></React.StrictMode>);
@@ -116,7 +118,12 @@ test.afterAll(async () => {
   await server?.close();
 });
 
+// A harness that drifts from the hooks it drives must fail loudly, not throw unseen.
+const pageErrors = new WeakMap<Page, Error[]>();
 test.beforeEach(async ({ page }) => {
+  const errors: Error[] = [];
+  pageErrors.set(page, errors);
+  page.on("pageerror", error => errors.push(error));
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.route("**/api/evidence/modal-fixture", route => route.fulfill({ json: {
     fen: "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
@@ -342,4 +349,8 @@ test("evidence contains focus, keeps its board read-only and restores its opener
   await expect(opener).toBeFocused();
   await page.keyboard.press("ArrowLeft");
   await expect(page.getByTestId("ply")).toHaveText("0");
+});
+
+test.afterEach(async ({page}) => {
+  expect(pageErrors.get(page) ?? [], "uncaught page errors").toEqual([]);
 });

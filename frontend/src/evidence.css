@@ -75,7 +75,8 @@
 }
 .evidence-dialog > .row-between {
   position: sticky;
-  top: -28px;
+  /* Pinned at the dialog's top edge, over its own top padding. */
+  top: calc(-1 * var(--dialog-padding-top, var(--panel-padding)));
   z-index: 2;
   background: var(--surface);
   padding-block: var(--space-3);
@@ -105,9 +106,6 @@
   .weakness-practice { align-items: stretch; }
   .evidence-dialog h2 {
     font-size: var(--text-xl);
-  }
-  .evidence-dialog > .row-between {
-    top: -12px;
   }
   .evidence-dialog > .row-between .eyebrow {
     display: none;

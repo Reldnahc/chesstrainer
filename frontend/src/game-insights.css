@@ -6,8 +6,6 @@
 .insights :where(ul, table) { margin: 0; }
 
 .insight-toolbar { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); }
-.insight-filter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
-.insight-filter > span { font: var(--text-2xs) var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); min-width: 48px; }
 /* A changed filter keeps the last insights, dimmed, beside the shared loading line. */
 .insight-refreshing { align-self: center; }
 .insights > :not(.insight-toolbar) { transition: opacity var(--motion-fast) var(--ease-standard); }
@@ -94,16 +92,23 @@
 .insight-split-draw { background: var(--outcome-draw); }
 .insight-split-loss { background: var(--outcome-loss); }
 .insight-legend { list-style: none; padding: 0; display: grid; gap: var(--space-1-5); font-size: var(--text-md); color: #d4d8de; }
-.insight-legend li { display: flex; align-items: center; gap: var(--space-2); }
-.insight-legend strong { font-family: var(--mono); font-weight: 400; margin-left: auto; }
-.insight-legend .muted { font: var(--text-sm) var(--mono); min-width: 38px; text-align: right; }
+/* Rows share the list's columns, so counts and percentages line up at any width. */
+.insight-legend { grid-template-columns: auto minmax(0, 1fr) auto auto; column-gap: var(--space-2); }
+.insight-legend li { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; align-items: center; }
+.insight-legend strong { font-family: var(--mono); font-weight: 400; text-align: right; }
+.insight-legend .muted { font: var(--text-sm) var(--mono); text-align: right; }
 .insight-swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
 
 .insight-games { display: grid; gap: var(--space-2); }
-.insight-games ul { list-style: none; padding: 0; display: grid; }
+/* The outcome, opponent and date columns are the list's, so every row's badge is
+   as wide as the widest without a fixed width. */
+.insight-games ul { list-style: none; padding: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: var(--space-3); }
+.insight-games li { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; }
 .insight-games li + li { border-top: 1px solid #2a2d32; }
 .insight-games a {
-  display: flex;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
   align-items: center;
   gap: var(--space-3);
   min-height: 40px;
@@ -115,7 +120,6 @@
 }
 .insight-games a:hover { background: var(--raised); }
 .insight-game-name { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: var(--text-base); }
-.insight-games .history-outcome { min-width: 38px; text-align: center; }
 
 /* Weekday by time-of-day grid. */
 .insight-heatmap { display: grid; gap: var(--space-1); }
@@ -175,7 +179,8 @@
 .insight-shapes { list-style: none; padding: 0; display: grid; }
 .insight-shapes li {
   display: grid;
-  grid-template-columns: 56px minmax(0, 1fr) auto;
+  /* The icon column is as wide as the icon. */
+  grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-areas: "icon text count" "icon link count";
   align-items: center;
   column-gap: var(--space-4);
@@ -200,10 +205,8 @@
   .insight-panel { gap: var(--space-4); }
   /* Phones show each filter as a dropdown; the filters share one row. */
   .insight-toolbar { gap: var(--space-3); }
-  .insight-toolbar > .insight-filter { flex: 1 1 0; min-width: 0; }
+  .insight-toolbar > .choice-field { flex: 1 1 0; min-width: 0; }
   .insight-refreshing { flex-basis: 100%; }
-  .insight-filter { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: var(--space-1-5); }
-  .insight-filter > span { min-width: 0; }
   .insight-headlines li { font-size: var(--text-base); }
   .insight-heatmap-row { grid-template-columns: 56px repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
   .insight-heat { height: 32px; font-size: var(--text-xs); }
@@ -215,7 +218,6 @@
     padding-top: var(--page-gap);
     border-top: 1px solid var(--line);
   }
-  .insight-shapes li { grid-template-columns: 44px minmax(0, 1fr) auto; }
   .insight-shape-icon { width: 44px; }
   .insight-shape-link { min-height: var(--touch-target); display: inline-flex; align-items: center; }
   .insight-bars li { grid-template-columns: minmax(90px, 42%) minmax(30px, 1fr) 46px; gap: var(--space-3); }

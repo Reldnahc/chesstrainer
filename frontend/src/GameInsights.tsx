@@ -208,7 +208,7 @@ function Rhythm({ data }: { data: Insights }) {
       <li><span className="insight-heat--even" aria-hidden="true" />In between</li>
       <li><span className="insight-heat--poor" aria-hidden="true" />Scored 40% or less</li>
     </ul>
-    <p className="small muted insight-note">Each number is games played in that slot, in your local time.</p>
+    <p className="insight-note">Each number is games played in that slot, in your local time.</p>
   </Panel>;
 }
 
@@ -277,7 +277,7 @@ function Openings({ data }: { data: Insights }) {
         </tbody>
       </table>
     </div>
-    <p className="small muted insight-note">Openings are named from the bundled Lichess opening list. Score counts a draw as half a win; move accuracy comes from reviewed games only.{rest > 0 ? ` ${plural(rest, "opening with a single game is", "openings with a single game are")} not shown.` : ""}</p>
+    <p className="insight-note">Openings are named from the bundled Lichess opening list. Score counts a draw as half a win; move accuracy comes from reviewed games only.{rest > 0 ? ` ${plural(rest, "opening with a single game is", "openings with a single game are")} not shown.` : ""}</p>
   </Panel>;
 }
 
@@ -292,7 +292,7 @@ function Theory({ data }: { data: Insights }) {
     {theory.openings.length > 0 && <Bars label="Costliest openings to leave" unit=" p" rows={theory.openings.map(row => ({
       label: row.name, value: Number((row.cost_cp / 100).toFixed(1)), detail: plural(row.games, "game"),
     }))} />}
-    <p className="small muted insight-note">Counts only exits on your own move; the opponent leaving book is not your cost.</p>
+    <p className="insight-note">Counts only exits on your own move; the opponent leaving book is not your cost.</p>
   </Panel>;
 }
 
@@ -314,7 +314,7 @@ function Momentum({ data }: { data: Insights }) {
         <Bars label="Move where a winning position was lost for good" rows={slip_moves.map(bucket => ({
           label: `Moves ${bucket.label}`, value: bucket.games,
         }))} />
-        <p className="small muted insight-note">The move after which the evaluation never returned to +3 for you.</p>
+        <p className="insight-note">The move after which the evaluation never returned to +3 for you.</p>
       </div>
       <div>
         <h4>When you were clearly lost</h4>
@@ -326,7 +326,7 @@ function Momentum({ data }: { data: Insights }) {
         <GameLinks label="Recent saves" games={escapes.saves} />
       </div>
     </div>
-    <p className="small muted insight-note">Clearly winning or lost means an engine evaluation of three pawns or more, or a forced mate, at any point.</p>
+    <p className="insight-note">Clearly winning or lost means an engine evaluation of three pawns or more, or a forced mate, at any point.</p>
   </Panel>;
 }
 
@@ -376,7 +376,7 @@ function MoveQuality({ data }: { data: Insights }) {
         </tr>)}</tbody>
       </table>
     </div>
-    <p className="small muted insight-note">Move accuracy averages Lichess's per-move score; a game's accuracy weights its moves differently, so the two can differ. The endgame starts once 26 points of material or fewer are left on the board, counting pawns as 1, knights and bishops 3, rooks 5 and queens 9; before that, moves 1–10 are the opening.</p>
+    <p className="insight-note">Move accuracy averages Lichess's per-move score; a game's accuracy weights its moves differently, so the two can differ. The endgame starts once 26 points of material or fewer are left on the board, counting pawns as 1, knights and bishops 3, rooks 5 and queens 9; before that, moves 1–10 are the opening.</p>
   </Panel>;
 }
 
@@ -388,7 +388,7 @@ function Tilt({ data }: { data: Insights }) {
       { label: "After a win or draw", value: fixed(other.blunders_per_100, 1) },
       { label: "Rematches after a loss", value: rematches.games ? recordText(rematches) : "None" },
     ]} />
-    <p className="small muted insight-note">Counts the next game when it started within 90 minutes ({loss.games} after a loss, {other.games} after a win or draw, reviewed games only). A rematch is that next game against the same opponent.</p>
+    <p className="insight-note">Counts the next game when it started within 90 minutes ({loss.games} after a loss, {other.games} after a win or draw, reviewed games only). A rematch is that next game against the same opponent.</p>
   </Panel>;
 }
 
@@ -415,7 +415,7 @@ function Punishment({ data }: { data: Insights }) {
       { label: "Opponent mistakes you punished", value: percent(punishment.punished, punishment.opponent_errors), detail: `${punishment.punished} of ${punishment.opponent_errors}` },
       { label: "Your mistakes that went unpunished", value: percent(punishment.unpunished, punishment.own_errors), detail: `${punishment.unpunished} of ${punishment.own_errors}` },
     ]} />
-    <p className="small muted insight-note">A mistake loses a pawn or more. It counts as punished when the very next move keeps at least half of what it gave away.</p>
+    <p className="insight-note">A mistake loses a pawn or more. It counts as punished when the very next move keeps at least half of what it gave away.</p>
   </Panel>;
 }
 
@@ -427,7 +427,7 @@ function Endgames({ data }: { data: Insights }) {
       label: <>{endgameLabels[row.kind]} <span className="muted">{row.held}/{row.games}</span></>,
       value: percent(row.held, row.games), detail: `held ${row.held} of ${row.games}`,
     }))} />
-    <p className="small muted insight-note">Held means the final result was at least as good as the evaluation when the endgame began.</p>
+    <p className="insight-note">Held means the final result was at least as good as the evaluation when the endgame began.</p>
   </Panel>;
 }
 
@@ -458,11 +458,9 @@ function InsightsView({ data, speed, setSpeed, days, setDays, query }: {
   const reviewed = data.reviewed_games > 0;
   return <div className="insights" data-reloading={reloading(query)}>
     <div className="insight-toolbar">
-      {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
-        <ChoiceGroup label="Speed" labelId="insight-speed" size="compact" value={speed} onChange={setSpeed} phone="select"
-          options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
-      <div className="insight-filter"><span id="insight-period">Period</span>
-        <ChoiceGroup label="Period" labelId="insight-period" size="compact" value={days} onChange={setDays} options={periods} phone="select" /></div>
+      {speeds.length > 2 && <ChoiceGroup label="Speed" showLabel size="compact" value={speed} onChange={setSpeed} phone="select"
+        options={speeds.map(value => ({ value, label: speedLabels[value] }))} />}
+      <ChoiceGroup label="Period" showLabel size="compact" value={days} onChange={setDays} options={periods} phone="select" />
       <QueryReloading query={query} label="your insights" className="insight-refreshing" />
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
@@ -479,7 +477,7 @@ function InsightsView({ data, speed, setSpeed, days, setDays, query }: {
         ]} />
         {lines.length ? <ul className="insight-headlines">{lines.map(line => <li key={line}>{line}</li>)}</ul>
           : <p className="insight-headlines-empty">Review more games to see engine-based patterns here.</p>}
-        {data.reviewed_games < data.games && <p className="small muted insight-note">
+        {data.reviewed_games < data.games && <p className="insight-note">
           Results, dates, ratings, clocks and openings use every game. Evaluation-based panels use the {plural(data.reviewed_games, "reviewed game")}; <Link href={gamesPath()}>review more games</Link> to sharpen them.
         </p>}
       </section>

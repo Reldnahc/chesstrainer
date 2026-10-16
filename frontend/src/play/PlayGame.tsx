@@ -207,10 +207,10 @@ export default function PlayGame({ id }: { id: string }) {
         boardControls={
           <div className="game-board-controls" role="group" aria-label="Game controls">
             {finished ? (
-              <ActionLink size="compact" className="game-library-link" href={playSetupPath(state.id)}>New game</ActionLink>
+              <ActionLink size="toolbar" className="game-library-link" href={playSetupPath(state.id)}>New game</ActionLink>
             ) : (
               <div className="game-board-actions">
-                <Button size="compact" disabled={session.busy} onClick={session.resign}>Resign</Button>
+                <Button size="toolbar" disabled={session.busy} onClick={session.resign}>Resign</Button>
               </div>
             )}
             <MovePlaybackControls label="Game move playback" current={ply} maximum={latest}

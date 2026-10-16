@@ -123,10 +123,27 @@
   justify-content: center;
 }
 .history-outcome {
+  /* As wide as the widest outcome label (drawn invisibly from data-labels and kept
+     out of the accessible name), so every badge has one width. */
+  display: inline-grid;
+  justify-items: center;
   font-size: var(--text-2xs);
   font-weight: 600;
   border-radius: 3px;
   padding: var(--space-1) var(--space-1-5);
+}
+.history-outcome-label,
+.history-outcome::after {
+  grid-area: 1 / 1;
+}
+.history-outcome::after {
+  /* The plain form first, for engines without alternative text. */
+  content: attr(data-labels);
+  content: attr(data-labels) / "";
+  white-space: pre;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
 }
 .history-accuracy {
   grid-area: accuracy;
@@ -229,9 +246,6 @@
   }
   .history-result {
     gap: var(--space-1);
-  }
-  .history-outcome {
-    padding-inline: var(--space-1);
   }
   .history-review-action {
     padding-inline: var(--space-1-5);

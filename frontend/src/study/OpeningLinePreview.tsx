@@ -10,6 +10,7 @@ import Board from "../Board";
 import { moveSquares } from "../boardCues";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import ChoiceGroup from "../ChoiceGroup";
 import ContinuationMoves from "../ContinuationMoves";
 import MovePlaybackControls from "../MovePlaybackControls";
 import AudioMuteButton from "../audio/AudioMuteButton";
@@ -101,7 +102,11 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     <CommandError command={command} />
     {saved && <Banner tone="success" onDismiss={() => setSaved(false)}>Study saved. Eligible positions are now included in Due.</Banner>}
     <section className="panel opening-preview-details">
-      <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{plural(side === "white" ? line.white_positions : line.black_positions, "decision")}</small></label>)}</fieldset>
+      <ChoiceGroup label="Study as" showLabel value={color} onChange={side => { setColor(side); setSaved(false); }}
+        options={(["white", "black"] as const).map(side => {
+          const decisions = side === "white" ? line.white_positions : line.black_positions;
+          return { value: side, label: `${side === "white" ? "White" : "Black"} · ${plural(decisions, "decision")}`, disabled: busy || !decisions };
+        })} />
       <h2>The selected continuation</h2>
       <ContinuationMoves label="Opening continuation" moves={line.frames} numbered selectedIndex={ply - 1} startSelected={!ply}
         onStart={() => seek(0)} onSelect={index => seek(index + 1)} />

@@ -47,8 +47,11 @@ test("catalogue search previews a real line, enrolls either side and preserves h
   await expect(page.getByRole("heading", { name: candidate.name, exact: true })).toBeVisible();
   await expect(page).toHaveTitle(`${candidate.name} · Fieldwork`);
   await expect(page.locator(".board-shell")).toBeVisible();
-  await page.getByRole("radio", { name: side === "white" ? /White/ : /Black/ }).check();
-  expect(await page.locator(".opening-color label").first().evaluate(label => label.getBoundingClientRect().height)).toBeLessThan(84);
+  // "Study as" is the shared ChoiceGroup: one pressed button per side, with its decision count.
+  const studyAs = page.getByRole("group", { name: "Study as", exact: true });
+  const choice = studyAs.getByRole("button", { name: new RegExp(`^${side === "white" ? "White" : "Black"} · \\d+ decisions?$`) });
+  await choice.click();
+  await expect(choice).toHaveAttribute("aria-pressed", "true");
   const details = page.locator(".opening-preview-details");
   await expect(details).toContainText(`${side === "white" ? candidate.white_positions : candidate.black_positions} ${side === "white" ? "White" : "Black"} recall decisions`);
   await page.getByRole("button", { name: "Next line move", exact: true }).click();

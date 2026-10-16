@@ -76,12 +76,12 @@
   position: relative;
   min-width: 0;
   display: grid;
-  grid-template-rows: 28px minmax(0, 1fr);
+  grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
   gap: var(--space-1);
   height: var(--coach-height);
   border: 1px solid var(--coach-bubble-border);
   border-radius: 10px;
-  /* The 28px title row centres its content, so a smaller top padding still reads as
+  /* The title row centres its content, so a smaller top padding still reads as
      even and leaves the message its two lines above a wrapped footer. */
   padding: var(--space-2) var(--space-4) var(--space-3);
   background: var(--coach-bubble-background);
@@ -194,6 +194,10 @@
   color: #fff;
   box-shadow: inset 0 0 0 1px #84909d;
 }
+.evaluation-score.evaluation-score--compact {
+  font-size: var(--text-base);
+  min-height: 27px;
+}
 .evaluation-score[data-side="unknown"] {
   background: #353d39;
   color: #c1cfc5;
@@ -265,6 +269,38 @@
   font-size: var(--text-md);
   line-height: 1.55;
 }
+/* The standalone bubble: Play setup on desktop shows the coach's line above
+   the portrait, pointing down at it, with the review bubble's label and message.
+   (Phones use ReviewCoach with fit="content".) Play's stylesheet only places it. */
+.play-setup-speech {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  background: var(--coach-bubble-background);
+  border: 1px solid var(--coach-bubble-border);
+  border-radius: 10px;
+}
+.play-setup-speech::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: calc(50% - 6.5px);
+  width: 13px;
+  height: 13px;
+  background: var(--coach-bubble-background);
+  border-right: 1px solid var(--coach-bubble-border);
+  border-bottom: 1px solid var(--coach-bubble-border);
+  transform: rotate(45deg);
+}
+.play-setup-speech .coach-label { min-height: var(--coach-label-height); }
+.play-setup-speech .coach-message { min-height: 0; overflow: visible; }
+/* On desktop the bubble is the page's one line of dialogue, so it reads larger. */
+@media (min-width: 761px) {
+  .play-setup-speech { padding: var(--space-4) var(--space-5); }
+  .play-setup-speech .coach-label { font-size: var(--text-lg); }
+  .play-setup-speech .coach-message p { font-size: var(--text-lg); }
+}
 .coach-actions {
   --coach-action-gap: var(--space-2);
   grid-column: 2;
@@ -302,7 +338,7 @@
   justify-content: space-between;
   gap: var(--space-2);
   min-width: 0;
-  min-height: 28px;
+  min-height: var(--coach-label-height);
   color: #c1cfc5;
   font-size: var(--text-xs);
 }
@@ -387,6 +423,18 @@
   min-width: 20px;
   font: var(--text-sm) var(--mono);
 }
+.move-badge--small {
+  font-size: var(--text-2xs);
+}
+.move-badge--inline {
+  gap: .4em;
+  font-size: inherit;
+}
+.move-badge--inline b {
+  min-width: 1.4em;
+  font-size: inherit;
+  line-height: 1;
+}
 .move-star {
   display: block;
   flex-shrink: 0;
@@ -451,7 +499,7 @@
     padding-top: var(--space-1-5);
   }
   .coach-speech {
-    grid-template-rows: 28px minmax(0, 1fr);
+    grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
     padding: var(--space-3);
   }
   .coach-label {
@@ -483,7 +531,7 @@
     padding-top: var(--space-1-5);
   }
   .coach-speech {
-    grid-template-rows: 28px minmax(0, 1fr);
+    grid-template-rows: var(--coach-label-height) minmax(0, 1fr);
     padding: var(--space-3);
   }
   .coach-label .move-badge {

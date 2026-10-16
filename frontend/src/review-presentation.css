@@ -2,14 +2,14 @@
 @layer pages {
 /* Shared by SRS, explanation playback and full-game review. */
 main.review-page:has(.review-workspace-layout) {
-  min-height: 0;
+  flex-grow: 0;
   padding: var(--space-3) var(--page-inline-padding);
 }
 /* The lesson editor is a workspace page that composes the workspace: it keeps the
    page's top padding (and its phone padding) with the workspace's tight bottom. */
 @media (min-width: 761px) {
   main.workspace-page:has(.review-workspace-layout) {
-    min-height: 0;
+    flex-grow: 0;
     padding-bottom: var(--space-3);
   }
 }
@@ -21,7 +21,9 @@ main.review-page:has(.review-workspace-layout) {
   --review-sidebar-min: 300px;
   display: grid;
   grid-template-columns:
-    minmax(0, var(--review-board-width, calc(100dvh - 130px)))
+    /* ReviewWorkspace measures both sizes before the first paint; the fallbacks
+       only keep the grid valid, so they restate no shell height. */
+    minmax(0, var(--review-board-width, 1fr))
     minmax(var(--review-sidebar-min), 1fr);
   gap: var(--space-5);
   align-items: start;
@@ -73,7 +75,7 @@ main.review-page:has(.review-workspace-layout) {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  height: var(--review-height, calc(100dvh - 84px));
+  height: var(--review-height, auto);
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -91,7 +93,8 @@ main.review-page:has(.review-workspace-layout) {
   display: flex;
   align-items: center;
   gap: var(--space-1) var(--space-4);
-  min-height: 28px;
+  /* As tall as the dense controls that can sit in it. */
+  min-height: var(--control-height-dense);
   color: var(--muted);
   font-size: var(--text-xs);
 }

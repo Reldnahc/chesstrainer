@@ -75,8 +75,9 @@ test("the setup page explains the measured level and starts a live game", async 
   // The invitation loads after the page; until it does the coach is a bare portrait of a
   // different height, so measure once it is in place.
   await expect(page.getByLabel("Walter says")).toBeVisible();
-  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
-    document.querySelector('[aria-labelledby="play-color"]')!.getBoundingClientRect().top + window.scrollY]);
+  const layout = async () => [
+    await page.locator(".play-setup-form").evaluate(form => form.getBoundingClientRect().height),
+    await page.getByRole("group", { name: "Your color", exact: true }).evaluate(group => group.getBoundingClientRect().top + window.scrollY)];
   const before = await layout();
   await page.getByRole("button", {name: "Engine"}).click();
   await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveAttribute("min", "1800");
@@ -93,6 +94,12 @@ test("the setup page explains the measured level and starts a live game", async 
   await expect(page).toHaveURL(/\/play\/play1$/);
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.getByRole("button", {name: "Resign"})).toBeVisible();
+  // Resign is a toolbar Button: compact on desktop, narrower 44px target on phones.
+  const resign = page.getByRole("button", {name: "Resign"});
+  const phone = (page.viewportSize()?.width ?? 1440) <= 760;
+  await expect(resign).toHaveCSS("font-size", phone ? "11px" : "12px");
+  await expect(resign).toHaveCSS("padding-left", phone ? "6px" : "12px");
+  expect((await resign.boundingBox())!.height).toBe(phone ? 44 : 36);
   await expect(page.getByRole("button", {name: "Offer draw"})).toHaveCount(0);
   // No accuracy readout is reserved for a game in progress.
   await expect(page.locator(".review-board-meta .game-accuracy")).toHaveCount(0);
@@ -370,8 +377,9 @@ test("opening practice asks in the coach's bubble when the learner leaves the li
   // Choosing practice enables the course picker in place: the rows below it do not move.
   await expect(page.getByLabel("Walter says")).toBeVisible();
   await expect(page.getByLabel("Course to practice")).toBeDisabled();
-  const layout = () => page.evaluate(() => [document.querySelector(".play-setup-form")!.getBoundingClientRect().height,
-    document.querySelector('[aria-labelledby="play-opponent"]')!.getBoundingClientRect().top + window.scrollY]);
+  const layout = async () => [
+    await page.locator(".play-setup-form").evaluate(form => form.getBoundingClientRect().height),
+    await page.getByRole("group", { name: "Opponent", exact: true }).evaluate(group => group.getBoundingClientRect().top + window.scrollY)];
   const before = await layout();
   await page.getByRole("button", {name: "Practice an opening"}).click();
   await expect(page.getByLabel("Course to practice")).toBeEnabled();

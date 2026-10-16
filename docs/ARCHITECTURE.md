@@ -149,16 +149,20 @@ development tool or a test fixture loads first fixes it. Every stylesheet wraps
 its rules in one of the layers:
 
 - `foundation`: `foundation.css` (tokens, fonts, element defaults and utilities).
-- `shell`: `base.css` (application chrome, `main`, panel stacking and phone typography) and
-  `panel.css` (the shared `.panel` surface, which the audio studio loads too).
-- `components`: every shared component's sheet, the coach artwork and the review
-  and coach presentation.
+- `shell`: `base.css` (application chrome, the page frame on `main.workspace-page` and
+  `main.review-page`, panel stacking and phone typography) and `panel.css` (the shared
+  `.panel` surface, which the audio studio loads too).
+- `components`: every shared component's sheet and the coach artwork.
 - `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,
-  the studios' and the lab's own sheets…).
+  the studios' and the lab's own sheets…), and the review and coach presentation
+  (`review-presentation.css`, `coach-presentation.css`), which lay out the board
+  pages beside them.
 - `surfaces`: the phone surface policy (`panel.css`: sections flatten; see
   [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
   padding or border never undoes it. A page that divides flattened panels puts that
-  divider in this layer too (`game-insights.css`).
+  divider in this layer too (`game-insights.css`). The `.small` caption sits here as
+  well (`foundation.css`), so a caption overrides any page's or component's
+  paragraph type without `!important`.
 - `motion`: `interface-motion.css`, the Still policy over everything but coaches.
 
 A component's rule therefore beats the shell's at any specificity, and a page's
@@ -173,7 +177,7 @@ look comes only from Button in `action-controls.css`) and common form/surface ut
 `base.css` owns application chrome and page-specific layout. `board.css` owns the shared
 board, legal-move markers, tactical highlights, rating animation and retry effects;
 `review-presentation.css` owns shared SRS/game workspace geometry, while
-`coach-presentation.css` owns the coach bubble, actions, evaluation and rating colors.
+`coach-presentation.css` owns the coach bubble, actions, evaluation and rating colors. Both sit in the `pages` layer, beside the board pages they lay out, so page sheets compete with them by specificity; page rules only place what these sheets style.
 SRS and game-specific panels live in `srs-review.css` and `game-review.css`.
 History, imports, account/sync forms and evidence each have their own stylesheet.
 Keep a component's normal and responsive rules together, with one block per

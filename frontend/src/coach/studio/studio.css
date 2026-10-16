@@ -157,7 +157,7 @@
   margin: 0;
   width: auto;
   min-width: 140px;
-  min-height: 42px;
+  min-height: var(--control-height);
   background-color: #171d1a;
 }
 /* As tall as the buttons, so the checkbox centres on them. */
@@ -166,7 +166,7 @@
   flex-direction: row;
   align-items: center;
   gap: var(--space-2);
-  min-height: 42px;
+  min-height: var(--control-height);
   margin-left: auto;
   font-size: var(--text-sm);
 }
@@ -302,7 +302,8 @@
   color: #ede6d8;
 }
 .studio-concept-copy p {
-  min-height: 44px;
+  /* Two lines reserved, so a one-line concept does not move the controls below. */
+  min-height: 2lh;
   font-size: var(--text-md);
   line-height: 1.6;
   color: #c0c3b9;
@@ -318,7 +319,6 @@
 }
 .studio-concept > button {
   width: 100%;
-  justify-content: space-between;
   margin-top: auto;
 }
 @media (min-width: 761px) {
@@ -498,14 +498,6 @@
   font: var(--text-2xs) var(--mono);
   color: #a8b0a1;
   letter-spacing: 1px;
-}
-.studio-context:not(.studio-context-compact) .review-coach {
-  --coach-height: 136px;
-  --coach-avatar-width: 92.8px;
-}
-.studio-context:not(.studio-context-compact) .coach-avatar {
-  height: 136px;
-  margin: 0;
 }
 /* The compact preview is a narrow column, so the application's own narrow coach
    layout (coach-presentation.css, @container max-width 440px) applies to it. */
