@@ -52,6 +52,11 @@ test('history aligns players, results and accuracy with compact metadata and wor
   await expect(blackWin.locator('time')).toHaveText('Sep 25, 2026');
   await expect(draw.locator('.history-scores')).toHaveText('½½');
   await expect(draw.locator('.history-outcome')).toHaveText('Draw');
+  // Every outcome badge is one width (the widest label), whatever it says.
+  const widths = await Promise.all([first, reviewed, draw].map(row => row.locator('.history-outcome').evaluate(e => e.getBoundingClientRect().width)));
+  expect(new Set(widths).size).toBe(1);
+  // The reserved labels are drawn, never read: the row's name says only its own result.
+  expect(await first.locator('.history-outcome').evaluate(e => e.textContent)).toBe('Won');
   await expect(draw.locator('.history-review-action')).toHaveText('Queued');
   await expect(draw.locator('.history-accuracy [data-color]')).toHaveCount(0);
   await expect(unknown.locator('.history-accuracy')).toHaveText('——');
