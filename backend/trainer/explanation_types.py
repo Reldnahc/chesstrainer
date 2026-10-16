@@ -8,7 +8,7 @@ from typing import Literal
 import chess
 from pydantic import BaseModel, Field
 
-from trainer.chess_core import Score, legal_move, material
+from trainer.chess_core import Score, legal_move, material_balance
 from trainer.diagnosis_types import Finding
 from trainer.errors import InvalidInput
 from trainer.models import Attempt
@@ -87,7 +87,7 @@ def color_name(color):
 def replay_line(board, line):
     replay = board.copy(stack=True)
     learner = board.turn
-    initial_balance = material(board, learner) - material(board, not learner)
+    initial_balance = material_balance(board, learner)
     frames = [
         Frame(
             fen=board.fen(),
@@ -142,9 +142,7 @@ def replay_line(board, line):
                 castling=castling,
                 checkmate=replay.is_checkmate(),
                 escaped_check=was_check,
-                material_change=material(replay, learner)
-                - material(replay, not learner)
-                - initial_balance,
+                material_change=material_balance(replay, learner) - initial_balance,
             )
         )
     return frames
