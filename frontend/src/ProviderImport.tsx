@@ -8,6 +8,7 @@ import Notice from "./Notice";
 import Reveal from "./Reveal";
 import { useServerDraft } from "./gameProviders";
 import { QueryResult, useQuery } from "./useQuery";
+import { plural, pluralWord } from "./format";
 
 
 export function ProviderImportForm({
@@ -234,12 +235,12 @@ export function ImportJob({
           : job.kind === "enrichment" ? "Deeper classification evidence"
               : job.kind === "puzzle_generation" ? "Puzzles from your games"
                 : job.kind === "classification" ? "Skill classification" : "Game analysis";
-  const summary = source ? `${source.games_imported} imported · ${source.duplicates} duplicates`
-    : fetchOnly ? `${job.games_processed} games fetched`
-      : job.kind === "game_review" ? `${job.positions_triaged} moves reviewed`
-        : job.kind === "enrichment" ? `${job.positions_triaged} / ${job.probe_total || 0} positions processed`
-          : job.kind === "puzzle_generation" ? `${job.games_processed} / ${job.games_total} games searched · ${job.puzzles_found} puzzles`
-            : `${job.games_processed} / ${job.games_total} games · ${job.positions_triaged} decisions${job.puzzles_found ? ` · ${job.puzzles_found} puzzles` : ""}`;
+  const summary = source ? `${source.games_imported} imported · ${plural(source.duplicates, "duplicate")}`
+    : fetchOnly ? `${plural(job.games_processed, "game")} fetched`
+      : job.kind === "game_review" ? `${plural(job.positions_triaged, "move")} reviewed`
+        : job.kind === "enrichment" ? `${job.positions_triaged} / ${job.probe_total || 0} ${pluralWord(job.probe_total || 0, "position")} processed`
+          : job.kind === "puzzle_generation" ? `${job.games_processed} / ${job.games_total} ${pluralWord(job.games_total, "game")} searched · ${plural(job.puzzles_found, "puzzle")}`
+            : `${job.games_processed} / ${job.games_total} ${pluralWord(job.games_total, "game")} · ${plural(job.positions_triaged, "decision")}${job.puzzles_found ? ` · ${plural(job.puzzles_found, "puzzle")}` : ""}`;
   const badge = <span className={`badge ${job.status}`}>{job.status}</span>;
   const contents = <>
       {source && (
@@ -257,10 +258,10 @@ export function ImportJob({
             />
           )}</Reveal>
           <p>
-            {source.games_fetched} {source.games_fetched === 1 ? "game" : "games"} fetched
+            {plural(source.games_fetched, "game")} fetched
           </p>
           <p className="small">
-            {source.games_imported} imported · {source.duplicates} duplicates ·{" "}
+            {source.games_imported} imported · {plural(source.duplicates, "duplicate")} ·{" "}
             {source.filtered} filtered · {source.rejected} rejected
           </p>
           <Reveal>{source.fetch_completed && source.games_imported === 0 && (
@@ -293,19 +294,19 @@ export function ImportJob({
               max={Math.max(1, job.games_total)}
             />
             <p>
-              {job.games_processed} / {job.games_total} games ·{" "}
-              {job.positions_triaged} decisions
+              {job.games_processed} / {job.games_total} {pluralWord(job.games_total, "game")} ·{" "}
+              {plural(job.positions_triaged, "decision")}
             </p>
             <p className="small">
-              {job.deep_completed} deep analyses · {job.mistakes_identified}{" "}
-              practice-worthy moments · {job.classifications_completed}{" "}
-              positions classified or left unclassified
+              {plural(job.deep_completed, "deep analysis", "deep analyses")} ·{" "}
+              {plural(job.mistakes_identified, "practice-worthy moment")} ·{" "}
+              {plural(job.classifications_completed, "position")} classified or left unclassified
             </p>
           </>
         )}
       {job.kind === "game_review" && (
         <p className="small">
-          {job.positions_triaged} moves reviewed across both players. Open Games
+          {plural(job.positions_triaged, "move")} reviewed across both players. Open Games
           for the coach and playable variations. Cancel and retry preserve
           completed moves.
         </p>
@@ -318,8 +319,8 @@ export function ImportJob({
             max={Math.max(1, job.probe_total || 0)}
           />
           <p>
-            {job.positions_triaged} / {job.probe_total || 0} selected positions
-            processed
+            {job.positions_triaged} / {job.probe_total || 0} selected{" "}
+            {pluralWord(job.probe_total || 0, "position")} processed
           </p>
           <p className="small">
             Extra evidence is used for classification. Review answers and
@@ -330,11 +331,10 @@ export function ImportJob({
       <Reveal>{job.error && <Notice announcement="passive" tone="error" appearance="inline">{job.error}</Notice>}</Reveal>
       {job.activity && (
         <p className="small">
-          Parallel work: {job.activity.games.active} game workers ·{" "}
-          {job.activity.classifications.active} classification workers ·{" "}
-          {job.activity.classifications.pending -
-            job.activity.classifications.active}{" "}
-          classification tasks waiting
+          Parallel work: {plural(job.activity.games.active, "game worker")} ·{" "}
+          {plural(job.activity.classifications.active, "classification worker")} ·{" "}
+          {plural(job.activity.classifications.pending - job.activity.classifications.active,
+            "classification task")} waiting
         </p>
       )}
       {job.kind === "classification" && (

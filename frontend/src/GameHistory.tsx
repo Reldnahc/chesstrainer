@@ -4,7 +4,7 @@ import { ChevronRight, Clock3 } from "lucide-react";
 import Link from "./Link";
 import { gamesPath } from "./navigation";
 import { AccuracyReadout } from "./gameReview/Players";
-import { pgnDate, shortDate } from "./format";
+import { pgnDate, shortDate, plural } from "./format";
 
 export type HistoryItem = Schema["GameHistoryItem"];
 
@@ -129,7 +129,7 @@ export default function GameHistory({
                     ? "Queued"
                     : "Review";
           const accuracy = item.status === "completed" ? item.accuracy : null;
-          const description = `White: ${item.white}${item.white_rating ? `, rated ${item.white_rating}` : ", rating unknown"}. Black: ${item.black}${item.black_rating ? `, rated ${item.black_rating}` : ", rating unknown"}. ${result.description}. ${item.time_control_label || "Time control unknown"}. ${item.move_count ?? "Unknown"} moves. ${date?.label || "Date unknown"}. ${accuracy ? `Accuracy: White ${accuracy.white.toFixed(1)}, Black ${accuracy.black.toFixed(1)}.` : item.status === "completed" ? "Accuracy unavailable." : `${reviewLabel}.`}`;
+          const description = `White: ${item.white}${item.white_rating ? `, rated ${item.white_rating}` : ", rating unknown"}. Black: ${item.black}${item.black_rating ? `, rated ${item.black_rating}` : ", rating unknown"}. ${result.description}. ${item.time_control_label || "Time control unknown"}. ${item.move_count == null ? "Unknown moves" : plural(item.move_count, "move")}. ${date?.label || "Date unknown"}. ${accuracy ? `Accuracy: White ${accuracy.white.toFixed(1)}, Black ${accuracy.black.toFixed(1)}.` : item.status === "completed" ? "Accuracy unavailable." : `${reviewLabel}.`}`;
           return (
             <li key={item.id}>
               <Link

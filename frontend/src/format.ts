@@ -1,7 +1,10 @@
 // Small reader-facing formats shared by the game lists, Insights and Study.
 
+/** "game" for one, "games" otherwise (or an irregular plural), for a count shown apart from its word. */
+export const pluralWord = (count: number, word: string, many = `${word}s`) => (count === 1 ? word : many);
+
 /** "1 game", "3 games" (or an irregular plural). */
-export const plural = (count: number, word: string, many = `${word}s`) => `${count} ${count === 1 ? word : many}`;
+export const plural = (count: number, word: string, many = `${word}s`) => `${count} ${pluralWord(count, word, many)}`;
 
 /** A PGN date ("2026.10.14") or ISO day ("2026-10-14") as a real calendar day, or
  * null for unknown parts ("2026.??.??") and impossible dates (2026.02.31). */
