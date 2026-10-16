@@ -61,7 +61,7 @@ def create_router(*, providers, installed=None):
     @router.get("/api/study/courses", response_model=LessonLibrary)
     def library(workspace: CurrentWorkspace, request: Request):
         manager = is_administrator(request)
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             result = queries.library(db, providers)
         problems = installed.club.problems() if installed and manager else []
         hidden = installed.hidden_built_ins() if installed and manager else []
@@ -74,7 +74,7 @@ def create_router(*, providers, installed=None):
         course_id: str,
         revision: str | None = None,
     ):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             view = queries.course_view(db, providers, course_id, revision)
         return {**view, "can_manage": is_administrator(request)}
 
@@ -102,7 +102,7 @@ def create_router(*, providers, installed=None):
     )
     def export_course(workspace: CurrentWorkspace, course_id: str, revision: str | None = None):
         """Anyone may download a course as a course file."""
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             course = queries.course_for(db, providers, course_id, revision)
         text = json.dumps(
             course_files.dump(course, providers.topic(course.id)), indent=2, ensure_ascii=False
@@ -247,12 +247,12 @@ def create_router(*, providers, installed=None):
 
     @router.post("/api/study/lesson-sessions", response_model=LessonSessionView)
     def start(workspace: CurrentWorkspace, data: LessonStart):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             return sessions.start_session(db, providers, data)
 
     @router.get("/api/study/lesson-sessions/{session_id}", response_model=LessonSessionView)
     def get_session(workspace: CurrentWorkspace, session_id: str):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             session = sessions.require_session(db, session_id)
             return presentation.view(session, providers.topic(session.course_id))
 
@@ -260,7 +260,7 @@ def create_router(*, providers, installed=None):
         "/api/study/lesson-sessions/{session_id}/command", response_model=LessonSessionView
     )
     def command(workspace: CurrentWorkspace, session_id: str, data: LessonCommand):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             return sessions.command(db, providers, session_id, data)
 
     return router

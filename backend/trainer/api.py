@@ -107,6 +107,7 @@ def create_app(
                 seed_skills(db)
                 retire_existing(db, settings, enabled_accounts_only=settings.accounts_enabled)
                 resync_game_cards(db)
+                db.commit()
             try:
                 if start_engine and not pool:
                     engine.start()

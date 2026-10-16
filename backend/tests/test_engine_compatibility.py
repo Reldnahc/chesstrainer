@@ -33,11 +33,15 @@ def test_failed_unfinished_session_survives_queue_reload(settings, sessions):
     scheduler = FSRSScheduler(settings)
     with sessions() as db:
         exercise = manual_exercise(db, scheduler, chess.STARTING_FEN, ["e2e4"], "white")
+        db.commit()
         session = start_review(db, exercise.id)
+        db.commit()
         submit_move(db, session["session_id"], "d2d4", None, scheduler, settings)
+        db.commit()
         assert db.get(SRSState, exercise.id).reviews == 1
         assert queue(db)[0]["exercise_id"] == exercise.id
         assert start_review(db, exercise.id)["session_id"] == session["session_id"]
+        db.commit()
 
 
 def test_search_config_resolves_one_profile(settings):

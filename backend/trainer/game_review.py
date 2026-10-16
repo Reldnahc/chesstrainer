@@ -103,7 +103,12 @@ def classify(report, rating):
             )
         if numeric(best) <= -DECISIVE_CP:
             return "Blunder", "This move makes an already lost position much worse."
-        return "Blunder", "This move gives away a decisive advantage or allows a severe loss."
+        # The review's own bands: winning and lost from three pawns (DECISIVE_CP).
+        if numeric(best) >= DECISIVE_CP:
+            return "Blunder", "This move gives away a winning advantage."
+        if numeric(actual) <= -DECISIVE_CP:
+            return "Blunder", "This move turns the position into a lost one."
+        return "Blunder", "This move gives up a large part of the position's value."
     # Mate distance is not a centipawn loss. Keeping a slower forced win is
     # still good, but cannot qualify for an exceptional or Best label.
     if (
@@ -507,16 +512,27 @@ def review_move(
 
     ``board`` stands after the move. Variation analysis and Play build a single
     move's report here, then render it with ``public_report``. Without a saved
-    ``previous_score`` the position before the move is searched for it.
+    ``previous_score`` the position before the move is searched for it, and that
+    search also says whether the opponent's move was a Mistake or worse.
     """
     board = board.copy(stack=True)
     move = board.pop()
+    opponent_best = None
     if previous_score is None and board.move_stack:
         previous = board.copy(stack=True)
         previous.pop()
         result = engine.analyze(previous, DEEP, multipv=2)
-        previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
+        opponent_best = Score.model_validate(result.candidates[0]["score"])
+        previous_score = opponent_best.negate()
     report = analyze_move(engine, board, move, previous_score)
+    if opponent_best is not None:
+        # Whether the opponent's move was itself a Mistake or worse, by the same
+        # threshold saved reviews link, so a variation move can be the capitalizing
+        # Great too. The opponent's move reached this position, whose best score
+        # stands in for that move's own search (one ply apart, so a borderline
+        # loss can read differently from a saved review).
+        opponent_played = Score.model_validate(report["best"]["score"]).negate()
+        report["previous_mistake"] = is_mistake(evaluation_loss(opponent_best, opponent_played))
     report["human"] = human_models.evidence(
         sessions, parsed, board, move.uci(), report["best"]["uci"], fallback_rating
     )

@@ -70,6 +70,7 @@ def _sweep(path, **options):
 def _referenced_fixture(settings, sessions):
     with sessions() as db:
         import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+        db.commit()
         game_id = db.scalar(select(Game.id))
     with closing(sqlite3.connect(settings.database_path)) as db:
         db.execute("PRAGMA foreign_keys=ON")

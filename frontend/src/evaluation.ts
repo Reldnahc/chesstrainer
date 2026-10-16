@@ -84,7 +84,7 @@ export function scoreText(score: Score | null | undefined, decimals: 1 | 2 = 2) 
 /** The review's descriptive advantage bands in centipawns, for either side: the
  * balanced band and the advantage threshold of review intelligence
  * (backend review_intelligence/event_facts.py `advantage`), and the "clearly
- * winning" threshold of Insights (backend game_insights.py `DECISIVE_CP`). */
+ * winning" threshold of Insights (backend chess_core.py `DECISIVE_CP`). */
 export const EVALUATION_BANDS = { balanced: 100, advantage: 200, winning: 300 } as const;
 
 /** A plain verdict for a White-perspective score: equal within the balanced

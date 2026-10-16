@@ -377,10 +377,9 @@ mode and belong to the job in local mode. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
-A game's session never holds a pooled database connection while Stockfish searches:
-`pipeline.ReleasingEngine` ends the session's transaction before each search when it has
-only read (pysqlite opens a SQLite transaction only before a write, so this drops no
-snapshot or lock), and keeps it when a write is pending, so a write is never split.
+No unit is open while Stockfish searches: each decision reads in one unit, searches,
+then saves in a write unit, so a search never holds a pooled connection, a snapshot
+or a lock.
 Cancellation is read from the job row: task boundaries check it exactly, while loops
 waiting for a lock, a pooled process or a running native search re-check it at most
 every 250 ms.
@@ -396,10 +395,22 @@ from `GET /api/games/:id/review?after=N`; the cursor advances only through repor
 actually received. Ordinary mainline browsing uses those reports instead of starting
 duplicate searches while the job runs; manual variations remain interactive.
 
-Short writes share an account's lock (`mutation_lock`, the one name for it); rule
-computation, engine searches and Maia inference run outside it, and read-only
-handlers never take it. SRS grading of an unseen answer and the Play bot's reply
-search first and then re-check and write under the lock. Progress
+Account work opens a database session only through a unit (`db.read_unit` and
+`db.write_unit`, offered as `read()` and `write()` by the workspace, a job execution
+and `db.Units`). A `write()` takes the account's lock (`mutation_lock`) and then
+starts its transaction with `BEGIN IMMEDIATE` at its first statement, so the Python
+lock always comes before SQLite's write lock; it commits when the block ends and
+discards on any exception. Domain helpers that receive a session only flush, so a
+route or job step can compose several of them into one unit. A `read()` holds one
+snapshot (`BEGIN`) and is `query_only`, so a stray write fails instead of running
+without the lock. A thread that writes in a second session while its write unit is
+open fails at once rather than waiting on its own lock. Rule computation, engine
+searches and Maia inference run between units; SRS grading of an unseen answer and
+the Play bot's reply search first, then re-check and write in a `write()`. Shared
+engine and Maia cache rows are the exception: each is one lock-free insert in a
+session of its own. Host scheduling (`job_queue`), accounts and server settings
+(`accounts.py`, `site_settings.py`) and the presence and welcome-back stamps on the
+account's user row (`presence.py`) are host data with sessions of their own. Progress
 uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent
 searches. Local interactive grading has a separate serialized engine; hosted
 grading and variations use the same bounded native pool as background work.

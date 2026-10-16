@@ -54,37 +54,37 @@ def create_router(*, settings, health, classifier) -> APIRouter:
 
     @router.get("/api/preferences/coach", response_model=CoachPreferences)
     def get_coach_preferences(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return coach_preferences(db)
 
     @router.put("/api/preferences/coach", response_model=CoachPreferences)
     def put_coach_preferences(value: CoachPreferences, workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.write() as db:
             return save_coach_preferences(db, value)
 
     @router.patch("/api/preferences/coach", response_model=CoachPreferences)
     def patch_coach_preferences(change: CoachPreferencesChange, workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.write() as db:
             return change_coach_preferences(db, change)
 
     @router.get("/api/preferences/motion", response_model=MotionPreferences)
     def get_motion_preferences(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return motion_preferences(db)
 
     @router.put("/api/preferences/motion", response_model=MotionPreferences)
     def put_motion_preferences(value: MotionPreferences, workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.write() as db:
             return save_motion_preferences(db, value)
 
     @router.get("/api/preferences/audio", response_model=AudioPreferences)
     def get_audio_preferences(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return audio_preferences(db)
 
     @router.put("/api/preferences/audio", response_model=AudioPreferences)
     def put_audio_preferences(value: AudioPreferences, workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.write() as db:
             return save_audio_preferences(db, value)
 
     @router.get("/api/health", response_model=Health, response_model_exclude_unset=True)
@@ -99,7 +99,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
         "/api/settings", response_model=WorkspaceSettings, response_model_exclude_unset=True
     )
     def get_settings(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return (
                 settings.public()
                 | health.snapshot()
@@ -114,7 +114,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
 
     @router.get("/api/stats", response_model=Stats, response_model_exclude_unset=True)
     def stats(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return {
                 "exercises": db.scalar(select(func.count()).select_from(Exercise)),
                 "reviews": db.scalar(select(func.count()).select_from(Review)),

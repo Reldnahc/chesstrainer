@@ -44,7 +44,7 @@ def create_router(*, settings) -> APIRouter:
         def run_import():
             # Parsing is CPU-bound and the account lock may be held by a running job.
             # Neither may block the event loop, which would stall every account.
-            with workspace.mutation_lock, workspace.sessions() as db:
+            with workspace.write() as db:
                 result = import_games(
                     db,
                     filename,
@@ -54,7 +54,7 @@ def create_router(*, settings) -> APIRouter:
                 )
                 if result["imported"]:
                     queue_imported(db, result["import_id"], BACKFILL)
-                    db.commit()
+                    db.flush()
                 return result
 
         return await run_in_threadpool(run_import)
@@ -84,11 +84,11 @@ def create_router(*, settings) -> APIRouter:
             ProviderImport.start_date == data.start_date,
             ProviderImport.end_date == data.end_date,
         )
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             job, created = ensure_job(db, kind, AnalysisJob.id.in_(same_query))
             if created:
                 db.add(ProviderImport(job_id=job.id, provider=provider, **data.model_dump()))
-            db.commit()
+            db.flush()
             return {"job_id": job.id, "status": job.status}
 
     return router

@@ -19,7 +19,7 @@ def run_review(runner, job_id, engine_override=None):
 
 
 def run_baseline(runner, job_id, engine_override=None):
-    with runner.sessions() as db:
+    with runner.read() as db:
         review = db.scalar(select(GameReview).where(GameReview.job_id == job_id))
         game = db.get(Game, review.game_id)
         parsed = game_review.parsed_game(game)
@@ -122,7 +122,7 @@ def run_baseline(runner, job_id, engine_override=None):
             report = future.result() if future else saved[ply]
             if report is None:
                 break
-            with runner.mutation_lock, runner.sessions() as db:
+            with runner.write() as db:
                 if future:
                     row = db.get(GameReviewMove, (game.id, ply))
                     if row is None:
@@ -134,7 +134,6 @@ def run_baseline(runner, job_id, engine_override=None):
                 job = db.get(AnalysisJob, job_id)
                 job.positions_triaged = ply
                 job.games_processed = int(ply == len(moves))
-                db.commit()
             fill()
     finally:
         executor.shutdown(wait=True, cancel_futures=True)

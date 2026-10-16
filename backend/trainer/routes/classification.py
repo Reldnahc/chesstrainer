@@ -7,7 +7,7 @@ from trainer.classification import reject_run
 from trainer.contracts.classification import ClassificationAudit, Evidence, Weaknesses
 from trainer.contracts.common import JobCreated, Rejected, from_row
 from trainer.coverage import coverage
-from trainer.job_lifecycle import JobKind, ensure_job
+from trainer.job_lifecycle import JobKind, active_job, ensure_job
 from trainer.models import ClassificationRun, Decision, EngineAnalysis, SkillEvidence
 from trainer.weaknesses import priorities
 from trainer.workspaces import CurrentWorkspace
@@ -20,9 +20,9 @@ def create_router(*, settings, classifier) -> APIRouter:
         "/api/classifications/retry", response_model=JobCreated, response_model_exclude_unset=True
     )
     def retry_classifications(workspace: CurrentWorkspace):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             job, _ = ensure_job(db, JobKind.CLASSIFICATION)
-            db.commit()
+            db.flush()
             return {"job_id": job.id}
 
     @router.post(
@@ -32,16 +32,19 @@ def create_router(*, settings, classifier) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def enrich_classifications(workspace: CurrentWorkspace):
-        with workspace.mutation_lock, workspace.sessions() as db:
-            job, created = ensure_job(db, JobKind.ENRICHMENT)
-            if created:
-                workspace.engine.start()  # Probes need Stockfish; fail now, not in the job.
-            db.commit()
+        with workspace.read() as db:
+            queued = active_job(db, JobKind.ENRICHMENT) is not None
+        if not queued:
+            # Probes need Stockfish; fail now, not in the job. Started before the
+            # write unit, since a running search can hold the engine meanwhile.
+            workspace.engine.start()
+        with workspace.write() as db:
+            job, _ = ensure_job(db, JobKind.ENRICHMENT)
             return {"job_id": job.id}
 
     @router.get("/api/weaknesses", response_model=Weaknesses, response_model_exclude_unset=True)
     def weaknesses(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             counts = coverage(db)
             return {
                 "skills": priorities(db, settings),
@@ -54,7 +57,7 @@ def create_router(*, settings, classifier) -> APIRouter:
         "/api/evidence/{decision_id}", response_model=Evidence, response_model_exclude_unset=True
     )
     def evidence(workspace: CurrentWorkspace, decision_id: str):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             decision = db.get(Decision, decision_id)
             if decision is None:
                 raise HTTPException(404, "Decision not found")
@@ -97,7 +100,7 @@ def create_router(*, settings, classifier) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def classification_run(workspace: CurrentWorkspace, run_id: str):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             run = db.get(ClassificationRun, run_id)
             if run is None:
                 raise HTTPException(404, "Classification run not found")
@@ -109,7 +112,7 @@ def create_router(*, settings, classifier) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def reject_classification(workspace: CurrentWorkspace, run_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             result = reject_run(db, run_id)
             return result
 

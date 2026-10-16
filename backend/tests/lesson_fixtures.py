@@ -20,6 +20,7 @@ from trainer.taxonomy import seed_skills
 
 def seed_lesson(db, settings, count=8, offset=0, skills=None):
     seed_skills(db)
+    db.commit()
     for i in range(offset, offset + count):
         board = chess.Board(None)
         for square, piece in {
@@ -116,6 +117,7 @@ def seed_lesson(db, settings, count=8, offset=0, skills=None):
             )
         )
         exercise = exercise_from_decision(db, decision, settings, FSRSScheduler(settings))
+        db.commit()
         db.add(
             ExerciseAnswer(
                 exercise_id=exercise.id,

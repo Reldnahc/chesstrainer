@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from sqlalchemy import and_, func, or_, select
 
 from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
-from trainer.errors import Gone, InvalidInput, NotFound
+from trainer.errors import Conflict, Gone, InvalidInput, NotFound
 from trainer.explanation_types import replay_line
 from trainer.explanations import explain_review
 from trainer.imports import decision_board
@@ -192,7 +192,7 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         db.flush()
         if exercise.source == "opening":
             opening_recall.snapshot_session(db, existing, exercise)
-        db.commit()
+        db.flush()
     state = db.get(SRSState, exercise_id)
     reason = (
         "resume"
@@ -415,7 +415,9 @@ def search_answer(engine, search):
 
 def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None):
     """Record one answer. ``graded`` is ``search_answer``'s result for an unseen answer,
-    searched before the account lock was taken; without it the search runs here."""
+    searched before the write unit opened; without it the search runs here, with
+    ``engine``. Requests pass no engine, so an answer that still needs a search is
+    refused with a conflict instead of searching under the account lock."""
     session = open_session(db, session_id)
     exercise = db.get(Exercise, session.exercise_id)
     if session.completed:
@@ -437,6 +439,8 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     )
     if answer is None and exercise.source == "game":
         if graded is None or graded["uci"] != uci:
+            if engine is None:
+                raise Conflict("This answer needs a fresh search; try the move again.")
             graded = search_answer(engine, answer_search(db, session_id, uci))
         answer = ExerciseAnswer(exercise_id=exercise.id, **graded)
         db.add(answer)
@@ -450,7 +454,7 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     if grade in {"failure", "inaccuracy"}:
         session.failed = True
         record_once(db, session, scheduler, settings, elapsed)
-        db.commit()
+        db.flush()
         result = {
             "completed": False,
             "attempt_id": attempt.id,
@@ -483,7 +487,7 @@ def submit_move(db, session_id, uci, engine, scheduler, settings, *, graded=None
     session.completed_at = now()
     record_once(db, session, scheduler, settings, elapsed)
     board.push(move)
-    db.commit()
+    db.flush()
     result = {
         "completed": True,
         "attempt_id": attempt.id,
@@ -548,7 +552,7 @@ def reveal(db, session_id, scheduler, settings):
             review.revealed = True
         session.completed = True
         session.completed_at = now()
-        db.commit()
+        db.flush()
     result = {
         "completed": True,
         "grade": "revealed",
