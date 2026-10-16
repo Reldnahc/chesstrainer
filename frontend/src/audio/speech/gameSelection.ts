@@ -5,10 +5,10 @@ import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings, tacticStartsHere} from "../../dialogue/eventClaims";
 import {isForcedMateStage, type Claim, type ClaimCode, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {causeMotifs, recordedTacticMotifs} from "../../dialogue/tacticalVocabulary";
-import {bookRecordingId} from "../../dialogue/openingPresentation";
+import {BOOK_ENTRY_VARIANTS, BOOK_FOLLOW_VARIANTS, bookRecordingId} from "../../dialogue/openingPresentation";
 import {isPoorMove, type MoveLabel} from "../../moveQuality";
 import {ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR, sequenceRecordingId} from "./sequence";
-import {capturedPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants, type NamedPieces} from "./pieceVariants";
+import {capturedPieces, doubleCheckPieces, hasPieceVariants, pieceVariantId, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants, type NamedPieces} from "./pieceVariants";
 import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
 import {gradeTakes, type GradeTakePool} from "./meaningCatalog";
 import registry from "./banks/registry.json" with {type: "json"};
@@ -67,6 +67,20 @@ const simpleIds: Readonly<Record<string, string>> = {
 } satisfies Partial<Record<ClaimCode, string>>;
 const followOnly = new Set(["history", "repeated"]);
 
+const DOUBLE_CHECK = "explanation-finding-double-check";
+
+/** The first book take after `id`, cycling within its kind, that does not say the opening has a name. */
+export function unnamedBookTake(id: string, named: readonly string[]): string | null {
+  const match = /^book-opening-(entry|follow)-(\d+)$/.exec(id);
+  if (!match || !named.includes(id)) return id;
+  const count = match[1] === "entry" ? BOOK_ENTRY_VARIANTS : BOOK_FOLLOW_VARIANTS;
+  for (let step = 1; step < count; step += 1) {
+    const next = `book-opening-${match[1]}-${(Number(match[2]) - 1 + step) % count + 1}`;
+    if (!named.includes(next)) return next;
+  }
+  return null;
+}
+
 function eventFor(item: Claim, report: Report): Event | undefined {
   if (item.sourceIds.length !== 1) return;
   const matches = report.intelligence?.events.filter(event => event.id === item.sourceIds[0]) ?? [];
@@ -110,8 +124,10 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   // line that uses a pin already on the board before the move is not that.
   if (motif === "pin" && f.pinned_before === true) return null;
   // A double check (its witness names the king) attacks one target, and every
-  // legal reply meets both checks, so no double-attack take holds there.
-  if (motif === "double_attack" && Array.isArray(object(f.roles).king)) return null;
+  // legal reply meets both checks, so no double-attack take holds there. A move
+  // that gives the double check itself plays the coach's double-check take instead.
+  if (motif === "double_attack" && Array.isArray(object(f.roles).king))
+    return role === "played" && /[+#]$/.test(report.actual.san) ? DOUBLE_CHECK : null;
   if (recordedTacticMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";
@@ -249,9 +265,10 @@ function selectMeaning(context: GameSpeechContext): string | null {
   if (item.code === "book" || item.code === "book_sound") {
     if (!report.opening || !nonempty(report.opening.version)) return null;
     const id = item.opening ? bookRecordingId(item.opening) : "recognized-opening";
-    // Some takes say the opening has a name; our catalogue has none for every position.
+    // Some takes say the opening has a name; our catalogue has none for every position,
+    // and there the coach's next take of the same kind that names nothing plays instead.
     const voice = coachVoice(utterance.coachId);
-    return !nonempty(report.opening.name) && voice && NAMED_OPENING_TAKES[voice]?.includes(id) ? null : id;
+    return !nonempty(report.opening.name) && voice ? unnamedBookTake(id, NAMED_OPENING_TAKES[voice] ?? []) : id;
   }
   if (event) {
     if (event.actor !== mover) return null;
@@ -432,6 +449,7 @@ function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null 
     const target = event.facts.target;
     return {pieces: [event.facts.piece], ...(id.endsWith("-actual") && square(target) ? {square: target} : {})};
   }
+  if (id === DOUBLE_CHECK) return doubleCheckPieces(event);
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 

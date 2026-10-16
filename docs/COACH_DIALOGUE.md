@@ -82,8 +82,9 @@ occurrences, so they play from the second on. A take found false where its meani
 fires goes in `ALWAYS_FALSE` in `audio/speech/falseTakes.ts` until it is re-recorded;
 the list is empty since the Oct 15 re-recordings. Narrower gates apply elsewhere: no
 double-attack take plays for a double check (its witness names the king: one target, and every legal
-reply meets both checks); book takes saying the opening has a name sit out where our
-catalogue has no name; and chance-taken takes calling the opponent's error small drop out of the take rotation
+reply meets both checks), and the move that gives it plays the coach's double-check take instead;
+where our catalogue has no name, book takes saying the opening has one give way to the
+coach's next take of the same kind; and chance-taken takes calling the opponent's error small drop out of the take rotation
 unless that error was graded Inaccuracy or Mistake. Takes rotate so that a side's back-to-back
 moves (two plies apart) differ whenever a meaning has three or more takes.
 
@@ -165,8 +166,8 @@ stands in. Re-recording them with true wording would let them play again.
 - **`chance-taken`** (the base take) for celeste, mateo and pickle after an
   opponent's Blunder or Miss: "a small gift", "a little something", "a little gap".
   Their other chance-taken takes still play.
-- **Book takes saying the opening has a name** (felix, pip, reka, tala, tamar) sit
-  out where our catalogue has no name for the position.
+- **Book takes saying the opening has a name** (felix, pip, reka, tala, tamar) give
+  way to the coach's next take of the same kind where our catalogue has no name.
 - Left playing, because they are false only rarely: the castling "shelter" takes
   (false only when castling into an attack).
 

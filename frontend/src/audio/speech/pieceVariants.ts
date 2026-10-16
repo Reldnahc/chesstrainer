@@ -138,6 +138,13 @@ export function tacticPieces(event: Event): NamedPieces | null {
   return named && !standing.has(kind) ? {pieces: named.pieces} : named;
 }
 
+/** The two checking pieces of a double attack that is a double check ("knight-rook"). */
+export function doubleCheckPieces(event: Event): NamedPieces | null {
+  const f = event.facts, pieces = object(f.pieces);
+  if (event.actor !== "white" && event.actor !== "black") return null;
+  return subject("double_check", object(f.roles), event.actor, square => object(pieces[square]));
+}
+
 /** Subjects that stand on their square before the tactic: its targets and defenders. */
 const standing = new Set(["pin", "pin_target", "pinned", "skewer", "capture", "defender", "own_target"]);
 
