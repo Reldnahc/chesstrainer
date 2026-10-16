@@ -134,7 +134,12 @@ test.beforeAll(async () => {
 
 test.afterAll(async () => { await server?.close(); });
 
+// A harness that drifts from the hooks it drives must fail loudly, not throw unseen.
+const pageErrors = new WeakMap<Page, Error[]>();
 test.beforeEach(async ({page}) => {
+  const errors: Error[] = [];
+  pageErrors.set(page, errors);
+  page.on("pageerror", error => errors.push(error));
   await page.route("**/api/games/audio-fixture/position", route => {
     const {ply, moves} = route.request().postDataJSON();
     return route.fulfill({json: position(ply, moves)});
@@ -414,4 +419,8 @@ test("leaving pending variation navigation discards its eventual cue", async ({p
     await expect(page.getByTestId("frame")).toHaveText("start");
     expect(await sounds(page)).toEqual([]);
   } finally { release(); }
+});
+
+test.afterEach(async ({page}) => {
+  expect(pageErrors.get(page) ?? [], "uncaught page errors").toEqual([]);
 });
