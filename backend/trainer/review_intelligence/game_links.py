@@ -1,7 +1,14 @@
 """Relationships require contiguous actual play, never adjacent rows across gaps."""
 
 from trainer.chess_core import evaluation_loss
-from trainer.review_scores import is_mistake, is_poor
+from trainer.review_scores import WINNING_CP, is_mistake, is_poor
+
+# An erosion: a side's recent moves each conceding at least EROSION_STEP_CP but
+# less than EROSION_STEP_LIMIT_CP, while its evaluation falls EROSION_TOTAL_CP or
+# more from before the first of them to after the last.
+EROSION_STEP_CP = 30
+EROSION_STEP_LIMIT_CP = 150
+EROSION_TOTAL_CP = 150
 
 
 def loss(node):
@@ -9,7 +16,7 @@ def loss(node):
 
 
 def strong(score):
-    return score.outcome() == 1 or (score.kind == "cp" and score.value >= 200)
+    return score.outcome() == 1 or (score.kind == "cp" and score.value >= WINNING_CP)
 
 
 def playable(score):
@@ -87,11 +94,12 @@ def sequential_links(segment, emit, finished, result):
         concessions = [
             n
             for n in own
-            if n.before.kind == n.after.kind == "cp" and 30 <= (loss(n).cp or 0) < 150
+            if n.before.kind == n.after.kind == "cp"
+            and EROSION_STEP_CP <= (loss(n).cp or 0) < EROSION_STEP_LIMIT_CP
         ]
         if len(concessions) >= 3 and concessions[-1] == node:
             first = concessions[0]
-            if first.before.value - node.after.value >= 150:
+            if first.before.value - node.after.value >= EROSION_TOTAL_CP:
                 emit(
                     "erosion",
                     node.actor,
