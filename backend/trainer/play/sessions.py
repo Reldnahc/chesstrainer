@@ -5,6 +5,7 @@ import chess.pgn
 from sqlalchemy import select
 
 from trainer.chess_core import Score
+from trainer.classification_stages import line_parameters
 from trainer.engine import ENGINE_ELO
 from trainer.errors import InvalidInput
 from trainer.game_analysis import REQUESTED, queue_imported
@@ -12,6 +13,7 @@ from trainer.game_library import mover_rating
 from trainer.game_review import (
     engine_facts,
     game_outcome,
+    lines_current,
     link_previous_scores,
     move_frames,
     public_report,
@@ -143,7 +145,7 @@ def _render_key(play, ply, report, context=None):
     )
 
 
-def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
+def rendered_reports(play: PlayGame, parsed, parameters=None) -> dict[int, dict]:
     """Saved engine facts rendered with the current rules, exactly as game review does."""
     saved = link_previous_scores(
         {int(ply): engine_facts(report) for ply, report in (play.reports or {}).items()}
@@ -152,17 +154,18 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
         return {}
     contexts = move_contexts(parsed)
     starting = parsed.board().turn
+    horizon = parameters or line_parameters()
     known = _rendered.get(play.id) or {}
     current = {}
     output = {}
     for ply, report in saved.items():
-        key = _render_key(play, ply, report, contexts.get(ply))
+        key = (_render_key(play, ply, report, contexts.get(ply)), tuple(sorted(horizon.items())))
         rendered = known.get(key)
         if rendered is None:
-            if (report.get("actual_line") or {}).get("horizon") is None:
-                # Saved before the shared line horizon: read its lines again from
-                # the saved candidates, to the default horizon, once per render key.
-                report = reread_lines(report, board_for(play, ply - 1))
+            if not lines_current(report, horizon):
+                # Saved before the shared line horizon, or under another one: read
+                # its lines again from the saved candidates, once per render key.
+                report = reread_lines(report, board_for(play, ply - 1), horizon)
             color = starting if ply % 2 else not starting
             rendered = public_report(
                 report,
@@ -174,13 +177,13 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
     return output
 
 
-def frames_for(play: PlayGame, learner_name: str) -> list[dict]:
-    reports = rendered_reports(play, parsed_for(play, learner_name))
+def frames_for(play: PlayGame, learner_name: str, parameters=None) -> list[dict]:
+    reports = rendered_reports(play, parsed_for(play, learner_name), parameters)
     moves = [chess.Move.from_uci(uci) for uci in play.moves]
     return move_frames(chess.Board(), moves, reports)
 
 
-def state(play: PlayGame, learner_name: str, reply=None) -> dict:
+def state(play: PlayGame, learner_name: str, reply=None, *, parameters=None) -> dict:
     white, black = names(play, learner_name)
     white_rating, black_rating = ratings(play)
     return {
@@ -203,7 +206,7 @@ def state(play: PlayGame, learner_name: str, reply=None) -> dict:
         "practice": practice_view(play.practice),
         "fallback_plies": fallback_plies(play),
         "fallback_elo": fallback_elo(play) if play.opponent_kind == "human" else None,
-        "frames": frames_for(play, learner_name),
+        "frames": frames_for(play, learner_name, parameters),
     }
 
 

@@ -217,11 +217,11 @@ def explain_review(db, session_id, attempt_id=None, solution=False, parameters=N
     # The game review's horizon and the move before, so the shown line, the
     # summary and its findings read as far ahead as the review and the classifier.
     rules = line_rules(parameters, annotate=True, causes_first=False)
-    frames = replay_line(board, candidate.pv[: rules.shown_plies])
     boards = replay(board, candidate)[: rules.shown_plies + 1]
     delta, end = settled_delta(
         boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
     )
+    frames = replay_line(board, rules.shown(candidate, end))
     balance_change = shown_material_change(boards, delta, frames[-1].material_change)
     summary = _engine_summary(board, move, san, candidate.score, frames, balance_change, accepted)
     notes = [

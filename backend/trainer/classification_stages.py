@@ -194,12 +194,13 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
 class LineRules:
     """How a saved line is read into findings, the one rule for every reader.
 
-    Weaknesses classification, game review and the SRS "Show why" explanation
-    read a line to the same horizon, with the same mate window and the same move
-    before it, so one line never gives one reader a finding another rejects. The
-    horizon is the classifier's line length and extension (Advanced settings).
-    Only presentation differs: the review and the explanation also annotate
-    recognized patterns and order findings for the coach.
+    Weaknesses classification, game review, Play and the SRS "Show why"
+    explanation read a line to the same horizon, with the same mate window and
+    the same move before it. The horizon is the classifier's line length and
+    extension (Advanced settings). Each reader keeps its own admission gates
+    (the classifier also weighs the alternative line, its loss thresholds and
+    probe tails); the review and the explanation also annotate recognized
+    patterns and order findings for the coach.
     """
 
     settle_plies: int  # Where the settled material endpoint search starts.
@@ -218,8 +219,15 @@ class LineRules:
 
     @property
     def shown_plies(self) -> int:
-        """The farthest ply any finding can rest on, so a shown line reaches it."""
+        """The farthest ply any reading can reach: the end of the extension."""
         return self.settle_plies + self.extension_plies
+
+    def shown(self, candidate, end) -> list[str]:
+        """The moves to show for a line read to ``end``: through its settled (or last
+        scanned) ply, where every finding and the material claim rest, or through
+        the mate when the line is a forced mate, within ``shown_plies`` either way."""
+        stop = len(candidate.pv) if candidate.score.kind == "mate" else end
+        return candidate.pv[: min(stop, self.shown_plies)]
 
 
 LINE_SETTINGS = {

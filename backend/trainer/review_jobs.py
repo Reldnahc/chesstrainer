@@ -8,9 +8,10 @@ from sqlalchemy import select
 
 from trainer import game_review
 from trainer.classification_stages import line_parameters
+from trainer.game_library import board_before
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.review_refinement import run_refinement
-from trainer.review_reports import touch_report
+from trainer.review_reports import stale_adopted, touch_report
 
 
 def run_review(runner, job_id, engine_override=None):
@@ -30,6 +31,15 @@ def run_baseline(runner, job_id, engine_override=None):
             row.ply: row.report
             for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
         }
+    parameters = line_parameters(runner.settings)
+    with runner.mutation_lock, runner.sessions() as db:
+        # The review shows an adopted refinement over its baseline; its lines are
+        # read again to the current horizon too, from its saved candidates.
+        for task in stale_adopted(db, game.id, parameters):
+            task.report = game_review.reread_lines(
+                task.report, board_before(parsed, task.ply), parameters
+            )
+        db.commit()
     missing = len(moves) - len(saved)
     workers = (
         1
@@ -50,7 +60,6 @@ def run_baseline(runner, job_id, engine_override=None):
         available.put(engine)
 
     human = runner.human_models
-    parameters = line_parameters(runner.settings)
 
     def analyze(board, move, cached):
         if runner.cancelled(job_id):

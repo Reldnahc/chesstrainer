@@ -179,8 +179,9 @@ def classify(report, rating):
 def line_evidence(board, candidate, analysis_id, first, previous=None, parameters=None):
     """One line's frames and findings, read to the shared horizon (``line_rules``).
 
-    The frames shown stop at the farthest ply a finding or the settled material
-    can rest on, so the line shown and the claims about it look equally far.
+    The frames shown stop where the line settles (or at its last scanned ply),
+    where every finding and the material claim rest, or at the mate of a forced
+    mate, so the line shown and the claims about it look equally far.
     ``horizon`` records the parameters, so a later re-read uses the same ones.
     """
     parameters = parameters or line_parameters()
@@ -203,7 +204,7 @@ def line_evidence(board, candidate, analysis_id, first, previous=None, parameter
     )
     findings = lead_order(findings, first)
     return {
-        "frames": [f.model_dump() for f in replay_line(board, candidate.pv[: rules.shown_plies])],
+        "frames": [f.model_dump() for f in replay_line(board, rules.shown(candidate, end))],
         "findings": [f.model_dump() for f in findings],
         "material_delta": delta,
         "settled": delta is not None,

@@ -16,6 +16,7 @@ from trainer.models import (
     ReviewRefinement,
     uid,
 )
+from trainer.review_reports import stale_adopted
 
 # Lower runs sooner. A game the learner opens beats games the poller found,
 # which beat older games brought in by a manual or PGN import.
@@ -97,7 +98,7 @@ def request_review(db, game, *, rating, refine, settings, human_models):
         refresh = any(
             not lines_current(row.report, parameters)
             for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
-        )
+        ) or bool(stale_adopted(db, game.id, parameters))
     if job.status in job_lifecycle.RETRYABLE or refresh:
         job_lifecycle.requeue(job, reset_progress=True)
     job.priority = REQUESTED
