@@ -3,7 +3,9 @@
 Every timestamp the app keeps is UTC. ``now()`` is the clock; ``as_utc`` turns a
 naive value (which this app only ever writes as UTC) or an aware one into an aware
 UTC value; ``stored_text`` is the exact text ``models.UTCDateTime`` writes, for raw
-SQL that compares against a timestamp column.
+SQL that compares against a timestamp column. Provider code that builds a UTC
+value from epoch seconds or a calendar date (game_providers' ingest and lichess)
+constructs it directly; it reads no clock and converts no stored value.
 """
 
 from datetime import datetime, timezone

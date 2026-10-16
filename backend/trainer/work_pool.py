@@ -49,11 +49,14 @@ class WorkPool:
                 self.active -= 1
 
     def _finished(self, future):
-        with self.lock:
-            self.pending -= 1
-            if error := future.exception():
-                self.errors.append(error)
-        self.slots.release()
+        try:
+            with self.lock:
+                self.pending -= 1
+                # A task dropped by close(cancel_waiting=True) has no exception to read.
+                if not future.cancelled() and (error := future.exception()):
+                    self.errors.append(error)
+        finally:
+            self.slots.release()
 
     def snapshot(self):
         with self.lock:
