@@ -14,10 +14,11 @@ from sqlalchemy import delete, insert, select, update
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from trainer import job_lifecycle, site_settings
+from trainer.cascade import owned_tables
 from trainer.config import Settings
 from trainer.db import database, immediate_transaction
 from trainer.errors import Conflict, DomainError, InvalidInput, NotFound
-from trainer.models import AuthSession, Base, User, now
+from trainer.models import AuthSession, User, now
 from trainer.ownership import LOCAL_USER_ID
 
 USERS, SESSIONS = User.__table__, AuthSession.__table__
@@ -243,9 +244,8 @@ class Accounts:
                     "This account has analysis running. Disable it, wait for the analysis "
                     "to stop, then delete it"
                 )
-            for table in Base.metadata.sorted_tables:
-                if table is not USERS and "user_id" in table.c:
-                    db.execute(delete(table).where(table.c.user_id == user["id"]))
+            for table in owned_tables():
+                db.execute(delete(table).where(table.c.user_id == user["id"]))
             db.execute(delete(USERS).where(USERS.c.id == user["id"]))
 
     @staticmethod

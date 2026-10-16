@@ -206,21 +206,44 @@ def test_clear_games_keeps_engine_rows_a_kept_play_report_mentions(settings, ses
         assert db.execute("PRAGMA auto_vacuum").fetchone() == (2,)
 
 
-def test_every_reference_to_a_cleared_row_is_cleared_or_unlinked():
-    # A new table pointing at games, decisions or exercises must join the steps, or
-    # clearing fails on its foreign key at commit.
-    from trainer.models import Base
+def test_clearing_games_takes_exactly_what_refers_to_them():
+    # The cascade is read from the models' foreign keys, so a new table that refers
+    # to a game, decision or exercise joins it without a list to update. This list
+    # makes such a change visible in review.
+    from trainer.cascade import cascade, unlinked
 
-    module = _script()
-    cleared = {table for table, _ in module.STEPS}
-    unlinked = {(table, column) for table, column, _ in module.UNLINKED}
-    shared_caches = {"engine_analyses", "human_analyses"}  # Only unreferenced rows go.
-    missing = [
-        f"{table.name}.{key.parent.name}"
-        for table in Base.metadata.sorted_tables
-        for key in table.foreign_keys
-        if key.column.table.name in cleared - shared_caches
-        and table.name not in cleared
-        and (table.name, key.parent.name) not in unlinked
+    plan = cascade(dict.fromkeys(_script().ROOTS, "1=1"))
+    assert set(plan) == {
+        "analysis_jobs",
+        "classification_analyses",
+        "classification_probes",
+        "classification_runs",
+        "classification_tasks",
+        "decisions",
+        "exercise_answers",
+        "exercise_attempts",
+        "exercise_tags",
+        "exercises",
+        "game_imports",
+        "game_puzzle_searches",
+        "game_puzzles",
+        "game_review_moves",
+        "game_reviews",
+        "games",
+        "import_games",
+        "insight_facts",
+        "opening_cards",
+        "opening_content_changes",
+        "opening_recall_snapshots",
+        "opening_study_moves",
+        "provider_checkpoints",
+        "provider_imports",
+        "review_refinements",
+        "review_sessions",
+        "reviews",
+        "skill_evidence",
+        "srs_states",
+    }
+    assert [(table, column) for table, column, _ in unlinked(plan)] == [
+        ("play_games", "saved_game_id")
     ]
-    assert missing == []
