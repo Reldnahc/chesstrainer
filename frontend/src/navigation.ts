@@ -335,9 +335,14 @@ let ignoredPop = false;
 // Set by a click on an in-page #fragment link, whose new entry arrives as a popstate
 // with no state; without the Navigation API this is how that step is known to be +1.
 let fragmentClicked = false;
+// A fragment navigation ends with hashchange, after its popstate: the click is spent.
+const fragmentArrived = () => { fragmentClicked = false; };
 function clickedFragment(event: MouseEvent) {
   const link = (event.target as Element | null)?.closest?.("a[href]");
-  if (!(link instanceof HTMLAnchorElement) || event.defaultPrevented) return;
+  // Only a plain click that follows the link in this tab adds an entry here.
+  if (!(link instanceof HTMLAnchorElement) || event.defaultPrevented || event.button !== 0
+    || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || link.hasAttribute("download")
+    || (link.target && link.target !== "_self")) return;
   const url = new URL(link.href, window.location.href);
   const here = new URL(window.location.href);
   fragmentClicked = url.hash !== here.hash && url.origin === here.origin && url.pathname === here.pathname && url.search === here.search;
@@ -463,6 +468,7 @@ function subscribe(listener: () => void) {
     window.history.scrollRestoration = "manual";
     window.addEventListener("popstate", popped);
     document.addEventListener("click", clickedFragment);
+    window.addEventListener("hashchange", fragmentArrived);
     window.addEventListener(navigationEvent, update);
     window.addEventListener("pagehide", persistScroll);
   }
@@ -472,6 +478,7 @@ function subscribe(listener: () => void) {
     window.history.scrollRestoration = "auto";
     window.removeEventListener("popstate", popped);
     document.removeEventListener("click", clickedFragment);
+    window.removeEventListener("hashchange", fragmentArrived);
     window.removeEventListener(navigationEvent, update);
     window.removeEventListener("pagehide", persistScroll);
   };

@@ -169,6 +169,22 @@ for (const step of ['back', 'forward'] as const) {
   }
 }
 
+test('without the Navigation API, refusing a step after a save puts the editor back at its saved address', async ({page}) => {
+  await noNavigationApi(page);
+  const title = await reloadedEditor(page, {fieldworkEntry: 'legacy'}, {fieldworkEntry: 'legacy'});
+  await page.route('**/api/study/course-files*', route => route.fulfill({json: {
+    id: 'saved-course', revision: 'r2', revision_changed: false, title: 'Unsaved draft',
+  }}));
+  await page.getByRole('button', {name: 'Save course'}).click();
+  await expect(page).toHaveURL(/\/settings\/courses\/editor\?course=saved-course&revision=r2$/);
+  await title.fill('Edited after saving');
+  page.once('dialog', dialog => dialog.dismiss());
+  await page.evaluate(() => history.back());
+  // The page comes back at the address it showed after the save, not the one it loaded at.
+  await expect(page).toHaveURL(/\/settings\/courses\/editor\?course=saved-course&revision=r2$/);
+  await expect(title).toHaveValue('Edited after saving');
+});
+
 test('game links support opening a second tab without navigating the first', async ({page}, info) => {
   test.skip(info.project.name !== 'desktop', 'Modifier-click is a desktop interaction.');
   const {id} = await (await page.request.post('/__test/game-review-fixture/new-tab')).json();
