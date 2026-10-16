@@ -483,9 +483,17 @@ clock abstention; `review_scores` shares Stockfish-only alternative comparisons 
 owns the grade boundaries (`NEAR_BEST_CP`, `INACCURACY_CP`, `MISTAKE_CP`, the Blunder
 thresholds, `GRADE_BOUNDARIES`) and predicates (`is_poor`, `is_near_best`,
 `is_mistake`) every other module reads. Every reading of a saved line into tactical
-findings and move causes goes through `classification_stages.line_findings`, with
-the classifier's, review's and SRS explanation's differing horizons named as
-`LineRules` beside it.
+findings and move causes goes through `classification_stages.line_findings` under
+one `LineRules` (`line_rules`): the classifier, game review, Play and the SRS
+explanation read a line to the same horizon (the classifier's line and extension
+lengths), with the same mate window and the move before it; each keeps its own
+admission gates. The review and the explanation show a line to where it settles
+(or its last scanned ply), where every finding and the material claim rest, or
+through the mate of a forced mate. Saved review lines, adopted refinements
+included, record the `horizon` they were read with; a review whose lines were
+read to another one is requeued when opened and read again from its saved
+candidates without searching them again (its refinement may then pick other
+moves to search), and Play reads old rows again when it renders them.
 ## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for

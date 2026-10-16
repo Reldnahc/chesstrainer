@@ -4541,6 +4541,10 @@ export interface components {
             findings: components["schemas"]["Finding"][];
             /** Frames */
             frames: components["schemas"]["Frame"][];
+            /** Horizon */
+            horizon?: {
+                [key: string]: number;
+            } | null;
             /** Material Delta */
             material_delta: number | null;
             /** Settled */
