@@ -109,7 +109,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     ><MoveStatus><p>{status}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedbackText}</p>}</MoveStatus></ReviewCoach>
     <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
     <section className="panel lesson-context" aria-label="Lesson progress">
-      <p className="eyebrow eyebrow--small">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
+      <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
       <h2>{session.branch?.title || session.game?.title || session.chapter_title}</h2>
       <p className="small">{finished ? "Completed" : step.kind === "rehearsal" ? "Independent rehearsal" : "Guided learning"}{session.assisted ? " · Help used" : ""}</p>
       {session.game && <LessonAttribution attributions={session.game.attributions} />}

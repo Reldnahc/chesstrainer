@@ -118,7 +118,6 @@ export function BoardSizePreview({ preview }: { preview: StudioPreview }) {
               {compact ? "COMPACT PANEL · 52.5 PX" : "ROOMY PANEL · 92.8 PX"}
             </p>
             <ReviewCoach
-              portrait={compact ? "responsive" : "roomy"}
               title={<strong>{example.title}</strong>}
               evaluation={
                 <EvaluationScore score={example.evaluation} />

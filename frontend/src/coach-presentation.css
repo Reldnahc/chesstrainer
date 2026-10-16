@@ -542,14 +542,4 @@
     grid-column: 1 / -1;
   }
 }
-/* portrait="roomy": the desktop portrait at every width (the coach studio's
-   roomy preview), overriding only the narrow layout's portrait size. */
-.review-coach.review-coach--roomy-portrait {
-  --coach-height: 136px;
-  --coach-avatar-width: 92.8px;
-}
-.review-coach--roomy-portrait .coach-avatar {
-  height: var(--coach-height);
-  margin: 0;
-}
 }
