@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {captainTacticalTemplates} from "./scopedTactics";
-import {captainOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const captain: CoachPersonality = {
-  version: "captain-4", maxCharacters: 285, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const captainTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} produces a {motif} at once.",
+    played_possible: "{move} prepares a {motif}, though the replies decide whether it lands.",
+    allowed_immediate: "{opponent} answers with {action}, and the {motif} is there at once.",
+    allowed_possible: "Later, {opponent} may find a {motif}, depending on how the replies go.",
+    missed_immediate: "{best} would have produced a {motif} straight away.",
+    missed_possible: "{best} pointed toward a {motif}, with the replies still to decide it.",
+  },
+  fork: {actual: "The {targets} are under fire from one piece at the same moment.", possible: "Should it get there, the {targets} would be attacked from one square by one piece."},
+  material: "A {gain} may be the result, if both sides play the line out.",
+  capture: {candidate: "{capture} would come next and win a {piece}.", followup: "Should the line continue that way, {capture} can collect a {piece}."},
+  playedCapture: {fact: "{move} turns a {motif} loose.", consequence: "{capture} then wins the {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const captainOpeningTemplates = {
+  "book-opening-entry-1": ["Know the territory: {opening}."],
+  "book-opening-entry-2": ["The opening on the board is {opening}. Learn its plans."],
+  "book-opening-entry-3": ["Book move; the book's name for it is {opening}."],
+  "book-opening-follow-1": ["{opening} keeps going, and the ground is familiar."],
+  "book-opening-follow-2": ["{opening} continues. Keep its main ideas in mind."],
+  "book-opening-follow-3": ["{opening} accounts for the reply as well."],
+  "book-opening-follow-4": ["{opening} has this move in its repertoire too."],
+  "book-opening-follow-5": ["{opening} holds for one more move."],
+  "book-opening-follow-6": ["The game stays inside {opening}."],
+  "book-opening-follow-7": ["{opening}, and the script continues."],
+  "book-opening-follow-8": ["Still {opening}. The name marks the road and passes no judgment on the move."],
+} as const;
+
+export const captain = coachPersonality({
+  version: "captain-4", maxCharacters: 285, maxClaims: 2,
   delivery: {pace: "steady", energy: "warm"},
   behavior: {
     general: "mentor-first", praise: "mentor-first", correction: "mentor-first",
@@ -84,4 +114,4 @@ export const captain: CoachPersonality = {
     variation: ["Work through this line: {detail}"],
     compatibility: ["What to take from it: {detail}"],
   },
-};
+});

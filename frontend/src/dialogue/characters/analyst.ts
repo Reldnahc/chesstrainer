@@ -1,9 +1,39 @@
-import type { CoachPersonality } from "../personality";
-import { analystTacticalTemplates } from "./scopedTactics";
-import { analystOpeningTemplates } from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const analyst: CoachPersonality = {
-  version: "analyst-5", maxCharacters: 245, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const analystTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "What {move} changes: a {motif} is now in effect.",
+    played_possible: "After {move}, a {motif} becomes possible, depending on the replies.",
+    allowed_immediate: "After {action}, {opponent} would have a {motif}.",
+    allowed_possible: "Depending on the replies, {opponent} may later gain a {motif}.",
+    missed_immediate: "With {best}, a {motif} would have been on the board.",
+    missed_possible: "With {best}, a {motif} could have followed, subject to the replies.",
+  },
+  fork: {actual: "One piece now stands against the {targets} at once.", possible: "One piece, one square, and the {targets} would be attacked together from there."},
+  material: "A {gain} may be the end result, though both sides still have choices before then.",
+  capture: {candidate: "If {capture} is played, a {piece} comes off the board.", followup: "If the line continues that way, {capture} may be next, taking a {piece}."},
+  playedCapture: {fact: "{move} has brought a {motif} into the position.", consequence: "After {capture}, a {piece} is gone."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const analystOpeningTemplates = {
+  "book-opening-entry-1": ["With this move, the game is in {opening}."],
+  "book-opening-entry-2": ["No change of course; this move keeps the game in {opening}."],
+  "book-opening-entry-3": ["{opening} contains this move."],
+  "book-opening-follow-1": ["The game has not left {opening}."],
+  "book-opening-follow-2": ["This one also belongs to {opening}."],
+  "book-opening-follow-3": ["Even the reply stays within {opening}."],
+  "book-opening-follow-4": ["Nothing has changed: the game remains in {opening}."],
+  "book-opening-follow-5": ["{opening} has this move too."],
+  "book-opening-follow-6": ["So far, {opening} is unchanged."],
+  "book-opening-follow-7": ["Again, {opening}."],
+  "book-opening-follow-8": ["Still {opening}. Being there locates the game; its quality is a matter for the engine."],
+} as const;
+
+export const analyst = coachPersonality({
+  version: "analyst-5", maxCharacters: 245, maxClaims: 2,
   delivery: { pace: "measured", energy: "quiet" },
   behavior: {
     general: "observation-first", praise: "minimal", correction: "observation-first",
@@ -84,4 +114,4 @@ export const analyst: CoachPersonality = {
     variation: ["In this variation: {detail}"],
     compatibility: ["The available explanation: {detail}"],
   },
-};
+});

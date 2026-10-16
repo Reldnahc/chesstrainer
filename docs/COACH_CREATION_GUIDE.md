@@ -127,13 +127,13 @@ entry. Reuse the shared intent/projection/composition pipeline. Do not implement
 second evidence-to-English generator in the character or audio code.
 
 Walter's `characters/storyteller.ts` and Rivet's `characters/robot.ts` are current
-examples. Their `tacticalWording: "witness"` and `openingWording: "sequence"`
-options are deliberate opt-ins; every current coach now enables both. A new
-character needs its own complete authored forms through
-`characters/scopedTactics.ts` / `scopedTacticalWording.ts` and
-`characters/openingSequence.ts` before enabling those options. Enabling a flag
-alone does not supply distinctive prose; do not copy another coach's forms merely
-because they compile.
+examples. Every coach has one file in `characters/` holding its scoped tactical
+forms (`authorTacticalWordings`), its opening-sequence sentences and its
+personality, built with `coachPersonality()`, which gives every coach
+`tacticalWording: "witness"` and `openingWording: "sequence"`. A new character's
+file therefore needs its own complete authored forms for both before it is
+registered in `characters/index.ts` (`coachPersonalities`, the one table both coach
+catalogues read). Do not copy another coach's forms merely because they compile.
 
 Preserve required slots and qualifications in mandatory factual fragments.
 Positional alternatives remain hypothetical. A mover's abandoned defender is not

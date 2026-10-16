@@ -9,19 +9,7 @@ import ManCoach from "./ManCoach";
 import WomanCoach from "./WomanCoach";
 import CatCoach from "./CatCoach";
 import DogCoach from "./DogCoach";
-import { storyteller } from "../../dialogue/characters/storyteller";
-import { analyst } from "../../dialogue/characters/analyst";
-import { host } from "../../dialogue/characters/host";
-import { expert } from "../../dialogue/characters/expert";
-import { partner } from "../../dialogue/characters/partner";
-import { captain } from "../../dialogue/characters/captain";
-import { spark } from "../../dialogue/characters/spark";
-import { blonde } from "../../dialogue/characters/blonde";
-import { tuxedo } from "../../dialogue/characters/tuxedo";
-import { velvet } from "../../dialogue/characters/velvet";
-import { professor } from "../../dialogue/characters/professor";
-import { corgi } from "../../dialogue/characters/corgi";
-import { collie } from "../../dialogue/characters/collie";
+import { coachPersonalities } from "../../dialogue/characters";
 import { newCoachCollections } from "../cast/catalog";
 import { coachPerformance, reactionTiming } from "../motionVocabulary";
 
@@ -67,7 +55,7 @@ export const manStudy: AuthoredCoachCollection = {
       id: "storyteller",
       coachId: "classic",
       speech: true,
-      personality: storyteller,
+      personality: coachPersonalities["classic"],
       name: "Walter",
       description:
         "A warm veteran who connects this move to the game's turning points.",
@@ -77,7 +65,7 @@ export const manStudy: AuthoredCoachCollection = {
       id: "host",
       coachId: "man-host",
       speech: true,
-      personality: host,
+      personality: coachPersonalities["man-host"],
       name: "Femi",
       description:
         "Friendly, candid analysis as if you were sitting across the club table.",
@@ -87,7 +75,7 @@ export const manStudy: AuthoredCoachCollection = {
       id: "expert",
       coachId: "man-expert",
       speech: true,
-      personality: expert,
+      personality: coachPersonalities["man-expert"],
       name: "Jun",
       description:
         "Exact consequences, measured approval and no extra words.",
@@ -97,7 +85,7 @@ export const manStudy: AuthoredCoachCollection = {
       id: "partner",
       coachId: "man-partner",
       speech: true,
-      personality: partner,
+      personality: coachPersonalities["man-partner"],
       name: "Arjun",
       description:
         "Curious questions and candidate ideas to explore together.",
@@ -126,7 +114,7 @@ export const womanStudy: AuthoredCoachCollection = {
     {
       id: "captain",
       coachId: "woman-captain",
-      personality: captain,
+      personality: coachPersonalities["woman-captain"],
       name: "Tamar",
       description:
         "A confident mentor: a clear verdict, a concrete reason and a habit to build.",
@@ -135,7 +123,7 @@ export const womanStudy: AuthoredCoachCollection = {
     {
       id: "analyst",
       coachId: "woman-analyst",
-      personality: analyst,
+      personality: coachPersonalities["woman-analyst"],
       name: "Marisol",
       description:
         "A restrained observer who identifies exactly what changed.",
@@ -144,7 +132,7 @@ export const womanStudy: AuthoredCoachCollection = {
     {
       id: "spark",
       coachId: "woman-spark",
-      personality: spark,
+      personality: coachPersonalities["woman-spark"],
       name: "Réka",
       description:
         "Quick, lively explanations and real excitement for clever tactics.",
@@ -153,7 +141,7 @@ export const womanStudy: AuthoredCoachCollection = {
     {
       id: "blonde",
       coachId: "woman-blonde",
-      personality: blonde,
+      personality: coachPersonalities["woman-blonde"],
       name: "Ingrid",
       description:
         "Relaxed encouragement that keeps the chess honest and the next step clear.",
@@ -178,7 +166,7 @@ export const catStudy: AuthoredCoachCollection = {
     {
       id: "tuxedo",
       coachId: "cat-tuxedo",
-      personality: tuxedo,
+      personality: coachPersonalities["cat-tuxedo"],
       name: "Felix",
       description:
         "Consequences first. Terse, dry and tactically unforgiving, without cruelty.",
@@ -187,7 +175,7 @@ export const catStudy: AuthoredCoachCollection = {
     {
       id: "black",
       coachId: "cat-black",
-      personality: velvet,
+      personality: coachPersonalities["cat-black"],
       name: "Juniper",
       description:
         "Quiet, watchful explanations with a soft edge and very little drama.",
@@ -212,7 +200,7 @@ export const dogStudy: AuthoredCoachCollection = {
     {
       id: "gentle",
       coachId: "dog-gentle",
-      personality: professor,
+      personality: coachPersonalities["dog-gentle"],
       name: "Alfie",
       description:
         "Patient, connected explanations: the principle, this position and the lesson.",
@@ -221,7 +209,7 @@ export const dogStudy: AuthoredCoachCollection = {
     {
       id: "corgi",
       coachId: "dog-corgi",
-      personality: corgi,
+      personality: coachPersonalities["dog-corgi"],
       name: "Waffles",
       description:
         "A tiny commander with enormous confidence. Short orders, clear consequences.",
@@ -230,7 +218,7 @@ export const dogStudy: AuthoredCoachCollection = {
     {
       id: "collie",
       coachId: "dog-collie",
-      personality: collie,
+      personality: coachPersonalities["dog-collie"],
       name: "Scout",
       description:
         "Intense pattern recognition and precise, task-focused feedback.",

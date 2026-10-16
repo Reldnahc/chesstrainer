@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {corgiTacticalTemplates} from "./scopedTactics";
-import {corgiOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const corgi: CoachPersonality = {
-  version: "corgi-4", maxCharacters: 275, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const corgiTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} puts a {motif} on the board. Operation underway.",
+    played_possible: "{move} lays the groundwork for a {motif}, pending the replies.",
+    allowed_immediate: "Alert: {opponent} can reply {action}, arming a {motif}.",
+    allowed_possible: "Later on, a {motif} could open for {opponent}; the replies will decide whether it materializes.",
+    missed_immediate: "{best} had a {motif} on the launch pad.",
+    missed_possible: "{best} might have opened a {motif}, pending the replies.",
+  },
+  fork: {actual: "One piece now has the {targets} in its sights.", possible: "The {targets} would be attacked, all from one post."},
+  material: "A {gain} may be in it, but both sides still have orders to give.",
+  capture: {candidate: "{capture} would knock out a {piece}.", followup: "Down the line, {capture} could remove a {piece}."},
+  playedCapture: {fact: "{move} puts a {motif} into operation.", consequence: "{capture} sends a {piece} off the field."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const corgiOpeningTemplates = {
+  "book-opening-entry-1": ["Straight from the manual: {opening}."],
+  "book-opening-entry-2": ["This move is in the field manual, under {opening}."],
+  "book-opening-entry-3": ["Recognized opening, on record as {opening}."],
+  "book-opening-follow-1": ["Still following the manual: {opening}."],
+  "book-opening-follow-2": ["Another move from the manual, in {opening}."],
+  "book-opening-follow-3": ["The manual covers the reply as well: {opening}."],
+  "book-opening-follow-4": ["The manual keeps going through {opening}."],
+  "book-opening-follow-5": ["Formation holds, still within {opening}."],
+  "book-opening-follow-6": ["{opening} keeps marching."],
+  "book-opening-follow-7": ["The drill continues in {opening}."],
+  "book-opening-follow-8": ["Manual entry again: {opening}. A listing, not a ruling."],
+} as const;
+
+export const corgi = coachPersonality({
+  version: "corgi-4", maxCharacters: 275, maxClaims: 2,
   delivery: {pace: "lively", energy: "bright"},
   behavior: {general: "mentor-first", praise: "reaction-first", correction: "mentor-first", questionFrequency: "none", directness: 5, emotionalAmplitude: 5, humor: 4, jargon: 2, playerAddress: "direct", sentenceLength: "short", metaphor: "rare", signature: "Short orders, enormous confidence, light field-manual language and a concrete job to do next."},
   bible: {temperament: "Outsized confidence in a small commander; bold, practical and good-humored.", teaching: "Make the useful task sound worth tackling now, as a short order with a concrete reason.", rhythm: "A command or reaction, the consequence, then the next order. Short, spirited declarations.", celebration: "Triumphant approval for a proved resource, never for empty swagger.", correction: "Decisive about the move, then straight back to work: hold the post, reset, go again.", avoid: "Barking, baby talk, corgi jokes, mock insults, genuine aggression, questions, other coaches' sayings, or difficulty claims without the human-move model."},
@@ -102,4 +132,4 @@ export const corgi: CoachPersonality = {
     variation: ["Alternate route report: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});

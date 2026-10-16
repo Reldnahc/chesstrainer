@@ -50,6 +50,12 @@ export type CoachPersonality = {
   templates: Readonly<Partial<Record<string, readonly ClaimWording[]>>>;
 };
 
+/** Every coach scopes tactical claims to their witnesses and speaks recorded
+ * openings as a sequence; a coach's file supplies the rest. */
+export function coachPersonality(personality: Omit<CoachPersonality, "tacticalWording" | "openingWording">): CoachPersonality {
+  return {...personality, tacticalWording: "witness", openingWording: "sequence"};
+}
+
 export const neutralPersonality: CoachPersonality = {
   version: "neutral-1",
   bible: {temperament: "Plain and attentive.", teaching: "Explain the supported consequence.",

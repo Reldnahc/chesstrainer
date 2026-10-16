@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {partnerTacticalTemplates} from "./scopedTactics";
-import {partnerOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const partner: CoachPersonality = {
-  version: "partner-4", maxCharacters: 320, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const partnerTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Test {move}, and a {motif} shows up straight away.",
+    played_possible: "{move} sets up a {motif} as a candidate idea, if the replies cooperate.",
+    allowed_immediate: "Try {action} for {opponent}, and a {motif} appears.",
+    allowed_possible: "Later, {opponent} may get a {motif} as a candidate, should the replies cooperate.",
+    missed_immediate: "Put {best} on the board instead, and a {motif} is right there.",
+    missed_possible: "{best} is a candidate worth testing: given suitable replies, a {motif} could follow.",
+  },
+  fork: {actual: "Test it: one piece now hits the {targets} together.", possible: "Run the line, and the {targets} would be attacked side by side from one piece."},
+  material: "Run the experiment to the end and a {gain} may be the outcome, with choices for both sides along the way.",
+  capture: {candidate: "Try {capture}, and a {piece} leaves the board.", followup: "Should the replies go that route, {capture} may come next and collect a {piece}."},
+  playedCapture: {fact: "Follow {move} through and a {motif} comes out of it.", consequence: "Then {capture} wins a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const partnerOpeningTemplates = {
+  "book-opening-entry-1": ["This candidate takes us into {opening}."],
+  "book-opening-entry-2": ["A candidate borrowed from {opening}."],
+  "book-opening-entry-3": ["There's an entry for this candidate in {opening}."],
+  "book-opening-follow-1": ["We're still exploring {opening}."],
+  "book-opening-follow-2": ["Here too, {opening} has the move ready."],
+  "book-opening-follow-3": ["Even the reply is a candidate {opening} already covers."],
+  "book-opening-follow-4": ["The {opening} line keeps unfolding."],
+  "book-opening-follow-5": ["{opening} already knows this one."],
+  "book-opening-follow-6": ["There's still more of {opening} to explore."],
+  "book-opening-follow-7": ["Back to {opening} for this one."],
+  "book-opening-follow-8": ["Still {opening}. The book says where we are, not which candidate is strongest."],
+} as const;
+
+export const partner = coachPersonality({
+  version: "partner-4", maxCharacters: 320, maxClaims: 2,
   delivery: {pace: "steady", energy: "warm"},
   behavior: {general: "question-first", praise: "observation-first", correction: "question-first",
     questionFrequency: "occasional", directness: 2, emotionalAmplitude: 3, humor: 2, jargon: 2,
@@ -85,4 +115,4 @@ export const partner: CoachPersonality = {
     variation: ["For this experiment: {detail}"],
     compatibility: ["For the comparison, the available explanation is this: {detail}"],
   },
-};
+});
