@@ -290,6 +290,7 @@ def analyze_ply(
     learner_name: str,
     *,
     parameters=None,
+    mate_limits=None,
 ):
     """The review's own engine evidence for the move at this ply, to save on the game.
 
@@ -312,6 +313,7 @@ def analyze_ply(
         fallback_rating=play.learner_rating,
         previous_score=previous,
         parameters=parameters,
+        mate_limits=mate_limits,
     )
 
 

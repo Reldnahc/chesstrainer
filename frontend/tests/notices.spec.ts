@@ -117,7 +117,6 @@ test("import confirmation is a status while existing engine availability stays p
     route.fulfill({
       json: {
         database: "ready",
-        classification_available: true,
         engine_status: "unavailable",
         engine_available: false,
         engine_error: "Stockfish is unavailable. Check the server logs.",

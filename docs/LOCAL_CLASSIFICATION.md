@@ -2,7 +2,7 @@
 
 ## Classification v4: pinned Lichess recognition
 
-Version 4.2-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
+Version 4.3-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
 
 Recognition and mistake admission are separate. A pin or double check can be present in a line without a settled material outcome. Review can show that factual motif; an active weakness finding still needs Fieldwork's existing engine comparison, material/mate support and relevant episode. Fieldwork's own collection witnesses and independently verified native extensions also run; upstream recognition adds motifs those narrower witnesses miss.
 
@@ -23,11 +23,11 @@ The vendored [Lichess puzzler](https://github.com/ornicar/lichess-puzzler) tagge
 | Module | Role |
 |---|---|
 | `lichess_patterns.py` | Rebuilds a python-chess PGN line and calls the pinned predicates |
-| `lichess_witnesses.py` | Turns their successful return sites into real move indices, board frames and square roles; declines (without a crash) an upstream back-rank mate of the line's own mover, castling counted as a discovered check, and a pin that already existed before the move and that the move does not use |
+| `lichess_witnesses.py` | Turns their successful return sites into real move indices, board frames and square roles; declines (without a crash) an upstream back-rank mate of the line's own mover, castling counted as a discovered check, and a pin that already stood before the line began, by the same pinner along the same line, and that no move of the line exploits; when upstream's first pin is such a pin, a later pin the line creates or exploits is credited instead, and an exploited old pin is named at the move that exploits it |
 | `tactical_patterns.py` | Applies Fieldwork's connected-episode and outcome admission boundaries |
 | `verified_patterns.py` | Keeps Fieldwork's own detailed collection witnesses and independently verified extensions |
 
-Changing the classifier version invalidates classification cache identities while historical responses stay readable. Missing pre-position context skips upstream hanging-piece recognition rather than supplying a null setup move. Saved games are not reclassified on startup; use **Settings > Advanced > Classify saved games** after deploying a new version.
+Changing the classifier version, schema or taxonomy invalidates classification cache identities while historical responses stay readable. A learner's rejection holds for the identity it was made on, so classifying a decision again after such a change can bring back labels the learner rejected. Migration 3d591d63bd55 changed every identity once in the same way, by taking the old hosted-model prompt version out of the key. Missing pre-position context skips upstream hanging-piece recognition rather than supplying a null setup move. Saved games are not reclassified on startup; use **Settings > Advanced > Classify saved games** after deploying a new version.
 
 ## Outcomes, patterns and practice cues
 
@@ -277,7 +277,7 @@ test_lichess_comparison.py covers the comparison.
 
 The sample is 1,000 positives per eligible theme, seed 0, from the full 6,100,952-row export (input SHA256 95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9), with no skipped rows. The v3.1 column is that baseline run; the other two replay the same frozen sample (samples.jsonl SHA256 e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0) through the comparison above. Reports stay in ignored `data/`.
 
-| Theme | v3.1 line detector | Raw upstream recognition | v4.2 Fieldwork admission |
+| Theme | v3.1 line detector | Raw upstream recognition | v4.3 Fieldwork admission |
 |---|---:|---:|---:|
 | backRankMate | 99.2% | 100.0% | 100.0% |
 | capturingDefender | 63.8% | 100.0% | 78.7% |
@@ -287,9 +287,9 @@ The sample is 1,000 positives per eligible theme, seed 0, from the full 6,100,95
 | doubleCheck | 94.0% | 100.0% | 94.0% |
 | fork | 71.3% | 100.0% | 98.2% |
 | hangingPiece | 99.2% | 99.9% | 99.2% |
-| pin | 39.7% | 83.0% | 72.2% |
+| pin | 39.7% | 96.3% | 83.0% |
 | promotion | 97.9% | 100.0% | 98.1% |
 | skewer | 87.9% | 100.0% | 92.8% |
 | underPromotion | 97.0% | 98.1% | 98.4% |
 
-The 12,000 incidences have 1,139 v4.2 admission disagreements, against 2,260 for v3.1 and 507 for raw upstream. The pin and discoveredCheck figures moved with the pin-credit rule (361f680d0), which declines a pin that already existed before the move and that the move does not use: pin fell from 86.1% (raw upstream 99.9%). Rule 4.2's quiet endpoint, measured here too, changed no pin result. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.
+The 12,000 incidences have 1,031 v4.3 admission disagreements, against 2,260 for v3.1 and 314 for raw upstream. A pin is credited to a line when the line creates it (a sacrifice that drags a piece onto the pin line, or a new line or kind of pinner; a pinner sliding along its own line is the same pin) or exploits it: captures the pinned piece, threatens it with a cheaper piece or more attackers than defenders, lands where it could otherwise capture, gives a single check it could otherwise answer by capturing or interposing, or, with a quiet move in a line that does not end behind in material, lands a piece that the opponent takes and that a guard the pinned piece could otherwise have taken retakes. A move along or onto the pin line exploits nothing. A pin that stood before the line and is never exploited is declined. The remaining 3.7% of upstream pin tags are almost all such pins, for example a pinned piece beside a mate it could not have stopped. The small discoveredCheck difference from before 361f680d0 (74.6% raw) is not changed by this rule. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.

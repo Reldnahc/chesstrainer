@@ -6,7 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from trainer.taxonomy import SKILLS, UNCLASSIFIED
 
-RULE_VERSION = "4.2-lichess-8d9faff6"
+RULE_VERSION = "4.3-lichess-8d9faff6"
 
 
 class PreviousMove(BaseModel):

@@ -88,7 +88,6 @@ function dashboardData(): DashboardData {
     due: { due: 7 },
     games: { items: games, total: 12 },
     weaknesses: {
-      classification_available: true,
       unclassified: 0,
       coverage: {
         total: 12,
@@ -157,7 +156,6 @@ async function mockDashboard(page: Page, data = dashboardData(), failures = new 
   await page.route("**/api/health", route =>
     route.fulfill({
       json: {
-        classification_available: true,
         database: "ok",
         engine_available: false,
         engine_error: "Engine unavailable in this dashboard fixture",

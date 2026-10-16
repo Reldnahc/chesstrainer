@@ -1,7 +1,6 @@
 """Ordered baseline work followed by a finite independent refinement pass."""
 
 from collections import deque
-from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
 
 from sqlalchemy import select
@@ -12,6 +11,7 @@ from trainer.game_library import board_before
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.review_refinement import run_refinement
 from trainer.review_reports import stale_adopted, touch_report
+from trainer.work_pool import WorkPool
 
 
 def run_review(context, engine_override=None):
@@ -33,6 +33,7 @@ def run_baseline(context, engine_override=None):
             for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
         }
     parameters = line_parameters(context.settings)
+    mate_limits = game_review.mate_horizon_limits(context.settings)
     with context.write() as db:
         # The review shows an adopted refinement over its baseline; its lines are
         # read again to the current horizon too, from its saved candidates.
@@ -72,7 +73,9 @@ def run_baseline(context, engine_override=None):
             engine = available.get()
             try:
                 # Preceding score is attached in game order below.
-                report = game_review.analyze_move(engine, board, move, parameters=parameters)
+                report = game_review.analyze_move(
+                    engine, board, move, parameters=parameters, mate_limits=mate_limits
+                )
             finally:
                 available.put(engine)
         elif game_review.lines_current(cached, parameters):
@@ -108,7 +111,7 @@ def run_baseline(context, engine_override=None):
             board.push(move)
         human.prefetch(context.sessions, parsed, boards, rating, context.cancelled)
 
-    executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="game-review")
+    searches = WorkPool(workers, "game-review", context.cancelled)
     try:
         board = parsed.board()
         pending = deque()
@@ -129,11 +132,12 @@ def run_baseline(context, engine_override=None):
                         cached.get("human") if cached else None, parsed, board.turn, rating
                     )
                 ) or (cached is not None and not game_review.lines_current(cached, parameters))
-                future = (
-                    None
-                    if cached is not None and not refresh
-                    else executor.submit(analyze, board.copy(stack=True), move, cached)
-                )
+                if cached is not None and not refresh:
+                    future = None
+                else:
+                    future = searches.submit(analyze, board.copy(stack=True), move, cached)
+                    if future is None:  # Cancelled while waiting for a worker.
+                        break
                 pending.append((next_ply, future))
                 board.push(move)
                 next_ply += 1
@@ -158,7 +162,7 @@ def run_baseline(context, engine_override=None):
                 job.games_processed = int(ply == len(moves))
             fill()
     finally:
-        executor.shutdown(wait=True, cancel_futures=True)
+        searches.close(cancel_waiting=True)
         if not engine_override:
             for engine in engines:
                 engine.close()

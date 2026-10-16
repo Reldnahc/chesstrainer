@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ARROW_COLOURS } from "../boardCues";
 import { usePageTitle } from "../PageTitle";
 import Banner from "../Banner";
 import { ArrowLeft, Save, Square } from "lucide-react";
@@ -353,7 +354,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
   const turn = sideToMove(fen ?? START_FEN);
   const arrows = (step.arrows ?? []).map(arrow => {
     const [startSquare, endSquare] = arrow.split("-");
-    return { startSquare, endSquare, color: "#f5b56abb" };
+    return { startSquare, endSquare, color: ARROW_COLOURS.book };
   });
   const recordingLabel =
     recording &&

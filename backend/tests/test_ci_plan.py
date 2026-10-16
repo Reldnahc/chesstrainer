@@ -848,3 +848,8 @@ def test_gate_cli_uses_environment_and_returns_failure(monkeypatch, successful_j
     assert ci_plan.main(["--check-results"]) == 0
     monkeypatch.delenv("CI_RESULTS")
     assert ci_plan.main(["--check-results"]) == 1
+
+
+def test_the_architecture_doc_runs_the_backend_test_that_reads_it():
+    plan = ci_plan.select_checks(["docs/ARCHITECTURE.md"])
+    assert_selection(plan, backend=True)

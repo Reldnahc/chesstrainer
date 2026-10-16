@@ -248,7 +248,8 @@ export function gameIntent({
       // with no Inaccuracy or worse of the side's own inside the run ("cleanly"),
       // and an erosion on an Inaccuracy with no Mistake of the side's own since its
       // first concession ("small slips", "no single big mistake"). A recovery is
-      // written but never voiced (see gameSelection).
+      // told in neutral words and voiced by the re-recorded recovery takes, which
+      // credit neither this move nor the learner (see gameSelection).
       if (relation.kind === "recovery") {
         linked(
           "recovery",

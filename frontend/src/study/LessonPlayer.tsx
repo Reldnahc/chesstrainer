@@ -16,7 +16,7 @@ import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import type { CoachExpression } from "../coach/model";
 import { lessonCoursePath, studyPaths } from "../navigation";
-import { moveSquares } from "../boardCues";
+import { moveSquares, ARROW_COLOURS } from "../boardCues";
 import { playbackMover, sideName, sideToMove } from "../fen";
 import LessonAttribution from "./LessonAttribution";
 import { useLessonSession, type LessonAction } from "./useLessonSession";
@@ -244,7 +244,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
             annotations?.arrows?.map(arrow => ({
               startSquare: arrow.from_square,
               endSquare: arrow.to_square,
-              color: "#f5b56abb",
+              color: ARROW_COLOURS.book,
             })) || []
           }
         />

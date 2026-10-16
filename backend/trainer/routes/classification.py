@@ -50,7 +50,6 @@ def create_router(*, settings, classifier) -> APIRouter:
                 "skills": priorities(db, settings),
                 "coverage": counts,
                 "unclassified": counts["unclassified"],
-                "classification_available": True,
             }
 
     @router.get(

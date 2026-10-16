@@ -512,9 +512,9 @@ def test_an_endgame_is_held_against_the_evaluation_where_it_began():
     facts = game_facts(game, scores)
     assert facts.reviewed and facts.endgame_entry == 2 and facts.endgame == "mixed"
     assert {row["kind"]: row["held"] for row in endgames([facts])}["mixed"] == 0
-    # A loss from an endgame entered already lost is held.
+    # A loss is never held, even from an endgame entered already lost.
     game, scores = endgame_game([-350, -400, -400, -400], [350, -350, 400, -400])
-    assert {row["kind"]: row["held"] for row in endgames([game_facts(game, scores)])}["mixed"] == 1
+    assert {row["kind"]: row["held"] for row in endgames([game_facts(game, scores)])}["mixed"] == 0
 
 
 def test_slip_links_give_the_move_number_the_game_uses():

@@ -8,7 +8,6 @@ test("lazy and recovered engine use stays available without an endless checking 
     route.fulfill({
       json: {
         database: "ready",
-        classification_available: true,
         engine_status: status,
         engine_available: status === "unchecked" ? null : status === "ready",
         engine_error:

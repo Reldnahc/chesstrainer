@@ -15,8 +15,10 @@ from trainer.continuations import continuation_end, replay
 from trainer.errors import EvidenceIntegrityError
 from trainer.tactical_geometry import (
     TACTIC_PLIES,
+    attacker_collection,
     effective_attacks,
     names,
+    new_targets,
     piece_capture_ply,
     relative_pinners,
     tactical_plies,
@@ -119,15 +121,9 @@ def fork_capture(m: Moment):
         for x in m.after.legal_moves
         if x.to_square == move.to_square and m.after.is_capture(x)
     )
-    collection = None
-    for follow in [p for p in plies if p > ply]:
-        action = boards[follow].peek()
-        if boards[follow - 1].piece_at(move.to_square) != piece:
-            break
-        if action.from_square == move.to_square:
-            if action.to_square in targets and boards[follow - 1].is_capture(action):
-                collection = follow
-            break
+    collection = attacker_collection(
+        boards, move.to_square, piece, [p for p in plies if p > ply], targets
+    )
     if collection is None and ply + 2 in plies and takes:
         reply, follow = boards[ply + 1].peek(), boards[ply + 2].peek()
         if (
@@ -148,7 +144,7 @@ def fork_capture(m: Moment):
         and collection is not None
         and len(targets) >= 2
         and piece.piece_type != chess.KING
-        and not targets <= effective_attacks(m.before, move.from_square)
+        and new_targets(m.before, move.from_square, targets)
     ):
         yield DefenseHypothesis(
             kind="fork_capture",

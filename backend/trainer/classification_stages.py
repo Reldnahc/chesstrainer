@@ -6,7 +6,13 @@ import chess
 
 from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, valid_board
 from trainer.config import Settings
-from trainer.continuations import ContinuationEnd, continuation_end, extended_line
+from trainer.continuations import (
+    ContinuationEnd,
+    continuation_end,
+    extended_line,
+    replay,
+    settled_delta,
+)
 from trainer.defensive_probes import DefenseCheck, hypotheses, verify_defense
 from trainer.diagnosis_types import (
     OUTCOME_SKILLS,
@@ -265,6 +271,18 @@ def line_rules(parameters=None, *, annotate=False, causes_first=True):
         annotate=annotate,
         causes_first=causes_first,
     )
+
+
+def read_line(board, candidate, rules):
+    """A saved line's boards and where its material settles, as review and
+    explanations both read it: one board past the horizon, so the last ply sees
+    the saved next move as the classifier does; ``rules.shown`` limits the moves
+    shown. Returns ``(boards, delta, end)``."""
+    boards = replay(board, candidate)[: rules.shown_plies + 2]
+    delta, end = settled_delta(
+        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
+    )
+    return boards, delta, end
 
 
 def previous_move(board):

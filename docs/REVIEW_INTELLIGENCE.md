@@ -73,7 +73,7 @@ accordingly. Depth can finish a search early. This is a budget, not a latency
 promise. Questions are independent, so they run in parallel on
 min(STOCKFISH_WORKERS, ENGINE_SLOTS) engines, the same count the baseline pass
 uses; per-query limits, threads and hash do not change, only wall-clock time.
-There is no unbounded executor or account-specific native pool.
+There is no unbounded executor or account-specific native pool: the baseline's searches, these questions and analysis jobs all run on `work_pool.WorkPool`, which bounds running and waiting work and stops taking work once the job is cancelled.
 
 Pause interrupts an active extra search or a wait for a slot/cache lock. Startup
 and engine teardown retain the native transport's bounded timeouts. Partial
@@ -421,7 +421,7 @@ Relations are deliberately narrower than an unrestricted chess story:
 | Relation | Evidence gate |
 | --- | --- |
 | Punishment | Adjacent actual moves; previous concession of 100 cp or a mate transition; a searched advantage/equalizing opportunity; next move either keeps that opportunity with less than 50 cp concession or loses its advantage/playable band. Partially using an opportunity is not called wholly missed. |
-| Recovery | Same player's earlier error left a searched disadvantage/forced loss; a later near-best move restores at least a playable score. Intervening opponent errors are recorded, so dialogue cannot claim the recovering player created all the improvement. A move never raises its own evaluation, so the position was already playable before it: the coach writes a recovery in neutral words ("playable again") and plays no recovery take, whose lines credit this move. |
+| Recovery | Same player's earlier error left a searched disadvantage/forced loss; a later near-best move restores at least a playable score. Intervening opponent errors are recorded, so dialogue cannot claim the recovering player created all the improvement. A move never raises its own evaluation, so the position was already playable before it: the coach writes a recovery in neutral words ("playable again") and voices the `recovery` take, or `recovery-assisted` when the opponent's errors helped; those takes were re-recorded on Oct 15 so none credits this move or the learner. |
 | Repeated motif | Same responsible player, supported tactical motif and role on different reviewed plies. Duplicate detectors do not inflate the count; a best-line alternative is excluded. Counts are explicitly among observed reviewed plies. The recorded repeated-issue clip ("once before", "a second time") plays only at `occurrence` 2; the written line names the count. |
 | Advantage run | At least six contiguous reviewed plies stay at 200 cp or searched mate for one side. A completed review ending in that side's recorded win adds a conversion observation. This does not mean flawless play or a mathematically proved win. `own_error_plies` lists the side's own moves inside the run graded Inaccuracy or worse, and the coach tells a conversion only when it is empty (its takes say there was no slip). |
 | Erosion | At least three 30–149 cp concessions by one side in a nine-ply window, with at least 150 cp net deterioration. Opponent errors that restore the position defeat the net-deterioration claim. `own_mistake_plies` lists the side's Mistake-sized moves from the first concession, concessions included; the coach tells an erosion only on an Inaccuracy and only when it is empty, because its takes call the concessions small and say no single big mistake did it. |

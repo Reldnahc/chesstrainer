@@ -259,7 +259,7 @@ export function ImportJob({
         if (mounted.current) fail(error);
       });
   }
-  const fetchOnly = ["sync", "chesscom_fetch", "provider_fetch"].includes(job.kind);
+  const fetchOnly = ["sync", "provider_fetch"].includes(job.kind);
   const fetching = source && !source.fetch_completed;
   const title = source
     ? `${source.provider_name} · ${source.username}`

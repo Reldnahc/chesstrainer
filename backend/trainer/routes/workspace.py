@@ -92,7 +92,6 @@ def create_router(*, settings, health, classifier) -> APIRouter:
         return {
             "database": "ready",
             **health.snapshot(),
-            "classification_available": True,  # Local rules always run.
         }
 
     @router.get(
@@ -104,7 +103,6 @@ def create_router(*, settings, health, classifier) -> APIRouter:
                 settings.public()
                 | health.snapshot()
                 | {
-                    "classification_available": True,
                     "coverage": coverage(db),
                     "classification_provider": LocalClassifier.provider,
                     "classification_version": classifier.version,

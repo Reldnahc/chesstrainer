@@ -35,7 +35,6 @@ class JobExecution:
             handlers = {
                 JobKind.GAME_REVIEW: self.run_review,
                 JobKind.SYNC: self.run_fetch,
-                JobKind.CHESSCOM_FETCH: self.run_fetch,
                 JobKind.PROVIDER_FETCH: self.run_fetch,
                 JobKind.CLASSIFICATION: self.run_games,
                 JobKind.ENRICHMENT: self.run_games,

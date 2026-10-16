@@ -57,7 +57,7 @@ def evidence(fen=FEN, best=BEST, actual=ACTUAL, best_score=300, actual_score=-50
 @pytest.mark.parametrize("black", [False, True])
 def test_fork_hanging_capture_direction_and_witness(black):
     payload = evidence(black=black)
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     findings = {f.skill_id: f for f in result.findings}
     assert set(findings) == {"material_loss", "hanging_piece", "missed_material_gain", "fork"}
     fork, hanging = findings["fork"], findings["hanging_piece"]
@@ -89,7 +89,7 @@ def test_abstains_on_unsupported_material_or_fork(reason):
         payload["played_candidate"]["score"]["value"] = 100
     else:
         payload["best_candidates"][0]["pv"] = ["b5c7", "e8d7", "c7b5", "d7c6"]
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     skills = {f.skill_id for f in result.findings}
     if reason == "still_ahead":
         assert "material_loss" in skills  # Losing material can matter while still ahead.
@@ -111,7 +111,7 @@ def test_mate_transitions(black, kind):
         payload["best_candidates"][0]["score"] = Score(kind="mate", value=-5).model_dump()
     if kind == "still_mates":
         payload["played_candidate"]["score"] = Score(kind="mate", value=5).model_dump()
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     skills = {f.skill_id for f in result.findings}
     assert ("allowed_mate" in skills) == (kind == "allowed")
     assert ("missed_mate" in skills) == (kind == "missed")
@@ -119,7 +119,7 @@ def test_mate_transitions(black, kind):
 
 @pytest.mark.parametrize("black", [False, True])
 def test_promotion(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         # The king is near enough to win the pawn once White delays promoting.
         evidence(
             "8/P1k5/8/8/8/8/8/6K1 w - - 0 1",
@@ -137,7 +137,7 @@ def test_promotion(black):
 @pytest.mark.parametrize("move,skill", [("e2d3", "discovered_attack"), ("e2b5", "double_attack")])
 @pytest.mark.parametrize("black", [False, True])
 def test_discovered_and_double_check(move, skill, black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "4k3/8/8/8/8/8/4B3/4R1K1 w - - 0 1",
             [move],
@@ -163,7 +163,7 @@ def test_corrupt_line_and_wrong_actual_move_rejected():
 
 def test_config_changes_rule_thresholds(settings):
     settings.classification_min_material = 9
-    result, _ = LocalClassifier(settings).classify(evidence())
+    result = LocalClassifier(settings).classify(evidence())
     assert result.primary_skill == "unclassified"
     assert result.parameters["min_material"] == 9
 

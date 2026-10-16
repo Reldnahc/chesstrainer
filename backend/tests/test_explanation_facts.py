@@ -237,7 +237,7 @@ def test_verified_findings_keep_collection_or_defense_distinct_from_recognition(
         "skewer": "king_skewer_collected",
         "removing_defender": "sole_defender_captured",
     }[skill]
-    result, _ = LocalClassifier().classify(evidence(fen, best, actual, 800, 0, black))
+    result = LocalClassifier().classify(evidence(fen, best, actual, 800, 0, black))
     finding = next(f for f in result.findings if f.skill_id == skill)
     assert finding.mechanism == expected
     assert finding.cue_key == skill
@@ -250,7 +250,7 @@ def test_legacy_facts_do_not_acquire_mechanism_by_matching_prose():
         frame.pop(key)
     frame["annotation"] = "This is checkmate and promotes to a queen."
     assert Frame.model_validate(frame).facts_version is None
-    result, _ = LocalClassifier().classify(evidence(CAUSE_FEN, CAUSE_BEST, CAUSE_ACTUAL, 900, -500))
+    result = LocalClassifier().classify(evidence(CAUSE_FEN, CAUSE_BEST, CAUSE_ACTUAL, 900, -500))
     finding = next(f for f in result.findings if f.skill_id == "abandoned_defender")
     assert finding.mechanism == "abandoned_defender"
     legacy = finding.model_dump(exclude={"mechanism", "cue_key"})

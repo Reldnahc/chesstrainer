@@ -109,6 +109,31 @@ def tactical_plies(boards, first, end, tactic_plies=TACTIC_PLIES):
     return result
 
 
+def attacker_collection(boards, square, piece, plies, targets):
+    """The ply at which ``piece`` on ``square`` takes one of ``targets``, if any.
+
+    ``plies`` are the attacker's own later plies, in order. The attacker must still
+    stand on ``square`` before each of them, and its first move away must be the
+    capture; any other move, or losing the piece, ends the search.
+    """
+    for ply in plies:
+        if boards[ply - 1].piece_at(square) != piece:
+            return None
+        action = boards[ply].peek()
+        if action.from_square == square:
+            if action.to_square in targets and boards[ply - 1].is_capture(action):
+                return ply
+            return None
+    return None
+
+
+def new_targets(before, from_square, targets):
+    """Whether a moved piece attacks ``targets`` it could not already take from
+    ``from_square``. Attacks are effective ones, as ``valuable_targets`` reads them:
+    a piece pinned before it moved did not threaten what lay off its pin."""
+    return not targets <= effective_attacks(before, from_square)
+
+
 def piece_capture_ply(boards, square, start, end):
     """Follow one concrete piece through moves until an opposing capture."""
     original = boards[start].piece_at(square)
@@ -156,7 +181,8 @@ def relative_pinners(board, target, *, effective=True):
     """(slider, piece behind) for each slider pinning ``target`` to a more valuable piece.
 
     ``effective`` also requires the slider's attack on ``target`` to survive its own
-    pins; the fork-capture probe reads raw attacks instead.
+    pins. The pinned-recapture probe reads raw attacks instead, then proves the
+    slider's capture legal on the board after the recapture.
     """
     victim = board.piece_at(target)
     if victim is None or victim.piece_type == chess.KING:

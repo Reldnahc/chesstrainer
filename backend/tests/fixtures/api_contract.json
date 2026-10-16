@@ -828,20 +828,8 @@
             "title": "Id",
             "type": "string"
           },
-          "input_tokens": {
-            "title": "Input Tokens",
-            "type": "integer"
-          },
           "model": {
             "title": "Model",
-            "type": "string"
-          },
-          "output_tokens": {
-            "title": "Output Tokens",
-            "type": "integer"
-          },
-          "prompt_version": {
-            "title": "Prompt Version",
             "type": "string"
           },
           "provider": {
@@ -885,13 +873,10 @@
           "cache_key",
           "model",
           "schema_version",
-          "prompt_version",
           "status",
           "response",
           "confidence",
           "error",
-          "input_tokens",
-          "output_tokens",
           "attempts",
           "created_at",
           "provider",
@@ -4590,10 +4575,6 @@
       "Health": {
         "additionalProperties": false,
         "properties": {
-          "classification_available": {
-            "title": "Classification Available",
-            "type": "boolean"
-          },
           "database": {
             "title": "Database",
             "type": "string"
@@ -4646,7 +4627,6 @@
           "engine_available",
           "engine_error",
           "engine_version",
-          "classification_available",
           "database"
         ],
         "title": "Health",
@@ -5473,7 +5453,6 @@
               "enrichment",
               "puzzle_generation",
               "sync",
-              "chesscom_fetch",
               "provider_fetch",
               "level_fit",
               "analysis",
@@ -12580,10 +12559,6 @@
       "Weaknesses": {
         "additionalProperties": false,
         "properties": {
-          "classification_available": {
-            "title": "Classification Available",
-            "type": "boolean"
-          },
           "coverage": {
             "$ref": "#/components/schemas/Coverage"
           },
@@ -12602,8 +12577,7 @@
         "required": [
           "skills",
           "coverage",
-          "unclassified",
-          "classification_available"
+          "unclassified"
         ],
         "title": "Weaknesses",
         "type": "object"
@@ -12737,10 +12711,6 @@
           "classification_abstained": {
             "title": "Classification Abstained",
             "type": "integer"
-          },
-          "classification_available": {
-            "title": "Classification Available",
-            "type": "boolean"
           },
           "classification_extension_plies": {
             "title": "Classification Extension Plies",
@@ -13055,7 +13025,6 @@
           "engine_available",
           "engine_error",
           "engine_version",
-          "classification_available",
           "lan_token_configured",
           "coverage",
           "classification_provider",

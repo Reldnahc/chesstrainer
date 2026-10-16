@@ -102,7 +102,7 @@ class BlockingClassifier(FixtureClassifierBase):
                 secondary_skills=[],
                 confidence=0.2,
                 explanation="Scheduling fixture.",
-            ), {}
+            )
         finally:
             with self.lock:
                 self.active -= 1

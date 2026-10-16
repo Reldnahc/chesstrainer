@@ -1,6 +1,5 @@
 """Finite, resumable optional investigation after every baseline move is saved."""
 
-from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
 from threading import Event
 
@@ -10,7 +9,7 @@ from trainer.chess_core import digest, legal_move
 from trainer.classification_stages import line_parameters
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
 from trainer.game_library import board_before
-from trainer.game_review import analyze_move
+from trainer.game_review import analyze_move, mate_horizon_limits
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
 from trainer.puzzles.generation import remine_after_refinement
 from trainer.review_intelligence.refinement_plan import BROAD_TRIGGERS, VERSION, plan_key, selection
@@ -21,6 +20,7 @@ from trainer.review_intelligence.refinement_search import (
 )
 from trainer.review_reports import touch_report
 from trainer.search_limits import EngineCancelled
+from trainer.work_pool import WorkPool
 
 TERMINAL = {"completed", "budget_limited", "unavailable"}
 
@@ -114,9 +114,16 @@ def run_refinement(context, parsed, game_id):
 
     try:
         if pending:
-            with ThreadPoolExecutor(workers, thread_name_prefix="review-refinement") as executor:
-                for future in [executor.submit(investigate, task_id) for task_id in pending]:
-                    future.result()
+            pool = WorkPool(
+                workers, "review-refinement", lambda: stop.is_set() or context.cancelled()
+            )
+            try:
+                futures = [pool.submit(investigate, task_id) for task_id in pending]
+                for future in futures:
+                    if future is not None:
+                        future.result()
+            finally:
+                pool.close()
         else:
             record_progress(context, game_id, plan)
     finally:
@@ -146,7 +153,13 @@ def refine(context, parsed, game_id, task_id, engine):
     adopted = False
     try:
         bounded = RefinementEngine(engine, task, context, context.cancelled)
-        report = analyze_move(bounded, board, move, parameters=line_parameters(context.settings))
+        report = analyze_move(
+            bounded,
+            board,
+            move,
+            parameters=line_parameters(context.settings),
+            mate_limits=mate_horizon_limits(context.settings),
+        )
         reason = adoption_reason(baseline, report)
         adopted = reason is None
         # Compare a plausible human alternative only if the finite

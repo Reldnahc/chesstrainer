@@ -70,4 +70,4 @@ class LocalClassifier:
             confidence=1.0 if skills else 0.0,
             explanation=" ".join(f.explanation for f in found)
             or "The engine found a meaningful difference, but the saved lines do not establish a specific material or mating consequence.",
-        ), {}
+        )

@@ -1994,14 +1994,8 @@ export interface components {
             error: string | null;
             /** Id */
             id: string;
-            /** Input Tokens */
-            input_tokens: number;
             /** Model */
             model: string;
-            /** Output Tokens */
-            output_tokens: number;
-            /** Prompt Version */
-            prompt_version: string;
             /** Provider */
             provider: string;
             /** Response */
@@ -3203,8 +3197,6 @@ export interface components {
         };
         /** Health */
         Health: {
-            /** Classification Available */
-            classification_available: boolean;
             /** Database */
             database: string;
             /** Engine Available */
@@ -3474,7 +3466,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "game_review" | "classification" | "enrichment" | "puzzle_generation" | "sync" | "chesscom_fetch" | "provider_fetch" | "level_fit" | "analysis" | "retired";
+            kind: "game_review" | "classification" | "enrichment" | "puzzle_generation" | "sync" | "provider_fetch" | "level_fit" | "analysis" | "retired";
             /** Mistakes Identified */
             mistakes_identified: number;
             /** Positions Triaged */
@@ -5848,8 +5840,6 @@ export interface components {
         };
         /** Weaknesses */
         Weaknesses: {
-            /** Classification Available */
-            classification_available: boolean;
             coverage: components["schemas"]["Coverage"];
             /** Skills */
             skills: components["schemas"]["SkillPriority"][];
@@ -5907,8 +5897,6 @@ export interface components {
             chesscom_timeout_seconds: number;
             /** Classification Abstained */
             classification_abstained: number;
-            /** Classification Available */
-            classification_available: boolean;
             /** Classification Extension Plies */
             classification_extension_plies: number;
             /** Classification Failed */

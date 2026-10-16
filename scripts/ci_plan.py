@@ -141,6 +141,11 @@ def browser_matrix(suites):
     }
 
 
+# Documents a backend test reads (test_architecture_docs.py), so editing them alone
+# still runs that check.
+BACKEND_CHECKED_DOCS = frozenset({"docs/ARCHITECTURE.md"})
+
+
 def _documentation(path):
     # Do not skip Markdown under production directories: vendors and runtime data
     # can package it. Notices and licenses also participate in the source offer.
@@ -191,6 +196,9 @@ def select_checks(paths, full=False):
                 backend = build = docker = True
                 suites.update(SUITES)
                 reason("Shared API, workflow, or build tooling changed.")
+            elif path in BACKEND_CHECKED_DOCS:
+                backend = True
+                reason("ARCHITECTURE.md's table list is checked by a backend test.")
             elif _documentation(path):
                 reason("Documentation paths do not require heavy checks.")
             elif path.startswith("backend/") or path.startswith("migrations/"):

@@ -34,7 +34,6 @@ class Weaknesses(Contract):
     skills: list[SkillPriority]
     coverage: Coverage
     unclassified: int
-    classification_available: bool
 
 
 class EvidenceClassification(Contract):
@@ -66,15 +65,12 @@ class RunAudit(Contract):
     cache_key: str
     model: str
     schema_version: str
-    prompt_version: str
     status: str
     # Immutable historical provider payloads are deliberately opaque JSON. They
     # cannot be required to conform to the current local-classifier version.
     response: dict[str, JsonValue] | None
     confidence: float | None
     error: str | None
-    input_tokens: int
-    output_tokens: int
     attempts: int
     created_at: datetime
 
