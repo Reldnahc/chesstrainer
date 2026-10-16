@@ -57,7 +57,7 @@ ratings, so they never become a highest-rated win or a rating series point.
 | After a loss | The next game when it started within 90 minutes of the previous one's start. Start times come from the PGN's `UTCDate`/`UTCTime`, since a synced game's saved time is when it ended. A rematch is that next game against the same opponent. |
 | Clock | `[%clk]` annotations through the shared clock facts. Time trouble is 30 s or less, or a tenth of the starting time, after a learner move. |
 | Mistakes and replies | A move losing 100 cp or more. The reply punishes it, or fails to, by keeping at least half of the evaluation swing, measured from the mistake's own search (its best move's score) as its loss is. |
-| Endgames | The class at the first endgame position: queen, rook or minor-piece endings have only that kind of piece besides kings and pawns, pawn endings none, and any other combination is mixed. Held when the result is at least as good as the evaluation of that position, before its first move (±300 cp). |
+| Endgames | The class at the first endgame position: queen, rook or minor-piece endings have only that kind of piece besides kings and pawns, pawn endings none, and any other combination is mixed. Held when the game is not lost and the result is at least as good as the evaluation of that position, before its first move (±300 cp); a loss from an endgame entered already lost is not held. |
 
 These are descriptions of saved evidence, not ratings of skill or mastery. No
 section presents a mastery score or diagnoses what the player was thinking.

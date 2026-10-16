@@ -230,3 +230,47 @@ def test_a_relative_pin_the_pinned_piece_can_break_by_capture_is_not_drawn():
     board = chess.Board("rnbqk2r/ppppbppp/5n2/4p1B1/3PP3/8/PPP2PPP/RN1QKBNR w KQkq - 0 5")
     board.push_san("Bxf6")
     assert pins(board) == set()
+
+
+@pytest.mark.parametrize("mistake", [False, True])
+def test_a_skewer_never_marks_the_empty_square_its_attacker_has_yet_to_reach(mistake):
+    # 1...Qe7 2.Re1+ Kd3 3.Rxe7: the witness names e1 before the rook stands there.
+    evidence = line(
+        "4q3/8/8/8/4k3/8/8/R5K1 b - - 0 1",
+        ["e8e7", "a1e1", "e4d3", "e1e7"],
+        [
+            {
+                "frame_ply": 1,
+                "roles": {"attacker": ["e1"], "target": ["e7"], "targets": ["e4", "e7"]},
+                "explanation": "After Kd3, Rxe7 captures the piece behind it on the same line.",
+            }
+        ],
+    )
+    cues = review_cues(evidence, mistake=mistake)
+    board = chess.Board(cues["fen"])
+    marked = [square for squares in cues["roles"].values() for square in squares]
+    if mistake:
+        # Shown as the reply's landing square, with the reply arrow.
+        assert cues["roles"]["attacker"] == ["e1"] == cues["roles"]["reply"]
+    else:
+        assert "attacker" not in cues["roles"]
+        assert all(board.piece_at(chess.parse_square(square)) for square in marked)
+    assert cues["roles"]["targets"] == ["e4", "e7"]
+
+
+def test_a_skewering_check_keeps_its_attacker_on_the_square_the_move_reached():
+    # 1.Re1+ is itself the skewer: the before-move witness names e1 while it is empty.
+    evidence = line(
+        "8/4q3/8/8/4k3/8/8/R5K1 w - - 0 1",
+        ["a1e1", "e4d3", "e1e7"],
+        [
+            {
+                "frame_ply": 0,
+                "roles": {"attacker": ["e1"], "targets": ["e4", "e7"]},
+                "explanation": "Re1+ skewers the king to the queen behind it.",
+            }
+        ],
+    )
+    cues = review_cues(evidence, mistake=False)
+    assert cues["roles"]["attacker"] == ["e1"]
+    assert cues["roles"]["targets"] == ["e4", "e7"]

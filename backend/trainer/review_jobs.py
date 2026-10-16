@@ -33,6 +33,7 @@ def run_baseline(context, engine_override=None):
             for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
         }
     parameters = line_parameters(context.settings)
+    mate_limits = game_review.mate_horizon_limits(context.settings)
     with context.write() as db:
         # The review shows an adopted refinement over its baseline; its lines are
         # read again to the current horizon too, from its saved candidates.
@@ -72,7 +73,9 @@ def run_baseline(context, engine_override=None):
             engine = available.get()
             try:
                 # Preceding score is attached in game order below.
-                report = game_review.analyze_move(engine, board, move, parameters=parameters)
+                report = game_review.analyze_move(
+                    engine, board, move, parameters=parameters, mate_limits=mate_limits
+                )
             finally:
                 available.put(engine)
         elif game_review.lines_current(cached, parameters):
