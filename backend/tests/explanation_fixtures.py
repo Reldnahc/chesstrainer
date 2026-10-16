@@ -76,11 +76,11 @@ def seed_review(db, settings, black=False, key="explanation", spare_pawn=False):
         loss_cp=1400,
         meaningful=True,
         deep=True,
-        facts={},
     )
     db.add(decision)
     db.flush()
     exercise = exercise_from_decision(db, decision, settings, FSRSScheduler(settings))
+    db.commit()
     db.add(
         ExerciseAnswer(
             exercise_id=exercise.id,

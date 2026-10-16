@@ -46,3 +46,62 @@ def move_report(board=None, played="e2e4", best=None, before=0, after=0, second=
         depth=16,
         engine_version="Synthetic authority",
     )
+
+
+def _evidence():
+    return [{"source": "rule", "id": "fixture", "field": "fixture", "ply": None}]
+
+
+def tactic_event(event_id, motif="fork", role="missed", actor="white"):
+    """A complete, valid tactic event for tests that add their own to a report."""
+    return {
+        "id": event_id,
+        "kind": "tactic",
+        "actor": actor,
+        "confidence": "line_witness",
+        "importance": 75,
+        "evidence": _evidence(),
+        "facts": {
+            "motif": motif,
+            "role": role,
+            "opportunity_actor": None,
+            "rule_id": "fixture",
+            "frame_ply": 0,
+            "plies": [1],
+            "moves": [],
+            "squares": [],
+            "roles": {},
+            "pinned_before": None,
+            "verification": "verified_line",
+            "context_fen": None,
+            "context_move": None,
+            "witness": [],
+            "pieces": {},
+            "settled_material_delta": None,
+        },
+    }
+
+
+def support_event(event_id, side, target, piece, before, after):
+    """A complete, valid piece-support positional event on the played line."""
+    return {
+        "id": event_id,
+        "kind": "positional",
+        "actor": side,
+        "confidence": "board_fact",
+        "importance": 30,
+        "evidence": _evidence(),
+        "facts": {
+            "feature": "piece_support",
+            "side": side,
+            "before": before,
+            "after": after,
+            "squares": [target],
+            "piece": piece,
+            "target": target,
+            "attacked": False,
+            "line": "actual",
+            "uci": "a2a3",
+            "value_judgment": "not_inferred",
+        },
+    }

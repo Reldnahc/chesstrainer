@@ -1,179 +1,181 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-.settings-content,
-.settings-import {
-  display: grid;
-  gap: var(--space-5);
-  min-width: 0;
-}
-.settings-section {
-  min-width: 0;
-  margin: 0;
-  scroll-margin-top: 72px;
-}
-.settings-section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-/* The text block (heading and description) stacks; actions keep their own row. */
-.settings-section-heading > div:first-child,
-.settings-tool > div:first-child {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.settings-tool > div:first-child {
-  gap: var(--space-1-5);
-}
-.settings-section-heading h2 {
-  font-size: var(--text-2xl);
-}
-.settings-section-heading p {
-  color: var(--muted);
-  font-size: var(--text-base);
-}
-.settings-tool {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-6);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--line);
-}
-.settings-tool h3 {
-  font-size: var(--text-lg);
-}
-.settings-tool p {
-  max-width: 64ch;
-  color: var(--muted);
-  font-size: var(--text-base);
-}
-.settings-tool button {
-  flex: 0 0 220px;
-}
-/* A row whose commands are a wrapping group of compact actions (courses, accounts). */
-.settings-tool-row .button-row,
-.settings-tool-actions {
-  flex: none;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-.settings-tool-actions { justify-items: end; }
-.settings-tool-row .button-row .action-control {
-  flex: none;
-}
-.account-password-form {
-  align-items: flex-end;
-}
-.account-password-form label {
-  display: grid;
-  gap: var(--space-1-5);
-  font-size: var(--text-base);
-}
-.settings-tool-status {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-2);
-  border-top: 1px solid var(--line);
-  padding-top: var(--space-4);
-  font-size: var(--text-base);
-}
-.settings-section .settings-source {
-  font-size: var(--text-base);
-  color: var(--muted);
-}
-.settings-source a {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  white-space: nowrap;
-}
-@media (max-width: 760px) {
   .settings-content,
   .settings-import {
-    gap: var(--space-4);
+    display: grid;
+    gap: var(--space-5);
+    min-width: 0;
+  }
+  .settings-section {
+    min-width: 0;
+    margin: 0;
+    scroll-margin-top: 72px;
   }
   .settings-section-heading {
-    gap: var(--space-3);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  /* The text block (heading and description) stacks; actions keep their own row. */
+  .settings-section-heading > div:first-child,
+  .settings-tool > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .settings-tool > div:first-child {
+    gap: var(--space-1-5);
+  }
+  .settings-section-heading h2 {
+    font-size: var(--text-2xl);
+  }
+  .settings-section-heading p {
+    color: var(--muted);
+    font-size: var(--text-base);
   }
   .settings-tool {
-    align-items: stretch;
-    flex-direction: column;
-    gap: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
     padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .settings-tool h3 {
+    font-size: var(--text-lg);
+  }
+  .settings-tool p {
+    max-width: 64ch;
+    color: var(--muted);
+    font-size: var(--text-base);
   }
   .settings-tool button {
-    flex: auto;
+    flex: 0 0 220px;
   }
-  .settings-tool-row .button-row {
-    justify-content: flex-start;
+  /* A row whose commands are a wrapping group of compact actions (courses, accounts). */
+  .settings-tool-row .button-row,
+  .settings-tool-actions {
+    flex: none;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
   .settings-tool-actions {
-    justify-items: start;
+    justify-items: end;
+  }
+  .settings-tool-row .button-row .action-control {
+    flex: none;
+  }
+  .account-password-form {
+    align-items: flex-end;
   }
   .account-password-form label {
-    flex: 1 1 100%;
+    display: grid;
+    gap: var(--space-1-5);
+    font-size: var(--text-base);
   }
-}
-/* Server settings: one disclosure per group, fields in a wrapping grid. */
-.server-settings {
-  display: grid;
-  gap: var(--space-3);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--line);
-}
-.server-settings-fields {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
-  gap: var(--space-4) var(--space-5);
-  padding: var(--space-3) 0 var(--space-2);
-}
-.server-setting {
-  display: grid;
-  align-content: start;
-  gap: var(--space-1-5);
-  font-size: var(--text-base);
-}
-/* A checkbox beside its label: the shared row for Settings (Sound, Server) and the
-   lesson editor. Each use sets its own alignment and height. */
-.check-row {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-3);
-  cursor: pointer;
-}
-.check-row > input[type="checkbox"] {
-  flex: 0 0 20px;
-  width: 20px;
-  height: 20px;
-  margin: 0;
-  accent-color: var(--accent);
-}
-/* Server settings align the box with the label's first line. */
-.server-setting-check {
-  align-items: flex-start;
-  font-size: var(--text-base);
-}
-.server-setting-check > span {
-  display: grid;
-  gap: var(--space-1-5);
-}
-.server-setting small,
-.server-setting-check small {
-  color: var(--muted);
-  font-size: var(--text-sm);
-}
-.server-settings > .button-row {
-  justify-content: flex-start;
-}
-/* A row of several section commands goes under the heading on phones (Courses). */
-@media (max-width: 760px) {
-  .settings-section--stacked-actions .settings-section-heading {
+  .settings-tool-status {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: var(--space-2);
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-4);
+    font-size: var(--text-base);
   }
-}
+  .settings-section .settings-source {
+    font-size: var(--text-base);
+    color: var(--muted);
+  }
+  .settings-source a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    white-space: nowrap;
+  }
+  @media (max-width: 760px) {
+    .settings-content,
+    .settings-import {
+      gap: var(--space-4);
+    }
+    .settings-section-heading {
+      gap: var(--space-3);
+    }
+    .settings-tool {
+      align-items: stretch;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+    }
+    .settings-tool button {
+      flex: auto;
+    }
+    .settings-tool-row .button-row {
+      justify-content: flex-start;
+    }
+    .settings-tool-actions {
+      justify-items: start;
+    }
+    .account-password-form label {
+      flex: 1 1 100%;
+    }
+  }
+  /* Server settings: one disclosure per group, fields in a wrapping grid. */
+  .server-settings {
+    display: grid;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .server-settings-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: var(--space-4) var(--space-5);
+    padding: var(--space-3) 0 var(--space-2);
+  }
+  .server-setting {
+    display: grid;
+    align-content: start;
+    gap: var(--space-1-5);
+    font-size: var(--text-base);
+  }
+  /* A checkbox beside its label: the shared row for Settings (Sound, Server) and the
+   lesson editor. Each use sets its own alignment and height. */
+  .check-row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-3);
+    cursor: pointer;
+  }
+  .check-row > input[type="checkbox"] {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--accent);
+  }
+  /* Server settings align the box with the label's first line. */
+  .server-setting-check {
+    align-items: flex-start;
+    font-size: var(--text-base);
+  }
+  .server-setting-check > span {
+    display: grid;
+    gap: var(--space-1-5);
+  }
+  .server-setting small,
+  .server-setting-check small {
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .server-settings > .button-row {
+    justify-content: flex-start;
+  }
+  /* A row of several section commands goes under the heading on phones (Courses). */
+  @media (max-width: 760px) {
+    .settings-section--stacked-actions .settings-section-heading {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
 }

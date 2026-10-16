@@ -1,14 +1,19 @@
 import type { CoachUtterance } from "../dialogue/model";
 
 export const soundCues = [
-  "move", "capture", "castle", "promotion", "check", "mate", "correct", "retry",
+  "move",
+  "capture",
+  "castle",
+  "promotion",
+  "check",
+  "mate",
+  "correct",
+  "retry",
   "complete",
 ] as const;
-export type SoundCue = typeof soundCues[number];
-export const soundPalettes = [
-  "tabletop", "soft-objects", "retry-muted-tongue",
-] as const;
-export type SoundPalette = typeof soundPalettes[number];
+export type SoundCue = (typeof soundCues)[number];
+export const soundPalettes = ["tabletop", "soft-objects", "retry-muted-tongue"] as const;
+export type SoundPalette = (typeof soundPalettes)[number];
 export type SoundCategory = "board" | "practice";
 export type AudioPreferences = {
   enabled: boolean;
@@ -18,7 +23,11 @@ export type AudioPreferences = {
   voice: "off" | "manual" | "automatic";
 };
 export const defaultAudioPreferences: AudioPreferences = {
-  enabled: true, volume: .35, board: true, practice: true, voice: "automatic",
+  enabled: true,
+  volume: 0.35,
+  board: true,
+  practice: true,
+  voice: "automatic",
 };
 
 /** Only pass server-supplied SAN for an accepted/displayed move. No board inference. */
@@ -46,17 +55,6 @@ export type SoundRequest = {
 /** The utterance identity and arbitration fields that playback reads; never its text. */
 export type SpeechUtterance = Pick<CoachUtterance, "id" | "coachId" | "priority" | "interruptible">;
 
-/** A provider prepares a clip elsewhere; playback does not generate speech or choose text. */
-export type PreparedSpeechClip = {
-  utterance: SpeechUtterance;
-  buffer: AudioBuffer;
-  scope: string;
-  eventId?: string;
-  recordingId?: string;
-  /** An explicit Listen command may replace another scope's current narration. */
-  interruptCurrent?: boolean;
-};
-
 /** Approximate speech activity from a recording, not phonemes or recognized words. */
 export type SpeechActivity = {
   elapsedSeconds: number;
@@ -74,10 +72,16 @@ export type SpeechPlayback = {
   read: () => SpeechActivity | null;
 };
 
-/** A bundled recording of an existing utterance; playback never generates speech. */
-export type RecordedSpeechClip = Omit<PreparedSpeechClip, "buffer"> & {
+/** A bundled recording of an existing utterance; playback never generates speech or chooses text. */
+export type RecordedSpeechClip = {
+  utterance: SpeechUtterance;
+  scope: string;
+  eventId?: string;
+  recordingId?: string;
+  /** An explicit Listen command may replace another scope's current narration. */
+  interruptCurrent?: boolean;
   url: string;
   /** Recordings spoken back to back as this one playback (url is the first). */
-  sequence?: {urls: readonly string[]; gapSeconds: number};
+  sequence?: { urls: readonly string[]; gapSeconds: number };
   delayMs?: number;
 };

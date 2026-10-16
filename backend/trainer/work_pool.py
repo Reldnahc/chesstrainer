@@ -7,6 +7,9 @@ from trainer.cancellation import WaitCancelled, acquiring, wait_until
 
 
 class WorkPool:
+    """At most ``workers`` tasks run and as many again wait; ``submit`` blocks for a
+    slot, returns the task's Future, or None once ``cancelled()``."""
+
     def __init__(self, workers, name, cancelled):
         self.executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix=name)
         self.cancelled = cancelled
@@ -20,10 +23,10 @@ class WorkPool:
         try:
             wait_until(acquiring(self.slots), self.cancelled, interval=0.1)
         except WaitCancelled:
-            return False
+            return None
         if self.cancelled():
             self.slots.release()
-            return False
+            return None
         with self.lock:
             self.pending += 1
         try:
@@ -34,7 +37,7 @@ class WorkPool:
             self.slots.release()
             raise
         future.add_done_callback(self._finished)
-        return True
+        return future
 
     def _run(self, function, args):
         with self.lock:
@@ -46,18 +49,22 @@ class WorkPool:
                 self.active -= 1
 
     def _finished(self, future):
-        with self.lock:
-            self.pending -= 1
-            if error := future.exception():
-                self.errors.append(error)
-        self.slots.release()
+        try:
+            with self.lock:
+                self.pending -= 1
+                # A task dropped by close(cancel_waiting=True) has no exception to read.
+                if not future.cancelled() and (error := future.exception()):
+                    self.errors.append(error)
+        finally:
+            self.slots.release()
 
     def snapshot(self):
         with self.lock:
             return {"active": self.active, "pending": self.pending}
 
-    def close(self):
-        self.executor.shutdown(wait=True)
+    def close(self, *, cancel_waiting=False):
+        """Wait for running tasks; ``cancel_waiting`` drops tasks not yet started."""
+        self.executor.shutdown(wait=True, cancel_futures=cancel_waiting)
 
 
 class GameCompletion:

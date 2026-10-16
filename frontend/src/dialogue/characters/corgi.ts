@@ -1,105 +1,307 @@
-import type {CoachPersonality} from "../personality";
-import {corgiTacticalTemplates} from "./scopedTactics";
-import {corgiOpeningTemplates} from "./openingSequence";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
-export const corgi: CoachPersonality = {
-  version: "corgi-4", maxCharacters: 275, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
-  delivery: {pace: "lively", energy: "bright"},
-  behavior: {general: "mentor-first", praise: "reaction-first", correction: "mentor-first", questionFrequency: "none", directness: 5, emotionalAmplitude: 5, humor: 4, jargon: 2, playerAddress: "direct", sentenceLength: "short", metaphor: "rare", signature: "Short orders, enormous confidence, light field-manual language and a concrete job to do next."},
-  bible: {temperament: "Outsized confidence in a small commander; bold, practical and good-humored.", teaching: "Make the useful task sound worth tackling now, as a short order with a concrete reason.", rhythm: "A command or reaction, the consequence, then the next order. Short, spirited declarations.", celebration: "Triumphant approval for a proved resource, never for empty swagger.", correction: "Decisive about the move, then straight back to work: hold the post, reset, go again.", avoid: "Barking, baby talk, corgi jokes, mock insults, genuine aggression, questions, other coaches' sayings, or difficulty claims without the human-move model."},
+export const corgiTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} puts a {motif} on the board. Operation underway.",
+    played_possible: "{move} lays the groundwork for a {motif}, pending the replies.",
+    allowed_immediate: "Alert: {opponent} can reply {action}, arming a {motif}.",
+    allowed_possible:
+      "Later on, a {motif} could open for {opponent}; the replies will decide whether it materializes.",
+    missed_immediate: "{best} had a {motif} on the launch pad.",
+    missed_possible: "{best} might have opened a {motif}, pending the replies.",
+  },
+  fork: {
+    actual: "One piece now has the {targets} in its sights.",
+    possible: "The {targets} would be attacked, all from one post.",
+  },
+  material: "A {gain} may be in it, but both sides still have orders to give.",
+  capture: {
+    candidate: "{capture} would knock out a {piece}.",
+    followup: "Down the line, {capture} could remove a {piece}.",
+  },
+  playedCapture: {
+    fact: "{move} puts a {motif} into operation.",
+    consequence: "{capture} sends a {piece} off the field.",
+  },
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const corgiOpeningTemplates = {
+  "book-opening-entry-1": ["Straight from the manual: {opening}."],
+  "book-opening-entry-2": ["This move is in the field manual, under {opening}."],
+  "book-opening-entry-3": ["Recognized opening, on record as {opening}."],
+  "book-opening-follow-1": ["Still following the manual: {opening}."],
+  "book-opening-follow-2": ["Another move from the manual, in {opening}."],
+  "book-opening-follow-3": ["The manual covers the reply as well: {opening}."],
+  "book-opening-follow-4": ["The manual keeps going through {opening}."],
+  "book-opening-follow-5": ["Formation holds, still within {opening}."],
+  "book-opening-follow-6": ["{opening} keeps marching."],
+  "book-opening-follow-7": ["The drill continues in {opening}."],
+  "book-opening-follow-8": ["Manual entry again: {opening}. A listing, not a ruling."],
+} as const;
+
+export const corgi = coachPersonality({
+  version: "corgi-4",
+  maxCharacters: 275,
+  maxClaims: 2,
+  delivery: { pace: "lively", energy: "bright" },
+  behavior: {
+    general: "mentor-first",
+    praise: "reaction-first",
+    correction: "mentor-first",
+    questionFrequency: "none",
+    directness: 5,
+    emotionalAmplitude: 5,
+    humor: 4,
+    jargon: 2,
+    playerAddress: "direct",
+    sentenceLength: "short",
+    metaphor: "rare",
+    signature:
+      "Short orders, enormous confidence, light field-manual language and a concrete job to do next.",
+  },
+  bible: {
+    temperament: "Outsized confidence in a small commander; bold, practical and good-humored.",
+    teaching:
+      "Make the useful task sound worth tackling now, as a short order with a concrete reason.",
+    rhythm:
+      "A command or reaction, the consequence, then the next order. Short, spirited declarations.",
+    celebration: "Triumphant approval for a proved resource, never for empty swagger.",
+    correction:
+      "Decisive about the move, then straight back to work: hold the post, reset, go again.",
+    avoid:
+      "Barking, baby talk, corgi jokes, mock insults, genuine aggression, questions, other coaches' sayings, or difficulty claims without the human-move model.",
+  },
   templates: {
     ...corgiTacticalTemplates,
     ...corgiOpeningTemplates,
     allowed_mate: [
-      {reaction: "Priority alert.", fact: "{opponent} can force checkmate now.", consequence: "{reply}"},
-      {fact: "Forced checkmate is now on for {opponent}. {reply}", takeaway: "Retrace the defense."},
+      {
+        reaction: "Priority alert.",
+        fact: "{opponent} can force checkmate now.",
+        consequence: "{reply}",
+      },
+      {
+        fact: "Forced checkmate is now on for {opponent}. {reply}",
+        takeaway: "Retrace the defense.",
+      },
     ],
     missed_mate: [
       "{best} had forced mate available. This move stands down instead.",
-      {reaction: "Mate on the board, and it got away!", fact: "{best} had a forced checkmate ready, and this move never gives the order.", takeaway: "When mate is available, mate is the order."},
+      {
+        reaction: "Mate on the board, and it got away!",
+        fact: "{best} had a forced checkmate ready, and this move never gives the order.",
+        takeaway: "When mate is available, mate is the order.",
+      },
     ],
     tactic_played: [
-      {reaction: "Operation success!", fact: "In the searched line, {move} executes a {motif}.", consequence: "{detail}"},
-      {fact: "With {move}, a {motif} goes into action in the searched line.", consequence: "{detail}"},
+      {
+        reaction: "Operation success!",
+        fact: "In the searched line, {move} executes a {motif}.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "With {move}, a {motif} goes into action in the searched line.",
+        consequence: "{detail}",
+      },
     ],
     tactic_allowed: [
-      {reaction: "Alert!", fact: "The strongest line arms {opponent} with a {motif}.", consequence: "{detail}", takeaway: "Check what the other side can hit before moving."},
-      {fact: "In the strongest line, {opponent} ends up with a {motif} ready.", consequence: "{detail}"},
+      {
+        reaction: "Alert!",
+        fact: "The strongest line arms {opponent} with a {motif}.",
+        consequence: "{detail}",
+        takeaway: "Check what the other side can hit before moving.",
+      },
+      {
+        fact: "In the strongest line, {opponent} ends up with a {motif} ready.",
+        consequence: "{detail}",
+      },
     ],
     tactic_missed: [
-      {reaction: "Opportunity passed by. Regroup.", fact: "{best} had the {motif} primed.", consequence: "{detail}"},
-      {fact: "A {motif} was waiting in {best}. This move never gives the order.", consequence: "{detail}"},
+      {
+        reaction: "Opportunity passed by. Regroup.",
+        fact: "{best} had the {motif} primed.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "A {motif} was waiting in {best}. This move never gives the order.",
+        consequence: "{detail}",
+      },
     ],
-    cause_abandoned_defender: [{reaction: "Hold the post!", fact: "{move} takes the only unpinned defender of {side}'s {piece} on {square} off duty.", consequence: "{opponent} can capture the {piece} with {reply}.", takeaway: "Before a defender moves, review its duties."}],
-    cause_opponent_threat_recognition: [{reaction: "Unanswered threat!", fact: "{side}'s {piece} on {square} came under attack from the opponent's preceding move, and {move} doesn't move it.", consequence: "{opponent} can capture it with {reply}."}],
-    cause_avoiding_bad_trades: [{reaction: "Tally the full trade.", fact: "{move} spends {side}'s {piece} on a {captured}.", consequence: "{opponent} can recapture with {reply}, and that costs more than it gained."}],
+    cause_abandoned_defender: [
+      {
+        reaction: "Hold the post!",
+        fact: "{move} takes the only unpinned defender of {side}'s {piece} on {square} off duty.",
+        consequence: "{opponent} can capture the {piece} with {reply}.",
+        takeaway: "Before a defender moves, review its duties.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        reaction: "Unanswered threat!",
+        fact: "{side}'s {piece} on {square} came under attack from the opponent's preceding move, and {move} doesn't move it.",
+        consequence: "{opponent} can capture it with {reply}.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        reaction: "Tally the full trade.",
+        fact: "{move} spends {side}'s {piece} on a {captured}.",
+        consequence: "{opponent} can recapture with {reply}, and that costs more than it gained.",
+      },
+    ],
     sacrifice: [
-      {reaction: "Bold, and backed up!", fact: "Even when accepted, the sacrifice stands up in the searched line."},
+      {
+        reaction: "Bold, and backed up!",
+        fact: "Even when accepted, the sacrifice stands up in the searched line.",
+      },
       "Offer accepted, idea intact, in the searched line.",
     ],
     only_move: [
-      {reaction: "Held the line!", fact: "No searched move but this one kept the position playable.", takeaway: "Keep that resource on file."},
+      {
+        reaction: "Held the line!",
+        fact: "No searched move but this one kept the position playable.",
+        takeaway: "Keep that resource on file.",
+      },
       "All other searched moves lost; this one stood firm.",
     ],
-    decisive_resource: ["Only this searched move kept the decisive advantage. Every other one gave it up."],
+    decisive_resource: [
+      "Only this searched move kept the decisive advantage. Every other one gave it up.",
+    ],
     reply_capture: ["Incoming: {reply} lets {opponent} capture {side}'s {piece}."],
     reply_check: ["Check on the way! {opponent} answers best with {reply}."],
     alternative: ["The engine's orders were {best}: {evaluation} for the mover."],
     loss: [
-      {reaction: "That costs.", fact: "Cost report: {loss} pawns of evaluation against the best move.", takeaway: "Inspect the stronger line."},
+      {
+        reaction: "That costs.",
+        fact: "Cost report: {loss} pawns of evaluation against the best move.",
+        takeaway: "Inspect the stronger line.",
+      },
       "Next to the best move, this costs {loss} pawns of evaluation. Check the reply.",
     ],
     best: [
-      {reaction: "Top-notch!", fact: "Very little of the position's value left behind."},
+      { reaction: "Top-notch!", fact: "Very little of the position's value left behind." },
       "Strong, and the engine agrees: almost nothing given away.",
     ],
     good: [
-      {reaction: "Solid footing.", fact: "The bulk of the position's value is held."},
+      { reaction: "Solid footing.", fact: "The bulk of the position's value is held." },
       "Sound, and most of the position's value holds.",
     ],
     uncertain_reason: ["{best} is stronger, and the reason isn't clear yet. No guessing."],
-    human_natural_error: [{reaction: "Tempting, yes. Correct, no.", fact: "The human-move model calls it natural, but the reply makes it costly.", takeaway: "Inspect the reply before you commit to a move."}],
-    human_rare: ["The human-move model didn't expect this, and it holds up against the engine's reply. Bold works."],
-    difficult_defense: ["{best} would have held. The human-move model says it was hard to find; put it on the study board."],
-    human_challenging: [{fact: "{best} was a tough spot, according to the human-move model.", takeaway: "Put that resource on the study board."}],
-    human_defense_found: [{reaction: "Held the line!", fact: "{best} kept the position playable, and the human-move model says that defense was hard to find."}],
-    human_natural_best: ["Natural by the human-move model's count, and the engine's best. Orders confirmed."],
-    human_natural_strong: ["Natural by the human-move model, strong by the engine, and the engine's favorite is another move."],
+    human_natural_error: [
+      {
+        reaction: "Tempting, yes. Correct, no.",
+        fact: "The human-move model calls it natural, but the reply makes it costly.",
+        takeaway: "Inspect the reply before you commit to a move.",
+      },
+    ],
+    human_rare: [
+      "The human-move model didn't expect this, and it holds up against the engine's reply. Bold works.",
+    ],
+    difficult_defense: [
+      "{best} would have held. The human-move model says it was hard to find; put it on the study board.",
+    ],
+    human_challenging: [
+      {
+        fact: "{best} was a tough spot, according to the human-move model.",
+        takeaway: "Put that resource on the study board.",
+      },
+    ],
+    human_defense_found: [
+      {
+        reaction: "Held the line!",
+        fact: "{best} kept the position playable, and the human-move model says that defense was hard to find.",
+      },
+    ],
+    human_natural_best: [
+      "Natural by the human-move model's count, and the engine's best. Orders confirmed.",
+    ],
+    human_natural_strong: [
+      "Natural by the human-move model, strong by the engine, and the engine's favorite is another move.",
+    ],
     book: ["That is {opening}. Standard drill."],
     book_sound: ["Known route: {opening}.", "The manual recognizes {opening} here."],
     departure: ["End of our manual. From here, there are no more pages to check."],
-    recovery: [{reaction: "Back in the fight!", fact: "After {earlier}, the position is back in playable shape.{help}", takeaway: "Press on."}],
-    punishment: ["Chance seized! This move exploits the opening the opponent handed {side} at {earlier}."],
-    missed_punishment: ["Chance passed up. {side} got an opening from the opponent at {earlier}, and this move lets it go."],
-    repeated: ["The {motif} issue has turned up {count} times in the reviewed game. Put it on the drill list."],
-    support_restored: ["Support restored! At {earlier} the {piece} stood unguarded; now someone's guarding it."],
+    recovery: [
+      {
+        reaction: "Back in the fight!",
+        fact: "After {earlier}, the position is back in playable shape.{help}",
+        takeaway: "Press on.",
+      },
+    ],
+    punishment: [
+      "Chance seized! This move exploits the opening the opponent handed {side} at {earlier}.",
+    ],
+    missed_punishment: [
+      "Chance passed up. {side} got an opening from the opponent at {earlier}, and this move lets it go.",
+    ],
+    repeated: [
+      "The {motif} issue has turned up {count} times in the reviewed game. Put it on the drill list.",
+    ],
+    support_restored: [
+      "Support restored! At {earlier} the {piece} stood unguarded; now someone's guarding it.",
+    ],
     erosion: ["Concession logged. Since {earlier}, they've added up and worn the position down."],
-    conversion: ["Advantage converted! {side}'s edge held from {earlier} to the win: mission accomplished."],
+    conversion: [
+      "Advantage converted! {side}'s edge held from {earlier} to the win: mission accomplished.",
+    ],
     history: ["Drill list: the {motif} issue also appears in {games} other saved games."],
-    development: [{reaction: "Unit deployed!", fact: "{lead}develops the {piece} from its original square."}],
-    rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Clear lines are worth holding."],
-    passed: ["{lead}leaves {side} with passed pawns on {squares}, the road clear of enemy pawns on those and neighboring files. Mark them."],
+    development: [
+      { reaction: "Unit deployed!", fact: "{lead}develops the {piece} from its original square." },
+    ],
+    rook_file: [
+      "{lead}leaves {side}'s rook on a {kind} {file}-file. Clear lines are worth holding.",
+    ],
+    passed: [
+      "{lead}leaves {side} with passed pawns on {squares}, the road clear of enemy pawns on those and neighboring files. Mark them.",
+    ],
     passer_advance: ["Forward march: {lead}advances the passed pawn to {square}."],
-    isolated: ["{lead}leaves {side} with isolated pawns on {squares}, no backup on either neighboring file."],
+    isolated: [
+      "{lead}leaves {side} with isolated pawns on {squares}, no backup on either neighboring file.",
+    ],
     support: ["Reinforcements: {lead}protects the {piece} on {square}."],
-    unsupported: ["{lead}leaves the {piece} on {square} undefended. That alone doesn't make it lost. Keep watch."],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} undefended. That alone doesn't make it lost. Keep watch.",
+    ],
     flights: ["Exit route: {lead}opens {squares} as a legal flight square for the king."],
     castle: ["{lead}castles the king to {square}, and the rook redeploys with it."],
     bishops: ["{lead}removes {side}'s pair of opposite-colored bishops. Update the count."],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}. Inspect the structure."],
-    mate_win: [{reaction: "Mission complete!", fact: "Checkmate. The opposing king has no legal escape."}],
-    mate_loss: [{fact: "Checkmate, with no escape for your king.", takeaway: "Regroup and work on the defense."}],
+    mate_win: [
+      { reaction: "Mission complete!", fact: "Checkmate. The opposing king has no legal escape." },
+    ],
+    mate_loss: [
+      {
+        fact: "Checkmate, with no escape for your king.",
+        takeaway: "Regroup and work on the defense.",
+      },
+    ],
     draw: ["Draw declared. Take the useful lessons and move on."],
-    cold: [{fact: "Survey the board, then make the call."}],
-    thinking: [{fact: "Running the strongest reply through its paces…"}],
-    unavailable: [{fact: "The engine hasn't reported anything reliable.", takeaway: "No guessing. Leave the question open."}],
+    cold: [{ fact: "Survey the board, then make the call." }],
+    thinking: [{ fact: "Running the strongest reply through its paces…" }],
+    unavailable: [
+      {
+        fact: "The engine hasn't reported anything reliable.",
+        takeaway: "No guessing. Leave the question open.",
+      },
+    ],
     practice_error: ["That attempt didn't report back. Send that move in again."],
-    retry: [{reaction: "Negative.", fact: "That attempt falls short.", takeaway: "Reset and give the position a new answer."}],
-    recovered: [{reaction: "Adjustment made!", fact: "{detail}", takeaway: "Keep that lesson."}],
-    accepted: [{reaction: "Confirmed.", fact: "{detail}", takeaway: "Keep the reason in the kit."}],
-    explanation: [{reaction: "Briefing.", fact: "{detail}"}],
+    retry: [
+      {
+        reaction: "Negative.",
+        fact: "That attempt falls short.",
+        takeaway: "Reset and give the position a new answer.",
+      },
+    ],
+    recovered: [{ reaction: "Adjustment made!", fact: "{detail}", takeaway: "Keep that lesson." }],
+    accepted: [
+      { reaction: "Confirmed.", fact: "{detail}", takeaway: "Keep the reason in the kit." },
+    ],
+    explanation: [{ reaction: "Briefing.", fact: "{detail}" }],
     explanation_summary: ["Key point: {detail}"],
     variation: ["Alternate route report: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});

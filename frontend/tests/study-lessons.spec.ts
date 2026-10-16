@@ -1,8 +1,11 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 import { expectReturnAction } from "./return-action";
 
-const preferences = new WeakMap<Page, { coach: Schema["CoachPreferences"]; motion: Schema["MotionPreferences"] }>();
+const preferences = new WeakMap<
+  Page,
+  { coach: Schema["CoachPreferences"]; motion: Schema["MotionPreferences"] }
+>();
 test.beforeEach(async ({ page }) => {
   preferences.set(page, {
     coach: await (await page.request.get("/api/preferences/coach")).json(),
@@ -12,13 +15,18 @@ test.beforeEach(async ({ page }) => {
 });
 test.afterEach(async ({ page }) => {
   const original = preferences.get(page)!;
-  expect((await page.request.put("/api/preferences/coach", { data: original.coach })).ok()).toBe(true);
-  expect((await page.request.put("/api/preferences/motion", { data: original.motion })).ok()).toBe(true);
+  expect((await page.request.put("/api/preferences/coach", { data: original.coach })).ok()).toBe(
+    true,
+  );
+  expect((await page.request.put("/api/preferences/motion", { data: original.motion })).ok()).toBe(
+    true,
+  );
 });
 async function fixture(page: Page, key: string) {
   const response = await page.request.post(`/__test/lesson-fixture/${key}`);
   expect(response.ok()).toBe(true);
-  const value: { session_id: string; course_id: string; revision: string; chapter_id: string } = await response.json();
+  const value: { session_id: string; course_id: string; revision: string; chapter_id: string } =
+    await response.json();
   return { ...value, path: `/study/openings/sessions/${value.session_id}` };
 }
 async function saved(page: Page, id: string): Promise<Schema["LessonSessionView"]> {
@@ -27,14 +35,18 @@ async function saved(page: Page, id: string): Promise<Schema["LessonSessionView"
   return response.json();
 }
 async function command(page: Page, label: string) {
-  const response = page.waitForResponse(value => value.url().includes("/lesson-sessions/") && value.url().endsWith("/command"));
+  const response = page.waitForResponse(
+    value => value.url().includes("/lesson-sessions/") && value.url().endsWith("/command"),
+  );
   await page.getByRole("button", { name: label, exact: true }).click();
   const result = await response;
   expect(result.ok()).toBe(true);
   return result.json() as Promise<Schema["LessonSessionView"]>;
 }
 async function move(page: Page, uci: string) {
-  const response = page.waitForResponse(value => value.url().includes("/lesson-sessions/") && value.url().endsWith("/command"));
+  const response = page.waitForResponse(
+    value => value.url().includes("/lesson-sessions/") && value.url().endsWith("/command"),
+  );
   await page.locator(`.board-shell [data-square="${uci.slice(0, 2)}"]`).click();
   await page.locator(`.board-shell [data-square="${uci.slice(2, 4)}"]`).click();
   if (uci.length === 5) await page.getByRole("button", { name: "Queen", exact: true }).click();
@@ -42,7 +54,8 @@ async function move(page: Page, uci: string) {
   expect(result.ok()).toBe(true);
   return result.json() as Promise<Schema["LessonSessionView"]>;
 }
-const piece = (page: Page, square: string, symbol: string) => page.locator(`.board-shell [data-square="${square}"] [data-piece="${symbol}"]`);
+const piece = (page: Page, square: string, symbol: string) =>
+  page.locator(`.board-shell [data-square="${square}"] [data-piece="${symbol}"]`);
 async function reachDecision(page: Page) {
   await command(page, "Continue");
   // A demonstration that ends where the next step starts goes straight on.
@@ -50,7 +63,9 @@ async function reachDecision(page: Page) {
   await expect(page.getByRole("heading", { name: "Develop a knight", exact: true })).toBeVisible();
 }
 
-test("the connected lesson preserves Back, guidance, branch return, full-game context and independent rehearsal", async ({ page }, info) => {
+test("the connected lesson preserves Back, guidance, branch return, full-game context and independent rehearsal", async ({
+  page,
+}, info) => {
   const lesson = await fixture(page, `journey-${info.project.name}`);
   await page.goto(lesson.path);
   await expect(page.getByRole("heading", { name: "Start from the beginning" })).toBeVisible();
@@ -82,14 +97,25 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   const viewport = page.viewportSize()!;
   await page.setViewportSize({ width: 320, height: 700 });
   await expectReturnAction(branchReturn);
-  expect(await branchReturn.evaluate(element => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
+  expect(
+    await branchReturn.evaluate(element => element.scrollWidth <= element.clientWidth + 1),
+  ).toBe(true);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.setViewportSize(viewport);
   expect((await saved(page, lesson.session_id)).history).toEqual(branch.history);
   await page.getByRole("link", { name: "Settings", exact: true }).click();
-  await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
-  const radio = page.getByRole("radio", { name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Walter" : "Scout", exact: true });
-  const preference = page.waitForResponse(response => response.url().endsWith("/api/preferences/coach") && response.request().method() === "PATCH");
+  await page
+    .getByRole("navigation", { name: "Settings sections" })
+    .getByRole("link", { name: "Coach & animations", exact: true })
+    .click();
+  const radio = page.getByRole("radio", {
+    name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Walter" : "Scout",
+    exact: true,
+  });
+  const preference = page.waitForResponse(
+    response =>
+      response.url().endsWith("/api/preferences/coach") && response.request().method() === "PATCH",
+  );
   await radio.click();
   expect((await preference).ok()).toBe(true);
   await expect(radio).toBeChecked();
@@ -116,7 +142,9 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   await expect(page.locator('.board-shell [data-square="c3"] .playback-highlight')).toHaveCount(0);
   await page.reload();
   await expect(page.getByRole("button", { name: "Return to lesson" })).toBeVisible();
-  expect(await expectReturnAction(page.getByRole("button", { name: "Return to lesson", exact: true }))).toEqual(returnPresentation);
+  expect(
+    await expectReturnAction(page.getByRole("button", { name: "Return to lesson", exact: true })),
+  ).toEqual(returnPresentation);
   const closed = await command(page, "Return to lesson");
   expect(closed.fen).toBe(excerpt.fen);
   expect(closed.history).toEqual(excerpt.history);
@@ -130,7 +158,8 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   await move(page, "g1f3");
   await expect(piece(page, "c6", "bN")).toBeVisible();
   await move(page, "f1c4");
-  if ((await saved(page, lesson.session_id)).status !== "completed") await command(page, "Continue");
+  if ((await saved(page, lesson.session_id)).status !== "completed")
+    await command(page, "Continue");
   await expect(page.getByRole("heading", { name: "Chapter completed." })).toBeVisible();
   const complete = await saved(page, lesson.session_id);
   expect(complete.status).toBe("completed");
@@ -148,7 +177,10 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
     });
     expect(positions.coachBottom).toBeLessThan(positions.boardTop);
   }
-  await page.screenshot({ path: `test-results/connected-lesson-${info.project.name}.png`, fullPage: true });
+  await page.screenshot({
+    path: `test-results/connected-lesson-${info.project.name}.png`,
+    fullPage: true,
+  });
 });
 
 test("an accepted alternate decision follows its own continuation", async ({ page }, info) => {
@@ -165,7 +197,9 @@ test("an accepted alternate decision follows its own continuation", async ({ pag
   await expect(page.getByRole("button", { name: "Explore alternative" })).toHaveCount(0);
 });
 
-test("reload during a demonstration restores its committed end without replaying or completing twice", async ({ page }, info) => {
+test("reload during a demonstration restores its committed end without replaying or completing twice", async ({
+  page,
+}, info) => {
   const lesson = await fixture(page, `demo-${info.project.name}`);
   await page.request.put("/api/preferences/motion", { data: { motion: "natural" } });
   await page.goto(lesson.path);
@@ -182,7 +216,9 @@ test("reload during a demonstration restores its committed end without replaying
   await expect(page.getByRole("heading", { name: "Develop a knight" })).toBeVisible();
 });
 
-test("the lesson library resumes saved content and opens a chapter without exposing step answers", async ({ page }, info) => {
+test("the lesson library resumes saved content and opens a chapter without exposing step answers", async ({
+  page,
+}, info) => {
   const lesson = await fixture(page, `library-${info.project.name}`);
   await page.goto("/study/openings");
   await expect(page.getByRole("heading", { name: "Continue learning" })).toBeVisible();
@@ -190,38 +226,56 @@ test("the lesson library resumes saved content and opens a chapter without expos
   await resume.click();
   await expect(page.getByRole("heading", { name: "Start from the beginning" })).toBeVisible();
   await page.getByRole("link", { name: "Chapters", exact: true }).click();
-  await expect(page).toHaveURL(`/study/openings/courses/${lesson.course_id}?revision=${lesson.revision}`);
+  await expect(page).toHaveURL(
+    `/study/openings/courses/${lesson.course_id}?revision=${lesson.revision}`,
+  );
   await expect(page.getByRole("heading", { name: "A complete lesson journey" })).toBeVisible();
   await expect(page.locator(".lesson-chapters")).not.toContainText("Nf3");
   await page.getByRole("button", { name: "Start", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Start from the beginning" })).toBeVisible();
 });
 
-test("Study home opens Lessons, whose Fundamentals tab alone lists the tactics and fundamentals courses", async ({ page }) => {
+test("Study home opens Lessons, whose Fundamentals tab alone lists the tactics and fundamentals courses", async ({
+  page,
+}) => {
   const skillTitles = ["Fundamentals · Six basic skills", "Tactics · Six basic patterns"];
   await page.goto("/study");
   await expect(page.locator(".study-option h2")).toHaveText(["Due now", "Lessons", "Puzzles"]);
-  const card = page.locator(".study-option").filter({ has: page.getByRole("heading", { name: "Lessons", exact: true }) });
+  const card = page
+    .locator(".study-option")
+    .filter({ has: page.getByRole("heading", { name: "Lessons", exact: true }) });
   await expect(card.locator("dt")).toHaveText(/^Chapters? to learn$/);
   await expect(card.locator("dd")).toHaveText(/^\d+$/);
   await card.getByRole("link", { name: "Open lessons", exact: true }).click();
   await expect(page).toHaveURL("/study/openings");
   await expect(page.getByRole("heading", { level: 1, name: "Lessons" })).toBeVisible();
   const sections = page.getByRole("navigation", { name: "Lesson sections" });
-  await expect(sections.getByRole("link", { name: "Openings", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(sections.getByRole("link", { name: "Openings", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
   await sections.getByRole("link", { name: "Fundamentals", exact: true }).click();
   await expect(page).toHaveURL("/study/skills");
-  await expect(sections.getByRole("link", { name: "Fundamentals", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(sections.getByRole("link", { name: "Fundamentals", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
   await expect(page.locator(".lesson-course-card h2")).toHaveText(skillTitles);
   await page.getByRole("link", { name: new RegExp(skillTitles[0]) }).click();
   await expect(page).toHaveURL(/\/study\/skills\/courses\/chess-fundamentals\?revision=/);
-  await expect(page.getByRole("link", { name: "All fundamentals", exact: true })).toHaveAttribute("href", "/study/skills");
+  await expect(page.getByRole("link", { name: "All fundamentals", exact: true })).toHaveAttribute(
+    "href",
+    "/study/skills",
+  );
   await page.goto("/study/openings");
   await expect(page.locator(".lesson-course-card").first()).toBeVisible();
-  for (const title of skillTitles) await expect(page.locator(".lesson-course-card", { hasText: title })).toHaveCount(0);
+  for (const title of skillTitles)
+    await expect(page.locator(".lesson-course-card", { hasText: title })).toHaveCount(0);
 });
 
-test("Still motion shows the committed demonstration without a playback phase", async ({ page }, info) => {
+test("Still motion shows the committed demonstration without a playback phase", async ({
+  page,
+}, info) => {
   const lesson = await fixture(page, `still-${info.project.name}`);
   await page.goto(lesson.path);
   await command(page, "Continue");
@@ -229,7 +283,9 @@ test("Still motion shows the committed demonstration without a playback phase", 
   const observed = await page.evaluateHandle(() => {
     const titles: string[] = [];
     const target = document.querySelector(".coach-title")!;
-    const observer = new MutationObserver(() => { titles.push(target.textContent || ""); });
+    const observer = new MutationObserver(() => {
+      titles.push(target.textContent || "");
+    });
     observer.observe(target, { childList: true, subtree: true, characterData: true });
     return { titles, observer };
   });
@@ -239,7 +295,9 @@ test("Still motion shows the committed demonstration without a playback phase", 
     await expect(piece(page, "e4", "wP")).toBeVisible();
     await expect(piece(page, "e5", "bP")).toBeVisible();
     await expect(page.locator(".coach-title")).toHaveText("Develop a knight");
-    expect(await observed.evaluate(value => value.titles)).not.toContain("Follow the continuation.");
+    expect(await observed.evaluate(value => value.titles)).not.toContain(
+      "Follow the continuation.",
+    );
     const resumed = await saved(page, lesson.session_id);
     expect(resumed.step.id).toBe("develop");
     expect(resumed.history.map(frame => frame.uci)).toEqual(["e2e4", "e7e5"]);
@@ -249,12 +307,18 @@ test("Still motion shows the committed demonstration without a playback phase", 
   }
 });
 
-test("leaving during a lesson command discards late feedback and resumes committed progress", async ({ page }, info) => {
+test("leaving during a lesson command discards late feedback and resumes committed progress", async ({
+  page,
+}, info) => {
   const lesson = await fixture(page, `leaving-${info.project.name}`);
   const errors: string[] = [];
-  page.on("pageerror", error => { errors.push(error.message); });
+  page.on("pageerror", error => {
+    errors.push(error.message);
+  });
   let release!: () => void;
-  const gate = new Promise<void>(resolve => { release = resolve; });
+  const gate = new Promise<void>(resolve => {
+    release = resolve;
+  });
   let handled: Promise<void> | undefined;
   const pattern = `**/api/study/lesson-sessions/${lesson.session_id}/command`;
   await page.route(pattern, route => {
@@ -287,10 +351,14 @@ test("leaving during a lesson command discards late feedback and resumes committ
   }
 });
 
-test("a new lesson explanation returns its scroll bubble to the start without replacing the coach or losing focus", async ({ page }, info) => {
+test("a new lesson explanation returns its scroll bubble to the start without replacing the coach or losing focus", async ({
+  page,
+}, info) => {
   const lesson = await fixture(page, `message-scroll-${info.project.name}`);
   let release!: () => void;
-  const gate = new Promise<void>(resolve => { release = resolve; });
+  const gate = new Promise<void>(resolve => {
+    release = resolve;
+  });
   let handled: Promise<void> | undefined;
   const pattern = `**/api/study/lesson-sessions/${lesson.session_id}**`;
   await page.route(pattern, route => {
@@ -313,9 +381,13 @@ test("a new lesson explanation returns its scroll bubble to the start without re
     avatar: document.querySelector(".coach-avatar"),
   }));
   try {
-    await message.evaluate(element => { element.scrollTop = element.scrollHeight; });
+    await message.evaluate(element => {
+      element.scrollTop = element.scrollHeight;
+    });
     expect(await message.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
-    const pending = page.waitForResponse(response => response.url().endsWith(`/lesson-sessions/${lesson.session_id}/command`));
+    const pending = page.waitForResponse(response =>
+      response.url().endsWith(`/lesson-sessions/${lesson.session_id}/command`),
+    );
     await page.getByRole("button", { name: "Continue", exact: true }).click();
     await message.focus();
     release();
@@ -323,11 +395,13 @@ test("a new lesson explanation returns its scroll bubble to the start without re
     await handled;
     await expect(message).toContainText("Next explanation.");
     await expect.poll(() => message.evaluate(element => element.scrollTop)).toBe(0);
-    expect(await original.evaluate(value => ({
-      sameMessage: value.message === document.querySelector(".coach-message"),
-      sameAvatar: value.avatar === document.querySelector(".coach-avatar"),
-      focused: value.message === document.activeElement,
-    }))).toEqual({ sameMessage: true, sameAvatar: true, focused: true });
+    expect(
+      await original.evaluate(value => ({
+        sameMessage: value.message === document.querySelector(".coach-message"),
+        sameAvatar: value.avatar === document.querySelector(".coach-avatar"),
+        focused: value.message === document.activeElement,
+      })),
+    ).toEqual({ sameMessage: true, sameAvatar: true, focused: true });
   } finally {
     release();
     await handled;

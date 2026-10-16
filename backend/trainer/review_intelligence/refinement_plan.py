@@ -1,10 +1,18 @@
 """Finite nominations from baseline facts only; refined outputs never nominate themselves."""
 
 from trainer.chess_core import Score, digest, evaluation_loss
+from trainer.game_review import promote_stronger_played
 from trainer.review_intelligence.difficulty import assess_difficulty
 from trainer.review_scores import GRADE_BOUNDARIES, MISTAKE_CP, is_near_best
 
 VERSION = "refinement-1"
+
+# A loss this large is worth a deeper search to confirm, even when a finding
+# already explains it.
+LARGE_CONCESSION_CP = 150
+# A near-best move whose second choice trails by this much may have been the
+# only good move, so the alternatives are searched again.
+CRITICAL_ALTERNATIVE_CP = 120
 
 
 # Triggers whose question is which alternative is best, so refinement searches
@@ -45,7 +53,7 @@ def nominate(report):
     triggers = []  # (priority, trigger); BROAD_TRIGGERS also widen the search.
     if loss.allows_mate or loss.mate_lost:
         triggers.append((1000, "mate_transition"))
-    if (loss.cp or 0) >= 150:
+    if (loss.cp or 0) >= LARGE_CONCESSION_CP:
         triggers.append((800 + min(loss.cp, 500) / 10, "large_concession"))
     if report.get("sacrifice"):
         triggers.append((780, "verify_sacrifice"))
@@ -57,9 +65,12 @@ def nominate(report):
         and report.get("second_score") is not None
     ):
         gap = evaluation_loss(best, Score.model_validate(report["second_score"]))
-        if (gap.cp or 0) >= 120 or gap.mate_lost or gap.allows_mate:
+        if (gap.cp or 0) >= CRITICAL_ALTERNATIVE_CP or gap.mate_lost or gap.allows_mate:
             triggers.append((740, "critical_alternative"))
-    if practical.best_naturalness == "unusual":
+    # Human evidence scores the move shown as best, a promoted played move included.
+    shown = promote_stronger_played(report)
+    human_view = practical if shown is report else assess_difficulty(shown)
+    if human_view.best_naturalness == "unusual":
         triggers.append((700, "human_disagreement"))
     if (loss.cp or 0) >= MISTAKE_CP and not report["actual_line"]["findings"]:
         triggers.append((680, "unexplained_concession"))

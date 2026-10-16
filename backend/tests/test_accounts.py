@@ -29,6 +29,7 @@ def test_disabled_accounts_use_local_workspace_without_exposing_accounts(setting
     alice = Accounts(settings.database_path).create("alice", "testing-password")
     with account_sessions(engine, alice["id"])() as db:
         import_games(db, "private", PGN, [], "white")
+        db.commit()
         private_game = db.scalar(select(Game.id))
     engine.dispose()
 
@@ -244,6 +245,7 @@ def test_database_scope_aggregates_updates_and_references(settings):
     sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
+        db.commit()
         game_id = db.scalar(select(Game.id))
         job = AnalysisJob(kind="classification")
         db.add(job)
@@ -275,6 +277,7 @@ def test_bulk_writes_cannot_cross_accounts(settings):
     sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
+        db.commit()
         game_id = db.scalar(select(Game.id))
     with sb() as db:
         with pytest.raises(ValueError, match="Bulk writes"):
@@ -341,29 +344,57 @@ def test_account_migration_preserves_existing_learning_history(settings):
             ]
             for table in tables
         }
+        columns_before = {
+            table: {row[1] for row in connection.exec_driver_sql(f'PRAGMA table_info("{table}")')}
+            for table in tables
+        }
     migrate(engine)
-    # Later migrations dropped the archived lesson tables and their link columns.
-    dropped = {"lesson_item_id", "repertoire_id"}
-    current = set(sqlalchemy.inspect(engine).get_table_names())
+    # Columns later migrations removed on purpose, by table; every other saved
+    # value must come through unchanged.
+    dropped = {
+        # The archived lesson and repertoire tables and their link columns.
+        "review_sessions": {"lesson_item_id"},
+        "exercises": {"repertoire_id", "orientation"},
+        # One representation per concept (values checked in test_migrations).
+        "games": {"played_on"},
+        # Hosted-model fields of classification runs.
+        "classification_runs": {"prompt_version", "input_tokens", "output_tokens"},
+        # Replayed board facts nothing read (backend audit 43, 3b3c1b0317ee).
+        "decisions": {"facts"},
+    }
+    inspector = sqlalchemy.inspect(engine)
+    current = set(inspector.get_table_names())
+    # Exactly the listed columns went, even from tables this fixture leaves empty.
+    assert {
+        table: columns - {column["name"] for column in inspector.get_columns(table)}
+        for table, columns in columns_before.items()
+        if table in current
+        and columns - {column["name"] for column in inspector.get_columns(table)}
+    } == dropped
     with engine.connect() as connection:
         for table, rows in before.items():
             if table not in current:
                 continue
-            rows = [{k: v for k, v in row.items() if k not in dropped} for row in rows]
+            gone = dropped.get(table, set())
+            rows = [{k: v for k, v in row.items() if k not in gone} for row in rows]
             after = [
                 dict(row)
                 for row in connection.exec_driver_sql(
                     f'SELECT * FROM "{table}" ORDER BY rowid'
                 ).mappings()
             ]
+            kept = set(rows[0]) if rows else set()
             assert [
                 {
                     k: v
                     for k, v in row.items()
-                    if k not in {"user_id", "played_at", "move_count", "rated"}
+                    if k in kept and k not in {"user_id", "played_at", "move_count", "rated"}
                 }
                 for row in after
-            ] == rows
+            ] == [
+                {k: v for k, v in row.items() if k not in {"played_at", "move_count", "rated"}}
+                for row in rows
+            ]
             assert all(row.get("user_id", "local") == "local" for row in after)
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
         assert (
@@ -426,6 +457,7 @@ def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch,
     assert "Account not found" in capsys.readouterr().err
 
 
+@pytest.mark.pristine_database
 def test_account_commands_explain_a_busy_database_and_a_missing_terminal(
     settings, monkeypatch, capsys
 ):
@@ -730,7 +762,7 @@ def test_a_disabled_account_with_interrupted_analysis_can_still_be_deleted(setti
     accounts = Accounts(settings.database_path)
     friend = accounts.create("friend", "testing-password")
     with Session(engine) as db:
-        db.add(AnalysisJob(user_id=friend["id"], kind="training", status="running"))
+        db.add(AnalysisJob(user_id=friend["id"], kind="game_review", status="running"))
         db.commit()
     accounts.set_disabled(friend, True)
     with pytest.raises(Conflict, match="analysis running"):

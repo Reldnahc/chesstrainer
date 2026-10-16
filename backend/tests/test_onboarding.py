@@ -1,5 +1,6 @@
 """Onboarding completion is durable, account-scoped, and absent from local mode."""
 
+import pytest
 from alembic import command
 from alembic.config import Config
 from fastapi.testclient import TestClient
@@ -37,6 +38,7 @@ def test_completion_is_authenticated_idempotent_and_persists(settings):
         assert api.get("/api/jobs").json() == []
 
 
+@pytest.mark.pristine_database
 def test_existing_users_are_grandfathered_during_upgrade(settings):
     engine, _ = database(settings.database_path)
     config = Config("alembic.ini")

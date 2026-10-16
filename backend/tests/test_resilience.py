@@ -4,6 +4,7 @@ from pathlib import Path
 
 import chess
 import pytest
+from account_units import units_for
 from classifier_fixtures import FixtureClassifierBase, findings_for
 from fastapi.testclient import TestClient
 from job_fixtures import queue_import_analysis
@@ -47,14 +48,16 @@ class FixtureClassifier(FixtureClassifierBase):
             confidence=self.confidence,
             explanation="Verified mate threat.",
             findings=findings_for(evidence, "king_safety"),
-        ), {"input_tokens": 10, "output_tokens": 5}
+        )
 
 
 @pytest.fixture
 def decision(sessions):
     with sessions() as db:
         seed_skills(db)
+        db.commit()
         import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+        db.commit()
         analysis = EngineAnalysis(
             cache_key="fixture",
             fen=chess.STARTING_FEN,
@@ -80,7 +83,6 @@ def decision(sessions):
             played_analysis_id=analysis.id,
             loss_cp=200,
             meaningful=True,
-            facts={"verified_line": []},
         )
         db.add(item)
         db.commit()
@@ -92,12 +94,13 @@ def test_classification_failure_retry_cache_and_evidence(settings, sessions, dec
     with sessions() as db:
         item = db.get(Decision, decision)
         classifier.fail = True
-        assert not classify_decision(db, item, classifier)
+        units = units_for(db)
+        assert not classify_decision(units, item, classifier)
         assert db.scalar(select(ClassificationRun)).status == "failed"
         assert db.get(EngineAnalysis, item.before_analysis_id)
         classifier.fail = False
-        assert classify_decision(db, item, classifier)
-        assert classify_decision(db, item, classifier)
+        assert classify_decision(units, item, classifier)
+        assert classify_decision(units, item, classifier)
         assert classifier.calls == 2
         run = db.scalar(select(ClassificationRun))
         assert run.attempts == 2 and run.response["decision_id"] == decision
@@ -111,7 +114,7 @@ def test_unreliable_classification_cannot_create_skill(
     classifier = FixtureClassifier()
     classifier.confidence, classifier.wrong_id = confidence, wrong_id
     with sessions() as db:
-        classify_decision(db, db.get(Decision, decision), classifier)
+        classify_decision(units_for(db), decision, classifier)
         assert db.scalar(select(func.count()).select_from(SkillEvidence)) == 0
 
 
@@ -153,7 +156,9 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
     settings.stockfish_path = stockfish_path
     with sessions() as db:
         seed_skills(db)
+        db.commit()
         result = import_games(db, "two.pgn", PGN + '\n\n[Round "2"]\n' + PGN, ["Learner"], None)
+        db.commit()
         result["job_id"] = queue_import_analysis(db, result)
     calls = []
 
@@ -217,6 +222,7 @@ def test_recover_cancel_and_partial_import(settings, sessions, sql_engine):
             ["Learner"],
             None,
         )
+        db.commit()
         assert result["errors"] and result["imported"] == 1
         result["job_id"] = queue_import_analysis(db, result)
         job = db.get(AnalysisJob, result["job_id"])
@@ -241,6 +247,7 @@ def test_backup_round_trip_has_no_secrets(settings, sessions, tmp_path):
     settings.lan_access_token = SecretStr("PRIVATE-TOKEN")
     with sessions() as db:
         manual_exercise(db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white")
+        db.commit()
     courses = settings.database_path.parent / "courses"
     courses.mkdir()
     (courses / "hidden-built-ins.ledger").write_text('["vienna-gambit"]\n', encoding="utf-8")
@@ -265,6 +272,39 @@ def test_backup_round_trip_has_no_secrets(settings, sessions, tmp_path):
         backup.restore_backup(archive, destination)
 
 
+def test_backups_from_before_the_rename_still_restore(settings, sessions, tmp_path):
+    import json
+    import sqlite3
+    import zipfile
+
+    spec = importlib.util.spec_from_file_location("backup", Path("scripts/backup.py"))
+    backup = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(backup)
+    with sessions() as db:
+        manual_exercise(db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white")
+        db.commit()
+    archive = backup.export_backup(tmp_path / "backup.zip", settings)
+    with zipfile.ZipFile(archive) as contents:
+        assert json.loads(contents.read("manifest.json"))["application"] == "fieldwork"
+        entries = {name: contents.read(name) for name in contents.namelist()}
+
+    def rewritten(application):
+        path = tmp_path / f"{application}.zip"
+        with zipfile.ZipFile(path, "w") as copy:
+            for name, data in entries.items():
+                if name == "manifest.json":
+                    data = json.dumps({"format": 1, "application": application})
+                copy.writestr(name, data)
+        return path
+
+    destination = tmp_path / "legacy.sqlite3"
+    backup.restore_backup(rewritten("local-chess-trainer"), destination)
+    with sqlite3.connect(destination) as db:
+        assert db.execute("SELECT COUNT(*) FROM exercises").fetchone()[0] == 1
+    with pytest.raises(ValueError, match="Unsupported backup format"):
+        backup.restore_backup(rewritten("another-app"), tmp_path / "other.sqlite3")
+
+
 def test_unavailable_unknown_move_does_not_fail_recall(settings, sessions, decision):
     from trainer.engine import EngineUnavailable
     from trainer.exercises import exercise_from_decision
@@ -278,9 +318,12 @@ def test_unavailable_unknown_move_does_not_fail_recall(settings, sessions, decis
     scheduler = FSRSScheduler(settings)
     with sessions() as db:
         exercise = exercise_from_decision(db, db.get(Decision, decision), settings, scheduler)
+        db.commit()
         session = start_review(db, exercise.id)
+        db.commit()
         with pytest.raises(EngineUnavailable):
             submit_move(db, session["session_id"], "d2d4", MissingEngine(), scheduler, settings)
+            db.commit()
         assert db.get(SRSState, exercise.id).reviews == 0
 
 
@@ -292,6 +335,7 @@ def test_restore_refuses_stale_sqlite_sidecars_and_leaves_no_partial_files(
     spec.loader.exec_module(backup)
     with sessions() as db:
         manual_exercise(db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white")
+        db.commit()
     archive = backup.export_backup(tmp_path / "backup.zip", settings)
     destination = tmp_path / "restored.sqlite3"
     stale = tmp_path / "restored.sqlite3-wal"

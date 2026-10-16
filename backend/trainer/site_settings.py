@@ -20,7 +20,7 @@ from sqlalchemy.dialects.sqlite import insert
 
 from trainer import config
 from trainer.config import Settings
-from trainer.db import database, migrate
+from trainer.db import database, migrations_pending
 from trainer.errors import InvalidInput
 from trainer.models import SiteSetting
 
@@ -269,10 +269,18 @@ def save(sql_engine, values):
 
 
 def load(settings):
-    """Apply saved server settings to ``settings``, first saving any set in the environment."""
+    """Apply saved server settings to ``settings``, first saving any set in the environment.
+
+    Reading settings never changes the schema: the database must already be at
+    head (``api.create_app`` migrates it once before reading).
+    """
     sql_engine, _ = database(settings.database_path)
     try:
-        migrate(sql_engine)
+        if migrations_pending(sql_engine):
+            raise RuntimeError(
+                "The database is behind this version; start the server (python -m trainer) "
+                "or run alembic upgrade head before reading its settings"
+            )
         saved = stored(sql_engine)
         seeds = {
             name: getattr(settings, name)

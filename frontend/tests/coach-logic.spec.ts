@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/browserTest";
 import { gameReaction, practiceReaction } from "../src/coach/reactions";
 import { classicPerformance } from "../src/coach/classic/performance";
 import {
@@ -59,40 +59,23 @@ test("every move quality maps to a semantic reaction without guessing from score
       }),
     ).toEqual({ key: game.key, state });
   expect(gameReaction({ ...game, pending: true }).state).toBe("thinking");
-  expect(gameReaction({ ...game, pending: true, error: true }).state).toBe(
-    "uncertain",
+  expect(gameReaction({ ...game, pending: true, error: true }).state).toBe("uncertain");
+  expect(gameReaction({ ...game, pending: true, report: { label: "Good" } }).state).toBe("good");
+  expect(gameReaction({ ...game, explaining: true, report: { label: "Blunder" } }).state).toBe(
+    "explaining",
   );
-  expect(
-    gameReaction({ ...game, pending: true, report: { label: "Good" } }).state,
-  ).toBe("good");
-  expect(
-    gameReaction({ ...game, explaining: true, report: { label: "Blunder" } })
-      .state,
-  ).toBe("explaining");
 });
 
 test("check respects major labels and endings use the displayed position and learner", () => {
   const frame = { san: "Nf6+", termination: null, result: null };
-  expect(
-    gameReaction({ ...game, frame, report: { label: "Good" } }).state,
-  ).toBe("check");
-  expect(
-    gameReaction({ ...game, frame, report: { label: "Brilliant" } }).state,
-  ).toBe("brilliant");
-  expect(
-    gameReaction({ ...game, frame, report: { label: "Blunder" } }).state,
-  ).toBe("blunder");
+  expect(gameReaction({ ...game, frame, report: { label: "Good" } }).state).toBe("check");
+  expect(gameReaction({ ...game, frame, report: { label: "Brilliant" } }).state).toBe("brilliant");
+  expect(gameReaction({ ...game, frame, report: { label: "Blunder" } }).state).toBe("blunder");
   const mate = { san: "Qh7#", termination: "checkmate", result: "1-0" };
   expect(gameReaction({ ...game, frame: mate }).state).toBe("winning");
-  expect(gameReaction({ ...game, frame: mate, learner: "black" }).state).toBe(
-    "losing",
-  );
-  expect(
-    gameReaction({ ...game, frame: { ...mate, result: "0-1" } }).state,
-  ).toBe("losing");
-  expect(
-    gameReaction({ ...game, frame: { ...mate, result: "1/2-1/2" } }).state,
-  ).toBe("draw");
+  expect(gameReaction({ ...game, frame: mate, learner: "black" }).state).toBe("losing");
+  expect(gameReaction({ ...game, frame: { ...mate, result: "0-1" } }).state).toBe("losing");
+  expect(gameReaction({ ...game, frame: { ...mate, result: "1/2-1/2" } }).state).toBe("draw");
   expect(
     gameReaction({
       ...game,
@@ -108,26 +91,17 @@ test("practice protects cold answers, distinguishes recovery and never judges a 
     grade: "again",
     attempt_id: "attempt-1",
   };
-  expect(
-    practiceReaction({ ...practice, feedback: failed, mistake: true }).state,
-  ).toBe("mistake");
-  expect(practiceReaction({ ...practice, feedback: failed }).state).toBe(
-    "encouraging",
+  expect(practiceReaction({ ...practice, feedback: failed, mistake: true }).state).toBe("mistake");
+  expect(practiceReaction({ ...practice, feedback: failed }).state).toBe("encouraging");
+  expect(practiceReaction({ ...practice, feedback: failed, busy: true, error: true }).state).toBe(
+    "thinking",
   );
-  expect(
-    practiceReaction({ ...practice, feedback: failed, busy: true, error: true })
-      .state,
-  ).toBe("thinking");
-  expect(practiceReaction({ ...practice, error: true }).state).toBe(
-    "uncertain",
-  );
+  expect(practiceReaction({ ...practice, error: true }).state).toBe("uncertain");
   const solved = { ...failed, completed: true, grade: "good" };
-  expect(practiceReaction({ ...practice, feedback: solved }).state).toBe(
-    "good",
+  expect(practiceReaction({ ...practice, feedback: solved }).state).toBe("good");
+  expect(practiceReaction({ ...practice, feedback: solved, hadFailure: true }).state).toBe(
+    "recovered",
   );
-  expect(
-    practiceReaction({ ...practice, feedback: solved, hadFailure: true }).state,
-  ).toBe("recovered");
   expect(
     practiceReaction({
       ...practice,
@@ -154,7 +128,11 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
   const animation: CoachDefinition["animation"] = {
     ...classicPerformance,
     defaultIdle: ["blink", "glance", "breathe"],
-    idleGestures: { good: ["blink", "nod", "breathe"], blunder: ["blink", "sigh", "glasses"], winning: ["tail"] },
+    idleGestures: {
+      good: ["blink", "nod", "breathe"],
+      blunder: ["blink", "sigh", "glasses"],
+      winning: ["tail"],
+    },
   };
   const coach: CoachDefinition = {
     id: "test-only",
@@ -195,18 +173,11 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
     ],
   };
   expect(availableIdles(variant)).toEqual(["head-tilt"]);
-  expect(resolveAnimation(variant, "removed")).toBe(
-    variant.families[0].animation,
-  );
+  expect(resolveAnimation(variant, "removed")).toBe(variant.families[0].animation);
   expect(resolveAnimation(coach)).toBe(animation);
-  expect(new Set(availableIdles(coach)).size).toBe(
-    availableIdles(coach).length,
-  );
+  expect(new Set(availableIdles(coach)).size).toBe(availableIdles(coach).length);
   expect(
-    expressionIntent(
-      { ...coach, expressionIntents: { brilliant: "Perked ears" } },
-      "brilliant",
-    ),
+    expressionIntent({ ...coach, expressionIntents: { brilliant: "Perked ears" } }, "brilliant"),
   ).toBe("Perked ears");
   expect(expressionIntent(coach, "neutral")).toContain("welcoming");
   for (const state of expressions)

@@ -48,13 +48,15 @@ export function usePerformance({
   const [playedTake, setPlayedTake] = useState(0);
   const diagnosticObserver = useRef(onPerformance);
   const observing = Boolean(onPerformance);
-  useEffect(() => { diagnosticObserver.current = onPerformance; }, [onPerformance]);
+  useEffect(() => {
+    diagnosticObserver.current = onPerformance;
+  }, [onPerformance]);
   const reduced = useReducedMotion();
   const effectiveMotion = resolveMotion(motion, reduced);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         // A busy frame can deliver several queued changes for this portrait.
         // Its latest entry describes whether it is currently visible.
         const entry = entries.at(-1);
@@ -77,26 +79,39 @@ export function usePerformance({
     const delay = reaction.state === "thinking" ? 420 : 110;
     const timer = window.setTimeout(() => {
       setCommitted({ key: reaction.key, state: reaction.state, identity });
-      setTake((value) => value + 1);
+      setTake(value => value + 1);
     }, delay);
     return () => window.clearTimeout(timer);
   }, [reaction.key, reaction.state, identity, replay]);
 
   const current =
-    committed?.key === reaction.key && committed?.state === reaction.state && committed?.identity === identity;
+    committed?.key === reaction.key &&
+    committed?.state === reaction.state &&
+    committed?.identity === identity;
   // Known feedback is readable immediately. Only the entrance waits for a dwell;
   // inserting a neutral face between two known moves creates visible flicker.
-  const expression =
-    reaction.state === "thinking" && !current ? "neutral" : reaction.state;
-  const gestures = useMemo(() => configuredGestures(animation, expression), [animation, expression]);
-  const coordinator = useMemo(() => createIdleCoordinator(gestures, {
-    // eslint-disable-next-line react-hooks/purity -- the idle clock starts when this coordinator is created
-    now: performance.now(),
-    random: idleSeed === undefined ? undefined : seededIdleRandom(idleSeed),
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- a new coach identity or an idle reset deliberately starts a fresh coordinator
-  }), [gestures, identity, idleSeed, idleReset]);
+  const expression = reaction.state === "thinking" && !current ? "neutral" : reaction.state;
+  const gestures = useMemo(
+    () => configuredGestures(animation, expression),
+    [animation, expression],
+  );
+  const coordinator = useMemo(
+    () =>
+      createIdleCoordinator(gestures, {
+        // eslint-disable-next-line react-hooks/purity -- the idle clock starts when this coordinator is created
+        now: performance.now(),
+        random: idleSeed === undefined ? undefined : seededIdleRandom(idleSeed),
+        // Built only while an observer (the studio) reads why each gesture waits.
+        diagnostics: false,
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- a new coach identity or an idle reset deliberately starts a fresh coordinator
+    [gestures, identity, idleSeed, idleReset],
+  );
+  // An observer arriving or leaving switches diagnostics without a new coordinator,
+  // so its history and deadlines carry on.
+  useEffect(() => coordinator.observe(observing), [coordinator, observing]);
   const owner = `${identity}:${reaction.key}:${reaction.state}:${take}:${idleSeed ?? "random"}:${idleReset}`;
-  const idlePreview = gestures.find((entry) => entry.id === previewIdle);
+  const idlePreview = gestures.find(entry => entry.id === previewIdle);
   useEffect(() => {
     let timer: number | undefined;
     const running = effectiveMotion !== "still" && visible && active && current;
@@ -108,16 +123,15 @@ export function usePerformance({
       played.current = take;
       setPlayedTake(take);
     }
-    setPhase(
-      running && fresh && reactionsEnabled && !idlePreview
-        ? "reaction"
-        : "rest",
-    );
+    setPhase(running && fresh && reactionsEnabled && !idlePreview ? "reaction" : "rest");
     if (!running) return;
     const publish = (value: IdleFrame) => {
       setFrame({ owner, value });
       if (value.nextAt !== null) {
-        timer = window.setTimeout(() => publish(coordinator.advance(performance.now())), Math.max(1, value.nextAt - performance.now()));
+        timer = window.setTimeout(
+          () => publish(coordinator.advance(performance.now())),
+          Math.max(1, value.nextAt - performance.now()),
+        );
       }
     };
     const scheduleIdle = () => {
@@ -126,8 +140,21 @@ export function usePerformance({
     if (idlePreview && fresh) {
       const gesture = idlePreview;
       const startedAt = performance.now();
-      const preview = { gesture, startedAt, endsAt: startedAt + gesture.durationMs, sequence: take };
-      setFrame({ owner, value: { ...coordinator.snapshot(startedAt), active: [preview], started: [preview], nextAt: null } });
+      const preview = {
+        gesture,
+        startedAt,
+        endsAt: startedAt + gesture.durationMs,
+        sequence: take,
+      };
+      setFrame({
+        owner,
+        value: {
+          ...coordinator.snapshot(startedAt),
+          active: [preview],
+          started: [preview],
+          nextAt: null,
+        },
+      });
       timer = window.setTimeout(() => {
         setFrame(null);
         scheduleIdle();
@@ -160,32 +187,76 @@ export function usePerformance({
     idlePreview,
   ]);
 
-  const tracks = current && visible && active && effectiveMotion !== "still" && frame?.owner === owner ? frame.value.active : [];
+  const tracks =
+    current && visible && active && effectiveMotion !== "still" && frame?.owner === owner
+      ? frame.value.active
+      : [];
   const animated = visible && active && effectiveMotion !== "still";
   // The face is already meaningful during the dwell. Only a fresh entrance may
   // hold its authored eye squeeze; paused/seen entrances settle without replay.
-  const face: "entrance" | "settled" = animated && reactionsEnabled && !idlePreview
-    && (!current || playedTake !== take || phase === "reaction") ? "entrance" : "settled";
+  const face: "entrance" | "settled" =
+    animated &&
+    reactionsEnabled &&
+    !idlePreview &&
+    (!current || playedTake !== take || phase === "reaction")
+      ? "entrance"
+      : "settled";
   useEffect(() => {
     if (!observing) return;
     const value = frame?.owner === owner ? frame.value : null;
-    const paused = !active ? "hidden" : !visible ? "offscreen"
-      : effectiveMotion === "still" ? "still" : !current ? "pending"
-        : phase === "reaction" ? "reaction"
-          : !idleEnabled && !value?.active.length ? "disabled" : null;
-    const observed = paused ? coordinator.snapshot() : value ?? coordinator.snapshot();
+    const paused = !active
+      ? "hidden"
+      : !visible
+        ? "offscreen"
+        : effectiveMotion === "still"
+          ? "still"
+          : !current
+            ? "pending"
+            : phase === "reaction"
+              ? "reaction"
+              : !idleEnabled && !value?.active.length
+                ? "disabled"
+                : null;
+    // A frame made while nobody observed carries no diagnostics; read them now.
+    const observed = paused || !value?.diagnostics ? coordinator.snapshot() : value;
     diagnosticObserver.current?.({
-      at: observed.at, identity, expression, face, motion: effectiveMotion,
-      phase: current && animated ? phase : "rest", paused,
-      active: current && animated ? value?.active ?? [] : [],
-      nextAt: current && animated ? value?.nextAt ?? null : null,
+      at: observed.at,
+      identity,
+      expression,
+      face,
+      motion: effectiveMotion,
+      phase: current && animated ? phase : "rest",
+      paused,
+      active: current && animated ? (value?.active ?? []) : [],
+      nextAt: current && animated ? (value?.nextAt ?? null) : null,
       diagnostics: observed.diagnostics,
     });
-  }, [observing, active, visible, effectiveMotion, current, phase, idleEnabled,
-    frame, owner, identity, expression, face, animated, coordinator]);
+  }, [
+    observing,
+    active,
+    visible,
+    effectiveMotion,
+    current,
+    phase,
+    idleEnabled,
+    frame,
+    owner,
+    identity,
+    expression,
+    face,
+    animated,
+    coordinator,
+  ]);
   return {
-    ref, expression, face, animated, phase: current && animated ? phase : "rest", micro: tracks[0]?.gesture.id ?? "", take,
-    motion: effectiveMotion, idles: tracks.map((track) => track.gesture.id).join(" "),
-    idleStyle: idleTrackStyle(tracks), diagnostics: frame?.owner === owner ? frame.value.diagnostics : null,
+    ref,
+    expression,
+    face,
+    animated,
+    phase: current && animated ? phase : "rest",
+    micro: tracks[0]?.gesture.id ?? "",
+    take,
+    motion: effectiveMotion,
+    idles: tracks.map(track => track.gesture.id).join(" "),
+    idleStyle: idleTrackStyle(tracks),
   };
 }

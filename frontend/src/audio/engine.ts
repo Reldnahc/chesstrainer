@@ -1,8 +1,14 @@
 import { cueCatalog, isPaletteForCue, productionCuePalettes, soundAssetUrl } from "./catalog";
 import {
-  defaultAudioPreferences, soundCues, soundPalettes,
-  type AudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCategory,
-  type SoundCue, type SoundPalette, type SoundRequest,
+  defaultAudioPreferences,
+  soundCues,
+  soundPalettes,
+  type AudioPreferences,
+  type RecordedSpeechClip,
+  type SoundCategory,
+  type SoundCue,
+  type SoundPalette,
+  type SoundRequest,
   type SpeechPlayback,
 } from "./model";
 import { createSpeechEnvelope, readSpeechEnvelope, type SpeechEnvelope } from "./speech/activity";
@@ -37,13 +43,17 @@ export type AudioEngineOptions = {
 const browserDriver: AudioDriver = {
   createContext: () => {
     if (typeof window === "undefined") return null;
-    const Context = window.AudioContext ?? (window as Window & {
-      webkitAudioContext?: typeof AudioContext;
-    }).webkitAudioContext;
-    return Context ? new Context({latencyHint: "interactive"}) : null;
+    const Context =
+      window.AudioContext ??
+      (
+        window as Window & {
+          webkitAudioContext?: typeof AudioContext;
+        }
+      ).webkitAudioContext;
+    return Context ? new Context({ latencyHint: "interactive" }) : null;
   },
   loadAsset: async (url, signal) => {
-    const response = await fetch(url, {signal});
+    const response = await fetch(url, { signal });
     if (!response.ok) throw new Error("Audio asset unavailable");
     return response.arrayBuffer();
   },
@@ -57,8 +67,8 @@ const browserDriver: AudioDriver = {
   clearTimer: timer => clearTimeout(timer),
 };
 
-type SpeechSession = {playback: SpeechPlayback; invalidate: () => void};
-type Voice = {source: AudioBufferSourceNode; gain: GainNode; speech?: SpeechSession};
+type SpeechSession = { playback: SpeechPlayback; invalidate: () => void };
+type Voice = { source: AudioBufferSourceNode; gain: GainNode; speech?: SpeechSession };
 type Ticket = {
   id: number;
   event: AudioEvent;
@@ -69,10 +79,10 @@ type Ticket = {
   interruptCurrent?: boolean;
   timer?: Timer;
   voice?: Voice;
-  speechIdentity?: {coachId: string; utteranceId: string; recordingId?: string};
+  speechIdentity?: { coachId: string; utteranceId: string; recordingId?: string };
 };
 const definitions = new Map(cueCatalog.map(cue => [cue.id, cue]));
-const FADE_SECONDS = .012;
+const FADE_SECONDS = 0.012;
 // Linear segments approximating the raised-cosine speech release.
 const RELEASE_STEPS = 16;
 const SEEN_LIMIT = 512;
@@ -97,7 +107,7 @@ export class AudioEngine {
   private readonly seen = new Set<string>();
   private readonly tickets = new Map<number, Ticket>();
   private readonly retiring = new Set<Voice>();
-  private preferences = {...defaultAudioPreferences};
+  private preferences = { ...defaultAudioPreferences };
   private context: AudioContext | null = null;
   private master?: GainNode;
   private effects?: GainNode;
@@ -111,7 +121,7 @@ export class AudioEngine {
   private publishedSpeech?: SpeechSession;
 
   constructor(options: AudioEngineOptions = {}) {
-    this.driver = {...browserDriver, ...options.driver};
+    this.driver = { ...browserDriver, ...options.driver };
     this.observer = options.onEvent;
     this.speechObserver = options.onSpeechPlayback;
     this.errorObserver = options.onError;
@@ -125,13 +135,26 @@ export class AudioEngine {
   }
 
   setPreferences(preferences: AudioPreferences): void {
-    this.preferences = {...preferences, volume: Number.isFinite(preferences.volume)
-      ? Math.max(0, Math.min(1, preferences.volume)) : defaultAudioPreferences.volume};
+    this.preferences = {
+      ...preferences,
+      volume: Number.isFinite(preferences.volume)
+        ? Math.max(0, Math.min(1, preferences.volume))
+        : defaultAudioPreferences.volume,
+    };
     if (!this.preferences.enabled || this.preferences.volume === 0) this.stopAll();
-    else this.stopTickets(ticket => !!ticket.category && !this.preferences[ticket.category], "category-disabled");
-    if (this.preferences.voice === "off") this.stopTickets(ticket => ticket.event.bus === "speech", "voice-disabled");
+    else
+      this.stopTickets(
+        ticket => !!ticket.category && !this.preferences[ticket.category],
+        "category-disabled",
+      );
+    if (this.preferences.voice === "off")
+      this.stopTickets(ticket => ticket.event.bus === "speech", "voice-disabled");
     if (this.master && this.context) {
-      try { this.master.gain.setTargetAtTime(this.preferences.volume, this.context.currentTime, .01); } catch { /* Optional audio. */ }
+      try {
+        this.master.gain.setTargetAtTime(this.preferences.volume, this.context.currentTime, 0.01);
+      } catch {
+        /* Optional audio. */
+      }
     }
   }
 
@@ -167,25 +190,36 @@ export class AudioEngine {
         return;
       }
       this.unlocked = this.context.state === "running";
-    } catch { this.unlocked = false; }
+    } catch {
+      this.unlocked = false;
+    }
   }
 
   play(request: SoundRequest): void {
     // Audio is enhancement-only: a malformed/unsupported cue must not break a chess command.
     try {
       const palette = request.palette ?? productionCuePalettes[request.cue] ?? undefined;
-      const event: AudioEvent = {type: "requested", bus: "effects", scope: request.scope,
-        eventId: request.eventId, cue: request.cue, palette};
-      if (!soundCues.includes(request.cue) || (palette !== undefined && !soundPalettes.includes(palette))) {
-        this.emit({...event, type: "suppressed", reason: "unknown-cue"});
+      const event: AudioEvent = {
+        type: "requested",
+        bus: "effects",
+        scope: request.scope,
+        eventId: request.eventId,
+        cue: request.cue,
+        palette,
+      };
+      if (
+        !soundCues.includes(request.cue) ||
+        (palette !== undefined && !soundPalettes.includes(palette))
+      ) {
+        this.emit({ ...event, type: "suppressed", reason: "unknown-cue" });
         return;
       }
       if (!palette) {
-        this.emit({...event, type: "suppressed", reason: "no-selected-sound"});
+        this.emit({ ...event, type: "suppressed", reason: "no-selected-sound" });
         return;
       }
       if (!isPaletteForCue(request.cue, palette)) {
-        this.emit({...event, type: "suppressed", reason: "unavailable-candidate"});
+        this.emit({ ...event, type: "suppressed", reason: "unavailable-candidate" });
         return;
       }
       const definition = definitions.get(request.cue)!;
@@ -194,63 +228,82 @@ export class AudioEngine {
       const begin = () => {
         ticket.timer = undefined;
         if (!this.current(ticket) || !this.activate(ticket)) return;
-        void this.decode(soundAssetUrl(request.cue, palette)).then(buffer => {
-          if (this.current(ticket)) this.start(ticket, buffer);
-        }).catch(() => this.fail(ticket));
+        void this.decode(soundAssetUrl(request.cue, palette))
+          .then(buffer => {
+            if (this.current(ticket)) this.start(ticket, buffer);
+          })
+          .catch(() => this.fail(ticket));
       };
       // Allow short audition sequences while keeping malformed delays bounded.
-      const delay = Number.isFinite(request.delayMs) ? Math.max(0, Math.min(15000, request.delayMs!)) : 0;
+      const delay = Number.isFinite(request.delayMs)
+        ? Math.max(0, Math.min(15000, request.delayMs!))
+        : 0;
       if (delay) ticket.timer = this.driver.setTimer(begin, delay);
       else begin();
-    } catch (error) { this.report(error); } // Unsupported browser audio must never interrupt interaction.
+    } catch (error) {
+      this.report(error);
+    } // Unsupported browser audio must never interrupt interaction.
   }
 
-  /** Reserved bus: caller owns manual/auto-speak suitability; provider supplies the existing utterance's audio. */
-  playPreparedSpeech(clip: PreparedSpeechClip): void {
-    try {
-      const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
-        eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
-      if (!ticket) return;
-      ticket.interruptCurrent = clip.interruptCurrent === true;
-      ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id, recordingId: clip.recordingId};
-      if (ticket.interruptCurrent && !this.validSpeechBuffer(clip.buffer)) { this.fail(ticket); return; }
-      if (this.current(ticket) && this.activate(ticket)) this.start(ticket, clip.buffer);
-    } catch (error) { this.report(error); } // Provider audio must not affect the visual utterance or app state.
-  }
-
-  /** Decode a bundled recording on the same context and cancellable speech bus as prepared clips. */
+  /** Decode a bundled recording on the reserved, cancellable speech bus; the caller owns
+   * manual and auto-speak suitability. */
   playRecordedSpeech(clip: RecordedSpeechClip): void {
     try {
-      const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
-        eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
+      const ticket = this.accept(
+        {
+          type: "requested",
+          bus: "speech",
+          scope: clip.scope,
+          eventId: clip.eventId ?? clip.utterance.id,
+        },
+        clip.utterance.priority,
+        clip.utterance.interruptible,
+      );
       if (!ticket) return;
       ticket.interruptCurrent = clip.interruptCurrent === true;
-      ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id, recordingId: clip.recordingId};
+      ticket.speechIdentity = {
+        coachId: clip.utterance.coachId,
+        utteranceId: clip.utterance.id,
+        recordingId: clip.recordingId,
+      };
       const begin = () => {
         ticket.timer = undefined;
         // A manual replacement waits for usable audio. A failed or stale download
         // must not silence the currently playing explanation.
         if (!this.current(ticket) || (!ticket.interruptCurrent && !this.activate(ticket))) return;
-        void (clip.sequence ? this.decodeSequence(clip.sequence.urls, clip.sequence.gapSeconds) : this.decode(clip.url)).then(buffer => {
-          if (!this.current(ticket)) return;
-          if (ticket.interruptCurrent) {
-            if (!this.validSpeechBuffer(buffer)) { this.fail(ticket); return; }
-            if (!this.activate(ticket)) return;
-          }
-          this.start(ticket, buffer);
-        }).catch(() => this.fail(ticket));
+        void (
+          clip.sequence
+            ? this.decodeSequence(clip.sequence.urls, clip.sequence.gapSeconds)
+            : this.decode(clip.url)
+        )
+          .then(buffer => {
+            if (!this.current(ticket)) return;
+            if (ticket.interruptCurrent) {
+              if (!this.validSpeechBuffer(buffer)) {
+                this.fail(ticket);
+                return;
+              }
+              if (!this.activate(ticket)) return;
+            }
+            this.start(ticket, buffer);
+          })
+          .catch(() => this.fail(ticket));
       };
       const delay = Number.isFinite(clip.delayMs) ? Math.max(0, Math.min(15000, clip.delayMs!)) : 0;
       if (delay) ticket.timer = this.driver.setTimer(begin, delay);
       else begin();
-    } catch (error) { this.report(error); } // Optional recordings must not affect the visual utterance or app state.
+    } catch (error) {
+      this.report(error);
+    } // Optional recordings must not affect the visual utterance or app state.
   }
 
   cancel(scope: string): void {
     this.stopTickets(ticket => ticket.event.scope === scope, "scope-cancelled");
   }
 
-  stopAll(): void { this.stopTickets(() => true, "stopped"); }
+  stopAll(): void {
+    this.stopTickets(() => true, "stopped");
+  }
 
   dispose(): void {
     if (this.disposed) return;
@@ -264,7 +317,11 @@ export class AudioEngine {
     this.assetBytes.clear();
     this.decodedBytes = 0;
     this.seen.clear();
-    try { void this.context?.close().catch(() => {}); } catch { /* Already closed. */ }
+    try {
+      void this.context?.close().catch(() => {});
+    } catch {
+      /* Already closed. */
+    }
   }
 
   private blocked(category?: SoundCategory, bus?: AudioEvent["bus"]): string | null {
@@ -279,7 +336,12 @@ export class AudioEngine {
     return null;
   }
 
-  private accept(event: AudioEvent, priority: number, interruptible: boolean, category?: SoundCategory): Ticket | null {
+  private accept(
+    event: AudioEvent,
+    priority: number,
+    interruptible: boolean,
+    category?: SoundCategory,
+  ): Ticket | null {
     this.emit(event);
     // Include the bus: future speech can share an utterance/action identity with its effect.
     const key = JSON.stringify([event.bus, event.scope, event.eventId]);
@@ -287,20 +349,30 @@ export class AudioEngine {
     this.seen.add(key);
     while (this.seen.size > SEEN_LIMIT) this.seen.delete(this.seen.values().next().value!);
     reason ??= this.blocked(category, event.bus);
-    if (reason) { this.emit({...event, type: "suppressed", reason}); return null; }
-
-    if (this.tickets.size >= 64) {
-      this.emit({...event, type: "suppressed", reason: "queue-full"});
+    if (reason) {
+      this.emit({ ...event, type: "suppressed", reason });
       return null;
     }
-    const ticket = {id: ++this.nextTicket, event, priority, interruptible, category, activated: false};
+
+    if (this.tickets.size >= 64) {
+      this.emit({ ...event, type: "suppressed", reason: "queue-full" });
+      return null;
+    }
+    const ticket = {
+      id: ++this.nextTicket,
+      event,
+      priority,
+      interruptible,
+      category,
+      activated: false,
+    };
     this.tickets.set(ticket.id, ticket);
     if (event.bus === "speech") this.latestSpeechRequest = ticket.id;
     return ticket;
   }
 
   private activate(incoming: Ticket): boolean {
-    const {event, category, priority} = incoming;
+    const { event, category, priority } = incoming;
     const manualSpeech = event.bus === "speech" && incoming.interruptCurrent;
     if (manualSpeech && incoming.id < this.latestSpeechRequest) {
       this.stopTicket(incoming, "replaced");
@@ -308,15 +380,21 @@ export class AudioEngine {
     }
     // Future cues do not steal a voice from a cue playing now. Once due, both
     // loading and playing voices compete so a late decode cannot trail a scrub.
-    const sameLane = (ticket: Ticket) => event.bus === "speech"
-      ? ticket.event.bus === "speech"
-      : ticket.event.bus === "effects" && (category === "board" ? ticket.category === "board" : ticket.category !== "board");
+    const sameLane = (ticket: Ticket) =>
+      event.bus === "speech"
+        ? ticket.event.bus === "speech"
+        : ticket.event.bus === "effects" &&
+          (category === "board" ? ticket.category === "board" : ticket.category !== "board");
     const peers = [...this.tickets.values()].filter(ticket => ticket.activated && sameLane(ticket));
     const limit = category === "board" || event.bus === "speech" ? 1 : 2;
     if (peers.length >= limit) {
       const lowest = peers.sort((a, b) => a.priority - b.priority || a.id - b.id)[0];
-      if (!manualSpeech && category !== "board" && (!lowest.interruptible || priority < lowest.priority)) {
-        this.emit({...event, type: "suppressed", reason: "priority"});
+      if (
+        !manualSpeech &&
+        category !== "board" &&
+        (!lowest.interruptible || priority < lowest.priority)
+      ) {
+        this.emit({ ...event, type: "suppressed", reason: "priority" });
         this.tickets.delete(incoming.id);
         return false;
       }
@@ -324,7 +402,11 @@ export class AudioEngine {
       if (!this.current(incoming)) return false;
       // A terminal observer can synchronously request newer speech. The older
       // request must not reclaim its slot after that callback returns.
-      if ([...this.tickets.values()].some(ticket => ticket.activated && ticket.id > incoming.id && sameLane(ticket))) {
+      if (
+        [...this.tickets.values()].some(
+          ticket => ticket.activated && ticket.id > incoming.id && sameLane(ticket),
+        )
+      ) {
         this.stopTicket(incoming, "replaced");
         return false;
       }
@@ -336,7 +418,10 @@ export class AudioEngine {
   private current(ticket: Ticket): boolean {
     if (!this.tickets.has(ticket.id)) return false;
     const reason = this.blocked(ticket.category, ticket.event.bus);
-    if (reason) { this.stopTicket(ticket, reason); return false; }
+    if (reason) {
+      this.stopTicket(ticket, reason);
+      return false;
+    }
     return true;
   }
 
@@ -353,12 +438,14 @@ export class AudioEngine {
       return cached;
     }
     const context = this.context!;
-    const pending = this.driver.loadAsset(url, this.assetAbort.signal)
+    const pending = this.driver
+      .loadAsset(url, this.assetAbort.signal)
       .then(bytes => context.decodeAudioData(bytes))
       .then(buffer => {
         if (this.assets.get(url) === pending) this.remember(url, buffer);
         return buffer;
-      }).catch(error => {
+      })
+      .catch(error => {
         if (this.assets.get(url) === pending) this.assets.delete(url);
         throw error;
       });
@@ -368,8 +455,10 @@ export class AudioEngine {
 
   /** Keep decoded PCM within budget by forgetting the least recently used buffers. */
   private remember(url: string, buffer: AudioBuffer): void {
-    const size = Number.isFinite(buffer?.length) && Number.isFinite(buffer?.numberOfChannels)
-      ? buffer.length * buffer.numberOfChannels * Float32Array.BYTES_PER_ELEMENT : 0;
+    const size =
+      Number.isFinite(buffer?.length) && Number.isFinite(buffer?.numberOfChannels)
+        ? buffer.length * buffer.numberOfChannels * Float32Array.BYTES_PER_ELEMENT
+        : 0;
     this.assetBytes.set(url, size);
     this.decodedBytes += size;
     for (const key of [...this.assets.keys()]) {
@@ -386,13 +475,20 @@ export class AudioEngine {
   /** Join whole recordings into one buffer so one playback, Stop and envelope cover them all. */
   private async decodeSequence(urls: readonly string[], gapSeconds: number): Promise<AudioBuffer> {
     const parts = await Promise.all(urls.map(url => this.decode(url)));
-    if (!parts.length || parts.some(part => !this.validSpeechBuffer(part) || part.sampleRate !== parts[0].sampleRate))
+    if (
+      !parts.length ||
+      parts.some(part => !this.validSpeechBuffer(part) || part.sampleRate !== parts[0].sampleRate)
+    )
       throw new Error("Incompatible speech sequence");
     if (parts.length === 1) return parts[0];
-    const rate = parts[0].sampleRate, gap = Math.round(Math.max(0, gapSeconds) * rate);
+    const rate = parts[0].sampleRate,
+      gap = Math.round(Math.max(0, gapSeconds) * rate);
     const channels = Math.max(...parts.map(part => part.numberOfChannels));
-    const joined = this.context!.createBuffer(channels, parts.reduce((sum, part) => sum + part.length, 0)
-      + gap * (parts.length - 1), rate);
+    const joined = this.context!.createBuffer(
+      channels,
+      parts.reduce((sum, part) => sum + part.length, 0) + gap * (parts.length - 1),
+      rate,
+    );
     for (let channel = 0; channel < channels; channel++) {
       const output = joined.getChannelData(channel);
       let offset = 0;
@@ -412,57 +508,73 @@ export class AudioEngine {
       const gain = context.createGain();
       source.buffer = buffer;
       source.loop = false;
-      gain.gain.value = ticket.category === "board" ? .85 : 1;
+      gain.gain.value = ticket.category === "board" ? 0.85 : 1;
       source.connect(gain);
       gain.connect(ticket.event.bus === "speech" ? this.speech! : this.effects!);
       const envelope = ticket.event.bus === "speech" ? this.speechEnvelope(buffer) : undefined;
       const startedAt = context.currentTime;
       let active = true;
-      const speech: SpeechSession | undefined = envelope ? {
-        playback: Object.freeze({scope: ticket.event.scope, eventId: ticket.event.eventId, ...ticket.speechIdentity!,
-          read: () => active && context.state === "running"
-            ? readSpeechEnvelope(envelope, context.currentTime - startedAt) : null}),
-        invalidate: () => { active = false; },
-      } : undefined;
-      const voice: Voice = {source, gain, speech};
+      const speech: SpeechSession | undefined = envelope
+        ? {
+            playback: Object.freeze({
+              scope: ticket.event.scope,
+              eventId: ticket.event.eventId,
+              ...ticket.speechIdentity!,
+              read: () =>
+                active && context.state === "running"
+                  ? readSpeechEnvelope(envelope, context.currentTime - startedAt)
+                  : null,
+            }),
+            invalidate: () => {
+              active = false;
+            },
+          }
+        : undefined;
+      const voice: Voice = { source, gain, speech };
       ticket.voice = voice;
       source.onended = () => {
         const wasCurrent = this.tickets.delete(ticket.id);
         this.disconnect(voice);
         if (!wasCurrent) return;
         this.updateDucking();
-        this.emit({...ticket.event, type: "ended"});
+        this.emit({ ...ticket.event, type: "ended" });
       };
       source.start(startedAt);
       const release = ticket.event.bus === "speech" ? this.speechRelease(buffer) : null;
       if (release) {
         // Ease the line's final sound out instead of letting it stop abruptly.
-        const level = gain.gain.value, span = release.end - release.start;
+        const level = gain.gain.value,
+          span = release.end - release.start;
         gain.gain.setValueAtTime(level, startedAt + release.start);
         for (let step = 1; step <= RELEASE_STEPS; step++) {
-          gain.gain.linearRampToValueAtTime(level * (1 + Math.cos(Math.PI * step / RELEASE_STEPS)) / 2,
-            startedAt + release.start + span * step / RELEASE_STEPS);
+          gain.gain.linearRampToValueAtTime(
+            (level * (1 + Math.cos((Math.PI * step) / RELEASE_STEPS))) / 2,
+            startedAt + release.start + (span * step) / RELEASE_STEPS,
+          );
         }
       }
       if (!this.tickets.has(ticket.id)) return;
       this.updateDucking();
-      this.emit({...ticket.event, type: "started"});
+      this.emit({ ...ticket.event, type: "started" });
       // An event observer may cancel/dispose or start a replacement synchronously.
       if (speech && this.tickets.has(ticket.id)) {
         this.publishedSpeech = speech;
         this.notifySpeech(speech.playback);
       }
-    } catch { this.fail(ticket); }
+    } catch {
+      this.fail(ticket);
+    }
   }
 
   private fail(ticket: Ticket): void {
     if (!this.tickets.has(ticket.id)) return;
     this.stopTicket(ticket, "unavailable", false);
-    this.emit({...ticket.event, type: "error", reason: "unavailable"});
+    this.emit({ ...ticket.event, type: "error", reason: "unavailable" });
   }
 
   private stopTickets(matches: (ticket: Ticket) => boolean, reason: string): void {
-    for (const ticket of [...this.tickets.values()]) if (matches(ticket)) this.stopTicket(ticket, reason);
+    for (const ticket of [...this.tickets.values()])
+      if (matches(ticket)) this.stopTicket(ticket, reason);
   }
 
   private stopTicket(ticket: Ticket, reason: string, notify = true): void {
@@ -480,50 +592,83 @@ export class AudioEngine {
         voice.gain.gain.setValueAtTime(voice.gain.gain.value, now);
         voice.gain.gain.linearRampToValueAtTime(0, now + FADE_SECONDS);
         voice.source.stop(now + FADE_SECONDS);
-      } catch { this.disconnect(voice); }
+      } catch {
+        this.disconnect(voice);
+      }
       // Even a dense scrub cannot accumulate unlimited fading sources.
       while (this.retiring.size > 2) {
         const oldest = this.retiring.values().next().value!;
-        try { oldest.source.stop(); } catch { /* Already stopped. */ }
+        try {
+          oldest.source.stop();
+        } catch {
+          /* Already stopped. */
+        }
         this.disconnect(oldest);
       }
     }
     this.updateDucking();
-    if (notify) this.emit({...ticket.event, type: "cancelled", reason});
+    if (notify) this.emit({ ...ticket.event, type: "cancelled", reason });
   }
 
   private disconnect(voice: Voice): void {
     this.endSpeech(voice);
     this.retiring.delete(voice);
     voice.source.onended = null;
-    try { voice.source.disconnect(); voice.gain.disconnect(); } catch { /* Already disconnected. */ }
+    try {
+      voice.source.disconnect();
+      voice.gain.disconnect();
+    } catch {
+      /* Already disconnected. */
+    }
   }
 
   private clearRetiring(): void {
     // Suspending a context freezes its timeline. Disconnect before suspension so a
     // pending fade can never become an audible old tail when the tab is unlocked.
     for (const voice of [...this.retiring]) {
-      try { voice.source.stop(); } catch { /* Already stopped. */ }
+      try {
+        voice.source.stop();
+      } catch {
+        /* Already stopped. */
+      }
       this.disconnect(voice);
     }
   }
 
   private updateDucking(): void {
     if (!this.effects || !this.context) return;
-    const speaking = [...this.tickets.values()].some(ticket => ticket.event.bus === "speech" && ticket.voice);
-    try { this.effects.gain.setTargetAtTime(speaking ? .3 : 1, this.context.currentTime, .025); } catch { /* Closed context. */ }
+    const speaking = [...this.tickets.values()].some(
+      ticket => ticket.event.bus === "speech" && ticket.voice,
+    );
+    try {
+      this.effects.gain.setTargetAtTime(speaking ? 0.3 : 1, this.context.currentTime, 0.025);
+    } catch {
+      /* Closed context. */
+    }
   }
 
   private suspend(): void {
-    try { void this.context?.suspend().catch(() => {}); } catch { /* Unsupported or closed. */ }
+    try {
+      void this.context?.suspend().catch(() => {});
+    } catch {
+      /* Unsupported or closed. */
+    }
   }
 
   private report(error: unknown): void {
-    try { this.errorObserver?.(error); } catch { /* Diagnostics cannot affect playback. */ }
+    try {
+      this.errorObserver?.(error);
+    } catch {
+      /* Diagnostics cannot affect playback. */
+    }
   }
 
   private emit(event: AudioEvent): void {
-    try { this.observer?.(event); } catch { /* Diagnostics cannot affect playback. */ }
+    try {
+      this.observer?.(event);
+    } catch {
+      /* Diagnostics cannot affect playback. */
+    }
   }
 
   private speechEnvelope(buffer: AudioBuffer): SpeechEnvelope | undefined {
@@ -535,13 +680,19 @@ export class AudioEngine {
         this.speechEnvelopes.set(buffer, envelope);
       }
       return envelope;
-    } catch { return undefined; } // Optional presentation cannot prevent audio.
+    } catch {
+      return undefined;
+    } // Optional presentation cannot prevent audio.
   }
 
   private speechRelease(buffer: AudioBuffer): SpeechRelease | null {
     if (this.speechReleases.has(buffer)) return this.speechReleases.get(buffer)!;
     let release: SpeechRelease | null = null;
-    try { release = findSpeechRelease(buffer); } catch { /* Optional polish cannot prevent audio. */ }
+    try {
+      release = findSpeechRelease(buffer);
+    } catch {
+      /* Optional polish cannot prevent audio. */
+    }
     this.speechReleases.set(buffer, release);
     return release;
   }
@@ -554,6 +705,10 @@ export class AudioEngine {
   }
 
   private notifySpeech(playback: SpeechPlayback | null): void {
-    try { this.speechObserver?.(playback); } catch { /* Presentation cannot affect playback. */ }
+    try {
+      this.speechObserver?.(playback);
+    } catch {
+      /* Presentation cannot affect playback. */
+    }
   }
 }

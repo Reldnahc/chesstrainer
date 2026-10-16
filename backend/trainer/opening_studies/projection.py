@@ -2,7 +2,7 @@
 
 from sqlalchemy import delete, select
 
-from trainer.chess_core import digest, legal_move, position_key, valid_board
+from trainer.chess_core import digest, legal_move, position_key, side_name, valid_board
 from trainer.errors import InvalidInput
 from trainer.exercises import enroll
 from trainer.models import (
@@ -23,16 +23,22 @@ def contribute(db, study, scheduler):
     ordinal = 0
     for ply, uci in enumerate(study.snapshot["moves"]):
         move = legal_move(board, uci)
-        if board.turn == (study.color == "white"):
+        if board.turn == study.learner_color:
             key = position_key(board)
-            identity = digest({"source": "opening", "position": key, "orientation": study.color})
+            identity = digest(
+                {
+                    "source": "opening",
+                    "position": key,
+                    "orientation": side_name(study.learner_color),
+                }
+            )
             exercise = db.scalar(select(Exercise).where(Exercise.identity == identity))
             if exercise is None:
                 exercise = Exercise(
                     identity=identity,
                     source="opening",
                     fen=board.fen(),
-                    orientation=study.color,
+                    learner_color=study.learner_color,
                     explanation="Recall a move from your selected opening studies.",
                     policy={"authority": "opening_study", "version": "1"},
                 )

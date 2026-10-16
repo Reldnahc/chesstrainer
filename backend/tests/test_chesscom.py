@@ -1,9 +1,9 @@
-import threading
 import time
 from datetime import date, datetime, timezone
 
 import httpx
 import pytest
+from account_units import job_context
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from sqlalchemy import func, select
@@ -15,11 +15,11 @@ from trainer.game_providers.ingest import fetch_import
 from trainer.imports import import_games
 from trainer.models import (
     AnalysisJob,
-    ChessComArchive,
-    ChessComImport,
     Game,
     ImportBatch,
     ImportGame,
+    ProviderCheckpoint,
+    ProviderImport,
 )
 
 ROOT = "https://api.chess.com/pub/player/learner/games"
@@ -42,11 +42,11 @@ def game(pgn=PGN, *, end=100, speed="rapid", rules="chess", black=False):
 
 def source_job(sessions, **params):
     with sessions() as db:
-        job = AnalysisJob(kind="chesscom", status="running")
+        job = AnalysisJob(kind="provider_fetch", status="running")
         db.add(job)
         db.flush()
         request = ChessComRequest(**{"username": "learner", "months": 0, **params})
-        db.add(ChessComImport(job_id=job.id, **request.model_dump()))
+        db.add(ProviderImport(job_id=job.id, **request.model_dump()))
         db.commit()
         return job.id
 
@@ -64,7 +64,7 @@ def mock_client(settings, responses, seen=None):
 
 
 def fetch(job_id, sessions, settings, client, cancelled=lambda: False):
-    fetch_import(job_id, sessions, settings, client, cancelled, threading.Lock())
+    fetch_import(job_context(sessions, job_id, settings, cancelled), client)
 
 
 def test_request_validation_defaults_and_month_boundaries(settings):
@@ -95,6 +95,7 @@ def test_request_validation_defaults_and_month_boundaries(settings):
 def test_import_filters_matches_both_sides_and_deduplicates_pgn(settings, sessions):
     with sessions() as db:
         import_games(db, "earlier.pgn", PGN, ["learner"], None)
+        db.commit()
     job_id = source_job(sessions)
     bad_headers = PGN.replace('"Learner"', '"SomebodyElse"')
     client = mock_client(
@@ -116,7 +117,7 @@ def test_import_filters_matches_both_sides_and_deduplicates_pgn(settings, sessio
     try:
         fetch(job_id, sessions, settings, client)
         with sessions() as db:
-            request = db.get(ChessComImport, job_id)
+            request = db.get(ProviderImport, job_id)
             assert request.fetch_completed and request.archives_processed == 2
             assert (
                 request.games_imported,
@@ -169,7 +170,7 @@ def test_date_filter_includes_whole_utc_days_and_overrides_lookback(
     try:
         fetch(job_id, sessions, settings, client)
         with sessions() as db:
-            request = db.get(ChessComImport, job_id)
+            request = db.get(ProviderImport, job_id)
             assert request.games_imported == expected
             assert request.filtered == 4 - expected
             assert request.start_date == start and request.end_date == end
@@ -221,7 +222,7 @@ def test_newest_matching_games_limit(settings, sessions):
         fetch(job_id, sessions, settings, client)
         with sessions() as db:
             assert db.scalar(select(Game)).learner_color is False
-            assert db.get(ChessComImport, job_id).games_fetched == 1
+            assert db.get(ProviderImport, job_id).games_fetched == 1
         assert OLD not in seen
     finally:
         client.close()
@@ -230,6 +231,7 @@ def test_newest_matching_games_limit(settings, sessions):
 def test_existing_games_do_not_consume_new_game_limit(settings, sessions):
     with sessions() as db:
         import_games(db, "saved.pgn", PGN, ["learner"], None)
+        db.commit()
     job_id = source_job(sessions, max_games=1)
     client = mock_client(
         settings,
@@ -243,7 +245,7 @@ def test_existing_games_do_not_consume_new_game_limit(settings, sessions):
     try:
         fetch(job_id, sessions, settings, client)
         with sessions() as db:
-            source = db.get(ChessComImport, job_id)
+            source = db.get(ProviderImport, job_id)
             assert (source.games_imported, source.duplicates, source.games_fetched) == (1, 2, 3)
             assert db.get(AnalysisJob, job_id).games_total == 1
     finally:
@@ -254,6 +256,7 @@ def test_repeat_import_100_saved_plus_20_new_only_schedules_20(settings, session
     pgns = [PGN.replace("[Date", f'[Round "{i}"]\n[Date') for i in range(120)]
     with sessions() as db:
         original = import_games(db, "first100.pgn", "\n\n".join(pgns[:100]), ["learner"], None)
+        db.commit()
         assert original["imported"] == 100
     job_id = source_job(sessions, max_games=100)
     client = mock_client(
@@ -266,7 +269,7 @@ def test_repeat_import_100_saved_plus_20_new_only_schedules_20(settings, session
     try:
         fetch(job_id, sessions, settings, client)
         with sessions() as db:
-            source = db.get(ChessComImport, job_id)
+            source = db.get(ProviderImport, job_id)
             job = db.get(AnalysisJob, job_id)
             assert (source.games_imported, source.duplicates, job.games_total) == (20, 100, 20)
             assert db.scalar(select(func.count()).select_from(Game)) == 120
@@ -276,12 +279,13 @@ def test_repeat_import_100_saved_plus_20_new_only_schedules_20(settings, session
             assert len(links) == 120  # Full provenance remains separate from job scope.
             assert sum(link.is_new for link in links) == 20
             repeated = import_games(db, "again.pgn", "\n\n".join(pgns), ["learner"], None)
+            db.commit()
             assert repeated["duplicates"] == 120 and repeated["imported"] == 0
         repeated_job = source_job(sessions)
         fetch(repeated_job, sessions, settings, client)
         with sessions() as db:
             assert db.get(AnalysisJob, repeated_job).games_total == 0
-            assert db.get(ChessComImport, repeated_job).duplicates == 120
+            assert db.get(ProviderImport, repeated_job).duplicates == 120
     finally:
         client.close()
 
@@ -295,8 +299,8 @@ def test_partial_failure_and_restart_keep_archive_checkpoint(settings, sessions)
         with pytest.raises(ProviderError, match="busy"):
             fetch(job_id, sessions, settings, client)
         with sessions() as db:
-            assert db.get(ChessComArchive, (job_id, NEW))
-            assert db.get(ChessComImport, job_id).games_imported == 1
+            assert db.get(ProviderCheckpoint, (job_id, NEW))
+            assert db.get(ProviderImport, job_id).games_imported == 1
         responses[OLD] = {"games": [game(BLACK_PGN, black=True)]}
         fetch(job_id, sessions, settings, client)
         assert seen.count(NEW) == 1
@@ -304,7 +308,7 @@ def test_partial_failure_and_restart_keep_archive_checkpoint(settings, sessions)
         fetch(job_id, sessions, settings, client)
         assert len(seen) == calls
         with sessions() as db:
-            assert db.get(ChessComImport, job_id).games_imported == 2
+            assert db.get(ProviderImport, job_id).games_imported == 2
     finally:
         client.close()
 
@@ -314,7 +318,7 @@ def test_cancel_retains_downloads_and_can_resume(settings, sessions):
 
     def cancelled():
         with sessions() as db:
-            return db.get(ChessComImport, job_id).archives_processed >= 1
+            return db.get(ProviderImport, job_id).archives_processed >= 1
 
     client = mock_client(
         settings,
@@ -329,7 +333,7 @@ def test_cancel_retains_downloads_and_can_resume(settings, sessions):
             fetch(job_id, sessions, settings, client, cancelled)
         fetch(job_id, sessions, settings, client)
         with sessions() as db:
-            request = db.get(ChessComImport, job_id)
+            request = db.get(ProviderImport, job_id)
             assert request.archives_processed == 2 and request.games_imported == 2
     finally:
         client.close()
@@ -433,7 +437,7 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
         )
 
     with TestClient(create_app(settings, provider_factories={"chesscom": factory})) as client:
-        assert client.get("/api/health").json()["classification_available"]
+        assert "classification_available" not in client.get("/api/health").json()
         job_id = client.post(
             "/api/imports/provider/chesscom", json={"username": "learner", "months": 0}
         ).json()["job_id"]

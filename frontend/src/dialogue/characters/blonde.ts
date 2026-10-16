@@ -1,87 +1,294 @@
-import type { CoachPersonality } from "../personality";
-import { blondeTacticalTemplates } from "./scopedTactics";
-import { blondeOpeningTemplates } from "./openingSequence";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
-export const blonde: CoachPersonality = {
-  version: "blonde-4", maxCharacters: 295, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const blondeTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Nice and simple: right after {move}, there's a {motif}.",
+    played_possible: "{move} quietly prepares a {motif}, provided the replies allow it.",
+    allowed_immediate:
+      "Plainly put, {opponent} can answer {action}, with a {motif} on the end of it.",
+    allowed_possible:
+      "Down the line, {opponent} could end up with a {motif}, depending on the replies.",
+    missed_immediate: "Tucked into {best} was a {motif}, ready to go.",
+    missed_possible: "Given the right replies, a {motif} could have come out of {best}.",
+  },
+  fork: {
+    actual: "One piece settles on a square that reaches the {targets} together.",
+    possible:
+      "Settle one piece on the right square, and the {targets} would be attacked together by one piece.",
+  },
+  material: "A {gain} may be waiting at the end, though plenty can still change along the way.",
+  capture: {
+    candidate: "{capture} is there, and it would win a {piece}.",
+    followup: "Play it on that way, and {capture} might follow, picking off a {piece}.",
+  },
+  playedCapture: {
+    fact: "{move} gets a {motif} underway.",
+    consequence: "After that, {capture} gathers in a {piece}.",
+  },
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const blondeOpeningTemplates = {
+  "book-opening-entry-1": ["With this, the game settles into {opening}."],
+  "book-opening-entry-2": ["Comfortable book territory, under the name {opening}."],
+  "book-opening-entry-3": ["The opening book files this under {opening}."],
+  "book-opening-follow-1": ["Still steadily in {opening}."],
+  "book-opening-follow-2": ["{opening} has this one covered too."],
+  "book-opening-follow-3": ["Even the reply sits inside {opening}."],
+  "book-opening-follow-4": ["The {opening} line rolls along."],
+  "book-opening-follow-5": ["{opening} is familiar with this move as well."],
+  "book-opening-follow-6": ["Still on comfortable {opening} ground."],
+  "book-opening-follow-7": ["{opening} again, nice and familiar."],
+  "book-opening-follow-8": ["More {opening}. Being in the book places the game; it isn't a grade."],
+} as const;
+
+export const blonde = coachPersonality({
+  version: "blonde-4",
+  maxCharacters: 295,
+  maxClaims: 2,
   delivery: { pace: "steady", energy: "warm" },
   behavior: {
-    general: "calm-reset", praise: "calm-reset", correction: "calm-reset",
-    questionFrequency: "none", directness: 3, emotionalAmplitude: 3,
-    humor: 2, jargon: 2, playerAddress: "occasional", sentenceLength: "connected",
-    metaphor: "rare", signature: "Stay beside the player, say the actual problem plainly, and offer a manageable next idea.",
+    general: "calm-reset",
+    praise: "calm-reset",
+    correction: "calm-reset",
+    questionFrequency: "none",
+    directness: 3,
+    emotionalAmplitude: 3,
+    humor: 2,
+    jargon: 2,
+    playerAddress: "occasional",
+    sentenceLength: "connected",
+    metaphor: "rare",
+    signature:
+      "Stay beside the player, say the actual problem plainly, and offer a manageable next idea.",
   },
   bible: {
-    temperament: "A relaxed strong player who is comfortable working through errors without making them smaller.",
-    teaching: "A calm, unhurried opener, the concrete fact said plainly, then one useful next idea.",
-    rhythm: "Easy conversational sentences that connect the cause to the consequence, with phrases like 'plainly', 'steady' and 'the next idea'.",
-    celebration: "Warm, easygoing appreciation of the actual idea, with no performance of constant excitement.",
-    correction: "Gentle but candid; reassurance appears only on the player's own moments and always sits next to a concrete chess point.",
-    avoid: "Therapy language, fake positivity, gender stereotypes, minimizing serious errors, side-dependent sympathy or cheering, questions, other coaches' sayings, or any naturalness or difficulty claim the human-move model doesn't support.",
+    temperament:
+      "A relaxed strong player who is comfortable working through errors without making them smaller.",
+    teaching:
+      "A calm, unhurried opener, the concrete fact said plainly, then one useful next idea.",
+    rhythm:
+      "Easy conversational sentences that connect the cause to the consequence, with phrases like 'plainly', 'steady' and 'the next idea'.",
+    celebration:
+      "Warm, easygoing appreciation of the actual idea, with no performance of constant excitement.",
+    correction:
+      "Gentle but candid; reassurance appears only on the player's own moments and always sits next to a concrete chess point.",
+    avoid:
+      "Therapy language, fake positivity, gender stereotypes, minimizing serious errors, side-dependent sympathy or cheering, questions, other coaches' sayings, or any naturalness or difficulty claim the human-move model doesn't support.",
   },
   templates: {
     ...blondeTacticalTemplates,
     ...blondeOpeningTemplates,
-    allowed_mate: [{ reaction: "This one decides a lot.", fact: "From here, checkmate is forced in {opponent}'s favor.", consequence: "{reply}", takeaway: "Tracing the defense back is the useful next step." }],
-    missed_mate: [{ reaction: "There was a finish on offer.", fact: "{best} forced checkmate; this move heads somewhere else." }],
-    tactic_played: [{ reaction: "Nice and tidy.", fact: "Play the searched line on from {move}, and a {motif} shows itself.", consequence: "{detail}" }],
-    tactic_allowed: [{ reaction: "Here's the plain problem.", fact: "The strongest reply hands {opponent} a {motif}.", consequence: "{detail}" }],
-    tactic_missed: [{ reaction: "Worth a calm, unhurried replay.", fact: "Tucked into {best} was a {motif}, which this move passes up.", consequence: "{detail}" }],
-    cause_abandoned_defender: [{ reaction: "Simple enough once it's spotted.", fact: "The only unpinned defender of {side}'s {piece} on {square} wanders away with {move}.", consequence: "{opponent} can capture it with {reply}." }],
-    cause_opponent_threat_recognition: [{ reaction: "The trouble started one move earlier.", fact: "Ever since the opponent's preceding move, {side}'s {piece} on {square} has been a target, and {move} leaves it to its fate.", consequence: "{opponent} can capture it with {reply}." }],
-    cause_avoiding_bad_trades: [{ reaction: "Play the trade one step further.", fact: "{move} hands over {side}'s {piece} for a {captured}.", consequence: "{opponent} can recapture with {reply}." }],
-    sacrifice: [{ reaction: "Generous, and sound too.", fact: "If the opponent grabs the material, the searched line still backs the idea." }],
-    only_move: [{ reaction: "A narrow path, steadily walked.", fact: "Of everything searched, this alone kept the game in one piece; the rest went wrong." }],
-    decisive_resource: ["The decisive advantage needed exactly this move; anything else in the search would have thrown it away."],
+    allowed_mate: [
+      {
+        reaction: "This one decides a lot.",
+        fact: "From here, checkmate is forced in {opponent}'s favor.",
+        consequence: "{reply}",
+        takeaway: "Tracing the defense back is the useful next step.",
+      },
+    ],
+    missed_mate: [
+      {
+        reaction: "There was a finish on offer.",
+        fact: "{best} forced checkmate; this move heads somewhere else.",
+      },
+    ],
+    tactic_played: [
+      {
+        reaction: "Nice and tidy.",
+        fact: "Play the searched line on from {move}, and a {motif} shows itself.",
+        consequence: "{detail}",
+      },
+    ],
+    tactic_allowed: [
+      {
+        reaction: "Here's the plain problem.",
+        fact: "The strongest reply hands {opponent} a {motif}.",
+        consequence: "{detail}",
+      },
+    ],
+    tactic_missed: [
+      {
+        reaction: "Worth a calm, unhurried replay.",
+        fact: "Tucked into {best} was a {motif}, which this move passes up.",
+        consequence: "{detail}",
+      },
+    ],
+    cause_abandoned_defender: [
+      {
+        reaction: "Simple enough once it's spotted.",
+        fact: "The only unpinned defender of {side}'s {piece} on {square} wanders away with {move}.",
+        consequence: "{opponent} can capture it with {reply}.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        reaction: "The trouble started one move earlier.",
+        fact: "Ever since the opponent's preceding move, {side}'s {piece} on {square} has been a target, and {move} leaves it to its fate.",
+        consequence: "{opponent} can capture it with {reply}.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        reaction: "Play the trade one step further.",
+        fact: "{move} hands over {side}'s {piece} for a {captured}.",
+        consequence: "{opponent} can recapture with {reply}.",
+      },
+    ],
+    sacrifice: [
+      {
+        reaction: "Generous, and sound too.",
+        fact: "If the opponent grabs the material, the searched line still backs the idea.",
+      },
+    ],
+    only_move: [
+      {
+        reaction: "A narrow path, steadily walked.",
+        fact: "Of everything searched, this alone kept the game in one piece; the rest went wrong.",
+      },
+    ],
+    decisive_resource: [
+      "The decisive advantage needed exactly this move; anything else in the search would have thrown it away.",
+    ],
     reply_capture: ["Plainly put, {opponent} can answer {reply} and collect {side}'s {piece}."],
-    reply_check: ["The reply to look at first is {reply}: the strongest one for {opponent}, and it gives check."],
+    reply_check: [
+      "The reply to look at first is {reply}: the strongest one for {opponent}, and it gives check.",
+    ],
     alternative: ["Set beside it, {best} would give the mover {evaluation}."],
-    loss: [{ reaction: "A small slip in value.", fact: "Against the engine's best line, about {loss} pawns of evaluation go missing here." }],
-    best: [{ reaction: "Steady and strong.", fact: "Set against the engine's top line, almost nothing has been conceded." }],
-    good: [{ reaction: "A sensible move.", fact: "Most of the position's value is still in place." }],
-    uncertain_reason: ["{best} comes out stronger, but there isn't a clear, supported reason yet, so no guessing."],
-    human_natural_error: [{ reaction: "Easy to see why it appeals.", fact: "The human-move model calls it an everyday move; the reply shows its price." }],
-    human_rare: ["The human-move model rarely picks this, yet the engine's reply doesn't knock it over. Good independent thinking."],
-    difficult_defense: ["{best} would have held, and the human-move model reckons that defense hides well. No shame in it; it's one to learn."],
-    human_challenging: [{ reaction: "A tricky one.", fact: "The human-move model suggests {best} is easy to walk past." }],
-    human_defense_found: [{ reaction: "Steady nerves.", fact: "{best} kept things together, a defense the human-move model rarely picks." }],
-    human_natural_best: ["The comfortable move and the engine's favorite are the same one here, by the human-move model and the engine."],
-    human_natural_strong: ["The human-move model calls it an everyday move, and the engine rates it strong, though its own favorite is different."],
+    loss: [
+      {
+        reaction: "A small slip in value.",
+        fact: "Against the engine's best line, about {loss} pawns of evaluation go missing here.",
+      },
+    ],
+    best: [
+      {
+        reaction: "Steady and strong.",
+        fact: "Set against the engine's top line, almost nothing has been conceded.",
+      },
+    ],
+    good: [
+      { reaction: "A sensible move.", fact: "Most of the position's value is still in place." },
+    ],
+    uncertain_reason: [
+      "{best} comes out stronger, but there isn't a clear, supported reason yet, so no guessing.",
+    ],
+    human_natural_error: [
+      {
+        reaction: "Easy to see why it appeals.",
+        fact: "The human-move model calls it an everyday move; the reply shows its price.",
+      },
+    ],
+    human_rare: [
+      "The human-move model rarely picks this, yet the engine's reply doesn't knock it over. Good independent thinking.",
+    ],
+    difficult_defense: [
+      "{best} would have held, and the human-move model reckons that defense hides well. No shame in it; it's one to learn.",
+    ],
+    human_challenging: [
+      {
+        reaction: "A tricky one.",
+        fact: "The human-move model suggests {best} is easy to walk past.",
+      },
+    ],
+    human_defense_found: [
+      {
+        reaction: "Steady nerves.",
+        fact: "{best} kept things together, a defense the human-move model rarely picks.",
+      },
+    ],
+    human_natural_best: [
+      "The comfortable move and the engine's favorite are the same one here, by the human-move model and the engine.",
+    ],
+    human_natural_strong: [
+      "The human-move model calls it an everyday move, and the engine rates it strong, though its own favorite is different.",
+    ],
     book: ["This position goes by the name {opening}."],
     book_sound: ["Comfortably in the recognized line of {opening}."],
-    departure: ["The game steps off our opening catalogue here, so the book has nothing more to add."],
-    recovery: [{ reaction: "That's the steady way back.", fact: "The setback at {earlier} has been absorbed, and play can carry on.{help}" }],
-    punishment: ["Something was left on the table for {side} at {earlier}, and this move collects it."],
-    missed_punishment: ["Something was left on the table for {side} at {earlier}, and this move leaves the chance unused. Worth a calm replay."],
-    repeated: ["Across the reviewed moves, this {motif} issue has popped up {count} times. Spotting the pattern is the next idea."],
-    support_restored: ["Back at {earlier} the {piece} was unguarded; now somebody is watching it again."],
-    erosion: ["Small costs keep adding up. Since {earlier}, this is one more of several concessions that wore the position down."],
-    conversion: ["From {earlier} on, {side} kept a steady hold of the advantage until the game was won."],
-    history: ["This {motif} issue shows up in {games} other saved games as well, which makes it a nice, specific thing to practice."],
+    departure: [
+      "The game steps off our opening catalogue here, so the book has nothing more to add.",
+    ],
+    recovery: [
+      {
+        reaction: "That's the steady way back.",
+        fact: "The setback at {earlier} has been absorbed, and play can carry on.{help}",
+      },
+    ],
+    punishment: [
+      "Something was left on the table for {side} at {earlier}, and this move collects it.",
+    ],
+    missed_punishment: [
+      "Something was left on the table for {side} at {earlier}, and this move leaves the chance unused. Worth a calm replay.",
+    ],
+    repeated: [
+      "Across the reviewed moves, this {motif} issue has popped up {count} times. Spotting the pattern is the next idea.",
+    ],
+    support_restored: [
+      "Back at {earlier} the {piece} was unguarded; now somebody is watching it again.",
+    ],
+    erosion: [
+      "Small costs keep adding up. Since {earlier}, this is one more of several concessions that wore the position down.",
+    ],
+    conversion: [
+      "From {earlier} on, {side} kept a steady hold of the advantage until the game was won.",
+    ],
+    history: [
+      "This {motif} issue shows up in {games} other saved games as well, which makes it a nice, specific thing to practice.",
+    ],
     development: [{ fact: "{lead}gets the {piece} moving for the first time." }],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file."],
-    passed: ["{lead}leaves {side} with passed pawns on {squares}; nothing of the enemy's pawns stands ahead of them, on those files or next door."],
+    passed: [
+      "{lead}leaves {side} with passed pawns on {squares}; nothing of the enemy's pawns stands ahead of them, on those files or next door.",
+    ],
     passer_advance: ["{lead}lets the passed pawn roll on, now sitting on {square}."],
-    isolated: ["{lead}leaves {side}'s pawns on {squares} isolated, with no friendly pawn on the files next door."],
+    isolated: [
+      "{lead}leaves {side}'s pawns on {squares} isolated, with no friendly pawn on the files next door.",
+    ],
     support: ["{lead}means the {piece} on {square} isn't alone anymore."],
-    unsupported: ["{lead}leaves the {piece} on {square} without a guard. Worth watching, though it isn't lost because of that alone."],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} without a guard. Worth watching, though it isn't lost because of that alone.",
+    ],
     flights: ["{lead}frees up {squares} for the king to step to."],
     castle: ["{lead}castles, settling the king on {square} with the rook tucked in next to it."],
-    bishops: ["{lead}splits {side}'s two bishops, leaving one bishop and one square color covered."],
+    bishops: [
+      "{lead}splits {side}'s two bishops, leaving one bishop and one square color covered.",
+    ],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}."],
-    mate_win: [{ reaction: "Nicely finished.", fact: "Checkmate, and the opposing king has run out of room entirely." }],
-    mate_loss: [{ fact: "Checkmate. Your king has no legal escape.", takeaway: "A little earlier is where the defense can still be found." }],
-    draw: ["A draw. The result's settled, and there's still plenty in the earlier moves worth a calm look."],
-    retry: [{ reaction: "Close, but not yet.", fact: "That attempt doesn't crack it.", takeaway: "Take another relaxed look; it's still in the position." }],
+    mate_win: [
+      {
+        reaction: "Nicely finished.",
+        fact: "Checkmate, and the opposing king has run out of room entirely.",
+      },
+    ],
+    mate_loss: [
+      {
+        fact: "Checkmate. Your king has no legal escape.",
+        takeaway: "A little earlier is where the defense can still be found.",
+      },
+    ],
+    draw: [
+      "A draw. The result's settled, and there's still plenty in the earlier moves worth a calm look.",
+    ],
+    retry: [
+      {
+        reaction: "Close, but not yet.",
+        fact: "That attempt doesn't crack it.",
+        takeaway: "Take another relaxed look; it's still in the position.",
+      },
+    ],
     recovered: [{ reaction: "That's it, nicely done.", fact: "{detail}" }],
     accepted: [{ fact: "The reason worth keeping: {detail}" }],
     explanation: [{ reaction: "Here's the simple version.", fact: "{detail}" }],
     explanation_summary: ["The part to hold on to: {detail}"],
     cold: ["Settle in with the position, then make your choice."],
     thinking: ["Looking at how the opponent can best answer…"],
-    unavailable: ["There isn't enough from the engine to explain this one yet, so no guessing. The board is open for exploring."],
+    unavailable: [
+      "There isn't enough from the engine to explain this one yet, so no guessing. The board is open for exploring.",
+    ],
     practice_error: ["That move didn't bring back a result. Give it another go."],
     variation: ["Here's how the other line plays out: {detail}"],
     compatibility: ["Here's the explanation available: {detail}"],
   },
-};
+});

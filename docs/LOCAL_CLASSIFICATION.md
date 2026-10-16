@@ -2,7 +2,7 @@
 
 ## Classification v4: pinned Lichess recognition
 
-Version 4.1-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
+Version 4.3-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
 
 Recognition and mistake admission are separate. A pin or double check can be present in a line without a settled material outcome. Review can show that factual motif; an active weakness finding still needs Fieldwork's existing engine comparison, material/mate support and relevant episode. Fieldwork's own collection witnesses and independently verified native extensions also run; upstream recognition adds motifs those narrower witnesses miss.
 
@@ -23,11 +23,11 @@ The vendored [Lichess puzzler](https://github.com/ornicar/lichess-puzzler) tagge
 | Module | Role |
 |---|---|
 | `lichess_patterns.py` | Rebuilds a python-chess PGN line and calls the pinned predicates |
-| `lichess_witnesses.py` | Turns their successful return sites into real move indices, board frames and square roles; declines (without a crash) an upstream back-rank mate of the line's own mover, castling counted as a discovered check, and a pin that already existed before the move and that the move does not use |
+| `lichess_witnesses.py` | Turns their successful return sites into real move indices, board frames and square roles; declines (without a crash) an upstream back-rank mate of the line's own mover, castling counted as a discovered check, and a pin that already stood before the line began, by the same pinner along the same line, and that no move of the line exploits; when upstream's first pin is such a pin, a later pin the line creates or exploits is credited instead, and an exploited old pin is named at the move that exploits it |
 | `tactical_patterns.py` | Applies Fieldwork's connected-episode and outcome admission boundaries |
 | `verified_patterns.py` | Keeps Fieldwork's own detailed collection witnesses and independently verified extensions |
 
-Changing the classifier version invalidates classification cache identities while historical responses stay readable. Missing pre-position context skips upstream hanging-piece recognition rather than supplying a null setup move. Saved games are not reclassified on startup; use **Settings > Advanced > Classify saved games** after deploying a new version.
+Changing the classifier version, schema or taxonomy invalidates classification cache identities while historical responses stay readable. A learner's rejection holds for the identity it was made on, so classifying a decision again after such a change can bring back labels the learner rejected. Migration 3d591d63bd55 changed every identity once in the same way, by taking the old hosted-model prompt version out of the key. Missing pre-position context skips upstream hanging-piece recognition rather than supplying a null setup move. Saved games are not reclassified on startup; use **Settings > Advanced > Classify saved games** after deploying a new version.
 
 ## Outcomes, patterns and practice cues
 
@@ -37,7 +37,7 @@ Rules separate three things: an observable material/mate outcome, a supported ta
 |---|---|
 | Allowed / missed mate | Explicit learner-perspective mate transition versus the best alternative |
 | Material loss / missed material gain | Meaningful relative evaluation loss plus different material balances at usable endpoints of both saved lines |
-| Hanging piece / missed tactical capture | Initial undefended non-pawn capture from Lichess with real setup context, or existing immediate/retained-gain witness; mistake outcome gates still apply |
+| Hanging piece / missed tactical capture | Initial undefended non-pawn capture from Lichess with real setup context, or existing immediate/retained-gain witness; never when the capturing side is checkmated later in the shown line (a poisoned piece); mistake outcome gates still apply |
 | Fork | Lichess valuable-target/safe-forker predicate, existing detailed collection witness, or separately confirmed native defensive test; connected episode and outcome gates still apply |
 | Pin | Lichess absolute pin prevents capture or escape; existing pinned-defender/victim witnesses and native-confirmed relative-pin extensions remain |
 | Skewer | Lichess aligned front-target/rear-capture sequence, including front targets other than kings; existing king-skewer collection witnesses remain |
@@ -55,7 +55,7 @@ Detectors inspect the bounded connected episode, not arbitrary later tactics. On
 
 All PV moves are replayed and validated by python-chess. Stockfish scores retain explicit centipawn/mate types and the learner's perspective. Already-lost mate positions are not newly labeled allowed mate; retaining a slower mate is not missed mate.
 
-Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, and unchanged last-three material balances. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
+Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, unchanged last-three material balances, and no capture pending: the side to move has no capture or promotion that wins material by static exchange (legal moves only, so pins count), and the saved line's next move is not a capture, promotion or check. Every line reader (review, Play, the practice explanation) shares this endpoint. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
 
 Absolute evaluation does not gate material findings: a player can lose a piece while still winning. Small evaluation preferences and compensated material without the configured evaluation loss do not qualify. Native hypotheses retain their pin and defense checks. An upstream motif tag alone never proves a training-worthy mistake.
 
@@ -162,7 +162,7 @@ The executable source of truth is [themes.py](../scripts/lichess_benchmark/theme
 | discoveredAttack | discovered_attack | approximate | Yes | Pinned Lichess uncovered single check or discovered line capture, plus existing collection witnesses. Quiet threats without collection may miss. Fieldwork outcome/episode gates remain. |
 | discoveredCheck | discovered_attack | approximate | Yes | Only the uncovered-single-check witness qualifies, not a nonchecking discovery or double check. This theme may not be exported separately. |
 | doubleCheck | double_attack | exact | Yes | Exact double-check event, selected from Fieldwork's broader double_attack skill. A nonchecking double attack cannot earn agreement. Adapter outcome gates still apply. |
-| hangingPiece | missed_tactical_capture | approximate | Yes | First solver capture, the positive-side counterpart of hanging_piece: upstream undefended-piece capture with real setup context or existing retained-gain witness. Fieldwork outcome gates remain; insufficiently defended pieces are broader. |
+| hangingPiece | missed_tactical_capture | approximate | Yes | First solver capture, the positive-side counterpart of hanging_piece: upstream undefended-piece capture with real setup context or existing retained-gain witness, declined when the capturer is mated later in the line. Fieldwork outcome gates remain; insufficiently defended pieces are broader. |
 | deflection | deflection | approximate | Yes | Pinned Lichess deflection sequences plus existing check/recapture and collection witnesses. Broader attraction is not substituted. Fieldwork outcome/episode gates remain. |
 | trappedPiece | trapped_piece | unsupported | No | Production requires native counterfactual escape/capture searches, absent from CSV. |
 | attraction | No equivalent | unsupported | No | Luring a piece to a square is not equivalent to removing its defensive duty. |
@@ -277,19 +277,19 @@ test_lichess_comparison.py covers the comparison.
 
 The sample is 1,000 positives per eligible theme, seed 0, from the full 6,100,952-row export (input SHA256 95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9), with no skipped rows. The v3.1 column is that baseline run; the other two replay the same frozen sample (samples.jsonl SHA256 e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0) through the comparison above. Reports stay in ignored `data/`.
 
-| Theme | v3.1 line detector | Raw upstream recognition | v4 Fieldwork admission |
+| Theme | v3.1 line detector | Raw upstream recognition | v4.3 Fieldwork admission |
 |---|---:|---:|---:|
 | backRankMate | 99.2% | 100.0% | 100.0% |
 | capturingDefender | 63.8% | 100.0% | 78.7% |
-| deflection | 76.7% | 100.0% | 94.8% |
+| deflection | 76.7% | 100.0% | 94.9% |
 | discoveredAttack | 81.4% | 100.0% | 93.8% |
-| discoveredCheck | 65.9% | 74.6% | 66.0% |
+| discoveredCheck | 65.9% | 74.3% | 65.8% |
 | doubleCheck | 94.0% | 100.0% | 94.0% |
 | fork | 71.3% | 100.0% | 98.2% |
 | hangingPiece | 99.2% | 99.9% | 99.2% |
-| pin | 39.7% | 99.9% | 86.1% |
+| pin | 39.7% | 96.3% | 83.0% |
 | promotion | 97.9% | 100.0% | 98.1% |
 | skewer | 87.9% | 100.0% | 92.8% |
 | underPromotion | 97.0% | 98.1% | 98.4% |
 
-The 12,000 incidences have 999 v4 admission disagreements, against 2,260 for v3.1 and 275 for raw upstream. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.
+The 12,000 incidences have 1,031 v4.3 admission disagreements, against 2,260 for v3.1 and 314 for raw upstream. A pin is credited to a line when the line creates it (a sacrifice that drags a piece onto the pin line, or a new line or kind of pinner; a pinner sliding along its own line is the same pin) or exploits it: captures the pinned piece, threatens it with a cheaper piece or more attackers than defenders, lands where it could otherwise capture, gives a single check it could otherwise answer by capturing or interposing, or, with a quiet move in a line that does not end behind in material, lands a piece that the opponent takes and that a guard the pinned piece could otherwise have taken retakes. A move along or onto the pin line exploits nothing. A pin that stood before the line and is never exploited is declined. The remaining 3.7% of upstream pin tags are almost all such pins, for example a pinned piece beside a mate it could not have stopped. The small discoveredCheck difference from before 361f680d0 (74.6% raw) is not changed by this rule. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.

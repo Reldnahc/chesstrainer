@@ -48,7 +48,7 @@ def test_repertoire_removal_preserves_history_and_excludes_stale_sessions(settin
                     identity=fen,
                     source="repertoire",
                     fen=fen,
-                    orientation="white",
+                    learner_color=True,
                     explanation="A continuation from your curated repertoire.",
                     policy={"authority": "repertoire", "version": "1"},
                 )

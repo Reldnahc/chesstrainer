@@ -1,5 +1,13 @@
 import {
-  createContext, isValidElement, useContext, useEffect, useEffectEvent, useId, useLayoutEffect, useRef, useState,
+  createContext,
+  isValidElement,
+  useContext,
+  useEffect,
+  useEffectEvent,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
   type ReactNode,
 } from "react";
 import Notice from "./Notice";
@@ -40,10 +48,13 @@ const BannerEntries = createContext<Entry[]>([]);
 export function BannerProvider({ children }: { children: ReactNode }) {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [actions] = useState<Actions>(() => ({
-    set: (entry) => setEntries((list) => list.some((item) => item.id === entry.id)
-      ? list.map((item) => (item.id === entry.id ? entry : item))
-      : [...list, entry]),
-    remove: (id) => setEntries((list) => list.filter((item) => item.id !== id)),
+    set: entry =>
+      setEntries(list =>
+        list.some(item => item.id === entry.id)
+          ? list.map(item => (item.id === entry.id ? entry : item))
+          : [...list, entry],
+      ),
+    remove: id => setEntries(list => list.filter(item => item.id !== id)),
   }));
   return (
     <BannerActions.Provider value={actions}>
@@ -67,12 +78,14 @@ export function BannerOutlet({ page }: { page: string }) {
  * components unmount, rather than collapsing above the next page while it
  * restores its scroll position. Banners this page raises open and close. */
 function PageBanners({ entries }: { entries: Entry[] }) {
-  const [inherited] = useState(() => new Set(entries.map((entry) => entry.id)));
+  const [inherited] = useState(() => new Set(entries.map(entry => entry.id)));
   const card = (entry: Entry) => <BannerCard key={entry.id} entry={entry} />;
   return (
     <>
-      <RevealList exit={false}>{entries.filter((entry) => inherited.has(entry.id)).map(card)}</RevealList>
-      <RevealList>{entries.filter((entry) => !inherited.has(entry.id)).map(card)}</RevealList>
+      <RevealList exit={false}>
+        {entries.filter(entry => inherited.has(entry.id)).map(card)}
+      </RevealList>
+      <RevealList>{entries.filter(entry => !inherited.has(entry.id)).map(card)}</RevealList>
     </>
   );
 }
@@ -87,10 +100,19 @@ function BannerCard({ entry }: { entry: Entry }) {
     return () => window.clearTimeout(timer);
   }, [entry.persistent, dismissible, paused, entry.revision]);
   return (
-    <div onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
-      <Notice announcement={entry.tone === "error" ? "alert" : "status"} tone={entry.tone} appearance="banner"
-        actions={entry.action} onDismiss={entry.onDismiss}>
+    <div
+      onPointerEnter={() => setPaused(true)}
+      onPointerLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      <Notice
+        announcement={entry.tone === "error" ? "alert" : "status"}
+        tone={entry.tone}
+        appearance="banner"
+        actions={entry.action}
+        onDismiss={entry.onDismiss}
+      >
         {entry.message}
       </Notice>
     </div>
@@ -99,11 +121,17 @@ function BannerCard({ entry }: { entry: Entry }) {
 
 /**
  * Shows its children in the page's banner slot while it is mounted:
- * `{error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}`.
+ * `{message && <Banner tone="success" onDismiss={() => setMessage("")}>{message}</Banner>}`.
+ * Errors render through CommandError or QueryError (useQuery.tsx), which use this.
  * The caller owns the message state; closing (or a confirmation timing out)
  * calls onDismiss.
  */
-export default function Banner({ children, tone = "info", action, onDismiss }: {
+export default function Banner({
+  children,
+  tone = "info",
+  action,
+  onDismiss,
+}: {
   children: ReactNode;
   tone?: "info" | "success" | "error";
   /** One command or link, shown before the close button. */
@@ -116,23 +144,37 @@ export default function Banner({ children, tone = "info", action, onDismiss }: {
   const id = useId();
   const dismiss = useLatest(onDismiss);
   // Republish only when what the banner shows changes, not on every owner render.
-  const published = useRef<{ tone: string; children: ReactNode; action: ReactNode; dismissible: boolean;
-    revision: number } | null>(null);
+  const published = useRef<{
+    tone: string;
+    children: ReactNode;
+    action: ReactNode;
+    dismissible: boolean;
+    revision: number;
+  } | null>(null);
   useLayoutEffect(() => {
     const last = published.current;
     const sameMessage = !!last && last.tone === tone && sameContent(last.children, children);
     if (sameMessage && sameContent(last.action, action) && last.dismissible === !!onDismiss) return;
     const revision = sameMessage ? last.revision : (last?.revision ?? 0) + 1;
     published.current = { tone, children, action, dismissible: !!onDismiss, revision };
-    actions.set({ id, revision, tone, message: children, action,
+    actions.set({
+      id,
+      revision,
+      tone,
+      message: children,
+      action,
       onDismiss: onDismiss && (() => dismiss.current?.()),
       // Errors and banners with an action stay until closed; confirmations close themselves.
-      persistent: tone === "error" || !!action });
+      persistent: tone === "error" || !!action,
+    });
   });
-  useLayoutEffect(() => () => {
-    published.current = null;
-    actions.remove(id);
-  }, [actions, id]);
+  useLayoutEffect(
+    () => () => {
+      published.current = null;
+      actions.remove(id);
+    },
+    [actions, id],
+  );
   return null;
 }
 
@@ -144,8 +186,13 @@ function sameContent(a: unknown, b: unknown): boolean {
   if (Object.is(a, b)) return true;
   if (Array.isArray(a) && Array.isArray(b))
     return a.length === b.length && a.every((item, index) => sameContent(item, b[index]));
-  if (!isValidElement(a) || !isValidElement(b) || a.type !== b.type || a.key !== b.key) return false;
-  const left = a.props as Record<string, unknown>, right = b.props as Record<string, unknown>;
+  if (!isValidElement(a) || !isValidElement(b) || a.type !== b.type || a.key !== b.key)
+    return false;
+  const left = a.props as Record<string, unknown>,
+    right = b.props as Record<string, unknown>;
   const keys = Object.keys(left);
-  return keys.length === Object.keys(right).length && keys.every((key) => sameContent(left[key], right[key]));
+  return (
+    keys.length === Object.keys(right).length &&
+    keys.every(key => sameContent(left[key], right[key]))
+  );
 }

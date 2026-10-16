@@ -14,6 +14,9 @@ from trainer.config import Settings
 from trainer.study_lessons.club import HIDDEN, LEDGER, SAFE_ID, courses_folder
 
 SIDECARS = ("-wal", "-shm", "-journal")
+# Backups name the application; ones written before the rename to Fieldwork still restore.
+APPLICATION = "fieldwork"
+APPLICATIONS = {APPLICATION, "local-chess-trainer"}
 
 
 def write_atomically(write, destination: Path):
@@ -55,7 +58,7 @@ def export_backup(destination: Path, settings: Settings):
                             archive.write(item, f"courses/{item.name}")
                 archive.writestr(
                     "manifest.json",
-                    json.dumps({"format": 1, "application": "local-chess-trainer"}),
+                    json.dumps({"format": 1, "application": APPLICATION}),
                 )
                 # The administrator's private reference copy: everything but the token.
                 archive.writestr(
@@ -90,7 +93,7 @@ def restore_backup(archive_path: Path, destination: Path):
         )
     with zipfile.ZipFile(archive_path) as archive:
         manifest = json.loads(archive.read("manifest.json"))
-        if manifest.get("format") != 1 or manifest.get("application") != "local-chess-trainer":
+        if manifest.get("format") != 1 or manifest.get("application") not in APPLICATIONS:
             raise ValueError("Unsupported backup format")
         info = archive.getinfo("trainer.sqlite3")
         if info.file_size > 5_000_000_000:

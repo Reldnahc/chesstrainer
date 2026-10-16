@@ -1,7 +1,18 @@
 """Relationships require contiguous actual play, never adjacent rows across gaps."""
 
 from trainer.chess_core import evaluation_loss
-from trainer.review_scores import is_mistake, is_poor
+from trainer.review_scores import CLEAR_EDGE_CP, is_mistake, is_poor
+
+# An erosion: a side's recent moves each conceding at least EROSION_STEP_CP but
+# less than EROSION_STEP_LIMIT_CP, while its evaluation falls EROSION_TOTAL_CP or
+# more from before the first of them to after the last.
+EROSION_STEP_CP = 30
+EROSION_STEP_LIMIT_CP = 150
+EROSION_TOTAL_CP = 150
+# A side still playable: at least this, or winning by mate.
+PLAYABLE_CP = -100
+# Two searches of one position agree when within this.
+CONSISTENT_CP = 100
 
 
 def loss(node):
@@ -9,11 +20,11 @@ def loss(node):
 
 
 def strong(score):
-    return score.outcome() == 1 or (score.kind == "cp" and score.value >= 200)
+    return score.outcome() == 1 or (score.kind == "cp" and score.value >= CLEAR_EDGE_CP)
 
 
 def playable(score):
-    return score.outcome() == 1 or (score.kind == "cp" and score.value >= -100)
+    return score.outcome() == 1 or (score.kind == "cp" and score.value >= PLAYABLE_CP)
 
 
 def good(node):
@@ -29,7 +40,7 @@ def mistake(node):
 def consistent(left, right):
     expected = left.after.negate()
     if expected.kind == right.before.kind == "cp":
-        return abs(expected.value - right.before.value) <= 100
+        return abs(expected.value - right.before.value) <= CONSISTENT_CP
     return (
         expected.kind == right.before.kind == "mate"
         and expected.outcome() == right.before.outcome()
@@ -87,11 +98,12 @@ def sequential_links(segment, emit, finished, result):
         concessions = [
             n
             for n in own
-            if n.before.kind == n.after.kind == "cp" and 30 <= (loss(n).cp or 0) < 150
+            if n.before.kind == n.after.kind == "cp"
+            and EROSION_STEP_CP <= (loss(n).cp or 0) < EROSION_STEP_LIMIT_CP
         ]
         if len(concessions) >= 3 and concessions[-1] == node:
             first = concessions[0]
-            if first.before.value - node.after.value >= 150:
+            if first.before.value - node.after.value >= EROSION_TOTAL_CP:
                 emit(
                     "erosion",
                     node.actor,
@@ -123,15 +135,16 @@ def finish_run(run, color, emit, finished, result):
         )
 
 
-def repeated_links(nodes, reports, emit):
+def repeated_links(nodes, events, emit):
+    """``events`` maps each node's ply to its typed review events."""
     occurrences = {}
     for node in nodes:
         seen = set()
-        for event in reports[node.ply]["intelligence"]["events"]:
-            if event["kind"] != "tactic" or event["facts"]["role"] == "alternative":
+        for event in events[node.ply]:
+            if event.kind != "tactic" or event.facts.role == "alternative":
                 continue
-            fact = event["facts"]
-            key = (node.actor, fact["motif"], fact["role"])
+            fact = event.facts
+            key = (node.actor, fact.motif, fact.role)
             if key in seen:
                 continue
             seen.add(key)
@@ -142,9 +155,9 @@ def repeated_links(nodes, reports, emit):
                     "repeated_motif",
                     node.actor,
                     [n for n, _ in earlier[-2:]],
-                    event_ids=[e["id"] for _, e in earlier[-2:]],
-                    motif=fact["motif"],
-                    role=fact["role"],
+                    event_ids=[e.id for _, e in earlier[-2:]],
+                    motif=fact.motif,
+                    role=fact.role,
                     occurrence=len(earlier),
                     first_ply=earlier[0][0].ply,
                     scope="observed_reviewed_plies",

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Orin"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "tactic-fork-played-bishop",
+      "text": "The fork, a pattern every player must learn: a single bishop attacks more than one target, and the defender can rarely save them all."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d6d3f7bc25e75d92e50ab676125ec8b5d6672a52f9d72b54e23b3b38ac4ddde",
+  "recordedAt": "2026-10-16T16:04:13.779Z",
+  "sha256": "eb85b172de894fc285d79d7b07d267bc4b4363a549fb8946920e4d16974ac429",
+  "bytes": 30370,
+  "requestId": "yNbGjQnmn7ep0XaxdcBD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "929b255323577630f8b496f7ce79e47e5c972598e135234f8bca7ebec2d5f28e",
+    "bytes": 157195
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

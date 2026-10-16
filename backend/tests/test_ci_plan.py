@@ -334,7 +334,9 @@ def test_shared_speech_presentation_keeps_audio_checks_with_application_styles(p
     )
 
 
-@pytest.mark.parametrize("path", ["frontend/src/AccountGate.tsx", "frontend/src/Settings.tsx"])
+@pytest.mark.parametrize(
+    "path", ["frontend/src/AccountGate.tsx", "frontend/src/SettingsScreen.tsx"]
+)
 def test_account_and_settings_keep_existing_checks_and_shared_audio_adds_its_suite(path):
     assert_selection(
         ci_plan.select_checks([path]), build=True, docker=True, suites=APPLICATION_SUITES
@@ -846,3 +848,8 @@ def test_gate_cli_uses_environment_and_returns_failure(monkeypatch, successful_j
     assert ci_plan.main(["--check-results"]) == 0
     monkeypatch.delenv("CI_RESULTS")
     assert ci_plan.main(["--check-results"]) == 1
+
+
+def test_the_architecture_doc_runs_the_backend_test_that_reads_it():
+    plan = ci_plan.select_checks(["docs/ARCHITECTURE.md"])
+    assert_selection(plan, backend=True)

@@ -16,82 +16,20 @@ from contextlib import closing
 from datetime import datetime
 from pathlib import Path
 
+from trainer.cache_maintenance import sweep_shared_caches
+from trainer.cascade import cascade, unlinked
 from trainer.config import Settings
+from trainer.db import database as database_engine
+from trainer.db import migrations_pending
+from trainer.models import Base
 
-# Each step is (table, condition). Conditions read the temporary id tables built in
-# _collect, so later steps still see what earlier steps removed. Order does not matter
-# for integrity: foreign keys are deferred and checked once at commit.
-STEPS = (
-    ("exercise_attempts", "session_id IN (SELECT id FROM temp.clear_sessions)"),
-    (
-        "reviews",
-        "session_id IN (SELECT id FROM temp.clear_sessions)"
-        " OR exercise_id IN (SELECT id FROM temp.clear_exercises)",
-    ),
-    ("opening_recall_snapshots", "session_id IN (SELECT id FROM temp.clear_sessions)"),
-    ("review_sessions", "id IN (SELECT id FROM temp.clear_sessions)"),
-    ("exercise_answers", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
-    ("exercise_tags", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
-    ("srs_states", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
-    ("opening_cards", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
-    ("opening_content_changes", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
-    ("opening_study_moves", "exercise_id IN (SELECT id FROM temp.clear_exercises)"),
-    ("exercises", "id IN (SELECT id FROM temp.clear_exercises)"),
-    ("skill_evidence", "decision_id IN (SELECT id FROM temp.clear_decisions)"),
-    (
-        "classification_probes",
-        "classification_analysis_id IN (SELECT id FROM temp.clear_classifications)",
-    ),
-    ("classification_analyses", "id IN (SELECT id FROM temp.clear_classifications)"),
-    (
-        "classification_tasks",
-        "decision_id IN (SELECT id FROM temp.clear_decisions)"
-        " OR job_id IN (SELECT id FROM temp.clear_jobs)",
-    ),
-    ("classification_runs", "decision_id IN (SELECT id FROM temp.clear_decisions)"),
-    (
-        "game_puzzles",
-        "game_id IN (SELECT id FROM temp.clear_games)"
-        " OR decision_id IN (SELECT id FROM temp.clear_decisions)",
-    ),
-    ("game_puzzle_searches", "game_id IN (SELECT id FROM temp.clear_games)"),
-    ("decisions", "id IN (SELECT id FROM temp.clear_decisions)"),
-    ("game_review_moves", "game_id IN (SELECT id FROM temp.clear_games)"),
-    (
-        "game_reviews",
-        "game_id IN (SELECT id FROM temp.clear_games)"
-        " OR job_id IN (SELECT id FROM temp.clear_jobs)",
-    ),
-    ("review_refinements", "game_id IN (SELECT id FROM temp.clear_games)"),
-    (
-        "import_games",
-        "game_id IN (SELECT id FROM temp.clear_games)"
-        " OR import_id IN (SELECT id FROM temp.clear_imports)",
-    ),
-    ("games", "id IN (SELECT id FROM temp.clear_games)"),
-    ("chesscom_archives", "job_id IN (SELECT id FROM temp.clear_jobs)"),
-    ("chesscom_imports", "job_id IN (SELECT id FROM temp.clear_jobs)"),
-    ("analysis_jobs", "id IN (SELECT id FROM temp.clear_jobs)"),
-    ("game_imports", "id IN (SELECT id FROM temp.clear_imports)"),
-    # The Maia and engine caches are shared between accounts; drop only rows nothing
-    # else points at.
-    ("human_analyses", "id IN (SELECT id FROM temp.clear_human)"),
-    ("engine_analyses", "id IN (SELECT id FROM temp.clear_engine)"),
-)
-
-# References that outlive the cleared rows: (table, column, condition). They are set to
-# NULL rather than deleted, so a game played in Play keeps its moves and reports.
-UNLINKED = (("play_games", "saved_game_id", "saved_game_id IN (SELECT id FROM temp.clear_games)"),)
-
-ENGINE_REFERENCES = (
-    ("decisions", "before_analysis_id"),
-    ("decisions", "played_analysis_id"),
-    ("classification_analyses", "before_analysis_id"),
-    ("classification_analyses", "played_analysis_id"),
-    ("classification_probes", "root_analysis_id"),
-    ("classification_probes", "analysis_id"),
-    ("exercise_answers", "analysis_id"),
-)
+# The removal starts from these rows and takes everything that refers to them,
+# by the models' foreign keys (trainer.cascade): decisions, reviews, mistakes,
+# game-based cards and their history, mined puzzles, Insights facts, provider
+# checkpoints. Play games stay, unlinked from their saved copy. The Maia and
+# engine caches are shared between accounts; afterwards the server's own sweep
+# drops every row nothing left in the database refers to.
+ROOTS = ("games", "game_imports", "analysis_jobs")
 
 
 def _load_backup():
@@ -101,49 +39,32 @@ def _load_backup():
     return module
 
 
-def _collect(db, owner):
-    """Snapshot the ids to remove before any delete changes what the joins can see."""
-    # executescript would commit the open transaction, so run each statement on its own.
-    script = f"""
-        CREATE TEMP TABLE clear_games AS SELECT id FROM games WHERE {owner};
-        CREATE TEMP TABLE clear_decisions AS SELECT id FROM decisions
-            WHERE game_id IN (SELECT id FROM temp.clear_games);
-        CREATE TEMP TABLE clear_classifications AS SELECT id FROM classification_analyses
-            WHERE decision_id IN (SELECT id FROM temp.clear_decisions);
-        CREATE TEMP TABLE clear_exercises AS SELECT id FROM exercises
-            WHERE decision_id IN (SELECT id FROM temp.clear_decisions);
-        CREATE TEMP TABLE clear_sessions AS SELECT id FROM review_sessions
-            WHERE exercise_id IN (SELECT id FROM temp.clear_exercises);
-        CREATE TEMP TABLE clear_imports AS SELECT id FROM game_imports WHERE {owner};
-        CREATE TEMP TABLE clear_jobs AS SELECT id FROM analysis_jobs WHERE {owner}
-        """
-    for statement in script.split(";"):
-        db.execute(statement)
-    # Engine rows stay when anything outside the removed set still references them.
-    kept = {
-        "decisions": "id NOT IN (SELECT id FROM temp.clear_decisions)",
-        "classification_analyses": "id NOT IN (SELECT id FROM temp.clear_classifications)",
-        "classification_probes": "classification_analysis_id NOT IN"
-        " (SELECT id FROM temp.clear_classifications)",
-        "exercise_answers": "exercise_id NOT IN (SELECT id FROM temp.clear_exercises)",
-    }
-    still_used = " UNION ".join(
-        f"SELECT {column} FROM {table} WHERE {column} IS NOT NULL AND {kept[table]}"
-        for table, column in ENGINE_REFERENCES
-    )
-    db.execute(
-        f"CREATE TEMP TABLE clear_engine AS SELECT id FROM engine_analyses"
-        f" WHERE id NOT IN ({still_used})"
-    )
-    db.execute(
-        "CREATE TEMP TABLE clear_human AS SELECT id FROM human_analyses WHERE id NOT IN"
-        " (SELECT human_analysis_id FROM game_review_moves WHERE human_analysis_id IS NOT NULL"
-        " AND game_id NOT IN (SELECT id FROM temp.clear_games))"
-    )
+def _collect(db, removed):
+    """Snapshot every removed row, parents first, before any delete changes what
+    the conditions can see."""
+    referenced = {}
+    for table in Base.metadata.sorted_tables:
+        for key in table.foreign_keys:
+            referenced.setdefault(key.column.table.name, set()).add(key.column.name)
+    for table, where in removed.items():
+        columns = "".join(f', "{column}"' for column in sorted(referenced.get(table, ())))
+        db.execute(
+            f'CREATE TEMP TABLE "clear_{table}" AS SELECT rowid AS _row{columns}'
+            f' FROM "{table}" WHERE {where}'
+        )
 
 
 def clear_games(database: Path, username: str | None = None, apply: bool = False):
     """Return {table: rows removed} (or that would be removed, when apply is False)."""
+    engine, _ = database_engine(database, pooled=False)
+    try:
+        if migrations_pending(engine):
+            # The cascade is read from this version's models.
+            raise ValueError(
+                "The database is behind this version; start the server once to upgrade it"
+            )
+    finally:
+        engine.dispose()
     with closing(sqlite3.connect(database, timeout=5, isolation_level=None)) as db:
         db.execute("PRAGMA foreign_keys=ON")
         owner = "1=1"
@@ -155,23 +76,21 @@ def clear_games(database: Path, username: str | None = None, apply: bool = False
         db.execute("BEGIN IMMEDIATE")
         try:
             db.execute("PRAGMA defer_foreign_keys=ON")
-            _collect(db, owner)
+            plan = cascade(dict.fromkeys(ROOTS, owner))
+            _collect(db, plan)
             removed = {}
-            for table, column, where in UNLINKED:
-                key = f"{table} (unlinked)"
-                if apply:
-                    sql = f"UPDATE {table} SET {column} = NULL WHERE {where}"
-                    removed[key] = db.execute(sql).rowcount
-                else:
-                    sql = f"SELECT COUNT(*) FROM {table} WHERE {where}"
-                    removed[key] = db.execute(sql).fetchone()[0]
-            for table, where in STEPS:
-                if apply:
-                    removed[table] = db.execute(f"DELETE FROM {table} WHERE {where}").rowcount
-                else:
-                    removed[table] = db.execute(
-                        f"SELECT COUNT(*) FROM {table} WHERE {where}"
-                    ).fetchone()[0]
+            # A dry run makes the same changes and rolls them back, so the cache
+            # counts see exactly what the cleared rows leave behind.
+            for table, column, where in unlinked(plan):
+                sql = f'UPDATE "{table}" SET "{column}" = NULL WHERE {where}'
+                removed[f"{table} (unlinked)"] = db.execute(sql).rowcount
+            # Foreign keys are deferred and checked once at commit, so order is free.
+            for table in plan:
+                removed[table] = db.execute(
+                    f'DELETE FROM "{table}" WHERE rowid IN (SELECT _row FROM temp."clear_{table}")'
+                ).rowcount
+            # The server is stopped, so no job holds a cache row: every unused one goes.
+            removed |= sweep_shared_caches(db, older_than=None)
             db.execute("COMMIT" if apply else "ROLLBACK")
         except BaseException:
             if db.in_transaction:
@@ -179,7 +98,9 @@ def clear_games(database: Path, username: str | None = None, apply: bool = False
             raise
         if apply:
             # SQLite keeps freed pages in the file; the server is stopped, so the
-            # file can be rewritten to give the space back.
+            # file can be rewritten to give the space back, in incremental
+            # auto-vacuum mode so the server returns later deletes itself.
+            db.execute("PRAGMA auto_vacuum = INCREMENTAL")
             db.execute("VACUUM")
     return removed
 

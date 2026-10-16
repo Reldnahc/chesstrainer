@@ -2,7 +2,10 @@
 
 import json
 
+import chess
 import pytest
+from trainer.chess_core import position_key
+from trainer.opening_book import _index
 from trainer.study_lessons import course_files
 from trainer.study_lessons.bundled import BundledCourses
 from trainer.study_lessons.course_files import CourseFileError
@@ -97,3 +100,149 @@ def test_unreachable_step_needs_its_own_position():
     )
     with pytest.raises(CourseFileError, match="aside cannot be reached"):
         course_files.load(data)
+
+
+def _unreachable(data):
+    data["chapters"][0]["steps"][2]["next"] = None
+    data["chapters"][0]["steps"].insert(
+        3, {"id": "aside", "title": "Aside", "text": "Unlinked.", "next": None}
+    )
+
+
+@pytest.mark.parametrize(
+    ("change", "location"),
+    [
+        (
+            lambda data: data["chapters"][0]["steps"][1].update(move="e5"),
+            {"chapter": "start", "step": "push"},
+        ),
+        (
+            lambda data: data["chapters"][0]["steps"][1].update(move=""),
+            {"chapter": "start", "step": "push"},
+        ),
+        (
+            lambda data: data["chapters"][0]["steps"][3].update(rehearse="other"),
+            {"chapter": "start", "step": "again"},
+        ),
+        (
+            lambda data: data["chapters"][0]["steps"][2].update(game="g"),
+            {"chapter": "start", "step": "watch"},
+        ),
+        (
+            lambda data: data["chapters"][0]["steps"][0].update(colour="red"),
+            {"chapter": "start", "step": "intro"},
+        ),
+        (
+            lambda data: data["chapters"][0]["steps"][2].update(id="intro"),
+            {"chapter": "start", "step": "intro"},
+        ),
+        (_unreachable, {"chapter": "start", "step": "aside"}),
+        # Problems the course record's own validation finds are located too.
+        (
+            lambda data: data["chapters"][0]["steps"][2].update(next="gone"),
+            {"chapter": "start", "step": "watch"},
+        ),
+        (lambda data: data.update(side="black"), {"chapter": "start", "step": "push"}),
+        (
+            lambda data: data["chapters"][0]["steps"][0].update(arrows=["zz"]),
+            {"chapter": "start", "step": "intro"},
+        ),
+        (
+            lambda data: data["chapters"][0]["steps"][2].update(next="intro"),
+            {"chapter": "start", "step": "watch"},
+        ),
+        (
+            lambda data: data["chapters"][0]["steps"][2].update(branch="", show=None),
+            {"chapter": "start", "step": "watch"},
+        ),
+        (lambda data: data.update(side="green"), None),
+        (lambda data: data["lines"][0].update(moves="e4 e4"), None),
+    ],
+)
+def test_the_editor_check_says_where_a_problem_is(change, location):
+    data = sample()
+    change(data)
+    result = course_files.check(data)
+    assert result["error"] and result["location"] == location
+
+
+def test_validation_problems_name_their_place_in_words_too():
+    data = sample()
+    data["chapters"][0]["steps"][0]["arrows"] = ["zz"]
+    assert course_files.check(data)["error"].startswith("Chapter start, step intro: ")
+
+
+def test_a_clean_check_has_no_location():
+    assert course_files.check(sample())["location"] is None
+
+
+# Lines whose last catalogued position is shallower than the code they carry.
+# COURSE_SOURCES.md records why each code is right.
+ECO_BEYOND_CATALOGUE = {
+    # Castled before 8.Be3 Nc6: the B73 position of 6.Be3 Bg7 7.Be2 Nc6 8.O-O O-O.
+    ("sicilian-dragon", "dragon-classical"): "B73",
+    # 2.Nc3 Nc6 3.Bc4 Nf6 4.d3 is C28; Lichess files that position as C24.
+    ("vienna-gambit", "vienna-second-knights-pin"): "C28",
+}
+
+
+def test_course_line_codes_match_their_deepest_catalogued_position():
+    _, names = _index()
+    for course in BundledCourses().courses(None):
+        for line in course.lines:
+            if line.eco is None:
+                continue
+            board = chess.Board(line.position.initial_fen)
+            deepest = None
+            for uci in (*line.position.moves, *line.moves):
+                board.push_uci(uci)
+                deepest = names.get(position_key(board), deepest)
+            exception = ECO_BEYOND_CATALOGUE.get((course.id, line.id))
+            # An exception the catalogue now agrees with is stale.
+            assert exception != deepest[0], (course.id, line.id)
+            assert line.eco == (exception or deepest[0]), (course.id, line.id, deepest)
+
+
+@pytest.mark.parametrize(
+    "name",
+    ["chess-fundamentals.json", "italian-black-foundations.json", "kings-gambit-foundations.json"],
+)
+def test_the_editor_boards_follow_the_course_position_rule(name):
+    from pathlib import Path
+
+    from trainer.study_lessons.validation import step_result
+
+    data = json.loads(
+        (Path(course_files.__file__).parent / "courses" / name).read_text(encoding="utf-8")
+    )
+    course, _ = course_files.load(data)
+    boards = course_files.check(data)["steps"]
+    for chapter in course.chapters:
+        for step in chapter.steps:
+            choice = step.choices[0] if step.kind == "decision" and step.choices else None
+            end = step_result(course, step, choice)
+            assert boards[f"{chapter.id}/{step.id}"]["end_fen"] == end.board().fen(), step.id
+
+
+@pytest.mark.parametrize("end", [None, 0, 6, 4, 10_000])
+def test_an_unfinished_game_excerpt_shows_its_start_in_the_editor(end):
+    from pathlib import Path
+
+    data = json.loads(
+        (
+            Path(course_files.__file__).parent / "courses" / "italian-black-foundations.json"
+        ).read_text(encoding="utf-8")
+    )
+    step = next(
+        step
+        for chapter in data["chapters"]
+        for step in chapter["steps"]
+        if step["id"] == "quiet-game"
+    )
+    assert step["from"] == 6
+    if end is None:
+        del step["to"]
+    else:
+        step["to"] = end
+    board = course_files.check(data)["steps"]["quiet-development/quiet-game"]
+    assert board["end_fen"] == board["fen"]

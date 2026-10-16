@@ -6,7 +6,42 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from trainer.taxonomy import SKILLS, UNCLASSIFIED
 
-RULE_VERSION = "4.1-lichess-8d9faff6"
+RULE_VERSION = "4.3-lichess-8d9faff6"
+
+
+class PreviousMove(BaseModel):
+    """The move before a decision's position, as line evidence reads it."""
+
+    model_config = ConfigDict(extra="forbid")
+    fen: str
+    uci: str
+
+
+class ProbeRecord(BaseModel):
+    """One saved engine probe as the classifier reads it: a continuation tail
+    (``kind`` "tail") or a defensive hypothesis test (the hypothesis kind)."""
+
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["tail", "fork_capture", "relative_pin", "relative_pin_escape", "trapped_piece"]
+    root_analysis_id: str
+    at_ply: int
+    query_key: str
+    analysis_id: str
+    fen: str
+    config: dict
+    candidate: dict
+
+
+def evidence_probes(evidence) -> list[ProbeRecord]:
+    """A classification payload's probes as typed records."""
+    return [ProbeRecord.model_validate(probe) for probe in evidence.get("probes", [])]
+
+
+def evidence_previous(evidence) -> PreviousMove | None:
+    """A classification payload's previous move, typed, or None at the start."""
+    previous = evidence.get("previous_move")
+    return PreviousMove.model_validate(previous) if previous else None
+
 
 OUTCOME_SKILLS = {"material_loss", "missed_material_gain", "allowed_mate", "missed_mate"}
 CUES = {

@@ -15,39 +15,68 @@ export type IdleFrame = {
   active: readonly ActiveIdle[];
   started: readonly ActiveIdle[];
   nextAt: number | null;
-  diagnostics: {
-    recent: readonly string[];
-    blinkDueAt: number | null;
-    cooldowns: readonly { id: string; readyAt: number }[];
-    rejected: readonly { id: string; reason: string }[];
-    issues: readonly string[];
-  };
+  /** Why each gesture is or is not available, built only for an observer
+   * (the studio and tests); a production coach's frames carry null. */
+  diagnostics: IdleDiagnostics | null;
+};
+export type IdleDiagnostics = {
+  recent: readonly string[];
+  blinkDueAt: number | null;
+  cooldowns: readonly { id: string; readyAt: number }[];
+  rejected: readonly { id: string; reason: string }[];
+  issues: readonly string[];
 };
 
 function validGesture(value: IdleGesture): boolean {
-  return !!value && typeof value.id === "string" && !!value.id
-    && ["eyes", "attention", "body", "detail"].includes(value.group)
-    && ["quiet", "noticeable"].includes(value.intensity)
-    && Array.isArray(value.tracks) && value.tracks.length > 0
-    && Number.isFinite(value.durationMs) && value.durationMs > 0
-    && Number.isFinite(value.cooldownMs) && value.cooldownMs >= 0
-    && Number.isFinite(value.weight) && value.weight > 0
-    && value.tracks.every((track) => !!track && idleChannels.includes(track.channel)
-      && typeof track.keyframes === "string" && !!track.keyframes
-      && Number.isFinite(track.durationMs) && track.durationMs > 0
-      && Number.isFinite(track.delayMs ?? 0) && (track.delayMs ?? 0) >= 0
-      && track.durationMs + (track.delayMs ?? 0) <= value.durationMs)
-    && new Set(value.tracks.map((track) => track.channel)).size === value.tracks.length;
+  return (
+    !!value &&
+    typeof value.id === "string" &&
+    !!value.id &&
+    ["eyes", "attention", "body", "detail"].includes(value.group) &&
+    ["quiet", "noticeable"].includes(value.intensity) &&
+    Array.isArray(value.tracks) &&
+    value.tracks.length > 0 &&
+    Number.isFinite(value.durationMs) &&
+    value.durationMs > 0 &&
+    Number.isFinite(value.cooldownMs) &&
+    value.cooldownMs >= 0 &&
+    Number.isFinite(value.weight) &&
+    value.weight > 0 &&
+    value.tracks.every(
+      track =>
+        !!track &&
+        idleChannels.includes(track.channel) &&
+        typeof track.keyframes === "string" &&
+        !!track.keyframes &&
+        Number.isFinite(track.durationMs) &&
+        track.durationMs > 0 &&
+        Number.isFinite(track.delayMs ?? 0) &&
+        (track.delayMs ?? 0) >= 0 &&
+        track.durationMs + (track.delayMs ?? 0) <= value.durationMs,
+    ) &&
+    new Set(value.tracks.map(track => track.channel)).size === value.tracks.length
+  );
 }
 
 /** One event-driven clock per portrait. CSS owns frames; this owns reservations. */
 export function createIdleCoordinator(
   catalogue: readonly IdleGesture[],
-  { random = Math.random, now = 0 }: { random?: () => number; now?: number } = {},
+  {
+    random = Math.random,
+    now = 0,
+    diagnostics = true,
+  }: {
+    random?: () => number;
+    now?: number;
+    /** Build each frame's diagnostics; off for a coach nobody observes, and
+     * switched later with observe() so an observer can come and go. */
+    diagnostics?: boolean;
+  } = {},
 ) {
+  let observed = diagnostics;
   const issues = new Set<string>();
   const ids = new Set<string>();
-  const gestures = catalogue.filter((entry) => {
+  const gestures = catalogue.filter(entry => {
     if (!validGesture(entry) || ids.has(entry.id)) {
       issues.add(`Invalid or duplicate idle gesture: ${entry?.id ?? "(missing id)"}`);
       return false;
@@ -55,9 +84,9 @@ export function createIdleCoordinator(
     ids.add(entry.id);
     return true;
   });
-  const blinks = gestures.filter((entry) => entry.blink);
+  const blinks = gestures.filter(entry => entry.blink);
   const baseline = (entry: IdleGesture) => entry.group === "eyes" && !!entry.blink;
-  if (gestures.length && !gestures.some((entry) => !baseline(entry) && entry.intensity === "quiet")) {
+  if (gestures.length && !gestures.some(entry => !baseline(entry) && entry.intensity === "quiet")) {
     issues.add("Resting repertoire has no optional quiet fallback.");
   }
   const draw = () => {
@@ -83,10 +112,10 @@ export function createIdleCoordinator(
   }
 
   function expire() {
-    const finished = active.filter((entry) => entry.endsAt <= time);
+    const finished = active.filter(entry => entry.endsAt <= time);
     if (!finished.length) return;
-    active = active.filter((entry) => entry.endsAt > time);
-    if (finished.some((entry) => entry.gesture.blink)) blinkDueAt = time + between(BLINK_INTERVAL_MS);
+    active = active.filter(entry => entry.endsAt > time);
+    if (finished.some(entry => entry.gesture.blink)) blinkDueAt = time + between(BLINK_INTERVAL_MS);
     if (!active.length) {
       // Late browser callbacks get a fresh gap, never a burst of missed gestures.
       quietSince = time;
@@ -95,24 +124,31 @@ export function createIdleCoordinator(
   }
 
   function conflict(entry: IdleGesture): string | null {
-    if (active.some((playing) => playing.gesture.intensity === entry.intensity)) return `${entry.intensity} limit`;
-    if (active.some((playing) => playing.gesture.tracks.some((track) =>
-      entry.tracks.some((candidate) => candidate.channel === track.channel)))) return "channel occupied";
+    if (active.some(playing => playing.gesture.intensity === entry.intensity))
+      return `${entry.intensity} limit`;
+    if (
+      active.some(playing =>
+        playing.gesture.tracks.some(track =>
+          entry.tracks.some(candidate => candidate.channel === track.channel),
+        ),
+      )
+    )
+      return "channel occupied";
     return null;
   }
 
   function readyAt(entry: IdleGesture): number {
     return Math.max(
       gestureReady.get(entry.id) ?? -Infinity,
-      ...entry.tracks.map((track) => channelReady.get(track.channel) ?? -Infinity),
+      ...entry.tracks.map(track => channelReady.get(track.channel) ?? -Infinity),
       active.length ? lastStart + IDLE_STAGGER_MS : quietAt,
-      baseline(entry) ? blinkDueAt ?? Infinity : -Infinity,
+      baseline(entry) ? (blinkDueAt ?? Infinity) : -Infinity,
     );
   }
 
   function candidates() {
     const due = blinkDueAt !== null && blinkDueAt <= time;
-    return gestures.filter((entry) => (!due || entry.blink) && !conflict(entry));
+    return gestures.filter(entry => (!due || entry.blink) && !conflict(entry));
   }
 
   function choose(available: IdleGesture[]): IdleGesture | undefined {
@@ -121,18 +157,20 @@ export function createIdleCoordinator(
     if (blinkDueAt !== null && blinkDueAt <= time && available.some(baseline)) {
       available = available.filter(baseline);
     }
-    const different = available.filter((entry) => entry.id !== recent.at(-1));
+    const different = available.filter(entry => entry.id !== recent.at(-1));
     if (different.length) available = different;
     if (recent.length >= 3 && recent.at(-1) === recent.at(-3)) {
-      const notAlternating = available.filter((entry) => entry.id !== recent.at(-2));
+      const notAlternating = available.filter(entry => entry.id !== recent.at(-2));
       if (notAlternating.length) available = notAlternating;
     }
     // Age provides a deterministic backstop even for a very unlucky random stream.
-    const oldest = [...available].sort((a, b) => (usedAt.get(a.id) ?? 0) - (usedAt.get(b.id) ?? 0))[0];
+    const oldest = [...available].sort(
+      (a, b) => (usedAt.get(a.id) ?? 0) - (usedAt.get(b.id) ?? 0),
+    )[0];
     if (sequence - (usedAt.get(oldest.id) ?? 0) >= gestures.length * 2) return oldest;
-    const weighted = available.map((entry) => ({
+    const weighted = available.map(entry => ({
       entry,
-      weight: entry.weight / (1 + recent.filter((id) => id === entry.id).length * 2),
+      weight: entry.weight / (1 + recent.filter(id => id === entry.id).length * 2),
     }));
     let choice = draw() * weighted.reduce((sum, entry) => sum + entry.weight, 0);
     for (const item of weighted) {
@@ -144,12 +182,12 @@ export function createIdleCoordinator(
 
   function nextAt(): number | null {
     if (pausedAt !== null || !gestures.length) return null;
-    const deadlines = active.map((entry) => entry.endsAt);
+    const deadlines = active.map(entry => entry.endsAt);
     for (const entry of candidates()) deadlines.push(readyAt(entry));
     if (blinkDueAt !== null && blinkDueAt > time) {
       deadlines.push(active.length ? blinkDueAt : Math.max(quietAt, blinkDueAt));
     }
-    const future = deadlines.filter((deadline) => Number.isFinite(deadline));
+    const future = deadlines.filter(deadline => Number.isFinite(deadline));
     return future.length ? Math.max(time, Math.min(...future)) : null;
   }
 
@@ -160,34 +198,57 @@ export function createIdleCoordinator(
       issues.add("Resting repertoire cannot supply a legal idle within the maximum quiet gap.");
     }
     return {
-      at: time, active: [...active], started, nextAt: deadline,
-      diagnostics: {
-        recent: [...recent], blinkDueAt,
-        cooldowns: gestures.map((entry) => ({ id: entry.id, readyAt: gestureReady.get(entry.id) ?? time })),
-        rejected: gestures.flatMap((entry) => {
-          const reason = conflict(entry)
-            ?? (due && !entry.blink ? "baseline blink due" : null)
-            ?? (readyAt(entry) > time ? "cooldown or cadence deadline" : null);
-          return reason ? [{ id: entry.id, reason }] : [];
-        }),
-        issues: [...issues],
-      },
+      at: time,
+      active: [...active],
+      started,
+      nextAt: deadline,
+      diagnostics: observed ? explain(due) : null,
+    };
+  }
+
+  function explain(due: boolean): IdleDiagnostics {
+    return {
+      recent: [...recent],
+      blinkDueAt,
+      cooldowns: gestures.map(entry => ({
+        id: entry.id,
+        readyAt: gestureReady.get(entry.id) ?? time,
+      })),
+      rejected: gestures.flatMap(entry => {
+        const reason =
+          conflict(entry) ??
+          (due && !entry.blink ? "baseline blink due" : null) ??
+          (readyAt(entry) > time ? "cooldown or cadence deadline" : null);
+        return reason ? [{ id: entry.id, reason }] : [];
+      }),
+      issues: [...issues],
     };
   }
 
   return {
+    /** Starts or stops building diagnostics for later frames. */
+    observe(on: boolean): void {
+      observed = on;
+    },
     advance(value: number): IdleFrame {
       tick(value);
       if (pausedAt !== null) return frame();
       expire();
-      const eligible = candidates().filter((entry) => readyAt(entry) <= time);
+      const eligible = candidates().filter(entry => readyAt(entry) <= time);
       const selected = choose(eligible);
       if (!selected) return frame();
-      const started = { gesture: selected, startedAt: time, endsAt: time + selected.durationMs, sequence: ++sequence };
+      const started = {
+        gesture: selected,
+        startedAt: time,
+        endsAt: time + selected.durationMs,
+        sequence: ++sequence,
+      };
       active.push(started);
       lastStart = time;
       gestureReady.set(selected.id, started.endsAt + selected.cooldownMs);
-      selected.tracks.forEach((track) => channelReady.set(track.channel, started.endsAt + CHANNEL_COOLDOWN_MS));
+      selected.tracks.forEach(track =>
+        channelReady.set(track.channel, started.endsAt + CHANNEL_COOLDOWN_MS),
+      );
       recent.push(selected.id);
       if (recent.length > 8) recent.shift();
       usedAt.set(selected.id, sequence);
@@ -198,7 +259,8 @@ export function createIdleCoordinator(
       tick(value);
       expire();
       for (const entry of active) {
-        for (const track of entry.gesture.tracks) channelReady.set(track.channel, time + CHANNEL_COOLDOWN_MS);
+        for (const track of entry.gesture.tracks)
+          channelReady.set(track.channel, time + CHANNEL_COOLDOWN_MS);
       }
       active = [];
       pausedAt = time;

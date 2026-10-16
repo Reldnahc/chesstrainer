@@ -67,7 +67,7 @@ def test_incompatible_response_payload_is_rejected(settings):
     app = create_app(settings, workers=False, start_engine=False)
     with TestClient(app) as client:
         with app.state.sessions() as db:
-            db.add(AnalysisJob(kind="training"))
+            db.add(AnalysisJob(kind="retired"))
             db.commit()
         app.state.runner.activity = lambda job_id: {
             "games": {"active": "not a count", "pending": 0},

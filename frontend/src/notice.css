@@ -1,102 +1,111 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-.notice {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
-  line-height: 1.6;
-}
-.notice-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  flex: 1;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-.notice-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  flex-shrink: 0;
-  max-width: 100%;
-}
-/* A panel or banner with actions centres its text on them, so a one-line
+  .notice {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    line-height: 1.6;
+  }
+  .notice-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .notice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    flex-shrink: 0;
+    max-width: 100%;
+  }
+  /* A panel or banner with actions centres its text on them, so a one-line
    message and its button share one row instead of the text riding high. */
-.notice--panel,
-.notice--banner {
-  align-items: center;
-}
-.notice--panel {
-  padding: var(--space-4) var(--space-4);
-  background: #262d36;
-  border: 1px solid #424f61;
-  border-radius: 6px;
-  font-size: var(--text-md);
-  color: #c9d6e8;
-}
-.notice--panel[data-tone="error"] {
-  background: #342329;
-  border-color: #74505a;
-  color: #ffc0c7;
-}
-.notice--inline[data-tone="error"] {
-  color: #ffacb4;
-}
-.notice[data-tone="success"] {
-  color: #c6d7ef;
-}
-/* Banners are compact, with a tone stripe. The message, its action and the
+  .notice--panel,
+  .notice--banner {
+    align-items: center;
+  }
+  .notice--panel {
+    padding: var(--space-4) var(--space-4);
+    background: #262d36;
+    border: 1px solid #424f61;
+    border-radius: 6px;
+    font-size: var(--text-md);
+    color: #c9d6e8;
+  }
+  .notice--panel[data-tone="error"] {
+    background: #342329;
+    border-color: #74505a;
+    color: #ffc0c7;
+  }
+  .notice--inline[data-tone="error"] {
+    color: #ffacb4;
+  }
+  .notice[data-tone="success"] {
+    color: #c6d7ef;
+  }
+  /* Banners are compact, with a tone stripe. The message, its action and the
    close button share one row; when the message would be squeezed under 9rem
    the action and close button wrap to their own row, against the right edge. */
-.notice--banner {
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-2);
-  padding: var(--space-1-5) var(--space-1-5) var(--space-1-5) var(--space-4);
-  min-height: 48px;
-  background: #262d36;
-  border: 1px solid #424f61;
-  border-left: 4px solid #7f9cc4;
-  border-radius: 6px;
-  font-size: var(--text-md);
-  line-height: 1.45;
-  color: #dbe5f2;
-}
-.notice--banner > .notice-content { flex: 1 1 9rem; }
-.notice--banner > .notice-actions {
-  margin-left: auto;
-  align-items: center;
-}
-.notice--banner[data-tone="success"] {
-  border-left-color: #8fc79a;
-}
-.notice--banner[data-tone="error"] {
-  background: #342329;
-  border-color: #74505a;
-  border-left-color: #ff8993;
-  color: #ffd3d8;
-}
-.notice-dismiss { align-self: start; }
-/* Keep empty live regions mounted without leaving a blank notice or hiding
+  .notice--banner {
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+    padding: var(--space-1-5) var(--space-1-5) var(--space-1-5) var(--space-4);
+    min-height: 48px;
+    background: #262d36;
+    border: 1px solid #424f61;
+    border-left: 4px solid #7f9cc4;
+    border-radius: 6px;
+    font-size: var(--text-md);
+    line-height: 1.45;
+    color: #dbe5f2;
+  }
+  .notice--banner > .notice-content {
+    flex: 1 1 9rem;
+  }
+  .notice--banner > .notice-actions {
+    margin-left: auto;
+    align-items: center;
+  }
+  .notice--banner[data-tone="success"] {
+    border-left-color: #8fc79a;
+  }
+  .notice--banner[data-tone="error"] {
+    background: #342329;
+    border-color: #74505a;
+    border-left-color: #ff8993;
+    color: #ffd3d8;
+  }
+  .notice-dismiss {
+    align-self: start;
+  }
+  /* Keep empty live regions mounted without leaving a blank notice or hiding
  * them from assistive technology before their text changes. Taking them out
  * of flow also keeps the container's gap from reserving space for them. */
-.notice:has(> .notice-content:empty):not(:has(> .notice-actions)) {
-  position: absolute;
-  padding: 0;
-  border-width: 0;
-}
-@media (max-width: 760px) {
-  .notice--panel {
-    padding: var(--space-3) var(--space-3);
-    font-size: var(--text-sm);
+  .notice:has(> .notice-content:empty):not(:has(> .notice-actions)) {
+    position: absolute;
+    padding: 0;
+    border-width: 0;
   }
-  .notice--banner {
-    padding-left: var(--space-3);
-    font-size: var(--text-sm);
-  }
-  /* Banner commands stay compact on phones, like the coach's actions, so a
+  @media (max-width: 760px) {
+    .notice--panel {
+      padding: var(--space-3) var(--space-3);
+      font-size: var(--text-sm);
+    }
+    .notice--banner {
+      padding-left: var(--space-3);
+      font-size: var(--text-sm);
+    }
+    /* Banner commands stay compact on phones, like the coach's actions, so a
      banner costs the page below it as little height as possible. */
-  .notice--banner .action-control.action-control--compact { min-height: var(--control-height-compact); }
-  .notice--banner .action-control--icon.action-control--compact { width: var(--control-height-compact); height: var(--control-height-compact); }
-}
+    .notice--banner .action-control.action-control--compact {
+      min-height: var(--control-height-compact);
+    }
+    .notice--banner .action-control--icon.action-control--compact {
+      width: var(--control-height-compact);
+      height: var(--control-height-compact);
+    }
+  }
 }

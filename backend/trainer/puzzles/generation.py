@@ -9,17 +9,16 @@ with its reason, so a game is searched once per generator version and never
 when a page opens. Generation writes no exercise, recall or weakness evidence.
 """
 
-from contextlib import nullcontext
 from dataclasses import dataclass
 
 import chess
 import chess.pgn
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.orm import aliased
 
 from trainer.chess_core import Score, game_phase, legal_move, position_key, replay_moves
 from trainer.contracts.puzzles import PuzzleProvenance
-from trainer.game_library import board_before, parsed_game
+from trainer.game_library import board_before, parsed_game, pgn_date
 from trainer.job_lifecycle import JobKind, active_job
 from trainer.lichess_patterns import recognize
 from trainer.models import (
@@ -28,7 +27,6 @@ from trainer.models import (
     Game,
     GamePuzzle,
     GamePuzzleSearch,
-    GameReviewMove,
 )
 from trainer.puzzles.definitions import PuzzleDefinition
 from trainer.puzzles.verification import (
@@ -42,8 +40,8 @@ from trainer.puzzles.verification import (
     rival_verdict,
     score_int,
 )
-from trainer.review_reports import saved_report
-from trainer.search_limits import SearchLimits
+from trainer.review_reports import reports_for
+from trainer.search_limits import SearchLimits, SearchProfile
 
 # v2: a rival that mates or still wins makes a step ambiguous; review reports are
 # read as the review shows them (refined when adopted).
@@ -106,8 +104,20 @@ def _score(payload) -> int:
     return score_int(Score.model_validate(payload))
 
 
-def decision_prospects(db, game):
-    """Candidates from the training pipeline's saved decisions, plus every judged ply."""
+def shown_reports(db, game):
+    """Each reviewed ply's report as the review shows it: refined when a deeper search
+    was adopted, else the baseline."""
+    return reports_for(db, game.id)[0]
+
+
+def decision_prospects(db, game, reports=None):
+    """Candidates from the training pipeline's saved decisions, plus every judged ply.
+
+    A decision that no longer matches the report the review shows at its ply (saved
+    by triage before the review, or before an adopted deeper search) is stale until
+    training refreshes it, so that ply is left to ``review_prospects``.
+    """
+    reports = shown_reports(db, game) if reports is None else reports
     played_analysis = aliased(EngineAnalysis)
     rows = db.execute(
         select(Decision, EngineAnalysis.candidates, played_analysis.candidates)
@@ -118,6 +128,9 @@ def decision_prospects(db, game):
     )
     found, plies = [], set()
     for decision, candidates, played in rows:
+        report = reports.get(decision.ply)
+        if report is not None and report["before_analysis_id"] != decision.before_analysis_id:
+            continue
         plies.add(decision.ply)
         if not candidates or not played:
             continue
@@ -140,18 +153,15 @@ def decision_prospects(db, game):
     return found, plies
 
 
-def review_prospects(db, game, skip):
+def review_prospects(db, game, skip, reports=None):
     """Candidates from full-game review reports on plies the training pipeline never judged.
 
     The reports are read as the review shows them: refined when a deeper search was adopted.
     """
-    rows = db.scalars(
-        select(GameReviewMove).where(GameReviewMove.game_id == game.id).order_by(GameReviewMove.ply)
-    )
-    for row in rows:
-        if row.ply in skip:
+    reports = shown_reports(db, game) if reports is None else reports
+    for ply, report in reports.items():
+        if ply in skip:
             continue
-        ply, report = row.ply, saved_report(db, row)
         frames = (report.get("actual_line") or {}).get("frames") or []
         if not frames:
             continue
@@ -173,9 +183,10 @@ def review_prospects(db, game, skip):
         )
 
 
-def prospects(db, game) -> list[Prospect]:
-    found, plies = decision_prospects(db, game)
-    found.extend(review_prospects(db, game, plies))
+def prospects(db, game, reports=None) -> list[Prospect]:
+    reports = shown_reports(db, game) if reports is None else reports
+    found, plies = decision_prospects(db, game, reports)
+    found.extend(review_prospects(db, game, plies, reports))
     found.sort(key=lambda item: item.ply)
     return found
 
@@ -193,14 +204,16 @@ class EngineSearch:
 
     def __init__(self, engine, settings):
         self.engine = engine
-        self.limits = SearchLimits(
-            depth=settings.puzzle_generation_depth, time=settings.puzzle_generation_time
+        self.profile = SearchProfile.explicit(
+            SearchLimits(
+                depth=settings.puzzle_generation_depth, time=settings.puzzle_generation_time
+            )
         )
         self.analysis_ids = []
         self.engine_version = ""
 
     def __call__(self, board, *, multipv=1):
-        analysis = self.engine.analyze(board, multipv=multipv, limits=self.limits)
+        analysis = self.engine.analyze(board, self.profile, multipv=multipv)
         self.analysis_ids.append(analysis.id)
         self.engine_version = analysis.engine_version
         return [
@@ -314,7 +327,7 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
 def definition_for(game, prospect: Prospect, root, built: Built, themes) -> PuzzleDefinition:
     you = "White" if game.learner_color else "Black"
     opponent = game.black if game.learner_color else game.white
-    when = game.played_on or "date unknown"
+    when = pgn_date(game.pgn) or "date unknown"
     attribution = (
         f"Your game as {you} vs {opponent} · {when} · move {(prospect.ply + 1) // 2}. "
         f"You played {prospect.played_san}."
@@ -334,30 +347,37 @@ def definition_for(game, prospect: Prospect, root, built: Built, themes) -> Puzz
     )
 
 
-def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mutation_lock=None):
+def generate_for_game(units, search, settings, game, *, cancelled=lambda: False):
     """Mine one game once per generator version.
 
+    ``units`` opens the account's ``read()`` and ``write()`` units, and ``game``
+    is a Game or its id. Searches run between units, so they hold no lock or
+    connection; each judged candidate is saved in a write unit of its own.
     Returns the candidate and kept counts, or None when the game was already
     searched or the work was cancelled before the search record could be written
     (judged candidates are kept, so a later run resumes where this one stopped).
     """
-    lock = nullcontext() if mutation_lock is None else mutation_lock
-    searched = db.scalar(
-        select(GamePuzzleSearch.id).where(
-            GamePuzzleSearch.game_id == game.id,
-            GamePuzzleSearch.generator_version == GENERATOR_VERSION,
-        )
-    )
-    if searched is not None:
-        return None
-    found = prospects(db, game)
-    judged = set(
-        db.scalars(
-            select(GamePuzzle.ply).where(
-                GamePuzzle.game_id == game.id, GamePuzzle.generator_version == GENERATOR_VERSION
+    game_id = game if isinstance(game, str) else game.id
+    with units.read() as db:
+        game = db.get(Game, game_id)
+        searched = db.scalar(
+            select(GamePuzzleSearch.id).where(
+                GamePuzzleSearch.game_id == game.id,
+                GamePuzzleSearch.generator_version == GENERATOR_VERSION,
             )
         )
-    )
+        if searched is not None:
+            return None
+        shown = shown_reports(db, game)
+        found = prospects(db, game, shown)
+        judged = set(
+            db.scalars(
+                select(GamePuzzle.ply).where(
+                    GamePuzzle.game_id == game.id,
+                    GamePuzzle.generator_version == GENERATOR_VERSION,
+                )
+            )
+        )
     for prospect in found:
         if prospect.ply in judged:
             continue
@@ -368,13 +388,14 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
         first_search = len(search.analysis_ids)
         built, reason = build_line(search, root, max_plies=settings.puzzle_generation_max_plies)
         if built is not None:
-            duplicate = db.scalar(
-                select(GamePuzzle.id).where(
-                    GamePuzzle.position_key == key,
-                    GamePuzzle.status == "ready",
-                    GamePuzzle.generator_version == GENERATOR_VERSION,
+            with units.read() as db:
+                duplicate = db.scalar(
+                    select(GamePuzzle.id).where(
+                        GamePuzzle.position_key == key,
+                        GamePuzzle.status == "ready",
+                        GamePuzzle.generator_version == GENERATOR_VERSION,
+                    )
                 )
-            )
             if duplicate is not None:
                 built, reason = None, "duplicate_position"
         definition = None
@@ -413,19 +434,23 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
                 "stop": built.stop if built else None,
             },
         )
-        with lock:
+        with units.write() as db:
             db.add(row)
-            db.commit()
-    kept = db.scalar(
-        select(func.count())
-        .select_from(GamePuzzle)
-        .where(
-            GamePuzzle.game_id == game.id,
-            GamePuzzle.generator_version == GENERATOR_VERSION,
-            GamePuzzle.status == "ready",
+    with units.write() as db:
+        kept = db.scalar(
+            select(func.count())
+            .select_from(GamePuzzle)
+            .where(
+                GamePuzzle.game_id == game.id,
+                GamePuzzle.generator_version == GENERATOR_VERSION,
+                GamePuzzle.status == "ready",
+            )
         )
-    )
-    with lock:
+        # Another session saves adoptions, and this unit reads them fresh.
+        if _evidence(shown_reports(db, game)) != _evidence(shown):
+            # The review adopted a deeper search while this pass ran: leave the game
+            # unrecorded so the next run mines what the review shows now.
+            return {"candidates": len(found), "kept": kept}
         db.add(
             GamePuzzleSearch(
                 game_id=game.id,
@@ -435,8 +460,25 @@ def generate_for_game(db, search, settings, game, *, cancelled=lambda: False, mu
                 kept=kept,
             )
         )
-        db.commit()
     return {"candidates": len(found), "kept": kept}
+
+
+def _evidence(reports):
+    return {ply: report["before_analysis_id"] for ply, report in reports.items()}
+
+
+def remine_after_refinement(db, game_id):
+    """Let the next mining run search a game again once its review adopts a deeper search.
+
+    Plies already judged keep their verdicts, since each was settled by its own
+    searches; only plies the refined report newly puts forward are searched.
+    """
+    db.execute(
+        delete(GamePuzzleSearch).where(
+            GamePuzzleSearch.game_id == game_id,
+            GamePuzzleSearch.generator_version == GENERATOR_VERSION,
+        )
+    )
 
 
 def _analyzed_games():

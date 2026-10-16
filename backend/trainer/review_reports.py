@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from sqlalchemy import and_, case, func, select
 
-from trainer.game_review import link_previous_scores
+from trainer.game_review import lines_current, link_previous_scores, shown_best_uci
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import GameReview, GameReviewMove, HumanAnalysis, ReviewRefinement
@@ -17,26 +17,78 @@ def touch_report(db, row):
     row.revision = review.revision
 
 
-def saved_report(db, row):
-    """A saved review move's report as the review shows it: the adopted
-    refinement when there is one, else the baseline."""
-    task = db.get(ReviewRefinement, row.refinement_id) if row.refinement_id else None
-    return effective_report(db, row, task)
-
-
-def effective_report(db, row, task):
-    baseline = row.report
-    if task and (
-        (task.game_id, task.ply) != (row.game_id, row.ply)
-        or task.config["baseline_ids"]
-        != [baseline["before_analysis_id"], baseline["played_analysis_id"]]
-    ):
-        task = None
-    report = dict(
-        task.report
-        if task and task.adopted and task.status == "completed" and task.report
-        else baseline
+def stale_adopted(db, game_id, parameters):
+    """Refinement reports the review shows over the baseline (``adopted``), whose
+    lines were read to another horizon than ``parameters``. A superseded adopted
+    refinement is not shown, so it is not reread."""
+    shown = db.scalars(
+        select(ReviewRefinement)
+        .join(GameReviewMove, GameReviewMove.refinement_id == ReviewRefinement.id)
+        .where(GameReviewMove.game_id == game_id, adopted())
     )
+    return [task for task in shown if not lines_current(task.report, parameters)]
+
+
+def _belongs():
+    """The refinement row was asked about this exact review move and its searches."""
+    base = GameReviewMove.report
+    return and_(
+        ReviewRefinement.game_id == GameReviewMove.game_id,
+        ReviewRefinement.ply == GameReviewMove.ply,
+        ReviewRefinement.config["baseline_ids"][0].as_string()
+        == base["before_analysis_id"].as_string(),
+        ReviewRefinement.config["baseline_ids"][1].as_string()
+        == base["played_analysis_id"].as_string(),
+    )
+
+
+def adopted():
+    """The one statement of when the review shows a refinement's report over the
+    baseline: it belongs to the move, was adopted, completed, and saved a report.
+
+    Every reader of the effective report uses it, in SQL: the game page and
+    training through ``reports_for``, library and Insights accuracy through
+    ``load_accuracy_scores``.
+    """
+    refined = ReviewRefinement.report
+    return and_(
+        _belongs(),
+        ReviewRefinement.adopted.is_(True),
+        ReviewRefinement.status == "completed",
+        # A JSON null is stored as text and an empty object has nothing to show.
+        func.json_type(refined) == "object",
+        func.json(refined) != "{}",
+    )
+
+
+def reports_for(db, game_id, plies=None):
+    """{ply: report} for a game's saved review moves, as the review shows them."""
+    statement = (
+        select(
+            GameReviewMove,
+            ReviewRefinement,
+            func.coalesce(_belongs(), False),
+            func.coalesce(adopted(), False),
+        )
+        .outerjoin(ReviewRefinement, GameReviewMove.refinement_id == ReviewRefinement.id)
+        .where(GameReviewMove.game_id == game_id)
+        .order_by(GameReviewMove.ply)
+    )
+    if plies is not None:
+        statement = statement.where(GameReviewMove.ply.in_(plies))
+    rows = db.execute(statement).all()
+    return {
+        row.ply: effective_report(db, row, task, belongs, shown)
+        for row, task, belongs, shown in rows
+    }, {row.ply: row.revision for row, *_ in rows}
+
+
+def effective_report(db, row, task, belongs, shown):
+    """The report for ``row``; ``belongs`` and ``shown`` come from ``adopted`` above."""
+    baseline = row.report
+    if not belongs:
+        task = None
+    report = dict(task.report if shown else baseline)
     if task:
         report["refinement"] = dict(
             version=REFINEMENT_VERSION,
@@ -52,31 +104,42 @@ def effective_report(db, row, task):
     human = baseline.get("human")
     if human:
         report["human"] = dict(human)
-        if report["best"]["uci"] != baseline["best"]["uci"]:
-            cached = db.get(HumanAnalysis, row.human_analysis_id) if row.human_analysis_id else None
-            if cached:
-                report["human"] = HumanEvidence.model_validate(
-                    human
-                    | policy_summary(
-                        HumanPolicy.model_validate(cached.policy),
-                        report["actual"]["uci"],
-                        report["best"]["uci"],
-                    )
-                ).model_dump(mode="json")
-            else:
-                report["human"]["engine_best"] = None
+        report = aligned_human(report, lambda: saved_policy(db, row.human_analysis_id))
     return report
 
 
+def saved_policy(db, evidence_id):
+    """The saved Maia policy behind ``evidence_id``, or None without a session or row."""
+    cached = db.get(HumanAnalysis, evidence_id) if db is not None and evidence_id else None
+    return cached.policy if cached else None
+
+
+def aligned_human(report, cached_policy):
+    """``report`` with its human evidence scoring the move shown as best.
+
+    A refinement that changed the best move, or a played move promoted by its own
+    stronger search (in reports saved before that was scored at the source), is
+    scored again from the saved policy, with no inference. ``cached_policy()``
+    returns that policy (or None) and runs only when the evidence names another
+    move. Game review, Play and refinement planning all read human evidence
+    through this.
+    """
+    human = report.get("human")
+    if not human or human.get("status") != "available":
+        return report
+    best = shown_best_uci(report)
+    if (human.get("engine_best") or {}).get("uci") == best:
+        return report
+    policy = cached_policy()
+    if policy is None:
+        return report | {"human": dict(human, engine_best=None)}
+    summary = policy_summary(HumanPolicy.model_validate(policy), report["actual"]["uci"], best)
+    return report | {"human": HumanEvidence.model_validate(human | summary).model_dump(mode="json")}
+
+
 def load_game_reports(db, game_id):
-    rows = db.execute(
-        select(GameReviewMove, ReviewRefinement)
-        .outerjoin(ReviewRefinement, GameReviewMove.refinement_id == ReviewRefinement.id)
-        .where(GameReviewMove.game_id == game_id)
-        .order_by(GameReviewMove.ply)
-    ).all()
-    reports = link_previous_scores({row.ply: effective_report(db, row, task) for row, task in rows})
-    return reports, {row.ply: row.revision for row, _ in rows}
+    reports, revisions = reports_for(db, game_id)
+    return link_previous_scores(reports), revisions
 
 
 def load_accuracy_scores(db, game_ids):
@@ -85,23 +148,12 @@ def load_accuracy_scores(db, game_ids):
     if not game_ids:
         return saved
     base, refined = GameReviewMove.report, ReviewRefinement.report
-    adopted = and_(
-        ReviewRefinement.adopted.is_(True),
-        ReviewRefinement.status == "completed",
-        ReviewRefinement.game_id == GameReviewMove.game_id,
-        ReviewRefinement.ply == GameReviewMove.ply,
-        ReviewRefinement.config["baseline_ids"][0].as_string()
-        == base["before_analysis_id"].as_string(),
-        ReviewRefinement.config["baseline_ids"][1].as_string()
-        == base["played_analysis_id"].as_string(),
-        # A JSON null is stored as text, so test for an object, as the Python rule does.
-        func.json_type(refined) == "object",
-    )
+    shown = adopted()
     statement = select(
         GameReviewMove.game_id,
         GameReviewMove.ply,
-        case((adopted, refined["white_score"]), else_=base["white_score"]),
-        case((adopted, refined["best"]["score"]), else_=base["best"]["score"]),
+        case((shown, refined["white_score"]), else_=base["white_score"]),
+        case((shown, refined["best"]["score"]), else_=base["best"]["score"]),
     ).outerjoin(ReviewRefinement, GameReviewMove.refinement_id == ReviewRefinement.id)
     game_ids = list(game_ids)
     # Chunked: a whole library's ids would exceed SQLite's bound-parameter limit.

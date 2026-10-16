@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 from sqlalchemy import select, update
 
-from trainer.chess_core import legal_move, valid_board
+from trainer.chess_core import legal_move, side_name, valid_board
 from trainer.errors import InvalidInput
 from trainer.explanation_types import (
     NO_SOLUTION,
@@ -49,7 +49,7 @@ def snapshot_session(db, session, exercise):
             session_id=session.id,
             answer_revision=card.revision,
             fen=exercise.fen,
-            orientation=exercise.orientation,
+            learner_color=exercise.learner_color,
             answers=[
                 {
                     "uci": answer.uci,
@@ -80,7 +80,7 @@ def get_snapshot(db, session):
 def context(snapshot):
     return {
         "names": list(dict.fromkeys(study["name"] for study in snapshot.studies)),
-        "color": snapshot.orientation,
+        "color": side_name(snapshot.learner_color),
         "prompt": "Play your studied move.",
         "revision": snapshot.answer_revision,
     }
@@ -107,7 +107,7 @@ def current(db, session, snapshot):
 
 
 def scheduling_allowed(db, session, snapshot):
-    # The enclosing account mutation lock serializes HTTP enrollment and recall.
+    # The enclosing write unit (the account lock) serializes HTTP enrollment and recall.
     # A conditional write additionally checks fresh authority under SQLite's writer lock.
     changed = db.execute(
         update(OpeningCard)
@@ -205,7 +205,7 @@ def explain(db, session, snapshot, attempt_id, solution):
         accepted=accepted,
         move_uci=uci,
         move_san=board.san(move),
-        orientation=snapshot.orientation,
+        orientation=side_name(snapshot.learner_color),
         summary="This matches a move in your selected opening studies."
         if accepted
         else "This move is legal, but outside the opening moves you selected to study.",

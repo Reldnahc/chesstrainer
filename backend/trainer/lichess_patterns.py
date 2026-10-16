@@ -75,8 +75,8 @@ def line_input(boards, first, end, analysis_id, previous_move=None):
         initial = boards[first - 2]
         setup = boards[first - 1].peek()
     elif previous_move:
-        initial = valid_board(previous_move["fen"])
-        setup = legal_move(initial, previous_move["uci"])
+        initial = valid_board(previous_move.fen)
+        setup = legal_move(initial, previous_move.uci)
     if setup is not None:
         check = initial.copy(stack=True)
         check.push(legal_move(check, setup.uci()))

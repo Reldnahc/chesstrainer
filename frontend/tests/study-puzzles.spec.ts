@@ -1,10 +1,13 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 
 const walter = (id: string) => walterBank.recordings.find(row => row.id === id)!.text;
 
-const preferences = new WeakMap<Page, { coach: Schema["CoachPreferences"]; motion: Schema["MotionPreferences"] }>();
+const preferences = new WeakMap<
+  Page,
+  { coach: Schema["CoachPreferences"]; motion: Schema["MotionPreferences"] }
+>();
 test.beforeEach(async ({ page }) => {
   preferences.set(page, {
     coach: await (await page.request.get("/api/preferences/coach")).json(),
@@ -13,8 +16,12 @@ test.beforeEach(async ({ page }) => {
 });
 test.afterEach(async ({ page }) => {
   const original = preferences.get(page)!;
-  expect((await page.request.put("/api/preferences/coach", { data: original.coach })).ok()).toBe(true);
-  expect((await page.request.put("/api/preferences/motion", { data: original.motion })).ok()).toBe(true);
+  expect((await page.request.put("/api/preferences/coach", { data: original.coach })).ok()).toBe(
+    true,
+  );
+  expect((await page.request.put("/api/preferences/motion", { data: original.motion })).ok()).toBe(
+    true,
+  );
 });
 
 async function fixture(page: Page, key: string) {
@@ -35,21 +42,39 @@ async function saved(page: Page, id: string): Promise<Schema["PuzzleSessionView"
 const piece = (page: Page, square: string, symbol: string) =>
   page.locator(`.board-shell [data-square="${square}"] [data-piece="${symbol}"]`);
 
-test("Study home keeps modes distinct and preserves old recall bookmarks without extra history", async ({ page }) => {
-  await page.route("**/api/puzzles", route => route.fulfill({ json: {
-    available: 0, sources: [], themes: [], retry_available: 0, solved_puzzles: 0, resume: [], stats: { solved: 0, clean: 0, failed_then_solved: 0, revealed: 0 },
-  } }));
+test("Study home keeps modes distinct and preserves old recall bookmarks without extra history", async ({
+  page,
+}) => {
+  await page.route("**/api/puzzles", route =>
+    route.fulfill({
+      json: {
+        available: 0,
+        sources: [],
+        themes: [],
+        retry_available: 0,
+        solved_puzzles: 0,
+        resume: [],
+        stats: { solved: 0, clean: 0, failed_then_solved: 0, revealed: 0 },
+      },
+    }),
+  );
   await page.goto("/study");
   await expect(page).toHaveURL("/study");
   await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Study", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByRole("link", { name: "Study", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
   await page.getByRole("link", { name: "Open puzzles", exact: true }).click();
   await expect(page.getByRole("heading", { name: "No puzzles available yet." })).toBeVisible();
   await page.goBack();
   await expect(page).toHaveURL("/study");
-  const original = await page.request.post("/api/exercises/manual", { data: {
-    fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", moves: ["e2e4"],
-  } });
+  const original = await page.request.post("/api/exercises/manual", {
+    data: {
+      fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      moves: ["e2e4"],
+    },
+  });
   const { id } = await original.json();
   for (const path of [`/review?exercise=${id}`, `/?exercise=${id}`]) {
     await page.goto(path);
@@ -68,14 +93,24 @@ test("Study home keeps modes distinct and preserves old recall bookmarks without
   for (const bookmark of [
     { path: "/review?focus=fork", destination: "/study/due?focus=fork", focused: true },
     { path: "/?focus=fork", destination: "/study/due?focus=fork", focused: true },
-    { path: `/?session=${session.session_id}`, destination: `/study/due?session=${session.session_id}`, focused: false },
+    {
+      path: `/?session=${session.session_id}`,
+      destination: `/study/due?session=${session.session_id}`,
+      focused: false,
+    },
   ]) {
     await page.goto("/study");
-    const resumed = bookmark.focused ? null : page.waitForResponse(response =>
-      new URL(response.url()).pathname === `/api/review/sessions/${session.session_id}` && response.request().method() === "GET");
+    const resumed = bookmark.focused
+      ? null
+      : page.waitForResponse(
+          response =>
+            new URL(response.url()).pathname === `/api/review/sessions/${session.session_id}` &&
+            response.request().method() === "GET",
+        );
     await page.goto(bookmark.path);
     await expect(page).toHaveURL(bookmark.destination);
-    if (bookmark.focused) await expect(page.getByText("FOCUSED PRACTICE", { exact: true })).toHaveCount(1);
+    if (bookmark.focused)
+      await expect(page.getByText("FOCUSED PRACTICE", { exact: true })).toHaveCount(1);
     else {
       expect((await resumed!).ok()).toBe(true);
       await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
@@ -95,11 +130,15 @@ test("Study home keeps modes distinct and preserves old recall bookmarks without
   await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
 });
 
-test("puzzles retain retries, animate committed replies, resume and finish without revealing future moves", async ({ page }, info) => {
+test("puzzles retain retries, animate committed replies, resume and finish without revealing future moves", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `multi-${info.project.name}`);
   await page.request.put("/api/preferences/motion", { data: { motion: "natural" } });
   const searches: string[] = [];
-  page.on("request", request => { if (/\/(?:analyze|review)$/.test(new URL(request.url()).pathname)) searches.push(request.url()); });
+  page.on("request", request => {
+    if (/\/(?:analyze|review)$/.test(new URL(request.url()).pathname)) searches.push(request.url());
+  });
   await page.goto(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
   await expect(page.getByRole("region", { name: "Puzzle solution" })).toHaveCount(0);
@@ -114,7 +153,9 @@ test("puzzles retain retries, animate committed replies, resume and finish witho
   await expect(page.getByRole("heading", { name: "Try a different move." })).toBeVisible();
   await expect(piece(page, "d2", "wP")).toBeVisible();
   await page.getByRole("button", { name: "Try again", exact: true }).click();
-  const firstMoveResponse = page.waitForResponse(response => response.url().endsWith(`/puzzle-sessions/${puzzle.id}/move`));
+  const firstMoveResponse = page.waitForResponse(response =>
+    response.url().endsWith(`/puzzle-sessions/${puzzle.id}/move`),
+  );
   await move(page, "e2e4");
   const result: Schema["PuzzleSessionView"] = await (await firstMoveResponse).json();
   expect(result.playback.map(frame => frame.uci)).toEqual(["e2e4", "e7e5"]);
@@ -131,7 +172,8 @@ test("puzzles retain retries, animate committed replies, resume and finish witho
   // The status shows the default coach's (Walter's) spoken line for a solve after
   // a retry, with the saved record kept in writing beside it.
   await expect(page.locator(".review-coach").getByRole("status")).toHaveText(
-    `${walter("puzzle-solved-after-retry")} Saved as failed, then solved.`);
+    `${walter("puzzle-solved-after-retry")} Saved as failed, then solved.`,
+  );
   await expect(page.getByRole("region", { name: "Puzzle solution" })).toBeVisible();
   await expect(page.locator(".puzzle-provenance").last()).not.toBeEmpty();
   const complete = await saved(page, puzzle.id);
@@ -143,15 +185,22 @@ test("puzzles retain retries, animate committed replies, resume and finish witho
   expect((await saved(page, puzzle.id)).revision).toBe(complete.revision);
   expect(searches).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({ path: `test-results/study-puzzle-${info.project.name}.png`, fullPage: true });
+  await page.screenshot({
+    path: `test-results/study-puzzle-${info.project.name}.png`,
+    fullPage: true,
+  });
 });
 
-test("reload during opponent playback resumes the committed decision without double advancing", async ({ page }, info) => {
+test("reload during opponent playback resumes the committed decision without double advancing", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `playback-${info.project.name}`);
   await page.request.put("/api/preferences/motion", { data: { motion: "natural" } });
   await page.goto(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
-  const committed = page.waitForResponse(response => response.url().endsWith(`/puzzle-sessions/${puzzle.id}/move`));
+  const committed = page.waitForResponse(response =>
+    response.url().endsWith(`/puzzle-sessions/${puzzle.id}/move`),
+  );
   await move(page, "e2e4");
   const result: Schema["PuzzleSessionView"] = await (await committed).json();
   await page.reload();
@@ -166,7 +215,9 @@ test("reload during opponent playback resumes the committed decision without dou
   await expect(page.getByRole("heading", { name: "Puzzle solved." })).toBeVisible();
 });
 
-test("reveal and Still motion show an inspectable solution without creating a clean solve", async ({ page }, info) => {
+test("reveal and Still motion show an inspectable solution without creating a clean solve", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `reveal-${info.project.name}`);
   await page.request.put("/api/preferences/motion", { data: { motion: "still" } });
   await page.goto(puzzle.path);
@@ -189,14 +240,21 @@ test("reveal and Still motion show an inspectable solution without creating a cl
   expect((await saved(page, puzzle.id)).revision).toBe(revealed.revision);
 });
 
-test("an out-of-date tab must reload the committed session before another write", async ({ page }, info) => {
+test("an out-of-date tab must reload the committed session before another write", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `stale-${info.project.name}`);
   await page.goto(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
   const original = await saved(page, puzzle.id);
-  const other = await page.request.post(`/api/puzzle-sessions/${puzzle.id}/move`, { data: {
-    request_id: `other-${info.project.name}`, revision: original.revision, uci: "e2e4", elapsed_ms: 200,
-  } });
+  const other = await page.request.post(`/api/puzzle-sessions/${puzzle.id}/move`, {
+    data: {
+      request_id: `other-${info.project.name}`,
+      revision: original.revision,
+      uci: "e2e4",
+      elapsed_ms: 200,
+    },
+  });
   expect(other.ok()).toBe(true);
   await move(page, "d2d4");
   await expect(page.getByRole("button", { name: "Reload session", exact: true })).toBeVisible();
@@ -208,19 +266,26 @@ test("an out-of-date tab must reload the committed session before another write"
   expect((await saved(page, puzzle.id)).failed).toBe(false);
 });
 
-test("promotion and coach changes use the shared player without losing saved progress", async ({ page }, info) => {
+test("promotion and coach changes use the shared player without losing saved progress", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `promotion-${info.project.name}`);
   await page.request.put("/api/preferences/motion", { data: { motion: "still" } });
   await page.goto(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
   await page.getByRole("link", { name: "Settings", exact: true }).click();
-  await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
+  await page
+    .getByRole("navigation", { name: "Settings sections" })
+    .getByRole("link", { name: "Coach & animations", exact: true })
+    .click();
   const selected = page.getByRole("radio", {
     name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Walter" : "Scout",
     exact: true,
   });
-  const savedPreference = page.waitForResponse(response =>
-    response.url().endsWith("/api/preferences/coach") && response.request().method() === "PATCH");
+  const savedPreference = page.waitForResponse(
+    response =>
+      response.url().endsWith("/api/preferences/coach") && response.request().method() === "PATCH",
+  );
   await selected.click();
   expect((await savedPreference).ok()).toBe(true);
   await expect(selected).toBeChecked();
@@ -241,7 +306,9 @@ test("promotion and coach changes use the shared player without losing saved pro
   expect(complete.failed).toBe(false);
 });
 
-test("system reduced motion skips automatic playback and keeps manual solution inspection", async ({ page }, info) => {
+test("system reduced motion skips automatic playback and keeps manual solution inspection", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `reduced-${info.project.name}`);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.request.put("/api/preferences/motion", { data: { motion: "system" } });
@@ -257,10 +324,14 @@ test("system reduced motion skips automatic playback and keeps manual solution i
   expect((await saved(page, puzzle.id)).status).toBe("revealed");
 });
 
-test("leaving during a pending move cannot apply late feedback to another Study screen", async ({ page }, info) => {
+test("leaving during a pending move cannot apply late feedback to another Study screen", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `leaving-${info.project.name}`);
   let release!: () => void;
-  const gate = new Promise<void>(resolve => { release = resolve; });
+  const gate = new Promise<void>(resolve => {
+    release = resolve;
+  });
   let handled: Promise<void> | undefined;
   const pattern = `**/api/puzzle-sessions/${puzzle.id}/move`;
   await page.route(pattern, route => {
@@ -292,7 +363,9 @@ test("leaving during a pending move cannot apply late feedback to another Study 
   }
 });
 
-test("puzzles from your games hide the source game until the solve and link back to the review", async ({ page }, info) => {
+test("puzzles from your games hide the source game until the solve and link back to the review", async ({
+  page,
+}, info) => {
   const puzzle = await fixture(page, `games-${info.project.name}`);
   await page.goto(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
@@ -303,25 +376,72 @@ test("puzzles from your games hide the source game until the solve and link back
   await expect(piece(page, "d7", "bK")).toBeVisible();
   await move(page, "d5b6");
   await expect(page.getByRole("heading", { name: "Puzzle solved." })).toBeVisible();
-  await expect(page.getByText("From your games · Your game as White vs fixture-opponent")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Open your move in the game review" })).toHaveAttribute("href", "/games/fixture-game?ply=27");
-  await page.screenshot({ path: `test-results/study-puzzle-games-solved-${info.project.name}.png`, fullPage: true });
+  await expect(
+    page.getByText("From your games · Your game as White vs fixture-opponent"),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Open your move in the game review" }),
+  ).toHaveAttribute("href", "/games/fixture-game?ply=27");
+  await page.screenshot({
+    path: `test-results/study-puzzle-games-solved-${info.project.name}.png`,
+    fullPage: true,
+  });
   // The library's own-games tab explains the search and offers the backfill job.
-  await page.route("**/api/puzzles", route => route.fulfill({ json: {
-    available: 1,
-    sources: [{ id: "browser-game-fixtures", name: "From your games", source: "games", count: 1, attribution: "Built from your imported games", url: null, rating_min: null, rating_max: null }],
-    themes: [{ id: "fork", count: 1, sources: { games: 1 } }, { id: "pin", count: 4, sources: { generic: 4 } }], retry_available: 0, solved_puzzles: 1, resume: [],
-    stats: { solved: 1, clean: 1, failed_then_solved: 0, revealed: 0 },
-    generation: { automatic: true, analyzed_games: 12, searched_games: 9, unsearched_games: 3, puzzles: 1, candidates: 20, kept: 1, last_searched_at: "2026-10-03 14:00:00", job_status: null },
-  } }));
+  await page.route("**/api/puzzles", route =>
+    route.fulfill({
+      json: {
+        available: 1,
+        sources: [
+          {
+            id: "browser-game-fixtures",
+            name: "From your games",
+            source: "games",
+            count: 1,
+            attribution: "Built from your imported games",
+            url: null,
+            rating_min: null,
+            rating_max: null,
+          },
+        ],
+        themes: [
+          { id: "fork", count: 1, sources: { games: 1 } },
+          { id: "pin", count: 4, sources: { generic: 4 } },
+        ],
+        retry_available: 0,
+        solved_puzzles: 1,
+        resume: [],
+        stats: { solved: 1, clean: 1, failed_then_solved: 0, revealed: 0 },
+        generation: {
+          automatic: true,
+          analyzed_games: 12,
+          searched_games: 9,
+          unsearched_games: 3,
+          puzzles: 1,
+          candidates: 20,
+          kept: 1,
+          last_searched_at: "2026-10-03 14:00:00",
+          job_status: null,
+        },
+      },
+    }),
+  );
   await page.goto("/study/puzzles/games");
-  await expect(page.getByRole("link", { name: "From your games (1)" })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByRole("link", { name: "From your games (1)" })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
   await expect(page.getByText("1 puzzle comes from 9 of your 12 analyzed games")).toBeVisible();
   await expect(page.getByRole("button", { name: "Search 3 unsearched games" })).toBeEnabled();
   await expect(page.getByRole("group", { name: "Goal" })).toBeVisible();
   await expect(page.getByRole("group", { name: "Difficulty" })).toHaveCount(0);
   // Pack themes stay on the pack tab; this tab counts only its own puzzles.
-  await expect(page.getByRole("combobox", { name: "Theme" }).locator("option")).toHaveText(["Any theme", "Fork (1)"]);
+  await expect(page.getByRole("combobox", { name: "Theme" }).locator("option")).toHaveText([
+    "Any theme",
+    "Fork (1)",
+  ]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({ path: `test-results/study-puzzle-games-${info.project.name}.png`, fullPage: true });
+  await page.screenshot({
+    path: `test-results/study-puzzle-games-${info.project.name}.png`,
+    fullPage: true,
+  });
 });

@@ -1,3 +1,4 @@
+import threading
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -6,7 +7,8 @@ from alembic.config import Config
 from alembic.runtime.migration import MigrationContext
 from alembic.script import ScriptDirectory
 from sqlalchemy import create_engine, event
-from sqlalchemy.pool import NullPool, QueuePool
+from sqlalchemy.orm import Session
+from sqlalchemy.pool import NullPool, Pool, QueuePool
 
 from trainer.ownership import LOCAL_USER_ID, account_sessions
 
@@ -35,6 +37,12 @@ def database(path: Path, timeout=30, *, pooled=True):
     @event.listens_for(engine, "connect")
     def configure_sqlite(connection, _):
         cursor = connection.cursor()
+        # A new, empty file starts in incremental auto-vacuum mode, so space freed
+        # by deletes can be given back without rewriting the whole database. Only
+        # then: on a file already in that mode the pragma waits for the write lock,
+        # so every new connection would queue behind any writer.
+        if not cursor.execute("PRAGMA page_count").fetchone()[0]:
+            cursor.execute("PRAGMA auto_vacuum=INCREMENTAL")
         cursor.execute("PRAGMA foreign_keys=ON")
         cursor.execute("PRAGMA journal_mode=WAL")
         cursor.execute(f"PRAGMA busy_timeout={int(timeout * 1000)}")
@@ -85,6 +93,105 @@ def immediate_transaction(engine, *, foreign_keys=True, defer_foreign_keys=False
             if not foreign_keys:
                 connection.exec_driver_sql("PRAGMA foreign_keys=ON")
                 connection.commit()
+
+
+def _begin_read(session, transaction, connection):
+    connection.exec_driver_sql("PRAGMA query_only=ON")
+    connection.connection.info["query_only"] = True
+    connection.exec_driver_sql("BEGIN")
+
+
+@event.listens_for(Pool, "checkin")
+def _writable_again(dbapi_connection, record):
+    # However a read unit ended, the next user of its pooled connection can write.
+    if record is not None and record.info.pop("query_only", False):
+        dbapi_connection.execute("PRAGMA query_only=OFF")
+
+
+def _begin_write(session, transaction, connection):
+    connection.exec_driver_sql("BEGIN IMMEDIATE")
+
+
+@contextmanager
+def read_unit(sessions):
+    """A session that reads one consistent snapshot and cannot write.
+
+    pysqlite runs each SELECT in its own implicit transaction, so a handler that
+    reads several queries could mix states while a job commits between them. The
+    session's transaction starts with ``BEGIN``, which SQLite holds as one
+    snapshot until the session closes, and ``query_only`` turns any write, a
+    stray autoflush included, into an error instead of a write taken without the
+    account lock. Loaded rows stay usable after the block, as they always have.
+    """
+    with sessions() as db:
+        event.listen(db, "after_begin", _begin_read)
+        yield db
+
+
+@contextmanager
+def write_unit(lock, sessions):
+    """The one way to change account rows: the lock, then one transaction, then commit.
+
+    The account's Python lock is always taken before SQLite's write lock. A
+    request or job that took SQLite's lock first (with a write, or an autoflush
+    before a query) and then waited on the Python lock could stall against a
+    holder of the Python lock waiting on SQLite. Here the lock comes first and
+    the session's first statement, a read included, starts its transaction with
+    ``BEGIN IMMEDIATE``, so a later write or autoflush never has to upgrade a
+    read and autoflush is harmless.
+    The block's changes commit when it ends normally; an exception, an
+    ``HTTPException`` included, discards them. Helpers only flush.
+    """
+    if getattr(_writing, "session", None) is not None:
+        raise RuntimeError("A write unit is already open in this thread; finish it first")
+    with lock, sessions() as db:
+        event.listen(db, "after_begin", _begin_write)
+        _writing.session = db
+        try:
+            yield db
+            db.commit()
+        finally:
+            _writing.session = None
+
+
+# The write unit open in each thread. SQLite has one writer, so a second session
+# writing while it is open (a nested unit, or an engine cache insert from inside
+# one) would wait on the unit's own lock until the busy timeout ran out.
+_writing = threading.local()
+
+
+def _one_writer(session):
+    open_unit = getattr(_writing, "session", None)
+    if open_unit is not None and open_unit is not session:
+        raise RuntimeError(
+            "Another session wrote while this thread's write unit was open; "
+            "search or write before or after the unit, not inside it"
+        )
+
+
+@event.listens_for(Session, "do_orm_execute")
+def _one_writer_statement(state):
+    if state.is_insert or state.is_update or state.is_delete:
+        _one_writer(state.session)
+
+
+@event.listens_for(Session, "before_flush")
+def _one_writer_flush(session, context, instances):
+    if session.new or session.dirty or session.deleted:
+        _one_writer(session)
+
+
+class Units:
+    """``read()`` and ``write()`` units for one account's sessions and lock."""
+
+    def __init__(self, sessions, lock):
+        self.sessions, self.lock = sessions, lock
+
+    def read(self):
+        return read_unit(self.sessions)
+
+    def write(self):
+        return write_unit(self.lock, self.sessions)
 
 
 @contextmanager

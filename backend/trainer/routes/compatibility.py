@@ -34,7 +34,7 @@ def create_router(*, scheduler) -> APIRouter:
         "/api/exercises/manual", response_model=CreatedId, response_model_exclude_unset=True
     )
     def add_manual(workspace: CurrentWorkspace, data: ManualRequest):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             exercise = manual_exercise(db, scheduler, **data.model_dump())
             return {"id": exercise.id}
 

@@ -1,4 +1,4 @@
-"""One job's execution, with its owner's resources captured before any work starts."""
+"""One job's execution from its ``JobContext``, captured before any work starts."""
 
 import logging
 
@@ -20,27 +20,21 @@ log = logging.getLogger(__name__)
 
 
 class JobExecution:
-    def __init__(self, runner, workspace):
-        self.runner = runner
-        self.settings, self.sessions = runner.settings, workspace.sessions
-        self.human_models = workspace.human_models
-        self.scheduler, self.classifier = runner.scheduler, runner.classifier
-        self.engine_factory = runner.engine_factory
-        self.mutation_lock = workspace.mutation_lock
+    """Runs one job from its ``JobContext``; ``pipeline`` is the running game pipeline."""
+
+    def __init__(self, context):
+        self.context = context
         self.pipeline = None
 
-    def cancelled(self, job_id):
-        return self.runner.cancelled(job_id)
-
-    def run(self, job_id, engine=None):
-        log.info("job_started", extra={"job_id": job_id})
+    def run(self, engine=None):
+        context = self.context
+        log.info("job_started", extra={"job_id": context.job_id})
         try:
-            with self.sessions() as db:
-                kind = db.get(AnalysisJob, job_id).kind
+            with context.read() as db:
+                kind = db.get(AnalysisJob, context.job_id).kind
             handlers = {
                 JobKind.GAME_REVIEW: self.run_review,
                 JobKind.SYNC: self.run_fetch,
-                JobKind.CHESSCOM_FETCH: self.run_fetch,
                 JobKind.PROVIDER_FETCH: self.run_fetch,
                 JobKind.CLASSIFICATION: self.run_games,
                 JobKind.ENRICHMENT: self.run_games,
@@ -50,75 +44,68 @@ class JobExecution:
             }
             if kind not in handlers:
                 raise ValueError(f"Unknown job kind {kind!r}")
-            handlers[kind](job_id, kind, engine)
+            handlers[kind](kind, engine)
         except ImportCancelled:
-            self.finish(job_id)
+            self.finish()
         except Exception as exc:
-            log.exception("job_failed", extra={"job_id": job_id, "error_type": type(exc).__name__})
-            with self.sessions() as db:
+            log.exception(
+                "job_failed", extra={"job_id": context.job_id, "error_type": type(exc).__name__}
+            )
+            with context.write() as db:
                 job_lifecycle.fail(
-                    db.get(AnalysisJob, job_id),
+                    db.get(AnalysisJob, context.job_id),
                     str(exc)
                     if isinstance(exc, (EngineUnavailable, ProviderError))
                     else f"{type(exc).__name__}: analysis interrupted; completed work retained.",
                 )
-                db.commit()
             # A caller that supplied ``engine`` owns it and closes it.
         finally:
             self.pipeline = None
 
-    def finish(self, job_id, then=None):
+    def finish(self, then=None):
         """Complete the job, or settle its cancellation; ``then(db, job)`` runs on completion."""
-        with self.sessions() as db:
-            job = db.get(AnalysisJob, job_id)
-            if self.cancelled(job_id):
+        with self.context.write() as db:
+            job = db.get(AnalysisJob, self.context.job_id)
+            # Read from the row in this unit, so a cancel cannot land in between.
+            if self.context.stopping() or job.cancel_requested:
                 job_lifecycle.finish_cancel(job)
             else:
                 job_lifecycle.complete(job)
                 if then:
                     then(db, job)
-            db.commit()
 
-    def run_review(self, job_id, kind, engine):
+    def run_review(self, kind, engine):
+        run_review(self.context, engine)
+        if not self.context.cancelled():
+            self.train(engine)
+        self.finish()
 
-        run_review(self, job_id, engine)
-        if not self.cancelled(job_id):
-            self.train(job_id, engine)
-        self.finish(job_id)
-
-    def run_fetch(self, job_id, kind, engine):
-        with self.sessions() as db:
-            provider = db.get(ProviderImport, job_id).provider
+    def run_fetch(self, kind, engine):
+        context = self.context
+        with context.read() as db:
+            provider = db.get(ProviderImport, context.job_id).provider
         # One provider request at a time on the host, through the shared cooldown.
-        with self.runner.providers.client(provider) as client:
-            fetch_import(
-                job_id,
-                self.sessions,
-                self.settings,
-                client,
-                lambda: self.cancelled(job_id),
-                self.mutation_lock,
-            )
+        with context.providers.client(provider) as client:
+            fetch_import(context, client)
 
         def queue_games(db, job):
             # Poller finds are fresh; manual imports of older games backfill.
             queue_imported(db, job.import_id, FRESH if kind == JobKind.SYNC else BACKFILL)
 
-        with self.mutation_lock:
-            self.finish(job_id, queue_games)
+        self.finish(queue_games)
 
-    def run_level_fit(self, job_id, kind, engine):
+    def run_level_fit(self, kind, engine):
+        run_level_fit(self.context)
+        self.finish()
 
-        run_level_fit(self, job_id)
-        self.finish(job_id)
-
-    def run_games(self, job_id, kind, engine):
-        with self.sessions() as db:
-            job = db.get(AnalysisJob, job_id)
+    def run_games(self, kind, engine):
+        context = self.context
+        with context.write() as db:
+            job = db.get(AnalysisJob, context.job_id)
             if kind == JobKind.CLASSIFICATION:
                 game_ids = db.scalars(select(Game.id)).all()
             elif kind == JobKind.PUZZLE_GENERATION:
-                game_ids = generation.unsearched_games(db, self.settings.puzzle_generation_games)
+                game_ids = generation.unsearched_games(db, context.settings.puzzle_generation_games)
             elif kind == JobKind.ANALYSIS:
                 game_ids = db.scalars(
                     select(ImportGame.game_id).where(
@@ -128,23 +115,23 @@ class JobExecution:
             else:
                 game_ids = []
             job.games_total = len(game_ids)
-            db.commit()
-        self.pipeline = JobPipeline(self, job_id, engine)
+        self.pipeline = JobPipeline(context, engine)
         if kind == JobKind.ENRICHMENT:
             self.pipeline.run_enrichment()
         elif kind == JobKind.PUZZLE_GENERATION:
             self.pipeline.run_generation(game_ids)
         else:
             self.pipeline.run(game_ids, classification_only=kind == JobKind.CLASSIFICATION)
-        with self.mutation_lock:
-            self.finish(job_id)
-        log.info("job_completed", extra={"job_id": job_id})
+        self.finish()
+        log.info("job_completed", extra={"job_id": context.job_id})
 
-    def train(self, job_id, engine):
+    def train(self, engine):
         """Training decisions (Weaknesses, practice) for the reviewed game."""
-        with self.sessions() as db:
-            game_id = db.scalar(select(GameReview.game_id).where(GameReview.job_id == job_id))
+        with self.context.read() as db:
+            game_id = db.scalar(
+                select(GameReview.game_id).where(GameReview.job_id == self.context.job_id)
+            )
         if game_id is None:
             return  # The review saved no game, so there is nothing to train from.
-        self.pipeline = JobPipeline(self, job_id, engine, counters=False)
+        self.pipeline = JobPipeline(self.context, engine, counters=False)
         self.pipeline.run([game_id])

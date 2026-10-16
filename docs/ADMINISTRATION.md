@@ -203,7 +203,7 @@ availability after a game.
 Manual imports fetch older games; there is no analysis choice. Their games join
 the same queue behind games the poller found. Opening a game whose review has not started,
 failed or was paused starts it at the front of the queue. Interactive exploration analyzes the position
-you visit. The HTTP import APIs ignore a legacy `analyze` field.
+you visit. The HTTP import APIs ignore a legacy `analyze` field and reject any other unknown field (HTTP 422).
 
 ## Configuration
 
@@ -316,7 +316,7 @@ offline use, cache identity and conservative interpretation of rating domains.
 
 CLASSIFICATION_WORKERS limits local rule tasks; it starts no model requests or additional engines. Each bounded pool admits at most twice its worker count. Worker count alone does not invalidate results.
 
-MAX_PLIES is the initial saved-line horizon. If the endpoint is unfinished, EXTENSION_PLIES permits bounded forward reading to a quiet endpoint; zero disables extension. TACTIC_PLIES separately bounds connected tactical events attributable to the initial move, and a quiet unrelated gap ends the episode early. Full saved lines are checked for legality. These settings inspect existing evidence without launching Stockfish. MIN_LOSS_CP and MIN_MATERIAL gate material findings; mate transitions remain explicit.
+MAX_PLIES is the initial saved-line horizon, for weakness classification, game review, Play and the practice explanation alike. If the endpoint is unfinished, EXTENSION_PLIES permits bounded forward reading to a quiet endpoint; zero disables extension. TACTIC_PLIES separately bounds connected tactical events attributable to the initial move, and a quiet unrelated gap ends the episode early. Full saved lines are checked for legality. These settings inspect existing evidence without launching Stockfish. MIN_LOSS_CP and MIN_MATERIAL gate material findings; mate transitions remain explicit.
 
 Settings can explicitly queue deeper evidence for at most PROBE_POSITIONS decisions. PROBE_QUERIES counts all searches per selected decision, including two refreshed root comparisons. Remaining searches extend unresolved tails and test specific legal defenses. Each uses PROBE_DEPTH/TIME, MultiPV 1 and STOCKFISH_WORKERS; deep node limits do not apply.
 

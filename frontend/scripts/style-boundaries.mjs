@@ -21,7 +21,11 @@ export function loadStyleBoundaries() {
   for (const key of keys) {
     if (!Array.isArray(manifest[key])) throw new Error(`Invalid style boundary: ${key}`);
     for (const path of manifest[key]) {
-      if (typeof path !== "string" || !/^src\/(?:[\w-]+\/)*[\w-]+\.css$/.test(path) || seen.has(path)) {
+      if (
+        typeof path !== "string" ||
+        !/^src\/(?:[\w-]+\/)*[\w-]+\.css$/.test(path) ||
+        seen.has(path)
+      ) {
         throw new Error(`Invalid or duplicate style boundary: ${path}`);
       }
       seen.add(path);
@@ -30,41 +34,57 @@ export function loadStyleBoundaries() {
   return manifest;
 }
 
-const normalized = (path) => resolve(path.split("?", 1)[0]).replaceAll("\\", "/");
+const normalized = path => resolve(path.split("?", 1)[0]).replaceAll("\\", "/");
 
-export function styleBoundaryPlugin(surface, root = frontendRoot, manifest = loadStyleBoundaries()) {
+export function styleBoundaryPlugin(
+  surface,
+  root = frontendRoot,
+  manifest = loadStyleBoundaries(),
+) {
   if (!(surface in standaloneConfigs)) throw new Error(`Unknown standalone surface: ${surface}`);
-  const forbidden = new Map([
-    ...manifest.applicationOnly,
-    ...(surface !== "intelligence-lab" ? manifest.applicationAndIntelligence : []),
-  ].map((path) => [normalized(resolve(root, path)), path]));
+  const forbidden = new Map(
+    [
+      ...manifest.applicationOnly,
+      ...(surface !== "intelligence-lab" ? manifest.applicationAndIntelligence : []),
+    ].map(path => [normalized(resolve(root, path)), path]),
+  );
   return {
     name: "fieldwork-style-boundaries",
     generateBundle() {
       // Vite inlines CSS @imports, so their paths can be watched dependencies
       // without separate Rollup module IDs. Check both resolved dependency sets.
       const dependencies = [...this.getModuleIds(), ...this.getWatchFiles()];
-      const violations = [...new Set(dependencies.map((id) => forbidden.get(normalized(id))).filter(Boolean))];
+      const violations = [
+        ...new Set(dependencies.map(id => forbidden.get(normalized(id))).filter(Boolean)),
+      ];
       if (violations.length) {
-        this.error(`${surface} imports application styles: ${violations.sort().join(", ")}. Move genuinely shared rules into shared styles instead.`);
+        this.error(
+          `${surface} imports application styles: ${violations.sort().join(", ")}. Move genuinely shared rules into shared styles instead.`,
+        );
       }
     },
   };
 }
 
 export function productionDevelopmentBoundaryPlugin(root = frontendRoot) {
-  const directories = [
-    "src/audio/studio",
-    "src/coach/studio",
-  ].map((path) => normalized(resolve(root, path)) + "/");
+  const directories = ["src/audio/studio", "src/coach/studio"].map(
+    path => normalized(resolve(root, path)) + "/",
+  );
   return {
     name: "fieldwork-production-development-boundary",
     generateBundle() {
       const dependencies = [...this.getModuleIds(), ...this.getWatchFiles()];
-      const violations = [...new Set(dependencies.map(normalized).filter((id) =>
-        directories.some((directory) => id.startsWith(directory))))];
+      const violations = [
+        ...new Set(
+          dependencies
+            .map(normalized)
+            .filter(id => directories.some(directory => id.startsWith(directory))),
+        ),
+      ];
       if (violations.length) {
-        this.error(`Application imports development-only voice assets or studio modules: ${violations.sort().join(", ")}. Keep studio modules in standalone development entry points.`);
+        this.error(
+          `Application imports development-only voice assets or studio modules: ${violations.sort().join(", ")}. Keep studio modules in standalone development entry points.`,
+        );
       }
     },
   };

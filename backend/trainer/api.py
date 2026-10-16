@@ -6,6 +6,8 @@ from fastapi import FastAPI
 from sqlalchemy.orm import sessionmaker
 
 from trainer import site_settings
+from trainer.analysis import resync_game_cards
+from trainer.cache_maintenance import maintain_shared_caches
 from trainer.config import Settings
 from trainer.contracts.accounts import Identity
 from trainer.db import database, migrate, optimize
@@ -55,9 +57,19 @@ def create_app(
     puzzle_providers=None,
     lesson_providers=None,
 ):
-    # A real start reads server settings from the database; callers passing their
-    # own Settings (tests, tools) get exactly those.
-    settings = (settings or site_settings.load(Settings())).for_runtime()
+    # A real start brings the database to head, once, and then reads the server
+    # settings it holds; callers passing their own Settings (tests, tools) get
+    # exactly those, and the database is migrated when the app starts.
+    migrated = settings is None
+    if migrated:
+        settings = Settings()
+        engine, _ = database(settings.database_path)
+        try:
+            migrate(engine)
+        finally:
+            engine.dispose()
+        settings = site_settings.load(settings)
+    settings = settings.for_runtime()
     if puzzle_providers is None:
         puzzle_providers = production_providers(settings)
     # Tests and development tools may supply their own courses; a real install
@@ -94,7 +106,10 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app):
         try:
-            migrate(sql_engine)
+            if not migrated:
+                migrate(sql_engine)
+            # Before workers and requests start, so no cache row in use can go.
+            maintain_shared_caches(sql_engine)
             optimize(sql_engine, opening=True)
             # Startup maintenance runs once for the database. Administrative
             # sessions never reach HTTP handlers or job execution.
@@ -102,6 +117,8 @@ def create_app(
             with maintenance() as db:
                 seed_skills(db)
                 retire_existing(db, settings, enabled_accounts_only=settings.accounts_enabled)
+                resync_game_cards(db)
+                db.commit()
             try:
                 if start_engine and not pool:
                     engine.start()

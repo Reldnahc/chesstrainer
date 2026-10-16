@@ -12,16 +12,16 @@ import { gameReaction } from "../coach/reactions";
 import { labelArticle } from "../moveQuality";
 import { gameIntent } from "../dialogue/gameIntent";
 import { useDialogue } from "../dialogue/useDialogue";
-import {humanInsightIntent} from "../dialogue/humanClaims";
+import { humanInsightIntent } from "../dialogue/humanClaims";
 import DialogueText from "../dialogue/DialogueText";
 import HumanInsight from "./HumanInsight";
-import {distinctOpeners, selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection";
-import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
-import {coachRecording, hasCoachVoice, recordedId} from "../audio/speech/voiceBank";
-import {spokenId as spokenMeaning, spokenText, useSpokenText} from "../audio/speech/spokenText";
-import CoachMovesLine, {movesLineFacts, movesLineText} from "./CoachMovesLine";
-import {useOptionalAudioPreferences} from "../audio/AudioProvider";
-import {useOptionalCoachPreferences} from "../coach/CoachProvider";
+import { distinctOpeners, selectGameOpener, selectGameSpeech } from "../audio/speech/gameSelection";
+import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
+import { coachRecording, hasCoachVoice, recordedId } from "../audio/speech/voiceBank";
+import { spokenId as spokenMeaning, spokenText, useSpokenText } from "../audio/speech/spokenText";
+import CoachMovesLine, { movesLineFacts, movesLineText } from "./CoachMovesLine";
+import { useOptionalAudioPreferences } from "../audio/AudioProvider";
+import { useOptionalCoachPreferences } from "../coach/CoachProvider";
 
 export default function PositionCoach({
   game,
@@ -80,104 +80,164 @@ export default function PositionCoach({
     learner: game.orientation,
     explaining,
     error: !!errorAtPosition || (!actor && game.job?.status === "failed"),
-    pending:
-      !!actor ||
-      reviewStarting ||
-      ["queued", "running"].includes(game.job?.status ?? ""),
+    pending: !!actor || reviewStarting || ["queued", "running"].includes(game.job?.status ?? ""),
   });
-  const input = {game, report, frame, ply, variation,
-    key: dialogueKey, expression: reaction.state,
+  const input = {
+    game,
+    report,
+    frame,
+    ply,
+    variation,
+    key: dialogueKey,
+    expression: reaction.state,
     error: !!errorAtPosition || game.job?.status === "failed",
     pending: !!actor || reviewStarting || ["queued", "running"].includes(game.job?.status ?? ""),
   };
   const intent = gameIntent(input);
-  const displayedIntent = explaining ? gameIntent({...input, explaining}) : intent;
+  const displayedIntent = explaining ? gameIntent({ ...input, explaining }) : intent;
   const utterance = useDialogue(displayedIntent);
   // Maia readings belong to the tag and popup only, never the coach's line.
-  const insightIntent = humanInsightIntent(gameIntent({...input, human: true}));
-  const insight = {intent: insightIntent, utterance: useDialogue(insightIntent)};
+  const insightIntent = humanInsightIntent(gameIntent({ ...input, human: true }));
+  const insight = { intent: insightIntent, utterance: useDialogue(insightIntent) };
   // A background game review and the presence of a mover are not loading
   // states for this position. Only its own unresolved navigation blocks voice.
-  const speechContext = {game, report, frame, ply, variation, pending: speechPending,
-    error: !!errorAtPosition || (!report && game.job?.status === "failed")};
+  const speechContext = {
+    game,
+    report,
+    frame,
+    ply,
+    variation,
+    pending: speechPending,
+    error: !!errorAtPosition || (!report && game.job?.status === "failed"),
+  };
   // anyCoach: a coach without a recorded bank still shows its script's line.
   const voicedCoach = hasCoachVoice(utterance.coachId);
-  const selection = {...speechContext, intent: displayedIntent, utterance, anyCoach: true,
+  const selection = {
+    ...speechContext,
+    intent: displayedIntent,
+    utterance,
+    anyCoach: true,
     // A recorded voice speaks only what it has recorded; a script-only coach shows its line.
-    playable: (id: string) => !voicedCoach || !!recordedId(utterance.coachId, id)};
+    playable: (id: string) => !voicedCoach || !!recordedId(utterance.coachId, id),
+  };
   // The Maia insight is shown beside the bubble but never voiced.
   // Each clip prefers its piece-named variant ("the pinned knight") when this
   // coach has one, falling back to the generic line.
-  const {variants} = selectGameSpeech(selection);
+  const { variants } = selectGameSpeech(selection);
   // Two joined lines never open with the same catchphrase ("Whoa, ... Whoa, ...").
-  const speech = {...variants, recordingId: variants.recordingId
-    && distinctOpeners(variants.recordingId, id => coachRecording(utterance.coachId, id)?.text ?? spokenText(utterance.coachId, id))};
-  const {primaryId, gradeId} = speech;
-  const coachId = utterance.coachId, voiced = hasCoachVoice(coachId);
+  const speech = {
+    ...variants,
+    recordingId:
+      variants.recordingId &&
+      distinctOpeners(
+        variants.recordingId,
+        id => coachRecording(utterance.coachId, id)?.text ?? spokenText(utterance.coachId, id),
+      ),
+  };
+  const { primaryId, gradeId } = speech;
+  const coachId = utterance.coachId,
+    voiced = hasCoachVoice(coachId);
   // A grade take replaces the generic reading once this coach has one.
   const gradeScript = useSpokenText(coachId, voiced || explaining ? null : gradeId);
-  const grade = gradeId && !explaining && (voiced ? coachRecording(coachId, gradeId) : gradeScript) ? gradeId : null;
-  const selected = grade ?? (coachRecording(coachId, speech.recordingId) ? speech.recordingId : primaryId);
+  const grade =
+    gradeId && !explaining && (voiced ? coachRecording(coachId, gradeId) : gradeScript)
+      ? gradeId
+      : null;
+  const selected =
+    grade ?? (coachRecording(coachId, speech.recordingId) ? speech.recordingId : primaryId);
   // The greeting is the start's own line, whether the review just opened or the
   // learner returned there, so the bubble's no-report prose does not gate it.
-  const openerId = selectGameOpener({ply, variation, report, frame, live,
-    error: !!errorAtPosition || game.job?.status === "failed"});
+  const openerId = selectGameOpener({
+    ply,
+    variation,
+    report,
+    frame,
+    live,
+    error: !!errorAtPosition || game.job?.status === "failed",
+  });
   const opener = openerId && coachRecording(coachId, openerId) ? openerId : null;
   const recordingId = opener ?? selected;
   // The bubble shows what the coach says: a recorded coach's exact playback
   // line, or the coach's script line for a meaning not yet recorded. "Show why"
   // keeps the written explanation, where the concrete detail lives, and
   // selection keeps validating against the written utterance throughout.
-  const spokenId = explaining ? null : voiced ? recordingId : openerId ?? grade ?? speech.recordingId;
+  const spokenId = explaining
+    ? null
+    : voiced
+      ? recordingId
+      : (openerId ?? grade ?? speech.recordingId);
   const spokenLine = useSpokenText(coachId, spokenId);
   // A script that lacks one sentence of a pair still speaks the lead.
   const spokenLead = useSpokenText(coachId, explaining || voiced || openerId ? null : primaryId);
   const spoken = spokenLine ?? spokenLead;
-  const spokenSource = spokenMeaning(coachId, spokenLine ? spokenId : spokenLead ? primaryId : null);
+  const spokenSource = spokenMeaning(
+    coachId,
+    spokenLine ? spokenId : spokenLead ? primaryId : null,
+  );
   // The bubble writes where a named piece stands ("the bishop on e4"); the voice does not say it.
-  const written = spoken && (spokenText(coachId, spokenLine ? spokenId : primaryId, variants.squares) ?? spoken);
-  const displayed = !spoken || !written ? utterance : openerId
-    ? {...utterance, id: `${utterance.id}:greeting`, text: spoken, speechText: spoken}
-    : {...utterance, text: written, speechText: spoken};
-  const moves = spoken && !openerId ? movesLineFacts({report, frame, intent}) : null;
+  const written =
+    spoken && (spokenText(coachId, spokenLine ? spokenId : primaryId, variants.squares) ?? spoken);
+  const displayed =
+    !spoken || !written
+      ? utterance
+      : openerId
+        ? { ...utterance, id: `${utterance.id}:greeting`, text: spoken, speechText: spoken }
+        : { ...utterance, text: written, speechText: spoken };
+  const moves = spoken && !openerId ? movesLineFacts({ report, frame, intent }) : null;
   // The strongest reply sits under Best beside the portrait, so the bubble's
   // footer keeps only the opening name and the Maia insight.
-  const reply = movesLineFacts({report, frame, intent})?.reply;
+  const reply = movesLineFacts({ report, frame, intent })?.reply;
   // A game can load before saved voice preferences, and opening a finished
   // review restarts its session, which begins a new analysis epoch and so a new
   // speech scope. Holding the greeting until both settle keeps it a fresh event
   // rather than consumed hydration or a line cancelled by the scope change.
-  const coachPreferences = useOptionalCoachPreferences(), audioPreferences = useOptionalAudioPreferences();
+  const coachPreferences = useOptionalCoachPreferences(),
+    audioPreferences = useOptionalAudioPreferences();
   const preferencesReady = !!coachPreferences?.ready && !!audioPreferences?.ready;
-  const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
-    automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId, ready: !speechPending,
-    manualRecordingIds: [grade ?? primaryId, explaining ? null : grade ?? speech.recordingId].filter((id): id is string => !!id)});
+  const voice = useCoachSpeech({
+    scopeKey: `game:${positionKey}`,
+    recordingId,
+    utterance: opener ? undefined : utterance,
+    automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId,
+    ready: !speechPending,
+    manualRecordingIds: [
+      grade ?? primaryId,
+      explaining ? null : (grade ?? speech.recordingId),
+    ].filter((id): id is string => !!id),
+  });
   const article = labelArticle(report?.label);
   if (prompt)
     return (
-      <ReviewCoach reaction={{...reaction, state: utterance.expression}} voice={voice}
-        title={prompt.title} evaluation={<EvaluationScore score={score} />} actions={<>{prompt.actions}{extraAction}</>}>
+      <ReviewCoach
+        reaction={{ ...reaction, state: utterance.expression }}
+        voice={voice}
+        title={prompt.title}
+        evaluation={<EvaluationScore score={score} />}
+        actions={
+          <>
+            {prompt.actions}
+            {extraAction}
+          </>
+        }
+      >
         {prompt.text}
       </ReviewCoach>
     );
   return (
     <ReviewCoach
-      reaction={{...reaction, state: utterance.expression}}
+      reaction={{ ...reaction, state: utterance.expression }}
       voice={voice}
       title={
         report ? (
           <MoveBadge label={report.label}>
             <span className="coach-rated-move">
               <span className="sr-only">{actor} · </span>
-              {frame?.san || "Move"} is{" "}
-              {article && `${article} `}
+              {frame?.san || "Move"} is {article && `${article} `}
               <span className="coach-quality-name">{report.label}</span>
             </span>
           </MoveBadge>
         ) : (
-          <strong>
-            {actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}
-          </strong>
+          <strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>
         )
       }
       evaluation={<EvaluationScore score={score} />}
@@ -191,7 +251,10 @@ export default function PositionCoach({
               </span>
             )}
             {reply && (
-              <span className="coach-best-move coach-best-reply" title={`${reply.side}’s strongest reply: ${reply.san}`}>
+              <span
+                className="coach-best-move coach-best-reply"
+                title={`${reply.side}’s strongest reply: ${reply.san}`}
+              >
                 <span>Reply</span>
                 <strong>{reply.san}</strong>
               </span>
@@ -207,28 +270,39 @@ export default function PositionCoach({
             disabled={!cues && !errorAtPosition}
             onClick={onExplain}
           >
-            {errorAtPosition
-              ? "Retry analysis"
-              : explaining
-                ? "Hide why"
-                : "Show why"}
+            {errorAtPosition ? "Retry analysis" : explaining ? "Hide why" : "Show why"}
           </Button>
           {variation && (
-            <ReturnButton
-              onClick={onReturnToGame}
-              title="Return to game (Escape)"
-            >
+            <ReturnButton onClick={onReturnToGame} title="Return to game (Escape)">
               Return to game
             </ReturnButton>
           )}
           {extraAction}
         </>
       }
-      detail={moves?.opening && <CoachMovesLine facts={{opening: moves.opening}} />}
-      insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} presentation={insight} report={report} />}
+      detail={moves?.opening && <CoachMovesLine facts={{ opening: moves.opening }} />}
+      insight={
+        report && (
+          <HumanInsight
+            key={`${dialogueKey}:${report.practical?.input_digest}`}
+            presentation={insight}
+            report={report}
+          />
+        )
+      }
     >
-      <DialogueText utterance={displayed} recordingId={spokenSource} announcedDetail={moves && movesLineText(moves)} />
-      <Reveal>{errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}</Reveal>
+      <DialogueText
+        utterance={displayed}
+        recordingId={spokenSource}
+        announcedDetail={moves && movesLineText(moves)}
+      />
+      <Reveal>
+        {errorAtPosition && (
+          <Notice announcement="alert" tone="error" appearance="inline">
+            {errorAtPosition}
+          </Notice>
+        )}
+      </Reveal>
     </ReviewCoach>
   );
 }

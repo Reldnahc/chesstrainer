@@ -1,11 +1,12 @@
 import io
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 
 import chess
 import chess.pgn
 from sqlalchemy import select
 
+from trainer import timeutil
 from trainer.chess_core import digest, valid_board
 from trainer.errors import InvalidInput, NotFound
 from trainer.game_library import board_before, parsed_game
@@ -86,7 +87,7 @@ def played_at(game):
         headers.get("UTCDate", headers.get("Date", "")) + " " + headers.get("UTCTime", "00:00:00")
     )
     try:
-        return datetime.strptime(value, "%Y.%m.%d %H:%M:%S").replace(tzinfo=timezone.utc)
+        return timeutil.as_utc(datetime.strptime(value, "%Y.%m.%d %H:%M:%S"))
     except ValueError:
         return None
 
@@ -110,7 +111,6 @@ def import_games(
     side: str | None,
     *,
     batch: ImportBatch | None = None,
-    commit: bool = True,
     max_new_games: int | None = None,
     completed_times: dict[str, datetime] | None = None,
     rated: dict[str, bool] | None = None,
@@ -163,7 +163,6 @@ def import_games(
                 pgn=parsed.accept(
                     chess.pgn.StringExporter(headers=True, variations=False, comments=True)
                 ),
-                played_on=parsed.headers.get("Date"),
                 played_at=played_at(parsed),
                 move_count=sum(1 for _ in parsed.mainline_moves()),
                 rated=rated_from_headers(parsed.headers),
@@ -181,10 +180,7 @@ def import_games(
             game.rated = rated[key]
     if not linked and not errors:
         errors.append({"game": 0, "error": "No games found in this PGN"})
-    if commit:
-        db.commit()
-    else:
-        db.flush()
+    db.flush()
     return {
         "import_id": batch.id,
         "imported": imported,

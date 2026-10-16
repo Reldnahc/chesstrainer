@@ -1,8 +1,31 @@
 import type { ReactNode } from "react";
 import MoveSymbol from "./MoveSymbol";
 
-export default function MoveBadge({ label, children }: { label: string; children?: ReactNode }) {
-  return <span className={`move-badge label-${label.toLowerCase()}`}>
-    <b aria-hidden="true"><MoveSymbol label={label}/></b>{children ?? label}
-  </span>;
+/** size="small" is the badge in variation rows; size="inline" takes the size of
+ *  the text around it (the review summary table). */
+export default function MoveBadge({
+  label,
+  size = "ordinary",
+  children,
+}: {
+  label: string;
+  size?: "ordinary" | "small" | "inline";
+  children?: ReactNode;
+}) {
+  return (
+    <span
+      className={[
+        "move-badge",
+        size !== "ordinary" && `move-badge--${size}`,
+        `label-${label.toLowerCase()}`,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <b aria-hidden="true">
+        <MoveSymbol label={label} />
+      </b>
+      {children ?? label}
+    </span>
+  );
 }

@@ -7,17 +7,18 @@ import hmac
 import re
 import secrets
 import sys
-import time
+from datetime import timedelta
 from pathlib import Path
 
 from sqlalchemy import delete, insert, select, update
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from trainer import job_lifecycle, site_settings
+from trainer.cascade import owned_tables
 from trainer.config import Settings
 from trainer.db import database, immediate_transaction
 from trainer.errors import Conflict, DomainError, InvalidInput, NotFound
-from trainer.models import AuthSession, Base, User
+from trainer.models import AuthSession, User, now
 from trainer.ownership import LOCAL_USER_ID
 
 USERS, SESSIONS = User.__table__, AuthSession.__table__
@@ -101,10 +102,9 @@ class Accounts:
                         password=encoded,
                         admin=admin,
                         disabled=False,
-                        chesscom_username="",
                         onboarding_completed=False,
                         password_change_required=temporary,
-                        created=time.time(),
+                        created_at=now(),
                     )
                 )
         except IntegrityError as exc:
@@ -127,10 +127,13 @@ class Accounts:
     def issue(self, user_id):
         token = secrets.token_urlsafe(32)
         with self.engine.begin() as db:
-            db.execute(delete(SESSIONS).where(SESSIONS.c.expires < time.time()))
+            moment = now()
+            db.execute(delete(SESSIONS).where(SESSIONS.c.expires_at < moment))
             db.execute(
                 insert(SESSIONS).values(
-                    digest=token_hash(token), user_id=user_id, expires=time.time() + SESSION_SECONDS
+                    digest=token_hash(token),
+                    user_id=user_id,
+                    expires_at=moment + timedelta(seconds=SESSION_SECONDS),
                 )
             )
         return token
@@ -141,7 +144,7 @@ class Accounts:
             .join(SESSIONS, SESSIONS.c.user_id == USERS.c.id)
             .where(
                 SESSIONS.c.digest == token_hash(token),
-                SESSIONS.c.expires > time.time(),
+                SESSIONS.c.expires_at > now(),
                 USERS.c.disabled.is_(False),
             )
         )
@@ -163,10 +166,14 @@ class Accounts:
         with self.engine.connect() as db:
             rows = db.execute(
                 select(
-                    USERS.c.id, USERS.c.username, USERS.c.admin, USERS.c.disabled, USERS.c.created
+                    USERS.c.id,
+                    USERS.c.username,
+                    USERS.c.admin,
+                    USERS.c.disabled,
+                    USERS.c.created_at.label("created"),
                 )
                 .where(USERS.c.username != LOCAL_USERNAME)
-                .order_by(USERS.c.created, USERS.c.username)
+                .order_by(USERS.c.created_at, USERS.c.username)
             ).mappings()
             return [dict(row) for row in rows]
 
@@ -237,9 +244,8 @@ class Accounts:
                     "This account has analysis running. Disable it, wait for the analysis "
                     "to stop, then delete it"
                 )
-            for table in Base.metadata.sorted_tables:
-                if table is not USERS and "user_id" in table.c:
-                    db.execute(delete(table).where(table.c.user_id == user["id"]))
+            for table in owned_tables():
+                db.execute(delete(table).where(table.c.user_id == user["id"]))
             db.execute(delete(USERS).where(USERS.c.id == user["id"]))
 
     @staticmethod
@@ -250,7 +256,6 @@ class Accounts:
                 "id",
                 "username",
                 "admin",
-                "chesscom_username",
                 "onboarding_completed",
                 "password_change_required",
             )

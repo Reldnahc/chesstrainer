@@ -1,5 +1,5 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react";
-import { errorMessage, api, read } from "../api";
+import { api, read } from "../api";
 import { rememberGamePly } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
 import { useLatest } from "../useLatest";
@@ -15,8 +15,13 @@ export type SpeechNavigation = {
 };
 
 /** A navigation the coach may narrate once: the game and user action identify the event. */
-export function speechNavigationFor(gameId: string, key: string, action: number, awaitAnalysis: boolean): SpeechNavigation {
-  return {key, eventId: `${gameId}:${action}`, awaitAnalysis};
+export function speechNavigationFor(
+  gameId: string,
+  key: string,
+  action: number,
+  awaitAnalysis: boolean,
+): SpeechNavigation {
+  return { key, eventId: `${gameId}:${action}`, awaitAnalysis };
 }
 
 /** Owns variation history and navigation without mutating the original game. */
@@ -24,8 +29,10 @@ export function useGameExploration(
   id: string,
   initialPly: number,
   game: Game | null,
-  fail: (message: string) => void,
+  /** The page's error channel: `fail` reports, `dismiss` clears. */
+  errors: { fail: (e: unknown) => void; dismiss: () => void },
 ) {
+  const { fail, dismiss } = errors;
   const audio = useAudioScope(`game:${id}`);
   const [selection, setCursor] = useState<Cursor>({
     ply: initialPly,
@@ -52,7 +59,7 @@ export function useGameExploration(
   const cursor = game
     ? { ...selection, ply: Math.min(selection.ply, game.frames.length - 1) }
     : selection;
-  const branch = branches.find((b) => b.id === cursor.branch);
+  const branch = branches.find(b => b.id === cursor.branch);
   const path = branch ? branch.moves.slice(0, cursor.step) : [];
   const root = branch ? branch.root : cursor.ply;
   const key = `${root}:${path.join(",")}`;
@@ -86,7 +93,12 @@ export function useGameExploration(
   const opened = useRef<string | null>(null);
   const greetOpening = useEffectEvent(() => {
     if (selection.ply === 0 && selection.branch === null && actionVersion.current === 0)
-      setSpeechNavigation({key: "0:", eventId: `${id}:open`, awaitAnalysis: false, opening: true});
+      setSpeechNavigation({
+        key: "0:",
+        eventId: `${id}:open`,
+        awaitAnalysis: false,
+        opening: true,
+      });
   });
   useEffect(() => {
     if (gameId === null || opened.current === gameId) return;
@@ -100,8 +112,9 @@ export function useGameExploration(
   // Read once per key: the key already names root and path, and a held
   // position arriving later must not restart the request.
   const branchRequest = useEffectEvent(() =>
-    branchPosition?.key === key ? null : { ply: root, moves: path });
-  const failBranch = useEffectEvent((message: string) => fail(message));
+    branchPosition?.key === key ? null : { ply: root, moves: path },
+  );
+  const failBranch = useEffectEvent((e: unknown) => fail(e));
 
   useEffect(() => {
     if (!inBranch) return;
@@ -117,20 +130,24 @@ export function useGameExploration(
         body,
       }),
     )
-      .then((value) => {
+      .then(value => {
         if (!active || !mounted.current || activeKey.current !== key) return;
         setBranchPosition({ key, value });
         const pending = pendingNavigation.current;
-        if (pending?.key === key && pending.eventId === requestAction && pending.eventId === actionVersion.current) {
+        if (
+          pending?.key === key &&
+          pending.eventId === requestAction &&
+          pending.eventId === actionVersion.current
+        ) {
           pendingNavigation.current = null;
           audio.advance(pending.forward, value.san, `${pending.eventId}:board`);
         }
       })
-      .catch((e) => {
+      .catch(e => {
         if (!active || !mounted.current || activeKey.current !== key) return;
         if (pendingNavigation.current?.eventId === requestAction) pendingNavigation.current = null;
-        setSpeechNavigation(value => value?.eventId === `${id}:${requestAction}` ? null : value);
-        failBranch(errorMessage(e));
+        setSpeechNavigation(value => (value?.eventId === `${id}:${requestAction}` ? null : value));
+        failBranch(e);
       });
     return () => {
       active = false;
@@ -152,7 +169,11 @@ export function useGameExploration(
     if (changed) {
       const eventId = beginAction();
       if (!options?.silent) {
-        audio.advance(!branch && next === cursor.ply + 1, game.frames[next].san, `${eventId}:board`);
+        audio.advance(
+          !branch && next === cursor.ply + 1,
+          game.frames[next].san,
+          `${eventId}:board`,
+        );
         // A mainline visit speaks only the explanation available on arrival.
         // A later background review update is not a new navigation event.
         setSpeechNavigation(speechNavigationFor(id, nextKey, eventId, false));
@@ -161,7 +182,7 @@ export function useGameExploration(
     }
     setCursor({ ply: next, branch: null, step: 0 });
     setExplanationKey(null);
-    fail("");
+    dismiss();
   }
   function selectStep(value: number) {
     setExplanationKey(null);
@@ -182,8 +203,9 @@ export function useGameExploration(
     if (activeKey.current !== nextKey) {
       const eventId = beginAction();
       setSpeechNavigation(speechNavigationFor(id, nextKey, eventId, true));
-      const forward = branch?.id === selected.id && next === cursor.step + 1
-        || !branch && selected.root === cursor.ply && next === 1;
+      const forward =
+        (branch?.id === selected.id && next === cursor.step + 1) ||
+        (!branch && selected.root === cursor.ply && next === 1);
       // The last complete position can display immediately. Other variation
       // steps keep the old board visible until their guarded request succeeds.
       if (branchPosition?.key === nextKey) {
@@ -202,19 +224,14 @@ export function useGameExploration(
   usePageShortcuts({ Escape: escape });
 
   function addBranch(moves: string[], sans: string[]) {
-    const existing = branches.find(
-      (b) => b.root === root && b.moves.join() === moves.join(),
-    );
-    const extending =
-      !existing && branch && cursor.step === branch.moves.length;
+    const existing = branches.find(b => b.root === root && b.moves.join() === moves.join());
+    const extending = !existing && branch && cursor.step === branch.moves.length;
     const branchId = existing?.id ?? (extending ? branch.id : nextId.current++);
     const returnPly = branch?.returnPly ?? cursor.ply;
     const updated = { id: branchId, root, moves, sans, returnPly };
     if (extending || existing)
-      setBranches((values) =>
-        values.map((b) => (b.id === branchId ? updated : b)),
-      );
-    else setBranches((values) => [...values, updated]);
+      setBranches(values => values.map(b => (b.id === branchId ? updated : b)));
+    else setBranches(values => [...values, updated]);
     setCursor({ ply: root, branch: branchId, step: moves.length });
   }
   async function play(from: string, to: string, promotion?: string) {
@@ -222,14 +239,12 @@ export function useGameExploration(
     const requestKey = key;
     const moves = [...path, from + to + (promotion || "")];
     if (moves.length > 128) {
-      fail(
-        "This variation has reached 128 moves. Return to the game to start another.",
-      );
+      fail(new Error("This variation has reached 128 moves. Return to the game to start another."));
       return null;
     }
     const eventId = beginAction();
     setMoving(true);
-    fail("");
+    dismiss();
     try {
       const next = await read(
         api.POST("/api/games/{game_id}/position", {
@@ -237,13 +252,10 @@ export function useGameExploration(
           body: { ply: root, moves },
         }),
       );
-      if (!mounted.current || activeKey.current !== requestKey || actionVersion.current !== eventId) return null;
-      if (!next.san)
-        throw new Error("The server returned a variation without its move.");
-      addBranch(moves, [
-        ...(branch ? branch.sans.slice(0, cursor.step) : []),
-        next.san,
-      ]);
+      if (!mounted.current || activeKey.current !== requestKey || actionVersion.current !== eventId)
+        return null;
+      if (!next.san) throw new Error("The server returned a variation without its move.");
+      addBranch(moves, [...(branch ? branch.sans.slice(0, cursor.step) : []), next.san]);
       const nextKey = `${root}:${moves.join(",")}`;
       activeKey.current = nextKey;
       setBranchPosition({ key: nextKey, value: next });
@@ -256,7 +268,7 @@ export function useGameExploration(
       };
     } catch (e) {
       if (mounted.current && activeKey.current === requestKey && actionVersion.current === eventId)
-        fail(errorMessage(e));
+        fail(e);
     } finally {
       if (mounted.current) setMoving(false);
     }
@@ -283,8 +295,7 @@ export function useGameExploration(
     step,
     returnToGame,
     play,
-    flip: () =>
-      setOrientation((value) => (value === "white" ? "black" : "white")),
+    flip: () => setOrientation(value => (value === "white" ? "black" : "white")),
     beginScrubbing: () => {
       beginAction();
       scrubOrigin.current = activeKey.current;
@@ -298,8 +309,7 @@ export function useGameExploration(
         setSpeechNavigation(speechNavigationFor(id, activeKey.current, eventId, false));
       }
     },
-    toggleExplanation: () =>
-      setExplanationKey((value) => (value === key ? null : key)),
+    toggleExplanation: () => setExplanationKey(value => (value === key ? null : key)),
     selectBranch,
   };
 }

@@ -6,7 +6,15 @@ import type { SpeechMouthTrack } from "./speechMouth";
 import { CoachCharacter } from "./CoachCharacter";
 
 /** The learner's chosen coach, at their saved motion setting. */
-export default function CoachAvatar({ reaction, speech, speechTrack }: { reaction: CoachReaction; speech?: SpeechPlayback; speechTrack?: SpeechMouthTrack }) {
+export default function CoachAvatar({
+  reaction,
+  speech,
+  speechTrack,
+}: {
+  reaction: CoachReaction;
+  speech?: SpeechPlayback;
+  speechTrack?: SpeechMouthTrack;
+}) {
   const { preferences, ready } = useCoachPreferences();
   return (
     <CoachCharacter

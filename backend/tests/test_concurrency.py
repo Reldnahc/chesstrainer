@@ -25,11 +25,13 @@ from trainer.taxonomy import seed_skills
 def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
     with sessions() as db:
         seed_skills(db)
+        db.commit()
         pgn = "\n\n".join(
             f'[White "Learner"]\n[Black "Opponent"]\n[Round "{i}"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
             for i in range(games)
         )
         imported = import_games(db, "fixture.pgn", pgn, ["Learner"], None)
+        db.commit()
         imported["job_id"] = queue_import_analysis(db, imported)
         job = db.get(AnalysisJob, imported["job_id"])
         job.kind = kind
@@ -68,7 +70,6 @@ def saved_job(sessions, games=4, decisions_per_game=2, kind="classification"):
                         loss_cp=200,
                         meaningful=True,
                         deep=True,
-                        facts={"verified_line": []},
                     )
                 )
         db.commit()
@@ -101,7 +102,7 @@ class BlockingClassifier(FixtureClassifierBase):
                 secondary_skills=[],
                 confidence=0.2,
                 explanation="Scheduling fixture.",
-            ), {}
+            )
         finally:
             with self.lock:
                 self.active -= 1
@@ -174,7 +175,7 @@ def test_single_import_uses_multiple_game_workers_and_closes_engines(
         def close(self):
             self.closed = True
 
-    def analysis(db, engine, config, game, ply, *_):
+    def analysis(units, engine, config, game, ply, *_):
         nonlocal active, peak, calls
         with guard:
             active += 1
@@ -185,9 +186,10 @@ def test_single_import_uses_multiple_game_workers_and_closes_engines(
             if first_pair:
                 rendezvous.wait(5)
             time.sleep(0.015)
-            return db.scalar(
-                select(Decision).where(Decision.game_id == game.id, Decision.ply == ply)
-            )
+            with units.read() as db:
+                return db.scalar(
+                    select(Decision).where(Decision.game_id == game.id, Decision.ply == ply)
+                )
         finally:
             with guard:
                 active -= 1
@@ -246,11 +248,13 @@ def test_parallel_native_import_persists_every_decision_and_classification(
     classifier.release.set()
     with sessions() as db:
         seed_skills(db)
+        db.commit()
         pgn = "\n\n".join(
             f'[White "Learner"]\n[Black "Opponent"]\n[Round "native-{i}"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
             for i in range(6)
         )
         imported = import_games(db, "native.pgn", pgn, ["Learner"], None)
+        db.commit()
         imported["job_id"] = queue_import_analysis(db, imported)
     runner = JobRunner(
         settings,
@@ -281,8 +285,11 @@ def test_analysis_continues_while_model_request_is_waiting(settings, sessions, m
     job_id = saved_job(sessions, games=1, kind="analysis")
     classifier = BlockingClassifier(1)
 
-    def analysis(db, engine, config, game, ply, *_):
-        return db.scalar(select(Decision).where(Decision.game_id == game.id, Decision.ply == ply))
+    def analysis(units, engine, config, game, ply, *_):
+        with units.read() as db:
+            return db.scalar(
+                select(Decision).where(Decision.game_id == game.id, Decision.ply == ply)
+            )
 
     monkeypatch.setattr("trainer.pipeline.analyze_decision", analysis)
     with TestClient(create_app(settings, classifier=classifier)) as client:
@@ -319,7 +326,7 @@ def test_failed_worker_drains_and_closes_processes_before_next_job(
         def close(self):
             self.closed = True
 
-    def broken_analysis(db, engine, *_):
+    def broken_analysis(units, engine, *_):
         engine()  # Engines start lazily; start one so the drain has a process to close.
         raise EngineUnavailable("Fixture engine exited")
 
@@ -349,8 +356,10 @@ def test_a_game_holds_no_database_connection_while_stockfish_searches(
     settings.stockfish_workers = 1
     with sessions() as db:
         seed_skills(db)
+        db.commit()
         pgn = '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 *'
         imported = import_games(db, "held.pgn", pgn, ["Learner"], None)
+        db.commit()
         job_id = queue_import_analysis(db, imported)
     held, searches = Counter(), []
     lock = threading.Lock()
@@ -369,7 +378,7 @@ def test_a_game_holds_no_database_connection_while_stockfish_searches(
         def __init__(self, _settings, engine_sessions):
             self.sessions = engine_sessions
 
-        def analyze(self, board, *, root_moves=None, **_):
+        def analyze(self, board, _profile=None, *, root_moves=None, **_):
             with lock:
                 searches.append(held[threading.get_ident()])
             move = (
@@ -415,28 +424,3 @@ def test_a_game_holds_no_database_connection_while_stockfish_searches(
     # Two searches per learner move, each started with no connection checked out
     # by the searching thread.
     assert searches and set(searches) == {0}
-
-
-def test_releasing_a_session_before_a_search_never_splits_a_write(sessions):
-    from trainer.pipeline import release_reads
-
-    def row(key):
-        return EngineAnalysis(
-            cache_key=key,
-            fen=chess.STARTING_FEN,
-            engine_version="fixture",
-            config={},
-            candidates=[],
-        )
-
-    with sessions() as db:
-        db.scalar(select(func.count()).select_from(Game))
-        release_reads(db)  # Only read: the transaction ends.
-        assert not db.in_transaction()
-        db.add(row("pending"))
-        release_reads(db)  # Unflushed write: kept.
-        db.flush()
-        release_reads(db)  # Flushed, uncommitted write: kept.
-        assert db.in_transaction()
-        db.rollback()
-        assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0

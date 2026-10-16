@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Check, Copy, Download, X } from "lucide-react";
-import { api, read, type Schema } from "../api";
+import { api, errorMessage, read, type Schema } from "../api";
 import Button, { IconButton } from "../Button";
 import { download } from "../download";
 import Notice from "../Notice";
@@ -13,7 +13,8 @@ type Exported = Schema["GameExport"];
 
 function fileName(game: Exported, extension: string) {
   // Keep letters in any script ("Müller"); drop characters file systems reject.
-  const name = `${game.white} vs ${game.black}`.replace(/[^\p{L}\p{N} ._-]+/gu, "").trim() || "game";
+  const name =
+    `${game.white} vs ${game.black}`.replace(/[^\p{L}\p{N} ._-]+/gu, "").trim() || "game";
   return `${name}.${extension}`;
 }
 
@@ -32,7 +33,15 @@ async function copy(text: string, from: HTMLElement) {
   if (!copied) throw new Error("Copying is blocked here; select the text instead.");
 }
 
-function CopyButton({ text, label, onError }: { text: string; label: string; onError: (message: string) => void }) {
+function CopyButton({
+  text,
+  label,
+  onError,
+}: {
+  text: string;
+  label: string;
+  onError: (e: unknown) => void;
+}) {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (!copied) return;
@@ -40,8 +49,11 @@ function CopyButton({ text, label, onError }: { text: string; label: string; onE
     return () => clearTimeout(timer);
   }, [copied]);
   return (
-    <Button size="compact" aria-label={label} onClick={(event) => copy(text, event.currentTarget).then(() => setCopied(true),
-      (e) => onError(e instanceof Error ? e.message : "Copying failed."))}>
+    <Button
+      size="compact"
+      aria-label={label}
+      onClick={event => copy(text, event.currentTarget).then(() => setCopied(true), onError)}
+    >
       {copied ? <Check size={15} /> : <Copy size={15} />}
       {copied ? "Copied" : "Copy"}
     </Button>
@@ -49,7 +61,12 @@ function CopyButton({ text, label, onError }: { text: string; label: string; onE
 }
 
 /** PGN, FEN and an animated GIF of one game. */
-export default function GameExportDialog({ id, fen, orientation, onClose }: {
+export default function GameExportDialog({
+  id,
+  fen,
+  orientation,
+  onClose,
+}: {
   id: string;
   /** The position on the board. */
   fen: string;
@@ -59,12 +76,23 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
 }) {
   const dialog = useModalDialog(onClose);
   const ids = useId();
-  const exported = useQuery(signal => read(api.GET("/api/games/{game_id}/export", { signal, params: { path: { game_id: id } } })), [id]);
+  const exported = useQuery(
+    signal =>
+      read(api.GET("/api/games/{game_id}/export", { signal, params: { path: { game_id: id } } })),
+    [id],
+  );
   const game = exported.data;
+  // The dialog shows its own failures inline: a page banner would sit behind the modal.
   const [error, setError] = useState("");
+  const fail = (e: unknown) => setError(errorMessage(e));
   const [gif, setGif] = useState<{ url: string; blob: Blob } | null>(null);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
-  useEffect(() => () => { if (gif) URL.revokeObjectURL(gif.url); }, [gif]);
+  useEffect(
+    () => () => {
+      if (gif) URL.revokeObjectURL(gif.url);
+    },
+    [gif],
+  );
   // Closing the dialog stops a GIF still being drawn.
   const drawing = useRef<AbortController | null>(null);
   useEffect(() => () => drawing.current?.abort(), []);
@@ -77,10 +105,16 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
     try {
       // The encoder and piece renderer load only when someone asks for a GIF.
       const { gameGif } = await import("./gameGif");
-      const blob = await gameGif(game.positions, orientation, (done, total) => setProgress({ done, total }), controller.signal);
+      const blob = await gameGif(
+        game.positions,
+        orientation,
+        (done, total) => setProgress({ done, total }),
+        controller.signal,
+      );
       if (!controller.signal.aborted) setGif({ blob, url: URL.createObjectURL(blob) });
     } catch (e) {
-      if (!controller.signal.aborted) setError(e instanceof Error ? e.message : "The GIF could not be made.");
+      if (!controller.signal.aborted)
+        setError(e instanceof Error ? e.message : "The GIF could not be made.");
     } finally {
       if (!controller.signal.aborted) setProgress(null);
     }
@@ -93,43 +127,83 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
           <X />
         </IconButton>
       </div>
-      <Reveal>{error && <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>}</Reveal>
-      <QueryResult query={exported} label="the game">{game => <>
-        <section className="game-export-section" aria-labelledby={`${ids}-pgn`}>
-          <div className="row-between">
-            <h3 id={`${ids}-pgn`}>PGN</h3>
-            <div className="cluster">
-              <CopyButton text={game.pgn} label="Copy PGN" onError={setError} />
-              <Button size="compact" onClick={() => download(new Blob([game.pgn], { type: "application/x-chess-pgn" }), fileName(game, "pgn"))}>
-                <Download size={15} />Download
-              </Button>
-            </div>
-          </div>
-          <textarea readOnly rows={5} value={game.pgn} aria-labelledby={`${ids}-pgn`} spellCheck={false} />
-        </section>
-        <section className="game-export-section" aria-labelledby={`${ids}-fen`}>
-          <div className="row-between">
-            <h3 id={`${ids}-fen`}>FEN <span className="muted">Position on the board</span></h3>
-            <CopyButton text={fen} label="Copy FEN" onError={setError} />
-          </div>
-          <input readOnly value={fen} aria-labelledby={`${ids}-fen`} spellCheck={false} />
-        </section>
-        <section className="game-export-section" aria-labelledby={`${ids}-gif`}>
-          <div className="row-between">
-            <h3 id={`${ids}-gif`}>GIF <span className="muted">Whole game from this side, one move a second</span></h3>
-            {gif ? (
-              <Button size="compact" variant="primary" onClick={() => download(gif.blob, fileName(game, "gif"))}>
-                <Download size={15} />Download
-              </Button>
-            ) : (
-              <Button size="compact" variant="primary" disabled={!!progress} onClick={makeGif}>
-                {progress ? `Drawing ${progress.done} of ${progress.total}…` : "Make GIF"}
-              </Button>
-            )}
-          </div>
-          {gif && <img className="game-export-preview" src={gif.url} alt={`Animated game: ${game.white} vs ${game.black}`} />}
-        </section>
-      </>}</QueryResult>
+      <Reveal>
+        {error && (
+          <Notice announcement="alert" tone="error" appearance="inline">
+            {error}
+          </Notice>
+        )}
+      </Reveal>
+      <QueryResult query={exported} label="the game">
+        {game => (
+          <>
+            <section className="game-export-section" aria-labelledby={`${ids}-pgn`}>
+              <div className="row-between">
+                <h3 id={`${ids}-pgn`}>PGN</h3>
+                <div className="cluster">
+                  <CopyButton text={game.pgn} label="Copy PGN" onError={fail} />
+                  <Button
+                    size="compact"
+                    onClick={() =>
+                      download(
+                        new Blob([game.pgn], { type: "application/x-chess-pgn" }),
+                        fileName(game, "pgn"),
+                      )
+                    }
+                  >
+                    <Download size={15} />
+                    Download
+                  </Button>
+                </div>
+              </div>
+              <textarea
+                readOnly
+                rows={5}
+                value={game.pgn}
+                aria-labelledby={`${ids}-pgn`}
+                spellCheck={false}
+              />
+            </section>
+            <section className="game-export-section" aria-labelledby={`${ids}-fen`}>
+              <div className="row-between">
+                <h3 id={`${ids}-fen`}>
+                  FEN <span className="muted">Position on the board</span>
+                </h3>
+                <CopyButton text={fen} label="Copy FEN" onError={fail} />
+              </div>
+              <input readOnly value={fen} aria-labelledby={`${ids}-fen`} spellCheck={false} />
+            </section>
+            <section className="game-export-section" aria-labelledby={`${ids}-gif`}>
+              <div className="row-between">
+                <h3 id={`${ids}-gif`}>
+                  GIF <span className="muted">Whole game from this side, one move a second</span>
+                </h3>
+                {gif ? (
+                  <Button
+                    size="compact"
+                    variant="primary"
+                    onClick={() => download(gif.blob, fileName(game, "gif"))}
+                  >
+                    <Download size={15} />
+                    Download
+                  </Button>
+                ) : (
+                  <Button size="compact" variant="primary" disabled={!!progress} onClick={makeGif}>
+                    {progress ? `Drawing ${progress.done} of ${progress.total}…` : "Make GIF"}
+                  </Button>
+                )}
+              </div>
+              {gif && (
+                <img
+                  className="game-export-preview"
+                  src={gif.url}
+                  alt={`Animated game: ${game.white} vs ${game.black}`}
+                />
+              )}
+            </section>
+          </>
+        )}
+      </QueryResult>
     </dialog>
   );
 }

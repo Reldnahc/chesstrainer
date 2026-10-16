@@ -4,6 +4,7 @@ import { errorMessage, api, read, type ExplanationFrame, type MoveExplanation } 
 import { useAudioScope } from "./audio/AudioProvider";
 import ReviewCoach from "./ReviewCoach";
 import Notice from "./Notice";
+import MoveStatus from "./MoveStatus";
 import Button from "./Button";
 import MovePlaybackControls from "./MovePlaybackControls";
 import usePageShortcuts from "./usePageShortcuts";
@@ -14,8 +15,13 @@ import { useDialogue } from "./dialogue/useDialogue";
 import DialogueText from "./dialogue/DialogueText";
 import { useCoachSpeech } from "./audio/speech/useCoachSpeech";
 import CoachSpeechButton from "./audio/speech/CoachSpeechButton";
-import { explanationCueRecording, explanationFindingRecording, explanationFrameRecording, explanationNoteRecording,
-  explanationSummaryRecording } from "./audio/speech/practiceSelection";
+import {
+  explanationCueRecording,
+  explanationFindingRecording,
+  explanationFrameRecording,
+  explanationNoteRecording,
+  explanationSummaryRecording,
+} from "./audio/speech/practiceSelection";
 import { alwaysFalseTake } from "./audio/speech/falseTakes";
 import { useOptionalCoachPreferences } from "./coach/CoachProvider";
 
@@ -73,7 +79,7 @@ export default function ReviewExplanation({
         },
       }),
     )
-      .then((result) => {
+      .then(result => {
         if (current) {
           setData(result);
           setLoadedKey(requestKey);
@@ -81,7 +87,7 @@ export default function ReviewExplanation({
           setIndex(Math.min(initialPly, result.frames.length - 1));
         }
       })
-      .catch((e) => {
+      .catch(e => {
         if (current) setError(errorMessage(e));
       });
     return () => {
@@ -89,28 +95,37 @@ export default function ReviewExplanation({
     };
   }, [sessionId, attemptId, solution, initialPly, requestKey, speechVisit]);
   const frame = data?.frames[index];
-  const utterance = useDialogue(data && frame
-    ? explanationIntent(`${sessionId}:${attemptId ?? "solution"}`, data, frame, index)
-    : makeIntent(sessionId, "thinking", "explanation", "thinking", [claim("thinking")]));
+  const utterance = useDialogue(
+    data && frame
+      ? explanationIntent(`${sessionId}:${attemptId ?? "solution"}`, data, frame, index)
+      : makeIntent(sessionId, "thinking", "explanation", "thinking", [claim("thinking")]),
+  );
   const ready = !!frame;
   useEffect(() => {
     back.current?.focus({ preventScroll: true });
   }, [ready]);
-  const finding =
-    selectedFinding === null ? null : data?.findings?.[selectedFinding];
+  const finding = selectedFinding === null ? null : data?.findings?.[selectedFinding];
   // A finding can borrow a game clip (a back-rank mate plays the back-rank take);
   // a coach whose take for it is false offers no Listen button.
   const coachId = useOptionalCoachPreferences()?.preferences.coach_id;
   const findingClip = data ? explanationFindingRecording(data, finding, index) : null;
-  const findingRecording = findingClip && !alwaysFalseTake(coachId, findingClip) ? findingClip : null;
+  const findingRecording =
+    findingClip && !alwaysFalseTake(coachId, findingClip) ? findingClip : null;
   const cueRecording = data ? explanationCueRecording(data, finding, index) : null;
   const summaryRecording = data ? explanationSummaryRecording(data) : null;
-  const noteRecordings = data && notesOpen ? data.notes.map((_, i) => explanationNoteRecording(data, i)) : [];
+  const noteRecordings =
+    data && notesOpen ? data.notes.map((_, i) => explanationNoteRecording(data, i)) : [];
   const voice = useCoachSpeech({
     scopeKey: `explanation:${requestKey}:${data?.analysis_id ?? "curated"}:${index}:${frame?.fen ?? "loading"}:${selectedFinding ?? "frame"}:${notesOpen}`,
-    recordingId: data ? explanationFrameRecording(frame, index, data.orientation) : null, utterance,
+    recordingId: data ? explanationFrameRecording(frame, index, data.orientation) : null,
+    utterance,
     automaticEventId: speechEvent,
-    manualRecordingIds: [findingRecording, cueRecording, summaryRecording, ...noteRecordings].filter((id): id is string => !!id),
+    manualRecordingIds: [
+      findingRecording,
+      cueRecording,
+      summaryRecording,
+      ...noteRecordings,
+    ].filter((id): id is string => !!id),
     ready: loadedKey === requestKey && !!data && !!frame && !error,
   });
   useEffect(() => {
@@ -145,33 +160,59 @@ export default function ReviewExplanation({
         badge={data && <strong className="review-move">{data.move_san}</strong>}
         actions={returnControl}
       >
-        {error ? (
-          <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>
-        ) : !data || !frame ? (
-          <p role="status">Loading the saved continuation…</p>
-        ) : (
-          <DialogueText className="explanation-caption" utterance={utterance} />
+        {/* One polite region carries loading and then the coach's line, so each change is
+            heard once; a failure is an alert of its own while that region empties. */}
+        {error && (
+          <Notice announcement="alert" tone="error" appearance="inline">
+            {error}
+          </Notice>
         )}
+        <MoveStatus>
+          {/* Empty, not missing: without children MoveStatus shows its move prompt. */}
+          {error ? (
+            <></>
+          ) : !data || !frame ? (
+            <p>Loading the saved continuation…</p>
+          ) : (
+            <DialogueText className="explanation-caption" utterance={utterance} announce={false} />
+          )}
+        </MoveStatus>
       </ReviewCoach>
       {data && frame && (
         <>
           <div className="explanation-controls">
-            <MovePlaybackControls label="Continuation playback" current={index} maximum={data.frames.length - 1}
-              previous={{ "aria-label": "Previous move", disabled: index === 0, onClick: () => seek(index - 1) }}
-              next={{ "aria-label": "Next move", disabled: index === data.frames.length - 1, onClick: () => seek(index + 1) }} />
+            <MovePlaybackControls
+              label="Continuation playback"
+              current={index}
+              maximum={data.frames.length - 1}
+              previous={{
+                "aria-label": "Previous move",
+                disabled: index === 0,
+                onClick: () => seek(index - 1),
+              }}
+              next={{
+                "aria-label": "Next move",
+                disabled: index === data.frames.length - 1,
+                onClick: () => seek(index + 1),
+              }}
+            />
             <span className="explanation-move-caption">{index === 0 ? "Start" : frame.san}</span>
           </div>
           <div className="explanation-actions">
-            {summaryRecording && <CoachSpeechButton voice={voice} recordingId={summaryRecording} label="Listen to summary" />}
+            {summaryRecording && (
+              <CoachSpeechButton
+                voice={voice}
+                recordingId={summaryRecording}
+                label="Listen to summary"
+              />
+            )}
             {!!data.findings?.length && (
               <div className="button-row pattern-tools">
                 {data.findings.map((item, i) => (
                   <Button
                     key={`${item.skill_id}-${i}`}
                     variant="quiet"
-                    aria-pressed={
-                      selectedFinding === i && index === item.frame_ply
-                    }
+                    aria-pressed={selectedFinding === i && index === item.frame_ply}
                     onClick={() => {
                       setSpeechEvent(null);
                       setSelectedFinding(i);
@@ -189,9 +230,21 @@ export default function ReviewExplanation({
               {finding && (
                 <>
                   <p>{finding.explanation}</p>
-                  {findingRecording && <CoachSpeechButton voice={voice} recordingId={findingRecording} label="Listen to finding" />}
+                  {findingRecording && (
+                    <CoachSpeechButton
+                      voice={voice}
+                      recordingId={findingRecording}
+                      label="Listen to finding"
+                    />
+                  )}
                   <p className="practice-cue">Next time: {finding.cue}</p>
-                  {cueRecording && <CoachSpeechButton voice={voice} recordingId={cueRecording} label="Listen to practice cue" />}
+                  {cueRecording && (
+                    <CoachSpeechButton
+                      voice={voice}
+                      recordingId={cueRecording}
+                      label="Listen to practice cue"
+                    />
+                  )}
                   {index === finding.frame_ply && (
                     <p className="pattern-legend">
                       <span className="attacker">Attacker</span>
@@ -203,17 +256,27 @@ export default function ReviewExplanation({
               )}
             </div>
           )}
-          <details className="disclosure" onToggle={event => { setNotesOpen(event.currentTarget.open); setSpeechEvent(null); }}>
+          <details
+            className="disclosure"
+            onToggle={event => {
+              setNotesOpen(event.currentTarget.open);
+              setSpeechEvent(null);
+            }}
+          >
             <summary>About this explanation</summary>
             {data.notes.map((note, i) => (
               <div key={i}>
                 <p>{note}</p>
-                {noteRecordings[i] && <CoachSpeechButton voice={voice} recordingId={noteRecordings[i]!} label={`Listen to explanation note ${i + 1}`} />}
+                {noteRecordings[i] && (
+                  <CoachSpeechButton
+                    voice={voice}
+                    recordingId={noteRecordings[i]!}
+                    label={`Listen to explanation note ${i + 1}`}
+                  />
+                )}
               </div>
             ))}
-            {data.engine_version && (
-              <p>{data.engine_version} / saved engine evidence</p>
-            )}
+            {data.engine_version && <p>{data.engine_version} / saved engine evidence</p>}
           </details>
         </>
       )}

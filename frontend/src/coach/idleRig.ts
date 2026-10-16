@@ -43,10 +43,11 @@ const details = {
 
 // Special eye artwork can replace the usual light reflection. Closed reaction
 // eyelids are deliberately not included here: this describes the settled rig.
-const omitted: Partial<Record<CoachId, Partial<Record<CoachExpression, readonly IdleChannel[]>>>> = {
-  robot: { blunder: ["glint"] },
-  "living-pawn": { brilliant: ["glint"] },
-};
+const omitted: Partial<Record<CoachId, Partial<Record<CoachExpression, readonly IdleChannel[]>>>> =
+  {
+    robot: { blunder: ["glint"] },
+    "living-pawn": { brilliant: ["glint"] },
+  };
 
 export function rigChannels(coachId: string, expression: CoachExpression): readonly IdleChannel[] {
   if (!Object.hasOwn(details, coachId)) return common;

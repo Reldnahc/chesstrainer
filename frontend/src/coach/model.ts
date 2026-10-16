@@ -31,13 +31,7 @@ export type CoachMotion = NonNullable<Schema["CoachPreferences"]["motion"]>;
 export type CoachPreferences = { coach_id: CoachId; motion: CoachMotion };
 export type CoachReaction = { state: CoachExpression; key: string };
 export type CoachGroup =
-  | "humans"
-  | "dogs"
-  | "cats"
-  | "animals"
-  | "fantasy"
-  | "scifi"
-  | "conceptual";
+  "humans" | "dogs" | "cats" | "animals" | "fantasy" | "scifi" | "conceptual";
 export type CoachFamily = {
   id: string;
   name: string;
@@ -113,10 +107,13 @@ export type ReactionTiming = Pick<CoachDefinition["animation"], "reactionMs" | "
 export type CoachCollection = Omit<CoachDefinition, "families"> & {
   families: readonly (CoachFamily & { coachId: CoachId; personality: CoachPersonality })[];
 };
-/** Catalog input before each family's performance is resolved from its reaction timing. */
+/** Catalog input before each family's performance is resolved from its reaction
+ * timing and its personality is read from the one table keyed by its coach ID. */
 export type AuthoredCoachCollection = Omit<CoachCollection, "animation" | "families"> & {
   animation: ReactionTiming;
-  families: readonly (Omit<CoachCollection["families"][number], "animation"> & { animation?: ReactionTiming })[];
+  families: readonly (Omit<CoachCollection["families"][number], "animation" | "personality"> & {
+    animation?: ReactionTiming;
+  })[];
 };
 export type SelectableCoach = CoachDefinition & {
   id: CoachId;
@@ -124,10 +121,7 @@ export type SelectableCoach = CoachDefinition & {
   personality: CoachPersonality;
 };
 
-export const expressionInfo: Record<
-  CoachExpression,
-  { label: string; intent: string }
-> = {
+export const expressionInfo: Record<CoachExpression, { label: string; intent: string }> = {
   neutral: {
     label: "Ready",
     intent: "Attentive, with a small welcoming smile.",
@@ -220,22 +214,14 @@ export function resolveExpression(
     visited.add(state);
     state = coach.fallbacks[state] ?? coach.defaultState;
   }
-  return coach.expressions.includes(state)
-    ? state
-    : (coach.expressions[0] ?? "neutral");
+  return coach.expressions.includes(state) ? state : (coach.expressions[0] ?? "neutral");
 }
 
 export function resolveFamily(coach: CoachDefinition, requested?: string) {
-  return (
-    coach.families.find((family) => family.id === requested)?.id ??
-    coach.defaultFamily
-  );
+  return coach.families.find(family => family.id === requested)?.id ?? coach.defaultFamily;
 }
 
-export function expressionIntent(
-  coach: CoachDefinition,
-  state: CoachExpression,
-) {
+export function expressionIntent(coach: CoachDefinition, state: CoachExpression) {
   return coach.expressionIntents?.[state] ?? expressionInfo[state].intent;
 }
 
@@ -268,25 +254,28 @@ export const microLabels: Record<Exclude<CoachMicro, "">, string> = {
 
 export function resolveAnimation(coach: CoachDefinition, family?: string) {
   const direction = resolveFamily(coach, family);
-  return (
-    coach.families.find((variant) => variant.id === direction)?.animation ??
-    coach.animation
-  );
+  return coach.families.find(variant => variant.id === direction)?.animation ?? coach.animation;
 }
 
 /** Artwork must opt in; a recording never makes an unsupported rig improvise a mouth. */
 export function supportsSpeech(coach: CoachDefinition, family?: string): boolean {
   const direction = resolveFamily(coach, family);
-  return coach.families.find(variant => variant.id === direction)?.speech
-    ?? coach.capabilities.speech ?? false;
+  return (
+    coach.families.find(variant => variant.id === direction)?.speech ??
+    coach.capabilities.speech ??
+    false
+  );
 }
 
 export function availableIdles(coach: CoachDefinition, family?: string) {
   const animation = resolveAnimation(coach, family);
-  const configured = new Set(coach.expressions.flatMap((expression) =>
-    configuredGestures(animation, expression).map((gesture) => gesture.id)));
-  return (Object.keys(microLabels) as Exclude<CoachMicro, "">[]).filter(
-    (gesture) => configured.has(gesture),
+  const configured = new Set(
+    coach.expressions.flatMap(expression =>
+      configuredGestures(animation, expression).map(gesture => gesture.id),
+    ),
+  );
+  return (Object.keys(microLabels) as Exclude<CoachMicro, "">[]).filter(gesture =>
+    configured.has(gesture),
   );
 }
 
@@ -296,14 +285,17 @@ export function expressionIdles(
   expression: CoachExpression,
 ): readonly CoachIdle[] {
   const animation = resolveAnimation(coach, family);
-  return configuredGestures(animation, expression).map((gesture) => gesture.id as CoachIdle);
+  return configuredGestures(animation, expression).map(gesture => gesture.id as CoachIdle);
 }
 
 export function idlePresentation(
-  coach: CoachDefinition, family: string | undefined,
-  expression: CoachExpression, id: CoachIdle,
+  coach: CoachDefinition,
+  family: string | undefined,
+  expression: CoachExpression,
+  id: CoachIdle,
 ) {
-  const gesture = configuredGestures(resolveAnimation(coach, family), expression)
-    .find(candidate => candidate.id === id);
+  const gesture = configuredGestures(resolveAnimation(coach, family), expression).find(
+    candidate => candidate.id === id,
+  );
   return { label: gesture?.label ?? microLabels[id], description: gesture?.description };
 }

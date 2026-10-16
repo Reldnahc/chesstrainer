@@ -10,7 +10,7 @@ from queue import Empty, Full, Queue
 from time import monotonic
 from typing import Protocol
 
-from trainer.cancellation import WaitCancelled, WaitTimedOut, taking, wait_until
+from trainer.cancellation import WaitCancelled, WaitTimedOut
 from trainer.human_models.preset import provenance
 from trainer.human_models.types import (
     MESSAGE_LIMIT,
@@ -18,6 +18,7 @@ from trainer.human_models.types import (
     HumanReadiness,
     ModelProvenance,
 )
+from trainer.lazy_pool import LazyPool, PoolClosed
 
 # Positions per worker exchange: one forward pass each, and request and reply
 # lines stay well under MESSAGE_LIMIT.
@@ -141,12 +142,8 @@ class MaiaProvider:
         self.settings = settings
         self.provenance = identity or provenance(settings)
         self.command = command or [sys.executable, "-m", "trainer.human_models.worker"]
-        self.available = Queue(maxsize=settings.human_model_workers)
-        for _ in range(settings.human_model_workers):
-            self.available.put(None)
-        self._workers = set()
+        self.workers = LazyPool(settings.human_model_workers, lambda: Worker(self.command))
         self._guard = threading.Lock()
-        self._closed = threading.Event()
         self._state = "unchecked"
         self._retry_after = 0.0
 
@@ -207,76 +204,52 @@ class MaiaProvider:
         if self.provenance.inference.get("torch") == "unavailable":
             raise HumanUnavailable("runtime_unavailable")
         deadline = monotonic() + self.settings.human_model_timeout
-        take = taking(self.available)
 
-        def attempt(timeout):
+        def admit():
+            # Another request's failure started the cooldown; leave the worker idle.
             with self._guard:
                 if monotonic() < self._retry_after:
                     raise HumanUnavailable("cooldown")
-            return take(timeout)
+
+        def stopping():
+            return self.workers.closed or cancelled()
 
         try:
-            worker = wait_until(
-                attempt,
-                lambda: self._closed.is_set() or cancelled(),
-                deadline=deadline,
-            )
-        except WaitCancelled as exc:
+            with self.workers.lease(stopping, deadline=deadline, admit=admit) as worker:
+                if not worker.initialized:
+                    reply = worker.exchange(
+                        {
+                            "checkpoint": str(Path(self.settings.human_model_path).resolve()),
+                            "provenance": self.provenance.model_dump(mode="json"),
+                        },
+                        deadline,
+                        stopping,
+                    )
+                    if reply.get("ready") is not True:
+                        raise HumanUnavailable("invalid_initialization")
+                    worker.initialized = True
+                result = worker.exchange(payload, deadline, stopping)
+        except (WaitCancelled, PoolClosed, HumanCancelled) as exc:
             raise HumanCancelled("cancelled") from exc
         except WaitTimedOut as exc:
             raise HumanUnavailable("busy") from exc
-        with self._guard:
-            cooling = monotonic() < self._retry_after
-        if cooling:
-            # Another request's failure started the cooldown; keep this healthy worker.
-            self.available.put(worker)
-            raise HumanUnavailable("cooldown")
-        try:
-            if worker is None:
-                with self._guard:
-                    if self._closed.is_set():
-                        raise HumanCancelled("cancelled")
-                    worker = Worker(self.command)
-                    self._workers.add(worker)
-
-            def stopping():
-                return self._closed.is_set() or cancelled()
-
-            if not worker.initialized:
-                reply = worker.exchange(
-                    {
-                        "checkpoint": str(Path(self.settings.human_model_path).resolve()),
-                        "provenance": self.provenance.model_dump(mode="json"),
-                    },
-                    deadline,
-                    stopping,
-                )
-                if reply.get("ready") is not True:
-                    raise HumanUnavailable("invalid_initialization")
-                worker.initialized = True
-            result = worker.exchange(payload, deadline, stopping)
-            with self._guard:
-                self._state = "ready"
-            return result
-        except Exception as exc:
-            # A failed worker is discarded, not reused; the slot starts a new one.
-            if worker is not None:
-                worker.close()
-                with self._guard:
-                    self._workers.discard(worker)
-                worker = None
-            if isinstance(exc, HumanCancelled):
+        except HumanUnavailable as exc:
+            if exc.args == ("cooldown",):
                 raise
-            with self._guard:
-                self._state = "unavailable"
-                self._retry_after = monotonic() + 60
+            self._failed()
             raise HumanUnavailable("prediction_unavailable") from exc
-        finally:
-            self.available.put(worker)
+        except Exception as exc:
+            self._failed()
+            raise HumanUnavailable("prediction_unavailable") from exc
+        with self._guard:
+            self._state = "ready"
+        return result
+
+    def _failed(self):
+        # The pool has discarded the failed worker; the slot starts a new one.
+        with self._guard:
+            self._state = "unavailable"
+            self._retry_after = monotonic() + 60
 
     def close(self):
-        self._closed.set()
-        with self._guard:
-            workers = list(self._workers)
-        for worker in workers:
-            worker.close()
+        self.workers.close()

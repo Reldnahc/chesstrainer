@@ -1,7 +1,6 @@
 """Opt-in, bounded extra Stockfish work for insufficient classification evidence."""
 
 import logging
-from contextlib import nullcontext
 
 from sqlalchemy import select
 
@@ -21,6 +20,7 @@ from trainer.models import (
     Decision,
     Game,
 )
+from trainer.search_limits import PROBE
 
 log = logging.getLogger(__name__)
 
@@ -44,13 +44,41 @@ def probe_key(decision, settings, engine):
     )
 
 
-def plan_probes(db, job_id, settings, engine, *, mutation_lock=None):
-    """Select decisions worth probing; only the task rows are written under the account lock."""
-    saved = db.scalars(select(ClassificationTask).where(ClassificationTask.job_id == job_id)).all()
+def plan_probes(context, engine):
+    """Select decisions worth probing in a read unit; only the task rows are written.
+
+    ``context`` is the enrichment job's ``JobContext``.
+    """
+    job_id, settings = context.job_id, context.settings
+    units = context
+    with units.read() as db:
+        saved = db.scalars(
+            select(ClassificationTask).where(ClassificationTask.job_id == job_id)
+        ).all()
     if saved:
         return saved
     engine.start()
     classifier = LocalClassifier(settings)
+    with units.read() as db:
+        candidates = _probe_candidates(db, settings, engine, classifier)
+    with units.write() as db:
+        # The classification pass above held no lock, so this account's handlers
+        # stayed responsive; re-check before the short write.
+        saved = db.scalars(
+            select(ClassificationTask).where(ClassificationTask.job_id == job_id)
+        ).all()
+        if saved:
+            return saved
+        tasks = []
+        for _, _, _, decision_id, key in candidates[: settings.classification_probe_positions]:
+            task = ClassificationTask(job_id=job_id, decision_id=decision_id, cache_key=key)
+            db.add(task)
+            tasks.append(task)
+        db.flush()
+    return tasks
+
+
+def _probe_candidates(db, settings, engine, classifier):
     decisions = db.scalars(
         select(Decision)
         .where(Decision.meaningful.is_(True))
@@ -69,7 +97,7 @@ def plan_probes(db, job_id, settings, engine, *, mutation_lock=None):
         ):
             continue
         try:
-            result, _ = classifier.classify(verified_payload(db, decision))
+            result = classifier.classify(verified_payload(db, decision))
         except (ValueError, NotFound) as exc:
             # One decision with inconsistent saved evidence must not stop planning
             # for the rest of the account.
@@ -92,26 +120,12 @@ def plan_probes(db, job_id, settings, engine, *, mutation_lock=None):
     candidates.sort(
         key=lambda item: item[:3]
     )  # Concrete defensive questions first, then missing outcomes.
-    lock = mutation_lock if mutation_lock is not None else nullcontext()
-    with lock:
-        # The classification pass above ran without the lock, so this account's
-        # handlers stayed responsive; re-check before the short write.
-        saved = db.scalars(
-            select(ClassificationTask).where(ClassificationTask.job_id == job_id)
-        ).all()
-        if saved:
-            return saved
-        tasks = []
-        for _, _, _, decision_id, key in candidates[: settings.classification_probe_positions]:
-            task = ClassificationTask(job_id=job_id, decision_id=decision_id, cache_key=key)
-            db.add(task)
-            tasks.append(task)
-        db.commit()
-    return tasks
+    return candidates
 
 
-def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
-    with sessions() as db:
+def enrich_decision(units, task, engine, cancelled):
+    """Search one planned task outside any unit, then link its evidence in a write unit."""
+    with units.read() as db:
         cached = db.scalar(
             select(ClassificationAnalysis).where(ClassificationAnalysis.cache_key == task.cache_key)
         )
@@ -126,12 +140,10 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             "Stockfish or probe settings changed since this job was planned. "
             "Start a new Deepen unclear positions job; completed evidence is retained."
         )
-    before = engine.analyze(board, deep=True, multipv=1, classification_probe=True)
+    before = engine.analyze(board, PROBE, multipv=1)
     if cancelled():
         return False
-    actual = engine.analyze(
-        board, deep=True, root_moves=[actual_uci], multipv=1, classification_probe=True
-    )
+    actual = engine.analyze(board, PROBE, root_moves=[actual_uci], multipv=1)
     if cancelled():
         return False
     probes = []
@@ -161,7 +173,7 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             or boards[-1].is_game_over(claim_draw=True)
         ):
             continue
-        tail = engine.analyze(boards[-1], multipv=1, classification_probe=True)
+        tail = engine.analyze(boards[-1], PROBE, multipv=1)
         queries += 1
         at_ply = len(candidate.pv)
         key = digest({"kind": "tail", "root": root.id, "at_ply": at_ply})
@@ -192,17 +204,14 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             if queries >= settings.classification_probe_queries:
                 break
             test = engine.analyze(
-                boards[request.at_ply],
-                multipv=1,
-                root_moves=request.root_moves,
-                classification_probe=True,
+                boards[request.at_ply], PROBE, multipv=1, root_moves=request.root_moves
             )
             queries += 1
             probes.append(probe_record(request.kind, root.id, request.at_ply, request.key, test))
             if cancelled():
                 return False
     # Both immutable engine records commit before the optional classification link.
-    with mutation_lock, sessions() as db:
+    with units.write() as db:
         if not db.scalar(
             select(ClassificationAnalysis.id).where(
                 ClassificationAnalysis.cache_key == task.cache_key
@@ -221,19 +230,17 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
                 db.add(
                     ClassificationProbe(
                         classification_analysis_id=supplement.id,
-                        **{
-                            key: probe[key]
-                            for key in (
+                        **probe.model_dump(
+                            include={
                                 "root_analysis_id",
                                 "analysis_id",
                                 "kind",
                                 "at_ply",
                                 "query_key",
-                            )
-                        },
+                            }
+                        ),
                     )
                 )
-            db.commit()
     log.info(
         "classification_probe_completed",
         extra={"decision_id": task.decision_id, "queries": queries, "linked_probes": len(probes)},

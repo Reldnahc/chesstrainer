@@ -1,88 +1,224 @@
-import type {CoachPersonality} from "../personality";
-import {expertTacticalTemplates} from "./scopedTactics";
-import {expertOpeningTemplates} from "./openingSequence";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
-export const expert: CoachPersonality = {
-  version: "expert-4", maxCharacters: 290, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
-  delivery: {pace: "measured", energy: "quiet"},
-  behavior: {general: "minimal", praise: "minimal", correction: "consequence-first",
-    questionFrequency: "none", directness: 5, emotionalAmplitude: 2, humor: 0, jargon: 4,
-    playerAddress: "none", sentenceLength: "short", metaphor: "none",
-    signature: "State the exact resource and its consequence; stop when the evidence ends."},
+export const expertTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "With {move}, a {motif} is in effect immediately.",
+    played_possible: "{move} prepares a {motif}, conditional on the replies.",
+    allowed_immediate: "{opponent} replies {action}, and that executes a {motif}.",
+    allowed_possible: "A {motif} becomes available to {opponent} later, subject to the replies.",
+    missed_immediate: "Unplayed resource: {best}, with an immediate {motif}.",
+    missed_possible: "{best} offered a route to a {motif}, subject to the replies.",
+  },
+  fork: {
+    actual: "Fork: one piece attacks the {targets} simultaneously.",
+    possible: "Projected fork: the {targets} would be attacked in parallel from one square.",
+  },
+  material:
+    "Projected net material: a {gain} may be available at the end, pending both sides' choices.",
+  capture: {
+    candidate: "Available capture: {capture}, winning a {piece}.",
+    followup: "If the line runs that way, {capture} may follow, winning a {piece}.",
+  },
+  playedCapture: {
+    fact: "{move} executes a {motif}.",
+    consequence: "Material result: {capture}, and the {piece} is gone.",
+  },
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const expertOpeningTemplates = {
+  "book-opening-entry-1": ["Opening theory begins: {opening}."],
+  "book-opening-entry-2": ["Catalogued theory move, {opening}."],
+  "book-opening-entry-3": ["Theory entry on record: {opening}."],
+  "book-opening-follow-1": ["{opening}: theory continues."],
+  "book-opening-follow-2": ["Also catalogued under {opening}."],
+  "book-opening-follow-3": ["The reply is catalogued in {opening} as well."],
+  "book-opening-follow-4": ["Zero deviation so far from {opening}."],
+  "book-opening-follow-5": ["Listed in {opening}."],
+  "book-opening-follow-6": ["The {opening} line holds."],
+  "book-opening-follow-7": ["{opening}, still catalogued."],
+  "book-opening-follow-8": [
+    "Still {opening}. Book status locates the game; it does not evaluate the move.",
+  ],
+} as const;
+
+export const expert = coachPersonality({
+  version: "expert-4",
+  maxCharacters: 290,
+  maxClaims: 2,
+  delivery: { pace: "measured", energy: "quiet" },
+  behavior: {
+    general: "minimal",
+    praise: "minimal",
+    correction: "consequence-first",
+    questionFrequency: "none",
+    directness: 5,
+    emotionalAmplitude: 2,
+    humor: 0,
+    jargon: 4,
+    playerAddress: "none",
+    sentenceLength: "short",
+    metaphor: "none",
+    signature: "State the exact resource and its consequence; stop when the evidence ends.",
+  },
   bible: {
     temperament: "Calm, disciplined technician; economical, exact and unhurried.",
-    teaching: "State the fact, its exact consequence, and the supported resource, in technical vocabulary: absolute pin, theory, net material, flight square.",
+    teaching:
+      "State the fact, its exact consequence, and the supported resource, in technical vocabulary: absolute pin, theory, net material, flight square.",
     rhythm: "Short declaratives and clipped labels. Stop when the evidence ends.",
-    celebration: "Sparse, specific approval for precision: 'Exact.', 'Correctly found.' Never on a move the engine does not support.",
+    celebration:
+      "Sparse, specific approval for precision: 'Exact.', 'Correctly found.' Never on a move the engine does not support.",
     correction: "Direct and unemotional; describe the move's consequence before its cause.",
-    avoid: "Hype, exclamation marks, speculation, padded prose, sympathy or cheering that depends on which side moved, other coaches' sayings, or claims of naturalness or difficulty that the human-move model did not make.",
+    avoid:
+      "Hype, exclamation marks, speculation, padded prose, sympathy or cheering that depends on which side moved, other coaches' sayings, or claims of naturalness or difficulty that the human-move model did not make.",
   },
   templates: {
     ...expertTacticalTemplates,
     ...expertOpeningTemplates,
-    allowed_mate: [{fact: "Mate is forced from here, in {opponent}'s favor.", consequence: "{reply}"}],
-    missed_mate: [{fact: "With {best}, mate was forced. Here, that sequence is never begun."}],
-    tactic_played: [
-      {fact: "Search confirms a {motif} inside {move}.", consequence: "{detail}"},
-      {fact: "Motif in {move}: {motif}.", consequence: "{detail}"},
+    allowed_mate: [
+      { fact: "Mate is forced from here, in {opponent}'s favor.", consequence: "{reply}" },
     ],
-    tactic_allowed: [{fact: "Per the search, {opponent} gains access to a {motif}.", consequence: "{detail}"}],
-    tactic_missed: [{fact: "Unused resource: {best}, carrying a {motif}.", consequence: "{detail}"}],
-    cause_abandoned_defender: [{fact: "{move} withdraws the only unpinned defender of {side}'s {piece} on {square}.", consequence: "{opponent} can then remove it from the board with {reply}."}],
-    cause_opponent_threat_recognition: [{fact: "Threat status: the opponent's preceding move targeted {side}'s {piece} on {square}, and {move} leaves it in place.", consequence: "{opponent} can capture it next, by {reply}."}],
-    cause_avoiding_bad_trades: [{fact: "Exchange balance of {move}: {side}'s {piece} out, a {captured} in.", consequence: "{opponent} can recapture with {reply}, and the exchange runs at a loss."}],
-    sacrifice: [{fact: "Sacrifice verified: acceptance does not refute it at the searched depth."}],
-    only_move: [{fact: "Only move. Every other searched candidate loses."}],
-    decisive_resource: ["Decisive advantage preserved, by this move and by no other searched candidate. Exact."],
+    missed_mate: [{ fact: "With {best}, mate was forced. Here, that sequence is never begun." }],
+    tactic_played: [
+      { fact: "Search confirms a {motif} inside {move}.", consequence: "{detail}" },
+      { fact: "Motif in {move}: {motif}.", consequence: "{detail}" },
+    ],
+    tactic_allowed: [
+      { fact: "Per the search, {opponent} gains access to a {motif}.", consequence: "{detail}" },
+    ],
+    tactic_missed: [
+      { fact: "Unused resource: {best}, carrying a {motif}.", consequence: "{detail}" },
+    ],
+    cause_abandoned_defender: [
+      {
+        fact: "{move} withdraws the only unpinned defender of {side}'s {piece} on {square}.",
+        consequence: "{opponent} can then remove it from the board with {reply}.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        fact: "Threat status: the opponent's preceding move targeted {side}'s {piece} on {square}, and {move} leaves it in place.",
+        consequence: "{opponent} can capture it next, by {reply}.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        fact: "Exchange balance of {move}: {side}'s {piece} out, a {captured} in.",
+        consequence: "{opponent} can recapture with {reply}, and the exchange runs at a loss.",
+      },
+    ],
+    sacrifice: [
+      { fact: "Sacrifice verified: acceptance does not refute it at the searched depth." },
+    ],
+    only_move: [{ fact: "Only move. Every other searched candidate loses." }],
+    decisive_resource: [
+      "Decisive advantage preserved, by this move and by no other searched candidate. Exact.",
+    ],
     reply_capture: ["Immediate reply: {reply}, and {opponent} takes {side}'s {piece}."],
     reply_check: ["{opponent} has {reply} as the top reply, and it is check."],
     alternative: ["Reference move: {best}, which the engine scores at {evaluation} for the mover."],
-    loss: [{fact: "Evaluation conceded relative to the top line: {loss} pawns."}],
-    best: [{fact: "Strong: within a small margin of the best searched evaluation."}, {fact: "Strong. No meaningful concession against the top line."}],
-    good: [{fact: "Sound. Another move is the engine's first choice, but most of the value is preserved."}],
-    uncertain_reason: ["{best} evaluates higher. The specific reason is not established, and none will be assumed."],
-    human_natural_error: [{fact: "High natural rating from the human-move model; the reply shows what it costs."}],
-    human_rare: ["Low probability per the human-move model, and the engine's reply does not refute it."],
-    human_challenging: [{fact: "Human-move model rating for {best}: difficult to find."}],
-    difficult_defense: ["{best} would have held. Human-move model rating for that defense: difficult."],
-    human_defense_found: [{fact: "{best} holds the position, a defense the human-move model rates difficult. Correctly found."}],
-    human_natural_best: ["Natural by prediction, best by calculation: the human-move model and the engine select the same move."],
-    human_natural_strong: ["High natural rating from the human-move model. Engine: strong. Top move: another."],
+    loss: [{ fact: "Evaluation conceded relative to the top line: {loss} pawns." }],
+    best: [
+      { fact: "Strong: within a small margin of the best searched evaluation." },
+      { fact: "Strong. No meaningful concession against the top line." },
+    ],
+    good: [
+      {
+        fact: "Sound. Another move is the engine's first choice, but most of the value is preserved.",
+      },
+    ],
+    uncertain_reason: [
+      "{best} evaluates higher. The specific reason is not established, and none will be assumed.",
+    ],
+    human_natural_error: [
+      { fact: "High natural rating from the human-move model; the reply shows what it costs." },
+    ],
+    human_rare: [
+      "Low probability per the human-move model, and the engine's reply does not refute it.",
+    ],
+    human_challenging: [{ fact: "Human-move model rating for {best}: difficult to find." }],
+    difficult_defense: [
+      "{best} would have held. Human-move model rating for that defense: difficult.",
+    ],
+    human_defense_found: [
+      {
+        fact: "{best} holds the position, a defense the human-move model rates difficult. Correctly found.",
+      },
+    ],
+    human_natural_best: [
+      "Natural by prediction, best by calculation: the human-move model and the engine select the same move.",
+    ],
+    human_natural_strong: [
+      "High natural rating from the human-move model. Engine: strong. Top move: another.",
+    ],
     book: ["Opening theory: {opening}."],
     book_sound: ["Catalogued in {opening}."],
     departure: ["Our catalogue stops here. It has no prepared line from this point."],
-    recovery: [{fact: "Repair completed. The error at {earlier} no longer leaves the position lost.{help}"}],
+    recovery: [{ fact: "Repair completed. The deficit from {earlier} has been erased.{help}" }],
     punishment: ["{side} converts the opportunity conceded at {earlier}."],
     missed_punishment: ["The opportunity conceded to {side} at {earlier} goes unconverted."],
     repeated: ["Recurrence count for this {motif} issue in the reviewed segment: {count}."],
-    history: ["Saved-game record: the {motif} issue recurs across {games} other games. Review them together."],
-    support_restored: ["Protection restored: the {piece} was undefended at {earlier} and is covered again."],
-    erosion: ["Small concessions have accumulated since {earlier}, and this move is one more. Individually minor; together significant."],
-    conversion: ["Advantage held from {earlier} through to the win by {side}, without being returned."],
-    development: [{fact: "{lead}activates the {piece} from its original square."}],
+    history: [
+      "Saved-game record: the {motif} issue recurs across {games} other games. Review them together.",
+    ],
+    support_restored: [
+      "Protection restored: the {piece} was undefended at {earlier} and is covered again.",
+    ],
+    erosion: [
+      "Small concessions have accumulated since {earlier}, and this move is one more. Individually minor; together significant.",
+    ],
+    conversion: [
+      "Advantage held from {earlier} through to the win by {side}, without being returned.",
+    ],
+    development: [{ fact: "{lead}activates the {piece} from its original square." }],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file."],
-    passed: [{fact: "{lead}leaves {side} with passed pawns on {squares}. Criterion met: no enemy pawn ahead on those files or the adjacent ones."}],
-    passer_advance: [{fact: "{lead}brings the passed pawn one step nearer promotion, onto {square}."}],
-    isolated: ["{lead}produces isolated pawns for {side} on {squares}: the adjacent files hold no friendly pawn."],
+    passed: [
+      {
+        fact: "{lead}leaves {side} with passed pawns on {squares}. Criterion met: no enemy pawn ahead on those files or the adjacent ones.",
+      },
+    ],
+    passer_advance: [
+      { fact: "{lead}brings the passed pawn one step nearer promotion, onto {square}." },
+    ],
+    isolated: [
+      "{lead}produces isolated pawns for {side} on {squares}: the adjacent files hold no friendly pawn.",
+    ],
     support: ["{lead}gives the {piece} on {square} a defender it lacked."],
-    unsupported: ["{lead}reduces the defenders of the {piece} on {square} to zero. A weakness; not by itself a forced loss."],
+    unsupported: [
+      "{lead}reduces the defenders of the {piece} on {square} to zero. A weakness; not by itself a forced loss.",
+    ],
     flights: ["{lead}clears {squares} as a legal flight square for the king."],
     castle: ["{lead}castles the king to {square}; the rook relocates in the same move."],
-    bishops: ["{lead}dissolves {side}'s pair of bishops; one square color is no longer covered by a bishop."],
+    bishops: [
+      "{lead}dissolves {side}'s pair of bishops; one square color is no longer covered by a bishop.",
+    ],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}."],
-    mate_win: [{fact: "Checkmate. Every square for the opposing king is covered or occupied."}],
-    mate_loss: [{fact: "Checkmate. Your king has no legal escape.", takeaway: "Go back to the last point where a defense existed."}],
-    draw: ["Draw. The result cannot change; the decisions that produced it remain worth reviewing."],
-    retry: [{fact: "Incorrect. Recalculate, then select another candidate."}],
-    recovered: [{fact: "Corrected. {detail}"}],
-    accepted: [{fact: "{detail}"}],
-    explanation: [{fact: "Mechanism: {detail}"}],
+    mate_win: [{ fact: "Checkmate. Every square for the opposing king is covered or occupied." }],
+    mate_loss: [
+      {
+        fact: "Checkmate. Your king has no legal escape.",
+        takeaway: "Go back to the last point where a defense existed.",
+      },
+    ],
+    draw: [
+      "Draw. The result cannot change; the decisions that produced it remain worth reviewing.",
+    ],
+    retry: [{ fact: "Incorrect. Recalculate, then select another candidate." }],
+    recovered: [{ fact: "Corrected. {detail}" }],
+    accepted: [{ fact: "{detail}" }],
+    explanation: [{ fact: "Mechanism: {detail}" }],
     explanation_summary: ["Net conclusion: {detail}"],
-    cold: [{fact: "Assess the position. Select a move once the calculation is complete."}],
-    thinking: [{fact: "Calculating the strongest reply and the evaluation…"}],
-    unavailable: [{fact: "The engine analysis is insufficient to explain this position. No guess will be offered."}],
+    cold: [{ fact: "Assess the position. Select a move once the calculation is complete." }],
+    thinking: [{ fact: "Calculating the strongest reply and the evaluation…" }],
+    unavailable: [
+      {
+        fact: "The engine analysis is insufficient to explain this position. No guess will be offered.",
+      },
+    ],
     practice_error: ["The attempt returned no result. Submit the move again."],
     variation: ["Side line, for reference: {detail}"],
     compatibility: ["Stored explanation: {detail}"],
   },
-};
+});

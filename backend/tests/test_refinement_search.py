@@ -12,7 +12,7 @@ from trainer.engine import EngineReferenceMismatch, Stockfish
 from trainer.engine_pool import EnginePool
 from trainer.models import EngineAnalysis
 from trainer.review_intelligence.refinement_search import RefinementEngine
-from trainer.search_limits import EngineCancelled, SearchLimits
+from trainer.search_limits import DEEP, EngineCancelled, SearchLimits, SearchProfile
 
 
 def test_actual_leased_engine_identity_is_verified_before_persisting(sessions):
@@ -47,32 +47,27 @@ def test_explicit_limits_are_cached_separately_and_cancelled_search_is_not_saved
     settings.stockfish_path = stockfish_path
     engine = Stockfish(settings, sessions)
     board = chess.Board()
-    limits = SearchLimits(depth=14, time=0.3)
+    explicit = SearchProfile.explicit(SearchLimits(depth=14, time=0.3))
     try:
-        baseline = engine.analyze(board, deep=True, multipv=2)
-        refined = engine.analyze(
-            board, deep=True, multipv=2, limits=limits, cancelled=lambda: False
-        )
+        baseline = engine.analyze(board, DEEP, multipv=2)
+        refined = engine.analyze(board, explicit, multipv=2, cancelled=lambda: False)
         assert refined.id != baseline.id
         assert refined.config["depth"] == 14 and refined.config["time"] == 0.3
-        assert engine.analyze(board, deep=True, multipv=2, limits=limits).id == refined.id
-        with pytest.raises(ValueError):
-            engine.analyze(board, reference=baseline, limits=limits)
+        assert engine.analyze(board, explicit, multipv=2).id == refined.id
         with sessions() as db:
             before = db.scalar(select(func.count()).select_from(EngineAnalysis))
         start = monotonic()
         with pytest.raises(EngineCancelled):
             engine.analyze(
                 board,
-                deep=True,
-                limits=SearchLimits(depth=40, time=10),
+                SearchProfile.explicit(SearchLimits(depth=40, time=10)),
                 cancelled=lambda: monotonic() - start > 0.15,
             )
         assert monotonic() - start < 3
         assert engine.process is None
         with sessions() as db:
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == before
-        assert engine.analyze(board, deep=True, multipv=2, limits=limits).id == refined.id
+        assert engine.analyze(board, explicit, multipv=2).id == refined.id
     finally:
         engine.close()
 
@@ -106,5 +101,5 @@ def test_waiting_for_shared_slot_can_cancel_without_acquiring_or_leaking_it(sett
         finally:
             release.set()
             active.result(timeout=2)
-    assert pool.available.qsize() == 1
+    assert pool.engines.available.qsize() == 1
     pool.close()

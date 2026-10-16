@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Orin"
+    },
+    "script": {
+      "id": "tactic-fork-missed",
+      "label": "tactic-fork-missed",
+      "text": "A fork was on offer in another move: one piece, more than one target, and rarely a way to save them all. The played move lets that pattern pass."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f7a80e9bb5f673ef9fe074a419c5ef52f2f64f83b1d2e6a56b0e771ee0cc3b2",
+  "recordedAt": "2026-10-16T16:04:06.097Z",
+  "sha256": "7e9899a96b80b61dc64a3829b37c96a55d3fbfb2a45193ca96eb6a96e3d0fcd1",
+  "bytes": 33040,
+  "requestId": "2667RTA5xNY9iLCyN4M4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5f746136cf1d69ee19d0b3ee55f6f2e568670b1f18c1dd29455b6b7f0fb96b1",
+    "bytes": 173914
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

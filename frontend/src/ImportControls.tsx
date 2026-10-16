@@ -1,7 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import Button from "./Button";
 
-export function ImportSubmitButton({ busy, busyLabel, disabled = false }: {
+export function ImportSubmitButton({
+  busy,
+  busyLabel,
+  disabled = false,
+}: {
   busy: boolean;
   busyLabel: string;
   disabled?: boolean;

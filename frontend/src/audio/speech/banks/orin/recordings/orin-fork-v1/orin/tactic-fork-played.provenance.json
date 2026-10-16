@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Orin"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "tactic-fork-played",
+      "text": "The fork, a pattern every player must learn: a single piece attacks more than one target, and the defender can rarely save them all."
+    },
+    "takeId": null
+  },
+  "requestHash": "deb621c624e5e679db19e7189014e3dcefa74cbc70d0ef89f1ad4bcb6f47f625",
+  "recordedAt": "2026-10-16T16:04:02.995Z",
+  "sha256": "cad4b6151612b95a96b163f7ab6664c63e754d06d95501da6a63ea8f8372058d",
+  "bytes": 30399,
+  "requestId": "vdY4sDp64sfyRxlo9byI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "12de60ddce6eec229c750fed72cc0313c8e1a9a040f1a499d03e2f147e1b4835",
+    "bytes": 158449
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

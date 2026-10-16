@@ -17,7 +17,6 @@ from trainer.game_sync import poll
 from trainer.imports import import_games
 from trainer.models import (
     AnalysisJob,
-    ChessComImport,
     Decision,
     EngineAnalysis,
     Game,
@@ -25,6 +24,7 @@ from trainer.models import (
     GameReviewMove,
     ImportGame,
     ProviderConnection,
+    ProviderImport,
     User,
 )
 from trainer.presence import active_cutoff
@@ -39,6 +39,7 @@ def seed_games(app, count):
     )
     with app.state.sessions() as db:
         import_games(db, "games.pgn", pgn, ["Learner"], None)
+        db.commit()
         ids = db.scalars(select(Game.id).order_by(Game.pgn)).all()
         for i, game_id in enumerate(ids):
             db.get(Game, game_id).played_at = START + timedelta(days=i)
@@ -127,8 +128,8 @@ def syncs(app):
         return {
             (source.provider, source.username): (job.status, source.max_games, source.months)
             for job, source in db.execute(
-                select(AnalysisJob, ChessComImport).join(
-                    ChessComImport, ChessComImport.job_id == AnalysisJob.id
+                select(AnalysisJob, ProviderImport).join(
+                    ProviderImport, ProviderImport.job_id == AnalysisJob.id
                 )
             )
         }
@@ -141,7 +142,7 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
     monkeypatch.setitem(runner.providers.factories, "chesscom", FakeClient)
     monkeypatch.setitem(runner.providers.factories, "lichess", FakeClient)
     with TestClient(app):
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert FakeClient.calls == [] and syncs(app) == {}
         connect(app, ("chesscom", "learner"), ("lichess", "learner2"))
         # A new connection has no saved marker, so the providers report a change.
@@ -149,7 +150,7 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
             "learner": (True, {"etag": "same"}),
             "learner2": (True, {"etag": "same"}),
         }
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         FakeClient.answers = {}
         assert syncs(app) == {
             ("chesscom", "learner"): ("queued", 10, 0),
@@ -160,17 +161,17 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
                 job.status = "completed"
             db.commit()
         # Unchanged providers queue nothing; the saved markers are sent back.
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert {status for status, *_ in syncs(app).values()} == {"completed"}
         assert FakeClient.calls[-1][1]["learner2"]["etag"] == "same"
         FakeClient.answers = {"learner2": (True, {"signature": 2})}
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert syncs(app)[("lichess", "learner2")][0] == "queued"
         assert syncs(app)[("chesscom", "learner")][0] == "completed"
         # A rate-limited provider is skipped until its cooldown ends.
         calls = len(FakeClient.calls)
         runner.providers.retry_at["chesscom"] = time.monotonic() + 60
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert len(FakeClient.calls) == calls + 1
 
 
@@ -215,6 +216,7 @@ def test_game_analysis_runs_review_and_training_in_one_job(settings, stockfish_p
                 ["Learner"],
                 None,
             )
+            db.commit()
             queue_imported(db, db.scalar(select(ImportGame.import_id)), FRESH)
             db.commit()
         job = app.state.runner.claim()

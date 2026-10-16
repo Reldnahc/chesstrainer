@@ -41,7 +41,7 @@ def test_mover_causes_survive_the_production_review_path(skill, black):
 
     # A causal witness is still the mover's, not permission to ignore actor checks.
     finding["actor"] = opponent
-    assert not [e for e in events(report, kind="tactic") if e.facts["motif"] == skill]
+    assert not [e for e in events(report, kind="tactic") if e.facts.motif == skill]
 
 
 def test_causes_are_not_opponent_tactics_or_alternative_achievements():
@@ -53,13 +53,11 @@ def test_causes_are_not_opponent_tactics_or_alternative_achievements():
         modified = deepcopy(report)
         modified["actual_line"]["findings"] = [finding | change]
         assert not [
-            e for e in events(modified, kind="tactic") if e.facts["motif"] == "abandoned_defender"
+            e for e in events(modified, kind="tactic") if e.facts.motif == "abandoned_defender"
         ]
     # No poor-move gate means no causal diagnosis, even with a retained witness.
     report["actual"]["score"] = report["best"]["score"]
-    assert not [
-        e for e in events(report, kind="tactic") if e.facts["motif"] == "abandoned_defender"
-    ]
+    assert not [e for e in events(report, kind="tactic") if e.facts.motif == "abandoned_defender"]
 
 
 @pytest.mark.parametrize(
@@ -69,7 +67,7 @@ def test_causes_are_not_opponent_tactics_or_alternative_achievements():
 def test_new_mate_transition_has_both_analysis_references(before, after, transition):
     report = move_report(played="e2e4", best="d2d4", before=before, after=after)
     event = events(report, kind="mate")[0]
-    assert event.facts["transition"] == transition
+    assert event.facts.transition == transition
     assert {e.id for e in event.evidence} == {"root-evidence", "played-evidence"}
     report["best"]["score"] = report["actual"]["score"]
     assert not events(report, kind="mate")  # Already mated / preserved mate is not a new error.
@@ -99,9 +97,9 @@ def test_a_move_inside_a_forced_mate_names_its_stage(best, after, previous, stag
         )
     assert not events(report, kind="mate")
     event = events(report, kind="forced_mate")[0]
-    assert event.facts["stage"] == stage
-    assert event.facts["mate_in"] == abs(after["value"])
-    assert event.facts["winner"] == ("mover" if after["value"] > 0 else "opponent")
+    assert event.facts.stage == stage
+    assert event.facts.mate_in == abs(after["value"])
+    assert event.facts.winner == ("mover" if after["value"] > 0 else "opponent")
 
 
 def test_delivered_mate_and_ordinary_scores_have_no_forced_mate_stage():
@@ -112,16 +110,20 @@ def test_delivered_mate_and_ordinary_scores_have_no_forced_mate_stage():
 
 def test_lost_advantage_and_decisive_swing_are_separate_and_small_loss_is_not_major():
     lost = events(move_report(best="d2d4", before=300, after=50), kind="evaluation_change")[0]
-    assert lost.facts["lost_advantage"] and not lost.facts["decisive"]
+    assert lost.facts.lost_advantage and not lost.facts.decisive
     decisive = events(move_report(best="d2d4", before=0, after=-210), kind="evaluation_change")[0]
-    assert decisive.facts["decisive"] and not decisive.facts["lost_advantage"]
+    assert decisive.facts.decisive and not decisive.facts.lost_advantage
     assert not events(move_report(before=30, after=20), kind="evaluation_change")
 
 
 def test_only_good_defense_requires_losing_runner_up_and_more_than_one_legal_move():
     report = move_report(second=-220)
     critical = events(report, kind="critical_resource")[0]
-    assert critical.facts == {"only_good_at_depth": 16, "difficult": False, "purpose": "defense"}
+    assert critical.facts.model_dump() == {
+        "only_good_at_depth": 16,
+        "difficult": False,
+        "purpose": "defense",
+    }
     for modified in [
         report | {"legal_count": 1},
         report | {"second_score": {"kind": "cp", "value": 0}},
@@ -129,8 +131,8 @@ def test_only_good_defense_requires_losing_runner_up_and_more_than_one_legal_mov
     ]:
         assert not events(modified, kind="critical_resource")
     report["human"] = human_report(best_rank=10, played_rank=10, probability=0.001)["human"]
-    assert events(report, kind="critical_resource")[0].facts["difficult"]
-    assert "unusual_strong_move" in events(report, kind="human_contrast")[0].facts["observations"]
+    assert events(report, kind="critical_resource")[0].facts.difficult
+    assert "unusual_strong_move" in events(report, kind="human_contrast")[0].facts.observations
 
 
 def test_the_only_move_event_fires_exactly_where_the_great_badge_does():
@@ -148,12 +150,12 @@ def test_the_only_move_event_fires_exactly_where_the_great_badge_does():
 def test_a_decisive_resource_needs_the_winning_band():
     # +2.50 is "better", not "winning": the only move there defends an advantage.
     better = move_report(before=250, after=250, second=-200)
-    assert events(better, kind="critical_resource")[0].facts["purpose"] == "defense"
+    assert events(better, kind="critical_resource")[0].facts.purpose == "defense"
     winning = move_report(before=300, after=300, second=-200)
-    assert events(winning, kind="critical_resource")[0].facts["purpose"] == "decisive_resource"
+    assert events(winning, kind="critical_resource")[0].facts.purpose == "decisive_resource"
     mate = {"kind": "mate", "value": 4}
     forced = move_report(before=mate, after=mate, second=-200)
-    assert events(forced, kind="critical_resource")[0].facts["purpose"] == "decisive_resource"
+    assert events(forced, kind="critical_resource")[0].facts.purpose == "decisive_resource"
 
 
 def test_restricted_played_root_can_disprove_an_only_good_move_claim():
@@ -190,15 +192,15 @@ def test_positive_tactic_is_a_line_witness_not_a_played_game_claim_or_best_line_
     )
     report["best_line"] = deepcopy(report["actual_line"])
     tactics = events(report, kind="tactic")
-    fork = next(event for event in tactics if event.facts["motif"] == "fork")
-    assert fork.confidence == "line_witness" and fork.facts["role"] == "played"
-    assert fork.actor == "white" and fork.facts["plies"]
-    assert fork.facts["pieces"]["e4"] == {"piece": "queen", "color": "black"}
-    assert fork.facts["witness"] == [
+    fork = next(event for event in tactics if event.facts.motif == "fork")
+    assert fork.confidence == "line_witness" and fork.facts.role == "played"
+    assert fork.actor == "white" and fork.facts.plies
+    assert fork.facts.pieces["e4"].model_dump() == {"piece": "queen", "color": "black"}
+    assert [w.model_dump() for w in fork.facts.witness] == [
         {"ply": 1, "san": "Ng5+", "capture": None, "gives_check": True}
     ]  # The fork does not pretend a later capture already happened.
-    assert fork.facts["settled_material_delta"] is None or fork.facts["settled_material_delta"] > 0
-    assert "explanation" not in fork.facts and "cue" not in fork.facts
+    assert fork.facts.settled_material_delta is None or fork.facts.settled_material_delta > 0
+    assert "explanation" not in fork.facts.model_dump() and "cue" not in fork.facts.model_dump()
     changed = deepcopy(report)
     changed["actual_line"]["findings"] = []
     assert not events(
@@ -238,8 +240,8 @@ def test_human_contrast_carries_domain_and_never_changes_objective_event_identit
         e for e in result["intelligence"]["events"] if e["kind"] != "human_contrast"
     ] == initial["intelligence"]["events"]
     contrast = events(report, kind="human_contrast")[0]
-    assert "natural_error" in contrast.facts["observations"]
-    assert contrast.facts["domain"]["calibration"] == "unvalidated"
+    assert "natural_error" in contrast.facts.observations
+    assert contrast.facts.domain.calibration == "unvalidated"
     report["human"] = {"status": "unavailable"}
     assert not events(report, kind="human_contrast")
 
@@ -248,13 +250,13 @@ def test_board_check_and_mate_events_use_legality_not_engine_evaluation_or_pgn_r
     board = game("1. f3 e5 2. g4 *").end().board()
     report = move_report(board, "d8h4")
     finish = events(report, kind="finish")[0]
-    assert finish.facts == {"termination": "checkmate", "result": "0-1"}
+    assert finish.facts.model_dump() == {"termination": "checkmate", "result": "0-1"}
     assert finish.confidence == "board_fact" and finish.actor == "black"
     assert not events(report, kind="check")  # Finish supersedes a generic check.
     assert not events(move_report(), kind="finish")
     board = game("1. e4 e5 2. Bc4 Nc6 *").end().board()
     check = events(move_report(board, "c4f7"), kind="check")[0]
-    assert check.facts == {"gives_check": True, "escapes_check": False}
+    assert check.facts.model_dump() == {"gives_check": True, "escapes_check": False}
     assert not events(move_report(), kind="check")
 
 
@@ -268,8 +270,8 @@ def test_clock_and_opening_context_do_not_follow_arbitrary_analysis_branches():
         board.push(move)
     report = move_report(board, "g2g4", best="b1c3", after={"kind": "mate", "value": -1})
     clock = events(report, contexts[3], "clock_observation")[0]
-    assert clock.facts["before_band"] == "critical" and clock.facts["accompanied_error"]
-    assert clock.facts["causation"] == "not_inferred"
+    assert clock.facts.before_band == "critical" and clock.facts.accompanied_error
+    assert clock.facts.causation == "not_inferred"
     branch = move_report(board, "b1c3")
     result = describe_move(branch, assess_difficulty(branch), contexts[3])
     assert result.clock is None and not [e for e in result.events if e.kind == "clock_observation"]
@@ -306,8 +308,8 @@ def test_tempo_with_error_is_an_observation_without_psychological_claim(remainin
     parsed = game(f"1. e4 {{[%clk {remaining}]}} *", "600")
     report = move_report(best="d2d4", after=-150)
     event = events(report, move_contexts(parsed)[1], "clock_observation")[0]
-    assert event.facts["tempo"] == tempo
-    assert event.facts["accompanied_error"] and event.facts["causation"] == "not_inferred"
+    assert event.facts.tempo == tempo
+    assert event.facts.accompanied_error and event.facts.causation == "not_inferred"
 
 
 def test_cold_srs_cannot_serialize_intelligence_or_clock_hints(settings):
@@ -353,9 +355,50 @@ def test_a_weaker_discovered_attack_is_not_a_missed_discovered_attack():
         return [
             event
             for event in events(report, kind="tactic")
-            if event.facts["role"] == "missed" and event.facts["motif"] == "discovered_attack"
+            if event.facts.role == "missed" and event.facts.motif == "discovered_attack"
         ]
 
     assert not missed("c6b4", ["c6b4", "b7b4", "e4g2", "b1d2", "d6b4"])
     # A move that leaves the line closed did miss it.
     assert missed("h7h5", ["h7h5", "b7c6"])
+
+
+def test_a_null_tactic_fact_move_events_4_omitted_stays_out_of_the_event_id():
+    from trainer.chess_core import digest
+    from trainer.review_intelligence.events import VERSION, event_identity
+
+    report = cause_report(CAUSES[0], False)
+    tactic = next(e for e in events(report, kind="tactic"))
+    plain = tactic.model_copy(
+        update={
+            "facts": tactic.facts.model_copy(
+                update={"opportunity_actor": None, "pinned_before": None}
+            )
+        }
+    )
+    payload = plain.model_dump(mode="json", exclude={"id"})
+    for key in ("opportunity_actor", "pinned_before"):
+        del payload["facts"][key]
+    # The id move-events-4 gave the event when it left those keys out.
+    assert event_identity(plain) == digest({"version": VERSION, **payload})
+    # A fact that applies is part of the identity.
+    assert event_identity(
+        plain.model_copy(update={"facts": plain.facts.model_copy(update={"pinned_before": False})})
+    ) != event_identity(plain)
+
+
+def test_tactic_event_ids_match_those_recorded_before_the_facts_were_typed():
+    report = cause_report(CAUSES[0], False)
+    tactics = events(report, kind="tactic")
+    # Recorded at c9a565625, the audit-leftovers commit just before typed facts
+    # merged (c4374ef72), where the null facts were absent rather than null. A deliberate
+    # VERSION or fact-shape change breaks these ids on purpose; record them again then.
+    assert [e.id for e in tactics] == [
+        "9bbcd552a122b8964220db00078091e3ac1259fc0862a3cded5a12a2af891198",
+        "49e5c6331d90d1640b027864370397b4acabc6a05e6ca406fb93d58919c0b846",
+        "f8b74e32f630ad9f8a933ad7ea11aaf615fa66ba6e66ae500fb44dc51351d3a0",
+    ]
+    # The fixture covers the rule: these events now carry the omitted facts as null.
+    assert all(
+        e.facts.opportunity_actor is None and e.facts.pinned_before is None for e in tactics[1:]
+    )

@@ -2,6 +2,7 @@ import copy
 from datetime import timedelta
 
 import pytest
+from account_units import units_for
 from explanation_fixtures import seed_review
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
@@ -36,7 +37,7 @@ def seed_classified(db, settings, key="practice"):
         candidates[0]["pv"] = line
         analysis.candidates = candidates
     db.commit()
-    assert classify_decision(db, decision, LocalClassifier(settings))
+    assert classify_decision(units_for(db), decision, LocalClassifier(settings))
     return fixture
 
 
@@ -164,3 +165,35 @@ def test_weaknesses_skip_unrated_games_but_keep_their_drills(settings):
         assert client.get("/api/weaknesses").json()["skills"] == []
         with client.app.state.sessions() as db:
             assert db.scalar(select(func.count()).select_from(Exercise)) == exercises > 0
+
+
+def test_weakness_priorities_read_each_history_once_however_many_skills(settings, sessions):
+    from lesson_fixtures import seed_lesson
+    from sqlalchemy import event
+    from trainer.weaknesses import priorities
+
+    def statements(skills):
+        with sessions() as db:
+            seed_lesson(db, settings, count=len(skills) * 2, offset=len(seen) * 2, skills=skills)
+            seen.extend(skills)
+        count = 0
+
+        def counted(*_):
+            nonlocal count
+            count += 1
+
+        engine = sessions.kw["bind"]
+        event.listen(engine, "before_cursor_execute", counted)
+        try:
+            with sessions() as db:
+                ranked = priorities(db, settings)
+        finally:
+            event.remove(engine, "before_cursor_execute", counted)
+        return count, {item["skill_id"] for item in ranked}
+
+    seen = []
+    one, ranked = statements(["king_safety"])
+    assert ranked == {"king_safety"}
+    many, ranked = statements(["fork", "pin", "hanging_piece"])
+    assert ranked == {"king_safety", "fork", "pin", "hanging_piece"}
+    assert many == one

@@ -1,4 +1,4 @@
-import { expect, test, type Page, type Route } from "@playwright/test";
+import { expect, test, type Page, type Route } from "./helpers/browserTest";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,7 +14,7 @@ import { createRoot } from "react-dom/client";
 import { LoadingState, UnavailableState } from "/src/LoadState.tsx";
 import Button from "/src/Button.tsx";
 import ActionLink from "/src/ActionLink.tsx";
-import ReviewScreen from "/src/Review.tsx";
+import DueScreen from "/src/DueScreen.tsx";
 import GameWorkspace from "/src/gameReview/GameWorkspace.tsx";
 import EvidenceDialog from "/src/EvidenceDialog.tsx";
 import LessonPlayer from "/src/study/LessonPlayer.tsx";
@@ -37,8 +37,8 @@ function Fixture() {
   else if (view === "preview") contents = <OpeningLinePreview catalogueKey="loading-fixture" courseLine={null} />;
   else if (view === "course-preview") contents = <OpeningLinePreview catalogueKey={null} courseLine={{courseId: "loading-fixture", lineId: "line", revision: "fixture-v1"}} />;
   else if (view === "game") contents = <GameWorkspace id="loading-fixture" initialPly={0} libraryHref="/games?page=3" />;
-  else if (view === "review") contents = <ReviewScreen requested={null} focusSkill={null} fail={fail} onEvidence={() => {}} />;
-  else if (view === "evidence") contents = <><button onClick={() => setEvidence(true)}>Open evidence</button>{evidence && <EvidenceDialog id="loading-fixture" onClose={() => setEvidence(false)} fail={fail} />}</>;
+  else if (view === "review") contents = <DueScreen requested={null} focusSkill={null} onEvidence={() => {}} />;
+  else if (view === "evidence") contents = <><button onClick={() => setEvidence(true)}>Open evidence</button>{evidence && <EvidenceDialog id="loading-fixture" onClose={() => setEvidence(false)} />}</>;
   else contents = <>
     <div data-testid="compact"><LoadingState>Loading a small detail…</LoadingState></div>
     <div data-testid="panel"><LoadingState presentation="panel">Loading the full page…</LoadingState></div>
@@ -61,30 +61,42 @@ test.beforeAll(async () => {
   server = await createServer({
     configFile: false,
     root: path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
-    plugins: [react(), devRecordingAssets(), {
-      name: "loading-state-fixture",
-      resolveId(id) {
-        if (id === "/loading-state-fixture.tsx") return "\0loading-state-fixture.tsx";
-      },
-      async load(id) {
-        if (id === "\0loading-state-fixture.tsx")
-          return (await transformWithEsbuild(harness, "loading-state-fixture.tsx", { loader: "tsx", jsx: "automatic" })).code;
-      },
-      configureServer(vite) {
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises -- the handler catches every failure and passes it to next
-        vite.middlewares.use("/__loading-state", async (_request, response, next) => {
-          try {
-            const html = await vite.transformIndexHtml("/__loading-state", `<!doctype html>
+    plugins: [
+      react(),
+      devRecordingAssets(),
+      {
+        name: "loading-state-fixture",
+        resolveId(id) {
+          if (id === "/loading-state-fixture.tsx") return "\0loading-state-fixture.tsx";
+        },
+        async load(id) {
+          if (id === "\0loading-state-fixture.tsx")
+            return (
+              await transformWithEsbuild(harness, "loading-state-fixture.tsx", {
+                loader: "tsx",
+                jsx: "automatic",
+              })
+            ).code;
+        },
+        configureServer(vite) {
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises -- the handler catches every failure and passes it to next
+          vite.middlewares.use("/__loading-state", async (_request, response, next) => {
+            try {
+              const html = await vite.transformIndexHtml(
+                "/__loading-state",
+                `<!doctype html>
               <html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
-              <body><div id="root"></div><script type="module" src="/loading-state-fixture.tsx"></script></body></html>`);
-            response.setHeader("Content-Type", "text/html");
-            response.end(html);
-          } catch (error) {
-            next(error);
-          }
-        });
+              <body><div id="root"></div><script type="module" src="/loading-state-fixture.tsx"></script></body></html>`,
+              );
+              response.setHeader("Content-Type", "text/html");
+              response.end(html);
+            } catch (error) {
+              next(error);
+            }
+          });
+        },
       },
-    }],
+    ],
     ...(await isolatedServer()),
   });
   await server.listen();
@@ -131,16 +143,36 @@ async function expectLoading(page: Page, message: string) {
 }
 
 for (const fixture of [
-  { view: "lesson", endpoint: "/api/study/lesson-sessions/loading-fixture", message: "Loading your lesson…", failed: "Couldn’t load your lesson.", heading: "Lesson unavailable", link: "All lessons", href: "/study/openings" },
-  { view: "puzzle", endpoint: "/api/puzzle-sessions/loading-fixture", message: "Loading your puzzle…", failed: "Couldn’t load your puzzle.", heading: "Puzzle unavailable", link: "All puzzles", href: "/study/puzzles" },
+  {
+    view: "lesson",
+    endpoint: "/api/study/lesson-sessions/loading-fixture",
+    message: "Loading your lesson…",
+    failed: "Couldn’t load your lesson.",
+    heading: "Lesson unavailable",
+    link: "All lessons",
+    href: "/study/openings",
+  },
+  {
+    view: "puzzle",
+    endpoint: "/api/puzzle-sessions/loading-fixture",
+    message: "Loading your puzzle…",
+    failed: "Couldn’t load your puzzle.",
+    heading: "Puzzle unavailable",
+    link: "All puzzles",
+    href: "/study/puzzles",
+  },
 ]) {
-  test(`${fixture.view} loading and retry preserve caller-owned recovery commands`, async ({ page }) => {
+  test(`${fixture.view} loading and retry preserve caller-owned recovery commands`, async ({
+    page,
+  }) => {
     const request = await holdEndpoint(page, fixture.endpoint);
     await openFixture(page, fixture.view);
     await expectLoading(page, fixture.message);
     await request.reply({ detail: "Saved session could not be loaded." }, 503);
     await expect(page.getByRole("heading", { name: fixture.heading, level: 1 })).toBeVisible();
-    await expect(page.getByRole("alert")).toHaveText(`${fixture.failed} Saved session could not be loaded.`);
+    await expect(page.getByRole("alert")).toHaveText(
+      `${fixture.failed} Saved session could not be loaded.`,
+    );
     await expect(page.getByRole("status")).toHaveCount(0);
     const retry = page.getByRole("button", { name: "Try again", exact: true });
     const back = page.getByRole("link", { name: fixture.link, exact: true });
@@ -152,22 +184,61 @@ for (const fixture of [
     await expect(retry).toHaveCount(0);
     await expect.poll(() => request.methods).toEqual(["GET", "GET"]);
     await request.reply({ detail: "The saved session is still unavailable." }, 503);
-    await expect(page.getByRole("alert")).toHaveText(`${fixture.failed} The saved session is still unavailable.`);
+    await expect(page.getByRole("alert")).toHaveText(
+      `${fixture.failed} The saved session is still unavailable.`,
+    );
     await expect(retry).toBeEnabled();
     await expect(back).toHaveAttribute("href", fixture.href);
     expect(request.methods).toEqual(["GET", "GET"]);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
   });
 }
 
 for (const fixture of [
-  { view: "game", endpoint: "/api/games/loading-fixture", message: "Loading the game…", failed: "Couldn’t load the game. The requested content could not be loaded.", link: "All games", href: "/games?page=3" },
-  { view: "library", endpoint: "/api/study/courses", message: "Loading opening lessons…", failed: "Couldn’t load opening lessons." },
-  { view: "chapters", endpoint: "/api/study/courses/loading-fixture?revision=fixture-v1", message: "Loading the course…", failed: "Couldn’t load the course.", link: "All openings", href: "/study/openings" },
-  { view: "preview", endpoint: "/api/openings/catalog/loading-fixture", message: "Loading the selected line…", failed: "Couldn’t load the selected line.", link: "Back to openings", href: "/study/openings/catalogue" },
-  { view: "course-preview", endpoint: "/api/openings/course-lines/loading-fixture/line?revision=fixture-v1", message: "Loading the selected line…", failed: "Couldn’t load the selected line.", link: "Back to openings", href: "/study/openings/courses/loading-fixture?revision=fixture-v1" },
+  {
+    view: "game",
+    endpoint: "/api/games/loading-fixture",
+    message: "Loading the game…",
+    failed: "Couldn’t load the game. The requested content could not be loaded.",
+    link: "All games",
+    href: "/games?page=3",
+  },
+  {
+    view: "library",
+    endpoint: "/api/study/courses",
+    message: "Loading opening lessons…",
+    failed: "Couldn’t load opening lessons.",
+  },
+  {
+    view: "chapters",
+    endpoint: "/api/study/courses/loading-fixture?revision=fixture-v1",
+    message: "Loading the course…",
+    failed: "Couldn’t load the course.",
+    link: "All openings",
+    href: "/study/openings",
+  },
+  {
+    view: "preview",
+    endpoint: "/api/openings/catalog/loading-fixture",
+    message: "Loading the selected line…",
+    failed: "Couldn’t load the selected line.",
+    link: "Back to openings",
+    href: "/study/openings/catalogue",
+  },
+  {
+    view: "course-preview",
+    endpoint: "/api/openings/course-lines/loading-fixture/line?revision=fixture-v1",
+    message: "Loading the selected line…",
+    failed: "Couldn’t load the selected line.",
+    link: "Back to openings",
+    href: "/study/openings/courses/loading-fixture?revision=fixture-v1",
+  },
 ]) {
-  test(`${fixture.view} switches its loading announcement to the standard failure with Try again and retains navigation`, async ({ page }) => {
+  test(`${fixture.view} switches its loading announcement to the standard failure with Try again and retains navigation`, async ({
+    page,
+  }) => {
     const request = await holdEndpoint(page, fixture.endpoint);
     await page.route("**/api/opening-studies", route => route.fulfill({ json: { items: [] } }));
     await openFixture(page, fixture.view);
@@ -187,11 +258,15 @@ for (const fixture of [
       await expect(back).toBeFocused();
     }
     expect(request.methods).toEqual(["GET"]);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
   });
 }
 
-test("practice announces its pending queue without exposing a position or answer controls", async ({ page }) => {
+test("practice announces its pending queue without exposing a position or answer controls", async ({
+  page,
+}) => {
   await holdEndpoint(page, "/api/review/queue");
   await openFixture(page, "review");
   await expectLoading(page, "Loading your practice…");
@@ -199,7 +274,9 @@ test("practice announces its pending queue without exposing a position or answer
   await expect(page.getByRole("button", { name: /show|reveal|answer/i })).toHaveCount(0);
 });
 
-test("pending evidence has a compact announcement while its close action stays usable", async ({ page }) => {
+test("pending evidence has a compact announcement while its close action stays usable", async ({
+  page,
+}) => {
   await holdEndpoint(page, "/api/evidence/loading-fixture");
   await openFixture(page, "evidence");
   const opener = page.getByRole("button", { name: "Open evidence", exact: true });
@@ -214,9 +291,14 @@ test("pending evidence has a compact announcement while its close action stays u
   await expect(opener).toBeFocused();
 });
 
-test("shared states keep announcements separate from supplied headings and action semantics", async ({ page }, info) => {
+test("shared states keep announcements separate from supplied headings and action semantics", async ({
+  page,
+}, info) => {
   await openFixture(page, "primitives");
-  await expect(page.getByRole("status")).toHaveText(["Loading a small detail…", "Loading the full page…"]);
+  await expect(page.getByRole("status")).toHaveText([
+    "Loading a small detail…",
+    "Loading the full page…",
+  ]);
   await expect(page.getByRole("alert")).toHaveText("The caller supplied this explanation.");
   await expect(page.getByRole("heading", { name: "Caller-owned heading", level: 2 })).toBeVisible();
   await expect(page.getByRole("alert").getByRole("button")).toHaveCount(0);
@@ -238,7 +320,8 @@ test("shared states keep announcements separate from supplied headings and actio
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   for (const control of [retry, disabled, link]) {
     await expect(control).toBeInViewport({ ratio: 1 });
-    if (info.project.name === "mobile") expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    if (info.project.name === "mobile")
+      expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
   }
   await page.screenshot({ path: info.outputPath("loading-and-unavailable.png") });
 });

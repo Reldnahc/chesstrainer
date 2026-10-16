@@ -47,7 +47,7 @@ def main():
                 assert human["played"]["probability"] is not None
                 assert human["domain"]["alignment"] == "shifted"
                 practical = frame["report"]["practical"]
-                assert practical["version"] == "practical-2"
+                assert practical["version"] == "practical-3"
                 MoveIntelligence.model_validate(frame["report"]["intelligence"])
                 assert practical["played_naturalness"] != "unknown"
                 assert practical["confidence"] == "limited"
@@ -64,7 +64,7 @@ def main():
                 "/api/preferences/coach", json={"coach_id": "dog-collie", "motion": "still"}
             ).raise_for_status()
             assert client.get(f"/api/games/{game}").json() == original
-            assert not restarted.state.human_models.provider._workers
+            assert not restarted.state.human_models.provider.workers.live
         print(
             json.dumps(
                 {

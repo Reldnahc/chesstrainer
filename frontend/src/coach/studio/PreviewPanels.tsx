@@ -48,9 +48,8 @@ export function ConceptComparison({
           <div className="studio-concept-top">
             <span>CONCEPT {String(index + 1).padStart(2, "0")}</span>
             {selectableCoaches.some(
-              (production) =>
-                production.collectionId === coach.id &&
-                production.defaultFamily === direction.id,
+              production =>
+                production.collectionId === coach.id && production.defaultFamily === direction.id,
             ) && <span className="studio-current">Available in Settings</span>}
           </div>
           <div className="studio-character-stage">
@@ -74,12 +73,12 @@ export function ConceptComparison({
           </div>
           <Button
             variant="quiet"
+            size="compact"
+            spread
             aria-pressed={family === direction.id}
             onClick={() => onFamily(direction.id)}
           >
-            {family === direction.id
-              ? "Viewing this collection"
-              : "Explore this collection"}
+            {family === direction.id ? "Viewing this collection" : "Explore this collection"}
             <ArrowRight size={15} />
           </Button>
         </article>
@@ -91,10 +90,7 @@ export function ConceptComparison({
 export function BoardSizePreview({ preview }: { preview: StudioPreview }) {
   const example = examples[preview.reaction.state];
   return (
-    <section
-      className="studio-context-section"
-      aria-label="Actual interface size previews"
-    >
+    <section className="studio-context-section" aria-label="Actual interface size previews">
       <div className="studio-section-title">
         <div>
           <p className="eyebrow">WHERE IT MATTERS</p>
@@ -107,7 +103,7 @@ export function BoardSizePreview({ preview }: { preview: StudioPreview }) {
         </p>
       </div>
       <div className="studio-contexts">
-        {[false, true].map((compact) => (
+        {[false, true].map(compact => (
           <article
             className={`studio-context ${compact ? "studio-context-compact" : ""}`}
             key={String(compact)}
@@ -117,11 +113,13 @@ export function BoardSizePreview({ preview }: { preview: StudioPreview }) {
             </p>
             <ReviewCoach
               title={<strong>{example.title}</strong>}
-              evaluation={
-                <EvaluationScore score={example.evaluation} />
-              }
+              evaluation={<EvaluationScore score={example.evaluation} />}
               character={<CoachCharacter {...preview} />}
-              actions={<Button size="compact" disabled>Show why</Button>}
+              actions={
+                <Button size="compact" disabled>
+                  Show why
+                </Button>
+              }
               context={<span>Example position</span>}
             >
               <p>{example.text}</p>

@@ -16,14 +16,11 @@ export function useGameReviewSession(id: string) {
   const loadVersion = useRef(0);
   const receivedPly = useRef(0);
   const receivedRevision = useRef<number | undefined>(undefined);
-  const running =
-    !!game?.job && ["queued", "running"].includes(game.job.status);
+  const running = !!game?.job && ["queued", "running"].includes(game.job.status);
 
   const load = useCallback(async () => {
     const version = ++loadVersion.current;
-    const data = await read(
-      api.GET("/api/games/{game_id}", { params: { path: { game_id: id } } }),
-    );
+    const data = await read(api.GET("/api/games/{game_id}", { params: { path: { game_id: id } } }));
     if (mounted.current && version === loadVersion.current) {
       receivedPly.current = data.frames.reduce(
         (last, frame, index) => (frame.report ? index : last),
@@ -38,7 +35,7 @@ export function useGameReviewSession(id: string) {
 
   useEffect(() => {
     mounted.current = true;
-    void load().catch((e) => {
+    void load().catch(e => {
       if (mounted.current) setError(errorMessage(e));
     });
     return () => {
@@ -62,7 +59,7 @@ export function useGameReviewSession(id: string) {
       if (!mounted.current) return;
       // A review that is already complete and unchanged keeps its loaded frames and cache.
       if (started.status === "completed") return;
-      setAnalysisEpoch((value) => value + 1);
+      setAnalysisEpoch(value => value + 1);
       await load();
     } catch (e) {
       if (mounted.current) setError(errorMessage(e));
@@ -100,8 +97,7 @@ export function useGameReviewSession(id: string) {
       setReviewStarting(false);
       return;
     }
-    if (!game.job || ["failed", "cancelled", "completed"].includes(game.job.status))
-      void start();
+    if (!game.job || ["failed", "cancelled", "completed"].includes(game.job.status)) void start();
     else {
       setReviewStarting(false);
       // Opening a queued game moves its review to the front of the background queue.
@@ -120,51 +116,51 @@ export function useGameReviewSession(id: string) {
 
   // Progress follows the shared polling rules: one pass at a time, paused in hidden tabs,
   // and backing off while the server is unreachable.
-  usePolling(async (signal) => {
-    const version = loadVersion.current;
-    try {
-      const progress = await read(
-        api.GET("/api/games/{game_id}/review", {
-          params: {
-            path: { game_id: id },
-            query: receivedRevision.current === undefined
-              ? { after: receivedPly.current }
-              : { after_revision: receivedRevision.current },
-          },
-          signal,
-        }),
-      );
-      if (signal.aborted || version !== loadVersion.current) return;
-      // Advance only over reports received, never a newer progress counter.
-      for (const move of progress.moves)
-        receivedPly.current = Math.max(receivedPly.current, move.ply);
-      // The server cursor includes exactly the updates in this response, including earlier plies.
-      if (progress.revision !== undefined) receivedRevision.current = progress.revision;
-      const reports = new Map(
-        progress.moves.map((move) => [move.ply, move.report]),
-      );
-      setGame((current) =>
-        current
-          ? {
-              ...current,
-              job: progress.job,
-              accuracy: progress.accuracy,
-              review_revision: progress.revision,
-              context: progress.context ?? current.context,
-              history: progress.history ?? current.history,
-              frames: current.frames.map((frame, index) =>
-                reports.has(index)
-                  ? { ...frame, report: reports.get(index)! }
-                  : frame,
-              ),
-            }
-          : current,
-      );
-    } catch (e) {
-      if (!signal.aborted) setError(errorMessage(e));
-      throw e;
-    }
-  }, { intervalMs: 750, enabled: running });
+  usePolling(
+    async signal => {
+      const version = loadVersion.current;
+      try {
+        const progress = await read(
+          api.GET("/api/games/{game_id}/review", {
+            params: {
+              path: { game_id: id },
+              query:
+                receivedRevision.current === undefined
+                  ? { after: receivedPly.current }
+                  : { after_revision: receivedRevision.current },
+            },
+            signal,
+          }),
+        );
+        if (signal.aborted || version !== loadVersion.current) return;
+        // Advance only over reports received, never a newer progress counter.
+        for (const move of progress.moves)
+          receivedPly.current = Math.max(receivedPly.current, move.ply);
+        // The server cursor includes exactly the updates in this response, including earlier plies.
+        if (progress.revision !== undefined) receivedRevision.current = progress.revision;
+        const reports = new Map(progress.moves.map(move => [move.ply, move.report]));
+        setGame(current =>
+          current
+            ? {
+                ...current,
+                job: progress.job,
+                accuracy: progress.accuracy,
+                review_revision: progress.revision,
+                context: progress.context ?? current.context,
+                history: progress.history ?? current.history,
+                frames: current.frames.map((frame, index) =>
+                  reports.has(index) ? { ...frame, report: reports.get(index)! } : frame,
+                ),
+              }
+            : current,
+        );
+      } catch (e) {
+        if (!signal.aborted) setError(errorMessage(e));
+        throw e;
+      }
+    },
+    { intervalMs: 750, enabled: running },
+  );
 
   return {
     game,
@@ -172,12 +168,12 @@ export function useGameReviewSession(id: string) {
     reviewStarting,
     running,
     error,
-    setError,
+    fail: (e: unknown) => setError(errorMessage(e)),
     dismissError: () => setError(""),
     /** Loads the game again after its first load failed. */
     retryLoad: () => {
       setError("");
-      void load().catch((e) => {
+      void load().catch(e => {
         if (mounted.current) setError(errorMessage(e));
       });
     },

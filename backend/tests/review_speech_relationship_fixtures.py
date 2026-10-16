@@ -150,13 +150,13 @@ def relationship_game(family, human_state):
     ]
     assert matching, (name, context.relationships)
     if family.startswith("recovery"):
-        assert bool(matching[0].facts["opponent_errors"]) == (family == "recovery-assisted")
+        assert bool(matching[0].facts.opponent_errors) == (family == "recovery-assisted")
     if family.startswith("chance-"):
-        assert matching[0].facts["outcome"] == (
+        assert matching[0].facts.outcome == (
             "capitalized" if family == "chance-taken" else "missed"
         )
     if family == "advantage-converted":
-        assert matching[0].facts["outcome"] == "converted"
+        assert matching[0].facts.outcome == "converted"
     return GameDetail.model_validate(
         dict(
             id=name,

@@ -1,34 +1,116 @@
 import type { Schema } from "../api";
 import type { CoachExpression } from "../coach/model";
-import type {BookPresentation} from "./openingPresentation";
+import type { BookPresentation } from "./openingPresentation";
 
 export const dialoguePurposes = [
-  "neutral", "thinking", "uncertain", "brilliant", "great", "best", "good", "book",
-  "opening_departure", "inaccuracy", "mistake", "blunder", "missed", "difficult_defense",
-  "only_move", "winning", "losing", "draw", "encouraging", "recovery", "explanation",
-  "repeated_motif", "variation",
+  "neutral",
+  "thinking",
+  "uncertain",
+  "brilliant",
+  "great",
+  "best",
+  "good",
+  "book",
+  "opening_departure",
+  "inaccuracy",
+  "mistake",
+  "blunder",
+  "missed",
+  "difficult_defense",
+  "only_move",
+  "winning",
+  "losing",
+  "draw",
+  "encouraging",
+  "recovery",
+  "explanation",
+  "repeated_motif",
+  "variation",
 ] as const;
-export type DialoguePurpose = typeof dialoguePurposes[number];
+export type DialoguePurpose = (typeof dialoguePurposes)[number];
 /** Every fact a claim can state. Each has a neutral template (templates.ts). */
 export const claimCodes = [
-  "allowed_mate", "forced_mate_started", "forced_mate_continued", "forced_mate_slower", "forced_mate_next",
-  "forced_mate_hastened", "forced_mate_held", "missed_mate", "tactic_played", "tactic_allowed", "tactic_missed",
-  "cause_abandoned_defender", "cause_opponent_threat_recognition", "cause_avoiding_bad_trades", "sacrifice",
-  "only_move", "decisive_resource", "reply_capture", "reply_check", "alternative", "loss", "best", "good",
-  "uncertain_reason", "human_natural_error", "human_rare", "difficult_defense", "human_challenging",
-  "human_defense_found", "human_natural_best", "human_natural_strong", "book", "book_sound", "departure",
-  "recovery", "punishment", "missed_punishment", "repeated", "support_restored", "erosion", "conversion",
-  "history", "development", "rook_file", "passed", "passer_advance", "isolated", "support", "unsupported",
-  "flights", "castle", "bishops", "doubled", "mate_win", "mate_loss", "draw", "cold", "thinking",
-  "unavailable", "practice_error", "retry", "recovered", "accepted", "explanation", "explanation_summary",
-  "variation", "compatibility",
+  "allowed_mate",
+  "forced_mate_started",
+  "forced_mate_continued",
+  "forced_mate_slower",
+  "forced_mate_next",
+  "forced_mate_hastened",
+  "forced_mate_held",
+  "missed_mate",
+  "tactic_played",
+  "tactic_allowed",
+  "tactic_missed",
+  "cause_abandoned_defender",
+  "cause_opponent_threat_recognition",
+  "cause_avoiding_bad_trades",
+  "sacrifice",
+  "only_move",
+  "decisive_resource",
+  "reply_capture",
+  "reply_check",
+  "alternative",
+  "loss",
+  "best",
+  "good",
+  "uncertain_reason",
+  "human_natural_error",
+  "human_rare",
+  "difficult_defense",
+  "human_challenging",
+  "human_defense_found",
+  "human_natural_best",
+  "human_natural_strong",
+  "book",
+  "book_sound",
+  "departure",
+  "recovery",
+  "punishment",
+  "missed_punishment",
+  "repeated",
+  "support_restored",
+  "erosion",
+  "conversion",
+  "history",
+  "development",
+  "rook_file",
+  "passed",
+  "passer_advance",
+  "isolated",
+  "support",
+  "unsupported",
+  "flights",
+  "castle",
+  "bishops",
+  "doubled",
+  "mate_win",
+  "mate_loss",
+  "draw",
+  "cold",
+  "thinking",
+  "unavailable",
+  "practice_error",
+  "retry",
+  "recovered",
+  "accepted",
+  "explanation",
+  "explanation_summary",
+  "variation",
+  "compatibility",
 ] as const;
-export type ClaimCode = typeof claimCodes[number];
+export type ClaimCode = (typeof claimCodes)[number];
 const knownClaimCodes: ReadonlySet<string> = new Set(claimCodes);
 export const isClaimCode = (code: string): code is ClaimCode => knownClaimCodes.has(code);
 /** The stages of a forced mate the review reports, each with its own claim. */
-export const forcedMateStages = ["started", "continued", "slower", "next", "hastened", "held"] as const;
-export type ForcedMateStage = typeof forcedMateStages[number];
+export const forcedMateStages = [
+  "started",
+  "continued",
+  "slower",
+  "next",
+  "hastened",
+  "held",
+] as const;
+export type ForcedMateStage = (typeof forcedMateStages)[number];
 export const isForcedMateStage = (value: unknown): value is ForcedMateStage =>
   (forcedMateStages as readonly unknown[]).includes(value);
 export type EvidenceRef = Schema["EvidenceReference"];
@@ -36,8 +118,11 @@ export type TacticalPresentation = {
   timing: "immediate" | "possible";
   actor: "white" | "black";
   action?: string;
-  effect: {kind: "fork"; targets: string[]} | {kind: "material"} |
-    {kind: "capture"; san: string; piece: string; ply: number} | {kind: "none"};
+  effect:
+    | { kind: "fork"; targets: string[] }
+    | { kind: "material" }
+    | { kind: "capture"; san: string; piece: string; ply: number }
+    | { kind: "none" };
 };
 export type Claim = {
   code: ClaimCode;
@@ -45,7 +130,7 @@ export type Claim = {
   evidence: EvidenceRef[];
   priority: number;
   sourceIds: string[];
-  position?: {line: "actual" | "alternative"; move: string};
+  position?: { line: "actual" | "alternative"; move: string };
   tactic?: TacticalPresentation;
   opening?: BookPresentation;
 };
@@ -77,13 +162,21 @@ export type CoachUtterance = {
   priority: number;
   interruptible: boolean;
   autoSpeakSuitable: boolean;
-  delivery?: {pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright"};
+  delivery?: { pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright" };
   // Exactly the facts that survived rendering, in visible order. Consumers must
   // not guess which same-code input claim was retained from the prose or trace.
   renderedClaims?: Claim[];
   trace: {
     renderer: string;
-    variants: {code: string; index: number; sourceIds: string[]; source?: string; form?: "sentence" | "composed"; cues?: string[]; order?: "fact-first" | "consequence-first"}[];
+    variants: {
+      code: string;
+      index: number;
+      sourceIds: string[];
+      source?: string;
+      form?: "sentence" | "composed";
+      cues?: string[];
+      order?: "fact-first" | "consequence-first";
+    }[];
     composition?: {
       strategy: import("./personality").ResponseStrategy;
       claimCount: number;
@@ -100,7 +193,11 @@ export type CoachUtterance = {
 export function stableKey(value: unknown): string {
   const canonical = (item: unknown): string => {
     if (Array.isArray(item)) return `[${item.map(canonical).join(",")}]`;
-    if (item && typeof item === "object") return `{${Object.entries(item).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => `${k}:${canonical(v)}`).join(",")}}`;
+    if (item && typeof item === "object")
+      return `{${Object.entries(item)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([k, v]) => `${k}:${canonical(v)}`)
+        .join(",")}}`;
     return JSON.stringify(item) ?? "null";
   };
   let hash = 2166136261;
@@ -116,30 +213,68 @@ export function stableKey(value: unknown): string {
 // Claim priority chooses which fact fits the bubble. Delivery follows the semantic
 // reaction instead: recognized theory should not be as urgent as a forced mate.
 const deliveryLevels: Record<CoachExpression, readonly [number, number]> = {
-  neutral: [.15, 20], idle: [.1, 10], brilliant: [.9, 85], great: [.65, 70],
-  best: [.4, 40], good: [.3, 35], book: [.2, 30], inaccuracy: [.35, 45],
-  mistake: [.6, 65], blunder: [.85, 90], missed: [.7, 80], check: [.5, 60],
-  winning: [.95, 95], losing: [.95, 95], thinking: [.1, 15], uncertain: [.25, 50],
-  encouraging: [.35, 45], recovered: [.65, 75], explaining: [.25, 55], draw: [.3, 60],
+  neutral: [0.15, 20],
+  idle: [0.1, 10],
+  brilliant: [0.9, 85],
+  great: [0.65, 70],
+  best: [0.4, 40],
+  good: [0.3, 35],
+  book: [0.2, 30],
+  inaccuracy: [0.35, 45],
+  mistake: [0.6, 65],
+  blunder: [0.85, 90],
+  missed: [0.7, 80],
+  check: [0.5, 60],
+  winning: [0.95, 95],
+  losing: [0.95, 95],
+  thinking: [0.1, 15],
+  uncertain: [0.25, 50],
+  encouraging: [0.35, 45],
+  recovered: [0.65, 75],
+  explaining: [0.25, 55],
+  draw: [0.3, 60],
 };
 
-export function makeIntent(key: string, purpose: DialoguePurpose, mode: DialogueIntent["mode"],
-  expression: CoachExpression, claims: Claim[], decisions: string[] = [],
-  subject: DialogueIntent["subject"] = "learner"): DialogueIntent {
+export function makeIntent(
+  key: string,
+  purpose: DialoguePurpose,
+  mode: DialogueIntent["mode"],
+  expression: CoachExpression,
+  claims: Claim[],
+  decisions: string[] = [],
+  subject: DialogueIntent["subject"] = "learner",
+): DialogueIntent {
   let [intensity, priority] = deliveryLevels[expression];
   if (claims.some(c => ["allowed_mate", "mate_win", "mate_loss"].includes(c.code))) {
     intensity = 1;
     priority = 100;
   }
-  const facts = {purpose, mode, expression, subject, claims, decisions};
-  const wordingFacts = {...facts, claims: claims.map(({tactic: _tactic, opening: _opening, ...item}) => item)};
-  return {version: "dialogue-intent-5", id: `di5:${stableKey([key, facts])}`, ...facts,
-    ...(claims.some(item => item.tactic || item.opening) ? {wordingKey: `di5:${stableKey([key, wordingFacts])}`} : {}),
-    intensity, priority, interruptible: priority < 95,
-    autoSpeakSuitable: mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose)};
+  const facts = { purpose, mode, expression, subject, claims, decisions };
+  const wordingFacts = {
+    ...facts,
+    claims: claims.map(({ tactic: _tactic, opening: _opening, ...item }) => item),
+  };
+  return {
+    version: "dialogue-intent-5",
+    id: `di5:${stableKey([key, facts])}`,
+    ...facts,
+    ...(claims.some(item => item.tactic || item.opening)
+      ? { wordingKey: `di5:${stableKey([key, wordingFacts])}` }
+      : {}),
+    intensity,
+    priority,
+    interruptible: priority < 95,
+    autoSpeakSuitable:
+      mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose),
+  };
 }
 
-export function claim(code: ClaimCode, slots: Claim["slots"] = {}, priority = 40,
-  evidence: EvidenceRef[] = [], sourceIds: string[] = []): Claim {
-  return {code, slots, priority, evidence, sourceIds};
+export function claim(
+  code: ClaimCode,
+  slots: Claim["slots"] = {},
+  priority = 40,
+  evidence: EvidenceRef[] = [],
+  sourceIds: string[] = [],
+): Claim {
+  return { code, slots, priority, evidence, sourceIds };
 }

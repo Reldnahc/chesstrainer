@@ -1,129 +1,339 @@
-import type {CoachPersonality} from "../personality";
-import {alienTacticalTemplates} from "./scopedTactics";
-import {alienOpeningTemplates} from "./openingSequence";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
-export const alien: CoachPersonality = {
-  version: "alien-2", maxCharacters: 280, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
-  delivery: {pace: "measured", energy: "quiet"},
+export const alienTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a {motif} stands on the board.",
+    played_possible: "After {move}, a {motif} becomes possible later, if the replies permit it.",
+    allowed_immediate: "{opponent} has an answer in {action}, and it brings a {motif}.",
+    allowed_possible: "A {motif} may open for {opponent} later, depending on the replies.",
+    missed_immediate: "{best} contained a {motif}.",
+    missed_possible: "{best} held the possibility of a {motif}, if the replies had cooperated.",
+  },
+  fork: {
+    actual: "A single piece now has the {targets} under attack.",
+    possible: "The {targets} would be attacked simultaneously.",
+  },
+  material: "A {gain} may be the outcome, though each side still has choices first.",
+  capture: {
+    candidate: "With {capture}, a {piece} would fall.",
+    followup: "One line of play goes on with {capture}, removing a {piece}.",
+  },
+  playedCapture: {
+    fact: "{move} contains a {motif}.",
+    consequence: "{capture} removes a {piece}.",
+  },
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const alienOpeningTemplates = {
+  "book-opening-entry-1": ["The catalogue has a name for this move: {opening}."],
+  "book-opening-entry-2": ["Opening theory gives this move a name: {opening}."],
+  "book-opening-entry-3": ["This move appears in the opening catalogue as {opening}."],
+  "book-opening-follow-1": ["Still within opening theory: {opening}."],
+  "book-opening-follow-2": ["The catalogue follows this move too, under {opening}."],
+  "book-opening-follow-3": ["Opening theory knew this one as well: {opening}."],
+  "book-opening-follow-4": ["The theoretical line continues: {opening}."],
+  "book-opening-follow-5": ["Charted ground still, in {opening}."],
+  "book-opening-follow-6": ["Once more, a move with an entry under {opening}."],
+  "book-opening-follow-7": ["The game keeps tracing the documented line of {opening}."],
+  "book-opening-follow-8": ["Deeper into {opening}, a move theory accounts for."],
+} as const;
+
+export const alien = coachPersonality({
+  version: "alien-2",
+  maxCharacters: 280,
+  maxClaims: 2,
+  delivery: { pace: "measured", energy: "quiet" },
   behavior: {
-    general: "observation-first", praise: "observation-first", correction: "observation-first",
-    questionFrequency: "none", directness: 3, emotionalAmplitude: 2,
-    humor: 3, jargon: 2, playerAddress: "occasional", sentenceLength: "connected",
-    metaphor: "none", signature: "Separate the appeal of a human choice from what its reply proves.",
+    general: "observation-first",
+    praise: "observation-first",
+    correction: "observation-first",
+    questionFrequency: "none",
+    directness: 3,
+    emotionalAmplitude: 2,
+    humor: 3,
+    jargon: 2,
+    playerAddress: "occasional",
+    sentenceLength: "connected",
+    metaphor: "none",
+    signature: "Separate the appeal of a human choice from what its reply proves.",
   },
   bible: {
-    temperament: "An attentive outsider, fascinated by the difference between a convincing idea and a correct one.",
-    teaching: "Observe the supported fact first; compare human-model evidence with searched consequences only when supplied.",
-    rhythm: "A curious observation followed by a connected explanation, contrasting two supported perspectives when available.",
-    celebration: "Interested recognition of a resource that survives scrutiny, rather than loud approval.",
-    correction: "Treat the error as a useful observation about the position, never a defect in its player.",
-    avoid: "No broken English, Earthling catchphrases, abduction jokes, mind-reading, invented percentages, questions, other coaches' sayings, or naturalness claims without the human-move model.",
+    temperament:
+      "An attentive outsider, fascinated by the difference between a convincing idea and a correct one.",
+    teaching:
+      "Observe the supported fact first; compare human-model evidence with searched consequences only when supplied.",
+    rhythm:
+      "A curious observation followed by a connected explanation, contrasting two supported perspectives when available.",
+    celebration:
+      "Interested recognition of a resource that survives scrutiny, rather than loud approval.",
+    correction:
+      "Treat the error as a useful observation about the position, never a defect in its player.",
+    avoid:
+      "No broken English, Earthling catchphrases, abduction jokes, mind-reading, invented percentages, questions, other coaches' sayings, or naturalness claims without the human-move model.",
   },
   templates: {
     ...alienTacticalTemplates,
     ...alienOpeningTemplates,
     allowed_mate: [
-      {observation: "Everything here turns on the answer.", fact: "After this move, {opponent} has a forced checkmate.", consequence: "{reply}"},
-      {fact: "This gives {opponent} a forced mate. {reply}", observation: "A harsh result, and an unmistakable one."},
+      {
+        observation: "Everything here turns on the answer.",
+        fact: "After this move, {opponent} has a forced checkmate.",
+        consequence: "{reply}",
+      },
+      {
+        fact: "This gives {opponent} a forced mate. {reply}",
+        observation: "A harsh result, and an unmistakable one.",
+      },
     ],
     missed_mate: [
-      {fact: "{best} contained a forced mate; this move does not take it.", observation: "Two moves side by side, with very different endings."},
-      {observation: "Curious how near the two choices sit on the board.", fact: "A forced mate was there with {best}, and this move passes it by."},
+      {
+        fact: "{best} contained a forced mate; this move does not take it.",
+        observation: "Two moves side by side, with very different endings.",
+      },
+      {
+        observation: "Curious how near the two choices sit on the board.",
+        fact: "A forced mate was there with {best}, and this move passes it by.",
+      },
     ],
     tactic_played: [
-      {observation: "Now this is worth studying.", fact: "{move} contains a {motif}, visible in the engine's line.", consequence: "{detail}"},
-      {fact: "Inside {move} sits a {motif}. {detail}", observation: "The move does more than it first shows."},
+      {
+        observation: "Now this is worth studying.",
+        fact: "{move} contains a {motif}, visible in the engine's line.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "Inside {move} sits a {motif}. {detail}",
+        observation: "The move does more than it first shows.",
+      },
     ],
     tactic_allowed: [
-      {observation: "Look past the move to the answer.", fact: "This gives {opponent} a {motif} in the engine's line.", consequence: "{detail}"},
-      {fact: "{opponent} gains a {motif} from this. {detail}"},
+      {
+        observation: "Look past the move to the answer.",
+        fact: "This gives {opponent} a {motif} in the engine's line.",
+        consequence: "{detail}",
+      },
+      { fact: "{opponent} gains a {motif} from this. {detail}" },
     ],
     tactic_missed: [
-      {fact: "{best} had a {motif} that this move leaves unused.", consequence: "{detail}"},
-      {observation: "Two candidate moves, two very different outcomes.", fact: "The {motif} belonged to {best}, not to this move.", consequence: "{detail}"},
+      { fact: "{best} had a {motif} that this move leaves unused.", consequence: "{detail}" },
+      {
+        observation: "Two candidate moves, two very different outcomes.",
+        fact: "The {motif} belonged to {best}, not to this move.",
+        consequence: "{detail}",
+      },
     ],
-    cause_abandoned_defender: [{observation: "A convincing move on its own, yet it breaks a connection.", fact: "{move} draws off the only unpinned defender of {side}'s {piece} on {square}.", consequence: "{opponent} can reply {reply}, capturing it."}],
-    cause_opponent_threat_recognition: [{observation: "The important move here came from the other side.", fact: "The opponent's preceding move set up an attack on {side}'s {piece} on {square}, and {move} leaves it standing there.", consequence: "{opponent} can reply {reply}, capturing it."}],
-    cause_avoiding_bad_trades: [{observation: "An exchange is only finished once the recapture is counted.", fact: "{move} gives up {side}'s {piece} in exchange for a {captured}.", consequence: "{opponent} can recapture with {reply}."}],
+    cause_abandoned_defender: [
+      {
+        observation: "A convincing move on its own, yet it breaks a connection.",
+        fact: "{move} draws off the only unpinned defender of {side}'s {piece} on {square}.",
+        consequence: "{opponent} can reply {reply}, capturing it.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        observation: "The important move here came from the other side.",
+        fact: "The opponent's preceding move set up an attack on {side}'s {piece} on {square}, and {move} leaves it standing there.",
+        consequence: "{opponent} can reply {reply}, capturing it.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        observation: "An exchange is only finished once the recapture is counted.",
+        fact: "{move} gives up {side}'s {piece} in exchange for a {captured}.",
+        consequence: "{opponent} can recapture with {reply}.",
+      },
+    ],
     sacrifice: [
-      {observation: "The material looks lost, and yet it is not.", fact: "The sacrifice can be accepted and still stands."},
-      {fact: "Taking the offered material does not break this sacrifice.", observation: "Here the count of pieces tells less than the position does."},
+      {
+        observation: "The material looks lost, and yet it is not.",
+        fact: "The sacrifice can be accepted and still stands.",
+      },
+      {
+        fact: "Taking the offered material does not break this sacrifice.",
+        observation: "Here the count of pieces tells less than the position does.",
+      },
     ],
     only_move: [
-      {observation: "Rare to see a margin this thin.", fact: "Of every searched move, this was the single one that kept the position playable; the others were losing."},
-      {fact: "This held the position, and every other searched move was losing.", observation: "One answer among many, and it was found."},
+      {
+        observation: "Rare to see a margin this thin.",
+        fact: "Of every searched move, this was the single one that kept the position playable; the others were losing.",
+      },
+      {
+        fact: "This held the position, and every other searched move was losing.",
+        observation: "One answer among many, and it was found.",
+      },
     ],
-    decisive_resource: ["Of the searched moves, none but this kept the decisive advantage. The others each gave some of it back."],
+    decisive_resource: [
+      "Of the searched moves, none but this kept the decisive advantage. The others each gave some of it back.",
+    ],
     best: [
-      {observation: "A satisfying thing to watch.", fact: "This is a strong move, and the position keeps its value."},
-      {fact: "Strong. The position gives up almost nothing with it.", observation: "Fascinating to see it stand so firmly."},
+      {
+        observation: "A satisfying thing to watch.",
+        fact: "This is a strong move, and the position keeps its value.",
+      },
+      {
+        fact: "Strong. The position gives up almost nothing with it.",
+        observation: "Fascinating to see it stand so firmly.",
+      },
     ],
     good: [
-      {observation: "Not the sharpest choice on offer, but a reasonable one.", fact: "A sound move that keeps most of the position's value."},
+      {
+        observation: "Not the sharpest choice on offer, but a reasonable one.",
+        fact: "A sound move that keeps most of the position's value.",
+      },
       "Sound. The bulk of the position's value is still there after this move.",
     ],
     loss: [
-      {fact: "Measured against the best move, this gives up {loss} pawns of evaluation.", observation: "A real cost, and the reply is where it shows."},
+      {
+        fact: "Measured against the best move, this gives up {loss} pawns of evaluation.",
+        observation: "A real cost, and the reply is where it shows.",
+      },
       "The evaluation drops by {loss} pawns compared with the best move. The number records the size of the cost; the reply explains it.",
     ],
     alternative: ["Stockfish's own choice is {best}, rated {evaluation} for the mover."],
     reply_capture: [
       "The answer comes at once: {opponent} plays {reply} and takes {side}'s {piece}.",
-      {observation: "See how quickly the reply arrives.", fact: "{opponent} can answer {reply}, capturing {side}'s {piece}."},
+      {
+        observation: "See how quickly the reply arrives.",
+        fact: "{opponent} can answer {reply}, capturing {side}'s {piece}.",
+      },
     ],
-    reply_check: [{observation: "Attention shifts straight to the king.", fact: "{opponent}'s strongest reply is {reply}, with check."}],
-    uncertain_reason: ["Stockfish prefers {best}, and I cannot yet explain why. Better to leave that open than to invent a reason."],
+    reply_check: [
+      {
+        observation: "Attention shifts straight to the king.",
+        fact: "{opponent}'s strongest reply is {reply}, with check.",
+      },
+    ],
+    uncertain_reason: [
+      "Stockfish prefers {best}, and I cannot yet explain why. Better to leave that open than to invent a reason.",
+    ],
     human_natural_error: [
-      {observation: "This is the part I find most fascinating.", fact: "The human-move model rates this an appealing choice, yet the reply turns it into a costly mistake."},
+      {
+        observation: "This is the part I find most fascinating.",
+        fact: "The human-move model rates this an appealing choice, yet the reply turns it into a costly mistake.",
+      },
       "Persuasive at first sight, and the human-move model agrees it is a natural pick. It is the reply that turns it into a mistake.",
     ],
-    human_rare: ["Rarely expected by the human-move model, yet it survives the engine's reply as a strong move. Unfamiliar and wrong are not the same thing."],
-    human_challenging: [{fact: "The human-move model marks {best} as hard to find.", observation: "The gap between the right move and the obvious one never stops interesting me."}],
-    difficult_defense: ["{best} would have held the position, though the human-move model rates it a hard defense to find."],
-    human_defense_found: [{observation: "Exactly the kind of moment I like to study.", fact: "You found {best}, a defense the human-move model rates hard to find, and the position held."}],
-    human_natural_best: ["Natural by the human-move model, and the engine's best as well. Instinct and calculation agree on this one."],
-    human_natural_strong: ["A natural choice by the human-move model, and a strong one. Here the obvious move also holds up."],
+    human_rare: [
+      "Rarely expected by the human-move model, yet it survives the engine's reply as a strong move. Unfamiliar and wrong are not the same thing.",
+    ],
+    human_challenging: [
+      {
+        fact: "The human-move model marks {best} as hard to find.",
+        observation:
+          "The gap between the right move and the obvious one never stops interesting me.",
+      },
+    ],
+    difficult_defense: [
+      "{best} would have held the position, though the human-move model rates it a hard defense to find.",
+    ],
+    human_defense_found: [
+      {
+        observation: "Exactly the kind of moment I like to study.",
+        fact: "You found {best}, a defense the human-move model rates hard to find, and the position held.",
+      },
+    ],
+    human_natural_best: [
+      "Natural by the human-move model, and the engine's best as well. Instinct and calculation agree on this one.",
+    ],
+    human_natural_strong: [
+      "A natural choice by the human-move model, and a strong one. Here the obvious move also holds up.",
+    ],
     book: ["This position carries a name in the opening catalogue: {opening}."],
     book_sound: ["The move follows the documented line of {opening}."],
-    departure: ["Here the game steps off the catalogued opening. Beyond this point our book has no more to say."],
+    departure: [
+      "Here the game steps off the catalogued opening. Beyond this point our book has no more to say.",
+    ],
     recovery: [
-      {observation: "The earlier damage was not permanent.", fact: "After the error at {earlier}, the position is playable again.{help}"},
+      {
+        observation: "The earlier damage was not permanent.",
+        fact: "After the error at {earlier}, the position is playable again.{help}",
+      },
       "The position becomes playable again, despite the error at {earlier}.{help}",
     ],
-    punishment: [{observation: "A lapse on one side becomes an asset for the other.", fact: "The opponent's lapse at {earlier} gave {side} a chance, and this move takes it."}],
-    missed_punishment: ["At {earlier} the opponent allowed {side} a chance, and this move passes over it."],
-    repeated: ["The reviewed game shows this {motif} issue {count} times. A repetition like that deserves attention."],
-    history: ["This {motif} issue also turns up in {games} other saved games. That makes it a recurring observation, not a single event."],
+    punishment: [
+      {
+        observation: "A lapse on one side becomes an asset for the other.",
+        fact: "The opponent's lapse at {earlier} gave {side} a chance, and this move takes it.",
+      },
+    ],
+    missed_punishment: [
+      "At {earlier} the opponent allowed {side} a chance, and this move passes over it.",
+    ],
+    repeated: [
+      "The reviewed game shows this {motif} issue {count} times. A repetition like that deserves attention.",
+    ],
+    history: [
+      "This {motif} issue also turns up in {games} other saved games. That makes it a recurring observation, not a single event.",
+    ],
     support_restored: ["The {piece} is defended again, after standing unguarded at {earlier}."],
-    erosion: ["Since {earlier}, a series of small concessions has left the position worse. Each was minor on its own; the sum is what shows."],
-    conversion: ["{side} held the advantage from {earlier} until the win. Keeping an edge that long is a skill of its own."],
-    development: ["{lead}moves the {piece} off its starting square. Development, plainly visible on the board."],
-    rook_file: [{observation: "A small structural fact, worth recording.", fact: "{lead}leaves {side}'s rook on a {kind} {file}-file."}],
-    passed: ["{lead}gives {side} passed pawns on {squares}: no enemy pawn stands ahead on those files or the neighboring ones."],
+    erosion: [
+      "Since {earlier}, a series of small concessions has left the position worse. Each was minor on its own; the sum is what shows.",
+    ],
+    conversion: [
+      "{side} held the advantage from {earlier} until the win. Keeping an edge that long is a skill of its own.",
+    ],
+    development: [
+      "{lead}moves the {piece} off its starting square. Development, plainly visible on the board.",
+    ],
+    rook_file: [
+      {
+        observation: "A small structural fact, worth recording.",
+        fact: "{lead}leaves {side}'s rook on a {kind} {file}-file.",
+      },
+    ],
+    passed: [
+      "{lead}gives {side} passed pawns on {squares}: no enemy pawn stands ahead on those files or the neighboring ones.",
+    ],
     passer_advance: ["{lead}pushes the passed pawn on to {square}, nearer its promotion."],
-    isolated: ["{lead}leaves {side} with isolated pawns on {squares}; no friendly pawn stands on a neighboring file."],
+    isolated: [
+      "{lead}leaves {side} with isolated pawns on {squares}; no friendly pawn stands on a neighboring file.",
+    ],
     support: ["{lead}adds support to the {piece} on {square}. One more connection on the board."],
-    unsupported: ["{lead}leaves the {piece} on {square} without a defender. Undefended is a description, not yet a loss."],
-    flights: ["{lead}opens {squares} as a legal flight square for the king. An exit the king did not have a moment ago."],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} without a defender. Undefended is a description, not yet a loss.",
+    ],
+    flights: [
+      "{lead}opens {squares} as a legal flight square for the king. An exit the king did not have a moment ago.",
+    ],
     castle: ["{lead}castles, bringing the king to {square} and moving the rook beside it."],
     bishops: ["{lead}splits up {side}'s opposite-colored bishops, ending the pair."],
-    doubled: ["{lead}leaves {side} with doubled pawns on files {files}. Two pawns now share one file."],
+    doubled: [
+      "{lead}leaves {side} with doubled pawns on files {files}. Two pawns now share one file.",
+    ],
     mate_win: [
-      {observation: "Every exit closed.", fact: "Checkmate. The king has no legal escape."},
+      { observation: "Every exit closed.", fact: "Checkmate. The king has no legal escape." },
       "Checkmate, with every legal escape closed to the king. A complete result, and a satisfying one to observe.",
     ],
-    mate_loss: ["Checkmate. Your king has no legal escape. The decisions worth investigating come earlier than this."],
-    draw: ["Drawn, in the end. A settled result, with plenty of decisions inside it still worth examining."],
-    retry: ["That attempt does not stand up to the reply. Try another move.", "Not this one. Choose again, and watch what the reply does."],
-    recovered: [{observation: "Second attempt, different outcome.", fact: "This time it works. {detail}"}],
-    accepted: [{observation: "That is the supported point.", fact: "{detail}"}, "Noted, and correct. {detail}"],
-    explanation: [{observation: "Here is what the line shows.", fact: "{detail}"}],
+    mate_loss: [
+      "Checkmate. Your king has no legal escape. The decisions worth investigating come earlier than this.",
+    ],
+    draw: [
+      "Drawn, in the end. A settled result, with plenty of decisions inside it still worth examining.",
+    ],
+    retry: [
+      "That attempt does not stand up to the reply. Try another move.",
+      "Not this one. Choose again, and watch what the reply does.",
+    ],
+    recovered: [
+      { observation: "Second attempt, different outcome.", fact: "This time it works. {detail}" },
+    ],
+    accepted: [
+      { observation: "That is the supported point.", fact: "{detail}" },
+      "Noted, and correct. {detail}",
+    ],
+    explanation: [{ observation: "Here is what the line shows.", fact: "{detail}" }],
     explanation_summary: ["In short: {detail}"],
     compatibility: ["{detail}"],
     cold: ["I'm watching with interest. Tap a piece, then its destination."],
     thinking: ["Examining the move and the strongest reply before saying anything…"],
-    unavailable: ["Without engine coaching for this position, I have nothing specific to report. The board itself remains open to explore."],
+    unavailable: [
+      "Without engine coaching for this position, I have nothing specific to report. The board itself remains open to explore.",
+    ],
     practice_error: ["That attempt produced no result. Try once more."],
     variation: ["In this side line: {detail}"],
   },
-};
+});

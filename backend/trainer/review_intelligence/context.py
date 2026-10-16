@@ -8,7 +8,7 @@ from trainer.chess_core import digest
 from trainer.opening_book import VERSION as BOOK_VERSION
 from trainer.opening_book import book_run
 from trainer.review_intelligence.clocks import clock_facts
-from trainer.review_intelligence.events_types import ClockFacts
+from trainer.review_intelligence.events_types import ClockFacts, OpeningDepartureFacts
 
 
 @dataclass(frozen=True)
@@ -18,7 +18,7 @@ class MoveContext:
     before_fen: str
     uci: str
     clock: ClockFacts
-    opening_departure: dict | None = None
+    opening_departure: OpeningDepartureFacts | None = None
     unmoved_minors: tuple[int, ...] | None = None
 
 
@@ -37,11 +37,11 @@ def move_contexts(parsed):
     for ply, move in enumerate(parsed.mainline_moves(), 1):
         departure = None
         if ply == book_end:
-            departure = {
-                "catalogue": BOOK_VERSION,
-                "previous_book_ply": ply - 1,
-                "previous_name": book.get(ply - 1, {}).get("name"),
-            }
+            departure = OpeningDepartureFacts(
+                catalogue=BOOK_VERSION,
+                previous_book_ply=ply - 1,
+                previous_name=book.get(ply - 1, {}).get("name"),
+            )
         output[ply] = MoveContext(
             ply,
             pgn_key,

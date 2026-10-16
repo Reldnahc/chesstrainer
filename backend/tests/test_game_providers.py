@@ -1,9 +1,9 @@
 import json
-import threading
 from datetime import datetime, timezone
 
 import httpx
 import pytest
+from account_units import job_context
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
@@ -61,7 +61,7 @@ def client(settings, rows, seen=None):
 
 def run(job, sessions, settings, remote, cancelled=lambda: False):
     try:
-        fetch_import(job, sessions, settings, remote, cancelled, threading.Lock())
+        fetch_import(job_context(sessions, job, settings, cancelled), remote)
     finally:
         remote.close()
 
@@ -178,6 +178,13 @@ def test_generic_api_connections_and_fetch_jobs_never_start_engine(settings):
         )
         assert response.status_code == 202
         job = response.json()["job_id"]
+        # Like every request contract, an unknown field is rejected, not ignored.
+        assert (
+            api.post(
+                "/api/imports/provider/lichess", json={"username": "learner", "colour": "white"}
+            ).status_code
+            == 422
+        )
         assert (
             api.post(
                 "/api/imports/provider/lichess",
@@ -244,6 +251,7 @@ def test_provider_connections_are_account_scoped_and_persist(settings):
         assert api.get("/api/providers/chesscom/sync").json()["username"] == "alicecom"
 
 
+@pytest.mark.pristine_database
 def test_provider_migration_preserves_saved_chesscom_name(settings):
     from alembic import command
     from alembic.config import Config

@@ -61,10 +61,10 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/EvaluationGraph.tsx",
     "frontend/src/EvidenceDialog.tsx",
     "frontend/src/GameHistory.tsx",
-    "frontend/src/GameReview.tsx",
+    "frontend/src/GamesScreen.tsx",
     "frontend/src/GameSync.tsx",
-    "frontend/src/Home.tsx",
-    "frontend/src/Import.tsx",
+    "frontend/src/HomeScreen.tsx",
+    "frontend/src/ImportSettings.tsx",
     "frontend/src/ImportControls.tsx",
     "frontend/src/Link.tsx",
     "frontend/src/LoadState.tsx",
@@ -80,14 +80,14 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/ProviderUsernameField.tsx",
     "frontend/src/ResumeLink.tsx",
     "frontend/src/ReturnButton.tsx",
-    "frontend/src/Review.tsx",
+    "frontend/src/DueScreen.tsx",
     "frontend/src/ReviewExplanation.tsx",
     "frontend/src/ReviewWorkspace.tsx",
     "frontend/src/SectionNavigation.tsx",
-    "frontend/src/Settings.tsx",
+    "frontend/src/SettingsScreen.tsx",
     "frontend/src/StatList.tsx",
     "frontend/src/TurnIndicator.tsx",
-    "frontend/src/Weaknesses.tsx",
+    "frontend/src/InsightsScreen.tsx",
     "frontend/src/main.tsx",
     "frontend/src/navigation.ts",
 }
@@ -141,6 +141,11 @@ def browser_matrix(suites):
     }
 
 
+# Documents a backend test reads (test_architecture_docs.py), so editing them alone
+# still runs that check.
+BACKEND_CHECKED_DOCS = frozenset({"docs/ARCHITECTURE.md"})
+
+
 def _documentation(path):
     # Do not skip Markdown under production directories: vendors and runtime data
     # can package it. Notices and licenses also participate in the source offer.
@@ -191,6 +196,9 @@ def select_checks(paths, full=False):
                 backend = build = docker = True
                 suites.update(SUITES)
                 reason("Shared API, workflow, or build tooling changed.")
+            elif path in BACKEND_CHECKED_DOCS:
+                backend = True
+                reason("ARCHITECTURE.md's table list is checked by a backend test.")
             elif _documentation(path):
                 reason("Documentation paths do not require heavy checks.")
             elif path.startswith("backend/") or path.startswith("migrations/"):

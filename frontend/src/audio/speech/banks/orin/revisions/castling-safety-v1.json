@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "coachId": "wizard",
+  "voiceId": "orin",
+  "baseCommit": null,
+  "recordings": [
+    {
+      "id": "positional-castling-actual",
+      "previousText": "Castling serves two purposes at once. The king steps toward shelter, and the rook comes toward the center.",
+      "text": "Castling serves two purposes at once. The king steps toward the corner, and the rook comes toward the center.",
+      "reason": "The review checks only that castling happened, not that the king ended up safer; castling into an attack made 'shelter' and 'safety first' false."
+    },
+    {
+      "id": "positional-castling-alternative",
+      "previousText": "The other path was castling, with the king toward shelter, the rook toward the center, both in a single turn.",
+      "text": "The other path was castling, with the king toward the corner and the rook toward the center, both in a single turn.",
+      "reason": "The review checks only that castling happened, not that the king ended up safer; castling into an attack made 'shelter' and 'safety first' false."
+    }
+  ]
+}

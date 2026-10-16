@@ -5,38 +5,14 @@ state through these functions, so "retry" or "requeue" means the same thing
 wherever it happens.
 """
 
-from enum import StrEnum
-
 from sqlalchemy import select, true, update
 
 from trainer.errors import Conflict
+from trainer.job_kinds import JobKind, JobStatus
 from trainer.models import AnalysisJob
 
-
-class JobKind(StrEnum):
-    GAME_REVIEW = "game_review"  # One game: review, then training decisions.
-    CLASSIFICATION = "classification"  # Re-label every saved decision.
-    ENRICHMENT = "enrichment"  # Extra engine probes for unsettled classifications.
-    PUZZLE_GENERATION = "puzzle_generation"  # Mine analyzed games for puzzles.
-    SYNC = "sync"  # The poller's fetch of new provider games.
-    CHESSCOM_FETCH = "chesscom_fetch"  # A manual Chess.com import.
-    PROVIDER_FETCH = "provider_fetch"  # A manual import from another provider.
-    LEVEL_FIT = "level_fit"  # Measure the learner's level for Play from their games.
-    # Whole-import analysis from before per-game reviews. Nothing creates it now;
-    # rows saved by older versions still run to completion.
-    ANALYSIS = "analysis"
-
-
-class JobStatus(StrEnum):
-    QUEUED = "queued"
-    RUNNING = "running"
-    COMPLETED = "completed"
-    FAILED = "failed"
-    CANCELLED = "cancelled"
-
-
 # Fetches run in their own lane, so imports never wait behind analysis.
-FETCH_KINDS = frozenset({JobKind.SYNC, JobKind.CHESSCOM_FETCH, JobKind.PROVIDER_FETCH})
+FETCH_KINDS = frozenset({JobKind.SYNC, JobKind.PROVIDER_FETCH})
 ACTIVE = (JobStatus.QUEUED, JobStatus.RUNNING)
 RETRYABLE = (JobStatus.FAILED, JobStatus.CANCELLED)
 PROGRESS = (

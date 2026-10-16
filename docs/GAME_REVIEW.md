@@ -7,7 +7,9 @@ reports are reused. Progress polling publishes refreshed rows in game order and
 keeps the board usable throughout. Maia availability never changes move grades.
 
 Game review complements cold practice. It reviews both colors and arbitrary legal
-variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
+variations; a variation creates no Decisions, exercises, weakness evidence or FSRS
+recalls. The game's review job separately trains the learner's own moves from the
+review's searches ([Game imports and analysis](GAME_ANALYSIS.md#one-job-per-game)).
 
 Completed reviews also derive supported [game relationships](REVIEW_INTELLIGENCE.md#game-context-and-supported-relationships),
 [owned history](REVIEW_INTELLIGENCE.md#cross-game-context) for individual move explanations.
@@ -99,8 +101,9 @@ by each side without a capture or pawn move), the rule Play ends its games by, s
 such a game shows its draw and offers no moves there. A draw the side to move
 could only claim with its next move ends nothing, an earlier position the
 game played past is not ended by a repetition, and an imported game whose header
-says a side won keeps its last frame live (nobody claimed the repetition before
-the resignation or the lost clock). A score that rounds to
+says a side won (`1-0` or `0-1`) keeps its last frame live (nobody claimed the
+repetition before the resignation or the lost clock); any other header, odd ones
+such as `½-½` included, leaves the draw that happened in place. A score that rounds to
 zero has no sign. The score's verdict uses the review's advantage bands: Equal
 within ±1.00, then slightly better, better from ±2.00 and winning from ±3.00.
 Pending evaluations show a dash.
@@ -257,7 +260,8 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   not see equally far (a restricted root searches a narrower tree), so a mate of any
   length seen by one search may lie just beyond the other's horizon. When the best
   move mates and the played move's search reads only +3.00 or better, the review
-  searches the played move again at depth 22 (2 seconds) before grading: a move
+  searches the played move again at the review refinement's limits (Refinement depth
+  and time in Advanced → Server, depth 22 and 2 seconds by default) before grading: a move
   that still mates is graded as a slower mate (Good), and one that really gives the
   mate up stays a Miss. When either side is mated while the other reads only -3.00
   or worse (the played move mated against a lost best defence, or the best defence
@@ -274,7 +278,11 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating
   1200 / 200 cp otherwise. The review's events call the same transition decisive. Decisive
   pawn losses therefore remain Blunders at low ratings. Already-lost mate positions
-  are not treated as newly allowed mate.
+  are not treated as newly allowed mate. The reason uses the evaluation bands'
+  three-pawn winning/lost line: a move that stays winning, one already lost, one
+  that gives away a winning position, one that turns it into a lost one, and
+  otherwise "gives up a large part of the position's value" (a swing to -2.00 is
+  worse, not lost).
 - Miss: lost forced mate, or a concrete missed gain supported by a settled
   comparison and a tactical witness that costs at least 100 cp; a smaller gap keeps
   its ordinary label. Retaining mate in two instead of mate in one is not a
@@ -289,10 +297,12 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   itself a Mistake or worse, and the previous position between -150 and +150 becomes
   at least +200, or previous position at most -200 becomes at least -50). Previous scores use the position
   before the opponent's move, normalized to the current mover. A variation move
-  can be the only-move Great but never the capitalizing one: its previous score
-  comes from a search of the position before the opponent's move, and no grade of
-  that move exists in a variation, so no opponent error is established. A sole
-  legal move is not Great.
+  follows the same rule: the position before the opponent's move is searched, and
+  the opponent's move is a Mistake or worse when the position it reached (this
+  move's own root search) concedes a Mistake's loss against that search's best;
+  that search is one ply from the opponent move's own, so a borderline loss can
+  read differently from a saved review. A Play move analysed before the move it answers reads the same search until that
+  move's report is saved and linked. A sole legal move is not Great.
 - Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
   involving the played move, or a winning mate; a non-pawn sacrifice at an
   immediate net material cost; and an explicit native

@@ -14,6 +14,7 @@ VERSION = PRACTICAL_VERSION
 # These are model-policy descriptions, not calibrated human success rates.
 PREFERRED_POLICY = 0.10
 UNUSUAL_POLICY = 0.03
+TOP_CHOICES = 3
 
 
 def naturalness(move):
@@ -68,6 +69,133 @@ def witness_structure(report):
     return forcing, horizon
 
 
+# Report fields that decide the assessment; their digest keys the saved result.
+DIGESTED_FIELDS = (
+    "best",
+    "actual",
+    "second_score",
+    "root_candidates",
+    "legal_count",
+    "sacrifice",
+    "human",
+    "before_analysis_id",
+    "played_analysis_id",
+)
+
+
+def assessment_digest(report, forcing, horizon):
+    return digest(
+        {
+            "version": VERSION,
+            "report": {key: report.get(key) for key in DIGESTED_FIELDS},
+            "forcing_plies": forcing,
+            "supported_horizon": horizon,
+        }
+    )
+
+
+def mate_transition(loss):
+    if loss.allows_mate:
+        return "allowed"
+    return "missed" if loss.mate_lost else "none"
+
+
+def matched_human(report, limitations):
+    """Available human evidence for exactly this move, or None with the reason noted."""
+    if not report.get("human"):
+        return None
+    try:
+        candidate = HumanEvidence.model_validate(report["human"])
+        if candidate.status != "available":
+            return None
+        mismatched = (
+            candidate.legal_count != report["legal_count"]
+            or candidate.played is not None
+            and candidate.played.uci != report["actual"]["uci"]
+            or candidate.engine_best is not None
+            and candidate.engine_best.uci != report["best"]["uci"]
+        )
+        if mismatched:
+            limitations.append("human_move_context_mismatch")
+            return None
+        return candidate
+    except ValueError:
+        limitations.append("incompatible_human_evidence")
+        return None
+
+
+def policy_limitations(human):
+    """Why this game sits outside the conditions the policy gates were inspected on."""
+    limiting = []
+    if human.domain.alignment != "related":
+        limiting.append("domain_shift" if human.domain.alignment == "shifted" else "domain_unknown")
+    if not human.domain.history_from_start:
+        limiting.append("pre_setup_history_unknown")
+    if "fallback" in (human.conditioning.self_source, human.conditioning.opponent_source):
+        limiting.append("rating_fallback")
+    if not (
+        600 <= human.conditioning.self_rating <= 2400
+        and 800 <= human.conditioning.opponent_rating <= 2600
+    ):
+        limiting.append("outside_probed_rating_range")
+    if human.engine_best is None or human.engine_best.probability is None:
+        limiting.append("incomplete_policy")
+    return limiting
+
+
+def policy_components(human):
+    best, played = human.engine_best, human.played
+    return {
+        "best_rank": best.rank if best else None,
+        "best_probability": best.probability if best else None,
+        "played_rank": played.rank if played else None,
+        "played_probability": played.probability if played else None,
+        "normalized_entropy": human.normalized_entropy,
+        "top_three_mass": human.top_three_mass,
+    }
+
+
+def best_find_difficulty(report, human, nature, narrow, horizon):
+    # A best move among the model's top three choices is not a hard find, even in
+    # a diffuse policy where no move reaches the preferred probability.
+    if nature == "preferred" or (human.engine_best and human.engine_best.rank <= TOP_CHOICES):
+        return "natural"
+    if nature == "unknown":
+        return "unknown"
+    best_sacrifice = report.get("sacrifice") and report["best"]["uci"] == report["actual"]["uci"]
+    corroborated = narrow or bool(best_sacrifice) or horizon >= 3
+    return "difficult" if nature == "unusual" and corroborated else "challenging"
+
+
+def policy_interpretations(loss, played, narrow):
+    poor, strong = is_poor(loss), is_near_best(loss)
+    interpretations = []
+    if poor and played == "preferred":
+        interpretations.append("natural_error")
+    if strong and played == "unusual":
+        interpretations.append("unusual_strong_move")
+    if strong and played == "preferred":
+        interpretations.append("natural_best")
+    if strong and narrow and played == "unusual":
+        interpretations.append("hard_to_find_defense")
+    return interpretations
+
+
+def apply_human_policy(base, report, human, loss, narrow, horizon):
+    """Record the policy's view of both moves in `base`; returns its interpretations."""
+    base["human_evidence_id"] = human.evidence_id
+    base["played_naturalness"] = naturalness(human.played)
+    base["best_naturalness"] = naturalness(human.engine_best)
+    limiting = policy_limitations(human)
+    base["confidence"] = "limited" if limiting else "heuristic"
+    base["limitations"].extend(limiting)
+    base["components"] = base["components"].model_copy(update=policy_components(human))
+    base["best_find_difficulty"] = best_find_difficulty(
+        report, human, base["best_naturalness"], narrow, horizon
+    )
+    return policy_interpretations(loss, base["played_naturalness"], narrow)
+
+
 def assess_difficulty(report):
     best, actual = (Score.model_validate(report[key]["score"]) for key in ("best", "actual"))
     loss = evaluation_loss(best, actual)
@@ -75,27 +203,7 @@ def assess_difficulty(report):
     forcing, horizon = witness_structure(report)
     base = dict(
         version=VERSION,
-        input_digest=digest(
-            {
-                "version": VERSION,
-                "report": {
-                    key: report.get(key)
-                    for key in (
-                        "best",
-                        "actual",
-                        "second_score",
-                        "root_candidates",
-                        "legal_count",
-                        "sacrifice",
-                        "human",
-                        "before_analysis_id",
-                        "played_analysis_id",
-                    )
-                },
-                "forcing_plies": forcing,
-                "supported_horizon": horizon,
-            }
-        ),
+        input_digest=assessment_digest(report, forcing, horizon),
         stockfish_analysis_ids=list(
             dict.fromkeys(
                 report[key]
@@ -111,11 +219,7 @@ def assess_difficulty(report):
             best_forcing_plies=forcing,
             best_supported_horizon=horizon,
             verified_sacrifice=bool(report.get("sacrifice")),
-            mate_transition="allowed"
-            if loss.allows_mate
-            else "missed"
-            if loss.mate_lost
-            else "none",
+            mate_transition=mate_transition(loss),
         ),
         human_evidence_id=None,
         played_naturalness="unknown",
@@ -127,78 +231,9 @@ def assess_difficulty(report):
     interpretations = []
     if not complete:
         base["limitations"].append("acceptable_alternatives_not_exhaustive")
-    human = None
-    if report.get("human"):
-        try:
-            candidate = HumanEvidence.model_validate(report["human"])
-            if candidate.status == "available":
-                mismatched = (
-                    candidate.legal_count != report["legal_count"]
-                    or candidate.played is not None
-                    and candidate.played.uci != report["actual"]["uci"]
-                    or candidate.engine_best is not None
-                    and candidate.engine_best.uci != report["best"]["uci"]
-                )
-                if mismatched:
-                    base["limitations"].append("human_move_context_mismatch")
-                else:
-                    human = candidate
-        except ValueError:
-            base["limitations"].append("incompatible_human_evidence")
+    human = matched_human(report, base["limitations"])
     if human:
-        base["human_evidence_id"] = human.evidence_id
-        base["played_naturalness"] = naturalness(human.played)
-        base["best_naturalness"] = naturalness(human.engine_best)
-        base["confidence"] = "heuristic"
-        limiting = []
-        if human.domain.alignment != "related":
-            limiting.append(
-                "domain_shift" if human.domain.alignment == "shifted" else "domain_unknown"
-            )
-        if not human.domain.history_from_start:
-            limiting.append("pre_setup_history_unknown")
-        if "fallback" in (human.conditioning.self_source, human.conditioning.opponent_source):
-            limiting.append("rating_fallback")
-        if not (
-            600 <= human.conditioning.self_rating <= 2400
-            and 800 <= human.conditioning.opponent_rating <= 2600
-        ):
-            limiting.append("outside_probed_rating_range")
-        if human.engine_best is None or human.engine_best.probability is None:
-            limiting.append("incomplete_policy")
-        if limiting:
-            base["confidence"] = "limited"
-            base["limitations"].extend(limiting)
-        base["components"] = base["components"].model_copy(
-            update={
-                "best_rank": human.engine_best.rank if human.engine_best else None,
-                "best_probability": human.engine_best.probability if human.engine_best else None,
-                "played_rank": human.played.rank if human.played else None,
-                "played_probability": human.played.probability if human.played else None,
-                "normalized_entropy": human.normalized_entropy,
-                "top_three_mass": human.top_three_mass,
-            }
-        )
-        nature = base["best_naturalness"]
-        if nature == "preferred":
-            base["best_find_difficulty"] = "natural"
-        elif nature != "unknown":
-            best_sacrifice = (
-                report.get("sacrifice") and report["best"]["uci"] == report["actual"]["uci"]
-            )
-            corroborated = narrow or bool(best_sacrifice) or horizon >= 3
-            base["best_find_difficulty"] = (
-                "difficult" if nature == "unusual" and corroborated else "challenging"
-            )
-        poor, strong = is_poor(loss), is_near_best(loss)
-        if poor and base["played_naturalness"] == "preferred":
-            interpretations.append("natural_error")
-        if strong and base["played_naturalness"] == "unusual":
-            interpretations.append("unusual_strong_move")
-        if strong and base["played_naturalness"] == "preferred":
-            interpretations.append("natural_best")
-        if strong and narrow and base["played_naturalness"] == "unusual":
-            interpretations.append("hard_to_find_defense")
+        interpretations = apply_human_policy(base, report, human, loss, narrow, horizon)
     else:
         base["limitations"].append("human_evidence_unavailable")
     if loss.mate_lost and best.value == 1:

@@ -231,6 +231,7 @@ def test_prefetch_batches_uncached_positions_and_evidence_reads_them(settings, s
     assert provider.batches == [3]
 
 
+@pytest.mark.pristine_database
 def test_migration_merges_account_copies_and_downgrade_splits_them(settings):
     from alembic import command
     from alembic.config import Config

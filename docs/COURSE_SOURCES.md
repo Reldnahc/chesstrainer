@@ -8,7 +8,7 @@ validation rules are in [Study](STUDY.md#guided-lessons); the file format is in
 
 ## White Italian Game
 
-Revision `2026-10-v4` teaches a connected quiet White setup, Black's common alternatives including the Two Knights Defense, the setup's remaining development, and an actual central break. Historical games provide explicitly contrasting examples rather than substitutes for the repertoire's missing plans. Only their factual move scores were transcribed. All Fieldwork instructional explanations, decisions, highlights, and repertoire selections are original writing; no modern game annotations are reproduced.
+Revision `2026-10-v5` teaches a connected quiet White setup, Black's common alternatives including the Two Knights Defense, the setup's remaining development, and an actual central break. Historical games provide explicitly contrasting examples rather than substitutes for the repertoire's missing plans. Only their factual move scores were transcribed. All Fieldwork instructional explanations, decisions, highlights, and repertoire selections are original writing; no modern game annotations are reproduced.
 
 ### Why these chapter boundaries
 
@@ -75,6 +75,10 @@ Every taught White move, in chapters, side trips and recall lines, is Stockfish 
 
 Recall lines for side trips start where their chapter's main line starts: the first chapter's from the initial position, the Two Knights lines after `3...Nf6`, the development chapter's after `5...d6` and the central chapter's after `10...Re8`. The `...Na5`, premature `...d5` and active `...d5` comparisons also have recall lines.
 
+### Names and codes
+
+A recall line's ECO code is the code of the deepest classified position it reaches, as game databases classify it. The `3...h6`, `4...h6` and quiet-setup lines (development, the `...Bg4` pin, the `...Na5` and `...d5` comparisons, and the central break) play `c3` with `...Nf6`, `...Bc5` and `d3` on the board, the Giuoco Pianissimo position of `3...Bc5 4.c3 Nf6 5.d3`, so they carry C54: the [ECO list](https://en.wikipedia.org/wiki/List_of_chess_openings) gives C54 for `4.c3 Nf6`, and Lichess's [opening file](https://github.com/lichess-org/chess-openings/blob/master/c.tsv) names these positions "Italian Game: Classical Variation, Giuoco Pianissimo" (C54). The `3...Bc5` and `3...Nd4` lines without `c3` keep C50, and the other Two Knights lines keep C55.
+
 ### Primary publication and reuse
 
 Horace F. Cheshire (editor), *The Hastings Chess Tournament 1895: Containing the authorised account of the 230 games played Aug.–Sept. 1895*, published in 1896 by G. P. Putnam's Sons / Chatto & Windus.
@@ -109,7 +113,7 @@ The primary book calls Steinitz “W. Steinitz.” Modern catalogues may use Wil
 
 ## Black Italian
 
-`italian-black-foundations`, revision `2026-10-v5`, teaches Black through a
+`italian-black-foundations`, revision `2026-10-v6`, teaches Black through a
 bishop-first Italian repertoire. The chapters cover quiet development against
 White's common fourth moves, choosing a post-castling plan, the early c3/d4
 central advance, the `7.Nc3` gambit, and declining the Evans Gambit. Each ends
@@ -230,6 +234,18 @@ Chapter count is an outcome of distinct learning goals, not a template to fill.
 The boundary is explicit: selected starter lines, not an exhaustive Black
 repertoire or a middlegame strategy course. White's other responses to ...Be6,
 and many early Italian sidelines, are not silently claimed as covered.
+
+### Names and codes
+
+A recall line's ECO code is the code of the deepest classified position it
+reaches, as game databases classify it. The two quiet lines (develop and castle,
+restrain and exchange) play `c3` with `...Nf6`, `...Bc5` and `d3` on the board,
+the Giuoco Pianissimo position of `3...Bc5 4.c3 Nf6 5.d3`, so they carry C54:
+the [ECO list](https://en.wikipedia.org/wiki/List_of_chess_openings) gives C54
+for `4.c3 Nf6`, and Lichess's [opening
+file](https://github.com/lichess-org/chess-openings/blob/master/c.tsv) names
+these positions "Italian Game: Classical Variation, Giuoco Pianissimo" (C54).
+Lines without `c3` keep C50.
 
 ### Common replies
 
@@ -585,7 +601,9 @@ named the variation in 1901 after the constellation Draco (Edward Winter's
 earliest printed use is from 1914), and that `9...d5` is
 Black's usual reply to `9.O-O-O`. The other names are standard: Alapin
 Variation (`2.c3`, B22), Smith-Morra Gambit (`2.d4 cxd4 3.c3`, B21), Moscow
-Variation (`3.Bb5+`, B51 to B52).
+Variation (`3.Bb5+`, B51 to B52). The quiet `6.Be2` line castles both sides
+before `8.Be3 Nc6`, reaching the position of `6.Be3 Bg7 7.Be2 Nc6 8.O-O O-O`,
+which is B73 (the Classical Variation with `8.O-O`; only `9.Nb3` is B74).
 
 ### Verification
 
@@ -598,7 +616,7 @@ five chapters on desktop and mobile.
 
 ## Vienna Gambit
 
-`vienna-gambit`, revision `2026-10-v1`, is an original Fieldwork course for
+`vienna-gambit`, revision `2026-10-v2`, is an original Fieldwork course for
 White. It teaches a bounded selection of lines, not a complete repertoire or a
 promise that the gambit gives White an advantage. Explanations, prompts,
 feedback and position annotations are original. The course has no historical
@@ -687,6 +705,15 @@ Lichess's opening file names `2...Nf6 3.f4` "Vienna Game: Vienna Gambit" (C29)
 ([lichess-org/chess-openings](https://github.com/lichess-org/chess-openings/blob/master/c.tsv)).
 ECO codes: C25 for `2...Nc6` and
 `2...Bc5`, C28 for `2...Nc6 3.Bc4 Nf6`, and C29 for the Vienna Gambit `2...Nf6 3.f4`.
+A line's code is the code of the deepest classified position it reaches, as
+game databases classify it. The two `2...Nc6` lines that continue with `Nf3`
+transpose into the Italian Game with `Nc3` (`3.Bc4 Bc5 4.Nc3 Nf6` or
+`4.d3 Nf6 5.Nc3`), so they carry C50, the code both the
+[ECO list](https://en.wikipedia.org/wiki/List_of_chess_openings) and Lichess's
+opening file give those positions. The `4.d3 Bb4` line keeps C28. Lichess files
+the `4.d3` position as C24, "Bishop's Opening: Vienna Hybrid", but the ECO list
+puts `2...Nf6 3.Bc4 Nc6` in C28, Lichess's own `4.d3 Bb4 5.Ne2` entry is C28,
+and nothing is catalogued after `5.Nf3`.
 
 ### Verification
 

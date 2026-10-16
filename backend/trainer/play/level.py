@@ -115,7 +115,7 @@ class LevelFits:
 
     def profile(self, workspace, *, refresh=False):
         human_models = workspace.human_models
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             games = db.scalar(select(func.count()).select_from(Game)) or 0
             row = db.get(PlayProfile, workspace.user_id)
             fitting = active_job(db, JobKind.LEVEL_FIT) is not None
@@ -130,29 +130,28 @@ class LevelFits:
         )
         if games and human_models.settings.human_model_enabled and (refresh or stale):
             if human_models.can_attempt():
-                with workspace.mutation_lock, workspace.sessions() as db:
+                with workspace.write() as db:
                     # One fit at a time per account; the job reads the games when it runs.
                     ensure_job(db, JobKind.LEVEL_FIT, priority=REQUESTED)
-                    db.commit()
                 fitting = True
             elif row is None or row.status == "computing":
                 return profile_payload(row, games, human_models) | {"status": "unavailable"}
         return profile_payload(row, games, human_models, fitting=fitting)
 
 
-def run_level_fit(execution, job_id):
+def run_level_fit(context):
     """The level-fit job: measure, then save the profile under the account lock.
 
     Cancellation (or shutdown) stops it between Maia calls; nothing is saved then,
     so the previous result stays readable. The job is queued again on shutdown by
     the job runner, and on a cancellation by the next poll of a stale profile.
     """
-    sessions, human_models = execution.sessions, execution.human_models
-    with sessions() as db:
+    sessions, human_models = context.sessions, context.human_models
+    with context.read() as db:
         rows = list(db.scalars(select(Game)))
-        user_id = db.info["user_id"]
+    user_id = context.user_id
     try:
-        result = fit_level(sessions, human_models, rows, lambda: execution.cancelled(job_id))
+        result = fit_level(sessions, human_models, rows, context.cancelled)
         status = "ready" if result else "no_games"
     except HumanCancelled:
         return
@@ -161,9 +160,9 @@ def run_level_fit(execution, job_id):
     except Exception:
         # Saved as unavailable, so Play stops showing "computing" and does not
         # queue the same failing fit again on its next poll.
-        log.exception("level_fit_failed", extra={"job_id": job_id})
+        log.exception("level_fit_failed", extra={"job_id": context.job_id})
         result, status = None, "unavailable"
-    with execution.mutation_lock, sessions() as db:
+    with context.write() as db:
         row = db.get(PlayProfile, user_id)
         if row is None:
             row = PlayProfile(user_id=user_id)
@@ -177,4 +176,3 @@ def run_level_fit(execution, job_id):
             row.platform_rating = result["platform_rating"]
             row.platform = result["platform"]
             row.positions = result["positions"]
-        db.commit()

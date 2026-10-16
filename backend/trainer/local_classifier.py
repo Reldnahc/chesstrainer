@@ -9,11 +9,12 @@ from trainer.classification_stages import (
     abstention_reasons,
     attach_provenance,
     diagnose_line,
+    line_parameters,
     mate_findings,
     read_lines,
 )
 from trainer.config import Settings
-from trainer.diagnosis_types import RULE_VERSION
+from trainer.diagnosis_types import RULE_VERSION, evidence_probes
 from trainer.taxonomy import UNCLASSIFIED
 
 
@@ -25,13 +26,11 @@ def classifier_parameters(settings=None):
     ``tactic_plies`` the bound on one tactical episode.
     """
     fields = {
-        "max_plies": "classification_max_plies",
-        "extension_plies": "classification_extension_plies",
-        "tactic_plies": "classification_tactic_plies",
         "min_loss_cp": "classification_min_loss_cp",
         "min_material": "classification_min_material",
     }
-    return {
+    # The line horizon is the one every line reader shares (line_parameters).
+    return line_parameters(settings) | {
         key: getattr(settings, name) if settings else Settings.model_fields[name].default
         for key, name in fields.items()
     }
@@ -56,7 +55,7 @@ class LocalClassifier:
             found.extend(result.findings)
             outcomes.extend(result.outcomes)
             defense_checks.extend(result.defense_checks)
-        attach_provenance(found, outcomes, evidence.get("probes", []))
+        attach_provenance(found, outcomes, evidence_probes(evidence))
         skills = list(dict.fromkeys(f.skill_id for f in found))
         return Classification(
             decision_id=evidence["decision_id"],
@@ -71,4 +70,4 @@ class LocalClassifier:
             confidence=1.0 if skills else 0.0,
             explanation=" ".join(f.explanation for f in found)
             or "The engine found a meaningful difference, but the saved lines do not establish a specific material or mating consequence.",
-        ), {}
+        )

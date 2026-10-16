@@ -1,19 +1,64 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-.audio-settings-controls { display: grid; gap: var(--space-5); max-width: 640px; }
-.audio-setting-check { align-items: center; min-height: var(--touch-target); }
-.audio-setting-check > span { display: flex; flex-direction: column; gap: var(--space-1); }
-.audio-setting-check small { color: var(--muted); font-size: var(--text-sm); }
-.audio-setting-categories { display: grid; gap: var(--space-4); margin: 0; padding: 0; border: 0; }
-/* A legend sits outside the fieldset's grid, so it pads itself. */
-.audio-setting-categories legend { padding: 0 0 var(--space-3); font-size: var(--text-sm); color: var(--muted); }
-.audio-setting-categories:disabled { opacity: .6; }
-.audio-setting-volume { display: grid; gap: var(--space-2); }
-.audio-setting-volume label { display: flex; flex-direction: row; justify-content: space-between; }
-.audio-setting-volume output { font-variant-numeric: tabular-nums; color: var(--muted); }
-.audio-setting-volume input { width: 100%; accent-color: var(--accent); min-height: 28px; margin: 0; }
-.audio-setting-preview { flex-wrap: wrap; }
-@media (max-width: 760px) {
-  .audio-setting-volume input { min-height: var(--touch-target); }
-}
+  .audio-settings-controls {
+    display: grid;
+    gap: var(--space-5);
+    max-width: 640px;
+  }
+  .audio-setting-check {
+    align-items: center;
+    min-height: var(--touch-target);
+  }
+  .audio-setting-check > span {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .audio-setting-check small {
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .audio-setting-categories {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  /* A legend sits outside the fieldset's grid, so it pads itself. */
+  .audio-setting-categories legend {
+    padding: 0 0 var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .audio-setting-categories:disabled {
+    opacity: 0.6;
+  }
+  .audio-setting-volume {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .audio-setting-volume label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .audio-setting-volume output {
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+  .audio-setting-volume input {
+    width: 100%;
+    accent-color: var(--accent);
+    min-height: var(--control-height-dense);
+    margin: 0;
+  }
+  .audio-setting-preview {
+    flex-wrap: wrap;
+  }
+  @media (max-width: 760px) {
+    .audio-setting-volume input {
+      min-height: var(--touch-target);
+    }
+  }
 }

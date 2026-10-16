@@ -1,26 +1,34 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-.motion-setting {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-5);
-  margin: 0;
-}
-.motion-setting label { margin: 0; }
-.motion-setting select {
-  width: 180px;
-  min-height: var(--touch-target);
-  margin: 0;
-  flex: none;
-}
-.motion-setting[data-layout="stacked"] {
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--space-1-5);
-}
-@media (max-width: 600px) {
-  .motion-setting { flex-direction: column; align-items: stretch; gap: var(--space-3); }
-  .motion-setting select { width: 100%; }
-}
+  .motion-setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-5);
+    margin: 0;
+  }
+  .motion-setting label {
+    margin: 0;
+  }
+  .motion-setting select {
+    width: 180px;
+    min-height: var(--touch-target);
+    margin: 0;
+    flex: none;
+  }
+  .motion-setting[data-layout="stacked"] {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1-5);
+  }
+  @media (max-width: 600px) {
+    .motion-setting {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-3);
+    }
+    .motion-setting select {
+      width: 100%;
+    }
+  }
 }

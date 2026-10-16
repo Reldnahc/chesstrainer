@@ -1,103 +1,250 @@
-import {test, expect} from "@playwright/test";
-import {claim, makeIntent} from "../src/dialogue/model";
-import {tacticalClaim} from "../src/dialogue/eventClaims";
-import type {Schema} from "../src/api";
-import {renderCoaches} from "./render-coaches";
-import {humanInsightIntent} from "../src/dialogue/humanClaims";
+import { test, expect } from "../tests/helpers/browserTest";
+import { claim, makeIntent } from "../src/dialogue/model";
+import { tacticalClaim } from "../src/dialogue/eventClaims";
+import { reviewEvent, witness } from "../tests/helpers/reviewEvents";
+import { renderCoaches } from "./render-coaches";
+import { humanInsightIntent } from "../src/dialogue/humanClaims";
 
 // Voices that opted into scoped tactical and opening-sequence wording.
-const scoped: Record<string, {version: string; actual: string; possible: string}> = {
-  classic: {version: "storyteller-6", actual: "are attacked together", possible: "would be attacked together"},
-  robot: {version: "robot-3", actual: "Attacked together", possible: "Potential simultaneous targets"},
-  capybara: {version: "capybara-2", actual: "at the same time", possible: "would be attacked at the same time"},
-  mushroom: {version: "mushroom-2", actual: "at once", possible: "would be attacked together"},
-  ghost: {version: "ghost-2", actual: "One attacker now touches", possible: "would be attacked by a single piece"},
-  slime: {version: "slime-2", actual: "attacked in one go", possible: "would be attacked in one go"},
-  alien: {version: "alien-2", actual: "under attack", possible: "would be attacked simultaneously"},
-  "living-pawn": {version: "living-pawn-2", actual: "all at once", possible: "would be attacked"},
-  unicorn: {version: "unicorn-2", actual: "reaches gracefully toward", possible: "would be attacked in unison"},
-  "man-expert": {version: "expert-4", actual: "attacks the", possible: "would be attacked in parallel"},
-  "man-partner": {version: "partner-4", actual: "now hits the", possible: "would be attacked side by side"},
-  "woman-analyst": {version: "analyst-5", actual: "now stands against the", possible: "would be attacked together"},
-  "woman-blonde": {version: "blonde-4", actual: "reaches the", possible: "would be attacked together by one piece"},
-  "human-boy": {version: "young-boy-2", actual: "jumps in and pokes at the", possible: "would be attacked from a single square"},
-  "cat-black": {version: "velvet-4", actual: "in its reach at once", possible: "would do all the watching"},
-  wizard: {version: "wizard-2", actual: "the fork in its plainest form", possible: "would be attacked at once"},
-  "human-girl": {version: "young-girl-2", actual: "in range together", possible: "would be attacked, and a lone piece"},
-  "dog-puppy": {version: "puppy-2", actual: "all at the same time", possible: "would be attacked, and one eager piece"},
-  "cat-kitten": {version: "kitten-2", actual: "poking at", possible: "would be attacked, and it would take only one sneaky piece"},
-  "cat-tuxedo": {version: "tuxedo-4", actual: "under fire", possible: "would be attacked, and a single piece"},
-  raccoon: {version: "raccoon-2", actual: "has its eye on", possible: "would be attacked, every one of them"},
-  "dog-gentle": {version: "professor-4", actual: "attacks the", possible: "would be attacked"},
-  gorilla: {version: "gorilla-2", actual: "under its hit at once", possible: "every one, from a single square"},
-  dragon: {version: "dragon-2", actual: "under one piece's attack", possible: "From a single square"},
-  "dog-collie": {version: "collie-5", actual: "under attack together", possible: "would be attacked by one piece"},
-  "dog-corgi": {version: "corgi-4", actual: "in its sights", possible: "would be attacked, all from one post"},
-  frog: {version: "frog-2", actual: "and by the same piece", possible: "would be attacked at once, and all from"},
-  "man-host": {version: "host-4", actual: "hit at once by one piece", possible: "would be attacked by it in one go"},
-  "woman-spark": {version: "spark-4", actual: "all in the crosshairs", possible: "would be attacked in the same breath"},
-  "woman-captain": {version: "captain-4", actual: "under fire from one piece", possible: "would be attacked from one square"},
+const scoped: Record<string, { version: string; actual: string; possible: string }> = {
+  classic: {
+    version: "storyteller-6",
+    actual: "are attacked together",
+    possible: "would be attacked together",
+  },
+  robot: {
+    version: "robot-3",
+    actual: "Attacked together",
+    possible: "Potential simultaneous targets",
+  },
+  capybara: {
+    version: "capybara-2",
+    actual: "at the same time",
+    possible: "would be attacked at the same time",
+  },
+  mushroom: { version: "mushroom-2", actual: "at once", possible: "would be attacked together" },
+  ghost: {
+    version: "ghost-2",
+    actual: "One attacker now touches",
+    possible: "would be attacked by a single piece",
+  },
+  slime: {
+    version: "slime-2",
+    actual: "attacked in one go",
+    possible: "would be attacked in one go",
+  },
+  alien: {
+    version: "alien-2",
+    actual: "under attack",
+    possible: "would be attacked simultaneously",
+  },
+  "living-pawn": { version: "living-pawn-2", actual: "all at once", possible: "would be attacked" },
+  unicorn: {
+    version: "unicorn-2",
+    actual: "reaches gracefully toward",
+    possible: "would be attacked in unison",
+  },
+  "man-expert": {
+    version: "expert-4",
+    actual: "attacks the",
+    possible: "would be attacked in parallel",
+  },
+  "man-partner": {
+    version: "partner-4",
+    actual: "now hits the",
+    possible: "would be attacked side by side",
+  },
+  "woman-analyst": {
+    version: "analyst-5",
+    actual: "now stands against the",
+    possible: "would be attacked together",
+  },
+  "woman-blonde": {
+    version: "blonde-4",
+    actual: "reaches the",
+    possible: "would be attacked together by one piece",
+  },
+  "human-boy": {
+    version: "young-boy-2",
+    actual: "jumps in and pokes at the",
+    possible: "would be attacked from a single square",
+  },
+  "cat-black": {
+    version: "velvet-4",
+    actual: "in its reach at once",
+    possible: "would do all the watching",
+  },
+  wizard: {
+    version: "wizard-2",
+    actual: "the fork in its plainest form",
+    possible: "would be attacked at once",
+  },
+  "human-girl": {
+    version: "young-girl-2",
+    actual: "in range together",
+    possible: "would be attacked, and a lone piece",
+  },
+  "dog-puppy": {
+    version: "puppy-2",
+    actual: "all at the same time",
+    possible: "would be attacked, and one eager piece",
+  },
+  "cat-kitten": {
+    version: "kitten-2",
+    actual: "poking at",
+    possible: "would be attacked, and it would take only one sneaky piece",
+  },
+  "cat-tuxedo": {
+    version: "tuxedo-4",
+    actual: "under fire",
+    possible: "would be attacked, and a single piece",
+  },
+  raccoon: {
+    version: "raccoon-2",
+    actual: "has its eye on",
+    possible: "would be attacked, every one of them",
+  },
+  "dog-gentle": { version: "professor-4", actual: "attacks the", possible: "would be attacked" },
+  gorilla: {
+    version: "gorilla-2",
+    actual: "under its hit at once",
+    possible: "every one, from a single square",
+  },
+  dragon: {
+    version: "dragon-2",
+    actual: "under one piece's attack",
+    possible: "From a single square",
+  },
+  "dog-collie": {
+    version: "collie-5",
+    actual: "under attack together",
+    possible: "would be attacked by one piece",
+  },
+  "dog-corgi": {
+    version: "corgi-4",
+    actual: "in its sights",
+    possible: "would be attacked, all from one post",
+  },
+  frog: {
+    version: "frog-2",
+    actual: "and by the same piece",
+    possible: "would be attacked at once, and all from",
+  },
+  "man-host": {
+    version: "host-4",
+    actual: "hit at once by one piece",
+    possible: "would be attacked by it in one go",
+  },
+  "woman-spark": {
+    version: "spark-4",
+    actual: "all in the crosshairs",
+    possible: "would be attacked in the same breath",
+  },
+  "woman-captain": {
+    version: "captain-4",
+    actual: "under fire from one piece",
+    possible: "would be attacked from one square",
+  },
 };
 
-test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {
+test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({
+  page,
+}) => {
   await page.goto("/");
-  for (const role of ["played", "allowed", "missed"]) {
+  for (const role of ["played", "allowed", "missed"] as const) {
     const ply = role === "allowed" ? 2 : 1;
-    const event: Schema["ReviewEvent"] = {id: "fork", actor: "white", kind: "tactic", confidence: "line_witness", importance: 75,
-      evidence: [{source: "stockfish", id: "search", field: "actual_line/findings/0"}],
-      facts: {role, motif: "fork", plies: [ply], frame_ply: ply, witness: [{ply, san: "Ng5+"}],
-        roles: {targets: ["h7", "e4"]}, pieces: {h7: {color: "black", piece: "king"}, e4: {color: "black", piece: "queen"}}}};
+    const event = reviewEvent(
+      "tactic",
+      {
+        role,
+        motif: "fork",
+        plies: [ply],
+        frame_ply: ply,
+        witness: [witness(ply, "Ng5+")],
+        roles: { targets: ["h7", "e4"] },
+        pieces: { h7: { color: "black", piece: "king" }, e4: { color: "black", piece: "queen" } },
+      },
+      {
+        id: "fork",
+        confidence: "line_witness",
+        evidence: [{ source: "stockfish", id: "search", field: "actual_line/findings/0" }],
+      },
+    );
     const item = tacticalClaim(event, "Ng5+", "Ng5+", "White")!;
-    const {tactic: _tactic, ...original} = item;
+    const { tactic: _tactic, ...original } = item;
     const oldIntent = makeIntent("cast", "best", "game", "best", [original]);
     const intent = makeIntent("cast", "best", "game", "best", [item]);
-    const before = await renderCoaches(page, oldIntent), after = await renderCoaches(page, intent);
+    const before = await renderCoaches(page, oldIntent),
+      after = await renderCoaches(page, intent);
     expect(after.length).toBeGreaterThan(1);
     for (const output of after) {
       expect(output.intentId).toBe(intent.id);
       expect(output.renderedClaims).toEqual([item]);
       const voice = scoped[output.coachId];
-      if (!voice) expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
+      if (!voice)
+        expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
       else {
         expect(output.trace.variants[0].source).toBe(voice.version);
         expect(output.text).not.toMatch(/engine|continuation|verified/i);
         expect(output.text).toContain(role === "played" ? voice.actual : voice.possible);
       }
     }
-    const human = claim("human_natural_error", {}, 69, [{source: "human", id: "maia", field: "policy"}]);
-    const oldHuman = humanInsightIntent(makeIntent("cast", "best", "game", "best", [original, human]));
+    const human = claim("human_natural_error", {}, 69, [
+      { source: "human", id: "maia", field: "policy" },
+    ]);
+    const oldHuman = humanInsightIntent(
+      makeIntent("cast", "best", "game", "best", [original, human]),
+    );
     const newHuman = humanInsightIntent(makeIntent("cast", "best", "game", "best", [item, human]));
-    const previous = await renderCoaches(page, oldHuman), current = await renderCoaches(page, newHuman);
+    const previous = await renderCoaches(page, oldHuman),
+      current = await renderCoaches(page, newHuman);
     for (const output of current) {
       expect(output.intentId).toBe(newHuman.id);
       expect(output.renderedClaims).toEqual([human]);
-      if (!scoped[output.coachId]) expect(output.text).toBe(previous.find(other => other.coachId === output.coachId)!.text);
+      if (!scoped[output.coachId])
+        expect(output.text).toBe(previous.find(other => other.coachId === output.coachId)!.text);
     }
   }
 });
 
-test("opening sequence metadata changes only the opted-in voices and preserves all original claim identities", async ({page}) => {
+test("opening sequence metadata changes only the opted-in voices and preserves all original claim identities", async ({
+  page,
+}) => {
   await page.goto("/");
-  for (const subject of ["learner", "opponent"] as const) for (const kind of ["entry", "follow"] as const) {
-    const original = claim("book_sound", {opening: "Named opening"}, 96,
-      [{source: "book", id: "catalogue", field: "recognized_opening", ply: 5}]);
-    const item = {...original, opening: {kind, variant: kind === "entry" ? 2 : 4, catalogueVersion: "catalogue",
-      scope: "mainline" as const, runStartPly: kind === "entry" ? null : 1, runOrdinal: kind === "entry" ? null : 5}};
-    const beforeIntent = makeIntent("book-cast", "book", "game", "book", [original], [], subject);
-    const intent = makeIntent("book-cast", "book", "game", "book", [item], [], subject);
-    expect(intent.wordingKey).toBe(beforeIntent.id);
-    const before = await renderCoaches(page, beforeIntent), after = await renderCoaches(page, intent);
-    expect(after).toHaveLength(30);
-    for (const output of after) {
-      expect(output.renderedClaims).toEqual([item]);
-      expect(output.intentId).toBe(intent.id);
-      if (!scoped[output.coachId])
-        expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
-      else {
-        expect(output.trace.variants[0].source).toBe(scoped[output.coachId].version);
-        expect(output.text).toContain("Named opening");
-        expect(output.text).not.toMatch(/good|best|strong|you|your|develop|center|centre|advantage/i);
+  for (const subject of ["learner", "opponent"] as const)
+    for (const kind of ["entry", "follow"] as const) {
+      const original = claim("book_sound", { opening: "Named opening" }, 96, [
+        { source: "book", id: "catalogue", field: "recognized_opening", ply: 5 },
+      ]);
+      const item = {
+        ...original,
+        opening: {
+          kind,
+          variant: kind === "entry" ? 2 : 4,
+          catalogueVersion: "catalogue",
+          scope: "mainline" as const,
+          runStartPly: kind === "entry" ? null : 1,
+          runOrdinal: kind === "entry" ? null : 5,
+        },
+      };
+      const beforeIntent = makeIntent("book-cast", "book", "game", "book", [original], [], subject);
+      const intent = makeIntent("book-cast", "book", "game", "book", [item], [], subject);
+      expect(intent.wordingKey).toBe(beforeIntent.id);
+      const before = await renderCoaches(page, beforeIntent),
+        after = await renderCoaches(page, intent);
+      expect(after).toHaveLength(30);
+      for (const output of after) {
+        expect(output.renderedClaims).toEqual([item]);
+        expect(output.intentId).toBe(intent.id);
+        if (!scoped[output.coachId])
+          expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
+        else {
+          expect(output.trace.variants[0].source).toBe(scoped[output.coachId].version);
+          expect(output.text).toContain("Named opening");
+          expect(output.text).not.toMatch(
+            /good|best|strong|you|your|develop|center|centre|advantage/i,
+          );
+        }
       }
     }
-  }
 });

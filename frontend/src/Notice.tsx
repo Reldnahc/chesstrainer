@@ -15,17 +15,35 @@ type NoticeProps = {
 };
 
 /** Announcement is explicit: saved history must not become a fresh alert. */
-export default function Notice({ children, announcement, tone = "info", appearance = "panel", actions, onDismiss, className }: NoticeProps) {
-  return <div
-    className={["notice", `notice--${appearance}`, className].filter(Boolean).join(" ")}
-    data-tone={tone}
-    role={announcement === "passive" ? undefined : announcement}
-    aria-atomic={announcement === "passive" ? undefined : true}
-  >
-    <div className="notice-content">{children}</div>
-    {actions && <div className="notice-actions">{actions}</div>}
-    {onDismiss && <IconButton variant="quiet" size="compact" className="notice-dismiss" aria-label="Dismiss" onClick={onDismiss}>
-      <X size={16} />
-    </IconButton>}
-  </div>;
+export default function Notice({
+  children,
+  announcement,
+  tone = "info",
+  appearance = "panel",
+  actions,
+  onDismiss,
+  className,
+}: NoticeProps) {
+  return (
+    <div
+      className={["notice", `notice--${appearance}`, className].filter(Boolean).join(" ")}
+      data-tone={tone}
+      role={announcement === "passive" ? undefined : announcement}
+      aria-atomic={announcement === "passive" ? undefined : true}
+    >
+      <div className="notice-content">{children}</div>
+      {actions && <div className="notice-actions">{actions}</div>}
+      {onDismiss && (
+        <IconButton
+          variant="quiet"
+          size="compact"
+          className="notice-dismiss"
+          aria-label="Dismiss"
+          onClick={onDismiss}
+        >
+          <X size={16} />
+        </IconButton>
+      )}
+    </div>
+  );
 }

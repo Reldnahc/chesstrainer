@@ -10,20 +10,39 @@ export default function WelcomeBack() {
   useEffect(() => {
     let active = true;
     read(api.GET("/api/welcome-back"))
-      .then(value => { if (active) setAwaySince(value.away_since ?? null); })
+      .then(value => {
+        if (active) setAwaySince(value.away_since ?? null);
+      })
       .catch(() => undefined);
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
   async function dismiss() {
     setAwaySince(null);
     await read(api.POST("/api/welcome-back/dismiss")).catch(() => undefined);
   }
-  const since = awaySince && new Date(awaySince).toLocaleDateString(undefined, { month: "long", day: "numeric" });
+  const since =
+    awaySince &&
+    new Date(awaySince).toLocaleDateString(undefined, { month: "long", day: "numeric" });
   return since ? (
-    <Banner onDismiss={() => void dismiss()}
-      action={<ActionLink variant="secondary" size="compact" href={pagePaths.Settings} onClick={() => void dismiss()}>Import older games</ActionLink>}>
-      <p><strong>Welcome back!</strong> New-game checks were paused while you were away (since {since}) and are running again.
-        If any games are missing, import older games.</p>
+    <Banner
+      onDismiss={() => void dismiss()}
+      action={
+        <ActionLink
+          variant="secondary"
+          size="compact"
+          href={pagePaths.Settings}
+          onClick={() => void dismiss()}
+        >
+          Import older games
+        </ActionLink>
+      }
+    >
+      <p>
+        <strong>Welcome back!</strong> New-game checks were paused while you were away (since{" "}
+        {since}) and are running again. If any games are missing, import older games.
+      </p>
     </Banner>
   ) : null;
 }

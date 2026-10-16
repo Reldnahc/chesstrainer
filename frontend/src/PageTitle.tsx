@@ -18,7 +18,13 @@ export function setFallbackTitle(title: string) {
 // Pages show no visible header; the navigation already names the page.
 // The heading stays for screen readers and in-page heading navigation, and the
 // browser tab shows the same name unless the page gives it a shorter one.
-export default function PageTitle({ title, documentTitle = title }: { title: string; documentTitle?: string }) {
+export default function PageTitle({
+  title,
+  documentTitle = title,
+}: {
+  title: string;
+  documentTitle?: string;
+}) {
   usePageTitle(documentTitle);
   return <h1 className="sr-only">{title}</h1>;
 }

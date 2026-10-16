@@ -136,8 +136,9 @@ class HorizonEngine:
         self.answers = answers
         self.calls = []
 
-    def analyze(self, board, deep=False, root_moves=None, multipv=None, limits=None, **_):
+    def analyze(self, board, profile=None, *, root_moves=None, multipv=None, **_):
         roots = tuple(root_moves or ())
+        limits = profile.limits if profile else None
         self.calls.append((roots, limits))
         rows = self.answers[(roots, limits is not None)]
         return SimpleNamespace(
@@ -157,7 +158,7 @@ class HorizonEngine:
 
 
 def test_a_played_move_that_reads_centipawns_against_a_mating_best_is_searched_deeper():
-    from trainer.game_review import MATE_HORIZON_LIMITS
+    from trainer.game_review import mate_horizon_limits
 
     # Rb4 keeps a rook mate its restricted search reads as +6.19; Kc7 mates in three.
     board = chess.Board("k2K4/8/1R6/8/8/8/8/8 w - - 0 1")
@@ -170,7 +171,7 @@ def test_a_played_move_that_reads_centipawns_against_a_mating_best_is_searched_d
         }
     )
     report = analyze_move(engine, board, chess.Move.from_uci("b6b4"))
-    assert (("b6b4",), MATE_HORIZON_LIMITS) in engine.calls
+    assert (("b6b4",), mate_horizon_limits()) in engine.calls
     assert report["actual"]["score"] == {"kind": "mate", "value": 9, "mate_given": False}
     assert report["played_analysis_id"] == "deep:b6b4" and report["depth"] == 16
     assert classify(report, 1500)[0] == "Good"
@@ -182,7 +183,7 @@ def test_a_played_move_that_reads_centipawns_against_a_mating_best_is_searched_d
 
 
 def test_a_mated_defence_against_a_lost_centipawn_best_searches_the_whole_comparison_deeper():
-    from trainer.game_review import MATE_HORIZON_LIMITS, public_report
+    from trainer.game_review import mate_horizon_limits, public_report
 
     # Ke1 is mated in three; the root reads Kf3 as -5.19 and is mated in eight deeper.
     board = chess.Board("8/8/6Q1/8/8/1K6/4k3/8 b - - 0 1")
@@ -193,7 +194,7 @@ def test_a_mated_defence_against_a_lost_centipawn_best_searches_the_whole_compar
         }
     )
     report = analyze_move(engine, board, chess.Move.from_uci("e2e1"))
-    assert engine.calls == [((), None), ((), MATE_HORIZON_LIMITS)]
+    assert engine.calls == [((), None), ((), mate_horizon_limits())]
     assert report["before_analysis_id"] == "deep:root"
     assert report["best"]["score"] == {"kind": "mate", "value": -8, "mate_given": False}
     assert classify(report, 1500) == (
@@ -204,7 +205,7 @@ def test_a_mated_defence_against_a_lost_centipawn_best_searches_the_whole_compar
 
 
 def test_a_faster_mated_move_whose_search_stopped_short_is_not_promoted_to_best():
-    from trainer.game_review import MATE_HORIZON_LIMITS, public_report
+    from trainer.game_review import mate_horizon_limits, public_report
 
     # Kd7 is mated in twelve; Kb7's restricted search reads -5.09, deeper mated in seven.
     board = chess.Board("8/2k5/8/8/7Q/K7/8/8 b - - 0 1")
@@ -217,7 +218,7 @@ def test_a_faster_mated_move_whose_search_stopped_short_is_not_promoted_to_best(
         }
     )
     report = analyze_move(engine, board, chess.Move.from_uci("c7b7"))
-    assert engine.calls[2:] == [((), MATE_HORIZON_LIMITS), (("c7b7",), MATE_HORIZON_LIMITS)]
+    assert engine.calls[2:] == [((), mate_horizon_limits()), (("c7b7",), mate_horizon_limits())]
     assert report["best"]["uci"] == "c7d7" and report["actual"]["score"]["kind"] == "mate"
     rendered = public_report(report, 1500)
     assert rendered["best"]["uci"] == "c7d7" and rendered["label"] == "Inaccuracy"
@@ -300,6 +301,7 @@ def test_an_equally_scored_different_move_is_best():
 def seed(app, pgn='[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'):
     with app.state.sessions() as db:
         import_games(db, "synthetic.pgn", pgn, ["Learner"], None)
+        db.commit()
         return db.scalar(select(Game.id))
 
 
@@ -632,7 +634,7 @@ def test_parallel_review_preserves_order_history_and_engine_budget(settings, mon
         def close(self):
             self.closed = True
 
-    def analyze(engine, board, move):
+    def analyze(engine, board, move, *, parameters=None, mate_limits=None):
         nonlocal active, peak
         ply = len(board.move_stack) + 1
         with lock:
@@ -699,7 +701,7 @@ def test_parallel_review_failure_keeps_committed_work_and_closes_engines(setting
         def close(self):
             self.closed = True
 
-    def analyze(engine, board, move):
+    def analyze(engine, board, move, *, parameters=None, mate_limits=None):
         ply = len(board.move_stack) + 1
         calls.append(ply)
         if failing and ply == 2:
@@ -809,9 +811,15 @@ def test_a_blunder_reason_says_whether_the_mover_stays_winning_or_was_lost():
         "Blunder",
         "This move makes an already lost position much worse.",
     )
+    # Winning and lost are the review's three-pawn bands; -2.50 is worse, not lost.
     assert classify(quality(0, -250), 1500)[1] == (
-        "This move gives away a decisive advantage or allows a severe loss."
+        "This move gives up a large part of the position's value."
     )
+    assert classify(quality(-40, -210), 1000)[1] == (
+        "This move gives up a large part of the position's value."
+    )
+    assert classify(quality(0, -350), 1500)[1] == "This move turns the position into a lost one."
+    assert classify(quality(450, 150), 1500)[1] == "This move gives away a winning advantage."
 
 
 def test_a_promotion_caption_reads_as_one_sentence():
@@ -838,3 +846,59 @@ def test_the_coach_leads_with_a_finding_that_starts_with_the_move():
     assert lead_order([late_pin, capture], 1) == [capture, late_pin]
     # A preferred mechanism starting with the reply still leads.
     assert lead_order([capture, late_pin, fork], 1) == [fork, capture, late_pin]
+
+
+@pytest.mark.parametrize(
+    ("result", "ended"),
+    [
+        ("1-0", False),
+        ("0-1", False),
+        (" 0-1 ", False),
+        ("1/2-1/2", True),
+        ("*", True),
+        ("", True),
+        (None, True),
+        # Odd headers say no side won, so the repetition that happened ends the game.
+        ("½-½", True),
+        ("1/2", True),
+        ("0-0", True),
+        ("+-", True),
+    ],
+)
+def test_only_a_win_in_the_header_keeps_a_repeated_last_frame_live(result, ended):
+    from trainer.game_review import move_frames
+
+    board = chess.Board()
+    moves = [chess.Move.from_uci(uci) for uci in ["g1f3", "g8f6", "f3g1", "f6g8"] * 2]
+    last = move_frames(board, moves, {}, result=result)[-1]
+    assert (last["termination"] == "threefold repetition") is ended
+    assert bool(last["legal_moves"]) is not ended
+
+
+@pytest.mark.stockfish
+def test_a_variation_move_capitalizing_on_an_opponent_mistake_is_great(settings, stockfish_path):
+    settings.stockfish_path = stockfish_path
+    app = create_app(settings, workers=False)
+    with TestClient(app) as client:
+        game = seed(app, '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 *')
+        # 2...Qh4?? hangs the queen from a level position; 3.Nxh4 wins it.
+        report = client.post(
+            f"/api/games/{game}/analyze", json={"ply": 3, "moves": ["d8h4", "f3h4"]}
+        ).json()["report"]
+        assert report["previous_mistake"] is True
+        assert report["label"] == "Great"
+        assert "capitalized" in report["reason"]
+        # The opponent's sound move is no error to capitalize on.
+        quiet = client.post(
+            f"/api/games/{game}/analyze", json={"ply": 3, "moves": ["b8c6"]}
+        ).json()["report"]
+        assert quiet["previous_mistake"] is False
+
+
+def test_the_mate_horizon_search_uses_the_refinement_settings(settings):
+    from trainer.game_review import mate_horizon_limits
+
+    assert (mate_horizon_limits().depth, mate_horizon_limits().time) == (22, 2.0)
+    settings.review_refinement_depth, settings.review_refinement_time = 30, 4.5
+    limits = mate_horizon_limits(settings)
+    assert (limits.depth, limits.time) == (30, 4.5)

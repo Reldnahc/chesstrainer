@@ -1,35 +1,124 @@
-import type {CoachPersonality} from "../personality";
-import {robotTacticalTemplates} from "./scopedTactics";
-import {robotOpeningTemplates} from "./openingSequence";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
-export const robot: CoachPersonality = {
-  version: "robot-3", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
-  delivery: {pace: "steady", energy: "quiet"},
+export const robotTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Position after {move}: a {motif} is present.",
+    played_possible:
+      "Possible pattern after {move}: a {motif}. The replies determine whether it occurs.",
+    allowed_immediate: "Reply available to {opponent}: {action}, with a {motif}.",
+    allowed_possible:
+      "Potential resource for {opponent}: a {motif}. Its occurrence depends on the replies.",
+    missed_immediate: "Unplayed option: {best}. That would leave a {motif}.",
+    missed_possible: "Unplayed option: {best}. A {motif} is possible, depending on the replies.",
+  },
+  fork: {
+    actual: "Attacked together: the {targets}.",
+    possible: "Potential simultaneous targets: the {targets}.",
+  },
+  material: "Possible result: a {gain}. Both sides' follow-up choices still matter.",
+  capture: {
+    candidate: "Capture available: {capture} would take a {piece}.",
+    followup: "Possible follow-up: {capture}, taking a {piece}.",
+  },
+  playedCapture: {
+    fact: "Pattern associated with {move}: a {motif}.",
+    consequence: "Capture completed: {capture} takes a {piece}.",
+  },
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const robotOpeningTemplates = {
+  "book-opening-entry-1": ["Opening match: {opening}."],
+  "book-opening-entry-2": ["This move is in the opening record: {opening}."],
+  "book-opening-entry-3": ["Recognized opening move. The entry is {opening}."],
+  "book-opening-follow-1": ["Another opening match: {opening}."],
+  "book-opening-follow-2": ["Sequence status: recognized. Current entry: {opening}."],
+  "book-opening-follow-3": ["Opening recognition continues here: {opening}."],
+  "book-opening-follow-4": ["Next reviewed move, another match: {opening}."],
+  "book-opening-follow-5": ["Recorded opening move confirmed: {opening}."],
+  "book-opening-follow-6": ["This move also matches the opening record: {opening}."],
+  "book-opening-follow-7": ["The sequence continues through a recognized move in {opening}."],
+  "book-opening-follow-8": ["Opening match maintained with this move: {opening}."],
+} as const;
+
+export const robot = coachPersonality({
+  version: "robot-3",
+  maxCharacters: 270,
+  maxClaims: 2,
+  delivery: { pace: "steady", energy: "quiet" },
   behavior: {
-    general: "pattern-first", praise: "pattern-first", correction: "pattern-first",
-    questionFrequency: "none", directness: 5, emotionalAmplitude: 2,
-    humor: 3, jargon: 4, playerAddress: "none", sentenceLength: "short",
-    metaphor: "none", signature: "Label the issue, distinguish its cause, and give the verified result.",
+    general: "pattern-first",
+    praise: "pattern-first",
+    correction: "pattern-first",
+    questionFrequency: "none",
+    directness: 5,
+    emotionalAmplitude: 2,
+    humor: 3,
+    jargon: 4,
+    playerAddress: "none",
+    sentenceLength: "short",
+    metaphor: "none",
+    signature: "Label the issue, distinguish its cause, and give the verified result.",
   },
   bible: {
-    temperament: "Literal, orderly and unembarrassed by understatement; certainty is bounded by the evidence.",
-    teaching: "Keep issue, mechanism and result separate. A label is useful only when it organizes a supported fact.",
+    temperament:
+      "Literal, orderly and unembarrassed by understatement; certainty is bounded by the evidence.",
+    teaching:
+      "Keep issue, mechanism and result separate. A label is useful only when it organizes a supported fact.",
     rhythm: "Compact labeled clauses; unadorned sentences when no distinction needs labeling.",
     celebration: "Specific confirmation of a completed task. Correctness is enough celebration.",
     correction: "Identify the failed condition without blaming the person who chose the move.",
-    avoid: "No beep-boop, binary jokes, fake numeric precision, raw engine dumps, human mind-reading, or invented diagnostic causes.",
+    avoid:
+      "No beep-boop, binary jokes, fake numeric precision, raw engine dumps, human mind-reading, or invented diagnostic causes.",
   },
   templates: {
     ...robotTacticalTemplates,
     ...robotOpeningTemplates,
-    allowed_mate: [{fact: "Issue: forced checkmate for {opponent}.", consequence: "{reply}"}],
-    missed_mate: [{fact: "Available finish: {best}, retaining forced mate.", consequence: "Result of this move: that mate is lost."}],
-    tactic_played: [{fact: "Pattern in the searched continuation: {motif}. Move: {move}.", consequence: "{detail}"}],
-    tactic_allowed: [{fact: "Issue: {opponent} has a {motif} in the strongest continuation.", consequence: "{detail}"}],
-    tactic_missed: [{fact: "Missed pattern in the continuation: {motif}. Available move: {best}.", consequence: "{detail}"}],
-    cause_abandoned_defender: [{fact: "Cause: {move} removes the only unpinned defender of {side}'s {piece} on {square}.", consequence: "Result: {opponent} can reply {reply}, capturing it."}],
-    cause_opponent_threat_recognition: [{fact: "Issue: {move} leaves {side}'s {piece} on {square} under the attack enabled by the opponent's preceding move.", consequence: "Result: {opponent} can reply {reply}, capturing it."}],
-    cause_avoiding_bad_trades: [{fact: "Exchange: {move} gives up {side}'s {piece} for a {captured}.", consequence: "Result: {opponent} can recapture with {reply}."}],
+    allowed_mate: [{ fact: "Issue: forced checkmate for {opponent}.", consequence: "{reply}" }],
+    missed_mate: [
+      {
+        fact: "Available finish: {best}, retaining forced mate.",
+        consequence: "Result of this move: that mate is lost.",
+      },
+    ],
+    tactic_played: [
+      {
+        fact: "Pattern in the searched continuation: {motif}. Move: {move}.",
+        consequence: "{detail}",
+      },
+    ],
+    tactic_allowed: [
+      {
+        fact: "Issue: {opponent} has a {motif} in the strongest continuation.",
+        consequence: "{detail}",
+      },
+    ],
+    tactic_missed: [
+      {
+        fact: "Missed pattern in the continuation: {motif}. Available move: {best}.",
+        consequence: "{detail}",
+      },
+    ],
+    cause_abandoned_defender: [
+      {
+        fact: "Cause: {move} removes the only unpinned defender of {side}'s {piece} on {square}.",
+        consequence: "Result: {opponent} can reply {reply}, capturing it.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        fact: "Issue: {move} leaves {side}'s {piece} on {square} under the attack enabled by the opponent's preceding move.",
+        consequence: "Result: {opponent} can reply {reply}, capturing it.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        fact: "Exchange: {move} gives up {side}'s {piece} for a {captured}.",
+        consequence: "Result: {opponent} can recapture with {reply}.",
+      },
+    ],
     sacrifice: ["Sacrifice checked. Acceptance does not refute it in the searched line."],
     only_move: ["Playable searched choices: this move only. The alternatives lose."],
     decisive_resource: ["Decisive advantage retained by this searched move only."],
@@ -40,33 +129,58 @@ export const robot: CoachPersonality = {
     best: ["Strong choice. The evaluation supports it."],
     good: ["Sound choice. Most of the position's evaluated value is retained."],
     uncertain_reason: ["Preferred move: {best}. Supported explanation: unavailable."],
-    human_natural_error: [{fact: "Human-model signal: natural choice.", consequence: "Objective result: mistake. The reply is costly."}],
+    human_natural_error: [
+      {
+        fact: "Human-model signal: natural choice.",
+        consequence: "Objective result: mistake. The reply is costly.",
+      },
+    ],
     human_rare: ["Human-model signal: unusual. Engine assessment: strong. No contradiction."],
     human_challenging: ["Move: {best}. Difficulty: hard to find."],
-    difficult_defense: ["Missed defense: {best}, which would have held the position. Difficulty: hard to find."],
-    human_defense_found: ["Defense found: {best}. Result: position held. Difficulty: hard to find."],
+    difficult_defense: [
+      "Missed defense: {best}, which would have held the position. Difficulty: hard to find.",
+    ],
+    human_defense_found: [
+      "Defense found: {best}. Result: position held. Difficulty: hard to find.",
+    ],
     human_natural_best: ["Human-model signal: natural. Engine comparison: best move."],
     human_natural_strong: ["Human-model signal: natural. Engine assessment: strong."],
     book: ["Opening record matched: {opening}."],
     book_sound: ["Known sequence: {opening}."],
     departure: ["Opening record no longer matched from this move."],
-    recovery: ["Recovery reference: {earlier}. Current result: a playable position is restored.{help}"],
+    recovery: [
+      "Recovery reference: {earlier}. Current result: a playable position is restored.{help}",
+    ],
     punishment: ["Opportunity reference: {earlier}. This move uses the chance given to {side}."],
-    missed_punishment: ["Opportunity reference: {earlier}. This move misses the chance given to {side}."],
+    missed_punishment: [
+      "Opportunity reference: {earlier}. This move misses the chance given to {side}.",
+    ],
     repeated: ["Repeated issue: {motif}. Occurrences in the reviewed game segment: {count}."],
     history: ["Matching issue: {motif}. Additional saved games containing it: {games}."],
     development: ["{lead}develops the {piece} from its original square. Change recorded."],
-    support_restored: ["Support reference: {earlier}, where the {piece} was left unguarded. Current status: defended again."],
-    erosion: ["Trend since {earlier}: several small concessions. Combined result: a worse position. This move is one of them."],
+    support_restored: [
+      "Support reference: {earlier}, where the {piece} was left unguarded. Current status: defended again.",
+    ],
+    erosion: [
+      "Trend since {earlier}: several small concessions. Combined result: a worse position. This move is one of them.",
+    ],
     conversion: ["Advantage reference: {earlier}. Result: {side} retained it through the win."],
     rook_file: ["Rook status: {kind} {file}-file. {lead}leaves {side}'s rook there."],
-    passed: ["{lead}leaves {side} with passed pawns on {squares}. Verification: no enemy pawn ahead on those or neighboring files."],
+    passed: [
+      "{lead}leaves {side} with passed pawns on {squares}. Verification: no enemy pawn ahead on those or neighboring files.",
+    ],
     passer_advance: ["{lead}advances the passed pawn to {square}. Distance to promotion: reduced."],
-    isolated: ["{lead}leaves {side}'s pawns on {squares} isolated. Neighboring files: no friendly pawn."],
-    flights: ["{lead}opens {squares} as a legal flight square for the king. Escape route: available."],
+    isolated: [
+      "{lead}leaves {side}'s pawns on {squares} isolated. Neighboring files: no friendly pawn.",
+    ],
+    flights: [
+      "{lead}opens {squares} as a legal flight square for the king. Escape route: available.",
+    ],
     castle: ["{lead}castles the king to {square}. Rook relocated within the same move."],
     support: ["{lead}adds support to the {piece} on {square}."],
-    unsupported: ["{lead}leaves the {piece} on {square} undefended. Loss is not established by that fact alone."],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} undefended. Loss is not established by that fact alone.",
+    ],
     bishops: ["{lead}removes {side}'s opposite-colored bishop pair."],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}."],
     mate_win: ["Checkmate confirmed. Opposing king: no legal escape. Attack complete."],
@@ -84,4 +198,4 @@ export const robot: CoachPersonality = {
     variation: ["Alternative-line result: {detail}"],
     compatibility: ["Status: {detail}"],
   },
-};
+});

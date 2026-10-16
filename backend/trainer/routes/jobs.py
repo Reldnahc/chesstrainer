@@ -20,7 +20,7 @@ def create_router(*, runner) -> APIRouter:
 
     @router.get("/api/jobs", response_model=list[Job], response_model_exclude_unset=True)
     def jobs(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             # Per-game analysis has its own summary below and the level fit shows in Play;
             # either would crowd out imports here.
             rows = db.scalars(
@@ -64,7 +64,7 @@ def create_router(*, runner) -> APIRouter:
 
     @router.get("/api/analysis/queue", response_model=AnalysisQueue)
     def analysis_queue(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             counts = {
                 (status, priority): count
                 for status, priority, count in db.execute(
@@ -113,22 +113,22 @@ def create_router(*, runner) -> APIRouter:
         "/api/jobs/{job_id}/cancel", response_model=JobStatus, response_model_exclude_unset=True
     )
     def cancel_job(workspace: CurrentWorkspace, job_id: str):
-        with workspace.sessions() as db:
+        with workspace.write() as db:
             job = require_job(db, job_id)
             job_lifecycle.request_cancel(job)
-            db.commit()
+            db.flush()
             return {"status": job.status}
 
     @router.post(
         "/api/jobs/{job_id}/retry", response_model=JobStatus, response_model_exclude_unset=True
     )
     def retry_job(workspace: CurrentWorkspace, job_id: str):
-        with workspace.sessions() as db:
+        with workspace.write() as db:
             job = require_job(db, job_id)
-            if job.kind not in JobKind:
+            if job.kind == JobKind.RETIRED:
                 raise Gone("This kind of job has been removed.")
             job_lifecycle.retry(job)
-            db.commit()
+            db.flush()
             return {"status": job.status}
 
     return router

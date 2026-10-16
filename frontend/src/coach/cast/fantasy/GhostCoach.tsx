@@ -8,9 +8,7 @@ import FantasyShell, { FantasyHead } from "./FantasyShell";
 export default function GhostCoach({ expression }: CoachArtworkProps) {
   const pose = animalPose(expression, false);
   const cut = useId();
-  const open = ["brilliant", "winning", "encouraging", "explaining"].includes(
-    expression,
-  );
+  const open = ["brilliant", "winning", "encouraging", "explaining"].includes(expression);
   const worried = expression === "blunder";
   const body = worried
     ? "M24 62V45q0-23 26-23t26 23v17q17-22 19-7 1 9-15 31l5 21q-8-6-14 5-11-7-20 3-9-9-20-3-7-9-17-5l6-21Q4 64 5 55q2-15 19 7Z"
@@ -30,8 +28,12 @@ export default function GhostCoach({ expression }: CoachArtworkProps) {
           {/* The upper half runs 2 units past the hem's pivot so the animated hem
               always lands on solid body: two clips meeting on one edge leave an
               anti-aliased seam the background shows through. */}
-          <clipPath id={`${cut}-upper`}><rect width="100" height="94" /></clipPath>
-          <clipPath id={`${cut}-lower`}><rect y="92" width="100" height="33" /></clipPath>
+          <clipPath id={`${cut}-upper`}>
+            <rect width="100" height="94" />
+          </clipPath>
+          <clipPath id={`${cut}-lower`}>
+            <rect y="92" width="100" height="33" />
+          </clipPath>
         </defs>
         {/* Translucency is applied once to the joined body, so the overlap is
             not denser than the rest of it. */}
@@ -79,19 +81,19 @@ export default function GhostCoach({ expression }: CoachArtworkProps) {
             mouthColor="#52647b"
             kind="watchful"
             speakingMouth={
-              <OrganicSpeechMouth x={50} y={60} width={14} height={11}
+              <OrganicSpeechMouth
+                x={50}
+                y={60}
+                width={14}
+                height={11}
                 palette={{ cavity: "#405267", outline: "#52647b" }}
-                teeth={false} tongue={false} />
+                teeth={false}
+                tongue={false}
+              />
             }
           />
         </g>
-        <path
-          d="M37 85q13 6 26 0"
-          fill="none"
-          stroke="#91b6b9"
-          strokeWidth="1"
-          opacity=".65"
-        />
+        <path d="M37 85q13 6 26 0" fill="none" stroke="#91b6b9" strokeWidth="1" opacity=".65" />
         {pose.paws === "chin" && (
           <path
             d="M74 90q-14 1-19-9-3-6 2-7 7 0 7 7"
@@ -104,12 +106,7 @@ export default function GhostCoach({ expression }: CoachArtworkProps) {
           <g>
             <path d="m29 87 21 3 21-3v18l-21 3-21-3Z" fill="#687c94" />
             <path d="m32 87 18 3 18-3v14l-18 3-18-3Z" fill="#e6e9d6" />
-            <path
-              d="M50 90v14m-14-12 9 2m10 0 9-2"
-              fill="none"
-              stroke="#a4b6b6"
-              strokeWidth="1"
-            />
+            <path d="M50 90v14m-14-12 9 2m10 0 9-2" fill="none" stroke="#a4b6b6" strokeWidth="1" />
           </g>
         )}
       </FantasyHead>

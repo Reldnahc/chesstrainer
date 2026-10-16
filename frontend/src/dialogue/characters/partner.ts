@@ -1,88 +1,298 @@
-import type {CoachPersonality} from "../personality";
-import {partnerTacticalTemplates} from "./scopedTactics";
-import {partnerOpeningTemplates} from "./openingSequence";
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
 
-export const partner: CoachPersonality = {
-  version: "partner-4", maxCharacters: 320, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
-  delivery: {pace: "steady", energy: "warm"},
-  behavior: {general: "question-first", praise: "observation-first", correction: "question-first",
-    questionFrequency: "occasional", directness: 2, emotionalAmplitude: 3, humor: 2, jargon: 2,
-    playerAddress: "occasional", sentenceLength: "connected", metaphor: "none",
-    signature: "Invite a real comparison between candidates, then answer it with the supported line."},
+export const partnerTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Test {move}, and a {motif} shows up straight away.",
+    played_possible: "{move} sets up a {motif} as a candidate idea, if the replies cooperate.",
+    allowed_immediate: "Try {action} for {opponent}, and a {motif} appears.",
+    allowed_possible:
+      "Later, {opponent} may get a {motif} as a candidate, should the replies cooperate.",
+    missed_immediate: "Put {best} on the board instead, and a {motif} is right there.",
+    missed_possible:
+      "{best} is a candidate worth testing: given suitable replies, a {motif} could follow.",
+  },
+  fork: {
+    actual: "Test it: one piece now hits the {targets} together.",
+    possible: "Run the line, and the {targets} would be attacked side by side from one piece.",
+  },
+  material:
+    "Run the experiment to the end and a {gain} may be the outcome, with choices for both sides along the way.",
+  capture: {
+    candidate: "Try {capture}, and a {piece} leaves the board.",
+    followup: "Should the replies go that route, {capture} may come next and collect a {piece}.",
+  },
+  playedCapture: {
+    fact: "Follow {move} through and a {motif} comes out of it.",
+    consequence: "Then {capture} wins a {piece}.",
+  },
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const partnerOpeningTemplates = {
+  "book-opening-entry-1": ["This candidate takes us into {opening}."],
+  "book-opening-entry-2": ["A candidate borrowed from {opening}."],
+  "book-opening-entry-3": ["There's an entry for this candidate in {opening}."],
+  "book-opening-follow-1": ["We're still exploring {opening}."],
+  "book-opening-follow-2": ["Here too, {opening} has the move ready."],
+  "book-opening-follow-3": ["Even the reply is a candidate {opening} already covers."],
+  "book-opening-follow-4": ["The {opening} line keeps unfolding."],
+  "book-opening-follow-5": ["{opening} already knows this one."],
+  "book-opening-follow-6": ["There's still more of {opening} to explore."],
+  "book-opening-follow-7": ["Back to {opening} for this one."],
+  "book-opening-follow-8": [
+    "Still {opening}. The book says where we are, not which candidate is strongest.",
+  ],
+} as const;
+
+export const partner = coachPersonality({
+  version: "partner-4",
+  maxCharacters: 320,
+  maxClaims: 2,
+  delivery: { pace: "steady", energy: "warm" },
+  behavior: {
+    general: "question-first",
+    praise: "observation-first",
+    correction: "question-first",
+    questionFrequency: "occasional",
+    directness: 2,
+    emotionalAmplitude: 3,
+    humor: 2,
+    jargon: 2,
+    playerAddress: "occasional",
+    sentenceLength: "connected",
+    metaphor: "none",
+    signature:
+      "Invite a real comparison between candidates, then answer it with the supported line.",
+  },
   bible: {
     temperament: "Curious collaborator who enjoys exploring candidate moves side by side.",
-    teaching: "Frame the position as candidates to test; compare them using a line the search already supports.",
-    rhythm: "An occasional genuine question that reveals the mechanism, the idea, then the comparison.",
-    celebration: "Celebrates unusual resources and imagination, without confusing rarity with quality.",
-    correction: "Exploratory: what changes with another candidate, never what the player should have thought.",
-    avoid: "Quiz-like fake questions, dogmatic certainty outside forced lines, invented intentions, encouraging unsound novelty, emotion that depends on which side moved, other coaches' sayings, or claims of naturalness or difficulty not made by the human-move model.",
+    teaching:
+      "Frame the position as candidates to test; compare them using a line the search already supports.",
+    rhythm:
+      "An occasional genuine question that reveals the mechanism, the idea, then the comparison.",
+    celebration:
+      "Celebrates unusual resources and imagination, without confusing rarity with quality.",
+    correction:
+      "Exploratory: what changes with another candidate, never what the player should have thought.",
+    avoid:
+      "Quiz-like fake questions, dogmatic certainty outside forced lines, invented intentions, encouraging unsound novelty, emotion that depends on which side moved, other coaches' sayings, or claims of naturalness or difficulty not made by the human-move model.",
   },
   templates: {
     ...partnerTacticalTemplates,
     ...partnerOpeningTemplates,
-    allowed_mate: [{question: "Which defense survives the strongest reply here?", fact: "None of them does now: the line is a forced mate for {opponent}.", consequence: "{reply}"}],
-    missed_mate: [{question: "What if we test the other candidate?", fact: "{best} forces mate, and this move lets that idea go untested."}],
-    tactic_played: [
-      {observation: "Here's an idea worth following.", fact: "Put {move} to the test, and the searched line shows a {motif}.", consequence: "{detail}"},
-      {fact: "Run {move} forward against the reply, and a {motif} comes out of it.", consequence: "{detail}"},
+    allowed_mate: [
+      {
+        question: "Which defense survives the strongest reply here?",
+        fact: "None of them does now: the line is a forced mate for {opponent}.",
+        consequence: "{reply}",
+      },
     ],
-    tactic_allowed: [{question: "What would we play from the other side?", fact: "Play the strongest line as {opponent}, and a {motif} turns up.", consequence: "{detail}"}],
-    tactic_missed: [{question: "What does the other candidate offer?", fact: "Set {best} beside this move, and a {motif} appears that this one doesn't have.", consequence: "{detail}"}],
-    cause_abandoned_defender: [{question: "What was this piece guarding before it moved?", fact: "Test {move}: the only unpinned defender of {side}'s {piece} on {square} wanders off to do something else.", consequence: "{opponent} can reply {reply}, taking it."}],
-    cause_opponent_threat_recognition: [{question: "What did the opponent's last move set up?", fact: "An attack on {side}'s {piece} on {square} came from the opponent's preceding move, and {move} leaves it standing.", consequence: "{opponent} can reply {reply}, taking it."}],
-    cause_avoiding_bad_trades: [{question: "How does the trade look one move later?", fact: "Count the trade after {move}: {side}'s {piece} goes, a {captured} comes back.", consequence: "{opponent} can recapture with {reply}."}],
-    sacrifice: [{question: "What if the opponent takes the offer?", fact: "Test acceptance as the candidate reply, and the searched line says the sacrifice survives it."}],
-    only_move: [{observation: "Not much room for other candidates here.", fact: "Line up the searched candidates, and the position stays playable through this one alone."}],
-    decisive_resource: ["Line up the searched candidates, and only this one keeps the decisive advantage."],
+    missed_mate: [
+      {
+        question: "What if we test the other candidate?",
+        fact: "{best} forces mate, and this move lets that idea go untested.",
+      },
+    ],
+    tactic_played: [
+      {
+        observation: "Here's an idea worth following.",
+        fact: "Put {move} to the test, and the searched line shows a {motif}.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "Run {move} forward against the reply, and a {motif} comes out of it.",
+        consequence: "{detail}",
+      },
+    ],
+    tactic_allowed: [
+      {
+        question: "What would we play from the other side?",
+        fact: "Play the strongest line as {opponent}, and a {motif} turns up.",
+        consequence: "{detail}",
+      },
+    ],
+    tactic_missed: [
+      {
+        question: "What does the other candidate offer?",
+        fact: "Set {best} beside this move, and a {motif} appears that this one doesn't have.",
+        consequence: "{detail}",
+      },
+    ],
+    cause_abandoned_defender: [
+      {
+        question: "What was this piece guarding before it moved?",
+        fact: "Test {move}: the only unpinned defender of {side}'s {piece} on {square} wanders off to do something else.",
+        consequence: "{opponent} can reply {reply}, taking it.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        question: "What did the opponent's last move set up?",
+        fact: "An attack on {side}'s {piece} on {square} came from the opponent's preceding move, and {move} leaves it standing.",
+        consequence: "{opponent} can reply {reply}, taking it.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        question: "How does the trade look one move later?",
+        fact: "Count the trade after {move}: {side}'s {piece} goes, a {captured} comes back.",
+        consequence: "{opponent} can recapture with {reply}.",
+      },
+    ],
+    sacrifice: [
+      {
+        question: "What if the opponent takes the offer?",
+        fact: "Test acceptance as the candidate reply, and the searched line says the sacrifice survives it.",
+      },
+    ],
+    only_move: [
+      {
+        observation: "Not much room for other candidates here.",
+        fact: "Line up the searched candidates, and the position stays playable through this one alone.",
+      },
+    ],
+    decisive_resource: [
+      "Line up the searched candidates, and only this one keeps the decisive advantage.",
+    ],
     reply_capture: ["Test {reply} as the reply, and {side}'s {piece} is lost to {opponent}."],
-    reply_check: ["Play out the reply {opponent} would choose, {reply}, and check arrives with it."],
-    alternative: ["Set {best} beside it as a candidate: the search gives it {evaluation} for the mover."],
-    loss: [{fact: "Compared with the top candidate, this one costs {loss} pawns of evaluation in the search.", question: "Where do the two lines part ways?"}],
-    best: [{fact: "A strong candidate: it stands up next to the engine's choices, and the alternatives searched add little more."}, {fact: "A strong candidate that keeps pace with the engine's own picks."}],
-    good: [{fact: "A workable candidate that keeps most of what the position has to offer."}],
-    uncertain_reason: ["{best} tests stronger in the search, but the reason hasn't shown itself yet. Let's leave that comparison open rather than guess."],
-    human_natural_error: [{question: "Why does the tempting candidate go wrong?", fact: "The human-move model rates it natural, and the reply is where it starts to cost."}],
-    human_rare: ["Rare by the human-move model's estimate, this candidate is still sound once the engine replies. That's a comparison worth exploring."],
-    human_challenging: [{fact: "{best} is a candidate the human-move model rarely picks.", takeaway: "Set it up on the board and test the reply."}],
-    difficult_defense: ["Try {best} as a candidate: it would have held, and the human-move model rarely picks that defense."],
-    human_defense_found: [{fact: "{best} kept the position together, a defense the human-move model rarely picks.", observation: "A resource worth exploring further."}],
-    human_natural_best: ["The intuitive move wins the comparison, expected by the human-move model and unbeaten in the search."],
-    human_natural_strong: ["A candidate the human-move model expects and the engine rates strong, while the engine itself would test a different one first."],
+    reply_check: [
+      "Play out the reply {opponent} would choose, {reply}, and check arrives with it.",
+    ],
+    alternative: [
+      "Set {best} beside it as a candidate: the search gives it {evaluation} for the mover.",
+    ],
+    loss: [
+      {
+        fact: "Compared with the top candidate, this one costs {loss} pawns of evaluation in the search.",
+        question: "Where do the two lines part ways?",
+      },
+    ],
+    best: [
+      {
+        fact: "A strong candidate: it stands up next to the engine's choices, and the alternatives searched add little more.",
+      },
+      { fact: "A strong candidate that keeps pace with the engine's own picks." },
+    ],
+    good: [{ fact: "A workable candidate that keeps most of what the position has to offer." }],
+    uncertain_reason: [
+      "{best} tests stronger in the search, but the reason hasn't shown itself yet. Let's leave that comparison open rather than guess.",
+    ],
+    human_natural_error: [
+      {
+        question: "Why does the tempting candidate go wrong?",
+        fact: "The human-move model rates it natural, and the reply is where it starts to cost.",
+      },
+    ],
+    human_rare: [
+      "Rare by the human-move model's estimate, this candidate is still sound once the engine replies. That's a comparison worth exploring.",
+    ],
+    human_challenging: [
+      {
+        fact: "{best} is a candidate the human-move model rarely picks.",
+        takeaway: "Set it up on the board and test the reply.",
+      },
+    ],
+    difficult_defense: [
+      "Try {best} as a candidate: it would have held, and the human-move model rarely picks that defense.",
+    ],
+    human_defense_found: [
+      {
+        fact: "{best} kept the position together, a defense the human-move model rarely picks.",
+        observation: "A resource worth exploring further.",
+      },
+    ],
+    human_natural_best: [
+      "The intuitive move wins the comparison, expected by the human-move model and unbeaten in the search.",
+    ],
+    human_natural_strong: [
+      "A candidate the human-move model expects and the engine rates strong, while the engine itself would test a different one first.",
+    ],
     book: ["The name for this line is {opening}."],
-    book_sound: ["Here the candidate comes from {opening}.", "The opening catalogue already includes this line, {opening}."],
+    book_sound: [
+      "Here the candidate comes from {opening}.",
+      "The opening catalogue already includes this line, {opening}.",
+    ],
     departure: ["Our catalogued line stops here, and the exploring starts."],
-    recovery: [{fact: "Set this beside the error at {earlier}: the game is back to a playable position.{help}"}],
-    punishment: ["Compare with what happened at {earlier}: this candidate makes use of that chance for {side}."],
-    missed_punishment: ["The chance handed to {side} at {earlier} goes by here. Try the candidate that takes it."],
-    repeated: ["This {motif} issue has come up {count} times in the reviewed segment, which gives us a comparison to study."],
-    history: ["{games} other saved games share this {motif} issue, so there are more positions to set side by side."],
-    support_restored: ["Compare the {piece} with how it stood at {earlier}: unguarded then, defended again now."],
-    erosion: ["Put this position next to the one at {earlier}. Small concessions, this one included, have added up to make it worse."],
-    conversion: ["Trace it from {earlier} onward: {side} held on to the advantage all the way to the win."],
-    development: [{fact: "{lead}develops the {piece}, one more piece ready to join the plans."}],
+    recovery: [
+      {
+        fact: "Set this beside the error at {earlier}: the game is back to a playable position.{help}",
+      },
+    ],
+    punishment: [
+      "Compare with what happened at {earlier}: this candidate makes use of that chance for {side}.",
+    ],
+    missed_punishment: [
+      "The chance handed to {side} at {earlier} goes by here. Try the candidate that takes it.",
+    ],
+    repeated: [
+      "This {motif} issue has come up {count} times in the reviewed segment, which gives us a comparison to study.",
+    ],
+    history: [
+      "{games} other saved games share this {motif} issue, so there are more positions to set side by side.",
+    ],
+    support_restored: [
+      "Compare the {piece} with how it stood at {earlier}: unguarded then, defended again now.",
+    ],
+    erosion: [
+      "Put this position next to the one at {earlier}. Small concessions, this one included, have added up to make it worse.",
+    ],
+    conversion: [
+      "Trace it from {earlier} onward: {side} held on to the advantage all the way to the win.",
+    ],
+    development: [{ fact: "{lead}develops the {piece}, one more piece ready to join the plans." }],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file."],
-    passed: ["{lead}leaves {side} with passed pawns on {squares}, pawns that nothing from the enemy's pawns can block or capture on the way."],
+    passed: [
+      "{lead}leaves {side} with passed pawns on {squares}, pawns that nothing from the enemy's pawns can block or capture on the way.",
+    ],
     passer_advance: ["{lead}pushes the passed pawn, which now stands on {square}."],
-    isolated: ["{lead}leaves {side} with isolated pawns on {squares}, since neither neighboring file has a friendly pawn."],
+    isolated: [
+      "{lead}leaves {side} with isolated pawns on {squares}, since neither neighboring file has a friendly pawn.",
+    ],
     support: ["{lead}gives the {piece} on {square} a defender to lean on."],
-    unsupported: ["{lead}leaves the {piece} on {square} without a defender. Whether that means it can be lost is a question for further testing."],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} without a defender. Whether that means it can be lost is a question for further testing.",
+    ],
     flights: ["{lead}adds {squares} to the king's legal escape squares."],
     castle: ["{lead}castles: king to {square}, and its rook comes along to the inside."],
-    bishops: ["{lead}takes {side}'s bishop pair apart, leaving only one square color covered by a bishop."],
+    bishops: [
+      "{lead}takes {side}'s bishop pair apart, leaving only one square color covered by a bishop.",
+    ],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}."],
-    mate_win: [{fact: "This line finishes in checkmate, every escape for the opposing king closed.", takeaway: "We can go back and see how the finish was built."}],
-    mate_loss: [{fact: "Checkmate against your king, which has nowhere left to run.", takeaway: "Let's test a different candidate earlier in the defense."}],
-    draw: ["A draw. The earlier candidates are still open for exploring.", "This one ends drawn; we can test how other choices would have changed that."],
-    retry: [{fact: "That candidate falls short. Pick another one and compare the reply."}],
-    recovered: [{fact: "{detail}", observation: "This time the idea survives the test."}],
-    accepted: [{fact: "{detail}", takeaway: "Keep that comparison handy."}],
-    explanation: [{question: "What changes as the line plays out?", fact: "{detail}"}],
+    mate_win: [
+      {
+        fact: "This line finishes in checkmate, every escape for the opposing king closed.",
+        takeaway: "We can go back and see how the finish was built.",
+      },
+    ],
+    mate_loss: [
+      {
+        fact: "Checkmate against your king, which has nowhere left to run.",
+        takeaway: "Let's test a different candidate earlier in the defense.",
+      },
+    ],
+    draw: [
+      "A draw. The earlier candidates are still open for exploring.",
+      "This one ends drawn; we can test how other choices would have changed that.",
+    ],
+    retry: [{ fact: "That candidate falls short. Pick another one and compare the reply." }],
+    recovered: [{ fact: "{detail}", observation: "This time the idea survives the test." }],
+    accepted: [{ fact: "{detail}", takeaway: "Keep that comparison handy." }],
+    explanation: [{ question: "What changes as the line plays out?", fact: "{detail}" }],
     explanation_summary: ["Here's what the comparison shows: {detail}"],
-    cold: [{fact: "Pick a candidate to test on the board."}],
-    thinking: [{fact: "Running this candidate against the best reply…"}],
-    unavailable: [{fact: "Without a reliable engine result, this idea stays unconfirmed.", takeaway: "Feel free to test candidates on the board anyway."}],
-    practice_error: ["That candidate came back without a result. Try it again before drawing any conclusion."],
+    cold: [{ fact: "Pick a candidate to test on the board." }],
+    thinking: [{ fact: "Running this candidate against the best reply…" }],
+    unavailable: [
+      {
+        fact: "Without a reliable engine result, this idea stays unconfirmed.",
+        takeaway: "Feel free to test candidates on the board anyway.",
+      },
+    ],
+    practice_error: [
+      "That candidate came back without a result. Try it again before drawing any conclusion.",
+    ],
     variation: ["For this experiment: {detail}"],
     compatibility: ["For the comparison, the available explanation is this: {detail}"],
   },
-};
+});

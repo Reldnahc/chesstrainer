@@ -2,6 +2,7 @@ import Button from "../Button";
 import Notice from "../Notice";
 import Reveal from "../Reveal";
 import type { Game } from "./types";
+import { plural, pluralWord } from "../format";
 
 type ReviewProgressProps = {
   game: Game;
@@ -27,15 +28,14 @@ function progressSection({
 }: ReviewProgressProps) {
   const refining = game.job?.phase === "refinement";
   // The session keeps polling background refinement; interruptions still expose recovery.
-  if (!game.job?.error && (game.job?.status === "completed" || (refining && running)))
-    return null;
+  if (!game.job?.error && (game.job?.status === "completed" || (refining && running))) return null;
   // A shared game shows where its owner's review stands, without owner controls.
   if (game.read_only)
     return (
       <section className="game-progress" aria-label="Review progress">
         <p role="status">
           {running && game.job
-            ? `Review in progress: ${refining ? `${game.job.refinement_completed}/${game.job.refinement_total} positions investigated` : `${game.job.completed}/${game.job.total} moves reviewed`}`
+            ? `Review in progress: ${refining ? `${game.job.refinement_completed}/${game.job.refinement_total} ${pluralWord(game.job.refinement_total, "position")} investigated` : `${game.job.completed}/${game.job.total} ${pluralWord(game.job.total, "move")} reviewed`}`
             : "This game's review isn't finished yet."}
         </p>
       </section>
@@ -47,17 +47,22 @@ function progressSection({
           <div className="row-between">
             <span>
               {refining && game.job
-                ? `${game.job.refinement_completed}/${game.job.refinement_total} positions investigated`
+                ? `${game.job.refinement_completed}/${game.job.refinement_total} ${pluralWord(game.job.refinement_total, "position")} investigated`
                 : game.job
-                  ? `${game.job.completed}/${game.job.total} moves reviewed`
-                  : `${game.frames.length - 1} moves to review`}
+                  ? `${game.job.completed}/${game.job.total} ${pluralWord(game.job.total, "move")} reviewed`
+                  : `${plural(game.frames.length - 1, "move")} to review`}
             </span>
             {running ? (
               <Button size="compact" disabled={busy || game.job?.cancel_requested} onClick={cancel}>
                 Pause review
               </Button>
             ) : (
-              <Button size="compact" variant="primary" disabled={busy || reviewStarting} onClick={start}>
+              <Button
+                size="compact"
+                variant="primary"
+                disabled={busy || reviewStarting}
+                onClick={start}
+              >
                 {reviewStarting
                   ? "Starting review…"
                   : !game.job || game.job.status === "failed"
@@ -76,7 +81,9 @@ function progressSection({
           {running && (
             <p role="status">
               {game.job?.cancel_requested
-                ? refining ? "Pausing investigation…" : "Finishing active moves…"
+                ? refining
+                  ? "Pausing investigation…"
+                  : "Finishing active moves…"
                 : game.job?.status === "queued"
                   ? "Review queued. You can explore while you wait."
                   : refining
@@ -86,7 +93,13 @@ function progressSection({
           )}
         </>
       )}
-      <Reveal>{game.job?.error && <Notice announcement="alert" tone="error" appearance="inline" className="small">{game.job.error}</Notice>}</Reveal>
+      <Reveal>
+        {game.job?.error && (
+          <Notice announcement="alert" tone="error" appearance="inline" className="small">
+            {game.job.error}
+          </Notice>
+        )}
+      </Reveal>
     </section>
   );
 }

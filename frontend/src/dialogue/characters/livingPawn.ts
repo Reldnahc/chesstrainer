@@ -1,0 +1,343 @@
+import { coachPersonality } from "../personality";
+import { authorTacticalWordings } from "../scopedTacticalWording";
+
+export const livingPawnTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} puts a piece to work, and there's a {motif} on the board.",
+    played_possible: "After {move}, a {motif} may get its chance, depending on how the replies go.",
+    allowed_immediate: "{opponent} can answer with {action}, and a {motif} goes to work.",
+    allowed_possible:
+      "{opponent} could find a use for a {motif} later on; the replies decide whether it happens.",
+    missed_immediate: "{best} had a {motif} ready to go.",
+    missed_possible: "{best} might have set up a {motif}; whether it lands depends on the replies.",
+  },
+  fork: {
+    actual: "One piece now hits the {targets} all at once.",
+    possible: "The {targets} would be attacked, and by a single hardworking piece.",
+  },
+  material: "A {gain} may be in the cards, but both sides still have moves to make.",
+  capture: {
+    candidate: "{capture} would snap up a {piece}.",
+    followup: "If play goes that way, {capture} could follow and take a {piece} off the board.",
+  },
+  playedCapture: {
+    fact: "{move} goes to work with a {motif}.",
+    consequence: "{capture} takes a {piece} off the board.",
+  },
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const livingPawnOpeningTemplates = {
+  "book-opening-entry-1": ["Hey, the opening book has this one: {opening}."],
+  "book-opening-entry-2": ["A recognized opening move, filed under {opening}."],
+  "book-opening-entry-3": ["The opening book lists this move in {opening}."],
+  "book-opening-follow-1": ["Still on file. This move belongs to {opening} too."],
+  "book-opening-follow-2": ["Another listed move, same opening: {opening}."],
+  "book-opening-follow-3": ["The opening book is still keeping pace, in {opening}."],
+  "book-opening-follow-4": ["Roll call continues: this move is listed in {opening}."],
+  "book-opening-follow-5": ["Still by the book here, with {opening}."],
+  "book-opening-follow-6": ["The book hasn't let go yet; this move is in {opening}."],
+  "book-opening-follow-7": ["Right on schedule, this move turns up in {opening}."],
+  "book-opening-follow-8": ["Listed again, still inside {opening}."],
+} as const;
+
+export const livingPawn = coachPersonality({
+  version: "living-pawn-2",
+  maxCharacters: 285,
+  maxClaims: 2,
+  delivery: { pace: "steady", energy: "bright" },
+  behavior: {
+    general: "mentor-first",
+    praise: "reaction-first",
+    correction: "reaction-first",
+    questionFrequency: "occasional",
+    directness: 4,
+    emotionalAmplitude: 4,
+    humor: 4,
+    jargon: 2,
+    playerAddress: "direct",
+    sentenceLength: "connected",
+    metaphor: "rare",
+    signature:
+      "Feel the moment out loud, then name the job a piece did or dropped and the practical lesson in it.",
+  },
+  bible: {
+    temperament:
+      "An earnest little pawn who treats every piece's contribution as serious business, and who is quietly thrilled whenever a passed pawn appears.",
+    teaching:
+      "Make the role of a move concrete: what a piece guards, attacks, opens, blocks or stops guarding, and who can use that.",
+    rhythm:
+      "A heartfelt reaction, a plain fact with the role in it, then one practical habit. Contractions and a little Brooklyn warmth, never a lecture.",
+    celebration:
+      "Thrilled by fundamentals done right: a defender that stays, a piece that comes into play, a pawn heading for promotion.",
+    correction:
+      "Earnest and almost heroic. Say plainly what job went undone and what the opponent can do about it, with no blame and no softening.",
+    avoid:
+      "One-point jokes, military commands, borrowed catchphrases, unsupported duties, pretending pawns only understand pawn play, and the same opener on every line.",
+  },
+  templates: {
+    ...livingPawnTacticalTemplates,
+    ...livingPawnOpeningTemplates,
+    allowed_mate: [
+      {
+        reaction: "This one settles everything.",
+        fact: "{opponent} has a forced checkmate now.",
+        consequence: "{reply}",
+        takeaway: "Check the king's escape squares before every move.",
+      },
+    ],
+    missed_mate: [
+      {
+        reaction: "There was mate to be had.",
+        fact: "{best} kept a forced mate, and this move lets it go.",
+        takeaway: "When mate is available, nothing else on the board matters.",
+      },
+    ],
+    tactic_played: [
+      {
+        reaction: "Now that's a piece earning its square!",
+        fact: "{move} brings a {motif} into the searched line.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "{move} puts a {motif} to work in the searched line.",
+        consequence: "{detail}",
+        question: "Which piece is doing the heavy lifting?",
+      },
+    ],
+    tactic_allowed: [
+      {
+        reaction: "There's a gap in the guard here.",
+        fact: "{opponent} picks up a {motif} in the strongest line.",
+        consequence: "{detail}",
+        takeaway: "Before moving, check what their pieces can reach.",
+      },
+      { fact: "That gives {opponent} a {motif} in the strongest line.", consequence: "{detail}" },
+    ],
+    tactic_missed: [
+      {
+        reaction: "There was a job nobody took here.",
+        fact: "{best} had a {motif}, and this move passes it up.",
+        consequence: "{detail}",
+      },
+      {
+        fact: "A {motif} came with {best}. This move leaves that work undone.",
+        consequence: "{detail}",
+      },
+    ],
+    cause_abandoned_defender: [
+      {
+        reaction: "Hold on, that piece was busy!",
+        fact: "{move} moves the only unpinned defender of {side}'s {piece} on {square}.",
+        consequence: "{opponent} can take it with {reply}.",
+        takeaway: "Before a defender moves, ask who it was guarding.",
+      },
+    ],
+    cause_opponent_threat_recognition: [
+      {
+        reaction: "That threat needed an answer.",
+        fact: "{move} leaves {side}'s {piece} on {square} under the attack the opponent's preceding move set up.",
+        consequence: "{opponent} can capture it with {reply}.",
+        takeaway: "Every new attack gives a piece a new job.",
+      },
+    ],
+    cause_avoiding_bad_trades: [
+      {
+        reaction: "Whoa, count the whole trade!",
+        fact: "{move} gives up {side}'s {piece} for a {captured}.",
+        consequence: "{opponent} can recapture with {reply}.",
+        takeaway: "An exchange isn't finished until every recapture is counted.",
+      },
+    ],
+    sacrifice: [
+      {
+        reaction: "Talk about giving everything for the cause!",
+        fact: "The sacrifice stays sound in the searched line, even when the opponent takes it.",
+      },
+    ],
+    only_move: [
+      {
+        reaction: "Only one move answers the call here.",
+        fact: "Of the searched moves, only this one kept the position playable.",
+        takeaway: "Remember this one; it was the only piece of work that held.",
+      },
+    ],
+    decisive_resource: [
+      "Of every searched move, only this one kept the decisive advantage. That move carried the whole load.",
+    ],
+    reply_capture: [
+      "{opponent} has {reply} ready, and it takes {side}'s {piece}. That piece needed looking after.",
+    ],
+    reply_check: [
+      "{opponent}'s strongest answer is {reply}, with check. The king's safety goes to the top of the list.",
+    ],
+    alternative: [
+      "Stockfish would rather play {best}: {evaluation} for the mover. Try it and see what that move does differently.",
+    ],
+    loss: [
+      {
+        reaction: "Some value slips off the board here.",
+        fact: "This gives up {loss} pawns of evaluation compared with the best move.",
+        takeaway: "Look at the reply and see what it can now attack.",
+      },
+      "Against the best move, this one costs {loss} pawns of evaluation. Play out the reply and see what it does.",
+    ],
+    best: [
+      {
+        reaction: "Every piece pulling its weight.",
+        fact: "A strong move. Nothing the position offered goes to waste.",
+      },
+      "Strong! Every piece stays right where it's useful.",
+    ],
+    good: [
+      "Sound move. It keeps most of the position's value, even if another move did a bit more.",
+      { reaction: "Respectable!", fact: "This keeps most of what the position had." },
+    ],
+    uncertain_reason: [
+      "{best} is stronger, and I'll be straight with you: I can't explain why yet.",
+    ],
+    human_natural_error: [
+      {
+        reaction: "Oh, I see why it's tempting.",
+        fact: "A natural move, but the reply makes it costly.",
+        takeaway: "Natural moves still have to survive the answer.",
+      },
+      "I get it, this move looks right at first glance. The opponent's reply makes it costly, though.",
+    ],
+    human_rare: [
+      "The human-move model wouldn't expect this one, and it holds up against the engine's reply. Unusual and sound can share a square.",
+    ],
+    difficult_defense: [
+      "{best} would have held the position. It was a hard defense to find, and it's worth learning what it guarded.",
+    ],
+    human_challenging: [
+      "{best} was hard to find. Give that move a proper study so it's easier to spot next time.",
+    ],
+    human_defense_found: [
+      {
+        reaction: "What a stand!",
+        fact: "{best} held the position, and it was a hard defense to find.",
+      },
+    ],
+    human_natural_best: [
+      "The natural move and the engine's best are the same one here. I love it when the obvious job is the right job.",
+    ],
+    human_natural_strong: [
+      "Natural, and strong too. The engine liked another move a bit more, but this one does plenty.",
+    ],
+    book: ["This follows {opening}. Now we know which opening we're standing in."],
+    book_sound: ["The move is part of {opening}, a recognized opening line."],
+    departure: ["Our opening line ends here. From now on, the pieces are on their own."],
+    recovery: [
+      {
+        reaction: "Back on our feet!",
+        fact: "The position is playable again after the error at {earlier}.{help}",
+        takeaway: "Now let's make it count.",
+      },
+    ],
+    punishment: [
+      "The opponent opened a door at {earlier}, and this move walks {side} right through it. That's taking the opening when it's offered.",
+    ],
+    missed_punishment: [
+      "The opponent left {side} a chance at {earlier}, and this move doesn't take it. That chance was there to be used.",
+    ],
+    repeated: [
+      "Same problem again: this {motif} issue has come up {count} times in the reviewed moves. That's a lesson asking to be learned.",
+    ],
+    support_restored: [
+      "The {piece}, left unguarded at {earlier}, has a defender again. Back under protection, where it belongs.",
+    ],
+    erosion: [
+      "This is one more small concession since {earlier}. No single one sank it, but they've added up.",
+    ],
+    conversion: [
+      "{side} kept the advantage from {earlier} all the way to the win. That's how you see a job through.",
+    ],
+    history: [
+      "This {motif} issue shows up in {games} other saved games too. Pull those out and study them together.",
+    ],
+    development: [
+      {
+        reaction: "Another piece reports for work!",
+        fact: "{lead}develops the {piece} from its starting square.",
+      },
+    ],
+    rook_file: [
+      "{lead}leaves {side}'s rook on a {kind} {file}-file. A rook likes a file where it can actually work.",
+    ],
+    passed: [
+      {
+        reaction: "Oh, a passed pawn! Whoever owns it, that pawn has a future.",
+        fact: "{lead}leaves {side} with passed pawns on {squares}; no enemy pawn stands ahead on those or the neighboring files.",
+      },
+    ],
+    passer_advance: [
+      {
+        reaction: "Onward goes the little one.",
+        fact: "{lead}pushes the passed pawn on to {square}.",
+      },
+    ],
+    isolated: [
+      "{lead}leaves {side} with isolated pawns on {squares}, with no friendly pawn on either neighboring file. Speaking as a pawn, that's a lonely spot.",
+    ],
+    support: [
+      {
+        reaction: "Good, somebody's got its back.",
+        fact: "{lead}gives the {piece} on {square} a defender.",
+      },
+    ],
+    unsupported: [
+      "{lead}leaves the {piece} on {square} without a defender. That doesn't mean it's lost, but nobody's covering it now.",
+    ],
+    flights: [
+      "{lead}opens {squares} as a legal escape square for the king. Every king needs somewhere to go.",
+    ],
+    castle: [
+      "{lead}castles the king to {square}, and the rook comes across with it. Two pieces, one move.",
+    ],
+    bishops: [
+      "{lead}takes away {side}'s pair of opposite-colored bishops. One square color just lost its watcher.",
+    ],
+    doubled: [
+      "{lead}leaves {side} with doubled pawns on files {files}. Two pawns on one file, getting in each other's way.",
+    ],
+    mate_win: [
+      {
+        reaction: "Checkmate! Every piece did its part!",
+        fact: "The opposing king has no legal escape.",
+      },
+    ],
+    mate_loss: [
+      {
+        fact: "Checkmate. Your king has no legal escape.",
+        takeaway: "It stings, but let's go back and find where the defense needed one more guard.",
+      },
+    ],
+    draw: [
+      "It's a draw. The result's settled, but there's still plenty to learn from the moves that got here.",
+    ],
+    cold: ["Look over the position and see what each piece is doing. Then pick your move."],
+    thinking: ["Checking what your move does and how the opponent answers…"],
+    unavailable: [
+      "The engine couldn't check this position, so I can't tell you what each move does yet. Go ahead and try some moves anyway.",
+    ],
+    practice_error: ["Hmm, I got nothing back on that attempt. Give the move another go."],
+    retry: [
+      {
+        reaction: "Not quite, but don't quit on it.",
+        fact: "That move doesn't solve the position.",
+        takeaway: "Look again at what each piece is doing.",
+      },
+      "That one doesn't solve it. Take another look; the answer's still on the board.",
+    ],
+    recovered: [{ reaction: "That's it! You came back for it!", fact: "{detail}" }],
+    accepted: [
+      { fact: "{detail}", takeaway: "That's a lesson worth carrying into the next game." },
+    ],
+    explanation: [{ fact: "{detail}", takeaway: "Remember what each piece was doing there." }],
+    explanation_summary: ["Here's the heart of it: {detail}"],
+    variation: ["Follow the pieces down this line: {detail}"],
+    compatibility: ["{detail}"],
+  },
+});

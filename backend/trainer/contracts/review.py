@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import Field, JsonValue
+from pydantic import Field
 
 from trainer.chess_core import Candidate
 from trainer.contracts.common import Color, Contract, LegalMove, UciMove
@@ -75,8 +75,6 @@ class ReviewFeedback(Contract):
     source: str | None = None
     played_san: str | None = None
     candidates: list[Candidate] | None = None
-    # Historical evidence retains versioned JSON shapes.
-    facts: dict[str, JsonValue] | None = None
     opening: OpeningRecallContext | None = None
     continuations: list[OpeningContinuation] | None = None
     non_scheduling_reason: str | None = None

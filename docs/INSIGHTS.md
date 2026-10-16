@@ -8,16 +8,19 @@ including `?category=outcomes`, and `/games/insights` redirect without an extra
 history entry.
 
 **Insights → Overview** (`/insights`) summarizes patterns across the learner's
-saved games. It is read-only: `GET /api/insights` computes everything from saved
-PGNs and completed original-game reviews, stores nothing in the database and
-never starts Stockfish. Each game's facts are kept in memory per review revision,
-so a request replays only games whose review changed; filters are applied to
-those facts on every request. The cache holds at most 6,000 games across all
-accounts (`FACTS_CACHE_SIZE` in `routes/insights.py`): a reviewed 80-ply game's
-facts take about 17 KB, so it stays near 100 MB. A library larger than that
-replays only the games beyond the bound on each request (about 7 ms each); the
-games already cached are read before any new one is stored, so the new entries
-never evict games the same request still needs. Filters choose a speed (from the speeds present) and a
+saved games. `GET /api/insights` computes everything from saved PGNs and
+completed original-game reviews and never starts Stockfish. Each game's facts are
+replayed once and saved in `insight_facts`, compactly (about 1.7 KB for an 80-ply
+game), under a key of everything they are built from: the PGN, players, dates,
+learner colour, rating, the completed review's revision (which a saved report or
+an adopted refinement bumps), the python-chess and pydantic versions, and a digest
+of the application's code and bundled data, so an upgrade rebuilds them (the first
+Insights request after it replays the library once). A request reads the saved facts back and replays
+only games whose key changed or whose row cannot be read, saving rebuilt facts
+every 500 games. No library is replayed per request, the facts survive a restart,
+and nothing is held in memory between requests; each request still unpacks the
+library's facts while it summarizes them (about 15 KB per game). Filters are
+applied to those facts on every request. Filters choose a speed (from the speeds present) and a
 period (all time, 30, 90 or 365 days); weekday and time of day use the viewer's
 UTC offset.
 
@@ -47,14 +50,14 @@ ratings, so they never become a highest-rated win or a rating series point.
 | Leaving the book | The learner's own move that leaves the book for good (the move after the game's last catalogue move, the review's departure rule), counted as costly when it is a Mistake-sized loss (100 cp or more) or a Blunder. |
 | Clearly winning / lost | A learner-relative evaluation of ±300 cp or a forced mate at any ply. |
 | Where the win slipped | In clearly winning games not won, the ply after which the evaluation never returned to +300. |
-| Game shapes | One per reviewed game, in this order: let slip, comeback, stayed ahead (won, reached +150 and never back to 0 or below after that, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
+| Game shapes | One per reviewed game, in this order: let slip, comeback, stayed ahead (won, reached +150 and never back to 0 or below after that, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. A ±150 lead lies inside the review's "slightly better" band (beyond ±100, under ±200), so Insights never calls a side ahead where the review's evaluation reads Equal, and ±300 is the review's "winning". |
 | Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is usually higher than the volatility-weighted game accuracy, though not always, and is not a substitute for it. |
-| Phases | Six or fewer pieces besides kings and pawns is an endgame; moves 1–10 with more than ten pieces are the opening; otherwise middlegame. |
+| Phases | The shared phase rule that decision facts and puzzle themes use (`chess_core.game_phase`): 26 or fewer points of material on the board, counting pawns 1, knights and bishops 3, rooks 5 and queens 9, is an endgame; otherwise moves 1–10 are the opening and later moves the middlegame. |
 | Blunders | The game review's own Blunder rule (`blunder_kind`) with the same rating the review's badges use (`game_library.mover_rating`): the moving player's PGN rating, else the review's stored rating. |
 | After a loss | The next game when it started within 90 minutes of the previous one's start. Start times come from the PGN's `UTCDate`/`UTCTime`, since a synced game's saved time is when it ended. A rematch is that next game against the same opponent. |
 | Clock | `[%clk]` annotations through the shared clock facts. Time trouble is 30 s or less, or a tenth of the starting time, after a learner move. |
 | Mistakes and replies | A move losing 100 cp or more. The reply punishes it, or fails to, by keeping at least half of the evaluation swing, measured from the mistake's own search (its best move's score) as its loss is. |
-| Endgames | The class at the first endgame position: queen, rook or minor-piece endings have only that kind of piece besides kings and pawns, pawn endings none, and any other combination is mixed. Held when the result is at least as good as the evaluation of that position, before its first move (±300 cp). |
+| Endgames | The class at the first endgame position: queen, rook or minor-piece endings have only that kind of piece besides kings and pawns, pawn endings none, and any other combination is mixed. Held when the game is not lost and the result is at least as good as the evaluation of that position, before its first move (±300 cp); a loss from an endgame entered already lost is not held. |
 
 These are descriptions of saved evidence, not ratings of skill or mastery. No
 section presents a mastery score or diagnoses what the player was thinking.

@@ -53,7 +53,6 @@ def exercise_from_decision(db, decision, settings, scheduler):
         state = db.get(SRSState, exercise.id)
         if state is not None and not state.eligible:
             state.eligible = True
-            db.commit()
         return exercise
     analysis = db.get(EngineAnalysis, decision.before_analysis_id)
     candidates = [Candidate.model_validate(c) for c in analysis.candidates]
@@ -62,7 +61,7 @@ def exercise_from_decision(db, decision, settings, scheduler):
         source="game",
         decision_id=decision.id,
         fen=decision.fen,
-        orientation="white" if decision.learner_color else "black",
+        learner_color=decision.learner_color,
         explanation="Compare your choice with the verified continuation after answering.",
         policy=policy.model_dump(),
     )
@@ -80,7 +79,7 @@ def exercise_from_decision(db, decision, settings, scheduler):
             )
         )
     enroll(db, exercise, scheduler)
-    db.commit()
+    db.flush()
     return exercise
 
 
@@ -104,7 +103,7 @@ def manual_exercise(db, scheduler, fen, moves, orientation, explanation="", tags
         identity=identity,
         source="manual",
         fen=board.fen(),
-        orientation=orientation,
+        learner_color=orientation == "white",
         explanation=explanation,
         policy={"authority": "curated", "version": "1"},
     )
@@ -123,5 +122,5 @@ def manual_exercise(db, scheduler, fen, moves, orientation, explanation="", tags
     for tag in set(tags or []):
         db.add(ExerciseTag(exercise_id=exercise.id, tag=tag))
     enroll(db, exercise, scheduler)
-    db.commit()
+    db.flush()
     return exercise

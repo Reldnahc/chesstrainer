@@ -11,6 +11,7 @@ from sqlalchemy import func, select
 from trainer import job_lifecycle
 from trainer.authz import shared_links
 from trainer.chess_core import Score
+from trainer.classification_stages import line_parameters
 from trainer.contracts.common import JobStarted
 from trainer.contracts.games import (
     GameAnalysis,
@@ -22,12 +23,14 @@ from trainer.contracts.games import (
     ReviewRequest,
     VariationRequest,
 )
+from trainer.db import read_unit
 from trainer.game_accuracy import review_accuracy
 from trainer.game_analysis import DEFAULT_RATING, request_review
 from trainer.game_library import mover_rating, pgn_rating, time_control_label
 from trainer.game_review import (
     PROGRESS_KEYS,
     branch_board,
+    mate_horizon_limits,
     move_frames,
     parsed_game,
     position,
@@ -50,6 +53,7 @@ from trainer.review_intelligence.history import (
 )
 from trainer.review_intelligence.presentation import presented_review
 from trainer.review_reports import load_accuracy_scores
+from trainer.search_limits import DEEP
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -90,6 +94,9 @@ class GameView:
     def __init__(self, sessions, owned):
         self.sessions, self.owned = sessions, owned
 
+    def read(self):
+        return read_unit(self.sessions)
+
 
 def game_view(request: Request, game_id: str):
     app = request.app.state
@@ -125,7 +132,7 @@ def create_router(*, settings):
         offset: int = Query(0, ge=0),
         limit: int = Query(30, ge=1, le=100),
     ):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             rows = db.execute(
                 select(Game, AnalysisJob.status)
                 .outerjoin(GameReview, GameReview.game_id == Game.id)
@@ -150,7 +157,7 @@ def create_router(*, settings):
                         "white_rating": pgn_rating(headers, True),
                         "black_rating": pgn_rating(headers, False),
                         "learner_color": "white" if game.learner_color else "black",
-                        "played_on": game.played_on,
+                        "played_on": headers.get("Date"),
                         "played_at": game.played_at.isoformat() if game.played_at else None,
                         "result": headers.get("Result", "*"),
                         "time_control": time_control,
@@ -171,7 +178,7 @@ def create_router(*, settings):
     @router.get("/api/games/{game_id}/export", response_model=GameExport)
     def game_export(view: ViewedGame, game_id: str):
         # Only what export needs: no reports, review state or legal moves.
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             parsed = parsed_game(game)
             board = parsed.board()
@@ -195,7 +202,7 @@ def create_router(*, settings):
         response_model_exclude_unset=True,
     )
     def game_detail(view: ViewedGame, game_id: str):
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             parsed = parsed_game(game)
             board = parsed.board()
@@ -233,7 +240,7 @@ def create_router(*, settings):
                 "read_only": not view.owned,
                 "white": game.white,
                 "black": game.black,
-                "played_on": game.played_on,
+                "played_on": parsed.headers.get("Date"),
                 "result": parsed.headers.get("Result", "*"),
                 "orientation": "white" if game.learner_color else "black",
                 "rating": review.rating if review else DEFAULT_RATING,
@@ -263,7 +270,7 @@ def create_router(*, settings):
         after: int = Query(0, ge=0),
         after_revision: int | None = Query(None, ge=0),
     ):
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review is None:
@@ -317,7 +324,7 @@ def create_router(*, settings):
         "/api/games/{game_id}/review", response_model=JobStarted, response_model_exclude_unset=True
     )
     def begin_review(workspace: CurrentWorkspace, game_id: str, data: ReviewRequest):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             job = request_review(
                 db,
                 require_game(db, game_id),
@@ -326,7 +333,7 @@ def create_router(*, settings):
                 settings=settings,
                 human_models=workspace.human_models,
             )
-            db.commit()
+            db.flush()
             return {"job_id": job.id, "status": job.status}
 
     @shared_links.route(
@@ -336,7 +343,7 @@ def create_router(*, settings):
         response_model_exclude_unset=True,
     )
     def variation_position(view: ViewedGame, game_id: str, data: VariationRequest):
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
         san = None
@@ -355,7 +362,7 @@ def create_router(*, settings):
         view: ViewedGame, workspace: CurrentWorkspace, game_id: str, data: VariationRequest
     ):
         # Signed-in viewers may analyze a shared game; the engine runs as their account.
-        with view.sessions() as db:
+        with view.read() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
             parsed = parsed_game(game)
@@ -368,7 +375,7 @@ def create_router(*, settings):
             if not board.move_stack:
                 if board.is_game_over():
                     return {"report": None, "score": None, "best_move": None}
-                result = engine.analyze(board, deep=True, multipv=2)
+                result = engine.analyze(board, DEEP, multipv=2)
                 best = result.candidates[0]
                 score = Score.model_validate(best["score"])
                 return {
@@ -383,6 +390,8 @@ def create_router(*, settings):
                 parsed,
                 board,
                 fallback_rating=rating,
+                parameters=line_parameters(settings),
+                mate_limits=mate_horizon_limits(settings),
             )
             mover = not board.turn  # The side that made the analysed move.
             context = move_contexts(parsed).get(data.ply) if not data.moves else None

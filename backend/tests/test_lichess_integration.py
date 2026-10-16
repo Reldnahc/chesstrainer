@@ -15,8 +15,9 @@ def test_lichess_adds_pin_exploitation_without_requiring_capture_on_the_pinned_s
     # allowing the queen to use that square. Scores are synthetic contract data.
     payload = evidence(
         "4k3/4n3/8/r6r/8/7Q/8/4R1K1 w - - 0 1",
-        ["h3f5", "a5a8", "f5h5", "e8d8", "h5h3", "d8c7"],
-        ["h3g2", "e8d8", "g2f1", "d8c8"],
+        # Qxh5 wins the rook; Rxe7+ then takes the knight the king left behind.
+        ["h3f5", "a5a8", "f5h5", "e8d8", "h5h3", "d8c7", "e1e7", "c7d6", "e7e2", "d6c5"],
+        ["h3g2", "e8d8", "g2f1", "d8d7"],
         500,
         0,
         black,
@@ -34,7 +35,7 @@ def test_lichess_adds_pin_exploitation_without_requiring_capture_on_the_pinned_s
         mate_supported=False,
     )
     assert "pin" not in {item.skill_id for item in old}
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     pin = next(f for f in result.findings if f.skill_id == "pin")
     assert pin.rule_id.startswith("lichess:pin_prevents_attack:8d9faff6:")
     assert pin.frame_ply == 1 and pin.plies == [1]
@@ -56,6 +57,6 @@ def test_visible_double_check_is_recognized_without_claiming_a_verified_mistake(
     )
     raw = recognized_patterns(boards, 1, 1, "best", "missed_opportunity")
     assert any(f.skill_id == "double_attack" and f.rule_id.startswith("lichess:") for f in raw)
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     assert result.primary_skill == "unclassified"
     assert not result.findings and not result.outcomes

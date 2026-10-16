@@ -44,10 +44,13 @@ saved game then queues its own analysis job. See
 | accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`, `open-signups`, `close-signups`) |
 | site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
-| job_lifecycle.py | Job kinds and statuses as enums, the fetch lane, and every state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
-| jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution dispatched by kind |
+| cascade.py | What a delete takes with it, read from the models' foreign keys: an account's tables, and everything that refers to removed games (`scripts/clear_games.py`) |
+| job_kinds.py | Job kinds and statuses as enums, the values the `analysis_jobs` CHECK constraints accept; the API's `Job.kind` and `status` are typed from them |
+| job_lifecycle.py | The fetch lane and every job state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
+| jobs.py / job_queue.py / job_execution.py / job_context.py | Bounded host workers, scheduling metadata, account-bound job execution dispatched by kind, and the one context every job step receives |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback; `lan.py` holds the host-name and same-origin rules it shares with account mode |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
+| engine_pool.py / lazy_pool.py | The host-wide Stockfish budget leased per call, on the same lazily built pool, with one discard-when-broken rule, as job engines and the Maia workers |
 | human_models/ | Versioned human-policy contracts, domain provenance, a durable cache shared across accounts like the engine cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
 | routes/workspace.py | Health, effective settings, account-owned coach/interface preferences and statistics |
@@ -100,24 +103,24 @@ lock, while other accounts have independent locks.
 | Module in frontend/src | Responsibility |
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
-| Home.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
-| study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` are the administrator course tools under Settings → Courses |
+| HomeScreen.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
+| study/ | Study landing (`StudyHome.tsx`), Lessons sections (`LessonsScreen.tsx`: courses, opening catalogue and studies), the puzzle library (`PuzzleLibrary.tsx`), lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state. Each screen loads only what it shows. `CourseSettings.tsx` and `LessonEditor.tsx` (its sections in `lessonEditor/`) are the administrator course tools under Settings → Courses; the editor's live check (`course_files.check`) returns the first problem with its chapter and step location (course-file problems carry them on CourseFileError, the course record's own validation raises StepProblem); problems in lines, games or the course itself have none |
 | play/ | Play setup and live games against the coach's bot (`PlayScreen.tsx`, `PlayGame.tsx`, `usePlaySession.ts`), reusing the game review presentation |
-| Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
+| DueScreen.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
-| GameReview.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
-| Weaknesses.tsx / GameInsights.tsx | Insights page: shared section navigation (Overview / Weaknesses, with weakness categories as subsections); GameInsights renders the Overview panels over `/api/insights` with shared choices, statistics and load states |
+| GamesScreen.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
+| InsightsScreen.tsx / GameInsights.tsx | Insights page: shared section navigation (Overview / Weaknesses, with weakness categories as subsections); GameInsights renders the Overview panels over `/api/insights` with shared choices, statistics and load states |
 | ReviewCoach.tsx | Common portrait with optional caption, speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
 | gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
 | gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |
 | gameReview/useAnalysisRequests.ts | The analysis request core shared by game review and Play: serial queue, dedupe, cache, failures kept per key, and generation/mounted checks before sending |
 | gameReview/usePositionAnalysis.ts | Game review's use of that core: per-history keys and the browsing debounce |
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
-| Import.tsx | Import source selection, PGN form and job polling/actions |
-| useQuery.tsx / usePolling.ts / useDeadline.ts | Shared request lifecycles. `useQuery` loads, aborts and retries one screen request, and `QueryResult` shows loading, unavailable-with-Try-again or the data (a failed refresh keeps the data and shows an error banner), so a failed or pending load never reads as empty. `useCommand` runs one command at a time, aborted if the screen leaves. `usePolling` (import jobs, the analysis queue, provider statuses, Play's profile and game review progress) repeats a task one pass at a time, pauses in hidden tabs, backs off after failures, and lets an explicit refresh wait for the pass in flight. `useDeadline` is one timer to a deadline. Screens keep their own requests; only the lifecycle is shared |
+| ImportSettings.tsx | Import source selection, PGN form and job polling/actions |
+| useQuery.tsx / usePolling.ts / useDeadline.ts | Shared request lifecycles. `useQuery` loads, aborts and retries one screen request, and `QueryResult` shows loading, unavailable-with-Try-again or the data (a failed refresh keeps the data and shows an error banner), so a failed or pending load never reads as empty. `useCommand` runs one command at a time, aborted if the screen leaves, and `CommandError`/`QueryError` are the one way a failure is shown (see UI_COMPONENTS). `useSessionStart` starts and opens a study or Play session; `study/useStudySession.ts` is the lesson and puzzle session machine. `usePolledQuery` gives a polled request the same shape for QueryResult (import jobs, Play's profile). `usePolling` (the analysis queue, provider statuses, game review progress, and under usePolledQuery) repeats a task one pass at a time, pauses in hidden tabs, backs off after failures, and lets an explicit refresh wait for the pass in flight. `useDeadline` is one timer to a deadline. Screens keep their own requests; only the lifecycle is shared |
 | gameProviders.ts | The registered game providers, fetched once per page load for every screen that lists them, and `useServerDraft` for fields that follow the server until edited |
-| Settings.tsx / SettingsSection.tsx | URL-addressable Settings sections, shared section layout, account/preferences and classification job controls |
+| SettingsScreen.tsx / SettingsSection.tsx | URL-addressable Settings sections, shared section layout, account/preferences and classification job controls |
 | accountContext.ts | The signed-in account, guest and administrator hooks, with no UI imports, so preference hooks and development tools never pull in the sign-in screens. `AccountGate.tsx` provides the contexts and owns the sign-in, onboarding and forced password screens |
 | AccountSettings.tsx / AccountAdmin.tsx / ChangePasswordForm.tsx / accountFields.tsx | Settings → Account for members, the administrator account list, password changes (including the forced change after an administrator reset), and the shared username and new-password rules |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
@@ -134,7 +137,7 @@ lock, while other accounts have independent locks.
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Visually hidden page heading and the browser tab title (`usePageTitle`); App sets the route's fallback title first |
-| navigation.ts / Link.tsx | URL routing and normal anchor/modifier-click behavior. Every in-app address is built by a typed builder here (`gameReviewPath`, `settingsPath`, `focusedPracticePath`, `puzzleSourcePath`…). `parseScreen` turns an address into one `Screen` (a discriminated union) without touching history, and App picks the screen with an exhaustive switch. One store owns the history listeners whatever renders the route; `startRouter` rewrites old addresses once before the first render, and `useScrollRestoration` (App only) restores positions and follows a fresh link's anchor until the page settles. `useLeaveGuard` asks before a link, Back, Forward or reload leaves unsaved work: each entry records its place in the session, so a refused Back returns to the entry the reader was on. An unnumbered entry from an older build is placed by the Navigation API where the browser has it, otherwise by which end of the numbered run the step leaves; the first step after loading cannot tell and counts as Back, and a wrong first guess can misplace a later old entry on the other side (only a refused leave-guard step reads the number) |
+| navigation.ts / Link.tsx | URL routing and normal anchor/modifier-click behavior. Every in-app address is built by a typed builder here (`gameReviewPath`, `settingsPath`, `focusedPracticePath`, `puzzleSourcePath`…). `parseScreen` turns an address into one `Screen` (a discriminated union) without touching history, and App picks the screen with an exhaustive switch. One store owns the history listeners whatever renders the route; `startRouter` rewrites old addresses once before the first render, and `useScrollRestoration` (App only) restores positions and follows a fresh link's anchor until the page settles. `useLeaveGuard` asks before a link, Back, Forward or reload leaves unsaved work: each entry records its place (a number within a run of entries numbered one after another), so a refused Back or Forward returns to the entry the reader was on by the exact number of steps. Nothing is guessed: the Navigation API gives the distance where the browser has it; otherwise only two entries of the same run are compared. An entry from an older build reached without the Navigation API (stamped or not; a stateless entry counts as +1 only when this page just followed an in-page #fragment link), and every entry numbered before runs existed, has no known distance; it starts a run of its own, and a refused step onto it puts the guarded page back, at its current address, as a new entry after the one reached, with its unsaved work still on screen. That drops the entries that were ahead, the cost of never guessing |
 | api.ts / api.generated.ts | Same-origin typed OpenAPI client, authentication/error handling and generated request/response contracts |
 
 Existing Board, MoveStatus, ReviewExplanation, ProviderImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
@@ -149,15 +152,20 @@ development tool or a test fixture loads first fixes it. Every stylesheet wraps
 its rules in one of the layers:
 
 - `foundation`: `foundation.css` (tokens, fonts, element defaults and utilities).
-- `shell`: `base.css` (application chrome, `main`, `.panel` and phone typography).
-- `components`: every shared component's sheet, the coach artwork and the review
-  and coach presentation.
+- `shell`: `base.css` (application chrome, the page frame on `main.workspace-page` and
+  `main.review-page`, panel stacking and phone typography) and `panel.css` (the shared
+  `.panel` surface, which the audio studio loads too).
+- `components`: every shared component's sheet and the coach artwork.
 - `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,
-  the studios' and the lab's own sheets…).
-- `surfaces`: the phone surface policy (sections flatten; see
+  the studios' and the lab's own sheets…), and the review and coach presentation
+  (`review-presentation.css`, `coach-presentation.css`), which lay out the board
+  pages beside them.
+- `surfaces`: the phone surface policy (`panel.css`: sections flatten; see
   [UI components](UI_COMPONENTS.md#surfaces)), above every page so a page's own
   padding or border never undoes it. A page that divides flattened panels puts that
-  divider in this layer too (`game-insights.css`).
+  divider in this layer too (`game-insights.css`). The `.small` caption sits here as
+  well (`foundation.css`), so a caption overrides any page's or component's
+  paragraph type without `!important`.
 - `motion`: `interface-motion.css`, the Still policy over everything but coaches.
 
 A component's rule therefore beats the shell's at any specificity, and a page's
@@ -167,11 +175,12 @@ would beat every layer and is not allowed. `scripts/css-layers.mjs` (part of
 `npm run test:styles`) checks both.
 
 `styles.css` is the application stylesheet entry point. `foundation.css` owns
-shared fonts, tokens, element defaults and common form/surface utilities;
+shared fonts, tokens, element defaults (buttons are reset to bare elements; their
+look comes only from Button in `action-controls.css`) and common form/surface utilities;
 `base.css` owns application chrome and page-specific layout. `board.css` owns the shared
 board, legal-move markers, tactical highlights, rating animation and retry effects;
 `review-presentation.css` owns shared SRS/game workspace geometry, while
-`coach-presentation.css` owns the coach bubble, actions, evaluation and rating colors.
+`coach-presentation.css` owns the coach bubble, actions, evaluation and rating colors. Both sit in the `pages` layer, beside the board pages they lay out, so page sheets compete with them by specificity; page rules only place what these sheets style.
 SRS and game-specific panels live in `srs-review.css` and `game-review.css`.
 History, imports, account/sync forms and evidence each have their own stylesheet.
 Keep a component's normal and responsive rules together, with one block per
@@ -339,14 +348,14 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 
 ## Domain boundaries
 
-- chess_core.py: python-chess rules, legal-position identity, deterministic facts, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
+- chess_core.py: python-chess rules, legal-position identity, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
 - engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
 - policy.py: configurable move acceptance over verified scores.
 - play/bot.py / play/level.py / play/sessions.py: human-like move choice from the shared human policy with engine veto rules by rating, the measured level fit over imported games, and game-session state whose finished games are imported like any other game. See [Play](PLAY.md).
 - game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
 - review_cues.py: projects saved immediate witnesses into current-board arrows and square roles without new engine searches; skips later witnesses and checks attack geometry with python-chess. Cues are derived when reports are read, so existing reviews need no reanalysis.
 - imports.py / game_providers/: learner resolution, provenance, deduplication and bounded serial public-game download through one provider gateway.
-- jobs.py / job_queue.py / job_execution.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution, bounded worker pools, cancellation and atomic progress.
+- jobs.py / job_queue.py / job_execution.py / job_context.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution through one `JobContext`, bounded worker pools, cancellation and atomic progress.
 - classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence. `classification_stages.py` separates root validation, line outcome admission, defense checks, provenance and abstention reasons; the classifier preserves ordered aggregation and primary-skill selection.
 - weaknesses.py: active weakness priorities with read-only historical attempt statistics; no course generation or progression.
 - reviews.py / explanations.py / scheduling.py / retirement.py: move grading, verified playback, FSRS adapter and persistent retirement.
@@ -364,22 +373,31 @@ other accounts from free workers. The fetch lane remains independent of analysis
 Disabled accounts are excluded in hosted mode, including the reserved local user.
 
 The scheduler reads only scheduling metadata across accounts. Each claimed job's
-owner is captured before creating its short-lived account scope; that session
-factory is explicitly passed into every pipeline worker and engine handle. There
+owner is captured before creating its short-lived account scope. The runner then
+builds the job's one `job_context.JobContext`: its id and owner, the account's
+sessions, `read()` and `write()` units and Maia models, and the host's settings,
+scheduler, classifier, engine factory, provider gateway and cancellation checks.
+Every job step (pipeline, review, refinement, fetch, level fit) takes that context
+and nothing else of the runner or the workspace; the sync poller takes the
+workspaces, the provider gateway and the settings it uses. There
 is no mutable global/current-account identity. Startup recovers unfinished jobs
 without login or creating per-user runtimes. Shutdown signals all active work,
 drains coordinators and their child pools, then closes the shared engines.
 
 Within an analysis job, STOCKFISH_WORKERS games run in parallel with independent
 database sessions. Native processes come from the shared engine pool in account
-mode and belong to the job in local mode. Moves within a game stay ordered.
+mode and belong to the job in local mode. The host engine pool, a review job's own
+engines and the Maia workers are each a `lazy_pool.LazyPool` (an analysis job's game
+threads instead keep one engine each, closed when the job ends): a slot builds its process on
+first use and keeps it, and a call that fails discards the process only when the
+failure left it unusable (a Maia worker always; a Stockfish engine once it has
+closed its own process), so the slot starts a fresh one. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
-A game's session never holds a pooled database connection while Stockfish searches:
-`pipeline.ReleasingEngine` ends the session's transaction before each search when it has
-only read (pysqlite opens a SQLite transaction only before a write, so this drops no
-snapshot or lock), and keeps it when a write is pending, so a write is never split.
+No unit is open while Stockfish searches: each decision reads in one unit, searches,
+then saves in a write unit, so a search never holds a pooled connection, a snapshot
+or a lock.
 Cancellation is read from the job row: task boundaries check it exactly, while loops
 waiting for a lock, a pooled process or a running native search re-check it at most
 every 250 ms.
@@ -395,10 +413,22 @@ from `GET /api/games/:id/review?after=N`; the cursor advances only through repor
 actually received. Ordinary mainline browsing uses those reports instead of starting
 duplicate searches while the job runs; manual variations remain interactive.
 
-Short writes share an account's lock (`mutation_lock`, the one name for it); rule
-computation, engine searches and Maia inference run outside it, and read-only
-handlers never take it. SRS grading of an unseen answer and the Play bot's reply
-search first and then re-check and write under the lock. Progress
+Account work opens a database session only through a unit (`db.read_unit` and
+`db.write_unit`, offered as `read()` and `write()` by the workspace, a job execution
+and `db.Units`). A `write()` takes the account's lock (`mutation_lock`) and then
+starts its transaction with `BEGIN IMMEDIATE` at its first statement, so the Python
+lock always comes before SQLite's write lock; it commits when the block ends and
+discards on any exception. Domain helpers that receive a session only flush, so a
+route or job step can compose several of them into one unit. A `read()` holds one
+snapshot (`BEGIN`) and is `query_only`, so a stray write fails instead of running
+without the lock. A thread that writes in a second session while its write unit is
+open fails at once rather than waiting on its own lock. Rule computation, engine
+searches and Maia inference run between units; SRS grading of an unseen answer and
+the Play bot's reply search first, then re-check and write in a `write()`. Shared
+engine and Maia cache rows are the exception: each is one lock-free insert in a
+session of its own (`models.save_shared`, which returns the row whoever saved it first). Host scheduling (`job_queue`), accounts and server settings
+(`accounts.py`, `site_settings.py`) and the presence and welcome-back stamps on the
+account's user row (`presence.py`) are host data with sessions of their own. Progress
 uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent
 searches. Local interactive grading has a separate serialized engine; hosted
 grading and variations use the same bounded native pool as background work.
@@ -423,7 +453,7 @@ Classification-only backfills launch no background engines and cannot create/enr
 
 diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py bounds and orders events; verified_motifs.py owns independent capture, fork, promotion, check, pin, skewer, defender-removal and back-rank rules. tactical_geometry.py, combination_patterns.py and move_causes.py retain shared geometry and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
 
-defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.1-lichess-8d9faff6 are separate version boundaries.
+defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.3-lichess-8d9faff6 are separate version boundaries.
 
 Geometric detectors construct findings through `tactical_geometry.witness`, which
 preserves actor, move/frame, square-role and rule-version metadata. Mate/material
@@ -466,9 +496,17 @@ clock abstention; `review_scores` shares Stockfish-only alternative comparisons 
 owns the grade boundaries (`NEAR_BEST_CP`, `INACCURACY_CP`, `MISTAKE_CP`, the Blunder
 thresholds, `GRADE_BOUNDARIES`) and predicates (`is_poor`, `is_near_best`,
 `is_mistake`) every other module reads. Every reading of a saved line into tactical
-findings and move causes goes through `classification_stages.line_findings`, with
-the classifier's, review's and SRS explanation's differing horizons named as
-`LineRules` beside it.
+findings and move causes goes through `classification_stages.line_findings` under
+one `LineRules` (`line_rules`): the classifier, game review, Play and the SRS
+explanation read a line to the same horizon (the classifier's line and extension
+lengths), with the same mate window and the move before it; each keeps its own
+admission gates. The review and the explanation show a line to where it settles
+(or its last scanned ply), where every finding and the material claim rest, or
+through the mate of a forced mate. Saved review lines, adopted refinements
+included, record the `horizon` they were read with; a review whose lines were
+read to another one is requeued when opened and read again from its saved
+candidates without searching them again (its refinement may then pick other
+moves to search), and Play reads old rows again when it renders them.
 ## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for
@@ -510,7 +548,9 @@ Chess.com and Lichess share one checkpointed ingestion pipeline, job lanes, and 
 
 SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes from frozen revision 475ea36d42d5; `alembic heads` shows the current revision. Runtime does not use metadata.create_all. Transactions persist small independent units of work. Account tables are indexed for their hot queries with composite indexes that lead with `user_id`, and the server runs `PRAGMA optimize` at startup and shutdown so the planner has statistics.
 
-Every upgrade, from the server start or from `alembic upgrade head`, runs through `db.migration_connection`: foreign keys off on that connection, one `BEGIN IMMEDIATE` transaction that SQLite rather than pysqlite controls (so DDL rolls back too), and a `foreign_key_check` before commit. A failed revision leaves the schema and `alembic_version` exactly as they were. A database that is already current is not touched. Revision ids come from `alembic revision`, never typed by hand, and `models.NAMING_CONVENTION` names new indexes, checks and foreign keys (name a new unique constraint explicitly).
+The shared `engine_analyses` and `human_analyses` caches are swept at startup, before job workers and requests run (`trainer/cache_maintenance.py`). A row goes when it is more than 30 days old and its id appears nowhere else in the database: not in any string column, and not as a string or object key inside any JSON value, so reports, findings and Play reports keep the rows they name without a list of known columns. Startup is the one moment no job holds a cache id it has read but not yet saved, so a row in use cannot be deleted under it; younger unreferenced rows stay as cache hits. New database files use incremental auto-vacuum, and the sweep gives freed pages back to the disk each time, checkpointing and truncating the WAL so the space does not stay in the `-wal` file until shutdown. A failed sweep or reclaim is logged and retried at the next start rather than stopping the server. An older file is rebuilt once with `VACUUM`, in incremental mode, when a quarter of it is free; the container keeps SQLite's temporary files in `/data` (`SQLITE_TMPDIR`) because that copy can be larger than `/tmp`.
+
+Every upgrade, from the server start or from `alembic upgrade head`, runs through `db.migration_connection`: foreign keys off on that connection, one `BEGIN IMMEDIATE` transaction that SQLite rather than pysqlite controls (so DDL rolls back too), and a `foreign_key_check` before commit. A failed revision leaves the schema and `alembic_version` exactly as they were. A database that is already current is not touched. A start migrates once: `create_app` brings the database to head and then reads the server settings (`site_settings.load` never migrates, and refuses a database that is behind); an app given its own settings (tests, tools) migrates when its lifespan starts. Every revision has a downgrade and the whole chain is tested down to base and back (`test_migrations.py`): data-only revisions downgrade by keeping their data, and the accounts revision refuses to downgrade once real accounts exist, since that would delete them. Revision ids come from `alembic revision`, never typed by hand, `models.NAMING_CONVENTION` names every index, check, foreign key and primary key, and `models.unique` names each unique constraint the same way (`uq_<table>_<columns>`); revision `eb978e634f57` rebuilt the older tables so every constraint carries these names (that one upgrade needs free disk about twice the database's size). One representation per concept: a side is a `learner_color` boolean (True for White, converted to `"white"`/`"black"` only at the API and in identity digests), every time is a `UTCDateTime`, a game's PGN Date text is read from its PGN, and job kinds and statuses are `job_kinds.JobKind`/`JobStatus`, enforced by CHECK constraints (`retired` marks jobs of removed features, kept as history).
 
 ### Current and archival relationships
 
@@ -521,24 +561,25 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | provider_connections | Account-owned provider usernames and the poller's change markers (`poll_state`) |
 | game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts, unique fingerprints and the nullable `rated` flag (statistics skip only games known to be unrated) |
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
-| chesscom_imports, chesscom_archives | Query/filter settings, download diagnostics and per-job archive checkpoints |
+| provider_imports, provider_checkpoints | Query/filter settings, download diagnostics and per-job archive checkpoints, for every provider |
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
 | play_games, play_profiles | Account-owned games against the coach's bot (moves, saved per-ply reports, result, the saved library game) and the measured level fit with its evidence size |
 | game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
 | review_refinements | Account-owned deeper searches planned for chosen plies of a completed review, with their status, reason and the refined report that may be adopted |
 | human_analyses | Shared Maia policy cache, unique by versioned key (see below) |
-| decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
+| decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/deep/meaningful flags |
 | skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
 | classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
 | exercises, exercise_tags, exercise_answers | Game/manual practice and archived repertoire exercises, normalized answers/tags, policy snapshots and verification references |
 | srs_states | One serialized library card per exercise, due/review/lapse fields, eligibility and persistent retirement |
 | review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused (`mode="focus"`) and archived lesson (`mode="lesson"`) attempts are separate |
 | puzzle_sessions, puzzle_attempts | Private immutable puzzle snapshots, revisioned solve progress and idempotent practice commands; independent of Review/FSRS |
+| insight_facts | Account-owned Insights facts per game, saved compactly under a key of everything they read, so a game is replayed only when it or its review changes |
 | game_puzzles, game_puzzle_searches | Account-owned puzzles mined from the learner's games, each with its engine evidence or abstention reason, and one search record per game and generator version |
 | opening_studies, opening_study_moves, opening_cards, opening_recall_snapshots, opening_content_changes | Opening studies and their chosen moves, one review card per learner position with its active revision and retirement guard, the answer set a recall session was started with, and the audit of content changes |
 | study_lesson_sessions, study_lesson_commands, study_lesson_progress | Study lesson sessions, their exactly-once commands and per-chapter progress pinned to a course revision and content hash |
 
-There are 44 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots and FSRS serialization.
+There are 45 application tables plus alembic_version (`test_architecture_docs.py` checks this list against the models). IDs are UUID hex strings except stable skill IDs and the reserved local account. Every timestamp column is `models.UTCDateTime`: stored as UTC wall time without an offset and always read back timezone-aware, so domain code and API output never see a naive value. `trainer/timeutil.py` is the one clock (`now()`, which `models.now` is) and the one conversion (`as_utc`); raw SQL that compares a timestamp column uses `stored_text`, the exact text the column holds. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots and FSRS serialization.
 
 `human_analyses` stores provider-neutral requests and complete policy facts, unique
 by versioned cache key. Like `engine_analyses` it is shared between accounts: the

@@ -1,756 +1,751 @@
 @import "./idle-playback.css";
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-.coach-studio {
-  --studio-paper: #ede6d8;
-  --studio-muted: #aaa99e;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-bottom: var(--space-12);
-}
-/* Nested stacks set the rhythm: sections 32px apart, the working area 24px. */
-.studio-main,
-.studio-workbench,
-.studio-setup,
-.studio-toolbar,
-.studio-stage,
-.studio-stage-main,
-.studio-idles {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.studio-main,
-.studio-workbench[data-view="speech"] {
-  gap: var(--space-8);
-}
-.studio-workbench {
-  gap: var(--space-6);
-}
-.studio-setup,
-.studio-stage {
-  gap: var(--space-5);
-}
-.studio-toolbar,
-.studio-stage-main {
-  gap: var(--space-4);
-}
-.studio-idles {
-  gap: var(--space-3);
-}
-.studio-dev-notice {
-  color: #b7c5b9;
-  font-size: var(--text-sm);
-}
-.studio-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: var(--space-8);
-}
-.studio-heading > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-.studio-heading .eyebrow {
-  color: #b8c99f;
-  letter-spacing: 2px;
-  font-size: var(--text-2xs);
-}
-.studio-heading h1 {
-  font-size: clamp(var(--text-4xl), 3.2vw, var(--text-6xl));
-  line-height: 1.08;
-  letter-spacing: -1.6px;
-  color: var(--studio-paper);
-}
-.studio-heading h1 span {
-  color: #adbf9c;
-}
-.studio-heading > p {
-  color: var(--studio-muted);
-  font-size: var(--text-base);
-  line-height: 1.7;
-  max-width: 365px;
-  padding-bottom: var(--space-0-5);
-}
-.studio-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  background: #202723;
-  border: 1px solid #3d4b40;
-  border-radius: 12px;
-  scroll-margin-top: 80px;
-}
-.studio-cast {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-3);
-}
-.studio-cast button {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: var(--space-3);
-  min-width: 0;
-  text-align: left;
-  white-space: normal;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid #424b40;
-  border-radius: 12px;
-  background: #1c211e;
-}
-.studio-cast button:hover {
-  background: var(--control-hover);
-  border-color: var(--control-hover-border);
-}
-.studio-cast button[aria-pressed="true"] {
-  background: #303c2d;
-  border-color: #a0b489;
-  box-shadow: inset 0 0 0 1px #a0b48944;
-}
-.studio-cast .coach-avatar {
-  width: 42px;
-  height: 52.5px;
-  margin: 0;
-  flex-shrink: 0;
-}
-.studio-cast button > span {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-.studio-cast strong {
-  display: block;
-  font-size: var(--text-base);
-  color: #ede6d8;
-}
-.studio-cast small {
-  display: block;
-  font-size: var(--text-2xs);
-  color: #a9b5a3;
-}
-.studio-controls > label,
-.studio-section-title label {
-  display: grid;
-  gap: var(--space-1-5);
-  font-size: var(--text-xs);
-  color: #b5c3b6;
-  margin: 0;
-}
-.studio-controls > label select,
-.studio-section-title select,
-.studio-idle-bar select {
-  margin: 0;
-  width: auto;
-  min-width: 140px;
-  min-height: 42px;
-  background-color: #171d1a;
-}
-.studio-controls button {
-  min-height: 42px;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-}
-/* As tall as the buttons, so the checkbox centres on them. */
-.studio-controls .studio-reduced {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: 42px;
-  margin-left: auto;
-  font-size: var(--text-sm);
-}
-.studio-reduced input {
-  width: 16px;
-  height: 16px;
-  min-height: 16px;
-  padding: 0;
-  accent-color: #b8d69b;
-  margin: 0;
-}
-.studio-motion-notice {
-  color: #d5c69f;
-  font-size: var(--text-sm);
-  padding: 0 var(--space-1);
-}
-.studio-moment {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-5);
-}
-.studio-moment > div {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-.studio-counter {
-  font: var(--text-2xs) var(--mono);
-  color: #98ab99;
-  letter-spacing: 1px;
-}
-.studio-moment h2 {
-  font-size: var(--text-3xl);
-  color: var(--studio-paper);
-  letter-spacing: -0.5px;
-}
-.studio-moment p {
-  font-size: var(--text-sm);
-  color: var(--studio-muted);
-}
-.studio-concepts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-4);
-}
-.studio-concept {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  background: #252d27;
-  border: 1px solid #435243;
-  border-radius: 14px;
-  padding: var(--space-5) var(--space-6) var(--space-3);
-  overflow: hidden;
-}
-.studio-concept[data-concept-index="1"] {
-  background: #292b2b;
-  border-color: #464e50;
-}
-.studio-concept[data-concept-index="2"] {
-  background: #302b27;
-  border-color: #5c4b3c;
-}
-.studio-concept[data-concept-index="3"] {
-  background: #2c2b33;
-  border-color: #514b61;
-}
-.studio-concept-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: 22px;
-  color: #bcccb6;
-  font: var(--text-2xs) var(--mono);
-  letter-spacing: 1px;
-}
-.studio-current {
-  letter-spacing: 0;
-  border: 1px solid #63715b;
-  border-radius: 20px;
-  padding: var(--space-1) var(--space-2);
-  color: #d2dbbf;
-}
-.studio-character-stage {
-  position: relative;
-  height: 222px;
-  display: grid;
-  place-items: center;
-}
-.studio-character-stage > .coach-avatar {
-  width: 152px;
-  height: 190px;
-  margin: 0;
-  z-index: 1;
-}
-.studio-character-halo {
-  position: absolute;
-  width: 162px;
-  height: 162px;
-  border-radius: 50%;
-  background: #364033;
-  border: 1px solid #4d5945;
-  opacity: 0.65;
-  top: 29px;
-}
-.studio-concept[data-concept-index="1"] .studio-character-halo {
-  background: #373d3d;
-  border-color: #515c5b;
-}
-.studio-concept[data-concept-index="2"] .studio-character-halo {
-  background: #45382c;
-  border-color: #68513c;
-}
-.studio-concept[data-concept-index="3"] .studio-character-halo {
-  background: #3a3547;
-  border-color: #625876;
-}
-.studio-concept-copy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-.studio-concept-copy > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.studio-concept-copy h3 {
-  font-size: var(--text-2xl);
-  letter-spacing: -0.4px;
-  color: #ede6d8;
-}
-.studio-concept-copy p {
-  min-height: 44px;
-  font-size: var(--text-md);
-  line-height: 1.6;
-  color: #c0c3b9;
-}
-.studio-concept-copy > span {
-  display: block;
-  padding-top: var(--space-3);
-  border-top: 1px solid #ffffff13;
-  min-height: 46px;
-  font-size: var(--text-2xs);
-  color: #a5b39f;
-  line-height: 1.6;
-}
-.studio-concept > button {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding-inline: 0;
-  color: #cbd9bd;
-  font-size: var(--text-xs);
-  margin-top: auto;
-}
-.studio-concept > button[aria-pressed="true"] {
-  color: #ebeedf;
-}
-@media (min-width: 761px) {
-  .studio-concept:only-child {
-    grid-column: 1 / -1;
-    width: 100%;
-    max-width: 740px;
-    justify-self: center;
-    display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: 0 var(--space-6);
+  .coach-studio {
+    --studio-paper: #ede6d8;
+    --studio-muted: #aaa99e;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-bottom: var(--space-12);
   }
-  .studio-concept:only-child .studio-concept-top {
-    grid-column: 1 / -1;
+  /* Nested stacks set the rhythm: sections 32px apart, the working area 24px. */
+  .studio-main,
+  .studio-workbench,
+  .studio-setup,
+  .studio-toolbar,
+  .studio-stage,
+  .studio-stage-main,
+  .studio-idles {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
   }
-  .studio-concept:only-child .studio-character-stage {
-    grid-row: 2 / 4;
+  .studio-main,
+  .studio-workbench[data-view="speech"] {
+    gap: var(--space-8);
   }
-  .studio-concept:only-child .studio-concept-copy {
-    align-self: center;
+  .studio-workbench {
+    gap: var(--space-6);
   }
-  .studio-concept:only-child > button {
-    grid-column: 2;
+  .studio-setup,
+  .studio-stage {
+    gap: var(--space-5);
   }
-}
-.studio-idle-bar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  border: 1px solid #414941;
-  border-radius: 10px;
-  padding: var(--space-4) var(--space-5);
-}
-.studio-idle-bar > div {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1-5);
-}
-.studio-idle-bar h2 {
-  font-size: var(--text-base);
-}
-.studio-idle-bar p {
-  font-size: var(--text-sm);
-  color: var(--studio-muted);
-}
-.studio-idle-bar button {
-  white-space: nowrap;
-  min-height: 42px;
-  font-size: var(--text-sm);
-}
-.studio-idle-grid,
-.studio-comparison-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-3);
-}
-.studio-comparison-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.studio-idle-card,
-.studio-comparison-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 0;
-  padding: var(--space-4);
-  border: 1px solid #424b40;
-  border-radius: 10px;
-  background: #1c211e;
-}
-.studio-idle-card {
-  gap: var(--space-3);
-}
-.studio-comparison-card {
-  gap: var(--space-2);
-}
-.studio-idle-stage,
-.studio-idle-copy,
-.studio-comparison-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 100%;
-}
-.studio-idle-stage {
-  gap: var(--space-6);
-}
-.studio-idle-copy {
-  gap: var(--space-2);
-}
-.studio-comparison-stage {
-  gap: var(--space-3);
-}
-.studio-idle-card .coach-avatar,
-.studio-comparison-card .coach-avatar {
-  width: 92.8px;
-  height: 116px;
-  margin: 0;
-}
-.studio-idle-card h3 {
-  font-size: var(--text-md);
-  text-align: center;
-}
-.studio-idle-card button {
-  min-height: 42px;
-  font-size: var(--text-sm);
-  width: 100%;
-  margin-top: auto;
-}
-.studio-comparison-card label {
-  display: grid;
-  gap: var(--space-1-5);
-  width: 100%;
-  font-size: var(--text-xs);
-  color: var(--studio-muted);
-}
-.studio-comparison-card select {
-  min-width: 0;
-  width: 100%;
-  margin: 0;
-}
-.studio-comparison-selected {
-  display: flex;
-  align-items: center;
-  min-height: 64px;
-  font-size: var(--text-md);
-}
-.studio-comparison-stage > p:last-child {
-  font-size: var(--text-sm);
-  color: var(--studio-muted);
-}
-.studio-section-title {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: var(--space-5);
-}
-.studio-context-section,
-.studio-cast-comparison,
-.studio-collection {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-.studio-section-title > div:first-child {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.studio-section-title .eyebrow {
-  font-size: var(--text-2xs);
-  letter-spacing: 1.7px;
-  color: #a4b69b;
-}
-.studio-section-title h2 {
-  font-size: var(--text-3xl);
-  letter-spacing: -0.6px;
-}
-.studio-section-title > p {
-  font-size: var(--text-sm);
-  line-height: 1.6;
-  color: var(--studio-muted);
-}
-.studio-contexts {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: var(--space-5);
-}
-.studio-context {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  min-width: 0;
-  padding: var(--space-4);
-  border: 1px solid #424942;
-  border-radius: 10px;
-  background: #151a17;
-}
-.studio-size-label {
-  font: var(--text-2xs) var(--mono);
-  color: #a8b0a1;
-  letter-spacing: 1px;
-}
-.studio-context:not(.studio-context-compact) .review-coach {
-  --coach-height: 136px;
-  --coach-avatar-width: 92.8px;
-}
-.studio-context:not(.studio-context-compact) .coach-avatar {
-  height: 136px;
-  margin: 0;
-}
-/* The compact preview is a narrow column, so the application's own narrow coach
-   layout (coach-presentation.css, @container max-width 440px) applies to it. */
-.studio-context.studio-context-compact {
-  container-type: inline-size;
-  max-width: 440px;
-}
-.studio-expression-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: var(--space-3);
-}
-.studio-expression {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  min-width: 0;
-  padding: var(--space-3) var(--space-3) var(--space-4);
-  background: #232923;
-  border: 1px solid #3c453c;
-  border-radius: 10px;
-  white-space: normal;
-}
-.studio-expression[aria-pressed="true"] {
-  border-color: #a0b489;
-  background: #303c2d;
-  box-shadow: inset 0 0 0 1px #a0b48955;
-}
-.studio-expression .coach-avatar {
-  width: 88px;
-  height: 110px;
-  margin: 0;
-}
-.studio-expression-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1-5);
-}
-.studio-expression-copy > span {
-  font-size: var(--text-md);
-  color: #ede6d8;
-}
-.studio-expression small {
-  min-height: 36px;
-  font-size: var(--text-2xs);
-  line-height: 1.4;
-  color: #adb6a7;
-  max-width: 155px;
-  font-weight: 400;
-}
-.studio-note {
-  display: flex;
-  align-items: start;
-  gap: var(--space-3);
-  color: #b8c5ad;
-  padding-top: var(--space-5);
-  border-top: 1px solid #414b3e;
-}
-.studio-note svg {
-  flex: none;
-  position: relative;
-  top: var(--space-0-5);
-}
-.studio-note p {
-  font-size: var(--text-sm);
-  line-height: 1.7;
-  max-width: 820px;
-}
-@media (max-width: 1050px) {
-  .studio-concepts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .studio-toolbar,
+  .studio-stage-main {
+    gap: var(--space-4);
   }
-  .studio-cast {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .studio-idles {
+    gap: var(--space-3);
   }
-  .studio-controls .studio-reduced {
-    margin-left: 0;
-  }
-  .studio-concept {
-    padding-inline: var(--space-4);
-  }
-  .studio-contexts {
-    grid-template-columns: 1fr;
-  }
-  .studio-context {
-    max-width: 760px;
-  }
-  .studio-expression-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-@media (max-width: 760px) {
-  .studio-idle-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .studio-comparison-grid {
-    grid-template-columns: 1fr;
-  }
-  .studio-cast {
-    gap: var(--space-2);
-  }
-  .studio-cast button {
-    gap: var(--space-2);
-    padding: var(--space-2);
-  }
-  .studio-cast strong {
+  .studio-dev-notice {
+    color: #b7c5b9;
     font-size: var(--text-sm);
   }
   .studio-heading {
-    align-items: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: var(--space-8);
+  }
+  .studio-heading > div {
+    display: flex;
     flex-direction: column;
     gap: var(--space-4);
   }
+  .studio-heading .eyebrow {
+    color: #b8c99f;
+    letter-spacing: 2px;
+    font-size: var(--text-2xs);
+  }
   .studio-heading h1 {
-    font-size: var(--text-5xl);
+    font-size: clamp(var(--text-4xl), 3.2vw, var(--text-6xl));
+    line-height: 1.08;
+    letter-spacing: -1.6px;
+    color: var(--studio-paper);
+  }
+  .studio-heading h1 span {
+    color: #adbf9c;
   }
   .studio-heading > p {
-    font-size: var(--text-md);
+    color: var(--studio-muted);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    max-width: 365px;
+    padding-bottom: var(--space-0-5);
   }
   .studio-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: #202723;
+    border: 1px solid #3d4b40;
+    border-radius: 12px;
+    scroll-margin-top: 80px;
+  }
+  .studio-cast {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: var(--space-3);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-3);
   }
-  .studio-controls label {
-    flex: 1;
-  }
-  .studio-controls select {
+  /* Coach tiles are choices, not commands, so they style themselves completely. */
+  .studio-cast button {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: var(--space-3);
     min-width: 0;
-    width: 100%;
+    text-align: left;
+    white-space: normal;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid #424b40;
+    border-radius: 12px;
+    background: #1c211e;
+    color: #e8eaee;
+    font-size: var(--text-md);
+    font-weight: 500;
+    transition:
+      background var(--motion-fast) var(--ease-standard),
+      border-color var(--motion-fast) var(--ease-standard);
   }
-  .studio-controls button {
-    flex: 1;
-    white-space: nowrap;
+  .studio-cast button:hover {
+    background: var(--control-hover);
+    border-color: var(--control-hover-border);
   }
+  .studio-cast button[aria-pressed="true"] {
+    background: #303c2d;
+    border-color: #a0b489;
+    box-shadow: inset 0 0 0 1px #a0b48944;
+  }
+  .studio-cast .coach-avatar {
+    width: 42px;
+    height: 52.5px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+  .studio-cast button > span {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .studio-cast strong {
+    display: block;
+    font-size: var(--text-base);
+    color: #ede6d8;
+  }
+  .studio-cast small {
+    display: block;
+    font-size: var(--text-2xs);
+    color: #a9b5a3;
+  }
+  .studio-controls > label,
+  .studio-section-title label {
+    display: grid;
+    gap: var(--space-1-5);
+    font-size: var(--text-xs);
+    color: #b5c3b6;
+    margin: 0;
+  }
+  .studio-controls > label select,
+  .studio-section-title select,
+  .studio-idle-bar select {
+    margin: 0;
+    width: auto;
+    min-width: 140px;
+    min-height: var(--control-height);
+    background-color: #171d1a;
+  }
+  /* As tall as the buttons, so the checkbox centres on them. */
   .studio-controls .studio-reduced {
-    grid-column: 1 / -1;
-    flex-basis: 100%;
-    min-height: 0;
-    padding-top: var(--space-0-5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--control-height);
+    margin-left: auto;
+    font-size: var(--text-sm);
+  }
+  .studio-reduced input {
+    width: 16px;
+    height: 16px;
+    min-height: 16px;
+    padding: 0;
+    accent-color: #b8d69b;
+    margin: 0;
+  }
+  .studio-motion-notice {
+    color: #d5c69f;
+    font-size: var(--text-sm);
+    padding: 0 var(--space-1);
   }
   .studio-moment {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .studio-moment > div {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .studio-counter {
+    font: var(--text-2xs) var(--mono);
+    color: #98ab99;
+    letter-spacing: 1px;
+  }
+  .studio-moment h2 {
+    font-size: var(--text-3xl);
+    color: var(--studio-paper);
+    letter-spacing: -0.5px;
+  }
+  .studio-moment p {
+    font-size: var(--text-sm);
+    color: var(--studio-muted);
   }
   .studio-concepts {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
   }
   .studio-concept {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    column-gap: var(--space-3);
-    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #252d27;
+    border: 1px solid #435243;
+    border-radius: 14px;
+    padding: var(--space-5) var(--space-6) var(--space-3);
+    overflow: hidden;
+  }
+  .studio-concept[data-concept-index="1"] {
+    background: #292b2b;
+    border-color: #464e50;
+  }
+  .studio-concept[data-concept-index="2"] {
+    background: #302b27;
+    border-color: #5c4b3c;
+  }
+  .studio-concept[data-concept-index="3"] {
+    background: #2c2b33;
+    border-color: #514b61;
   }
   .studio-concept-top {
-    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 22px;
+    color: #bcccb6;
+    font: var(--text-2xs) var(--mono);
+    letter-spacing: 1px;
+  }
+  .studio-current {
+    letter-spacing: 0;
+    border: 1px solid #63715b;
+    border-radius: 20px;
+    padding: var(--space-1) var(--space-2);
+    color: #d2dbbf;
   }
   .studio-character-stage {
-    height: 166px;
+    position: relative;
+    height: 222px;
+    display: grid;
+    place-items: center;
   }
   .studio-character-stage > .coach-avatar {
-    width: 112px;
-    height: 140px;
+    width: 152px;
+    height: 190px;
+    margin: 0;
+    z-index: 1;
   }
   .studio-character-halo {
-    width: 110px;
-    height: 110px;
-    top: 24px;
+    position: absolute;
+    width: 162px;
+    height: 162px;
+    border-radius: 50%;
+    background: #364033;
+    border: 1px solid #4d5945;
+    opacity: 0.65;
+    top: 29px;
+  }
+  .studio-concept[data-concept-index="1"] .studio-character-halo {
+    background: #373d3d;
+    border-color: #515c5b;
+  }
+  .studio-concept[data-concept-index="2"] .studio-character-halo {
+    background: #45382c;
+    border-color: #68513c;
+  }
+  .studio-concept[data-concept-index="3"] .studio-character-halo {
+    background: #3a3547;
+    border-color: #625876;
   }
   .studio-concept-copy {
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .studio-concept-copy > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
   }
   .studio-concept-copy h3 {
     font-size: var(--text-2xl);
+    letter-spacing: -0.4px;
+    color: #ede6d8;
   }
   .studio-concept-copy p {
-    font-size: var(--text-sm);
-    min-height: 0;
-  }
-  .studio-concept-copy {
-    gap: var(--space-2);
+    /* Two lines reserved, so a one-line concept does not move the controls below. */
+    min-height: 2lh;
+    font-size: var(--text-md);
+    line-height: 1.6;
+    color: #c0c3b9;
   }
   .studio-concept-copy > span {
+    display: block;
+    padding-top: var(--space-3);
+    border-top: 1px solid #ffffff13;
+    min-height: 46px;
     font-size: var(--text-2xs);
-    padding-top: var(--space-2);
+    color: #a5b39f;
+    line-height: 1.6;
   }
   .studio-concept > button {
-    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: auto;
+  }
+  @media (min-width: 761px) {
+    .studio-concept:only-child {
+      grid-column: 1 / -1;
+      width: 100%;
+      max-width: 740px;
+      justify-self: center;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 0 var(--space-6);
+    }
+    .studio-concept:only-child .studio-concept-top {
+      grid-column: 1 / -1;
+    }
+    .studio-concept:only-child .studio-character-stage {
+      grid-row: 2 / 4;
+    }
+    .studio-concept:only-child .studio-concept-copy {
+      align-self: center;
+    }
+    .studio-concept:only-child > button {
+      grid-column: 2;
+    }
   }
   .studio-idle-bar {
-    flex-wrap: wrap;
-    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    border: 1px solid #414941;
+    border-radius: 10px;
+    padding: var(--space-4) var(--space-5);
   }
   .studio-idle-bar > div {
-    flex-basis: 100%;
-    gap: var(--space-3);
-  }
-  .studio-idle-bar select {
     flex: 1;
-    min-width: 0;
-    width: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
   }
-  .studio-section-title {
-    flex-wrap: wrap;
+  .studio-idle-bar h2 {
+    font-size: var(--text-base);
+  }
+  .studio-idle-bar p {
+    font-size: var(--text-sm);
+    color: var(--studio-muted);
+  }
+  .studio-idle-bar button {
+    white-space: nowrap;
+  }
+  .studio-idle-grid,
+  .studio-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-3);
   }
-  /* Phone headings keep 12px of room below them. */
-  .studio-section-title > div:first-child {
-    padding-bottom: var(--space-3);
-  }
-  .studio-context {
-    padding: var(--space-3);
-  }
-  .studio-context:not(.studio-context-compact) {
-    display: none;
-  }
-  .studio-expression-grid {
+  .studio-comparison-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .studio-idle-card,
+  .studio-comparison-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    padding: var(--space-4);
+    border: 1px solid #424b40;
+    border-radius: 10px;
+    background: #1c211e;
+  }
+  .studio-idle-card {
+    gap: var(--space-3);
+  }
+  .studio-comparison-card {
     gap: var(--space-2);
   }
+  .studio-idle-stage,
+  .studio-idle-copy,
+  .studio-comparison-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+  }
+  .studio-idle-stage {
+    gap: var(--space-6);
+  }
+  .studio-idle-copy {
+    gap: var(--space-2);
+  }
+  .studio-comparison-stage {
+    gap: var(--space-3);
+  }
+  .studio-idle-card .coach-avatar,
+  .studio-comparison-card .coach-avatar {
+    width: 92.8px;
+    height: 116px;
+    margin: 0;
+  }
+  .studio-idle-card h3 {
+    font-size: var(--text-md);
+    text-align: center;
+  }
+  .studio-idle-card button {
+    width: 100%;
+    margin-top: auto;
+  }
+  .studio-comparison-card label {
+    display: grid;
+    gap: var(--space-1-5);
+    width: 100%;
+    font-size: var(--text-xs);
+    color: var(--studio-muted);
+  }
+  .studio-comparison-card select {
+    min-width: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .studio-comparison-selected {
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+    font-size: var(--text-md);
+  }
+  .studio-comparison-stage > p:last-child {
+    font-size: var(--text-sm);
+    color: var(--studio-muted);
+  }
+  .studio-section-title {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+  .studio-context-section,
+  .studio-cast-comparison,
+  .studio-collection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .studio-section-title > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .studio-section-title .eyebrow {
+    font-size: var(--text-2xs);
+    letter-spacing: 1.7px;
+    color: #a4b69b;
+  }
+  .studio-section-title h2 {
+    font-size: var(--text-3xl);
+    letter-spacing: -0.6px;
+  }
+  .studio-section-title > p {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--studio-muted);
+  }
+  .studio-contexts {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-5);
+  }
+  .studio-context {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+    padding: var(--space-4);
+    border: 1px solid #424942;
+    border-radius: 10px;
+    background: #151a17;
+  }
+  .studio-size-label {
+    font: var(--text-2xs) var(--mono);
+    color: #a8b0a1;
+    letter-spacing: 1px;
+  }
+  /* The compact preview is a narrow column, so the application's own narrow coach
+   layout (coach-presentation.css, @container max-width 440px) applies to it. */
+  .studio-context.studio-context-compact {
+    container-type: inline-size;
+    max-width: 440px;
+  }
+  .studio-expression-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+  /* Expression tiles are choices, not commands, so they style themselves completely. */
   .studio-expression {
-    padding: var(--space-3) var(--space-1-5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-width: 0;
+    padding: var(--space-3) var(--space-3) var(--space-4);
+    background: #232923;
+    border: 1px solid #3c453c;
+    border-radius: 10px;
+    color: #e8eaee;
+    font-size: var(--text-md);
+    font-weight: 500;
+    white-space: normal;
+    transition:
+      background var(--motion-fast) var(--ease-standard),
+      border-color var(--motion-fast) var(--ease-standard);
+  }
+  .studio-expression:hover {
+    background: var(--control-hover);
+    border-color: var(--control-hover-border);
+  }
+  .studio-expression[aria-pressed="true"] {
+    border-color: #a0b489;
+    background: #303c2d;
+    box-shadow: inset 0 0 0 1px #a0b48955;
   }
   .studio-expression .coach-avatar {
-    width: 70px;
-    height: 87.5px;
+    width: 88px;
+    height: 110px;
+    margin: 0;
+  }
+  .studio-expression-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1-5);
   }
   .studio-expression-copy > span {
-    font-size: var(--text-xs);
+    font-size: var(--text-md);
+    color: #ede6d8;
   }
   .studio-expression small {
-    display: none;
+    min-height: 36px;
+    font-size: var(--text-2xs);
+    line-height: 1.4;
+    color: #adb6a7;
+    max-width: 155px;
+    font-weight: 400;
   }
-}
+  .studio-note {
+    display: flex;
+    align-items: start;
+    gap: var(--space-3);
+    color: #b8c5ad;
+    padding-top: var(--space-5);
+    border-top: 1px solid #414b3e;
+  }
+  .studio-note svg {
+    flex: none;
+    position: relative;
+    top: var(--space-0-5);
+  }
+  .studio-note p {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    max-width: 820px;
+  }
+  @media (max-width: 1050px) {
+    .studio-concepts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .studio-cast {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .studio-controls .studio-reduced {
+      margin-left: 0;
+    }
+    .studio-concept {
+      padding-inline: var(--space-4);
+    }
+    .studio-contexts {
+      grid-template-columns: 1fr;
+    }
+    .studio-context {
+      max-width: 760px;
+    }
+    .studio-expression-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 760px) {
+    .studio-idle-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .studio-comparison-grid {
+      grid-template-columns: 1fr;
+    }
+    .studio-cast {
+      gap: var(--space-2);
+    }
+    .studio-cast button {
+      gap: var(--space-2);
+      padding: var(--space-2);
+    }
+    .studio-cast strong {
+      font-size: var(--text-sm);
+    }
+    .studio-heading {
+      align-items: start;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .studio-heading h1 {
+      font-size: var(--text-5xl);
+    }
+    .studio-heading > p {
+      font-size: var(--text-md);
+    }
+    .studio-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: var(--space-3);
+      gap: var(--space-3);
+    }
+    .studio-controls label {
+      flex: 1;
+    }
+    .studio-controls select {
+      min-width: 0;
+      width: 100%;
+    }
+    .studio-controls button {
+      flex: 1;
+      white-space: nowrap;
+    }
+    .studio-controls .studio-reduced {
+      grid-column: 1 / -1;
+      flex-basis: 100%;
+      min-height: 0;
+      padding-top: var(--space-0-5);
+    }
+    .studio-moment {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-6);
+    }
+    .studio-concepts {
+      grid-template-columns: 1fr;
+    }
+    .studio-concept {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      column-gap: var(--space-3);
+      padding: var(--space-4);
+    }
+    .studio-concept-top {
+      grid-column: 1 / -1;
+    }
+    .studio-character-stage {
+      height: 166px;
+    }
+    .studio-character-stage > .coach-avatar {
+      width: 112px;
+      height: 140px;
+    }
+    .studio-character-halo {
+      width: 110px;
+      height: 110px;
+      top: 24px;
+    }
+    .studio-concept-copy {
+      align-self: center;
+    }
+    .studio-concept-copy h3 {
+      font-size: var(--text-2xl);
+    }
+    .studio-concept-copy p {
+      font-size: var(--text-sm);
+      min-height: 0;
+    }
+    .studio-concept-copy {
+      gap: var(--space-2);
+    }
+    .studio-concept-copy > span {
+      font-size: var(--text-2xs);
+      padding-top: var(--space-2);
+    }
+    .studio-concept > button {
+      grid-column: 1 / -1;
+    }
+    .studio-idle-bar {
+      flex-wrap: wrap;
+      padding: var(--space-4);
+    }
+    .studio-idle-bar > div {
+      flex-basis: 100%;
+      gap: var(--space-3);
+    }
+    .studio-idle-bar select {
+      flex: 1;
+      min-width: 0;
+      width: 140px;
+    }
+    .studio-section-title {
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    /* Phone headings keep 12px of room below them. */
+    .studio-section-title > div:first-child {
+      padding-bottom: var(--space-3);
+    }
+    .studio-context {
+      padding: var(--space-3);
+    }
+    .studio-context:not(.studio-context-compact) {
+      display: none;
+    }
+    .studio-expression-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-2);
+    }
+    .studio-expression {
+      padding: var(--space-3) var(--space-1-5);
+    }
+    .studio-expression .coach-avatar {
+      width: 70px;
+      height: 87.5px;
+    }
+    .studio-expression-copy > span {
+      font-size: var(--text-xs);
+    }
+    .studio-expression small {
+      display: none;
+    }
+  }
 }

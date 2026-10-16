@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "../tests/helpers/browserTest";
 import path from "node:path";
 import { viteFsPath } from "./helpers/viteFsPath";
 
@@ -42,13 +42,20 @@ test("personal names remain unique and share stable catalogue identities", async
   await page.goto("/");
   await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
   const frontend = viteFsPath(path.resolve("."));
-  const roster: { coaches: NamedCoach[]; defaultId: string; retired: { id: string; name: string }[] } = await page.evaluate(async root => {
+  const roster: {
+    coaches: NamedCoach[];
+    defaultId: string;
+    retired: { id: string; name: string }[];
+  } = await page.evaluate(async root => {
     const { selectableCoaches, getCoach } = await import(`${root}/src/coach/registry.ts`);
     return {
-      coaches: selectableCoaches.map((coach: {
-        id: string; name: string; families: { name: string; coachId: string }[];
-      }) => ({ id: coach.id, name: coach.name,
-        family: { name: coach.families[0].name, coachId: coach.families[0].coachId } })),
+      coaches: selectableCoaches.map(
+        (coach: { id: string; name: string; families: { name: string; coachId: string }[] }) => ({
+          id: coach.id,
+          name: coach.name,
+          family: { name: coach.families[0].name, coachId: coach.families[0].coachId },
+        }),
+      ),
       defaultId: getCoach(undefined).id,
       retired: ["dog-sunny", "cat-tabby", "cat-calico"].map(id => {
         const coach = getCoach(id);
@@ -57,7 +64,9 @@ test("personal names remain unique and share stable catalogue identities", async
     };
   }, frontend);
   expect(Object.fromEntries(roster.coaches.map(coach => [coach.id, coach.name]))).toEqual(names);
-  expect(new Set(roster.coaches.map(coach => coach.name.toLowerCase())).size).toBe(roster.coaches.length);
+  expect(new Set(roster.coaches.map(coach => coach.name.toLowerCase())).size).toBe(
+    roster.coaches.length,
+  );
   for (const coach of roster.coaches) {
     expect(coach.family.coachId).toBe(coach.id);
     expect(coach.family.name).toBe(coach.name);
@@ -73,7 +82,9 @@ test("personal names remain unique and share stable catalogue identities", async
   ]);
 });
 
-test("old ID bookmarks show the new name and restore the same coach after reload", async ({ page }) => {
+test("old ID bookmarks show the new name and restore the same coach after reload", async ({
+  page,
+}) => {
   await page.goto("/?coach=cat-black&expression=neutral");
   const choice = page.getByRole("button", { name: "Preview Juniper", exact: true });
   await expect(choice).toHaveAttribute("aria-pressed", "true");
@@ -82,5 +93,8 @@ test("old ID bookmarks show the new name and restore the same coach after reload
   await expect(choice).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", { name: "Preview Walter", exact: true }).click();
   await expect(page).toHaveURL(/coach=classic(?:&|$)/);
-  await expect(page.getByRole("button", { name: "Preview Walter", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", { name: "Preview Walter", exact: true })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
 });

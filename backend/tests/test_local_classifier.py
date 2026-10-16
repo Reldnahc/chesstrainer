@@ -4,6 +4,7 @@ import copy
 
 import chess
 import pytest
+from account_units import units_for
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 from trainer.api import create_app
@@ -56,7 +57,7 @@ def evidence(fen=FEN, best=BEST, actual=ACTUAL, best_score=300, actual_score=-50
 @pytest.mark.parametrize("black", [False, True])
 def test_fork_hanging_capture_direction_and_witness(black):
     payload = evidence(black=black)
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     findings = {f.skill_id: f for f in result.findings}
     assert set(findings) == {"material_loss", "hanging_piece", "missed_material_gain", "fork"}
     fork, hanging = findings["fork"], findings["hanging_piece"]
@@ -88,7 +89,7 @@ def test_abstains_on_unsupported_material_or_fork(reason):
         payload["played_candidate"]["score"]["value"] = 100
     else:
         payload["best_candidates"][0]["pv"] = ["b5c7", "e8d7", "c7b5", "d7c6"]
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     skills = {f.skill_id for f in result.findings}
     if reason == "still_ahead":
         assert "material_loss" in skills  # Losing material can matter while still ahead.
@@ -110,7 +111,7 @@ def test_mate_transitions(black, kind):
         payload["best_candidates"][0]["score"] = Score(kind="mate", value=-5).model_dump()
     if kind == "still_mates":
         payload["played_candidate"]["score"] = Score(kind="mate", value=5).model_dump()
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     skills = {f.skill_id for f in result.findings}
     assert ("allowed_mate" in skills) == (kind == "allowed")
     assert ("missed_mate" in skills) == (kind == "missed")
@@ -118,11 +119,12 @@ def test_mate_transitions(black, kind):
 
 @pytest.mark.parametrize("black", [False, True])
 def test_promotion(black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
+        # The king is near enough to win the pawn once White delays promoting.
         evidence(
-            "6k1/P7/8/8/8/8/8/6K1 w - - 0 1",
-            ["a7a8q", "g8f7", "a8a1", "f7e6"],
-            ["g1f2", "g8f7", "f2e3", "f7e6"],
+            "8/P1k5/8/8/8/8/8/6K1 w - - 0 1",
+            ["a7a8q", "c7d7", "a8a1", "d7e6"],
+            ["g1f2", "c7b7", "f2e3", "b7a7", "e3d4", "a7b6"],
             800,
             0,
             black,
@@ -135,7 +137,7 @@ def test_promotion(black):
 @pytest.mark.parametrize("move,skill", [("e2d3", "discovered_attack"), ("e2b5", "double_attack")])
 @pytest.mark.parametrize("black", [False, True])
 def test_discovered_and_double_check(move, skill, black):
-    result, _ = LocalClassifier().classify(
+    result = LocalClassifier().classify(
         evidence(
             "4k3/8/8/8/8/8/4B3/4R1K1 w - - 0 1",
             [move],
@@ -161,7 +163,7 @@ def test_corrupt_line_and_wrong_actual_move_rejected():
 
 def test_config_changes_rule_thresholds(settings):
     settings.classification_min_material = 9
-    result, _ = LocalClassifier(settings).classify(evidence())
+    result = LocalClassifier(settings).classify(evidence())
     assert result.primary_skill == "unclassified"
     assert result.parameters["min_material"] == 9
 
@@ -179,15 +181,18 @@ def test_local_cache_rejection_and_backfill_preserve_srs(settings):
             state = db.get(SRSState, fixture["exercise_id"])
             saved = state.card, state.due, state.reviews, state.retired_at, state.eligible
             classifier = LocalClassifier(settings)
-            assert classify_decision(db, decision, classifier)
-            assert classify_decision(db, decision, classifier)
+            db.commit()
+            units = units_for(db)
+            assert classify_decision(units, decision, classifier)
+            assert classify_decision(units, decision, classifier)
             runs = db.scalars(select(ClassificationRun)).all()
             assert len(runs) == 1 and runs[0].provider == "local_rules"
             assert runs[0].response["primary_skill"] == "unclassified"  # Short fixture PV.
             reject_run(db, runs[0].id)
-            assert not classify_decision(db, decision, classifier)
+            db.commit()
+            assert not classify_decision(units, decision, classifier)
             settings.classification_max_plies = 6
-            assert classify_decision(db, decision, LocalClassifier(settings))
+            assert classify_decision(units, decision, LocalClassifier(settings))
             assert len(db.scalars(select(ClassificationRun)).all()) == 2
         job_id = client.post("/api/classifications/retry").json()["job_id"]
         app.state.runner.run_job(job_id)
@@ -208,7 +213,7 @@ def test_no_provider_configuration_or_paid_job_paths(settings, monkeypatch):
         assert "unused-legacy-test-key" not in str(config)
         assert client.post("/api/course/teaching").status_code == 410
         with client.app.state.sessions() as db:
-            job = AnalysisJob(kind="teaching", status="cancelled")
+            job = AnalysisJob(kind="retired", status="cancelled")
             db.add(job)
             db.commit()
             assert client.post(f"/api/jobs/{job.id}/retry").status_code == 410

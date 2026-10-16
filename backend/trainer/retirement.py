@@ -4,9 +4,9 @@ from datetime import timedelta
 
 from sqlalchemy import select
 
-from trainer.analysis import still_a_mistake
+from trainer.analysis import card_is_backed
 from trainer.errors import InvalidInput
-from trainer.models import Decision, Exercise, OpeningCard, SRSState, User, now
+from trainer.models import Exercise, OpeningCard, SRSState, User, now
 from trainer.scheduling import last_reviewed
 
 
@@ -41,7 +41,7 @@ def retire_existing(db, settings, *, enabled_accounts_only=False):
         query = query.join(User, User.id == SRSState.user_id).where(User.disabled.is_(False))
     for state in db.scalars(query):
         count += retire_if_ready(state, settings)
-    db.commit()
+    db.flush()
     return count
 
 
@@ -50,11 +50,10 @@ def require_active_review(db, exercise_id):
     if state.retired_at is not None:
         raise InvalidInput("This position is retired and will no longer appear in reviews.")
     exercise = db.get(Exercise, exercise_id)
-    # Only a card set aside because its decision stopped being a mistake is refused;
-    # other ineligible game cards (such as the removed lessons' cards) still start.
-    if exercise.source == "game" and not state.eligible and not _decision_is_mistake(db, exercise):
+    # A game card set aside because its game's review no longer backs it is refused.
+    if exercise.source == "game" and not state.eligible and not _backed(db, exercise):
         raise InvalidInput(
-            "This position is no longer a mistake in its game's review, so it has left the queue."
+            "This position no longer matches its game's review, so it has left the queue."
         )
     if exercise.source == "opening":
         card = db.get(OpeningCard, exercise_id)
@@ -64,6 +63,5 @@ def require_active_review(db, exercise_id):
             )
 
 
-def _decision_is_mistake(db, exercise):
-    decision = db.get(Decision, exercise.decision_id) if exercise.decision_id else None
-    return decision is None or still_a_mistake(db, decision)
+def _backed(db, exercise):
+    return exercise.decision_id is None or card_is_backed(db, exercise)

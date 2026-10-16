@@ -1,0 +1,30 @@
+@layer foundation, shell, components, pages, surfaces, motion;
+@layer shell {
+  /* The one section surface and its phone policy. Shared-safe, so the development
+   studios draw their sections with it too; base.css adds the application's
+   stacking and bare-action rules (docs/UI_COMPONENTS.md#surfaces). */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: var(--panel-padding);
+  }
+}
+@layer surfaces {
+  /* Phones flatten sections: a panel keeps its surface only when it opts in
+   with .panel--card (docs/UI_COMPONENTS.md#surfaces). Dialogs float, so
+   they keep theirs. A divider separates neighbouring flat sections. This is a
+   policy over every page's panels, so its layer sits above components and pages. */
+  @media (max-width: 760px) {
+    .panel:not(dialog):not(.panel--card) {
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+    }
+    .panel:not(dialog):not(.panel--card) + .panel:not(dialog):not(.panel--card) {
+      padding-top: var(--page-gap);
+      border-top: 1px solid var(--line);
+    }
+  }
+}

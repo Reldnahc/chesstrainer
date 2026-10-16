@@ -1,9 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { Play, RotateCcw, Sparkles } from "lucide-react";
 import { getCoachStudy } from "../studies/catalog";
-import {
-  getCoach, retiredCoachReplacements, selectableCoaches,
-} from "../registry";
+import { getCoach, retiredCoachReplacements, selectableCoaches } from "../registry";
 import {
   expressionInfo,
   expressionIntent,
@@ -49,11 +47,9 @@ function bookmarkedCoach() {
     "retriever:sunny": "dog-sunny",
   };
   const retired = legacy[`${requested}:${query.get("family")}`] ?? requested;
-  const replacement = retired && Object.hasOwn(retiredCoachReplacements, retired)
-    ? getCoach(retired) : undefined;
-  const production = replacement ?? selectableCoaches.find(
-    (coach) => coach.id === requested,
-  );
+  const replacement =
+    retired && Object.hasOwn(retiredCoachReplacements, retired) ? getCoach(retired) : undefined;
+  const production = replacement ?? selectableCoaches.find(coach => coach.id === requested);
   const collection = getCoachStudy(production?.collectionId ?? requested);
   return {
     collection,
@@ -63,38 +59,166 @@ function bookmarkedCoach() {
     ),
   };
 }
+type StudioState = {
+  view: "acting" | "speech";
+  coachId: string;
+  family: string;
+  expression: CoachExpression;
+  motion: CoachMotion;
+  reduced: boolean;
+  replay: number;
+  reactionReplay: number;
+  idlePreview: CoachMicro;
+  idleVariant: CoachMicro;
+  naturalIdle: boolean;
+  diagnostic: boolean;
+  seed: string;
+  idleSeed: number | undefined;
+  idleReset: number;
+  snapshot: CoachPerformanceSnapshot | null;
+  playing: boolean;
+};
+
+type StudioAction =
+  | { type: "view"; view: StudioState["view"] }
+  | { type: "expression"; expression: CoachExpression }
+  | { type: "coach"; coachId: string; family: string }
+  | { type: "family"; family: string }
+  | { type: "replay reaction" }
+  | { type: "toggle sequence" }
+  | { type: "stop sequence" }
+  | { type: "sequence step"; expression: CoachExpression; first: boolean }
+  | { type: "motion"; motion: CoachMotion }
+  | { type: "reduced"; reduced: boolean }
+  | { type: "idle variant"; idle: CoachMicro }
+  | { type: "preview idle"; idle: CoachMicro }
+  | { type: "natural idle"; natural: boolean }
+  | { type: "diagnostic"; diagnostic: boolean }
+  | { type: "seed"; seed: string }
+  | { type: "restart idle" }
+  | { type: "snapshot"; snapshot: CoachPerformanceSnapshot };
+
+/** Every control that starts something new stops the sequence and any idle preview. */
+const interrupted = (state: StudioState): StudioState => ({
+  ...state,
+  playing: false,
+  idlePreview: "",
+});
+/** A new reaction replays both the stage and the reaction itself. */
+const replayed = (state: StudioState): StudioState => ({
+  ...state,
+  replay: state.replay + 1,
+  reactionReplay: state.reactionReplay + 1,
+});
+
+function studioReducer(state: StudioState, action: StudioAction): StudioState {
+  switch (action.type) {
+    case "view":
+      return { ...interrupted(state), view: action.view };
+    case "expression":
+      return replayed({ ...interrupted(state), expression: action.expression });
+    case "coach":
+      return replayed({
+        ...interrupted(state),
+        idleVariant: "",
+        coachId: action.coachId,
+        family: action.family,
+      });
+    case "family":
+      return replayed({ ...interrupted(state), idleVariant: "", family: action.family });
+    case "replay reaction":
+      return replayed(interrupted(state));
+    case "toggle sequence":
+      return { ...state, playing: !state.playing };
+    case "stop sequence":
+      return { ...state, playing: false };
+    case "sequence step":
+      return {
+        ...state,
+        ...(action.first ? { idlePreview: "" } : {}),
+        expression: action.expression,
+      };
+    case "motion":
+      return { ...state, motion: action.motion, reduced: false };
+    case "reduced":
+      return { ...state, reduced: action.reduced };
+    case "idle variant":
+      return { ...state, idleVariant: action.idle };
+    case "preview idle":
+      return { ...interrupted(state), idlePreview: action.idle, replay: state.replay + 1 };
+    case "natural idle":
+      return { ...state, naturalIdle: action.natural };
+    case "diagnostic":
+      return { ...state, snapshot: null, diagnostic: action.diagnostic };
+    case "seed":
+      return { ...state, seed: action.seed };
+    case "restart idle":
+      return {
+        ...state,
+        idlePreview: "",
+        idleSeed: Number(state.seed),
+        idleReset: state.idleReset + 1,
+      };
+    case "snapshot":
+      return { ...state, snapshot: action.snapshot };
+  }
+}
+
+function initialStudio(): StudioState {
+  const query = new URLSearchParams(location.search);
+  const bookmark = bookmarkedCoach();
+  return {
+    view: query.get("view") === "speech" ? "speech" : "acting",
+    coachId: bookmark.collection.id,
+    family: bookmark.family,
+    expression: expressions.find(state => state === query.get("expression")) ?? "brilliant",
+    motion: "system",
+    reduced: false,
+    replay: 0,
+    reactionReplay: 0,
+    idlePreview: "",
+    idleVariant: "blink",
+    naturalIdle: false,
+    diagnostic: false,
+    seed: "1729",
+    idleSeed: undefined,
+    idleReset: 0,
+    snapshot: null,
+    playing: false,
+  };
+}
+
 export default function CoachStudio() {
-  const [view, setView] = useState<"acting" | "speech">(() =>
-    new URLSearchParams(location.search).get("view") === "speech" ? "speech" : "acting",
-  );
-  const [coachId, setCoachId] = useState(
-    () => bookmarkedCoach().collection.id,
-  );
+  const [state, dispatch] = useReducer(studioReducer, undefined, initialStudio);
+  const {
+    view,
+    coachId,
+    family,
+    expression,
+    motion,
+    reduced,
+    replay,
+    reactionReplay,
+    idlePreview,
+    idleVariant,
+    naturalIdle,
+    diagnostic,
+    seed,
+    idleSeed,
+    idleReset,
+    snapshot,
+    playing,
+  } = state;
   const coach = getCoachStudy(coachId);
-  const [expression, setExpression] = useState<CoachExpression>(() => {
-    const requested = new URLSearchParams(location.search).get("expression");
-    return expressions.find((state) => state === requested) ?? "brilliant";
-  });
-  const [family, setFamily] = useState(() => bookmarkedCoach().family);
   const selected = selectableCoaches.find(
-    (item) => item.collectionId === coach.id && item.defaultFamily === family,
+    item => item.collectionId === coach.id && item.defaultFamily === family,
   )!;
-  const [motion, setMotion] = useState<CoachMotion>("system");
   const idles = expressionIdles(coach, family, expression);
-  const [reduced, setReduced] = useState(false);
-  const [replay, setReplay] = useState(0);
-  const [reactionReplay, setReactionReplay] = useState(0);
-  const [idlePreview, setIdlePreview] = useState<CoachMicro>("");
-  const [idleVariant, setIdleVariant] = useState<CoachMicro>("blink");
-  const [naturalIdle, setNaturalIdle] = useState(false);
-  const [diagnostic, setDiagnostic] = useState(false);
-  const [seed, setSeed] = useState("1729");
-  const [idleSeed, setIdleSeed] = useState<number>();
-  const [idleReset, setIdleReset] = useState(0);
-  const [snapshot, setSnapshot] = useState<CoachPerformanceSnapshot | null>(null);
-  const observePerformance = useCallback((value: CoachPerformanceSnapshot) => setSnapshot(value), []);
-  const chosenIdle = idles.find((idle) => idle === idleVariant) ?? idles[0] ?? "";
-  const [playing, setPlaying] = useState(false);
+  const observePerformance = useCallback(
+    (value: CoachPerformanceSnapshot) => dispatch({ type: "snapshot", snapshot: value }),
+    [],
+  );
+  const chosenIdle = idles.find(idle => idle === idleVariant) ?? idles[0] ?? "";
   const deviceReduced = useReducedMotion();
   const deviceStill = motion === "system" && deviceReduced;
   const effectiveMotion = reduced || deviceStill ? "still" : motion;
@@ -126,19 +250,17 @@ export default function CoachStudio() {
   useEffect(() => {
     if (!playing) return;
     let index = 0;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- the sequence timer starts from its first expression
-    setExpression(sequence[index]);
-    setIdlePreview("");
+    dispatch({ type: "sequence step", expression: sequence[index], first: true });
     const timer = window.setInterval(() => {
       index++;
       if (index >= sequence.length) {
-        setPlaying(false);
+        dispatch({ type: "stop sequence" });
         return;
       }
-      setExpression(sequence[index]);
+      dispatch({ type: "sequence step", expression: sequence[index], first: false });
     }, 2800);
     const stop = () => {
-      if (document.hidden) setPlaying(false);
+      if (document.hidden) dispatch({ type: "stop sequence" });
     };
     document.addEventListener("visibilitychange", stop);
     return () => {
@@ -146,34 +268,23 @@ export default function CoachStudio() {
       document.removeEventListener("visibilitychange", stop);
     };
   }, [playing]);
-  function select(state: CoachExpression) {
-    setPlaying(false);
-    setIdlePreview("");
-    setExpression(state);
-    setReplay((value) => value + 1);
-    setReactionReplay((value) => value + 1);
+  function select(next: CoachExpression) {
+    dispatch({ type: "expression", expression: next });
   }
   function selectCoach(id: string) {
     const nextCoach = getCoach(id);
-    const next = getCoachStudy(nextCoach.collectionId);
-    setPlaying(false);
-    setIdlePreview("");
-    setIdleVariant("");
-    setCoachId(next.id);
-    setFamily(nextCoach.defaultFamily);
-    setReplay((value) => value + 1);
-    setReactionReplay((value) => value + 1);
+    dispatch({
+      type: "coach",
+      coachId: getCoachStudy(nextCoach.collectionId).id,
+      family: nextCoach.defaultFamily,
+    });
     document.querySelector(".studio-controls")?.scrollIntoView({
-      block: "start", behavior: "instant",
+      block: "start",
+      behavior: "instant",
     });
   }
   function selectFamily(id: string) {
-    setPlaying(false);
-    setIdlePreview("");
-    setIdleVariant("");
-    setFamily(id);
-    setReplay((value) => value + 1);
-    setReactionReplay((value) => value + 1);
+    dispatch({ type: "family", family: id });
   }
   function revealPerformance() {
     document
@@ -182,9 +293,7 @@ export default function CoachStudio() {
   }
   return (
     <div className="coach-studio">
-      <p className="studio-dev-notice">
-        Development studio · No account or engine connection
-      </p>
+      <p className="studio-dev-notice">Development studio · No account or engine connection</p>
       <div className="studio-main">
         <header className="studio-heading">
           <div>
@@ -196,67 +305,73 @@ export default function CoachStudio() {
             </h1>
           </div>
           <p>
-            {selectableCoaches.length} coaches to explore, with {expressions.length}{" "}
-            expressions and character-specific idle performances.
+            {selectableCoaches.length} coaches to explore, with {expressions.length} expressions and
+            character-specific idle performances.
             <br />
-            Compare the acting, replay a moment, then see how it reads beside the
-            board.
+            Compare the acting, replay a moment, then see how it reads beside the board.
           </p>
         </header>
         <div className="studio-workbench" data-view={view}>
           <div className="studio-setup">
             <CoachPicker selected={selected.id} onSelect={selectCoach} />
             <div className="studio-toolbar">
-              <ChoiceGroup label="Studio view" value={view} onChange={(value) => {
-                setPlaying(false);
-                setIdlePreview("");
-                setView(value);
-              }} options={[{ value: "acting", label: "Acting" }, { value: "speech", label: "Mouth shapes" }]} />
+              <ChoiceGroup
+                label="Studio view"
+                value={view}
+                onChange={value => dispatch({ type: "view", view: value })}
+                options={[
+                  { value: "acting", label: "Acting" },
+                  { value: "speech", label: "Mouth shapes" },
+                ]}
+              />
               <div>
-                <section
-                  className="studio-controls"
-                  aria-label="Animation preview controls"
-                >
+                <section className="studio-controls" aria-label="Animation preview controls">
                   <label>
                     Expression
                     <select
                       value={expression}
-                      onChange={(event) => select(event.target.value as CoachExpression)}
+                      onChange={event => select(event.target.value as CoachExpression)}
                     >
-                      {expressions.map((state) => (
+                      {expressions.map(state => (
                         <option value={state} key={state}>
                           {expressionInfo[state].label}
                         </option>
                       ))}
                     </select>
                   </label>
-                  <MotionSelect id="studio-motion" label="Motion intensity" layout="stacked"
-                    value={motion} onChange={value => { setMotion(value); setReduced(false); }} />
-                  {view === "acting" && <>
-                  <Button
-                    onClick={() => {
-                      setPlaying(false);
-                      setIdlePreview("");
-                      setReplay((value) => value + 1);
-                      setReactionReplay((value) => value + 1);
-                      revealPerformance();
-                    }}
-                  >
-                    <RotateCcw size={15} /> Replay reaction
-                  </Button>
-                  <Button
-                    variant={playing ? "primary" : "secondary"}
-                    onClick={() => setPlaying((value) => !value)}
-                  >
-                    <Play size={15} /> {playing ? "Stop sequence" : "Play a sequence"}
-                  </Button>
-                  </>}
+                  <MotionSelect
+                    id="studio-motion"
+                    label="Motion intensity"
+                    layout="stacked"
+                    value={motion}
+                    onChange={value => dispatch({ type: "motion", motion: value })}
+                  />
+                  {view === "acting" && (
+                    <>
+                      <Button
+                        onClick={() => {
+                          dispatch({ type: "replay reaction" });
+                          revealPerformance();
+                        }}
+                      >
+                        <RotateCcw size={15} /> Replay reaction
+                      </Button>
+                      <Button
+                        variant={playing ? "primary" : "secondary"}
+                        onClick={() => dispatch({ type: "toggle sequence" })}
+                      >
+                        <Play size={15} /> {playing ? "Stop sequence" : "Play a sequence"}
+                      </Button>
+                    </>
+                  )}
                   <label className="studio-reduced">
                     <input
                       type="checkbox"
                       checked={reduced || deviceStill}
                       disabled={deviceStill}
-                      onChange={(event) => setReduced(event.target.checked)}
+                      onChange={event =>
+                        dispatch({ type: "reduced", reduced: event.target.checked })
+                      }
                     />{" "}
                     Reduced motion
                   </label>
@@ -287,26 +402,32 @@ export default function CoachStudio() {
                   </div>
                   <p>{expressionIntent(coach, expression)}</p>
                 </div>
-                <ConceptComparison preview={preview} onFamily={selectFamily}
-                  onPerformance={diagnostic ? observePerformance : undefined} />
+                <ConceptComparison
+                  preview={preview}
+                  onFamily={selectFamily}
+                  onPerformance={diagnostic ? observePerformance : undefined}
+                />
                 <IdlePlayback
                   natural={naturalIdle}
-                  onNatural={(value) => {
-                    setNaturalIdle(value);
+                  onNatural={value => {
+                    dispatch({ type: "natural idle", natural: value });
                     if (value) revealPerformance();
                   }}
                   diagnostic={diagnostic}
-                  onDiagnostic={(value) => { setSnapshot(null); setDiagnostic(value); }}
+                  onDiagnostic={value => dispatch({ type: "diagnostic", diagnostic: value })}
                   seed={seed}
-                  onSeed={setSeed}
+                  onSeed={value => dispatch({ type: "seed", seed: value })}
                   appliedSeed={idleSeed}
                   onRestart={() => {
-                    setIdlePreview("");
-                    setIdleSeed(Number(seed));
-                    setIdleReset((value) => value + 1);
+                    dispatch({ type: "restart idle" });
                     revealPerformance();
                   }}
-                  snapshot={snapshot?.identity === `${coach.id}:${family}` && snapshot.expression === expression ? snapshot : null}
+                  snapshot={
+                    snapshot?.identity === `${coach.id}:${family}` &&
+                    snapshot.expression === expression
+                      ? snapshot
+                      : null
+                  }
                 />
               </div>
               <div className="studio-idles">
@@ -314,8 +435,8 @@ export default function CoachStudio() {
                   <div>
                     <h2>The quieter moments</h2>
                     <p>
-                      {idles.length} gestures for {selected.name} · {expressionInfo[expression].label}.
-                      Idle previews never replay the reaction.
+                      {idles.length} gestures for {selected.name} ·{" "}
+                      {expressionInfo[expression].label}. Idle previews never replay the reaction.
                     </p>
                   </div>
                   <label className="sr-only" htmlFor="idle-variant">
@@ -324,40 +445,38 @@ export default function CoachStudio() {
                   <select
                     id="idle-variant"
                     value={chosenIdle}
-                    onChange={(event) => setIdleVariant(event.target.value as CoachMicro)}
+                    onChange={event =>
+                      dispatch({ type: "idle variant", idle: event.target.value as CoachMicro })
+                    }
                   >
-                    {idles.map((idle) => (
+                    {idles.map(idle => (
                       <option key={idle} value={idle}>
                         {idlePresentation(coach, family, expression, idle).label}
                       </option>
                     ))}
                   </select>
-                  <button
+                  <Button
                     disabled={effectiveMotion === "still"}
                     onClick={() => {
-                      setPlaying(false);
-                      setIdlePreview(chosenIdle);
-                      setReplay((value) => value + 1);
+                      dispatch({ type: "preview idle", idle: chosenIdle });
                       revealPerformance();
                     }}
                   >
                     Preview idle
-                  </button>
+                  </Button>
                 </section>
                 <IdleVariants preview={preview} />
               </div>
             </div>
           )}
         </div>
-        {view === "acting" && <>
-          <BoardSizePreview preview={preview} />
-          <CastComparison preview={preview} selected={selected.id} />
-          <ExpressionCollection
-            preview={preview}
-            onFamily={selectFamily}
-            onSelect={select}
-          />
-        </>}
+        {view === "acting" && (
+          <>
+            <BoardSizePreview preview={preview} />
+            <CastComparison preview={preview} selected={selected.id} />
+            <ExpressionCollection preview={preview} onFamily={selectFamily} onSelect={select} />
+          </>
+        )}
       </div>
       {view === "acting" && (
         <aside className="studio-note">
@@ -367,9 +486,8 @@ export default function CoachStudio() {
               {selected.name}: {selected.expressions.length} expressions,{" "}
               {availableIdles(coach, family).length} idle performances.
             </strong>{" "}
-            {selected.description} All of these coaches are available in Settings for
-            game review and practice. Preview controls never change your account
-            preferences.
+            {selected.description} All of these coaches are available in Settings for game review
+            and practice. Preview controls never change your account preferences.
           </p>
         </aside>
       )}

@@ -11,11 +11,33 @@ export type SignatureGesture = IdleGesture & {
 export type SignatureCollection = Partial<Record<CoachId, readonly SignatureGesture[]>>;
 
 export const attentive: readonly CoachExpression[] = [
-  "neutral", "idle", "book", "thinking", "uncertain", "explaining", "draw",
+  "neutral",
+  "idle",
+  "book",
+  "thinking",
+  "uncertain",
+  "explaining",
+  "draw",
 ];
 export const positive: readonly CoachExpression[] = [
-  "neutral", "idle", "brilliant", "great", "best", "good", "winning", "encouraging", "recovered", "explaining",
+  "neutral",
+  "idle",
+  "brilliant",
+  "great",
+  "best",
+  "good",
+  "winning",
+  "encouraging",
+  "recovered",
+  "explaining",
 ];
 export const concerned: readonly CoachExpression[] = [
-  "inaccuracy", "mistake", "blunder", "missed", "losing", "uncertain", "thinking", "draw",
+  "inaccuracy",
+  "mistake",
+  "blunder",
+  "missed",
+  "losing",
+  "uncertain",
+  "thinking",
+  "draw",
 ];

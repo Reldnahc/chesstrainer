@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "positional-castling-actual",
+      "text": "King and rook moved in a single turn, with the rook settling next to the king. Castling isn't safety by itself: check the king's new home, then get to work."
+    },
+    "takeId": null
+  },
+  "requestHash": "04a702fe9910acadf651f91ab1e2620b8e57ba8ed9588bc230c0f299ec322936",
+  "recordedAt": "2026-10-16T16:15:40.591Z",
+  "sha256": "bd488eb7348932e0f98c20a43fbec6c4ce466c7657f069f70cf1a6ad6218503e",
+  "bytes": 32079,
+  "requestId": "N2EDeGha78Gg92mxM2rT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd176eee21c621953e08f33edd3606b65992110efd3fc4ecd8063beeb2d0d6fe",
+    "bytes": 167644
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

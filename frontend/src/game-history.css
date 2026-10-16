@@ -1,341 +1,418 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-.game-library {
-  container-type: inline-size;
-  --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 17px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  overflow: hidden;
-}
-/* The library's own header row: the count on the left, its actions on the right. */
-.game-library-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid var(--line);
-}
-.game-library-count {
-  margin: 0;
-  color: var(--muted);
-  font-size: var(--text-sm);
-}
-.game-library-count strong {
-  color: var(--text);
-  font-weight: 600;
-}
-.game-library-heading,
-.game-library-item {
-  display: grid;
-  grid-template-columns: var(--history-columns);
-  grid-template-areas: "time players result accuracy moves date open";
-  align-items: center;
-  column-gap: var(--space-4);
-  padding: var(--space-3) var(--space-4);
-}
-.game-library-heading {
-  background: #191b1e;
-  color: var(--muted);
-  font-size: var(--text-xs);
-}
-.game-library-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.game-library-list > li {
-  border-top: 1px solid var(--line);
-  background: #191b1e;
-}
-.game-library-list > li:nth-child(odd) {
-  background: var(--surface);
-}
-.game-library-item {
-  color: inherit;
-  text-decoration: none;
-  min-height: 74px;
-  font-size: var(--text-md);
-  transition: background var(--motion-fast) var(--ease-standard);
-}
-.game-library-item:hover,
-.game-library-item:focus-visible {
-  background: #292d32;
-}
-.game-library-item:focus-visible {
-  outline-offset: -3px;
-}
-.history-players {
-  grid-area: players;
-  min-width: 0;
-}
-.history-line {
-  display: flex;
-  align-items: center;
-  min-height: 24px;
-}
-.history-player {
-  gap: var(--space-2);
-  min-width: 0;
-}
-.history-player strong {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: var(--text-base);
-  font-weight: 500;
-}
-.history-player.is-learner strong {
-  font-weight: 600;
-}
-.history-rating {
-  flex: none;
-  color: var(--muted);
-  font-size: var(--text-sm);
-}
-.history-color {
-  flex: none;
-  width: 10px;
-  height: 10px;
-  border: 1px solid #747a83;
-  border-radius: 2px;
-}
-.history-color.white {
-  background: #eceef1;
-}
-.history-color.black {
-  background: #3a3e45;
-}
-.history-result {
-  grid-area: result;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-}
-.history-scores,
-.game-library-item .history-accuracy {
-  font: var(--text-sm) var(--mono);
-}
-.history-scores .history-line,
-.history-accuracy .history-line {
-  justify-content: center;
-}
-.history-outcome {
-  font-size: var(--text-2xs);
-  font-weight: 600;
-  border-radius: 3px;
-  padding: var(--space-1) var(--space-1-5);
-}
-.history-accuracy {
-  grid-area: accuracy;
-  text-align: center;
-}
-.history-review-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 30px;
-  padding: var(--space-1) var(--space-2);
-  border: 1px solid #53635a;
-  border-radius: 4px;
-  background: #29332e;
-  color: #c1d6c8;
-  font:
-    var(--text-sm) "IBM Plex Sans",
-    sans-serif;
-}
-.history-meta {
-  display: contents;
-}
-.history-time {
-  grid-area: time;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
-  min-width: 0;
-  text-align: center;
-}
-.game-library-item .history-time {
-  font-size: var(--text-xs);
-  color: var(--muted);
-}
-.history-time > svg {
-  flex: none;
-  color: #b8cfc2;
-}
-.history-time > span {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-.history-moves {
-  grid-area: moves;
-  text-align: center;
-}
-.game-library-item .history-moves {
-  font: var(--text-sm) var(--mono);
-}
-.history-date {
-  grid-area: date;
-  text-align: right;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.game-library-item .history-date {
-  font-size: var(--text-sm);
-}
-.history-open {
-  grid-area: open;
-  color: #b8cfc2;
-}
-.history-mobile-label {
-  display: none;
-}
-@container (max-width: 760px) {
-  .game-library-heading,
-  .game-library-item {
-    --history-columns: minmax(0, 1fr) 64px 62px 14px;
+  .game-library {
+    container-type: inline-size;
+    --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 17px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  /* The library's own header row: the count on the left, its actions on the right. */
+  .game-library-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+  .game-library-count {
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .game-library-count strong {
+    color: var(--text);
+    font-weight: 600;
   }
   .game-library-heading,
   .game-library-item {
-    grid-template-areas: "players result accuracy open";
-    column-gap: var(--space-1-5);
-    padding: var(--space-2) var(--space-3);
+    display: grid;
+    grid-template-columns: var(--history-columns);
+    grid-template-areas: "time players result accuracy moves date open";
+    align-items: center;
+    column-gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
   }
   .game-library-heading {
-    font-size: var(--text-2xs);
+    background: #191b1e;
+    color: var(--muted);
+    font-size: var(--text-xs);
   }
-  .game-library-heading .history-time,
-  .game-library-heading .history-moves,
-  .game-library-heading .history-date {
-    display: none;
+  .game-library-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .game-library-list > li {
+    border-top: 1px solid var(--line);
+    background: #191b1e;
+  }
+  .game-library-list > li:nth-child(odd) {
+    background: var(--surface);
   }
   .game-library-item {
-    grid-template-areas: "players result accuracy open" "meta meta meta meta";
-    row-gap: var(--space-2);
+    color: inherit;
+    text-decoration: none;
+    min-height: 74px;
+    font-size: var(--text-md);
+    transition: background var(--motion-fast) var(--ease-standard);
+  }
+  .game-library-item:hover,
+  .game-library-item:focus-visible {
+    background: #292d32;
+  }
+  .game-library-item:focus-visible {
+    outline-offset: -3px;
+  }
+  .history-players {
+    grid-area: players;
+    min-width: 0;
+  }
+  .history-line {
+    display: flex;
+    align-items: center;
+    min-height: 24px;
   }
   .history-player {
-    gap: var(--space-1-5);
+    gap: var(--space-2);
+    min-width: 0;
   }
   .history-player strong {
-    font-size: var(--text-md);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+  .history-player.is-learner strong {
+    font-weight: 600;
   }
   .history-rating {
-    font-size: var(--text-xs);
+    flex: none;
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .history-color {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #747a83;
+    border-radius: 2px;
+  }
+  .history-color.white {
+    background: var(--text);
+  }
+  .history-color.black {
+    background: #3a3e45;
   }
   .history-result {
-    gap: var(--space-1);
+    grid-area: result;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+  .history-scores,
+  .game-library-item .history-accuracy {
+    font: var(--text-sm) var(--mono);
+  }
+  .history-scores .history-line,
+  .history-accuracy .history-line {
+    justify-content: center;
   }
   .history-outcome {
-    padding-inline: var(--space-1);
+    /* As wide as the widest outcome label (drawn invisibly from data-labels and kept
+     out of the accessible name), so every badge has one width. */
+    display: inline-grid;
+    justify-items: center;
+    font-size: var(--text-2xs);
+    font-weight: 600;
+    border-radius: 3px;
+    padding: var(--space-1) var(--space-1-5);
+  }
+  .history-outcome-label,
+  .history-outcome::after {
+    grid-area: 1 / 1;
+  }
+  .history-outcome::after {
+    /* The plain form first, for engines without alternative text. */
+    content: attr(data-labels);
+    content: attr(data-labels) / "";
+    white-space: pre;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+  }
+  .history-accuracy {
+    grid-area: accuracy;
+    text-align: center;
   }
   .history-review-action {
-    padding-inline: var(--space-1-5);
-    font-size: var(--text-xs);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid #53635a;
+    border-radius: 4px;
+    background: #29332e;
+    color: #c1d6c8;
+    font:
+      var(--text-sm) "IBM Plex Sans",
+      sans-serif;
   }
   .history-meta {
-    grid-area: meta;
+    display: contents;
+  }
+  .history-time {
+    grid-area: time;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    min-width: 0;
+    text-align: center;
+  }
+  .game-library-item .history-time {
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  .history-time > svg {
+    flex: none;
+    color: #b8cfc2;
+  }
+  .history-time > span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .history-moves {
+    grid-area: moves;
+    text-align: center;
+  }
+  .game-library-item .history-moves {
+    font: var(--text-sm) var(--mono);
+  }
+  .history-date {
+    grid-area: date;
+    text-align: right;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .game-library-item .history-date {
+    font-size: var(--text-sm);
+  }
+  .history-open {
+    grid-area: open;
+    color: #b8cfc2;
+  }
+  .history-mobile-label {
+    display: none;
+  }
+  @container (max-width: 760px) {
+    .game-library-heading,
+    .game-library-item {
+      --history-columns: minmax(0, 1fr) 64px 62px 14px;
+    }
+    .game-library-heading,
+    .game-library-item {
+      grid-template-areas: "players result accuracy open";
+      column-gap: var(--space-1-5);
+      padding: var(--space-2) var(--space-3);
+    }
+    .game-library-heading {
+      font-size: var(--text-2xs);
+    }
+    .game-library-heading .history-time,
+    .game-library-heading .history-moves,
+    .game-library-heading .history-date {
+      display: none;
+    }
+    .game-library-item {
+      grid-template-areas: "players result accuracy open" "meta meta meta meta";
+      row-gap: var(--space-2);
+    }
+    .history-player {
+      gap: var(--space-1-5);
+    }
+    .history-player strong {
+      font-size: var(--text-md);
+    }
+    .history-rating {
+      font-size: var(--text-xs);
+    }
+    .history-result {
+      gap: var(--space-1);
+    }
+    .history-review-action {
+      padding-inline: var(--space-1-5);
+      font-size: var(--text-xs);
+    }
+    .history-meta {
+      grid-area: meta;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-1-5) var(--space-4);
+      color: var(--muted);
+    }
+    .game-library-item .history-time {
+      flex-direction: row;
+      text-align: left;
+    }
+    .history-time > svg {
+      width: 14px;
+      height: 14px;
+    }
+    .history-time > span {
+      display: block;
+      max-width: 130px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .history-mobile-label {
+      display: inline;
+    }
+    .game-library-item .history-moves {
+      font:
+        var(--text-xs) "IBM Plex Sans",
+        sans-serif;
+    }
+    .game-library-item .history-date {
+      font-size: var(--text-xs);
+      margin-left: auto;
+    }
+  }
+
+  /* A summary list for constrained surfaces. The library keeps its comparison columns. */
+  .game-library--compact {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+  }
+  .game-library--compact .game-library-list > li {
+    background: transparent;
+  }
+  /* Inside a panel the rows bleed into its side padding, so the dividers and the
+   hover highlight span the card while the text stays aligned with the heading. */
+  .panel .game-library--compact {
+    --history-bleed: var(--panel-padding);
+  }
+  .game-library--compact .game-library-list {
+    margin-inline: calc(-1 * var(--history-bleed, 0px));
+  }
+  .game-library--compact .game-library-list > li:first-child {
+    border-top: 0;
+  }
+  .game-library--compact .game-library-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--history-bleed, 0px);
+  }
+  .game-library--compact .game-library-list > li:first-child .game-library-item {
+    padding-top: 0;
+  }
+  .game-library--compact .game-library-list > li:last-child .game-library-item {
+    padding-bottom: 0;
+  }
+  .game-library--compact .history-player {
+    gap: var(--space-2);
+  }
+  .game-library--compact .history-player strong {
+    font-size: var(--text-lg);
+  }
+  .history-player-score {
+    margin-left: auto;
+    padding-left: var(--space-3);
+    font: var(--text-md) var(--mono);
+  }
+  .history-recent-details {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--space-1-5) var(--space-4);
+    gap: var(--space-1-5) var(--space-3);
+  }
+  .game-library--compact .history-meta {
+    display: contents;
     color: var(--muted);
   }
-  .game-library-item .history-time {
+  .game-library--compact .history-time {
     flex-direction: row;
-    text-align: left;
+    gap: var(--space-1-5);
   }
-  .history-time > svg {
+  .game-library--compact .history-time > svg {
     width: 14px;
     height: 14px;
   }
-  .history-time > span {
-    display: block;
-    max-width: 130px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  .game-library--compact .history-date {
+    margin-left: 0;
+    font-size: var(--text-xs);
   }
-  .history-mobile-label {
+  .game-library--compact .history-moves {
+    display: none;
+  }
+  .game-library--compact .history-mobile-label {
     display: inline;
   }
-  .game-library-item .history-moves {
-    font:
-      var(--text-xs) "IBM Plex Sans",
-      sans-serif;
+  .history-recent-accuracy,
+  .history-recent-side,
+  .history-recent-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
   }
-  .game-library-item .history-date {
+  .history-recent-accuracy {
+    gap: var(--space-3);
     font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  .history-recent-side .history-line {
+    min-height: 0;
+    color: var(--text);
+    font: var(--text-xs) var(--mono);
+  }
+  .history-recent-action {
     margin-left: auto;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: #c1d6c8;
   }
-}
-
-/* A summary list for constrained surfaces. The library keeps its comparison columns. */
-.game-library--compact { border: 0; border-radius: 0; overflow: visible; }
-.game-library--compact .game-library-list > li { background: transparent; }
-/* Inside a panel the rows bleed into its side padding, so the dividers and the
-   hover highlight span the card while the text stays aligned with the heading. */
-.panel .game-library--compact { --history-bleed: var(--panel-padding); }
-.game-library--compact .game-library-list { margin-inline: calc(-1 * var(--history-bleed, 0px)); }
-.game-library--compact .game-library-list > li:first-child { border-top: 0; }
-.game-library--compact .game-library-item {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--space-2);
-  padding: var(--space-4) var(--history-bleed, 0px);
-}
-.game-library--compact .game-library-list > li:first-child .game-library-item { padding-top: 0; }
-.game-library--compact .game-library-list > li:last-child .game-library-item { padding-bottom: 0; }
-.game-library--compact .history-player { gap: var(--space-2); }
-.game-library--compact .history-player strong { font-size: var(--text-lg); }
-.history-player-score { margin-left: auto; padding-left: var(--space-3); font: var(--text-md) var(--mono); }
-.history-recent-details {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-1-5) var(--space-3);
-}
-.game-library--compact .history-meta { display: contents; color: var(--muted); }
-.game-library--compact .history-time { flex-direction: row; gap: var(--space-1-5); }
-.game-library--compact .history-time > svg { width: 14px; height: 14px; }
-.game-library--compact .history-date { margin-left: 0; font-size: var(--text-xs); }
-.game-library--compact .history-moves { display: none; }
-.game-library--compact .history-mobile-label { display: inline; }
-.history-recent-accuracy, .history-recent-side, .history-recent-action {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1-5);
-}
-.history-recent-accuracy { gap: var(--space-3); font-size: var(--text-xs); color: var(--muted); }
-.history-recent-side .history-line { min-height: 0; color: var(--text); font: var(--text-xs) var(--mono); }
-.history-recent-action { margin-left: auto; font-size: var(--text-sm); font-weight: 500; color: #c1d6c8; }
-@container (max-width: 400px) {
-  .game-library--compact .history-player strong { font-size: var(--text-base); }
-  .history-recent-details { gap: var(--space-1-5) var(--space-2); }
-}
-/* Flat on phones: the library is divided rows, not a boxed, striped table. */
-@media (max-width: 760px) {
-  .game-library {
-    border: 0;
-    border-radius: 0;
+  @container (max-width: 400px) {
+    .game-library--compact .history-player strong {
+      font-size: var(--text-base);
+    }
+    .history-recent-details {
+      gap: var(--space-1-5) var(--space-2);
+    }
   }
-  .game-library-heading,
-  .game-library-list > li,
-  .game-library-list > li:nth-child(odd) {
-    background: transparent;
+  /* Flat on phones: the library is divided rows, not a boxed, striped table. */
+  @media (max-width: 760px) {
+    .game-library {
+      border: 0;
+      border-radius: 0;
+    }
+    .game-library-heading,
+    .game-library-list > li,
+    .game-library-list > li:nth-child(odd) {
+      background: transparent;
+    }
+    .game-library-toolbar,
+    .game-library-heading,
+    .game-library-item {
+      padding-inline: 0;
+    }
+    /* The page already pads the top; the flat toolbar does not add more. */
+    .game-library-toolbar {
+      padding-top: 0;
+    }
+    /* Phone panels are flat with no side padding, so there is nothing to bleed into. */
+    .panel .game-library--compact {
+      --history-bleed: 0px;
+    }
   }
-  .game-library-toolbar,
-  .game-library-heading,
-  .game-library-item {
-    padding-inline: 0;
-  }
-  /* The page already pads the top; the flat toolbar does not add more. */
-  .game-library-toolbar { padding-top: 0; }
-  /* Phone panels are flat with no side padding, so there is nothing to bleed into. */
-  .panel .game-library--compact { --history-bleed: 0px; }
-}
 }

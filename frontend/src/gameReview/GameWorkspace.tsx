@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Banner from "../Banner";
+import { CommandError } from "../useQuery";
 import { ArrowLeft, Share } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -9,7 +9,7 @@ import EvaluationBar from "../EvaluationBar";
 import { ARROW_COLOURS, cueArrows, cuesFor, moveSquares, uciArrow } from "../boardCues";
 import ActionLink from "../ActionLink";
 import { LoadingState, UnavailableState } from "../LoadState";
-import Button from "../Button";
+import Button, { IconButton } from "../Button";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
@@ -40,14 +40,14 @@ export default function GameWorkspace({
     reviewStarting,
     running,
     error,
-    setError,
+    fail,
     dismissError,
     retryLoad,
     start,
     cancel,
     analysisEpoch,
   } = session;
-  const exploration = useGameExploration(id, initialPly, game, setError);
+  const exploration = useGameExploration(id, initialPly, game, { fail, dismiss: dismissError });
   const [exporting, setExporting] = useState(false);
   const {
     cursor,
@@ -67,7 +67,7 @@ export default function GameWorkspace({
   const startingReport = !branch && cursor.ply === 0 ? firstReport : null;
   const analysis = usePositionAnalysis({
     id,
-    rating: game?.rating ?? 1000,
+    rating: game?.rating,
     epoch: analysisEpoch,
     root,
     path,
@@ -92,8 +92,7 @@ export default function GameWorkspace({
         frame,
         "position",
       );
-  const bestMove =
-    report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
+  const bestMove = report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
   const cues = cuesFor(report, frame);
   const explaining = exploration.explanationKey === key && !!cues;
   const actor =
@@ -115,9 +114,20 @@ export default function GameWorkspace({
           <ArrowLeft size={16} />
           All games
         </ActionLink>
-        {error
-          ? <UnavailableState presentation="panel" actions={<Button variant="secondary" onClick={retryLoad}>Try again</Button>}>Couldn’t load the game. {error}</UnavailableState>
-          : <LoadingState presentation="panel">Loading the game…</LoadingState>}
+        {error ? (
+          <UnavailableState
+            presentation="panel"
+            actions={
+              <Button variant="secondary" onClick={retryLoad}>
+                Try again
+              </Button>
+            }
+          >
+            Couldn’t load the game. {error}
+          </UnavailableState>
+        ) : (
+          <LoadingState presentation="panel">Loading the game…</LoadingState>
+        )}
       </>
     );
   const playerName = (color: "white" | "black") => {
@@ -126,7 +136,7 @@ export default function GameWorkspace({
   };
   const displayed = frame || (branchPosition?.value ?? game.frames[cursor.ply]);
   // Clocks follow the original game; a variation keeps the clocks where it began.
-  const clocked = game.frames.some((item) => item.clock != null);
+  const clocked = game.frames.some(item => item.clock != null);
   const clockAt = (color: "white" | "black") => {
     if (!clocked) return undefined;
     for (let ply = root; ply > 0; ply--) {
@@ -145,13 +155,15 @@ export default function GameWorkspace({
       : [];
   // Pins the move just made, from the pinning piece through the pinned piece to
   // the one behind it. A pin kept from an earlier move is not drawn again.
-  const pinArrows = (cues?.pins ?? []).map((pin) => ({
-    startSquare: pin.startSquare, endSquare: pin.endSquare, color: ARROW_COLOURS.pin,
+  const pinArrows = (cues?.pins ?? []).map(pin => ({
+    startSquare: pin.startSquare,
+    endSquare: pin.endSquare,
+    color: ARROW_COLOURS.pin,
   }));
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return (
     <div className="game-workspace">
-      {error && <Banner tone="error" onDismiss={dismissError}>{error}</Banner>}
+      <CommandError command={{ error, dismiss: dismissError }} />
       <ReviewWorkspace
         boardLabel="Game board and navigation"
         aboveBoard={
@@ -172,9 +184,7 @@ export default function GameWorkspace({
             accuracy={game.accuracy}
             complete={game.job?.status === "completed"}
             status={
-              frame?.termination
-                ? `${frame.result} · ${frame.termination}`
-                : `${toMove} to move`
+              frame?.termination ? `${frame.result} · ${frame.termination}` : `${toMove} to move`
             }
             clock={clockAt(orientation)}
             running={!branch && !frame?.termination && toMove === orientation}
@@ -199,8 +209,12 @@ export default function GameWorkspace({
               explaining
                 ? [
                     ...cueArrows(cues!),
-                    ...pinArrows.filter((pin) => !cues!.arrows.some((a) =>
-                      a.startSquare === pin.startSquare && a.endSquare === pin.endSquare)),
+                    ...pinArrows.filter(
+                      pin =>
+                        !cues!.arrows.some(
+                          a => a.startSquare === pin.startSquare && a.endSquare === pin.endSquare,
+                        ),
+                    ),
                   ]
                 : [...replyArrow, ...pinArrows]
             }
@@ -223,12 +237,18 @@ export default function GameWorkspace({
           cues={cues}
           errorAtPosition={analysis.error}
           reviewStarting={reviewStarting}
-          speechPending={moving || !frame || (!!speechNavigation?.awaitAnalysis && !saved && !currentAnalysis && !frame.termination && !analysis.error)}
+          speechPending={
+            moving ||
+            !frame ||
+            (!!speechNavigation?.awaitAnalysis &&
+              !saved &&
+              !currentAnalysis &&
+              !frame.termination &&
+              !analysis.error)
+          }
           speechEventId={speechNavigation?.eventId}
           speechOpening={!!speechNavigation?.opening}
-          onExplain={() =>
-            analysis.error ? analysis.retry() : exploration.toggleExplanation()
-          }
+          onExplain={() => (analysis.error ? analysis.retry() : exploration.toggleExplanation())}
           onReturnToGame={exploration.returnToGame}
         />
         <ReviewMoves
@@ -236,10 +256,15 @@ export default function GameWorkspace({
           exploration={exploration}
           getAnalysis={analysis.get}
           actions={
-            <button className="game-move-command game-move-command--icon" aria-label="Export game" title="Export PGN, FEN or GIF"
-              onClick={() => setExporting(true)}>
+            <IconButton
+              variant="quiet"
+              size="dense"
+              aria-label="Export game"
+              title="Export PGN, FEN or GIF"
+              onClick={() => setExporting(true)}
+            >
               <Share size={14} />
-            </button>
+            </IconButton>
           }
           progress={
             <ReviewProgress
@@ -258,11 +283,20 @@ export default function GameWorkspace({
           selected={cursor.ply}
           onSelect={navigate}
           onScrubStart={exploration.beginScrubbing}
-          onScrubSelect={(ply) => navigate(ply, { silent: true })}
+          onScrubSelect={ply => navigate(ply, { silent: true })}
           onScrubEnd={exploration.finishScrubbing}
         />
       </ReviewWorkspace>
-      <DialogPresence>{exporting && <GameExportDialog id={id} fen={displayed.fen} orientation={orientation} onClose={() => setExporting(false)} />}</DialogPresence>
+      <DialogPresence>
+        {exporting && (
+          <GameExportDialog
+            id={id}
+            fen={displayed.fen}
+            orientation={orientation}
+            onClose={() => setExporting(false)}
+          />
+        )}
+      </DialogPresence>
     </div>
   );
 }

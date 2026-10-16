@@ -26,4 +26,4 @@ def seed_skills(db):
     for key, data in SKILLS.items():
         if db.get(Skill, key) is None:
             db.add(Skill(id=key, **data))
-    db.commit()
+    db.flush()

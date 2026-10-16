@@ -13,6 +13,7 @@ reaches ``from``. ``next`` defaults to the following step in the chapter.
 """
 
 import copy
+from types import SimpleNamespace
 from typing import Literal
 
 import chess
@@ -21,7 +22,7 @@ from pydantic import ConfigDict, Field, ValidationError
 from trainer.contracts.common import Contract
 from trainer.errors import InvalidInput
 from trainer.study_lessons.content import CourseDefinition, Position
-from trainer.study_lessons.validation import step_result, step_start
+from trainer.study_lessons.validation import StepProblem, end_of, start_of, step_result, step_start
 
 FORMAT = "fieldwork-course-1"
 DEFAULT_FEEDBACK = "That is a move taught in this lesson."
@@ -30,8 +31,18 @@ DEFAULT_FEEDBACK = "That is a move taught in this lesson."
 class CourseFileError(InvalidInput):
     """A course file that cannot become a lesson, or a course ledger that cannot be read.
 
-    The message names the place; requests answer 422 with it.
+    The message names the place; requests answer 422 with it. A problem inside a
+    chapter also carries that chapter's id and, inside a step, the step's id, so the
+    lesson editor marks the step without reading the message.
     """
+
+    def __init__(self, message, chapter=None, step=None):
+        super().__init__(message)
+        self.chapter = chapter
+        self.step = step
+
+    def location(self):
+        return dict(chapter=self.chapter, step=self.step) if self.chapter is not None else None
 
 
 class FileModel(Contract):
@@ -128,14 +139,18 @@ class CourseFile(FileModel):
 # --- Reading ---------------------------------------------------------------
 
 
-def san_moves(where, san, fen=None, history=()):
-    """UCI for SAN tokens played after ``history`` from ``fen``."""
+def san_moves(where, san, fen=None, history=(), at=None):
+    """UCI for SAN tokens played after ``history`` from ``fen``.
+
+    ``at`` is the chapter and step a problem belongs to, when it is in a step.
+    """
+    at = at or {}
     try:
         board = chess.Board(fen or chess.STARTING_FEN)
     except ValueError as exc:
-        raise CourseFileError(f"{where}: the FEN {fen!r} cannot be read") from exc
+        raise CourseFileError(f"{where}: the FEN {fen!r} cannot be read", **at) from exc
     if not board.is_valid():
-        raise CourseFileError(f"{where}: the FEN {fen!r} is not a legal chess position")
+        raise CourseFileError(f"{where}: the FEN {fen!r} is not a legal chess position", **at)
     for uci in history:
         board.push_uci(uci)
     moves = []
@@ -143,7 +158,7 @@ def san_moves(where, san, fen=None, history=()):
         try:
             move = board.parse_san(token)
         except ValueError as exc:
-            raise CourseFileError(f"{where}: {token} is not a legal move here") from exc
+            raise CourseFileError(f"{where}: {token} is not a legal move here", **at) from exc
         moves.append(move.uci())
         board.push(move)
     return tuple(moves)
@@ -193,7 +208,38 @@ def parse(data):
     except ValidationError as exc:
         problem = exc.errors()[0]
         place = " → ".join(str(part) for part in problem["loc"])
-        raise CourseFileError(f"{place}: {problem['msg']}") from exc
+        raise CourseFileError(
+            f"{place}: {problem['msg']}", **field_location(data, problem["loc"])
+        ) from exc
+
+
+def field_location(data, loc):
+    """The chapter and step ids a validation problem's path points into, when it does.
+
+    Works on a course file (``chapters``/``steps``) and on its course record, and
+    stops at the last level that has an id.
+    """
+    loc = tuple(loc)
+
+    def item(container, key, index):
+        try:
+            value = container[key][index]
+        except (KeyError, IndexError, TypeError):
+            return None, None
+        ident = value.get("id") if isinstance(value, dict) else None
+        return value, (str(ident) if ident is not None else None)
+
+    if len(loc) < 2 or loc[0] != "chapters" or not isinstance(loc[1], int):
+        return {}
+    chapter, chapter_id = item(data, "chapters", loc[1])
+    if chapter_id is None:
+        return {}
+    place = dict(chapter=chapter_id)
+    if len(loc) >= 4 and loc[2] == "steps" and isinstance(loc[3], int):
+        _, step_id = item(chapter, "steps", loc[3])
+        if step_id is not None:
+            place["step"] = step_id
+    return place
 
 
 def sources(source):
@@ -254,28 +300,50 @@ def load(data):
         course = CourseDefinition.model_validate(record)
     except ValidationError as exc:
         problem = exc.errors()[0]
-        raise CourseFileError(problem["msg"].removeprefix("Value error, ")) from exc
+        cause = (problem.get("ctx") or {}).get("error")
+        place = (
+            dict(chapter=cause.chapter, step=cause.step)
+            if isinstance(cause, StepProblem)
+            else field_location(record, problem["loc"])
+        )
+        message = problem["msg"].removeprefix("Value error, ")
+        # Name the place in the words too, as the file's own checks do.
+        if place.get("step") is not None:
+            message = f"Chapter {place['chapter']}, step {place['step']}: {message}"
+        elif place:
+            message = f"Chapter {place['chapter']}: {message}"
+        raise CourseFileError(message, **place) from exc
     return course, source.topic
 
 
 def chapter_record(chapter, known):
     """Resolve one chapter of a course file into course records.
 
-    This reads the file's own SAN records before any course exists, so it cannot
-    share ``validation.step_result``; ``dump`` proves after every save that the
-    two agree, by loading the written file back.
+    This reads the file's own SAN records before any course exists, so it turns
+    them into UCI here and then places each step by ``validation.start_of`` and
+    ``end_of``, the same rule the loaded course and the editor's boards use.
     """
     where = f"Chapter {chapter.id}"
+
+    def at(step_id):
+        return dict(chapter=chapter.id, step=step_id)
+
     order = [step.id for step in chapter.steps]
     if len(set(order)) != len(order):
-        raise CourseFileError(f"{where} has two steps with the same id")
+        duplicate = next(step_id for index, step_id in enumerate(order) if step_id in order[:index])
+        raise CourseFileError(f"{where} has two steps with the same id", **at(duplicate))
     following = {
         step_id: order[index + 1] if index + 1 < len(order) else None
         for index, step_id in enumerate(order)
     }
     by_id = {step.id: step for step in chapter.steps}
     entry = chapter.entry or order[0]
-    kinds = {step.id: kind_of(step) for step in chapter.steps}
+    kinds = {}
+    for step in chapter.steps:
+        try:
+            kinds[step.id] = kind_of(step)
+        except CourseFileError as exc:
+            raise CourseFileError(str(exc), **at(step.id)) from exc
 
     def target(step, value):
         return following[step.id] if value == "__following__" else value
@@ -289,21 +357,18 @@ def chapter_record(chapter, known):
         feedback = DEFAULT_FEEDBACK if step.feedback is None else step.feedback
         return [(step.move, step.reply, feedback, target(step, step.next))]
 
-    # The first link into each step, in file order, decides an implied position.
-    incoming = {}
-    for step in chapter.steps:
+    def links(step):
         if kinds[step.id] == "decision":
-            links = [
-                (choice_next, index)
+            return [
+                (choice_next, (step.id, index))
                 for index, (*_, choice_next) in enumerate(decision_choices(step))
             ]
-        else:
-            links = [(target(step, step.next), None)]
-            if kinds[step.id] == "branch":
-                links.insert(0, (step.branch, "branch"))
-        for destination, via in links:
-            if destination is not None and destination in by_id:
-                incoming.setdefault(destination, (step.id, via))
+        found = [(target(step, step.next), (step.id, None))]
+        if kinds[step.id] == "branch":
+            found.insert(0, (step.branch, (step.id, "branch")))
+        return found
+
+    incoming = first_links(chapter.steps, links)
 
     positions, results, resolving = {}, {}, set()
 
@@ -311,33 +376,35 @@ def chapter_record(chapter, known):
         if step_id in positions:
             return positions[step_id]
         if step_id in resolving:
-            raise CourseFileError(f"{where}: step {step_id} leads back to itself")
+            raise CourseFileError(f"{where}: step {step_id} leads back to itself", **at(step_id))
         resolving.add(step_id)
         step = by_id[step_id]
         label = f"{where}, step {step_id}"
         if step.position is not None or step.fen is not None:
             fen = step.fen or chess.STARTING_FEN
-            found = (fen, san_moves(label, step.position, step.fen))
+            found = (fen, san_moves(label, step.position, step.fen, at=at(step_id)))
         elif kinds[step_id] == "rehearsal":
             line = known["lines"].get(step.rehearse)
             if line is None:
-                raise CourseFileError(f"{label} rehearses an unknown line {step.rehearse}")
-            found = (line["position"]["initial_fen"], line["position"]["moves"])
+                raise CourseFileError(
+                    f"{label} rehearses an unknown line {step.rehearse}", **at(step_id)
+                )
+            found = _pair(start_of("rehearsal", None, line=_source(line)))
         elif kinds[step_id] == "game_excerpt":
             game = known["games"].get(step.game)
             if game is None:
-                raise CourseFileError(f"{label} shows an unknown game {step.game}")
-            start = step.from_ply or 0
-            found = (
-                game["position"]["initial_fen"],
-                (*game["position"]["moves"], *game["moves"][:start]),
+                raise CourseFileError(f"{label} shows an unknown game {step.game}", **at(step_id))
+            found = _pair(
+                start_of("game_excerpt", None, game=_source(game), from_ply=step.from_ply or 0)
             )
         elif step_id == entry:
             found = (chess.STARTING_FEN, ())
         elif step_id in incoming:
             found = result_of(*incoming[step_id])
         else:
-            raise CourseFileError(f"{label} cannot be reached, so it needs its own position")
+            raise CourseFileError(
+                f"{label} cannot be reached, so it needs its own position", **at(step_id)
+            )
         resolving.discard(step_id)
         positions[step_id] = found
         return found
@@ -348,23 +415,23 @@ def chapter_record(chapter, known):
         fen, history = position_of(step_id)
         step, kind = by_id[step_id], kinds[step_id]
         label = f"{where}, step {step_id}"
+        start, ends = Position(initial_fen=fen, moves=history), {}
         if kind == "demonstration":
-            history = (*history, *san_moves(label, step.show, fen, history))
+            ends["moves"] = san_moves(label, step.show, fen, history, at(step_id))
         elif kind == "decision" and via is not None:
             move, reply, *_ = decision_choices(step)[via]
-            played = san_moves(label, move, fen, history)
-            history = (*history, *played)
-            history = (*history, *san_moves(label, reply, fen, history))
-        elif kind == "rehearsal":
-            line = known["lines"].get(step.rehearse)
-            if line is not None:
-                history = (*line["position"]["moves"], *line["moves"])
-        elif kind == "game_excerpt":
-            game = known["games"].get(step.game)
-            if game is not None:
-                history = (*game["position"]["moves"], *game["moves"][: step.to_ply or 0])
-        results[(step_id, via)] = (fen, history)
-        return fen, history
+            played = san_moves(label, move, fen, history, at(step_id))
+            answer = san_moves(label, reply, fen, (*history, *played), at(step_id))
+            ends["choice"] = (*played, *answer)
+        elif kind == "rehearsal" and step.rehearse in known["lines"]:
+            ends["line"] = _source(known["lines"][step.rehearse])
+        elif kind == "game_excerpt" and step.game in known["games"]:
+            ends.update(game=_source(known["games"][step.game]), to_ply=step.to_ply or 0)
+        elif kind in ("rehearsal", "game_excerpt"):
+            # An unknown line or game is reported where the step's own position resolves.
+            kind = "explanation"
+        results[(step_id, via)] = _pair(end_of(kind, start, **ends))
+        return results[(step_id, via)]
 
     steps = []
     for step in chapter.steps:
@@ -382,24 +449,28 @@ def chapter_record(chapter, known):
         if kind == "decision":
             choices = []
             for move, reply, feedback, choice_next in decision_choices(step):
-                played = san_moves(label, move, fen, history)
+                played = san_moves(label, move, fen, history, at(step.id))
                 if not played:
-                    raise CourseFileError(f"{label} needs the learner's move")
-                answer = san_moves(label, reply, fen, (*history, *played))
+                    raise CourseFileError(f"{label} needs the learner's move", **at(step.id))
+                answer = san_moves(label, reply, fen, (*history, *played), at(step.id))
                 if len(played) != 1 or len(answer) > 1:
-                    raise CourseFileError(f"{label}: a decision is one move and one reply")
+                    raise CourseFileError(
+                        f"{label}: a decision is one move and one reply", **at(step.id)
+                    )
                 choices.append(
                     dict(uci=played[0], reply=answer, next_step=choice_next, feedback=feedback)
                 )
             record.update(choices=choices, hint=step.hint, next_step=None)
             if step.next != "__following__" and step.choices is not None:
-                raise CourseFileError(f"{label}: with choices, next belongs to each choice")
+                raise CourseFileError(
+                    f"{label}: with choices, next belongs to each choice", **at(step.id)
+                )
         else:
             record["next_step"] = target(step, step.next)
             if kind == "demonstration":
-                record["moves"] = san_moves(label, step.show, fen, history)
+                record["moves"] = san_moves(label, step.show, fen, history, at(step.id))
                 if not record["moves"]:
-                    raise CourseFileError(f"{label} needs at least one move to show")
+                    raise CourseFileError(f"{label} needs at least one move to show", **at(step.id))
             elif kind == "branch":
                 record["branch_start"] = step.branch
             elif kind == "game_excerpt":
@@ -421,52 +492,73 @@ def check(data):
         source = parse(data)
         _, _, known = sources(source)
     except CourseFileError as exc:
-        return dict(error=str(exc), steps={})
+        return dict(error=str(exc), location=exc.location(), steps={})
     problem, steps = (unfinished[0] if unfinished else None), {}
     for chapter in source.chapters:
         try:
             record = chapter_record(chapter, known)
         except CourseFileError as exc:
-            problem = problem or str(exc)
+            problem = problem or exc
             continue
         for step in record["steps"]:
             start = Position(**step["position"]) if _legal(step["position"]) else None
             if start is None:
                 continue
-            board = start.board()
-            end = board.copy()
-            if step["kind"] == "decision" and step["choices"]:
-                choice = step["choices"][0]
-                played = (choice["uci"], *choice["reply"])
-            elif step["kind"] == "rehearsal" and step["line_id"] in known["lines"]:
-                played = known["lines"][step["line_id"]]["moves"]
-            elif step["kind"] == "game_excerpt" and step["game_id"] in known["games"]:
-                game = known["games"][step["game_id"]]["moves"]
-                played = game[step["from_ply"] : step["to_ply"] or 0]
-            else:
-                played = step.get("moves", ())
-            try:
-                for uci in played:
-                    end.push_uci(uci)
-            except ValueError:
-                end = board.copy()
-            reached = (
-                *start.moves,
-                *(move.uci() for move in end.move_stack[len(board.move_stack) :]),
-            )
+            # The board each step leaves, by the same rule as the course itself; a
+            # decision shows its first choice, the answer the step is written around.
+            end = _editor_end(step, start, known)
             steps[f"{chapter.id}/{step['id']}"] = dict(
-                fen=board.fen(),
+                fen=start.board().fen(),
                 initial_fen=start.initial_fen,
                 position=san_text(Position(initial_fen=start.initial_fen), start.moves),
-                end_fen=end.fen(),
-                end_position=san_text(Position(initial_fen=start.initial_fen), reached),
+                end_fen=end.board().fen(),
+                end_position=san_text(Position(initial_fen=start.initial_fen), end.moves),
             )
     if problem is None:
         try:
             load(data)
         except CourseFileError as exc:
-            problem = str(exc)
-    return dict(error=problem, steps=steps)
+            problem = exc
+    if problem is None:
+        return dict(error=None, location=None, steps=steps)
+    return dict(error=str(problem), location=problem.location(), steps=steps)
+
+
+def _source(record):
+    """A line or game record from ``sources``, as the start and end rules read it."""
+    return SimpleNamespace(position=Position(**record["position"]), moves=tuple(record["moves"]))
+
+
+def _pair(position):
+    return position.initial_fen, position.moves
+
+
+def _editor_end(step, start, known):
+    """Where a chapter record's step leaves the board, or ``start`` while it cannot
+    be played out yet: a missing line or game, or a move still being written."""
+    kind, ends = step["kind"], {}
+    if kind == "decision" and step["choices"]:
+        choice = step["choices"][0]
+        ends["choice"] = (choice["uci"], *choice["reply"])
+    elif kind == "rehearsal":
+        if step["line_id"] not in known["lines"]:
+            return start
+        ends["line"] = _source(known["lines"][step["line_id"]])
+    elif kind == "game_excerpt":
+        game = known["games"].get(step["game_id"])
+        # An excerpt still being written (no end, or one outside the game) shows its start.
+        if game is None:
+            return start
+        span = (step["from_ply"] or 0, step["to_ply"] or 0)
+        if not span[0] < span[1] <= len(game["moves"]):
+            return start
+        ends.update(game=_source(game), to_ply=span[1])
+    elif kind == "demonstration":
+        ends["moves"] = step.get("moves", ())
+    try:
+        return end_of(kind, start, **ends)
+    except (ValueError, ValidationError):
+        return start
 
 
 def unfinished_steps(data):
@@ -486,16 +578,29 @@ def unfinished_steps(data):
             if not isinstance(step, dict):
                 continue
             where = f"Chapter {chapter.get('id')}, step {step.get('id')}"
+            at = (
+                dict(
+                    chapter=str(chapter["id"]),
+                    step=str(step["id"]) if step.get("id") is not None else None,
+                )
+                if chapter.get("id") is not None
+                else {}
+            )
             if step.get("move") == "" and "choices" not in step:
                 for field in ("move", "reply", "hint", "feedback"):
                     step.pop(field, None)
-                problems.append(f"{where} needs the learner's move")
+                problems.append(CourseFileError(f"{where} needs the learner's move", **at))
             if step.get("rehearse") == "":
                 step.pop("rehearse")
-                problems.append(f"{where} needs a line to rehearse")
+                problems.append(CourseFileError(f"{where} needs a line to rehearse", **at))
+            if step.get("branch") == "":
+                step.pop("branch")
+                problems.append(
+                    CourseFileError(f"{where} needs a step to start its side trip", **at)
+                )
             if step.get("show") == "":
                 step.pop("show")
-                problems.append(f"{where} needs at least one move to show")
+                problems.append(CourseFileError(f"{where} needs at least one move to show", **at))
     return problems, data
 
 
@@ -588,6 +693,22 @@ def dump(course, topic="opening"):
     return data
 
 
+def first_links(steps, links):
+    """The first link into each step, in file order: it decides a step's implied position.
+
+    ``links(step)`` gives the step's ``(destination, link)`` pairs in order; a branch
+    leads into its branch before its next step. The loader reads a file's records and
+    ``implied_positions`` a loaded course, so each supplies its own links.
+    """
+    ids = {step.id for step in steps}
+    incoming = {}
+    for step in steps:
+        for destination, link in links(step):
+            if destination is not None and destination in ids:
+                incoming.setdefault(destination, link)
+    return incoming
+
+
 def implied_positions(course, chapter):
     """The position the loader would give each step that has none written."""
     order = [step.id for step in chapter.steps]
@@ -595,20 +716,18 @@ def implied_positions(course, chapter):
         step_id: order[index + 1] if index + 1 < len(order) else None
         for index, step_id in enumerate(order)
     }
-    by_id = {step.id: step for step in chapter.steps}
-    incoming = {}
-    for step in chapter.steps:
+
+    def links(step):
         if step.kind == "decision":
-            links = [
+            return [
                 (choice.next_step, step_result(course, step, choice)) for choice in step.choices
             ]
-        else:
-            links = [(step.next_step, step_result(course, step))]
-            if step.kind == "branch":
-                links.insert(0, (step.branch_start, step.position))
-        for destination, result in links:
-            if destination is not None and destination in by_id:
-                incoming.setdefault(destination, result)
+        found = [(step.next_step, step_result(course, step))]
+        if step.kind == "branch":
+            found.insert(0, (step.branch_start, step.position))
+        return found
+
+    incoming = first_links(chapter.steps, links)
     implied = {}
     for step in chapter.steps:
         if step.kind in {"rehearsal", "game_excerpt"}:

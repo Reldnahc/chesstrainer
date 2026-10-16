@@ -5,8 +5,22 @@
 // technology only ever see the content that is actually there. The copy is marked
 // `data-ghost`, so its descendants do not replay their own entrances.
 
-const STRIPPED = ["id", "for", "name", "role", "title", "href", "tabindex", "placeholder",
-  "aria-label", "aria-labelledby", "aria-describedby", "aria-live", "aria-current", "aria-selected"];
+const STRIPPED = [
+  "id",
+  "for",
+  "name",
+  "role",
+  "title",
+  "href",
+  "tabindex",
+  "placeholder",
+  "aria-label",
+  "aria-labelledby",
+  "aria-describedby",
+  "aria-live",
+  "aria-current",
+  "aria-selected",
+];
 
 export function ghostCopy<T extends Element>(source: T): T {
   const copy = source.cloneNode(true) as T;
@@ -22,20 +36,27 @@ export function ghostCopy<T extends Element>(source: T): T {
       control.textContent = "";
       control.value = shown.value;
     } else if (control instanceof HTMLSelectElement && shown instanceof HTMLSelectElement) {
-      [...control.options].forEach((option, position) => { option.selected = !!shown.options[position]?.selected; });
+      [...control.options].forEach((option, position) => {
+        option.selected = !!shown.options[position]?.selected;
+      });
     }
     control.setAttribute("disabled", "");
   });
   for (const element of [copy, ...copy.querySelectorAll("*")]) {
     for (const name of STRIPPED) element.removeAttribute(name);
-    for (const { name } of [...element.attributes]) if (name.startsWith("aria-")) element.removeAttribute(name);
+    for (const { name } of [...element.attributes])
+      if (name.startsWith("aria-")) element.removeAttribute(name);
   }
   const walker = document.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
   const texts: Text[] = [];
   while (walker.nextNode()) {
     const text = walker.currentNode as Text;
     // SVG text cannot hold HTML, and an option draws only its own text.
-    if (text.data.trim() && !(text.parentElement instanceof SVGElement) && !(text.parentElement instanceof HTMLOptionElement))
+    if (
+      text.data.trim() &&
+      !(text.parentElement instanceof SVGElement) &&
+      !(text.parentElement instanceof HTMLOptionElement)
+    )
       texts.push(text);
   }
   for (const text of texts) {
@@ -68,7 +89,25 @@ export function playLeavingCopy(source: HTMLElement, mark: (copy: HTMLElement) =
   copy.inert = true;
   copy.popover = "manual";
   document.body.append(copy);
-  copy.showPopover();
-  const remove = () => copy.remove();
-  afterAnimations(copy, remove);
+  const show = () => {
+    if (!copy.isConnected) return;
+    copy.showPopover();
+    afterAnimations(copy, () => copy.remove());
+  };
+  try {
+    show();
+  } catch (error) {
+    // An auto popover also hides when another one opens, and a popover cannot be
+    // shown during that other show (a microtask still runs inside it): the copy
+    // shows at the start of the next frame, before it is drawn.
+    if (!(error instanceof DOMException && error.name === "InvalidStateError")) throw error;
+    requestAnimationFrame(() => {
+      try {
+        show();
+      } catch (retry) {
+        copy.remove();
+        throw retry;
+      }
+    });
+  }
 }

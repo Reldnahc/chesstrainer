@@ -7,7 +7,7 @@ export async function captureAudio(page: Page) {
     const samples = new Map<string, string>();
     const decoded = new WeakMap<AudioBuffer, string>();
     const cues: string[] = [];
-    Object.assign(window, {__audioCues: cues});
+    Object.assign(window, { __audioCues: cues });
     function fingerprint(buffer: ArrayBuffer) {
       const bytes = new Uint8Array(buffer);
       let hash = 2166136261;
@@ -18,7 +18,10 @@ export async function captureAudio(page: Page) {
     Response.prototype.arrayBuffer = async function () {
       const bytes = await arrayBuffer.call(this);
       if (this.url.includes(".wav")) {
-        const match = new URL(this.url).pathname.split("/").pop()?.match(/^([a-z]+)(?:-[\w-]+)?\.wav$/);
+        const match = new URL(this.url).pathname
+          .split("/")
+          .pop()
+          ?.match(/^([a-z]+)(?:-[\w-]+)?\.wav$/);
         if (match) samples.set(fingerprint(bytes), match[1]);
       }
       return bytes;
@@ -26,13 +29,20 @@ export async function captureAudio(page: Page) {
     const decode = BaseAudioContext.prototype.decodeAudioData;
     BaseAudioContext.prototype.decodeAudioData = function (bytes, success, failure) {
       const cue = samples.get(fingerprint(bytes));
-      return decode.call(this, bytes, buffer => {
-        if (cue) decoded.set(buffer, cue);
-        success?.(buffer);
-      }, failure).then(buffer => {
-        if (cue) decoded.set(buffer, cue);
-        return buffer;
-      });
+      return decode
+        .call(
+          this,
+          bytes,
+          buffer => {
+            if (cue) decoded.set(buffer, cue);
+            success?.(buffer);
+          },
+          failure,
+        )
+        .then(buffer => {
+          if (cue) decoded.set(buffer, cue);
+          return buffer;
+        });
     };
     const start = AudioBufferSourceNode.prototype.start;
     AudioBufferSourceNode.prototype.start = function (when?, offset?, duration?) {
@@ -46,9 +56,11 @@ export async function captureAudio(page: Page) {
 
 /** Each navigation/reload starts a fresh observation buffer. */
 export async function audioCues(page: Page): Promise<SoundCue[]> {
-  return page.evaluate(() => [...(window as unknown as {__audioCues: SoundCue[]}).__audioCues]);
+  return page.evaluate(() => [...(window as unknown as { __audioCues: SoundCue[] }).__audioCues]);
 }
 
 export async function clearAudio(page: Page) {
-  await page.evaluate(() => { (window as unknown as {__audioCues: string[]}).__audioCues.length = 0; });
+  await page.evaluate(() => {
+    (window as unknown as { __audioCues: string[] }).__audioCues.length = 0;
+  });
 }

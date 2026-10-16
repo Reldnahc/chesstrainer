@@ -1,36 +1,37 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer components {
-/* The application's modal dialogs (evidence, game export) share one surface,
+  /* The application's modal dialogs (evidence, game export) share one surface,
    backdrop and phone sheet; each keeps its own width and inner layout.
    Promotion places itself over the board and keeps its own presentation. */
-:is(.evidence-dialog, .game-export-dialog) {
-  max-height: 90vh;
-  overflow: auto;
-  margin: auto;
-  color: var(--text);
-}
-:is(.evidence-dialog, .game-export-dialog)[open] {
-  display: flex;
-  flex-direction: column;
-}
-:is(.evidence-dialog, .game-export-dialog)::backdrop {
-  background: #07090bd9;
-}
-/* The page behind any open modal stays put. */
-body:has(dialog[open]) {
-  overflow: hidden;
-}
-@media (max-width: 760px) {
-  /* Phones show a modal as a full-height sheet that respects the safe areas. */
   :is(.evidence-dialog, .game-export-dialog) {
-    width: 100%;
-    max-width: none;
-    max-height: 100dvh;
-    height: 100dvh;
-    border: 0;
-    border-radius: 0;
-    padding: max(var(--space-3), env(safe-area-inset-top)) var(--space-3)
-      max(var(--space-4), env(safe-area-inset-bottom));
+    max-height: 90vh;
+    overflow: auto;
+    margin: auto;
+    color: var(--text);
   }
-}
+  :is(.evidence-dialog, .game-export-dialog)[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  :is(.evidence-dialog, .game-export-dialog)::backdrop {
+    background: #07090bd9;
+  }
+  /* The page behind any open modal stays put. */
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+  @media (max-width: 760px) {
+    /* Phones show a modal as a full-height sheet that respects the safe areas. */
+    :is(.evidence-dialog, .game-export-dialog) {
+      width: 100%;
+      max-width: none;
+      max-height: 100dvh;
+      height: 100dvh;
+      border: 0;
+      border-radius: 0;
+      --dialog-padding-top: max(var(--space-3), env(safe-area-inset-top));
+      padding: var(--dialog-padding-top) var(--space-3)
+        max(var(--space-4), env(safe-area-inset-bottom));
+    }
+  }
 }

@@ -73,7 +73,7 @@ accordingly. Depth can finish a search early. This is a budget, not a latency
 promise. Questions are independent, so they run in parallel on
 min(STOCKFISH_WORKERS, ENGINE_SLOTS) engines, the same count the baseline pass
 uses; per-query limits, threads and hash do not change, only wall-clock time.
-There is no unbounded executor or account-specific native pool.
+There is no unbounded executor or account-specific native pool: the baseline's searches, these questions and an analysis job's games and classifications all run on `work_pool.WorkPool`, which bounds running and waiting work and stops taking work once the job is cancelled. The job runner itself is not a task pool: `jobs.JobRunner` keeps long-lived threads, one per analysis job worker and one sync coordinator, each taking the next eligible job of its lane, plus the sync poller when sync polling is on. Native processes come from `lazy_pool.LazyPool` pools: the host's engine pool in account mode, a review job's own engine pool in local mode, and the Maia workers. An analysis job's game threads keep one engine each instead.
 
 Pause interrupts an active extra search or a wait for a slot/cache lock. Startup
 and engine teardown retain the native transport's bounded timeouts. Partial
@@ -92,6 +92,15 @@ Completed evidence is adopted only with the same engine and at least baseline
 depth for the actual/best/root comparisons. A deeper report that finds the played
 move stronger than its best is adopted too; presentation promotes the played
 move, as it does for a baseline report.
+Human evidence always scores the move shown as best (`game_review.shown_best_uci`):
+a new review, a variation and a Play move ask for the promoted move from the start,
+and a saved report whose best moved since (an adopted refinement, or a promotion
+saved before that) is scored again from its saved policy with no inference
+(`review_reports.aligned_human`, which game review, saved Play games and refinement
+planning all read through), so the practical view and the human lines describe the
+move on the board. Because the practical view digests the human evidence, a
+promoted ply of a review saved before this rule gets new event ids, and its human
+contrast events, the first time it is shown again.
 Budget exhaustion or unavailable/incompatible engines leaves the baseline usable.
 An optional human-alternative query failure cannot discard a completed root
 comparison. Diagnostics retain why an investigation was not adopted.
@@ -103,11 +112,18 @@ played move from the root search's own lines, the decision compares it there too
 through a saved restricted view of that search (same limits, that move first),
 never a new search at other limits. An exercise already made
 from it keeps its answers and schedule (rewriting them would drop answers graded in
-practice, and the same mistake in other games can share the exercise); only a
-decision without one gets a new one from the deeper search. While the decision is
-no longer a mistake its card is ineligible, so it leaves the Due queue and focused
-practice and cannot be started directly, unless another meaningful decision shares
-its position; a later search that makes it a mistake again puts the card back.
+practice, and the same mistake in other games can share the exercise); the card
+grades unseen moves against, and lists the candidates of, the search its answers
+came from, never the decision's newer one (the evidence dialog and the played-line
+facts stay decision-level, matching the game review). Only a decision without one
+gets a new one from the deeper search. While the decision is no longer a mistake,
+or its current search no longer grades the card's primary answer correct or
+acceptable (judged inside that search, never against scores from another depth,
+so a search that does not list the answer cannot vouch for it and the card waits
+even when the answer might be within tolerance), its card is ineligible: it leaves the Due queue and
+focused practice and cannot be started directly, unless another meaningful
+decision on its position still supports it. A later search that backs it again
+puts the card back, and startup rechecks every game card the same way.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original
@@ -159,8 +175,19 @@ dialogue and the developer laboratory, including the visible coach's supported c
 
 Each event has a deterministic ID, actor, confidence, importance, structured
 facts and evidence references (authority, ID, field and optional game ply).
+Each event kind has its own typed facts model (`events_types.py`: `TacticFacts`,
+`MateFacts`, positional facts per `feature`, and so on), and each game
+relationship kind its own (`game_types.py`). Producers validate against them,
+backend readers use the typed models rather than dictionary keys, and the
+generated frontend types narrow `facts` by `kind`. A renamed or retyped fact
+therefore fails where it is produced (a validation error the backend tests
+catch) and in the frontend build, instead of as a missing key in a reader.
 Event identity depends on those facts and references, not selected coach,
-explanation wording or unrelated model updates. The enclosing input digest also
+explanation wording or unrelated model updates. A tactic fact that `move-events-4`
+left out when it did not apply (`opportunity_actor`, `pinned_before`) is now
+always present, as null, and a null one stays out of the identity, so typing the
+facts changed no event id. Any other change to what an event's facts hold bumps
+the version. The enclosing input digest also
 tracks evidence generation and PGN context. Original saved reports/PGNs remain
 the durable sources; reading semantics requires no migration or engine/model.
 
@@ -296,7 +323,7 @@ score/prose changes. Cold SRS still excludes all review-intelligence fields.
 
 ## Practical difficulty and human naturalness
 
-`review_intelligence/difficulty.py` derives `practical-2` from saved Stockfish and
+`review_intelligence/difficulty.py` derives `practical-3` from saved Stockfish and
 human evidence. It performs no search, changes no grades, and uses no coach
 identity. Full-game and variation reports expose the same typed assessment.
 Legacy Stockfish-only reports retain structural facts and explicitly abstain
@@ -319,7 +346,11 @@ claim that other moves are unplayable. Baseline MultiPV=2 does not enumerate eve
 acceptable choice; `alternatives_complete=false` and an explicit limitation
 preserve that distinction. Missing runner-up evidence cannot establish an only
 move. `only_good_move_at_depth` requires a nonlosing best move and a runner-up at
-least 150 cp worse that reaches -150 cp or a losing mate. A missed forced win
+least 150 cp worse that reaches -150 cp or a losing mate. Calling -1.50 losing
+follows the usual convention that ±1.50 is a decisive advantage (the Informator
++− sign), and Stockfish calibrates +1.00 to a 50% win chance in its own play.
+The decisive-swing rule and the advantage bands use -2.00 instead, a stricter
+bar for calling a move's own result lost; only-move evidence uses -1.50. A missed forced win
 while retaining +5 is **not** a sole defensive resource. These are bounded-search
 and rule conclusions, not proof against perfect play.
 
@@ -344,7 +375,9 @@ in diffuse policies from being called dominant, and avoids treating a rank just
 outside top three as rare. This is a heuristic interpretation, **not an empirical
 finding about player success**. Thresholds/version are explicit and boundary-tested.
 
-Preferred best moves receive the natural band. Other modeled moves are
+Preferred best moves, and any best move among the model's top three choices,
+receive the natural band: a move the model ranks second at 9% is not a hard find,
+nor is its top choice in a diffuse policy. Other modeled moves are
 challenging; difficult additionally requires unusual model policy and an actual
 supported tactical horizon of at least three plies, a verified sacrifice of that
 best move, or the narrow defensive resource. Rarity alone cannot earn difficult.
@@ -401,7 +434,7 @@ Relations are deliberately narrower than an unrestricted chess story:
 | Relation | Evidence gate |
 | --- | --- |
 | Punishment | Adjacent actual moves; previous concession of 100 cp or a mate transition; a searched advantage/equalizing opportunity; next move either keeps that opportunity with less than 50 cp concession or loses its advantage/playable band. Partially using an opportunity is not called wholly missed. |
-| Recovery | Same player's earlier error left a searched disadvantage/forced loss; a later near-best move restores at least a playable score. Intervening opponent errors are recorded, so dialogue cannot claim the recovering player created all the improvement. A move never raises its own evaluation, so the position was already playable before it: the coach writes a recovery in neutral words ("playable again") and plays no recovery take, whose lines credit this move. |
+| Recovery | Same player's earlier error left a searched disadvantage/forced loss; a later near-best move restores at least a playable score. Intervening opponent errors are recorded, so dialogue cannot claim the recovering player created all the improvement. A move never raises its own evaluation, so the position was already playable before it: the coach writes a recovery in neutral words ("playable again") and voices the `recovery` take, or `recovery-assisted` when the opponent's errors helped; those takes were re-recorded on Oct 15 so none credits this move or the learner. |
 | Repeated motif | Same responsible player, supported tactical motif and role on different reviewed plies. Duplicate detectors do not inflate the count; a best-line alternative is excluded. Counts are explicitly among observed reviewed plies. The recorded repeated-issue clip ("once before", "a second time") plays only at `occurrence` 2; the written line names the count. |
 | Advantage run | At least six contiguous reviewed plies stay at 200 cp or searched mate for one side. A completed review ending in that side's recorded win adds a conversion observation. This does not mean flawless play or a mathematically proved win. `own_error_plies` lists the side's own moves inside the run graded Inaccuracy or worse, and the coach tells a conversion only when it is empty (its takes say there was no slip). |
 | Erosion | At least three 30–149 cp concessions by one side in a nine-ply window, with at least 150 cp net deterioration. Opponent errors that restore the position defeat the net-deterioration claim. `own_mistake_plies` lists the side's Mistake-sized moves from the first concession, concessions included; the coach tells an erosion only on an Inaccuracy and only when it is empty, because its takes call the concessions small and say no single big mistake did it. |
@@ -679,8 +712,10 @@ loading, code hashes, model hashes and typed policies are checked before use.
 
 The shared `human_analyses` table stores full policy facts and requests. It has
 no owner, like the Stockfish cache: when two members import the same game, the
-second review reuses the first one's predictions. `scripts/clear_games.py` keeps
-rows another account's review still references.
+second review reuses the first one's predictions. Rows nothing references are
+swept at startup once they are 30 days old, and `scripts/clear_games.py` keeps
+rows anything left in the database still references
+(see [ARCHITECTURE.md](ARCHITECTURE.md)).
 Cache identity covers full root/history/final position, mover, both actual PGN
 ratings or explicit fallbacks, source/time-control domain, provider, model and
 checkpoint revision, adapter revision, device, precision, Torch version, thread

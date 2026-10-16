@@ -1,75 +1,300 @@
 @layer foundation, shell, components, pages, surfaces, motion;
 @layer pages {
-.game-sync-compact { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1-5); max-width: 100%; }
-.game-sync-compact [role="alert"] { max-width: 32ch; }
-.game-connections { display: flex; flex-direction: column; gap: var(--space-4); }
-.connection-heading { gap: var(--space-3); flex-wrap: wrap; }
-.connection-description { max-width: 90ch; }
-.provider-connections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
-.provider-connections .game-sync { min-width: 0; padding: var(--space-5); --panel-gap: var(--space-3); }
-.connection-username { overflow-wrap: anywhere; }
-.game-sync .sync-form label { flex-basis: 180px; }
-.connection-actions { margin-top: auto; padding-top: var(--space-2); }
-.pgn-import-launcher { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding-top: var(--space-5); border-top: 1px solid var(--line); }
-.pgn-import-launcher > div { display: flex; flex-direction: column; gap: var(--space-1); }
-.pgn-import-launcher button { flex-shrink: 0; }
-.import-form { display: grid; grid-template-rows: 0fr; min-width: 0; opacity: 0; scroll-margin-top: 16px; transition: grid-template-rows var(--motion-slow) var(--ease-standard), opacity var(--motion-slow) var(--ease-standard); }
-.import-form[data-open="true"] { grid-template-rows: 1fr; opacity: 1; }
-@starting-style {
-  .import-form[data-open="true"] { grid-template-rows: 0fr; opacity: 0; }
-}
-.import-form-clip { min-height: 0; overflow: clip; margin-inline: calc(-1 * var(--space-1-5)); padding-inline: var(--space-1-5); }
-.import-form-body { display: grid; gap: var(--space-4); padding-block: var(--space-5) var(--space-1-5); border-top: 1px solid var(--line); }
-.import-form:focus { outline: none; }
-/* The space above the form's divider sits inside the clip, so it opens and
+  .game-sync-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1-5);
+    max-width: 100%;
+  }
+  .game-sync-compact [role="alert"] {
+    max-width: 32ch;
+  }
+  .game-connections {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .connection-heading {
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .connection-description {
+    max-width: 90ch;
+  }
+  .provider-connections {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+  .provider-connections .game-sync {
+    min-width: 0;
+    padding: var(--space-5);
+    --panel-gap: var(--space-3);
+  }
+  .connection-username {
+    overflow-wrap: anywhere;
+  }
+  .game-sync .sync-form label {
+    flex-basis: 180px;
+  }
+  .connection-actions {
+    margin-top: auto;
+    padding-top: var(--space-2);
+  }
+  .pgn-import-launcher {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--line);
+  }
+  .pgn-import-launcher > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .pgn-import-launcher button {
+    flex-shrink: 0;
+  }
+  .import-form {
+    display: grid;
+    grid-template-rows: 0fr;
+    min-width: 0;
+    opacity: 0;
+    scroll-margin-top: 16px;
+    transition:
+      grid-template-rows var(--motion-slow) var(--ease-standard),
+      opacity var(--motion-slow) var(--ease-standard);
+  }
+  .import-form[data-open="true"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  @starting-style {
+    .import-form[data-open="true"] {
+      grid-template-rows: 0fr;
+      opacity: 0;
+    }
+  }
+  .import-form-clip {
+    min-height: 0;
+    overflow: clip;
+    margin-inline: calc(-1 * var(--space-1-5));
+    padding-inline: var(--space-1-5);
+  }
+  .import-form-body {
+    display: grid;
+    gap: var(--space-4);
+    padding-block: var(--space-5) var(--space-1-5);
+    border-top: 1px solid var(--line);
+  }
+  .import-form:focus {
+    outline: none;
+  }
+  /* The space above the form's divider sits inside the clip, so it opens and
    closes with the form instead of staying behind as a gap. */
-.import-form-reveal { padding-top: var(--space-5); }
-.import-form-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
-.import-form-heading h3 { font-size: var(--text-xl); }
-.import-form-heading button { flex-shrink: 0; }
-.import-form .form-panel { min-width: 0; gap: var(--space-5); }
-.import-form-actions { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--line); }
-.import-form-actions > button { flex-shrink: 0; }
-.import-options { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: var(--space-4); }
-.import-options > label { min-width: 0; }
-.import-options input, .import-options select { width: 100%; min-width: 0; }
-.import-phase { color: #e3e6ec; }
-.upload-zone { position: relative; border: 1px dashed #5c636e; border-radius: 6px; min-height: 140px; display: flex; align-items: center; justify-content: center; flex-direction: column; background: #202329; gap: var(--space-3); text-align: center; cursor: pointer; padding: var(--space-4); }
-.upload-zone:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
-.upload-zone svg { color: var(--accent); }
-.upload-zone strong { max-width: 100%; overflow-wrap: anywhere; }
-.upload-zone span { font-size: var(--text-sm); color: var(--muted); }
-.upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; max-width: 100%; }
-.import-activity { min-width: 0; }
-.job { padding: var(--space-6); --panel-gap: var(--space-2); }
-.job-details { display: flex; flex-direction: column; gap: var(--space-2); padding-block: var(--space-1) var(--space-4); }
-.import-activity .job { padding: 0 0 var(--space-4); border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; }
-/* The last job row, across the active and history lists, has no divider below it. */
-.import-activity > .import-job-row:nth-last-child(1 of .import-job-row) .job { border-bottom: 0; padding-bottom: 0; }
-.job .row-between { gap: var(--space-3); }
-.job .row-between strong { overflow-wrap: anywhere; min-width: 0; }
-.job .badge { flex-shrink: 0; }
-.import-activity .job-history { padding-block: 0; }
-.job-history .job-summary { min-height: 64px; }
-.job-summary-content { display: inline-flex; width: calc(100% - 1.5em); align-items: center; vertical-align: top; gap: var(--space-4); }
-.job-summary-copy { display: flex; flex: 1; flex-direction: column; min-width: 0; gap: var(--space-1); }
-.job-summary-copy strong { overflow-wrap: anywhere; font-weight: 500; }
-.job-summary-copy .small { color: var(--muted); }
-.job-inspect { color: var(--accent); white-space: nowrap; }
+  .import-form-reveal {
+    padding-top: var(--space-5);
+  }
+  .import-form-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .import-form-heading h3 {
+    font-size: var(--text-xl);
+  }
+  .import-form-heading button {
+    flex-shrink: 0;
+  }
+  .import-form .form-panel {
+    min-width: 0;
+    gap: var(--space-5);
+  }
+  .import-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .import-form-actions > button {
+    flex-shrink: 0;
+  }
+  .import-options {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-4);
+  }
+  .import-options > label {
+    min-width: 0;
+  }
+  .import-options input,
+  .import-options select {
+    width: 100%;
+    min-width: 0;
+  }
+  .import-phase {
+    color: #e3e6ec;
+  }
+  .upload-zone {
+    position: relative;
+    border: 1px dashed #5c636e;
+    border-radius: 6px;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #202329;
+    gap: var(--space-3);
+    text-align: center;
+    cursor: pointer;
+    padding: var(--space-4);
+  }
+  .upload-zone:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .upload-zone svg {
+    color: var(--accent);
+  }
+  .upload-zone strong {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .upload-zone span {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .upload-zone input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    max-width: 100%;
+  }
+  .import-activity {
+    min-width: 0;
+  }
+  .job {
+    padding: var(--space-6);
+    --panel-gap: var(--space-2);
+  }
+  .job-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-block: var(--space-1) var(--space-4);
+  }
+  .import-activity .job {
+    padding: 0 0 var(--space-4);
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+  /* The last job row, across the active and history lists, has no divider below it. */
+  .import-activity > .import-job-row:nth-last-child(1 of .import-job-row) .job {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .job .row-between {
+    gap: var(--space-3);
+  }
+  .job .row-between strong {
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .job .badge {
+    flex-shrink: 0;
+  }
+  .import-activity .job-history {
+    padding-block: 0;
+  }
+  .job-history .job-summary {
+    min-height: 64px;
+  }
+  .job-summary-content {
+    display: inline-flex;
+    width: calc(100% - 1.5em);
+    align-items: center;
+    vertical-align: top;
+    gap: var(--space-4);
+  }
+  .job-summary-copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    gap: var(--space-1);
+  }
+  .job-summary-copy strong {
+    overflow-wrap: anywhere;
+    font-weight: 500;
+  }
+  .job-summary-copy .small {
+    color: var(--muted);
+  }
+  .job-inspect {
+    color: var(--accent);
+    white-space: nowrap;
+  }
 
-.import-activity .history-toggle { width: 100%; }
-@media (max-width: 760px) {
-  .provider-connections { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
-  .provider-connections .game-sync { padding: var(--space-4); }
-  .pgn-import-launcher { flex-wrap: wrap; gap: var(--space-3); }
-  .import-form-body { padding-top: var(--space-4); gap: var(--space-3); }
-  .import-form-reveal { padding-top: var(--space-4); }
-  .import-form .form-panel { gap: var(--space-4); }
-  .import-form-actions { align-items: stretch; flex-direction: column; gap: var(--space-3); padding-top: var(--space-3); }
-  .import-options { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
-  .workspace-page .upload-zone { min-height: 108px; gap: var(--space-1-5); padding: var(--space-3); }
-  .job-summary-content { flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
-  .job-summary-copy { flex-basis: calc(100% - 100px); }
-  .job-inspect { flex-basis: 100%; }
-}
+  .import-activity .history-toggle {
+    width: 100%;
+  }
+  @media (max-width: 760px) {
+    .provider-connections {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+    .provider-connections .game-sync {
+      padding: var(--space-4);
+    }
+    .pgn-import-launcher {
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .import-form-body {
+      padding-top: var(--space-4);
+      gap: var(--space-3);
+    }
+    .import-form-reveal {
+      padding-top: var(--space-4);
+    }
+    .import-form .form-panel {
+      gap: var(--space-4);
+    }
+    .import-form-actions {
+      align-items: stretch;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding-top: var(--space-3);
+    }
+    .import-options {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-4);
+    }
+    .upload-zone {
+      min-height: 108px;
+      gap: var(--space-1-5);
+      padding: var(--space-3);
+    }
+    .job-summary-content {
+      flex-wrap: wrap;
+      gap: var(--space-2) var(--space-3);
+    }
+    .job-summary-copy {
+      flex-basis: calc(100% - 100px);
+    }
+    .job-inspect {
+      flex-basis: 100%;
+    }
+  }
 }

@@ -235,7 +235,8 @@ The template keeps a compromised app contained to its own data folder:
   `no-new-privileges`, so a bug in Fieldwork cannot become root in the container.
 - The root filesystem is read-only. Only `/data` and a small in-memory `/tmp` are
   writable, so nothing can be planted in the app's code. `--pids-limit` stops a
-  runaway or hostile process from exhausting the server.
+  runaway or hostile process from exhausting the server. SQLite's temporary files
+  go to `/data`, since compacting the database can need more room than `/tmp` has.
 - **App data** is the only host folder it sees. Do not add other path mappings
   (especially `/mnt/user` or a share), never map `/var/run/docker.sock`, and keep
   **Privileged** off. Any of these would hand the server to whoever controls the app.

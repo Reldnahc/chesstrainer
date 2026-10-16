@@ -12,6 +12,7 @@ from trainer.api import create_app
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable, Stockfish
 from trainer.engine_health import EngineHealth
 from trainer.models import AnalysisJob
+from trainer.search_limits import SearchProfile
 
 
 @pytest.mark.parametrize("hosted", [False, True])
@@ -98,7 +99,7 @@ def test_native_reference_mismatch_does_not_mark_working_engine_unavailable(
         assert health.snapshot()["engine_status"] == "ready"
         original.engine_version = "different-saved-engine"
         with pytest.raises(EngineReferenceMismatch):
-            engine.analyze(chess.Board(), reference=original)
+            engine.analyze(chess.Board(), SearchProfile.extending(original))
         assert health.snapshot()["engine_available"] is True
         assert health.snapshot()["engine_error"] is None
     finally:

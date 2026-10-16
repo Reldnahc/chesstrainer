@@ -10,7 +10,7 @@ import Button from "../Button";
 import FlipBoardButton from "../FlipBoardButton";
 import MovePlaybackControls from "../MovePlaybackControls";
 import { LoadingState } from "../LoadState";
-import { QueryResult } from "../useQuery";
+import { CommandError, QueryResult } from "../useQuery";
 import AudioMuteButton from "../audio/AudioMuteButton";
 import { pawnsText, positionScore, startingScore } from "../evaluation";
 import EvaluationBar from "../EvaluationBar";
@@ -48,21 +48,42 @@ function practicePrompt(session: PlaySession, bot: string) {
             : `${deviation.san} gives up about ${pawnsText(deviation.loss_cp)} against the book move.`;
     return {
       title: <strong>{bot}</strong>,
-      text: <div className="play-practice-prompt" role="status"><p>{line}</p><p className="small">{detail}</p></div>,
-      actions: <>
-        <Button size="compact" disabled={session.busy} onClick={session.takeBack}>Take back</Button>
-        <Button size="compact" disabled={session.busy} onClick={session.carryOn}>Play on</Button>
-      </>,
+      text: (
+        <div className="play-practice-prompt" role="status">
+          <p>{line}</p>
+          <p className="small">{detail}</p>
+        </div>
+      ),
+      actions: (
+        <>
+          <Button size="compact" disabled={session.busy} onClick={session.takeBack}>
+            Take back
+          </Button>
+          <Button size="compact" disabled={session.busy} onClick={session.carryOn}>
+            Play on
+          </Button>
+        </>
+      ),
     };
   }
   if (session.lineOver)
     return {
       title: <strong>{bot}</strong>,
-      text: <div className="play-practice-prompt" role="status"><p>{PRACTICE_LINES.ended}</p></div>,
-      actions: <>
-        <Button size="compact" disabled={session.busy} onClick={session.keepPlaying}>Keep playing</Button>
-        <Button size="compact" disabled={session.busy} onClick={session.goAgain}>Go again</Button>
-      </>,
+      text: (
+        <div className="play-practice-prompt" role="status">
+          <p>{PRACTICE_LINES.ended}</p>
+        </div>
+      ),
+      actions: (
+        <>
+          <Button size="compact" disabled={session.busy} onClick={session.keepPlaying}>
+            Keep playing
+          </Button>
+          <Button size="compact" disabled={session.busy} onClick={session.goAgain}>
+            Go again
+          </Button>
+        </>
+      ),
     };
   return null;
 }
@@ -109,22 +130,27 @@ export default function PlayGame({ id }: { id: string }) {
   if (!state || !game)
     return (
       <>
-        <ActionLink variant="quiet" href={pagePaths.Play}>Play</ActionLink>
-        <QueryResult query={session.load} label="the game" presentation="panel">{() => <LoadingState presentation="panel">Loading the game…</LoadingState>}</QueryResult>
+        <ActionLink variant="quiet" href={pagePaths.Play}>
+          Play
+        </ActionLink>
+        <QueryResult query={session.load} label="the game" presentation="panel">
+          {() => <LoadingState presentation="panel">Loading the game…</LoadingState>}
+        </QueryResult>
       </>
     );
   const shownOrientation = orientation ?? state.learner_color;
   const finished = state.status === "finished";
   // Replies the engine played because the human move model was unavailable, once shown.
-  const stoodIn = state.fallback_plies.filter((reply) => reply <= latest).length;
+  const stoodIn = state.fallback_plies.filter(reply => reply <= latest).length;
   // The latest position on the learner's turn, or an earlier one to play from again.
   const playable = (session.learnerToMove && !session.browsing) || session.canRewind;
   // The starting position is scored from the first move's report, as in game review.
   // A move's score is that move's search; the start's belongs to the position itself.
   const initialScore = startingScore(game.frames);
-  const scoreAt = (at: number, atReport: typeof report, atFrame: typeof frame) => atReport
-    ? positionScore(atReport.white_score, atFrame)
-    : positionScore(at === 0 ? initialScore : null, atFrame, "position");
+  const scoreAt = (at: number, atReport: typeof report, atFrame: typeof frame) =>
+    atReport
+      ? positionScore(atReport.white_score, atFrame)
+      : positionScore(at === 0 ? initialScore : null, atFrame, "position");
   const score = scoreAt(ply, report, frame);
   const cues = cuesFor(report, frame);
   const explaining = session.explaining && !!cues;
@@ -134,7 +160,8 @@ export default function PlayGame({ id }: { id: string }) {
   const coachHeld = coach.ply !== ply;
   // A practice question replaces the coach's comment, and its voice, until answered.
   const prompt = session.browsing ? null : practicePrompt(session, bot);
-  const actor = coach.ply > 0 && coach.frame?.san ? (coach.frame.turn === "white" ? "Black" : "White") : null;
+  const actor =
+    coach.ply > 0 && coach.frame?.san ? (coach.frame.turn === "white" ? "Black" : "White") : null;
   const name = (color: "white" | "black") => {
     const rating = color === "white" ? state.white_rating : state.black_rating;
     return `${color === state.learner_color ? state[color] : `${bot} (bot)`} (${rating})`;
@@ -149,23 +176,36 @@ export default function PlayGame({ id }: { id: string }) {
   };
   return (
     <div className="game-workspace">
-      {session.error && <Banner tone="error" onDismiss={session.dismissError}>{session.error}</Banner>}
-      {session.replyError && (
-        <Banner tone="error" action={<Button size="compact" disabled={session.busy} onClick={session.retryReply}>Try again</Button>}>
-          {session.replyError}
-        </Banner>
-      )}
+      <CommandError command={{ error: session.error, dismiss: session.dismissError }} />
+      <CommandError
+        command={{ error: session.replyError ?? "" }}
+        action={
+          <Button size="compact" disabled={session.busy} onClick={session.retryReply}>
+            Try again
+          </Button>
+        }
+      />
       {stoodIn > 0 && state.fallback_elo != null && (
         <Banner tone="info">
-          {stoodIn} of {bot}'s moves came from Stockfish at Elo {state.fallback_elo}, because the human move model was unavailable.
+          {stoodIn} of {bot}'s moves came from Stockfish at Elo {state.fallback_elo}, because the
+          human move model was unavailable.
         </Banner>
       )}
       {finished && (
-        <Banner tone="success" action={state.saved_game_id ? (
-          <ActionLink variant="primary" size="compact" href={gamesPath(1, state.saved_game_id)}>
-            Open {bot}'s review <ArrowRight size={16} aria-hidden="true" />
-          </ActionLink>
-        ) : <ActionLink variant="secondary" size="compact" href={playSetupPath(state.id)}>New game</ActionLink>}>
+        <Banner
+          tone="success"
+          action={
+            state.saved_game_id ? (
+              <ActionLink variant="primary" size="compact" href={gamesPath(1, state.saved_game_id)}>
+                Open {bot}'s review <ArrowRight size={16} aria-hidden="true" />
+              </ActionLink>
+            ) : (
+              <ActionLink variant="secondary" size="compact" href={playSetupPath(state.id)}>
+                New game
+              </ActionLink>
+            )
+          }
+        >
           {resultLine(state, bot)}
         </Banner>
       )}
@@ -196,13 +236,17 @@ export default function PlayGame({ id }: { id: string }) {
             disabled={!playable || session.moving}
             onMove={session.play}
             highlights={moveSquares(currentUci)}
-            quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label } : undefined}
+            quality={
+              report && currentUci
+                ? { square: currentUci.slice(2, 4), label: report.label }
+                : undefined
+            }
             roles={explaining ? cues!.roles : undefined}
             arrows={
               explaining
                 ? cueArrows(cues!)
                 : showBook && !session.browsing
-                  ? bookMoves.map((uci) => uciArrow(uci, ARROW_COLOURS.book))
+                  ? bookMoves.map(uci => uciArrow(uci, ARROW_COLOURS.book))
                   : []
             }
           />
@@ -210,19 +254,50 @@ export default function PlayGame({ id }: { id: string }) {
         boardControls={
           <div className="game-board-controls" role="group" aria-label="Game controls">
             {finished ? (
-              <ActionLink size="compact" className="game-library-link" href={playSetupPath(state.id)}>New game</ActionLink>
+              <ActionLink
+                size="toolbar"
+                className="game-library-link"
+                href={playSetupPath(state.id)}
+              >
+                New game
+              </ActionLink>
             ) : (
               <div className="game-board-actions">
-                <Button size="compact" disabled={session.busy} onClick={session.resign}>Resign</Button>
+                <Button size="toolbar" disabled={session.busy} onClick={session.resign}>
+                  Resign
+                </Button>
               </div>
             )}
-            <MovePlaybackControls label="Game move playback" current={ply} maximum={latest}
-              first={{ "aria-label": "Start of game", title: "Starting position", disabled: ply === 0, onClick: () => session.navigate(0) }}
-              previous={{ "aria-label": "Previous move", disabled: ply === 0, onClick: () => session.navigate(ply - 1) }}
-              next={{ "aria-label": "Next move", disabled: ply === latest, onClick: () => session.navigate(ply + 1) }}
-              last={{ "aria-label": "Latest move", disabled: ply === latest, onClick: () => session.navigate(latest) }} />
+            <MovePlaybackControls
+              label="Game move playback"
+              current={ply}
+              maximum={latest}
+              first={{
+                "aria-label": "Start of game",
+                title: "Starting position",
+                disabled: ply === 0,
+                onClick: () => session.navigate(0),
+              }}
+              previous={{
+                "aria-label": "Previous move",
+                disabled: ply === 0,
+                onClick: () => session.navigate(ply - 1),
+              }}
+              next={{
+                "aria-label": "Next move",
+                disabled: ply === latest,
+                onClick: () => session.navigate(ply + 1),
+              }}
+              last={{
+                "aria-label": "Latest move",
+                disabled: ply === latest,
+                onClick: () => session.navigate(latest),
+              }}
+            />
             <div className="game-board-tools">
-              <FlipBoardButton onFlip={() => setOrientation(shownOrientation === "white" ? "black" : "white")} />
+              <FlipBoardButton
+                onFlip={() => setOrientation(shownOrientation === "white" ? "black" : "white")}
+              />
               <AudioMuteButton />
             </div>
           </div>
@@ -238,23 +313,39 @@ export default function PlayGame({ id }: { id: string }) {
           frame={coach.frame}
           actor={actor}
           score={coachHeld ? scoreAt(coach.ply, coach.report, coach.frame) : score}
-          bestMove={coach.report?.best.san ?? (coach.ply === 0 ? game.frames[1]?.report?.best.san : undefined)}
+          bestMove={
+            coach.report?.best.san ??
+            (coach.ply === 0 ? game.frames[1]?.report?.best.san : undefined)
+          }
           explaining={explaining && !coachHeld}
           cues={coachHeld ? null : cues}
           errorAtPosition={session.analysisError}
           reviewStarting={false}
-          speechPending={session.moving || (!!coach.speechNavigation?.awaitAnalysis && !coach.report && !session.analysisError)}
+          speechPending={
+            session.moving ||
+            (!!coach.speechNavigation?.awaitAnalysis && !coach.report && !session.analysisError)
+          }
           speechEventId={prompt ? undefined : coach.speechNavigation?.eventId}
-          onExplain={() => (session.analysisError ? session.retryAnalysis() : session.toggleExplanation())}
+          onExplain={() =>
+            session.analysisError ? session.retryAnalysis() : session.toggleExplanation()
+          }
           onReturnToGame={() => session.navigate(latest)}
           live={latest === 0 ? "new" : "underway"}
           prompt={prompt}
-          extraAction={bookMoves.length > 0 && (session.learnerToMove || session.deviation) && !session.browsing ? (
-            <Button size="compact" aria-pressed={showBook} title="Show the book move on the board"
-              onClick={() => setShowBook(value => !value)}>
-              {showBook ? "Hide book" : "Show book"}
-            </Button>
-          ) : undefined}
+          extraAction={
+            bookMoves.length > 0 &&
+            (session.learnerToMove || session.deviation) &&
+            !session.browsing ? (
+              <Button
+                size="compact"
+                aria-pressed={showBook}
+                title="Show the book move on the board"
+                onClick={() => setShowBook(value => !value)}
+              >
+                {showBook ? "Hide book" : "Show book"}
+              </Button>
+            ) : undefined
+          }
         />
         <ReviewMoves
           game={game}
@@ -274,7 +365,7 @@ export default function PlayGame({ id }: { id: string }) {
           selected={ply}
           onSelect={session.navigate}
           onScrubStart={session.beginScrubbing}
-          onScrubSelect={(target) => session.navigate(target, { silent: true })}
+          onScrubSelect={target => session.navigate(target, { silent: true })}
           onScrubEnd={session.finishScrubbing}
         />
       </ReviewWorkspace>

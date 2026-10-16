@@ -4,7 +4,16 @@ import "./continuation-moves.css";
 
 type ContinuationMove = { san: string; before_fen: string };
 
-export default function ContinuationMoves({ label, moves, selectedIndex, startSelected, disabled = false, numbered = false, onStart, onSelect }: {
+export default function ContinuationMoves({
+  label,
+  moves,
+  selectedIndex,
+  startSelected,
+  disabled = false,
+  numbered = false,
+  onStart,
+  onSelect,
+}: {
   label: string;
   moves: readonly ContinuationMove[];
   selectedIndex: number | null;
@@ -14,9 +23,29 @@ export default function ContinuationMoves({ label, moves, selectedIndex, startSe
   onStart: () => void;
   onSelect: (index: number) => void;
 }) {
-  return <div className="continuation-moves" role="group" aria-label={label}>
-    <Button size="compact" disabled={disabled} aria-current={startSelected ? "step" : undefined} onClick={onStart}>Start</Button>
-    {moves.map((move, index) => <Button size="compact" key={index} disabled={disabled} aria-current={selectedIndex === index ? "step" : undefined}
-      onClick={() => onSelect(index)}>{numbered ? numberedSan(move.before_fen, move.san) : move.san}</Button>)}
-  </div>;
+  return (
+    <div className="continuation-moves" role="group" aria-label={label}>
+      <Button
+        size="compact"
+        mono
+        disabled={disabled}
+        aria-current={startSelected ? "step" : undefined}
+        onClick={onStart}
+      >
+        Start
+      </Button>
+      {moves.map((move, index) => (
+        <Button
+          size="compact"
+          mono
+          key={index}
+          disabled={disabled}
+          aria-current={selectedIndex === index ? "step" : undefined}
+          onClick={() => onSelect(index)}
+        >
+          {numbered ? numberedSan(move.before_fen, move.san) : move.san}
+        </Button>
+      ))}
+    </div>
+  );
 }

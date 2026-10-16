@@ -1,10 +1,14 @@
 """State of a game against the coach's bot, and its hand-off into the game library."""
 
+from functools import partial
+
 import chess
 import chess.pgn
 from sqlalchemy import select
+from sqlalchemy.orm import object_session
 
 from trainer.chess_core import Score
+from trainer.classification_stages import line_parameters
 from trainer.engine import ENGINE_ELO
 from trainer.errors import InvalidInput
 from trainer.game_analysis import REQUESTED, queue_imported
@@ -12,9 +16,11 @@ from trainer.game_library import mover_rating
 from trainer.game_review import (
     engine_facts,
     game_outcome,
+    lines_current,
     link_previous_scores,
     move_frames,
     public_report,
+    reread_lines,
     review_move,
 )
 from trainer.human_models.context import request_for
@@ -36,6 +42,7 @@ from trainer.play.book import (
 from trainer.play.bot import engine_move, human_move, seeded
 from trainer.recent_cache import RecentCache
 from trainer.review_intelligence.context import move_contexts
+from trainer.review_reports import aligned_human, saved_policy
 
 
 def board_for(play: PlayGame, upto: int | None = None) -> chess.Board:
@@ -131,8 +138,11 @@ def _render_key(play, ply, report, context=None):
     departure = context.opening_departure if context else None
     return (
         tuple(play.moves[:ply]),
-        tuple(sorted(departure.items())) if departure else None,
-        report.get("previous_score") is not None,
+        tuple(sorted(departure.model_dump().items())) if departure else None,
+        tuple(sorted((report.get("previous_score") or {}).items())),
+        # The capitalizing Great reads it, and linking replaces it once the
+        # predecessor's own report is saved.
+        report.get("previous_mistake"),
         report.get("before_analysis_id"),
         report.get("played_analysis_id"),
         human.get("status"),
@@ -142,7 +152,11 @@ def _render_key(play, ply, report, context=None):
     )
 
 
-def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
+def human_id(report):
+    return (report.get("human") or {}).get("evidence_id")
+
+
+def rendered_reports(play: PlayGame, parsed, parameters=None) -> dict[int, dict]:
     """Saved engine facts rendered with the current rules, exactly as game review does."""
     saved = link_previous_scores(
         {int(ply): engine_facts(report) for ply, report in (play.reports or {}).items()}
@@ -150,14 +164,22 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
     if not saved:
         return {}
     contexts = move_contexts(parsed)
+    db = object_session(play)
     starting = parsed.board().turn
+    horizon = parameters or line_parameters()
     known = _rendered.get(play.id) or {}
     current = {}
     output = {}
     for ply, report in saved.items():
-        key = _render_key(play, ply, report, contexts.get(ply))
+        key = (_render_key(play, ply, report, contexts.get(ply)), tuple(sorted(horizon.items())))
         rendered = known.get(key)
         if rendered is None:
+            if not lines_current(report, horizon):
+                # Saved before the shared line horizon, or under another one: read
+                # its lines again from the saved candidates, once per render key.
+                report = reread_lines(report, board_for(play, ply - 1), horizon)
+            # Human evidence scores the move shown as best, as game review reads it.
+            report = aligned_human(report, partial(saved_policy, db, human_id(report)))
             color = starting if ply % 2 else not starting
             rendered = public_report(
                 report,
@@ -169,13 +191,13 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
     return output
 
 
-def frames_for(play: PlayGame, learner_name: str) -> list[dict]:
-    reports = rendered_reports(play, parsed_for(play, learner_name))
+def frames_for(play: PlayGame, learner_name: str, parameters=None) -> list[dict]:
+    reports = rendered_reports(play, parsed_for(play, learner_name), parameters)
     moves = [chess.Move.from_uci(uci) for uci in play.moves]
     return move_frames(chess.Board(), moves, reports)
 
 
-def state(play: PlayGame, learner_name: str, reply=None) -> dict:
+def state(play: PlayGame, learner_name: str, reply=None, *, parameters=None) -> dict:
     white, black = names(play, learner_name)
     white_rating, black_rating = ratings(play)
     return {
@@ -198,7 +220,7 @@ def state(play: PlayGame, learner_name: str, reply=None) -> dict:
         "practice": practice_view(play.practice),
         "fallback_plies": fallback_plies(play),
         "fallback_elo": fallback_elo(play) if play.opponent_kind == "human" else None,
-        "frames": frames_for(play, learner_name),
+        "frames": frames_for(play, learner_name, parameters),
     }
 
 
@@ -215,7 +237,6 @@ def finish(db, play: PlayGame, result: str, termination: str, learner_name: str)
         pgn,
         [],
         "white" if learner_is_white(play) else "black",
-        commit=False,
     )
     saved = db.scalar(
         select(ImportGame.game_id).where(ImportGame.import_id == outcome["import_id"])
@@ -271,7 +292,17 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
     return human_move(engine, board, policy, play.opponent_rating, rng)
 
 
-def analyze_ply(engine, human_models, sessions, play: PlayGame, ply: int, learner_name: str):
+def analyze_ply(
+    engine,
+    human_models,
+    sessions,
+    play: PlayGame,
+    ply: int,
+    learner_name: str,
+    *,
+    parameters=None,
+    mate_limits=None,
+):
     """The review's own engine evidence for the move at this ply, to save on the game.
 
     The previous score comes from the saved report for the ply before when there is
@@ -292,6 +323,8 @@ def analyze_ply(engine, human_models, sessions, play: PlayGame, ply: int, learne
         board,
         fallback_rating=play.learner_rating,
         previous_score=previous,
+        parameters=parameters,
+        mate_limits=mate_limits,
     )
 
 

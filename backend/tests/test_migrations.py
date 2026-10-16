@@ -213,7 +213,7 @@ def test_values_requests_used_to_fill_in_are_backfilled(tmp_path):
             pgn="1. f3 e5 2. g4 Qh4# 0-1",
         )
         fill(connection, "games", id="g2", user_id="u1", fingerprint="g2", pgn="", move_count=None)
-        fill(connection, "exercises", id="x1", user_id="u1", identity="x1")
+        fill(connection, "exercises", id="x1", user_id="u1", identity="x1", orientation="white")
         for session, response in (("s1", None), ("s2", None), ("s3", 900)):
             fill(
                 connection,
@@ -263,8 +263,17 @@ def test_dropping_the_archived_lesson_tables_keeps_their_sessions_and_cards(tmp_
             identity="x1",
             source="repertoire",
             repertoire_id="r1",
+            orientation="white",
         )
-        fill(connection, "exercises", id="x2", user_id="u1", identity="x2", source="game")
+        fill(
+            connection,
+            "exercises",
+            id="x2",
+            user_id="u1",
+            identity="x2",
+            source="game",
+            orientation="white",
+        )
         archived_lesson_rows(connection, ["x2"], user_id="u1")
         fill(
             connection,
@@ -292,3 +301,239 @@ def test_dropping_the_archived_lesson_tables_keeps_their_sessions_and_cards(tmp_
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     assert modes == {"lesson": "lesson", "plain": "review"}
     assert sources == {"x1": "repertoire", "x2": "game"}
+
+
+def test_one_representation_per_concept_keeps_every_value(tmp_path):
+    from datetime import datetime, timezone
+
+    import chess
+    from sqlalchemy import select
+    from sqlalchemy.orm import Session
+    from trainer.chess_core import digest, position_key
+    from trainer.config import Settings
+    from trainer.db import account_sessions
+    from trainer.exercises import manual_exercise
+    from trainer.models import (
+        AnalysisJob,
+        AuthSession,
+        Exercise,
+        OpeningRecallSnapshot,
+        OpeningStudy,
+        ProviderCheckpoint,
+        ProviderImport,
+        User,
+    )
+    from trainer.scheduling import FSRSScheduler
+
+    board = chess.Board()
+    manual_identity = digest(
+        {
+            "source": "manual",
+            "position": position_key(board),
+            "moves": ["e2e4"],
+            "orientation": "black",
+        }
+    )
+    engine, _ = database(tmp_path / "conventions.sqlite3")
+    upgrade_to(engine, "9d2f6b1e4c83")
+    with engine.begin() as connection:
+        fill(connection, "users", id="u1", username="u1", created=1700000000.25)
+        fill(connection, "auth_sessions", digest="d", user_id="u1", expires=1800000000.0)
+        fill(
+            connection,
+            "games",
+            id="g",
+            user_id="u1",
+            fingerprint="g",
+            pgn='[Date "2024.??.??"]\n\n1. e4 *',
+            played_on="2024.??.??",
+        )
+        for job_id, kind, status in (
+            ("fetch", "chesscom", "queued"),
+            ("import", "provider_import", "completed"),
+            ("teach", "teaching", "queued"),
+            ("trained", "training", "running"),
+            ("odd", "game_review", "paused"),
+            ("review", "game_review", "completed"),
+        ):
+            fill(connection, "analysis_jobs", id=job_id, user_id="u1", kind=kind, status=status)
+        fill(connection, "chesscom_imports", job_id="fetch", user_id="u1", provider="chesscom")
+        fill(connection, "chesscom_archives", job_id="fetch", user_id="u1", url="2024/01")
+        for exercise_id, side in (("white", "white"), ("black", "black")):
+            fill(
+                connection,
+                "exercises",
+                id=exercise_id,
+                user_id="u1",
+                identity=exercise_id,
+                orientation=side,
+            )
+        # A manual exercise as the previous code saved it, under its identity digest.
+        fill(
+            connection,
+            "exercises",
+            id="manual",
+            user_id="u1",
+            identity=manual_identity,
+            source="manual",
+            fen=chess.STARTING_FEN,
+            orientation="black",
+        )
+        fill(
+            connection,
+            "opening_studies",
+            id="s",
+            user_id="u1",
+            source="catalogue",
+            source_key="k",
+            source_version="v",
+            color="black",
+        )
+        fill(connection, "review_sessions", id="rs", user_id="u1", exercise_id="white")
+        fill(
+            connection,
+            "opening_recall_snapshots",
+            session_id="rs",
+            user_id="u1",
+            orientation="white",
+        )
+    upgrade_to(engine, "head")
+    with engine.connect() as connection:
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").first() is None
+    with Session(engine) as db:
+        assert db.get(User, "u1").created_at == datetime(
+            2023, 11, 14, 22, 13, 20, 250000, tzinfo=timezone.utc
+        )
+        assert db.get(AuthSession, "d").expires_at == datetime.fromtimestamp(
+            1800000000, timezone.utc
+        )
+        assert {job.id: (job.kind, job.status) for job in db.query(AnalysisJob)} == {
+            "fetch": ("provider_fetch", "queued"),
+            "import": ("provider_fetch", "completed"),
+            "teach": ("retired", "cancelled"),
+            "trained": ("analysis", "running"),
+            "odd": ("game_review", "failed"),
+            "review": ("game_review", "completed"),
+        }
+        assert db.get(ProviderImport, "fetch").provider == "chesscom"
+        assert db.get(ProviderCheckpoint, ("fetch", "2024/01")) is not None
+        assert {row.id: row.learner_color for row in db.query(Exercise)} == {
+            "white": True,
+            "black": False,
+            "manual": False,
+        }
+        assert db.get(OpeningStudy, "s").learner_color is False
+        assert db.get(OpeningRecallSnapshot, "rs").learner_color is True
+        assert db.get(Exercise, "manual").learner_color is False
+    sessions = account_sessions(engine, "u1")
+    with sessions() as db:
+        # The current code finds the rows saved before: same digest, same side.
+        again = manual_exercise(
+            db, FSRSScheduler(Settings(_env_file=None)), board.fen(), ["e2e4"], "black"
+        )
+        assert again.id == "manual"
+        study = db.scalar(
+            select(OpeningStudy).where(
+                OpeningStudy.source_key == "k", OpeningStudy.learner_color.is_(False)
+            )
+        )
+        assert study.id == "s"
+        db.rollback()
+        db.add(AnalysisJob(kind="no_such_kind"))
+        with pytest.raises(Exception, match="CHECK constraint failed"):
+            db.flush()
+
+    # And back: every value returns to the previous representation.
+    config = _config()
+    with migration_connection(engine) as connection:
+        config.attributes["connection"] = connection
+        command.downgrade(config, "9d2f6b1e4c83")
+    with engine.connect() as connection:
+
+        def one(sql):
+            return connection.exec_driver_sql(sql).one()
+
+        assert one("SELECT created, chesscom_username FROM users WHERE id = 'u1'") == (
+            1700000000.25,
+            "",
+        )
+        assert one("SELECT expires FROM auth_sessions") == (1800000000.0,)
+        assert one("SELECT played_on FROM games") == ("2024.??.??",)
+        assert dict(connection.exec_driver_sql("SELECT id, orientation FROM exercises").all()) == {
+            "white": "white",
+            "black": "black",
+            "manual": "black",
+        }
+        assert one("SELECT color FROM opening_studies") == ("black",)
+        assert one("SELECT orientation FROM opening_recall_snapshots") == ("white",)
+        assert one("SELECT url FROM chesscom_archives") == ("2024/01",)
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").first() is None
+    assert migrate(engine) is True
+    engine.dispose()
+
+
+def test_the_database_accepts_exactly_the_job_kinds_and_statuses_the_code_knows(tmp_path):
+    import re
+
+    from trainer.job_kinds import JobKind, JobStatus
+
+    engine, _ = database(tmp_path / "checks.sqlite3")
+    migrate(engine)
+    with engine.connect() as connection:
+        sql = connection.exec_driver_sql(
+            "SELECT sql FROM sqlite_master WHERE name = 'analysis_jobs'"
+        ).scalar()
+    engine.dispose()
+
+    def listed(column):
+        found = re.search(rf"CHECK \({column} IN \(([^)]*)\)\)", sql)
+        return set(re.findall(r"'([a-z_]+)'", found.group(1)))
+
+    # A new kind or status needs a migration that widens the CHECK constraint.
+    assert listed("kind") == set(JobKind)
+    assert listed("status") == set(JobStatus)
+
+
+def test_an_unexpected_side_stops_the_upgrade_and_changes_nothing(tmp_path):
+    engine, _ = database(tmp_path / "odd-side.sqlite3")
+    upgrade_to(engine, "9d2f6b1e4c83")
+    with engine.begin() as connection:
+        fill(connection, "users", id="u1", username="u1")
+        fill(connection, "exercises", id="x", user_id="u1", identity="x", orientation="White")
+    with pytest.raises(ValueError, match=r"exercises\.orientation holds \['White'\]"):
+        upgrade_to(engine, "head")
+    assert version(engine) == "9d2f6b1e4c83"
+    engine.dispose()
+
+
+def test_legacy_fetch_kind_and_book_field_take_their_current_shapes(tmp_path):
+    import json
+
+    from sqlalchemy.exc import IntegrityError
+
+    engine, _ = database(tmp_path / "legacy.sqlite3")
+    upgrade_to(engine, "eb978e634f57")
+    with engine.begin() as db:
+        fill(
+            db, "analysis_jobs", id="fetch", user_id="local", kind="chesscom_fetch", status="queued"
+        )
+        old = {"status": "deviated", "deviation": {"ply": 3, "book_uci": ["e2e4", "d2d4"]}}
+        current = {"status": "deviated", "deviation": {"ply": 3}, "book_moves": ["g1f3"]}
+        for game_id, practice in (("old", old), ("current", current)):
+            fill(db, "play_games", id=game_id, user_id="local", practice=json.dumps(practice))
+    upgrade_to(engine, "head")
+    with engine.connect() as db:
+        assert db.exec_driver_sql("SELECT kind FROM analysis_jobs").scalar() == "provider_fetch"
+        practices = dict(db.exec_driver_sql("SELECT id, practice FROM play_games").all())
+        with pytest.raises(IntegrityError):
+            db.exec_driver_sql(
+                "INSERT INTO analysis_jobs (id, user_id, kind, status) "
+                "VALUES ('x', 'local', 'chesscom_fetch', 'queued')"
+            )
+    assert json.loads(practices["old"]) == {
+        "status": "deviated",
+        "deviation": {"ply": 3},
+        "book_moves": ["e2e4", "d2d4"],
+    }
+    assert json.loads(practices["current"]) == current
+    engine.dispose()

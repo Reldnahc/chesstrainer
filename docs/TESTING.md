@@ -442,11 +442,17 @@ each reports its own failure). An intended exception is written at its line as
 never disable a rule for a whole file. A disable comment that is no longer needed is
 itself reported, so stale exceptions fail the build.
 
+`npm run format:check` runs Prettier ([.prettierrc.json](../frontend/.prettierrc.json):
+100-character lines, double quotes, bare single arrow parameters) over the frontend's
+code and styles; `npm run build` runs it too, so unformatted code fails the build. JSON
+data, Markdown and generated output keep their layout ([.prettierignore](../frontend/.prettierignore)).
+Run `npm run format` in `frontend/` to rewrite files before committing.
+
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It then runs the CSS design-system checks `frontend/scripts/spacing-scale.mjs`,
-`scripts/surfaces.mjs`, `scripts/type-scale.mjs` and `scripts/motion-scale.mjs`
-(see the spacing, surface, type and motion rules in
+`scripts/surfaces.mjs`, `scripts/type-scale.mjs`, `scripts/motion-scale.mjs` and
+`scripts/colour-tokens.mjs` (see the spacing, surface, type, motion and colour rules in
 [UI_COMPONENTS.md](UI_COMPONENTS.md#spacing)), and `scripts/css-layers.mjs`, which
 requires every stylesheet to keep its rules inside a declared cascade layer (see
 [ARCHITECTURE.md](ARCHITECTURE.md#stylesheets)).
@@ -533,12 +539,22 @@ intelligence-lab and audio-studio browser tests and their Playwright configs. Th
 browser-test project includes Node 24 declarations for its runner and fixture helpers; fixtures
 must satisfy the same generated API contracts as the application. Both frontend
 checks run as part of `npm run build`, which `frontend/scripts/build.mjs` runs side by
-side with the lint, the style-boundary and symbol checks and the Vite build itself (the build
+side with the lint, the formatting check, the style-boundary and symbol checks and the Vite build itself (the build
 waits only for the API contract check and the public-source archive);
 backend contract tests and the export check run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.
 
 ## Migrations and data preservation
+
+Backend tests share one database migrated to head per test run
+(`conftest.migrated_database`); the `settings` fixture gives each test its own
+page-for-page copy, so running every revision is paid once, not per test. A test
+of an upgrade from an older revision, or of what happens before a database
+exists, marks itself `@pytest.mark.pristine_database` and starts from no file;
+an unmarked test that upgrades its copy to an older revision fails, since that
+upgrade would silently do nothing.
+`test_migrations.py` builds its own databases and always runs the real upgrade
+and downgrade path.
 
 Use a disposable database for verification, never the live database by accident. From the root, POSIX shell:
 

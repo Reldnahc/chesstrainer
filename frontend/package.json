@@ -1,5 +1,5 @@
 {
-  "name": "local-chess-trainer-ui",
+  "name": "fieldwork-ui",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -17,9 +17,11 @@
     "api:generate": "node scripts/api-types.mjs",
     "api:check": "node scripts/api-types.mjs --check",
     "test:types": "tsc --project tsconfig.contracts.json && tsc --project tsconfig.browser-tests.json",
-    "test:styles": "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs && node scripts/surfaces.mjs && node scripts/type-scale.mjs && node scripts/motion-scale.mjs && node scripts/css-layers.mjs",
+    "test:styles": "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs && node scripts/surfaces.mjs && node scripts/type-scale.mjs && node scripts/motion-scale.mjs && node scripts/colour-tokens.mjs && node scripts/css-layers.mjs",
     "test:symbols": "node scripts/text-symbols.mjs",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@fontsource-variable/ibm-plex-sans": "^5.3.0",
@@ -42,6 +44,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.13.0",
     "openapi-typescript": "7.13.0",
+    "prettier": "3.9.10",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.71.2",
     "vite": "^7.3.0"
