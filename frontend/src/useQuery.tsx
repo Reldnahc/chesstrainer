@@ -125,9 +125,22 @@ export function QueryResult<T>({ query, label, presentation, heading, children }
       : <LoadingState presentation={presentation} heading={heading}>Loading {label}…</LoadingState>;
   // A refresh that fails keeps what already loaded and says so.
   return <>
-    {query.error && <Banner tone="error" action={retry} onDismiss={query.dismiss}>Couldn’t refresh {label}.</Banner>}
+    <QueryError query={query} label={label} />
     {children(query.data)}
   </>;
+}
+
+/**
+ * A request's failure as the page's error banner, for a screen that shows its
+ * other content anyway (a refresh behind loaded data, or a side request such as
+ * Play's measured level): "Couldn’t load {label}." or, once something loaded,
+ * "Couldn’t refresh {label}.", with Try again.
+ */
+export function QueryError<T>({ query, label }: { query: Query<T>; label: string }) {
+  if (!query.error) return null;
+  return <Banner tone="error" action={<Button variant="secondary" onClick={query.retry}>Try again</Button>} onDismiss={query.dismiss}>
+    {query.data === undefined ? "Couldn’t load" : "Couldn’t refresh"} {label}.
+  </Banner>;
 }
 
 /**

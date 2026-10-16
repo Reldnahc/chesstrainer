@@ -1,3 +1,4 @@
+import { CommandError } from "./useQuery";
 import { useState } from "react";
 import { useAccountSession } from "./accountContext";
 import Banner from "./Banner";
@@ -13,7 +14,7 @@ export default function AccountSettings() {
   if (!session) return null;
   const { user, logout, busy, error, dismissError } = session;
   return (<>
-    {error && <Banner tone="error" onDismiss={dismissError}>{error}</Banner>}
+    <CommandError command={{ error, dismiss: dismissError }} />
     {changed && <Banner tone="success" onDismiss={() => setChanged(false)}>Password changed. Your other devices are signed out.</Banner>}
     <SettingsSection id="account-settings" title="Account" className="account-settings">
       <p>

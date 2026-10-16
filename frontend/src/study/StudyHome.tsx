@@ -1,13 +1,11 @@
 import { ArrowRight, Clock3, GraduationCap, Puzzle } from "lucide-react";
 import { api, read } from "../api";
 import ActionLink from "../ActionLink";
-import Banner from "../Banner";
-import Button from "../Button";
 import PageTitle from "../PageTitle";
 import StatList from "../StatList";
 import { plural } from "../format";
 import { studyPaths } from "../navigation";
-import { useQuery } from "../useQuery";
+import { QueryError, useQuery } from "../useQuery";
 
 // A label that agrees with a count shown beside it ("Chapter to learn" next to 1).
 const label = (count: number | undefined, one: string, many: string) => (count === 1 ? one : many);
@@ -22,16 +20,13 @@ export default function StudyHome() {
   const library = puzzles.data;
   const unsolved = library ? Math.max(0, library.available - library.solved_puzzles) : undefined;
   const gamesCount = library?.generation?.puzzles ?? 0;
-  const failed = [due, lessons, puzzles].filter((query) => query.error);
   const count = (value: number | undefined) => value ?? "—";
   return <>
     <PageTitle title="Study" />
     <div className="study-page">
-      {failed.length > 0 && (
-        <Banner tone="error" action={<Button size="compact" onClick={() => failed.forEach((query) => query.retry())}>Try again</Button>}>
-          {failed[0].error}
-        </Banner>
-      )}
+      <QueryError query={due} label="your due count" />
+      <QueryError query={lessons} label="your lessons" />
+      <QueryError query={puzzles} label="your puzzles" />
       <div className="study-options">
         <section className="panel study-option study-due">
           <Clock3 aria-hidden="true" size={22} />

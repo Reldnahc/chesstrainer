@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { setFallbackTitle } from "./PageTitle";
 import {
   BookOpen,
@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Swords,
 } from "lucide-react";
-import { errorMessage, LAN_TOKEN_KEY, onAuthRequired } from "./api";
+import { LAN_TOKEN_KEY, onAuthRequired } from "./api";
 import ReviewScreen from "./Review";
 import GamesScreen from "./GameReview";
 import SettingsScreen from "./Settings";
@@ -31,7 +31,7 @@ import OpeningLinePreview from "./study/OpeningLinePreview";
 import Link from "./Link";
 import Button from "./Button";
 import ActionLink from "./ActionLink";
-import Banner, { BannerOutlet } from "./Banner";
+import { BannerOutlet } from "./Banner";
 import WelcomeBack from "./WelcomeBack";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount, useGuestSignIn } from "./accountContext";
@@ -57,25 +57,16 @@ export default function App() {
   const route = useRoute();
   useScrollRestoration();
   const { tab, screen } = route;
-  // An error belongs to the page it happened on. It is dropped in the same render
-  // that shows the next page, so it never appears there and then collapses away.
-  const [failure, setFailure] = useState<{ route: typeof route; message: string } | null>(null);
-  const error = failure?.route === route ? failure.message : "";
-  const currentRoute = useRef(route);
-  useLayoutEffect(() => { currentRoute.current = route; }, [route]);
-  const setError = useCallback((message: string) =>
-    setFailure(message ? { route: currentRoute.current, message } : null), []);
   const [connection, setConnection] = useState(false);
   const [token, setToken] = useState("");
   const [evidenceId, setEvidenceId] = useState<string | null>(null);
-  const fail = useCallback((e: unknown) => setError(errorMessage(e)), [setError]);
   // A LAN install without its access token asks for it in place of the page.
   useEffect(() => (guest ? undefined : onAuthRequired("connection", () => setConnection(true))), [guest]);
-  // A new page drops the last page's error and evidence dialog in the render that shows it.
+  // A new page drops the last page's evidence dialog in the render that shows it.
+  // Errors belong to the screen that raised them and leave with it.
   const [shownRoute, setShownRoute] = useState(route);
   if (shownRoute !== route) {
     setShownRoute(route);
-    setFailure(null);
     setEvidenceId(null);
   }
   // Set the route fallback before child effects apply a more specific title.
@@ -127,7 +118,6 @@ export default function App() {
         }
       >
         <BannerOutlet page={route.href.split("?")[0]} />
-        {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
         {!connection && !guestSignIn && <WelcomeBack />}
         {connection ? (
           <section className="panel connection">
@@ -143,7 +133,6 @@ export default function App() {
                 reloadAudioPreferences();
                 // The page's screen mounts again in place of this form, so it loads afresh.
                 setConnection(false);
-                setError("");
               }}
             >
               <label>
@@ -159,7 +148,7 @@ export default function App() {
             </form>
           </section>
         ) : (
-          <Screen screen={screen} href={route.href} restoringScroll={route.restoringScroll} fail={fail} onEvidence={setEvidenceId} />
+          <Screen screen={screen} href={route.href} restoringScroll={route.restoringScroll} onEvidence={setEvidenceId} />
         )}
       </main>
       <footer className="app-footer">
@@ -203,16 +192,16 @@ function screenTitle(screen: RouteScreen): string | null {
 }
 
 /** The one screen a route shows. Screens keyed by address start afresh when it changes. */
-function Screen({ screen, href, restoringScroll, fail, onEvidence }: {
+function Screen({ screen, href, restoringScroll, onEvidence }: {
   screen: RouteScreen; href: string; restoringScroll: boolean;
-  fail: (e: unknown) => void; onEvidence: (id: string) => void;
+  onEvidence: (id: string) => void;
 }) {
   switch (screen.kind) {
     case "home":
       return <HomeScreen />;
     case "due":
       return <ReviewScreen key={href} focusSkill={screen.focusSkill} requested={screen.exercise}
-        requestedSession={screen.sessionId} fail={fail} onEvidence={onEvidence} />;
+        requestedSession={screen.sessionId} onEvidence={onEvidence} />;
     case "study-home":
       return <StudyHome />;
     case "lessons":
@@ -235,7 +224,7 @@ function Screen({ screen, href, restoringScroll, fail, onEvidence }: {
     case "insights":
       return <InsightsScreen onEvidence={onEvidence} category={screen.section} />;
     case "settings":
-      return <SettingsScreen fail={fail} section={screen.section} importSource={screen.importSource} restoringScroll={restoringScroll} />;
+      return <SettingsScreen section={screen.section} importSource={screen.importSource} restoringScroll={restoringScroll} />;
     case "not-found":
       return (
         <section className="panel">

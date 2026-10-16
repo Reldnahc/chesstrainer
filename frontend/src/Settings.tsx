@@ -1,4 +1,3 @@
-import Banner from "./Banner";
 import Button from "./Button";
 import Notice from "./Notice";
 import Reveal, { Swap } from "./Reveal";
@@ -19,7 +18,7 @@ import { navigate, settingsPath, settingsSections, type SettingsTab } from "./na
 import CourseSettings from "./study/CourseSettings";
 import AccountAdmin from "./AccountAdmin";
 import ServerSettings from "./ServerSettings";
-import { useQuery } from "./useQuery";
+import { CommandError, QueryError, useCommand, useQuery } from "./useQuery";
 
 const labels: Record<SettingsTab, string> = {
   imports: "Games & imports",
@@ -30,8 +29,7 @@ const labels: Record<SettingsTab, string> = {
   advanced: "Advanced",
 };
 
-export default function SettingsScreen({ fail, section, importSource, restoringScroll }: {
-  fail: (e: unknown) => void;
+export default function SettingsScreen({ section, importSource, restoringScroll }: {
   section: SettingsTab;
   importSource: string | null;
   restoringScroll: boolean;
@@ -44,32 +42,26 @@ export default function SettingsScreen({ fail, section, importSource, restoringS
   const shown = (id: SettingsTab) => (id !== "account" || !!account) && (id !== "courses" || administrator);
   const active = shown(section) ? section : "imports";
   const [message, setMessage] = useState("");
-  const [busy, setBusy] = useState<"classify" | "deepen" | null>(null);
-  async function classify(enrich = false) {
-    setBusy(enrich ? "deepen" : "classify");
+  // Settings' commands and the import section's report their failures here.
+  const command = useCommand<"classify" | "deepen">();
+  const busy = command.busy;
+  function classify(enrich = false) {
     setMessage("");
-    try {
-      await read(api.POST(enrich ? "/api/classifications/enrich" : "/api/classifications/retry"));
-      setMessage(enrich ? "Additional analysis queued for unclear training positions." : "Training labels queued.");
-    } catch (e) {
-      fail(e);
-    } finally {
-      setBusy(null);
-    }
+    void command.run(enrich ? "deepen" : "classify",
+      (signal) => read(api.POST(enrich ? "/api/classifications/enrich" : "/api/classifications/retry", { signal })),
+      () => setMessage(enrich ? "Additional analysis queued for unclear training positions." : "Training labels queued."));
   }
   return (
     <>
       <PageTitle title="Settings" />
+      <CommandError command={command} />
       {/* Without the engine's health, the import form's engine notice and Deepen wait; say why. */}
-      {health.error && <Banner tone="error" onDismiss={health.dismiss}
-        action={<Button size="compact" variant="secondary" onClick={health.retry}>Try again</Button>}>
-        Couldn’t check the analysis engine. {health.error}
-      </Banner>}
+      <QueryError query={health} label="the analysis engine's status" />
       <SectionNavigation label="Settings sections" current={active}
         items={settingsSections.filter(shown).map(id => ({ id, label: labels[id], href: settingsPath(id) }))} />
       {/* Sections crossfade, and the page height follows, when the tab changes. */}
       <Swap><div className="settings-content" key={active}>
-        {active === "imports" && <ImportSettings health={health.data ?? null} fail={fail} importSource={importSource} restoringScroll={restoringScroll}
+        {active === "imports" && <ImportSettings health={health.data ?? null} fail={command.fail} importSource={importSource} restoringScroll={restoringScroll}
           onImportSourceChange={source => navigate(settingsPath("imports", { importSource: source ?? undefined }))} />}
         {active === "coach" && <><MotionSettings /><CoachSettings /></>}
         {active === "sound" && <AudioSettings />}

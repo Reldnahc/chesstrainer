@@ -15,7 +15,7 @@ import TurnIndicator from "../TurnIndicator";
 import { courseEditorPath, courseSettingsPath, lessonCoursePath, replaceAddress, useLeaveGuard, type LessonTopic } from "../navigation";
 import { sideName, sideToMove, START_FEN } from "../fen";
 import { useLatest } from "../useLatest";
-import { QueryResult, useQuery } from "../useQuery";
+import { CommandError, QueryResult, useQuery } from "../useQuery";
 import { fetchCourseFile, saveCourseFile, savedMessage } from "./courseFiles";
 
 // The editor edits the readable course file itself (docs/COURSE_FILES.md), so
@@ -379,7 +379,7 @@ function CourseEditor({ initial, opened }: { initial: Course; opened: boolean })
     {checkError && <Banner tone="error" action={<Button size="compact" onClick={() => setCheckAttempt(attempt => attempt + 1)}>Try again</Button>}>
       Couldn’t check the course: {checkError}
     </Banner>}
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    <CommandError command={{ error, dismiss: () => setError("") }} />
     {notice && <Banner tone="success" onDismiss={() => setNotice("")} action={saved ? <ActionLink size="compact" variant="secondary" href={lessonCoursePath(saved.id, saved.revision, current.topic ?? "opening")}>Open the course</ActionLink> : undefined}>{notice}</Banner>}
 
     <details className="disclosure lesson-editor-section" open={!opened}>

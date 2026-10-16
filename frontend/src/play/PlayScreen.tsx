@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Banner from "../Banner";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
@@ -8,7 +7,7 @@ import ChoiceGroup from "../ChoiceGroup";
 import Notice from "../Notice";
 import PageTitle from "../PageTitle";
 import { LoadingState } from "../LoadState";
-import { CommandError, QueryResult, usePolledQuery, useQuery } from "../useQuery";
+import { CommandError, QueryError, QueryResult, usePolledQuery, useQuery } from "../useQuery";
 import { useSessionStart } from "../useSessionStart";
 import CoachAvatar from "../coach/CoachAvatar";
 import ReviewCoach from "../ReviewCoach";
@@ -145,8 +144,7 @@ function PlaySetup({ from }: { from: string | null }) {
     <>
       <PageTitle title={`Play ${coach.name}`} documentTitle="Play" />
       <CommandError command={starting} />
-      {profileQuery.error && <Banner tone="error" onDismiss={profileQuery.dismiss}
-        action={<Button variant="secondary" onClick={profileQuery.retry}>Try again</Button>}>Couldn’t load your measured level.</Banner>}
+      <QueryError query={profileQuery} label="your measured level" />
       {active && (
         <section aria-label="Game in progress">
           <Notice announcement="passive" actions={<ActionLink variant="secondary" size="compact" href={playGamePath(active.id)}>

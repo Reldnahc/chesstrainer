@@ -5,7 +5,7 @@ import { api, errorMessage, read, type Schema } from "./api";
 import Button from "./Button";
 import Reveal, { Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
-import { QueryResult, useQuery } from "./useQuery";
+import { CommandError, QueryResult, useQuery } from "./useQuery";
 
 type Listing = Schema["ServerSettings"];
 type Setting = Schema["ServerSetting"];
@@ -136,7 +136,7 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
   return <SettingsSection id="settings-server" title="Server"
     description="Engine, analysis and sync settings for everyone on this server. Saved changes apply when the server restarts.">
     {notice && <Banner tone="success" onDismiss={() => setNotice("")}>{notice}</Banner>}
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    <CommandError command={{ error, dismiss: () => setError("") }} />
     <div className="settings-tool settings-tool-row">
       <div>
         <h3>Restart server</h3>

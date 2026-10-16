@@ -1,5 +1,4 @@
 import Button from "./Button";
-import Banner from "./Banner";
 import { RotateCw } from "lucide-react";
 import { useRef, useState } from "react";
 import { api, errorMessage, read, type Schema } from "./api";
@@ -11,7 +10,7 @@ import Reveal, { Swap } from "./Reveal";
 import { useGameProviders, useServerDraft, type GameProvider } from "./gameProviders";
 import { useLatest } from "./useLatest";
 import { usePolling } from "./usePolling";
-import { QueryResult } from "./useQuery";
+import { CommandError, QueryError, QueryResult } from "./useQuery";
 
 type Sync = Schema["SyncStatus"];
 type Queue = Schema["AnalysisQueue"];
@@ -159,8 +158,8 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
   if (compact) return <div className="game-sync-compact">
     {!loading && !connected ? <ActionLink variant="secondary" size="compact" href={pagePaths.Settings} title="Set up game imports in Settings">{setupLabel ?? <><RotateCw size={16} aria-hidden="true" />Update games</>}</ActionLink> : button}
     <Reveal>{syncError && <Notice announcement="alert" tone="error" appearance="inline" className="small">{syncError}</Notice>}</Reveal>
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
-    {providers.error && <Banner tone="error" action={<Button size="compact" onClick={providers.retry}>Try again</Button>}>Couldn’t load game connections.</Banner>}
+    <CommandError command={{ error, dismiss: () => setError("") }} />
+    <QueryError query={providers} label="game connections" />
   </div>;
   return <section className="game-connections" aria-label="Connected game accounts">
     <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks for new games every minute and analyzes each one automatically, newest first. Older imported games are analyzed after your recent ones. Checks pause after a week without visiting.</p>{connected && button}</div>
@@ -168,6 +167,6 @@ export default function GameSync({ onChanged, compact = false, setupLabel, onSta
     <QueryResult query={providers} label="game connections">{items =>
       <div className="provider-connections">{items.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>}
     </QueryResult>
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
+    <CommandError command={{ error, dismiss: () => setError("") }} />
   </section>;
 }
