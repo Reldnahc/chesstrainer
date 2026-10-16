@@ -275,7 +275,11 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   forced win) to -200 cp or worse (or mated), or at least 300 cp loss below rating
   1200 / 200 cp otherwise. The review's events call the same transition decisive. Decisive
   pawn losses therefore remain Blunders at low ratings. Already-lost mate positions
-  are not treated as newly allowed mate.
+  are not treated as newly allowed mate. The reason uses the evaluation bands'
+  three-pawn winning/lost line: a move that stays winning, one already lost, one
+  that gives away a winning position, one that turns it into a lost one, and
+  otherwise "gives up a large part of the position's value" (a swing to -2.00 is
+  worse, not lost).
 - Miss: lost forced mate, or a concrete missed gain supported by a settled
   comparison and a tactical witness that costs at least 100 cp; a smaller gap keeps
   its ordinary label. Retaining mate in two instead of mate in one is not a

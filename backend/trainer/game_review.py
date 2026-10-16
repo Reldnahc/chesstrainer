@@ -103,7 +103,12 @@ def classify(report, rating):
             )
         if numeric(best) <= -DECISIVE_CP:
             return "Blunder", "This move makes an already lost position much worse."
-        return "Blunder", "This move gives away a decisive advantage or allows a severe loss."
+        # The review's own bands: winning and lost from three pawns (DECISIVE_CP).
+        if numeric(best) >= DECISIVE_CP:
+            return "Blunder", "This move gives away a winning advantage."
+        if numeric(actual) <= -DECISIVE_CP:
+            return "Blunder", "This move turns the position into a lost one."
+        return "Blunder", "This move gives up a large part of the position's value."
     # Mate distance is not a centipawn loss. Keeping a slower forced win is
     # still good, but cannot qualify for an exceptional or Best label.
     if (
