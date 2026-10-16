@@ -217,3 +217,9 @@ def test_a_replacement_pin_witness_names_what_the_pinned_piece_cannot_take():
     pins = [w for w in recognize(boards, 1, len(boards) - 1, "line").witnesses if w.theme == "pin"]
     assert pins and all(w.rule == "pin_prevents_attack" for w in pins)
     assert pins[0].roles["pinned_defender"] == ["e7"] and "cannot capture" in pins[0].explanation
+
+
+def test_a_retake_after_losing_the_queen_is_not_a_pin_exploit():
+    # Qg5 hxg5 Rxg5 gives the queen for a pawn; the guard's retake is no idea.
+    boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5", "hxg5", "Rxg5")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}

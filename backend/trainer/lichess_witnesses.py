@@ -65,6 +65,18 @@ def pinned_from_start(puzzle, node, square) -> bool:
     return True
 
 
+def line_gains(puzzle) -> bool:
+    """Whether the line's mover ends it with at least the material it started with."""
+
+    def balance(board):
+        return sum(
+            VALUES.get(p.piece_type, 0) * (1 if p.color == puzzle.pov else -1)
+            for p in board.piece_map().values()
+        )
+
+    return balance(puzzle.mainline[-1].board()) >= balance(puzzle.mainline[0].board())
+
+
 def pin_used(puzzle, square):
     """The first move of the line's mover that exploits the old pin on ``square``
     while it holds, or None. It captures the pinned piece; or, not moving along the
@@ -99,11 +111,16 @@ def pin_used(puzzle, square):
         if move.to_square in covered:
             return node
         # The opponent takes the piece that landed, and a guard the pinned piece
-        # could otherwise have taken retakes: the pin kept that guard alive.
+        # could otherwise have taken retakes: the pin kept that guard alive. Not
+        # after a check, which the opponent had to answer instead of taking the
+        # guard, and not in a line that ends behind in material (a blunder the
+        # retake only softens).
         reply = node.next()
         retake = reply.next() if reply is not None else None
         if (
-            reply is not None
+            not board.is_check()
+            and line_gains(puzzle)
+            and reply is not None
             and retake is not None
             and reply.move.to_square == move.to_square
             and node.board().is_capture(reply.move)
