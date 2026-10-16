@@ -30,7 +30,7 @@ def create_router():
         # Minutes east of UTC, so weekday and time-of-day use the viewer's clock.
         offset: int = Query(0, ge=-840, le=840),
     ):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             rows = db.execute(
                 select(Game, AnalysisJob.status, GameReview.rating, GameReview.revision)
                 .outerjoin(GameReview, GameReview.game_id == Game.id)

@@ -127,7 +127,7 @@ def create_app():
         from sqlalchemy import func, select
         from trainer.models import AnalysisJob
 
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return {
                 "active": db.scalar(
                     select(func.count())
@@ -142,7 +142,7 @@ def create_app():
         from trainer.study_lessons.providers import CourseProviders
         from trainer.study_lessons.sessions import start_session
 
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             course = lesson_provider.install(workspace.user_id, key)
             session = start_session(
                 db,
@@ -169,7 +169,7 @@ def create_app():
         from trainer.puzzles.sessions import start_session
 
         provider = game_puzzle_provider if key.startswith("games-") else puzzle_provider
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             definition = provider.install(workspace.user_id, key)
             session = start_session(
                 db,
@@ -195,7 +195,7 @@ def create_app():
         from trainer.study_lessons.content import CourseDefinition
         from trainer.study_lessons.providers import CourseProviders
 
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             course = lesson_provider.install(workspace.user_id, f"recall-{key}")
             record = course.model_dump(mode="json")
             board = chess.Board()
@@ -268,6 +268,7 @@ def create_app():
                 "1. f3 e5 2. g4 Qh4# 0-1"
             )
             import_games(db, "review-fixture.pgn", pgn, [white], None)
+            db.commit()
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/clock-review-fixture/{key}")
@@ -285,6 +286,7 @@ def create_app():
                 "4. Nxe5 {[%clk 0:02:41]} Qg5 {[%clk 0:00:05.2]} *"
             )
             import_games(db, "clock-fixture.pgn", pgn, [white], None)
+            db.commit()
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/pin-review-fixture/{key}")
@@ -298,6 +300,7 @@ def create_app():
             # 4. Bg5 pins the f6 knight to the queen; 4...h6 keeps that pin in place.
             pgn = f'[White "{white}"]\n[Black "PinFixture"]\n\n1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 h6 *'
             import_games(db, "pin-fixture.pgn", pgn, [white], None)
+            db.commit()
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/book-review-fixture/{key}")
@@ -310,6 +313,7 @@ def create_app():
             white = f"Book-{key}"
             pgn = f'[White "{white}"]\n[Black "OpeningFixture"]\n\n1. e4 e5 2. Ke2 Nc6 0-1'
             import_games(db, "book-fixture.pgn", pgn, [white], None)
+            db.commit()
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/review-explanation-fixture/{key}")

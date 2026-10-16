@@ -39,6 +39,7 @@ def seed_games(app, count):
     )
     with app.state.sessions() as db:
         import_games(db, "games.pgn", pgn, ["Learner"], None)
+        db.commit()
         ids = db.scalars(select(Game.id).order_by(Game.pgn)).all()
         for i, game_id in enumerate(ids):
             db.get(Game, game_id).played_at = START + timedelta(days=i)
@@ -215,6 +216,7 @@ def test_game_analysis_runs_review_and_training_in_one_job(settings, stockfish_p
                 ["Learner"],
                 None,
             )
+            db.commit()
             queue_imported(db, db.scalar(select(ImportGame.import_id)), FRESH)
             db.commit()
         job = app.state.runner.claim()

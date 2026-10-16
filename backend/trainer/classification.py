@@ -1,5 +1,4 @@
 import logging
-from contextlib import nullcontext
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from sqlalchemy import select, update
@@ -135,18 +134,19 @@ def verified_payload(db, decision):
     }
 
 
-def classify_decision(db, decision, classifier, *, mutation_lock=None):
+def classify_decision(units, decision, classifier):
     """Classify one meaningful decision and set its current labels; returns whether it did.
 
-    A decision whose saved evidence cannot be assembled is skipped and logged, like
-    a failed classification, so one bad row never stops the rest of a job.
+    ``units`` opens the account's ``read()`` and ``write()`` units, and
+    ``decision`` is a Decision or its id. The run is started in one write unit
+    and finished in another, so a classifier call never holds the account lock
+    or a database connection. A decision whose saved evidence cannot be
+    assembled is skipped and logged, like a failed classification, so one bad
+    row never stops the rest of a job.
     """
-    lock = mutation_lock if mutation_lock is not None else nullcontext()
-    with lock:
-        # Pool callers pass an ID so waiting tasks hold no DB connection while
-        # another thread owns the short write phase or runs its classification.
-        if isinstance(decision, str):
-            decision = db.get(Decision, decision)
+    decision_id = decision if isinstance(decision, str) else decision.id
+    with units.write() as db:
+        decision = db.get(Decision, decision_id)
         if decision is None or not decision.meaningful:
             return False
         try:
@@ -158,12 +158,12 @@ def classify_decision(db, decision, classifier, *, mutation_lock=None):
         if run is None or run.status == "completed":
             if run is not None:
                 activate_run(db, run)
-            db.commit()
             return run is not None
         key = run.cache_key
     try:
         output, usage = classifier.classify(payload)
-        with lock:
+        with units.write() as db:
+            run = db.scalar(select(ClassificationRun).where(ClassificationRun.cache_key == key))
             result = _validated(output, decision, classifier, payload)
             run.response = result.model_dump()
             run.confidence = result.confidence
@@ -173,16 +173,13 @@ def classify_decision(db, decision, classifier, *, mutation_lock=None):
             # Keep immutable runs; current labels follow the latest requested
             # successful classification, including low confidence.
             activate_run(db, run)
-            db.commit()
         return True
     except Exception as exc:
-        with lock:
-            db.rollback()
+        with units.write() as db:
             run = db.scalar(select(ClassificationRun).where(ClassificationRun.cache_key == key))
             run.status = "failed"
             # Do not persist classifier messages which might echo private request content.
             run.error = f"{type(exc).__name__}: classification failed; evidence retained for retry"
-            db.commit()
         _log_failure(decision, exc)
         return False
 
@@ -229,7 +226,7 @@ def _start_run(db, decision, classifier, payload):
     else:
         run.attempts += 1
         run.status = "running"
-    db.commit()
+    db.flush()
     return run
 
 
@@ -306,5 +303,4 @@ def reject_run(db, run_id):
         .where(SkillEvidence.classification_run_id == run_id)
         .values(active=False)
     )
-    db.commit()
     return {"rejected": True}

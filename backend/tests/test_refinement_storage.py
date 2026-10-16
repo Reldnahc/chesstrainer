@@ -4,6 +4,7 @@ import json
 from datetime import datetime, timezone
 
 import pytest
+from account_units import units_for
 from alembic import command
 from alembic.config import Config
 from sqlalchemy import func, select, text
@@ -219,7 +220,7 @@ def test_training_decisions_use_the_adopted_refinement(settings, sessions):
         db.flush()
         db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
         db.commit()
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
 
 
@@ -256,7 +257,7 @@ def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(sett
         db.add(GameReviewMove(game_id=game.id, ply=1, report=report))
         db.commit()
         # No engine is available: nothing may be searched again at other limits.
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         played = db.get(EngineAnalysis, decision.played_analysis_id)
         assert (
             played.candidates[0]["uci"] == "e2e4" and played.candidates[0]["score"]["value"] == 40
@@ -278,7 +279,7 @@ def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(sett
         db.flush()
         db.get(Decision, decision.id).before_analysis_id = other.id
         db.commit()
-        again = analyze_decision(db, None, settings, game, 1, board, move)
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         assert again.played_analysis_id == played.id
         assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 3
 
@@ -325,8 +326,9 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
         db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
         db.commit()
         scheduler = FSRSScheduler(settings)
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         exercise = exercise_from_decision(db, decision, settings, scheduler)
+        db.commit()
         assert decision.meaningful
 
         # A refine request adopts a deeper search after training was built.
@@ -349,11 +351,12 @@ def test_a_refinement_adopted_later_updates_the_decision_not_its_exercise(settin
         db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
         db.commit()
 
-        again = analyze_decision(db, None, settings, game, 1, board, move)
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
         assert again.id == decision.id
         assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
         assert again.loss_cp == 285
         kept = exercise_from_decision(db, again, settings, scheduler)
+        db.commit()
         # The same exercise and schedule, never a second card: its answers (and any
         # graded during practice) stay as they were made.
         assert kept.id == exercise.id and db.get(SRSState, exercise.id) is not None
@@ -439,12 +442,15 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
         db.commit()
         scheduler = FSRSScheduler(settings)
-        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         exercise = exercise_from_decision(db, decision, settings, scheduler)
+        db.commit()
         assert decision.meaningful and db.get(SRSState, exercise.id).eligible
 
         adopt(db, game, "fine", rows["fine"], rows["fine_played"], baseline)
-        again = analyze_decision(db, None, settings, game, 1, board, move)
+        again = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert again.id == decision.id and not again.meaningful
         # The card keeps its answers and schedule but leaves the queue, and a
         # direct start is refused too.
@@ -454,7 +460,8 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
             require_active_review(db, exercise.id)
 
         adopt(db, game, "worse", rows["worse"], rows["worse_played"], baseline)
-        back = analyze_decision(db, None, settings, game, 1, board, move)
+        back = analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert back.id == decision.id and back.meaningful
         assert db.get(SRSState, exercise.id).eligible
         require_active_review(db, exercise.id)
@@ -462,14 +469,17 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         # The same mistake in another game shares the card: its meaningful decision
         # puts the card back even while this game's decision is no longer one.
         adopt(db, game, "fine-again", rows["fine"], rows["fine_played"], baseline)
-        analyze_decision(db, None, settings, game, 1, board, move)
+        analyze_decision(units_for(db), None, settings, game, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert not db.get(SRSState, exercise.id).eligible
         other = Game(fingerprint="queue-2", white="A", black="B", learner_color=True, pgn="1. f3 *")
         db.add(other)
         db.flush()
         db.add(GameReviewMove(game_id=other.id, ply=1, report=baseline))
         db.commit()
-        shared = analyze_decision(db, None, settings, other, 1, board, move)
+        shared = analyze_decision(units_for(db), None, settings, other, 1, board, move)
+        db.expire_all()  # The unit saved it in a session of its own.
         assert shared.meaningful and shared.id != decision.id
         assert exercise_from_decision(db, shared, settings, scheduler).id == exercise.id
+        db.commit()
         assert db.get(SRSState, exercise.id).eligible

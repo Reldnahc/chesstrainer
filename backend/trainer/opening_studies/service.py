@@ -72,7 +72,7 @@ def enroll_line(db, providers, request, scheduler):
         db.flush()
         for exercise_id in projection.contribute(db, study, scheduler):
             projection.rebuild(db, exercise_id)
-    db.commit()
+    db.flush()
     return study_view(db, study)
 
 
@@ -129,7 +129,7 @@ def library(db):
 def toggle(db, study_id, active):
     study = require_study(db, study_id)
     projection.set_active(db, study, active)
-    db.commit()
+    db.flush()
     return study_view(db, study)
 
 

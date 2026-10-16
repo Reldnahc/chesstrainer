@@ -121,6 +121,7 @@ def seed(db):
             f'[Termination "{termination}"]\n[Result "{moves.split()[-1]}"]\n\n{moves}'
         )
         import_games(db, "insights.pgn", pgn, ["Student"], None)
+        db.commit()
     games = db.scalars(select(Game).order_by(Game.played_at)).all()
     for index, rows in REVIEWS.items():
         job = AnalysisJob(kind="game_review", status="completed")
@@ -295,6 +296,7 @@ def test_unrated_games_stay_out_of_insights(settings):
                     f'[Result "{moves.split()[-1]}"]\n\n{moves}'
                 )
                 import_games(db, "rated.pgn", pgn, ["Student"], None)
+                db.commit()
             saved = {game.pgn.split('"')[1]: game.rated for game in db.scalars(select(Game))}
         assert saved == {"Rated Blitz game": True, "Casual Blitz game": False, "Live Chess": None}
         data = client.get("/api/insights").json()

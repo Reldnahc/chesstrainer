@@ -131,7 +131,7 @@ class JobRunner:
             execution = self._active.get(job_id)
         if execution is None:
             return True
-        with execution.sessions() as db:
+        with execution.read() as db:
             job = db.get(AnalysisJob, job_id)
             return job is None or job.cancel_requested
 

@@ -8,6 +8,7 @@ from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.api import create_app
+from trainer.db import Units
 from trainer.game_providers.base import ImportCancelled, ProviderError
 from trainer.game_providers.base import ProviderImportRequest as ChessComRequest
 from trainer.game_providers.chesscom import ChessComClient
@@ -64,7 +65,7 @@ def mock_client(settings, responses, seen=None):
 
 
 def fetch(job_id, sessions, settings, client, cancelled=lambda: False):
-    fetch_import(job_id, sessions, settings, client, cancelled, threading.Lock())
+    fetch_import(job_id, Units(sessions, threading.Lock()), settings, client, cancelled)
 
 
 def test_request_validation_defaults_and_month_boundaries(settings):
@@ -95,6 +96,7 @@ def test_request_validation_defaults_and_month_boundaries(settings):
 def test_import_filters_matches_both_sides_and_deduplicates_pgn(settings, sessions):
     with sessions() as db:
         import_games(db, "earlier.pgn", PGN, ["learner"], None)
+        db.commit()
     job_id = source_job(sessions)
     bad_headers = PGN.replace('"Learner"', '"SomebodyElse"')
     client = mock_client(
@@ -230,6 +232,7 @@ def test_newest_matching_games_limit(settings, sessions):
 def test_existing_games_do_not_consume_new_game_limit(settings, sessions):
     with sessions() as db:
         import_games(db, "saved.pgn", PGN, ["learner"], None)
+        db.commit()
     job_id = source_job(sessions, max_games=1)
     client = mock_client(
         settings,
@@ -254,6 +257,7 @@ def test_repeat_import_100_saved_plus_20_new_only_schedules_20(settings, session
     pgns = [PGN.replace("[Date", f'[Round "{i}"]\n[Date') for i in range(120)]
     with sessions() as db:
         original = import_games(db, "first100.pgn", "\n\n".join(pgns[:100]), ["learner"], None)
+        db.commit()
         assert original["imported"] == 100
     job_id = source_job(sessions, max_games=100)
     client = mock_client(
@@ -276,6 +280,7 @@ def test_repeat_import_100_saved_plus_20_new_only_schedules_20(settings, session
             assert len(links) == 120  # Full provenance remains separate from job scope.
             assert sum(link.is_new for link in links) == 20
             repeated = import_games(db, "again.pgn", "\n\n".join(pgns), ["learner"], None)
+            db.commit()
             assert repeated["duplicates"] == 120 and repeated["imported"] == 0
         repeated_job = source_job(sessions)
         fetch(repeated_job, sessions, settings, client)

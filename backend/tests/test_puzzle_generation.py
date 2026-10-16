@@ -2,6 +2,7 @@
 
 import chess
 import pytest
+from account_units import units_for
 from fastapi.testclient import TestClient
 from job_fixtures import queue_import_analysis
 from sqlalchemy import select
@@ -150,6 +151,7 @@ class FakeEngine:
 
 def seed_game(db, fen, moves, **headers):
     result = import_games(db, "fixture.pgn", pgn(fen, moves, **headers), ["me"], None)
+    db.commit()
     assert result["imported"] == 1, result
     return db.scalar(select(Game).order_by(Game.created_at.desc(), Game.id.desc()))
 
@@ -375,10 +377,16 @@ def test_generate_once_per_game_and_serve_only_ready_lines(settings, sessions):
         game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
         seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
         seed_decision(db, game, 3, "e1d2", [("e1d2", 10), ("e1e2", 5)], meaningful=False)
-        assert generate_for_game(db, Scripted(FORK), settings, game, cancelled=lambda: True) is None
+        assert (
+            generate_for_game(units_for(db), Scripted(FORK), settings, game, cancelled=lambda: True)
+            is None
+        )
         assert db.scalar(select(GamePuzzleSearch)) is None
-        assert generate_for_game(db, Scripted(FORK), settings, game) == {"candidates": 1, "kept": 1}
-        assert generate_for_game(db, Scripted(FORK), settings, game) is None
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
+            "candidates": 1,
+            "kept": 1,
+        }
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, game) is None
         row = db.scalar(select(GamePuzzle))
         assert row.status == "ready" and row.kind == "missed_win" and row.reason is None
         assert row.evidence["decisions"][0]["san"] == "Nd5+" and row.evidence["saved_unique_first"]
@@ -399,7 +407,10 @@ def test_generate_once_per_game_and_serve_only_ready_lines(settings, sessions):
         twin = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2", black="someone-else")
         seed_decision(db, twin, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
         assert unsearched_games(db, 10) == [twin.id]
-        assert generate_for_game(db, Scripted(FORK), settings, twin) == {"candidates": 1, "kept": 0}
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, twin) == {
+            "candidates": 1,
+            "kept": 0,
+        }
         assert db.scalar(select(GamePuzzle.reason).where(GamePuzzle.game_id == twin.id)) == (
             "duplicate_position"
         )
@@ -439,6 +450,7 @@ def test_analysis_jobs_mine_new_games_and_the_backfill_job_mines_the_rest(settin
     with TestClient(app) as client:
         with app.state.sessions() as db:
             imported = import_games(db, "f.pgn", pgn(FORK_FEN, "1. Ne4 Kd7 2. Kd2"), ["me"], None)
+            db.commit()
             job_id = queue_import_analysis(db, imported)
         app.state.runner.run_job(job_id)
         with app.state.sessions() as db:
@@ -513,7 +525,7 @@ def test_own_game_puzzles_are_private_to_the_account(settings):
         with app.state.workspaces.open(alice_id) as workspace, workspace.sessions() as db:
             game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
             seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
-            assert generate_for_game(db, Scripted(FORK), settings, game) == {
+            assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
                 "candidates": 1,
                 "kept": 1,
             }
@@ -731,6 +743,7 @@ def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings
         game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
         decision = seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
         task = refined_fork_review(db, game, decision.before_analysis_id, adopted=False)
+        db.commit()
 
         class AdoptingMidway(Scripted):
             def __call__(self, board, *, multipv=1):
@@ -741,10 +754,10 @@ def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings
                         other.commit()
                 return super().__call__(board, multipv=multipv)
 
-        assert generate_for_game(db, AdoptingMidway(FORK), settings, game)["kept"] == 1
+        assert generate_for_game(units_for(db), AdoptingMidway(FORK), settings, game)["kept"] == 1
         assert db.scalar(select(GamePuzzleSearch.id)) is None
         # The next pass re-reads the review; the judged ply keeps its verdict.
-        assert generate_for_game(db, Scripted(FORK), settings, game) == {
+        assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
             "candidates": 1,
             "kept": 1,
         }

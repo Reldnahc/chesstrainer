@@ -29,6 +29,7 @@ def test_disabled_accounts_use_local_workspace_without_exposing_accounts(setting
     alice = Accounts(settings.database_path).create("alice", "testing-password")
     with account_sessions(engine, alice["id"])() as db:
         import_games(db, "private", PGN, [], "white")
+        db.commit()
         private_game = db.scalar(select(Game.id))
     engine.dispose()
 
@@ -244,6 +245,7 @@ def test_database_scope_aggregates_updates_and_references(settings):
     sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
+        db.commit()
         game_id = db.scalar(select(Game.id))
         job = AnalysisJob(kind="classification")
         db.add(job)
@@ -275,6 +277,7 @@ def test_bulk_writes_cannot_cross_accounts(settings):
     sa, sb = account_sessions(engine, a["id"]), account_sessions(engine, b["id"])
     with sa() as db:
         import_games(db, "test", PGN, [], "white")
+        db.commit()
         game_id = db.scalar(select(Game.id))
     with sb() as db:
         with pytest.raises(ValueError, match="Bulk writes"):

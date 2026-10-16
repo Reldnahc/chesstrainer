@@ -115,7 +115,7 @@ class LevelFits:
 
     def profile(self, workspace, *, refresh=False):
         human_models = workspace.human_models
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             games = db.scalar(select(func.count()).select_from(Game)) or 0
             row = db.get(PlayProfile, workspace.user_id)
             fitting = active_job(db, JobKind.LEVEL_FIT) is not None
@@ -130,10 +130,9 @@ class LevelFits:
         )
         if games and human_models.settings.human_model_enabled and (refresh or stale):
             if human_models.can_attempt():
-                with workspace.mutation_lock, workspace.sessions() as db:
+                with workspace.write() as db:
                     # One fit at a time per account; the job reads the games when it runs.
                     ensure_job(db, JobKind.LEVEL_FIT, priority=REQUESTED)
-                    db.commit()
                 fitting = True
             elif row is None or row.status == "computing":
                 return profile_payload(row, games, human_models) | {"status": "unavailable"}
@@ -148,7 +147,7 @@ def run_level_fit(execution, job_id):
     the job runner, and on a cancellation by the next poll of a stale profile.
     """
     sessions, human_models = execution.sessions, execution.human_models
-    with sessions() as db:
+    with execution.read() as db:
         rows = list(db.scalars(select(Game)))
         user_id = db.info["user_id"]
     try:
@@ -163,7 +162,7 @@ def run_level_fit(execution, job_id):
         # queue the same failing fit again on its next poll.
         log.exception("level_fit_failed", extra={"job_id": job_id})
         result, status = None, "unavailable"
-    with execution.mutation_lock, sessions() as db:
+    with execution.write() as db:
         row = db.get(PlayProfile, user_id)
         if row is None:
             row = PlayProfile(user_id=user_id)
@@ -177,4 +176,3 @@ def run_level_fit(execution, job_id):
             row.platform_rating = result["platform_rating"]
             row.platform = result["platform"]
             row.positions = result["positions"]
-        db.commit()

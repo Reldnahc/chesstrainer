@@ -215,7 +215,6 @@ def finish(db, play: PlayGame, result: str, termination: str, learner_name: str)
         pgn,
         [],
         "white" if learner_is_white(play) else "black",
-        commit=False,
     )
     saved = db.scalar(
         select(ImportGame.game_id).where(ImportGame.import_id == outcome["import_id"])

@@ -41,7 +41,7 @@ def retire_existing(db, settings, *, enabled_accounts_only=False):
         query = query.join(User, User.id == SRSState.user_id).where(User.disabled.is_(False))
     for state in db.scalars(query):
         count += retire_if_ready(state, settings)
-    db.commit()
+    db.flush()
     return count
 
 

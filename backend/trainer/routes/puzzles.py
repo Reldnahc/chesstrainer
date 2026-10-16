@@ -24,7 +24,7 @@ def create_router(*, providers, settings=None) -> APIRouter:
 
     @router.get("/api/puzzles", response_model=PuzzleLibrary)
     def library(workspace: CurrentWorkspace):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return sessions.library(db, providers, settings=settings)
 
     @router.post(
@@ -35,36 +35,36 @@ def create_router(*, providers, settings=None) -> APIRouter:
     )
     def generate(workspace: CurrentWorkspace):
         """Queue one bounded search of analyzed games not yet mined for puzzles."""
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             job, created = ensure_job(db, JobKind.PUZZLE_GENERATION)
             if created:
                 workspace.engine.start()  # Searches need Stockfish; fail now, not in the job.
-            db.commit()
+            db.flush()
             return {"job_id": job.id}
 
     @router.get("/api/puzzles/next", response_model=PuzzleKey | None)
     def next_puzzle(workspace: CurrentWorkspace, query: Annotated[PuzzleQuery, Query()]):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return sessions.next_puzzle(db, providers, query)
 
     @router.post("/api/puzzle-sessions", response_model=PuzzleSessionView)
     def start(workspace: CurrentWorkspace, data: PuzzleStart):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             return sessions.start_session(db, providers, data)
 
     @router.get("/api/puzzle-sessions/{session_id}", response_model=PuzzleSessionView)
     def get_session(workspace: CurrentWorkspace, session_id: str):
-        with workspace.sessions() as db:
+        with workspace.read() as db:
             return sessions.session_view(db, sessions.require_session(db, session_id))
 
     @router.post("/api/puzzle-sessions/{session_id}/move", response_model=PuzzleSessionView)
     def move(workspace: CurrentWorkspace, session_id: str, data: PuzzleMove):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             return sessions.command(db, session_id, data)
 
     @router.post("/api/puzzle-sessions/{session_id}/reveal", response_model=PuzzleSessionView)
     def reveal(workspace: CurrentWorkspace, session_id: str, data: PuzzleCommand):
-        with workspace.mutation_lock, workspace.sessions() as db:
+        with workspace.write() as db:
             return sessions.command(db, session_id, data, reveal=True)
 
     return router

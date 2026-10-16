@@ -67,6 +67,7 @@ def test_clear_games_removes_game_data_and_keeps_everything_else(settings, sessi
     scheduler = FSRSScheduler(settings)
     with sessions() as db:
         import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+        db.commit()
         game_analysis = _engine(db, "game")
         decision = Decision(
             game_id=db.scalar(select(Game.id)),
@@ -85,7 +86,9 @@ def test_clear_games_removes_game_data_and_keeps_everything_else(settings, sessi
         db.add(decision)
         db.commit()
         exercise_from_decision(db, decision, settings, scheduler)
+        db.commit()
         manual = manual_exercise(db, scheduler, chess.STARTING_FEN, ["e2e4"], "white")
+        db.commit()
         # A cached position the kept exercise still uses must survive the cleanup.
         shared = _engine(db, "shared")
         db.scalar(
@@ -132,6 +135,7 @@ def test_clear_games_keeps_maia_rows_another_account_still_uses(settings, sessio
     for factory in (sessions, clubmate):
         with factory() as db:
             import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+            db.commit()
             game_id = db.scalar(select(Game.id))
             db.add(GameReviewMove(game_id=game_id, ply=1, report={}, human_analysis_id=shared_id))
             db.commit()
@@ -148,6 +152,7 @@ def test_clear_games_removes_mined_puzzles_and_unlinks_play_games(settings, sess
 
     with sessions() as db:
         import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+        db.commit()
         game_id = db.scalar(select(Game.id))
     with sqlite3.connect(settings.database_path) as db:
         fill(db, "game_puzzle_searches", user_id="local", game_id=game_id)
@@ -169,6 +174,7 @@ def test_clear_games_keeps_engine_rows_a_kept_play_report_mentions(settings, ses
 
     with sessions() as db:
         import_games(db, "fixture.pgn", PGN, ["Learner"], None)
+        db.commit()
         game_id = db.scalar(select(Game.id))
         played = _engine(db, "played").id
         _engine(db, "unused")

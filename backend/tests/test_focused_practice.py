@@ -2,6 +2,7 @@ import copy
 from datetime import timedelta
 
 import pytest
+from account_units import units_for
 from explanation_fixtures import seed_review
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
@@ -36,7 +37,7 @@ def seed_classified(db, settings, key="practice"):
         candidates[0]["pv"] = line
         analysis.candidates = candidates
     db.commit()
-    assert classify_decision(db, decision, LocalClassifier(settings))
+    assert classify_decision(units_for(db), decision, LocalClassifier(settings))
     return fixture
 
 

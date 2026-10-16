@@ -135,8 +135,8 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
                 entered.set()
         assert release.wait(8)
 
-    def fetch(job_id, scoped_sessions, *_args):
-        with scoped_sessions() as db:
+    def fetch(job_id, units, *_args):
+        with units.read() as db:
             assert db.info["user_id"] == alice
             assert db.get(AnalysisJob, "bob-first") is None
         fetched.set()
@@ -199,6 +199,7 @@ def test_hosted_startup_preserves_disabled_and_local_retirement_state(settings, 
             exercise = manual_exercise(
                 db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white"
             )
+            db.commit()
             exercises[owner] = exercise.id
             state = db.get(SRSState, exercise.id)
             state.reviews = 5
@@ -221,6 +222,7 @@ def test_requests_and_jobs_share_engine_budget_without_sharing_account_data(
     for owner in owners:
         with account_sessions(sessions.kw["bind"], owner)() as db:
             import_games(db, "fixture", PGN, [], "white")
+            db.commit()
             games[owner] = db.scalar(select(Game.id))
             db.add(AnalysisJob(id=f"review-{owner}", kind="game_review"))
             db.commit()
