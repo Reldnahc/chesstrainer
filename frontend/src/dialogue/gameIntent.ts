@@ -1,3 +1,4 @@
+import type { ReviewEvent, ReviewEventOf, Schema } from "../api";
 import type { Game, Position, Report } from "../gameReview/types";
 import type { CoachExpression } from "../coach/model";
 import { scoreText } from "../evaluation";
@@ -7,6 +8,7 @@ import {
   makeIntent,
   type Claim,
   type ClaimCode,
+  type DialogueIntent,
   type DialoguePurpose,
   type EvidenceRef,
 } from "./model";
@@ -37,6 +39,26 @@ function moveLabel(game: Game, ply: number) {
     ? `${moveNumber(frame.number, frame.actor === "black" ? "black" : "white")} ${frame.san}`
     : `Ply ${ply}`;
 }
+
+type Relationship = Schema["GameContext"]["relationships"][number];
+type Mode = DialogueIntent["mode"];
+
+/** What every claim about one reviewed move is written from. */
+type MoveFacts = {
+  game: Game;
+  report: Report;
+  frame?: Position | null;
+  ply: number;
+  variation: boolean;
+  mover: "white" | "black" | null | undefined;
+  learnerMove: boolean;
+  poor: boolean;
+  side: string;
+  opponent: string;
+  move: string;
+  best: string;
+  events: ReviewEvent[];
+};
 
 /** The coach's dialogue never carries a Maia (human-move model) reading; only
  * the separate Maia tag and popup ask for it, with `human`. */
@@ -75,53 +97,31 @@ export function gameIntent({
       [claim("explanation", { detail: report.board_cues.caption }, 75)],
       ["show_why_uses_current_board_cues"],
     );
-  if (frame?.termination && frame.result) {
-    const kind =
-      frame.result === "1/2-1/2" ? "draw" : expression === "winning" ? "mate_win" : "mate_loss";
-    return makeIntent(
-      key,
-      kind === "draw" ? "draw" : expression === "winning" ? "winning" : "losing",
-      mode,
-      expression,
-      [
-        claim(kind, {}, 100, [
-          { source: "position", id: frame.fen, field: "automatic_outcome", ply },
-        ]),
-      ],
-    );
-  }
-  if (!report) {
-    if (error) return makeIntent(key, "uncertain", mode, "uncertain", [claim("unavailable")]);
-    const code = pending ? "thinking" : "compatibility";
-    const detail =
-      game.job?.status === "cancelled"
-        ? "Your review is paused. Resume it below, or move a piece to explore."
-        : "Select a move or move a piece to explore an alternative.";
-    return makeIntent(key, pending ? "thinking" : "neutral", mode, expression, [
-      claim(code, { detail }),
-    ]);
-  }
-  const mover =
-    frame?.turn === "white"
-      ? "black"
-      : frame?.turn === "black"
-        ? "white"
-        : !variation
-          ? game.frames[ply]?.actor
-          : null;
+  if (frame?.termination && frame.result)
+    return outcomeIntent(key, mode, expression, frame.result, frame.fen, ply);
+  if (!report) return statusIntent(game, key, mode, expression, error, pending);
+  const mover = moverOf(game, frame, ply, variation);
   const learnerMove = !!mover && mover === game.orientation;
   const subject = learnerMove ? "learner" : mover ? "opponent" : "position";
-  let purpose: DialoguePurpose = learnerMove ? purposes[report.label] : "explanation";
   // Recognized theory is shared by both players; it is not personal praise.
   // Keep the incoming reaction so check and explicit explanations still win.
   if (!learnerMove && !(mover && report.label === "Book")) expression = "explaining";
-  const poor = isPoorMove(report.label);
-  const side = mover === "white" ? "White" : mover === "black" ? "Black" : "The mover";
-  const opponent = mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent";
-  const move = report.actual.san,
-    best = report.best.san;
+  const facts: MoveFacts = {
+    game,
+    report,
+    frame,
+    ply,
+    variation,
+    mover,
+    learnerMove,
+    poor: isPoorMove(report.label),
+    side: mover === "white" ? "White" : mover === "black" ? "Black" : "The mover",
+    opponent: mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent",
+    move: report.actual.san,
+    best: report.best.san,
+    events: report.intelligence?.events ?? [],
+  };
   const claims: Claim[] = [];
-  const events = report.intelligence?.events ?? [];
   const node = !variation
     ? game.context?.nodes.find(
         n => n.ply === ply && n.input_digest === report.intelligence?.input_digest,
@@ -135,232 +135,20 @@ export function gameIntent({
       field: "candidate_search",
       ply,
     }));
-  const answer = report.immediate_reply;
-  const recaptured =
-    !!answer?.capture &&
-    answer.uci?.slice(2, 4) === report.actual.uci.slice(2, 4) &&
-    move.includes("x");
-  for (const event of events) {
-    const add = (code: ClaimCode, slots: Claim["slots"], priority: number) =>
-      claims.push(claim(code, slots, priority, event.evidence, [event.id]));
-    if (event.kind === "mate")
-      add(
-        event.facts.transition === "allowed" ? "allowed_mate" : "missed_mate",
-        {
-          best,
-          opponent,
-          reply: report.immediate_reply
-            ? `${opponent}'s strongest reply is ${report.immediate_reply.san}.`
-            : "",
-        },
-        100,
-      );
-    // A move inside a forced mate is about the mate, ahead of any tactic or
-    // structure. A played back-rank tactic already explains that same mate.
-    // Through a long mating run the same side's moves share a stage; it is told once,
-    // and later moves of that stage speak their grade instead of repeating it.
-    if (
-      event.kind === "forced_mate" &&
-      isForcedMateStage(event.facts.stage) &&
-      !events.some(
-        other =>
-          other.kind === "tactic" &&
-          other.facts.motif === "back_rank" &&
-          other.facts.role === "played",
-      ) &&
-      (variation ||
-        !game.frames[ply - 2]?.report?.intelligence?.events.some(
-          other => other.kind === "forced_mate" && other.facts.stage === event.facts.stage,
-        ))
-    )
-      add(
-        `forced_mate_${event.facts.stage}`,
-        { move, best, opponent, mate: Number(event.facts.mate_in) },
-        97,
-      );
-    if (event.kind === "tactic") {
-      const item = tacticalClaim(event, move, best, opponent);
-      if (item) claims.push(item);
-    }
-    if (event.kind === "sacrifice") add("sacrifice", {}, 90);
-    if (event.kind === "critical_resource") {
-      add(event.facts.purpose === "defense" ? "only_move" : "decisive_resource", {}, 93);
-      if (learnerMove) purpose = event.facts.difficult ? "difficult_defense" : "only_move";
-    }
-    if (event.kind === "positional") {
-      // Positive explanations describe the played move. An error keeps only facts
-      // that explain its cost, never a gain of the played move or a drawback of the better one.
-      if (poor ? !explainsCost(event.facts, mover) : event.facts.line !== "actual") continue;
-      // A defender gained or lost by a piece that is simply traded off is not the story.
-      if (
-        event.facts.feature === "piece_support" &&
-        event.facts.line === "actual" &&
-        recaptured &&
-        event.facts.target === report.actual.uci.slice(2, 4)
-      )
-        continue;
-      // "A bishop could have developed", "the alternative was to castle" or "another move
-      // would have pushed the passed pawn" is confusing when the played move did the same.
-      if (
-        [
-          "first_development",
-          "castling",
-          "passed_pawn_advance",
-          "passed_pawns",
-          "rook_file",
-        ].includes(String(event.facts.feature)) &&
-        event.facts.line !== "actual" &&
-        events.some(
-          other =>
-            other.kind === "positional" &&
-            other.facts.feature === event.facts.feature &&
-            other.facts.line === "actual",
-        )
-      )
-        continue;
-      const item = positionalClaim(event, move, best);
-      if (item) claims.push(item);
-    }
-    if (event.kind === "opening_departure" && !report.opening) add("departure", {}, 48);
-  }
-  if (report.opening) {
-    const opening = deriveBookPresentation({ game, report, frame, ply, variation });
-    claims.push({
-      ...claim(
-        poor ? "book" : "book_sound",
-        { opening: report.opening.name || "a recognized opening line" },
-        poor ? 49 : 96,
-        [{ source: "book", id: report.opening.version, field: "recognized_opening", ply }],
-      ),
-      ...(opening ? { opening } : {}),
-    });
-  }
-  const practical = report.practical;
+  let purpose: DialoguePurpose =
+    addEventClaims(facts, claims) ?? (learnerMove ? purposes[report.label] : "explanation");
+  if (report.opening) claims.push(bookClaim(facts, report.opening));
   // The graph remains two-sided. Personal relationships require the saved
   // learner, a matching evidence generation and an actual learner move.
   if (!variation && node && learnerMove && node.actor === game.orientation) {
-    for (const relation of game.context?.relationships ?? []) {
-      if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
-      const earlier = moveLabel(game, relation.plies[0]);
-      const linked = (code: ClaimCode, slots: Claim["slots"], priority: number) =>
-        claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
-      // Each relationship is told only where its wording holds: a conversion
-      // with no Inaccuracy or worse of the side's own inside the run ("cleanly"),
-      // and an erosion on an Inaccuracy with no Mistake of the side's own since its
-      // first concession ("small slips", "no single big mistake"). A recovery is
-      // told in neutral words and voiced by the re-recorded recovery takes, which
-      // credit neither this move nor the learner (see gameSelection).
-      if (relation.kind === "recovery") {
-        linked(
-          "recovery",
-          {
-            earlier,
-            help:
-              Array.isArray(relation.facts.opponent_errors) && relation.facts.opponent_errors.length
-                ? " The opponent's errors helped make that possible."
-                : "",
-          },
-          88,
-        );
-        purpose = "recovery";
-        expression = "recovered";
-      }
-      if (relation.kind === "punishment")
-        linked(
-          relation.facts.outcome === "capitalized" ? "punishment" : "missed_punishment",
-          { earlier, side },
-          81,
-        );
-      if (
-        relation.kind === "repeated_motif" &&
-        ["allowed", "caused", "missed"].includes(String(relation.facts.role))
-      )
-        linked(
-          "repeated",
-          { count: Number(relation.facts.occurrence), motif: words(relation.facts.motif) },
-          74,
-        );
-      // A restored defender matters only when this move's piece is under attack,
-      // and is never good news on a move graded as an error. It replaces the plain
-      // "gains a defender" fact from the same event rather than repeating it.
-      const restored = relation.event_ids.at(-1);
-      if (
-        relation.kind === "support_restored" &&
-        !poor &&
-        report.intelligence?.events.some(
-          event =>
-            event.id === restored &&
-            event.kind === "positional" &&
-            event.facts.feature === "piece_support" &&
-            event.facts.attacked,
-        )
-      ) {
-        claims.splice(
-          0,
-          claims.length,
-          ...claims.filter(
-            item => !(item.code === "support" && !!restored && item.sourceIds.includes(restored)),
-          ),
-        );
-        linked("support_restored", { earlier, piece: words(relation.facts.piece) }, 75);
-      }
-      // A run of concessions is only told on a move that is itself one.
-      if (
-        relation.kind === "erosion" &&
-        report.label === "Inaccuracy" &&
-        none(relation.facts.own_mistake_plies)
-      )
-        linked("erosion", { earlier }, 71);
-      if (
-        relation.kind === "advantage_run" &&
-        relation.facts.outcome === "converted" &&
-        none(relation.facts.own_error_plies)
-      )
-        linked("conversion", { earlier, side }, 75);
+    if (addRelationshipClaims(facts, claims)) {
+      purpose = "recovery";
+      expression = "recovered";
     }
-    for (const item of game.history?.weaknesses ?? [])
-      if (item.status === "supported" && item.related_plies.includes(ply))
-        claims.push(
-          claim(
-            "history",
-            { motif: words(item.skill_id), games: item.independent_games },
-            67,
-            item.evidence,
-            item.decision_ids,
-          ),
-        );
+    addHistoryClaims(facts, claims);
   }
-  if (poor) {
-    const reply = report.immediate_reply,
-      recapture = report.immediate_recapture;
-    // A capture the mover takes straight back is an even trade, not a loss.
-    const evenTrade =
-      !!reply?.capture && (reply.material_change >= 0 || (recapture?.material_change ?? -1) >= 0);
-    if (reply?.capture) {
-      if (!evenTrade)
-        claims.push(
-          claim(
-            "reply_capture",
-            { opponent, reply: reply.san, piece: reply.capture, side },
-            78,
-            refs,
-          ),
-        );
-    }
-    // The allowed-mate claim above already names this exact immediate reply.
-    // Repeating it as a lower-priority check adds no new explanation.
-    else if (reply?.gives_check && !claims.some(c => c.code === "allowed_mate" && c.slots.reply))
-      claims.push(claim("reply_check", { opponent, reply: reply.san }, 62, refs));
-    if (!claims.some(c => c.priority >= 78)) {
-      const before = report.best.score,
-        after = report.actual.score;
-      if (before.kind === "cp" && after.kind === "cp" && before.value > after.value)
-        claims.push(
-          claim("loss", { loss: ((before.value - after.value) / 100).toFixed(2) }, 82, refs),
-        );
-    }
-    claims.push(claim("alternative", { best, evaluation: scoreText(report.best.score) }, 42, refs));
-  } else if (!claims.length)
+  if (facts.poor) addErrorClaims(facts, claims, refs);
+  else if (!claims.length)
     claims.push(claim(report.label === "Good" ? "good" : "best", {}, 40, refs));
   if (human && learnerMove) claims.push(...humanClaims(report, ply, mover ?? null));
   if (!report.intelligence && learnerMove)
@@ -382,10 +170,340 @@ export function gameIntent({
       "stockfish_quality_separate_from_human_policy",
       variation ? "branch_has_no_recorded_game_relationships" : "current_ply_context_only",
       "saved_learner_perspective",
-      ...(practical?.limitations ?? []),
+      ...(report.practical?.limitations ?? []),
     ],
     subject,
   );
+}
+
+/** A finished game: its draw or the mate, from the learner's side of the board. */
+function outcomeIntent(
+  key: string,
+  mode: Mode,
+  expression: CoachExpression,
+  result: string,
+  fen: string,
+  ply: number,
+) {
+  const kind = result === "1/2-1/2" ? "draw" : expression === "winning" ? "mate_win" : "mate_loss";
+  return makeIntent(
+    key,
+    kind === "draw" ? "draw" : expression === "winning" ? "winning" : "losing",
+    mode,
+    expression,
+    [claim(kind, {}, 100, [{ source: "position", id: fen, field: "automatic_outcome", ply }])],
+  );
+}
+
+/** A position without a report: the review failed, is still thinking, or has not run. */
+function statusIntent(
+  game: Game,
+  key: string,
+  mode: Mode,
+  expression: CoachExpression,
+  error: boolean,
+  pending: boolean,
+) {
+  if (error) return makeIntent(key, "uncertain", mode, "uncertain", [claim("unavailable")]);
+  const code = pending ? "thinking" : "compatibility";
+  const detail =
+    game.job?.status === "cancelled"
+      ? "Your review is paused. Resume it below, or move a piece to explore."
+      : "Select a move or move a piece to explore an alternative.";
+  return makeIntent(key, pending ? "thinking" : "neutral", mode, expression, [
+    claim(code, { detail }),
+  ]);
+}
+
+/** The side that just moved: the side not on turn, or the mainline frame's actor. */
+function moverOf(game: Game, frame: Position | null | undefined, ply: number, variation: boolean) {
+  return frame?.turn === "white"
+    ? "black"
+    : frame?.turn === "black"
+      ? "white"
+      : !variation
+        ? game.frames[ply]?.actor
+        : null;
+}
+
+/** Each review event's claims, in event order. Returns the purpose a learner's
+ * critical resource sets (the last one wins), if any. */
+function addEventClaims(facts: MoveFacts, claims: Claim[]): DialoguePurpose | undefined {
+  const { report, learnerMove, move, best, opponent, events } = facts;
+  let purpose: DialoguePurpose | undefined;
+  for (const event of events) {
+    const add = (code: ClaimCode, slots: Claim["slots"], priority: number) =>
+      claims.push(claim(code, slots, priority, event.evidence, [event.id]));
+    switch (event.kind) {
+      case "mate":
+        add(
+          event.facts.transition === "allowed" ? "allowed_mate" : "missed_mate",
+          {
+            best,
+            opponent,
+            reply: report.immediate_reply
+              ? `${opponent}'s strongest reply is ${report.immediate_reply.san}.`
+              : "",
+          },
+          100,
+        );
+        break;
+      case "forced_mate":
+        if (isForcedMateStage(event.facts.stage) && tellsForcedMate(facts, event))
+          add(
+            `forced_mate_${event.facts.stage}`,
+            { move, best, opponent, mate: Number(event.facts.mate_in) },
+            97,
+          );
+        break;
+      case "tactic": {
+        const item = tacticalClaim(event, move, best, opponent);
+        if (item) claims.push(item);
+        break;
+      }
+      case "sacrifice":
+        add("sacrifice", {}, 90);
+        break;
+      case "critical_resource":
+        add(event.facts.purpose === "defense" ? "only_move" : "decisive_resource", {}, 93);
+        if (learnerMove) purpose = event.facts.difficult ? "difficult_defense" : "only_move";
+        break;
+      case "positional": {
+        if (!tellsPositional(facts, event)) break;
+        const item = positionalClaim(event, move, best);
+        if (item) claims.push(item);
+        break;
+      }
+      case "opening_departure":
+        if (!report.opening) add("departure", {}, 48);
+        break;
+    }
+  }
+  return purpose;
+}
+
+/** A move inside a forced mate is about the mate, ahead of any tactic or
+ * structure. A played back-rank tactic already explains that same mate.
+ * Through a long mating run the same side's moves share a stage; it is told once,
+ * and later moves of that stage speak their grade instead of repeating it. */
+function tellsForcedMate(
+  { game, ply, variation, events }: MoveFacts,
+  event: ReviewEventOf<"forced_mate">,
+): boolean {
+  return (
+    !events.some(
+      other =>
+        other.kind === "tactic" &&
+        other.facts.motif === "back_rank" &&
+        other.facts.role === "played",
+    ) &&
+    (variation ||
+      !game.frames[ply - 2]?.report?.intelligence?.events.some(
+        other => other.kind === "forced_mate" && other.facts.stage === event.facts.stage,
+      ))
+  );
+}
+
+/** Whether a positional board fact belongs in this move's explanation. */
+function tellsPositional(
+  { report, poor, mover, move, events }: MoveFacts,
+  event: ReviewEventOf<"positional">,
+): boolean {
+  // Positive explanations describe the played move. An error keeps only facts
+  // that explain its cost, never a gain of the played move or a drawback of the better one.
+  if (poor ? !explainsCost(event.facts, mover) : event.facts.line !== "actual") return false;
+  // A defender gained or lost by a piece that is simply traded off is not the story.
+  const answer = report.immediate_reply;
+  const recaptured =
+    !!answer?.capture &&
+    answer.uci?.slice(2, 4) === report.actual.uci.slice(2, 4) &&
+    move.includes("x");
+  if (
+    event.facts.feature === "piece_support" &&
+    event.facts.line === "actual" &&
+    recaptured &&
+    event.facts.target === report.actual.uci.slice(2, 4)
+  )
+    return false;
+  // "A bishop could have developed", "the alternative was to castle" or "another move
+  // would have pushed the passed pawn" is confusing when the played move did the same.
+  return !(
+    ["first_development", "castling", "passed_pawn_advance", "passed_pawns", "rook_file"].includes(
+      String(event.facts.feature),
+    ) &&
+    event.facts.line !== "actual" &&
+    events.some(
+      other =>
+        other.kind === "positional" &&
+        other.facts.feature === event.facts.feature &&
+        other.facts.line === "actual",
+    )
+  );
+}
+
+/** A recognized opening line: sound theory, or the book move of an error. */
+function bookClaim(
+  { game, report, frame, ply, variation, poor }: MoveFacts,
+  book: NonNullable<Report["opening"]>,
+): Claim {
+  const opening = deriveBookPresentation({ game, report, frame, ply, variation });
+  return {
+    ...claim(
+      poor ? "book" : "book_sound",
+      { opening: book.name || "a recognized opening line" },
+      poor ? 49 : 96,
+      [{ source: "book", id: book.version, field: "recognized_opening", ply }],
+    ),
+    ...(opening ? { opening } : {}),
+  };
+}
+
+/** The learner's game relationships that end on this move. Returns whether one
+ * was a recovery, which sets the purpose and expression. */
+function addRelationshipClaims(facts: MoveFacts, claims: Claim[]): boolean {
+  const { game, ply } = facts;
+  let recovered = false;
+  for (const relation of game.context?.relationships ?? []) {
+    if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
+    if (addRelationshipClaim(facts, relation, claims)) recovered = true;
+  }
+  return recovered;
+}
+
+/** One relationship's claim. Returns whether it was a recovery. */
+function addRelationshipClaim(
+  { game, report, poor, side }: MoveFacts,
+  relation: Relationship,
+  claims: Claim[],
+): boolean {
+  const earlier = moveLabel(game, relation.plies[0]);
+  const linked = (code: ClaimCode, slots: Claim["slots"], priority: number) =>
+    claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
+  // Each relationship is told only where its wording holds: a conversion
+  // with no Inaccuracy or worse of the side's own inside the run ("cleanly"),
+  // and an erosion on an Inaccuracy with no Mistake of the side's own since its
+  // first concession ("small slips", "no single big mistake"). A recovery is
+  // told in neutral words and voiced by the re-recorded recovery takes, which
+  // credit neither this move nor the learner (see gameSelection).
+  if (relation.kind === "recovery") {
+    linked(
+      "recovery",
+      {
+        earlier,
+        help:
+          Array.isArray(relation.facts.opponent_errors) && relation.facts.opponent_errors.length
+            ? " The opponent's errors helped make that possible."
+            : "",
+      },
+      88,
+    );
+    return true;
+  }
+  if (relation.kind === "punishment")
+    linked(
+      relation.facts.outcome === "capitalized" ? "punishment" : "missed_punishment",
+      { earlier, side },
+      81,
+    );
+  if (
+    relation.kind === "repeated_motif" &&
+    ["allowed", "caused", "missed"].includes(String(relation.facts.role))
+  )
+    linked(
+      "repeated",
+      { count: Number(relation.facts.occurrence), motif: words(relation.facts.motif) },
+      74,
+    );
+  // A restored defender matters only when this move's piece is under attack,
+  // and is never good news on a move graded as an error. It replaces the plain
+  // "gains a defender" fact from the same event rather than repeating it.
+  const restored = relation.event_ids.at(-1);
+  if (
+    relation.kind === "support_restored" &&
+    !poor &&
+    report.intelligence?.events.some(
+      event =>
+        event.id === restored &&
+        event.kind === "positional" &&
+        event.facts.feature === "piece_support" &&
+        event.facts.attacked,
+    )
+  ) {
+    claims.splice(
+      0,
+      claims.length,
+      ...claims.filter(
+        item => !(item.code === "support" && !!restored && item.sourceIds.includes(restored)),
+      ),
+    );
+    linked("support_restored", { earlier, piece: words(relation.facts.piece) }, 75);
+  }
+  // A run of concessions is only told on a move that is itself one.
+  if (
+    relation.kind === "erosion" &&
+    report.label === "Inaccuracy" &&
+    none(relation.facts.own_mistake_plies)
+  )
+    linked("erosion", { earlier }, 71);
+  if (
+    relation.kind === "advantage_run" &&
+    relation.facts.outcome === "converted" &&
+    none(relation.facts.own_error_plies)
+  )
+    linked("conversion", { earlier, side }, 75);
+  return false;
+}
+
+/** The learner's supported saved weaknesses that this move repeats. */
+function addHistoryClaims({ game, ply }: MoveFacts, claims: Claim[]) {
+  for (const item of game.history?.weaknesses ?? [])
+    if (item.status === "supported" && item.related_plies.includes(ply))
+      claims.push(
+        claim(
+          "history",
+          { motif: words(item.skill_id), games: item.independent_games },
+          67,
+          item.evidence,
+          item.decision_ids,
+        ),
+      );
+}
+
+/** What an error allows, what it costs and the better move. */
+function addErrorClaims(
+  { report, side, opponent, best }: MoveFacts,
+  claims: Claim[],
+  refs: EvidenceRef[],
+) {
+  const reply = report.immediate_reply,
+    recapture = report.immediate_recapture;
+  // A capture the mover takes straight back is an even trade, not a loss.
+  const evenTrade =
+    !!reply?.capture && (reply.material_change >= 0 || (recapture?.material_change ?? -1) >= 0);
+  if (reply?.capture) {
+    if (!evenTrade)
+      claims.push(
+        claim(
+          "reply_capture",
+          { opponent, reply: reply.san, piece: reply.capture, side },
+          78,
+          refs,
+        ),
+      );
+  }
+  // The allowed-mate claim above already names this exact immediate reply.
+  // Repeating it as a lower-priority check adds no new explanation.
+  else if (reply?.gives_check && !claims.some(c => c.code === "allowed_mate" && c.slots.reply))
+    claims.push(claim("reply_check", { opponent, reply: reply.san }, 62, refs));
+  if (!claims.some(c => c.priority >= 78)) {
+    const before = report.best.score,
+      after = report.actual.score;
+    if (before.kind === "cp" && after.kind === "cp" && before.value > after.value)
+      claims.push(
+        claim("loss", { loss: ((before.value - after.value) / 100).toFixed(2) }, 82, refs),
+      );
+  }
+  claims.push(claim("alternative", { best, evaluation: scoreText(report.best.score) }, 42, refs));
 }
 
 /** Whether a board fact helps explain why a move graded as an error cost something:
