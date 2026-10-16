@@ -1,6 +1,5 @@
 """Finite, resumable optional investigation after every baseline move is saved."""
 
-from queue import Queue
 from threading import Event
 
 from sqlalchemy import select
@@ -8,8 +7,10 @@ from sqlalchemy import select
 from trainer.chess_core import digest, legal_move
 from trainer.classification_stages import line_parameters
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
+from trainer.engine_pool import engine_broken
 from trainer.game_library import board_before
 from trainer.game_review import analyze_move, mate_horizon_limits
+from trainer.lazy_pool import LazyPool
 from trainer.models import EngineAnalysis, GameReview, GameReviewMove, ReviewRefinement
 from trainer.puzzles.generation import remine_after_refinement
 from trainer.review_intelligence.refinement_plan import BROAD_TRIGGERS, VERSION, plan_key, selection
@@ -88,29 +89,25 @@ def run_refinement(context, parsed, game_id):
     # Tasks are independent questions with fixed per-query limits, so they share
     # the baseline's engine count; only wall-clock time changes.
     workers = min(context.settings.stockfish_workers, context.settings.engine_slots, len(pending))
-    engines = Queue()
-    for _ in range(workers):
-        engines.put(None)
-    started = []
+    engines = LazyPool(
+        max(workers, 1),
+        lambda: context.engine_factory(context.settings, context.sessions),
+        engine_broken,
+    )
     stop = Event()
 
     def investigate(task_id):
         if stop.is_set() or context.cancelled():
             return
-        engine = engines.get()
         try:
-            if engine is None:
-                engine = context.engine_factory(context.settings, context.sessions)
-                started.append(engine)
-            if refine(context, parsed, game_id, task_id, engine):
-                record_progress(context, game_id, plan)
-            else:
-                stop.set()
+            with engines.lease() as engine:
+                if refine(context, parsed, game_id, task_id, engine):
+                    record_progress(context, game_id, plan)
+                else:
+                    stop.set()
         except BaseException:
             stop.set()
             raise
-        finally:
-            engines.put(engine)
 
     try:
         if pending:
@@ -127,8 +124,7 @@ def run_refinement(context, parsed, game_id):
         else:
             record_progress(context, game_id, plan)
     finally:
-        for engine in started:
-            engine.close()
+        engines.close()
 
 
 def record_progress(context, game_id, plan):

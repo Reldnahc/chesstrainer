@@ -8,7 +8,7 @@ from trainer.models import (
     ExerciseAnswer,
     SkillEvidence,
     SRSState,
-    keep_shared,
+    save_shared,
 )
 from trainer.policy import MovePolicy
 from trainer.review_reports import reports_for
@@ -194,20 +194,16 @@ def restricted_view(sessions, analysis, uci):
         existing = db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
         if existing is not None:
             return existing
-        # The shared-cache insert: two jobs building the view at once keep one row.
-        db.execute(
-            keep_shared(
-                EngineAnalysis,
-                key,
-                fen=analysis.fen,
-                engine_version=analysis.engine_version,
-                config=analysis.config
-                | {"multipv": 1, "root_moves": [uci], "view_of": analysis.id},
-                candidates=[candidate],
-            )
-        )
-        db.commit()
-        return db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
+    # The shared-cache insert: two jobs building the view at once keep one row.
+    return save_shared(
+        sessions,
+        EngineAnalysis,
+        key,
+        fen=analysis.fen,
+        engine_version=analysis.engine_version,
+        config=analysis.config | {"multipv": 1, "root_moves": [uci], "view_of": analysis.id},
+        candidates=[candidate],
+    )
 
 
 def triaged_searches(engine, settings, board, move):

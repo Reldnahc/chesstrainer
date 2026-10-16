@@ -53,15 +53,15 @@ def test_cancel_kills_worker_then_next_request_can_restart(settings, tmp_path):
     with ThreadPoolExecutor(max_workers=1) as pool:
         pending = pool.submit(human.predict, request(), stop.is_set)
         deadline = time.monotonic() + 3
-        while not any(worker.initialized for worker in human._workers):
+        while not any(worker.initialized for worker in human.workers.live):
             assert time.monotonic() < deadline
             time.sleep(0.01)
-        process = next(iter(human._workers)).process
+        process = next(iter(human.workers.live)).process
         stop.set()
         with pytest.raises(HumanCancelled):
             pending.result(timeout=3)
     assert human.snapshot().status == "unchecked"
-    assert not human._workers
+    assert not human.workers.live
     assert process.poll() is not None
     human.close()
 
@@ -91,7 +91,7 @@ def test_crashed_worker_fails_closed_with_cooldown(settings, tmp_path):
         assert human.snapshot().status == "unavailable"
         with pytest.raises(HumanUnavailable, match="cooldown"):
             human.predict(request())
-        assert not human._workers
+        assert not human.workers.live
     finally:
         human.close()
 
@@ -112,12 +112,12 @@ for line in sys.stdin:
     try:
         with ThreadPoolExecutor(max_workers=6) as pool:
             results = list(pool.map(lambda _: human.predict(request()), range(12)))
-        assert len(human._workers) == 1
+        assert len(human.workers.live) == 1
         assert all(row.moves[0].probability is None for row in results)
         assert human.snapshot().status == "ready"
     finally:
         human.close()
-    assert all(worker.process.poll() is not None for worker in human._workers)
+    assert all(worker.process.poll() is not None for worker in human.workers.live)
 
 
 @pytest.mark.maia

@@ -1,17 +1,23 @@
 """A host-wide native engine budget shared by every account and job."""
 
-from queue import Queue
-
-from trainer.cancellation import WaitCancelled, taking, wait_until
+from trainer.cancellation import WaitCancelled
+from trainer.engine import EngineUnavailable
+from trainer.lazy_pool import LazyPool, PoolClosed
 from trainer.search_limits import EngineCancelled
 
 
+def engine_broken(engine):
+    """Stockfish closes its own process when an error leaves it unusable, so a failed
+    engine with its process still open is sound. One with no process is rebuilt:
+    that costs nothing until the next search starts one."""
+    return getattr(engine, "process", None) is None
+
+
 class EnginePool:
+    """Stockfish engines on one LazyPool, with its one failure rule."""
+
     def __init__(self, factory, slots):
-        self.factory = factory
-        self.available = Queue()
-        for _ in range(slots):
-            self.available.put(None)
+        self.engines = LazyPool(slots, factory, engine_broken)
 
     def handle(self, settings, sessions):
         pool = self
@@ -24,24 +30,20 @@ class EnginePool:
                 self.settings = settings
 
             def run(self, method, *args, **kwargs):
+                lease = pool.engines.lease(kwargs.get("cancelled"), build_args=(settings, sessions))
                 try:
-                    engine = wait_until(taking(pool.available), kwargs.get("cancelled"))
+                    with lease as engine:
+                        # Lease exclusively: native process shared, account's cache private.
+                        engine.sessions = sessions
+                        result = getattr(engine, method)(*args, **kwargs)
+                        self.version = engine.version
+                        self.binary_hash = getattr(engine, "binary_hash", "")
+                        return result
                 except WaitCancelled as exc:
+                    # Only the wait for a free engine raises this; searches raise their own.
                     raise EngineCancelled() from exc
-                try:
-                    if engine is None:
-                        engine = pool.factory(settings, sessions)
-                    # Lease exclusively: native process shared, account's cache stays private.
-                    engine.sessions = sessions
-                    result = getattr(engine, method)(*args, **kwargs)
-                    self.version = engine.version
-                    self.binary_hash = getattr(engine, "binary_hash", "")
-                    return result
-                finally:
-                    # A failed engine goes back too: Stockfish closes its process on an
-                    # error and starts a fresh one on the next call. (A failed Maia
-                    # worker is discarded instead; see human_models.runtime.)
-                    pool.available.put(engine)
+                except PoolClosed as exc:
+                    raise EngineUnavailable("The server is shutting down.") from exc
 
             def start(self, cancelled=None):
                 if cancelled is None:
@@ -61,7 +63,4 @@ class EnginePool:
         return Handle()
 
     def close(self):
-        while not self.available.empty():
-            engine = self.available.get_nowait()
-            if engine is not None:
-                engine.close()
+        self.engines.close()

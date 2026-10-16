@@ -50,6 +50,7 @@ saved game then queues its own analysis job. See
 | jobs.py / job_queue.py / job_execution.py / job_context.py | Bounded host workers, scheduling metadata, account-bound job execution dispatched by kind, and the one context every job step receives |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback; `lan.py` holds the host-name and same-origin rules it shares with account mode |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
+| engine_pool.py / lazy_pool.py | The host-wide Stockfish budget leased per call, on the same lazily built pool, with one discard-when-broken rule, as job engines and the Maia workers |
 | human_models/ | Versioned human-policy contracts, domain provenance, a durable cache shared across accounts like the engine cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
 | routes/workspace.py | Health, effective settings, account-owned coach/interface preferences and statistics |
@@ -385,7 +386,12 @@ drains coordinators and their child pools, then closes the shared engines.
 
 Within an analysis job, STOCKFISH_WORKERS games run in parallel with independent
 database sessions. Native processes come from the shared engine pool in account
-mode and belong to the job in local mode. Moves within a game stay ordered.
+mode and belong to the job in local mode. The host engine pool, a review job's own
+engines and the Maia workers are each a `lazy_pool.LazyPool` (an analysis job's game
+threads instead keep one engine each, closed when the job ends): a slot builds its process on
+first use and keeps it, and a call that fails discards the process only when the
+failure left it unusable (a Maia worker always; a Stockfish engine once it has
+closed its own process), so the slot starts a fresh one. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
@@ -420,7 +426,7 @@ open fails at once rather than waiting on its own lock. Rule computation, engine
 searches and Maia inference run between units; SRS grading of an unseen answer and
 the Play bot's reply search first, then re-check and write in a `write()`. Shared
 engine and Maia cache rows are the exception: each is one lock-free insert in a
-session of its own. Host scheduling (`job_queue`), accounts and server settings
+session of its own (`models.save_shared`, which returns the row whoever saved it first). Host scheduling (`job_queue`), accounts and server settings
 (`accounts.py`, `site_settings.py`) and the presence and welcome-back stamps on the
 account's user row (`presence.py`) are host data with sessions of their own. Progress
 uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent

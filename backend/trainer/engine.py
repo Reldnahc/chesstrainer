@@ -13,7 +13,7 @@ from trainer.cancellation import StripedLocks
 from trainer.chess_core import Candidate, Score, digest, engine_context, legal_move
 from trainer.config import Settings
 from trainer.engine_search import cancellable_search, search_lock
-from trainer.models import EngineAnalysis, keep_shared
+from trainer.models import EngineAnalysis, save_shared
 from trainer.search_limits import TRIAGE, EngineCancelled, SearchProfile
 
 log = logging.getLogger(__name__)
@@ -265,16 +265,12 @@ class Stockfish:
                     raise EngineUnavailable(
                         "Stockfish stopped responding. Completed analysis is saved; retry the job."
                     ) from exc
-                with self.sessions() as db:
-                    db.execute(
-                        keep_shared(
-                            EngineAnalysis,
-                            key,
-                            fen=board.fen(),
-                            engine_version=self.version,
-                            config=config,
-                            candidates=[c.model_dump() for c in candidates],
-                        )
-                    )
-                    db.commit()
-                    return db.scalar(select(EngineAnalysis).where(EngineAnalysis.cache_key == key))
+                return save_shared(
+                    self.sessions,
+                    EngineAnalysis,
+                    key,
+                    fen=board.fen(),
+                    engine_version=self.version,
+                    config=config,
+                    candidates=[c.model_dump() for c in candidates],
+                )

@@ -101,5 +101,5 @@ def test_waiting_for_shared_slot_can_cancel_without_acquiring_or_leaking_it(sett
         finally:
             release.set()
             active.result(timeout=2)
-    assert pool.available.qsize() == 1
+    assert pool.engines.available.qsize() == 1
     pool.close()
