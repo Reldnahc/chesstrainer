@@ -86,7 +86,7 @@ For each learner decision, search the pre-move board normally and again with roo
 
 Triage defaults: depth 10 OR 0.15 seconds, whichever comes first. Optional nodes add another bound. Mate transitions or loss >=70% of the mistake threshold trigger depth 16 OR 0.8 seconds with MultiPV 4 plus a restricted actual-move search. Only confirmed policy failures become meaningful mistakes. Time-limited engine scores remain estimates.
 
-Every decision commits before classification. FEN, game/ply reconstruction, played SAN/UCI, engine result IDs, explicit losses and deterministic facts remain available. Candidates retain scores, reached depth and PV; each PV is legally replayed before saving. Facts distinguish geometric attacks from tactical proof: an attacked undefended piece is not automatically labeled hanging. Material values are 1/3/3/5/9. Phase is a simple documented heuristic.
+Every decision commits before classification. FEN, game/ply reconstruction, played SAN/UCI, engine result IDs, explicit losses and deterministic facts remain available. Candidates retain scores, reached depth and PV; each PV is legally replayed before saving. Facts distinguish geometric attacks from tactical proof: an attacked undefended piece is not automatically labeled hanging. Material values are 1/3/3/5/9. Phase uses one rule everywhere (`chess_core.game_phase`, also used by Insights and puzzle themes): 26 or fewer points of material is an endgame, otherwise moves 1–10 are the opening and later moves the middlegame.
 
 ### Full-game review intelligence
 

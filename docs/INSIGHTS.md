@@ -49,7 +49,7 @@ ratings, so they never become a highest-rated win or a rating series point.
 | Where the win slipped | In clearly winning games not won, the ply after which the evaluation never returned to +300. |
 | Game shapes | One per reviewed game, in this order: let slip, comeback, stayed ahead (won, reached +150 and never back to 0 or below after that, never below −100), back and forth (the ±150 lead changed sides twice), otherwise unsettled. |
 | Move accuracy | The mean of Lichess's per-move accuracy for the learner's moves. It is usually higher than the volatility-weighted game accuracy, though not always, and is not a substitute for it. |
-| Phases | Six or fewer pieces besides kings and pawns is an endgame; moves 1–10 with more than ten pieces are the opening; otherwise middlegame. |
+| Phases | The shared phase rule that decision facts and puzzle themes use (`chess_core.game_phase`): 26 or fewer points of material on the board, counting pawns 1, knights and bishops 3, rooks 5 and queens 9, is an endgame; otherwise moves 1–10 are the opening and later moves the middlegame. |
 | Blunders | The game review's own Blunder rule (`blunder_kind`) with the same rating the review's badges use (`game_library.mover_rating`): the moving player's PGN rating, else the review's stored rating. |
 | After a loss | The next game when it started within 90 minutes of the previous one's start. Start times come from the PGN's `UTCDate`/`UTCTime`, since a synced game's saved time is when it ended. A rematch is that next game against the same opponent. |
 | Clock | `[%clk]` annotations through the shared clock facts. Time trouble is 30 s or less, or a tenth of the starting time, after a learner move. |
