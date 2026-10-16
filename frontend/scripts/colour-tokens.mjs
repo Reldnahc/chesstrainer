@@ -102,7 +102,7 @@ for (const file of sourceFiles(/^src\/.*\.(?:css|tsx?)$/)) {
 }
 if (count) {
   console.error(
-    `${count} colour${count === 1 ? "" : "s"} copy a shared colour. See docs/UI_COMPONENTS.md#colour.`,
+    `${count} colour${count === 1 ? " copies" : "s copy"} a shared colour. See docs/UI_COMPONENTS.md#colour.`,
   );
   process.exit(1);
 }
