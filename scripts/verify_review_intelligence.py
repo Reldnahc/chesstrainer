@@ -58,7 +58,12 @@ def inspect_case(detail, plies):
         assert human["status"] == "available", human
         assert human["played"]["probability"] is not None
         assert human["domain"]["calibration"] == "unvalidated"
-        assert practical["human_evidence_id"] == human["evidence_id"]
+        if "human_move_context_mismatch" in practical["limitations"]:
+            # A played move its own stronger search promoted to best no longer matches
+            # the moves the saved policy scored, so the practical view reads none.
+            assert practical["human_evidence_id"] is None
+        else:
+            assert practical["human_evidence_id"] == human["evidence_id"]
         grades[report["label"]] += 1
         difficulties[practical["best_find_difficulty"]] += 1
         domains[human["domain"]["alignment"]] += 1
@@ -123,7 +128,16 @@ def run(output):
             )
             print(json.dumps(result), flush=True)
         original_counts = counts(app)
-        assert all(original_counts[key] == 0 for key in ("decisions", "exercises", "reviews"))
+        # Each review job also trains the learner's moves (decisions and practice
+        # exercises, docs/GAME_ANALYSIS.md); nothing has been recalled yet.
+        assert original_counts["decisions"] and original_counts["reviews"] == 0
+        # A game's history (cross-game weaknesses) grows as later games train, so
+        # the equality checks compare against every game as the whole corpus left it.
+        for item, summary in zip(game_corpus(), summaries, strict=True):
+            saved[summary["game_id"]] = client.get(f"/api/games/{summary['game_id']}").json()
+            (output / f"{item['id']}.json").write_text(
+                json.dumps(saved[summary["game_id"]], indent=2), encoding="utf-8"
+            )
         # Every current identity sees the same exact saved truth.
         coaches = client.get("/openapi.json").json()["components"]["schemas"]["CoachPreferences"][
             "properties"
@@ -153,7 +167,7 @@ def run(output):
             assert client.post(f"/api/games/{game}/review", json={}).json()["status"] == "completed"
             assert client.get(f"/api/games/{game}").json() == detail
         assert counts(restarted) == original_counts
-        assert not restarted.state.human_models.provider._workers
+        assert not restarted.state.human_models.provider.workers.live
         cached_seconds = perf_counter() - started
     return {
         "version": "whole-game-verification-1",

@@ -64,7 +64,7 @@ def main():
                 "/api/preferences/coach", json={"coach_id": "dog-collie", "motion": "still"}
             ).raise_for_status()
             assert client.get(f"/api/games/{game}").json() == original
-            assert not restarted.state.human_models.provider._workers
+            assert not restarted.state.human_models.provider.workers.live
         print(
             json.dumps(
                 {
