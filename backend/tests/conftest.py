@@ -1,8 +1,13 @@
 import os
 import shutil
+import sqlite3
+from contextlib import closing
 from pathlib import Path
 
 import pytest
+from alembic import command
+from alembic.runtime.migration import MigrationContext
+from alembic.script import ScriptDirectory
 from trainer import presence
 from trainer.accounts import Accounts
 from trainer.config import Settings
@@ -23,11 +28,64 @@ def open_signups(monkeypatch):
     monkeypatch.setattr(Accounts, "signups_open", lambda self: True)
 
 
+@pytest.fixture(scope="session")
+def migrated_database(tmp_path_factory):
+    """A database migrated to head once per test run, for each test to copy.
+
+    Running every revision costs a second or two, and almost every test starts
+    from an empty current database. Copying this file gives each test the same
+    schema at a fraction of that. Tests marked ``pristine_database`` (old-revision
+    upgrades, migration paths) start from no file instead, as do the migration
+    tests in test_migrations, which build their own databases.
+    """
+    path = tmp_path_factory.mktemp("template") / "migrated.sqlite3"
+    engine, _ = database(path)
+    migrate(engine)
+    engine.dispose()
+    return path
+
+
+def copy_database(source, destination):
+    """A page-for-page copy through SQLite's backup API, WAL contents included."""
+    with (
+        closing(sqlite3.connect(source)) as original,
+        closing(sqlite3.connect(destination)) as copy,
+    ):
+        original.backup(copy)
+
+
+def refuse_old_upgrades(monkeypatch):
+    """Fail a test that upgrades its migrated copy to an older revision.
+
+    On a database already at head such an upgrade does nothing, so the test
+    would check head's schema while appearing to test the old revision's path.
+    """
+    upgrade = command.upgrade
+
+    def guarded(config, revision, *args, **kwargs):
+        connection = config.attributes.get("connection")
+        if revision != "head" and connection is not None:
+            current = MigrationContext.configure(connection).get_current_revision()
+            head = ScriptDirectory.from_config(config).get_current_head()
+            if current == head:
+                pytest.fail(
+                    f"Upgrading a migrated copy to {revision} does nothing; mark the test "
+                    "@pytest.mark.pristine_database so it starts from no database file."
+                )
+        return upgrade(config, revision, *args, **kwargs)
+
+    monkeypatch.setattr(command, "upgrade", guarded)
+
+
 @pytest.fixture
-def settings(tmp_path):
+def settings(tmp_path, request, migrated_database, monkeypatch):
+    path = tmp_path / "test.sqlite3"
+    if request.node.get_closest_marker("pristine_database") is None:
+        copy_database(migrated_database, path)
+        refuse_old_upgrades(monkeypatch)
     return Settings(
         _env_file=None,
-        database_path=tmp_path / "test.sqlite3",
+        database_path=path,
         # Fallback tests must not discover a developer's installed model. Native tests opt in.
         human_model_path=tmp_path / "unconfigured-maia.pt",
         triage_depth=8,

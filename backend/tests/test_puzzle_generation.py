@@ -764,6 +764,7 @@ def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings
         assert db.scalar(select(GamePuzzleSearch.id)) is not None
 
 
+@pytest.mark.pristine_database
 def test_stored_puzzles_are_judged_again_by_the_current_mate_rival_rule(settings):
     import json
 

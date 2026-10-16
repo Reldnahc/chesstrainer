@@ -100,6 +100,7 @@ def test_concurrent_first_save_preserves_both_preferences(sessions):
         assert coach_preferences(db).model_dump() == {"coach_id": "dog-collie", "motion": "still"}
 
 
+@pytest.mark.pristine_database
 def test_migration_defaults_to_device_without_changing_saved_coach(settings):
     from alembic import command
     from alembic.config import Config

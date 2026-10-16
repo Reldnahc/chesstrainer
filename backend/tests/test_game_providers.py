@@ -244,6 +244,7 @@ def test_provider_connections_are_account_scoped_and_persist(settings):
         assert api.get("/api/providers/chesscom/sync").json()["username"] == "alicecom"
 
 
+@pytest.mark.pristine_database
 def test_provider_migration_preserves_saved_chesscom_name(settings):
     from alembic import command
     from alembic.config import Config

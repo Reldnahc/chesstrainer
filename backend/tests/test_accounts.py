@@ -444,6 +444,7 @@ def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch,
     assert "Account not found" in capsys.readouterr().err
 
 
+@pytest.mark.pristine_database
 def test_account_commands_explain_a_busy_database_and_a_missing_terminal(
     settings, monkeypatch, capsys
 ):

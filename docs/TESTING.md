@@ -540,6 +540,16 @@ exercise the typed client's real JSON/multipart requests, authentication and err
 
 ## Migrations and data preservation
 
+Backend tests share one database migrated to head per test run
+(`conftest.migrated_database`); the `settings` fixture gives each test its own
+page-for-page copy, so running every revision is paid once, not per test. A test
+of an upgrade from an older revision, or of what happens before a database
+exists, marks itself `@pytest.mark.pristine_database` and starts from no file;
+an unmarked test that upgrades its copy to an older revision fails, since that
+upgrade would silently do nothing.
+`test_migrations.py` builds its own databases and always runs the real upgrade
+and downgrade path.
+
 Use a disposable database for verification, never the live database by accident. From the root, POSIX shell:
 
 ```sh

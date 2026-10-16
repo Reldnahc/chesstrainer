@@ -164,6 +164,7 @@ def test_concurrent_first_save_has_one_account_row(sessions):
         assert len(db.scalars(select(UserPreferences)).all()) == 1
 
 
+@pytest.mark.pristine_database
 def test_migration_preserves_existing_accounts_and_defaults(settings):
     from alembic import command
     from alembic.config import Config
@@ -191,6 +192,7 @@ def test_migration_preserves_existing_accounts_and_defaults(settings):
     engine.dispose()
 
 
+@pytest.mark.pristine_database
 @pytest.mark.parametrize("saved_motion", ["natural", "still", "subtle"])
 def test_device_default_migration_preserves_saved_motion(settings, saved_motion):
     from alembic import command
