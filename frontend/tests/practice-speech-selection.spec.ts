@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../src/api";
+import { meanings } from "../src/audio/speech/meaningCatalog";
 import { explanationCueRecording, explanationFindingRecording, explanationFrameRecording, explanationNoteRecording,
   explanationSummaryRecording, lessonRecording, openingRecallRecording, practiceRecording, puzzleRecording } from "../src/audio/speech/practiceSelection";
 
@@ -177,9 +178,8 @@ test("puzzle guidance distinguishes all eight fixed states without inferring obj
 });
 
 test("each lesson command picks at most one generic prompt from its own action and result", () => {
-  const catalogue = JSON.parse(readFileSync(new URL("../src/audio/speech/meanings.json", import.meta.url), "utf8")) as {meanings: {id: string; group: string; takeOf?: string}[]};
   // Extra takes of a meaning share its selection; only the base meanings are counted.
-  const lessonIds = new Set(catalogue.meanings.filter(meaning => meaning.group === "lessons" && !meaning.takeOf).map(meaning => meaning.id));
+  const lessonIds = new Set(meanings.filter(meaning => meaning.group === "lessons" && !meaning.takeOf).map(meaning => meaning.id));
   const step: Schema["LessonStepView"] = {id: "step", kind: "decision", phase: "ready", text: "Authored step text.", title: "Step",
     annotations: {squares: [], arrows: []} as unknown as Schema["LessonStepView"]["annotations"]};
   const before: Schema["LessonSessionView"] = {id: "lesson", revision: 1, status: "active", actions: ["move", "hint", "show_move"],
