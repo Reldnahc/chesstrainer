@@ -6,13 +6,12 @@ from trainer.models import (
     EngineAnalysis,
     Exercise,
     ExerciseAnswer,
-    GameReviewMove,
     SkillEvidence,
     SRSState,
     keep_shared,
 )
 from trainer.policy import MovePolicy
-from trainer.review_reports import saved_report
+from trainer.review_reports import reports_for
 from trainer.search_limits import DEEP
 
 
@@ -28,9 +27,8 @@ def analyze_decision(units, engine, settings, game, ply, board, move):
         existing = db.scalar(
             select(Decision).where(Decision.game_id == game.id, Decision.ply == ply)
         )
-        reviewed = db.get(GameReviewMove, (game.id, ply))
         # The report the review shows, so an adopted deeper search reaches training.
-        report = saved_report(db, reviewed) if reviewed is not None else None
+        report = reports_for(db, game.id, [ply])[0].get(ply)
         if existing and (
             report is None or report["before_analysis_id"] == existing.before_analysis_id
         ):
