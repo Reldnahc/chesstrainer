@@ -161,7 +161,7 @@ export default function ReviewMoves({
                     >
                       {san}
                       {report ? (
-                        <MoveBadge label={report.label} />
+                        <MoveBadge size="small" label={report.label} />
                       ) : (
                         <span className="muted" aria-label="Not yet rated">
                           …

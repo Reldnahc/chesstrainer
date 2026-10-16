@@ -149,7 +149,7 @@ development tool or a test fixture loads first fixes it. Every stylesheet wraps
 its rules in one of the layers:
 
 - `foundation`: `foundation.css` (tokens, fonts, element defaults and utilities).
-- `shell`: `base.css` (application chrome, `main`, `.panel` and phone typography).
+- `shell`: `base.css` (application chrome, the page frame on `main.workspace-page` and `main.review-page`, `.panel` and phone typography).
 - `components`: every shared component's sheet, the coach artwork and the review
   and coach presentation.
 - `pages`: page and tool sheets (`home.css`, `game-insights.css`, `settings.css`,

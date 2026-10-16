@@ -247,9 +247,6 @@
 .game-variation-row .action-control {
   font: var(--text-xs) var(--mono);
 }
-.game-variation-row .move-badge {
-  font-size: var(--text-2xs);
-}
 .game-graph {
   display: flex;
   flex-direction: column;
@@ -289,10 +286,6 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-}
-.game-graph-reading .evaluation-score {
-  font-size: var(--text-base);
-  min-height: 27px;
 }
 .game-graph .game-evaluation-plot {
   width: 100%;
@@ -465,14 +458,7 @@
 .game-summary .move-badge {
   width: 8em;
   max-width: 100%;
-  gap: .4em;
-  font-size: inherit;
   text-align: left;
-}
-.game-summary .move-badge b {
-  min-width: 1.4em;
-  font-size: inherit;
-  line-height: 1;
 }
 .game-summary .game-summary-accuracy > * {
   padding-block: clamp(var(--space-0-5), 1cqh, var(--space-2));
@@ -503,13 +489,7 @@
     gap: var(--space-0-5);
   }
   .game-board-actions { flex: 0 0 auto; gap: var(--space-0-5); }
-  .game-board-actions > .action-control { padding: var(--space-1-5) var(--space-1-5); font-size: var(--text-xs); }
-  .game-library-link.action-control {
-    flex: 0 0 auto;
-    padding: var(--space-1-5) var(--space-1-5);
-    gap: var(--space-1);
-    font-size: var(--text-xs);
-  }
+  .game-library-link.action-control { flex: 0 0 auto; }
   .game-board-controls > .move-playback-controls {
     flex: 1 1 auto;
     min-width: 0;

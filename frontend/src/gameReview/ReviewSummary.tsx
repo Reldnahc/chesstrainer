@@ -53,7 +53,7 @@ export default function ReviewSummary({ game }: { game: Game }) {
             <tr key={s.label}>
               <td data-empty={s.white === 0}>{s.white}</td>
               <th scope="row">
-                <MoveBadge label={s.label} />
+                <MoveBadge size="inline" label={s.label} />
               </th>
               <td data-empty={s.black === 0}>{s.black}</td>
             </tr>

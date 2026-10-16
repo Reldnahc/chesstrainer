@@ -24,7 +24,7 @@
   padding: var(--space-3) var(--space-4);
   font-size: var(--text-md);
 }
-.action-control.action-control--compact {
+.action-control:is(.action-control--compact, .action-control--toolbar) {
   min-height: var(--control-height-compact);
   gap: var(--space-1-5);
   padding: var(--space-1-5) var(--space-3);
@@ -106,7 +106,15 @@
 @media (max-width: 760px) {
   .action-control.action-control--ordinary,
   .action-control.action-control--compact,
-  .action-control.action-control--dense { min-height: var(--touch-target); }
+  .action-control.action-control--dense,
+  .action-control.action-control--toolbar { min-height: var(--touch-target); }
+  /* A toolbar Button is compact on desktop and narrower on phones, so a full
+     row of board controls fits beside the move buttons (Play's Resign and New game). */
+  .action-control.action-control--toolbar {
+    gap: var(--space-1);
+    padding: var(--space-1-5);
+    font-size: var(--text-xs);
+  }
   .action-control.action-control--icon { width: var(--touch-target); height: var(--touch-target); }
 }
 }
