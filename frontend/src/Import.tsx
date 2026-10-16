@@ -4,7 +4,6 @@ import { FileUp, Layers, X } from "lucide-react";
 import {
   api,
   read,
-  errorMessage,
   multipart,
   type Health,
   type Job,
@@ -22,8 +21,7 @@ import Reveal, { RevealList, Swap } from "./Reveal";
 import { useInterfaceMotion } from "./MotionProvider";
 import { LoadingState, UnavailableState } from "./LoadState";
 import { useGameProviders } from "./gameProviders";
-import { usePolling } from "./usePolling";
-import { useLatest } from "./useLatest";
+import { QueryResult, usePolledQuery } from "./useQuery";
 
 type PgnMode = "file" | "text";
 const isActive = (job: Job) => ["queued", "running"].includes(job.status);
@@ -140,10 +138,6 @@ export default function ImportSettings({
   const [pgnMode, setPgnMode] = useState<PgnMode>("file");
   const [names, setNames] = useState("");
   const [side, setSide] = useState<NonNullable<Schema["Body_upload_pgn_api_imports_post"]["side"]>>("auto");
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [jobsLoaded, setJobsLoaded] = useState(false);
-  const [jobsError, setJobsError] = useState("");
-  const jobsLoadedRef = useLatest(jobsLoaded);
   const [result, setResult] = useState<PgnImportResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
@@ -153,27 +147,10 @@ export default function ImportSettings({
     return () => { mounted.current = false; };
   }, []);
   // Activity refreshes every two seconds while the tab is shown; an import, sync or
-  // job command asks for a fresh read after any read already in flight.
-  // Before activity has loaded, a failure is the section's own unavailable state;
-  // after it, an outage is one page banner, and the next good read clears the way for another.
-  const outage = useRef(false);
-  const jobsPolling = usePolling(async (signal) => {
-    try {
-      const value = await read(api.GET("/api/jobs", { signal }));
-      if (signal.aborted) return;
-      outage.current = false;
-      setJobsError("");
-      setJobs(value);
-      setJobsLoaded(true);
-    } catch (error) {
-      if (signal.aborted) throw error;
-      setJobsError(errorMessage(error));
-      if (jobsLoadedRef.current && !outage.current) fail(error);
-      outage.current = true;
-      throw error;
-    }
-  }, { intervalMs: 2000 });
-  const reload = jobsPolling.run;
+  // job command asks for a fresh read after any read already in flight. A failed
+  // first read is the section's unavailable state; a later outage is one refresh banner.
+  const jobsQuery = usePolledQuery(signal => read(api.GET("/api/jobs", { signal })), { intervalMs: 2000 });
+  const reload = jobsQuery.refresh;
   async function submit(event: FormEvent) {
     event.preventDefault();
     const input = pgnMode === "file" ? file : text.trim() ? new File([text], "pasted-games.pgn") : null;
@@ -194,7 +171,7 @@ export default function ImportSettings({
       if (mounted.current) setBusy(false);
     }
   }
-  const activity = jobs.filter(job => job.kind !== "teaching");
+  const activity = (jobsQuery.data ?? []).filter(job => job.kind !== "teaching");
   const activeJobs = activity.filter(isActive);
   const finishedJobs = activity.filter(job => !isActive(job));
   const hiddenHistoryCount = Math.max(0, finishedJobs.length - recentHistoryLimit);
@@ -266,15 +243,14 @@ export default function ImportSettings({
       </div>
     </SettingsSection>
     <SettingsSection id="settings-activity" title="Import & analysis activity" className="import-activity">
-      {!jobsLoaded && (jobsError
-        ? <UnavailableState actions={<Button variant="secondary" onClick={reload}>Try again</Button>}>Couldn’t load import activity.</UnavailableState>
-        : <LoadingState>Loading import activity…</LoadingState>)}
-      <Reveal>{jobsLoaded && activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}</Reveal>
-      <RevealList settled={jobsLoaded} className="import-job-row">{activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}</RevealList>
-      <RevealList settled={jobsLoaded} className="import-job-row">{visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}</RevealList>
-      <Reveal>{hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
-        {showHistory ? "Show recent activity" : `Show older activity (${hiddenHistoryCount})`}
-      </Button>}</Reveal>
+      <QueryResult query={jobsQuery} label="import activity">{() => <>
+        <Reveal>{activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}</Reveal>
+        <RevealList className="import-job-row">{activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}</RevealList>
+        <RevealList className="import-job-row">{visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}</RevealList>
+        <Reveal>{hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
+          {showHistory ? "Show recent activity" : `Show older activity (${hiddenHistoryCount})`}
+        </Button>}</Reveal>
+      </>}</QueryResult>
     </SettingsSection>
   </div>;
 }

@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import Button from "./Button";
 import { LoadingState, UnavailableState } from "./LoadState";
 import Reveal from "./Reveal";
+import { usePolling, type PollingOptions } from "./usePolling";
 
 export type Query<T> = {
   /** The last loaded value; kept while a retry or a dependency change reloads. */
@@ -58,6 +59,50 @@ export function useQuery<T>(load: (signal: AbortSignal) => Promise<T>, deps: Dep
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
   const dismiss = useCallback(() => setError(null), []);
   return { data, error, pending, retry, dismiss, setData: setData as Query<T>["setData"] };
+}
+
+/**
+ * A request that repeats on a schedule (usePolling), in the same shape as
+ * useQuery so QueryResult renders it: pending until its first answer, then the
+ * latest value. Repeat reads are silent; a failed one sets `error` (the refresh
+ * banner), and once that message is dismissed further failures stay quiet until
+ * a read succeeds again. `refresh()` asks for a fresh read after any in flight.
+ */
+export function usePolledQuery<T>(load: (signal: AbortSignal) => Promise<T>,
+  options: PollingOptions): Query<T> & { refresh: () => Promise<void> } {
+  const [data, setData] = useState<T>();
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(true);
+  const quiet = useRef(false);
+  const polling = usePolling(async (signal) => {
+    try {
+      const value = await load(signal);
+      if (signal.aborted) return;
+      quiet.current = false;
+      setData(() => value);
+      setError(null);
+    } catch (e) {
+      if (signal.aborted) throw e;
+      if (!quiet.current) setError(errorMessage(e));
+      throw e;
+    } finally {
+      if (!signal.aborted) setPending(false);
+    }
+  }, options);
+  const refresh = polling.run;
+  // Try again after a failed first read shows the loader again; a refresh banner's
+  // Try again keeps the loaded content in place while it reads.
+  const retry = useCallback(() => {
+    quiet.current = false;
+    setError(null);
+    setPending(value => value || data === undefined);
+    void refresh();
+  }, [refresh, data]);
+  const dismiss = useCallback(() => {
+    quiet.current = true;
+    setError(null);
+  }, []);
+  return { data, error, pending, retry, dismiss, refresh, setData: setData as Query<T>["setData"] };
 }
 
 /**
