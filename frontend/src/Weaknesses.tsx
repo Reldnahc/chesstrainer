@@ -10,6 +10,7 @@ import { QueryResult, useQuery } from "./useQuery";
 import ActionLink from "./ActionLink";
 import { focusedPracticePath, insightsPaths, settingsPath, type InsightsSection } from "./navigation";
 import GameInsights from "./GameInsights";
+import { plural, pluralWord } from "./format";
 
 function WeaknessCard({ skill, onEvidence }: {
   skill: Schema["SkillPriority"];
@@ -18,7 +19,7 @@ function WeaknessCard({ skill, onEvidence }: {
   return <article className="panel weakness" aria-labelledby={`weakness-${skill.skill_id}`}>
     <div className="weakness-heading">
       <h3 id={`weakness-${skill.skill_id}`}>{skill.title}</h3>
-      <span className="badge">{skill.provisional ? "Early evidence" : `Across ${skill.independent_games} games`}</span>
+      <span className="badge">{skill.provisional ? "Early evidence" : `Across ${plural(skill.independent_games, "game")}`}</span>
     </div>
     <p className="weakness-cue">{skill.cue}</p>
     <StatList items={[
@@ -29,11 +30,11 @@ function WeaknessCard({ skill, onEvidence }: {
     ]} />
     <div className="weakness-practice">
       {skill.focused_attempts > 0 && <p className="small">
-        <strong>{skill.focused_attempts - skill.focused_failures} / {skill.focused_attempts}</strong> clean solves in recent focused practice
+        <strong>{skill.focused_attempts - skill.focused_failures} / {skill.focused_attempts}</strong> clean {pluralWord(skill.focused_attempts, "solve")} in recent focused practice
       </p>}
       {skill.practice_positions ? <ActionLink variant="secondary"
         href={focusedPracticePath(skill.skill_id)}>
-        Practice {skill.practice_positions} {skill.practice_positions === 1 ? "position" : "positions"}
+        Practice {plural(skill.practice_positions, "position")}
         <ArrowRight size={16} aria-hidden="true" />
       </ActionLink> : <Button variant="secondary" disabled>No active positions</Button>}
     </div>
@@ -58,7 +59,7 @@ function WeaknessSection({ skills, title, countLabel, empty, onEvidence }: {
   return <section className="weakness-section" aria-labelledby="weakness-category-title">
     <div className="weakness-section-heading">
       <h2 id="weakness-category-title">{title}</h2>
-      <span className="small muted">{skills.length} {countLabel}{skills.length === 1 ? "" : "s"}</span>
+      <span className="small muted">{plural(skills.length, countLabel)}</span>
     </div>
     {skills.length ? <>
       <div className="weakness-list">

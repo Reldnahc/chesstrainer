@@ -6,6 +6,7 @@ import Button from "./Button";
 import Reveal, { Swap } from "./Reveal";
 import SettingsSection from "./SettingsSection";
 import { CommandError, QueryResult, useQuery, useCommand } from "./useQuery";
+import { plural } from "./format";
 
 type Listing = Schema["ServerSettings"];
 type Setting = Schema["ServerSetting"];
@@ -144,7 +145,7 @@ function ServerSettingsForm({ listing, onSaved }: { listing: Listing; onSaved: (
         <p>{!listing.restart_available
           ? "This server was not started with python -m trainer, so restart it from the host."
           : pending.length
-            ? `${pending.length} saved ${pending.length === 1 ? "change applies" : "changes apply"} after a restart. Analysis in progress stops and resumes afterwards.`
+            ? `${plural(pending.length, "saved change applies", "saved changes apply")} after a restart. Analysis in progress stops and resumes afterwards.`
             : "Analysis in progress stops and resumes afterwards."}</p>
       </div>
       {listing.restart_available && <Swap className="settings-tool-actions">

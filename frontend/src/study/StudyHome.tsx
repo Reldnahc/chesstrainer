@@ -3,12 +3,12 @@ import { api, read } from "../api";
 import ActionLink from "../ActionLink";
 import PageTitle from "../PageTitle";
 import StatList from "../StatList";
-import { plural } from "../format";
+import { plural, pluralWord } from "../format";
 import { studyPaths } from "../navigation";
 import { QueryError, useQuery } from "../useQuery";
 
 // A label that agrees with a count shown beside it ("Chapter to learn" next to 1).
-const label = (count: number | undefined, one: string, many: string) => (count === 1 ? one : many);
+const label = (count: number | undefined, one: string, many: string) => pluralWord(count ?? 0, one, many);
 
 /** Study's overview: what is due, what is left to learn and the puzzles waiting.
  * Each card loads only its own count. */

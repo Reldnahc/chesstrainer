@@ -9,6 +9,7 @@ import EmptyState from "./EmptyState";
 import { gamesPath } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
 import { QueryResult, useQuery } from "./useQuery";
+import { pluralWord } from "./format";
 
 export default function GamesScreen({
   page,
@@ -57,7 +58,7 @@ function GameLibrary({ page }: { page: number }) {
           </EmptyState>
         ) : (
           <GameHistory items={items} page={page} toolbar={<>
-            <p className="game-library-count"><strong>{total.toLocaleString()}</strong> {total === 1 ? "game" : "games"}</p>
+            <p className="game-library-count"><strong>{total.toLocaleString()}</strong> {pluralWord(total, "game")}</p>
             <GameSync compact onChanged={refreshed} />
           </>} />
         )}

@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException
 from sqlalchemy import select
 
 from trainer.chess_core import legal_move
+from trainer.classification_stages import line_parameters
 from trainer.contracts.games import GameAnalysis
 from trainer.contracts.play import (
     ActivePlay,
@@ -56,6 +57,12 @@ def create_router(
     *, settings, fits: LevelFits | None = None, courses: CourseProviders | None = None
 ) -> APIRouter:
     router = APIRouter()
+    horizon = line_parameters(settings)
+
+    def view(play, name, reply=None):
+        # Saved Play reports are rendered with the host's line horizon.
+        return state(play, name, reply, parameters=horizon)
+
     fits = fits or LevelFits()
     courses = courses or CourseProviders()
 
@@ -109,7 +116,7 @@ def create_router(
     def active_game(workspace: CurrentWorkspace):
         with workspace.read() as db:
             play = active_play(db)
-            return {"game": state(play, learner_name(db, workspace)) if play else None}
+            return {"game": view(play, learner_name(db, workspace)) if play else None}
 
     @router.post("/api/play", response_model=PlayState, response_model_exclude_unset=True)
     def start_game(workspace: CurrentWorkspace, data: PlayRequest):
@@ -143,13 +150,13 @@ def create_router(
             )
             db.add(play)
             db.flush()
-            return state(play, name)
+            return view(play, name)
 
     @router.get("/api/play/{play_id}", response_model=PlayState, response_model_exclude_unset=True)
     def game_state(workspace: CurrentWorkspace, play_id: str):
         with workspace.read() as db:
             play = require_play(db, play_id)
-            return state(play, learner_name(db, workspace))
+            return view(play, learner_name(db, workspace))
 
     @router.post(
         "/api/play/{play_id}/move", response_model=PlayState, response_model_exclude_unset=True
@@ -184,7 +191,7 @@ def create_router(
             # The learner's move is saved and shown before any engine work; the
             # client asks for the reply separately, so the board never waits.
             db.flush()
-            return state(play, name)
+            return view(play, name)
 
     @router.post(
         "/api/play/{play_id}/reply", response_model=PlayState, response_model_exclude_unset=True
@@ -198,9 +205,9 @@ def create_router(
             name = learner_name(db, workspace)
             if waiting_on_learner(play):
                 if not off_book(play) or play.practice["deviation"]["verdict"] is not None:
-                    return state(play, name)
+                    return view(play, name)
             elif not bot_to_move(play, board_for(play)):
-                return state(play, name, last_reply(play) if play.status == "active" else None)
+                return view(play, name, last_reply(play) if play.status == "active" else None)
             book = practice_book(db, courses, play)
             moves = list(play.moves)
         if off_book(play):
@@ -216,7 +223,7 @@ def create_router(
                     before = board_for(play, play.practice["deviation"]["ply"] - 1)
                     play.practice = judged(play.practice, before, verdict)
                     db.flush()
-                return state(play, name)
+                return view(play, name)
         choice = compute_reply(workspace, play, book)
         with workspace.write() as db:
             play = require_play(db, play_id)
@@ -228,7 +235,7 @@ def create_router(
                 else last_reply(play)
             )
             db.flush()
-            return state(play, name, reply)
+            return view(play, name, reply)
 
     @router.post(
         "/api/play/{play_id}/analyze",
@@ -252,6 +259,7 @@ def create_router(
                     play,
                     data.ply,
                     name,
+                    parameters=horizon,
                 )
             with workspace.write() as db:
                 play = require_play(db, play_id)
@@ -261,7 +269,7 @@ def create_router(
                     raise HTTPException(409, "That move was taken back.")
                 play.reports = {**play.reports, str(data.ply): report}
                 db.flush()
-        frame = state(play, name)["frames"][data.ply]
+        frame = view(play, name)["frames"][data.ply]
         report = frame["report"]
         return {"report": report, "score": report["white_score"], "best_move": None}
 
@@ -287,7 +295,7 @@ def create_router(
             truncate(play, play.practice["deviation"]["ply"] - 1)
             play.practice = taken_back(play.practice)
             db.flush()
-            return state(play, name)
+            return view(play, name)
 
     @router.post(
         "/api/play/{play_id}/carry-on", response_model=PlayState, response_model_exclude_unset=True
@@ -299,7 +307,7 @@ def create_router(
             name = learner_name(db, workspace)
             play.practice = carried_on(play.practice)
             db.flush()
-            return state(play, name)
+            return view(play, name)
 
     @router.post(
         "/api/play/{play_id}/keep-playing",
@@ -313,7 +321,7 @@ def create_router(
             name = learner_name(db, workspace)
             play.practice = kept_playing(play.practice)
             db.flush()
-            return state(play, name)
+            return view(play, name)
 
     @router.post(
         "/api/play/{play_id}/resign", response_model=PlayState, response_model_exclude_unset=True
@@ -326,6 +334,6 @@ def create_router(
                 raise HTTPException(409, "This game has finished.")
             finish(db, play, "0-1" if learner_is_white(play) else "1-0", "resignation", name)
             db.flush()
-            return state(play, name)
+            return view(play, name)
 
     return router

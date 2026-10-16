@@ -8950,6 +8950,20 @@
             "title": "Frames",
             "type": "array"
           },
+          "horizon": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Horizon"
+          },
           "material_delta": {
             "anyOf": [
               {

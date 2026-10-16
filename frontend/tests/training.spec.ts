@@ -192,7 +192,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   await expect.poll(() => completedAnalyses(page), {timeout: 30000}).toBeGreaterThan(analyzed);
   await page.screenshot({path: `test-results/${testInfo.project.name}-chesscom-import.png`, fullPage: true});
   await page.getByRole('button', {name: 'Import games', exact: true}).click();
-  await expect(job).toContainText('0 imported · 1 duplicates', {timeout: 30000});
+  await expect(job).toContainText('0 imported · 1 duplicate', {timeout: 30000});
   await expect(job.locator('.badge')).toHaveText('completed', {timeout: 30000});
   // A fetch job only saves games, so it has no analysis progress of its own.
   await expect(job.getByRole('progressbar', {name: 'Analysis progress'})).toHaveCount(0);
