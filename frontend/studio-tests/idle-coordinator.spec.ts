@@ -97,7 +97,10 @@ test("compound reservations are atomic and channel release has a cooldown", () =
   const glance = gesture("glance", "gaze", { intensity: "quiet" });
   const coordinator = createIdleCoordinator([scan, glance], { random: () => 0 });
   const started = coordinator.advance(500);
-  expect(started.diagnostics.rejected).toContainEqual({ id: "glance", reason: "channel occupied" });
+  expect(started.diagnostics!.rejected).toContainEqual({
+    id: "glance",
+    reason: "channel occupied",
+  });
   expect(coordinator.advance(900).started).toHaveLength(0);
   expect(coordinator.advance(1500).nextAt).toBe(2000);
   expect(CHANNEL_COOLDOWN_MS).toBeLessThanOrEqual(IDLE_GAP_MS[0]);
@@ -110,7 +113,7 @@ test("a due blink cannot be indefinitely deferred by optional eye actions", () =
   coordinator.advance(680);
   let frame = coordinator.advance(3000);
   expect(frame.started).toHaveLength(0);
-  expect(frame.diagnostics.rejected).toContainEqual({ id: "look", reason: "noticeable limit" });
+  expect(frame.diagnostics!.rejected).toContainEqual({ id: "look", reason: "noticeable limit" });
   frame = coordinator.advance(4000);
   expect(frame.nextAt).toBe(4500);
   expect(coordinator.advance(4500).started[0].gesture.id).toBe("blink");
@@ -127,7 +130,7 @@ test("a completed compound blink resets the shared eye deadline", () => {
   const coordinator = createIdleCoordinator([sigh, blink], { random: () => 0 });
   expect(coordinator.advance(500).started[0].gesture.id).toBe("sigh");
   const finished = coordinator.advance(1700);
-  expect(finished.diagnostics.blinkDueAt).toBe(4700);
+  expect(finished.diagnostics!.blinkDueAt).toBe(4700);
   expect(finished.active).toHaveLength(0);
   expect(finished.started).toHaveLength(0);
 });
@@ -174,7 +177,7 @@ test("gesture cooldowns remain binding even when they make the catalogue infeasi
   coordinator.advance(500);
   const waiting = coordinator.advance(1700);
   expect(waiting.active).toHaveLength(0);
-  expect(waiting.diagnostics.issues).toContain(
+  expect(waiting.diagnostics!.issues).toContain(
     "Resting repertoire cannot supply a legal idle within the maximum quiet gap.",
   );
   expect(waiting.nextAt).toBe(6700);
@@ -189,10 +192,10 @@ test("suspension aborts tracks, preserves history and freezes cooldowns without 
   expect(coordinator.snapshot().nextAt).toBeNull();
   expect(coordinator.advance(60000).started).toHaveLength(0);
   const resumed = coordinator.resume(100600);
-  expect(resumed.diagnostics.recent).toEqual(["head"]);
-  expect(resumed.diagnostics.blinkDueAt).toBe(103000);
+  expect(resumed.diagnostics!.recent).toEqual(["head"]);
+  expect(resumed.diagnostics!.blinkDueAt).toBe(103000);
   expect(resumed.nextAt).toBe(101100);
-  expect(resumed.diagnostics.cooldowns.find(entry => entry.id === "head")!.readyAt).toBe(101700);
+  expect(resumed.diagnostics!.cooldowns.find(entry => entry.id === "head")!.readyAt).toBe(101700);
   expect(coordinator.advance(101099).started).toHaveLength(0);
   expect(coordinator.advance(101100).started[0].gesture.id).toBe("breath");
 });
@@ -275,10 +278,10 @@ test("empty, malformed and duplicate definitions are safe and diagnosed", () => 
   ];
   const invalid = createIdleCoordinator(malformed).advance(1000);
   expect(invalid.nextAt).toBeNull();
-  expect(invalid.diagnostics.issues).toHaveLength(5);
+  expect(invalid.diagnostics!.issues).toHaveLength(5);
   const duplicated = createIdleCoordinator([breath, breath], { random: middle }).advance(750);
   expect(duplicated.started).toHaveLength(1);
-  expect(duplicated.diagnostics.issues).toContain("Invalid or duplicate idle gesture: breath");
+  expect(duplicated.diagnostics!.issues).toContain("Invalid or duplicate idle gesture: breath");
 });
 
 test("seeded extended playback stays live, bounded and repeatable", () => {
@@ -312,9 +315,29 @@ test("seeded extended playback stays live, bounded and repeatable", () => {
       );
       expect(new Set(channels).size).toBe(channels.length);
       frame.started.forEach(entry => events.push([entry.startedAt, entry.gesture.id]));
-      expect(frame.diagnostics.issues).toEqual([]);
+      expect(frame.diagnostics!.issues).toEqual([]);
     }
     return events;
   }
   expect(trace()).toEqual(trace());
+});
+
+test("a coordinator nobody observes builds no diagnostics and schedules exactly the same idles", () => {
+  const catalogue = [
+    gesture("blink", "eyes", { blink: true, durationMs: 160, intensity: "quiet" }),
+    gesture("breath", "body", { durationMs: 900, intensity: "quiet" }),
+    gesture("head", "head", { durationMs: 700 }),
+  ];
+  const seeded = () => {
+    let state = 7;
+    return () => (state = (Math.imul(state, 1664525) + 1013904223) >>> 0) / 2 ** 32;
+  };
+  const observed = createIdleCoordinator(catalogue, { random: seeded() });
+  const quiet = createIdleCoordinator(catalogue, { random: seeded(), diagnostics: false });
+  for (let at = 0; at <= 60000; at += 250) {
+    const seen = observed.advance(at);
+    const unseen = quiet.advance(at);
+    expect(unseen.diagnostics).toBeNull();
+    expect({ ...unseen, diagnostics: null }).toEqual({ ...seen, diagnostics: null });
+  }
 });

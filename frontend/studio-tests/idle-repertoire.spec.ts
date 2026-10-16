@@ -225,8 +225,8 @@ function traceRepertoire(gestures: IdleGesture[], context: string, seed: number)
     }
     frame = coordinator.advance(now);
     requireInvariant(
-      frame.diagnostics.issues.length === 0,
-      `${context}: ${frame.diagnostics.issues.join("; ")}`,
+      frame.diagnostics!.issues.length === 0,
+      `${context}: ${frame.diagnostics!.issues.join("; ")}`,
     );
     if (previous.active.length && !frame.active.length) quietSince = now;
     if (!previous.active.length && frame.started.length) {
