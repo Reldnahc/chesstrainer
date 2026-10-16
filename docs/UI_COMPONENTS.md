@@ -307,8 +307,10 @@ equals a token it uses the token. Board arrows take their colours from
 `ARROW_COLOURS` in `boardCues.ts`, named for what the arrow means.
 
 **Check.** `node scripts/colour-tokens.mjs` (part of `npm run test:styles` and
-`npm run build`) rejects a stylesheet colour equal to a foundation token and a
-script colour equal to an arrow colour; coach portrait artwork is not checked.
+`npm run build`) rejects a colour equal to a foundation token or an arrow colour in
+any stylesheet or script, in any spelling (hex of any length, `%23` in data URIs, opaque
+`rgb()`); only coach portrait artwork (`coach/classic`, `coach/human`, `coach/studies`)
+is not checked.
 
 ## Breakpoints
 

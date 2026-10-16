@@ -341,3 +341,28 @@ test("a coordinator nobody observes builds no diagnostics and schedules exactly 
     expect({ ...unseen, diagnostics: null }).toEqual({ ...seen, diagnostics: null });
   }
 });
+
+test("an observer arriving mid-run sees the history and deadlines the coordinator kept unobserved", () => {
+  const catalogue = [
+    gesture("blink", "eyes", { blink: true, durationMs: 160, intensity: "quiet" }),
+    gesture("breath", "body", { durationMs: 900, intensity: "quiet" }),
+    gesture("head", "head", { durationMs: 700 }),
+  ];
+  const seeded = () => {
+    let state = 11;
+    return () => (state = (Math.imul(state, 1664525) + 1013904223) >>> 0) / 2 ** 32;
+  };
+  const always = createIdleCoordinator(catalogue, { random: seeded() });
+  const later = createIdleCoordinator(catalogue, { random: seeded(), diagnostics: false });
+  for (let at = 0; at <= 30000; at += 250) {
+    always.advance(at);
+    later.advance(at);
+  }
+  later.observe(true);
+  const seen = always.advance(30250);
+  const joined = later.advance(30250);
+  expect(joined.diagnostics).toEqual(seen.diagnostics);
+  expect(joined.diagnostics!.recent.length).toBeGreaterThan(0);
+  later.observe(false);
+  expect(later.advance(30500).diagnostics).toBeNull();
+});

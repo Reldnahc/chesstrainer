@@ -1,36 +1,39 @@
-// Rejects a colour typed again where a shared one already names it: a stylesheet
-// colour equal to a token in src/foundation.css uses var(--token), and a script
-// colour equal to one of boardCues.ts's ARROW_COLOURS uses that name. One-off
-// artwork and component tints may stay literal (docs/UI_COMPONENTS.md#colour).
-// Coach portrait artwork is not checked; its palettes are hand-drawn.
+// Rejects a colour typed again where a shared one already names it: a colour equal
+// to a token in src/foundation.css uses var(--token), and a colour equal to one of
+// boardCues.ts's ARROW_COLOURS uses that name. Stylesheets and scripts are both
+// read, in any spelling (#hex of any length, %23 in data URIs, rgb()/rgba() with an
+// opaque alpha). One-off artwork and component tints may stay literal
+// (docs/UI_COMPONENTS.md#colour); coach portrait artwork, whose palettes are
+// hand-drawn, is not checked.
 import { readFileSync } from "node:fs";
 import { sourceFiles } from "./source-files.mjs";
 
-const COACH_ARTWORK = /^src\/coach\/(?!settings\.css$|studio\/)/;
+// The portrait artwork itself; the coach's interface, speech and motion sheets are checked.
+const COACH_ARTWORK = /^src\/coach\/(?:classic|human|studies)\//;
 const TOKENS_FILE = "src/foundation.css";
 const ARROWS_FILE = "src/boardCues.ts";
-const HEX = /#(?:[\da-f]{8}|[\da-f]{6}|[\da-f]{3,4})\b/gi;
+const HEX = /(?:#|%23)(?:[\da-f]{8}|[\da-f]{6}|[\da-f]{3,4})\b/gi;
+const RGB = /rgba?\(\s*(\d{1,3})[\s,]+(\d{1,3})[\s,]+(\d{1,3})(?:\s*[,/]\s*(1|1\.0+|100%))?\s*\)/gi;
 
 /** A hex colour in one spelling: lowercase, six or eight digits, no opaque alpha. */
 export function normalise(hex) {
-  let digits = hex.slice(1).toLowerCase();
+  let digits = hex.replace(/^(?:#|%23)/, "").toLowerCase();
   if (digits.length <= 4) digits = [...digits].map(digit => digit + digit).join("");
   if (digits.length === 8 && digits.endsWith("ff")) digits = digits.slice(0, 6);
   return `#${digits}`;
 }
 
 const lineOf = (text, index) => text.slice(0, index).split("\n").length;
-const blankComments = text =>
-  text.replace(/\/\*[\s\S]*?\*\//g, match => match.replace(/[^\n]/g, " "));
+/** Comments, and `url(#id)` references (an SVG id, not a colour), kept as blank space. */
+const blank = text =>
+  text.replace(/\/\*[\s\S]*?\*\/|url\(\s*["']?#[^)]*\)/g, match => match.replace(/[^\n]/g, " "));
 
 /** Each literal colour token's value -> its name, from the first definition. */
 export function tokenColours(css) {
   const tokens = new Map();
-  for (const [, name, value] of blankComments(css).matchAll(
-    /(--[\w-]+)\s*:\s*(#[\da-f]{3,8})\s*;/gi,
-  )) {
+  for (const [, name, value] of blank(css).matchAll(/(--[\w-]+)\s*:\s*(#[\da-f]{3,8})\s*;/gi)) {
     const colour = normalise(value);
-    if (!tokens.has(colour)) tokens.set(colour, name);
+    if (!tokens.has(colour)) tokens.set(colour, `var(${name})`);
   }
   return tokens;
 }
@@ -41,19 +44,37 @@ export function arrowColours(source) {
   return new Map(
     [...block.matchAll(/(\w+):\s*"(#[\da-f]{3,8})"/gi)].map(([, name, value]) => [
       normalise(value),
-      name,
+      `ARROW_COLOURS.${name}`,
     ]),
   );
 }
 
+/** Every colour written in `text`, as { index, colour, value } in one spelling. */
+export function colours(text) {
+  const hex = [...text.matchAll(HEX)].map(match => ({
+    index: match.index,
+    colour: match[0],
+    value: normalise(match[0]),
+  }));
+  const rgb = [...text.matchAll(RGB)].map(match => ({
+    index: match.index,
+    colour: match[0],
+    value: `#${match
+      .slice(1, 4)
+      .map(part => Number(part).toString(16).padStart(2, "0"))
+      .join("")}`,
+  }));
+  return [...hex, ...rgb];
+}
+
 /** Colours in `text` that copy a shared one, as { line, colour, use }. */
-export function copies(text, shared, describe) {
-  return [...text.matchAll(HEX)]
-    .filter(match => shared.has(normalise(match[0])))
-    .map(match => ({
-      line: lineOf(text, match.index),
-      colour: match[0],
-      use: describe(shared.get(normalise(match[0]))),
+export function copies(text, shared) {
+  return colours(text)
+    .filter(found => shared.has(found.value))
+    .map(found => ({
+      line: lineOf(text, found.index),
+      colour: found.colour,
+      use: shared.get(found.value),
     }));
 }
 
@@ -66,19 +87,15 @@ const report = (file, found) => {
     count++;
   }
 };
-for (const file of sourceFiles(/^src\/.*\.css$/)) {
-  if (file === TOKENS_FILE || COACH_ARTWORK.test(file)) continue;
-  report(
-    file,
-    copies(blankComments(readFileSync(file, "utf8")), tokens, name => `var(${name})`),
-  );
-}
-for (const file of sourceFiles(/^src\/.*\.tsx?$/)) {
-  if (file === ARROWS_FILE || COACH_ARTWORK.test(file)) continue;
-  report(
-    file,
-    copies(readFileSync(file, "utf8"), arrows, name => `ARROW_COLOURS.${name}`),
-  );
+for (const file of sourceFiles(/^src\/.*\.(?:css|tsx?)$/)) {
+  if (COACH_ARTWORK.test(file)) continue;
+  const text = blank(readFileSync(file, "utf8"));
+  // Scripts may copy a token or an arrow colour; the owners define their own.
+  const shared = new Map([
+    ...(file === TOKENS_FILE ? [] : tokens),
+    ...(file === ARROWS_FILE || file.endsWith(".css") ? [] : arrows),
+  ]);
+  report(file, copies(text, shared));
 }
 if (count) {
   console.error(
@@ -86,4 +103,4 @@ if (count) {
   );
   process.exit(1);
 }
-console.log(`Colours: no stylesheet or script re-types a shared token or arrow colour.`);
+console.log("Colours: no stylesheet or script re-types a shared token or arrow colour.");
