@@ -94,7 +94,7 @@ test('an entry from before history entries were numbered is rewritten and counte
   await expect(page).toHaveURL('/study');
 });
 
-test('without the Navigation API, Forward onto an entry from before numbering counts as a step forward', async ({page}) => {
+test('without the Navigation API, a step onto an entry from before numbering is never given a guessed place', async ({page}) => {
   // Browsers without the Navigation API give no position in session history.
   await page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
   await page.goto('/play');
@@ -107,19 +107,57 @@ test('without the Navigation API, Forward onto an entry from before numbering co
   await page.goBack();
   await expect(page).toHaveURL('/study');
   await page.reload();
-  const index = () => page.evaluate(() => history.state.fieldworkIndex as number);
-  const start = await index();
-  // The first step after loading cannot tell its direction and is counted as Back.
+  const place = () => page.evaluate(() => ({run: history.state.fieldworkRun as string, index: history.state.fieldworkIndex as number}));
+  const start = await place();
+  // Either side of the reloaded entry may hold an old entry, Forward as well as Back:
+  // each starts a run of its own instead of taking a number beside the reloaded entry.
+  for (const step of ['forward', 'back'] as const) {
+    await (step === 'forward' ? page.goForward() : page.goBack());
+    await expect(page).toHaveURL('/play');
+    const landed = await place();
+    expect(landed.run).not.toBe(start.run);
+    await (step === 'forward' ? page.goBack() : page.goForward());
+    await expect(page).toHaveURL('/study');
+    expect(await place()).toEqual(start);
+  }
+});
+
+test('without the Navigation API, the lesson editor keeps unsaved work when Back or Forward after a reload reaches an old entry', async ({page}) => {
+  await page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
+  await page.goto('/play');
+  await page.evaluate(() => {
+    history.replaceState({fieldworkEntry: 'legacy-before'}, '', '/play');
+    history.pushState({fieldworkEntry: 'reloaded'}, '', '/settings/courses/editor');
+    history.pushState({fieldworkEntry: 'legacy-after'}, '', '/study');
+  });
   await page.goBack();
-  await expect(page).toHaveURL('/play');
-  expect(await index()).toBe(start - 1);
-  await page.goForward();
+  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+  await page.reload();
+  const save = page.getByRole('button', {name: 'Save course'});
+  await expect(save).toBeVisible();
+  const title = page.getByLabel('Title', {exact: true}).first();
+  await title.fill('Unsaved draft');
+  const prompts: string[] = [];
+  page.on('dialog', async dialog => {
+    prompts.push(dialog.message());
+    // Stay twice, then leave.
+    if (prompts.length <= 2) await dialog.dismiss();
+    else await dialog.accept();
+  });
+  // Forward and then Back each reach an old entry on a side that cannot be known; refusing
+  // keeps the editor, its draft and its address either way.
+  await page.evaluate(() => history.forward());
+  await expect.poll(() => prompts.length).toBe(1);
+  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+  await expect(title).toHaveValue('Unsaved draft');
+  await page.evaluate(() => history.back());
+  await expect.poll(() => prompts.length).toBe(2);
+  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+  await expect(title).toHaveValue('Unsaved draft');
+  // Accepting leaves for the entry the step reached.
+  await page.evaluate(() => history.back());
+  await expect.poll(() => prompts.length).toBe(3);
   await expect(page).toHaveURL('/study');
-  expect(await index()).toBe(start);
-  // Leaving the numbered run at its high end is Forward.
-  await page.goForward();
-  await expect(page).toHaveURL('/play');
-  expect(await index()).toBe(start + 1);
 });
 
 test('game links support opening a second tab without navigating the first', async ({page}, info) => {
