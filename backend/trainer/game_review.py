@@ -486,6 +486,15 @@ def promote_stronger_played(report):
     }
 
 
+def shown_best_uci(report):
+    """The move the review shows as best: the played move when its own stronger
+    search promotes it. Human evidence scores this move as the engine's best, so
+    the practical view and the human lines describe the move on the board."""
+    if not (report.get("best") or {}).get("uci"):
+        return (report.get("best") or {}).get("uci")
+    return promote_stronger_played(report)["best"]["uci"]
+
+
 # The report fields review polling sends for each newly saved ply. Board
 # positions were sent once with the game, so witness lines and legal moves stay out.
 PROGRESS_KEYS = (
@@ -630,7 +639,7 @@ def review_move(
         opponent_played = Score.model_validate(report["best"]["score"]).negate()
         report["previous_mistake"] = is_mistake(evaluation_loss(opponent_best, opponent_played))
     report["human"] = human_models.evidence(
-        sessions, parsed, board, move.uci(), report["best"]["uci"], fallback_rating
+        sessions, parsed, board, move.uci(), shown_best_uci(report), fallback_rating
     )
     return report
 

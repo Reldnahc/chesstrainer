@@ -87,7 +87,7 @@ def run_baseline(context, engine_override=None):
                 parsed,
                 board,
                 move.uci(),
-                report["best"].get("uci"),
+                game_review.shown_best_uci(report),
                 rating,
                 context.cancelled,
             )

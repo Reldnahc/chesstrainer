@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from sqlalchemy import and_, case, func, select
 
-from trainer.game_review import lines_current, link_previous_scores
+from trainer.game_review import lines_current, link_previous_scores, shown_best_uci
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import GameReview, GameReviewMove, HumanAnalysis, ReviewRefinement
@@ -104,7 +104,15 @@ def effective_report(db, row, task, belongs, shown):
     human = baseline.get("human")
     if human:
         report["human"] = dict(human)
-        if report["best"]["uci"] != baseline["best"]["uci"]:
+        # The evidence scores the move shown as best. A refinement that changed the
+        # best move, or a played move promoted by its own stronger search (in rows
+        # saved before that was scored at the source), is scored again from the
+        # saved policy, with no inference.
+        best = shown_best_uci(report)
+        if (
+            human.get("status") == "available"
+            and (human.get("engine_best") or {}).get("uci") != best
+        ):
             cached = db.get(HumanAnalysis, row.human_analysis_id) if row.human_analysis_id else None
             if cached:
                 report["human"] = HumanEvidence.model_validate(
@@ -112,7 +120,7 @@ def effective_report(db, row, task, belongs, shown):
                     | policy_summary(
                         HumanPolicy.model_validate(cached.policy),
                         report["actual"]["uci"],
-                        report["best"]["uci"],
+                        best,
                     )
                 ).model_dump(mode="json")
             else:
