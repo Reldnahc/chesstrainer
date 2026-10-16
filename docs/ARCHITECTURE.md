@@ -167,7 +167,8 @@ would beat every layer and is not allowed. `scripts/css-layers.mjs` (part of
 `npm run test:styles`) checks both.
 
 `styles.css` is the application stylesheet entry point. `foundation.css` owns
-shared fonts, tokens, element defaults and common form/surface utilities;
+shared fonts, tokens, element defaults (buttons are reset to bare elements; their
+look comes only from Button in `action-controls.css`) and common form/surface utilities;
 `base.css` owns application chrome and page-specific layout. `board.css` owns the shared
 board, legal-move markers, tactical highlights, rating animation and retry effects;
 `review-presentation.css` owns shared SRS/game workspace geometry, while

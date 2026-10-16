@@ -6,6 +6,7 @@ import DialogueText from "../src/dialogue/DialogueText";
 import {stableKey, type DialogueIntent} from "../src/dialogue/model";
 import {writingExamples, exampleIntent, comparisonExamples} from "./examples";
 import {auditCorpus} from "./corpus";
+import Button from "../src/Button";
 
 export function CoachComparison({intent, samples}: {intent: DialogueIntent; samples?: {label: string; intent: DialogueIntent}[]}) {
   const [blind, setBlind] = useState(false);
@@ -39,7 +40,7 @@ export default function WritingLab() {
   return <section aria-label="Writing laboratory">
     <h2>Full-cast writing comparison</h2><p>Synthetic writing exercises, not analyzed chess positions. Every card receives identical facts.</p>
     <div className="lab-controls"><label>Scenario<select aria-label="Writing scenario" value={example} onChange={e => {setExample(Number(e.target.value)); setTake(0);}}>{writingExamples.map((item, index) => <option key={item.label ?? item.purpose} value={index}>{item.label ?? item.purpose.replaceAll("_", " ")}</option>)}</select></label>
-      <button onClick={() => setTake(t => t + 1)}>Next deterministic sample</button><span>Sample {take + 1}</span></div>
+      <Button onClick={() => setTake(t => t + 1)}>Next deterministic sample</Button><span>Sample {take + 1}</span></div>
     <div><label className="lab-inline"><input type="checkbox" checked={compareSet} onChange={e => setCompareSet(e.target.checked)} />Compare ten shared situations together</label>
       <p role="status" data-testid="corpus-status">{audit.coaches} coaches · {audit.templates} authored forms · {audit.errors.length} corpus errors · {audit.warnings.length} writing collisions</p></div>
     <div>{!!(audit.errors.length || audit.warnings.length) && <details><summary>Corpus findings</summary><ul>{[...audit.errors, ...audit.warnings].map((line, i) => <li key={i}>{line}</li>)}</ul></details>}

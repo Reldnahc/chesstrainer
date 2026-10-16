@@ -9,6 +9,7 @@ import {
   type RefObject,
 } from "react";
 import type { LegalMove, Promotion } from "./api";
+import Button from "./Button";
 import DialogPresence from "./DialogPresence";
 import MoveSymbol from "./MoveSymbol";
 import { MOVE_DURATION_MS } from "./reviewMotion";
@@ -97,11 +98,11 @@ function PromotionDialog({ board, promotion, onChoose, onClose }: {
         ] as const)
           .filter(([value]) => promotion.choices.includes(value))
           .map(([value, name]) => (
-            <button key={value} type="button" onClick={() => onChoose(value)}>
+            <Button key={value} onClick={() => onChoose(value)}>
               {name}
-            </button>
+            </Button>
           ))}
-        <button type="button" onClick={onClose}>Cancel</button>
+        <Button onClick={onClose}>Cancel</Button>
       </div>
     </dialog>
   );
