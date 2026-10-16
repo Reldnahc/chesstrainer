@@ -14,7 +14,7 @@ from trainer.contracts.puzzles import (
     PuzzleSessionView,
     PuzzleStart,
 )
-from trainer.job_lifecycle import JobKind, ensure_job
+from trainer.job_lifecycle import JobKind, active_job, ensure_job
 from trainer.puzzles import sessions
 from trainer.workspaces import CurrentWorkspace
 
@@ -35,11 +35,14 @@ def create_router(*, providers, settings=None) -> APIRouter:
     )
     def generate(workspace: CurrentWorkspace):
         """Queue one bounded search of analyzed games not yet mined for puzzles."""
+        with workspace.read() as db:
+            queued = active_job(db, JobKind.PUZZLE_GENERATION) is not None
+        if not queued:
+            # Searches need Stockfish; fail now, not in the job. Started before the
+            # write unit, since a running search can hold the engine meanwhile.
+            workspace.engine.start()
         with workspace.write() as db:
-            job, created = ensure_job(db, JobKind.PUZZLE_GENERATION)
-            if created:
-                workspace.engine.start()  # Searches need Stockfish; fail now, not in the job.
-            db.flush()
+            job, _ = ensure_job(db, JobKind.PUZZLE_GENERATION)
             return {"job_id": job.id}
 
     @router.get("/api/puzzles/next", response_model=PuzzleKey | None)

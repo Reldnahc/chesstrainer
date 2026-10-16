@@ -26,7 +26,6 @@ class JobExecution:
         self.human_models = workspace.human_models
         self.scheduler, self.classifier = runner.scheduler, runner.classifier
         self.engine_factory = runner.engine_factory
-        self.mutation_lock = workspace.mutation_lock
         self.read, self.write = workspace.read, workspace.write
         self.pipeline = None
 
@@ -69,11 +68,10 @@ class JobExecution:
 
     def finish(self, job_id, then=None):
         """Complete the job, or settle its cancellation; ``then(db, job)`` runs on completion."""
-        # Read before the unit: a cancellation check never runs under the account lock.
-        cancelled = self.cancelled(job_id)
         with self.write() as db:
             job = db.get(AnalysisJob, job_id)
-            if cancelled:
+            # Read from the row in this unit, so a cancel cannot land in between.
+            if self.runner.stop_event.is_set() or job.cancel_requested:
                 job_lifecycle.finish_cancel(job)
             else:
                 job_lifecycle.complete(job)

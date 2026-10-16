@@ -190,10 +190,10 @@ def create_router(
         "/api/play/{play_id}/reply", response_model=PlayState, response_model_exclude_unset=True
     )
     def bot_reply(workspace: CurrentWorkspace, play_id: str):
-        # Read under the lock, think outside it, then re-check and write under it,
+        # Read, think outside any unit, then re-check and write in a write unit,
         # so the account's other requests and its background review never wait on
         # the bot, and a rewind while it thinks is noticed.
-        with workspace.write() as db:
+        with workspace.read() as db:
             play = require_play(db, play_id)
             name = learner_name(db, workspace)
             if waiting_on_learner(play):
