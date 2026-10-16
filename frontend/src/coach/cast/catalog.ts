@@ -133,6 +133,5 @@ export const newCoachCollections: readonly AuthoredCoachCollection[] = cast.map(
     name: coach.name,
     description: coach.description,
     character: coach.character,
-    personality: coachPersonalities[coach.id],
   }],
 }));
