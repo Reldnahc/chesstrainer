@@ -1,5 +1,5 @@
-import type { CSSProperties, ReactNode } from "react";
-import { ArtworkSvg, BodyRig } from "../../ArtworkRig";
+import type { ReactNode } from "react";
+import { StudyFrame } from "../../ArtworkRig";
 import type { CoachExpression } from "../../model";
 import type { AnimalPose } from "../../studies/animalPoses";
 import Accents from "../../studies/Accents";
@@ -21,19 +21,15 @@ export default function FantasyShell({
   temperament?: number;
   children: ReactNode;
 }) {
-  const vars = {
-    "--study-tilt": `${pose.tilt}deg`,
-    "--study-lift": `${pose.lift}px`,
-    "--study-temperament": temperament,
-  } as CSSProperties;
   return (
-    <ArtworkSvg
-      viewBox="0 0 100 125"
+    <StudyFrame
       className={`coach-artwork study-artwork fantasy-artwork fantasy-${character}`}
-      style={vars}
+      tilt={pose.tilt}
+      lift={pose.lift}
+      temperament={temperament}
+      accents={<Accents expression={expression} />}
     >
-      <Accents expression={expression} />
-      <BodyRig>{children}</BodyRig>
-    </ArtworkSvg>
+      {children}
+    </StudyFrame>
   );
 }

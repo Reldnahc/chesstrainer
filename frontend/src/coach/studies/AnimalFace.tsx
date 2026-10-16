@@ -1,6 +1,11 @@
 import { useId } from "react";
 import { useEyeClosure } from "../CoachFaceContext";
-import { OrganicSpeechMouth, SpeechMouthLayer } from "../SpeechMouthLayer";
+import {
+  OrganicSpeechMouth,
+  SpeechMouthLayer,
+  speechMood,
+  speechMoodRules,
+} from "../SpeechMouthLayer";
 import type { AnimalPose } from "./animalPoses";
 
 export type AnimalPalette = {
@@ -169,13 +174,7 @@ export default function AnimalFace({
             y={dog ? 64 : 61}
             width={dog ? 22 : 15}
             height={dog ? 11 : 8.5}
-            mood={
-              pose.mouth === "concern" || pose.mouth === "oh"
-                ? "concern"
-                : pose.mouth === "ponder"
-                  ? "neutral"
-                  : "smile"
-            }
+            mood={speechMood(pose.mouth, speechMoodRules.animal)}
             palette={{
               cavity: "#5b3630",
               outline: palette.lip ?? palette.nose,

@@ -27,6 +27,32 @@ export type SpeechMouthPalette = {
   lip?: string;
 };
 
+export type SpeechMood = "smile" | "neutral" | "concern";
+
+/** How an artwork's authored mouth shapes map to a speaking mood: shapes listed
+ * under a mood take it, and every other shape takes `otherwise`. */
+export type SpeechMoodRule = Partial<Record<SpeechMood, readonly string[]>> & {
+  otherwise: SpeechMood;
+};
+
+export const speechMoodRules = {
+  /** Cats, dogs and the kitten: an open "oh" reads as concern, pondering as neutral. */
+  animal: { concern: ["concern", "oh"], neutral: ["ponder"], otherwise: "smile" },
+  /** Capybara, Gorilla, Mushroom and Slime keep a calm mouth, grin included. */
+  calm: { concern: ["concern"], otherwise: "neutral" },
+  /** Raccoon smiles through everything but concern. */
+  cheerful: { concern: ["concern"], otherwise: "smile" },
+  /** The alien and the living pawn wince with concern and smile only when grinning or smiling. */
+  scifi: { concern: ["concern", "wince"], smile: ["grin", "smile"], otherwise: "neutral" },
+} as const satisfies Record<string, SpeechMoodRule>;
+
+export function speechMood(mouth: string, rule: SpeechMoodRule): SpeechMood {
+  return (
+    (["concern", "neutral", "smile"] as const).find(mood => rule[mood]?.includes(mouth)) ??
+    rule.otherwise
+  );
+}
+
 export type OrganicSpeechMouthProps = {
   /** Mouth center and upper lip in the artwork's own coordinates. */
   x: number;
@@ -35,7 +61,7 @@ export type OrganicSpeechMouthProps = {
   width: number;
   height: number;
   palette: SpeechMouthPalette;
-  mood?: "smile" | "neutral" | "concern";
+  mood?: SpeechMood;
   /** Upper-lip bow in place of the mood's, for a mouth that follows a drawn seam. */
   curve?: number;
   teeth?: boolean;

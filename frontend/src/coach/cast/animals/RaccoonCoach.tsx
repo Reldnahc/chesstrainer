@@ -4,7 +4,12 @@ import { animalPose, tailTransform, type AnimalPose } from "../../studies/animal
 import Book from "../../studies/Book";
 import { AnimalBrows, AnimalEyes, AnimalFrame, AnimalHead } from "./AnimalParts";
 import AnimalHands from "./AnimalHands";
-import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
+import {
+  OrganicSpeechMouth,
+  SpeechMouthLayer,
+  speechMood,
+  speechMoodRules,
+} from "../../SpeechMouthLayer";
 
 function RaccoonMouth({ pose }: { pose: AnimalPose }) {
   return (
@@ -39,7 +44,7 @@ function RaccoonMouth({ pose }: { pose: AnimalPose }) {
           width={17}
           height={9}
           teeth={false}
-          mood={pose.mouth === "concern" ? "concern" : "smile"}
+          mood={speechMood(pose.mouth, speechMoodRules.cheerful)}
           palette={{ cavity: "#493b3c", outline: "#5e5650", tongue: "#c58d80" }}
         />
       </SpeechMouthLayer>

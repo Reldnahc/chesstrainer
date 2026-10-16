@@ -287,7 +287,10 @@ Follow [Speaking articulation](COACH.md#speaking-articulation). Reuse
 `SpeechMouthLayer` and `OrganicSpeechMouth` for suitable faces; Walter's mouth and
 Rivet's segmented display show how distinct geometry consumes the same controls.
 Use the optional human mouth slot with the shared `human/HumanSpeechMouth` when
-extending another human, as the men, women and children do. Implement all
+extending another human, as the men, women and children do; a new human coach
+draws through `human/HumanFigure` with its own clothing, head and hair. Choose
+the speaking mood with `speechMood` and a `speechMoodRules` entry, adding a named
+rule only when no existing one fits, and frame the artwork with `StudyFrame`. Implement all
 nine semantic shapes, including a legible rounded O, and opt the rig into speech
 only when it is supported. Do not copy another coach's lips onto an incompatible
 face or use a separate timer to approximate the recording.

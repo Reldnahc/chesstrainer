@@ -1,5 +1,5 @@
 import type { CoachArtworkProps } from "../../model";
-import { OrganicSpeechMouth } from "../../SpeechMouthLayer";
+import { OrganicSpeechMouth, speechMood, speechMoodRules } from "../../SpeechMouthLayer";
 import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
@@ -116,7 +116,7 @@ export default function MushroomCoach({ expression }: CoachArtworkProps) {
                   lip: "#e0cf9f",
                 }}
                 teeth={false}
-                mood={pose.mouth === "concern" ? "concern" : "neutral"}
+                mood={speechMood(pose.mouth, speechMoodRules.calm)}
               />
             }
           />

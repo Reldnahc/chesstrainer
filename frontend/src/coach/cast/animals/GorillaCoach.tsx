@@ -3,7 +3,12 @@ import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
 import { AnimalBrows, AnimalEyes, AnimalFrame, AnimalHead } from "./AnimalParts";
 import AnimalHands from "./AnimalHands";
-import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
+import {
+  OrganicSpeechMouth,
+  SpeechMouthLayer,
+  speechMood,
+  speechMoodRules,
+} from "../../SpeechMouthLayer";
 
 const emphasis: Partial<Record<CoachExpression, Partial<AnimalPose>>> = {
   brilliant: { tilt: -3, lift: -1, eye: 6, mouth: "grin", paws: "offer" },
@@ -48,7 +53,7 @@ function GorillaMouth({ pose }: { pose: AnimalPose }) {
           width={24}
           height={8}
           teeth={false}
-          mood={pose.mouth === "concern" ? "concern" : "neutral"}
+          mood={speechMood(pose.mouth, speechMoodRules.calm)}
           palette={{ cavity: "#382e30", outline: "#302f30", teeth: "#f4e6cd", tongue: "#9a7068" }}
         />
       </SpeechMouthLayer>
