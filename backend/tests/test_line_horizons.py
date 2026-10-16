@@ -145,3 +145,18 @@ def test_play_renders_old_rows_to_the_configured_horizon():
     parameters = line_parameters() | {"max_plies": 4, "extension_plies": 0}
     rendered = rendered_reports(play, parsed_for(play, "Learner"), parameters)
     assert all(game_review.lines_current(report, parameters) for report in rendered.values())
+
+
+def test_review_and_classifier_agree_at_the_last_ply_of_a_long_line():
+    # A line longer than the horizon whose next saved move is an equal rook trade:
+    # every reader sees that move, so none settles at the horizon's last ply.
+    board = chess.Board("3rk3/8/8/8/8/8/8/3RK3 w - - 0 1")
+    pv = ["e1e2", "e8e7", "e2e1", "e7e8", "d1d8", "e8d8"]
+    candidate = Candidate.model_validate(
+        {"uci": pv[0], "san": "Ke2", "pv": pv, "score": {"kind": "cp", "value": 0}}
+    )
+    parameters = line_parameters() | {"max_plies": 4, "extension_plies": 0}
+    review = game_review.line_evidence(board, candidate, "a", 1, parameters=parameters)
+    classifier = continuation_end(replay(board, candidate), board.turn, 4, 0)
+    assert classifier.reason == "capture_pending"
+    assert review["material_delta"] == classifier.material_delta is None
