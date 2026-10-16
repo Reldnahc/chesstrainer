@@ -23,8 +23,9 @@ export function useAudioScope() { return scope; }
 `;
 
 const harness = `
-import React, { useCallback, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { errorMessage } from "/src/api.ts";
 import { useGameExploration } from "/src/gameReview/useGameExploration.ts";
 import { usePositionAnalysis } from "/src/gameReview/usePositionAnalysis.ts";
 import EvaluationGraph from "/src/EvaluationGraph.tsx";
@@ -43,8 +44,9 @@ function Fixture() {
   const [game, setGame] = useState(null);
   const [error, setError] = useState("");
   const [outcome, setOutcome] = useState("idle");
-  const fail = useCallback(value => setError(String(value)), []);
-  const exploration = useGameExploration("audio-fixture", 0, game, fail);
+  // The page's error channel, as game review passes it: fail reports, dismiss clears.
+  const errors = useMemo(() => ({fail: value => setError(errorMessage(value)), dismiss: () => setError("")}), []);
+  const exploration = useGameExploration("audio-fixture", 0, game, errors);
   const analysis = usePositionAnalysis({id: "audio-fixture", rating: 1000, epoch: 0,
     root: exploration.root, path: exploration.path, positionKey: exploration.key, browse: false});
   async function play(from, to) {
@@ -132,7 +134,12 @@ test.beforeAll(async () => {
 
 test.afterAll(async () => { await server?.close(); });
 
+// A harness that drifts from the hooks it drives must fail loudly, not throw unseen.
+const pageErrors = new WeakMap<Page, Error[]>();
 test.beforeEach(async ({page}) => {
+  const errors: Error[] = [];
+  pageErrors.set(page, errors);
+  page.on("pageerror", error => errors.push(error));
   await page.route("**/api/games/audio-fixture/position", route => {
     const {ply, moves} = route.request().postDataJSON();
     return route.fulfill({json: position(ply, moves)});
@@ -412,4 +419,8 @@ test("leaving pending variation navigation discards its eventual cue", async ({p
     await expect(page.getByTestId("frame")).toHaveText("start");
     expect(await sounds(page)).toEqual([]);
   } finally { release(); }
+});
+
+test.afterEach(async ({page}) => {
+  expect(pageErrors.get(page) ?? [], "uncaught page errors").toEqual([]);
 });
