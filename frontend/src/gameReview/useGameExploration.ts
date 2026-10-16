@@ -1,5 +1,5 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react";
-import { errorMessage, api, read } from "../api";
+import { api, read } from "../api";
 import { rememberGamePly } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
 import { useLatest } from "../useLatest";
@@ -24,8 +24,10 @@ export function useGameExploration(
   id: string,
   initialPly: number,
   game: Game | null,
-  fail: (message: string) => void,
+  /** The page's error channel: `fail` reports, `dismiss` clears. */
+  errors: { fail: (e: unknown) => void; dismiss: () => void },
 ) {
+  const { fail, dismiss } = errors;
   const audio = useAudioScope(`game:${id}`);
   const [selection, setCursor] = useState<Cursor>({
     ply: initialPly,
@@ -101,7 +103,7 @@ export function useGameExploration(
   // position arriving later must not restart the request.
   const branchRequest = useEffectEvent(() =>
     branchPosition?.key === key ? null : { ply: root, moves: path });
-  const failBranch = useEffectEvent((message: string) => fail(message));
+  const failBranch = useEffectEvent((e: unknown) => fail(e));
 
   useEffect(() => {
     if (!inBranch) return;
@@ -130,7 +132,7 @@ export function useGameExploration(
         if (!active || !mounted.current || activeKey.current !== key) return;
         if (pendingNavigation.current?.eventId === requestAction) pendingNavigation.current = null;
         setSpeechNavigation(value => value?.eventId === `${id}:${requestAction}` ? null : value);
-        failBranch(errorMessage(e));
+        failBranch(e);
       });
     return () => {
       active = false;
@@ -161,7 +163,7 @@ export function useGameExploration(
     }
     setCursor({ ply: next, branch: null, step: 0 });
     setExplanationKey(null);
-    fail("");
+    dismiss();
   }
   function selectStep(value: number) {
     setExplanationKey(null);
@@ -222,14 +224,12 @@ export function useGameExploration(
     const requestKey = key;
     const moves = [...path, from + to + (promotion || "")];
     if (moves.length > 128) {
-      fail(
-        "This variation has reached 128 moves. Return to the game to start another.",
-      );
+      fail(new Error("This variation has reached 128 moves. Return to the game to start another."));
       return null;
     }
     const eventId = beginAction();
     setMoving(true);
-    fail("");
+    dismiss();
     try {
       const next = await read(
         api.POST("/api/games/{game_id}/position", {
@@ -256,7 +256,7 @@ export function useGameExploration(
       };
     } catch (e) {
       if (mounted.current && activeKey.current === requestKey && actionVersion.current === eventId)
-        fail(errorMessage(e));
+        fail(e);
     } finally {
       if (mounted.current) setMoving(false);
     }

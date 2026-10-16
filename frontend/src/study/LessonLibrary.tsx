@@ -1,17 +1,16 @@
-import { useState } from "react";
-import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, BookOpen, Check, Download } from "lucide-react";
-import { errorMessage, api, read, type Schema } from "../api";
+import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import ResumeLink from "../ResumeLink";
 import EmptyState from "../EmptyState";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
-import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths, type LessonTopic } from "../navigation";
+import { courseLinePath, lessonCoursePath, lessonSessionPath, studyPaths, type LessonTopic } from "../navigation";
 import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
 import { downloadCourseFile } from "./courseFiles";
-import { QueryResult, useCommand, useQuery } from "../useQuery";
+import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
+import { useSessionStart } from "../useSessionStart";
 
 type Course = Schema["LessonCourseView"];
 type CourseSummary = Schema["LessonLibrary"]["courses"][number];
@@ -53,34 +52,24 @@ function CoursePage({ topic, courseId, revision }: { topic: LessonTopic; courseI
     params: { path: { course_id: courseId }, query: { revision: revision || undefined } }, signal,
   })));
   const course = query.data;
-  const [error, setError] = useState("");
-  const start = useCommand<string>();
-  const [downloading, setDownloading] = useState(false);
-  const [startLesson] = useState(() => retryableStart(
+  const start = useSessionStart(() => retryableStart(
     async (body: Omit<Schema["LessonStart"], "request_id">) => body,
     (body, signal) => read(api.POST("/api/study/lesson-sessions", { body, signal })),
-  ));
-  async function download() {
-    if (!course || downloading) return;
-    setDownloading(true);
-    setError("");
-    try { await downloadCourseFile(course.id, course.revision); }
-    catch (e) { setError(errorMessage(e)); }
-    finally { setDownloading(false); }
+  ), (session) => lessonSessionPath(session.id, session.course_topic));
+  const downloading = useCommand();
+  function download() {
+    if (course) void downloading.run(true, () => downloadCourseFile(course.id, course.revision));
   }
   function begin(chapterId: string) {
-    if (!course) return;
-    void start.run(chapterId,
-      (signal) => startLesson({ course_id: course.id, course_revision: course.revision, chapter_id: chapterId }, signal),
-      (session) => { if (session) navigate(lessonSessionPath(session.id, session.course_topic)); });
+    if (course) void start.start(chapterId, { course_id: course.id, course_revision: course.revision, chapter_id: chapterId });
   }
   // A course page follows its course's own topic, so an older link still
   // returns to the section that lists the course.
   const courseText = TOPIC_TEXT[course?.topic ?? topic];
   return <section className="panel lesson-course">
     <ActionLink variant="quiet" href={courseText.home}><ArrowLeft size={16} />{courseText.back}</ActionLink>
-    {error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}
-    {start.error && <Banner tone="error" onDismiss={start.dismiss}>{start.error}</Banner>}
+    <CommandError command={downloading} />
+    <CommandError command={start} />
     <QueryResult query={query} label="the course">{course => <>
       <header className="lesson-course-title">
         <BookOpen size={26} aria-hidden="true" />
@@ -94,7 +83,7 @@ function CoursePage({ topic, courseId, revision }: { topic: LessonTopic; courseI
         <ChapterRow key={chapter.id} chapter={chapter} index={index} busy={start.busy} onStart={() => begin(chapter.id)} />)}</ol>
       {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <ResumeLink href={courseLinePath(course.id, line.id, course.revision, course.learner_color)} key={line.id} description="Preview and add to study">{line.title}</ResumeLink>)}</section>}
       <LessonAttribution attributions={course.attributions} />
-      <Button className="lesson-course-download" size="compact" variant="quiet" disabled={downloading} onClick={download}><Download size={16} />Download course file</Button>
+      <Button className="lesson-course-download" size="compact" variant="quiet" disabled={!!downloading.busy} onClick={download}><Download size={16} />Download course file</Button>
     </>}</QueryResult>
   </section>;
 }

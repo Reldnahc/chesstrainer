@@ -1,8 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { errorMessage } from "../api";
 import MovePlaybackControls from "../MovePlaybackControls";
 import { usePageTitle } from "../PageTitle";
-import Banner from "../Banner";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
@@ -28,6 +25,8 @@ import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { puzzleRecording } from "../audio/speech/practiceSelection";
 import { withSessionTake } from "../audio/speech/meaningPools";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
+import { CommandError } from "../useQuery";
+import { useSessionStart } from "../useSessionStart";
 
 export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   const state = usePuzzleSession(sessionId);
@@ -43,26 +42,13 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   // Each puzzle state has one coach sentence; the bubble shows the coach's spoken
   // form of it. An error keeps its written instruction, which a paraphrase can drop.
   const spoken = useSelectedCoachSpokenText(error ? null : recordingId);
-  const [nextError, setNextError] = useState("");
-  const [openingNext, setOpeningNext] = useState(false);
-  const [startNextPuzzle] = useState(createPuzzleStarter);
-  const nextRequest = useRef<AbortController | null>(null);
+  // Next puzzle opens the next match for the saved choices, or the puzzle list when none is left.
+  const opening = useSessionStart(createPuzzleStarter, (next) => puzzleSessionPath(next.id));
   usePageTitle("Puzzle practice");
-  useEffect(() => () => nextRequest.current?.abort(), []);
-  async function next() {
-    if (nextRequest.current && !nextRequest.current.signal.aborted) return;
-    const controller = new AbortController();
-    nextRequest.current = controller;
+  function next() {
+    if (opening.busy) return;
     voice.stop();
-    setOpeningNext(true);
-    setNextError("");
-    try {
-      const result = await startNextPuzzle({ ...loadPuzzleSelection(), source: session?.source }, controller.signal);
-      if (controller.signal.aborted) return;
-      if (result) navigate(puzzleSessionPath(result.id));
-      else navigate(studyPaths.puzzles);
-    } catch (e) { if (!controller.signal.aborted) setNextError(errorMessage(e)); }
-    finally { if (!controller.signal.aborted) { setOpeningNext(false); nextRequest.current = null; } }
+    void opening.start("next", { ...loadPuzzleSelection(), source: session?.source }, () => navigate(studyPaths.puzzles));
   }
   if (loading) return <LoadingState presentation="panel">Loading your puzzle…</LoadingState>;
   if (!session) return <UnavailableState presentation="panel" heading={<h1>Puzzle unavailable</h1>} actions={<><Button variant="secondary" onClick={state.reload}>Try again</Button><ActionLink variant="secondary" href={studyPaths.puzzles}>All puzzles</ActionLink></>}>Couldn’t load your puzzle. {error}</UnavailableState>;
@@ -114,11 +100,11 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
       badge={complete ? <MoveBadge label={session.status === "revealed" ? "Revealed" : "Accepted"} /> : undefined}
       reaction={{ state: expression, key: `${session.id}:${session.revision}:${expression}` }}
       actions={<>{error ? <Button size="compact" variant="primary" onClick={state.reload}>Reload session</Button>
-        : complete ? <><Button size="compact" variant="primary" disabled={playing || openingNext} onClick={next}>Next puzzle <ArrowRight size={16} /></Button><Button size="compact" disabled={playing || openingNext} onClick={state.replay}><Play size={15} />{state.motion === "still" ? "View solution" : "Replay solution"}</Button></>
+        : complete ? <><Button size="compact" variant="primary" disabled={playing || !!opening.busy} onClick={next}>Next puzzle <ArrowRight size={16} /></Button><Button size="compact" disabled={playing || !!opening.busy} onClick={state.replay}><Play size={15} />{state.motion === "still" ? "View solution" : "Replay solution"}</Button></>
         : <>{incorrect && <Button size="compact" variant="primary" disabled={busy} onClick={state.retry}>Try again</Button>}<Button size="compact" variant="secondary" disabled={busy || playing} onClick={state.reveal}>Reveal solution</Button></>}</>}
     ><MoveStatus busy={busy} failed={incorrect && !error} text={message} /></ReviewCoach>
     <Reveal>{error && <Notice announcement="alert" tone="error">{error}</Notice>}</Reveal>
-    {nextError && <Banner tone="error" onDismiss={() => setNextError("")}>{nextError}</Banner>}
+    <CommandError command={opening} />
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
       <h2>{session.completion.themes.length ? session.completion.themes.map(puzzleThemeLabel).join(" · ") : "The continuation"}</h2>
       <ContinuationMoves label="Solution moves" moves={solution} disabled={playing}
