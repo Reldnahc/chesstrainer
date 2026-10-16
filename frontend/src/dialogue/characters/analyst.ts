@@ -80,7 +80,7 @@ export const analyst = coachPersonality({
     book: ["This position is catalogued as {opening}."],
     book_sound: ["Its course so far matches {opening}."],
     departure: ["From this move on, the game is outside our opening catalogue."],
-    recovery: [{ fact: "What changed after {earlier}: the setback is no longer decisive, and play can continue normally.{help}" }],
+    recovery: [{ fact: "What changed after {earlier}: the disadvantage is gone, and play can continue normally.{help}" }],
     punishment: ["At {earlier}, an opportunity opened for {side}; with this move it is used."],
     missed_punishment: ["At {earlier}, an opportunity opened for {side}; after this move it is still untaken."],
     repeated: ["Count of the {motif} issue in the reviewed segment so far: {count}."],
