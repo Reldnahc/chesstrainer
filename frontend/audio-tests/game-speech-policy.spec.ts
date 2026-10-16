@@ -3,7 +3,7 @@ import type {Game} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
 import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
@@ -32,7 +32,7 @@ const games = {
   ...semanticFixtures<Record<string, Game>>("review_speech_policy_fixtures.py"),
   ...relationshipGames,
 };
-const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
+const coaches = [{id: "classic", personality: classic}, {id: "robot", personality: robot}];
 // Objective explanations that the policy profiles reach while a Maia reading
 // is also available. Each speaks its own objective line; Maia is never voiced.
 // (Their poorly graded first moves are Book moves, which the badge lets name the

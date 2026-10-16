@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import type {Game} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
 import {gradeTakeIds, selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
@@ -16,7 +16,7 @@ const GRADE_TAKES = 4;
 // A ply whose whole line is the generic reading for its grade rotates through
 // that grade's takes; anything specific keeps its own clip.
 const games = semanticFixtures<Record<string, Game>>("review_speech_combination_fixtures.py");
-const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
+const coaches = [{id: "classic", personality: classic}, {id: "robot", personality: robot}];
 
 function context(game: Game, ply = 1, coach = coaches[0]): GameSpeechContext {
   const frame = game.frames[ply], report = frame.report!;

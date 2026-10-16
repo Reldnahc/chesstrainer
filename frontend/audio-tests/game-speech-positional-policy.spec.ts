@@ -4,7 +4,7 @@ import {semanticFixtures} from "../tests/semantic-fixtures";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
 import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
@@ -13,7 +13,7 @@ import {sequenceRecordingId} from "../src/audio/speech/sequence";
 type Fixture = {feature: string; primary: string; secondary: string; mover: "white" | "black";
   game: Game; without_history: Report | null};
 const fixtures = semanticFixtures<Fixture[]>("review_speech_positional_fixtures.py");
-const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
+const coaches = [{id: "classic", personality: classic}, {id: "robot", personality: robot}];
 const families = ["development", "doubled", "isolated", "passed", "support", "unsupported", "castling"];
 const states = ["hard-find", "unusual-strong", "natural-best", "natural-strong"];
 // The Maia reading each fixture shows in its badge; none is ever voiced.

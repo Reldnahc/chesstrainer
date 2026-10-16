@@ -11,7 +11,7 @@ import { useReviewPlayback } from "./srsReview/useReviewPlayback";
 import { CommandError, useCommand } from "./useQuery";
 
 
-export default function ReviewScreen({
+export default function DueScreen({
   requested,
   requestedSession,
   focusSkill,

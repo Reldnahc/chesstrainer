@@ -1,7 +1,7 @@
 import {coachPersonality} from "../personality";
 import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const professorTacticalTemplates = authorTacticalWordings({
+export const gentleTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "{move} is played for a {motif}, which is in place as soon as the move is made.",
     played_possible: "{move} prepares a possible {motif}, though whether it arrives is up to the replies.",
@@ -18,7 +18,7 @@ export const professorTacticalTemplates = authorTacticalWordings({
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
  * Neither recognition nor a consecutive run says that these moves were good. */
-export const professorOpeningTemplates = {
+export const gentleOpeningTemplates = {
   "book-opening-entry-1": ["This move belongs to {opening}, a line the opening book recognizes."],
   "book-opening-entry-2": ["{opening} is where the opening book files this move."],
   "book-opening-entry-3": ["Here the game follows {opening}, so it's on familiar ground for now."],
@@ -32,7 +32,7 @@ export const professorOpeningTemplates = {
   "book-opening-follow-8": ["Still {opening}. Knowing the line tells us where the game is, which is a different thing from judging the move."],
 } as const;
 
-export const professor = coachPersonality({
+export const gentle = coachPersonality({
   version: "professor-4", maxCharacters: 320, maxClaims: 2,
   delivery: {pace: "measured", energy: "warm"},
   behavior: {general: "pattern-first", praise: "pattern-first", correction: "pattern-first", questionFrequency: "occasional", directness: 3, emotionalAmplitude: 2, humor: 1, jargon: 3, playerAddress: "occasional", sentenceLength: "connected", metaphor: "none", signature: "Name one principle, ground it in this position, then help the learner retain the connection."},
@@ -45,8 +45,8 @@ export const professor = coachPersonality({
     avoid: "Lecturing beyond two connected facts, talking down, repeated reassurance, principles not anchored to this position, and dog jokes.",
   },
   templates: {
-    ...professorTacticalTemplates,
-    ...professorOpeningTemplates,
+    ...gentleTacticalTemplates,
+    ...gentleOpeningTemplates,
     allowed_mate: [{observation: "A forced finish is best understood one forcing move at a time.", fact: "After this move, {opponent} can force checkmate. {reply}", takeaway: "Take the checks in order and find where the defense runs out."}],
     missed_mate: [
       {observation: "When a forced mate exists, it comes before every other idea.", fact: "With {best}, a forced checkmate was available, and this move gives it up.", takeaway: "Look at the checks first; that's where a finish usually begins."},

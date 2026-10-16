@@ -126,7 +126,7 @@ templates, claim/length budget and delivery metadata in the character's own file
 under `dialogue/characters/`, and register it once in `characters/index.ts`. Reuse the shared intent/projection/composition pipeline. Do not implement a
 second evidence-to-English generator in the character or audio code.
 
-Walter's `characters/storyteller.ts` and Rivet's `characters/robot.ts` are current
+Walter's `characters/classic.ts` and Rivet's `characters/robot.ts` are current
 examples. Every coach has one file in `characters/` holding its scoped tactical
 forms (`authorTacticalWordings`), its opening-sequence sentences and its
 personality, built with `coachPersonality()`, which gives every coach

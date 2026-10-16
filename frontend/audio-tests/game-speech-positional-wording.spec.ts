@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import type {Game} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {gameReaction} from "../src/coach/reactions";
 import {selectGameRecording, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
@@ -13,7 +13,7 @@ const games = {
   ...semanticFixtures<Record<string, Game>>("review_speech_policy_fixtures.py"),
   ...semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py"),
 };
-const coach = {id: "classic", personality: storyteller};
+const coach = {id: "classic", personality: classic};
 
 function recordings(game: Game) {
   const ply = game.frames.length - 1, frame = game.frames[ply], report = frame.report!;

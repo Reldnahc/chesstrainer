@@ -3,7 +3,7 @@ import {claim, makeIntent, type Claim, type TacticalPresentation} from "../src/d
 import {tacticalPresentation, tacticalScopes, type TacticalPresentationKey} from "../src/dialogue/tacticalTemplates";
 import {neutralTacticalTemplates} from "../src/dialogue/scopedTacticalWording";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {robot} from "../src/dialogue/characters/robot";
 import {capybara} from "../src/dialogue/characters/capybara";
 import {mushroom} from "../src/dialogue/characters/mushroom";
@@ -14,13 +14,13 @@ import {livingPawn} from "../src/dialogue/characters/livingPawn";
 import {raccoon} from "../src/dialogue/characters/raccoon";
 import {wizard} from "../src/dialogue/characters/wizard";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
-import {professor} from "../src/dialogue/characters/professor";
+import {gentle} from "../src/dialogue/characters/gentle";
 import {kitten} from "../src/dialogue/characters/kitten";
 import {puppy} from "../src/dialogue/characters/puppy";
-import {youngGirl} from "../src/dialogue/characters/youngGirl";
+import {girl} from "../src/dialogue/characters/girl";
 import {dragon} from "../src/dialogue/characters/dragon";
 import {collie} from "../src/dialogue/characters/collie";
-import {velvet} from "../src/dialogue/characters/velvet";
+import {black} from "../src/dialogue/characters/black";
 import {corgi} from "../src/dialogue/characters/corgi";
 import {unicorn} from "../src/dialogue/characters/unicorn";
 import {expert} from "../src/dialogue/characters/expert";
@@ -31,12 +31,12 @@ import {host} from "../src/dialogue/characters/host";
 import {analyst} from "../src/dialogue/characters/analyst";
 import {blonde} from "../src/dialogue/characters/blonde";
 import {spark} from "../src/dialogue/characters/spark";
-import {youngBoy} from "../src/dialogue/characters/youngBoy";
+import {boy} from "../src/dialogue/characters/boy";
 import {captain} from "../src/dialogue/characters/captain";
 import {factualParts, validWording} from "../src/dialogue/composition";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
 
-const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot},
+const coaches = [{id: "classic", personality: classic}, {id: "robot", personality: robot},
   {id: "capybara", personality: capybara}, {id: "mushroom", personality: mushroom}, {id: "ghost", personality: ghost},
   {id: "slime", personality: slime},
   {id: "alien", personality: alien},
@@ -44,11 +44,11 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
   {id: "wizard", personality: wizard},
   {id: "cat-tuxedo", personality: tuxedo},
   {id: "raccoon", personality: raccoon},
-  {id: "dog-gentle", personality: professor},
+  {id: "dog-gentle", personality: gentle},
   {id: "cat-kitten", personality: kitten},
   {id: "dragon", personality: dragon},
   {id: "dog-collie", personality: collie},
-  {id: "cat-black", personality: velvet},
+  {id: "cat-black", personality: black},
   {id: "dog-corgi", personality: corgi},
   {id: "unicorn", personality: unicorn},
   {id: "man-expert", personality: expert},
@@ -60,9 +60,9 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
   {id: "woman-blonde", personality: blonde},
   {id: "dog-puppy", personality: puppy},
   {id: "woman-spark", personality: spark},
-  {id: "human-boy", personality: youngBoy},
+  {id: "human-boy", personality: boy},
   {id: "woman-captain", personality: captain},
-  {id: "human-girl", personality: youngGirl}];
+  {id: "human-girl", personality: girl}];
 function item(role: "played" | "allowed" | "missed", timing: TacticalPresentation["timing"], effect: TacticalPresentation["effect"]): Claim {
   return {...claim(`tactic_${role}`, {move: "Nf3", best: "Ng5", opponent: "Black", motif: "pin", detail: "Original prose remains intact."},
     90, [{source: "stockfish", id: "search", field: "findings"}], ["event"]),

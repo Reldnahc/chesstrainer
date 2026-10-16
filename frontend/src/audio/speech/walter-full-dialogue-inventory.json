@@ -368,7 +368,7 @@
     },
     {
       "field": "recovered/accepted/explanation staging",
-      "source": "frontend/src/dialogue/characters/storyteller.ts:templates",
+      "source": "frontend/src/dialogue/characters/classic.ts:templates",
       "reason": "Optional observation/takeaway prose does not add a chess meaning; factual detail retains summary/frame script. Alternate delivery and fully verbatim complete-bubble permutations are not included."
     },
     {
@@ -1452,7 +1452,7 @@
       "text": "Settle into the position, then choose your move.",
       "sources": [
         "frontend/src/dialogue/practiceIntent.ts:practiceIntent",
-        "frontend/src/dialogue/characters/storyteller.ts:templates"
+        "frontend/src/dialogue/characters/classic.ts:templates"
       ],
       "trigger": "No authorized feedback and position.failed=false. No answer or evaluation hint.",
       "sourceBranches": [],
@@ -1466,7 +1466,7 @@
       "text": "That attempt falls short. Take another look at the position.",
       "sources": [
         "frontend/src/dialogue/practiceIntent.ts:practiceIntent",
-        "frontend/src/dialogue/characters/storyteller.ts:templates"
+        "frontend/src/dialogue/characters/classic.ts:templates"
       ],
       "trigger": "No feedback with position.failed=true, or authorized rejected feedback outside the automatic attempt/reply preview. This template ignores its optional detail slot.",
       "sourceBranches": [],
@@ -1480,7 +1480,7 @@
       "text": "No result came back for that attempt. You can return to the move and try again.",
       "sources": [
         "frontend/src/dialogue/practiceIntent.ts:practiceIntent",
-        "frontend/src/dialogue/characters/storyteller.ts:templates"
+        "frontend/src/dialogue/characters/classic.ts:templates"
       ],
       "trigger": "Current practice gradingError. Also suitable for the same opening-recall gradingError producer; count globally once.",
       "sourceBranches": [],
@@ -2688,7 +2688,7 @@
       "sources": [
         "frontend/src/dialogue/gameIntent.ts:31",
         "frontend/src/gameReview/PositionCoach.tsx:64",
-        "frontend/src/dialogue/characters/storyteller.ts:51",
+        "frontend/src/dialogue/characters/classic.ts:51",
         "frontend/src/dialogue/composition.ts:31"
       ],
       "group": "operational",
@@ -2714,7 +2714,7 @@
       ],
       "sources": [
         "frontend/src/dialogue/gameIntent.ts:32",
-        "frontend/src/dialogue/characters/storyteller.ts:52",
+        "frontend/src/dialogue/characters/classic.ts:52",
         "frontend/src/dialogue/composition.ts:54",
         "frontend/src/gameReview/PositionCoach.tsx:130"
       ],
@@ -2741,7 +2741,7 @@
       ],
       "sources": [
         "frontend/src/dialogue/gameIntent.ts:33",
-        "frontend/src/dialogue/characters/storyteller.ts:80"
+        "frontend/src/dialogue/characters/classic.ts:80"
       ],
       "group": "operational",
       "textSha256": "a32dfb11a33cf640b10641876043804ed5340e972bbf216327030ab98eb5a84e",
@@ -2766,7 +2766,7 @@
       ],
       "sources": [
         "frontend/src/dialogue/gameIntent.ts:34",
-        "frontend/src/dialogue/characters/storyteller.ts:80"
+        "frontend/src/dialogue/characters/classic.ts:80"
       ],
       "group": "operational",
       "textSha256": "6bcf77d03f28237cdf2a1b0c1c710f201bfcfcedf36b2946c3bee9663804f829",

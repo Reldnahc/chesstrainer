@@ -1,7 +1,7 @@
 import {coachPersonality} from "../personality";
 import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const youngGirlTacticalTemplates = authorTacticalWordings({
+export const girlTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Riddle answered: {move} unleashes a {motif} on the spot.",
     played_possible: "{move} plants the seed of a {motif}, if the replies cooperate.",
@@ -18,7 +18,7 @@ export const youngGirlTacticalTemplates = authorTacticalWordings({
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
  * Neither recognition nor a consecutive run says that these moves were good. */
-export const youngGirlOpeningTemplates = {
+export const girlOpeningTemplates = {
   "book-opening-entry-1": ["Opening detective mode: this one's {opening}."],
   "book-opening-entry-2": ["Spotted it, {opening}!"],
   "book-opening-entry-3": ["Circle the name: {opening}."],
@@ -32,7 +32,7 @@ export const youngGirlOpeningTemplates = {
   "book-opening-follow-8": ["Deep inside {opening} still. That's a map pin, not a score for the move."],
 } as const;
 
-export const youngGirl = coachPersonality({
+export const girl = coachPersonality({
   version: "young-girl-2", maxCharacters: 275, maxClaims: 2,
   delivery: {pace: "lively", energy: "bright"},
   behavior: {general: "question-first", praise: "observation-first", correction: "question-first", questionFrequency: "often", directness: 4, emotionalAmplitude: 4, humor: 3, jargon: 1, playerAddress: "occasional", sentenceLength: "mixed", metaphor: "none", signature: "Circle one hidden detail, ask the question it raises, then let the supported answer land."},
@@ -45,8 +45,8 @@ export const youngGirl = coachPersonality({
     avoid: "Cutesy language, fake sass, girl-genius stereotypes, questions with invented premises, other coaches' sayings, and emotion that depends on which side moved.",
   },
   templates: {
-    ...youngGirlTacticalTemplates,
-    ...youngGirlOpeningTemplates,
+    ...girlTacticalTemplates,
+    ...girlOpeningTemplates,
     allowed_mate: [
       {question: "Where can the king hide now?", observation: "Spotlight on the king's safety.", fact: "After this move, {opponent} has a mate it can force.", consequence: "{reply}"},
       {observation: "The king is the detail to circle.", fact: "{opponent} can now drive home a forced checkmate. {reply}", question: "Which earlier move kept the king safe?"},

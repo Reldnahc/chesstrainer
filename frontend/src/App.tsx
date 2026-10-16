@@ -12,11 +12,11 @@ import {
   Swords,
 } from "lucide-react";
 import { LAN_TOKEN_KEY, onAuthRequired } from "./api";
-import ReviewScreen from "./Review";
-import GamesScreen from "./GameReview";
-import SettingsScreen from "./Settings";
-import InsightsScreen from "./Weaknesses";
-import HomeScreen from "./Home";
+import DueScreen from "./DueScreen";
+import GamesScreen from "./GamesScreen";
+import SettingsScreen from "./SettingsScreen";
+import InsightsScreen from "./InsightsScreen";
+import HomeScreen from "./HomeScreen";
 import EvidenceDialog from "./EvidenceDialog";
 import DialogPresence from "./DialogPresence";
 import { gamesPath, pagePaths, useRoute, useScrollRestoration, type Screen as RouteScreen } from "./navigation";
@@ -200,7 +200,7 @@ function Screen({ screen, href, restoringScroll, onEvidence }: {
     case "home":
       return <HomeScreen />;
     case "due":
-      return <ReviewScreen key={href} focusSkill={screen.focusSkill} requested={screen.exercise}
+      return <DueScreen key={href} focusSkill={screen.focusSkill} requested={screen.exercise}
         requestedSession={screen.sessionId} onEvidence={onEvidence} />;
     case "study-home":
       return <StudyHome />;

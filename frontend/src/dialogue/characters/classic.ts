@@ -1,7 +1,7 @@
 import {coachPersonality} from "../personality";
 import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const storytellerTacticalTemplates = authorTacticalWordings({
+export const classicTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "After {move}, there is a {motif} to notice.",
     played_possible: "There is a {motif} to watch for after {move}, if the replies allow it.",
@@ -18,7 +18,7 @@ export const storytellerTacticalTemplates = authorTacticalWordings({
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
  * Neither recognition nor a consecutive run says that these moves were good. */
-export const storytellerOpeningTemplates = {
+export const classicOpeningTemplates = {
   "book-opening-entry-1": ["Familiar territory here: this move belongs to {opening}."],
   "book-opening-entry-2": ["We have an opening match for this move: {opening}."],
   "book-opening-entry-3": ["This move has a place in the opening record, under {opening}."],
@@ -32,7 +32,7 @@ export const storytellerOpeningTemplates = {
   "book-opening-follow-8": ["The next step is recognized as well, in {opening}."],
 } as const;
 
-export const storyteller = coachPersonality({
+export const classic = coachPersonality({
   version: "storyteller-6", maxCharacters: 320, maxClaims: 2,
   delivery: {pace: "steady", energy: "warm"},
   behavior: {general: "observation-first", praise: "observation-first", correction: "observation-first",
@@ -46,8 +46,8 @@ export const storyteller = coachPersonality({
     correction: "Describe the turn the game took, then offer a way to examine it.",
     avoid: "Fake profundity, a chapter metaphor every move, repetitive catchphrases, or pretending to know the player's thoughts."},
   templates: {
-    ...storytellerTacticalTemplates,
-    ...storytellerOpeningTemplates,
+    ...classicTacticalTemplates,
+    ...classicOpeningTemplates,
     allowed_mate: [{fact: "This is where the defense gives way: {opponent} can force checkmate.", consequence: "{reply}", takeaway: "Look back to the choice before the finish became forced."}],
     tactic_played: [{fact: "Look at the {motif} after {move}.", consequence: "{detail}"}, {fact: "The idea to examine after {move} is the {motif}.", consequence: "{detail}"}],
     cause_abandoned_defender: [{fact: "{move} is where the protection breaks: it moves the only unpinned defender of {side}'s {piece} on {square}.", consequence: "{opponent} can reply {reply}, capturing {side}'s {piece}."}],

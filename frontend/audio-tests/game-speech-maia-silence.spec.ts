@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import type {Game} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
-import {storyteller} from "../src/dialogue/characters/storyteller";
+import {classic} from "../src/dialogue/characters/classic";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
 import {selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
@@ -15,7 +15,7 @@ import {meanings} from "../src/audio/speech/meaningCatalog";
 // in the badge and its popup; the coach's line carries the objective facts, and
 // a sound move with nothing else to say gets the plain best or good line.
 const games = semanticFixtures<Record<string, Game>>("review_speech_combination_fixtures.py");
-const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
+const coaches = [{id: "classic", personality: classic}, {id: "robot", personality: robot}];
 // Positions with an objective fact and a Maia reading.
 const objectiveAndMaia: [string, string][] = [
   // Poorly graded first moves are Book moves, and the Book badge decides the line.

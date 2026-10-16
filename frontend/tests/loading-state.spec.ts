@@ -14,7 +14,7 @@ import { createRoot } from "react-dom/client";
 import { LoadingState, UnavailableState } from "/src/LoadState.tsx";
 import Button from "/src/Button.tsx";
 import ActionLink from "/src/ActionLink.tsx";
-import ReviewScreen from "/src/Review.tsx";
+import ReviewScreen from "/src/DueScreen.tsx";
 import GameWorkspace from "/src/gameReview/GameWorkspace.tsx";
 import EvidenceDialog from "/src/EvidenceDialog.tsx";
 import LessonPlayer from "/src/study/LessonPlayer.tsx";

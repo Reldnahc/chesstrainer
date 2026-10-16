@@ -1,7 +1,7 @@
 import {coachPersonality} from "../personality";
 import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const youngBoyTacticalTemplates = authorTacticalWordings({
+export const boyTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Ooh, look: as soon as {move} lands, there's a {motif}.",
     played_possible: "{move} gets a {motif} ready for later, as long as the replies let it happen.",
@@ -18,7 +18,7 @@ export const youngBoyTacticalTemplates = authorTacticalWordings({
 
 /** Whole authored sentences for the shared recognition/sequence meanings.
  * Neither recognition nor a consecutive run says that these moves were good. */
-export const youngBoyOpeningTemplates = {
+export const boyOpeningTemplates = {
   "book-opening-entry-1": ["And now the game is in {opening}."],
   "book-opening-entry-2": ["This takes the game into {opening} territory."],
   "book-opening-entry-3": ["Ooh, the opening book knows this as {opening}."],
@@ -32,7 +32,7 @@ export const youngBoyOpeningTemplates = {
   "book-opening-follow-8": ["More {opening}. That's just where the game is, not a score for the move."],
 } as const;
 
-export const youngBoy = coachPersonality({
+export const boy = coachPersonality({
   version: "young-boy-2", maxCharacters: 275, maxClaims: 2,
   delivery: { pace: "lively", energy: "bright" },
   behavior: {
@@ -50,8 +50,8 @@ export const youngBoy = coachPersonality({
     avoid: "Baby talk, prodigy stereotypes, nonstop exclamation marks, pretending to know the player's thoughts, cheering or alarm that depends on which side moved, other coaches' sayings, and any naturalness or difficulty claim the human-move model doesn't support.",
   },
   templates: {
-    ...youngBoyTacticalTemplates,
-    ...youngBoyOpeningTemplates,
+    ...boyTacticalTemplates,
+    ...boyOpeningTemplates,
     allowed_mate: [{ reaction: "Look at the king.", fact: "From here on, {opponent} can deliver a forced mate.", consequence: "{reply}", question: "Which squares does the king still have after that reply?" }],
     missed_mate: [{ reaction: "Oh, there was a mate!", fact: "{best} forced checkmate, and this move goes a different direction." }],
     tactic_played: [{ reaction: "Ooh, look at this!", fact: "Keep following the searched line after {move}, and out pops a {motif}.", consequence: "{detail}" }],
