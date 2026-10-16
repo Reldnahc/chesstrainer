@@ -17,6 +17,7 @@ from trainer.classification_stages import (
     line_rules,
     previous_move,
 )
+from trainer.config import Settings
 from trainer.continuations import replay, settled_delta
 from trainer.errors import InvalidInput
 from trainer.explanation_types import replay_line
@@ -284,9 +285,17 @@ def move_frames(board, moves, reports, *, result=None, extra=None):
     return frames
 
 
-# The deeper search that settles a long mate one search saw and the played
-# move's did not (the review refinement's own default limits).
-MATE_HORIZON_LIMITS = SearchLimits(depth=22, time=2.0)
+def mate_horizon_limits(settings=None):
+    """The deeper search that settles a long mate one search saw and the played
+    move's did not: the review refinement's limits, from the host's settings or
+    their defaults, so the two never drift apart."""
+
+    def value(name):
+        return getattr(settings, name) if settings else Settings.model_fields[name].default
+
+    return SearchLimits(
+        depth=value("review_refinement_depth"), time=value("review_refinement_time")
+    )
 
 
 def root_comparison(engine, board, move, limits=None):
@@ -357,7 +366,8 @@ def reread_lines(report, board, parameters=None):
     }
 
 
-def analyze_move(engine, board, move, previous_score=None, *, parameters=None):
+def analyze_move(engine, board, move, previous_score=None, *, parameters=None, mate_limits=None):
+    mate_limits = mate_limits or mate_horizon_limits()
     before, candidates, actual, actual_id = root_comparison(engine, board, move)
     if mated_beyond_horizon(candidates[0].score, actual.score):
         # Either the played move reads mated while the best defence reads only a
@@ -366,16 +376,14 @@ def analyze_move(engine, board, move, previous_score=None, *, parameters=None):
         # searched deeper at one limit, so a move that only hastens an unavoidable
         # mate is not "allows mate", and a faster-mated move whose search stopped
         # short of its mate is not promoted over the best defence.
-        before, candidates, actual, actual_id = root_comparison(
-            engine, board, move, MATE_HORIZON_LIMITS
-        )
+        before, candidates, actual, actual_id = root_comparison(engine, board, move, mate_limits)
     best = candidates[0]
     if best.score.outcome() == 1 and mate_horizon(best.score, actual.score):
         # A move that keeps a mate, however long, is no Miss; one that really
         # gives it up for a big lead still is. Searching it deeper tells them apart.
         played = engine.analyze(
             board,
-            SearchProfile.explicit(MATE_HORIZON_LIMITS),
+            SearchProfile.explicit(mate_limits),
             root_moves=[move.uci()],
             multipv=1,
         )
@@ -592,6 +600,7 @@ def review_move(
     fallback_rating,
     previous_score=None,
     parameters=None,
+    mate_limits=None,
 ):
     """One move's saved review evidence: the engine report with its Maia evidence.
 
@@ -609,7 +618,9 @@ def review_move(
         result = engine.analyze(previous, DEEP, multipv=2)
         opponent_best = Score.model_validate(result.candidates[0]["score"])
         previous_score = opponent_best.negate()
-    report = analyze_move(engine, board, move, previous_score, parameters=parameters)
+    report = analyze_move(
+        engine, board, move, previous_score, parameters=parameters, mate_limits=mate_limits
+    )
     if opponent_best is not None:
         # Whether the opponent's move was itself a Mistake or worse, by the same
         # threshold saved reviews link, so a variation move can be the capitalizing

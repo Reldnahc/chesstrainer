@@ -71,11 +71,13 @@ play, plies 8 to 70), with Stockfish at depth 13 scoring every legal move:
 | Stockfish Skill Level 0 | 56 | 47% | 5% |
 
 Maia's rating dial changes strength smoothly and monotonically across the whole
-range. Stockfish at its weakest plays about as accurately as Maia at 1800 to
-2000, and gets there by playing nearly half of its moves perfectly and then
-dropping a piece: the shape users complain about on every weakened-engine bot.
-A weighted average of a Maia policy and engine scores reproduces that shape, so
-the design uses the engine as a veto, never as a blend.
+range. Stockfish at UCI_Elo 1320, its minimum, is about as accurate on average as Maia at 1800 to
+2000, but in a shape no human player has: it finds the best move less often than
+Maia at 1000 (43%) yet loses 300 cp or more least often of all (3%), so it is
+weak through many small, unnatural inaccuracies rather than the occasional real
+mistakes people make at a given level. A weighted average of a Maia policy and
+engine scores carries that engine shape into the bot's moves, so the design uses
+the engine as a veto, never as a blend.
 
 ### Reply timing
 
