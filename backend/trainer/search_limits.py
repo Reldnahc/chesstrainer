@@ -1,7 +1,7 @@
 """Search profiles and explicit limits; engine identity and caching remain in Stockfish."""
 
 from dataclasses import dataclass
-from typing import Any, Literal
+from typing import Any, Literal, get_args
 
 from pydantic import Field
 
@@ -18,6 +18,9 @@ class SearchLimits(Contract):
     nodes: int | None = Field(default=None, ge=1)
 
 
+ProfileKind = Literal["triage", "deep", "probe", "reference", "explicit"]
+
+
 @dataclass(frozen=True)
 class SearchProfile:
     """Where one search's limits come from, as one whole choice.
@@ -27,12 +30,14 @@ class SearchProfile:
     against its settings in ``engine.search_config``.
     """
 
-    kind: Literal["triage", "deep", "probe", "reference", "explicit"]
+    kind: ProfileKind
     # The saved analysis whose limits a "reference" search reuses.
     reference: Any = None
     limits: SearchLimits | None = None
 
     def __post_init__(self):
+        if self.kind not in get_args(ProfileKind):
+            raise ValueError(f"Unknown search profile {self.kind!r}")
         if (self.reference is not None) != (self.kind == "reference"):
             raise ValueError("Only a reference profile carries a reference analysis")
         if (self.limits is not None) != (self.kind == "explicit"):
@@ -45,6 +50,7 @@ class SearchProfile:
 
     @classmethod
     def explicit(cls, limits: SearchLimits):
+        """Search at limits the caller chose, such as a refinement's or puzzle mining's."""
         return cls("explicit", limits=limits)
 
     @property

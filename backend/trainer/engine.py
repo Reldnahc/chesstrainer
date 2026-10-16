@@ -82,7 +82,9 @@ def profile_limits(settings, profile):
             "time": settings.classification_probe_time,
             "nodes": None,
         }
-    return limits | profile.limits.model_dump()
+    if profile.kind == "explicit":
+        return limits | profile.limits.model_dump()
+    raise ValueError(f"Unknown search profile {profile.kind!r}")
 
 
 def search_config(settings, binary_hash, profile=TRIAGE, *, root_moves=None, multipv=None):

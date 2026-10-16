@@ -3,7 +3,7 @@
 from trainer.chess_core import digest, engine_context
 from trainer.engine import EngineReferenceMismatch
 from trainer.models import EngineAnalysis, ReviewRefinement
-from trainer.search_limits import EngineCancelled, SearchLimits, SearchProfile
+from trainer.search_limits import TRIAGE, EngineCancelled, SearchLimits, SearchProfile
 
 
 class QueryBudgetReached(RuntimeError):
@@ -15,7 +15,7 @@ class RefinementEngine:
         self.native, self.task, self.sessions, self.cancelled = native, task, sessions, cancelled
         self.queries = list(task.queries)
 
-    def analyze(self, board, profile=None, *, root_moves=None, multipv=None):
+    def analyze(self, board, profile=TRIAGE, *, root_moves=None, multipv=None):
         # Every refinement question runs at the task's own deeper limits, whatever
         # profile the shared move analysis asks for.
         if self.cancelled():

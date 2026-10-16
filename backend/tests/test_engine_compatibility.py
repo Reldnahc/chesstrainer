@@ -85,6 +85,7 @@ def test_search_config_resolves_one_profile(settings):
         {"kind": "deep", "reference": reference},
         {"kind": "reference"},
         {"kind": "explicit"},
+        {"kind": "Deep"},
     ):
         with pytest.raises(ValueError):
             SearchProfile(**clash)
