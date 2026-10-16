@@ -27,6 +27,7 @@ from trainer.policy import MovePolicy
 from trainer.practice import require_focus
 from trainer.retirement import require_active_review, retire_if_ready
 from trainer.scheduling import behavior_rating, card_phase, is_lapse
+from trainer.search_limits import SearchProfile
 
 log = logging.getLogger(__name__)
 
@@ -388,7 +389,10 @@ def answer_search(db, session_id, uci):
 def search_answer(engine, search):
     """Grade an unseen answer at the original search's limits; returns ExerciseAnswer fields."""
     played = engine.analyze(
-        search.board, deep=True, root_moves=[search.uci], multipv=1, reference=search.original
+        search.board,
+        SearchProfile.extending(search.original),
+        root_moves=[search.uci],
+        multipv=1,
     )
     best = Candidate.model_validate(search.original.candidates[0])
     actual = Candidate.model_validate(played.candidates[0])

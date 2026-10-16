@@ -36,7 +36,7 @@ from trainer.review_scores import (
     is_poor,
     strongest_alternative,
 )
-from trainer.search_limits import SearchLimits
+from trainer.search_limits import DEEP, SearchLimits, SearchProfile
 
 VERSION = "game-review-1"
 
@@ -252,18 +252,13 @@ MATE_HORIZON_LIMITS = SearchLimits(depth=22, time=2.0)
 
 def root_comparison(engine, board, move, limits=None):
     """The root search, its candidates, and the played move's candidate and search."""
-    before = engine.analyze(board, deep=True, multipv=2, **({"limits": limits} if limits else {}))
+    profile = SearchProfile.explicit(limits) if limits else DEEP
+    before = engine.analyze(board, profile, multipv=2)
     candidates = [Candidate.model_validate(c) for c in before.candidates]
     actual = next((c for c in candidates if c.uci == move.uci()), None)
     actual_id = before.id
     if actual is None:
-        played = engine.analyze(
-            board,
-            deep=True,
-            root_moves=[move.uci()],
-            multipv=1,
-            **({"limits": limits} if limits else {}),
-        )
+        played = engine.analyze(board, profile, root_moves=[move.uci()], multipv=1)
         actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
     return before, candidates, actual, actual_id
 
@@ -294,7 +289,10 @@ def analyze_move(engine, board, move, previous_score=None):
         # A move that keeps a mate, however long, is no Miss; one that really
         # gives it up for a big lead still is. Searching it deeper tells them apart.
         played = engine.analyze(
-            board, deep=True, root_moves=[move.uci()], multipv=1, limits=MATE_HORIZON_LIMITS
+            board,
+            SearchProfile.explicit(MATE_HORIZON_LIMITS),
+            root_moves=[move.uci()],
+            multipv=1,
         )
         actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
     loss = evaluation_loss(best.score, actual.score)
@@ -334,7 +332,7 @@ def analyze_move(engine, board, move, previous_score=None):
                 if after.is_capture(m) and is_sacrifice_offer(board, move, m)
             ]
             for capture in captures[:2]:
-                tested = engine.analyze(after, deep=True, root_moves=[capture.uci()], multipv=1)
+                tested = engine.analyze(after, DEEP, root_moves=[capture.uci()], multipv=1)
                 response = Candidate.model_validate(tested.candidates[0])
                 if numeric(response.score.negate()) >= -50:
                     sacrifice = {
@@ -513,7 +511,7 @@ def review_move(
     if previous_score is None and board.move_stack:
         previous = board.copy(stack=True)
         previous.pop()
-        result = engine.analyze(previous, deep=True, multipv=2)
+        result = engine.analyze(previous, DEEP, multipv=2)
         previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
     report = analyze_move(engine, board, move, previous_score)
     report["human"] = human_models.evidence(

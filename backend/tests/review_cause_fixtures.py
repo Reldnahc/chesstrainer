@@ -31,7 +31,7 @@ def cause_report(skill, black=False):
     for candidate in [*payload["best_candidates"], payload["played_candidate"]]:
         candidate["depth"] = 16
 
-    def analyze(_board, **options):
+    def analyze(_board, _profile=None, **options):
         actual = bool(options.get("root_moves"))
         return SimpleNamespace(
             id="played-evidence" if actual else "root-evidence",

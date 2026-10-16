@@ -117,7 +117,7 @@ class FakeEngine:
     def close(self):
         pass
 
-    def analyze(self, board, deep=False, root_moves=None, multipv=None, **_):
+    def analyze(self, board, _profile=None, root_moves=None, multipv=None, **_):
         fen4 = " ".join(board.fen().split()[:4])
         roots = tuple(root_moves or ())
         lines = self.answers[fen4]

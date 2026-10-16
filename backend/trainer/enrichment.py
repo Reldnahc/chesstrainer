@@ -21,6 +21,7 @@ from trainer.models import (
     Decision,
     Game,
 )
+from trainer.search_limits import PROBE
 
 log = logging.getLogger(__name__)
 
@@ -126,12 +127,10 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             "Stockfish or probe settings changed since this job was planned. "
             "Start a new Deepen unclear positions job; completed evidence is retained."
         )
-    before = engine.analyze(board, deep=True, multipv=1, classification_probe=True)
+    before = engine.analyze(board, PROBE, multipv=1)
     if cancelled():
         return False
-    actual = engine.analyze(
-        board, deep=True, root_moves=[actual_uci], multipv=1, classification_probe=True
-    )
+    actual = engine.analyze(board, PROBE, root_moves=[actual_uci], multipv=1)
     if cancelled():
         return False
     probes = []
@@ -161,7 +160,7 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             or boards[-1].is_game_over(claim_draw=True)
         ):
             continue
-        tail = engine.analyze(boards[-1], multipv=1, classification_probe=True)
+        tail = engine.analyze(boards[-1], PROBE, multipv=1)
         queries += 1
         at_ply = len(candidate.pv)
         key = digest({"kind": "tail", "root": root.id, "at_ply": at_ply})
@@ -192,10 +191,7 @@ def enrich_decision(sessions, task, engine, mutation_lock, cancelled):
             if queries >= settings.classification_probe_queries:
                 break
             test = engine.analyze(
-                boards[request.at_ply],
-                multipv=1,
-                root_moves=request.root_moves,
-                classification_probe=True,
+                boards[request.at_ply], PROBE, multipv=1, root_moves=request.root_moves
             )
             queries += 1
             probes.append(probe_record(request.kind, root.id, request.at_ply, request.key, test))

@@ -50,6 +50,7 @@ from trainer.review_intelligence.history import (
 )
 from trainer.review_intelligence.presentation import presented_review
 from trainer.review_reports import load_accuracy_scores
+from trainer.search_limits import DEEP
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -368,7 +369,7 @@ def create_router(*, settings):
             if not board.move_stack:
                 if board.is_game_over():
                     return {"report": None, "score": None, "best_move": None}
-                result = engine.analyze(board, deep=True, multipv=2)
+                result = engine.analyze(board, DEEP, multipv=2)
                 best = result.candidates[0]
                 score = Score.model_validate(best["score"])
                 return {

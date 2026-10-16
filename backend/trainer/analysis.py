@@ -12,6 +12,7 @@ from trainer.models import (
 )
 from trainer.policy import MovePolicy
 from trainer.review_reports import saved_report
+from trainer.search_limits import DEEP
 
 
 def analyze_decision(db, engine, settings, game, ply, board, move):
@@ -114,7 +115,7 @@ def reviewed_searches(db, engine, board, move, report):
         # played move first, so that candidate becomes its own restricted view of
         # the search; a new search at other limits would compare two depths.
         played = restricted_view(db, played, move.uci()) or engine().analyze(
-            board, deep=True, root_moves=[move.uci()], multipv=1
+            board, DEEP, root_moves=[move.uci()], multipv=1
         )
     return before, played, True
 
@@ -158,6 +159,6 @@ def triaged_searches(engine, settings, board, move):
         or (loss.cp is not None and loss.cp >= settings.mistake_threshold_cp * 0.7)
     )
     if suspicious:
-        before = engine.analyze(board, deep=True)
-        played = engine.analyze(board, deep=True, root_moves=[move.uci()], multipv=1)
+        before = engine.analyze(board, DEEP)
+        played = engine.analyze(board, DEEP, root_moves=[move.uci()], multipv=1)
     return before, played, suspicious

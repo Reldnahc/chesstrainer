@@ -7,6 +7,7 @@ from trainer.continuations import extended_line, replay
 from trainer.defensive_probes import hypotheses, verify_defense
 from trainer.engine import Stockfish
 from trainer.local_classifier import LocalClassifier
+from trainer.search_limits import PROBE
 
 PARAMETERS = LocalClassifier().parameters
 CASES = [
@@ -174,18 +175,13 @@ def test_native_defensive_searches_cache_and_preserve_perspective(
     boards, root, request, probe = prepared(case)
     engine = Stockfish(settings, sessions)
     try:
-        reference = engine.analyze(
-            boards[0], root_moves=[root.uci], multipv=1, classification_probe=True
-        )
+        reference = engine.analyze(boards[0], PROBE, root_moves=[root.uci], multipv=1)
         # Keep the geometrical fixture line; scores and the tested branch are native.
         root = root.model_copy(
             update={"score": Candidate.model_validate(reference.candidates[0]).score}
         )
         result = engine.analyze(
-            boards[request.at_ply],
-            root_moves=request.root_moves,
-            multipv=1,
-            classification_probe=True,
+            boards[request.at_ply], PROBE, root_moves=request.root_moves, multipv=1
         )
         probe.update(
             analysis_id=result.id,
@@ -199,10 +195,7 @@ def test_native_defensive_searches_cache_and_preserve_perspective(
         misses = engine.misses
         assert (
             engine.analyze(
-                boards[request.at_ply],
-                root_moves=request.root_moves,
-                multipv=1,
-                classification_probe=True,
+                boards[request.at_ply], PROBE, root_moves=request.root_moves, multipv=1
             ).id
             == result.id
         )
