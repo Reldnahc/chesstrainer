@@ -176,15 +176,26 @@ def classify(report, rating):
     return "Good", "A sound move that keeps the important opportunities intact."
 
 
+# Bump when the way a saved line is read or shown changes, so saved lines are
+# read again: 2 is the shared horizon with lines shown to where they settle.
+LINE_READING = 2
+
+
+def without_reading(horizon):
+    """Line parameters without the reading version a saved horizon carries."""
+    return {key: value for key, value in horizon.items() if key != "reading"}
+
+
 def line_evidence(board, candidate, analysis_id, first, previous=None, parameters=None):
     """One line's frames and findings, read to the shared horizon (``line_rules``).
 
     The frames shown stop where the line settles (or at its last scanned ply),
     where every finding and the material claim rest, or at the mate of a forced
     mate, so the line shown and the claims about it look equally far.
-    ``horizon`` records the parameters, so a later re-read uses the same ones.
+    ``horizon`` records the parameters and the reading rule's version, so a line
+    read another way is read again.
     """
-    parameters = parameters or line_parameters()
+    parameters = without_reading(parameters or line_parameters())
     rules = line_rules(parameters, annotate=True)
     boards = replay(board, candidate)[: rules.shown_plies + 1]
     delta, end = settled_delta(
@@ -208,7 +219,7 @@ def line_evidence(board, candidate, analysis_id, first, previous=None, parameter
         "findings": [f.model_dump() for f in findings],
         "material_delta": delta,
         "settled": delta is not None,
-        "horizon": parameters,
+        "horizon": parameters | {"reading": LINE_READING},
     }
 
 
@@ -306,9 +317,9 @@ def lines_current(report, parameters=None):
 
     A report without lines (a bare engine-facts fixture) has nothing to re-read.
     """
-    parameters = parameters or line_parameters()
+    horizon = without_reading(parameters or line_parameters()) | {"reading": LINE_READING}
     return all(
-        report.get(key) is None or report[key].get("horizon") == parameters
+        report.get(key) is None or report[key].get("horizon") == horizon
         for key in ("actual_line", "best_line")
     )
 

@@ -48,7 +48,7 @@ def test_review_explanation_and_classifier_settle_a_line_at_the_same_ply(seed):
     # the findings rest there, and nothing past it is shown.
     assert len(review["frames"]) - 1 == classifier.end_ply == explanation[1]
     assert all(max(f["plies"]) <= classifier.end_ply for f in review["findings"])
-    assert review["horizon"] == parameters
+    assert review["horizon"] == parameters | {"reading": game_review.LINE_READING}
 
 
 def test_a_configured_horizon_reaches_the_review_and_is_recorded():
@@ -56,7 +56,7 @@ def test_a_configured_horizon_reaches_the_review_and_is_recorded():
     parameters = line_parameters() | {"max_plies": 6, "extension_plies": 4}
     line = game_review.line_evidence(board, candidate, "a", 1, parameters=parameters)
     assert 6 <= len(line["frames"]) - 1 <= 10
-    assert line["horizon"] == parameters
+    assert game_review.without_reading(line["horizon"]) == parameters
     report = {"actual_line": line, "best_line": line}
     assert game_review.lines_current(report, parameters)
     assert not game_review.lines_current(report)
@@ -144,4 +144,4 @@ def test_play_renders_old_rows_to_the_configured_horizon():
     )
     parameters = line_parameters() | {"max_plies": 4, "extension_plies": 0}
     rendered = rendered_reports(play, parsed_for(play, "Learner"), parameters)
-    assert all(report["actual_line"]["horizon"] == parameters for report in rendered.values())
+    assert all(game_review.lines_current(report, parameters) for report in rendered.values())

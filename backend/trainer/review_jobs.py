@@ -39,6 +39,10 @@ def run_baseline(runner, job_id, engine_override=None):
             task.report = game_review.reread_lines(
                 task.report, board_before(parsed, task.ply), parameters
             )
+            # The review shows this report, so its row's revision moves for pollers.
+            row = db.get(GameReviewMove, (game.id, task.ply))
+            if row is not None:
+                touch_report(db, row)
         db.commit()
     missing = len(moves) - len(saved)
     workers = (
