@@ -19,6 +19,8 @@ from pathlib import Path
 from trainer.cache_maintenance import sweep_shared_caches
 from trainer.cascade import cascade, unlinked
 from trainer.config import Settings
+from trainer.db import database as database_engine
+from trainer.db import migrations_pending
 from trainer.models import Base
 
 # The removal starts from these rows and takes everything that refers to them,
@@ -54,6 +56,15 @@ def _collect(db, removed):
 
 def clear_games(database: Path, username: str | None = None, apply: bool = False):
     """Return {table: rows removed} (or that would be removed, when apply is False)."""
+    engine, _ = database_engine(database, pooled=False)
+    try:
+        if migrations_pending(engine):
+            # The cascade is read from this version's models.
+            raise ValueError(
+                "The database is behind this version; start the server once to upgrade it"
+            )
+    finally:
+        engine.dispose()
     with closing(sqlite3.connect(database, timeout=5, isolation_level=None)) as db:
         db.execute("PRAGMA foreign_keys=ON")
         owner = "1=1"

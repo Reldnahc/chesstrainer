@@ -4,6 +4,7 @@ import sqlite3
 from pathlib import Path
 
 import chess
+import pytest
 from sqlalchemy import select
 from trainer.accounts import Accounts
 from trainer.chess_core import Candidate, Score
@@ -247,3 +248,15 @@ def test_clearing_games_takes_exactly_what_refers_to_them():
     assert [(table, column) for table, column, _ in unlinked(plan)] == [
         ("play_games", "saved_game_id")
     ]
+
+
+@pytest.mark.pristine_database
+def test_clear_games_refuses_a_database_behind_the_code(settings):
+    from test_migrations import upgrade_to
+    from trainer.db import database
+
+    engine, _ = database(settings.database_path)
+    upgrade_to(engine, "9d2f6b1e4c83")
+    engine.dispose()
+    with pytest.raises(ValueError, match="behind this version"):
+        _script().clear_games(settings.database_path, apply=True)

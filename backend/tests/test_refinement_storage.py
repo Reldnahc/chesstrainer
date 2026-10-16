@@ -604,3 +604,44 @@ def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_a
         db.commit()
         assert resync_game_cards(db) == (0 if eligible else 1)
         assert db.get(SRSState, exercise.id).eligible is eligible
+
+
+def test_only_the_refinement_the_review_shows_is_reread_and_an_empty_one_is_not_shown(sessions):
+    from trainer.review_reports import stale_adopted
+
+    baseline = {"before_analysis_id": "base", "played_analysis_id": "played", "depth": 16}
+    old_lines = {"actual_line": {"horizon": "an older horizon"}, "depth": 20}
+    with sessions() as db:
+        game = Game(fingerprint="shown", white="A", black="B", learner_color=True, pgn="*")
+        db.add(game)
+        db.flush()
+
+        def refinement(key, report):
+            task = ReviewRefinement(
+                game_id=game.id,
+                ply=1,
+                task_key=key,
+                triggers=[],
+                adopted=True,
+                status="completed",
+                report=report,
+                config={"baseline_ids": ["base", "played"]},
+            )
+            db.add(task)
+            db.flush()
+            return task
+
+        superseded = refinement("superseded", old_lines)
+        newer = refinement("newer", old_lines | {"depth": 24})
+        move = GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=newer.id)
+        db.add(move)
+        db.flush()
+        # Both are adopted and stale, but the review shows only the newer one.
+        assert [task.id for task in stale_adopted(db, game.id, None)] == [newer.id]
+        assert superseded.id != newer.id
+
+        empty = refinement("empty", {})
+        move.refinement_id = empty.id
+        db.flush()
+        assert reports_for(db, game.id)[0][1]["depth"] == 16
+        assert stale_adopted(db, game.id, None) == []

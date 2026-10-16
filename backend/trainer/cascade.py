@@ -23,7 +23,7 @@ UNLINKED = frozenset({("play_games", "saved_game_id")})
 
 
 def owned_tables():
-    """Every table with an owner column, children before parents, users excluded."""
+    """Every table with an owner column, users excluded (callers defer foreign keys)."""
     return [
         table
         for table in reversed(Base.metadata.sorted_tables)

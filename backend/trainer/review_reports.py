@@ -18,19 +18,15 @@ def touch_report(db, row):
 
 
 def stale_adopted(db, game_id, parameters):
-    """Adopted refinement reports, which the review shows over the baseline,
-    whose lines were read to another horizon than ``parameters``."""
-    return [
-        task
-        for task in db.scalars(
-            select(ReviewRefinement).where(
-                ReviewRefinement.game_id == game_id,
-                ReviewRefinement.adopted.is_(True),
-                ReviewRefinement.status == "completed",
-            )
-        )
-        if task.report and not lines_current(task.report, parameters)
-    ]
+    """Refinement reports the review shows over the baseline (``adopted``), whose
+    lines were read to another horizon than ``parameters``. A superseded adopted
+    refinement is not shown, so it is not reread."""
+    shown = db.scalars(
+        select(ReviewRefinement)
+        .join(GameReviewMove, GameReviewMove.refinement_id == ReviewRefinement.id)
+        .where(GameReviewMove.game_id == game_id, adopted())
+    )
+    return [task for task in shown if not lines_current(task.report, parameters)]
 
 
 def _belongs():

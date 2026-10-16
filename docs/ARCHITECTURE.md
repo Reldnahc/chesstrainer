@@ -44,6 +44,7 @@ saved game then queues its own analysis job. See
 | accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`, `open-signups`, `close-signups`) |
 | site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
+| cascade.py | What a delete takes with it, read from the models' foreign keys: an account's tables, and everything that refers to removed games (`scripts/clear_games.py`) |
 | job_kinds.py | Job kinds and statuses as enums, the values the `analysis_jobs` CHECK constraints accept |
 | job_lifecycle.py | The fetch lane and every job state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
 | jobs.py / job_queue.py / job_execution.py / job_context.py | Bounded host workers, scheduling metadata, account-bound job execution dispatched by kind, and the one context every job step receives |

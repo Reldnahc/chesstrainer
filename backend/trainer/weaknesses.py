@@ -2,7 +2,7 @@
 
 from collections import defaultdict
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS
 from trainer.models import Decision, Exercise, Game, Review, ReviewSession, SkillEvidence, now
@@ -91,13 +91,33 @@ def recurrence(pairs, minimum):
     )
 
 
-def _for_decisions(db, statement, column, decision_ids, newest):
-    """``statement`` restricted to ``decision_ids`` in chunks (SQLite bounds the number
-    of parameters), newest first by ``newest``."""
+def _newest_per_decision(db, entity, started, criteria, decision_ids):
+    """(decision id, row) for each decision's newest ``HISTORY`` rows of ``entity``,
+    newest first overall. A skill's newest ``HISTORY`` rows are always among its
+    decisions' newest, so no more are read, however long the history. The ids go
+    in chunks of 500, SQLite's bound on parameters."""
     rows = []
     for start in range(0, len(decision_ids), 500):
-        rows += db.execute(statement.where(column.in_(decision_ids[start : start + 500]))).all()
-    return sorted(rows, key=lambda row: newest(row[1]), reverse=True)
+        ranked = (
+            select(
+                entity.id,
+                Exercise.decision_id,
+                func.row_number()
+                .over(
+                    partition_by=Exercise.decision_id, order_by=(started.desc(), entity.id.desc())
+                )
+                .label("rank"),
+            )
+            .join(Exercise)
+            .where(*criteria, Exercise.decision_id.in_(decision_ids[start : start + 500]))
+            .subquery()
+        )
+        rows += db.execute(
+            select(ranked.c.decision_id, entity)
+            .join(ranked, ranked.c.id == entity.id)
+            .where(ranked.c.rank <= HISTORY)
+        ).all()
+    return sorted(rows, key=lambda row: (getattr(row[1], started.key), row[1].id), reverse=True)
 
 
 def _latest(rows, key, limit=None):
@@ -121,28 +141,18 @@ def priorities(db, settings):
             skills_of[decision.id].add(skill)
     decision_ids = list(skills_of)
     reviews = _latest(
-        _for_decisions(
-            db,
-            select(Exercise.decision_id, Review).join(Exercise),
-            Exercise.decision_id,
-            decision_ids,
-            lambda review: (review.created_at, review.id),
-        ),
+        _newest_per_decision(db, Review, Review.created_at, (), decision_ids),
         skills_of.__getitem__,
         HISTORY,
     )
     lessons = _latest(
-        _for_decisions(
+        _newest_per_decision(
             db,
-            select(Exercise.decision_id, ReviewSession)
-            .join(Exercise)
-            .where(
-                ReviewSession.mode == "lesson",  # Archived lesson attempts.
-                ReviewSession.completed.is_(True),
-            ),
-            Exercise.decision_id,
+            ReviewSession,
+            ReviewSession.started_at,
+            # Archived lesson attempts.
+            (ReviewSession.mode == "lesson", ReviewSession.completed.is_(True)),
             decision_ids,
-            lambda session: (session.started_at, session.id),
         ),
         skills_of.__getitem__,
         HISTORY,
