@@ -281,16 +281,25 @@ const navigationEvent = "fieldwork:navigate";
 const scrollKey = "fieldworkScroll";
 const entryKey = "fieldworkEntry";
 const indexKey = "fieldworkIndex";
+const runKey = "fieldworkRun";
 type ScrollPosition = { x: number; y: number };
 type Location = { route: Route; scroll: ScrollPosition | null };
 const scrollPositions = new Map<string, ScrollPosition>();
 
 
 const historyState = (): Record<string, unknown> => (window.history.state ?? {}) as Record<string, unknown>;
-const entryIndex = (state: unknown): number | null => {
-  const value = (state as Record<string, unknown> | null)?.[indexKey];
-  return typeof value === "number" ? value : null;
+// Where an entry sits in session history: its number within a run of entries
+// numbered one after another. Numbers compare only within one run; entries numbered
+// before runs existed share the run "".
+type Place = { run: string; index: number };
+const entryPlace = (state: unknown): Place | null => {
+  const record = state as Record<string, unknown> | null;
+  const index = record?.[indexKey];
+  if (typeof index !== "number") return null;
+  const run = record?.[runKey];
+  return { run: typeof run === "string" ? run : "", index };
 };
+const placeState = (place: Place) => ({ [indexKey]: place.index, [runKey]: place.run });
 
 function readLocation(scroll: ScrollPosition | null, restoringScroll: boolean): Location {
   const url = new URL(window.location.href);
@@ -314,17 +323,30 @@ function initialLocation(): Location {
 }
 
 let location: Location | null = null;
-let currentIndex = 0;
+// Where the current entry sits in session history.
+let current: Place = { run: "", index: 0 };
 // The browser's own position in session history, where the Navigation API offers it.
 const browserIndex = () => (window as { navigation?: { currentEntry?: { index: number } | null } }).navigation?.currentEntry?.index;
 let lastBrowserIndex: number | undefined;
-// The run of numbered entries this document has reached, and whether it has added an
-// entry (which drops every entry ahead). Without the Navigation API these tell which
-// side an entry from before numbering lies on when the step leaves the run at one end.
-let lowestIndex = 0;
-let highestIndex = 0;
-let added = false;
+// The current entry's state and address, put back as a new entry when a leave guard
+// refuses a step whose distance is unknown.
+let shown: { state: unknown; url: string } | null = null;
 let ignoredPop = false;
+// Set by a click on an in-page #fragment link, whose new entry arrives as a popstate
+// with no state; without the Navigation API this is how that step is known to be +1.
+let fragmentClicked = false;
+// A fragment navigation ends with hashchange, after its popstate: the click is spent.
+const fragmentArrived = () => { fragmentClicked = false; };
+function clickedFragment(event: MouseEvent) {
+  const link = (event.target as Element | null)?.closest?.("a[href]");
+  // Only a plain click that follows the link in this tab adds an entry here.
+  if (!(link instanceof HTMLAnchorElement) || event.defaultPrevented || event.button !== 0
+    || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || link.hasAttribute("download")
+    || (link.target && link.target !== "_self")) return;
+  const url = new URL(link.href, window.location.href);
+  const here = new URL(window.location.href);
+  fragmentClicked = url.hash !== here.hash && url.origin === here.origin && url.pathname === here.pathname && url.search === here.search;
+}
 const listeners = new Set<() => void>();
 
 /** Rewrites an old address and gives the current entry its identity. Runs once,
@@ -332,13 +354,19 @@ const listeners = new Set<() => void>();
 export function startRouter() {
   const url = canonicalUrl(window.location.href);
   const state = historyState();
-  currentIndex = entryIndex(state) ?? 0;
-  lowestIndex = highestIndex = currentIndex;
-  added = false;
-  if (url.href !== window.location.href || !state[entryKey] || entryIndex(state) === null)
-    window.history.replaceState({ ...state, [entryKey]: state[entryKey] ?? localId(), [indexKey]: currentIndex }, "", url);
+  // An entry without a number starts a run of its own, so it never shares numbers
+  // with entries numbered elsewhere in this tab.
+  const numbered = entryPlace(state);
+  current = numbered ?? { run: localId(), index: 0 };
+  if (url.href !== window.location.href || !state[entryKey] || !numbered)
+    window.history.replaceState({ ...state, [entryKey]: state[entryKey] ?? localId(), ...placeState(current) }, "", url);
   location = initialLocation();
   lastBrowserIndex = browserIndex();
+  remember();
+}
+
+function remember() {
+  shown = { state: window.history.state, url: window.location.href };
 }
 
 function saveScroll(entry: string) {
@@ -354,6 +382,7 @@ function persistScroll() {
 
 function update() {
   lastBrowserIndex = browserIndex();
+  remember();
   if (location) saveScroll(location.route.entry);
   const entry = String(historyState()[entryKey] ?? "");
   const saved = scrollPositions.get(entry) ?? (historyState()[scrollKey] as ScrollPosition | undefined);
@@ -362,47 +391,74 @@ function update() {
   listeners.forEach((listener) => listener());
 }
 
+/**
+ * Where a Back or Forward landed and how many entries it moved, when that is known.
+ * The Navigation API always says how far the browser moved. Without it, a distance
+ * is known only between two entries of the same run; numbers from before runs
+ * existed (run "") may hold an old guess and are never compared. Nothing is guessed:
+ * an unknown distance is null.
+ */
+function placeStep(state: unknown): { place: Place; moved: number | null; numbered: boolean } {
+  const now = browserIndex();
+  const browserMoved = now !== undefined && lastBrowserIndex !== undefined ? now - lastBrowserIndex : null;
+  const numbered = entryPlace(state);
+  if (numbered) {
+    const sameRun = numbered.run !== "" && numbered.run === current.run;
+    return { place: numbered, moved: browserMoved ?? (sameRun ? numbered.index - current.index : null), numbered: true };
+  }
+  if (typeof historyState()[entryKey] !== "string") {
+    // An entry the app did not write: one a #fragment link just added (it follows the
+    // current one), or one an older build left unstamped on either side.
+    const moved = browserMoved ?? (fragmentClicked ? 1 : null);
+    if (moved === null || current.run === "") return { place: { run: localId(), index: 0 }, moved, numbered: false };
+    return { place: { run: current.run, index: current.index + moved }, moved, numbered: false };
+  }
+  // An entry written before entries were numbered (a tab open across an upgrade) is
+  // placed in the current run by how far the browser moved, where the Navigation API
+  // says so. Without it either side of the current entry is possible, so it starts
+  // a run of its own.
+  if (browserMoved !== null && current.run !== "")
+    return { place: { run: current.run, index: current.index + browserMoved }, moved: browserMoved, numbered: false };
+  return { place: { run: localId(), index: 0 }, moved: browserMoved, numbered: false };
+}
+
+/** The place of an entry added after the current one. After an entry numbered before
+ * runs existed, a new run starts, so every entry this build adds can be compared. */
+function following(): Place {
+  return current.run === "" ? { run: localId(), index: 0 } : { run: current.run, index: current.index + 1 };
+}
+
 function popped(event: PopStateEvent) {
   if (ignoredPop) {
     ignoredPop = false;
     return;
   }
-  let next = entryIndex(event.state);
-  if (next === null) {
-    // An in-page #fragment link adds an entry the app did not write; it follows the current one.
-    // An entry written before entries were numbered (a tab open across an upgrade) is placed by
-    // how far the browser moved, where the Navigation API says so; otherwise see legacyStep.
-    const legacy = typeof historyState()[entryKey] === "string";
-    const now = browserIndex();
-    next = legacy && now !== undefined && lastBrowserIndex !== undefined ? currentIndex + now - lastBrowserIndex
-      : legacy ? currentIndex + legacyStep() : currentIndex + 1;
-    if (!legacy) added = true;
-    window.history.replaceState({ ...historyState(), [entryKey]: historyState()[entryKey] ?? localId(), [indexKey]: next }, "");
-  }
-  lowestIndex = Math.min(lowestIndex, next);
-  highestIndex = Math.max(highestIndex, next);
+  const { place, moved, numbered } = placeStep(event.state);
+  fragmentClicked = false;
   // Back or Forward out of a screen with unsaved work asks first, as a link does.
   // Refusing returns to the entry the reader was on, and that return is not a navigation.
-  if (leaveGuard && next !== currentIndex && !leaveGuard()) {
-    ignoredPop = true;
-    window.history.go(currentIndex - next);
+  if (leaveGuard && moved !== 0 && !leaveGuard()) {
+    if (moved !== null) {
+      ignoredPop = true;
+      window.history.go(-moved);
+    } else if (shown) {
+      // How far the step went is unknown, so the page comes back as a new entry
+      // (its unsaved work is still on screen) instead of by a guessed step.
+      current = { run: localId(), index: 0 };
+      window.history.pushState({ ...(shown.state as Record<string, unknown> | null), ...placeState(current) }, "", shown.url);
+      lastBrowserIndex = browserIndex();
+      remember();
+    }
     return;
   }
-  currentIndex = next;
+  // A newly placed entry keeps its place for later steps.
+  if (!numbered)
+    window.history.replaceState({ ...historyState(), [entryKey]: historyState()[entryKey] ?? localId(), ...placeState(place) }, "");
+  current = place;
   // An old address reached through history is rewritten as it was at start-up.
   const url = canonicalUrl(window.location.href);
   if (url.href !== window.location.href) window.history.replaceState(historyState(), "", url);
   update();
-}
-
-/** Which way a step onto an unnumbered old-build entry went, without the Navigation API.
- * Such entries lie only outside the numbered run: leaving its high end is Forward and
- * its low end Back, and once this document has added an entry nothing lies ahead. When
- * the run is a single entry (the first step after loading) the direction cannot be
- * known; Back is assumed, since a tab reloaded on its latest page has only older
- * entries. A jump of several entries is counted as one step. */
-function legacyStep() {
-  return !added && currentIndex === highestIndex && currentIndex > lowestIndex ? 1 : -1;
 }
 
 function subscribe(listener: () => void) {
@@ -411,6 +467,8 @@ function subscribe(listener: () => void) {
   if (listeners.size === 1) {
     window.history.scrollRestoration = "manual";
     window.addEventListener("popstate", popped);
+    document.addEventListener("click", clickedFragment);
+    window.addEventListener("hashchange", fragmentArrived);
     window.addEventListener(navigationEvent, update);
     window.addEventListener("pagehide", persistScroll);
   }
@@ -419,6 +477,8 @@ function subscribe(listener: () => void) {
     if (listeners.size) return;
     window.history.scrollRestoration = "auto";
     window.removeEventListener("popstate", popped);
+    document.removeEventListener("click", clickedFragment);
+    window.removeEventListener("hashchange", fragmentArrived);
     window.removeEventListener(navigationEvent, update);
     window.removeEventListener("pagehide", persistScroll);
   };
@@ -451,10 +511,8 @@ export function navigate(href: string) {
   if (url.origin !== window.location.origin || url.href === window.location.href) return;
   if (leaveGuard && !leaveGuard()) return;
   persistScroll();
-  currentIndex += 1;
-  highestIndex = currentIndex;
-  added = true;
-  window.history.pushState({ [entryKey]: localId(), [indexKey]: currentIndex }, "", url);
+  current = following();
+  window.history.pushState({ [entryKey]: localId(), ...placeState(current) }, "", url);
   window.dispatchEvent(new Event(navigationEvent));
 }
 
@@ -464,6 +522,8 @@ function annotate(change: (url: URL) => void) {
   const url = new URL(window.location.href);
   change(url);
   window.history.replaceState(window.history.state, "", url);
+  // A leave guard that puts this page back restores the address as it now reads.
+  remember();
 }
 
 export const rememberReviewSession = (id: string) => annotate((url) => {

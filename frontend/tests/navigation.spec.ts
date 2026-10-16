@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import { expectModifierClickLeftToBrowser } from './modifierClick';
 
 test.beforeEach(async ({page}) => {
@@ -94,7 +94,7 @@ test('an entry from before history entries were numbered is rewritten and counte
   await expect(page).toHaveURL('/study');
 });
 
-test('without the Navigation API, Forward onto an entry from before numbering counts as a step forward', async ({page}) => {
+test('without the Navigation API, a step onto an entry from before numbering is never given a guessed place', async ({page}) => {
   // Browsers without the Navigation API give no position in session history.
   await page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
   await page.goto('/play');
@@ -107,19 +107,83 @@ test('without the Navigation API, Forward onto an entry from before numbering co
   await page.goBack();
   await expect(page).toHaveURL('/study');
   await page.reload();
-  const index = () => page.evaluate(() => history.state.fieldworkIndex as number);
-  const start = await index();
-  // The first step after loading cannot tell its direction and is counted as Back.
+  const place = () => page.evaluate(() => ({run: history.state.fieldworkRun as string, index: history.state.fieldworkIndex as number}));
+  const start = await place();
+  // Either side of the reloaded entry may hold an old entry, Forward as well as Back:
+  // each starts a run of its own instead of taking a number beside the reloaded entry.
+  for (const step of ['forward', 'back'] as const) {
+    await (step === 'forward' ? page.goForward() : page.goBack());
+    await expect(page).toHaveURL('/play');
+    const landed = await place();
+    expect(landed.run).not.toBe(start.run);
+    await (step === 'forward' ? page.goBack() : page.goForward());
+    await expect(page).toHaveURL('/study');
+    expect(await place()).toEqual(start);
+  }
+});
+
+const noNavigationApi = (page: Page) =>
+  page.addInitScript(() => Object.defineProperty(window, 'navigation', {value: undefined, configurable: true}));
+
+/** Reloads a fresh lesson editor whose neighbours are `before` and `after`, and types a draft. */
+async function reloadedEditor(page: Page, before: Record<string, string> | null, after: Record<string, string> | null) {
+  await page.goto('/play');
+  await page.evaluate(([before, after]) => {
+    history.replaceState(before, '', before ? '/play' : '/play#top');
+    history.pushState({fieldworkEntry: 'reloaded'}, '', '/settings/courses/editor');
+    history.pushState(after, '', after ? '/study' : '/settings/courses/editor#later');
+  }, [before, after] as const);
   await page.goBack();
-  await expect(page).toHaveURL('/play');
-  expect(await index()).toBe(start - 1);
-  await page.goForward();
-  await expect(page).toHaveURL('/study');
-  expect(await index()).toBe(start);
-  // Leaving the numbered run at its high end is Forward.
-  await page.goForward();
-  await expect(page).toHaveURL('/play');
-  expect(await index()).toBe(start + 1);
+  await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+  await page.reload();
+  await expect(page.getByRole('button', {name: 'Save course'})).toBeVisible();
+  const title = page.getByLabel('Title', {exact: true}).first();
+  await title.fill('Unsaved draft');
+  return title;
+}
+
+for (const step of ['back', 'forward'] as const) {
+  for (const neighbour of ['an old-build entry', 'an unstamped entry'] as const) {
+    test(`without the Navigation API, refusing ${step === 'back' ? 'Back' : 'Forward'} after a reload onto ${neighbour} keeps the lesson editor and its draft`, async ({page}) => {
+      await noNavigationApi(page);
+      const old = neighbour === 'an old-build entry' ? {fieldworkEntry: 'legacy'} : null;
+      const title = await reloadedEditor(page, old, old);
+      const prompts: string[] = [];
+      page.on('dialog', async dialog => {
+        prompts.push(dialog.message());
+        // Stay the first time, then leave.
+        if (prompts.length === 1) await dialog.dismiss();
+        else await dialog.accept();
+      });
+      const go = () => page.evaluate(direction => direction === 'back' ? history.back() : history.forward(), step);
+      await go();
+      await expect.poll(() => prompts.length).toBe(1);
+      // Which side the entry was on cannot be known, and refusing still keeps the editor, its draft and its address.
+      await expect(page).toHaveURL(/\/settings\/courses\/editor$/);
+      await expect(title).toHaveValue('Unsaved draft');
+      // The editor came back as a new entry after the one the step reached; Back returns there and leaves.
+      await page.evaluate(() => history.back());
+      await expect.poll(() => prompts.length).toBe(2);
+      await expect(page).not.toHaveURL(/\/settings\/courses\/editor$/);
+    });
+  }
+}
+
+test('without the Navigation API, refusing a step after a save puts the editor back at its saved address', async ({page}) => {
+  await noNavigationApi(page);
+  const title = await reloadedEditor(page, {fieldworkEntry: 'legacy'}, {fieldworkEntry: 'legacy'});
+  await page.route('**/api/study/course-files*', route => route.fulfill({json: {
+    id: 'saved-course', revision: 'r2', revision_changed: false, title: 'Unsaved draft',
+  }}));
+  await page.getByRole('button', {name: 'Save course'}).click();
+  await expect(page).toHaveURL(/\/settings\/courses\/editor\?course=saved-course&revision=r2$/);
+  await title.fill('Edited after saving');
+  const asked = page.waitForEvent('dialog');
+  await page.evaluate(() => history.back());
+  await (await asked).dismiss();
+  // The page comes back at the address it showed after the save, not the one it loaded at.
+  await expect(page).toHaveURL(/\/settings\/courses\/editor\?course=saved-course&revision=r2$/);
+  await expect(title).toHaveValue('Edited after saving');
 });
 
 test('game links support opening a second tab without navigating the first', async ({page}, info) => {
