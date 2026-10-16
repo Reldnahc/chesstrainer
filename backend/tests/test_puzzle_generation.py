@@ -762,3 +762,118 @@ def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings
             "kept": 1,
         }
         assert db.scalar(select(GamePuzzleSearch.id)) is not None
+
+
+def test_stored_puzzles_are_judged_again_by_the_current_mate_rival_rule(settings):
+    import json
+
+    from test_migrations import fill, upgrade_to
+    from trainer.db import database, migrate
+
+    def steps(*pairs):
+        return {"decisions": [{"san": "x", "score": s, "rival": r} for s, r in pairs]}
+
+    engine, _ = database(settings.database_path)
+    upgrade_to(engine, "5e81c0d4a7b9")
+    with engine.begin() as db:
+        fill(db, "users", id="other", username="other")
+        games = {
+            "kept": "local",
+            "early": "local",
+            "late": "local",
+            "long": "local",
+            "old": "local",
+            "theirs": "other",
+        }
+        for game, user in games.items():
+            fill(db, "games", id=game, user_id=user, fingerprint=game)
+            fill(
+                db,
+                "game_puzzle_searches",
+                id=f"search-{game}",
+                user_id=user,
+                game_id=game,
+                generator_version="games-v1" if game == "old" else "games-v2",
+                kept=2 if game == "early" else 1,
+            )
+
+        def puzzle(game, ply, evidence, status="ready", reason=None, version="games-v2"):
+            fill(
+                db,
+                "game_puzzles",
+                id=f"puzzle-{game}-{ply}",
+                user_id=games[game],
+                game_id=game,
+                ply=ply,
+                decision_id=None,
+                generator_version=version,
+                status=status,
+                reason=reason,
+                definition=json.dumps({"key": f"{game}:{ply}"}),
+                evidence=json.dumps(evidence),
+            )
+
+        # A mate whose rival does not win stays unique.
+        puzzle("kept", 1, steps(("+400", "-20"), ("#2", "+90"), ("#1", None)))
+        # The second step's rival wins a rook: never a puzzle under the rule.
+        puzzle("early", 1, steps(("+400", "-20"), ("#3", "+500")))
+        puzzle("early", 3, steps(("#4", "+250"), ("#3", None)))
+        # The third step's rival still wins: the line is cut there by a new search.
+        puzzle("late", 1, steps(("+400", "-20"), ("+600", "+50"), ("#2", "+500")))
+        # A line that ran too long may have run past such a step.
+        puzzle("long", 1, {"decisions": []}, status="abstained", reason="too_long")
+        # Other generator versions are left alone.
+        puzzle("old", 1, steps(("+400", "-20"), ("#3", "+500")), version="games-v1")
+        # Another account's affected puzzle is judged in its own account.
+        puzzle("theirs", 1, steps(("+400", "-20"), ("#3", "+500")))
+        fill(db, "puzzle_sessions", id="session", user_id="local", puzzle_key="early:1")
+    migrate(engine)
+    with engine.connect() as db:
+        puzzles = {
+            row[0]: row[1:]
+            for row in db.exec_driver_sql(
+                "SELECT id, status, reason, definition IS NOT NULL FROM game_puzzles"
+            )
+        }
+        searches = dict(db.exec_driver_sql("SELECT game_id, kept FROM game_puzzle_searches").all())
+        sessions = db.exec_driver_sql("SELECT puzzle_key FROM puzzle_sessions").all()
+    assert puzzles == {
+        "puzzle-kept-1": ("ready", None, 1),
+        "puzzle-early-1": ("abstained", "ambiguous #3 vs +500", 1),
+        "puzzle-early-3": ("abstained", "ambiguous #4 vs +250", 1),
+        "puzzle-old-1": ("ready", None, 1),
+        "puzzle-theirs-1": ("abstained", "ambiguous #3 vs +500", 1),
+    }
+    # The late and long games are searched again; abstentions lower the others' counts.
+    assert searches == {"kept": 1, "early": 0, "old": 1, "theirs": 0}
+    assert sessions == [("early:1",)]
+    engine.dispose()
+
+
+def test_the_mate_rival_migration_reads_scores_and_judges_like_the_generator():
+    import importlib.util
+    from pathlib import Path
+
+    from trainer.puzzles.verification import describe, rival_verdict
+
+    path = Path("migrations/versions/9d2f6b1e4c83_game_puzzle_mate_rivals.py")
+    spec = importlib.util.spec_from_file_location("mate_rivals", path)
+    migration = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(migration)
+    scores = [
+        MATE_SCORE - 1,
+        MATE_SCORE - 7,
+        -MATE_SCORE + 3,
+        650,
+        200,
+        199,
+        90,
+        0,
+        -40,
+    ]
+    for solution in scores:
+        assert migration._score(describe(solution)) == solution
+        for rival in scores:
+            assert migration._unique(solution, rival) == (
+                rival_verdict(solution, rival) == "unique"
+            )
