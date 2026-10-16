@@ -426,7 +426,10 @@ additions to an existing character's dialogue.
 
 The coach catalogue remains the identity source of truth. Each selectable family
 registers its definition from `frontend/src/dialogue/characters/`, one file per coach
-listed once in `characters/index.ts` (`coachPersonalities`). A definition
+listed once in `characters/index.ts` (`coachPersonalities`). Each file is named for its
+coach ID after the family (`dog-gentle` is `gentle.ts`, `classic` is `classic.ts`), so
+no mapping is needed; a personality's `version` keeps its original name because
+stored dialogue refers to it. A definition
 contains the internal character bible (temperament, teaching, rhythm, celebration,
 correction and boundaries), communication behavior, authored factual forms, a
 compactness budget and provider-neutral delivery metadata. The laboratory displays
