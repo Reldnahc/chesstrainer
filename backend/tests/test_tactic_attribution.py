@@ -122,7 +122,8 @@ def test_a_pin_the_combination_creates_is_credited_to_it():
 
 
 def test_an_existing_pin_the_line_exploits_is_credited():
-    # The rook on d1 already pins the d7 bishop; Rxd6 and Bxd7 win it (Lichess 1mukg).
+    # The queen on f7 already pins the d7 bishop to the king on c7; the line goes
+    # on to take it with Bxd7 (Lichess 1mukg).
     boards = line(
         "3r3r/2kb1Q1p/p1nb1p2/4p3/4P1B1/8/PpP2PPP/1K1R4 w - - 4 21",
         "Rxd6",
@@ -139,4 +140,42 @@ def test_an_existing_pin_the_line_exploits_is_credited():
 def test_an_existing_pin_that_stops_the_answer_to_mate_is_credited():
     # The queen on f8 pins the e8 rook, which could otherwise take on e7 (Lichess SU9uA).
     boards = line("r1bkrQ2/ppqn2pp/4P3/n7/2B5/5N2/PP3PPP/2KR3R w - - 2 19", "e7#")
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_new_pin_along_another_line_is_the_lines_own():
+    # Be6 pins f7 at the start; after Kg7 that pin is gone and Qxc7 pins f7 along
+    # the seventh rank, so fxe6 is impossible (Lichess 4GRBz).
+    boards = line(
+        "6k1/2rr1p1p/4BQp1/1q6/p7/2R4P/P4PP1/6K1 w - - 0 1", "Rxc7", "Rxc7", "Qd8+", "Kg7", "Qxc7"
+    )
+    assert "pin" in {skill for skill, _ in recognized(boards)}
+
+
+def test_moving_the_pinner_along_its_line_does_not_exploit_an_old_pin():
+    # Finding 13's position: Ba4 only slides the pinning bishop back.
+    boards = line("4k3/ppp1ppp1/2n5/1B2R2r/8/8/PPP2PP1/4K2Q w - - 0 1", "Qxh5", "a6", "Ba4", "b6")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_a_pinned_piece_cannot_answer_a_double_check():
+    # Bg6+ is double check: only a king move answers, so the pinned d7 knight's
+    # interposition square is irrelevant and its old pin is not exploited.
+    boards = line("4k3/3n4/5R2/1B6/4B3/8/8/4R1K1 w - - 0 1", "Bg6+", "Kd8")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_old_pin_beside_a_mating_attack_it_does_not_change_is_declined():
+    # The g3 rook pins the g6 pawn, which attacks the h5 rook; but after the checks
+    # Black must answer them, so Qh6+ Kg8 Qh7# mates with or without the pin
+    # (Lichess Y7ACL).
+    boards = line("2r2r2/2p2pk1/p3pqp1/1p5R/1P1P4/P5RP/3Q1P2/6K1 w - - 1 28", "Qh6+", "Kg8", "Qh7#")
+    assert "pin" not in {skill for skill, _ in recognized(boards)}
+
+
+def test_an_old_pin_that_keeps_a_guard_safe_for_a_quiet_move_is_credited():
+    # The b5 bishop pins the c6 knight, which attacks the e5 rook. Qg5 lands where
+    # the h6 pawn attacks, guarded only by that rook: unpinned, ...Nxe5 would remove
+    # the guard and ...hxg5 would follow.
+    boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5")
     assert "pin" in {skill for skill, _ in recognized(boards)}
