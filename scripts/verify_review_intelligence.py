@@ -59,7 +59,8 @@ def inspect_case(detail, plies):
         assert human["played"]["probability"] is not None
         assert human["domain"]["calibration"] == "unvalidated"
         # The evidence scores the move shown as best, a promoted played move included.
-        assert (human["engine_best"] or {}).get("uci") in (report["best"]["uci"], None)
+        # Real Maia policies are complete, so the shown best is always in them.
+        assert human["engine_best"]["uci"] == report["best"]["uci"]
         assert practical["human_evidence_id"] == human["evidence_id"]
         grades[report["label"]] += 1
         difficulties[practical["best_find_difficulty"]] += 1
