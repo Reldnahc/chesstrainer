@@ -101,10 +101,15 @@ export function usePerformance({
         // eslint-disable-next-line react-hooks/purity -- the idle clock starts when this coordinator is created
         now: performance.now(),
         random: idleSeed === undefined ? undefined : seededIdleRandom(idleSeed),
+        // Built only while an observer (the studio) reads why each gesture waits.
+        diagnostics: false,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps -- a new coach identity or an idle reset deliberately starts a fresh coordinator
     [gestures, identity, idleSeed, idleReset],
   );
+  // An observer arriving or leaving switches diagnostics without a new coordinator,
+  // so its history and deadlines carry on.
+  useEffect(() => coordinator.observe(observing), [coordinator, observing]);
   const owner = `${identity}:${reaction.key}:${reaction.state}:${take}:${idleSeed ?? "random"}:${idleReset}`;
   const idlePreview = gestures.find(entry => entry.id === previewIdle);
   useEffect(() => {
@@ -212,7 +217,8 @@ export function usePerformance({
               : !idleEnabled && !value?.active.length
                 ? "disabled"
                 : null;
-    const observed = paused ? coordinator.snapshot() : (value ?? coordinator.snapshot());
+    // A frame made while nobody observed carries no diagnostics; read them now.
+    const observed = paused || !value?.diagnostics ? coordinator.snapshot() : value;
     diagnosticObserver.current?.({
       at: observed.at,
       identity,
@@ -252,6 +258,5 @@ export function usePerformance({
     motion: effectiveMotion,
     idles: tracks.map(track => track.gesture.id).join(" "),
     idleStyle: idleTrackStyle(tracks),
-    diagnostics: frame?.owner === owner ? frame.value.diagnostics : null,
   };
 }

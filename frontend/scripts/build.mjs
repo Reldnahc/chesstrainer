@@ -9,7 +9,7 @@ const stages = {
   "types: contracts": "tsc --project tsconfig.contracts.json",
   "types: browser tests": "tsc --project tsconfig.browser-tests.json",
   styles:
-    "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs && node scripts/surfaces.mjs && node scripts/type-scale.mjs && node scripts/motion-scale.mjs && node scripts/css-layers.mjs",
+    "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs && node scripts/spacing-scale.mjs && node scripts/surfaces.mjs && node scripts/type-scale.mjs && node scripts/motion-scale.mjs && node scripts/colour-tokens.mjs && node scripts/css-layers.mjs",
   symbols: "node scripts/text-symbols.mjs",
   lint: "eslint . --max-warnings 0",
   format: "prettier --check .",
