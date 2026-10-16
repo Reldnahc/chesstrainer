@@ -334,7 +334,9 @@ def test_shared_speech_presentation_keeps_audio_checks_with_application_styles(p
     )
 
 
-@pytest.mark.parametrize("path", ["frontend/src/AccountGate.tsx", "frontend/src/SettingsScreen.tsx"])
+@pytest.mark.parametrize(
+    "path", ["frontend/src/AccountGate.tsx", "frontend/src/SettingsScreen.tsx"]
+)
 def test_account_and_settings_keep_existing_checks_and_shared_audio_adds_its_suite(path):
     assert_selection(
         ci_plan.select_checks([path]), build=True, docker=True, suites=APPLICATION_SUITES

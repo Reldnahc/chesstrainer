@@ -1,6 +1,6 @@
 import io
 import uuid
-from datetime import date, datetime, timezone
+from datetime import date, datetime
 
 import chess.pgn
 from sqlalchemy import (
@@ -19,11 +19,11 @@ from sqlalchemy import (
 from sqlalchemy.dialects.sqlite import insert as sqlite_insert
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
+from trainer import timeutil
 from trainer.job_kinds import JobKind, JobStatus, allowed
 
-
-def now() -> datetime:
-    return datetime.now(timezone.utc)
+# The app's clock, kept here for the many models and helpers that import it.
+now = timeutil.now
 
 
 def mainline_plies(context):
@@ -46,14 +46,10 @@ class UTCDateTime(TypeDecorator):
     def process_bind_param(self, value, dialect):
         if value is None or value.tzinfo is None:
             return value
-        return value.astimezone(timezone.utc).replace(tzinfo=None)
+        return timeutil.as_utc(value).replace(tzinfo=None)
 
     def process_result_value(self, value, dialect):
-        if value is None:
-            return None
-        if value.tzinfo is None:
-            return value.replace(tzinfo=timezone.utc)
-        return value.astimezone(timezone.utc)
+        return None if value is None else timeutil.as_utc(value)
 
 
 def uid() -> str:
