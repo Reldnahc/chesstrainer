@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {storytellerTacticalTemplates} from "./scopedTactics";
-import {storytellerOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const storyteller: CoachPersonality = {
-  version: "storyteller-6", maxCharacters: 320, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const storytellerTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, there is a {motif} to notice.",
+    played_possible: "There is a {motif} to watch for after {move}, if the replies allow it.",
+    allowed_immediate: "{opponent} can reply with {action}, with a {motif} to work with.",
+    allowed_possible: "Watch for a {motif} that {opponent} could use, if the replies allow it.",
+    missed_immediate: "With {best}, there would be a {motif} to work with.",
+    missed_possible: "I'd look at {best} for a possible {motif}; the replies still matter.",
+  },
+  fork: {actual: "The {targets} are attacked together.", possible: "The {targets} would be attacked together."},
+  material: "There may be a {gain}, though both sides still have choices to make.",
+  capture: {candidate: "{capture} would capture a {piece}.", followup: "One possible follow-up is {capture}, capturing a {piece}."},
+  playedCapture: {fact: "The idea to notice with {move} is a {motif}.", consequence: "{capture} captures a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const storytellerOpeningTemplates = {
+  "book-opening-entry-1": ["Familiar territory here: this move belongs to {opening}."],
+  "book-opening-entry-2": ["We have an opening match for this move: {opening}."],
+  "book-opening-entry-3": ["This move has a place in the opening record, under {opening}."],
+  "book-opening-follow-1": ["We're still on a known opening path here: {opening}."],
+  "book-opening-follow-2": ["This next move is in the opening record too: {opening}."],
+  "book-opening-follow-3": ["The familiar sequence continues with this move in {opening}."],
+  "book-opening-follow-4": ["Another move along the recorded opening path: {opening}."],
+  "book-opening-follow-5": ["The opening record still has a match here, under {opening}."],
+  "book-opening-follow-6": ["This move also belongs to the known opening sequence: {opening}."],
+  "book-opening-follow-7": ["We're following recorded opening moves here; this one is listed under {opening}."],
+  "book-opening-follow-8": ["The next step is recognized as well, in {opening}."],
+} as const;
+
+export const storyteller = coachPersonality({
+  version: "storyteller-6", maxCharacters: 320, maxClaims: 2,
   delivery: {pace: "steady", energy: "warm"},
   behavior: {general: "observation-first", praise: "observation-first", correction: "observation-first",
     questionFrequency: "none", directness: 3, emotionalAmplitude: 3, humor: 1, jargon: 2,
@@ -80,4 +110,4 @@ export const storyteller: CoachPersonality = {
     explanation_summary: ["The connection to remember is this: {detail}"],
     compatibility: ["{detail}"],
   },
-};
+});

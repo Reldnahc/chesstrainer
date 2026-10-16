@@ -8,6 +8,7 @@ from trainer.engine import Stockfish
 from trainer.game_providers import client_factories
 from trainer.game_providers.gateway import ProviderGateway
 from trainer.game_sync import poll as poll_connections
+from trainer.job_context import JobContext
 from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
 from trainer.local_classifier import LocalClassifier
@@ -98,7 +99,7 @@ class JobRunner:
                 owners = db.scalars(
                     self.queue.owners().where(User.last_seen_at >= active_cutoff(self.settings))
                 ).all()
-            poll_connections(self, owners)
+            poll_connections(self.workspaces, self.providers, self.settings, owners)
             # Rounds never overlap: a slow round is followed by the next at once.
             self.stop_event.wait(max(0, interval - (time.monotonic() - started)))
 
@@ -109,9 +110,27 @@ class JobRunner:
             raise ValueError("Job owner is unavailable")
         self._run(job_id, owner, engine)
 
+    def context(self, job_id, workspace):
+        """The job's one context: this host's services and its account's resources."""
+        return JobContext(
+            job_id=job_id,
+            user_id=workspace.user_id,
+            settings=self.settings,
+            sessions=workspace.sessions,
+            read=workspace.read,
+            write=workspace.write,
+            engine_factory=self.engine_factory,
+            scheduler=self.scheduler,
+            classifier=self.classifier,
+            human_models=workspace.human_models,
+            providers=self.providers,
+            cancelled=lambda: self.cancelled(job_id),
+            stopping=self.stop_event.is_set,
+        )
+
     def _run(self, job_id, owner, engine=None):
         with self.workspaces.open(owner) as workspace:
-            execution = JobExecution(self, workspace)
+            execution = JobExecution(self.context(job_id, workspace))
             with self._active_lock:
                 if job_id in self._active:
                     # Requeued while still finishing: that execution records the outcome.
@@ -119,7 +138,7 @@ class JobRunner:
                     return
                 self._active[job_id] = execution
             try:
-                execution.run(job_id, engine)
+                execution.run(engine)
             finally:
                 with self._active_lock:
                     del self._active[job_id]
@@ -131,7 +150,7 @@ class JobRunner:
             execution = self._active.get(job_id)
         if execution is None:
             return True
-        with execution.read() as db:
+        with execution.context.read() as db:
             job = db.get(AnalysisJob, job_id)
             return job is None or job.cancel_requested
 

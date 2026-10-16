@@ -24,19 +24,19 @@ from trainer.search_limits import EngineCancelled
 TERMINAL = {"completed", "budget_limited", "unavailable"}
 
 
-def prepare(runner, game_id):
+def prepare(context, game_id):
     # Opening the game can reset the plan, so the plan is written in a write unit.
-    with runner.write() as db:
+    with context.write() as db:
         review = db.get(GameReview, game_id)
         baseline = {
             r.ply: r.report
             for r in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game_id))
         }
-        key = plan_key(baseline, runner.settings)
+        key = plan_key(baseline, context.settings)
         if review.refinement_plan and review.refinement_plan["key"] == key:
             return review.refinement_plan
         task_ids = []
-        for ply, triggers in selection(baseline, runner.settings):
+        for ply, triggers in selection(baseline, context.settings):
             report = baseline[ply]
             original = db.get(EngineAnalysis, report["before_analysis_id"])
             if original is None:
@@ -47,14 +47,16 @@ def prepare(runner, game_id):
                 engine_version=original.engine_version,
                 binary_sha256=original.config["binary_sha256"],
                 limits={
-                    "depth": max(original.config["depth"], runner.settings.review_refinement_depth),
-                    "time": max(original.config["time"], runner.settings.review_refinement_time),
+                    "depth": max(
+                        original.config["depth"], context.settings.review_refinement_depth
+                    ),
+                    "time": max(original.config["time"], context.settings.review_refinement_time),
                     "nodes": None,
                 },
-                multipv=runner.settings.review_refinement_multipv if broad else 2,
-                max_queries=runner.settings.review_refinement_queries,
-                threads=runner.settings.stockfish_threads,
-                hash_mb=runner.settings.stockfish_hash_mb,
+                multipv=context.settings.review_refinement_multipv if broad else 2,
+                max_queries=context.settings.review_refinement_queries,
+                threads=context.settings.stockfish_threads,
+                hash_mb=context.settings.stockfish_hash_mb,
                 baseline_ids=[report["before_analysis_id"], report["played_analysis_id"]],
                 human_configuration=(report.get("human") or {}).get("configuration_key"),
             )
@@ -72,11 +74,11 @@ def prepare(runner, game_id):
         return plan
 
 
-def run_refinement(runner, job_id, parsed, game_id):
-    if not runner.settings.review_refinement_positions or runner.cancelled(job_id):
+def run_refinement(context, parsed, game_id):
+    if not context.settings.review_refinement_positions or context.cancelled():
         return
-    plan = prepare(runner, game_id)
-    with runner.read() as db:
+    plan = prepare(context, game_id)
+    with context.read() as db:
         pending = [
             task_id
             for task_id in plan["tasks"]
@@ -84,7 +86,7 @@ def run_refinement(runner, job_id, parsed, game_id):
         ]
     # Tasks are independent questions with fixed per-query limits, so they share
     # the baseline's engine count; only wall-clock time changes.
-    workers = min(runner.settings.stockfish_workers, runner.settings.engine_slots, len(pending))
+    workers = min(context.settings.stockfish_workers, context.settings.engine_slots, len(pending))
     engines = Queue()
     for _ in range(workers):
         engines.put(None)
@@ -92,15 +94,15 @@ def run_refinement(runner, job_id, parsed, game_id):
     stop = Event()
 
     def investigate(task_id):
-        if stop.is_set() or runner.cancelled(job_id):
+        if stop.is_set() or context.cancelled():
             return
         engine = engines.get()
         try:
             if engine is None:
-                engine = runner.engine_factory(runner.settings, runner.sessions)
+                engine = context.engine_factory(context.settings, context.sessions)
                 started.append(engine)
-            if refine(runner, job_id, parsed, game_id, task_id, engine):
-                record_progress(runner, game_id, plan)
+            if refine(context, parsed, game_id, task_id, engine):
+                record_progress(context, game_id, plan)
             else:
                 stop.set()
         except BaseException:
@@ -115,14 +117,14 @@ def run_refinement(runner, job_id, parsed, game_id):
                 for future in [executor.submit(investigate, task_id) for task_id in pending]:
                     future.result()
         else:
-            record_progress(runner, game_id, plan)
+            record_progress(context, game_id, plan)
     finally:
         for engine in started:
             engine.close()
 
 
-def record_progress(runner, game_id, plan):
-    with runner.write() as db:
+def record_progress(context, game_id, plan):
+    with context.write() as db:
         statuses = db.scalars(
             select(ReviewRefinement.status).where(ReviewRefinement.id.in_(plan["tasks"]))
         )
@@ -132,9 +134,9 @@ def record_progress(runner, game_id, plan):
         )
 
 
-def refine(runner, job_id, parsed, game_id, task_id, engine):
+def refine(context, parsed, game_id, task_id, engine):
     """Answer one question; False means the job was cancelled mid-search."""
-    with runner.read() as db:
+    with context.read() as db:
         task = db.get(ReviewRefinement, task_id)
         baseline = db.get(GameReviewMove, (game_id, task.ply)).report
     board = board_before(parsed, task.ply)
@@ -142,7 +144,7 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
     status, reason, report = "completed", None, None
     adopted = False
     try:
-        bounded = RefinementEngine(engine, task, runner, lambda: runner.cancelled(job_id))
+        bounded = RefinementEngine(engine, task, context, context.cancelled)
         report = analyze_move(bounded, board, move)
         reason = adoption_reason(baseline, report)
         adopted = reason is None
@@ -165,7 +167,7 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
         status, reason = "unavailable", "incompatible_engine"
     except EngineUnavailable:
         status, reason = "unavailable", "engine_unavailable"
-    with runner.write() as db:
+    with context.write() as db:
         save_outcome(db, task_id, status, reason, report, adopted)
     return True
 

@@ -1,9 +1,39 @@
-import type {CoachPersonality} from "../personality";
-import {girlTacticalTemplates} from "./scopedTactics";
-import {girlOpeningTemplates} from "./openingSequence";
+import {coachPersonality} from "../personality";
+import {authorTacticalWordings} from "../scopedTacticalWording";
 
-export const youngGirl: CoachPersonality = {
-  version: "young-girl-2", maxCharacters: 275, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+export const youngGirlTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Riddle answered: {move} unleashes a {motif} on the spot.",
+    played_possible: "{move} plants the seed of a {motif}, if the replies cooperate.",
+    allowed_immediate: "Puzzle piece: with {action}, {opponent} springs a {motif}.",
+    allowed_possible: "Somewhere down the line, {opponent} could find a {motif}; the replies get the final say.",
+    missed_immediate: "Hint for next time: {best} had a {motif} ready immediately.",
+    missed_possible: "{best} could have grown into a {motif}, depending on the replies.",
+  },
+  fork: {actual: "One piece now has the {targets} in range together, a fork.", possible: "The {targets} would be attacked, and a lone piece would be aiming at the whole group."},
+  material: "A {gain} may be waiting as the prize, though the replies still get a vote.",
+  capture: {candidate: "Circle this: {capture} would win a {piece}.", followup: "After that, {capture} could pick off a {piece}."},
+  playedCapture: {fact: "{move} sets a {motif} in motion.", consequence: "Follow-up: {capture} wins a {piece}."},
+});
+
+/** Whole authored sentences for the shared recognition/sequence meanings.
+ * Neither recognition nor a consecutive run says that these moves were good. */
+export const youngGirlOpeningTemplates = {
+  "book-opening-entry-1": ["Opening detective mode: this one's {opening}."],
+  "book-opening-entry-2": ["Spotted it, {opening}!"],
+  "book-opening-entry-3": ["Circle the name: {opening}."],
+  "book-opening-follow-1": ["Still charted territory in {opening}."],
+  "book-opening-follow-2": ["{opening} has this move mapped as well."],
+  "book-opening-follow-3": ["The reply is charted in {opening} too."],
+  "book-opening-follow-4": ["{opening} keeps unfolding, move by move."],
+  "book-opening-follow-5": ["Step by step, we're still inside {opening}."],
+  "book-opening-follow-6": ["Another charted step of {opening}."],
+  "book-opening-follow-7": ["Theory from {opening} keeps going."],
+  "book-opening-follow-8": ["Deep inside {opening} still. That's a map pin, not a score for the move."],
+} as const;
+
+export const youngGirl = coachPersonality({
+  version: "young-girl-2", maxCharacters: 275, maxClaims: 2,
   delivery: {pace: "lively", energy: "bright"},
   behavior: {general: "question-first", praise: "observation-first", correction: "question-first", questionFrequency: "often", directness: 4, emotionalAmplitude: 4, humor: 3, jargon: 1, playerAddress: "occasional", sentenceLength: "mixed", metaphor: "none", signature: "Circle one hidden detail, ask the question it raises, then let the supported answer land."},
   bible: {
@@ -15,8 +45,8 @@ export const youngGirl: CoachPersonality = {
     avoid: "Cutesy language, fake sass, girl-genius stereotypes, questions with invented premises, other coaches' sayings, and emotion that depends on which side moved.",
   },
   templates: {
-    ...girlTacticalTemplates,
-    ...girlOpeningTemplates,
+    ...youngGirlTacticalTemplates,
+    ...youngGirlOpeningTemplates,
     allowed_mate: [
       {question: "Where can the king hide now?", observation: "Spotlight on the king's safety.", fact: "After this move, {opponent} has a mate it can force.", consequence: "{reply}"},
       {observation: "The king is the detail to circle.", fact: "{opponent} can now drive home a forced checkmate. {reply}", question: "Which earlier move kept the king safe?"},
@@ -100,4 +130,4 @@ export const youngGirl: CoachPersonality = {
     explanation_summary: ["The short answer: {detail}"],
     compatibility: ["From the stored notes: {detail}"],
   },
-};
+});
