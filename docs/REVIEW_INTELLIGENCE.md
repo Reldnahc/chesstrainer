@@ -105,11 +105,15 @@ never a new search at other limits. An exercise already made
 from it keeps its answers and schedule (rewriting them would drop answers graded in
 practice, and the same mistake in other games can share the exercise); the card
 grades unseen moves against, and lists the candidates of, the search its answers
-came from, never the decision's newer one. Only a decision without one gets a new
-one from the deeper search. While the decision is
-no longer a mistake its card is ineligible, so it leaves the Due queue and focused
-practice and cannot be started directly, unless another meaningful decision shares
-its position; a later search that makes it a mistake again puts the card back.
+came from, never the decision's newer one (the evidence dialog and the played-line
+facts stay decision-level, matching the game review). Only a decision without one
+gets a new one from the deeper search. While the decision is no longer a mistake,
+or its current search no longer grades the card's primary answer correct or
+acceptable (judged inside that search; a search that does not list the answer has
+ranked better moves above it), its card is ineligible: it leaves the Due queue and
+focused practice and cannot be started directly, unless another meaningful
+decision on its position still supports it. A later search that backs it again
+puts the card back.
 
 One effective-report reader supplies detail/progress, with equivalent batched
 score selection for library accuracy. It checks task game/ply and original

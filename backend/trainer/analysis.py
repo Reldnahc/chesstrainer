@@ -1,10 +1,11 @@
-from sqlalchemy import func, select, update
+from sqlalchemy import select, update
 
 from trainer.chess_core import Candidate, board_facts, digest, evaluation_loss, position_key
 from trainer.models import (
     Decision,
     EngineAnalysis,
     Exercise,
+    ExerciseAnswer,
     GameReviewMove,
     SkillEvidence,
     SRSState,
@@ -69,41 +70,63 @@ def analyze_decision(db, engine, settings, game, ply, board, move):
 
 
 def sync_card_eligibility(db, decision):
-    """A card made from ``decision`` leaves the practice queue while the decision
-    is no longer a mistake, and returns when a deeper search makes it one again.
+    """Cards on ``decision``'s position leave the practice queue while no decision
+    there still backs them, and return when a deeper search does again.
 
     The card keeps its answers and schedule either way: practice must not drill a
-    move the review now calls Good or Best, but rewriting the card would drop
-    answers graded during practice. Cards are found by position, so one shared by
-    the same mistake in another game stays in the queue while any decision on its
-    position is meaningful, whichever decision made it.
+    move the review no longer calls a mistake, nor an answer the review's current
+    search no longer supports, but rewriting the card would drop answers graded
+    during practice. Cards are found by position, so one shared by the same
+    mistake in another game stays in the queue while any decision on its position
+    backs it, whichever decision made it.
     """
-    cards = db.scalars(
-        select(SRSState)
+    rows = db.execute(
+        select(SRSState, Exercise)
         .join(Exercise, Exercise.id == SRSState.exercise_id)
         .join(Decision, Decision.id == Exercise.decision_id)
         .where(Decision.position_key == decision.position_key, Exercise.source == "game")
     ).all()
-    if not cards:
-        return
-    eligible = still_a_mistake(db, decision)
-    for state in cards:
-        state.eligible = eligible
+    for state, exercise in rows:
+        state.eligible = card_is_backed(db, exercise)
 
 
-def still_a_mistake(db, decision):
-    """Whether ``decision``, or another decision on its position, is a mistake."""
-    return decision.meaningful or bool(
-        db.scalar(
-            select(func.count())
-            .select_from(Decision)
-            .where(
-                Decision.position_key == decision.position_key,
-                Decision.meaningful.is_(True),
-                Decision.id != decision.id,
-            )
+def card_is_backed(db, exercise):
+    """Whether a decision on the game card's position is still a mistake and its
+    current search still supports the card's primary answer."""
+    made_from = db.get(Decision, exercise.decision_id)
+    if made_from is None:
+        return True
+    decisions = db.scalars(
+        select(Decision).where(
+            Decision.position_key == made_from.position_key, Decision.meaningful.is_(True)
+        )
+    ).all()
+    return any(supports_card(db, decision, exercise) for decision in decisions)
+
+
+def supports_card(db, decision, exercise):
+    """Whether ``decision``'s current search still grades the card's primary answer
+    correct or acceptable. The answer is judged inside that one search, never
+    against scores from another depth; a search that does not list it has ranked
+    better moves above it, so it no longer supports it."""
+    primary = db.scalar(
+        select(ExerciseAnswer).where(
+            ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
         )
     )
+    if primary is None or primary.analysis_id == decision.before_analysis_id:
+        return True
+    candidates = [
+        Candidate.model_validate(c)
+        for c in db.get(EngineAnalysis, decision.before_analysis_id).candidates
+    ]
+    answer = next((c for c in candidates if c.uci == primary.uci), None)
+    if answer is None:
+        return False
+    grade = MovePolicy.model_validate(exercise.policy).grade(
+        candidates[0], answer.uci, answer.score
+    )
+    return grade in {"correct", "acceptable"}
 
 
 def reviewed_searches(db, engine, board, move, report):

@@ -430,8 +430,8 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
             # Deeper, the played move is as good as the best: no longer a mistake.
             "fine": analysis("q-fine", [("d2d4", 45), ("f2f3", 40)]),
             "fine_played": analysis("q-fine-played", [("f2f3", 40)]),
-            # Deeper still, it is a mistake again.
-            "worse": analysis("q-worse", [("d2d4", 45), ("f2f3", -200)]),
+            # Deeper still, it is a mistake again, and the card's answer still holds.
+            "worse": analysis("q-worse", [("d2d4", 45), ("e2e4", 40), ("f2f3", -200)]),
             "worse_played": analysis("q-worse-played", [("f2f3", -200)]),
         }
         db.add_all([game, *rows.values()])
@@ -455,7 +455,7 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         # direct start is refused too.
         state = db.get(SRSState, exercise.id)
         assert state is not None and not state.eligible
-        with pytest.raises(InvalidInput, match="no longer a mistake"):
+        with pytest.raises(InvalidInput, match="no longer matches its game's review"):
             require_active_review(db, exercise.id)
 
         adopt(db, game, "worse", rows["worse"], rows["worse_played"], baseline)
@@ -478,3 +478,97 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         assert shared.meaningful and shared.id != decision.id
         assert exercise_from_decision(db, shared, settings, scheduler).id == exercise.id
         assert db.get(SRSState, exercise.id).eligible
+
+
+@pytest.mark.parametrize(
+    ("deeper", "eligible"),
+    [
+        # The card's answer is still within tolerance of the deeper best: it stays.
+        ([("d2d4", 45), ("e2e4", 40), ("f2f3", -240)], True),
+        # The deeper search refutes the card's answer: practice must not drill it.
+        ([("d2d4", 45), ("e2e4", -150), ("f2f3", -240)], False),
+        # The deeper search ranks better moves above it and does not list it.
+        ([("d2d4", 45), ("g1f3", 30), ("f2f3", -240)], False),
+    ],
+)
+def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_answer(
+    settings, sessions, deeper, eligible
+):
+    import chess
+    from trainer.analysis import analyze_decision
+    from trainer.errors import InvalidInput
+    from trainer.exercises import exercise_from_decision
+    from trainer.models import EngineAnalysis, ExerciseAnswer, SRSState
+    from trainer.retirement import require_active_review
+    from trainer.scheduling import FSRSScheduler
+
+    board = chess.Board()
+    move = chess.Move.from_uci("f2f3")
+
+    def analysis(key, scores):
+        return EngineAnalysis(
+            cache_key=key,
+            fen=board.fen(),
+            engine_version="fixture",
+            config={},
+            candidates=[
+                {"uci": uci, "san": board.san(chess.Move.from_uci(uci)), "pv": [uci]}
+                | {"score": {"kind": "cp", "value": value}}
+                for uci, value in scores
+            ],
+        )
+
+    with sessions() as db:
+        game = Game(fingerprint="answer", white="A", black="B", learner_color=True, pgn="1. f3 *")
+        rows = {
+            "base": analysis("a-base", [("e2e4", 40), ("f2f3", -260)]),
+            "base_played": analysis("a-base-played", [("f2f3", -260)]),
+            "deep": analysis("a-deep", deeper),
+            "deep_played": analysis("a-deep-played", [("f2f3", -240)]),
+        }
+        db.add_all([game, *rows.values()])
+        db.flush()
+        baseline = {
+            "before_analysis_id": rows["base"].id,
+            "played_analysis_id": rows["base_played"].id,
+            "depth": 16,
+        }
+        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline))
+        db.commit()
+        scheduler = FSRSScheduler(settings)
+        decision = analyze_decision(db, None, settings, game, 1, board, move)
+        exercise = exercise_from_decision(db, decision, settings, scheduler)
+        task = ReviewRefinement(
+            game_id=game.id,
+            ply=1,
+            task_key="answer",
+            triggers=[],
+            adopted=True,
+            status="completed",
+            report=baseline
+            | {
+                "before_analysis_id": rows["deep"].id,
+                "played_analysis_id": rows["deep_played"].id,
+            },
+            config={"baseline_ids": [rows["base"].id, rows["base_played"].id]},
+        )
+        db.add(task)
+        db.flush()
+        db.get(GameReviewMove, (game.id, 1)).refinement_id = task.id
+        db.commit()
+        again = analyze_decision(db, None, settings, game, 1, board, move)
+        # Still a mistake either way; the card keeps its answers and schedule.
+        assert again.meaningful
+        assert db.get(SRSState, exercise.id) is not None
+        primary = db.scalar(
+            select(ExerciseAnswer).where(
+                ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
+            )
+        )
+        assert (primary.uci, primary.analysis_id) == ("e2e4", rows["base"].id)
+        assert db.get(SRSState, exercise.id).eligible is eligible
+        if eligible:
+            require_active_review(db, exercise.id)
+        else:
+            with pytest.raises(InvalidInput, match="no longer matches"):
+                require_active_review(db, exercise.id)
