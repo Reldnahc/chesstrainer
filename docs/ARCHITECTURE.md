@@ -423,7 +423,7 @@ open fails at once rather than waiting on its own lock. Rule computation, engine
 searches and Maia inference run between units; SRS grading of an unseen answer and
 the Play bot's reply search first, then re-check and write in a `write()`. Shared
 engine and Maia cache rows are the exception: each is one lock-free insert in a
-session of its own. Host scheduling (`job_queue`), accounts and server settings
+session of its own (`models.save_shared`, which returns the row whoever saved it first). Host scheduling (`job_queue`), accounts and server settings
 (`accounts.py`, `site_settings.py`) and the presence and welcome-back stamps on the
 account's user row (`presence.py`) are host data with sessions of their own. Progress
 uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent

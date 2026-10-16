@@ -15,6 +15,7 @@ from sqlalchemy import (
     TypeDecorator,
     UniqueConstraint,
     or_,
+    select,
 )
 from sqlalchemy.dialects.sqlite import insert as sqlite_insert
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -737,3 +738,16 @@ def keep_shared(model, key, **values):
         .values(id=uid(), cache_key=key, **values)
         .on_conflict_do_nothing(index_elements=["cache_key"])
     )
+
+
+def save_shared(sessions, model, key, **values):
+    """Save one shared cache row and return the row saved under ``key``.
+
+    It runs in a short session of its own, one statement and a commit with no
+    account lock: whichever job or account inserted first, every caller gets the
+    same row back.
+    """
+    with sessions() as db:
+        db.execute(keep_shared(model, key, **values))
+        db.commit()
+        return db.scalar(select(model).where(model.cache_key == key))

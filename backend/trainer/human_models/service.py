@@ -18,16 +18,11 @@ from trainer.human_models.context import request_for
 from trainer.human_models.evidence import policy_summary
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable, MaiaProvider
 from trainer.human_models.types import HumanEvidence, HumanPolicy
-from trainer.models import HumanAnalysis, keep_shared
+from trainer.models import HumanAnalysis, keep_shared, save_shared
 
 
-def save(key, request, policy):
-    return keep_shared(
-        HumanAnalysis,
-        key,
-        request=request.model_dump(mode="json"),
-        policy=policy.model_dump(mode="json"),
-    )
+def saved_values(request, policy):
+    return dict(request=request.model_dump(mode="json"), policy=policy.model_dump(mode="json"))
 
 
 class HumanModels:
@@ -108,7 +103,7 @@ class HumanModels:
         with sessions() as db:
             # Another review of the same game may have saved some of these first.
             for (key, request), policy in zip(missing, policies, strict=True):
-                db.execute(save(key, request, policy))
+                db.execute(keep_shared(HumanAnalysis, key, **saved_values(request, policy)))
             db.commit()
 
     def policy(self, sessions, request, cancelled=lambda: False):
@@ -150,15 +145,11 @@ class HumanModels:
                 if cancelled():
                     raise HumanCancelled("cancelled")
                 if not saved:
-                    with sessions() as db:
-                        # A batch prefetch or another process may have saved it first.
-                        db.execute(save(key, request, policy))
-                        db.commit()
-                        evidence_id = db.scalar(
-                            select(HumanAnalysis.id).where(HumanAnalysis.cache_key == key)
-                        )
-                    if evidence_id is None:
+                    # A batch prefetch or another process may have saved it first.
+                    row = save_shared(sessions, HumanAnalysis, key, **saved_values(request, policy))
+                    if row is None:
                         raise HumanUnavailable("cache_busy")
+                    evidence_id = row.id
             finally:
                 lock.release()
             return policy, evidence_id
