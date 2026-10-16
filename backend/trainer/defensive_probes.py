@@ -304,17 +304,17 @@ def verify_defense(hypothesis, boards, root_candidate, probe, parameters):
     request = hypothesis
     position = boards[request.at_ply]
     if (
-        not request.matches(probe["query_key"])
-        or probe["root_analysis_id"] != request.root_analysis_id
-        or probe["at_ply"] != request.at_ply
-        or probe["kind"] != request.kind
-        or position_key(valid_board(probe["fen"])) != position_key(position)
-        or sorted(probe["config"].get("root_moves") or []) != request.root_moves
+        not request.matches(probe.query_key)
+        or probe.root_analysis_id != request.root_analysis_id
+        or probe.at_ply != request.at_ply
+        or probe.kind != request.kind
+        or position_key(valid_board(probe.fen)) != position_key(position)
+        or sorted(probe.config.get("root_moves") or []) != request.root_moves
     ):
         raise EvidenceIntegrityError(
             "Defensive probe does not match its hypothesis or legal position"
         )
-    candidate = Candidate.model_validate(probe["candidate"])
+    candidate = Candidate.model_validate(probe.candidate)
     if candidate.uci not in request.root_moves:
         raise EvidenceIntegrityError("Defensive probe contains an unrequested move")
     branch = replay(position, candidate)
@@ -369,7 +369,7 @@ def verify_defense(hypothesis, boards, root_candidate, probe, parameters):
         request.roles,
         text,
         frame=request.at_ply - 1 if request.kind == "relative_pin" else request.at_ply,
-        verification_analysis_ids=[probe["analysis_id"]],
+        verification_analysis_ids=[probe.analysis_id],
     )
     finding.verification = "engine_defense"
     return finding, "confirmed"

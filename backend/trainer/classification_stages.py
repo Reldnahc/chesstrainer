@@ -8,7 +8,16 @@ from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, v
 from trainer.config import Settings
 from trainer.continuations import ContinuationEnd, continuation_end, extended_line
 from trainer.defensive_probes import DefenseCheck, hypotheses, verify_defense
-from trainer.diagnosis_types import OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome, make_finding
+from trainer.diagnosis_types import (
+    OUTCOME_SKILLS,
+    RULE_VERSION,
+    Finding,
+    Outcome,
+    PreviousMove,
+    evidence_previous,
+    evidence_probes,
+    make_finding,
+)
 from trainer.errors import EvidenceIntegrityError
 from trainer.move_causes import move_causes
 from trainer.tactical_geometry import TACTIC_PLIES
@@ -63,7 +72,7 @@ def read_lines(evidence, parameters) -> tuple[EvidenceLine, EvidenceLine, Loss]:
     if actual.uci != evidence["user_move"]["uci"]:
         raise EvidenceIntegrityError("Actual analysis does not match learner move")
     best_id, actual_id = evidence["evidence_ids"]
-    probes = evidence.get("probes", [])
+    probes = evidence_probes(evidence)
 
     def line(candidate, analysis_id, direction, first):
         candidate, boards = extended_line(board, candidate, analysis_id, probes)
@@ -166,7 +175,7 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
         line.direction,
         parameters["tactic_plies"],
     ):
-        probe = next((p for p in probes if hypothesis.matches(p["query_key"])), None)
+        probe = next((p for p in probes if hypothesis.matches(p.query_key)), None)
         finding, status = (
             (None, "pending")
             if probe is None
@@ -184,7 +193,7 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
                 at_ply=hypothesis.at_ply,
                 root_moves=hypothesis.root_moves,
                 status=status,
-                analysis_id=probe["analysis_id"] if probe else None,
+                analysis_id=probe.analysis_id if probe else None,
             )
         )
     return result
@@ -264,7 +273,7 @@ def previous_move(board):
         return None
     earlier = board.copy(stack=True)
     preceding = earlier.pop()
-    return {"fen": earlier.fen(), "uci": preceding.uci()}
+    return PreviousMove(fen=earlier.fen(), uci=preceding.uci())
 
 
 DIRECTIONS = {1: "missed_opportunity", 2: "allowed_opponent_tactic"}
@@ -328,11 +337,11 @@ def diagnose_line(
             end=line.endpoint.end_ply,
             material_supported=supports,
             mate_supported=mate_support,
-            previous=evidence.get("previous_move"),
+            previous=evidence_previous(evidence),
         )
     )
     defense = defensive_findings(
-        line, evidence.get("probes", []), parameters, supports or mate_support
+        line, evidence_probes(evidence), parameters, supports or mate_support
     )
     result.findings.extend(defense.findings)
     result.defense_checks.extend(defense.defense_checks)
@@ -344,9 +353,9 @@ def attach_provenance(found, outcomes, probes):
 
     def supporting(analysis_id, end):
         return [
-            p["analysis_id"]
+            p.analysis_id
             for p in probes
-            if p["kind"] == "tail" and p["root_analysis_id"] == analysis_id and end > p["at_ply"]
+            if p.kind == "tail" and p.root_analysis_id == analysis_id and end > p.at_ply
         ]
 
     for finding in found:

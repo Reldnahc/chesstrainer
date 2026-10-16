@@ -345,7 +345,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 
 ## Domain boundaries
 
-- chess_core.py: python-chess rules, legal-position identity, deterministic facts, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
+- chess_core.py: python-chess rules, legal-position identity, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
 - engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
 - policy.py: configurable move acceptance over verified scores.
 - play/bot.py / play/level.py / play/sessions.py: human-like move choice from the shared human policy with engine veto rules by rating, the measured level fit over imported games, and game-session state whose finished games are imported like any other game. See [Play](PLAY.md).

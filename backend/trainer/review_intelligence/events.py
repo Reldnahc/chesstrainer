@@ -210,12 +210,12 @@ def describe_move(report, practical, context=None):
                 "opening_departure",
                 "annotation",
                 20,
-                context.opening_departure,
+                context.opening_departure.model_dump(),
                 [
                     ref("pgn", context.pgn_digest, "mainline/move"),
                     ref(
                         "book",
-                        context.opening_departure["catalogue"],
+                        context.opening_departure.catalogue,
                         "first_unmatched_continuation",
                     ),
                 ],

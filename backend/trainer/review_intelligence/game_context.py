@@ -6,7 +6,6 @@ from trainer.chess_core import Score, digest
 from trainer.review_intelligence.events_types import (
     EvidenceReference,
     MoveIntelligence,
-    report_events,
 )
 from trainer.review_intelligence.game_links import (
     consistent,
@@ -32,6 +31,8 @@ def game_context(parsed, reports, *, completed=False):
     nodes, segments, segment = [], [], []
     board = parsed.board()
     limitations = set()
+    # Each node's typed events, parsed once for every relationship rule.
+    events = {}
     for ply, move in enumerate(moves, 1):
         report = reports.get(ply)
         intel = (
@@ -71,6 +72,7 @@ def game_context(parsed, reports, *, completed=False):
                 limitations.add("adjacent_searches_disagree_relationships_abstained")
             segment.append(node)
             nodes.append(node)
+            events[ply] = intel.events
         elif segment:
             segments.append(segment)
             segment = []
@@ -117,10 +119,10 @@ def game_context(parsed, reports, *, completed=False):
         )
         relationships.append(relationship.model_copy(update={"id": identity}))
 
-    repeated_links(nodes, reports, emit)
+    repeated_links(nodes, events, emit)
     for segment in segments:
         sequential_links(segment, emit, complete and segment[-1].ply == total, result)
-        support_links(segment, moves, reports, emit)
+        support_links(segment, moves, reports, events, emit)
     turning = []
     for node in nodes:
         drop = loss(node)
@@ -150,7 +152,7 @@ def game_context(parsed, reports, *, completed=False):
     )
 
 
-def support_links(segment, moves, reports, emit):
+def support_links(segment, moves, reports, events, emit):
     """Track a concrete surviving piece, not coincidentally equal square names."""
     pending = {}
     for node in segment:
@@ -165,7 +167,7 @@ def support_links(segment, moves, reports, emit):
                 pending[(color, move.to_square)] = value
             elif color != node.actor and square == move.to_square:
                 del pending[key]
-        for event in report_events(reports[node.ply]):
+        for event in events[node.ply]:
             if (
                 event.kind != "positional"
                 or event.facts.line != "actual"

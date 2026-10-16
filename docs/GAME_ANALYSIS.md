@@ -226,7 +226,7 @@ Chess.com supplies monthly archives, so a fresh import still downloads archive d
 
 Each completed local classification commits independently. Cancel stops new tasks and allows already-started engine/rule work to save. Retry the job from Import to finish its original scope, or use **Settings > Classify saved games** to scan saved meaningful decisions.
 
-Classified and abstained responses are reused when saved evidence, rule version, parameters and taxonomy match. Missing or failed classifications are computed locally; an identical rejected result is not automatically revived. Worker-count changes do not invalidate results. A hard process failure before a transaction commits can require recomputing that unfinished unit. Retry progress may recount saved positions without repeating compatible engine/rule work.
+Classified and abstained responses are reused when saved evidence, rule version, parameters and taxonomy match. Missing or failed classifications are computed locally; an identical rejected result is not automatically revived, and neither is a later result with the same labels for that decision under other evidence or rules: it is saved as rejected too. Worker-count changes do not invalidate results. A hard process failure before a transaction commits can require recomputing that unfinished unit. Retry progress may recount saved positions without repeating compatible engine/rule work.
 
 Classification-only jobs launch no background engines and never call a model. Optional **Deepen unclear positions** is a separate, capped native Stockfish job with persisted tasks and cached searches; see [analysis pipeline](GAME_ANALYSIS.md#optional-evidence-enrichment).
 

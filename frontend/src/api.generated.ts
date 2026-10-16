@@ -4802,7 +4802,10 @@ export interface components {
          *     rejects fields it does not know instead of ignoring them.
          */
         ProviderImportRequest: {
-            /** Analyze */
+            /**
+             * Analyze
+             * @deprecated
+             */
             analyze?: boolean | null;
             /** End Date */
             end_date?: string | null;

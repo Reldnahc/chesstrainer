@@ -36,7 +36,7 @@ class ProviderImportRequest(Contract):
     end_date: date | None = None
     # Retired: every imported game is analyzed now. Older clients still send it,
     # so it is accepted and ignored (never saved), unlike an unknown field.
-    analyze: bool | None = Field(default=None, exclude=True)
+    analyze: bool | None = Field(default=None, exclude=True, deprecated=True)
 
     @field_validator("username", mode="before")
     @classmethod
