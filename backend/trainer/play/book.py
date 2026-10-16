@@ -294,9 +294,7 @@ DEVIATION_FIELDS = ("ply", "san", "uci", "book", "verdict", "loss_cp", "compared
 
 
 def book_moves(practice: dict) -> list[str]:
-    """Games started before "Show book move" kept the off-book spot's moves elsewhere."""
-    deviation = practice.get("deviation") or {}
-    return practice.get("book_moves") or deviation.get("book_uci") or []
+    return practice.get("book_moves") or []
 
 
 def practice_view(practice: dict | None) -> dict | None:

@@ -42,7 +42,7 @@ def game(pgn=PGN, *, end=100, speed="rapid", rules="chess", black=False):
 
 def source_job(sessions, **params):
     with sessions() as db:
-        job = AnalysisJob(kind="chesscom_fetch", status="running")
+        job = AnalysisJob(kind="provider_fetch", status="running")
         db.add(job)
         db.flush()
         request = ChessComRequest(**{"username": "learner", "months": 0, **params})
