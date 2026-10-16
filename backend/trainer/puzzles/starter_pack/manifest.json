@@ -8,8 +8,8 @@
   "url": "https://database.lichess.org/#puzzles",
   "puzzle_url": "https://lichess.org/training/{id}",
   "file": "puzzles.csv",
-  "sha256": "7e4bd8fb70eb68beb8ae44b86d99fa5fd7a1a98ed2f7f3beccd0a76c022b09de",
-  "count": 943,
+  "sha256": "efadab98bfafaffd282170732b929c860ce772fb6fbae9de11d402ddb9b4f443",
+  "count": 940,
   "build": {
     "tool": "scripts/build_puzzle_pack.py",
     "sampling": "band-reservoir-v1",
@@ -58,7 +58,7 @@
   },
   "verification": {
     "verifier": "solution-uniqueness-v2",
-    "verified_at": "2026-10-16",
+    "verified_at": "2026-10-15",
     "verified_sha256": "d622070deb6cb82c861359afe63b92eec0d3f71265a6dd66c52e72c4f283ce6e",
     "engine": "Stockfish 18",
     "depth": 18,
@@ -69,7 +69,7 @@
       "payoff_cp": 150
     },
     "verified": 972,
-    "passed": 943,
+    "passed": 940,
     "failed": [
       "1Krzl",
       "1dgwv",
@@ -79,25 +79,28 @@
       "EmM7z",
       "GUzg9",
       "GsNrP",
-      "IWBnq",
       "KyGMM",
       "OgkTh",
       "SqdBQ",
       "TY7bp",
       "UJCa8",
       "UZ3Rt",
-      "aT517",
+      "VmTpD",
+      "gNfaS",
       "gS18m",
       "koHgD",
-      "l63oC",
       "p7sxl",
       "pDWVC",
       "pnsBS",
       "rJHoM",
+      "tw63j",
       "uXNnJ",
       "uZcbo",
+      "vm1BZ",
       "vqdC1",
       "wgvAQ",
+      "xFkWY",
+      "xknAH",
       "ySm3s",
       "ySm6T"
     ],
@@ -111,25 +114,28 @@
       "EmM7z",
       "GUzg9",
       "GsNrP",
-      "IWBnq",
       "KyGMM",
       "OgkTh",
       "SqdBQ",
       "TY7bp",
       "UJCa8",
       "UZ3Rt",
-      "aT517",
+      "VmTpD",
+      "gNfaS",
       "gS18m",
       "koHgD",
-      "l63oC",
       "p7sxl",
       "pDWVC",
       "pnsBS",
       "rJHoM",
+      "tw63j",
       "uXNnJ",
       "uZcbo",
+      "vm1BZ",
       "vqdC1",
       "wgvAQ",
+      "xFkWY",
+      "xknAH",
       "ySm3s",
       "ySm6T"
     ],
@@ -137,7 +143,7 @@
       "Stockfish 18, depth 18, 4 engines x 2 threads",
       "Stockfish 18, depth 18, 10 engines x 1 thread"
     ],
-    "rule": "A puzzle is removed if either run fails it; multi-threaded search is not deterministic near the +200 cp threshold.",
+    "rule": "A puzzle is removed if either depth-18 run fails it, unless single-threaded rechecks at depth 22 and 28 clear every solver step; a kept puzzle that depth-20 and depth-28 checks fail is removed too.",
     "previous": {
       "verifier": "solution-uniqueness-v1",
       "verified_at": "2026-10-02",
@@ -181,6 +187,24 @@
         "xYb4S",
         "yvItR"
       ]
+    },
+    "deep_check": {
+      "engine": "Stockfish 18",
+      "depth": 28,
+      "threads": 1,
+      "restored": {
+        "aT517": "rivals +72 and +87",
+        "IWBnq": "payoff +275",
+        "l63oC": "rival Bg7 -42"
+      },
+      "removed": {
+        "VmTpD": "Be5# vs Ke6 +310",
+        "gNfaS": "Qxg2# vs Ne5 +206",
+        "tw63j": "Qa8# vs Qxd5 +242",
+        "vm1BZ": "Qxe6# vs Rxe6 +271",
+        "xFkWY": "Rxh4# vs Re1 +271",
+        "xknAH": "Rd8# vs Rh6 +391"
+      }
     }
   }
 }
