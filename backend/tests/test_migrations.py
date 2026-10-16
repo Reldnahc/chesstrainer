@@ -411,7 +411,7 @@ def test_one_representation_per_concept_keeps_every_value(tmp_path):
             "fetch": ("chesscom_fetch", "queued"),
             "import": ("provider_fetch", "completed"),
             "teach": ("retired", "cancelled"),
-            "trained": ("retired", "cancelled"),
+            "trained": ("analysis", "running"),
             "odd": ("game_review", "failed"),
             "review": ("game_review", "completed"),
         }
@@ -492,3 +492,15 @@ def test_the_database_accepts_exactly_the_job_kinds_and_statuses_the_code_knows(
     # A new kind or status needs a migration that widens the CHECK constraint.
     assert listed("kind") == set(JobKind)
     assert listed("status") == set(JobStatus)
+
+
+def test_an_unexpected_side_stops_the_upgrade_and_changes_nothing(tmp_path):
+    engine, _ = database(tmp_path / "odd-side.sqlite3")
+    upgrade_to(engine, "9d2f6b1e4c83")
+    with engine.begin() as connection:
+        fill(connection, "users", id="u1", username="u1")
+        fill(connection, "exercises", id="x", user_id="u1", identity="x", orientation="White")
+    with pytest.raises(ValueError, match=r"exercises\.orientation holds \['White'\]"):
+        upgrade_to(engine, "head")
+    assert version(engine) == "9d2f6b1e4c83"
+    engine.dispose()

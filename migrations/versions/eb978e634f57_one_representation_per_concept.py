@@ -54,7 +54,12 @@ KINDS = (
     "retired",
 )
 STATUSES = ("queued", "running", "completed", "failed", "cancelled")
-RENAMED_KINDS = {"chesscom": "chesscom_fetch", "provider_import": "provider_fetch"}
+# The same renames as revision 40983c9dbb47, for any such row saved since.
+RENAMED_KINDS = {
+    "chesscom": "chesscom_fetch",
+    "provider_import": "provider_fetch",
+    "training": "analysis",
+}
 TABLES = {"chesscom_imports": "provider_imports", "chesscom_archives": "provider_checkpoints"}
 # (table, old column): "white"/"black" text that becomes a learner_color boolean.
 SIDES = (
@@ -171,8 +176,18 @@ def upgrade():
         op.rename_table(old, new)
 
     for table, column in SIDES:
+        odd = db.execute(
+            sa.text(
+                f"SELECT DISTINCT {column} FROM {table}"
+                f" WHERE {column} IS NULL OR {column} NOT IN ('white', 'black')"
+            )
+        ).scalars()
+        if odd := list(odd):
+            raise ValueError(
+                f"{table}.{column} holds {odd!r}, not only 'white' or 'black'; correct those"
+                " rows before upgrading. Nothing was changed."
+            )
         op.add_column(table, sa.Column("learner_color", sa.Boolean()))
-        # Anything but the two words stays NULL, so the NOT NULL rebuild refuses it.
         db.execute(
             sa.text(
                 f"UPDATE {table} SET learner_color ="
