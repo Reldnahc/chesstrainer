@@ -213,7 +213,7 @@ def test_values_requests_used_to_fill_in_are_backfilled(tmp_path):
             pgn="1. f3 e5 2. g4 Qh4# 0-1",
         )
         fill(connection, "games", id="g2", user_id="u1", fingerprint="g2", pgn="", move_count=None)
-        fill(connection, "exercises", id="x1", user_id="u1", identity="x1")
+        fill(connection, "exercises", id="x1", user_id="u1", identity="x1", orientation="white")
         for session, response in (("s1", None), ("s2", None), ("s3", 900)):
             fill(
                 connection,
@@ -263,8 +263,17 @@ def test_dropping_the_archived_lesson_tables_keeps_their_sessions_and_cards(tmp_
             identity="x1",
             source="repertoire",
             repertoire_id="r1",
+            orientation="white",
         )
-        fill(connection, "exercises", id="x2", user_id="u1", identity="x2", source="game")
+        fill(
+            connection,
+            "exercises",
+            id="x2",
+            user_id="u1",
+            identity="x2",
+            source="game",
+            orientation="white",
+        )
         archived_lesson_rows(connection, ["x2"], user_id="u1")
         fill(
             connection,
@@ -297,8 +306,13 @@ def test_dropping_the_archived_lesson_tables_keeps_their_sessions_and_cards(tmp_
 def test_one_representation_per_concept_keeps_every_value(tmp_path):
     from datetime import datetime, timezone
 
+    import chess
+    from sqlalchemy import select
     from sqlalchemy.orm import Session
+    from trainer.chess_core import digest, position_key
+    from trainer.config import Settings
     from trainer.db import account_sessions
+    from trainer.exercises import manual_exercise
     from trainer.models import (
         AnalysisJob,
         AuthSession,
@@ -309,7 +323,17 @@ def test_one_representation_per_concept_keeps_every_value(tmp_path):
         ProviderImport,
         User,
     )
+    from trainer.scheduling import FSRSScheduler
 
+    board = chess.Board()
+    manual_identity = digest(
+        {
+            "source": "manual",
+            "position": position_key(board),
+            "moves": ["e2e4"],
+            "orientation": "black",
+        }
+    )
     engine, _ = database(tmp_path / "conventions.sqlite3")
     upgrade_to(engine, "9d2f6b1e4c83")
     with engine.begin() as connection:
@@ -328,6 +352,8 @@ def test_one_representation_per_concept_keeps_every_value(tmp_path):
             ("fetch", "chesscom", "queued"),
             ("import", "provider_import", "completed"),
             ("teach", "teaching", "queued"),
+            ("trained", "training", "running"),
+            ("odd", "game_review", "paused"),
             ("review", "game_review", "completed"),
         ):
             fill(connection, "analysis_jobs", id=job_id, user_id="u1", kind=kind, status=status)
@@ -342,7 +368,27 @@ def test_one_representation_per_concept_keeps_every_value(tmp_path):
                 identity=exercise_id,
                 orientation=side,
             )
-        fill(connection, "opening_studies", id="s", user_id="u1", color="black")
+        # A manual exercise as the previous code saved it, under its identity digest.
+        fill(
+            connection,
+            "exercises",
+            id="manual",
+            user_id="u1",
+            identity=manual_identity,
+            source="manual",
+            fen=chess.STARTING_FEN,
+            orientation="black",
+        )
+        fill(
+            connection,
+            "opening_studies",
+            id="s",
+            user_id="u1",
+            source="catalogue",
+            source_key="k",
+            source_version="v",
+            color="black",
+        )
         fill(connection, "review_sessions", id="rs", user_id="u1", exercise_id="white")
         fill(
             connection,
@@ -365,6 +411,8 @@ def test_one_representation_per_concept_keeps_every_value(tmp_path):
             "fetch": ("chesscom_fetch", "queued"),
             "import": ("provider_fetch", "completed"),
             "teach": ("retired", "cancelled"),
+            "trained": ("retired", "cancelled"),
+            "odd": ("game_review", "failed"),
             "review": ("game_review", "completed"),
         }
         assert db.get(ProviderImport, "fetch").provider == "chesscom"
@@ -372,12 +420,75 @@ def test_one_representation_per_concept_keeps_every_value(tmp_path):
         assert {row.id: row.learner_color for row in db.query(Exercise)} == {
             "white": True,
             "black": False,
+            "manual": False,
         }
         assert db.get(OpeningStudy, "s").learner_color is False
         assert db.get(OpeningRecallSnapshot, "rs").learner_color is True
+        assert db.get(Exercise, "manual").learner_color is False
     sessions = account_sessions(engine, "u1")
     with sessions() as db:
+        # The current code finds the rows saved before: same digest, same side.
+        again = manual_exercise(
+            db, FSRSScheduler(Settings(_env_file=None)), board.fen(), ["e2e4"], "black"
+        )
+        assert again.id == "manual"
+        study = db.scalar(
+            select(OpeningStudy).where(
+                OpeningStudy.source_key == "k", OpeningStudy.learner_color.is_(False)
+            )
+        )
+        assert study.id == "s"
+        db.rollback()
         db.add(AnalysisJob(kind="no_such_kind"))
         with pytest.raises(Exception, match="CHECK constraint failed"):
             db.flush()
+
+    # And back: every value returns to the previous representation.
+    config = _config()
+    with migration_connection(engine) as connection:
+        config.attributes["connection"] = connection
+        command.downgrade(config, "9d2f6b1e4c83")
+    with engine.connect() as connection:
+
+        def one(sql):
+            return connection.exec_driver_sql(sql).one()
+
+        assert one("SELECT created, chesscom_username FROM users WHERE id = 'u1'") == (
+            1700000000.25,
+            "",
+        )
+        assert one("SELECT expires FROM auth_sessions") == (1800000000.0,)
+        assert one("SELECT played_on FROM games") == ("2024.??.??",)
+        assert dict(connection.exec_driver_sql("SELECT id, orientation FROM exercises").all()) == {
+            "white": "white",
+            "black": "black",
+            "manual": "black",
+        }
+        assert one("SELECT color FROM opening_studies") == ("black",)
+        assert one("SELECT orientation FROM opening_recall_snapshots") == ("white",)
+        assert one("SELECT url FROM chesscom_archives") == ("2024/01",)
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").first() is None
+    assert migrate(engine) is True
     engine.dispose()
+
+
+def test_the_database_accepts_exactly_the_job_kinds_and_statuses_the_code_knows(tmp_path):
+    import re
+
+    from trainer.job_kinds import JobKind, JobStatus
+
+    engine, _ = database(tmp_path / "checks.sqlite3")
+    migrate(engine)
+    with engine.connect() as connection:
+        sql = connection.exec_driver_sql(
+            "SELECT sql FROM sqlite_master WHERE name = 'analysis_jobs'"
+        ).scalar()
+    engine.dispose()
+
+    def listed(column):
+        found = re.search(rf"CHECK \({column} IN \(([^)]*)\)\)", sql)
+        return set(re.findall(r"'([a-z_]+)'", found.group(1)))
+
+    # A new kind or status needs a migration that widens the CHECK constraint.
+    assert listed("kind") == set(JobKind)
+    assert listed("status") == set(JobStatus)

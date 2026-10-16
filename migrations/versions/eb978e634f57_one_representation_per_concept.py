@@ -19,9 +19,14 @@
   called it or whether they named it at all. Indexes already had their names.
 
 The whole revision runs in one transaction with foreign keys checked at the end,
-so a failure leaves the database as it was. The rebuild copies every table, the
-engine cache included, so the upgrade needs free disk about the size of the
-database, once.
+so a failure leaves the database as it was. The rebuild copies every table whose
+names or columns change, the engine cache included: while it runs the WAL holds
+about the whole database and the file grows by about its largest table, so the
+upgrade needs free disk about twice the database's size, once (and the startup
+cache maintenance may VACUUM an older file right after, see cache_maintenance).
+
+The downgrade restores each column's values; jobs this revision marked
+``retired`` keep that kind, since their original names are not recorded.
 """
 
 import re
@@ -107,6 +112,11 @@ def rebuild(name, rename, *, drop=(), required=(), unique=None, check=None, rena
     the table's previous name, whose indexes take the new one.
     """
     table = sa.Table(name, sa.MetaData(), autoload_with=op.get_bind())
+    if not (drop or required or unique or check or renamed) and all(
+        isinstance(constraint, sa.CheckConstraint) or constraint.name == rename(name, constraint)
+        for constraint in table.constraints
+    ):
+        return  # Every name is already right: no copy needed.
     for constraint in list(table.constraints):
         if isinstance(constraint, sa.CheckConstraint):
             continue
@@ -162,7 +172,13 @@ def upgrade():
 
     for table, column in SIDES:
         op.add_column(table, sa.Column("learner_color", sa.Boolean()))
-        db.execute(sa.text(f"UPDATE {table} SET learner_color = ({column} = 'white')"))
+        # Anything but the two words stays NULL, so the NOT NULL rebuild refuses it.
+        db.execute(
+            sa.text(
+                f"UPDATE {table} SET learner_color ="
+                f" CASE {column} WHEN 'white' THEN 1 WHEN 'black' THEN 0 END"
+            )
+        )
     for table, column, stamp in EPOCHS:
         op.add_column(table, sa.Column(stamp, sa.DateTime(timezone=True)))
         for rowid, epoch in db.execute(sa.text(f"SELECT rowid, {column} FROM {table}")).all():

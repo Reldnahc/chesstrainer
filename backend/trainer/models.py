@@ -507,7 +507,7 @@ class SRSState(Owned, Base):
 class ReviewSession(Owned, Base):
     __tablename__ = "review_sessions"
     last_attempt_id: Mapped[str | None] = mapped_column(
-        ForeignKey("exercise_attempts.id", use_alter=True, name="fk_review_sessions_last_attempt")
+        ForeignKey("exercise_attempts.id", use_alter=True)
     )
     # "review" (scheduled recall), "focus" (skill practice) or "lesson" (an attempt
     # from the removed lessons, kept as archived history).
