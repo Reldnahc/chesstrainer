@@ -237,13 +237,14 @@ test("without a recorded greeting the start keeps its own bubble text", async ({
     .toHaveText("Select a move or move a piece to explore an alternative.");
 });
 
-test("a double check plays no double-attack take", () => {
+test("a double check plays the double-check take, not a double-attack take", () => {
   // A double check's witness names the king it checks: one target, and every legal
   // reply meets both checks, so neither "two targets" nor "one reply rarely meets both" holds.
+  // The move that gives it plays the coach's own double-check take instead.
   const doubleCheck = {id: "double-check", motif: "double_attack", plies: [1], roles: {attackers: ["c2", "d8"], king: ["e3"]}};
   const jun = {id: "man-expert", personality: expert};
-  expect(reviewedTactics([doubleCheck])("double-check")).toBeNull();
-  expect(reviewedTactics([doubleCheck], jun)("double-check")).toBeNull();
+  expect(reviewedTactics([doubleCheck])("double-check")).toBe("explanation-finding-double-check");
+  expect(reviewedTactics([doubleCheck], jun)("double-check")).toBe("explanation-finding-double-check");
   // A double attack on two targets keeps the takes.
   const twoTargets = {...doubleCheck, roles: {attackers: ["c2", "d1"], targets: ["e3", "a1"]}};
   expect(reviewedTactics([twoTargets])("double-check")).toBe("tactic-double-attack-played");

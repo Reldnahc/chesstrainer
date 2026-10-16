@@ -6,7 +6,7 @@ import {makeIntent} from "../src/dialogue/model";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality, type CoachPersonality} from "../src/dialogue/personality";
 import {coachPersonalities} from "../src/dialogue/characters";
-import {selectGameRecording} from "../src/audio/speech/gameSelection";
+import {selectGameRecording, unnamedBookTake} from "../src/audio/speech/gameSelection";
 import {NAMED_OPENING_TAKES} from "../src/audio/speech/falseTakes";
 import registry from "../src/audio/speech/banks/registry.json" with {type: "json"};
 import {readFileSync} from "node:fs";
@@ -355,6 +355,17 @@ test("book takes that say the opening has a name are listed to sit out where our
     expect(NAMED_OPENING_TAKES[bank.voiceId]?.includes(take.id) ?? false, `${bank.voiceId} ${take.id}: ${take.text}`)
       .toBe(claimsName.test(take.text));
   }
+});
+
+test("where our catalogue has no name, a take saying it has one gives way to the coach's next take of its kind", () => {
+  for (const [voice, named] of Object.entries(NAMED_OPENING_TAKES)) for (const id of named) {
+    const next = unnamedBookTake(id, named);
+    expect(next?.replace(/-\d+$/, ""), `${voice} ${id}`).toBe(id.replace(/-\d+$/, ""));
+    expect(named.includes(next!), `${voice} ${id} -> ${next}`).toBe(false);
+  }
+  expect(unnamedBookTake("book-opening-entry-3", ["book-opening-entry-1", "book-opening-entry-3"])).toBe("book-opening-entry-2");
+  expect(unnamedBookTake("book-opening-follow-8", ["book-opening-follow-8"])).toBe("book-opening-follow-1");
+  expect(unnamedBookTake("book-opening-entry-1", [])).toBe("book-opening-entry-1");
 });
 
 test("no recorded take repeats the claims the Oct 15 rewrites removed", () => {

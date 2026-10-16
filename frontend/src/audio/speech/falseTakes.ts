@@ -15,7 +15,7 @@ export const coachVoice = (coachId: string | null | undefined) => voiceOf.get(co
 export const ALWAYS_FALSE: Readonly<Record<string, readonly string[]>> = {};
 
 /** Book takes saying the opening has a name. Our catalogue has no name for some
- * positions, and there they sit out (gameSelection.ts). */
+ * positions, and there the coach's next take of the same kind plays (gameSelection.ts). */
 export const NAMED_OPENING_TAKES: Readonly<Record<string, readonly string[]>> = {
   felix: ["book-opening-follow-8"], pip: ["book-opening-entry-2"], reka: ["book-opening-entry-2", "book-opening-entry-3"],
   tala: ["book-opening-entry-2", "book-opening-entry-3"], tamar: ["book-opening-entry-1", "book-opening-entry-3"],
