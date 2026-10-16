@@ -156,3 +156,40 @@ for (const entry of ["library", "player"] as const) {
     expect(attempts[2].body.request_id).not.toBe(attempts[0].body.request_id);
   });
 }
+
+test("practising a study and pausing it share one guard, so two clicks in one frame start only one", async ({ page }) => {
+  const study = {
+    id: "guard-study", name: "Guard line", color: "white", active: true, eco: "C50", positions: 4, due_positions: 1,
+    source: "lichess_catalogue", source_key: "guard", source_version: "v1", course_id: null, line_id: null,
+  } as unknown as Schema["OpeningStudySummary"];
+  await page.route("**/api/opening-studies", route => route.fulfill({ json: {
+    items: [study], active_studies: 1, learning_positions: 4, due_positions: 1,
+  } satisfies Schema["OpeningStudyLibrary"] }));
+  let release!: () => void;
+  const held = new Promise<void>(resolve => { release = resolve; });
+  const calls: string[] = [];
+  await page.route("**/api/opening-studies/guard-study/**", async route => {
+    calls.push(`${route.request().method()} ${new URL(route.request().url()).pathname}`);
+    await held;
+    await route.fulfill({ status: 503, json: { detail: "Practice is unavailable." } });
+  });
+  await page.route("**/api/opening-studies/guard-study", route => {
+    calls.push(`${route.request().method()} ${new URL(route.request().url()).pathname}`);
+    return route.fulfill({ status: 503, json: { detail: "Pause is unavailable." } });
+  });
+  await page.goto("/study/openings/studies");
+  const row = page.getByRole("article", { name: "Guard line as white" });
+  await expect(row.getByRole("button", { name: "Pause recalls" })).toBeEnabled();
+  // Both clicks land before React re-renders the disabled buttons.
+  await row.evaluate((element) => {
+    const buttons = [...element.querySelectorAll("button")];
+    buttons.find(button => button.textContent?.includes("Practice line"))!.click();
+    buttons.find(button => button.textContent?.includes("Pause recalls"))!.click();
+  });
+  await expect.poll(() => calls.length).toBe(1);
+  expect(calls[0]).toBe("POST /api/opening-studies/guard-study/practice");
+  await expect(row.getByRole("button", { name: "Opening…" })).toBeDisabled();
+  release();
+  await expect(page.getByRole("alert")).toContainText("Practice is unavailable.");
+  expect(calls).toHaveLength(1);
+});

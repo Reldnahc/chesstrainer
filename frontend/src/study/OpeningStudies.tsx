@@ -38,17 +38,17 @@ function StudyRow({ study, busy, onPractice, onToggle }: {
 export default function OpeningStudies() {
   const library = useQuery((signal) => read(api.GET("/api/opening-studies", { signal })));
   const command = useCommand<Busy>();
-  const starting = useSessionStart(createPracticeStarter, (session) => lessonSessionPath(session.id));
-  const busy: Busy | null = command.busy ?? (starting.busy ? { id: starting.busy, command: "practice" } : null);
-  const practice = (study: Study) => { if (!busy) void starting.start(study.id, study.id); };
-  const toggle = (study: Study) => busy ? undefined : void command.run({ id: study.id, command: "toggle" }, async (signal) => {
+  // Practice and pause share one guard, so only one command runs at a time.
+  const starting = useSessionStart(createPracticeStarter, (session) => lessonSessionPath(session.id), command);
+  const busy = command.busy;
+  const practice = (study: Study) => void starting.start({ id: study.id, command: "practice" }, study.id);
+  const toggle = (study: Study) => void command.run({ id: study.id, command: "toggle" }, async (signal) => {
     await setStudyActive(study.id, !study.active, signal);
     return read(api.GET("/api/opening-studies", { signal }));
   }, library.setData);
   return <section className="panel opening-studies">
     <div className="opening-management-heading"><div><h2>Your selected lines</h2><p className="small muted">Rehearse one line here. Due accepts the combined moves from your active studies.</p></div><ActionLink variant="secondary" href={openingCataloguePath()}>Browse catalogue<ArrowRight size={16} /></ActionLink></div>
     <CommandError command={command} />
-    <CommandError command={starting} />
     <QueryResult query={library} label="your studies">{(library) => <>
       {!!library.items.length && <StatList items={[
         { label: "Active studies", value: library.active_studies },
