@@ -32,7 +32,6 @@ export type SpeechHarness = {
   coach: (patch: Partial<CoachPreferences>) => Promise<boolean>;
   play: (id?: string) => Promise<void>;
   stop: () => void;
-  consumeAutomatic: (eventId: string | null) => void;
   hidden: (value: boolean) => void;
   unmount: () => void;
   bank: (coachId?: string) => readonly {id: string; text: string; url: string}[];
@@ -55,7 +54,6 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
   let saveCoach: SpeechHarness["coach"] = async () => false;
   let play: SpeechHarness["play"] = async () => {};
   let stop = () => {};
-  let consumeAutomatic: SpeechHarness["consumeAutomatic"] = () => {};
   function Experience({selection: current}: {selection: Selection}) {
     const audio = useAudioPreferences(), coach = useCoachPreferences();
     const utterance = {...renderNeutral(makeIntent(current.utteranceId, "good", "game", "good", [claim("good")])),
@@ -66,7 +64,6 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
     saveCoach = patch => coach.save({...coach.preferences, ...patch}).then(result => result === "saved");
     play = voice.play;
     stop = voice.stop;
-    consumeAutomatic = voice.consumeAutomatic;
     const frame = game?.frames[1];
     const intent = game && gameIntent({game, report: frame!.report, frame, ply: 1,
       key: "human-fixture", expression: "good", human: true});
@@ -77,7 +74,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
       React.createElement("button", {onClick: () => {}}, "Unlock audio"),
       React.createElement("output", {"data-testid": "speech-state"}, JSON.stringify({
         ready: audio.ready && coach.ready, mode: audio.preferences.voice, coach: coach.preferences.coach_id,
-        available: voice.available, playing: voice.playing, active: voice.activeRecordingId ?? null,
+        available: voice.available, playing: voice.isPlaying(),
         observed: observed?.recordingId ?? null, observedCoach: observed?.coachId ?? null,
         portrait: voice.speech?.recordingId ?? null,
         track: voice.speechTrack ? {duration: voice.speechTrack.durationSeconds, cues: voice.speechTrack.cues.length} : null,
@@ -98,7 +95,6 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
   return {
     update: patch => {selection = {...selection, ...patch}; render();},
     audio: patch => saveAudio(patch), coach: patch => saveCoach(patch), play: id => play(id), stop: () => stop(),
-    consumeAutomatic: eventId => consumeAutomatic(eventId),
     hidden: value => {
       if (value) {
         Object.defineProperty(document, "hidden", {configurable: true, value: true});

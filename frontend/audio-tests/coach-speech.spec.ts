@@ -10,7 +10,7 @@ import walterManifest from "../src/audio/speech/bank/manifest.json" with {type: 
 
 type SpeechWindow = Window & {coachSpeechHarness: SpeechHarness; fakeSpeechAudio: FakeSpeechAudio};
 type State = {ready: boolean; mode: string; coach: string; available: boolean; playing: boolean;
-  active: string | null; observed: string | null; observedCoach: string | null; portrait: string | null;
+  observed: string | null; observedCoach: string | null; portrait: string | null;
   track: {duration: number; cues: number} | null; selection: Selection};
 const FIRST = "tactic-fork-played", SECOND = "tactic-pin-played";
 
@@ -321,7 +321,7 @@ test("a delayed mouth-track load never holds back the line and only joins its ow
   await speaking(page);
   expect((await state(page)).track).toBe(null);
   await update(page, {scopeKey: "game:one:2", recordingId: SECOND});
-  await expect.poll(() => state(page).then(value => value.active)).toBe(null);
+  await expect.poll(() => state(page).then(value => value.playing)).toBe(false);
   release();
   await page.evaluate(id => (window as unknown as SpeechWindow).coachSpeechHarness.track(id), SECOND);
   await tick(page, 500);
@@ -380,15 +380,6 @@ test("late human enrichment keeps a still-supported recording without replaying 
   await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
   await tick(page, 500);
   expect(await starts(page)).toBe(1);
-});
-
-test("a stale insight callback cannot consume the next move's narration", async ({page}) => {
-  await mount(page);
-  await page.getByRole("button", {name: "Unlock audio", exact: true}).click();
-  await update(page, {automaticEventId: "navigate:next", scopeKey: "game:one:next"});
-  await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.consumeAutomatic("navigate:previous"));
-  await tick(page, 250);
-  await speaking(page);
 });
 
 test("opening an insight alone stays silent and does not consume the main response", async ({page}) => {

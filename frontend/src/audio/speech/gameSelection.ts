@@ -35,7 +35,6 @@ export type GameSpeechContext = {
    * written meaning never silences a move before it is recorded. */
   playable?: (id: string) => boolean;
 };
-export type WalterGameSpeechContext = GameSpeechContext;
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
 type Event = Schema["ReviewEvent"];
 const opposite = (side: "white" | "black") => side === "white" ? "black" : "white";
@@ -164,7 +163,7 @@ function positionalRecording(item: Claim, event: Event, mover: "white" | "black"
   return name ? `positional-${name}-${line}` : null;
 }
 
-function terminalRecording(item: Claim, {frame, game}: WalterGameSpeechContext): string | null {
+function terminalRecording(item: Claim, {frame, game}: GameSpeechContext): string | null {
   if (!frame?.termination || !evidenced(item) || !item.evidence.some(ref => ref.source === "position"
     && ref.id === frame.fen && ref.field === "automatic_outcome")) return null;
   if (item.code === "draw") return frame.result === "1/2-1/2" ? "draw" : null;
@@ -175,7 +174,7 @@ function terminalRecording(item: Claim, {frame, game}: WalterGameSpeechContext):
     ? winner === game.orientation ? "mate-finished" : "mate-defense-ended" : null;
 }
 
-function legalReplyRecording(item: Claim, {frame, report}: WalterGameSpeechContext): string | null {
+function legalReplyRecording(item: Claim, {frame, report}: GameSpeechContext): string | null {
   const cues = report?.board_cues, uci = cues?.caption_reply_uci;
   if (item.code !== "explanation" || !frame || !report || !cues || cues.caption_kind !== "legal_reply"
     || cues.fen !== frame.fen || report.actual.san !== frame.san || !uci || !/^[a-h][1-8][a-h][1-8][qrbn]?$/.test(uci)
@@ -436,9 +435,6 @@ function gamePieces(context: GameSpeechContext, id: string): NamedPieces | null 
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 
-/** The fewest takes any grade has; imported extra takes (grade-best-5, ...) join
- * their grade. Specs rely on it; the pools themselves come from the catalogue. */
-export const GRADE_TAKES = 4;
 const gradePools: Readonly<Partial<Record<string, GradeTakePool>>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
@@ -474,9 +470,4 @@ function gradeTake(context: GameSpeechContext, recordingId: string | null): stri
   const earlier = variation ? 0 : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
   const order = shuffledTakes(ids, variation ? [frame?.fen, label] : [game.id, label], Math.floor(earlier / ids.length));
   return order[earlier % ids.length];
-}
-
-/** Historical Walter-only consumers; new code selects meaning independently of voice. */
-export function selectWalterGameRecording(context: WalterGameSpeechContext): string | null {
-  return context.utterance.coachId === "classic" ? selectGameRecording(context) : null;
 }

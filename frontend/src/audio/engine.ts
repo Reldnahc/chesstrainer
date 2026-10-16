@@ -1,7 +1,7 @@
 import { cueCatalog, isPaletteForCue, productionCuePalettes, soundAssetUrl } from "./catalog";
 import {
   defaultAudioPreferences, soundCues, soundPalettes,
-  type AudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCategory,
+  type AudioPreferences, type RecordedSpeechClip, type SoundCategory,
   type SoundCue, type SoundPalette, type SoundRequest,
   type SpeechPlayback,
 } from "./model";
@@ -205,20 +205,8 @@ export class AudioEngine {
     } catch (error) { this.report(error); } // Unsupported browser audio must never interrupt interaction.
   }
 
-  /** Reserved bus: caller owns manual/auto-speak suitability; provider supplies the existing utterance's audio. */
-  playPreparedSpeech(clip: PreparedSpeechClip): void {
-    try {
-      const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
-        eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
-      if (!ticket) return;
-      ticket.interruptCurrent = clip.interruptCurrent === true;
-      ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id, recordingId: clip.recordingId};
-      if (ticket.interruptCurrent && !this.validSpeechBuffer(clip.buffer)) { this.fail(ticket); return; }
-      if (this.current(ticket) && this.activate(ticket)) this.start(ticket, clip.buffer);
-    } catch (error) { this.report(error); } // Provider audio must not affect the visual utterance or app state.
-  }
-
-  /** Decode a bundled recording on the same context and cancellable speech bus as prepared clips. */
+  /** Decode a bundled recording on the reserved, cancellable speech bus; the caller owns
+   * manual and auto-speak suitability. */
   playRecordedSpeech(clip: RecordedSpeechClip): void {
     try {
       const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
