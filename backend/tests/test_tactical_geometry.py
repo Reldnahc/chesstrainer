@@ -1,5 +1,5 @@
 import chess
-from trainer.tactical_geometry import attacker_collection, new_targets
+from trainer.tactical_geometry import attacker_collection, new_targets, valuable_targets
 
 
 def boards_after(fen, moves):
@@ -28,8 +28,14 @@ def test_a_recapture_by_a_like_piece_is_not_the_fork_collecting():
 
 
 def test_a_piece_that_was_pinned_threatens_anew_what_lay_off_its_pin():
-    # The knight on d2 is pinned to its king; its geometric reach was no threat.
-    before = chess.Board("4k3/8/8/8/1b6/8/3N4/4K3 w - - 0 1")
-    assert new_targets(before, chess.D2, {chess.C4, chess.E4})
-    unpinned = chess.Board("4k3/8/8/8/8/8/3N4/4K3 w - - 0 1")
-    assert not new_targets(unpinned, chess.D2, {chess.C4, chess.E4})
+    # The queen on d2 is pinned to its king by the rook on d8. Its diagonals already
+    # reached a5 and g5, but it could not take on them; taking the pinner forks both.
+    before = chess.Board("3r4/7k/8/n5n1/8/8/3Q4/3K4 w - - 0 1")
+    after = before.copy()
+    after.push_san("Qxd8")
+    assert {chess.A5, chess.G5} <= valuable_targets(after, chess.D8)
+    assert {chess.A5, chess.G5} <= set(before.attacks(chess.D2))
+    assert new_targets(before, chess.D2, {chess.A5, chess.G5})
+    # Unpinned, the same queen already threatened both knights.
+    unpinned = chess.Board("3r4/7k/8/n5n1/8/8/3Q4/2K5 w - - 0 1")
+    assert not new_targets(unpinned, chess.D2, {chess.A5, chess.G5})
