@@ -17,9 +17,15 @@ function gameDate(item: HistoryItem) {
 export type Outcome = "win" | "loss" | "draw" | "unknown";
 export const OUTCOME_LABELS: Record<Outcome, string> = { win: "Won", loss: "Lost", draw: "Draw", unknown: "—" };
 
+// Every outcome label, one per line: the badge reserves the widest of them, so all
+// badges are one width wherever they appear, whatever font draws them.
+const OUTCOME_SIZER = Object.values(OUTCOME_LABELS).join("\n");
+
 /** A game's result from the learner's side, in the shared outcome colours. */
 export function OutcomeBadge({ outcome, title, children }: { outcome: Outcome; title?: string; children?: ReactNode }) {
-  return <span className={`history-outcome outcome-${outcome}`} title={title}>{children ?? OUTCOME_LABELS[outcome]}</span>;
+  return <span className={`history-outcome outcome-${outcome}`} title={title} data-labels={OUTCOME_SIZER}>
+    <span className="history-outcome-label">{children ?? OUTCOME_LABELS[outcome]}</span>
+  </span>;
 }
 
 function historyResult(item: HistoryItem) {
