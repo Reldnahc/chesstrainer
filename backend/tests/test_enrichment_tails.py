@@ -41,7 +41,8 @@ class SavedFixtureEngine:
         key = board.fen()
         if key in self.cached:
             return self.cached[key]
-        pv = ["a5a1", "f7e6"] if board.turn else ["a1a4", "e2d3", "a4a5", "d3e3"]
+        # The played tail wins the loose bishop too, then settles with no capture pending.
+        pv = ["a5a1", "f7e6"] if board.turn else ["a1b2", "e2d3", "b2b4", "d3e3", "g8f7"]
         candidate = Candidate(
             uci=pv[0],
             san=board.san(board.parse_uci(pv[0])),

@@ -9,7 +9,6 @@ class Account(Contract):
     id: str
     username: str
     admin: bool
-    chesscom_username: str
     onboarding_completed: bool
     password_change_required: bool
 

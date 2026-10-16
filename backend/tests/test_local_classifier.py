@@ -120,10 +120,11 @@ def test_mate_transitions(black, kind):
 @pytest.mark.parametrize("black", [False, True])
 def test_promotion(black):
     result, _ = LocalClassifier().classify(
+        # The king is near enough to win the pawn once White delays promoting.
         evidence(
-            "6k1/P7/8/8/8/8/8/6K1 w - - 0 1",
-            ["a7a8q", "g8f7", "a8a1", "f7e6"],
-            ["g1f2", "g8f7", "f2e3", "f7e6"],
+            "8/P1k5/8/8/8/8/8/6K1 w - - 0 1",
+            ["a7a8q", "c7d7", "a8a1", "d7e6"],
+            ["g1f2", "c7b7", "f2e3", "b7a7", "e3d4", "a7b6"],
             800,
             0,
             black,
@@ -212,7 +213,7 @@ def test_no_provider_configuration_or_paid_job_paths(settings, monkeypatch):
         assert "unused-legacy-test-key" not in str(config)
         assert client.post("/api/course/teaching").status_code == 410
         with client.app.state.sessions() as db:
-            job = AnalysisJob(kind="teaching", status="cancelled")
+            job = AnalysisJob(kind="retired", status="cancelled")
             db.add(job)
             db.commit()
             assert client.post(f"/api/jobs/{job.id}/retry").status_code == 410

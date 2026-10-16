@@ -141,10 +141,17 @@ def test_concurrent_first_save_preserves_audio_coach_and_motion(sessions):
 
 
 def legacy_users(connection, before):
-    """Later migrations add account columns; the existing ones must not change."""
-    columns = list(before[0].keys())
-    rows = connection.execute(text("SELECT * FROM users ORDER BY id")).mappings()
-    return [{column: row[column] for column in columns} for row in rows]
+    """Later migrations add account columns and keep every existing value, as the
+    same representation's column: the epoch ``created`` became ``created_at`` and
+    the unused ``chesscom_username`` was dropped."""
+    from datetime import datetime, timedelta
+
+    rows = connection.execute(text("SELECT * FROM users ORDER BY id")).mappings().all()
+    kept = [column for column in before[0].keys() if column in rows[0]]
+    assert [datetime.strptime(row["created_at"], "%Y-%m-%d %H:%M:%S.%f") for row in rows] == [
+        datetime(1970, 1, 1) + timedelta(seconds=row["created"]) for row in before
+    ]
+    return [{column: row[column] for column in kept} for row in rows]
 
 
 def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(settings):
@@ -180,7 +187,10 @@ def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(set
             }
             assert motion_preferences(db).motion == "natural"
     with engine.connect() as connection:
-        assert legacy_users(connection, before_users) == [dict(row) for row in before_users]
+        assert legacy_users(connection, before_users) == [
+            {key: row[key] for key in row.keys() if key not in {"created", "chesscom_username"}}
+            for row in before_users
+        ]
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
         assert connection.exec_driver_sql("PRAGMA integrity_check").scalar() == "ok"
         config.attributes["connection"] = connection
@@ -229,7 +239,10 @@ def test_removing_rating_audio_preserves_saved_account_preferences(settings):
         assert "audio_review" not in {
             column["name"] for column in inspect(connection).get_columns("user_preferences")
         }
-        assert legacy_users(connection, before_users) == [dict(row) for row in before_users]
+        assert legacy_users(connection, before_users) == [
+            {key: row[key] for key in row.keys() if key not in {"created", "chesscom_username"}}
+            for row in before_users
+        ]
         assert (
             connection.execute(text("SELECT * FROM user_preferences ORDER BY user_id"))
             .mappings()

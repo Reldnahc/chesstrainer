@@ -24,7 +24,7 @@
   padding: var(--space-3) var(--space-4);
   font-size: var(--text-md);
 }
-.action-control.action-control--compact {
+.action-control:is(.action-control--compact, .action-control--toolbar) {
   min-height: var(--control-height-compact);
   gap: var(--space-1-5);
   padding: var(--space-1-5) var(--space-3);
@@ -70,6 +70,8 @@
   justify-content: flex-start;
   padding-inline: 0;
 }
+.action-control.action-control--mono { font-family: var(--mono); }
+.action-control.action-control--spread { justify-content: space-between; }
 .action-control.action-control--quiet:hover {
   background: transparent;
   border-color: transparent;
@@ -82,7 +84,7 @@
   padding: 0;
   justify-content: center;
 }
-.action-control--icon.action-control--compact { width: var(--control-height-compact); height: var(--control-height-compact); }
+.action-control--icon:is(.action-control--compact, .action-control--toolbar) { width: var(--control-height-compact); height: var(--control-height-compact); }
 .action-control--icon.action-control--dense { width: var(--control-height-dense); height: var(--control-height-dense); }
 /* A toggle that is on (aria-pressed). A surface with its own palette, such as
    the coach bubble, sets the three tokens instead of writing its own rule. */
@@ -106,7 +108,17 @@
 @media (max-width: 760px) {
   .action-control.action-control--ordinary,
   .action-control.action-control--compact,
-  .action-control.action-control--dense { min-height: var(--touch-target); }
+  .action-control.action-control--dense,
+  .action-control.action-control--toolbar { min-height: var(--touch-target); }
+  /* A toolbar Button is compact on desktop and narrower on phones, so a full
+     row of board controls fits beside the move buttons (Play's Resign and New game). */
+  .action-control.action-control--toolbar {
+    gap: var(--space-1);
+    padding: var(--space-1-5);
+    font-size: var(--text-xs);
+  }
+  .action-control--quiet.action-control--toolbar { padding-inline: 0; }
+  .action-control--icon.action-control--toolbar { padding: 0; }
   .action-control.action-control--icon { width: var(--touch-target); height: var(--touch-target); }
 }
 }

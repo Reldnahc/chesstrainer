@@ -2,7 +2,7 @@
 
 ## Classification v4: pinned Lichess recognition
 
-Version 4.1-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
+Version 4.2-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [Pinned Lichess code](#pinned-lichess-code) for provenance and the [Lichess benchmark](#results) for measurements.
 
 Recognition and mistake admission are separate. A pin or double check can be present in a line without a settled material outcome. Review can show that factual motif; an active weakness finding still needs Fieldwork's existing engine comparison, material/mate support and relevant episode. Fieldwork's own collection witnesses and independently verified native extensions also run; upstream recognition adds motifs those narrower witnesses miss.
 
@@ -55,7 +55,7 @@ Detectors inspect the bounded connected episode, not arbitrary later tactics. On
 
 All PV moves are replayed and validated by python-chess. Stockfish scores retain explicit centipawn/mate types and the learner's perspective. Already-lost mate positions are not newly labeled allowed mate; retaining a slower mate is not missed mate.
 
-Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, and unchanged last-three material balances. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
+Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, unchanged last-three material balances, and no capture pending: the side to move has no capture or promotion that wins material by static exchange (legal moves only, so pins count), and the saved line's next move is not a capture, promotion or check. Every line reader (review, Play, the practice explanation) shares this endpoint. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
 
 Absolute evaluation does not gate material findings: a player can lose a piece while still winning. Small evaluation preferences and compensated material without the configured evaluation loss do not qualify. Native hypotheses retain their pin and defense checks. An upstream motif tag alone never proves a training-worthy mistake.
 
@@ -277,19 +277,19 @@ test_lichess_comparison.py covers the comparison.
 
 The sample is 1,000 positives per eligible theme, seed 0, from the full 6,100,952-row export (input SHA256 95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9), with no skipped rows. The v3.1 column is that baseline run; the other two replay the same frozen sample (samples.jsonl SHA256 e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0) through the comparison above. Reports stay in ignored `data/`.
 
-| Theme | v3.1 line detector | Raw upstream recognition | v4 Fieldwork admission |
+| Theme | v3.1 line detector | Raw upstream recognition | v4.2 Fieldwork admission |
 |---|---:|---:|---:|
 | backRankMate | 99.2% | 100.0% | 100.0% |
 | capturingDefender | 63.8% | 100.0% | 78.7% |
-| deflection | 76.7% | 100.0% | 94.8% |
+| deflection | 76.7% | 100.0% | 94.9% |
 | discoveredAttack | 81.4% | 100.0% | 93.8% |
-| discoveredCheck | 65.9% | 74.6% | 66.0% |
+| discoveredCheck | 65.9% | 74.3% | 65.8% |
 | doubleCheck | 94.0% | 100.0% | 94.0% |
 | fork | 71.3% | 100.0% | 98.2% |
 | hangingPiece | 99.2% | 99.9% | 99.2% |
-| pin | 39.7% | 99.9% | 86.1% |
+| pin | 39.7% | 83.0% | 72.2% |
 | promotion | 97.9% | 100.0% | 98.1% |
 | skewer | 87.9% | 100.0% | 92.8% |
 | underPromotion | 97.0% | 98.1% | 98.4% |
 
-The 12,000 incidences have 999 v4 admission disagreements, against 2,260 for v3.1 and 275 for raw upstream. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.
+The 12,000 incidences have 1,139 v4.2 admission disagreements, against 2,260 for v3.1 and 507 for raw upstream. The pin and discoveredCheck figures moved with the pin-credit rule (361f680d0), which declines a pin that already existed before the move and that the move does not use: pin fell from 86.1% (raw upstream 99.9%). Rule 4.2's quiet endpoint, measured here too, changed no pin result. This is agreement with tags related to the reused generator, not precision. The remaining gaps are visible on purpose: defender removal, pin and discoveredCheck, plus the underpromotion difference described above. No rule was changed to improve these figures. In v3.1, promotion fell from 97.9% anywhere in a solution to 44.2% in the initial episode, which is why recognition in a solution is not attribution to an original mistake.

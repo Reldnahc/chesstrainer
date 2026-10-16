@@ -6,8 +6,6 @@
 .insights :where(ul, table) { margin: 0; }
 
 .insight-toolbar { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); }
-.insight-filter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
-.insight-filter > span { font: var(--text-2xs) var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); min-width: 48px; }
 /* A changed filter keeps the last insights, dimmed, beside the shared loading line. */
 .insight-refreshing { align-self: center; }
 .insights > :not(.insight-toolbar) { transition: opacity var(--motion-fast) var(--ease-standard); }
@@ -208,10 +206,8 @@
   .insight-panel { gap: var(--space-4); }
   /* Phones show each filter as a dropdown; the filters share one row. */
   .insight-toolbar { gap: var(--space-3); }
-  .insight-toolbar > .insight-filter { flex: 1 1 0; min-width: 0; }
+  .insight-toolbar > .choice-field { flex: 1 1 0; min-width: 0; }
   .insight-refreshing { flex-basis: 100%; }
-  .insight-filter { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: var(--space-1-5); }
-  .insight-filter > span { min-width: 0; }
   .insight-headlines li { font-size: var(--text-base); }
   .insight-heatmap-row { grid-template-columns: 56px repeat(7, minmax(0, 1fr)); gap: var(--space-1); }
   .insight-heat { height: 32px; font-size: var(--text-xs); }

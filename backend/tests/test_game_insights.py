@@ -384,7 +384,6 @@ def test_facts_key_follows_everything_the_facts_read():
         facts_key(SimpleNamespace(**{**vars(game), "learner_color": False}), 1500, 3, True),
         facts_key(SimpleNamespace(**{**vars(game), "black": "C"}), 1500, 3, True),
         facts_key(SimpleNamespace(**{**vars(game), "white": "C"}), 1500, 3, True),
-        facts_key(SimpleNamespace(**{**vars(game), "played_on": "2025-01-02"}), 1500, 3, True),
         facts_key(
             SimpleNamespace(**{**vars(game), "played_at": datetime(2025, 1, 1, tzinfo=UTC)}),
             1500,

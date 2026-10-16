@@ -125,7 +125,7 @@ def create_router(*, runner) -> APIRouter:
     def retry_job(workspace: CurrentWorkspace, job_id: str):
         with workspace.write() as db:
             job = require_job(db, job_id)
-            if job.kind not in JobKind:
+            if job.kind == JobKind.RETIRED:
                 raise Gone("This kind of job has been removed.")
             job_lifecycle.retry(job)
             db.flush()

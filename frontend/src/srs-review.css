@@ -32,16 +32,13 @@
   flex-direction: column;
   gap: var(--space-3);
 }
-.practice-panel h2 {
+.practice-intro h2 {
   font-size: var(--text-4xl);
   letter-spacing: -0.8px;
 }
 .practice-actions > a.action-control {
   display: flex;
   width: 100%;
-}
-.practice-actions > .action-control--primary {
-  justify-content: space-between;
 }
 .aside-note {
   padding-top: var(--space-6);
@@ -126,10 +123,6 @@
   background: none;
   container-type: inline-size;
 }
-.opening-recall-names {
-  font-size: var(--text-sm);
-  line-height: 1.4;
-}
 .opening-recall-names svg {
   vertical-align: -2px;
 }
@@ -198,7 +191,7 @@
   .practice-panel {
     padding: var(--space-6);
   }
-  .practice-panel h2 {
+  .practice-intro h2 {
     font-size: var(--text-3xl);
   }
 }
@@ -206,7 +199,7 @@
   .practice-panel {
     padding: var(--space-6);
   }
-  .practice-panel h2 {
+  .practice-intro h2 {
     font-size: var(--text-3xl);
   }
   .review-session .review-move {

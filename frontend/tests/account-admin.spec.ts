@@ -10,7 +10,7 @@ function account(id: string, username: string, admin = false): Schema['ManagedAc
 }
 
 async function signedIn(page: Page, admin: boolean, password_change_required = false) {
-  const user: Schema['Account'] = {id: 'keeper-id', username: 'keeper', admin, chesscom_username: '', onboarding_completed: true, password_change_required};
+  const user: Schema['Account'] = {id: 'keeper-id', username: 'keeper', admin, onboarding_completed: true, password_change_required};
   await page.route('**/api/auth/me', route => route.fulfill({json: {enabled: true, user, csrf: 'test-csrf'} satisfies Schema['Identity']}));
   await page.route('**/api/jobs', route => route.fulfill({json: []}));
 }
@@ -153,7 +153,7 @@ test('everyone can change their own password in Settings', async ({page}, info) 
     const body = route.request().postDataJSON();
     bodies.push(body);
     if (body.current_password !== 'old-password') return route.fulfill({status: 403, json: {detail: 'Your current password is incorrect.'}});
-    return route.fulfill({json: {user: {id: 'keeper-id', username: 'keeper', admin: false, chesscom_username: '', onboarding_completed: true, password_change_required: false}} satisfies Schema['AccountProfile']});
+    return route.fulfill({json: {user: {id: 'keeper-id', username: 'keeper', admin: false, onboarding_completed: true, password_change_required: false}} satisfies Schema['AccountProfile']});
   });
   await page.goto('/settings?section=account');
   const password = page.getByRole('region', {name: 'Password', exact: true});
@@ -177,7 +177,7 @@ test('everyone can change their own password in Settings', async ({page}, info) 
 test('a temporary password must be replaced before the app opens', async ({page}, info) => {
   await signedIn(page, false, true);
   await page.route('**/api/auth/password', route => route.fulfill({json: {user: {
-    id: 'keeper-id', username: 'keeper', admin: false, chesscom_username: '', onboarding_completed: true, password_change_required: false,
+    id: 'keeper-id', username: 'keeper', admin: false, onboarding_completed: true, password_change_required: false,
   }} satisfies Schema['AccountProfile']}));
   await page.goto('/settings');
   await expect(page.getByRole('heading', {name: 'Choose a new password'})).toBeVisible();

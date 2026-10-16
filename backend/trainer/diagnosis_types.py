@@ -6,7 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from trainer.taxonomy import SKILLS, UNCLASSIFIED
 
-RULE_VERSION = "4.1-lichess-8d9faff6"
+RULE_VERSION = "4.2-lichess-8d9faff6"
 
 OUTCOME_SKILLS = {"material_loss", "missed_material_gain", "allowed_mate", "missed_mate"}
 CUES = {

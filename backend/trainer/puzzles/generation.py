@@ -18,7 +18,7 @@ from sqlalchemy.orm import aliased
 
 from trainer.chess_core import Score, game_phase, legal_move, position_key, replay_moves
 from trainer.contracts.puzzles import PuzzleProvenance
-from trainer.game_library import board_before, parsed_game
+from trainer.game_library import board_before, parsed_game, pgn_date
 from trainer.job_lifecycle import JobKind, active_job
 from trainer.lichess_patterns import recognize
 from trainer.models import (
@@ -331,7 +331,7 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
 def definition_for(game, prospect: Prospect, root, built: Built, themes) -> PuzzleDefinition:
     you = "White" if game.learner_color else "Black"
     opponent = game.black if game.learner_color else game.white
-    when = game.played_on or "date unknown"
+    when = pgn_date(game.pgn) or "date unknown"
     attribution = (
         f"Your game as {you} vs {opponent} · {when} · move {(prospect.ply + 1) // 2}. "
         f"You played {prospect.played_san}."

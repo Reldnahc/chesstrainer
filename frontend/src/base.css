@@ -116,7 +116,9 @@
   flex-direction: column;
   min-height: 100vh;
 }
-main {
+/* The application's page frame: its main element is a workspace page or a
+   board page. Zero specificity, so each kind's own rules below refine it. */
+:where(main.workspace-page, main.review-page) {
   width: min(100%, max(var(--page-width), var(--review-min-width, 0px)));
   margin-inline: auto;
   padding: var(--space-10) var(--page-inline-padding) var(--space-16);
@@ -192,20 +194,6 @@ main.review-page {
   background: #3a242b;
   border-color: #79515b;
 }
-progress {
-  width: 100%;
-  height: 4px;
-  accent-color: var(--accent);
-  border: 0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-progress::-webkit-progress-bar {
-  background: #373b42;
-}
-progress::-webkit-progress-value {
-  background: var(--accent);
-}
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -272,7 +260,7 @@ progress::-webkit-progress-value {
   .nav-item {
     padding: var(--space-3) var(--space-3);
   }
-  main {
+  :where(main.workspace-page, main.review-page) {
     padding-block: var(--space-8) var(--space-10);
   }
 }
@@ -320,11 +308,8 @@ progress::-webkit-progress-value {
     left: 0;
     right: 0;
   }
-  main {
+  :where(main.workspace-page, main.review-page) {
     padding-block: var(--space-6) var(--space-10);
-  }
-  .eyebrow {
-    font-size: var(--text-2xs);
   }
   .app-footer {
     flex-wrap: wrap;
@@ -360,22 +345,24 @@ progress::-webkit-progress-value {
     flex-grow: 0;
     padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
   }
-  /* Phone workspaces use a tighter panel padding, smaller section headings and body text. */
+  /* Phone workspaces use a tighter panel padding, smaller section headings and
+     body text. These are defaults: zero-specificity scoping (and the shell layer)
+     lets any component's own rule win. */
   .workspace-page {
     --panel-padding: var(--space-4);
     --text-heading-2: var(--text-xl);
     --text-body: var(--text-md);
   }
-  .workspace-page p {
+  :where(.workspace-page) p {
     line-height: 1.5;
   }
-  .workspace-page .form-panel {
+  :where(.workspace-page) .form-panel {
     gap: var(--space-4);
   }
-  .workspace-page label {
+  :where(.workspace-page) label {
     gap: var(--space-1-5);
   }
-  .workspace-page .form-panel > .action-control--primary {
+  :where(.workspace-page) .form-panel > .action-control--primary {
     width: 100%;
   }
 }

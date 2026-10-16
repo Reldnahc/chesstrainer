@@ -319,7 +319,6 @@
 }
 .studio-concept > button {
   width: 100%;
-  justify-content: space-between;
   margin-top: auto;
 }
 @media (min-width: 761px) {
@@ -499,14 +498,6 @@
   font: var(--text-2xs) var(--mono);
   color: #a8b0a1;
   letter-spacing: 1px;
-}
-.studio-context:not(.studio-context-compact) .review-coach {
-  --coach-height: 136px;
-  --coach-avatar-width: 92.8px;
-}
-.studio-context:not(.studio-context-compact) .coach-avatar {
-  height: 136px;
-  margin: 0;
 }
 /* The compact preview is a narrow column, so the application's own narrow coach
    layout (coach-presentation.css, @container max-width 440px) applies to it. */

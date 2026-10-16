@@ -85,7 +85,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
   return <section className="game-graph" aria-label="Original-game evaluation">
     <div className="game-graph-heading">
       <div><strong>Game evaluation</strong><span>White<ArrowUp size={11} aria-label="up" role="img" /> · Black<ArrowDown size={11} aria-label="down" role="img" /></span></div>
-      <div className="game-graph-reading"><span className="game-graph-verdict">{scoreSummary(current)}</span><EvaluationScore score={current}/></div>
+      <div className="game-graph-reading"><span className="game-graph-verdict">{scoreSummary(current)}</span><EvaluationScore size="compact" score={current}/></div>
     </div>
     <svg ref={plot} className="game-evaluation-plot" data-scrubbing={scrubbing} style={{height}} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group"
       aria-label="Evaluation across analyzed game moves"

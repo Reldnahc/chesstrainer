@@ -5,9 +5,8 @@
   flex-wrap: wrap;
   gap: var(--space-1-5);
 }
-/* Compact Buttons in the notation's mono type, at the ordinary 13px. */
-.continuation-moves .action-control {
-  font-family: var(--mono);
+/* Compact mono Buttons at the ordinary 13px: the component's own move size. */
+.continuation-moves .action-control.action-control--compact {
   font-size: var(--text-md);
 }
 .continuation-moves .action-control[aria-current="step"] {
