@@ -511,12 +511,20 @@ def review_move(
     """
     board = board.copy(stack=True)
     move = board.pop()
+    opponent_best = None
     if previous_score is None and board.move_stack:
         previous = board.copy(stack=True)
         previous.pop()
         result = engine.analyze(previous, DEEP, multipv=2)
-        previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
+        opponent_best = Score.model_validate(result.candidates[0]["score"])
+        previous_score = opponent_best.negate()
     report = analyze_move(engine, board, move, previous_score)
+    if opponent_best is not None:
+        # Whether the opponent's move was itself a Mistake or worse, as saved reviews
+        # link it, so a variation move can be the capitalizing Great too. The
+        # opponent's move reached this position, whose best score is its result.
+        opponent_played = Score.model_validate(report["best"]["score"]).negate()
+        report["previous_mistake"] = is_mistake(evaluation_loss(opponent_best, opponent_played))
     report["human"] = human_models.evidence(
         sessions, parsed, board, move.uci(), report["best"]["uci"], fallback_rating
     )
