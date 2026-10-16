@@ -74,7 +74,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
       React.createElement("button", {onClick: () => {}}, "Unlock audio"),
       React.createElement("output", {"data-testid": "speech-state"}, JSON.stringify({
         ready: audio.ready && coach.ready, mode: audio.preferences.voice, coach: coach.preferences.coach_id,
-        available: voice.available, playing: voice.playing,
+        available: voice.available, playing: voice.isPlaying(),
         observed: observed?.recordingId ?? null, observedCoach: observed?.coachId ?? null,
         portrait: voice.speech?.recordingId ?? null,
         track: voice.speechTrack ? {duration: voice.speechTrack.durationSeconds, cues: voice.speechTrack.cues.length} : null,

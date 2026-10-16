@@ -500,8 +500,8 @@ an explicit `--manifest` remains available for preparing an unregistered bank.
 Engine tests cover cue precedence, mute/categories, activation failure, duplicates,
 delayed and stale decoding, cancellation, hidden tabs, bounded voices, speech
 priority and interruption, and disposal, all through the recorded-speech path the
-app uses (there is no test-only playback entry point). Browser tests observe actual Web Audio source starts and
-cover the production preference/session/navigation paths without production test
-globals. Studio tests exercise all approved assets, source coverage, context timing and cancellation.
+app uses (there is no test-only playback entry point). Browser tests observe
+actual Web Audio source starts and cover the production preference, session and
+navigation paths without production test globals. Studio tests exercise all approved assets, source coverage, context timing and cancellation.
 Run the affected application/account suites alongside the dedicated audio suite
 when changing integration. See [Testing](TESTING.md) for the commands.

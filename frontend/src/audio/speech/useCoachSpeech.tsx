@@ -15,7 +15,6 @@ export type CoachSpeechPresentation = {
   control: ReactNode;
   play: (recordingId?: string) => Promise<void>;
   stop: () => void;
-  playing: boolean;
   /** Whether this recording (or, without one, any) is the one playing; alternatives resolve first. */
   isPlaying: (recordingId?: string) => boolean;
   available: boolean;
@@ -154,7 +153,7 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
     ? loadedCoachMouthTrack(coachId, observedPlayback.recordingId) : undefined;
   const value: CoachSpeechPresentation = { speech: observedTrack ? observedPlayback ?? undefined : currentPlayback,
     speechTrack: observedTrack ?? active?.track,
-    control: null, play, stop, playing: !!currentPlayback,
+    control: null, play, stop,
     isPlaying: id => !!currentPlayback && (!id || active?.id === concrete(coachId, id)),
     available: eligible && ready && allowed.length > 0,
     canPlay: id => eligible && ready && !!(concrete(coachId, id) ?? recordingId)

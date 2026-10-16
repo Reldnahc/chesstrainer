@@ -92,6 +92,10 @@ test("selection is exact rendered identity, not highest input priority, trace co
   expect(selectGameRecording(changed)).toBeNull();
   expect(selectGameRecording({...current, utterance: {...current.utterance, renderedClaims: undefined}})).toBeNull();
   expect(selectGameRecording({...current, utterance: {...current.utterance, intentId: "old-intent"}})).toBeNull();
+  // A coach without a recorded bank selects nothing unless asked for any coach.
+  const unvoiced = {...current, utterance: {...current.utterance, coachId: "future-coach"}};
+  expect(selectGameRecording(unvoiced)).toBeNull();
+  expect(selectGameRecording({...unvoiced, anyCoach: true})).toBe("cause-abandoned-defender");
 });
 
 test("rendered claims snapshot the selected source and slots without aliasing producer state", () => {
