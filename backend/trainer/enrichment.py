@@ -97,7 +97,7 @@ def _probe_candidates(db, settings, engine, classifier):
         ):
             continue
         try:
-            result, _ = classifier.classify(verified_payload(db, decision))
+            result = classifier.classify(verified_payload(db, decision))
         except (ValueError, NotFound) as exc:
             # One decision with inconsistent saved evidence must not stop planning
             # for the rest of the account.

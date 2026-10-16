@@ -23,7 +23,7 @@ def test_classification_versions_reconcile_and_rejection_preserves_truth(setting
                 confidence=self.confidence,
                 explanation="Compare supplied evidence.",
                 findings=findings_for(evidence, self.skill),
-            ), {}
+            )
 
     classifier = Classifier()
     with sessions() as db:

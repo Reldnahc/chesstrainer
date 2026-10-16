@@ -93,7 +93,6 @@ def seed_lesson(db, settings, count=8, offset=0, skills=None):
             decision_id=decision.id,
             model="fixture",
             schema_version="1",
-            prompt_version="1",
             status="completed",
             confidence=0.9,
             response={

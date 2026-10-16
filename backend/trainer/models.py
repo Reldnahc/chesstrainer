@@ -435,13 +435,10 @@ class ClassificationRun(Owned, Base):
     decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"))
     model: Mapped[str]
     schema_version: Mapped[str]
-    prompt_version: Mapped[str]
     status: Mapped[str]
     response: Mapped[dict | None] = mapped_column(JSON)
     confidence: Mapped[float | None]
     error: Mapped[str | None]
-    input_tokens: Mapped[int] = mapped_column(default=0)
-    output_tokens: Mapped[int] = mapped_column(default=0)
     attempts: Mapped[int] = mapped_column(default=1)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 

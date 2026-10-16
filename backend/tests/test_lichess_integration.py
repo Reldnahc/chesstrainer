@@ -34,7 +34,7 @@ def test_lichess_adds_pin_exploitation_without_requiring_capture_on_the_pinned_s
         mate_supported=False,
     )
     assert "pin" not in {item.skill_id for item in old}
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     pin = next(f for f in result.findings if f.skill_id == "pin")
     assert pin.rule_id.startswith("lichess:pin_prevents_attack:8d9faff6:")
     assert pin.frame_ply == 1 and pin.plies == [1]
@@ -56,6 +56,6 @@ def test_visible_double_check_is_recognized_without_claiming_a_verified_mistake(
     )
     raw = recognized_patterns(boards, 1, 1, "best", "missed_opportunity")
     assert any(f.skill_id == "double_attack" and f.rule_id.startswith("lichess:") for f in raw)
-    result, _ = LocalClassifier().classify(payload)
+    result = LocalClassifier().classify(payload)
     assert result.primary_skill == "unclassified"
     assert not result.findings and not result.outcomes
