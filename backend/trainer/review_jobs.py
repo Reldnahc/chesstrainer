@@ -7,6 +7,7 @@ from queue import Queue
 from sqlalchemy import select
 
 from trainer import game_review
+from trainer.classification_stages import line_parameters
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.review_refinement import run_refinement
 from trainer.review_reports import touch_report
@@ -49,6 +50,7 @@ def run_baseline(runner, job_id, engine_override=None):
         available.put(engine)
 
     human = runner.human_models
+    parameters = line_parameters(runner.settings)
 
     def analyze(board, move, cached):
         if runner.cancelled(job_id):
@@ -57,11 +59,15 @@ def run_baseline(runner, job_id, engine_override=None):
             engine = available.get()
             try:
                 # Preceding score is attached in game order below.
-                report = game_review.analyze_move(engine, board, move)
+                report = game_review.analyze_move(engine, board, move, parameters=parameters)
             finally:
                 available.put(engine)
-        else:
+        elif game_review.lines_current(cached, parameters):
             report = dict(cached)
+        else:
+            # Saved before the shared line horizon, or under another one: its lines
+            # are read again from the saved candidates, with no new search.
+            report = game_review.reread_lines(cached, board, parameters)
         if human:
             report["human"] = human.evidence(
                 runner.sessions,
@@ -104,9 +110,12 @@ def run_baseline(runner, job_id, engine_override=None):
                     break
                 move = moves[next_ply - 1]
                 cached = saved.get(next_ply)
-                refresh = human and human.needs_refresh(
-                    cached.get("human") if cached else None, parsed, board.turn, rating
-                )
+                refresh = (
+                    human
+                    and human.needs_refresh(
+                        cached.get("human") if cached else None, parsed, board.turn, rating
+                    )
+                ) or (cached is not None and not game_review.lines_current(cached, parameters))
                 future = (
                     None
                     if cached is not None and not refresh

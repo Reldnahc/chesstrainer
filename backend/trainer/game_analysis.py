@@ -3,8 +3,9 @@
 from sqlalchemy import select
 
 from trainer import job_lifecycle
+from trainer.classification_stages import line_parameters
 from trainer.game_library import DEFAULT_RATING
-from trainer.game_review import parsed_game
+from trainer.game_review import lines_current, parsed_game
 from trainer.job_lifecycle import JobKind, JobStatus
 from trainer.models import (
     AnalysisJob,
@@ -58,7 +59,7 @@ def request_review(db, game, *, rating, refine, settings, human_models):
     """The learner opened ``game``: its review goes to the front of the queue.
 
     A failed or cancelled review runs again, and a completed one runs again
-    when refinement or saved Maia evidence is due for a refresh.
+    when refinement, saved Maia evidence or its saved lines are due for a refresh.
     """
     review = db.get(GameReview, game.id)
     if review is None:
@@ -87,6 +88,14 @@ def request_review(db, game, *, rating, refine, settings, human_models):
                 starting if row.ply % 2 else not starting,
                 review.rating,
             )
+            for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
+        )
+    if job.status == JobStatus.COMPLETED and not refresh:
+        # Lines saved before the shared horizon, or under another one, are read
+        # again from their saved candidates; no position is searched again.
+        parameters = line_parameters(settings)
+        refresh = any(
+            not lines_current(row.report, parameters)
             for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
         )
     if job.status in job_lifecycle.RETRYABLE or refresh:

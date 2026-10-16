@@ -15,6 +15,7 @@ from trainer.game_review import (
     link_previous_scores,
     move_frames,
     public_report,
+    reread_lines,
     review_move,
 )
 from trainer.human_models.context import request_for
@@ -158,6 +159,10 @@ def rendered_reports(play: PlayGame, parsed) -> dict[int, dict]:
         key = _render_key(play, ply, report, contexts.get(ply))
         rendered = known.get(key)
         if rendered is None:
+            if (report.get("actual_line") or {}).get("horizon") is None:
+                # Saved before the shared line horizon: read its lines again from
+                # the saved candidates, to the default horizon, once per render key.
+                report = reread_lines(report, board_for(play, ply - 1))
             color = starting if ply % 2 else not starting
             rendered = public_report(
                 report,
@@ -271,7 +276,16 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
     return human_move(engine, board, policy, play.opponent_rating, rng)
 
 
-def analyze_ply(engine, human_models, sessions, play: PlayGame, ply: int, learner_name: str):
+def analyze_ply(
+    engine,
+    human_models,
+    sessions,
+    play: PlayGame,
+    ply: int,
+    learner_name: str,
+    *,
+    parameters=None,
+):
     """The review's own engine evidence for the move at this ply, to save on the game.
 
     The previous score comes from the saved report for the ply before when there is
@@ -292,6 +306,7 @@ def analyze_ply(engine, human_models, sessions, play: PlayGame, ply: int, learne
         board,
         fallback_rating=play.learner_rating,
         previous_score=previous,
+        parameters=parameters,
     )
 
 

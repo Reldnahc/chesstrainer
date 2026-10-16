@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException
 from sqlalchemy import select
 
 from trainer.chess_core import legal_move
+from trainer.classification_stages import line_parameters
 from trainer.contracts.games import GameAnalysis
 from trainer.contracts.play import (
     ActivePlay,
@@ -253,6 +254,7 @@ def create_router(
                     play,
                     data.ply,
                     name,
+                    parameters=line_parameters(settings),
                 )
             with workspace.mutation_lock, workspace.sessions() as db:
                 play = require_play(db, play_id)

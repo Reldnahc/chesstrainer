@@ -9,6 +9,7 @@ from trainer.classification_stages import (
     abstention_reasons,
     attach_provenance,
     diagnose_line,
+    line_parameters,
     mate_findings,
     read_lines,
 )
@@ -25,13 +26,11 @@ def classifier_parameters(settings=None):
     ``tactic_plies`` the bound on one tactical episode.
     """
     fields = {
-        "max_plies": "classification_max_plies",
-        "extension_plies": "classification_extension_plies",
-        "tactic_plies": "classification_tactic_plies",
         "min_loss_cp": "classification_min_loss_cp",
         "min_material": "classification_min_material",
     }
-    return {
+    # The line horizon is the one every line reader shares (line_parameters).
+    return line_parameters(settings) | {
         key: getattr(settings, name) if settings else Settings.model_fields[name].default
         for key, name in fields.items()
     }

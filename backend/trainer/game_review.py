@@ -11,7 +11,12 @@ from trainer.chess_core import (
     legal_move_options,
     mate_horizon,
 )
-from trainer.classification_stages import REVIEW_RULES, line_findings
+from trainer.classification_stages import (
+    line_findings,
+    line_parameters,
+    line_rules,
+    previous_move,
+)
 from trainer.continuations import replay, settled_delta
 from trainer.errors import InvalidInput
 from trainer.explanation_types import replay_line
@@ -171,16 +176,26 @@ def classify(report, rating):
     return "Good", "A sound move that keeps the important opportunities intact."
 
 
-def line_evidence(board, candidate, analysis_id, first, previous=None):
-    boards = replay(board, candidate)
-    delta, end = settled_delta(boards, board.turn, max_plies=REVIEW_RULES.settle_plies)
+def line_evidence(board, candidate, analysis_id, first, previous=None, parameters=None):
+    """One line's frames and findings, read to the shared horizon (``line_rules``).
+
+    The frames shown stop at the farthest ply a finding or the settled material
+    can rest on, so the line shown and the claims about it look equally far.
+    ``horizon`` records the parameters, so a later re-read uses the same ones.
+    """
+    parameters = parameters or line_parameters()
+    rules = line_rules(parameters, annotate=True)
+    boards = replay(board, candidate)[: rules.shown_plies + 1]
+    delta, end = settled_delta(
+        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
+    )
     gain = delta if first == 1 else -delta if delta is not None else None
     mate = candidate.score.kind == "mate" and candidate.score.outcome() == (1 if first == 1 else -1)
     findings = line_findings(
         boards,
         first,
         analysis_id,
-        REVIEW_RULES,
+        rules,
         end=end,
         material_supported=gain is not None and gain > 0,
         mate_supported=mate,
@@ -188,10 +203,11 @@ def line_evidence(board, candidate, analysis_id, first, previous=None):
     )
     findings = lead_order(findings, first)
     return {
-        "frames": [f.model_dump() for f in replay_line(board, candidate.pv[:32])],
+        "frames": [f.model_dump() for f in replay_line(board, candidate.pv[: rules.shown_plies])],
         "findings": [f.model_dump() for f in findings],
         "material_delta": delta,
         "settled": delta is not None,
+        "horizon": parameters,
     }
 
 
@@ -275,7 +291,53 @@ def mated_beyond_horizon(best, actual):
     )
 
 
-def analyze_move(engine, board, move, previous_score=None):
+def review_lines(board, best, actual, best_id, actual_id, poor, parameters=None):
+    """The played and best lines, both read with the move before, as the classifier does."""
+    previous = previous_move(board)
+    actual_line = line_evidence(board, actual, actual_id, 2 if poor else 1, previous, parameters)
+    if actual.uci == best.uci:
+        return actual_line, actual_line
+    return actual_line, line_evidence(board, best, best_id, 1, previous, parameters)
+
+
+def lines_current(report, parameters=None):
+    """Whether a saved report's lines were read to the horizon in force now.
+
+    A report without lines (a bare engine-facts fixture) has nothing to re-read.
+    """
+    parameters = parameters or line_parameters()
+    return all(
+        report.get(key) is None or report[key].get("horizon") == parameters
+        for key in ("actual_line", "best_line")
+    )
+
+
+def reread_lines(report, board, parameters=None):
+    """A saved report's lines read again from its saved candidates, with no search.
+
+    Reports saved before the shared line rule read their lines to another
+    horizon; this gives them the current one. ``board`` stands before the move.
+    """
+    best = Candidate.model_validate(report["best"])
+    actual = Candidate.model_validate(report["actual"])
+    poor = is_poor(evaluation_loss(best.score, actual.score))
+    actual_line, best_line = review_lines(
+        board,
+        best,
+        actual,
+        report["before_analysis_id"],
+        report["played_analysis_id"],
+        poor,
+        parameters,
+    )
+    return report | {
+        "actual_line": actual_line,
+        "best_line": best_line,
+        "opportunity_missed": bool(missed_opportunity(poor, best_line, actual_line)),
+    }
+
+
+def analyze_move(engine, board, move, previous_score=None, *, parameters=None):
     before, candidates, actual, actual_id = root_comparison(engine, board, move)
     if mated_beyond_horizon(candidates[0].score, actual.score):
         # Either the played move reads mated while the best defence reads only a
@@ -300,13 +362,9 @@ def analyze_move(engine, board, move, previous_score=None):
         actual, actual_id = Candidate.model_validate(played.candidates[0]), played.id
     loss = evaluation_loss(best.score, actual.score)
     poor = is_poor(loss)
-    previous = None
-    if board.move_stack:
-        earlier = board.copy(stack=True)
-        preceding = earlier.pop()
-        previous = {"fen": earlier.fen(), "uci": preceding.uci()}
-    actual_line = line_evidence(board, actual, actual_id, 2 if poor else 1, previous)
-    best_line = actual_line if actual.uci == best.uci else line_evidence(board, best, before.id, 1)
+    actual_line, best_line = review_lines(
+        board, best, actual, before.id, actual_id, poor, parameters
+    )
     after = board.copy(stack=True)
     after.push(move)
     # A sacrifice must really offer a non-pawn piece at a net material cost.
@@ -466,7 +524,11 @@ def unpromoted(report):
     root_best = Candidate.model_validate(roots[0])
     loss = evaluation_loss(root_best.score, Score.model_validate(actual["score"]))
     best_line = line_evidence(
-        chess.Board(frames[0]["fen"]), root_best, report["before_analysis_id"], 1
+        chess.Board(frames[0]["fen"]),
+        root_best,
+        report["before_analysis_id"],
+        1,
+        parameters=report["actual_line"].get("horizon"),
     )
     return report | {
         "best": root_best.model_dump(),
@@ -501,7 +563,15 @@ def link_previous_scores(reports: dict) -> dict:
 
 
 def review_move(
-    engine, human_models, sessions, parsed, board, *, fallback_rating, previous_score=None
+    engine,
+    human_models,
+    sessions,
+    parsed,
+    board,
+    *,
+    fallback_rating,
+    previous_score=None,
+    parameters=None,
 ):
     """One move's saved review evidence: the engine report with its Maia evidence.
 
@@ -516,7 +586,7 @@ def review_move(
         previous.pop()
         result = engine.analyze(previous, DEEP, multipv=2)
         previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
-    report = analyze_move(engine, board, move, previous_score)
+    report = analyze_move(engine, board, move, previous_score, parameters=parameters)
     report["human"] = human_models.evidence(
         sessions, parsed, board, move.uci(), report["best"]["uci"], fallback_rating
     )

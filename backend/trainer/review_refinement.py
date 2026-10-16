@@ -7,6 +7,7 @@ from threading import Event
 from sqlalchemy import select
 
 from trainer.chess_core import digest, legal_move
+from trainer.classification_stages import line_parameters
 from trainer.engine import EngineReferenceMismatch, EngineUnavailable
 from trainer.game_library import board_before
 from trainer.game_review import analyze_move
@@ -145,7 +146,7 @@ def refine(runner, job_id, parsed, game_id, task_id, engine):
     adopted = False
     try:
         bounded = RefinementEngine(engine, task, runner.sessions, lambda: runner.cancelled(job_id))
-        report = analyze_move(bounded, board, move)
+        report = analyze_move(bounded, board, move, parameters=line_parameters(runner.settings))
         reason = adoption_reason(baseline, report)
         adopted = reason is None
         # Compare a plausible human alternative only if the finite
