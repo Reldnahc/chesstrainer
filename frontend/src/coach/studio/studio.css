@@ -302,7 +302,8 @@
   color: #ede6d8;
 }
 .studio-concept-copy p {
-  min-height: 44px;
+  /* Two lines reserved, so a one-line concept does not move the controls below. */
+  min-height: 2lh;
   font-size: var(--text-md);
   line-height: 1.6;
   color: #c0c3b9;

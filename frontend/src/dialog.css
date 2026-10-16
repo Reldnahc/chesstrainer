@@ -29,8 +29,8 @@ body:has(dialog[open]) {
     height: 100dvh;
     border: 0;
     border-radius: 0;
-    padding: max(var(--space-3), env(safe-area-inset-top)) var(--space-3)
-      max(var(--space-4), env(safe-area-inset-bottom));
+    --dialog-padding-top: max(var(--space-3), env(safe-area-inset-top));
+    padding: var(--dialog-padding-top) var(--space-3) max(var(--space-4), env(safe-area-inset-bottom));
   }
 }
 }

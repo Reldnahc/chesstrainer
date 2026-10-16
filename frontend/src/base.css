@@ -108,12 +108,19 @@
 .nav-item.active svg {
   color: var(--accent);
 }
+/* The application is a column the height of the window at least: the page takes
+   whatever the header and footer leave, so the footer sits at the bottom of a short
+   page without anyone restating their heights. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 main {
   width: min(100%, max(var(--page-width), var(--review-min-width, 0px)));
-  margin: auto;
+  margin-inline: auto;
   padding: var(--space-10) var(--page-inline-padding) var(--space-16);
-  /* The page fills the window below the header and above the footer (149px together). */
-  min-height: calc(100vh - 149px);
+  flex: 1 0 auto;
 }
 /* A page's top-level blocks (notices, panels) are spaced by the page,
    not by their own margins. Board workspaces keep their own layout.
@@ -349,7 +356,7 @@ progress::-webkit-progress-value {
     padding-top: env(safe-area-inset-top);
   }
   main.workspace-page {
-    min-height: 0;
+    flex-grow: 0;
     padding-block: var(--space-4) max(var(--space-5), env(safe-area-inset-bottom));
   }
   /* Phone workspaces use a tighter panel padding, smaller section headings and body text. */
