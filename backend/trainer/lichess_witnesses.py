@@ -5,6 +5,9 @@ from dataclasses import dataclass
 import chess
 import chess.pgn
 
+from trainer.chess_core import VALUES
+from trainer.tactical_geometry import absolute_pinner
+
 
 def record(puzzle, rule, result, context):
     # The original predicate result is returned unchanged. Each caller owns its
@@ -33,6 +36,135 @@ DECLINED = object()
 
 def names(squares):
     return [chess.square_name(s) for s in sorted({s for s in squares if s is not None})]
+
+
+def pin_of(board, square):
+    """The pin holding the piece on ``square``: its line and its pinner's kind. The
+    king and the pinner may step along the line; another line or another kind of
+    pinner is a different pin."""
+    piece = board.piece_at(square)
+    pinner = absolute_pinner(board, square) if piece else None
+    if pinner is None:
+        return None, None
+    return int(board.pin(piece.color, square)), board.piece_at(pinner)
+
+
+def pinned_from_start(puzzle, node, square) -> bool:
+    """Whether the piece pinned on ``square`` at ``node`` is held by the same pin,
+    unmoved, since before the line began. A piece dragged onto the square, or a
+    new pin along another line, is a pin the line created."""
+    start = puzzle.mainline[0].board()
+    piece = start.piece_at(square)
+    if piece is None or not start.is_pinned(piece.color, square):
+        return False
+    pin = pin_of(start, square)
+    for item in puzzle.mainline[1 : puzzle.mainline.index(node) + 1]:
+        board = item.board()
+        if board.piece_at(square) != piece or pin_of(board, square) != pin:
+            return False
+    return True
+
+
+def line_gains(puzzle) -> bool:
+    """Whether the line's mover ends it with at least the material it started with."""
+
+    def balance(board):
+        return sum(
+            VALUES.get(p.piece_type, 0) * (1 if p.color == puzzle.pov else -1)
+            for p in board.piece_map().values()
+        )
+
+    return balance(puzzle.mainline[-1].board()) >= balance(puzzle.mainline[0].board())
+
+
+def pin_used(puzzle, square):
+    """The first move of the line's mover that exploits the old pin on ``square``
+    while it holds, or None. It captures the pinned piece; or, not moving along the
+    pin line, it threatens the pinned piece (a cheaper attacker, or more attackers
+    than defenders), lands where the pinned piece could otherwise capture, or gives
+    a single check the pinned piece could otherwise answer by capturing the checker
+    or interposing; or, when the opponent takes the piece that landed, a guard the
+    pinned piece could otherwise have taken retakes. A pin the line never exploits
+    is not its idea."""
+    start = puzzle.mainline[0].board()
+    piece = start.piece_at(square)
+    pin = pin_of(start, square)
+    for node in puzzle.mainline[1::2]:
+        before, board, move = node.parent.board(), node.board(), node.move
+        if before.piece_at(square) != piece or pin_of(before, square) != pin:
+            return None  # The piece has moved, or the pin is not the same one.
+        if move.to_square == square:
+            return node
+        if move.to_square in before.pin(piece.color, square):
+            continue  # A move along or onto the pin line only shapes the pin itself.
+        if board.piece_at(square) != piece or pin_of(board, square) != pin:
+            continue
+        ray = board.pin(piece.color, square)
+        mover = board.piece_at(move.to_square)
+        attackers = board.attackers(puzzle.pov, square)
+        if square in board.attacks(move.to_square) and (
+            VALUES.get(mover.piece_type, 0) < VALUES.get(piece.piece_type, 0)
+            or len(attackers) > len(board.attackers(piece.color, square))
+        ):
+            return node
+        covered = board.attacks(square) & ~ray
+        if move.to_square in covered:
+            return node
+        # The opponent takes the piece that landed, and a guard the pinned piece
+        # could otherwise have taken retakes: the pin kept that guard alive. Not
+        # after a check, which the opponent had to answer instead of taking the
+        # guard, and not in a line that ends behind in material (a blunder the
+        # retake only softens).
+        reply = node.next()
+        retake = reply.next() if reply is not None else None
+        if (
+            not board.is_check()
+            and line_gains(puzzle)
+            and reply is not None
+            and retake is not None
+            and reply.move.to_square == move.to_square
+            and node.board().is_capture(reply.move)
+            and retake.move.to_square == move.to_square
+            and retake.move.from_square in covered
+        ):
+            return node
+        checkers = list(board.checkers())
+        if len(checkers) == 1:
+            king = board.king(piece.color)
+            answers = set(chess.SquareSet(chess.between(checkers[0], king))) | {checkers[0]}
+            if any(
+                m.from_square == square and m.to_square in answers for m in board.pseudo_legal_moves
+            ):
+                return node
+    return None
+
+
+def capture_target(board, square, pov):
+    """A square of the line's mover the pinned piece on ``square`` attacks off its
+    pin line, the checker first; None when there is none."""
+    piece = board.piece_at(square)
+    if piece is None or not board.is_pinned(piece.color, square):
+        return None
+    free = board.attacks(square) & ~board.pin(piece.color, square)
+    targets = [s for s in free if board.color_at(s) == pov]
+    checkers = [s for s in targets if s in board.checkers()]
+    return (checkers or targets or [None])[0]
+
+
+def credited_pin(puzzle):
+    """The first pin in the line's mover's moves that the line creates or exploits,
+    as (node, pinned square, square it cannot capture on), or None."""
+    for node in puzzle.mainline[1::2]:
+        board = node.board()
+        for square, piece in board.piece_map().items():
+            if piece.color == puzzle.pov or not board.is_pinned(piece.color, square):
+                continue
+            if pinned_from_start(puzzle, node, square) and pin_used(puzzle, square) is None:
+                continue
+            target = capture_target(board, square, puzzle.pov)
+            if target is not None:
+                return node, square, target
+    return None
 
 
 def witness(theme, rule, context, puzzle, positions) -> MotifWitness | None:
@@ -88,18 +220,35 @@ def witness(theme, rule, context, puzzle, positions) -> MotifWitness | None:
         )
     elif rule in {"pin_prevents_attack", "pin_prevents_escape"}:
         square = context.get("pinned_square", context.get("square"))
-        # A pin that was already there is this move's only when the move uses it:
-        # it lands where the pinned piece would otherwise capture, or attacks the
-        # pinned piece. Otherwise it is not credited to this move.
-        used = context["attack"] if rule == "pin_prevents_attack" else context["attacker_square"]
-        if before.is_pinned(not actor, square) and used != move.to_square:
-            return DECLINED
+        # A pin that was already there before this line began is the line's only
+        # when the move uses it: it lands where the pinned piece would otherwise
+        # capture, or attacks the pinned piece. A pin the line itself created (a
+        # sacrifice that drags a piece onto the pin line, then the mate it allows)
+        # is the combination's idea, whichever later move exploits it.
+        attack = context.get("attack")
+        if pinned_from_start(puzzle, node, square):
+            used = pin_used(puzzle, square)
+            if used is None:
+                # Upstream stops at the first pin it sees. When that one is an old
+                # pin the line ignores, a pin it does create or exploit may follow.
+                alternative = credited_pin(puzzle)
+                if alternative is None:
+                    return DECLINED
+                node, square, attack = alternative
+            elif used is not node and capture_target(used.board(), square, actor) is not None:
+                # Name the move that exploits the old pin, not upstream's first move.
+                node, attack = used, capture_target(used.board(), square, actor)
+            if node is not context.get("node") or square != context.get(
+                "pinned_square", context.get("square")
+            ):
+                rule, ply = "pin_prevents_attack", positions[id(node)]
+                board, san, plies, frame = node.board(), node.san(), [ply], ply
         roles = {"pinned_defender": names([square]), "king": names([board.king(not actor)])}
         if rule == "pin_prevents_attack":
-            roles["target"] = names([context["attack"]])
+            roles["target"] = names([attack])
             text = (
                 f"After {san}, the piece on {chess.square_name(square)} is pinned to its king "
-                f"and cannot capture on {chess.square_name(context['attack'])}."
+                f"and cannot capture on {chess.square_name(attack)}."
             )
         else:
             roles["attacker"] = names([context["attacker_square"]])
